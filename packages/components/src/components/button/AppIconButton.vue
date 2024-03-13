@@ -18,7 +18,7 @@ const props = withDefaults(
      */
     iconSize?: IconStyleProps['size']
     /**
-     *
+     * The label for the button for accessibility
      */
     label: string
     /**

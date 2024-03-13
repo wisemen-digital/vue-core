@@ -31,7 +31,7 @@ const label = computed<string>(() => {
         'text-muted-foreground': !props.isInvalid,
         'opacity-50': props.isDisabled,
       }"
-      class="text-sm"
+      class="text-sm duration-200"
     >
       {{ label }}
     </span>

@@ -17,7 +17,7 @@ export default defineConfig({
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
       // into your library (Vue)
-      external: ['vue', 'vue-i18n', 'vue-router'],
+      external: ['vue', 'vue-i18n', 'vue-router', 'zod'],
       output: {
         // Provide global variables to use in the UMD build
         // for externalized deps
@@ -25,6 +25,7 @@ export default defineConfig({
           'vue': 'Vue',
           'vue-i18n': 'VueI18n',
           'vue-router': 'VueRouter',
+          'zod': 'zod',
         },
       },
     },

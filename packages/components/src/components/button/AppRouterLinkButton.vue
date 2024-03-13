@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, useSlots } from 'vue'
+import { computed } from 'vue'
 import type { RouteLocationNamedRaw } from 'vue-router'
 import { RouterLink } from 'vue-router'
 

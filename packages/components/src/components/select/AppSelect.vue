@@ -25,6 +25,10 @@ const props = withDefaults(
      */
     id?: null | string
     /**
+     * Whether the select is disabled.
+     */
+    isDisabled?: boolean
+    /**
      * Whether the select is invalid.
      * @default false
      */
@@ -44,6 +48,7 @@ const props = withDefaults(
   }>(),
   {
     id: null,
+    isDisabled: false,
     isInvalid: false,
     placeholder: null,
   },
@@ -84,12 +89,14 @@ function onTriggerBlur(): void {
     <SelectRoot
       v-model="model"
       v-model:open="isOpen"
+      :disabled="props.isDisabled"
     >
       <SelectTrigger
         :id="id"
         :class="{
           'border-input-border focus-visible:ring-ring': !props.isInvalid,
           'border-destructive focus-visible:ring-destructive': props.isInvalid,
+          'cursor-not-allowed opacity-50': props.isDisabled,
         }"
         class="flex h-10 w-full items-center justify-between rounded-input border border-solid bg-input px-3 ring-offset-background duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
         @blur="onTriggerBlur"
@@ -108,7 +115,7 @@ function onTriggerBlur(): void {
           <AppIcon
             class="text-muted-foreground"
             icon="chevronDown"
-            size="default"
+            size="sm"
           />
         </SelectIcon>
       </SelectTrigger>
@@ -127,7 +134,7 @@ function onTriggerBlur(): void {
             <SelectContent
               :force-mount="true"
               align="center"
-              class="select-content relative z-popover overflow-hidden rounded-popover bg-background shadow-popover-shadow"
+              class="select-content popover-content relative z-popover overflow-hidden rounded-popover bg-background shadow-popover-shadow"
               position="popper"
             >
               <!-- eslint-enable tailwindcss/no-custom-classname -->

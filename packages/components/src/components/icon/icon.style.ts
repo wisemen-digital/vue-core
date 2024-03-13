@@ -12,7 +12,7 @@ export const sizeOptions = {
 }
 
 export const iconVariants = cva({
-  base: null,
+  base: 'flex-shrink-0',
   defaultVariants: {
     size: 'default',
   },

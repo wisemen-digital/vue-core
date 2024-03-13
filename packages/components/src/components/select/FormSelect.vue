@@ -12,17 +12,21 @@ const props = withDefaults(
      */
     errors: FormFieldErrors
     /**
+     * Whether the select is disabled.
+     */
+    isDisabled?: boolean
+    /**
      *  Whether the select is required.
      */
     isRequired?: boolean
     /**
+     *
+     */
+    isTouched: boolean
+    /**
      * The label of the select.
      */
     label: string
-    /**
-     * The model value of the select.
-     */
-    modelValue: T | null
     /**
      * The options of the select.
      */
@@ -34,7 +38,9 @@ const props = withDefaults(
     placeholder?: null | string
   }>(),
   {
+    isDisabled: false,
     isRequired: false,
+    isTouched: false,
     placeholder: null,
   },
 )
@@ -54,17 +60,20 @@ function onBlur(): void {
 
 <template>
   <FormInputContainer
-    v-slot="{ isInvalid }"
+    v-slot="{ isInvalid, id }"
     :errors="props.errors"
     :is-required="props.isRequired"
-    :is-touched="false"
+    :is-touched="props.isTouched"
+    :is-disabled="props.isDisabled"
     :placeholder="placeholder"
     :label="props.label"
   >
     <AppSelect
+      :id="id"
       v-model="model"
       :is-invalid="isInvalid"
       :options="props.options"
+      :is-disabled="props.isDisabled"
       :is-required="props.isRequired"
       :placeholder="props.placeholder"
       @blur="onBlur"

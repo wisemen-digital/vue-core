@@ -14,9 +14,13 @@ const props = defineProps<{
    */
   errors: FormFieldErrors
   /**
+   * Whether the input is disabled.
+   */
+  isDisabled: boolean
+  /**
    *  Whether the input is required.
    */
-  isRequired?: boolean
+  isRequired: boolean
   /**
    * Whether the input is touched. This is used to determine if the input should be marked as invalid.
    */
@@ -30,7 +34,7 @@ const props = defineProps<{
 const inputId = `form-input-${generateUuid()}`
 
 const isInvalid = computed<boolean>(() => {
-  return props.isTouched && props.errors !== null
+  return props.isTouched && props.errors !== undefined
 })
 </script>
 
@@ -41,12 +45,16 @@ const isInvalid = computed<boolean>(() => {
       :label="props.label"
       :is-required="props.isRequired"
       :is-invalid="isInvalid"
+      :is-disabled="props.isDisabled"
     />
 
-    <slot :is-invalid="isInvalid" />
+    <slot
+      :id="inputId"
+      :is-invalid="isInvalid"
+    />
 
     <FormError
-      :is-invalid="isInvalid"
+      :is-visible="isInvalid"
       :errors="props.errors"
     />
   </FormGroup>

@@ -35,6 +35,11 @@ export { default as AppDropdownMenuSubTrigger } from './components/dropdown-menu
 export { default as AppIcon } from './components/icon/AppIcon.vue'
 export * from './components/icon/icon.style'
 
+// Input
+export { default as AppInput } from './components/input/AppInput.vue'
+export { default as AppPasswordInput } from './components/input/AppPasswordInput.vue'
+export { default as FormInput } from './components/input/FormInput.vue'
+
 // Popover
 export { default as AppPopover } from './components/popover/AppPopover.vue'
 
@@ -62,7 +67,6 @@ export { useDialog } from './composables/dialog.composable'
 
 // Types
 export type { Icon, Icons } from './icons/icons'
-export type { RouteLocationTyped, RouteRecordTyped, Routes } from './types/routes.type'
 
 // Other
 export { extendIcons } from './icons/icons'
