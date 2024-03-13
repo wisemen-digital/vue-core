@@ -1,0 +1,1 @@
+A collection of svg icons. Be sure to always remove the width and height and replace the hardcoded hex colors with `currentColor`. Should be exported in icons.ts
