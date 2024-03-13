@@ -1,4 +1,0 @@
-{
-  "extends": ["./tsconfig.app.json"],
-  "files": ["tailwind.config.ts", "postcss.config.js", "vite.config.ts"]
-}
