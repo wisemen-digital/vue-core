@@ -13,6 +13,7 @@ export interface BaseIcons {
   close: Promise<Component>
   eye: Promise<Component>
   eyeSlash: Promise<Component>
+  minus: Promise<Component>
   warning: Promise<Component>
 }
 
@@ -33,6 +34,7 @@ export const icons: AllIcons = {
   close: import('./CloseIcon.vue'),
   eye: import('./EyeIcon.vue'),
   eyeSlash: import('./EyeSlashIcon.vue'),
+  minus: import('./MinusIcon.vue'),
   warning: import('./WarningIcon.vue'),
 }
 
