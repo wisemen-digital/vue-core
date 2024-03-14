@@ -140,16 +140,20 @@ function onBlur(): void {
             @blur="onBlur"
           />
 
-          <ComboboxTrigger
-            :as-child="true"
-            class="absolute right-1 top-1/2 box-content -translate-y-1/2 p-2 outline-none"
-          >
-            <AppIcon
-              class="text-muted-foreground"
-              icon="chevronDown"
-              size="sm"
-            />
-          </ComboboxTrigger>
+          <div class="absolute right-1 top-1/2 box-content -translate-y-1/2 p-2">
+            <slot name="right">
+              <ComboboxTrigger
+                :as-child="true"
+                class="outline-none"
+              >
+                <AppIcon
+                  class="text-muted-foreground"
+                  icon="chevronDown"
+                  size="sm"
+                />
+              </ComboboxTrigger>
+            </slot>
+          </div>
         </div>
       </ComboboxAnchor>
 

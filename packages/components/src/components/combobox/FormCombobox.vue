@@ -4,6 +4,7 @@ import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
 import AppCombobox from '../combobox/AppCombobox.vue'
 import FormInputContainer from '../form-input-container/FormInputContainer.vue'
+import AppLoader from '../loader/AppLoader.vue'
 
 const props = withDefaults(
   defineProps<{
@@ -20,6 +21,10 @@ const props = withDefaults(
      * Whether the combobox is disabled.
      */
     isDisabled?: boolean
+    /**
+     * Whether the select is loading.
+     */
+    isLoading?: boolean
     /**
      *  Whether the combobox is required.
      */
@@ -45,6 +50,7 @@ const props = withDefaults(
   {
     emptyText: null,
     isDisabled: false,
+    isLoading: false,
     isRequired: false,
     isTouched: false,
     placeholder: null,
@@ -84,6 +90,13 @@ function onBlur(): void {
       :is-required="props.isRequired"
       :placeholder="props.placeholder"
       @blur="onBlur"
-    />
+    >
+      <template
+        v-if="props.isLoading"
+        #right
+      >
+        <AppLoader class="size-4 text-muted-foreground" />
+      </template>
+    </AppCombobox>
   </FormInputContainer>
 </template>
