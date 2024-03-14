@@ -35,13 +35,27 @@ export { default as AppDropdownMenuSub } from './components/dropdown-menu/AppDro
 export { default as AppDropdownMenuSubContent } from './components/dropdown-menu/AppDropdownMenuSubContent.vue'
 export { default as AppDropdownMenuSubTrigger } from './components/dropdown-menu/AppDropdownMenuSubTrigger.vue'
 
+// Form error
+export { default as FormError } from './components/form-error/FormError.vue'
+
+// Form Group
+export { default as FormGroup } from './components/form-group/FormGroup.vue'
+
+// Form input container
+export { default as FormInputContainer } from './components/form-input-container/FormInputContainer.vue'
+
+// Form label
+
+export { default as FormLabel } from './components/form-label/FormLabel.vue'
+// Loader
+export { default as AppLoader } from './components/loader/AppLoader.vue'
+
 // Icon
 export { default as AppIcon } from './components/icon/AppIcon.vue'
 export * from './components/icon/icon.style'
 
 // Input
 export { default as AppInput } from './components/input/AppInput.vue'
-export { default as AppPasswordInput } from './components/input/AppPasswordInput.vue'
 export { default as FormInput } from './components/input/FormInput.vue'
 export { default as FormPasswordInput } from './components/input/FormPasswordInput.vue'
 

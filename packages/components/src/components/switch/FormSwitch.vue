@@ -25,8 +25,8 @@ const model = defineModel<boolean>({
       'focus-visible:ring-ring data-[state=checked]:bg-primary': !props.isInvalid,
       'bg-destructive focus-visible:ring-destructive': props.isInvalid,
     }"
-    class="w-10 rounded-2xl bg-neutral-200 p-0.5 outline-none ring-offset-2 ring-offset-background duration-200 focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-50"
+    class="w-10 rounded-2xl bg-switch-background p-0.5 outline-none ring-offset-2 ring-offset-background duration-200 focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-50"
   >
-    <SwitchThumb class="block size-5 rounded-full bg-white shadow-sm duration-200 data-[state=checked]:translate-x-4" />
+    <SwitchThumb class="block size-5 rounded-full bg-switch-foreground shadow-sm duration-200 data-[state=checked]:translate-x-4" />
   </SwitchRoot>
 </template>

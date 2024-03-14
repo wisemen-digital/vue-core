@@ -41,7 +41,6 @@ const props = withDefaults(defineProps<AppRouterLinkButtonProps>(), {
   // TODO: find out why defaulting these to `null` breaks the `Icon` prop type when using `declare module`.
   // iconLeft: null,
   // iconRight: null,
-  isDisabled: false,
   isLoading: false,
   size: 'default',
   type: 'button',

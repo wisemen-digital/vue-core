@@ -14,6 +14,11 @@ const props = withDefaults(
      */
     align?: 'center' | 'end' | 'start'
     /**
+     * The content to show in the tooltip.
+     * @default null
+     */
+    content?: null | string
+    /**
      * The duration in milliseconds to wait before showing the tooltip.
      * @default 0
      */
@@ -34,11 +39,6 @@ const props = withDefaults(
      */
     hideArrow?: boolean
     /**
-     * The label to show in the tooltip.
-     * @default null
-     */
-    label?: null | string
-    /**
      * The offset of the tooltip content.
      * @default 10
      */
@@ -51,11 +51,11 @@ const props = withDefaults(
   }>(),
   {
     align: 'center',
+    content: null,
     delayDuration: 0,
     disableCloseOnTriggerClick: false,
     disableHoverableContent: false,
     hideArrow: false,
-    label: null,
     offset: 10,
     side: 'top',
   },
@@ -74,8 +74,8 @@ defineSlots<{
 
 const slots = useSlots()
 
-if (props.label === null && slots.content === undefined) {
-  throw new Error('[TOOLTIP] Either the `label` prop or `content` slot must be provided.')
+if (props.content === null && slots.content === undefined) {
+  throw new Error('[TOOLTIP] Either the `content` prop or `content` slot must be provided.')
 }
 </script>
 
@@ -100,7 +100,7 @@ if (props.label === null && slots.content === undefined) {
           class="max-w-xs p-2 text-center text-popover-foreground"
           variant="subtext"
         >
-          {{ props.label }}
+          {{ props.content }}
         </AppText>
       </slot>
     </AppTooltipContent>

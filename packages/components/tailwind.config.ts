@@ -56,11 +56,13 @@ export default {
           placeholder: 'rgba(var(--input-placeholder), <alpha-value>)',
           ring: 'rgba(var(--input-ring), <alpha-value>)',
         },
+
         muted: {
           DEFAULT: 'rgba(var(--muted), <alpha-value>)',
           background: 'rgba(var(--muted-background), <alpha-value>)',
           foreground: 'rgba(var(--muted-foreground), <alpha-value>)',
         },
+
         neutral: {
           100: 'rgba(var(--neutral-100), <alpha-value>)',
           200: 'rgba(var(--neutral-200), <alpha-value>)',
@@ -88,6 +90,10 @@ export default {
         success: {
           DEFAULT: 'rgba(var(--success), <alpha-value>)',
           foreground: 'rgba(var(--success-foreground), <alpha-value>)',
+        },
+        switch: {
+          background: 'rgba(var(--switch-background), <alpha-value>)',
+          foreground: 'rgba(var(--switch-foreground), <alpha-value>)',
         },
         transparent: 'transparent',
 

@@ -99,6 +99,7 @@ function onBlur(): void {
       :placeholder="props.placeholder"
       :is-disabled="props.isDisabled"
       :type="props.type"
+      :is-loading="props.isLoading"
       :icon-left="props.iconLeft"
       :icon-right="props.iconRight"
       @focus="onFocus"
@@ -108,17 +109,7 @@ function onBlur(): void {
         <slot name="left" />
       </template>
 
-      <template
-        v-if="props.isLoading"
-        #right
-      >
-        <AppLoader class="mr-3 size-4 text-muted-foreground" />
-      </template>
-
-      <template
-        v-else
-        #right
-      >
+      <template #right>
         <slot name="right" />
       </template>
     </AppInput>

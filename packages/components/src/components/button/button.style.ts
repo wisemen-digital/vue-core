@@ -2,17 +2,17 @@ import type { VariantProps } from '@/libs/cva.lib'
 import { cva } from '@/libs/cva.lib'
 
 export const button = cva({
-  base: 'relative flex items-center justify-center rounded-button border border-solid text-sm outline-none ring-offset-2 ring-offset-background duration-200 focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-50',
+  base: 'relative flex items-center justify-center rounded-button border border-solid outline-none ring-offset-2 ring-offset-background duration-200 focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-50',
   defaultVariants: {
     size: 'default',
     variant: 'default',
   },
   variants: {
     size: {
-      default: 'h-10 px-4 py-2',
-      icon: 'size-10',
-      lg: 'h-11 rounded-button px-8',
-      sm: 'h-9 rounded-button px-3',
+      default: 'h-10 px-4 py-2 text-sm',
+      icon: 'size-10 text-sm',
+      lg: 'h-11 rounded-button px-8 text-base',
+      sm: 'h-9 rounded-button px-3 text-xs',
     },
     variant: {
       'default':

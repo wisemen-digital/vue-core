@@ -81,15 +81,9 @@ function onBlur(): void {
       :options="props.options"
       :is-disabled="props.isDisabled"
       :is-required="props.isRequired"
+      :is-loading="props.isLoading"
       :placeholder="props.placeholder"
       @blur="onBlur"
-    >
-      <template
-        v-if="props.isLoading"
-        #right
-      >
-        <AppLoader class="size-4 text-muted-foreground" />
-      </template>
-    </AppSelect>
+    />
   </FormInputContainer>
 </template>

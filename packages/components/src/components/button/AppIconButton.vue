@@ -28,7 +28,7 @@ const props = withDefaults(
     variant?: ButtonStyleProps['variant']
   }>(),
   {
-    iconSize: 'sm',
+    iconSize: 'default',
     variant: 'default',
   },
 )

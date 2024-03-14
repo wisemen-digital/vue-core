@@ -4,7 +4,6 @@ import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
 import AppCombobox from '../combobox/AppCombobox.vue'
 import FormInputContainer from '../form-input-container/FormInputContainer.vue'
-import AppLoader from '../loader/AppLoader.vue'
 
 const props = withDefaults(
   defineProps<{
@@ -89,14 +88,8 @@ function onBlur(): void {
       :is-disabled="props.isDisabled"
       :is-required="props.isRequired"
       :placeholder="props.placeholder"
+      :is-loading="props.isLoading"
       @blur="onBlur"
-    >
-      <template
-        v-if="props.isLoading"
-        #right
-      >
-        <AppLoader class="size-4 text-muted-foreground" />
-      </template>
-    </AppCombobox>
+    />
   </FormInputContainer>
 </template>

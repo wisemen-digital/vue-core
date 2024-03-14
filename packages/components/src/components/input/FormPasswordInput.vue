@@ -1,9 +1,14 @@
 <script setup lang="ts">
+import { computed, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+
 import type { Icon } from '@/icons/icons'
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
+import AppIconButton from '../button/AppIconButton.vue'
 import FormInputContainer from '../form-input-container/FormInputContainer.vue'
-import AppPasswordInput from './AppPasswordInput.vue'
+import AppToggle from '../toggle/AppToggle.vue'
+import AppInput from './AppInput.vue'
 
 const props = withDefaults(
   defineProps<{
@@ -30,7 +35,7 @@ const props = withDefaults(
      */
     isRequired?: boolean
     /**
-     *
+     * Whether the input is touched.
      */
     isTouched: boolean
     /**
@@ -61,6 +66,14 @@ const model = defineModel<null | string>({
   required: true,
 })
 
+const isPasswordVisible = ref<boolean>(false)
+
+const { t } = useI18n()
+
+const inputType = computed<'password' | 'text'>(() => {
+  return isPasswordVisible.value ? 'text' : 'password'
+})
+
 function onFocus(): void {
   emit('focus')
 }
@@ -80,15 +93,36 @@ function onBlur(): void {
     :placeholder="placeholder"
     :label="props.label"
   >
-    <AppPasswordInput
+    <AppInput
       :id="id"
       v-model="model"
+      :type="inputType"
+      :is-disabled="props.isDisabled"
       :is-invalid="isInvalid"
       :placeholder="props.placeholder"
-      :is-disabled="props.isDisabled"
       :icon-left="props.iconLeft"
+      :is-loading="props.isLoading"
       @focus="onFocus"
       @blur="onBlur"
-    />
+    >
+      <template #right>
+        <AppToggle
+          v-model:is-toggled="isPasswordVisible"
+          :is-disabled="props.isDisabled"
+        >
+          <template #default="{ isToggled }">
+            <AppIconButton
+              :icon="isToggled
+                ? 'eyeSlash'
+                : 'eye'"
+              :label="isToggled
+                ? t('components.password_input.hide_password')
+                : t('components.password_input.show_password')"
+              variant="ghost"
+            />
+          </template>
+        </AppToggle>
+      </template>
+    </AppInput>
   </FormInputContainer>
 </template>

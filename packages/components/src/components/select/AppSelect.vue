@@ -35,6 +35,10 @@ const props = withDefaults(
      */
     isInvalid?: boolean
     /**
+     * Whether the select is loading.
+     */
+    isLoading?: boolean
+    /**
      * The model value of the select.
      */
     modelValue: T | null
@@ -51,6 +55,7 @@ const props = withDefaults(
     id: null,
     isDisabled: false,
     isInvalid: false,
+    isLoading: false,
     placeholder: null,
   },
 )
@@ -112,17 +117,21 @@ function onTriggerBlur(): void {
           {{ selectedValueLabel }}
         </SelectValue>
 
-        <slot name="right">
-          <SelectIcon
-            :as-child="true"
-          >
-            <AppIcon
-              class="text-muted-foreground"
-              icon="chevronDown"
-              size="sm"
-            />
-          </SelectIcon>
-        </slot>
+        <AppLoader
+          v-if="props.isLoading"
+          class="size-4 text-muted-foreground"
+        />
+
+        <SelectIcon
+          v-else
+          :as-child="true"
+        >
+          <AppIcon
+            class="text-muted-foreground"
+            icon="chevronDown"
+            size="sm"
+          />
+        </SelectIcon>
       </SelectTrigger>
 
       <SelectPortal>

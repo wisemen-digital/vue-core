@@ -2,6 +2,7 @@
 import type { Icon } from '@/icons/icons'
 
 import AppIcon from '../icon/AppIcon.vue'
+import AppLoader from '../loader/AppLoader.vue'
 
 const props = withDefaults(defineProps<{
   /**
@@ -30,6 +31,10 @@ const props = withDefaults(defineProps<{
    */
   isInvalid?: boolean
   /**
+   * Whether the input is loading.
+   */
+  isLoading?: boolean
+  /**
    * The placeholder of the input.
    * @default null
    */
@@ -43,6 +48,7 @@ const props = withDefaults(defineProps<{
   id: null,
   isDisabled: false,
   isInvalid: false,
+  isLoading: false,
   placeholder: null,
   type: 'text',
 })
@@ -95,7 +101,15 @@ function onFocus(): void {
       @focus="onFocus"
     >
 
-    <slot name="right">
+    <AppLoader
+      v-if="props.isLoading"
+      class="mr-3 size-4 text-muted-foreground"
+    />
+
+    <slot
+      v-else
+      name="right"
+    >
       <AppIcon
         v-if="props.iconRight !== null && props.iconRight !== undefined"
         :icon="props.iconRight"

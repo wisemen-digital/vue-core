@@ -16,6 +16,7 @@ import { useI18n } from 'vue-i18n'
 import type { DataItem } from '@/types/dataItem.type'
 
 import AppIcon from '../icon/AppIcon.vue'
+import AppLoader from '../loader/AppLoader.vue'
 import AppText from '../text/AppText.vue'
 import AppComboboxItem from './AppComboboxItem.vue'
 
@@ -27,10 +28,18 @@ const props = withDefaults(
      */
     emptyText?: null | string
     /**
+     * Whether the combobox is disabled.
+     */
+    isDisabled?: boolean
+    /**
      * Whether the combobox is in an invalid state.
      * @default false
      */
     isInvalid?: boolean
+    /**
+     * Whether the combobox is loading.
+     */
+    isLoading?: boolean
     /**
      * The value of the combobox.
      */
@@ -47,7 +56,9 @@ const props = withDefaults(
   }>(),
   {
     emptyText: null,
+    isDisabled: false,
     isInvalid: false,
+    isLoading: false,
     placeholder: null,
   },
 )
@@ -120,6 +131,7 @@ function onBlur(): void {
     <ComboboxRoot
       v-model="model"
       v-model:open="isOpen"
+      :disabled="props.isDisabled"
       :display-value="displayFn"
       :filter-function="filterFn"
       :multiple="isMultiple"
@@ -135,24 +147,33 @@ function onBlur(): void {
               'focus:placeholder:text-input-placeholder': isMultiple && !isEmpty,
             }"
             :placeholder="placeholderValue"
-            class="h-10 w-full truncate rounded-input border bg-input pl-3 pr-9 text-sm outline-none ring-offset-background duration-200 focus-visible:ring-2 focus-visible:ring-offset-2"
+            class="h-10 w-full truncate rounded-input border bg-input pl-3 pr-9 text-sm outline-none ring-offset-background duration-200 focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
             tabindex="0"
             @blur="onBlur"
           />
 
-          <div class="absolute right-1 top-1/2 box-content -translate-y-1/2 p-2">
-            <slot name="right">
-              <ComboboxTrigger
-                :as-child="true"
-                class="outline-none"
-              >
-                <AppIcon
-                  class="text-muted-foreground"
-                  icon="chevronDown"
-                  size="sm"
-                />
-              </ComboboxTrigger>
-            </slot>
+          <div
+            :class="{
+              'pointer-events-none opacity-50': props.isDisabled,
+            }"
+            class="absolute right-1 top-1/2 box-content -translate-y-1/2 p-2"
+          >
+            <AppLoader
+              v-if="props.isLoading"
+              class="pointer-events-none size-4 text-muted-foreground"
+            />
+
+            <ComboboxTrigger
+              v-else
+              :as-child="true"
+              class="outline-none"
+            >
+              <AppIcon
+                class="text-muted-foreground"
+                icon="chevronDown"
+                size="sm"
+              />
+            </ComboboxTrigger>
           </div>
         </div>
       </ComboboxAnchor>

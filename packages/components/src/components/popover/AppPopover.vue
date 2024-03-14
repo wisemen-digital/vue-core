@@ -75,7 +75,7 @@ if (slots.default === undefined) {
         class="popover-content rounded-popover bg-popover shadow-popover-shadow"
       >
         <!-- eslint-enable tailwindcss/no-custom-classname -->
-        <AppPopoverCloseButton class="absolute right-0 top-0" />
+        <AppPopoverCloseButton class="!absolute right-0 top-0" />
 
         <slot name="content" />
 
