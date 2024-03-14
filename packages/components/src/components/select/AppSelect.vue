@@ -13,6 +13,7 @@ import { computed, ref } from 'vue'
 import type { DataItem } from '@/types/dataItem.type'
 
 import AppIcon from '../icon/AppIcon.vue'
+import AppLoader from '../loader/AppLoader.vue'
 import AppSelectItem from './AppSelectItem.vue'
 import AppSelectScrollDownButton from './AppSelectScrollDownButton.vue'
 import AppSelectScrollUpButton from './AppSelectScrollUpButton.vue'
@@ -111,13 +112,17 @@ function onTriggerBlur(): void {
           {{ selectedValueLabel }}
         </SelectValue>
 
-        <SelectIcon :as-child="true">
-          <AppIcon
-            class="text-muted-foreground"
-            icon="chevronDown"
-            size="sm"
-          />
-        </SelectIcon>
+        <slot name="right">
+          <SelectIcon
+            :as-child="true"
+          >
+            <AppIcon
+              class="text-muted-foreground"
+              icon="chevronDown"
+              size="sm"
+            />
+          </SelectIcon>
+        </slot>
       </SelectTrigger>
 
       <SelectPortal>

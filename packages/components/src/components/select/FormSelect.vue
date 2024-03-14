@@ -3,6 +3,7 @@ import type { DataItem } from '@/types/dataItem.type'
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
 import FormInputContainer from '../form-input-container/FormInputContainer.vue'
+import AppLoader from '../loader/AppLoader.vue'
 import AppSelect from '../select/AppSelect.vue'
 
 const props = withDefaults(
@@ -16,11 +17,15 @@ const props = withDefaults(
      */
     isDisabled?: boolean
     /**
+     * Whether the select is loading.
+     */
+    isLoading?: boolean
+    /**
      *  Whether the select is required.
      */
     isRequired?: boolean
     /**
-     *
+     * Whether the select has been touched (focused and blurred).
      */
     isTouched: boolean
     /**
@@ -39,6 +44,7 @@ const props = withDefaults(
   }>(),
   {
     isDisabled: false,
+    isLoading: false,
     isRequired: false,
     isTouched: false,
     placeholder: null,
@@ -77,6 +83,13 @@ function onBlur(): void {
       :is-required="props.isRequired"
       :placeholder="props.placeholder"
       @blur="onBlur"
-    />
+    >
+      <template
+        v-if="props.isLoading"
+        #right
+      >
+        <AppLoader class="size-4 text-muted-foreground" />
+      </template>
+    </AppSelect>
   </FormInputContainer>
 </template>
