@@ -31,7 +31,7 @@ const props = defineProps<{
         </DialogDescription>
       </VisuallyHidden>
 
-      <slot name="content" />
+      <slot />
 
       <AppDialogCloseButton
         v-if="!hideCloseButton"
