@@ -39,6 +39,7 @@ export * from './components/icon/icon.style'
 export { default as AppInput } from './components/input/AppInput.vue'
 export { default as AppPasswordInput } from './components/input/AppPasswordInput.vue'
 export { default as FormInput } from './components/input/FormInput.vue'
+export { default as FormPasswordInput } from './components/input/FormPasswordInput.vue'
 
 // Popover
 export { default as AppPopover } from './components/popover/AppPopover.vue'

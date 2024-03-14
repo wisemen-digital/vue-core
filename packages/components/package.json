@@ -5,11 +5,11 @@
   "license": "MIT",
   "sideEffects": false,
   "exports": {
-    "./components": {
+    ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./components/style.css": "./dist/style.css"
+    "./style.css": "./dist/style.css"
   },
   "main": "./dist/index.umd.cjs",
   "module": "./dist/index.js",

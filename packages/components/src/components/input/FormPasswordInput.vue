@@ -3,8 +3,7 @@ import type { Icon } from '@/icons/icons'
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
 import FormInputContainer from '../form-input-container/FormInputContainer.vue'
-import AppInput from '../input/AppInput.vue'
-import AppLoader from '../loader/AppLoader.vue'
+import AppPasswordInput from './AppPasswordInput.vue'
 
 const props = withDefaults(
   defineProps<{
@@ -17,11 +16,6 @@ const props = withDefaults(
      * @default null
      */
     iconLeft?: Icon | null
-    /**
-     * The right icon of the input.
-     * @default null
-     */
-    iconRight?: Icon | null
     /**
      * Whether the input is disabled.
      */
@@ -48,11 +42,6 @@ const props = withDefaults(
      * @default null
      */
     placeholder?: null | string
-    /**
-     * The type of the input.
-     * @default 'text'
-     */
-    type?: 'date' | 'datetime-local' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'time' | 'url'
   }>(),
   {
     isDisabled: false,
@@ -60,7 +49,6 @@ const props = withDefaults(
     isRequired: false,
     isTouched: false,
     placeholder: null,
-    type: 'text',
   },
 )
 
@@ -92,35 +80,15 @@ function onBlur(): void {
     :placeholder="placeholder"
     :label="props.label"
   >
-    <AppInput
+    <AppPasswordInput
       :id="id"
       v-model="model"
       :is-invalid="isInvalid"
       :placeholder="props.placeholder"
       :is-disabled="props.isDisabled"
-      :type="props.type"
       :icon-left="props.iconLeft"
-      :icon-right="props.iconRight"
       @focus="onFocus"
       @blur="onBlur"
-    >
-      <template #left>
-        <slot name="left" />
-      </template>
-
-      <template
-        v-if="props.isLoading"
-        #right
-      >
-        <AppLoader class="mr-3 size-4 text-muted-foreground" />
-      </template>
-
-      <template
-        v-else
-        #right
-      >
-        <slot name="right" />
-      </template>
-    </AppInput>
+    />
   </FormInputContainer>
 </template>
