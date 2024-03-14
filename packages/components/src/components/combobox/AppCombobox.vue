@@ -53,6 +53,7 @@ const props = withDefaults(
 )
 
 const emit = defineEmits<{
+  'blur': []
   'update:modelValue': [value: T | T[] | null]
 }>()
 
@@ -106,6 +107,12 @@ function displayFn(value: T): string {
 
   return option.label
 }
+
+function onBlur(): void {
+  if (!isOpen.value) {
+    emit('blur')
+  }
+}
 </script>
 
 <template>
@@ -130,6 +137,7 @@ function displayFn(value: T): string {
             :placeholder="placeholderValue"
             class="h-10 w-full truncate rounded-input border bg-input pl-3 pr-9 text-sm outline-none ring-offset-background duration-200 focus-visible:ring-2 focus-visible:ring-offset-2"
             tabindex="0"
+            @blur="onBlur"
           />
 
           <ComboboxTrigger
@@ -139,7 +147,7 @@ function displayFn(value: T): string {
             <AppIcon
               class="text-muted-foreground"
               icon="chevronDown"
-              size="default"
+              size="sm"
             />
           </ComboboxTrigger>
         </div>
