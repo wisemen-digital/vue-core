@@ -8,11 +8,15 @@ export type { AppRouterLinkButtonProps } from './components/button/AppRouterLink
 export { default as AppRouterLinkButton } from './components/button/AppRouterLinkButton.vue'
 export * from './components/button/button.style'
 
+// Checkbox
+export { default as FormCheckbox } from './components/checkbox/FormCheckbox.vue'
+
 // Combobox
 export { default as AppCombobox } from './components/combobox/AppCombobox.vue'
 export { default as AppComboboxDivider } from './components/combobox/AppComboboxDivider.vue'
 export { default as AppComboboxGroup } from './components/combobox/AppComboboxGroup.vue'
 export { default as AppComboboxItem } from './components/combobox/AppComboboxItem.vue'
+export { default as FormCombobox } from './components/combobox/FormCombobox.vue'
 
 // Dialog
 export { default as AppDialog } from './components/dialog/AppDialog.vue'
@@ -52,6 +56,9 @@ export { default as AppSelectItem } from './components/select/AppSelectItem.vue'
 export { default as AppSelectScrollDownButton } from './components/select/AppSelectScrollDownButton.vue'
 export { default as AppSelectScrollUpButton } from './components/select/AppSelectScrollUpButton.vue'
 export { default as FormSelect } from './components/select/FormSelect.vue'
+
+// Switch
+export { default as FormSwitch } from './components/switch/FormSwitch.vue'
 
 // Text
 export { default as AppText } from './components/text/AppText.vue'
