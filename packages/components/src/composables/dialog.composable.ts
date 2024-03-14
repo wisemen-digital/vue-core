@@ -31,10 +31,10 @@ export function useDialog<TComponent extends Record<string, unknown>>({
   animateFromTrigger = false,
   component,
 }: UseDialogOptions<TComponent>): UseDialogReturnType<TComponent> {
-  const dialogId = `dialog-${generateUuid()}`
+  const triggerId = `dialog-${generateUuid()}`
 
   function removeDialogFromContainer(): void {
-    dialogs.value = dialogs.value.filter(dialog => dialog.id !== dialogId)
+    dialogs.value = dialogs.value.filter(dialog => dialog.id !== triggerId)
   }
 
   async function openDialog(attrs: Attrs<TComponent>): Promise<void> {
@@ -48,7 +48,7 @@ export function useDialog<TComponent extends Record<string, unknown>>({
   }
 
   function closeDialog(): void {
-    const dialog = dialogs.value.find(dialog => dialog.id === dialogId) ?? null
+    const dialog = dialogs.value.find(dialog => dialog.id === triggerId) ?? null
 
     if (dialog === null) {
       return
@@ -68,21 +68,21 @@ export function useDialog<TComponent extends Record<string, unknown>>({
         reactive<Attrs<TComponent>>({
           ...attrs,
           animateFromTrigger,
-          triggerId: dialogId,
+          triggerId,
         }),
       )
     })
 
     return ref<Dialog>({
       component: markRaw(dialogComponent),
-      id: dialogId,
+      id: triggerId,
       isOpen: false,
     })
   }
 
   return {
     closeDialog,
-    dialogId,
     openDialog: openDialog as UseDialogReturnType<TComponent>['openDialog'],
+    triggerId,
   }
 }

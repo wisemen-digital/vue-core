@@ -54,10 +54,6 @@ export interface UseDialogReturnType<TComponent extends Record<string, unknown>>
    */
   closeDialog: () => void
   /**
-   * The dialog id. Should be bound to the trigger
-   */
-  dialogId: string
-  /**
    * Open the dialog
    * @param attrs The props to pass to the dialog - optional
    */
@@ -70,6 +66,10 @@ export interface UseDialogReturnType<TComponent extends Record<string, unknown>>
         (attrs?: Omit<Attrs<TComponent>, IgnoredKeys>) => Promise<void>
       : // If there are required attributes, then the parameter is required
         (attrs: Omit<Attrs<TComponent>, IgnoredKeys>) => Promise<void>
+  /**
+   * The dialog id. Should be bound to the trigger
+   */
+  triggerId: string
 }
 
 export interface Dialog {
