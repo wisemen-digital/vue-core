@@ -62,6 +62,9 @@ export { default as FormPasswordInput } from './components/input/FormPasswordInp
 // Popover
 export { default as AppPopover } from './components/popover/AppPopover.vue'
 
+// Radio group
+export { default as FormRadioGroup } from './components/radio-group/FormRadioGroup.vue'
+
 // Select
 export { default as AppSelect } from './components/select/AppSelect.vue'
 export { default as AppSelectDivider } from './components/select/AppSelectDivider.vue'
