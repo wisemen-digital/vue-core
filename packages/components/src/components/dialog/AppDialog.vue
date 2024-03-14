@@ -173,33 +173,33 @@ watch(isOpen, (isOpen) => {
 </script>
 
 <template>
-  <DialogRoot
-    v-model:open="isOpen"
-    :modal="isActuallyOpen"
-  >
-    <DialogPortal>
-      <AppDialogOverlay />
+  <div>
+    <DialogRoot
+      v-model:open="isOpen"
+      :modal="isActuallyOpen"
+    >
+      <DialogPortal>
+        <AppDialogOverlay />
 
-      <Component
-        :is="animateFromTrigger ? 'div' : Transition"
-        enter-active-class="duration-300 ease-dialog"
-        enter-from-class="opacity-0 scale-110"
-        leave-active-class="duration-300 ease-dialog"
-        leave-to-class="opacity-0 scale-110"
-      >
-        <AppDialogContent
-          v-if="isActuallyOpen"
-          :accessible-title="props.accessibleTitle"
-          :accessible-description="props.accessibleDescription"
-          :hide-close-button="props.hideCloseButton"
+        <Component
+          :is="animateFromTrigger ? 'div' : Transition"
+          enter-active-class="duration-300 ease-dialog"
+          enter-from-class="opacity-0 scale-110"
+          leave-active-class="duration-300 ease-dialog"
+          leave-to-class="opacity-0 scale-110"
         >
-          <template #content>
-            <slot name="content" />
-          </template>
-        </AppDialogContent>
-      </Component>
-    </DialogPortal>
-  </DialogRoot>
+          <AppDialogContent
+            v-if="isActuallyOpen"
+            :accessible-title="props.accessibleTitle"
+            :accessible-description="props.accessibleDescription"
+            :hide-close-button="props.hideCloseButton"
+          >
+            <slot />
+          </AppDialogContent>
+        </Component>
+      </DialogPortal>
+    </DialogRoot>
+  </div>
 </template>
 
 <style lang="scss">
