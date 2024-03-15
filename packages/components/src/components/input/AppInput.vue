@@ -45,6 +45,8 @@ const props = withDefaults(defineProps<{
    */
   type?: 'date' | 'datetime-local' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'time' | 'url'
 }>(), {
+  iconLeft: undefined,
+  iconRight: undefined,
   id: null,
   isDisabled: false,
   isInvalid: false,

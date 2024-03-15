@@ -21,11 +21,10 @@ export default {
         'card-hover-shadow': 'var(--shadow-card-hover);',
         'card-shadow': 'var(--shadow-card);',
         'dialog-shadow': 'var(--shadow-dialog);',
-        'input-shadow': '0px 1px 2px 0px #1018280D',
-        'jobs-table-header-shadow': '0px 1px 2px 0px #1018280F, 0px 2px 3px 0px #1018281A',
         'popover-shadow': 'var(--shadow-popover);',
         'table-header': '0px 2px 3px 0px #1018281A',
         'table-shadow': '0px 1px 2px 0px #1018280F',
+        'toast-shadow': '0 4px 12px #0000001a',
       },
 
       colors: {

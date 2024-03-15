@@ -58,6 +58,7 @@ const props = withDefaults(
 
 const emit = defineEmits<{
   blur: []
+  filter: [value: string]
 }>()
 
 const model = defineModel<T | T[] | null>({
@@ -66,6 +67,10 @@ const model = defineModel<T | T[] | null>({
 
 function onBlur(): void {
   emit('blur')
+}
+
+function onFilter(filter: string): void {
+  emit('filter', filter)
 }
 </script>
 
@@ -90,6 +95,7 @@ function onBlur(): void {
       :placeholder="props.placeholder"
       :is-loading="props.isLoading"
       @blur="onBlur"
+      @filter="onFilter"
     />
   </FormInputContainer>
 </template>

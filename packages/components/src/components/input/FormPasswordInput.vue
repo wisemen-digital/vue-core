@@ -49,6 +49,7 @@ const props = withDefaults(
     placeholder?: null | string
   }>(),
   {
+    iconLeft: undefined,
     isDisabled: false,
     isLoading: false,
     isRequired: false,
@@ -118,7 +119,9 @@ function onBlur(): void {
               :label="isToggled
                 ? t('components.password_input.hide_password')
                 : t('components.password_input.show_password')"
+              icon-size="sm"
               variant="ghost"
+              class="m-1 size-8"
             />
           </template>
         </AppToggle>

@@ -4,7 +4,6 @@ import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
 import FormInputContainer from '../form-input-container/FormInputContainer.vue'
 import AppInput from '../input/AppInput.vue'
-import AppLoader from '../loader/AppLoader.vue'
 
 const props = withDefaults(
   defineProps<{
@@ -55,6 +54,8 @@ const props = withDefaults(
     type?: 'date' | 'datetime-local' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'time' | 'url'
   }>(),
   {
+    iconLeft: undefined,
+    iconRight: undefined,
     isDisabled: false,
     isLoading: false,
     isRequired: false,

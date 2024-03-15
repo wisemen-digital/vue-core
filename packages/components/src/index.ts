@@ -52,7 +52,6 @@ export { default as AppLoader } from './components/loader/AppLoader.vue'
 
 // Icon
 export { default as AppIcon } from './components/icon/AppIcon.vue'
-export * from './components/icon/icon.style'
 
 // Input
 export { default as AppInput } from './components/input/AppInput.vue'
@@ -81,6 +80,9 @@ export { default as FormSwitch } from './components/switch/FormSwitch.vue'
 export { default as AppText } from './components/text/AppText.vue'
 export * from './components/text/text.style'
 
+// Toast
+export { default as AppToastContainer } from './components/toast/AppToastContainer.vue'
+
 // Toggle
 export { default as AppToggle } from './components/toggle/AppToggle.vue'
 
@@ -89,6 +91,7 @@ export { default as AppTooltip } from './components/tooltip/AppTooltip.vue'
 
 // Composables
 export { useDialog } from './composables/dialog.composable'
+export { useToast } from './composables/toast.composable'
 
 // Types
 export type { Icon, Icons } from './icons/icons'

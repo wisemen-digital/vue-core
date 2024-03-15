@@ -65,6 +65,7 @@ const props = withDefaults(
 
 const emit = defineEmits<{
   'blur': []
+  'filter': [value: string]
   'update:modelValue': [value: T | T[] | null]
 }>()
 
@@ -97,7 +98,7 @@ const isEmpty = computed<boolean>(() => {
   return model.value === undefined
 })
 
-function filterFn(options: T[], query: string): any {
+function filterFn(options: T[], filter: string): any {
   return options.filter((optionValue) => {
     const option = props.options.find(o => o.value === optionValue) ?? null
 
@@ -105,7 +106,7 @@ function filterFn(options: T[], query: string): any {
       return false
     }
 
-    return option.label.toLowerCase().includes(query.toLowerCase())
+    return option.label.toLowerCase().includes(filter.toLowerCase())
   })
 }
 
@@ -117,6 +118,10 @@ function displayFn(value: T): string {
   }
 
   return option.label
+}
+
+function onFilter(filter: string): void {
+  emit('filter', filter)
 }
 
 function onBlur(): void {
@@ -135,6 +140,7 @@ function onBlur(): void {
       :display-value="displayFn"
       :filter-function="filterFn"
       :multiple="isMultiple"
+      @update:search-term="onFilter"
     >
       <ComboboxAnchor>
         <div class="relative">

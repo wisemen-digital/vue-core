@@ -14,7 +14,7 @@ const props = withDefaults(
     icon: Icon
     /**
      * The size of the icon
-     * @default sm
+     * @default default
      */
     iconSize?: IconStyleProps['size']
     /**
