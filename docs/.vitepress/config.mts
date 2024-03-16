@@ -9,16 +9,47 @@ const guide = [
 
 const docs = [
   {
-    text: 'AppButton',
-    link: '/components/app-button'
+    text: 'Button',
+    items: [
+      {
+        text: 'AppButton',
+        link: '/components/app-button'
+      },
+      {
+        text: 'AppIconButton',
+        link: '/components/app-icon-button'
+      },
+      {
+        text: 'AppRouterLinkButton',
+        link: '/components/app-router-link-button'
+      },
+    ]
   },
   {
-    text: 'AppIconButton',
-    link: '/components/app-icon-button'
+    text: 'Input',
+    items: [
+      {
+        text: 'AppInput',
+        link: '/components/app-input'
+      },
+      {
+        text: 'FormInput',
+        link: '/components/form-input'
+      }
+    ]
   },
   {
-    'text': 'AppRouterLinkButton',
-    link: '/components/app-router-link-button'
+    text: 'Select',
+    items: [
+      {
+        text: 'AppSelect',
+        link: '/components/app-select'
+      },
+      {
+        text: 'FormSelect',
+        link: '/components/form-select'
+      }
+    ]
   }
 ]
 

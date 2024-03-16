@@ -2,7 +2,7 @@
 sidebar: auto
 ---
 
-# AppButton Component
+# AppButton
 
 ## Props
 
@@ -28,7 +28,7 @@ sidebar: auto
 
 ```vue
 <script setup lang="ts">
-import AppButton from '@/components/button/AppButton.vue'
+import { AppButton } from '@wisemen/vue-core'
 </script>
   
 <template>

@@ -2,14 +2,14 @@
 sidebar: auto
 ---
 
-# AppIconButton Component
+# AppIconButton
 
 ## Props
 
 | Prop       | Type                          | Description                                      | Default    |
 |------------|-------------------------------|--------------------------------------------------|------------|
-| icon (required)       | `Icon`                          | The icon to display                              |           |
-| label (required)      | `string`                        | The label for the button for accessibility. Will not be visible       | -          |
+| icon **(required)**       | `Icon`                          | The icon to display                              |           |
+| label **(required)**      | `string`                        | The label for the button for accessibility. Will not be visible       | -          |
 | iconSize   | `'default'` \| `'sm'` \| `'md'` \| `'lg'` | The size of the icon                             | `'default'`  |
 | variant    | `'default'` \| `'secondary'` \| `'outline'` \| `'ghost'` \| `'destructive'` \| `'destructive-outline'` | The variant of the button | `'default'`  |
 
@@ -21,7 +21,7 @@ None
 
 ```vue
 <script setup lang="ts">
-import AppIconButton from '@/components/button/AppIconButton.vue'
+import { AppIconButton } from '@wisemen/vue-core'
 </script>
 
 <template>
