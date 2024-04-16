@@ -5,17 +5,20 @@
   "packageManager": "pnpm@8.15.4",
   "license": "MIT",
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "docs"
   ],
   "scripts": {
     "build": "rimraf packages/vue-core/dist && pnpm run -r build",
     "docs:dev": "pnpm run -r docs:dev",
     "docs:build": "pnpm run -r docs:build",
-    "pub:release": "cd packages/components && pnpm pub:release --no-git-checks"
+    "pub:release": "cd packages/components && pnpm pub:release --no-git-checks",
+    "dev": "pnpm run -r dev"
   },
   "devDependencies": {
-    "@wisemen/eslint-config-vue": "^0.0.6",
+    "@wisemen/eslint-config-vue": "^0.0.10",
     "eslint": "^8.57.0",
+    "radix-vue": "^1.5.3",
     "rimraf": "^5.0.5"
   }
 }

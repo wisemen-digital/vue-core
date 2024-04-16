@@ -2,10 +2,9 @@
 import type { Component } from 'vue'
 import { shallowRef, watch } from 'vue'
 
-import type { Icon } from '@/icons/icons'
-import { icons } from '@/icons/icons'
-import { cn } from '@/utils/style.util'
-
+import type { Icon } from '../../icons/icons'
+import { icons } from '../../icons/icons'
+import { cn } from '../../utils/style.util'
 import type { IconStyleProps } from './icon.style'
 import { iconVariants } from './icon.style'
 
@@ -25,6 +24,7 @@ watch(
   () => props.icon,
   async () => {
     const resolvedComponent = await icons[props.icon]
+
     // @ts-expect-error TODO: Fix this
     svgComponent.value = resolvedComponent.default
   },

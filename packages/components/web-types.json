@@ -1,0 +1,4557 @@
+{
+  "framework": "vue",
+  "name": "@wisemen/vue-core",
+  "version": "0.0.28",
+  "contributions": {
+    " ": {
+      "description-markup": "markdown",
+      "types-syntax": "typescript",
+      "tags": [
+        {
+          "name": "AppBadge",
+          "description": "",
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/badge/AppBadge.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppButton",
+          "description": "",
+          "attributes": [
+            {
+              "name": "iconLeft",
+              "required": false,
+              "description": "The icon to display on the left side of the button.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              }
+            },
+            {
+              "name": "iconRight",
+              "required": false,
+              "description": "The icon to display on the right side of the button.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              }
+            },
+            {
+              "name": "isDisabled",
+              "required": false,
+              "description": "Whether the button is disabled.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isLoading",
+              "required": false,
+              "description": "Whether the button is in a loading state.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "size",
+              "required": false,
+              "description": "The size of the button.",
+              "value": {
+                "kind": "expression",
+                "type": "TSIndexedAccessType"
+              },
+              "default": "'default'"
+            },
+            {
+              "name": "type",
+              "required": false,
+              "description": "The type of the button.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "'button'"
+            },
+            {
+              "name": "variant",
+              "required": false,
+              "description": "The variant of the button.",
+              "value": {
+                "kind": "expression",
+                "type": "TSIndexedAccessType"
+              },
+              "default": "'default'"
+            }
+          ],
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/button/AppButton.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppCollapseTransition",
+          "description": "",
+          "attributes": [
+            {
+              "name": "duration",
+              "required": false,
+              "description": "The duration of the transition in seconds.",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              },
+              "default": "0.5"
+            }
+          ],
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/transitions/AppCollapseTransition.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppCombobox",
+          "description": "",
+          "attributes": [
+            {
+              "name": "displayFn",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "TSFunctionType"
+              }
+            },
+            {
+              "name": "emptyText",
+              "required": false,
+              "description": "The text to display when there are no options.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            },
+            {
+              "name": "isDisabled",
+              "required": false,
+              "description": "Whether the combobox is disabled.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isInvalid",
+              "required": false,
+              "description": "Whether the combobox is in an invalid state.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isLoading",
+              "required": false,
+              "description": "Whether the combobox is loading.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "items",
+              "required": true,
+              "description": "The options to display in the combobox.",
+              "value": {
+                "kind": "expression",
+                "type": "Array"
+              }
+            },
+            {
+              "name": "modelValue",
+              "required": true,
+              "description": "The value of the combobox.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              }
+            },
+            {
+              "name": "placeholder",
+              "required": false,
+              "description": "The placeholder text to display when the combobox is empty.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            }
+          ],
+          "events": [
+            {
+              "name": "blur"
+            },
+            {
+              "name": "update:modelValue"
+            }
+          ],
+          "slots": [
+            {
+              "name": "right"
+            },
+            {
+              "name": "option"
+            }
+          ],
+          "source": {
+            "module": "./src/components/combobox/AppCombobox.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppComboboxContent",
+          "description": "",
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/combobox/AppComboboxContent.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppComboboxDivider",
+          "description": "",
+          "source": {
+            "module": "./src/components/combobox/AppComboboxDivider.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppComboboxEmpty",
+          "description": "",
+          "attributes": [
+            {
+              "name": "emptyText",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              }
+            }
+          ],
+          "source": {
+            "module": "./src/components/combobox/AppComboboxEmpty.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppComboboxGroup",
+          "description": "",
+          "attributes": [
+            {
+              "name": "label",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            }
+          ],
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/combobox/AppComboboxGroup.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppComboboxItem",
+          "description": "",
+          "attributes": [
+            {
+              "name": "displayFn",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "TSFunctionType"
+              }
+            },
+            {
+              "name": "isMultiple",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "item",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "ComboboxItem"
+              }
+            }
+          ],
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/combobox/AppComboboxItem.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppComboboxOption",
+          "description": "",
+          "attributes": [
+            {
+              "name": "displayFn",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "TSFunctionType"
+              }
+            },
+            {
+              "name": "item",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "ComboboxItemOption"
+              }
+            }
+          ],
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/combobox/AppComboboxOption.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppComboboxTrigger",
+          "description": "",
+          "attributes": [
+            {
+              "name": "isDisabled",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            }
+          ],
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/combobox/AppComboboxTrigger.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppComboboxViewport",
+          "description": "",
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/combobox/AppComboboxViewport.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppCommand",
+          "description": "",
+          "attributes": [
+            {
+              "name": "items",
+              "required": true,
+              "description": "The items to display in the combobox.",
+              "value": {
+                "kind": "expression",
+                "type": "Array"
+              }
+            },
+            {
+              "name": "placeholder",
+              "required": true,
+              "description": "The placeholder of the combobox.",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            }
+          ],
+          "source": {
+            "module": "./src/components/command/AppCommand.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppCommandItem",
+          "description": "",
+          "attributes": [
+            {
+              "name": "item",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "CommandItem"
+              }
+            }
+          ],
+          "source": {
+            "module": "./src/components/command/AppCommandItem.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppContainer",
+          "description": "",
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/container/AppContainer.vue"
+          }
+        },
+        {
+          "name": "AppDialog",
+          "description": "",
+          "attributes": [
+            {
+              "name": "animateFromTrigger",
+              "required": false,
+              "description": "Whether to animate the dialog with the View Transitions API",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "hideCloseButton",
+              "required": false,
+              "description": "Whether to hide the close button",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "triggerId",
+              "required": false,
+              "description": "The id of the element that triggers the dialog.\nWill be set automatically when using the `useDialog` composable",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            }
+          ],
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/dialog/AppDialog.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppDialogCloseButton",
+          "description": "",
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/dialog/AppDialogCloseButton.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppDialogContainer",
+          "description": "",
+          "source": {
+            "module": "./src/components/dialog/AppDialogContainer.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppDialogContent",
+          "description": "",
+          "attributes": [
+            {
+              "name": "hideCloseButton",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            }
+          ],
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/dialog/AppDialogContent.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppDialogDescription",
+          "description": "",
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/dialog/AppDialogDescription.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppDialogOverlay",
+          "description": "",
+          "source": {
+            "module": "./src/components/dialog/AppDialogOverlay.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppDialogTitle",
+          "description": "",
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/dialog/AppDialogTitle.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppDropdownMenu",
+          "description": "",
+          "attributes": [
+            {
+              "name": "align",
+              "required": false,
+              "description": "The alignment of the dropdown.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "'center'"
+            },
+            {
+              "name": "enableKeyboardCommands",
+              "required": false,
+              "description": "Whether keyboard commands are enabled.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "hasArrow",
+              "required": false,
+              "description": "Whether the dropdown has an arrow.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "items",
+              "required": true,
+              "description": "The dropdown items.",
+              "value": {
+                "kind": "expression",
+                "type": "Array"
+              }
+            },
+            {
+              "name": "offset",
+              "required": false,
+              "description": "The offset of the dropdown.",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              },
+              "default": "4"
+            },
+            {
+              "name": "side",
+              "required": false,
+              "description": "The side of the dropdown.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "'bottom'"
+            }
+          ],
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/dropdown-menu/AppDropdownMenu.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppDropdownMenuArrow",
+          "description": "",
+          "source": {
+            "module": "./src/components/dropdown-menu/AppDropdownMenuArrow.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppDropdownMenuContent",
+          "description": "",
+          "attributes": [
+            {
+              "name": "align",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              }
+            },
+            {
+              "name": "side",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              }
+            },
+            {
+              "name": "sideOffset",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            }
+          ],
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/dropdown-menu/AppDropdownMenuContent.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppDropdownMenuDivider",
+          "description": "",
+          "source": {
+            "module": "./src/components/dropdown-menu/AppDropdownMenuDivider.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppDropdownMenuGroup",
+          "description": "",
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/dropdown-menu/AppDropdownMenuGroup.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppDropdownMenuItem",
+          "description": "",
+          "attributes": [
+            {
+              "name": "item",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "DropdownMenuItem"
+              }
+            }
+          ],
+          "source": {
+            "module": "./src/components/dropdown-menu/AppDropdownMenuItem.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppDropdownMenuLabel",
+          "description": "",
+          "attributes": [
+            {
+              "name": "label",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            }
+          ],
+          "source": {
+            "module": "./src/components/dropdown-menu/AppDropdownMenuLabel.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppDropdownMenuOption",
+          "description": "",
+          "attributes": [
+            {
+              "name": "item",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "DropdownMenuOption"
+              }
+            }
+          ],
+          "source": {
+            "module": "./src/components/dropdown-menu/AppDropdownMenuOption.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppDropdownMenuSub",
+          "description": "",
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/dropdown-menu/AppDropdownMenuSub.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppDropdownMenuSubContent",
+          "description": "",
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/dropdown-menu/AppDropdownMenuSubContent.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppDropdownMenuSubTrigger",
+          "description": "",
+          "attributes": [
+            {
+              "name": "item",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "DropdownMenuSubMenu"
+              }
+            }
+          ],
+          "source": {
+            "module": "./src/components/dropdown-menu/AppDropdownMenuSubTrigger.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppIcon",
+          "description": "",
+          "attributes": [
+            {
+              "name": "icon",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "Icon"
+              }
+            },
+            {
+              "name": "size",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "TSIndexedAccessType"
+              },
+              "default": "'default'"
+            }
+          ],
+          "source": {
+            "module": "./src/components/icon/AppIcon.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppIconButton",
+          "description": "",
+          "attributes": [
+            {
+              "name": "icon",
+              "required": true,
+              "description": "The icon to display",
+              "value": {
+                "kind": "expression",
+                "type": "Icon"
+              }
+            },
+            {
+              "name": "iconSize",
+              "required": false,
+              "description": "The size of the icon",
+              "value": {
+                "kind": "expression",
+                "type": "TSIndexedAccessType"
+              },
+              "default": "'default'"
+            },
+            {
+              "name": "isDisabled",
+              "required": false,
+              "description": "Whether the button is disabled",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isLoading",
+              "required": false,
+              "description": "Whether the button is loading",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "label",
+              "required": true,
+              "description": "The label for the button for accessibility",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "variant",
+              "required": false,
+              "description": "The variant of the button",
+              "value": {
+                "kind": "expression",
+                "type": "TSIndexedAccessType"
+              },
+              "default": "'default'"
+            }
+          ],
+          "source": {
+            "module": "./src/components/button/AppIconButton.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppInput",
+          "description": "",
+          "attributes": [
+            {
+              "name": "iconLeft",
+              "required": false,
+              "description": "The left icon of the input.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "undefined"
+            },
+            {
+              "name": "iconRight",
+              "required": false,
+              "description": "The right icon of the input.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "undefined"
+            },
+            {
+              "name": "id",
+              "required": false,
+              "description": "The id of the input.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            },
+            {
+              "name": "isDisabled",
+              "required": false,
+              "description": "Whether the input is disabled.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isInvalid",
+              "required": false,
+              "description": "Whether the input is invalid.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isLoading",
+              "required": false,
+              "description": "Whether the input is loading.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "placeholder",
+              "required": false,
+              "description": "The placeholder of the input.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            },
+            {
+              "name": "type",
+              "required": false,
+              "description": "The type of the input.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "'text'"
+            }
+          ],
+          "events": [
+            {
+              "name": "blur"
+            },
+            {
+              "name": "focus"
+            }
+          ],
+          "slots": [
+            {
+              "name": "left"
+            },
+            {
+              "name": "right"
+            }
+          ],
+          "source": {
+            "module": "./src/components/input/AppInput.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppKeyboardCommand",
+          "description": "",
+          "attributes": [
+            {
+              "name": "commandType",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "CommandType"
+              }
+            },
+            {
+              "name": "hasBorder",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "keys",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "Array"
+              }
+            }
+          ],
+          "source": {
+            "module": "./src/components/keyboard/AppKeyboardCommand.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppKeyboardKey",
+          "description": "",
+          "attributes": [
+            {
+              "name": "hasBorder",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "keyboardKey",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "KeyboardKey"
+              }
+            }
+          ],
+          "source": {
+            "module": "./src/components/keyboard/AppKeyboardKey.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppLoader",
+          "description": "",
+          "source": {
+            "module": "./src/components/loader/AppLoader.vue"
+          }
+        },
+        {
+          "name": "AppMultiCombobox",
+          "description": "",
+          "attributes": [
+            {
+              "name": "displayFn",
+              "required": true,
+              "description": "The display function for the selected value.",
+              "value": {
+                "kind": "expression",
+                "type": "TSFunctionType"
+              }
+            },
+            {
+              "name": "emptyText",
+              "required": false,
+              "description": "The text to display when there are no options.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            },
+            {
+              "name": "isDisabled",
+              "required": false,
+              "description": "Whether the combobox is disabled.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isInvalid",
+              "required": false,
+              "description": "Whether the combobox is in an invalid state.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isLoading",
+              "required": false,
+              "description": "Whether the combobox is loading.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "items",
+              "required": true,
+              "description": "The options to display in the combobox.",
+              "value": {
+                "kind": "expression",
+                "type": "Array"
+              }
+            },
+            {
+              "name": "modelValue",
+              "required": true,
+              "description": "The value of the combobox.",
+              "value": {
+                "kind": "expression",
+                "type": "Array"
+              }
+            },
+            {
+              "name": "placeholder",
+              "required": false,
+              "description": "The placeholder text to display when the combobox is empty.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            }
+          ],
+          "events": [
+            {
+              "name": "blur"
+            },
+            {
+              "name": "update:modelValue"
+            }
+          ],
+          "slots": [
+            {
+              "name": "option"
+            }
+          ],
+          "source": {
+            "module": "./src/components/combobox/AppMultiCombobox.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppMultiComboboxOption",
+          "description": "",
+          "attributes": [
+            {
+              "name": "displayFn",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "TSFunctionType"
+              }
+            },
+            {
+              "name": "item",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "ComboboxItemOption"
+              }
+            }
+          ],
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/combobox/AppMultiComboboxOption.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppNumberInput",
+          "description": "",
+          "attributes": [
+            {
+              "name": "hideControls",
+              "required": false,
+              "description": "Whether to hide the increment and decrement controls.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "iconLeft",
+              "required": false,
+              "description": "The left icon of the input.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "undefined"
+            },
+            {
+              "name": "id",
+              "required": false,
+              "description": "The id of the input.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            },
+            {
+              "name": "isDisabled",
+              "required": false,
+              "description": "Whether the input is disabled.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isInvalid",
+              "required": false,
+              "description": "Whether the input is invalid.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isLoading",
+              "required": false,
+              "description": "Whether the input is loading.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "max",
+              "required": false,
+              "description": "The maximum value of the input.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            },
+            {
+              "name": "min",
+              "required": false,
+              "description": "The minimum value of the input.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "0"
+            },
+            {
+              "name": "placeholder",
+              "required": false,
+              "description": "The placeholder of the input.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            }
+          ],
+          "slots": [
+            {
+              "name": "right"
+            }
+          ],
+          "source": {
+            "module": "./src/components/input/AppNumberInput.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppPageSkeletonLoader",
+          "description": "",
+          "source": {
+            "module": "./src/components/skeleton-loader/AppPageSkeletonLoader.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppPopover",
+          "description": "",
+          "attributes": [
+            {
+              "name": "align",
+              "required": false,
+              "description": "The alignment of the popover content.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "'center'"
+            },
+            {
+              "name": "hideArrow",
+              "required": false,
+              "description": "When true, the arrow will be hidden.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "offset",
+              "required": false,
+              "description": "The offset of the popover content.",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              },
+              "default": "10"
+            },
+            {
+              "name": "side",
+              "required": false,
+              "description": "The side of the trigger the popover should be on.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "'bottom'"
+            }
+          ],
+          "slots": [
+            {
+              "name": "default"
+            },
+            {
+              "name": "content"
+            }
+          ],
+          "source": {
+            "module": "./src/components/popover/AppPopover.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppPopoverCloseButton",
+          "description": "",
+          "source": {
+            "module": "./src/components/popover/AppPopoverCloseButton.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppPopoverTrigger",
+          "description": "",
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/popover/AppPopoverTrigger.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppRouteTabs",
+          "description": "",
+          "attributes": [
+            {
+              "name": "tabs",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "Array"
+              }
+            }
+          ],
+          "source": {
+            "module": "./src/components/tabs/AppRouteTabs.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppRouterLinkButton",
+          "description": "",
+          "attributes": [
+            {
+              "name": "iconLeft",
+              "required": false,
+              "description": "The icon to display on the left side of the button.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              }
+            },
+            {
+              "name": "iconRight",
+              "required": false,
+              "description": "The icon to display on the right side of the button.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              }
+            },
+            {
+              "name": "size",
+              "required": false,
+              "description": "The size of the button.",
+              "value": {
+                "kind": "expression",
+                "type": "TSIndexedAccessType"
+              },
+              "default": "'default'"
+            },
+            {
+              "name": "to",
+              "required": true,
+              "description": "The route to link to.",
+              "value": {
+                "kind": "expression",
+                "type": "RouteLocationNamedRaw"
+              }
+            },
+            {
+              "name": "variant",
+              "required": false,
+              "description": "The variant of the button.",
+              "value": {
+                "kind": "expression",
+                "type": "TSIndexedAccessType"
+              },
+              "default": "'default'"
+            },
+            {
+              "name": "isLoading",
+              "value": {
+                "kind": "expression",
+                "type": "any"
+              },
+              "default": "false"
+            },
+            {
+              "name": "type",
+              "value": {
+                "kind": "expression",
+                "type": "any"
+              },
+              "default": "'button'"
+            }
+          ],
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/button/AppRouterLinkButton.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppRovingFocus",
+          "description": "",
+          "attributes": [
+            {
+              "name": "currentTabStopId",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              }
+            },
+            {
+              "name": "defaultCurrentTabStopId",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "dir",
+              "required": false,
+              "description": "The direction of navigation between items.",
+              "value": {
+                "kind": "expression",
+                "type": "Direction"
+              }
+            },
+            {
+              "name": "loop",
+              "required": false,
+              "description": "Whether keyboard navigation should loop around",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "orientation",
+              "required": false,
+              "description": "The orientation of the group.\nMainly so arrow navigation is done accordingly (left & right vs. up & down)",
+              "value": {
+                "kind": "expression",
+                "type": "Orientation"
+              },
+              "default": "undefined"
+            }
+          ],
+          "events": [
+            {
+              "name": "entryFocus"
+            },
+            {
+              "name": "update:currentTabStopId"
+            }
+          ],
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/roving-focus/AppRovingFocus.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppRovingFocusItem",
+          "description": "",
+          "attributes": [
+            {
+              "name": "active",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "true"
+            },
+            {
+              "name": "focusable",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "true"
+            },
+            {
+              "name": "tabStopId",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "as",
+              "value": {
+                "kind": "expression",
+                "type": "any"
+              },
+              "default": "'span'"
+            }
+          ],
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/roving-focus/AppRovingFocusItem.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppSelect",
+          "description": "",
+          "attributes": [
+            {
+              "name": "displayFn",
+              "required": true,
+              "description": "display function for the selected value",
+              "value": {
+                "kind": "expression",
+                "type": "TSFunctionType"
+              }
+            },
+            {
+              "name": "id",
+              "required": false,
+              "description": "The id of the select.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            },
+            {
+              "name": "isDisabled",
+              "required": false,
+              "description": "Whether the select is disabled.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isInvalid",
+              "required": false,
+              "description": "Whether the select is invalid.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isLoading",
+              "required": false,
+              "description": "Whether the select is loading.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "items",
+              "required": true,
+              "description": "The items of the select.",
+              "value": {
+                "kind": "expression",
+                "type": "Array"
+              }
+            },
+            {
+              "name": "placeholder",
+              "required": false,
+              "description": "The placeholder of the select.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            }
+          ],
+          "events": [
+            {
+              "name": "blur"
+            },
+            {
+              "name": "update:modelValue"
+            }
+          ],
+          "slots": [
+            {
+              "name": "option"
+            }
+          ],
+          "source": {
+            "module": "./src/components/select/AppSelect.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppSelectContent",
+          "description": "",
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/select/AppSelectContent.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppSelectDivider",
+          "description": "",
+          "source": {
+            "module": "./src/components/select/AppSelectDivider.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppSelectGroup",
+          "description": "",
+          "attributes": [
+            {
+              "name": "label",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            }
+          ],
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/select/AppSelectGroup.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppSelectItem",
+          "description": "",
+          "attributes": [
+            {
+              "name": "displayFn",
+              "required": true,
+              "description": "display function for the selected value",
+              "value": {
+                "kind": "expression",
+                "type": "TSFunctionType"
+              }
+            },
+            {
+              "name": "item",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "SelectItem"
+              }
+            }
+          ],
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/select/AppSelectItem.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppSelectOption",
+          "description": "",
+          "attributes": [
+            {
+              "name": "displayFn",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "TSFunctionType"
+              }
+            },
+            {
+              "name": "item",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "SelectItemOption"
+              }
+            }
+          ],
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/select/AppSelectOption.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppSelectRoot",
+          "description": "",
+          "attributes": [
+            {
+              "name": "isDisabled",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "modelValue",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              }
+            }
+          ],
+          "events": [
+            {
+              "name": "update:modelValue"
+            }
+          ],
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/select/AppSelectRoot.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppSelectScrollDownButton",
+          "description": "",
+          "source": {
+            "module": "./src/components/select/AppSelectScrollDownButton.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppSelectScrollUpButton",
+          "description": "",
+          "source": {
+            "module": "./src/components/select/AppSelectScrollUpButton.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppSelectTrigger",
+          "description": "",
+          "attributes": [
+            {
+              "name": "id",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            },
+            {
+              "name": "isDisabled",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isInvalid",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            }
+          ],
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/select/AppSelectTrigger.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppSelectValue",
+          "description": "",
+          "attributes": [
+            {
+              "name": "isEmpty",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            }
+          ],
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/select/AppSelectValue.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppSkeletonLoaderButton",
+          "description": "",
+          "source": {
+            "module": "./src/components/skeleton-loader/AppSkeletonLoaderButton.vue"
+          }
+        },
+        {
+          "name": "AppSkeletonLoaderRow",
+          "description": "",
+          "source": {
+            "module": "./src/components/skeleton-loader/AppSkeletonLoaderRow.vue"
+          }
+        },
+        {
+          "name": "AppSkeletonLoaderRows",
+          "description": "",
+          "attributes": [
+            {
+              "name": "rows",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              },
+              "default": "3"
+            }
+          ],
+          "source": {
+            "module": "./src/components/skeleton-loader/AppSkeletonLoaderRows.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppTable",
+          "description": "",
+          "attributes": [
+            {
+              "name": "columns",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "Array"
+              }
+            },
+            {
+              "name": "data",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              }
+            },
+            {
+              "name": "emptyMessage",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "filters",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "Array"
+              }
+            },
+            {
+              "name": "isLoading",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "pagination",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "Pagination"
+              }
+            },
+            {
+              "name": "pinFirstColumn",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "pinLastColumn",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "rowClick",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            },
+            {
+              "name": "rowTo",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            },
+            {
+              "name": "title",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            }
+          ],
+          "source": {
+            "module": "./src/components/table/AppTable.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppTableBody",
+          "description": "",
+          "attributes": [
+            {
+              "name": "columns",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "Array"
+              }
+            },
+            {
+              "name": "data",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "Array"
+              }
+            },
+            {
+              "name": "emptyMessage",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "gridTemplateColumns",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "hasReachedHorizontalScrollEnd",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "isHorizontallyScrollable",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "isLoading",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "isScrolledToRight",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "pinFirstColumn",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "pinLastColumn",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "rowClick",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              }
+            },
+            {
+              "name": "rowTo",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              }
+            }
+          ],
+          "source": {
+            "module": "./src/components/table/AppTableBody.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppTableFilter",
+          "description": "",
+          "source": {
+            "module": "./src/components/table/AppTableFilter.vue"
+          }
+        },
+        {
+          "name": "AppTableFilters",
+          "description": "",
+          "source": {
+            "module": "./src/components/table/AppTableFilters.vue"
+          }
+        },
+        {
+          "name": "AppTableFooter",
+          "description": "",
+          "attributes": [
+            {
+              "name": "paginationOptions",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "PaginationOptions"
+              }
+            },
+            {
+              "name": "total",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              }
+            }
+          ],
+          "events": [
+            {
+              "name": "page"
+            }
+          ],
+          "source": {
+            "module": "./src/components/table/AppTableFooter.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppTableHeader",
+          "description": "",
+          "attributes": [
+            {
+              "name": "columns",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "Array"
+              }
+            },
+            {
+              "name": "gridTemplateColumns",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "hasReachedHorizontalScrollEnd",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "isHorizontallyScrollable",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "isScrolledToRight",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "paginationOptions",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "PaginationOptions"
+              }
+            },
+            {
+              "name": "pinFirstColumn",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "pinLastColumn",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            }
+          ],
+          "events": [
+            {
+              "name": "sort"
+            }
+          ],
+          "source": {
+            "module": "./src/components/table/AppTableHeader.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppTablePagination",
+          "description": "",
+          "attributes": [
+            {
+              "name": "paginationOptions",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "PaginationOptions"
+              }
+            },
+            {
+              "name": "total",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            }
+          ],
+          "events": [
+            {
+              "name": "page"
+            }
+          ],
+          "source": {
+            "module": "./src/components/table/AppTablePagination.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppTableSkeletonLoader",
+          "description": "",
+          "attributes": [
+            {
+              "name": "numberOfRows",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              },
+              "default": "7"
+            },
+            {
+              "name": "withoutHeader",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            }
+          ],
+          "source": {
+            "module": "./src/components/table/AppTableSkeletonLoader.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppTableTextCell",
+          "description": "",
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/table/AppTableTextCell.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppTableTop",
+          "description": "",
+          "attributes": [
+            {
+              "name": "title",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "total",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              }
+            }
+          ],
+          "source": {
+            "module": "./src/components/table/AppTableTop.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppTabs",
+          "description": "",
+          "attributes": [
+            {
+              "name": "tabs",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "Array"
+              }
+            }
+          ],
+          "source": {
+            "module": "./src/components/tabs/AppTabs.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppTagsCombobox",
+          "description": "",
+          "attributes": [
+            {
+              "name": "displayFn",
+              "required": true,
+              "description": "The function to use to display the value.",
+              "value": {
+                "kind": "expression",
+                "type": "TSFunctionType"
+              }
+            },
+            {
+              "name": "emptyText",
+              "required": false,
+              "description": "The text to display when there are no options.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            },
+            {
+              "name": "isDisabled",
+              "required": false,
+              "description": "Whether the combobox is disabled.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isInvalid",
+              "required": false,
+              "description": "Whether the combobox is in an invalid state.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isLoading",
+              "required": false,
+              "description": "Whether the combobox is loading.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "items",
+              "required": true,
+              "description": "The options to display in the combobox.",
+              "value": {
+                "kind": "expression",
+                "type": "Array"
+              }
+            },
+            {
+              "name": "placeholder",
+              "required": false,
+              "description": "The placeholder text to display when the combobox is empty.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            }
+          ],
+          "events": [
+            {
+              "name": "blur"
+            },
+            {
+              "name": "update:modelValue"
+            }
+          ],
+          "slots": [
+            {
+              "name": "tag"
+            },
+            {
+              "name": "option"
+            }
+          ],
+          "source": {
+            "module": "./src/components/combobox/AppTagsCombobox.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppTagsInput",
+          "description": "",
+          "attributes": [
+            {
+              "name": "id",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            },
+            {
+              "name": "isDisabled",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isInvalid",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "max",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            },
+            {
+              "name": "placeholder",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            }
+          ],
+          "events": [
+            {
+              "name": "blur"
+            },
+            {
+              "name": "focus"
+            }
+          ],
+          "slots": [
+            {
+              "name": "tag"
+            }
+          ],
+          "source": {
+            "module": "./src/components/tags-input/AppTagsInput.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppTagsInputItem",
+          "description": "",
+          "attributes": [
+            {
+              "name": "displayFn",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "TSFunctionType"
+              }
+            },
+            {
+              "name": "isDisabled",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "value",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "TValue"
+              }
+            }
+          ],
+          "source": {
+            "module": "./src/components/tags-input/AppTagsInputItem.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppText",
+          "description": "",
+          "attributes": [
+            {
+              "name": "as",
+              "required": false,
+              "description": "The HTML tag to render the component as",
+              "value": {
+                "kind": "expression",
+                "type": "TextType"
+              },
+              "default": "'p'"
+            },
+            {
+              "name": "variant",
+              "required": true,
+              "description": "The variant of the text",
+              "value": {
+                "kind": "expression",
+                "type": "TSIndexedAccessType"
+              }
+            }
+          ],
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/text/AppText.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppTextarea",
+          "description": "",
+          "attributes": [
+            {
+              "name": "heightClass",
+              "required": false,
+              "description": "The height class of the textarea.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            },
+            {
+              "name": "id",
+              "required": false,
+              "description": "The id of the input.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            },
+            {
+              "name": "isDisabled",
+              "required": false,
+              "description": "Whether the input is disabled.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isInvalid",
+              "required": false,
+              "description": "Whether the input is invalid.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "placeholder",
+              "required": false,
+              "description": "The placeholder of the input.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            },
+            {
+              "name": "resize",
+              "required": false,
+              "description": "The resize property of the textarea.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "'none'"
+            }
+          ],
+          "events": [
+            {
+              "name": "blur"
+            },
+            {
+              "name": "focus"
+            }
+          ],
+          "source": {
+            "module": "./src/components/textarea/AppTextarea.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppToast",
+          "description": "",
+          "attributes": [
+            {
+              "name": "action",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            },
+            {
+              "name": "description",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            },
+            {
+              "name": "icon",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "Icon"
+              }
+            },
+            {
+              "name": "title",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "type",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "ToastType"
+              }
+            }
+          ],
+          "events": [
+            {
+              "name": "closeToast"
+            }
+          ],
+          "source": {
+            "module": "./src/components/toast/AppToast.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppToastContainer",
+          "description": "",
+          "source": {
+            "module": "./src/components/toast/AppToastContainer.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppToggle",
+          "description": "",
+          "attributes": [
+            {
+              "name": "isDisabled",
+              "required": false,
+              "description": "Whether the toggle is disabled.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            }
+          ],
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/toggle/AppToggle.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppTooltip",
+          "description": "",
+          "attributes": [
+            {
+              "name": "align",
+              "required": false,
+              "description": "The alignment of the tooltip content.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "'center'"
+            },
+            {
+              "name": "content",
+              "required": false,
+              "description": "The content to show in the tooltip.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            },
+            {
+              "name": "delayDuration",
+              "required": false,
+              "description": "The duration in milliseconds to wait before showing the tooltip.",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              },
+              "default": "0"
+            },
+            {
+              "name": "disableCloseOnTriggerClick",
+              "required": false,
+              "description": "When true, clicking on trigger will not close the content.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "disableHoverableContent",
+              "required": false,
+              "description": "When true, trying to hover the content will result in the tooltip closing as the pointer leaves the trigger.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "hideArrow",
+              "required": false,
+              "description": "When true, the arrow will be hidden.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isHidden",
+              "required": false,
+              "description": "When true, the tooltip will be hidden.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "offset",
+              "required": false,
+              "description": "The offset of the tooltip content.",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              },
+              "default": "10"
+            },
+            {
+              "name": "side",
+              "required": false,
+              "description": "The side of the trigger the tooltip should be on.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "'top'"
+            }
+          ],
+          "slots": [
+            {
+              "name": "default"
+            },
+            {
+              "name": "content"
+            }
+          ],
+          "source": {
+            "module": "./src/components/tooltip/AppTooltip.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppTooltipArrow",
+          "description": "",
+          "source": {
+            "module": "./src/components/tooltip/AppTooltipArrow.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppTooltipContent",
+          "description": "",
+          "attributes": [
+            {
+              "name": "align",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              }
+            },
+            {
+              "name": "hasArrow",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "offset",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            }
+          ],
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/tooltip/AppTooltipContent.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "AppTooltipProvider",
+          "description": "",
+          "attributes": [
+            {
+              "name": "delayDuration",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            },
+            {
+              "name": "disableCloseOnTriggerClick",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "disableHoverableContent",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            }
+          ],
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/tooltip/AppTooltipProvider.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "FormCheckbox",
+          "description": "",
+          "attributes": [
+            {
+              "name": "id",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            },
+            {
+              "name": "isDisabled",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isIndeterminate",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isInvalid",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "label",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            }
+          ],
+          "events": [
+            {
+              "name": "blur"
+            }
+          ],
+          "source": {
+            "module": "./src/components/checkbox/FormCheckbox.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "FormCheckboxGroup",
+          "description": "",
+          "attributes": [
+            {
+              "name": "errors",
+              "required": true,
+              "description": "The errors associated with the checkbox group.",
+              "value": {
+                "kind": "expression",
+                "type": "FormFieldErrors"
+              }
+            },
+            {
+              "name": "isDisabled",
+              "required": false,
+              "description": "Whether the checkbox group is disabled.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isRequired",
+              "required": false,
+              "description": "Whether the checkbox group is required.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isTouched",
+              "required": true,
+              "description": "Whether the checkbox group has been touched.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "label",
+              "required": false,
+              "description": "The label of the checkbox group.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            },
+            {
+              "name": "options",
+              "required": true,
+              "description": "The options of the checkbox group.",
+              "value": {
+                "kind": "expression",
+                "type": "Array"
+              }
+            }
+          ],
+          "source": {
+            "module": "./src/components/checkbox/FormCheckboxGroup.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "FormCombobox",
+          "description": "",
+          "attributes": [
+            {
+              "name": "displayFn",
+              "required": true,
+              "description": "Display function for the selected value",
+              "value": {
+                "kind": "expression",
+                "type": "TSFunctionType"
+              }
+            },
+            {
+              "name": "emptyText",
+              "required": false,
+              "description": "The text to display when there are no options.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            },
+            {
+              "name": "errors",
+              "required": true,
+              "description": "The errors associated with the combobox.",
+              "value": {
+                "kind": "expression",
+                "type": "FormFieldErrors"
+              }
+            },
+            {
+              "name": "isDisabled",
+              "required": false,
+              "description": "Whether the combobox is disabled.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isLoading",
+              "required": false,
+              "description": "Whether the select is loading.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isRequired",
+              "required": false,
+              "description": "Whether the combobox is required.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isTouched",
+              "required": true,
+              "description": "Whether the combobox has been touched (focused and blurred).",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "items",
+              "required": true,
+              "description": "The options of the combobox.",
+              "value": {
+                "kind": "expression",
+                "type": "Array"
+              }
+            },
+            {
+              "name": "label",
+              "required": true,
+              "description": "The label of the combobox.",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "placeholder",
+              "required": false,
+              "description": "The placeholder of the combobox.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            }
+          ],
+          "events": [
+            {
+              "name": "blur"
+            },
+            {
+              "name": "filter"
+            }
+          ],
+          "slots": [
+            {
+              "name": "option"
+            }
+          ],
+          "source": {
+            "module": "./src/components/combobox/FormCombobox.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "FormError",
+          "description": "",
+          "attributes": [
+            {
+              "name": "errors",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "FormFieldErrors"
+              }
+            },
+            {
+              "name": "isVisible",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            }
+          ],
+          "source": {
+            "module": "./src/components/form-error/FormError.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "FormGroup",
+          "description": "",
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/form-group/FormGroup.vue"
+          }
+        },
+        {
+          "name": "FormInput",
+          "description": "",
+          "attributes": [
+            {
+              "name": "errors",
+              "required": true,
+              "description": "The errors associated with the input.",
+              "value": {
+                "kind": "expression",
+                "type": "FormFieldErrors"
+              }
+            },
+            {
+              "name": "iconLeft",
+              "required": false,
+              "description": "The left icon of the input.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "undefined"
+            },
+            {
+              "name": "iconRight",
+              "required": false,
+              "description": "The right icon of the input.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "undefined"
+            },
+            {
+              "name": "isDisabled",
+              "required": false,
+              "description": "Whether the input is disabled.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isLoading",
+              "required": false,
+              "description": "Whether the input is loading.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isRequired",
+              "required": false,
+              "description": "Whether the input is required.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isTouched",
+              "required": true,
+              "description": "Whether the input is touched.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "label",
+              "required": true,
+              "description": "The label of the input.",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "placeholder",
+              "required": false,
+              "description": "The placeholder of the input.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            },
+            {
+              "name": "type",
+              "required": false,
+              "description": "The type of the input.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "'text'"
+            }
+          ],
+          "events": [
+            {
+              "name": "blur"
+            },
+            {
+              "name": "focus"
+            }
+          ],
+          "slots": [
+            {
+              "name": "left"
+            },
+            {
+              "name": "right"
+            }
+          ],
+          "source": {
+            "module": "./src/components/input/FormInput.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "FormElement",
+          "description": "",
+          "attributes": [
+            {
+              "name": "errors",
+              "required": true,
+              "description": "The errors associated with the input.",
+              "value": {
+                "kind": "expression",
+                "type": "FormFieldErrors"
+              }
+            },
+            {
+              "name": "isDisabled",
+              "required": true,
+              "description": "Whether the input is disabled.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "isRequired",
+              "required": true,
+              "description": "Whether the input is required.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "isTouched",
+              "required": true,
+              "description": "Whether the input is touched. This is used to determine if the input should be marked as invalid.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "label",
+              "required": true,
+              "description": "The label of the input.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              }
+            }
+          ],
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/form-element/FormElement.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "FormLabel",
+          "description": "",
+          "attributes": [
+            {
+              "name": "for",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "isDisabled",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isInvalid",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isRequired",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "label",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            }
+          ],
+          "source": {
+            "module": "./src/components/form-label/FormLabel.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "FormMultiCombobox",
+          "description": "",
+          "attributes": [
+            {
+              "name": "displayFn",
+              "required": true,
+              "description": "Display function for the selected value",
+              "value": {
+                "kind": "expression",
+                "type": "TSFunctionType"
+              }
+            },
+            {
+              "name": "emptyText",
+              "required": false,
+              "description": "The text to display when there are no options.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            },
+            {
+              "name": "errors",
+              "required": true,
+              "description": "The errors associated with the combobox.",
+              "value": {
+                "kind": "expression",
+                "type": "FormFieldErrors"
+              }
+            },
+            {
+              "name": "isDisabled",
+              "required": false,
+              "description": "Whether the combobox is disabled.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isLoading",
+              "required": false,
+              "description": "Whether the select is loading.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isRequired",
+              "required": false,
+              "description": "Whether the combobox is required.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isTouched",
+              "required": true,
+              "description": "Whether the combobox has been touched (focused and blurred).",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "items",
+              "required": true,
+              "description": "The options of the combobox.",
+              "value": {
+                "kind": "expression",
+                "type": "Array"
+              }
+            },
+            {
+              "name": "label",
+              "required": true,
+              "description": "The label of the combobox.",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "placeholder",
+              "required": false,
+              "description": "The placeholder of the combobox.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            }
+          ],
+          "events": [
+            {
+              "name": "blur"
+            },
+            {
+              "name": "filter"
+            }
+          ],
+          "slots": [
+            {
+              "name": "option"
+            }
+          ],
+          "source": {
+            "module": "./src/components/combobox/FormMultiCombobox.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "FormNumberInput",
+          "description": "",
+          "attributes": [
+            {
+              "name": "errors",
+              "required": true,
+              "description": "The errors associated with the input.",
+              "value": {
+                "kind": "expression",
+                "type": "FormFieldErrors"
+              }
+            },
+            {
+              "name": "hideControls",
+              "required": false,
+              "description": "Whether to hide the increment and decrement controls.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "iconLeft",
+              "required": false,
+              "description": "The left icon of the input.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "undefined"
+            },
+            {
+              "name": "isDisabled",
+              "required": false,
+              "description": "Whether the input is disabled.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isLoading",
+              "required": false,
+              "description": "Whether the input is loading.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isRequired",
+              "required": false,
+              "description": "Whether the input is required.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isTouched",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "label",
+              "required": true,
+              "description": "The label of the input.",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "max",
+              "required": false,
+              "description": "The maximum value of the input.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            },
+            {
+              "name": "min",
+              "required": false,
+              "description": "The minimum value of the input.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "0"
+            },
+            {
+              "name": "placeholder",
+              "required": false,
+              "description": "The placeholder of the input.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            },
+            {
+              "name": "type",
+              "value": {
+                "kind": "expression",
+                "type": "any"
+              },
+              "default": "'text'"
+            }
+          ],
+          "events": [
+            {
+              "name": "blur"
+            },
+            {
+              "name": "focus"
+            }
+          ],
+          "slots": [
+            {
+              "name": "left"
+            },
+            {
+              "name": "right"
+            }
+          ],
+          "source": {
+            "module": "./src/components/input/FormNumberInput.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "FormPasswordInput",
+          "description": "",
+          "attributes": [
+            {
+              "name": "errors",
+              "required": true,
+              "description": "The errors associated with the input.",
+              "value": {
+                "kind": "expression",
+                "type": "FormFieldErrors"
+              }
+            },
+            {
+              "name": "iconLeft",
+              "required": false,
+              "description": "The left icon of the input.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "undefined"
+            },
+            {
+              "name": "isDisabled",
+              "required": false,
+              "description": "Whether the input is disabled.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isLoading",
+              "required": false,
+              "description": "Whether the input is loading.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isRequired",
+              "required": false,
+              "description": "Whether the input is required.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isTouched",
+              "required": true,
+              "description": "Whether the input is touched.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "label",
+              "required": true,
+              "description": "The label of the input.",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "placeholder",
+              "required": false,
+              "description": "The placeholder of the input.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            }
+          ],
+          "events": [
+            {
+              "name": "blur"
+            },
+            {
+              "name": "focus"
+            }
+          ],
+          "source": {
+            "module": "./src/components/input/FormPasswordInput.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "FormPhoneNumberInput",
+          "description": "",
+          "attributes": [
+            {
+              "name": "errors",
+              "required": true,
+              "description": "The errors associated with the input.",
+              "value": {
+                "kind": "expression",
+                "type": "FormFieldErrors"
+              }
+            },
+            {
+              "name": "iconRight",
+              "required": false,
+              "description": "The right icon of the input.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "undefined"
+            },
+            {
+              "name": "isDisabled",
+              "required": false,
+              "description": "Whether the input is disabled.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isLoading",
+              "required": false,
+              "description": "Whether the input is loading.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isRequired",
+              "required": false,
+              "description": "Whether the input is required.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isTouched",
+              "required": true,
+              "description": "Whether the input is touched.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "label",
+              "required": true,
+              "description": "The label of the input.",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "placeholder",
+              "required": false,
+              "description": "The placeholder of the input.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            }
+          ],
+          "slots": [
+            {
+              "name": "right"
+            }
+          ],
+          "source": {
+            "module": "./src/components/input/FormPhoneNumberInput.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "FormRadioGroup",
+          "description": "",
+          "attributes": [
+            {
+              "name": "errors",
+              "required": true,
+              "description": "The errors associated with the radio group.",
+              "value": {
+                "kind": "expression",
+                "type": "FormFieldErrors"
+              }
+            },
+            {
+              "name": "isDisabled",
+              "required": false,
+              "description": "Whether the radio group is disabled.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isRequired",
+              "required": false,
+              "description": "Whether the radio group is required.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isTouched",
+              "required": true,
+              "description": "Whether the radio group is touched.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "label",
+              "required": false,
+              "description": "The label of the radio group.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            },
+            {
+              "name": "options",
+              "required": true,
+              "description": "The options of the radio group.",
+              "value": {
+                "kind": "expression",
+                "type": "Array"
+              }
+            }
+          ],
+          "source": {
+            "module": "./src/components/radio-group/FormRadioGroup.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "FormRadioGroupIndicator",
+          "description": "",
+          "source": {
+            "module": "./src/components/radio-group/FormRadioGroupIndicator.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "FormRadioGroupItem",
+          "description": "",
+          "attributes": [
+            {
+              "name": "unstyled",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "value",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "T"
+              }
+            }
+          ],
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/radio-group/FormRadioGroupItem.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "FormRadioGroupRoot",
+          "description": "",
+          "slots": [
+            {
+              "name": "default"
+            }
+          ],
+          "source": {
+            "module": "./src/components/radio-group/FormRadioGroupRoot.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "FormSelect",
+          "description": "",
+          "attributes": [
+            {
+              "name": "displayFn",
+              "required": true,
+              "description": "display function for the selected value",
+              "value": {
+                "kind": "expression",
+                "type": "TSFunctionType"
+              }
+            },
+            {
+              "name": "errors",
+              "required": true,
+              "description": "The errors associated with the select.",
+              "value": {
+                "kind": "expression",
+                "type": "FormFieldErrors"
+              }
+            },
+            {
+              "name": "isDisabled",
+              "required": false,
+              "description": "Whether the select is disabled.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isLoading",
+              "required": false,
+              "description": "Whether the select is loading.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isRequired",
+              "required": false,
+              "description": "Whether the select is required.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isTouched",
+              "required": true,
+              "description": "Whether the select has been touched (focused and blurred).",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "items",
+              "required": true,
+              "description": "The options of the select.",
+              "value": {
+                "kind": "expression",
+                "type": "Array"
+              }
+            },
+            {
+              "name": "label",
+              "required": true,
+              "description": "The label of the select.",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "placeholder",
+              "required": false,
+              "description": "The placeholder of the select.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            }
+          ],
+          "events": [
+            {
+              "name": "blur"
+            }
+          ],
+          "slots": [
+            {
+              "name": "option"
+            }
+          ],
+          "source": {
+            "module": "./src/components/select/FormSelect.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "FormSwitch",
+          "description": "",
+          "attributes": [
+            {
+              "name": "id",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            },
+            {
+              "name": "isDisabled",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isInvalid",
+              "required": false,
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            }
+          ],
+          "source": {
+            "module": "./src/components/switch/FormSwitch.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "FormTagsCombobox",
+          "description": "",
+          "attributes": [
+            {
+              "name": "displayFn",
+              "required": true,
+              "description": "Display function for the selected value",
+              "value": {
+                "kind": "expression",
+                "type": "TSFunctionType"
+              }
+            },
+            {
+              "name": "emptyText",
+              "required": false,
+              "description": "The text to display when there are no options.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            },
+            {
+              "name": "errors",
+              "required": true,
+              "description": "The errors associated with the combobox.",
+              "value": {
+                "kind": "expression",
+                "type": "FormFieldErrors"
+              }
+            },
+            {
+              "name": "isDisabled",
+              "required": false,
+              "description": "Whether the combobox is disabled.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isLoading",
+              "required": false,
+              "description": "Whether the select is loading.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isRequired",
+              "required": false,
+              "description": "Whether the combobox is required.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isTouched",
+              "required": true,
+              "description": "Whether the combobox has been touched (focused and blurred).",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "items",
+              "required": true,
+              "description": "The options of the combobox.",
+              "value": {
+                "kind": "expression",
+                "type": "Array"
+              }
+            },
+            {
+              "name": "label",
+              "required": true,
+              "description": "The label of the combobox.",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "max",
+              "required": false,
+              "description": "The maximum number of tags that can be selected.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            },
+            {
+              "name": "placeholder",
+              "required": false,
+              "description": "The placeholder of the combobox.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            }
+          ],
+          "events": [
+            {
+              "name": "blur"
+            },
+            {
+              "name": "filter"
+            }
+          ],
+          "slots": [
+            {
+              "name": "option"
+            }
+          ],
+          "source": {
+            "module": "./src/components/combobox/FormTagsCombobox.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "FormTagsInput",
+          "description": "",
+          "attributes": [
+            {
+              "name": "errors",
+              "required": true,
+              "description": "The errors associated with the input.",
+              "value": {
+                "kind": "expression",
+                "type": "FormFieldErrors"
+              }
+            },
+            {
+              "name": "isDisabled",
+              "required": false,
+              "description": "Whether the input is disabled.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isRequired",
+              "required": false,
+              "description": "Whether the input is required.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isTouched",
+              "required": true,
+              "description": "Whether the input is touched.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "label",
+              "required": true,
+              "description": "The label of the input.",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "placeholder",
+              "required": false,
+              "description": "The placeholder of the input.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            }
+          ],
+          "events": [
+            {
+              "name": "blur"
+            },
+            {
+              "name": "focus"
+            }
+          ],
+          "slots": [
+            {
+              "name": "tag"
+            }
+          ],
+          "source": {
+            "module": "./src/components/tags-input/FormTagsInput.vue",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "FormTextarea",
+          "description": "",
+          "attributes": [
+            {
+              "name": "errors",
+              "required": true,
+              "description": "The errors associated with the input.",
+              "value": {
+                "kind": "expression",
+                "type": "FormFieldErrors"
+              }
+            },
+            {
+              "name": "heightClass",
+              "required": false,
+              "description": "The height class of the textarea.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            },
+            {
+              "name": "isDisabled",
+              "required": false,
+              "description": "Whether the input is disabled.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isRequired",
+              "required": false,
+              "description": "Whether the input is required.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "isTouched",
+              "required": true,
+              "description": "Whether the input is touched.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "label",
+              "required": true,
+              "description": "The label of the input.",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "placeholder",
+              "required": false,
+              "description": "The placeholder of the input.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "null"
+            },
+            {
+              "name": "resize",
+              "required": false,
+              "description": "The resize property of the textarea.",
+              "value": {
+                "kind": "expression",
+                "type": "union"
+              },
+              "default": "'none'"
+            }
+          ],
+          "events": [
+            {
+              "name": "blur"
+            },
+            {
+              "name": "focus"
+            }
+          ],
+          "source": {
+            "module": "./src/components/textarea/FormTextarea.vue",
+            "symbol": "default"
+          }
+        }
+      ]
+    }
+  }
+}

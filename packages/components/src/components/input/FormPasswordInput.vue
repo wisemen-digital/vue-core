@@ -2,11 +2,10 @@
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import type { Icon } from '@/icons/icons'
-import type { FormFieldErrors } from '@/types/formFieldErrors.type'
-
+import type { Icon } from '../../icons/icons'
+import type { FormFieldErrors } from '../../types/formFieldErrors.type'
 import AppIconButton from '../button/AppIconButton.vue'
-import FormInputContainer from '../form-input-container/FormInputContainer.vue'
+import FormElement from '../form-element/FormElement.vue'
 import AppToggle from '../toggle/AppToggle.vue'
 import AppInput from './AppInput.vue'
 
@@ -85,13 +84,12 @@ function onBlur(): void {
 </script>
 
 <template>
-  <FormInputContainer
+  <FormElement
     v-slot="{ isInvalid, id }"
     :errors="props.errors"
     :is-required="props.isRequired"
     :is-touched="props.isTouched"
     :is-disabled="props.isDisabled"
-    :placeholder="placeholder"
     :label="props.label"
   >
     <AppInput
@@ -119,6 +117,7 @@ function onBlur(): void {
               :label="isToggled
                 ? t('components.password_input.hide_password')
                 : t('components.password_input.show_password')"
+              tabindex="-1"
               icon-size="sm"
               variant="ghost"
               class="m-1 size-8"
@@ -127,5 +126,5 @@ function onBlur(): void {
         </AppToggle>
       </template>
     </AppInput>
-  </FormInputContainer>
+  </FormElement>
 </template>

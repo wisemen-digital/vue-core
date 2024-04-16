@@ -1,7 +1,9 @@
-/** @type {import('tailwindcss').Config} */
+import type { Config } from 'tailwindcss'
 
 export default {
-  content: ['./src/**/*.{vue,ts}'],
+  content: [
+    './src/components/**/*.{vue,ts}',
+  ],
   plugins: [],
   theme: {
     extend: {
@@ -12,6 +14,7 @@ export default {
         full: 'var(--radius-full)',
         input: 'var(--radius-input)',
         popover: 'var(--radius-popover)',
+        tag: 'var(--radius-tag)',
       },
 
       boxShadow: {
@@ -21,6 +24,7 @@ export default {
         'card-hover-shadow': 'var(--shadow-card-hover);',
         'card-shadow': 'var(--shadow-card);',
         'dialog-shadow': 'var(--shadow-dialog);',
+        'keyboard-key-shadow': 'rgba(0, 0, 0, 0.027) 0px 2px 0px 0px',
         'popover-shadow': 'var(--shadow-popover);',
         'table-header': '0px 2px 3px 0px #1018281A',
         'table-shadow': '0px 1px 2px 0px #1018280F',
@@ -36,6 +40,7 @@ export default {
         black: 'rgba(var(--black), <alpha-value>)',
 
         border: 'rgba(var(--border), <alpha-value>)',
+
         card: {
           DEFAULT: 'rgba(var(--card), <alpha-value>)',
           foreground: 'rgba(var(--card-foreground), <alpha-value>)',
@@ -151,18 +156,26 @@ export default {
         ],
       },
 
+      gridTemplateColumns: {
+        'table-skeleton': '1fr 4fr 2fr 1fr',
+      },
+
+      maxWidth: {
+        container: '1400px',
+      },
+
       transitionTimingFunction: {
         'dialog': 'cubic-bezier(0.22, 0.68, 0, 1.51)',
         'dialog-overlay': 'cubic-bezier(0.17, 0.67, 0.16, 0.99)',
       },
 
       zIndex: {
-        'aboveEverything': 9999,
-        'dialog': 40,
-        'dialog-overlay': 39,
-        'navbar': 30,
-        'popover': 50,
+        'above-everything': '9999',
+        'dialog': '40',
+        'dialog-overlay': '39',
+        'navbar': '30',
+        'popover': '50',
       },
     },
   },
-}
+} satisfies Config

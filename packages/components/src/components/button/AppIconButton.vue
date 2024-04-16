@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import type { Icon } from '@/icons/icons'
-
+import type { Icon } from '../../icons/icons'
 import AppIcon from '../icon/AppIcon.vue'
 import type { IconStyleProps } from '../icon/icon.style'
 import AppButton from './AppButton.vue'
@@ -18,6 +17,16 @@ const props = withDefaults(
      */
     iconSize?: IconStyleProps['size']
     /**
+     * Whether the button is disabled
+     * @default false
+     */
+    isDisabled?: boolean
+    /**
+     * Whether the button is loading
+     * @default false
+     */
+    isLoading?: boolean
+    /**
      * The label for the button for accessibility
      */
     label: string
@@ -29,6 +38,8 @@ const props = withDefaults(
   }>(),
   {
     iconSize: 'default',
+    isDisabled: false,
+    isLoading: false,
     variant: 'default',
   },
 )
@@ -38,6 +49,8 @@ const props = withDefaults(
   <AppButton
     :variant="props.variant"
     :aria-label="props.label"
+    :is-disabled="props.isDisabled"
+    :is-loading="props.isLoading"
     size="icon"
   >
     <AppIcon

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Icon } from '@/icons/icons'
-import type { FormFieldErrors } from '@/types/formFieldErrors.type'
-
-import FormInputContainer from '../form-input-container/FormInputContainer.vue'
+import { useComponentAttrs } from '../../composables/componentAttrs.composable'
+import type { Icon } from '../../icons/icons'
+import type { FormFieldErrors } from '../../types/formFieldErrors.type'
+import FormElement from '../form-element/FormElement.vue'
 import AppInput from '../input/AppInput.vue'
 
 const props = withDefaults(
@@ -35,7 +35,7 @@ const props = withDefaults(
      */
     isRequired?: boolean
     /**
-     *
+     * Whether the input is touched.
      */
     isTouched: boolean
     /**
@@ -65,37 +65,27 @@ const props = withDefaults(
   },
 )
 
-const emit = defineEmits<{
-  blur: []
-  focus: []
-}>()
-
 const model = defineModel<null | string>({
   required: true,
 })
 
-function onFocus(): void {
-  emit('focus')
-}
-
-function onBlur(): void {
-  emit('blur')
-}
+const { classAttr, otherAttrs } = useComponentAttrs()
 </script>
 
 <template>
-  <FormInputContainer
+  <FormElement
     v-slot="{ isInvalid, id }"
+    :class="classAttr"
     :errors="props.errors"
     :is-required="props.isRequired"
     :is-touched="props.isTouched"
     :is-disabled="props.isDisabled"
-    :placeholder="placeholder"
     :label="props.label"
   >
     <AppInput
       :id="id"
       v-model="model"
+      v-bind="otherAttrs"
       :is-invalid="isInvalid"
       :placeholder="props.placeholder"
       :is-disabled="props.isDisabled"
@@ -103,8 +93,6 @@ function onBlur(): void {
       :is-loading="props.isLoading"
       :icon-left="props.iconLeft"
       :icon-right="props.iconRight"
-      @focus="onFocus"
-      @blur="onBlur"
     >
       <template #left>
         <slot name="left" />
@@ -114,5 +102,5 @@ function onBlur(): void {
         <slot name="right" />
       </template>
     </AppInput>
-  </FormInputContainer>
+  </FormElement>
 </template>

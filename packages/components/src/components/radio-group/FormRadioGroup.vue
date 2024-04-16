@@ -1,52 +1,79 @@
 <script setup lang="ts" generic="T extends string">
-import {
-  RadioGroupIndicator,
-  RadioGroupItem,
-  RadioGroupRoot,
-} from 'radix-vue'
-import { computed } from 'vue'
+import type { DataItem } from '../../types/dataItem.type'
+import type { FormFieldErrors } from '../../types/formFieldErrors.type'
+import FormElement from '../form-element/FormElement.vue'
+import FormRadioGroupIndicator from './FormRadioGroupIndicator.vue'
+import FormRadioGroupItem from './FormRadioGroupItem.vue'
+import FormRadioGroupRoot from './FormRadioGroupRoot.vue'
 
-import type { DataItem } from '@/types/dataItem.type'
-
-const props = defineProps<{
+const props = withDefaults(defineProps<{
+  /**
+   * The errors associated with the radio group.
+   */
+  errors: FormFieldErrors
+  /**
+   * Whether the radio group is disabled.
+   */
+  isDisabled?: boolean
+  /**
+   *  Whether the radio group is required.
+   */
+  isRequired?: boolean
+  /**
+   * Whether the radio group is touched.
+   */
+  isTouched: boolean
+  /**
+   * The label of the radio group.
+   * @default null
+   */
+  label?: null | string
+  /**
+   * The options of the radio group.
+   */
   options: DataItem<T>[]
-}>()
+}>(), {
+  isDisabled: false,
+  isRequired: false,
+  label: null,
+})
 
 const model = defineModel<T | null>({
   required: true,
 })
-
-const computedModel = computed<T | undefined>({
-  get: () => model.value ?? undefined,
-  set: (value: T | undefined) => {
-    model.value = value ?? null
-  },
-})
 </script>
 
 <template>
-  <RadioGroupRoot v-model="computedModel">
-    <div class="flex flex-col gap-y-3">
-      <div
-        v-for="option of props.options"
-        :key="option.label"
-        class="flex items-center gap-x-2"
-      >
-        <RadioGroupItem
-          :id="option.value"
-          :value="option.value"
-          class="flex size-5 items-center justify-center gap-x-2 rounded-full border-[1.5px] border-solid border-input-border text-left outline-none ring-offset-2 ring-offset-background duration-200 focus:border-primary focus-visible:ring-2 focus-visible:ring-ring data-[state=checked]:border-primary"
+  <FormElement
+    :errors="props.errors"
+    :is-touched="props.isTouched"
+    :label="props.label"
+    :is-disabled="props.isDisabled"
+    :is-required="props.isRequired"
+  >
+    <FormRadioGroupRoot v-model="model">
+      <div class="flex flex-col gap-y-2">
+        <div
+          v-for="option of props.options"
+          :key="option.label"
+          class="flex items-center gap-x-2"
         >
-          <RadioGroupIndicator class="block size-2 rounded-full bg-primary" />
-        </RadioGroupItem>
+          <FormRadioGroupItem
+            :id="option.value"
+            :value="option.value"
+            class="flex size-5 items-center justify-center gap-x-2 rounded-full border-[1.5px] border-solid border-input-border data-[state=checked]:border-primary"
+          >
+            <FormRadioGroupIndicator class="block size-2 rounded-full bg-primary" />
+          </FormRadioGroupItem>
 
-        <label
-          :for="option.value"
-          class="text-sm text-secondary-foreground"
-        >
-          {{ option.label }}
-        </label>
+          <label
+            :for="option.value"
+            class="text-sm text-secondary-foreground"
+          >
+            {{ option.label }}
+          </label>
+        </div>
       </div>
-    </div>
-  </RadioGroupRoot>
+    </FormRadioGroupRoot>
+  </FormElement>
 </template>

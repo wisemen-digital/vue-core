@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { computed, useSlots } from 'vue'
+import { computed } from 'vue'
 
-import type { AllIcons, Icon } from '@/icons/icons'
-
+import type { Icon } from '../../icons/icons'
 import AppIcon from '../icon/AppIcon.vue'
 import AppLoader from '../loader/AppLoader.vue'
 import type { ButtonStyleProps } from './button.style'
-import { button } from './button.style'
+import { button, buttonIcon } from './button.style'
 
 export interface AppButtonProps {
   /**
@@ -61,8 +60,12 @@ const buttonClasses = computed<string>(() =>
   button({
     size: props.size,
     variant: props.variant,
-  }),
-)
+  }))
+
+const buttonIconClasses = computed<string>(() =>
+  buttonIcon({
+    size: props.size,
+  }))
 </script>
 
 <template>
@@ -74,10 +77,10 @@ const buttonClasses = computed<string>(() =>
     <AppIcon
       v-if="props.iconLeft !== null && props.iconLeft !== undefined"
       :icon="props.iconLeft"
-      :class="{
+      :class="[{
         'opacity-0': props.isLoading,
-      }"
-      class="mr-3"
+      }, buttonIconClasses]"
+      class="mr-2"
     />
 
     <span
@@ -100,10 +103,10 @@ const buttonClasses = computed<string>(() =>
     <AppIcon
       v-if="props.iconRight !== null && props.iconRight !== undefined"
       :icon="props.iconRight"
-      :class="{
+      :class="[buttonIconClasses, {
         'opacity-0': props.isLoading,
-      }"
-      class="ml-3"
+      }]"
+      class="ml-2"
     />
   </button>
 </template>

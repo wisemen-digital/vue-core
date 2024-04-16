@@ -1,40 +1,45 @@
-<script setup lang="ts">
-import { SelectItem, SelectItemIndicator } from 'radix-vue'
+<script setup lang="ts" generic="TValue extends AcceptableValue">
+import type {
+  AcceptableValue,
+  SelectItem,
+} from '../../types/selectItem.type'
+import AppSelectDivider from './AppSelectDivider.vue'
+import AppSelectGroup from './AppSelectGroup.vue'
+import AppSelectOption from './AppSelectOption.vue'
 
-import AppIcon from '../icon/AppIcon.vue'
-import AppText from '../text/AppText.vue'
-
-const props = withDefaults(
-  defineProps<{
-    isDisabled?: boolean
-    value: string
-  }>(),
-  {
-    isDisabled: false,
-  },
-)
+const props = defineProps<{
+  /**
+   * display function for the selected value
+   */
+  displayFn: (value: TValue) => null | string
+  item: SelectItem<TValue>
+}>()
 </script>
 
 <template>
-  <SelectItem
-    :disabled="isDisabled"
-    :value="props.value"
-    class="cursor-default rounded-md px-2 py-1.5 outline-none hover:bg-muted-background focus:bg-muted-background data-[disabled]:cursor-not-allowed data-[disabled]:bg-background data-[disabled]:opacity-50"
-  >
-    <div class="flex items-center gap-x-3">
-      <div class="w-4">
-        <SelectItemIndicator>
-          <AppIcon
-            class="text-muted-foreground"
-            icon="checkmark"
-            size="default"
-          />
-        </SelectItemIndicator>
-      </div>
+  <AppSelectDivider v-if="props.item.type === 'divider'" />
 
-      <AppText variant="subtext">
-        <slot />
-      </AppText>
-    </div>
-  </SelectItem>
+  <AppSelectGroup
+    v-else-if="props.item.type === 'group'"
+    :label="props.item.label"
+  >
+    <AppSelectItem
+      v-for="(groupItem, i) of props.item.items"
+      :key="i"
+      :item="groupItem"
+      :display-fn="displayFn"
+    >
+      <template #default="{ item: itemValue }">
+        <slot :item="itemValue" />
+      </template>
+    </AppSelectItem>
+  </AppSelectGroup>
+
+  <AppSelectOption
+    v-else-if="props.item.type === 'option'"
+    :item="props.item"
+    :display-fn="displayFn"
+  >
+    <slot :item="props.item" />
+  </AppSelectOption>
 </template>

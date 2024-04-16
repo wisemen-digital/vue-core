@@ -1,5 +1,5 @@
-import type { VariantProps } from '@/libs/cva.lib'
-import { cva } from '@/libs/cva.lib'
+import type { VariantProps } from '../../libs/cva.lib'
+import { cva } from '../../libs/cva.lib'
 
 export const sizeOptions = {
   default: 'h-4 w-4',

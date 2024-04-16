@@ -1,40 +1,51 @@
-<script setup lang="ts">
-import { ComboboxItem, ComboboxItemIndicator } from 'radix-vue'
+<script setup lang="ts" generic="TValue extends AcceptableValue">
+import type { ComboboxItem } from '../../types/comboboxItem.type'
+import type { AcceptableValue } from '../../types/selectItem.type'
+import AppComboboxDivider from './AppComboboxDivider.vue'
+import AppComboboxGroup from './AppComboboxGroup.vue'
+import AppComboboxOption from './AppComboboxOption.vue'
+import AppMultiComboboxOption from './AppMultiComboboxOption.vue'
 
-import AppIcon from '../icon/AppIcon.vue'
-import AppText from '../text/AppText.vue'
-
-const props = withDefaults(
-  defineProps<{
-    isDisabled?: boolean
-    value: string
-  }>(),
-  {
-    isDisabled: false,
-  },
-)
+const props = defineProps<{
+  displayFn: (value: TValue) => string
+  isMultiple: boolean
+  item: ComboboxItem<TValue>
+}>()
 </script>
 
 <template>
-  <ComboboxItem
-    :disabled="isDisabled"
-    :value="props.value"
-    class="cursor-default rounded-md px-2 py-1.5 outline-none hover:bg-muted-background focus:bg-muted-background data-[disabled]:cursor-not-allowed data-[disabled]:bg-background data-[highlighted]:bg-muted-background data-[disabled]:opacity-50"
-  >
-    <div class="flex items-center gap-x-3">
-      <div class="w-4">
-        <ComboboxItemIndicator>
-          <AppIcon
-            class="text-muted-foreground"
-            icon="checkmark"
-            size="default"
-          />
-        </ComboboxItemIndicator>
-      </div>
+  <AppComboboxDivider v-if="props.item.type === 'divider'" />
 
-      <AppText variant="subtext">
-        <slot />
-      </AppText>
-    </div>
-  </ComboboxItem>
+  <AppComboboxGroup
+    v-else-if="props.item.type === 'group'"
+    :label="props.item.label"
+  >
+    <AppComboboxItem
+      v-for="(groupItem, i) of props.item.items"
+      :key="i"
+      :item="groupItem"
+      :is-multiple="props.isMultiple"
+      :display-fn="props.displayFn"
+    >
+      <template #default="{ item: itemValue }">
+        <slot :item="itemValue" />
+      </template>
+    </AppComboboxItem>
+  </AppComboboxGroup>
+
+  <AppComboboxOption
+    v-else-if="props.item.type === 'option' && !isMultiple"
+    :item="props.item"
+    :display-fn="props.displayFn"
+  >
+    <slot :item="props.item" />
+  </AppComboboxOption>
+
+  <AppMultiComboboxOption
+    v-else-if="props.item.type === 'option' && isMultiple"
+    :item="props.item"
+    :display-fn="props.displayFn"
+  >
+    <slot :item="props.item" />
+  </AppMultiComboboxOption>
 </template>

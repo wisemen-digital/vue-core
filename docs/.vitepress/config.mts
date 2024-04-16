@@ -26,6 +26,40 @@ const docs = [
     ]
   },
   {
+    'text': 'Combobox',
+    items: [
+      {
+        text: 'AppCombobox',
+        link: '/components/app-combobox'
+      },
+      {
+        text: 'AppMultiCombobox',
+        link: '/components/app-multi-combobox'
+      },
+      {
+        text: 'FormCombobox',
+        link: '/components/form-combobox'
+      },
+      {
+        text: 'FormMultiCombobox',
+        link: '/components/form-multi-combobox'
+      }
+    ]
+  },
+  {
+    text: 'FormCheckbox',
+    items: [
+      {
+        text: 'FormCheckbox',
+        link: '/components/form-checkbox'
+      },
+      {
+        text: 'FormCheckboxGroup',
+        link: '/components/form-checkbox-group'
+      }
+    ]
+  },
+  {
     text: 'Input',
     items: [
       {
@@ -55,6 +89,7 @@ const docs = [
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  base: '/vue-core/',
   title: "Vue Core",
   description: "Vue Core",
   themeConfig: {
@@ -63,6 +98,10 @@ export default defineConfig({
       { text: 'Home', link: '/' },
       { text: 'Examples', link: '/markdown-examples' }
     ],
+
+    search: {
+      provider: 'local'
+    },
 
     sidebar: [
       {

@@ -31,7 +31,7 @@
     --warning-foreground: 255, 255, 255;
 
     --muted: 240, 240, 255;
-    --muted-foreground: 102, 112, 133;
+    --muted-foreground: 82, 92, 113;
     --muted-background: 249, 250, 251;
 
     --popover: 255, 255, 255;
@@ -72,7 +72,7 @@
     --shadow-card-hover: 0;
 
     --shadow-dialog: 0px 4px 6px -2px rgba(16, 24, 40, 0.03), 0px 12px 16px -4px rgba(16, 24, 40, 0.08);
-    --shadow-popover: 0px 8px 8px -4px rgba(16, 24, 40, 0.03), 0px 20px 24px -4px rgba(16, 24, 40, 0.08);
+    --shadow-popover: rgba(0, 0, 0, 0.09) 0px 3px 12px;
 
     --radius: 0.5rem;
     --radius-dialog: 0.5rem;
@@ -80,6 +80,7 @@
     --radius-card: 1rem;
     --radius-button: 0.4rem;
     --radius-input: 0.4rem;
+    --radius-tag: 0.3rem;
     --radius-full: 9999px;
 
     --font-size-hero: 2.5rem;
@@ -123,56 +124,56 @@
 
 @keyframes fade-in-from-top {
 	from {
-		transform: translateY(6px) scale(1);
+		transform: translateY(6px);
 		opacity: 0;
 	}
 }
 
 @keyframes fade-in-from-bottom {
 	from {
-		transform: translateY(-6px) scale(1);
-		opacity: 0;
+		transform: translateY(-6px);
+		opacity: 1;
 	}
 }
 
 @keyframes fade-in-from-left {
 	from {
-		transform: translateX(6px) scale(1);
+		transform: translateX(6px);
 		opacity: 0;
 	}
 }
 
 @keyframes fade-in-from-right {
 	from {
-		transform: translateX(-6px) scale(1);
+		transform: translateX(-6px);
 		opacity: 0;
 	}
 }
 
 @keyframes fade-out-to-top {
 	to {
-		transform: translateY(6px) scale(1);
+		transform: translateY(6px);
 		opacity: 0;
 	}
 }
 
 @keyframes fade-out-to-bottom {
 	to {
-		transform: translateY(-6px) scale(1);
+		transform: translateY(-6px);
 		opacity: 0;
 	}
 }
 
 @keyframes fade-out-to-left {
 	to {
-		transform: translateX(6px) scale(1);
+		transform: translateX(6px);
 		opacity: 0;
 	}
 }
 
 @keyframes fade-out-to-right {
 	to {
-		transform: translateX(-6px) scale(1);
+		transform: translateX(-6px);
 		opacity: 0;
 	}
 }

@@ -11,11 +11,16 @@ const props = defineProps<{
 <template>
   <SelectGroup>
     <SelectLabel class="px-2 py-1">
-      <AppText variant="subtext">
+      <AppText
+        variant="caption"
+        class="text-secondary-foreground"
+      >
         {{ props.label }}
       </AppText>
     </SelectLabel>
 
-    <slot />
+    <div class="pl-2">
+      <slot />
+    </div>
   </SelectGroup>
 </template>

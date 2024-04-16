@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Toaster } from 'vue-sonner'
+import Toaster from '../sonner/Toaster.vue'
 </script>
 
 <template>

@@ -1,3 +1,4 @@
+import { useId } from 'radix-vue'
 import type {
   Component,
   Ref,
@@ -16,8 +17,7 @@ import type {
   UseDialogContainerReturnType,
   UseDialogOptions,
   UseDialogReturnType,
-} from '@/types/dialog.type'
-import { generateUuid } from '@/utils/uuid.util'
+} from '../types/dialog.type'
 
 const dialogs = ref<Dialog[]>([])
 
@@ -31,7 +31,7 @@ export function useDialog<TComponent extends Record<string, unknown>>({
   animateFromTrigger = false,
   component,
 }: UseDialogOptions<TComponent>): UseDialogReturnType<TComponent> {
-  const triggerId = `dialog-${generateUuid()}`
+  const triggerId = useId()
 
   function removeDialogFromContainer(): void {
     dialogs.value = dialogs.value.filter(dialog => dialog.id !== triggerId)
@@ -60,6 +60,12 @@ export function useDialog<TComponent extends Record<string, unknown>>({
   }
 
   async function createDialog(attrs: Attrs<TComponent>): Promise<Ref<Dialog>> {
+    const dialogWithSameTriggerId = dialogs.value.find(dialog => dialog.id === triggerId) ?? null
+
+    if (dialogWithSameTriggerId !== null) {
+      throw new Error(`Dialog with triggerId ${triggerId} already exists`)
+    }
+
     const c = await component()
 
     const dialogComponent = computed<Component>(() => {
@@ -68,6 +74,9 @@ export function useDialog<TComponent extends Record<string, unknown>>({
         reactive<Attrs<TComponent>>({
           ...attrs,
           animateFromTrigger,
+          onClose: () => {
+            setTimeout(removeDialogFromContainer, 500)
+          },
           triggerId,
         }),
       )
@@ -81,8 +90,8 @@ export function useDialog<TComponent extends Record<string, unknown>>({
   }
 
   return {
-    closeDialog,
-    openDialog: openDialog as UseDialogReturnType<TComponent>['openDialog'],
+    close: closeDialog,
+    open: openDialog as UseDialogReturnType<TComponent>['open'],
     triggerId,
   }
 }

@@ -1,13 +1,12 @@
-<!-- eslint-disable simple-import-sort/imports -->
 <script setup lang="ts">
 import {
   DialogPortal,
   DialogRoot,
 } from 'radix-vue'
 import {
-  Transition,
   nextTick,
   ref,
+  Transition,
   watch,
 } from 'vue'
 
@@ -15,14 +14,6 @@ import AppDialogContent from './AppDialogContent.vue'
 import AppDialogOverlay from './AppDialogOverlay.vue'
 
 const props = withDefaults(defineProps<{
-  /**
-   * The accessible description for the dialog
-   */
-  accessibleDescription: string
-  /**
-   * The accessible title for the dialog
-   */
-  accessibleTitle: string
   /**
    * Whether to animate the dialog with the View Transitions API
    * @default false
@@ -44,6 +35,10 @@ const props = withDefaults(defineProps<{
   hideCloseButton: false,
   triggerId: null,
 })
+
+const emit = defineEmits<{
+  close: []
+}>()
 
 const isOpen = defineModel<boolean>('isOpen', {
   default: false,
@@ -170,6 +165,12 @@ watch(isOpen, (isOpen) => {
     hideDialog()
   }
 })
+
+watch(isActuallyOpen, () => {
+  if (!isActuallyOpen.value) {
+    emit('close')
+  }
+})
 </script>
 
 <template>
@@ -179,7 +180,14 @@ watch(isOpen, (isOpen) => {
       :modal="isActuallyOpen"
     >
       <DialogPortal>
-        <AppDialogOverlay />
+        <Transition
+          enter-active-class="duration-200"
+          enter-from-class="opacity-0"
+          leave-active-class="duration-200"
+          leave-to-class="opacity-0"
+        >
+          <AppDialogOverlay />
+        </Transition>
 
         <Component
           :is="animateFromTrigger ? 'div' : Transition"
@@ -190,8 +198,6 @@ watch(isOpen, (isOpen) => {
         >
           <AppDialogContent
             v-if="isActuallyOpen"
-            :accessible-title="props.accessibleTitle"
-            :accessible-description="props.accessibleDescription"
             :hide-close-button="props.hideCloseButton"
           >
             <slot />

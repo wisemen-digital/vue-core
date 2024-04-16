@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import type { FormFieldErrors } from '@/types/formFieldErrors.type'
-
+import type { FormFieldErrors } from '../../types/formFieldErrors.type'
 import AppIcon from '../icon/AppIcon.vue'
 import AppText from '../text/AppText.vue'
 import AppCollapseTransition from '../transitions/AppCollapseTransition.vue'

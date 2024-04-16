@@ -1,48 +1,60 @@
 <script setup lang="ts">
-import { DropdownMenuItem } from 'radix-vue'
+import { DropdownMenuPortal } from 'radix-vue'
 
-import type { Icon } from '@/icons/icons'
+import type { DropdownMenuItem } from '../../types/dropdownMenuItem.type'
+import AppDropdownMenuDivider from './AppDropdownMenuDivider.vue'
+import AppDropdownMenuGroup from './AppDropdownMenuGroup.vue'
+import AppDropdownMenuOption from './AppDropdownMenuOption.vue'
+import AppDropdownMenuSub from './AppDropdownMenuSub.vue'
+import AppDropdownMenuSubContent from './AppDropdownMenuSubContent.vue'
+import AppDropdownMenuSubTrigger from './AppDropdownMenuSubTrigger.vue'
 
-import AppIcon from '../icon/AppIcon.vue'
-import AppText from '../text/AppText.vue'
-
-const props = withDefaults(
-  defineProps<{
-    icon?: Icon | null
-  }>(),
-  {
-    icon: null,
-  },
-)
-
-const emit = defineEmits<{
-  select: []
+const props = defineProps<{
+  item: DropdownMenuItem
 }>()
-
-function onSelect(): void {
-  emit('select')
-}
 </script>
 
 <template>
-  <DropdownMenuItem
-    class="group cursor-default overflow-hidden rounded-md p-2 outline-none focus:bg-muted-background"
-    @select="onSelect"
-  >
-    <div class="flex items-center gap-x-3 overflow-hidden">
-      <AppIcon
-        v-if="props.icon !== null"
-        :icon="props.icon"
-        class="shrink-0 text-muted-foreground group-focus:text-foreground"
-        size="default"
-      />
+  <AppDropdownMenuDivider v-if="props.item.type === 'divider'" />
 
-      <AppText
-        class="truncate group-focus:text-foreground"
-        variant="subtext"
-      >
-        <slot />
-      </AppText>
-    </div>
-  </DropdownMenuItem>
+  <AppDropdownMenuGroup v-else-if="props.item.type === 'group'">
+    <AppDropdownMenuItem
+      v-for="(groupItem, i) of props.item.items"
+      :key="i"
+      :item="groupItem"
+    >
+      <template #default="{ item: itemValue }">
+        <slot :item="itemValue" />
+      </template>
+    </AppDropdownMenuItem>
+  </AppDropdownMenuGroup>
+
+  <AppDropdownMenuSub v-else-if="props.item.type === 'subMenu'">
+    <AppDropdownMenuSubTrigger :item="props.item">
+      <template #default="{ item: itemValue }">
+        <slot :item="itemValue" />
+      </template>
+    </AppDropdownMenuSubTrigger>
+
+    <DropdownMenuPortal>
+      <AppDropdownMenuSubContent>
+        <AppDropdownMenuItem
+          v-for="(subItem, i) of props.item.items"
+          :key="i"
+          :item="subItem"
+        >
+          <template #default="{ item: itemValue }">
+            <slot :item="itemValue" />
+          </template>
+        </AppDropdownMenuItem>
+      </AppDropdownMenuSubContent>
+    </DropdownMenuPortal>
+  </AppDropdownMenuSub>
+
+  <AppDropdownMenuOption
+    v-if="props.item.type === 'option'"
+    :item="props.item"
+  >
+    <slot :item="props.item" />
+  </AppDropdownMenuOption>
 </template>

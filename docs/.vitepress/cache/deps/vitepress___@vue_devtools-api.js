@@ -2,9 +2,9 @@ import {
   isReactive,
   isRef,
   toRaw
-} from "./chunk-KJTOLQBP.js";
+} from "./chunk-QEKPPGPU.js";
 
-// ../node_modules/.pnpm/@vue+devtools-shared@7.0.17/node_modules/@vue/devtools-shared/dist/index.js
+// ../node_modules/.pnpm/@vue+devtools-shared@7.0.18/node_modules/@vue/devtools-shared/dist/index.js
 var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -519,7 +519,7 @@ async function _applyPromised(fn, _this, args) {
   return await fn.apply(_this, args);
 }
 
-// ../node_modules/.pnpm/@vue+devtools-kit@7.0.17_vue@3.4.21/node_modules/@vue/devtools-kit/dist/index.js
+// ../node_modules/.pnpm/@vue+devtools-kit@7.0.18_vue@3.4.21/node_modules/@vue/devtools-kit/dist/index.js
 var __create2 = Object.create;
 var __defProp2 = Object.defineProperty;
 var __getOwnPropDesc2 = Object.getOwnPropertyDescriptor;
@@ -2392,7 +2392,8 @@ function initStateFactory() {
     tabs: [],
     commands: [],
     vitePluginDetected: false,
-    activeAppRecordId: null
+    activeAppRecordId: null,
+    highPerfModeEnabled: false
   };
 }
 var _a4;
@@ -2566,6 +2567,7 @@ function onDevToolsClientConnected(fn) {
     });
   });
 }
+init_esm_shims2();
 export {
   addCustomCommand,
   addCustomTab,

@@ -1,25 +1,30 @@
-<script setup lang="ts" generic="T extends string">
+<script setup lang="ts" generic="TValue extends AcceptableValue">
 import {
-  SelectContent,
   SelectIcon,
   SelectPortal,
-  SelectRoot,
-  SelectTrigger,
-  SelectValue,
-  SelectViewport,
 } from 'radix-vue'
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 
-import type { DataItem } from '@/types/dataItem.type'
-
+import type { Icon } from '../../icons/icons'
+import type { AcceptableValue, SelectItem } from '../../types/selectItem.type'
 import AppIcon from '../icon/AppIcon.vue'
 import AppLoader from '../loader/AppLoader.vue'
+import AppSelectContent from './AppSelectContent.vue'
 import AppSelectItem from './AppSelectItem.vue'
-import AppSelectScrollDownButton from './AppSelectScrollDownButton.vue'
-import AppSelectScrollUpButton from './AppSelectScrollUpButton.vue'
+import AppSelectRoot from './AppSelectRoot.vue'
+import AppSelectTrigger from './AppSelectTrigger.vue'
+import AppSelectValue from './AppSelectValue.vue'
 
 const props = withDefaults(
   defineProps<{
+    /**
+     * display function for the selected value
+     */
+    displayFn: (value: TValue) => null | string
+    /**
+     * The icon to display on the left side of the select.
+     */
+    iconLeft?: Icon
     /**
      * The id of the select.
      * @default null
@@ -39,19 +44,16 @@ const props = withDefaults(
      */
     isLoading?: boolean
     /**
-     * The model value of the select.
+     * The items of the select.
      */
-    modelValue: T | null
-    /**
-     * The options of the select.
-     */
-    options: DataItem<T>[]
+    items: SelectItem<TValue>[]
     /**
      * The placeholder of the select.
      */
     placeholder?: null | string
   }>(),
   {
+    iconLeft: undefined,
     id: null,
     isDisabled: false,
     isInvalid: false,
@@ -62,22 +64,14 @@ const props = withDefaults(
 
 const emit = defineEmits<{
   'blur': []
-  'update:modelValue': [value: T | null]
+  'update:modelValue': [value: TValue | null]
 }>()
 
+const model = defineModel<TValue | null>({
+  required: true,
+})
+
 const isOpen = ref<boolean>(false)
-
-const model = computed<T | undefined>({
-  get: () => props.modelValue ?? undefined,
-  set: (value) => {
-    emit('update:modelValue', value ?? null)
-  },
-})
-
-const selectedValueLabel = computed<null | string>(() => {
-  const selectedOption = props.options.find(option => option.value === model.value) ?? null
-  return selectedOption?.label ?? null
-})
 
 function onBlur(): void {
   emit('blur')
@@ -92,30 +86,34 @@ function onTriggerBlur(): void {
 
 <template>
   <div>
-    <SelectRoot
+    <AppSelectRoot
       v-model="model"
-      v-model:open="isOpen"
-      :disabled="props.isDisabled"
+      v-model:is-open="isOpen"
+      :is-disabled="props.isDisabled"
     >
-      <SelectTrigger
+      <AppSelectTrigger
         :id="id"
-        :class="{
-          'border-input-border focus-visible:ring-ring': !props.isInvalid,
-          'border-destructive focus-visible:ring-destructive': props.isInvalid,
-          'cursor-not-allowed opacity-50': props.isDisabled,
-        }"
-        class="flex h-10 w-full items-center justify-between rounded-input border border-solid bg-input px-3 ring-offset-background duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+        :is-disabled="props.isDisabled"
+        :is-invalid="props.isInvalid"
         @blur="onTriggerBlur"
       >
-        <SelectValue
-          :class="{
-            'text-input-placeholder': model === undefined,
-          }"
-          :placeholder="placeholder ?? undefined"
-          class="truncate text-sm"
-        >
-          {{ selectedValueLabel }}
-        </SelectValue>
+        <slot name="left">
+          <AppIcon
+            v-if="props.iconLeft !== undefined"
+            :icon="props.iconLeft"
+            class="ml-3 text-muted-foreground"
+          />
+        </slot>
+
+        <AppSelectValue :is-empty="model === null">
+          <template v-if="placeholder !== null && model === null">
+            {{ props.placeholder }}
+          </template>
+
+          <template v-else-if="model !== null">
+            {{ props.displayFn(model) }}
+          </template>
+        </AppSelectValue>
 
         <AppLoader
           v-if="props.isLoading"
@@ -125,6 +123,7 @@ function onTriggerBlur(): void {
         <SelectIcon
           v-else
           :as-child="true"
+          class="mr-3"
         >
           <AppIcon
             class="text-muted-foreground"
@@ -132,7 +131,7 @@ function onTriggerBlur(): void {
             size="sm"
           />
         </SelectIcon>
-      </SelectTrigger>
+      </AppSelectTrigger>
 
       <SelectPortal>
         <Transition
@@ -144,38 +143,25 @@ function onTriggerBlur(): void {
           leave-to-class="opacity-0"
         >
           <div v-if="isOpen">
-            <!-- eslint-disable tailwindcss/no-custom-classname -->
-            <SelectContent
-              :force-mount="true"
-              align="center"
-              class="select-content popover-content relative z-popover overflow-hidden rounded-popover bg-background shadow-popover-shadow"
-              position="popper"
-            >
-              <!-- eslint-enable tailwindcss/no-custom-classname -->
-              <AppSelectScrollUpButton />
-
-              <SelectViewport class="max-h-[25rem] p-1.5">
-                <AppSelectItem
-                  v-for="option of props.options"
-                  :key="option.label"
-                  :value="option.value"
-                >
-                  {{ option.label }}
-                </AppSelectItem>
-              </SelectViewport>
-
-              <AppSelectScrollDownButton />
-            </SelectContent>
+            <AppSelectContent>
+              <AppSelectItem
+                v-for="(item, i) of props.items"
+                :key="i"
+                :item="item"
+                :display-fn="props.displayFn"
+              >
+                <template #default="{ item: itemValue }">
+                  <slot
+                    v-if="itemValue.type === 'option'"
+                    :value="itemValue.value"
+                    name="option"
+                  />
+                </template>
+              </AppSelectItem>
+            </AppSelectContent>
           </div>
         </Transition>
       </SelectPortal>
-    </SelectRoot>
+    </AppSelectRoot>
   </div>
 </template>
-
-<style>
-.select-content {
-  width: var(--radix-select-trigger-width);
-  max-height: var(--radix-select-content-available-height);
-}
-</style>

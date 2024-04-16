@@ -17,11 +17,18 @@ export default defineConfig({
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
       // into your library (Vue)
-      external: ['vue', 'vue-i18n', 'vue-router', 'zod'],
+      external: [
+        'vue',
+        'vue-i18n',
+        'vue-router',
+        'zod',
+        'radix-vue',
+      ],
       output: {
         // Provide global variables to use in the UMD build
         // for externalized deps
         globals: {
+          'radix-vue': 'radixVue',
           'vue': 'Vue',
           'vue-i18n': 'VueI18n',
           'vue-router': 'VueRouter',
@@ -34,7 +41,11 @@ export default defineConfig({
     vue(),
     dts({
       cleanVueFileName: true,
-      exclude: ['src/test/**', 'src/**/story/**', 'src/**/*.story.vue'],
+      exclude: [
+        'src/test/**',
+        'src/**/story/**',
+        'src/**/*.story.vue',
+      ],
       tsconfigPath: 'tsconfig.build.json',
     }),
   ],

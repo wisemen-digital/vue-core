@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ComboboxGroup, ComboboxLabel } from 'radix-vue'
 
-import AppText from '@/components/text/AppText.vue'
+import AppText from '../text/AppText.vue'
 
 const props = defineProps<{
   label: string
@@ -11,11 +11,16 @@ const props = defineProps<{
 <template>
   <ComboboxGroup>
     <ComboboxLabel class="px-2 py-1">
-      <AppText variant="subtext">
+      <AppText
+        variant="caption"
+        class="text-secondary-foreground"
+      >
         {{ props.label }}
       </AppText>
     </ComboboxLabel>
 
-    <slot />
+    <div class="pl-2">
+      <slot />
+    </div>
   </ComboboxGroup>
 </template>

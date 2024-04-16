@@ -12,6 +12,7 @@ sidebar: auto
 | iconRight   | `Icon` \| `null`              | The icon to display on the right side of the button. | `null`            |
 | isDisabled  | `boolean`                     | Whether the button is disabled.                   | `false`               |
 | isLoading   | `boolean`                     | Whether the button is in a loading state.        | `false`               |
+| isDisabled   | `boolean`                     | Whether the button is disabled.        | `false`               |
 | size        | `'sm'` \| `'default'` \| `'lg'` | The size of the button.                          | `'default'`     |
 | type        | `'button'` \| `'reset'` \| `'submit'` | The type of the button.                      | `'button'`      |
 | variant     | `'default'` \| `'secondary'` \| `'outline'` \| `'ghost'` \| `'destructive'` \| `'destructive-outline'` | The variant of the button. | `'default'` |

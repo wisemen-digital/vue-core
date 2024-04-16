@@ -3,7 +3,7 @@ name: Deploy
 on:
   push:
     branches:
-      - main
+      - master
 
 permissions:
   contents: write
@@ -26,11 +26,8 @@ jobs:
           version: latest
           run_install: true
 
-      - name: Build project
-        run: pnpm run build
-
       - name: Build documentation
-        run: pnpm run docs:build
+        run: pnpm docs:build
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v3
@@ -42,7 +39,7 @@ jobs:
     name: Deploy
     needs: build
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/master'
 
     steps:
       - name: Download artifact

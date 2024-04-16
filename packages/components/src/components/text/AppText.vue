@@ -10,6 +10,7 @@ const props = withDefaults(
   defineProps<{
     /**
      * The HTML tag to render the component as
+     * @default 'p'
      */
     as?: TextType
     /**
@@ -23,7 +24,9 @@ const props = withDefaults(
 )
 
 const classes = computed<string>(() => {
-  const classes: string[] = []
+  const classes: string[] = [
+    'text-foreground',
+  ]
 
   switch (props.variant) {
     case 'hero':
@@ -31,27 +34,27 @@ const classes = computed<string>(() => {
       break
 
     case 'title':
-      classes.push('text-title font-semibold text-foreground')
+      classes.push('text-title font-semibold')
       break
 
     case 'subtitle':
-      classes.push('text-subtitle text-foreground')
+      classes.push('text-subtitle')
       break
 
     case 'heading':
-      classes.push('text-heading text-foreground')
+      classes.push('text-heading')
       break
 
     case 'body':
-      classes.push('text-body text-foreground')
+      classes.push('text-body')
       break
 
     case 'subtext':
-      classes.push('text-subtext text-foreground')
+      classes.push('text-subtext')
       break
 
     case 'caption':
-      classes.push('text-caption text-foreground')
+      classes.push('text-caption')
       break
   }
 

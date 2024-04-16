@@ -1,34 +1,63 @@
-<script setup lang="ts" generic="T extends string">
+<script setup lang="ts" generic="TValue extends AcceptableValue">
 import {
   ComboboxAnchor,
   ComboboxArrow,
-  ComboboxContent,
-  ComboboxEmpty,
-  ComboboxInput,
   ComboboxPortal,
   ComboboxRoot,
-  ComboboxTrigger,
-  ComboboxViewport,
 } from 'radix-vue'
-import { computed, ref } from 'vue'
-import { useI18n } from 'vue-i18n'
+import {
+  computed,
+  ref,
+} from 'vue'
 
-import type { DataItem } from '@/types/dataItem.type'
+import type { Icon } from '@/icons/icons'
 
-import AppIcon from '../icon/AppIcon.vue'
-import AppLoader from '../loader/AppLoader.vue'
-import AppText from '../text/AppText.vue'
+import type { ComboboxItem } from '../../types/comboboxItem.type'
+import type { AcceptableValue } from '../../types/selectItem.type'
+import AppComboboxContent from './AppComboboxContent.vue'
+import AppComboboxEmpty from './AppComboboxEmpty.vue'
+import AppComboboxInput from './AppComboboxInput.vue'
 import AppComboboxItem from './AppComboboxItem.vue'
+import AppComboboxViewport from './AppComboboxViewport.vue'
+import { useCombobox } from './combobox.composable'
 
 const props = withDefaults(
   defineProps<{
+    /**
+     * Display function for the selected value
+     */
+    displayFn: (value: TValue) => string
     /**
      * The text to display when there are no options.
      * @default t('components.combobox.empty')
      */
     emptyText?: null | string
     /**
+     * The function to filter the options.
+     */
+    filterFn: (options: TValue[], searchTerm: string) => TValue[]
+    /**
+     * The icon to display on the left side of the combobox.
+     * @default null
+     */
+    iconLeft?: Icon | null
+    /**
+     * The icon to display on the right side of the combobox.
+     * @default null
+     */
+    iconRight?: Icon | null
+    /**
+     * The html id of the combobox.
+     */
+    id?: null | string
+    /**
+     * Whether the chevron icon is hidden.
+     * @default false
+     */
+    isChevronHidden?: boolean
+    /**
      * Whether the combobox is disabled.
+     * @default false
      */
     isDisabled?: boolean
     /**
@@ -38,16 +67,17 @@ const props = withDefaults(
     isInvalid?: boolean
     /**
      * Whether the combobox is loading.
+     * @default false
      */
     isLoading?: boolean
     /**
-     * The value of the combobox.
-     */
-    modelValue: T | T[] | null
-    /**
      * The options to display in the combobox.
      */
-    options: DataItem<T>[]
+    items: ComboboxItem<TValue>[]
+    /**
+     * The value of the combobox.
+     */
+    modelValue: TValue | null
     /**
      * The placeholder text to display when the combobox is empty.
      * @default null
@@ -56,6 +86,10 @@ const props = withDefaults(
   }>(),
   {
     emptyText: null,
+    iconLeft: undefined,
+    iconRight: undefined,
+    id: null,
+    isChevronHidden: false,
     isDisabled: false,
     isInvalid: false,
     isLoading: false,
@@ -65,69 +99,46 @@ const props = withDefaults(
 
 const emit = defineEmits<{
   'blur': []
-  'filter': [value: string]
-  'update:modelValue': [value: T | T[] | null]
+  'update:modelValue': [value: TValue | null]
 }>()
 
-const model = computed<T | T[] | undefined>({
+const searchModel = defineModel<null | string>('search', {
+  default: '',
+  required: false,
+})
+
+const isOpen = ref<boolean>(false)
+
+const model = computed<TValue | undefined>({
   get: () => props.modelValue ?? undefined,
   set: (value) => {
     emit('update:modelValue', value ?? null)
   },
 })
 
-const { t } = useI18n()
-
-const isOpen = ref<boolean>(false)
-
-const isMultiple = computed<boolean>(() => Array.isArray(model.value))
-
-const placeholderValue = computed<string | undefined>(() => {
-  if (!isMultiple.value) {
-    return props.placeholder ?? undefined
-  }
-
-  return (model.value as T[]).map(displayFn).join(', ')
+const search = computed<string | undefined>({
+  get: () => searchModel.value ?? undefined,
+  set: (value) => {
+    searchModel.value = value ?? null
+  },
 })
 
-const isEmpty = computed<boolean>(() => {
-  if (isMultiple.value) {
-    return (model.value as T[]).length === 0
-  }
-
-  return model.value === undefined
+const { canOpenDropdown } = useCombobox({
+  isLoading: computed<boolean>(() => props.isLoading),
+  items: computed<ComboboxItem<TValue>[]>(() => props.items),
+  search: computed<null | string>(() => searchModel.value),
 })
 
-function filterFn(options: T[], filter: string): any {
-  return options.filter((optionValue) => {
-    const option = props.options.find(o => o.value === optionValue) ?? null
-
-    if (option === null) {
-      return false
-    }
-
-    return option.label.toLowerCase().includes(filter.toLowerCase())
-  })
-}
-
-function displayFn(value: T): string {
-  const option = props.options.find(o => o.value === value) ?? null
-
-  if (option === null) {
-    return ''
+const placeholderValue = computed<null | string>(() => {
+  if (model.value === undefined) {
+    return props.placeholder
   }
 
-  return option.label
-}
-
-function onFilter(filter: string): void {
-  emit('filter', filter)
-}
+  return props.displayFn(model.value as TValue)
+})
 
 function onBlur(): void {
-  if (!isOpen.value) {
-    emit('blur')
-  }
+  emit('blur')
 }
 </script>
 
@@ -136,52 +147,31 @@ function onBlur(): void {
     <ComboboxRoot
       v-model="model"
       v-model:open="isOpen"
-      :disabled="props.isDisabled"
+      v-model:search-term="search"
+      :filter-function="(props.filterFn as any)"
       :display-value="displayFn"
-      :filter-function="filterFn"
-      :multiple="isMultiple"
-      @update:search-term="onFilter"
+      :disabled="props.isDisabled"
     >
       <ComboboxAnchor>
-        <div class="relative">
-          <ComboboxInput
-            :class="{
-              'border-input-border focus-within:ring-ring': !props.isInvalid,
-              'border-destructive focus-within:ring-destructive': props.isInvalid,
-              'placeholder:text-input-placeholder': isEmpty && !isMultiple,
-              'placeholder:text-input-foreground': !isEmpty && isMultiple,
-              'focus:placeholder:text-input-placeholder': isMultiple && !isEmpty,
-            }"
-            :placeholder="placeholderValue"
-            class="h-10 w-full truncate rounded-input border bg-input pl-3 pr-9 text-sm outline-none ring-offset-background duration-200 focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-            tabindex="0"
-            @blur="onBlur"
-          />
+        <AppComboboxInput
+          :id="props.id"
+          :icon-left="props.iconLeft ?? null"
+          :icon-right="props.iconRight ?? null"
+          :is-chevron-hidden="props.isChevronHidden"
+          :is-disabled="props.isDisabled"
+          :is-invalid="props.isInvalid"
+          :is-loading="props.isLoading"
+          :placeholder="placeholderValue"
+          @blur="onBlur"
+        >
+          <template #left>
+            <slot name="left" />
+          </template>
 
-          <div
-            :class="{
-              'pointer-events-none opacity-50': props.isDisabled,
-            }"
-            class="absolute right-1 top-1/2 box-content -translate-y-1/2 p-2"
-          >
-            <AppLoader
-              v-if="props.isLoading"
-              class="pointer-events-none size-4 text-muted-foreground"
-            />
-
-            <ComboboxTrigger
-              v-else
-              :as-child="true"
-              class="outline-none"
-            >
-              <AppIcon
-                class="text-muted-foreground"
-                icon="chevronDown"
-                size="sm"
-              />
-            </ComboboxTrigger>
-          </div>
-        </div>
+          <template #right>
+            <slot name="right" />
+          </template>
+        </AppComboboxInput>
       </ComboboxAnchor>
 
       <ComboboxPortal>
@@ -193,45 +183,35 @@ function onBlur(): void {
           leave-from-class="opacity-100"
           leave-to-class="opacity-0"
         >
-          <div v-if="isOpen">
-            <!-- eslint-disable tailwindcss/no-custom-classname -->
-            <ComboboxContent
-              :force-mount="true"
-              class="combobox-content relative z-popover overflow-hidden rounded-popover border border-solid border-border bg-background shadow-popover-shadow"
-              position="popper"
-            >
-              <!-- eslint-enable tailwindcss/no-custom-classname -->
-              <ComboboxViewport class="max-h-[25rem] p-1.5">
-                <ComboboxEmpty>
-                  <AppText
-                    variant="subtext"
-                    class="p-2"
-                  >
-                    {{ props.emptyText ?? t('components.combobox.empty') }}
-                  </AppText>
-                </ComboboxEmpty>
+          <div v-if="isOpen && canOpenDropdown">
+            <AppComboboxContent>
+              <AppComboboxViewport>
+                <AppComboboxEmpty :empty-text="props.emptyText">
+                  <slot name="empty" />
+                </AppComboboxEmpty>
 
                 <AppComboboxItem
-                  v-for="option of props.options"
-                  :key="option.label"
-                  :value="option.value"
+                  v-for="item of props.items"
+                  :key="JSON.stringify(item)"
+                  :item="item"
+                  :is-multiple="false"
+                  :display-fn="props.displayFn"
                 >
-                  {{ option.label }}
+                  <template #default="{ item: itemValue }">
+                    <slot
+                      v-if="itemValue.type === 'option'"
+                      :value="itemValue.value"
+                      name="option"
+                    />
+                  </template>
                 </AppComboboxItem>
-              </ComboboxViewport>
+              </AppComboboxViewport>
 
               <ComboboxArrow />
-            </ComboboxContent>
+            </AppComboboxContent>
           </div>
         </Transition>
       </ComboboxPortal>
     </ComboboxRoot>
   </div>
 </template>
-
-<style>
-.combobox-content {
-  width: var(--radix-combobox-trigger-width);
-  max-height: var(--radix-combobox-content-available-height);
-}
-</style>

@@ -1,20 +1,18 @@
 import { h } from 'vue'
-import { toast as vueSonnerToast } from 'vue-sonner'
 
-import AppToast from '@/components/toast/AppToast.vue'
+import { toast as vueSonnerToast } from '../components/sonner/state'
+import AppToast from '../components/toast/AppToast.vue'
+import type { Toast } from '../types/toast.type'
 
-import type { Icon } from '../icons/icons'
-
-interface Toast {
+interface NamedToast {
   description?: string
-  icon: Icon
   title: string
 }
 
 interface UseToastReturnType {
-  showErrorToast: (toast: Omit<Toast, 'icon'>) => void
-  showSuccessToast: (toast: Omit<Toast, 'icon'>) => void
-  showToast: (toast: Toast) => void
+  custom: (toast: Toast) => void
+  error: (toast: NamedToast) => void
+  success: (toast: NamedToast) => void
 }
 
 export function useToast(): UseToastReturnType {
@@ -22,37 +20,41 @@ export function useToast(): UseToastReturnType {
 
   function showToast(toast: Toast) {
     vueSonnerToast.custom(h(AppToast, {
-      description: toast.description,
+      action: toast.action,
+      description: toast.description ?? null,
       icon: toast.icon,
       title: toast.title,
+      type: toast.type,
+    }), {
+      duration: toast.duration ?? TOAST_DURATION,
+    })
+  }
+
+  function showErrorToast(toast: NamedToast) {
+    vueSonnerToast.custom(h(AppToast, {
+      description: toast.description ?? null,
+      icon: 'alertCircle',
+      title: toast.title,
+      type: 'error',
     }), {
       duration: TOAST_DURATION,
     })
   }
 
-  function showErrorToast(toast: Omit<Toast, 'icon'>) {
+  function showSuccessToast(toast: NamedToast) {
     vueSonnerToast.custom(h(AppToast, {
-      description: toast.description,
-      icon: 'close',
+      description: toast.description ?? null,
+      icon: 'checkmarkCircle',
       title: toast.title,
-    }), {
-      duration: TOAST_DURATION,
-    })
-  }
-
-  function showSuccessToast(toast: Omit<Toast, 'icon'>) {
-    vueSonnerToast.custom(h(AppToast, {
-      description: toast.description,
-      icon: 'checkmark',
-      title: toast.title,
+      type: 'success',
     }), {
       duration: TOAST_DURATION,
     })
   }
 
   return {
-    showErrorToast,
-    showSuccessToast,
-    showToast,
+    custom: showToast,
+    error: showErrorToast,
+    success: showSuccessToast,
   }
 }

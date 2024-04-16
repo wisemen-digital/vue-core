@@ -52,12 +52,12 @@ export interface UseDialogReturnType<TComponent extends Record<string, unknown>>
   /**
    * Close the dialog
    */
-  closeDialog: () => void
+  close: () => void
   /**
    * Open the dialog
    * @param attrs The props to pass to the dialog - optional
    */
-  openDialog: Omit<Attrs<TComponent>, 'Symbol'> extends Record<string, never>
+  open: Omit<Attrs<TComponent>, 'Symbol'> extends Record<string, never>
     ? // No params because there are no attributes
       () => Promise<void>
     : // Check if there are only optional attributes

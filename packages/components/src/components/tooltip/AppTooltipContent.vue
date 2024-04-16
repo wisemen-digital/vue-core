@@ -16,7 +16,7 @@ const props = defineProps<{
     :align="props.align"
     :arrow-padding="12"
     :side-offset="props.offset"
-    class="popover-content z-popover rounded-popover border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-popover-shadow"
+    class="popover-content z-popover rounded-popover border bg-popover shadow-popover-shadow"
   >
     <!-- eslint-enable tailwindcss/no-custom-classname -->
     <slot />
