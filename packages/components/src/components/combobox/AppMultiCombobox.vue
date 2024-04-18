@@ -43,6 +43,10 @@ const props = withDefaults(
      */
     iconRight?: Icon | null
     /**
+     * The id of the combobox.
+     */
+    id?: null | string
+    /**
      * Whether the chevron icon is hidden.
      * @default false
      */
@@ -80,6 +84,7 @@ const props = withDefaults(
     emptyText: null,
     iconLeft: undefined,
     iconRight: undefined,
+    id: null,
     isChevronHidden: false,
     isDisabled: false,
     isInvalid: false,
@@ -152,6 +157,7 @@ function onBlur(): void {
     >
       <ComboboxAnchor>
         <AppComboboxInput
+          :id="props.id"
           :icon-left="props.iconLeft ?? null"
           :icon-right="props.iconRight ?? null"
           :is-chevron-hidden="props.isChevronHidden"

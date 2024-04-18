@@ -75,7 +75,7 @@ export function useDialog<TComponent extends Record<string, unknown>>({
           ...attrs,
           animateFromTrigger,
           onClose: () => {
-            setTimeout(removeDialogFromContainer, 500)
+            closeDialog()
           },
           triggerId,
         }),
