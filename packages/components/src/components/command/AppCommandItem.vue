@@ -5,6 +5,7 @@ import type { CommandItem } from '@/types/commandItem.type'
 import type { AcceptableValue } from '@/types/selectItem.type'
 
 import AppIcon from '../icon/AppIcon.vue'
+import AppText from '../text/AppText.vue'
 
 const props = defineProps<{
   item: CommandItem
@@ -13,12 +14,14 @@ const props = defineProps<{
 
 <template>
   <ComboboxItem
-    :value="props.item.value"
-    class="relative flex cursor-pointer items-center gap-x-3 rounded-lg p-3 text-muted-foreground outline-none duration-100 data-[highlighted]:bg-muted-background data-[highlighted]:text-foreground"
+    :value="props.item.label"
+    class="relative flex cursor-pointer items-center gap-x-3 rounded-lg p-3.5 text-muted-foreground outline-none duration-100 data-[highlighted]:bg-muted-background data-[highlighted]:text-foreground"
+    @select="props.item.onSelect"
   >
     <AppIcon
       v-if="props.item.icon !== undefined"
       :icon="props.item.icon"
+      class="text-muted-foreground"
     />
 
     <img
@@ -28,8 +31,11 @@ const props = defineProps<{
       alt=""
     >
 
-    <span>
+    <AppText
+      variant="subtext"
+      class="text-muted-foreground"
+    >
       {{ props.item.label }}
-    </span>
+    </AppText>
   </ComboboxItem>
 </template>

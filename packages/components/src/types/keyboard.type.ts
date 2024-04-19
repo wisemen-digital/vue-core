@@ -6,6 +6,6 @@ export type CommandScope = 'controlled' | 'global'
 
 export interface KeyboardCommand {
   keys: KeyboardKey[]
-  onPressed: () => void
+  onPressed: (e: KeyboardEvent) => void
   type: CommandType
 }

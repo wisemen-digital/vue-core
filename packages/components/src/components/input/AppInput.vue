@@ -68,12 +68,12 @@ const { classAttr, otherAttrs } = useComponentAttrs()
     :class="[
       classAttr,
       {
-        'border-input-border [&:has(:focus-visible)]:border-primary [&:has(:focus-visible)]:ring-ring/25': !props.isInvalid,
+        'border-input-border [&:has(:focus-visible)]:border-primary [&:has(:focus-visible)]:ring-ring': !props.isInvalid,
         'border-destructive [&:has(:focus-visible)]:ring-destructive/50': props.isInvalid,
         'cursor-not-allowed opacity-50': props.isDisabled,
       },
     ]"
-    class="relative flex h-10 items-center rounded-input border border-solid bg-input outline-none ring-offset-background duration-200 [&:has(:focus-visible)]:ring-2"
+    class="relative flex h-10 items-center rounded-input border border-solid bg-input outline-none ring-offset-1 ring-offset-background duration-200 [&:has(:focus-visible)]:ring-2"
   >
     <slot name="left">
       <AppIcon

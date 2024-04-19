@@ -106,7 +106,7 @@ export function useKeyboardCommand(options: UseKeyboardCommandOptions): void {
     const isActive = isCommandActive(options.command, pressedKeys)
 
     if (isActive) {
-      options.command.onPressed()
+      options.command.onPressed(e)
     }
 
     pressedKeys.forEach((key) => {

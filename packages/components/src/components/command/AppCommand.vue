@@ -7,7 +7,7 @@ import {
   ComboboxRoot,
   ComboboxViewport,
 } from 'radix-vue'
-import { computed } from 'vue'
+import { ref } from 'vue'
 
 import type { CommandItem } from '../../types/commandItem.type'
 import type { AcceptableValue } from '../../types/selectItem.type'
@@ -24,16 +24,7 @@ const props = defineProps<{
   placeholder: string
 }>()
 
-const searchModel = defineModel<null | string>('search', {
-  required: true,
-})
-
-const search = computed<string | undefined>({
-  get: () => searchModel.value ?? undefined,
-  set: (value) => {
-    searchModel.value = value ?? null
-  },
-})
+const search = ref<string>('')
 </script>
 
 <template>
@@ -48,7 +39,7 @@ const search = computed<string | undefined>({
         <ComboboxInput
           :auto-focus="true"
           :placeholder="placeholder"
-          class="w-full truncate border-b border-solid border-border bg-transparent p-5 outline-none placeholder:text-input-placeholder"
+          class="w-full truncate border-b border-solid border-border bg-transparent p-5 text-lg outline-none placeholder:text-input-placeholder"
         />
       </ComboboxAnchor>
 
