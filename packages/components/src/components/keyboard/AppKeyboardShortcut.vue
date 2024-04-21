@@ -1,22 +1,30 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import type {
-  CommandType,
   KeyboardKey,
 } from '../../types/keyboard.type'
 import AppText from '../text/AppText.vue'
 import AppKeyboardKey from './AppKeyboardKey.vue'
+import type { KeyboardKeyStyleProps } from './keyboardKey.style'
 
 const props = withDefaults(defineProps<{
-  commandType: CommandType
-  hasBorder?: boolean
   keys: KeyboardKey[]
+  variant?: KeyboardKeyStyleProps['variant']
 }>(), {
-  hasBorder: false,
+  variant: 'default',
 })
 
 const { t } = useI18n()
+
+function isModifier(key: KeyboardKey): boolean {
+  return key === 'ctrl' || key === 'shift' || key === 'alt' || key === 'meta'
+}
+
+const isSequence = computed<boolean>(() => {
+  return props.keys.some(key => isModifier(key))
+})
 </script>
 
 <template>
@@ -26,11 +34,11 @@ const { t } = useI18n()
       :key="keyboardKey"
     >
       <AppKeyboardKey
-        :has-border="props.hasBorder"
+        :variant="props.variant"
         :keyboard-key="keyboardKey"
       />
 
-      <template v-if="index < props.keys.length - 1 && props.commandType === 'sequence'">
+      <template v-if="index < props.keys.length - 1 && isSequence">
         <AppText
           variant="caption"
           class="text-muted-foreground"

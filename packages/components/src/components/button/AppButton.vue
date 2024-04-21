@@ -1,8 +1,14 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import {
+  computed,
+  ref,
+} from 'vue'
 
 import type { Icon } from '../../icons/icons'
+import type { KeyboardKey } from '../../types/keyboard.type'
 import AppIcon from '../icon/AppIcon.vue'
+import AppKeyboardShortcut from '../keyboard/AppKeyboardShortcut.vue'
+import type { KeyboardKeyStyleProps } from '../keyboard/keyboardKey.style'
 import AppLoader from '../loader/AppLoader.vue'
 import type { ButtonStyleProps } from './button.style'
 import { button, buttonIcon } from './button.style'
@@ -29,6 +35,11 @@ export interface AppButtonProps {
    */
   isLoading?: boolean
   /**
+   * The keyboard shortcut keys which trigger the button.
+   * @default null
+   */
+  keyboardShortcutKeys?: KeyboardKey[] | null
+  /**
    * The size of the button.
    * @default 'default'
    */
@@ -51,10 +62,13 @@ const props = withDefaults(defineProps<AppButtonProps>(), {
   // iconRight: null,
   isDisabled: false,
   isLoading: false,
+  keyboardShortcutKeys: null,
   size: 'default',
   type: 'button',
   variant: 'default',
 })
+
+const buttonRef = ref<HTMLButtonElement | null>(null)
 
 const buttonClasses = computed<string>(() =>
   button({
@@ -66,10 +80,23 @@ const buttonIconClasses = computed<string>(() =>
   buttonIcon({
     size: props.size,
   }))
+
+const keyboardKeyVariant = computed<KeyboardKeyStyleProps['variant']>(() => {
+  if (props.variant === 'default' || props.variant === 'destructive') {
+    return 'secondary'
+  }
+
+  if (props.variant === 'secondary') {
+    return 'bordered'
+  }
+
+  return 'default'
+})
 </script>
 
 <template>
   <button
+    ref="buttonRef"
     :disabled="isDisabled || isLoading"
     :type="props.type"
     :class="buttonClasses"
@@ -107,6 +134,13 @@ const buttonIconClasses = computed<string>(() =>
         'opacity-0': props.isLoading,
       }]"
       class="ml-2"
+    />
+
+    <AppKeyboardShortcut
+      v-if="props.keyboardShortcutKeys !== null"
+      :keys="props.keyboardShortcutKeys"
+      :variant="keyboardKeyVariant"
+      class="ml-3 mt-px"
     />
   </button>
 </template>

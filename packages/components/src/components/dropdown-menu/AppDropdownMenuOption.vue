@@ -3,7 +3,7 @@ import { DropdownMenuItem as RadixDropdownMenuItem } from 'radix-vue'
 
 import type { DropdownMenuOption } from '../../types/dropdownMenuItem.type'
 import AppIcon from '../icon/AppIcon.vue'
-import AppKeyboardCommand from '../keyboard/AppKeyboardCommand.vue'
+import AppKeyboardShortcut from '../keyboard/AppKeyboardShortcut.vue'
 import AppText from '../text/AppText.vue'
 
 const props = defineProps<{
@@ -34,10 +34,9 @@ const props = defineProps<{
       </div>
     </slot>
 
-    <AppKeyboardCommand
-      v-if="props.item.command !== undefined"
-      :keys="props.item.command.keys"
-      :command-type="props.item.command.type"
+    <AppKeyboardShortcut
+      v-if="props.item.keyboardShortcutKeys !== undefined"
+      :keys="props.item.keyboardShortcutKeys"
       class="ml-4"
     />
   </RadixDropdownMenuItem>

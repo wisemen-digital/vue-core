@@ -7,6 +7,7 @@ import {
   ref,
   watch,
 } from 'vue'
+import { useI18n } from 'vue-i18n'
 import type { RouteLocationNamedRaw } from 'vue-router'
 
 import type {
@@ -17,6 +18,8 @@ import type {
   TableColumn,
   TableFilter,
 } from '../../types/table.type'
+import AppButton from '../button/AppButton.vue'
+import AppText from '../text/AppText.vue'
 import AppTableBody from './AppTableBody.vue'
 import AppTableFooter from './AppTableFooter.vue'
 import AppTableHeader from './AppTableHeader.vue'
@@ -44,6 +47,10 @@ const props = withDefaults(
   },
 )
 
+const emit = defineEmits<{
+  clearFilters: []
+}>()
+
 const tableRef = ref<HTMLElement | null>(null)
 
 // Because of how css works, we need to apply a different width (w-fit) when scrollable
@@ -53,6 +60,20 @@ const isScrolledToRight = ref<boolean>(false)
 const hasReachedHorizontalScrollEnd = ref<boolean>(false)
 
 let resizeObserver: ResizeObserver | null = null
+
+const { t } = useI18n()
+
+const activeFilterCount = computed<number>(() => {
+  const filters = props.pagination.paginationOptions.value.filters ?? null
+
+  if (filters === null) {
+    return 0
+  }
+
+  return Object
+    .values(filters)
+    .filter(value => value !== null && value !== undefined && value !== '').length
+})
 
 const gridTemplateColumns = computed<string>(() => {
   return props.columns.reduce((acc, column) => {
@@ -64,15 +85,6 @@ const gridTemplateColumns = computed<string>(() => {
 function handleSortChange(sortChangeEvent: SortChangeEvent): void {
   props.pagination.handleSortChange(sortChangeEvent)
 }
-
-// function handleFilterChange(filterId: keyof TFilters, value: unknown): void {
-//  const updatedFilters = {
-//    ...paginationOptions.filters,
-//    [filterId]: value,
-//  } as FilterChangeEvent<TFilters>
-//
-//  emit('filter', updatedFilters)
-// }
 
 function handlePageChange(event: PageChangeEvent): void {
   props.pagination.handlePageChange(event)
@@ -139,6 +151,10 @@ function handleScroll(): void {
   setHasReachedHorizontalScrollEnd()
 }
 
+function onClearFilters(): void {
+  emit('clearFilters')
+}
+
 async function onDataChange(): Promise<void> {
   await nextTick()
   setIsHorizontallyScrollable()
@@ -199,9 +215,31 @@ onBeforeUnmount(() => {
         :is-scrolled-to-right="isScrolledToRight"
         :pin-first-column="props.pinFirstColumn"
         :pin-last-column="props.pinLastColumn"
+        :active-filter-count="activeFilterCount"
         :row-click="props.rowClick"
         :row-to="props.rowTo"
       />
+
+      <div
+        v-if="activeFilterCount !== 0 && !props.isLoading && props.data !== null && props.data.data.length > 0"
+        class="sticky left-0 flex items-center justify-center gap-x-2 p-4"
+      >
+        <AppText
+          variant="caption"
+          class="text-muted-foreground"
+        >
+          {{ t('components.table.results_might_be_hidden_because_of_active_filters', { count: activeFilterCount }) }}
+        </AppText>
+
+        <AppButton
+          size="xs"
+          icon-right="close"
+          variant="secondary"
+          @click="onClearFilters"
+        >
+          {{ t('components.table.clear_filters') }}
+        </AppButton>
+      </div>
     </div>
 
     <AppTableFooter

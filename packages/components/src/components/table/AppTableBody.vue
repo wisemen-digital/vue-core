@@ -52,7 +52,7 @@ const areRowsClickable = computed<boolean>(() => props.rowClick !== null || prop
 </script>
 
 <template>
-  <div class="flex size-full flex-1 flex-col">
+  <div class="flex w-full flex-col">
     <AppTableSkeletonLoader v-if="props.isLoading" />
 
     <div

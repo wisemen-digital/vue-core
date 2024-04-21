@@ -76,7 +76,7 @@ function onFocus(): void {
         'resize-y': props.resize === 'vertical',
       },
     ]"
-    class="size-full rounded-input border border-solid bg-input px-3 py-2 text-sm text-input-foreground outline-none ring-offset-background transition-shadow duration-200 placeholder:text-input-placeholder focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed"
+    class="size-full rounded-input border border-solid bg-input px-3 py-2 text-sm text-input-foreground outline-none ring-offset-background transition-shadow duration-200 placeholder:text-input-placeholder focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 disabled:cursor-not-allowed"
     @blur="onBlur"
     @focus="onFocus"
   />

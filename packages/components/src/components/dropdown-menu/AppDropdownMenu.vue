@@ -4,9 +4,10 @@ import {
   DropdownMenuRoot,
   DropdownMenuTrigger,
 } from 'radix-vue'
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
 
-import { useKeyboardCommand } from '../../composables/keyboardCommand.composable'
+import { useKeyboardShortcut } from '@/composables/keyboardShortcut.composable'
+
 import type {
   DropdownMenuItem,
   DropdownMenuOption,
@@ -25,7 +26,7 @@ const props = withDefaults(
      * Whether keyboard commands are enabled.
      * @default false
      */
-    enableKeyboardCommands?: boolean
+    enableKeyboardShortcuts?: boolean
     /**
      * Whether the dropdown has an arrow.
      * @default false
@@ -52,7 +53,7 @@ const props = withDefaults(
   }>(),
   {
     align: 'center',
-    enableKeyboardCommands: false,
+    enableKeyboardShortcuts: false,
     hasArrow: false,
     inheritTriggerWidth: false,
     offset: 4,
@@ -78,23 +79,43 @@ const optionItems = computed<DropdownMenuOption[]>(() => {
   return getAllItems(props.items).filter(item => item.type === 'option') as DropdownMenuOption[]
 })
 
-optionItems.value.forEach((item) => {
-  const { command } = item
+let keyboardShortcutsUnbindFns: (() => void)[] = []
 
-  if (command === undefined) {
-    return
-  }
+watch(
+  [
+    () => props.items,
+    () => props.enableKeyboardShortcuts,
+  ],
+  () => {
+    keyboardShortcutsUnbindFns.forEach((unbind) => {
+      unbind()
+    })
 
-  useKeyboardCommand({
-    command: {
-      keys: command.keys,
-      onPressed: item.onSelect,
-      type: command.type,
-    },
-    isActive: computed<boolean>(() => props.enableKeyboardCommands),
-    scope: 'controlled',
-  })
-})
+    keyboardShortcutsUnbindFns = []
+
+    if (!props.enableKeyboardShortcuts) {
+      return
+    }
+
+    optionItems.value.forEach((item) => {
+      const { keyboardShortcutKeys } = item
+
+      if (keyboardShortcutKeys === undefined) {
+        return
+      }
+
+      const shortcut = useKeyboardShortcut({
+        keys: keyboardShortcutKeys,
+        onTrigger: item.onSelect,
+      })
+
+      keyboardShortcutsUnbindFns.push(shortcut.unbind)
+    })
+  },
+  {
+    immediate: true,
+  },
+)
 </script>
 
 <template>

@@ -69,7 +69,7 @@ const { classAttr, otherAttrs } = useComponentAttrs()
       classAttr,
       {
         'border-input-border [&:has(:focus-visible)]:border-primary [&:has(:focus-visible)]:ring-ring': !props.isInvalid,
-        'border-destructive [&:has(:focus-visible)]:ring-destructive/50': props.isInvalid,
+        'border-destructive [&:has(:focus-visible)]:ring-destructive': props.isInvalid,
         'cursor-not-allowed opacity-50': props.isDisabled,
       },
     ]"
