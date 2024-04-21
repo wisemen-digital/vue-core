@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import {
   computed,
+  onMounted,
   ref,
 } from 'vue'
 
+import { useKeyboardShortcut } from '../../composables/keyboardShortcut.composable'
 import type { Icon } from '../../icons/icons'
-import type { KeyboardKey } from '../../types/keyboard.type'
+import type { KeyboardShortcutConfig } from '../../types/keyboardShortcut.type'
 import AppIcon from '../icon/AppIcon.vue'
 import AppKeyboardShortcut from '../keyboard/AppKeyboardShortcut.vue'
 import type { KeyboardKeyStyleProps } from '../keyboard/keyboardKey.style'
@@ -38,7 +40,7 @@ export interface AppButtonProps {
    * The keyboard shortcut keys which trigger the button.
    * @default null
    */
-  keyboardShortcutKeys?: KeyboardKey[] | null
+  keyboardShortcut?: KeyboardShortcutConfig | null
   /**
    * The size of the button.
    * @default 'default'
@@ -62,7 +64,7 @@ const props = withDefaults(defineProps<AppButtonProps>(), {
   // iconRight: null,
   isDisabled: false,
   isLoading: false,
-  keyboardShortcutKeys: null,
+  keyboardShortcut: null,
   size: 'default',
   type: 'button',
   variant: 'default',
@@ -91,6 +93,27 @@ const keyboardKeyVariant = computed<KeyboardKeyStyleProps['variant']>(() => {
   }
 
   return 'default'
+})
+
+function createKeyboardShortcut(): void {
+  if (props.keyboardShortcut === null) {
+    throw new Error('Keyboard shortcut config is required to create a keyboard shortcut')
+  }
+
+  useKeyboardShortcut({
+    keys: props.keyboardShortcut.keys,
+    onTrigger: () => {
+      if (buttonRef.value !== null) {
+        buttonRef.value.click()
+      }
+    },
+  })
+}
+
+onMounted(() => {
+  if (props.keyboardShortcut !== null) {
+    createKeyboardShortcut()
+  }
 })
 </script>
 
@@ -137,8 +160,8 @@ const keyboardKeyVariant = computed<KeyboardKeyStyleProps['variant']>(() => {
     />
 
     <AppKeyboardShortcut
-      v-if="props.keyboardShortcutKeys !== null"
-      :keys="props.keyboardShortcutKeys"
+      v-if="props.keyboardShortcut !== null"
+      :keys="props.keyboardShortcut.keys"
       :variant="keyboardKeyVariant"
       class="ml-3 mt-px"
     />

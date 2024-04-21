@@ -1,36 +1,26 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import { useKeyboardShortcut } from '../../composables/keyboardShortcut.composable'
-import type { KeyboardKey } from '../../types/keyboard.type'
+import type { KeyboardShortcutConfig } from '@/types/keyboardShortcut.type'
 
-const props = withDefaults(defineProps<{
-  keys: KeyboardKey[]
-  /**
-   * Whether to prevent the default action of the keyboard event.
-   */
-  preventDefault?: boolean
-  /**
-   * Whether to prevent the propagation of the keyboard event.
-   */
-  preventPropagation?: boolean
-}>(), {
-  preventDefault: false,
-  preventPropagation: false,
-})
+import { useKeyboardShortcut } from '../../composables/keyboardShortcut.composable'
+
+const props = defineProps<{
+  config: KeyboardShortcutConfig
+}>()
 
 const wrapperRef = ref<HTMLElement | null>(null)
 
 useKeyboardShortcut({
-  keys: props.keys,
+  keys: props.config.keys,
   onTrigger: (event) => {
     const firstElement = wrapperRef.value?.firstElementChild ?? null
 
-    if (props.preventDefault) {
+    if (props.config.preventDefault ?? false) {
       event.preventDefault()
     }
 
-    if (props.preventPropagation) {
+    if (props.config.stopPropagation ?? false) {
       event.stopPropagation()
     }
 
@@ -43,6 +33,6 @@ useKeyboardShortcut({
 
 <template>
   <div ref="wrapperRef">
-    <slot />
+    <slot :keys="props.config.keys" />
   </div>
 </template>

@@ -23,7 +23,7 @@ function isModifier(key: KeyboardKey): boolean {
 }
 
 const isSequence = computed<boolean>(() => {
-  return props.keys.some(key => isModifier(key))
+  return !props.keys.some(key => isModifier(key))
 })
 </script>
 
@@ -43,7 +43,7 @@ const isSequence = computed<boolean>(() => {
           variant="caption"
           class="text-muted-foreground"
         >
-          {{ t('components.keyboard_command.then') }}
+          {{ t('components.keyboard_shortcut.then') }}
         </AppText>
       </template>
     </template>

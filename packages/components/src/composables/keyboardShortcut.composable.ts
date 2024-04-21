@@ -1,6 +1,7 @@
 import { onBeforeUnmount } from 'vue'
 
-import type { KeyboardKey, KeyboardShortcut } from '../types/keyboard.type'
+import type { KeyboardKey } from '../types/keyboard.type'
+import type { KeyboardShortcut } from '../types/keyboardShortcut.type'
 
 interface UseKeyboardShortcutOptions extends KeyboardShortcut {
   onTrigger: (event: KeyboardEvent) => void
@@ -10,7 +11,6 @@ interface UseKeyboardShortcutReturnType {
   unbind: () => void
 }
 
-const previouslyPressedKeys: KeyboardKey[] = []
 const PREVIOUSLY_PRESSED_KEYS_LIFETIME = 1000
 
 const keyMap = new Map<string, KeyboardKey>([
@@ -23,6 +23,8 @@ const keyMap = new Map<string, KeyboardKey>([
 export function useKeyboardShortcut(
   options: UseKeyboardShortcutOptions,
 ): UseKeyboardShortcutReturnType {
+  const previouslyPressedKeys: KeyboardKey[] = []
+
   const {
     element = document,
     isDisabled,

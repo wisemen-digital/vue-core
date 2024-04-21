@@ -4,10 +4,14 @@ import {
   DropdownMenuRoot,
   DropdownMenuTrigger,
 } from 'radix-vue'
-import { computed, watch } from 'vue'
+import {
+  computed,
+  onMounted,
+  ref,
+  watch,
+} from 'vue'
 
-import { useKeyboardShortcut } from '@/composables/keyboardShortcut.composable'
-
+import { useKeyboardShortcut } from '../../composables/keyboardShortcut.composable'
 import type {
   DropdownMenuItem,
   DropdownMenuOption,
@@ -23,10 +27,10 @@ const props = withDefaults(
      */
     align?: 'center' | 'end' | 'start'
     /**
-     * Whether keyboard commands are enabled.
+     * Whether keyboard commands are enabled without the need to focus the dropdown.
      * @default false
      */
-    enableKeyboardShortcuts?: boolean
+    enableGlobalKeyboardShortcuts?: boolean
     /**
      * Whether the dropdown has an arrow.
      * @default false
@@ -53,13 +57,16 @@ const props = withDefaults(
   }>(),
   {
     align: 'center',
-    enableKeyboardShortcuts: false,
+    enableGlobalKeyboardShortcuts: false,
     hasArrow: false,
     inheritTriggerWidth: false,
     offset: 4,
     side: 'bottom',
   },
 )
+
+const dropdownMenuTriggerRef = ref<InstanceType<typeof DropdownMenuTrigger> | null>(null)
+const isOpen = ref<boolean>(false)
 
 function getAllItems(items: DropdownMenuItem[]): DropdownMenuItem[] {
   const allItems: DropdownMenuItem[] = []
@@ -81,46 +88,63 @@ const optionItems = computed<DropdownMenuOption[]>(() => {
 
 let keyboardShortcutsUnbindFns: (() => void)[] = []
 
-watch(
-  [
+onMounted(() => {
+  watch(
     () => props.items,
-    () => props.enableKeyboardShortcuts,
-  ],
-  () => {
-    keyboardShortcutsUnbindFns.forEach((unbind) => {
-      unbind()
-    })
-
-    keyboardShortcutsUnbindFns = []
-
-    if (!props.enableKeyboardShortcuts) {
-      return
-    }
-
-    optionItems.value.forEach((item) => {
-      const { keyboardShortcutKeys } = item
-
-      if (keyboardShortcutKeys === undefined) {
-        return
-      }
-
-      const shortcut = useKeyboardShortcut({
-        keys: keyboardShortcutKeys,
-        onTrigger: item.onSelect,
+    () => {
+      keyboardShortcutsUnbindFns.forEach((unbind) => {
+        unbind()
       })
 
-      keyboardShortcutsUnbindFns.push(shortcut.unbind)
-    })
-  },
-  {
-    immediate: true,
-  },
-)
+      keyboardShortcutsUnbindFns = []
+
+      optionItems.value.forEach((item) => {
+        const { keyboardShortcutKeys } = item
+
+        if (keyboardShortcutKeys === undefined) {
+          return
+        }
+
+        // Shortcut for when the dropdown trigger is focused.
+        const shortcut = useKeyboardShortcut({
+          element: dropdownMenuTriggerRef.value?.$el,
+          isDisabled: computed<boolean>(() => props.enableGlobalKeyboardShortcuts),
+          keys: keyboardShortcutKeys,
+          onTrigger: item.onSelect,
+        })
+
+        // Shortcut for when the dropdown is open.
+        const globalShortcut = useKeyboardShortcut({
+          isDisabled: computed<boolean>(() => {
+            if (props.enableGlobalKeyboardShortcuts) {
+              return false
+            }
+
+            return !isOpen.value
+          }),
+          keys: keyboardShortcutKeys,
+          onTrigger: () => {
+            item.onSelect()
+            isOpen.value = false
+          },
+        })
+
+        keyboardShortcutsUnbindFns.push(shortcut.unbind, globalShortcut.unbind)
+      })
+    },
+    {
+      immediate: true,
+    },
+  )
+})
 </script>
 
 <template>
-  <DropdownMenuRoot>
-    <DropdownMenuTrigger :as-child="true">
+  <DropdownMenuRoot v-model:open="isOpen">
+    <DropdownMenuTrigger
+      ref="dropdownMenuTriggerRef"
+      :as-child="true"
+    >
       <slot />
     </DropdownMenuTrigger>
 
