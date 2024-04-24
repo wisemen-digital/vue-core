@@ -66,6 +66,7 @@ export { default as FormTextarea } from './components/textarea/FormTextarea.vue'
 // Keyboard
 export { default as AppKeyboardKey } from './components/keyboard/AppKeyboardKey.vue'
 export { default as AppKeyboardShortcut } from './components/keyboard/AppKeyboardShortcut.vue'
+export { default as AppKeyboardShortcutProvider } from './components/keyboard/AppKeyboardShortcutProvider.vue'
 
 // Loader
 export { default as AppLoader } from './components/loader/AppLoader.vue'
@@ -88,12 +89,13 @@ export { default as AppPageSkeletonLoader } from './components/skeleton-loader/A
 export { default as AppSkeletonLoaderButton } from './components/skeleton-loader/AppSkeletonLoaderButton.vue'
 export { default as AppSkeletonLoaderRow } from './components/skeleton-loader/AppSkeletonLoaderRow.vue'
 export { default as AppSkeletonLoaderRows } from './components/skeleton-loader/AppSkeletonLoaderRows.vue'
+export { default as AppTableSkeletonLoader } from './components/table/AppTableSkeletonLoader.vue'
 
 // Switch
 export { default as FormSwitch } from './components/switch/FormSwitch.vue'
 
 // Table
-export { default as AppTable } from './components/table/AppTable.vue'
+export { default as AppTable } from './components/table-v2/AppTableV2.vue'
 
 // Tabs
 export { default as AppRouteTabs } from './components/tabs/AppRouteTabs.vue'
@@ -130,7 +132,7 @@ export type { ComboboxItem } from './types/comboboxItem.type'
 export type { DropdownMenuItem } from './types/dropdownMenuItem.type'
 export type { FormFieldErrors } from './types/formFieldErrors.type'
 export type { KeyboardKey } from './types/keyboard.type'
-export type { KeyboardShortcut } from './types/keyboardShortcut.type'
+export type { KeyboardShortcut, KeyboardShortcutConfig } from './types/keyboardShortcut.type'
 export type { Routes } from './types/routes.type'
 export type { SelectItem } from './types/selectItem.type'
 export type { RouteTabItem, TabItem } from './types/tabItem.type'

@@ -183,7 +183,10 @@ function onBlur(): void {
           leave-from-class="opacity-100"
           leave-to-class="opacity-0"
         >
-          <div v-if="isOpen && canOpenDropdown">
+          <div
+            v-if="isOpen && canOpenDropdown"
+            class="z-popover"
+          >
             <AppComboboxContent>
               <AppComboboxViewport>
                 <AppComboboxEmpty :empty-text="props.emptyText">

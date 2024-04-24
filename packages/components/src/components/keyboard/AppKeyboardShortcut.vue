@@ -25,6 +25,18 @@ function isModifier(key: KeyboardKey): boolean {
 const isSequence = computed<boolean>(() => {
   return !props.keys.some(key => isModifier(key))
 })
+
+const foregroundColorClass = computed<string>(() => {
+  if (props.variant === 'bordered' || props.variant === 'ghost') {
+    return 'text-muted-foreground'
+  }
+
+  if (props.variant === 'secondary') {
+    return 'text-primary-foreground'
+  }
+
+  return 'text-secondary-foreground'
+})
 </script>
 
 <template>
@@ -40,8 +52,8 @@ const isSequence = computed<boolean>(() => {
 
       <template v-if="index < props.keys.length - 1 && isSequence">
         <AppText
+          :class="foregroundColorClass"
           variant="caption"
-          class="text-muted-foreground"
         >
           {{ t('components.keyboard_shortcut.then') }}
         </AppText>

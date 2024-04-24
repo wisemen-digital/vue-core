@@ -101,6 +101,7 @@ function createKeyboardShortcut(): void {
   }
 
   useKeyboardShortcut({
+    isDisabled: props.keyboardShortcut.isDisabled,
     keys: props.keyboardShortcut.keys,
     onTrigger: () => {
       if (buttonRef.value !== null) {
@@ -163,6 +164,9 @@ onMounted(() => {
       v-if="props.keyboardShortcut !== null"
       :keys="props.keyboardShortcut.keys"
       :variant="keyboardKeyVariant"
+      :class="{
+        'opacity-0': props.isLoading,
+      }"
       class="ml-3 mt-px"
     />
   </button>

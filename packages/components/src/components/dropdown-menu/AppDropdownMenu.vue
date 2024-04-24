@@ -13,11 +13,14 @@ import {
 
 import { useKeyboardShortcut } from '../../composables/keyboardShortcut.composable'
 import type {
+  DropdownMenuCheckbox,
   DropdownMenuItem,
   DropdownMenuOption,
 } from '../../types/dropdownMenuItem.type'
 import AppDropdownMenuContent from './AppDropdownMenuContent.vue'
 import AppDropdownMenuItem from './AppDropdownMenuItem.vue'
+
+type ItemsWithKeyboardShortcuts = DropdownMenuCheckbox | DropdownMenuOption
 
 const props = withDefaults(
   defineProps<{
@@ -82,8 +85,9 @@ function getAllItems(items: DropdownMenuItem[]): DropdownMenuItem[] {
   return allItems
 }
 
-const optionItems = computed<DropdownMenuOption[]>(() => {
-  return getAllItems(props.items).filter(item => item.type === 'option') as DropdownMenuOption[]
+const itemsWithKeyboardShortcuts = computed<ItemsWithKeyboardShortcuts[]>(() => {
+  return getAllItems(props.items)
+    .filter(item => item.type === 'option' || item.type === 'checkbox') as ItemsWithKeyboardShortcuts[]
 })
 
 let keyboardShortcutsUnbindFns: (() => void)[] = []
@@ -98,7 +102,7 @@ onMounted(() => {
 
       keyboardShortcutsUnbindFns = []
 
-      optionItems.value.forEach((item) => {
+      itemsWithKeyboardShortcuts.value.forEach((item) => {
         const { keyboardShortcutKeys } = item
 
         if (keyboardShortcutKeys === undefined) {
@@ -162,21 +166,7 @@ onMounted(() => {
           v-for="(item, i) of props.items"
           :key="i"
           :item="item"
-        >
-          <template #default="{ item: itemValue }">
-            <slot
-              v-if="itemValue.type === 'option'"
-              :item="itemValue"
-              name="option"
-            />
-
-            <slot
-              v-else-if="itemValue.type === 'subMenu'"
-              :item="itemValue"
-              name="subMenuTrigger"
-            />
-          </template>
-        </AppDropdownMenuItem>
+        />
 
         <slot name="footer" />
       </AppDropdownMenuContent>

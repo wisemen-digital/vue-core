@@ -29,7 +29,6 @@ const props = withDefaults(
   defineProps<{
     columns: TableColumn<TSchema>[]
     data: PaginatedData<TSchema> | null
-    emptyMessage: string
     filters: TableFilter<TFilters>[]
     isLoading: boolean
     pagination: Pagination<TFilters>
@@ -161,7 +160,9 @@ async function onDataChange(): Promise<void> {
   setIsVerticallyScrollable()
 }
 
-watch(() => props.data, onDataChange)
+watch(() => props.data, () => {
+  void onDataChange()
+})
 
 onMounted(() => {
   if (tableRef.value === null) {
@@ -171,6 +172,11 @@ onMounted(() => {
   resizeObserver = createResizeObserver(tableRef.value, handleResize)
   setIsHorizontallyScrollable()
   setIsVerticallyScrollable()
+
+  // Find a better way to handle this
+  setTimeout(() => {
+    handleResize()
+  }, 100)
 })
 
 onBeforeUnmount(() => {
@@ -182,6 +188,7 @@ onBeforeUnmount(() => {
   <div class="flex h-full flex-1 flex-col overflow-hidden rounded-xl border border-solid border-border">
     <AppTableTop
       :title="props.title"
+      :is-loading="props.isLoading"
       :total="props.data?.total ?? null"
     />
 
@@ -207,7 +214,6 @@ onBeforeUnmount(() => {
         :is-vertically-scrollable="isVerticallyScrollable"
         :columns="props.columns"
         :data="props.data?.data ?? []"
-        :empty-message="props.emptyMessage"
         :grid-template-columns="gridTemplateColumns"
         :has-reached-horizontal-scroll-end="hasReachedHorizontalScrollEnd"
         :is-horizontally-scrollable="isHorizontallyScrollable"
@@ -218,7 +224,11 @@ onBeforeUnmount(() => {
         :active-filter-count="activeFilterCount"
         :row-click="props.rowClick"
         :row-to="props.rowTo"
-      />
+      >
+        <template #empty-state>
+          <slot name="empty-state" />
+        </template>
+      </AppTableBody>
 
       <div
         v-if="activeFilterCount !== 0 && !props.isLoading && props.data !== null && props.data.data.length > 0"
@@ -245,6 +255,7 @@ onBeforeUnmount(() => {
     <AppTableFooter
       :pagination-options="props.pagination.paginationOptions.value"
       :total="props.data?.total ?? null"
+      :is-loading="props.isLoading"
       @page="handlePageChange"
     />
   </div>
