@@ -22,6 +22,7 @@ export interface KeyboardShortcut {
 }
 
 export interface KeyboardShortcutConfig {
+  isDisabled?: Ref<boolean>
   keys: KeyboardKey[]
   preventDefault?: boolean
   stopPropagation?: boolean
