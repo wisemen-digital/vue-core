@@ -2,17 +2,26 @@
   "compilerOptions": {
     "target": "esnext",
     "jsx": "preserve",
-    "lib": ["esnext", "dom"],
+    "lib": [
+      "esnext",
+      "dom"
+    ],
     "baseUrl": ".",
     "module": "esnext",
     "moduleResolution": "node",
-
     "paths": {
-      "@components/*": ["../components/src/*"],
-      "@/*": ["./"]
+      "@components/*": [
+        "../components/src/*"
+      ],
+      "@docs/*": [
+        "./*"
+      ]
     },
     "resolveJsonModule": true,
-    "types": ["node", "@types/dom-view-transitions"],
+    "types": [
+      "node",
+      "@types/dom-view-transitions"
+    ],
     "strict": true,
     "declaration": false,
     "outDir": "dist",
@@ -20,18 +29,21 @@
     "esModuleInterop": true,
     "skipLibCheck": true
   },
-  "files": ["tailwind.config.ts", "postcss.config.js", "eslint.config.js"],
+  "files": [
+    "tailwind.config.ts",
+    "postcss.config.js",
+    "eslint.config.js"
+  ],
   "include": [
-    "playground/**/*.ts",
-    "playground/**/*.tsx",
-    "playground/**/*.vue",
+    "./playground/**/*.ts",
+    "./playground/**/*.tsx",
+    "./playground/**/*.vue",
     ".vitepress/config.mts",
     "../components/env.d.ts",
     "../components/src/**/*",
     "../components/src/**/*.ts",
     "../components/src/**/*.tsx",
     "../components/src/**/*.vue",
-    "components/**/*.vue"
-
+    "./components/**/*.vue"
   ]
 }

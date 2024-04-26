@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import AppButton from '@components/components/button/AppButton.vue'
 import { ref } from 'vue'
 
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols';
-
+import AppButton from '@components/components/button/AppButton.vue';
 
 const controls = createControls({
   slot: {
@@ -15,7 +14,7 @@ const controls = createControls({
   },
   variant: {
     default: 'default',
-    cols: 2,
+    cols: 1,
     items: [
       'default',
       'secondary',
@@ -40,16 +39,6 @@ const controls = createControls({
     label: 'Size',
     type: 'select',
   },
-  type: {
-    default: 'button',
-    items: [
-      'button',
-      'reset',
-      'submit',
-    ],
-    label: 'Type',
-    type: 'select',
-  },
   iconLeft: {
     default: 'alertCircle',
     label: 'Left icon',
@@ -60,18 +49,9 @@ const controls = createControls({
     label: 'Right icon',
     type: 'icon',
   },
-  isDisabled: {
-    default: false,
-    label: 'Is disabled',
-    type: 'switch',
-  },
-  isLoading: {
-    default: false,
-    label: 'Is loading',
-    type: 'switch',
-  },
 })
 
+const model = ref<string>('')
 </script>
 
 <template>

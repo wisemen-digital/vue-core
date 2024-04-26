@@ -4,18 +4,22 @@ import { ref } from 'vue'
 
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols';
+import AppIconButton from '@components/components/button/AppIconButton.vue';
 
 
 const controls = createControls({
-  slot: {
+  label: {
     default: 'Test Button',
-    cols: 2,
-    label: 'Slot',
+    label: 'Label (Accessbility)',
     type: 'text',
+  },
+  icon: {
+    default: 'alertCircle',
+    label: 'Icon',
+    type: 'icon',
   },
   variant: {
     default: 'default',
-    cols: 2,
     items: [
       'default',
       'secondary',
@@ -27,38 +31,19 @@ const controls = createControls({
     label: 'Variant',
     type: 'select',
   },
-  size: {
+  iconSize: {
     default: 'default',
     items: [
-      'default',
-      'icon',
-      'lg',
-      'sm',
-      'unset',
+      'full',
       'xs',
+      'sm',
+      'default',
+      'lg',
+      'xl',
+      'xxl',
     ],
-    label: 'Size',
+    label: 'Icon Size',
     type: 'select',
-  },
-  type: {
-    default: 'button',
-    items: [
-      'button',
-      'reset',
-      'submit',
-    ],
-    label: 'Type',
-    type: 'select',
-  },
-  iconLeft: {
-    default: 'alertCircle',
-    label: 'Left icon',
-    type: 'icon',
-  },
-  iconRight: {
-    default: 'alertCircle',
-    label: 'Right icon',
-    type: 'icon',
   },
   isDisabled: {
     default: false,
@@ -72,12 +57,11 @@ const controls = createControls({
   },
 })
 
+const model = ref<string>('')
 </script>
 
 <template>
   <ComponentPlayground v-slot="{ values }" :controls="controls">
-    <AppButton v-bind="values">
-      {{ values.slot }}
-    </AppButton>
+    <AppIconButton v-bind="values" />
   </ComponentPlayground>
 </template>

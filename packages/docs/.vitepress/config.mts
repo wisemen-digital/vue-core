@@ -17,11 +17,11 @@ const docs = [
         text: 'AppButton',
       },
       {
-        link: '/components/app-icon-button',
+        link: '/components/button/app-icon-button',
         text: 'AppIconButton',
       },
       {
-        link: '/components/app-router-link-button',
+        link: '/components/button/app-router-link-button',
         text: 'AppRouterLinkButton',
       },
     ],
@@ -30,7 +30,7 @@ const docs = [
   {
     items: [
       {
-        link: '/components/app-combobox',
+        link: '/components/combobox/app-combobox',
         text: 'AppCombobox',
       },
       {
@@ -120,7 +120,7 @@ export default defineConfig({
   vite: {
     resolve: {
       alias: {
-        '@': resolve(__dirname, '../'),
+        '@docs': resolve(__dirname, '../'),
         '@components': resolve(__dirname, '../../components/src'),
       },
     },

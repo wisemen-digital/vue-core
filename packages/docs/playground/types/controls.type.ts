@@ -33,6 +33,4 @@ export interface IconControl extends BaseControl {
   default: Icon | null
   type: 'icon'
 }
-export function createControls<TField extends string>(controls: Controls<TField>): Controls<TField> {
-  return controls
-}
+

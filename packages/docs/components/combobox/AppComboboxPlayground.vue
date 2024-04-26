@@ -4,6 +4,7 @@ import { ref } from 'vue'
 
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols';
+import AppCombobox from '@components/components/combobox/AppCombobox.vue';
 
 
 const controls = createControls({
@@ -76,8 +77,5 @@ const controls = createControls({
 
 <template>
   <ComponentPlayground v-slot="{ values }" :controls="controls">
-    <AppButton v-bind="values">
-      {{ values.slot }}
-    </AppButton>
   </ComponentPlayground>
 </template>
