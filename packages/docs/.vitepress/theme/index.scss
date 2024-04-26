@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --muted-foreground: 155, 155, 155;
+  --input: 0, 0, 0;
+  --input-foreground: 235, 235, 235;
+  --input-border: 80, 80, 80;
+}

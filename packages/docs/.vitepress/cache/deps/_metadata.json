@@ -1,0 +1,79 @@
+{
+  "hash": "884d90e8",
+  "configHash": "67cd86e6",
+  "lockfileHash": "36b3d5f3",
+  "browserHash": "4f4e0d50",
+  "optimized": {
+    "vue": {
+      "src": "../../../../../node_modules/.pnpm/vue@3.4.21_typescript@5.4.3/node_modules/vue/dist/vue.runtime.esm-bundler.js",
+      "file": "vue.js",
+      "fileHash": "81f6fd64",
+      "needsInterop": false
+    },
+    "vitepress > @vue/devtools-api": {
+      "src": "../../../../../node_modules/.pnpm/@vue+devtools-api@7.0.18_vue@3.4.21/node_modules/@vue/devtools-api/dist/index.js",
+      "file": "vitepress___@vue_devtools-api.js",
+      "fileHash": "caad8217",
+      "needsInterop": false
+    },
+    "vitepress > @vueuse/core": {
+      "src": "../../../../../node_modules/.pnpm/@vueuse+core@10.9.0_vue@3.4.21/node_modules/@vueuse/core/index.mjs",
+      "file": "vitepress___@vueuse_core.js",
+      "fileHash": "87cf71c9",
+      "needsInterop": false
+    },
+    "vitepress > @vueuse/integrations/useFocusTrap": {
+      "src": "../../../../../node_modules/.pnpm/@vueuse+integrations@10.9.0_focus-trap@7.5.4_vue@3.4.21/node_modules/@vueuse/integrations/useFocusTrap.mjs",
+      "file": "vitepress___@vueuse_integrations_useFocusTrap.js",
+      "fileHash": "928ae511",
+      "needsInterop": false
+    },
+    "vitepress > mark.js/src/vanilla.js": {
+      "src": "../../../../../node_modules/.pnpm/mark.js@8.11.1/node_modules/mark.js/src/vanilla.js",
+      "file": "vitepress___mark__js_src_vanilla__js.js",
+      "fileHash": "af49fb9f",
+      "needsInterop": false
+    },
+    "vitepress > minisearch": {
+      "src": "../../../../../node_modules/.pnpm/minisearch@6.3.0/node_modules/minisearch/dist/es/index.js",
+      "file": "vitepress___minisearch.js",
+      "fileHash": "70a30dde",
+      "needsInterop": false
+    },
+    "clsx": {
+      "src": "../../../../../node_modules/.pnpm/clsx@2.1.0/node_modules/clsx/dist/clsx.mjs",
+      "file": "clsx.js",
+      "fileHash": "84d66929",
+      "needsInterop": false
+    },
+    "tailwind-merge": {
+      "src": "../../../../../node_modules/.pnpm/tailwind-merge@2.2.1/node_modules/tailwind-merge/dist/bundle-mjs.mjs",
+      "file": "tailwind-merge.js",
+      "fileHash": "413fa942",
+      "needsInterop": false
+    },
+    "cva": {
+      "src": "../../../../../node_modules/.pnpm/cva@1.0.0-beta.1_typescript@5.3.3/node_modules/cva/dist/index.mjs",
+      "file": "cva.js",
+      "fileHash": "9bba092a",
+      "needsInterop": false
+    },
+    "radix-vue": {
+      "src": "../../../../../node_modules/.pnpm/radix-vue@1.5.3_vue@3.4.21/node_modules/radix-vue/dist/index.js",
+      "file": "radix-vue.js",
+      "fileHash": "8676953e",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-SKE2FFH6": {
+      "file": "chunk-SKE2FFH6.js"
+    },
+    "chunk-5VLIZV53": {
+      "file": "chunk-5VLIZV53.js"
+    },
+    "chunk-RG7C3B44": {
+      "file": "chunk-RG7C3B44.js"
+    }
+  }
+}
