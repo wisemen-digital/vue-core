@@ -25,5 +25,7 @@
     "skipLibCheck": true
   },
   "references": [{ "path": "./tsconfig.node.json" }],
+  "files": ["tailwind.config.ts", "postcss.config.js", "vite.config.ts", "eslint.config.js"],
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"]
+
 }
