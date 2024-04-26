@@ -32,16 +32,16 @@ function getControlValueDefault() {
 </script>
 
 <template>
-  <div class="my-8 flex w-full flex-col rounded border border-white bg-neutral-900">
+  <div class="my-8 flex w-full flex-col rounded border border-foreground bg-neutral-900">
     <div class="flex items-center justify-center rounded-t p-4">
       <slot :values="controlValues" />
     </div>
 
     <div class="h-px w-full bg-primary/50" />
-    <div class="flex flex-col gap-2 rounded-b border-t-4 border-primary bg-neutral-800/80 p-4">
+    <div class="flex flex-col gap-4 rounded-b border-t-4 border-primary bg-neutral-800/80 p-4">
       <AppText
         as="p"
-        class="!m-0 text-white"
+        class="!m-0 text-foreground"
         variant="subtitle"
       >
         Controls

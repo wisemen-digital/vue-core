@@ -16,6 +16,7 @@ const model = defineModel<null | string>({
       v-model="model"
       :label="props.label"
       :errors="{ _errors: [] }"
+      :is-touched="false"
     />
   </div>
 </template>
