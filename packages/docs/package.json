@@ -23,6 +23,8 @@
     "vitepress": "1.0.0-rc.45"
   },
   "dependencies": {
-    "vue": "^3.4.21"
+    "vue": "^3.4.21",
+    "vue-i18n": "^9.10.1",
+    "vue-router": "^4.3.0"
   }
 }

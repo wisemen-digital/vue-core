@@ -1,81 +1,94 @@
 <script setup lang="ts">
-import AppButton from '@components/components/button/AppButton.vue'
 import { ref } from 'vue'
 
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols';
+import { ComboboxItem } from '@components/index';
 import AppCombobox from '@components/components/combobox/AppCombobox.vue';
 
 
 const controls = createControls({
-  slot: {
-    default: 'Test Button',
-    cols: 2,
-    label: 'Slot',
+  emptyText: {
+    default: "Empty Text",
+    label: 'Empty Text',
     type: 'text',
   },
-  variant: {
-    default: 'default',
-    cols: 2,
-    items: [
-      'default',
-      'secondary',
-      'outline',
-      'ghost',
-      'destructive',
-      'destructive-outline',
-    ],
-    label: 'Variant',
-    type: 'select',
-  },
-  size: {
-    default: 'default',
-    items: [
-      'default',
-      'icon',
-      'lg',
-      'sm',
-      'unset',
-      'xs',
-    ],
-    label: 'Size',
-    type: 'select',
-  },
-  type: {
-    default: 'button',
-    items: [
-      'button',
-      'reset',
-      'submit',
-    ],
-    label: 'Type',
-    type: 'select',
+  placeholder: {
+    default: 'Placeholder',
+    label: 'Placeholder',
+    type: 'text',
   },
   iconLeft: {
-    default: 'alertCircle',
-    label: 'Left icon',
+    default: null,
+    label: 'Left Icon',
     type: 'icon',
   },
   iconRight: {
-    default: 'alertCircle',
-    label: 'Right icon',
+    default: null,
+    label: 'Right Icon',
     type: 'icon',
+  },
+  isChevronHidden: {
+    default: false,
+    label: 'Is Chevron Hidden',
+    type: 'switch',
   },
   isDisabled: {
     default: false,
-    label: 'Is disabled',
+    label: 'Is Disabled',
+    type: 'switch',
+  },
+  isInvalid: {
+    default: false,
+    label: 'Is Invalid',
     type: 'switch',
   },
   isLoading: {
     default: false,
-    label: 'Is loading',
+    label: 'Is Loading',
     type: 'switch',
   },
-})
+
+});
+
+interface User {
+  firstName: string
+  lastName: string
+}
+
+const userItems: ComboboxItem<User>[] = [
+  {
+    type: 'option',
+    value: {
+      firstName: 'John',
+      lastName: 'Doe',
+    },
+  },
+  {
+    type: 'option',
+    value: {
+      firstName: 'Jane',
+      lastName: 'Doe',
+    },
+  },
+]
+
+const user = ref<User | null>(null)
+
+
+function displayFn(user: User): string {
+  return `${user.firstName} ${user.lastName}`
+}
+
+function filterFn(users: User[], searchTerm: string): User[] {
+  return users.filter(user => {
+    return displayFn(user).toLowerCase().includes(searchTerm.toLowerCase())
+  })
+}
 
 </script>
-
 <template>
   <ComponentPlayground v-slot="{ values }" :controls="controls">
+    <AppCombobox v-model="user" :items="userItems" :displayFn="displayFn" :filterFn="filterFn" v-bind="values" />
   </ComponentPlayground>
 </template>

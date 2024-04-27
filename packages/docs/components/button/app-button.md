@@ -1,12 +1,12 @@
 ---
 sidebar: auto
 ---
-<script setup>
-import AppButtonPlayground from './AppButtonPlayground.vue'
-</script>
 
 
 # AppButton
+<script setup>
+import AppButtonPlayground from './AppButtonPlayground.vue'
+</script>
 
 <AppButtonPlayground />
 
