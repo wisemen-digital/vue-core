@@ -1,0 +1,60 @@
+import chalk from 'chalk'
+import type { Command } from 'commander'
+import * as z from 'zod'
+
+import { logger } from '@/src/utils/logger'
+
+import type { Component } from '../utils/getComponents'
+import { diffComponent } from '../utils/getDifferenceComponent'
+import { getInstalledComponents } from '../utils/getInstalledComponents'
+import { printDiff } from '../utils/printDifferences'
+import { promptForComponent } from '../utils/promptComponents'
+
+const updateOptionsSchema = z.object({
+  component: z.string().optional(),
+})
+
+export function addDiffCommand({ program }: { program: Command }) {
+  program
+    .command('diff')
+    .name('diff')
+    .description('check for updates against the registry')
+    .argument('[component]', 'the component name')
+    .action(async (name, _opts) => {
+      const options = updateOptionsSchema.parse({
+        component: name,
+      })
+
+      const installedComponents = await getInstalledComponents()
+      if (installedComponents == null) {
+        return
+      }
+
+      if (options.component == null) {
+        const component = await promptForComponent(installedComponents) as Component
+        options.component = component.name
+      }
+      const component = installedComponents.find((component) => {
+        return component?.name === options.component
+      })
+      if (component == null) {
+        logger.error(
+          `The component ${chalk.green(options.component)} does not exist.`,
+        )
+        process.exit(1)
+      }
+
+      const changes = await diffComponent(component)
+
+      if (changes.length === 0) {
+        logger.info(`No updates found for ${options.component}.`)
+        process.exit(0)
+      }
+
+      for (const change of changes) {
+        logger.info(`- ${change.filePath}`)
+        await printDiff(change.patch)
+        logger.info('')
+      }
+    })
+}
