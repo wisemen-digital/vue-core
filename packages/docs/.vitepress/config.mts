@@ -13,6 +13,15 @@ const docs = [
   {
     items: [
       {
+        link: '/components/badge/app-badge',
+        text: 'AppBadge',
+      },
+    ],
+    text: 'Badge',
+  },
+  {
+    items: [
+      {
         link: '/components/button/app-button',
         text: 'AppButton',
       },
