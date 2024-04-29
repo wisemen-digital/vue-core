@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import AppButton from '@components/components/button/AppButton.vue'
-import { ref } from 'vue'
-
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
-import { createControls } from '@docs/playground/utils/createContols';
-
+import { createControls } from '@docs/playground/utils/createContols'
 
 const controls = createControls({
   slot: {
@@ -71,13 +68,16 @@ const controls = createControls({
     type: 'switch',
   },
 })
-
 </script>
 
 <template>
-  <ComponentPlayground v-slot="{ values }" :controls="controls">
-    <AppButton v-bind="values">
-      {{ values.slot }}
-    </AppButton>
+  <ComponentPlayground
+    :controls="controls"
+  >
+    <template #default="{ values }">
+      <AppButton v-bind="values">
+        {{ values.slot }}
+      </AppButton>
+    </template>
   </ComponentPlayground>
 </template>

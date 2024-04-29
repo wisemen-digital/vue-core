@@ -1,18 +1,19 @@
 import {
-  toValue,
-  tryOnScopeDispose
-} from "./chunk-G3YK36MN.js";
-import {
   useRoute,
   useRouter
 } from "./chunk-73NWNFM5.js";
 import "./chunk-WBYI4UQ7.js";
+import {
+  toValue,
+  tryOnScopeDispose
+} from "./chunk-G3YK36MN.js";
 import "./chunk-5VLIZV53.js";
 import {
   customRef,
   nextTick,
   watch
 } from "./chunk-RG7C3B44.js";
+import "./chunk-TDUMLE5V.js";
 
 // ../../node_modules/.pnpm/@vueuse+router@10.9.0_vue-router@4.3.0_vue@3.4.21/node_modules/@vueuse/router/index.mjs
 var _hash;

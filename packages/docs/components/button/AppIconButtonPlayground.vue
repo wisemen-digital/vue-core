@@ -1,11 +1,7 @@
 <script setup lang="ts">
-import AppButton from '@components/components/button/AppButton.vue'
-import { ref } from 'vue'
-
+import AppIconButton from '@components/components/button/AppIconButton.vue'
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
-import { createControls } from '@docs/playground/utils/createContols';
-import AppIconButton from '@components/components/button/AppIconButton.vue';
-
+import { createControls } from '@docs/playground/utils/createContols'
 
 const controls = createControls({
   label: {
@@ -56,12 +52,13 @@ const controls = createControls({
     type: 'switch',
   },
 })
-
-const model = ref<string>('')
 </script>
 
 <template>
-  <ComponentPlayground v-slot="{ values }" :controls="controls">
+  <ComponentPlayground
+    v-slot="{ values }"
+    :controls="controls"
+  >
     <AppIconButton v-bind="values" />
   </ComponentPlayground>
 </template>

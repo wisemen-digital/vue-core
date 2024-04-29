@@ -1,6 +1,9 @@
 <script setup lang="ts" generic="TControlKeys extends string">
 import AppText from '@components/components/text/AppText.vue'
-import { type Ref, ref } from 'vue'
+import {
+  type Ref,
+  ref,
+} from 'vue'
 
 import type { Control, Controls } from '../types/controls.type'
 import ComponentPlaygroundControls from './ComponentPlaygroundControls.vue'
@@ -32,7 +35,9 @@ function getControlValueDefault() {
 </script>
 
 <template>
-  <div class="my-8 flex w-full flex-col rounded border border-foreground bg-neutral-900">
+  <div
+    class="my-8 flex w-full flex-col rounded border border-foreground bg-neutral-900"
+  >
     <div class="flex items-center justify-center rounded-t p-4">
       <slot :values="controlValues" />
     </div>

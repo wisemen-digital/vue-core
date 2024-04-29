@@ -6,6 +6,9 @@ import './override.css'
 import { createI18n } from 'vue-i18n'
 import { createRouter, createWebHistory } from 'vue-router'
 
+import 'vue-markdown-shiki/style'
+import markdownPlugin from 'vue-markdown-shiki'
+
 const theme: typeof DefaultTheme = {
   ...DefaultTheme,
   enhanceApp(ctx) {
@@ -20,7 +23,7 @@ const theme: typeof DefaultTheme = {
       missingWarn: false,
     })
     
-    ctx.app.use(router).use(i18nPlugin)
+    ctx.app.use(router).use(i18nPlugin).use(markdownPlugin)
     DefaultTheme.enhanceApp(ctx)
   }
 }
