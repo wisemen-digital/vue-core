@@ -19,7 +19,8 @@ export const i18nPlugin = createI18n({
 const theme: typeof DefaultTheme = {
   ...DefaultTheme,
   enhanceApp(ctx) {
-    // ctx.app.use(i18nPlugin)
+    // @ts-expect-error - temp work
+    ctx.app.use(i18nPlugin)
     DefaultTheme.enhanceApp(ctx)
   },
 }
