@@ -87,6 +87,15 @@ const docs = [
     ],
     text: 'Select',
   },
+  {
+    items: [
+      {
+        link: '/components/tooltip/app-tooltip',
+        text: 'AppTooltip',
+      },
+    ],
+    text: 'Tooltip',
+  },
 ]
 
 // https://vitepress.dev/reference/site-config
