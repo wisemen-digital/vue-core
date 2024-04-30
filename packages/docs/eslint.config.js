@@ -5,6 +5,14 @@ export default [
   {
     rules: {
       'perfectionist/sort-objects': 'off',
+      'tailwindcss/no-custom-classname': [
+        'error',
+        {
+          whitelist: [
+            'vp-raw',
+          ],
+        },
+      ],
     },
   },
 ]

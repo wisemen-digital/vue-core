@@ -1,13 +1,10 @@
-import DefaultTheme from 'vitepress/theme'
 import '@components/styles/index.scss'
 import './index.scss'
 import './override.css'
 
+import DefaultTheme from 'vitepress/theme'
 import { createI18n } from 'vue-i18n'
 import { createRouter, createWebHistory } from 'vue-router'
-
-import 'vue-markdown-shiki/style'
-import markdownPlugin from 'vue-markdown-shiki'
 
 const theme: typeof DefaultTheme = {
   ...DefaultTheme,
@@ -16,16 +13,16 @@ const theme: typeof DefaultTheme = {
       history: createWebHistory(),
       routes: [],
     })
-    
+
     const i18nPlugin = createI18n({
       fallbackWarn: false,
       legacy: false,
       missingWarn: false,
     })
-    
-    ctx.app.use(router).use(i18nPlugin).use(markdownPlugin)
+
+    ctx.app.use(router).use(i18nPlugin)
     DefaultTheme.enhanceApp(ctx)
-  }
+  },
 }
 
 export default theme
