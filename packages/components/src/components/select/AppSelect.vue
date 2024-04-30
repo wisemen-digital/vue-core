@@ -18,14 +18,6 @@ import type { AcceptableValue, SelectItem } from '@/types/selectItem.type'
 const props = withDefaults(
   defineProps<{
     /**
-     * display function for the selected value
-     */
-    displayFn: (value: TValue) => null | string
-    /**
-     * The icon to display on the left side of the select.
-     */
-    iconLeft?: Icon
-    /**
      * The id of the select.
      * @default null
      */
@@ -44,6 +36,14 @@ const props = withDefaults(
      */
     isLoading?: boolean
     /**
+     * display function for the selected value
+     */
+    displayFn: (value: TValue) => null | string
+    /**
+     * The icon to display on the left side of the select.
+     */
+    iconLeft?: Icon
+    /**
      * The items of the select.
      */
     items: SelectItem<TValue>[]
@@ -53,11 +53,11 @@ const props = withDefaults(
     placeholder?: null | string
   }>(),
   {
-    iconLeft: undefined,
     id: null,
     isDisabled: false,
     isInvalid: false,
     isLoading: false,
+    iconLeft: undefined,
     placeholder: null,
   },
 )

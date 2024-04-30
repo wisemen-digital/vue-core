@@ -2,7 +2,7 @@ import type {
   AcceptableValue,
   SelectItem,
   SelectItemOption,
-} from './selectItem.type'
+} from '@/types/selectItem.type'
 
 export type ComboboxItemOption<TValue extends AcceptableValue> = SelectItemOption<TValue>
 

@@ -7,13 +7,13 @@ import AppLoader from '@/components/loader/AppLoader.vue'
 import type { Icon } from '@/icons/icons'
 
 const props = withDefaults(defineProps<{
-  iconLeft: Icon | null
-  iconRight: Icon | null
   id: null | string
   isChevronHidden: boolean
   isDisabled: boolean
   isInvalid: boolean
   isLoading: boolean
+  iconLeft: Icon | null
+  iconRight: Icon | null
   placeholder: null | string
   showPlaceholderAsValue?: boolean
 }>(), {

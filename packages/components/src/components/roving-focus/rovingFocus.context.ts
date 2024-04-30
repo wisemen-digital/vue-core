@@ -7,11 +7,11 @@ interface RovingContext {
   currentTabStopId: Ref<null | string | undefined>
   dir: Ref<Direction>
   loop: Ref<boolean>
+  orientation: Ref<Orientation | undefined>
   onFocusableItemAdd: () => void
   onFocusableItemRemove: () => void
   onItemFocus: (tabStopId: string) => void
   onItemShiftTab: () => void
-  orientation: Ref<Orientation | undefined>
 }
 
 export const [

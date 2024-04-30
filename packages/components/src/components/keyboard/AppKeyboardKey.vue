@@ -1,13 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-<<<<<<< HEAD
+import type { KeyboardKeyStyleProps } from '@/components/keyboard/keyboardKey.style'
+import { keyboardKey } from '@/components/keyboard/keyboardKey.style'
 import type { KeyboardKey } from '@/types/keyboard.type'
-=======
-import type { KeyboardKey } from '../../types/keyboard.type'
-import type { KeyboardKeyStyleProps } from './keyboardKey.style'
-import { keyboardKey } from './keyboardKey.style'
->>>>>>> origin/master
 
 const props = withDefaults(defineProps<{
   keyboardKey: KeyboardKey

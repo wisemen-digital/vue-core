@@ -1,11 +1,6 @@
 <script setup lang="ts">
 const props = withDefaults(defineProps<{
   /**
-   * The height class of the textarea.
-   * @default null
-   */
-  heightClass?: null | string
-  /**
    * The id of the input.
    * @default null
    */
@@ -21,6 +16,11 @@ const props = withDefaults(defineProps<{
    */
   isInvalid?: boolean
   /**
+   * The height class of the textarea.
+   * @default null
+   */
+  heightClass?: null | string
+  /**
    * The placeholder of the input.
    * @default null
    */
@@ -31,10 +31,10 @@ const props = withDefaults(defineProps<{
    */
   resize?: 'both' | 'horizontal' | 'none' | 'vertical'
 }>(), {
-  heightClass: null,
   id: null,
   isDisabled: false,
   isInvalid: false,
+  heightClass: null,
   placeholder: null,
   resize: 'none',
 })

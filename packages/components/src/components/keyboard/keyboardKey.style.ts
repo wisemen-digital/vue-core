@@ -1,5 +1,5 @@
-import type { VariantProps } from '../../libs/cva.lib'
-import { cva } from '../../libs/cva.lib'
+import type { VariantProps } from '@/libs/cva.lib'
+import { cva } from '@/libs/cva.lib'
 
 export const keyboardKey = cva({
   base: 'flex h-[1.1rem] min-w-[1.1rem] items-center justify-center rounded border border-solid p-1 text-center text-[11px] capitalize',

@@ -16,7 +16,7 @@ import type {
   HeightT,
   ToastProps,
   ToastT,
-} from './types'
+} from '@/components/sonner/types'
 import CloseIcon from '@/icons/CloseIcon.vue';
 
 const props = defineProps<ToastProps>()

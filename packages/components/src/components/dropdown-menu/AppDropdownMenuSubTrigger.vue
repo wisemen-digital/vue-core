@@ -11,6 +11,7 @@ const props = defineProps<{
 </script>
 
 <template>
+  <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
   <DropdownMenuSubTrigger class="group cursor-default overflow-hidden rounded-md p-2 py-1.5 outline-none focus:bg-muted-background">
     <div class="flex items-center justify-between gap-x-3 overflow-hidden">
       <div class="flex items-center gap-x-3 overflow-hidden">

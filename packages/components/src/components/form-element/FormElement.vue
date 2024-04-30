@@ -9,10 +9,6 @@ import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
 const props = defineProps<{
   /**
-   * The errors associated with the input.
-   */
-  errors: FormFieldErrors
-  /**
    * Whether the input is disabled.
    */
   isDisabled: boolean
@@ -24,6 +20,10 @@ const props = defineProps<{
    * Whether the input is touched. This is used to determine if the input should be marked as invalid.
    */
   isTouched: boolean
+  /**
+   * The errors associated with the input.
+   */
+  errors: FormFieldErrors
   /**
    * The label of the input.
    */

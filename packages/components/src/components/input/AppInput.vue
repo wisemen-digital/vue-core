@@ -1,29 +1,12 @@
 <script setup lang="ts">
-<<<<<<< HEAD
+import { useSlots } from 'vue'
+
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppLoader from '@/components/loader/AppLoader.vue'
 import { useComponentAttrs } from '@/composables/componentAttrs.composable'
 import type { Icon } from '@/icons/icons'
-=======
-import { useSlots } from 'vue'
-
-import { useComponentAttrs } from '../../composables/componentAttrs.composable'
-import type { Icon } from '../../icons/icons'
-import AppIcon from '../icon/AppIcon.vue'
-import AppLoader from '../loader/AppLoader.vue'
->>>>>>> origin/master
 
 const props = withDefaults(defineProps<{
-  /**
-   * The left icon of the input.
-   * @default null
-   */
-  iconLeft?: Icon
-  /**
-   * The right icon of the input.
-   * @default null
-   */
-  iconRight?: Icon
   /**
    * The id of the input.
    * @default null
@@ -44,6 +27,16 @@ const props = withDefaults(defineProps<{
    */
   isLoading?: boolean
   /**
+   * The left icon of the input.
+   * @default null
+   */
+  iconLeft?: Icon
+  /**
+   * The right icon of the input.
+   * @default null
+   */
+  iconRight?: Icon
+  /**
    * The placeholder of the input.
    * @default null
    */
@@ -54,12 +47,12 @@ const props = withDefaults(defineProps<{
    */
   type?: 'date' | 'datetime-local' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'time' | 'url'
 }>(), {
-  iconLeft: undefined,
-  iconRight: undefined,
   id: null,
   isDisabled: false,
   isInvalid: false,
   isLoading: false,
+  iconLeft: undefined,
+  iconRight: undefined,
   placeholder: null,
   type: 'text',
 })

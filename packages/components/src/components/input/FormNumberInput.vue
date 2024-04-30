@@ -8,20 +8,6 @@ import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 const props = withDefaults(
   defineProps<{
     /**
-     * The errors associated with the input.
-     */
-    errors: FormFieldErrors
-    /**
-     * Whether to hide the increment and decrement controls.
-     * @default false
-     */
-    hideControls?: boolean
-    /**
-     * The left icon of the input.
-     * @default null
-     */
-    iconLeft?: Icon | null
-    /**
      * Whether the input is disabled.
      */
     isDisabled?: boolean
@@ -38,6 +24,20 @@ const props = withDefaults(
      *
      */
     isTouched: boolean
+    /**
+     * The errors associated with the input.
+     */
+    errors: FormFieldErrors
+    /**
+     * Whether to hide the increment and decrement controls.
+     * @default false
+     */
+    hideControls?: boolean
+    /**
+     * The left icon of the input.
+     * @default null
+     */
+    iconLeft?: Icon | null
     /**
      * The label of the input.
      */
@@ -59,12 +59,12 @@ const props = withDefaults(
     placeholder?: null | string
   }>(),
   {
-    hideControls: false,
-    iconLeft: undefined,
     isDisabled: false,
     isLoading: false,
     isRequired: false,
     isTouched: false,
+    hideControls: false,
+    iconLeft: undefined,
     max: null,
     min: 0,
     placeholder: null,

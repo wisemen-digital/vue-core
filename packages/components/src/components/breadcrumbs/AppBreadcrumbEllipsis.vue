@@ -16,10 +16,10 @@ const dropdownMenuItems: DropdownMenuItem[] = [
   {
     items: props.item.items.map(item => ({
       label: item.label ?? '',
+      type: 'option',
       onSelect: () => {
         void router.push(item.to)
       },
-      type: 'option',
     })),
     type: 'group',
   },
@@ -27,6 +27,7 @@ const dropdownMenuItems: DropdownMenuItem[] = [
 </script>
 
 <template>
+  <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
   <AppDropdownMenu
     :items="dropdownMenuItems"
     :has-arrow="true"

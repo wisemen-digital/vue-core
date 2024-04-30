@@ -11,26 +11,24 @@ import {
   watch,
 } from 'vue'
 
-<<<<<<< HEAD
 import AppDropdownMenuContent from '@/components/dropdown-menu/AppDropdownMenuContent.vue'
 import AppDropdownMenuItem from '@/components/dropdown-menu/AppDropdownMenuItem.vue'
-import { useKeyboardCommand } from '@/composables/keyboardCommand.composable'
-import type { DropdownMenuItem, DropdownMenuOption } from '@/types/dropdownMenuItem.type'
-=======
-import { useKeyboardShortcut } from '../../composables/keyboardShortcut.composable'
+import { useKeyboardShortcut } from '@/composables/keyboardShortcut.composable'
 import type {
   DropdownMenuCheckbox,
   DropdownMenuItem,
   DropdownMenuOption,
-} from '../../types/dropdownMenuItem.type'
-import AppDropdownMenuContent from './AppDropdownMenuContent.vue'
-import AppDropdownMenuItem from './AppDropdownMenuItem.vue'
->>>>>>> origin/master
+} from '@/types/dropdownMenuItem.type'
 
 type ItemsWithKeyboardShortcuts = DropdownMenuCheckbox | DropdownMenuOption
 
 const props = withDefaults(
   defineProps<{
+    /**
+     * Whether the dropdown has an arrow.
+     * @default false
+     */
+    hasArrow?: boolean
     /**
      * The alignment of the dropdown.
      * @default 'center'
@@ -41,11 +39,6 @@ const props = withDefaults(
      * @default false
      */
     enableGlobalKeyboardShortcuts?: boolean
-    /**
-     * Whether the dropdown has an arrow.
-     * @default false
-     */
-    hasArrow?: boolean
     /**
      * Whether to inherit the trigger's width.
      */
@@ -66,9 +59,9 @@ const props = withDefaults(
     side?: 'bottom' | 'left' | 'right' | 'top'
   }>(),
   {
+    hasArrow: false,
     align: 'center',
     enableGlobalKeyboardShortcuts: false,
-    hasArrow: false,
     inheritTriggerWidth: false,
     offset: 4,
     side: 'bottom',
@@ -118,8 +111,8 @@ onMounted(() => {
 
         // Shortcut for when the dropdown trigger is focused.
         const shortcut = useKeyboardShortcut({
-          element: dropdownMenuTriggerRef.value?.$el,
           isDisabled: computed<boolean>(() => props.enableGlobalKeyboardShortcuts),
+          element: dropdownMenuTriggerRef.value?.$el,
           keys: keyboardShortcutKeys,
           onTrigger: item.onSelect,
         })

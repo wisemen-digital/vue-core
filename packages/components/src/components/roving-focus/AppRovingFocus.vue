@@ -42,8 +42,8 @@ const props = withDefaults(defineProps<RovingFocusGroupProps>(), {
 })
 
 const emits = defineEmits<{
-  'entryFocus': [event: Event]
   'update:currentTabStopId': [value: null | string | undefined]
+  'entryFocus': [event: Event]
 }>()
 
 const {
@@ -78,6 +78,7 @@ function handleFocus(event: FocusEvent) {
     && !isTabbingBackOut.value
   ) {
     const entryFocusEvent = new CustomEvent(ENTRY_FOCUS, EVENT_OPTIONS)
+
     event.currentTarget.dispatchEvent(entryFocusEvent)
     emits('entryFocus', entryFocusEvent)
 
@@ -106,6 +107,7 @@ provideRovingFocusGroupContext({
   currentTabStopId,
   dir,
   loop,
+  orientation,
   onFocusableItemAdd: () => {
     focusableItemsCount.value++
   },
@@ -118,7 +120,6 @@ provideRovingFocusGroupContext({
   onItemShiftTab: () => {
     isTabbingBackOut.value = true
   },
-  orientation,
 })
 </script>
 

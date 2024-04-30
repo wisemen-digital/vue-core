@@ -35,6 +35,7 @@
     "@vue/tsconfig": "^0.4.0",
     "@vueuse/core": "^10.9.0",
     "@vueuse/router": "^10.9.0",
+    "@wisemen/eslint-config-vue": "0.0.15",
     "autoprefixer": "^10.4.19",
     "clsx": "^2.1.1",
     "cva": "1.0.0-beta.1",

@@ -12,15 +12,6 @@ import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 const props = withDefaults(
   defineProps<{
     /**
-     * The errors associated with the input.
-     */
-    errors: FormFieldErrors
-    /**
-     * The left icon of the input.
-     * @default null
-     */
-    iconLeft?: Icon | null
-    /**
      * Whether the input is disabled.
      */
     isDisabled?: boolean
@@ -38,6 +29,15 @@ const props = withDefaults(
      */
     isTouched: boolean
     /**
+     * The errors associated with the input.
+     */
+    errors: FormFieldErrors
+    /**
+     * The left icon of the input.
+     * @default null
+     */
+    iconLeft?: Icon | null
+    /**
      * The label of the input.
      */
     label: string
@@ -48,11 +48,11 @@ const props = withDefaults(
     placeholder?: null | string
   }>(),
   {
-    iconLeft: undefined,
     isDisabled: false,
     isLoading: false,
     isRequired: false,
     isTouched: false,
+    iconLeft: undefined,
     placeholder: null,
   },
 )

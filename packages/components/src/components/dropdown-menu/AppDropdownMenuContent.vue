@@ -4,8 +4,8 @@ import { DropdownMenuContent } from 'radix-vue'
 import AppDropdownMenuArrow from '@/components/dropdown-menu/AppDropdownMenuArrow.vue'
 
 const props = defineProps<{
-  align: 'center' | 'end' | 'start'
   hasArrow: boolean
+  align: 'center' | 'end' | 'start'
   inheritTriggerWidth: boolean
   side: 'bottom' | 'left' | 'right' | 'top'
   sideOffset: number

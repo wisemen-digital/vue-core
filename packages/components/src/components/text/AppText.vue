@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed, useAttrs } from 'vue'
 
-import type { TextProps } from './text.style'
-import { textVariants } from './text.style'
+import type { TextProps } from '@/components/text/text.style'
+import { textVariants } from '@/components/text/text.style'
 
 type TextType = 'blockquote' | 'div' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span'
 
@@ -31,30 +31,37 @@ const classes = computed<string>(() => {
   switch (props.variant) {
     case 'hero':
       classes.push('text-hero font-bold')
+
       break
 
     case 'title':
       classes.push('text-title font-semibold')
+
       break
 
     case 'subtitle':
       classes.push('text-subtitle')
+
       break
 
     case 'heading':
       classes.push('text-heading')
+
       break
 
     case 'body':
       classes.push('text-body')
+
       break
 
     case 'subtext':
       classes.push('text-subtext')
+
       break
 
     case 'caption':
       classes.push('text-caption')
+
       break
   }
 

@@ -50,6 +50,10 @@ export interface UseDialogOptions<TComponent extends Record<string, unknown>> {
 
 export interface UseDialogReturnType<TComponent extends Record<string, unknown>> {
   /**
+   * The dialog id. Should be bound to the trigger
+   */
+  triggerId: string
+  /**
    * Close the dialog
    */
   close: () => void
@@ -66,16 +70,12 @@ export interface UseDialogReturnType<TComponent extends Record<string, unknown>>
         (attrs?: Omit<Attrs<TComponent>, IgnoredKeys>) => Promise<void>
       : // If there are required attributes, then the parameter is required
         (attrs: Omit<Attrs<TComponent>, IgnoredKeys>) => Promise<void>
-  /**
-   * The dialog id. Should be bound to the trigger
-   */
-  triggerId: string
 }
 
 export interface Dialog {
-  component: Component
   id: string
   isOpen: boolean
+  component: Component
 }
 
 export interface UseDialogContainerReturnType {

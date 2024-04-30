@@ -6,10 +6,6 @@ import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
 const props = withDefaults(defineProps<{
   /**
-   * The errors associated with the checkbox group.
-   */
-  errors: FormFieldErrors
-  /**
    * Whether the checkbox group is disabled.
    */
   isDisabled?: boolean
@@ -21,6 +17,10 @@ const props = withDefaults(defineProps<{
    * Whether the checkbox group has been touched.
    */
   isTouched: boolean
+  /**
+   * The errors associated with the checkbox group.
+   */
+  errors: FormFieldErrors
   /**
    * The label of the checkbox group.
    * @default null

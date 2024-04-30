@@ -28,19 +28,6 @@ import type { AcceptableValue } from '@/types/selectItem.type'
 const props = withDefaults(
   defineProps<{
     /**
-     * Function to use to display the value.
-     */
-    displayFn: (value: TValue) => string
-    /**
-     * The text to display when there are no options.
-     * @default t('components.combobox.empty')
-     */
-    emptyText?: null | string
-    /**
-     * The function to filter the options.
-     */
-    filterFn: (options: TValue[], searchTerm: string) => TValue[]
-    /**
      * Whether the combobox is disabled.
      * @default false
      */
@@ -56,6 +43,19 @@ const props = withDefaults(
      */
     isLoading?: boolean
     /**
+     * Function to use to display the value.
+     */
+    displayFn: (value: TValue) => string
+    /**
+     * The text to display when there are no options.
+     * @default t('components.combobox.empty')
+     */
+    emptyText?: null | string
+    /**
+     * The function to filter the options.
+     */
+    filterFn: (options: TValue[], searchTerm: string) => TValue[]
+    /**
      * The options to display in the combobox.
      */
     items: ComboboxItem<TValue>[]
@@ -66,10 +66,10 @@ const props = withDefaults(
     placeholder?: null | string
   }>(),
   {
-    emptyText: null,
     isDisabled: false,
     isInvalid: false,
     isLoading: false,
+    emptyText: null,
     placeholder: null,
   },
 )

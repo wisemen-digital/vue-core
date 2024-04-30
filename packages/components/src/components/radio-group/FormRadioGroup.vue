@@ -8,10 +8,6 @@ import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
 const props = withDefaults(defineProps<{
   /**
-   * The errors associated with the radio group.
-   */
-  errors: FormFieldErrors
-  /**
    * Whether the radio group is disabled.
    */
   isDisabled?: boolean
@@ -23,6 +19,10 @@ const props = withDefaults(defineProps<{
    * Whether the radio group is touched.
    */
   isTouched: boolean
+  /**
+   * The errors associated with the radio group.
+   */
+  errors: FormFieldErrors
   /**
    * The label of the radio group.
    * @default null

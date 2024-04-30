@@ -28,6 +28,7 @@ const search = ref<string>('')
 </script>
 
 <template>
+  <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
   <div>
     <ComboboxRoot
       v-model:search-term="search"

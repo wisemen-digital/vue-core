@@ -7,8 +7,8 @@ import type { ComboboxItem } from '@/types/comboboxItem.type'
 import type { AcceptableValue } from '@/types/selectItem.type'
 
 const props = defineProps<{
-  displayFn: (value: TValue) => string
   isMultiple: boolean
+  displayFn: (value: TValue) => string
   item: ComboboxItem<TValue>
 }>()
 </script>
@@ -27,6 +27,7 @@ const props = defineProps<{
       :is-multiple="props.isMultiple"
       :display-fn="props.displayFn"
     >
+      <!-- @vue-expect-error -->
       <template #default="{ item: itemValue }">
         <slot :item="itemValue" />
       </template>

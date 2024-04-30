@@ -1,36 +1,14 @@
 <script setup lang="ts">
-<<<<<<< HEAD
+import { useSlots } from 'vue'
+
 import FormElement from '@/components/form-element/FormElement.vue'
 import AppInput from '@/components/input/AppInput.vue'
 import { useComponentAttrs } from '@/composables/componentAttrs.composable'
 import type { Icon } from '@/icons/icons'
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
-=======
-import { useSlots } from 'vue'
-
-import { useComponentAttrs } from '../../composables/componentAttrs.composable'
-import type { Icon } from '../../icons/icons'
-import type { FormFieldErrors } from '../../types/formFieldErrors.type'
-import FormElement from '../form-element/FormElement.vue'
-import AppInput from '../input/AppInput.vue'
->>>>>>> origin/master
 
 const props = withDefaults(
   defineProps<{
-    /**
-     * The errors associated with the input.
-     */
-    errors: FormFieldErrors
-    /**
-     * The left icon of the input.
-     * @default null
-     */
-    iconLeft?: Icon | null
-    /**
-     * The right icon of the input.
-     * @default null
-     */
-    iconRight?: Icon | null
     /**
      * Whether the input is disabled.
      */
@@ -49,6 +27,20 @@ const props = withDefaults(
      */
     isTouched: boolean
     /**
+     * The errors associated with the input.
+     */
+    errors: FormFieldErrors
+    /**
+     * The left icon of the input.
+     * @default null
+     */
+    iconLeft?: Icon | null
+    /**
+     * The right icon of the input.
+     * @default null
+     */
+    iconRight?: Icon | null
+    /**
      * The label of the input.
      */
     label: string
@@ -64,12 +56,12 @@ const props = withDefaults(
     type?: 'date' | 'datetime-local' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'time' | 'url'
   }>(),
   {
-    iconLeft: undefined,
-    iconRight: undefined,
     isDisabled: false,
     isLoading: false,
     isRequired: false,
     isTouched: false,
+    iconLeft: undefined,
+    iconRight: undefined,
     placeholder: null,
     type: 'text',
   },

@@ -17,9 +17,9 @@ import {
 } from '@/components/roving-focus/rovingFocus.util'
 
 export interface RovingFocusItemProps extends PrimitiveProps {
+  tabStopId?: string
   active?: boolean
   focusable?: boolean
-  tabStopId?: string
 }
 
 const props = withDefaults(defineProps<RovingFocusItemProps>(), {
@@ -53,6 +53,7 @@ onUnmounted(() => {
 function handleKeydown(event: KeyboardEvent): void {
   if (event.key === 'Tab' && event.shiftKey) {
     context.onItemShiftTab()
+
     return
   }
 

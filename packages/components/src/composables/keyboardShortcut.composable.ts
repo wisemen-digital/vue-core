@@ -1,7 +1,7 @@
 import { onBeforeUnmount } from 'vue'
 
-import type { KeyboardKey } from '../types/keyboard.type'
-import type { KeyboardShortcut } from '../types/keyboardShortcut.type'
+import type { KeyboardKey } from '@/types/keyboard.type'
+import type { KeyboardShortcut } from '@/types/keyboardShortcut.type'
 
 interface UseKeyboardShortcutOptions extends KeyboardShortcut {
   onTrigger: (event: KeyboardEvent) => void
@@ -26,8 +26,8 @@ export function useKeyboardShortcut(
   const previouslyPressedKeys: KeyboardKey[] = []
 
   const {
-    element = document,
     isDisabled,
+    element = document,
     keys,
     onTrigger,
   } = options

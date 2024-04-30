@@ -3,10 +3,10 @@ import { Label } from 'radix-vue'
 import { computed } from 'vue'
 
 const props = withDefaults(defineProps<{
-  for: string
   isDisabled?: boolean
   isInvalid?: boolean
   isRequired?: boolean
+  for: string
   label: string
 }>(), {
   isDisabled: false,

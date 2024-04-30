@@ -1,132 +1,3 @@
-<!-- eslint-disable -->
-<template>
-  <!-- Remove item from normal navigation flow, only available via hotkey -->
-  <section :aria-label="`${containerAriaLabel} ${hotkeyLabel}`" :tabIndex="-1">
-    <template v-for="(pos, index) in possiblePositions" :key="pos">
-      <ol
-        ref="listRef"
-        data-sonner-toaster
-        :class="class"
-        :dir="dir === 'auto' ? getDocumentDirection() : dir"
-        :tabIndex="-1"
-        :data-theme="theme"
-        :data-rich-colors="richColors"
-        :data-y-position="pos.split('-')[0]"
-        :data-x-position="pos.split('-')[1]"
-        :style="
-          {
-            '--front-toast-height': `${heights[0]?.height}px`,
-            '--offset': typeof offset === 'number' ? `${offset}px` : offset || VIEWPORT_OFFSET,
-            '--width': `${TOAST_WIDTH}px`,
-            '--gap': `${GAP}px`,
-            ...style,
-            ...(attrs as Record<string, Record<string, any>>).style,
-          }
-        "
-        @blur="onBlur"
-        @focus="onFocus"
-        @mouseenter="expanded = true"
-        @mousemove="expanded = true"
-        @mouseleave="
-          () => {
-            // Avoid setting expanded to false when interacting with a toast, e.g. swiping
-            if (!interacting) {
-              expanded = false
-            }
-          }
-        "
-        @pointerdown="onPointerDown"
-        @pointerup="interacting = false"
-        v-bind="$attrs"
-      >
-        <template
-          v-for="(toast, idx) in toasts.filter(
-            (toast) =>
-              (!toast.position && index === 0) || toast.position === position
-          )"
-          :key="toast.id"
-        >
-          <Toast
-            :index="idx"
-            :toast="toast"
-            :duration="toastOptions?.duration ?? duration"
-            :class="toastOptions?.class ?? ''"
-            :descriptionClass="toastOptions?.descriptionClass"
-            :invert="invert"
-            :visibleToasts="visibleToasts"
-            :closeButton="toastOptions?.closeButton ?? closeButton"
-            :interacting="interacting"
-            :position="position"
-            :style="toastOptions?.style"
-            :unstyled="toastOptions?.unstyled"
-            :classes="toastOptions?.classes"
-            :cancelButtonStyle="toastOptions?.cancelButtonStyle"
-            :actionButtonStyle="toastOptions?.actionButtonStyle"
-            :toasts="toasts"
-            :expandByDefault="expand"
-            :gap="gap"
-            :expanded="expanded"
-            :pauseWhenPageIsHidden="pauseWhenPageIsHidden"
-            :cn="cnFunction"
-            v-model:heights="heights"
-            @removeToast="removeToast"
-          >
-            <template #loading-icon>
-              <slot name="loading-icon">
-                <LoaderIcon :visible="toast.type === 'loading'" />
-              </slot>
-            </template>
-
-            <template #success-icon>
-              <slot name="success-icon">
-                <SuccessIcon />
-              </slot>
-            </template>
-
-            <template #error-icon>
-              <slot name="error-icon">
-                <ErrorIcon />
-              </slot>
-            </template>
-
-            <template #warning-icon>
-              <slot name="warning-icon">
-                <WarningIcon />
-              </slot>
-            </template>
-
-            <template #info-icon>
-              <slot name="info-icon">
-                <InfoIcon />
-              </slot>
-            </template>
-          </Toast>
-        </template>
-      </ol>
-    </template>
-  </section>
-</template>
-
-<script lang="ts">
-// Visible toasts amount
-const VISIBLE_TOASTS_AMOUNT = 3
-
-// Viewport padding
-const VIEWPORT_OFFSET = '32px'
-
-// Default lifetime of a toasts (in ms)
-const TOAST_LIFETIME = 4000
-
-// Default toast width
-const TOAST_WIDTH = 356
-
-// Default gap between toasts
-const GAP = 14
-
-const isClient =
-  typeof window !== 'undefined' && typeof document !== 'undefined'
-</script>
-
 <script lang="ts" setup>
 import { computed, ref, watch, watchEffect, useAttrs, nextTick } from 'vue'
 import type {
@@ -381,4 +252,133 @@ watchEffect((onInvalidate) => {
     document.removeEventListener('keydown', handleKeyDown)
   })
 })
+</script>
+
+
+<template>
+  <!-- Remove item from normal navigation flow, only available via hotkey -->
+  <section :aria-label="`${containerAriaLabel} ${hotkeyLabel}`" :tabIndex="-1">
+    <template v-for="(pos, index) in possiblePositions" :key="pos">
+      <ol
+        ref="listRef"
+        data-sonner-toaster
+        :class="class"
+        :dir="dir === 'auto' ? getDocumentDirection() : dir"
+        :tabIndex="-1"
+        :data-theme="theme"
+        :data-rich-colors="richColors"
+        :data-y-position="pos.split('-')[0]"
+        :data-x-position="pos.split('-')[1]"
+        :style="
+          {
+            '--front-toast-height': `${heights[0]?.height}px`,
+            '--offset': typeof offset === 'number' ? `${offset}px` : offset || VIEWPORT_OFFSET,
+            '--width': `${TOAST_WIDTH}px`,
+            '--gap': `${GAP}px`,
+            ...style,
+            ...(attrs as Record<string, Record<string, any>>).style,
+          }
+        "
+        @blur="onBlur"
+        @focus="onFocus"
+        @mouseenter="expanded = true"
+        @mousemove="expanded = true"
+        @mouseleave="
+          () => {
+            // Avoid setting expanded to false when interacting with a toast, e.g. swiping
+            if (!interacting) {
+              expanded = false
+            }
+          }
+        "
+        @pointerdown="onPointerDown"
+        @pointerup="interacting = false"
+        v-bind="$attrs"
+      >
+        <template
+          v-for="(toast, idx) in toasts.filter(
+            (toast) =>
+              (!toast.position && index === 0) || toast.position === position
+          )"
+          :key="toast.id"
+        >
+          <Toast
+            :index="idx"
+            :toast="toast"
+            :duration="toastOptions?.duration ?? duration"
+            :class="toastOptions?.class ?? ''"
+            :descriptionClass="toastOptions?.descriptionClass"
+            :invert="invert"
+            :visibleToasts="visibleToasts"
+            :closeButton="toastOptions?.closeButton ?? closeButton"
+            :interacting="interacting"
+            :position="position"
+            :style="toastOptions?.style"
+            :unstyled="toastOptions?.unstyled"
+            :classes="toastOptions?.classes"
+            :cancelButtonStyle="toastOptions?.cancelButtonStyle"
+            :actionButtonStyle="toastOptions?.actionButtonStyle"
+            :toasts="toasts"
+            :expandByDefault="expand"
+            :gap="gap"
+            :expanded="expanded"
+            :pauseWhenPageIsHidden="pauseWhenPageIsHidden"
+            :cn="cnFunction"
+            v-model:heights="heights"
+            @removeToast="removeToast"
+          >
+            <template #loading-icon>
+              <slot name="loading-icon">
+                <LoaderIcon :visible="toast.type === 'loading'" />
+              </slot>
+            </template>
+
+            <template #success-icon>
+              <slot name="success-icon">
+                <SuccessIcon />
+              </slot>
+            </template>
+
+            <template #error-icon>
+              <slot name="error-icon">
+                <ErrorIcon />
+              </slot>
+            </template>
+
+            <template #warning-icon>
+              <slot name="warning-icon">
+                <WarningIcon />
+              </slot>
+            </template>
+
+            <template #info-icon>
+              <slot name="info-icon">
+                <InfoIcon />
+              </slot>
+            </template>
+          </Toast>
+        </template>
+      </ol>
+    </template>
+  </section>
+</template>
+
+<script lang="ts">
+// Visible toasts amount
+const VISIBLE_TOASTS_AMOUNT = 3
+
+// Viewport padding
+const VIEWPORT_OFFSET = '32px'
+
+// Default lifetime of a toasts (in ms)
+const TOAST_LIFETIME = 4000
+
+// Default toast width
+const TOAST_WIDTH = 356
+
+// Default gap between toasts
+const GAP = 14
+
+const isClient =
+  typeof window !== 'undefined' && typeof document !== 'undefined'
 </script>
