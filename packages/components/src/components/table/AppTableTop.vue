@@ -12,7 +12,7 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div class="px-6 py-4">
+  <div class="border-b border-solid border-border px-6 py-4">
     <div class="flex items-center gap-x-2">
       <AppText
         class="font-medium"

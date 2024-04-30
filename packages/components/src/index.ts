@@ -11,6 +11,7 @@ export type { AppButtonProps } from './components/button/AppButton.vue'
 export { default as AppButton } from './components/button/AppButton.vue'
 export { default as AppIconButton } from './components/button/AppIconButton.vue'
 export { default as AppRouterLinkButton } from './components/button/AppRouterLinkButton.vue'
+export { default as AppUnstyledButton } from './components/button/AppUnstyledButton.vue'
 export * from './components/button/button.style'
 
 // Checkbox
@@ -95,7 +96,7 @@ export { default as AppTableSkeletonLoader } from './components/table/AppTableSk
 export { default as FormSwitch } from './components/switch/FormSwitch.vue'
 
 // Table
-export { default as AppTable } from './components/table-v2/AppTableV2.vue'
+export { default as AppTable } from './components/table/AppTable.vue'
 
 // Tabs
 export { default as AppRouteTabs } from './components/tabs/AppRouteTabs.vue'

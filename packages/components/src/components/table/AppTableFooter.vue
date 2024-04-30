@@ -46,7 +46,9 @@ function handlePageEvent(event: PageChangeEvent): void {
       v-else-if="props.total !== null"
       variant="subtext"
     >
-      {{ currentPageFrom }} - {{ currentPageUntil }} of {{ toLocaleNumber(props.total) }}
+      {{ toLocaleNumber(currentPageFrom) }} -
+      {{ toLocaleNumber(currentPageUntil) }} of
+      {{ toLocaleNumber(props.total) }}
     </AppText>
 
     <AppSkeletonLoaderRow

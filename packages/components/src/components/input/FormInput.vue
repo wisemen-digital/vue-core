@@ -107,8 +107,8 @@ const { classAttr, otherAttrs } = useComponentAttrs()
 
       <template #right>
         <Component
-          :is="slots.left"
-          v-if="slots.left !== undefined"
+          :is="slots.right"
+          v-if="slots.right !== undefined"
         />
       </template>
     </AppInput>

@@ -1,13 +1,10 @@
-<script setup lang="ts" generic="TSchema, TFilters">
+<script setup lang="ts"  generic="TSchema, TFilters">
 import {
   computed,
-  nextTick,
   onBeforeUnmount,
   onMounted,
   ref,
-  watch,
 } from 'vue'
-import { useI18n } from 'vue-i18n'
 import type { RouteLocationNamedRaw } from 'vue-router'
 
 import type {
@@ -18,9 +15,10 @@ import type {
   TableColumn,
   TableFilter,
 } from '../../types/table.type'
-import AppButton from '../button/AppButton.vue'
-import AppText from '../text/AppText.vue'
+import AppTableActiveFiltersWarning from './AppTableActiveFiltersWarning.vue'
 import AppTableBody from './AppTableBody.vue'
+import AppTableEmptyState from './AppTableEmptyState.vue'
+import AppTableEmptyStateOverlay from './AppTableEmptyStateOverlay.vue'
 import AppTableFooter from './AppTableFooter.vue'
 import AppTableHeader from './AppTableHeader.vue'
 import AppTableTop from './AppTableTop.vue'
@@ -30,19 +28,21 @@ const props = withDefaults(
     columns: TableColumn<TSchema>[]
     data: PaginatedData<TSchema> | null
     filters: TableFilter<TFilters>[]
+    isInfiniteScroll?: boolean
     isLoading: boolean
     pagination: Pagination<TFilters>
-    pinFirstColumn?: boolean
-    pinLastColumn?: boolean
     rowClick?: ((row: TSchema) => void) | null
     rowTo?: ((row: TSchema) => RouteLocationNamedRaw) | null
+    shouldPinFirstColumn?: boolean
+    shouldPinLastColumn?: boolean
     title: string
   }>(),
   {
-    pinFirstColumn: false,
-    pinLastColumn: false,
+    isInfiniteScroll: false,
     rowClick: null,
     rowTo: null,
+    shouldPinFirstColumn: false,
+    shouldPinLastColumn: false,
   },
 )
 
@@ -50,17 +50,118 @@ const emit = defineEmits<{
   clearFilters: []
 }>()
 
-const tableRef = ref<HTMLElement | null>(null)
+const INFINITE_SCROLL_OFFSET = 100
 
-// Because of how css works, we need to apply a different width (w-fit) when scrollable
-const isHorizontallyScrollable = ref<boolean>(false)
-const isVerticallyScrollable = ref<boolean>(false)
-const isScrolledToRight = ref<boolean>(false)
-const hasReachedHorizontalScrollEnd = ref<boolean>(false)
+const tableContainerRef = ref<HTMLElement | null>(null)
 
+// Used to observe the table's width and height to recalculate the variables below
 let resizeObserver: ResizeObserver | null = null
 
-const { t } = useI18n()
+// If `shouldPinFirstColumn` and `isScrolledToRight` are true,
+// a border will be visible on the right side of the first column
+const isScrolledToRight = ref<boolean>(false)
+
+// If `shouldPinLastColumn` is true, a border will be visible on the
+// left side of the last column
+const hasReachedHorizontalScrollEnd = ref<boolean>(false)
+
+// If vertically scrollable, the last item's border bottom will be removed
+const canScrollVertically = ref<boolean>(false)
+
+function getIsScrolledtoRight(element: HTMLElement): boolean {
+  return element.scrollLeft > 0
+}
+
+function getCanScrollVertically(element: HTMLElement): boolean {
+  return element.scrollHeight > element.clientHeight
+}
+
+function getHasReachedHorizontalScrollEnd(element: HTMLElement): boolean {
+  return element.scrollLeft + element.clientWidth === element.scrollWidth
+}
+
+function handleInfiniteScroll(): void {
+  if (!props.isInfiniteScroll) {
+    return
+  }
+
+  if (tableContainerRef.value === null) {
+    return
+  }
+
+  if (props.data === null) {
+    return
+  }
+
+  if (props.isLoading) {
+    return
+  }
+
+  const {
+    clientHeight,
+    scrollHeight,
+    scrollTop,
+  } = tableContainerRef.value
+
+  if (scrollHeight - scrollTop > clientHeight + INFINITE_SCROLL_OFFSET) {
+    return
+  }
+
+  const { page, perPage } = props.pagination.paginationOptions.value.pagination
+
+  const totalPages = Math.ceil(props.data.total / perPage)
+
+  if (page === totalPages) {
+    return
+  }
+
+  props.pagination.handlePageChange({
+    page: page + 1,
+    perPage,
+  })
+}
+
+function onScroll(): void {
+  handleTableResize()
+  handleInfiniteScroll()
+}
+
+function handleSortChange(sortChangeEvent: SortChangeEvent): void {
+  props.pagination.handleSortChange(sortChangeEvent)
+}
+
+function handlePageChange(event: PageChangeEvent): void {
+  props.pagination.handlePageChange(event)
+}
+
+function createResizeObserver(element: HTMLElement, onResize: () => void): ResizeObserver {
+  const observer = new ResizeObserver(onResize)
+  observer.observe(element)
+
+  return observer
+}
+
+function handleTableResize(): void {
+  if (tableContainerRef.value === null) {
+    return
+  }
+
+  isScrolledToRight.value = getIsScrolledtoRight(tableContainerRef.value)
+  canScrollVertically.value = getCanScrollVertically(tableContainerRef.value)
+  hasReachedHorizontalScrollEnd.value = getHasReachedHorizontalScrollEnd(tableContainerRef.value)
+}
+
+function onClearFilters(): void {
+  emit('clearFilters')
+}
+
+const gridColsStyle = computed<string>(() => {
+  return `${props.columns.map(col => `minmax(${col.size},auto)`).join(' ')}`
+})
+
+const hasNoData = computed<boolean>(() => {
+  return props.data?.data.length === 0 && !props.isLoading
+})
 
 const activeFilterCount = computed<number>(() => {
   const filters = props.pagination.paginationOptions.value.filters ?? null
@@ -74,188 +175,91 @@ const activeFilterCount = computed<number>(() => {
     .filter(value => value !== null && value !== undefined && value !== '').length
 })
 
-const gridTemplateColumns = computed<string>(() => {
-  return props.columns.reduce((acc, column) => {
-    const colSpan = column.size ?? '1fr'
-    return `${acc} ${colSpan}`
-  }, '')
-})
-
-function handleSortChange(sortChangeEvent: SortChangeEvent): void {
-  props.pagination.handleSortChange(sortChangeEvent)
-}
-
-function handlePageChange(event: PageChangeEvent): void {
-  props.pagination.handlePageChange(event)
-}
-
-function setIsHorizontallyScrollable(): void {
-  if (tableRef.value === null) {
-    return
-  }
-
-  const { clientWidth, scrollWidth } = tableRef.value
-
-  isHorizontallyScrollable.value = scrollWidth > clientWidth
-}
-
-function setIsVerticallyScrollable(): void {
-  if (tableRef.value === null) {
-    return
-  }
-
-  const { clientHeight, scrollHeight } = tableRef.value
-
-  isVerticallyScrollable.value = scrollHeight > clientHeight
-}
-
-function setIsScrolledToRight(): void {
-  if (tableRef.value === null) {
-    return
-  }
-
-  const { scrollLeft } = tableRef.value
-
-  isScrolledToRight.value = scrollLeft > 0
-}
-
-function setHasReachedHorizontalScrollEnd(): void {
-  if (tableRef.value === null) {
-    return
-  }
-
-  const {
-    clientWidth,
-    scrollLeft,
-    scrollWidth,
-  } = tableRef.value
-
-  hasReachedHorizontalScrollEnd.value = scrollWidth - clientWidth === scrollLeft
-}
-
-function createResizeObserver(element: HTMLElement, onResize: () => void): ResizeObserver {
-  const observer = new ResizeObserver(onResize)
-  observer.observe(element)
-
-  return observer
-}
-
-function handleResize(): void {
-  setIsHorizontallyScrollable()
-  setIsVerticallyScrollable()
-}
-
-function handleScroll(): void {
-  setIsScrolledToRight()
-  setHasReachedHorizontalScrollEnd()
-}
-
-function onClearFilters(): void {
-  emit('clearFilters')
-}
-
-async function onDataChange(): Promise<void> {
-  await nextTick()
-  setIsHorizontallyScrollable()
-  setIsVerticallyScrollable()
-}
-
-watch(() => props.data, () => {
-  void onDataChange()
-})
-
 onMounted(() => {
-  if (tableRef.value === null) {
+  if (tableContainerRef.value === null) {
     throw new Error('Table ref is null')
   }
 
-  resizeObserver = createResizeObserver(tableRef.value, handleResize)
-  setIsHorizontallyScrollable()
-  setIsVerticallyScrollable()
-
-  // Find a better way to handle this
-  setTimeout(() => {
-    handleResize()
-  }, 100)
+  resizeObserver = createResizeObserver(tableContainerRef.value, handleTableResize)
 })
 
 onBeforeUnmount(() => {
-  resizeObserver?.unobserve(tableRef.value as Element)
+  resizeObserver?.disconnect()
 })
 </script>
 
 <template>
   <div class="flex h-full flex-1 flex-col overflow-hidden rounded-xl border border-solid border-border">
     <AppTableTop
-      :title="props.title"
       :is-loading="props.isLoading"
+      :title="props.title"
       :total="props.data?.total ?? null"
     />
 
     <div
-      ref="tableRef"
-      class="flex size-full flex-1 flex-col overflow-auto bg-background"
-      @scroll="handleScroll"
+      ref="tableContainerRef"
+      class="h-full overflow-y-auto"
+      @scroll="onScroll"
     >
-      <AppTableHeader
-        v-if="!props.isLoading"
-        :columns="props.columns"
-        :grid-template-columns="gridTemplateColumns"
-        :has-reached-horizontal-scroll-end="hasReachedHorizontalScrollEnd"
-        :is-horizontally-scrollable="isHorizontallyScrollable"
-        :is-scrolled-to-right="isScrolledToRight"
-        :pagination-options="props.pagination.paginationOptions.value"
-        :pin-first-column="props.pinFirstColumn"
-        :pin-last-column="props.pinLastColumn"
-        @sort="handleSortChange"
-      />
-
-      <AppTableBody
-        :is-vertically-scrollable="isVerticallyScrollable"
-        :columns="props.columns"
-        :data="props.data?.data ?? []"
-        :grid-template-columns="gridTemplateColumns"
-        :has-reached-horizontal-scroll-end="hasReachedHorizontalScrollEnd"
-        :is-horizontally-scrollable="isHorizontallyScrollable"
-        :is-loading="props.isLoading"
-        :is-scrolled-to-right="isScrolledToRight"
-        :pin-first-column="props.pinFirstColumn"
-        :pin-last-column="props.pinLastColumn"
-        :active-filter-count="activeFilterCount"
-        :row-click="props.rowClick"
-        :row-to="props.rowTo"
-      >
-        <template #empty-state>
-          <slot name="empty-state" />
-        </template>
-      </AppTableBody>
-
       <div
-        v-if="activeFilterCount !== 0 && !props.isLoading && props.data !== null && props.data.data.length > 0"
-        class="sticky left-0 flex items-center justify-center gap-x-2 p-4"
+        :style="{
+          gridTemplateColumns: gridColsStyle,
+        }"
+        class="grid items-start bg-background"
       >
-        <AppText
-          variant="caption"
-          class="text-muted-foreground"
-        >
-          {{ t('components.table.results_might_be_hidden_because_of_active_filters', { count: activeFilterCount }) }}
-        </AppText>
+        <AppTableHeader
+          :columns="props.columns"
+          :pagination-options="props.pagination.paginationOptions.value"
+          :should-pin-first-column="props.shouldPinFirstColumn"
+          :should-pin-last-column="props.shouldPinLastColumn"
+          :is-scrolled-to-right="isScrolledToRight"
+          :has-reached-horizontal-scroll-end="hasReachedHorizontalScrollEnd"
+          @sort="handleSortChange"
+        />
 
-        <AppButton
-          size="xs"
-          icon-right="close"
-          variant="secondary"
-          @click="onClearFilters"
-        >
-          {{ t('components.table.clear_filters') }}
-        </AppButton>
+        <AppTableEmptyState
+          v-if="hasNoData || props.isLoading"
+          :active-filter-count="activeFilterCount"
+          :column-count="props.columns.length"
+          :should-pin-first-column="props.shouldPinFirstColumn"
+          :should-pin-last-column="props.shouldPinLastColumn"
+          :has-reached-horizontal-scroll-end="hasReachedHorizontalScrollEnd"
+          :is-scrolled-to-right="isScrolledToRight"
+          @clear-filters="onClearFilters"
+        />
+
+        <AppTableBody
+          :columns="props.columns"
+          :data="props.data?.data ?? []"
+          :should-pin-first-column="props.shouldPinFirstColumn"
+          :should-pin-last-column="props.shouldPinLastColumn"
+          :is-scrolled-to-right="isScrolledToRight"
+          :has-reached-horizontal-scroll-end="hasReachedHorizontalScrollEnd"
+          :can-scroll-vertically="canScrollVertically"
+          :has-active-filters="activeFilterCount > 0 && !props.isLoading"
+          :row-click="props.rowClick"
+          :row-to="props.rowTo"
+        />
       </div>
+
+      <AppTableActiveFiltersWarning
+        v-if="activeFilterCount > 0 && !props.isLoading && !hasNoData"
+        :active-filter-count="activeFilterCount"
+        @clear-filters="onClearFilters"
+      />
     </div>
 
+    <AppTableEmptyStateOverlay
+      v-if="hasNoData"
+      :active-filter-count="activeFilterCount"
+      @clear-filters="onClearFilters"
+    />
+
     <AppTableFooter
+      v-if="!props.isInfiniteScroll"
+      :is-loading="props.isLoading"
       :pagination-options="props.pagination.paginationOptions.value"
       :total="props.data?.total ?? null"
-      :is-loading="props.isLoading"
       @page="handlePageChange"
     />
   </div>

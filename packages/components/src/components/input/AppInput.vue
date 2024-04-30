@@ -82,13 +82,13 @@ const { classAttr, otherAttrs } = useComponentAttrs()
     <Component
       :is="slots.left"
       v-if="slots.left !== undefined"
-    >
-      <AppIcon
-        v-if="props.iconLeft !== null && props.iconLeft !== undefined"
-        :icon="props.iconLeft"
-        class="ml-3 text-muted-foreground"
-      />
-    </Component>
+    />
+
+    <AppIcon
+      v-else-if="props.iconLeft !== null && props.iconLeft !== undefined"
+      :icon="props.iconLeft"
+      class="ml-3 text-muted-foreground"
+    />
 
     <!-- I'm not sure why, but without the `.stop` modifier, the events seem to fire twice -->
     <input
@@ -108,14 +108,14 @@ const { classAttr, otherAttrs } = useComponentAttrs()
     />
 
     <Component
-      :is="slots.left"
-      v-else-if="slots.left !== undefined"
-    >
-      <AppIcon
-        v-if="props.iconRight !== null && props.iconRight !== undefined"
-        :icon="props.iconRight"
-        class="mr-3 text-muted-foreground"
-      />
-    </Component>
+      :is="slots.right"
+      v-else-if="slots.right !== undefined"
+    />
+
+    <AppIcon
+      v-else-if="props.iconRight !== null && props.iconRight !== undefined"
+      :icon="props.iconRight"
+      class="mr-3 text-muted-foreground"
+    />
   </label>
 </template>
