@@ -2,7 +2,10 @@ import type { ComputedRef, VNode } from 'vue'
 
 export type SortDirection = 'asc' | 'desc'
 
-type PaginationSort = Record<string, SortDirection>
+interface PaginationSort {
+  direction: SortDirection
+  key: string
+}
 
 export type PaginationFilters<TFilters> = {
   [K in keyof TFilters]: TFilters[K]
@@ -17,7 +20,10 @@ export type FilterChangeEvent<TFilters> = {
   [K in keyof TFilters]?: unknown
 }
 
-export type SortChangeEvent = Record<string, SortDirection>
+export interface SortChangeEvent {
+  direction: SortDirection
+  key: string
+}
 
 export interface PaginationOptions<TFilters> {
   filters?: PaginationFilters<TFilters>
@@ -25,7 +31,7 @@ export interface PaginationOptions<TFilters> {
     page: number
     perPage: number
   }
-  sort?: PaginationSort
+  sort?: PaginationSort | undefined
 }
 
 interface BaseTableColumn {

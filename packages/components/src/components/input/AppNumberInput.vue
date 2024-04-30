@@ -136,7 +136,7 @@ function increment(): void {
     :is-invalid="props.isInvalid"
     :is-loading="props.isLoading"
     :placeholder="props.placeholder"
-    :icon-left="props.iconLeft"
+    :icon-left="props.iconLeft ?? undefined"
     type="number"
   >
     <template

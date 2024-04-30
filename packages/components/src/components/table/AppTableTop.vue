@@ -5,13 +5,14 @@ import AppSkeletonLoaderRow from '../skeleton-loader/AppSkeletonLoaderRow.vue'
 import AppText from '../text/AppText.vue'
 
 const props = defineProps<{
+  isLoading: boolean
   title: string
   total: null | number
 }>()
 </script>
 
 <template>
-  <div class="px-6 py-4">
+  <div class="border-b border-solid border-border px-6 py-4">
     <div class="flex items-center gap-x-2">
       <AppText
         class="font-medium"
@@ -28,7 +29,7 @@ const props = defineProps<{
       </AppBadge>
 
       <AppSkeletonLoaderRow
-        v-else
+        v-else-if="props.isLoading"
         class="mt-1 w-20"
       />
     </div>

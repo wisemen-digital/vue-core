@@ -14,6 +14,11 @@ const router = createRouter({
 export const i18nPlugin = createI18n({
   fallbackWarn: false,
   legacy: false,
+  messages: {
+    en: {
+      'components.keyboard_shortcut.then': 'then',
+    },
+  },
   missingWarn: false,
 })
 
