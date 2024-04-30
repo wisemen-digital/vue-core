@@ -2,7 +2,7 @@
 import { PopoverClose } from 'radix-vue'
 import { useI18n } from 'vue-i18n'
 
-import AppIconButton from '../button/AppIconButton.vue'
+import AppIconButton from '@/components/button/AppIconButton.vue'
 
 const { t } = useI18n()
 </script>

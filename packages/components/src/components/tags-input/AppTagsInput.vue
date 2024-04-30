@@ -4,7 +4,7 @@ import {
   TagsInputRoot,
 } from 'radix-vue'
 
-import AppTagsInputItem from './AppTagsInputItem.vue'
+import AppTagsInputItem from '@/components/tags-input/AppTagsInputItem.vue'
 
 const props = withDefaults(defineProps<{
   id?: null | string
@@ -51,7 +51,7 @@ function onBlur(): void {
         'border-destructive focus-within:ring-destructive': props.isInvalid,
       },
     ]"
-    class="flex min-h-10 w-full flex-wrap items-center gap-1 rounded-input border border-solid bg-input py-1 transition-shadow duration-200 focus-within:ring-2 focus-within:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+    class="flex min-h-10 w-full flex-wrap items-center gap-1 rounded-input border border-solid bg-input py-1 transition-shadow duration-200 focus-within:ring-2 focus-within:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
   >
     <template
       v-for="tag of model"

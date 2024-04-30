@@ -7,7 +7,7 @@ import {
 } from 'radix-vue'
 import { computed } from 'vue'
 
-import type { TabItem } from '../../types/tabItem.type'
+import type { TabItem } from '@/types/tabItem.type'
 
 const props = defineProps<{
   items: TabItem[]

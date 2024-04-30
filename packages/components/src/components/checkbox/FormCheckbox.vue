@@ -6,8 +6,8 @@ import {
 } from 'radix-vue'
 import { computed } from 'vue'
 
-import FormLabel from '../form-label/FormLabel.vue'
-import AppIcon from '../icon/AppIcon.vue'
+import FormLabel from '@/components/form-label/FormLabel.vue'
+import AppIcon from '@/components/icon/AppIcon.vue'
 
 const props = withDefaults(defineProps<{
   id?: null | string
@@ -65,7 +65,7 @@ function onBlur(): void {
         'border-destructive focus-visible:ring-destructive data-[state=checked]:border-destructive data-[state=checked]:bg-destructive': props.isInvalid,
         'border-input-border focus-visible:ring-ring data-[state=checked]:border-primary data-[state=checked]:bg-primary': !props.isInvalid,
       }"
-      class="flex size-5 items-center justify-center rounded border-[1.5px] border-solid outline-none ring-offset-2 ring-offset-background duration-200 focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-50"
+      class="flex size-5 items-center justify-center rounded border-[1.5px] border-solid outline-none ring-offset-1 ring-offset-background duration-200 focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-50"
       @blur="onBlur"
     >
       <CheckboxIndicator>

@@ -22,6 +22,7 @@ export function getDirectionAwareKey(key: string, dir?: Direction) {
   if (dir !== 'rtl') {
     return key
   }
+
   return key === 'ArrowLeft'
     ? 'ArrowRight'
     : key === 'ArrowRight'
@@ -37,6 +38,7 @@ export function getFocusIntent(
   dir?: Direction,
 ) {
   const key = getDirectionAwareKey(event.key, dir)
+
   if (orientation === 'vertical' && [
     'ArrowLeft',
     'ArrowRight',
@@ -51,12 +53,15 @@ export function getFocusIntent(
 
 export function focusFirst(candidates: HTMLElement[]) {
   const PREVIOUSLY_FOCUSED_ELEMENT = document.activeElement
+
   for (const candidate of candidates) {
     // if focus is already where we want to go, we don't want to keep going through the candidates
     if (candidate === PREVIOUSLY_FOCUSED_ELEMENT) {
       return
     }
+
     candidate.focus()
+
     if (document.activeElement !== PREVIOUSLY_FOCUSED_ELEMENT) {
       return
     }

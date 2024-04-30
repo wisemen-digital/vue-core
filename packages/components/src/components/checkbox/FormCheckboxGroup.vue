@@ -1,14 +1,10 @@
 <script setup lang="ts" generic="T extends string">
-import type { DataItem } from '../../types/dataItem.type'
-import type { FormFieldErrors } from '../../types/formFieldErrors.type'
-import FormElement from '../form-element/FormElement.vue'
-import FormCheckbox from './FormCheckbox.vue'
+import FormCheckbox from '@/components/checkbox/FormCheckbox.vue'
+import FormElement from '@/components/form-element/FormElement.vue'
+import type { DataItem } from '@/types/dataItem.type'
+import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
 const props = withDefaults(defineProps<{
-  /**
-   * The errors associated with the checkbox group.
-   */
-  errors: FormFieldErrors
   /**
    * Whether the checkbox group is disabled.
    */
@@ -21,6 +17,10 @@ const props = withDefaults(defineProps<{
    * Whether the checkbox group has been touched.
    */
   isTouched: boolean
+  /**
+   * The errors associated with the checkbox group.
+   */
+  errors: FormFieldErrors
   /**
    * The label of the checkbox group.
    * @default null

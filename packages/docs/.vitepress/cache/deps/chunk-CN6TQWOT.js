@@ -19,9 +19,9 @@ import {
   unref,
   watch,
   watchEffect
-} from "./chunk-RG7C3B44.js";
+} from "./chunk-ZQ3ESIZP.js";
 
-// ../../node_modules/.pnpm/vue-router@4.3.0_vue@3.4.21/node_modules/vue-router/dist/vue-router.mjs
+// ../../node_modules/.pnpm/vue-router@4.3.2_vue@3.4.26/node_modules/vue-router/dist/vue-router.mjs
 var isBrowser = typeof document !== "undefined";
 function isESModule(obj) {
   return obj.__esModule || obj[Symbol.toStringTag] === "Module";
@@ -1439,7 +1439,28 @@ function loadRouteLocation(route) {
 function useLink(props) {
   const router = inject(routerKey);
   const currentRoute = inject(routeLocationKey);
-  const route = computed(() => router.resolve(unref(props.to)));
+  let hasPrevious = false;
+  let previousTo = null;
+  const route = computed(() => {
+    const to = unref(props.to);
+    if (!hasPrevious || to !== previousTo) {
+      if (!isRouteLocation(to)) {
+        if (hasPrevious) {
+          warn(`Invalid value for prop "to" in useLink()
+- to:`, to, `
+- previous to:`, previousTo, `
+- props:`, props);
+        } else {
+          warn(`Invalid value for prop "to" in useLink()
+- to:`, to, `
+- props:`, props);
+        }
+      }
+      previousTo = to;
+      hasPrevious = true;
+    }
+    return router.resolve(to);
+  });
   const activeRecordIndex = computed(() => {
     const { matched } = route.value;
     const { length } = matched;
@@ -1477,7 +1498,8 @@ function useLink(props) {
       const linkContextDevtools = {
         route: route.value,
         isActive: isActive.value,
-        isExactActive: isExactActive.value
+        isExactActive: isExactActive.value,
+        error: null
       };
       instance.__vrl_devtools = instance.__vrl_devtools || [];
       instance.__vrl_devtools.push(linkContextDevtools);
@@ -1485,6 +1507,7 @@ function useLink(props) {
         linkContextDevtools.route = route.value;
         linkContextDevtools.isActive = isActive.value;
         linkContextDevtools.isExactActive = isExactActive.value;
+        linkContextDevtools.error = isRouteLocation(unref(props.to)) ? null : 'Invalid "to" value';
       }, { flush: "post" });
     }
   }
@@ -1751,9 +1774,15 @@ function addDevtools(app, router, matcher) {
       if (isArray(componentInstance.__vrl_devtools)) {
         componentInstance.__devtoolsApi = api;
         componentInstance.__vrl_devtools.forEach((devtoolsData) => {
+          let label = devtoolsData.route.path;
           let backgroundColor = ORANGE_400;
           let tooltip = "";
-          if (devtoolsData.isExactActive) {
+          let textColor = 0;
+          if (devtoolsData.error) {
+            label = devtoolsData.error;
+            backgroundColor = RED_100;
+            textColor = RED_700;
+          } else if (devtoolsData.isExactActive) {
             backgroundColor = LIME_500;
             tooltip = "This is exactly active";
           } else if (devtoolsData.isActive) {
@@ -1761,8 +1790,8 @@ function addDevtools(app, router, matcher) {
             tooltip = "This link is active";
           }
           node.tags.push({
-            label: devtoolsData.route.path,
-            textColor: 0,
+            label,
+            textColor,
             tooltip,
             backgroundColor
           });
@@ -1970,6 +1999,8 @@ var LIME_500 = 8702998;
 var CYAN_400 = 2282478;
 var ORANGE_400 = 16486972;
 var DARK = 6710886;
+var RED_100 = 16704226;
+var RED_700 = 12131356;
 function formatRouteRecordForInspector(route) {
   const tags = [];
   const { record } = route;
@@ -2101,6 +2132,9 @@ function createRouter(options) {
     let record;
     if (isRouteName(parentOrRoute)) {
       parent = matcher.getRecordMatcher(parentOrRoute);
+      if (!parent) {
+        warn(`Parent route "${String(parentOrRoute)}" not found when adding child route`, route);
+      }
       record = route;
     } else {
       record = parentOrRoute;
@@ -2140,6 +2174,11 @@ function createRouter(options) {
         redirectedFrom: void 0,
         href: href2
       });
+    }
+    if (!isRouteLocation(rawLocation)) {
+      warn(`router.resolve() was passed an invalid location. This will fail in production.
+- Location:`, rawLocation);
+      rawLocation = {};
     }
     let matcherLocation;
     if (rawLocation.path != null) {
@@ -2659,9 +2698,9 @@ export {
 
 vue-router/dist/vue-router.mjs:
   (*!
-    * vue-router v4.3.0
+    * vue-router v4.3.2
     * (c) 2024 Eduardo San Martin Morote
     * @license MIT
     *)
 */
-//# sourceMappingURL=chunk-73NWNFM5.js.map
+//# sourceMappingURL=chunk-CN6TQWOT.js.map

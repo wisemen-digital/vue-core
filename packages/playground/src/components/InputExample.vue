@@ -1,7 +1,6 @@
 <script setup lang="ts">
+import AppInput from '@components/components/input/AppInput.vue'
 import { ref } from 'vue'
-
-import AppInput from '../../../components/src/components/input/AppInput.vue'
 
 const value = ref<null | string>(null)
 </script>

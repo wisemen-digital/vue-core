@@ -1,13 +1,37 @@
 <script setup lang="ts" generic="TValue extends AcceptableValue">
-import type { Icon } from '../../icons/icons'
-import type { ComboboxItem } from '../../types/comboboxItem.type'
-import type { FormFieldErrors } from '../../types/formFieldErrors.type'
-import type { AcceptableValue } from '../../types/selectItem.type'
-import AppMultiCombobox from '../combobox/AppMultiCombobox.vue'
-import FormElement from '../form-element/FormElement.vue'
+import AppMultiCombobox from '@/components/combobox/AppMultiCombobox.vue'
+import FormElement from '@/components/form-element/FormElement.vue'
+import type { Icon } from '@/icons/icons'
+import type { ComboboxItem } from '@/types/comboboxItem.type'
+import type { FormFieldErrors } from '@/types/formFieldErrors.type'
+import type { AcceptableValue } from '@/types/selectItem.type'
 
 const props = withDefaults(
   defineProps<{
+    /**
+     * Whether the chevron icon is hidden.
+     * @default false
+     */
+    isChevronHidden?: boolean
+    /**
+     * Whether the combobox is disabled.
+     * @default false
+     */
+    isDisabled?: boolean
+    /**
+     * Whether the select is loading.
+     * @default false
+     */
+    isLoading?: boolean
+    /**
+     * Whether the combobox is required.
+     * @default false
+     */
+    isRequired?: boolean
+    /**
+     * Whether the combobox has been touched (focused and blurred).
+     */
+    isTouched: boolean
     /**
      * Display function for the selected value
      */
@@ -36,30 +60,6 @@ const props = withDefaults(
      */
     iconRight?: Icon | null
     /**
-     * Whether the chevron icon is hidden.
-     * @default false
-     */
-    isChevronHidden?: boolean
-    /**
-     * Whether the combobox is disabled.
-     * @default false
-     */
-    isDisabled?: boolean
-    /**
-     * Whether the select is loading.
-     * @default false
-     */
-    isLoading?: boolean
-    /**
-     * Whether the combobox is required.
-     * @default false
-     */
-    isRequired?: boolean
-    /**
-     * Whether the combobox has been touched (focused and blurred).
-     */
-    isTouched: boolean
-    /**
      * The options of the combobox.
      */
     items: ComboboxItem<TValue>[]
@@ -74,11 +74,11 @@ const props = withDefaults(
     placeholder?: null | string
   }>(),
   {
-    emptyText: null,
     isDisabled: false,
     isLoading: false,
     isRequired: false,
     isTouched: false,
+    emptyText: null,
     placeholder: null,
   },
 )

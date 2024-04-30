@@ -47,7 +47,7 @@ const docs = [
         text: 'AppMultiCombobox',
       },
       {
-        link: '/components/form-combobox',
+        link: '/components/combobox/form-combobox',
         text: 'FormCombobox',
       },
       {
@@ -130,6 +130,7 @@ export default defineConfig({
     resolve: {
       alias: {
         '@docs': resolve(__dirname, '../'),
+        '@': resolve(__dirname, '../../components/src'),
         '@components': resolve(__dirname, '../../components/src'),
       },
     },

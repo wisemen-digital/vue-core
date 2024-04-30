@@ -2,7 +2,7 @@
 import { SelectRoot } from 'radix-vue'
 import { computed } from 'vue'
 
-import type { AcceptableValue } from '../../types/selectItem.type'
+import type { AcceptableValue } from '@/types/selectItem.type'
 
 const props = defineProps<{
   isDisabled: boolean
@@ -24,6 +24,7 @@ const model = computed<string | undefined>({
   set: (value) => {
     if (value === undefined) {
       emit('update:modelValue', null)
+
       return
     }
 

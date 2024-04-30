@@ -9,9 +9,9 @@ import {
 } from 'radix-vue'
 import { ref } from 'vue'
 
-import type { CommandItem } from '../../types/commandItem.type'
-import type { AcceptableValue } from '../../types/selectItem.type'
-import AppCommandItem from './AppCommandItem.vue'
+import AppCommandItem from '@/components/command/AppCommandItem.vue'
+import type { CommandItem } from '@/types/commandItem.type'
+import type { AcceptableValue } from '@/types/selectItem.type'
 
 const props = defineProps<{
   /**
@@ -28,6 +28,7 @@ const search = ref<string>('')
 </script>
 
 <template>
+  <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
   <div>
     <ComboboxRoot
       v-model:search-term="search"

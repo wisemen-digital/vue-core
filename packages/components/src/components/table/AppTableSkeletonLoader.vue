@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AppContainer from '../container/AppContainer.vue'
+import AppContainer from '@/components/container/AppContainer.vue'
 
 const props = withDefaults(
   defineProps<{

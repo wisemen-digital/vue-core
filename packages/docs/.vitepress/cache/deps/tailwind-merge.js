@@ -1,4 +1,4 @@
-// ../../node_modules/.pnpm/tailwind-merge@2.2.1/node_modules/tailwind-merge/dist/bundle-mjs.mjs
+// ../../node_modules/.pnpm/tailwind-merge@2.3.0/node_modules/tailwind-merge/dist/bundle-mjs.mjs
 var CLASS_PART_SEPARATOR = "-";
 function createClassUtils(config) {
   const classMap = createClassMap(config);
@@ -360,7 +360,7 @@ var stringLengths = /* @__PURE__ */ new Set(["px", "full", "screen"]);
 var tshirtUnitRegex = /^(\d+(\.\d+)?)?(xs|sm|md|lg|xl)$/;
 var lengthUnitRegex = /\d+(%|px|r?em|[sdl]?v([hwib]|min|max)|pt|pc|in|cm|mm|cap|ch|ex|r?lh|cq(w|h|i|b|min|max))|\b(calc|min|max|clamp)\(.+\)|^0$/;
 var colorFunctionRegex = /^(rgba?|hsla?|hwb|(ok)?(lab|lch))\(.+\)$/;
-var shadowRegex = /^-?((\d+)?\.?(\d+)[a-z]+|0)_-?((\d+)?\.?(\d+)[a-z]+|0)/;
+var shadowRegex = /^(inset_)?-?((\d+)?\.?(\d+)[a-z]+|0)_-?((\d+)?\.?(\d+)[a-z]+|0)/;
 var imageRegex = /^(url|image|image-set|cross-fade|element|(repeating-)?(linear|radial|conic)-gradient)\(.+\)$/;
 function isLength(value) {
   return isNumber(value) || stringLengths.has(value) || fractionRegex.test(value);
@@ -477,7 +477,7 @@ function getDefaultConfig() {
   const getNumberWithAutoAndArbitrary = () => ["auto", isNumber, isArbitraryValue];
   const getPositions = () => ["bottom", "center", "left", "left-bottom", "left-top", "right", "right-bottom", "right-top", "top"];
   const getLineStyles = () => ["solid", "dashed", "dotted", "double", "none"];
-  const getBlendModes = () => ["normal", "multiply", "screen", "overlay", "darken", "lighten", "color-dodge", "color-burn", "hard-light", "soft-light", "difference", "exclusion", "hue", "saturation", "color", "luminosity", "plus-lighter"];
+  const getBlendModes = () => ["normal", "multiply", "screen", "overlay", "darken", "lighten", "color-dodge", "color-burn", "hard-light", "soft-light", "difference", "exclusion", "hue", "saturation", "color", "luminosity"];
   const getAlign = () => ["start", "end", "center", "between", "around", "evenly", "stretch"];
   const getZeroAndEmpty = () => ["", "0", isArbitraryValue];
   const getBreaks = () => ["auto", "avoid", "all", "avoid-page", "page", "left", "right", "column"];
@@ -1862,7 +1862,7 @@ function getDefaultConfig() {
        * @see https://tailwindcss.com/docs/mix-blend-mode
        */
       "mix-blend": [{
-        "mix-blend": getBlendModes()
+        "mix-blend": [...getBlendModes(), "plus-lighter", "plus-darker"]
       }],
       /**
        * Background Blend Mode

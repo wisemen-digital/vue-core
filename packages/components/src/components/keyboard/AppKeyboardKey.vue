@@ -1,13 +1,15 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import type { KeyboardKey } from '../../types/keyboard.type'
+import type { KeyboardKeyStyleProps } from '@/components/keyboard/keyboardKey.style'
+import { keyboardKey } from '@/components/keyboard/keyboardKey.style'
+import type { KeyboardKey } from '@/types/keyboard.type'
 
 const props = withDefaults(defineProps<{
-  hasBorder?: boolean
   keyboardKey: KeyboardKey
+  variant?: KeyboardKeyStyleProps['variant']
 }>(), {
-  hasBorder: false,
+  variant: 'default',
 })
 
 const keyMap = new Map<KeyboardKey, string>([
@@ -57,16 +59,15 @@ const keyMap = new Map<KeyboardKey, string>([
   ],
 ])
 
-const keyboardKey = computed<string>(() => keyMap.get(props.keyboardKey) ?? props.keyboardKey)
+const key = computed<string>(() => keyMap.get(props.keyboardKey) ?? props.keyboardKey)
+
+const keyboardKeyClasses = computed<string>(() => keyboardKey({
+  variant: props.variant,
+}))
 </script>
 
 <template>
-  <kbd
-    :class="{
-      'border border-solid border-border shadow-keyboard-key-shadow': props.hasBorder,
-    }"
-    class="flex h-[1.1rem] min-w-[1.1rem] items-center justify-center rounded bg-muted-background p-1 text-center text-[11px] capitalize text-secondary-foreground"
-  >
-    {{ keyboardKey }}
+  <kbd :class="keyboardKeyClasses">
+    {{ key }}
   </kbd>
 </template>

@@ -33,4 +33,3 @@ export interface IconControl extends BaseControl {
   default: Icon | null
   type: 'icon'
 }
-

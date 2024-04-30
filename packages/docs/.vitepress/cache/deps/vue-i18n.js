@@ -18,7 +18,7 @@ import {
   ref,
   shallowRef,
   watch
-} from "./chunk-RG7C3B44.js";
+} from "./chunk-ZQ3ESIZP.js";
 
 // ../../node_modules/.pnpm/@intlify+shared@9.10.1/node_modules/@intlify/shared/dist/shared.mjs
 var inBrowser = typeof window !== "undefined";

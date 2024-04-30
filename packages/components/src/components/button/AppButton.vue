@@ -1,13 +1,31 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import {
+  computed,
+  onMounted,
+  ref,
+} from 'vue'
 
-import type { Icon } from '../../icons/icons'
-import AppIcon from '../icon/AppIcon.vue'
-import AppLoader from '../loader/AppLoader.vue'
-import type { ButtonStyleProps } from './button.style'
-import { button, buttonIcon } from './button.style'
+import type { ButtonStyleProps } from '@/components/button/button.style'
+import { button, buttonIcon } from '@/components/button/button.style'
+import AppIcon from '@/components/icon/AppIcon.vue'
+import AppKeyboardShortcut from '@/components/keyboard/AppKeyboardShortcut.vue'
+import type { KeyboardKeyStyleProps } from '@/components/keyboard/keyboardKey.style'
+import AppLoader from '@/components/loader/AppLoader.vue'
+import { useKeyboardShortcut } from '@/composables/keyboardShortcut.composable'
+import type { Icon } from '@/icons/icons'
+import type { KeyboardShortcutConfig } from '@/types/keyboardShortcut.type'
 
 export interface AppButtonProps {
+  /**
+   * Whether the button is disabled.
+   * @default false
+   */
+  isDisabled?: boolean
+  /**
+   * Whether the button is in a loading state.
+   * @default false
+   */
+  isLoading?: boolean
   /**
    * The icon to display on the left side of the button.
    * @default null
@@ -19,15 +37,10 @@ export interface AppButtonProps {
    */
   iconRight?: Icon | null
   /**
-   * Whether the button is disabled.
-   * @default false
+   * The keyboard shortcut keys which trigger the button.
+   * @default null
    */
-  isDisabled?: boolean
-  /**
-   * Whether the button is in a loading state.
-   * @default false
-   */
-  isLoading?: boolean
+  keyboardShortcut?: KeyboardShortcutConfig | null
   /**
    * The size of the button.
    * @default 'default'
@@ -51,10 +64,13 @@ const props = withDefaults(defineProps<AppButtonProps>(), {
   // iconRight: null,
   isDisabled: false,
   isLoading: false,
+  keyboardShortcut: null,
   size: 'default',
   type: 'button',
   variant: 'default',
 })
+
+const buttonRef = ref<HTMLButtonElement | null>(null)
 
 const buttonClasses = computed<string>(() =>
   button({
@@ -66,10 +82,45 @@ const buttonIconClasses = computed<string>(() =>
   buttonIcon({
     size: props.size,
   }))
+
+const keyboardKeyVariant = computed<KeyboardKeyStyleProps['variant']>(() => {
+  if (props.variant === 'default' || props.variant === 'destructive') {
+    return 'secondary'
+  }
+
+  if (props.variant === 'secondary') {
+    return 'bordered'
+  }
+
+  return 'default'
+})
+
+function createKeyboardShortcut(): void {
+  if (props.keyboardShortcut === null) {
+    throw new Error('Keyboard shortcut config is required to create a keyboard shortcut')
+  }
+
+  useKeyboardShortcut({
+    isDisabled: props.keyboardShortcut.isDisabled,
+    keys: props.keyboardShortcut.keys,
+    onTrigger: () => {
+      if (buttonRef.value !== null) {
+        buttonRef.value.click()
+      }
+    },
+  })
+}
+
+onMounted(() => {
+  if (props.keyboardShortcut !== null) {
+    createKeyboardShortcut()
+  }
+})
 </script>
 
 <template>
   <button
+    ref="buttonRef"
     :disabled="isDisabled || isLoading"
     :type="props.type"
     :class="buttonClasses"
@@ -107,6 +158,16 @@ const buttonIconClasses = computed<string>(() =>
         'opacity-0': props.isLoading,
       }]"
       class="ml-2"
+    />
+
+    <AppKeyboardShortcut
+      v-if="props.keyboardShortcut !== null"
+      :keys="props.keyboardShortcut.keys"
+      :variant="keyboardKeyVariant"
+      :class="{
+        'opacity-0': props.isLoading,
+      }"
+      class="ml-3 mt-px"
     />
   </button>
 </template>

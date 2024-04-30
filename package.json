@@ -13,12 +13,12 @@
     "docs:dev": "pnpm run -r docs:dev",
     "docs:build": "pnpm run -r docs:build",
     "pub:release": "cd packages/components && pnpm pub:release --no-git-checks",
-    "dev": "pnpm run -r dev"
+    "dev": "pnpm run -r dev",
+    "lint": "pnpm run -r lint",
+    "type-check": "pnpm run -r type-check"
   },
   "devDependencies": {
-    "@wisemen/eslint-config-vue": "^0.0.10",
-    "eslint": "^8.57.0",
-    "radix-vue": "^1.5.3",
+    "radix-vue": "^1.7.3",
     "rimraf": "^5.0.5"
   }
 }

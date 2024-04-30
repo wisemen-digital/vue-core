@@ -1,5 +1,11 @@
-import type { Icon } from '../icons/icons'
-import type { KeyboardCommand } from './keyboard.type'
+import type {
+  Ref,
+  VNode,
+} from 'vue'
+
+import type { Icon } from '@/icons/icons'
+import type { KeyboardKey } from '@/types/keyboard.type'
+import type { AcceptableValue } from '@/types/selectItem.type'
 
 export interface DropdownMenuDivider {
   type: 'divider'
@@ -12,9 +18,9 @@ export interface DropdownMenuLabel {
 
 export interface DropdownMenuSubMenu {
   icon?: Icon
-  id?: string
   items: DropdownMenuItem[]
   label: string
+  render?: () => VNode
   type: 'subMenu'
 }
 
@@ -24,16 +30,42 @@ export interface DropdownMenuGroup {
 }
 
 export interface DropdownMenuOption {
-  command?: Omit<KeyboardCommand, 'onPressed'>
   icon?: Icon
-  id?: string
+  keyboardShortcutKeys?: KeyboardKey[]
   label: string
-  onSelect: () => void
+  render?: () => VNode
   type: 'option'
+  onSelect: () => void
 }
 
-export type DropdownMenuItem = DropdownMenuDivider
+export interface DropdownMenuCheckbox {
+  isSelected: Ref<boolean>
+  keyboardShortcutKeys?: KeyboardKey[]
+  label: string
+  render?: () => VNode
+  type: 'checkbox'
+  onSelect: () => void
+}
+
+export interface DropdownMenuRadioGroup {
+  items: DropdownMenuRadio[]
+  modelValue: Ref<AcceptableValue | null>
+  type: 'radioGroup'
+  updateModelValue: (value: AcceptableValue) => void
+}
+
+export interface DropdownMenuRadio {
+  keyboardShortcutKeys?: KeyboardKey[]
+  label: string
+  render?: () => VNode
+  type: 'radio'
+  value: AcceptableValue
+}
+
+export type DropdownMenuItem = DropdownMenuCheckbox
+  | DropdownMenuDivider
   | DropdownMenuGroup
   | DropdownMenuLabel
   | DropdownMenuOption
+  | DropdownMenuRadioGroup
   | DropdownMenuSubMenu

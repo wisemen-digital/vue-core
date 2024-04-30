@@ -13,9 +13,8 @@ import {
 import type { RouteRecordName } from 'vue-router'
 import { useRoute, useRouter } from 'vue-router'
 
+import AppText from '@/components/text/AppText.vue'
 import type { RouteTabItem } from '@/types/tabItem.type'
-
-import AppText from '../text/AppText.vue'
 
 const props = defineProps<{
   tabs: RouteTabItem[]

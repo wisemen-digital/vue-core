@@ -15,18 +15,17 @@ import type {
   SortChangeEvent,
   UseTablePaginationReturnType,
 } from '@/types/table.type'
-
-import { base64Decode, base64Encode } from '../utils/base64.util'
+import { base64Decode, base64Encode } from '@/utils/base64.util'
 
 interface UseTablePaginationOptions<TFilters> {
-  /**
-   * Default pagination options. If not provided, the default options will be used.
-   */
-  defaultPaginationOptions?: MaybeRefOrGetter<PaginationOptions<TFilters>> | null
   /**
    * Identifier used to store pagination options in a route query.
    */
   id: string // TODO: Enum?
+  /**
+   * Default pagination options. If not provided, the default options will be used.
+   */
+  defaultPaginationOptions?: MaybeRefOrGetter<PaginationOptions<TFilters>> | null
 }
 
 const DEFAULT_PAGINATION_OPTIONS = {
@@ -39,8 +38,8 @@ const DEFAULT_PAGINATION_OPTIONS = {
 } as const
 
 export function useTablePagination<TFilters>({
-  defaultPaginationOptions = null,
   id,
+  defaultPaginationOptions = null,
 }: UseTablePaginationOptions<TFilters>): UseTablePaginationReturnType<TFilters> {
   const routeQuery = useRouteQuery<string | undefined>(id)
   const paginationOptions = shallowRef<PaginationOptions<TFilters>>(getDefaultPaginationOptions())
@@ -58,10 +57,7 @@ export function useTablePagination<TFilters>({
         ...currentOptions.pagination,
         ...userOptions.pagination,
       },
-      sort: {
-        ...currentOptions.sort,
-        ...userOptions.sort,
-      },
+      sort: currentOptions.sort ?? userOptions.sort ?? undefined,
     }
   }
 

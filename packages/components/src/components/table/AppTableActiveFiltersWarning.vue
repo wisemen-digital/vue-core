@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 
-import AppButton from '../button/AppButton.vue'
-import AppText from '../text/AppText.vue'
+import AppButton from '@/components/button/AppButton.vue'
+import AppText from '@/components/text/AppText.vue'
 
 const props = defineProps<{
   activeFilterCount: number

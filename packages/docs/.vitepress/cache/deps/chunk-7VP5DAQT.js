@@ -2,7 +2,7 @@ import {
   isVue2,
   isVue3,
   set
-} from "./chunk-HVKGD6BO.js";
+} from "./chunk-UM7RCC42.js";
 import {
   computed,
   customRef,
@@ -29,9 +29,9 @@ import {
   version,
   watch,
   watchEffect
-} from "./chunk-RG7C3B44.js";
+} from "./chunk-ZQ3ESIZP.js";
 
-// ../../node_modules/.pnpm/@vueuse+shared@10.9.0_vue@3.4.21/node_modules/@vueuse/shared/index.mjs
+// ../../node_modules/.pnpm/@vueuse+shared@10.9.0_vue@3.4.26/node_modules/@vueuse/shared/index.mjs
 function computedEager(fn, options) {
   var _a;
   const result = shallowRef();
@@ -1636,4 +1636,4 @@ export {
   watchTriggerable,
   whenever
 };
-//# sourceMappingURL=chunk-WDOTLKFY.js.map
+//# sourceMappingURL=chunk-7VP5DAQT.js.map

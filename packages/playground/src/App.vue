@@ -1,10 +1,11 @@
 <script setup lang="ts">
+import AppButton from '@components/components/button/AppButton.vue'
+import AppInput from '@components/components/input/AppInput.vue'
+import FormPhoneNumberInput from '@components/components/input/FormPhoneNumberInput.vue'
+import FormSwitch from '@components/components/switch/FormSwitch.vue'
 import { useForm } from 'formango'
+import { ref } from 'vue'
 import { z } from 'zod'
-
-import AppButton from '../../components/src/components/button/AppButton.vue'
-import AppInput from '../../components/src/components/input/AppInput.vue'
-import FormPhoneNumberInput from '../../components/src/components/input/FormPhoneNumberInput.vue'
 
 const { form } = useForm({
   schema: z.object({
@@ -12,11 +13,14 @@ const { form } = useForm({
   }),
 })
 
+const isSending = ref<boolean>(false)
+
 const phoneNumber = form.register('phone')
 </script>
 
 <template>
-  <div class="p-24">
+  <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
+  <div class="p-8">
     <AppInput
       :model-value="null"
       class="w-72"
@@ -29,5 +33,7 @@ const phoneNumber = form.register('phone')
       label="Label"
       class="mt-24 w-52"
     />
+
+    <FormSwitch v-model="isSending" />
   </div>
 </template>

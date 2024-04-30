@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { SelectContent, SelectViewport } from 'radix-vue'
 
-import AppSelectScrollDownButton from './AppSelectScrollDownButton.vue'
-import AppSelectScrollUpButton from './AppSelectScrollUpButton.vue'
+import AppSelectScrollDownButton from '@/components/select/AppSelectScrollDownButton.vue'
+import AppSelectScrollUpButton from '@/components/select/AppSelectScrollUpButton.vue'
 </script>
 
 <template>
