@@ -161,12 +161,14 @@ export default {
       },
 
       maxWidth: {
-        container: '1400px',
+        'container': '1400px',
+        'table-empty-state': '26rem',
       },
 
       transitionTimingFunction: {
         'dialog': 'cubic-bezier(0.22, 0.68, 0, 1.51)',
         'dialog-overlay': 'cubic-bezier(0.17, 0.67, 0.16, 0.99)',
+        'switch': 'cubic-bezier(.1, .91, .48, .99)',
       },
 
       zIndex: {

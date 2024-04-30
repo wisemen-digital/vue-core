@@ -2,9 +2,11 @@
 import { DropdownMenuPortal } from 'radix-vue'
 
 import type { DropdownMenuItem } from '../../types/dropdownMenuItem.type'
+import AppDropdownMenuCheckbox from './AppDropdownMenuCheckbox.vue'
 import AppDropdownMenuDivider from './AppDropdownMenuDivider.vue'
 import AppDropdownMenuGroup from './AppDropdownMenuGroup.vue'
 import AppDropdownMenuOption from './AppDropdownMenuOption.vue'
+import AppDropdownMenuRadioGroup from './AppDropdownMenuRadioGroup.vue'
 import AppDropdownMenuSub from './AppDropdownMenuSub.vue'
 import AppDropdownMenuSubContent from './AppDropdownMenuSubContent.vue'
 import AppDropdownMenuSubTrigger from './AppDropdownMenuSubTrigger.vue'
@@ -22,19 +24,11 @@ const props = defineProps<{
       v-for="(groupItem, i) of props.item.items"
       :key="i"
       :item="groupItem"
-    >
-      <template #default="{ item: itemValue }">
-        <slot :item="itemValue" />
-      </template>
-    </AppDropdownMenuItem>
+    />
   </AppDropdownMenuGroup>
 
   <AppDropdownMenuSub v-else-if="props.item.type === 'subMenu'">
-    <AppDropdownMenuSubTrigger :item="props.item">
-      <template #default="{ item: itemValue }">
-        <slot :item="itemValue" />
-      </template>
-    </AppDropdownMenuSubTrigger>
+    <AppDropdownMenuSubTrigger :item="props.item" />
 
     <DropdownMenuPortal>
       <AppDropdownMenuSubContent>
@@ -42,14 +36,20 @@ const props = defineProps<{
           v-for="(subItem, i) of props.item.items"
           :key="i"
           :item="subItem"
-        >
-          <template #default="{ item: itemValue }">
-            <slot :item="itemValue" />
-          </template>
-        </AppDropdownMenuItem>
+        />
       </AppDropdownMenuSubContent>
     </DropdownMenuPortal>
   </AppDropdownMenuSub>
+
+  <AppDropdownMenuCheckbox
+    v-else-if="props.item.type === 'checkbox'"
+    :item="props.item"
+  />
+
+  <AppDropdownMenuRadioGroup
+    v-else-if="props.item.type === 'radioGroup'"
+    :item="props.item"
+  />
 
   <AppDropdownMenuOption
     v-if="props.item.type === 'option'"
