@@ -25,7 +25,9 @@
     "type-check": "vue-tsc -p tsconfig.check.json --noEmit",
     "pub:release": "pnpm publish --access public",
     "gen:web-types": "vue-docgen-web-types",
-    "lint": "eslint . --fix"
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+
   },
   "devDependencies": {
     "@tsconfig/node18": "^2.0.1",
@@ -39,6 +41,7 @@
     "autoprefixer": "^10.4.19",
     "clsx": "^2.1.1",
     "cva": "1.0.0-beta.1",
+    "eslint": "8.57",
     "jsdom": "^24.0.0",
     "libphonenumber-js": "^1.10.61",
     "maska": "^2.1.11",

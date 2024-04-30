@@ -20,6 +20,7 @@ const theme: typeof DefaultTheme = {
       missingWarn: false,
     })
 
+    // @ts-expect-error this works
     ctx.app.use(router).use(i18nPlugin)
     DefaultTheme.enhanceApp(ctx)
   },

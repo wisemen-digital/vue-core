@@ -1,5 +1,6 @@
 <script setup lang="ts" generic="TControlKeys extends string">
-import type { Controls } from '../types/controls.type'
+import type { Controls } from '@docs/playground/types/controls.type'
+
 import ComponentPlaygroundIconControl from './ComponentPlaygroundIconControl.vue'
 import ComponentPlaygroundSelectControl from './ComponentPlaygroundSelectControl.vue'
 import ComponentPlaygroundSwitchControl from './ComponentPlaygroundSwitchControl.vue'

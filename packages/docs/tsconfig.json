@@ -30,7 +30,6 @@
     "skipLibCheck": true
   },
   "files": [
-    "tailwind.config.ts",
     "postcss.config.js",
     "eslint.config.js"
   ],
@@ -39,6 +38,9 @@
     "./playground/**/*.tsx",
     "./playground/**/*.vue",
     ".vitepress/config.mts",
+    ".vitepress/theme/index.ts",
+    "tailwind.config.ts",
+
     "../components/env.d.ts",
     "../components/src/**/*",
     "../components/src/**/*.ts",

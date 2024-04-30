@@ -12,6 +12,7 @@ export default {
           selector,
           pseudo = '',
         ] = _selector.split(/(:\S*)$/)
+
         return selector + prefix + pseudo
       },
     },
