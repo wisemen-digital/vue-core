@@ -10,11 +10,15 @@
     "moduleResolution": "bundler",
 
     "paths": {
+      "@/*": [
+        "../components/src/*"
+      ],
       "@components/*": [
         "../components/src/*"
       ]
     },
     "resolveJsonModule": true,
+    "types": ["node", "@types/dom-view-transitions"],
     "allowImportingTsExtensions": true,
 
     /* Linting */

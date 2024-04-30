@@ -18,7 +18,7 @@ function clsx() {
   return n;
 }
 
-// ../../node_modules/.pnpm/cva@1.0.0-beta.1_typescript@5.3.3/node_modules/cva/dist/index.mjs
+// ../../node_modules/.pnpm/cva@1.0.0-beta.1_typescript@5.4.5/node_modules/cva/dist/index.mjs
 var falsyToString = (value) => typeof value === "boolean" ? "".concat(value) : value === 0 ? "0" : value;
 var defineConfig = (options) => {
   const cx1 = function() {

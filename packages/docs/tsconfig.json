@@ -10,6 +10,9 @@
     "module": "esnext",
     "moduleResolution": "node",
     "paths": {
+      "@/*": [
+        "../components/src/*"
+      ],
       "@components/*": [
         "../components/src/*"
       ],
@@ -22,6 +25,7 @@
       "node",
       "@types/dom-view-transitions"
     ],
+    "allowJs": true,
     "strict": true,
     "declaration": false,
     "outDir": "dist",

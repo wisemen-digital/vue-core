@@ -4,7 +4,6 @@ import '@/components/sonner/styles.css'
 
 import {
   computed,
-  nextTick,
   onMounted,
   onUnmounted,
   ref,
@@ -171,7 +170,7 @@ function onPointerDown(event: PointerEvent) {
   }
 }
 
-function onPointerUp(event: PointerEvent) {
+function onPointerUp(_event: PointerEvent) {
   if (swipeOut.value) { return }
   pointerStartRef.value = null
 

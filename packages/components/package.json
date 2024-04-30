@@ -27,7 +27,6 @@
     "gen:web-types": "vue-docgen-web-types",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
-
   },
   "devDependencies": {
     "@tsconfig/node18": "^2.0.1",
