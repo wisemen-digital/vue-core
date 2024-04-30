@@ -1,10 +1,10 @@
 <script setup lang="ts" generic="T extends string">
-import type { DataItem } from '../../types/dataItem.type'
-import type { FormFieldErrors } from '../../types/formFieldErrors.type'
-import FormElement from '../form-element/FormElement.vue'
-import FormRadioGroupIndicator from './FormRadioGroupIndicator.vue'
-import FormRadioGroupItem from './FormRadioGroupItem.vue'
-import FormRadioGroupRoot from './FormRadioGroupRoot.vue'
+import FormElement from '@/components/form-element/FormElement.vue'
+import FormRadioGroupIndicator from '@/components/radio-group/FormRadioGroupIndicator.vue'
+import FormRadioGroupItem from '@/components/radio-group/FormRadioGroupItem.vue'
+import FormRadioGroupRoot from '@/components/radio-group/FormRadioGroupRoot.vue'
+import type { DataItem } from '@/types/dataItem.type'
+import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
 const props = withDefaults(defineProps<{
   /**

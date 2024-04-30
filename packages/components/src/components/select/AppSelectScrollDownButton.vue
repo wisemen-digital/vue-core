@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { SelectScrollDownButton } from 'radix-vue'
 
-import AppIcon from '../icon/AppIcon.vue'
+import AppIcon from '@/components/icon/AppIcon.vue'
 </script>
 
 <template>

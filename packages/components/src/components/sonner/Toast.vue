@@ -1,6 +1,6 @@
 <!-- eslint-disable -->
 <script lang="ts" setup>
-import './styles.css'
+import '@/components/sonner/styles.css'
 
 import {
   computed,
@@ -11,13 +11,13 @@ import {
   watchEffect,
 } from 'vue'
 
-import CloseIcon from './assets/CloseIcon.vue'
-import { useIsDocumentHidden } from './hooks'
+import { useIsDocumentHidden } from '@/components/sonner/hooks'
 import type {
   HeightT,
   ToastProps,
   ToastT,
 } from './types'
+import CloseIcon from '@/icons/CloseIcon.vue';
 
 const props = defineProps<ToastProps>()
 

@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useComponentAttrs } from '../../composables/componentAttrs.composable'
-import type { Icon } from '../../icons/icons'
-import type { FormFieldErrors } from '../../types/formFieldErrors.type'
-import FormElement from '../form-element/FormElement.vue'
-import AppNumberInput from '../input/AppNumberInput.vue'
+import FormElement from '@/components/form-element/FormElement.vue'
+import AppNumberInput from '@/components/input/AppNumberInput.vue'
+import { useComponentAttrs } from '@/composables/componentAttrs.composable'
+import type { Icon } from '@/icons/icons'
+import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
 const props = withDefaults(
   defineProps<{

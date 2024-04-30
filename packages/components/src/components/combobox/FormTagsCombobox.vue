@@ -1,9 +1,9 @@
 <script setup lang="ts" generic="TValue extends AcceptableValue">
-import type { ComboboxItem } from '../../types/comboboxItem.type'
-import type { FormFieldErrors } from '../../types/formFieldErrors.type'
-import type { AcceptableValue } from '../../types/selectItem.type'
-import FormElement from '../form-element/FormElement.vue'
-import AppTagsCombobox from './AppTagsCombobox.vue'
+import AppTagsCombobox from '@/components/combobox/AppTagsCombobox.vue'
+import FormElement from '@/components/form-element/FormElement.vue'
+import type { ComboboxItem } from '@/types/comboboxItem.type'
+import type { FormFieldErrors } from '@/types/formFieldErrors.type'
+import type { AcceptableValue } from '@/types/selectItem.type'
 
 const props = withDefaults(
   defineProps<{

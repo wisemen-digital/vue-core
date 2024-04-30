@@ -2,10 +2,9 @@
 import { ComboboxInput, ComboboxTrigger } from 'radix-vue'
 import { ref } from 'vue'
 
+import AppIcon from '@/components/icon/AppIcon.vue'
+import AppLoader from '@/components/loader/AppLoader.vue'
 import type { Icon } from '@/icons/icons'
-
-import AppIcon from '../icon/AppIcon.vue'
-import AppLoader from '../loader/AppLoader.vue'
 
 const props = withDefaults(defineProps<{
   iconLeft: Icon | null

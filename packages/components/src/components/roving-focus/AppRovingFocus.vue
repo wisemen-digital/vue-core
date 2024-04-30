@@ -1,20 +1,21 @@
 <script setup lang="ts">
 import { useVModel } from '@vueuse/core'
-import type { PrimitiveProps } from 'radix-vue'
-import { Primitive, useForwardExpose } from 'radix-vue'
+import {
+  Primitive,
+  type PrimitiveProps,
+  useForwardExpose,
+} from 'radix-vue'
 import { ref, toRefs } from 'vue'
 
-import { useCollection } from './collection.composable'
-import { provideRovingFocusGroupContext } from './rovingFocus.context'
-import type {
-  Direction,
-  Orientation,
-} from './rovingFocus.util'
+import { useCollection } from '@/components/roving-focus/collection.composable'
+import { provideRovingFocusGroupContext } from '@/components/roving-focus/rovingFocus.context'
 import {
+  type Direction,
   ENTRY_FOCUS,
   EVENT_OPTIONS,
   focusFirst,
-} from './rovingFocus.util'
+  type Orientation,
+} from '@/components/roving-focus/rovingFocus.util'
 
 interface RovingFocusGroupProps extends PrimitiveProps {
   currentTabStopId?: null | string

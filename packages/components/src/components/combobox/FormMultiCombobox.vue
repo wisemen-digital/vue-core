@@ -1,10 +1,10 @@
 <script setup lang="ts" generic="TValue extends AcceptableValue">
-import type { Icon } from '../../icons/icons'
-import type { ComboboxItem } from '../../types/comboboxItem.type'
-import type { FormFieldErrors } from '../../types/formFieldErrors.type'
-import type { AcceptableValue } from '../../types/selectItem.type'
-import AppMultiCombobox from '../combobox/AppMultiCombobox.vue'
-import FormElement from '../form-element/FormElement.vue'
+import AppMultiCombobox from '@/components/combobox/AppMultiCombobox.vue'
+import FormElement from '@/components/form-element/FormElement.vue'
+import type { Icon } from '@/icons/icons'
+import type { ComboboxItem } from '@/types/comboboxItem.type'
+import type { FormFieldErrors } from '@/types/formFieldErrors.type'
+import type { AcceptableValue } from '@/types/selectItem.type'
 
 const props = withDefaults(
   defineProps<{

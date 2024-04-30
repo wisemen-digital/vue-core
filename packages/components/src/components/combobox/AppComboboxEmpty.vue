@@ -2,7 +2,7 @@
 import { ComboboxEmpty } from 'radix-vue'
 import { useI18n } from 'vue-i18n'
 
-import AppText from '../text/AppText.vue'
+import AppText from '@/components/text/AppText.vue'
 
 const props = defineProps<{
   emptyText: null | string

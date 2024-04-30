@@ -13,17 +13,17 @@ import {
   ref,
 } from 'vue'
 
-import type { ComboboxItem } from '../../types/comboboxItem.type'
-import type { AcceptableValue } from '../../types/selectItem.type'
-import AppIcon from '../icon/AppIcon.vue'
-import AppLoader from '../loader/AppLoader.vue'
-import AppTagsInputItem from '../tags-input/AppTagsInputItem.vue'
-import AppComboboxContent from './AppComboboxContent.vue'
-import AppComboboxEmpty from './AppComboboxEmpty.vue'
-import AppComboboxItem from './AppComboboxItem.vue'
-import AppComboboxTrigger from './AppComboboxTrigger.vue'
-import AppComboboxViewport from './AppComboboxViewport.vue'
-import { useCombobox } from './combobox.composable'
+import AppComboboxContent from '@/components/combobox/AppComboboxContent.vue'
+import AppComboboxEmpty from '@/components/combobox/AppComboboxEmpty.vue'
+import AppComboboxItem from '@/components/combobox/AppComboboxItem.vue'
+import AppComboboxTrigger from '@/components/combobox/AppComboboxTrigger.vue'
+import AppComboboxViewport from '@/components/combobox/AppComboboxViewport.vue'
+import { useCombobox } from '@/components/combobox/combobox.composable'
+import AppIcon from '@/components/icon/AppIcon.vue'
+import AppLoader from '@/components/loader/AppLoader.vue'
+import AppTagsInputItem from '@/components/tags-input/AppTagsInputItem.vue'
+import type { ComboboxItem } from '@/types/comboboxItem.type'
+import type { AcceptableValue } from '@/types/selectItem.type'
 
 const props = withDefaults(
   defineProps<{

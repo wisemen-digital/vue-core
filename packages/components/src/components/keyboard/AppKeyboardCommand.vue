@@ -1,12 +1,9 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 
-import type {
-  CommandType,
-  KeyboardKey,
-} from '../../types/keyboard.type'
-import AppText from '../text/AppText.vue'
-import AppKeyboardKey from './AppKeyboardKey.vue'
+import AppKeyboardKey from '@/components/keyboard/AppKeyboardKey.vue'
+import AppText from '@/components/text/AppText.vue'
+import type { CommandType, KeyboardKey } from '@/types/keyboard.type'
 
 const props = withDefaults(defineProps<{
   commandType: CommandType

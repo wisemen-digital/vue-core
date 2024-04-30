@@ -8,13 +8,13 @@ import {
   onUnmounted,
 } from 'vue'
 
-import { useCollection } from './collection.composable'
-import { injectRovingFocusGroupContext } from './rovingFocus.context'
+import { useCollection } from '@/components/roving-focus/collection.composable'
+import { injectRovingFocusGroupContext } from '@/components/roving-focus/rovingFocus.context'
 import {
   focusFirst,
   getFocusIntent,
   wrapArray,
-} from './rovingFocus.util'
+} from '@/components/roving-focus/rovingFocus.util'
 
 export interface RovingFocusItemProps extends PrimitiveProps {
   active?: boolean

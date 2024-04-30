@@ -6,13 +6,10 @@ import {
 } from 'radix-vue'
 import { computed } from 'vue'
 
-import { useKeyboardCommand } from '../../composables/keyboardCommand.composable'
-import type {
-  DropdownMenuItem,
-  DropdownMenuOption,
-} from '../../types/dropdownMenuItem.type'
-import AppDropdownMenuContent from './AppDropdownMenuContent.vue'
-import AppDropdownMenuItem from './AppDropdownMenuItem.vue'
+import AppDropdownMenuContent from '@/components/dropdown-menu/AppDropdownMenuContent.vue'
+import AppDropdownMenuItem from '@/components/dropdown-menu/AppDropdownMenuItem.vue'
+import { useKeyboardCommand } from '@/composables/keyboardCommand.composable'
+import type { DropdownMenuItem, DropdownMenuOption } from '@/types/dropdownMenuItem.type'
 
 const props = withDefaults(
   defineProps<{

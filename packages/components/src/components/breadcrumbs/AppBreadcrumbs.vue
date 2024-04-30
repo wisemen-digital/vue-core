@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { BreadcrumbItem } from '../../types/breadcrumbItem.type'
-import AppBreadcrumbDivider from './AppBreadcrumbDivider.vue'
-import AppBreadcrumbItem from './AppBreadcrumbItem.vue'
+import AppBreadcrumbDivider from '@/components/breadcrumbs/AppBreadcrumbDivider.vue'
+import AppBreadcrumbItem from '@/components/breadcrumbs/AppBreadcrumbItem.vue'
+import type { BreadcrumbItem } from '@/types/breadcrumbItem.type'
 
 const props = defineProps<{
   /**

@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
 
-import type { BreadcrumbItem } from '../../types/breadcrumbItem.type'
-import AppIcon from '../icon/AppIcon.vue'
-import AppText from '../text/AppText.vue'
-import AppBreadcrumbEllipsis from './AppBreadcrumbEllipsis.vue'
+import AppBreadcrumbEllipsis from '@/components/breadcrumbs/AppBreadcrumbEllipsis.vue'
+import AppIcon from '@/components/icon/AppIcon.vue'
+import AppText from '@/components/text/AppText.vue'
+import type { BreadcrumbItem } from '@/types/breadcrumbItem.type'
 
 const props = defineProps<{
   item: BreadcrumbItem

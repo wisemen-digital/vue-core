@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import type { Icon } from '../../icons/icons'
-import AppIcon from '../icon/AppIcon.vue'
-import AppLoader from '../loader/AppLoader.vue'
-import type { ButtonStyleProps } from './button.style'
-import { button, buttonIcon } from './button.style'
+import {
+  button,
+  buttonIcon,
+  type ButtonStyleProps,
+} from '@/components/button/button.style'
+import AppIcon from '@/components/icon/AppIcon.vue'
+import AppLoader from '@/components/loader/AppLoader.vue'
+import type { Icon } from '@/icons/icons'
 
 export interface AppButtonProps {
   /**

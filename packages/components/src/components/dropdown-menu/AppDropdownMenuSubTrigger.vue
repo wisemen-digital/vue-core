@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { DropdownMenuSubTrigger } from 'radix-vue'
 
-import type { DropdownMenuSubMenu } from '../../types/dropdownMenuItem.type'
-import AppIcon from '../icon/AppIcon.vue'
-import AppText from '../text/AppText.vue'
+import AppIcon from '@/components/icon/AppIcon.vue'
+import AppText from '@/components/text/AppText.vue'
+import type { DropdownMenuSubMenu } from '@/types/dropdownMenuItem.type'
 
 const props = defineProps<{
   item: DropdownMenuSubMenu

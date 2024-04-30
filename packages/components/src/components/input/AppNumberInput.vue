@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import type { Icon } from '../../icons/icons'
-import AppIconButton from '../button/AppIconButton.vue'
-import AppInput from './AppInput.vue'
+import AppIconButton from '@/components/button/AppIconButton.vue'
+import AppInput from '@/components/input/AppInput.vue'
+import type { Icon } from '@/icons/icons'
 
 const props = withDefaults(defineProps<{
   /**

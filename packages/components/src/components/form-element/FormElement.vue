@@ -2,10 +2,10 @@
 import { useId } from 'radix-vue'
 import { computed } from 'vue'
 
-import type { FormFieldErrors } from '../../types/formFieldErrors.type'
-import FormError from '../form-error/FormError.vue'
-import FormGroup from '../form-group/FormGroup.vue'
-import FormLabel from '../form-label/FormLabel.vue'
+import FormError from '@/components/form-error/FormError.vue'
+import FormGroup from '@/components/form-group/FormGroup.vue'
+import FormLabel from '@/components/form-label/FormLabel.vue'
+import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
 const props = defineProps<{
   /**

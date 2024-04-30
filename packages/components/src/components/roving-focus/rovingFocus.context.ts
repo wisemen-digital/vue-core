@@ -1,7 +1,7 @@
 import { createContext } from 'radix-vue'
 import type { Ref } from 'vue'
 
-import type { Direction, Orientation } from './rovingFocus.util'
+import type { Direction, Orientation } from '@/components/roving-focus/rovingFocus.util'
 
 interface RovingContext {
   currentTabStopId: Ref<null | string | undefined>

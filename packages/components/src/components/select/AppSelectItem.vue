@@ -2,7 +2,8 @@
 import type {
   AcceptableValue,
   SelectItem,
-} from '../../types/selectItem.type'
+} from '@/types/selectItem.type'
+
 import AppSelectDivider from './AppSelectDivider.vue'
 import AppSelectGroup from './AppSelectGroup.vue'
 import AppSelectOption from './AppSelectOption.vue'

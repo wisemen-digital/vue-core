@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import type { KeyboardKey } from '../../types/keyboard.type'
+import type { KeyboardKey } from '@/types/keyboard.type'
 
 const props = withDefaults(defineProps<{
   hasBorder?: boolean

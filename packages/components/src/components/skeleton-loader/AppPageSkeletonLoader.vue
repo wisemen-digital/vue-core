@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import AppContainer from '../container/AppContainer.vue'
-import AppIcon from '../icon/AppIcon.vue'
-import AppSkeletonLoaderButton from './AppSkeletonLoaderButton.vue'
-import AppSkeletonLoaderRow from './AppSkeletonLoaderRow.vue'
+import AppContainer from '@/components/container/AppContainer.vue'
+import AppIcon from '@/components/icon/AppIcon.vue'
+import AppSkeletonLoaderButton from '@/components/skeleton-loader/AppSkeletonLoaderButton.vue'
+import AppSkeletonLoaderRow from '@/components/skeleton-loader/AppSkeletonLoaderRow.vue'
 </script>
 
 <template>

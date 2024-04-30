@@ -135,14 +135,14 @@ import type {
   Position,
   ToastT,
   ToastToDismiss
-} from './types'
-import { ToastState } from './state'
-import Toast from './Toast.vue'
-import LoaderIcon from './assets/Loader.vue'
-import SuccessIcon from './assets/SuccessIcon.vue'
-import InfoIcon from './assets/InfoIcon.vue'
-import WarningIcon from './assets/WarningIcon.vue'
-import ErrorIcon from './assets/ErrorIcon.vue'
+} from '@/components/sonner/types'
+import { ToastState } from '@/components/sonner/state'
+import Toast from '@/components/sonner/Toast.vue'
+import LoaderIcon from '@/components/sonner/assets/Loader.vue'
+import SuccessIcon from '@/components/sonner/assets/SuccessIcon.vue'
+import InfoIcon from '@/components/sonner/assets/InfoIcon.vue'
+import WarningIcon from '@/components/sonner/assets/WarningIcon.vue'
+import ErrorIcon from '@/components/sonner/assets/ErrorIcon.vue'
 
 defineOptions({
   name: 'Toaster',

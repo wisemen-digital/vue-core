@@ -1,5 +1,4 @@
-import type { VariantProps } from '../../libs/cva.lib'
-import { cva } from '../../libs/cva.lib'
+import { cva, type VariantProps } from '@/libs/cva.lib'
 
 export const button = cva({
   base: 'relative flex items-center justify-center rounded-button border border-solid outline-none ring-offset-1 ring-offset-background duration-200 focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-50',

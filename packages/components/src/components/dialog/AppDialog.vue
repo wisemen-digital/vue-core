@@ -10,8 +10,8 @@ import {
   watch,
 } from 'vue'
 
-import AppDialogContent from './AppDialogContent.vue'
-import AppDialogOverlay from './AppDialogOverlay.vue'
+import AppDialogContent from '@/components/dialog/AppDialogContent.vue'
+import AppDialogOverlay from '@/components/dialog/AppDialogOverlay.vue'
 
 const props = withDefaults(defineProps<{
   /**

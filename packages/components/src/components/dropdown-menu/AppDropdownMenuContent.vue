@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { DropdownMenuContent } from 'radix-vue'
 
-import AppDropdownMenuArrow from './AppDropdownMenuArrow.vue'
+import AppDropdownMenuArrow from '@/components/dropdown-menu/AppDropdownMenuArrow.vue'
 
 const props = defineProps<{
   align: 'center' | 'end' | 'start'

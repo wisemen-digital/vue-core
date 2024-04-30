@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useComponentAttrs } from '../../composables/componentAttrs.composable'
-import type { Icon } from '../../icons/icons'
-import AppIcon from '../icon/AppIcon.vue'
-import AppLoader from '../loader/AppLoader.vue'
+import AppIcon from '@/components/icon/AppIcon.vue'
+import AppLoader from '@/components/loader/AppLoader.vue'
+import { useComponentAttrs } from '@/composables/componentAttrs.composable'
+import type { Icon } from '@/icons/icons'
 
 const props = withDefaults(defineProps<{
   /**

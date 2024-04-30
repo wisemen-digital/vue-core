@@ -6,8 +6,8 @@ import {
 } from 'radix-vue'
 import { computed } from 'vue'
 
-import FormLabel from '../form-label/FormLabel.vue'
-import AppIcon from '../icon/AppIcon.vue'
+import FormLabel from '@/components/form-label/FormLabel.vue'
+import AppIcon from '@/components/icon/AppIcon.vue'
 
 const props = withDefaults(defineProps<{
   id?: null | string

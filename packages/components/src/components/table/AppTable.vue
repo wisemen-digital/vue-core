@@ -16,7 +16,8 @@ import type {
   SortChangeEvent,
   TableColumn,
   TableFilter,
-} from '../../types/table.type'
+} from '@/types/table.type'
+
 import AppTableBody from './AppTableBody.vue'
 import AppTableFooter from './AppTableFooter.vue'
 import AppTableHeader from './AppTableHeader.vue'
@@ -24,11 +25,11 @@ import AppTableTop from './AppTableTop.vue'
 
 const props = withDefaults(
   defineProps<{
+    isLoading: boolean
     columns: TableColumn<TSchema>[]
     data: PaginatedData<TSchema> | null
     emptyMessage: string
     filters: TableFilter<TFilters>[]
-    isLoading: boolean
     pagination: Pagination<TFilters>
     pinFirstColumn?: boolean
     pinLastColumn?: boolean
@@ -57,6 +58,7 @@ let resizeObserver: ResizeObserver | null = null
 const gridTemplateColumns = computed<string>(() => {
   return props.columns.reduce((acc, column) => {
     const colSpan = column.size ?? '1fr'
+
     return `${acc} ${colSpan}`
   }, '')
 })
@@ -124,6 +126,7 @@ function setHasReachedHorizontalScrollEnd(): void {
 
 function createResizeObserver(element: HTMLElement, onResize: () => void): ResizeObserver {
   const observer = new ResizeObserver(onResize)
+
   observer.observe(element)
 
   return observer

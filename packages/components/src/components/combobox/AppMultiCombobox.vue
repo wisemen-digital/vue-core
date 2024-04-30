@@ -7,15 +7,15 @@ import {
 } from 'radix-vue'
 import { computed, ref } from 'vue'
 
-import type { Icon } from '../../icons/icons'
-import type { ComboboxItem } from '../../types/comboboxItem.type'
-import type { AcceptableValue } from '../../types/selectItem.type'
-import AppComboboxContent from './AppComboboxContent.vue'
-import AppComboboxEmpty from './AppComboboxEmpty.vue'
-import AppComboboxInput from './AppComboboxInput.vue'
-import AppComboboxItem from './AppComboboxItem.vue'
-import AppComboboxViewport from './AppComboboxViewport.vue'
-import { useCombobox } from './combobox.composable'
+import AppComboboxContent from '@/components/combobox/AppComboboxContent.vue'
+import AppComboboxEmpty from '@/components/combobox/AppComboboxEmpty.vue'
+import AppComboboxInput from '@/components/combobox/AppComboboxInput.vue'
+import AppComboboxItem from '@/components/combobox/AppComboboxItem.vue'
+import AppComboboxViewport from '@/components/combobox/AppComboboxViewport.vue'
+import { useCombobox } from '@/components/combobox/combobox.composable'
+import type { Icon } from '@/icons/icons'
+import type { ComboboxItem } from '@/types/comboboxItem.type'
+import type { AcceptableValue } from '@/types/selectItem.type'
 
 const props = withDefaults(
   defineProps<{
