@@ -3434,7 +3434,7 @@ packages:
       vite: ^5.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 5.2.10(@types/node@20.12.7)
+      vite: 5.2.10(@types/node@18.19.31)(sass@1.75.0)
       vue: 3.4.26(typescript@5.4.5)
     dev: true
 
