@@ -36,7 +36,7 @@ function getControlValueDefault() {
 
 <template>
   <div
-    class="my-8 flex w-full flex-col rounded border border-foreground bg-neutral-900"
+    class="vp-raw my-8 flex w-full flex-col rounded border border-foreground bg-neutral-900"
   >
     <div class="flex items-center justify-center rounded-t p-4">
       <slot :values="controlValues" />

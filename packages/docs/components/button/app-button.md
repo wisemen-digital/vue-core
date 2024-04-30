@@ -8,10 +8,7 @@ sidebar: auto
 import AppButtonPlayground from './AppButtonPlayground.vue'
 </script>
 
-
 <AppButtonPlayground />
-
-
 
 ## Props
 
