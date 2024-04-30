@@ -2,11 +2,10 @@
   "name": "@wisemen/vue-core",
   "type": "module",
   "version": "0.0.0",
-  "packageManager": "pnpm@8.15.4",
+  "packageManager": "pnpm@9.0.6",
   "license": "MIT",
   "workspaces": [
-    "packages/*",
-    "docs"
+    "packages/*"
   ],
   "scripts": {
     "build": "rimraf packages/vue-core/dist && pnpm run -r build",

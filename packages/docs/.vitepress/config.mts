@@ -13,6 +13,15 @@ const docs = [
   {
     items: [
       {
+        link: '/components/badge/app-badge',
+        text: 'AppBadge',
+      },
+    ],
+    text: 'Badge',
+  },
+  {
+    items: [
+      {
         link: '/components/button/app-button',
         text: 'AppButton',
       },
@@ -104,6 +113,15 @@ const docs = [
       },
     ],
     text: 'Textarea',
+  },
+  {
+    items: [
+      {
+        link: '/components/tooltip/app-tooltip',
+        text: 'AppTooltip',
+      },
+    ],
+    text: 'Tooltip',
   },
 ]
 
