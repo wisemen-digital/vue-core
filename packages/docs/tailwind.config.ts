@@ -5,7 +5,8 @@ export default {
   ...TailwindConfig,
   content: [
     '../components/src/components/**/*.{vue,ts}',
-    './src/**/*.{vue,ts}',
+    './playground/**/*.{vue,ts}',
+    './components/**/*.{vue,ts}',
     './index.html',
   ],
 }

@@ -1,4 +1,4 @@
 {
   "extends": ["./tsconfig.app.json"],
-  "files": ["tailwind.config.ts", "postcss.config.js", "vite.config.ts"]
+  "files": ["tailwind.config.ts", "postcss.config.js", "vite.config.ts", "eslint.config.js"]
 }
