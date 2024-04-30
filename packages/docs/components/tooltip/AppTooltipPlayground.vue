@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import AppTooltip from '@/components/tooltip/AppTooltip.vue';
 import AppText from '@components/components/text/AppText.vue';
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols'
@@ -23,6 +24,7 @@ const controls = createControls({
   },
   delayDuration: {
     default: '0',
+    cols: 2,
     label: 'Delay duration',
     type: 'text',
   },
@@ -47,7 +49,8 @@ const controls = createControls({
     type: 'switch',
   },
   offset: {
-    default: '10',
+    default: '3',
+    cols: 2,
     label: 'Offset',
     type: 'text',
   },
@@ -71,7 +74,7 @@ const controls = createControls({
     :controls="controls"
   >
     <template #default="{ values }">
-      <AppTooltip  v-bind="values" :content="values.content">
+      <AppTooltip v-bind="values" :content="values.content">
         <AppText variant="body">
           Trigger element     
         </AppText>
