@@ -162,6 +162,7 @@ function getCountryFlagUrl(countryCode: string): string {
     :is-touched="props.isTouched"
     :label="props.label"
     :placeholder="props.placeholder"
+    type="tel"
   >
     <template #left>
       <div class="ml-3 h-3 w-5 overflow-hidden rounded-sm">

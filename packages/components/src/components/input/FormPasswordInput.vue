@@ -99,7 +99,7 @@ function onBlur(): void {
       :is-disabled="props.isDisabled"
       :is-invalid="isInvalid"
       :placeholder="props.placeholder"
-      :icon-left="props.iconLeft"
+      :icon-left="props.iconLeft ?? undefined"
       :is-loading="props.isLoading"
       @focus="onFocus"
       @blur="onBlur"

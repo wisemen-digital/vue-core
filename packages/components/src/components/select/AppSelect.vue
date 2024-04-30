@@ -142,7 +142,10 @@ function onTriggerBlur(): void {
           leave-from-class="opacity-100"
           leave-to-class="opacity-0"
         >
-          <div v-if="isOpen">
+          <div
+            v-if="isOpen"
+            class="z-popover"
+          >
             <AppSelectContent>
               <AppSelectItem
                 v-for="(item, i) of props.items"

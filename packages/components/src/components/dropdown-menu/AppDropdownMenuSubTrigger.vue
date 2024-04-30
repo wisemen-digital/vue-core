@@ -21,21 +21,23 @@ const props = defineProps<{
           size="default"
         />
 
-        <slot :item="props.item">
-          <AppText
-            class="truncate text-muted-foreground group-focus:text-foreground"
-            variant="subtext"
-          >
-            {{ props.item.label }}
-          </AppText>
-        </slot>
+        <Component
+          :is="props.item.render()"
+          v-if="props.item.render !== undefined"
+        />
+
+        <AppText
+          v-else
+          class="truncate text-muted-foreground group-focus:text-foreground"
+          variant="subtext"
+        >
+          {{ props.item.label }}
+        </AppText>
       </div>
 
-      <AppIcon
-        class="ml-4 shrink-0 text-muted-foreground"
-        icon="chevronRight"
-        size="sm"
-      />
+      <span class="ml-4 text-[8px] text-muted-foreground/50">
+        ▶
+      </span>
     </div>
   </DropdownMenuSubTrigger>
 </template>

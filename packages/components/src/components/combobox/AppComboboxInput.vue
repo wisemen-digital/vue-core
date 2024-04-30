@@ -43,7 +43,7 @@ function onBlur(): void {
       'border-destructive [&:has(:focus-visible)]:ring-destructive': props.isInvalid,
       'cursor-not-allowed opacity-50': props.isDisabled,
     }"
-    class="flex h-10 items-center rounded-input border border-solid bg-input ring-offset-background duration-200 [&:has(:focus-visible)]:outline-none [&:has(:focus-visible)]:ring-2 [&:has(:focus-visible)]:ring-offset-2"
+    class="flex h-10 items-center rounded-input border border-solid bg-input ring-offset-background duration-200 [&:has(:focus-visible)]:outline-none [&:has(:focus-visible)]:ring-2 [&:has(:focus-visible)]:ring-offset-1"
   >
     <slot name="left">
       <AppIcon

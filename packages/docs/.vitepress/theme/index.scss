@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --neutral-900: 245, 245, 245;
+  --neutral-800: 245, 245, 245;
+  --white: 255, 255, 255;
+}
+
+.dark {
+  --muted-foreground: 155, 155, 155;
+  --input: 0, 0, 0;
+  --input-foreground: 235, 235, 235;
+  --input-border: 80, 80, 80;
+  --popver: 0, 0, 0;
+  --background: 0, 0, 0;
+  --foreground: 255, 255, 255;
+  --muted-background: 35, 35, 35;
+  --switch-background: 80, 80, 80;
+  --switch-foreground: 235, 235, 235;
+  --neutral-900: 0, 0, 0;
+  --neutral-800: 25, 25, 25;
+  --white: 0, 0, 0;
+}

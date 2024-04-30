@@ -58,10 +58,7 @@ export function useTablePagination<TFilters>({
         ...currentOptions.pagination,
         ...userOptions.pagination,
       },
-      sort: {
-        ...currentOptions.sort,
-        ...userOptions.sort,
-      },
+      sort: currentOptions.sort ?? userOptions.sort ?? undefined,
     }
   }
 
