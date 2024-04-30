@@ -87,6 +87,24 @@ const docs = [
     ],
     text: 'Select',
   },
+  {
+    items: [
+      {
+        link: '/components/text/app-text',
+        text: 'AppText',
+      },
+    ],
+    text: 'Text',
+  },
+  {
+    items: [
+      {
+        link: '/components/textarea/app-textarea',
+        text: 'AppTextarea',
+      },
+    ],
+    text: 'Textarea',
+  },
 ]
 
 // https://vitepress.dev/reference/site-config
