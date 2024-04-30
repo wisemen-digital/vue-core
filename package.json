@@ -16,9 +16,9 @@
     "dev": "pnpm run -r dev"
   },
   "devDependencies": {
-    "@wisemen/eslint-config-vue": "^0.0.10",
+    "@wisemen/eslint-config-vue": "file:/Users/robbe/work/2023/eslint-config-vue/wisemen-eslint-config-vue-0.0.14.tgz",
     "eslint": "^8.57.0",
-    "radix-vue": "^1.5.3",
+    "radix-vue": "^1.7.3",
     "rimraf": "^5.0.5"
   }
 }
