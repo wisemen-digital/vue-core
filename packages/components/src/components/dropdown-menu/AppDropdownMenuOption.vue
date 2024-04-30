@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { DropdownMenuItem as RadixDropdownMenuItem } from 'radix-vue'
 
-import type { DropdownMenuOption } from '../../types/dropdownMenuItem.type'
-import AppIcon from '../icon/AppIcon.vue'
-import AppKeyboardShortcut from '../keyboard/AppKeyboardShortcut.vue'
-import AppText from '../text/AppText.vue'
+import AppIcon from '@/components/icon/AppIcon.vue'
+import AppKeyboardShortcut from '@/components/keyboard/AppKeyboardShortcut.vue'
+import AppText from '@/components/text/AppText.vue'
+import type { DropdownMenuOption } from '@/types/dropdownMenuItem.type'
 
 const props = defineProps<{
   item: DropdownMenuOption

@@ -1,13 +1,9 @@
 <script setup lang="ts">
-import type { FormFieldErrors } from '../../types/formFieldErrors.type'
-import FormElement from '../form-element/FormElement.vue'
-import AppTagsInput from './AppTagsInput.vue'
+import FormElement from '@/components/form-element/FormElement.vue'
+import AppTagsInput from '@/components/tags-input/AppTagsInput.vue'
+import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
 const props = withDefaults(defineProps<{
-  /**
-   * The errors associated with the input.
-   */
-  errors: FormFieldErrors
   /**
    * Whether the input is disabled.
    */
@@ -20,6 +16,10 @@ const props = withDefaults(defineProps<{
    * Whether the input is touched.
    */
   isTouched: boolean
+  /**
+   * The errors associated with the input.
+   */
+  errors: FormFieldErrors
   /**
    * The label of the input.
    */

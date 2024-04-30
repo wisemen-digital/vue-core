@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { toLocaleNumber } from '../../utils/number.util'
-import AppBadge from '../badge/AppBadge.vue'
-import AppSkeletonLoaderRow from '../skeleton-loader/AppSkeletonLoaderRow.vue'
-import AppText from '../text/AppText.vue'
+import AppBadge from '@/components/badge/AppBadge.vue'
+import AppSkeletonLoaderRow from '@/components/skeleton-loader/AppSkeletonLoaderRow.vue'
+import AppText from '@/components/text/AppText.vue'
+import { toLocaleNumber } from '@/utils/number.util'
 
 const props = defineProps<{
   isLoading: boolean
@@ -12,6 +12,7 @@ const props = defineProps<{
 </script>
 
 <template>
+  <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
   <div class="border-b border-solid border-border px-6 py-4">
     <div class="flex items-center gap-x-2">
       <AppText

@@ -1,8 +1,7 @@
 import { computed, type ComputedRef } from 'vue'
 
+import type { ComboboxItem } from '@/types/comboboxItem.type'
 import type { AcceptableValue } from '@/types/selectItem.type'
-
-import type { ComboboxItem } from '../../types/comboboxItem.type'
 
 interface UseComboboxParams {
   isLoading: ComputedRef<boolean>

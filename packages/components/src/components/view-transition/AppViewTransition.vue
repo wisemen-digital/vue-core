@@ -14,7 +14,7 @@ const props = defineProps<{
 const hasSupportForViewTransitionsApi = document.startViewTransition !== undefined
 
 // Watch for slot changes and start the view transition
-const slots = useSlots()
+const _slots = useSlots()
 
 const isActuallyToggled = ref<boolean>(props.isToggled)
 
@@ -45,12 +45,14 @@ onMounted(() => {
     await transition.finished
 
     const to = wrapper?.children[0] as HTMLElement
+
     to.style.viewTransitionName = ''
   })
 })
 </script>
 
 <template>
+  <!-- eslint-disable tailwindcss/no-custom-classname -->
   <div class="view-transition">
     <slot
       v-if="isActuallyToggled"

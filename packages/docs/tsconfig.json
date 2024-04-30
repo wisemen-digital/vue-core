@@ -10,6 +10,9 @@
     "module": "esnext",
     "moduleResolution": "node",
     "paths": {
+      "@/*": [
+        "../components/src/*"
+      ],
       "@components/*": [
         "../components/src/*"
       ],
@@ -22,6 +25,7 @@
       "node",
       "@types/dom-view-transitions"
     ],
+    "allowJs": true,
     "strict": true,
     "declaration": false,
     "outDir": "dist",
@@ -30,7 +34,6 @@
     "skipLibCheck": true
   },
   "files": [
-    "tailwind.config.ts",
     "postcss.config.js",
     "eslint.config.js"
   ],
@@ -39,6 +42,9 @@
     "./playground/**/*.tsx",
     "./playground/**/*.vue",
     ".vitepress/config.mts",
+    ".vitepress/theme/index.ts",
+    "tailwind.config.ts",
+
     "../components/env.d.ts",
     "../components/src/**/*",
     "../components/src/**/*.ts",

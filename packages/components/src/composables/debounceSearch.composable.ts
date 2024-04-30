@@ -5,8 +5,8 @@ import {
 } from 'vue'
 
 interface UseDebounceSearchReturnType {
-  debouncedSearch: Ref<string>
   isDebouncing: Ref<boolean>
+  debouncedSearch: Ref<string>
   search: Ref<string>
 }
 
@@ -36,8 +36,8 @@ export function useDebounceSearch(
   })
 
   return {
-    debouncedSearch,
     isDebouncing,
+    debouncedSearch,
     search,
   }
 }

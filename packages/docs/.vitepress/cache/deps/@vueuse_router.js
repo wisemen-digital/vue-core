@@ -1,20 +1,20 @@
 import {
   useRoute,
   useRouter
-} from "./chunk-73NWNFM5.js";
-import "./chunk-WBYI4UQ7.js";
+} from "./chunk-CN6TQWOT.js";
 import {
   toValue,
   tryOnScopeDispose
-} from "./chunk-WDOTLKFY.js";
-import "./chunk-HVKGD6BO.js";
+} from "./chunk-7VP5DAQT.js";
+import "./chunk-WBYI4UQ7.js";
+import "./chunk-UM7RCC42.js";
 import {
   customRef,
   nextTick,
   watch
-} from "./chunk-RG7C3B44.js";
+} from "./chunk-ZQ3ESIZP.js";
 
-// ../../node_modules/.pnpm/@vueuse+router@10.9.0_vue-router@4.3.0_vue@3.4.21/node_modules/@vueuse/router/index.mjs
+// ../../node_modules/.pnpm/@vueuse+router@10.9.0_vue-router@4.3.2_vue@3.4.26/node_modules/@vueuse/router/index.mjs
 var _hash;
 function useRouteHash(defaultValue, {
   mode = "replace",

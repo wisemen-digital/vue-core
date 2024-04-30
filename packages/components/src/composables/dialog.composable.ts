@@ -17,7 +17,7 @@ import type {
   UseDialogContainerReturnType,
   UseDialogOptions,
   UseDialogReturnType,
-} from '../types/dialog.type'
+} from '@/types/dialog.type'
 
 const dialogs = ref<Dialog[]>([])
 
@@ -73,25 +73,25 @@ export function useDialog<TComponent extends Record<string, unknown>>({
         c.default as Component,
         reactive<Attrs<TComponent>>({
           ...attrs,
+          triggerId,
           animateFromTrigger,
           onClose: () => {
             closeDialog()
           },
-          triggerId,
         }),
       )
     })
 
     return ref<Dialog>({
-      component: markRaw(dialogComponent),
       id: triggerId,
       isOpen: false,
+      component: markRaw(dialogComponent),
     })
   }
 
   return {
+    triggerId,
     close: closeDialog,
     open: openDialog as UseDialogReturnType<TComponent>['open'],
-    triggerId,
   }
 }

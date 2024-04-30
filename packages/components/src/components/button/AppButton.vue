@@ -5,27 +5,17 @@ import {
   ref,
 } from 'vue'
 
-import { useKeyboardShortcut } from '../../composables/keyboardShortcut.composable'
-import type { Icon } from '../../icons/icons'
-import type { KeyboardShortcutConfig } from '../../types/keyboardShortcut.type'
-import AppIcon from '../icon/AppIcon.vue'
-import AppKeyboardShortcut from '../keyboard/AppKeyboardShortcut.vue'
-import type { KeyboardKeyStyleProps } from '../keyboard/keyboardKey.style'
-import AppLoader from '../loader/AppLoader.vue'
-import type { ButtonStyleProps } from './button.style'
-import { button, buttonIcon } from './button.style'
+import type { ButtonStyleProps } from '@/components/button/button.style'
+import { button, buttonIcon } from '@/components/button/button.style'
+import AppIcon from '@/components/icon/AppIcon.vue'
+import AppKeyboardShortcut from '@/components/keyboard/AppKeyboardShortcut.vue'
+import type { KeyboardKeyStyleProps } from '@/components/keyboard/keyboardKey.style'
+import AppLoader from '@/components/loader/AppLoader.vue'
+import { useKeyboardShortcut } from '@/composables/keyboardShortcut.composable'
+import type { Icon } from '@/icons/icons'
+import type { KeyboardShortcutConfig } from '@/types/keyboardShortcut.type'
 
 export interface AppButtonProps {
-  /**
-   * The icon to display on the left side of the button.
-   * @default null
-   */
-  iconLeft?: Icon | null
-  /**
-   * The icon to display on the right side of the button.
-   * @default null
-   */
-  iconRight?: Icon | null
   /**
    * Whether the button is disabled.
    * @default false
@@ -36,6 +26,16 @@ export interface AppButtonProps {
    * @default false
    */
   isLoading?: boolean
+  /**
+   * The icon to display on the left side of the button.
+   * @default null
+   */
+  iconLeft?: Icon | null
+  /**
+   * The icon to display on the right side of the button.
+   * @default null
+   */
+  iconRight?: Icon | null
   /**
    * The keyboard shortcut keys which trigger the button.
    * @default null

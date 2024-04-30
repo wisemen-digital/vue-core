@@ -9,7 +9,7 @@ import AppComboboxPlayground from './AppComboboxPlayground.vue'
 
 <AppComboboxPlayground />
 
-For multi value select, see [AppMultiCombobox](/components/app-multi-combobox.md).
+For multi value select, see [AppMultiCombobox] //TODO.
 
 
 ## Props

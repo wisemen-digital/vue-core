@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { TooltipContent } from 'radix-vue'
 
-import AppTooltipArrow from './AppTooltipArrow.vue'
+import AppTooltipArrow from '@/components/tooltip/AppTooltipArrow.vue'
 
 const props = defineProps<{
-  align: 'center' | 'end' | 'start'
   hasArrow: boolean
+  align: 'center' | 'end' | 'start'
   offset: number
 }>()
 </script>

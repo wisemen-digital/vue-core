@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AppSkeletonLoaderRow from './AppSkeletonLoaderRow.vue'
+import AppSkeletonLoaderRow from '@/components/skeleton-loader/AppSkeletonLoaderRow.vue'
 
 const props = withDefaults(
   defineProps<{

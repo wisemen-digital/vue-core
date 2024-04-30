@@ -121,6 +121,7 @@ export default defineConfig({
     resolve: {
       alias: {
         '@docs': resolve(__dirname, '../'),
+        '@': resolve(__dirname, '../../components/src'),
         '@components': resolve(__dirname, '../../components/src'),
       },
     },

@@ -1,6 +1,6 @@
 import type { RouteLocationNamedRaw } from 'vue-router'
 
-import type { Icon } from '../icons/icons'
+import type { Icon } from '@/icons/icons'
 
 export interface BreadcrumbRoute {
   icon?: Icon

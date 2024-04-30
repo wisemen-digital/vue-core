@@ -7,17 +7,16 @@ import {
 import type { RouteLocationNamedRaw } from 'vue-router'
 import { RouterLink } from 'vue-router'
 
+import AppTableTextCell from '@/components/table/AppTableTextCell.vue'
 import type { TableColumn } from '@/types/table.type'
 
-import AppTableTextCell from './AppTableTextCell.vue'
-
 const props = defineProps<{
-  canScrollVertically: boolean
-  columns: TableColumn<TSchema>[]
-  data: TSchema[]
   hasActiveFilters: boolean
   hasReachedHorizontalScrollEnd: boolean
   isScrolledToRight: boolean
+  canScrollVertically: boolean
+  columns: TableColumn<TSchema>[]
+  data: TSchema[]
   rowClick: ((row: TSchema) => void) | null
   rowTo: ((row: TSchema) => RouteLocationNamedRaw) | null
   shouldPinFirstColumn: boolean

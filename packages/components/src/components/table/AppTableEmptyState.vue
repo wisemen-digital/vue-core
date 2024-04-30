@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import AppSkeletonLoaderRow from '../skeleton-loader/AppSkeletonLoaderRow.vue'
+import AppSkeletonLoaderRow from '@/components/skeleton-loader/AppSkeletonLoaderRow.vue'
 
 const props = defineProps<{
-  activeFilterCount: number
-  columnCount: number
   hasReachedHorizontalScrollEnd: boolean
   isScrolledToRight: boolean
+  activeFilterCount: number
+  columnCount: number
   shouldPinFirstColumn: boolean
   shouldPinLastColumn: boolean
 }>()
