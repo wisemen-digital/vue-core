@@ -5,10 +5,10 @@ sidebar: auto
 
 # AppTextarea
 <script setup>
-// IMPORT COMPONENT PLAYGROUND
+import AppTextareaPlayground from './AppTextareaPlayground.vue'
 </script>
 
-// RENDER COMPONENT PLAYGROUND
+<AppTextareaPlayground />
 
 
 ## Props
