@@ -38,7 +38,7 @@ const docs = [
         text: 'AppMultiCombobox',
       },
       {
-        link: '/components/form-combobox',
+        link: '/components/combobox/form-combobox',
         text: 'FormCombobox',
       },
       {
