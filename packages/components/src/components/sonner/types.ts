@@ -49,6 +49,7 @@ export interface ToastIcons {
 }
 
 export interface ToastT<T extends Component = Component> {
+  id: number | string
   action?: {
     label: Component | string
     onClick: (event: MouseEvent) => void
@@ -70,17 +71,16 @@ export interface ToastT<T extends Component = Component> {
   dismissible?: boolean
   duration?: number
   icon?: Component
-  id: number | string
   important?: boolean
   invert?: boolean
-  onAutoClose?: (toast: ToastT) => void
-  onDismiss?: (toast: ToastT) => void
   position?: Position
   promise?: PromiseT
   style?: CSSProperties
   title?: Component | string
   type?: ToastTypes
   unstyled?: boolean
+  onAutoClose?: (toast: ToastT) => void
+  onDismiss?: (toast: ToastT) => void
 }
 
 export type Position =
@@ -92,9 +92,9 @@ export type Position =
   | 'top-right'
 
 export interface HeightT {
+  toastId: number | string
   height: number
   position: Position
-  toastId: number | string
 }
 
 export interface ToastOptions {
@@ -170,8 +170,8 @@ export enum SwipeStateTypes {
 export type Theme = 'dark' | 'light' | 'system'
 
 export interface ToastToDismiss {
-  dismiss: boolean
   id: number | string
+  dismiss: boolean
 }
 
 export type ExternalToast<T extends Component = Component> = Omit<

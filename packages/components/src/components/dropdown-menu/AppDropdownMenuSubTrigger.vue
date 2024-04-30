@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { DropdownMenuSubTrigger } from 'radix-vue'
 
-import type { DropdownMenuSubMenu } from '../../types/dropdownMenuItem.type'
-import AppIcon from '../icon/AppIcon.vue'
-import AppText from '../text/AppText.vue'
+import AppIcon from '@/components/icon/AppIcon.vue'
+import AppText from '@/components/text/AppText.vue'
+import type { DropdownMenuSubMenu } from '@/types/dropdownMenuItem.type'
 
 const props = defineProps<{
   item: DropdownMenuSubMenu
@@ -11,6 +11,7 @@ const props = defineProps<{
 </script>
 
 <template>
+  <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
   <DropdownMenuSubTrigger class="group cursor-default overflow-hidden rounded-md p-2 py-1.5 outline-none focus:bg-muted-background">
     <div class="flex items-center justify-between gap-x-3 overflow-hidden">
       <div class="flex items-center gap-x-3 overflow-hidden">

@@ -28,6 +28,7 @@ export function useCollection(key?: string, name = ITEM_DATA_ATTR) {
 
     function setCollection() {
       const sourceEl = unrefElement(sourceRef)
+
       if (sourceEl === undefined) {
         return (items.value = [])
       }

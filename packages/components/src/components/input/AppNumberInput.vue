@@ -1,21 +1,11 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import type { Icon } from '../../icons/icons'
-import AppIconButton from '../button/AppIconButton.vue'
-import AppInput from './AppInput.vue'
+import AppIconButton from '@/components/button/AppIconButton.vue'
+import AppInput from '@/components/input/AppInput.vue'
+import type { Icon } from '@/icons/icons'
 
 const props = withDefaults(defineProps<{
-  /**
-   * Whether to hide the increment and decrement controls.
-   * @default false
-   */
-  hideControls?: boolean
-  /**
-   * The left icon of the input.
-   * @default null
-   */
-  iconLeft?: Icon | null
   /**
    * The id of the input.
    * @default null
@@ -36,6 +26,16 @@ const props = withDefaults(defineProps<{
    */
   isLoading?: boolean
   /**
+   * Whether to hide the increment and decrement controls.
+   * @default false
+   */
+  hideControls?: boolean
+  /**
+   * The left icon of the input.
+   * @default null
+   */
+  iconLeft?: Icon | null
+  /**
    * The maximum value of the input.
    * @default null
    */
@@ -51,12 +51,12 @@ const props = withDefaults(defineProps<{
    */
   placeholder?: null | string
 }>(), {
-  hideControls: false,
-  iconLeft: undefined,
   id: null,
   isDisabled: false,
   isInvalid: false,
   isLoading: false,
+  hideControls: false,
+  iconLeft: undefined,
   max: null,
   min: 0,
   placeholder: null,
@@ -77,6 +77,7 @@ const computedModel = computed<null | string>({
   set(value) {
     if (value === null) {
       model.value = null
+
       return
     }
 
@@ -84,6 +85,7 @@ const computedModel = computed<null | string>({
 
     if (Number.isNaN(parsed)) {
       model.value = null
+
       return
     }
 
@@ -102,6 +104,7 @@ const hasReachedMin = computed<boolean>(() => {
 function decrement(): void {
   if (model.value === null) {
     model.value = props.min
+
     return
   }
 
@@ -115,6 +118,7 @@ function decrement(): void {
 function increment(): void {
   if (model.value === null) {
     model.value = props.min
+
     return
   }
 

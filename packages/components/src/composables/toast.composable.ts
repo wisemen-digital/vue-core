@@ -1,8 +1,8 @@
 import { h } from 'vue'
 
-import { toast as vueSonnerToast } from '../components/sonner/state'
-import AppToast from '../components/toast/AppToast.vue'
-import type { Toast } from '../types/toast.type'
+import { toast as vueSonnerToast } from '@/components/sonner/state'
+import AppToast from '@/components/toast/AppToast.vue'
+import type { Toast } from '@/types/toast.type'
 
 interface NamedToast {
   description?: string

@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { DropdownMenuPortal } from 'radix-vue'
 
-import type { DropdownMenuItem } from '../../types/dropdownMenuItem.type'
-import AppDropdownMenuCheckbox from './AppDropdownMenuCheckbox.vue'
-import AppDropdownMenuDivider from './AppDropdownMenuDivider.vue'
-import AppDropdownMenuGroup from './AppDropdownMenuGroup.vue'
-import AppDropdownMenuOption from './AppDropdownMenuOption.vue'
-import AppDropdownMenuRadioGroup from './AppDropdownMenuRadioGroup.vue'
-import AppDropdownMenuSub from './AppDropdownMenuSub.vue'
-import AppDropdownMenuSubContent from './AppDropdownMenuSubContent.vue'
-import AppDropdownMenuSubTrigger from './AppDropdownMenuSubTrigger.vue'
+import AppDropdownMenuCheckbox from '@/components/dropdown-menu/AppDropdownMenuCheckbox.vue'
+import AppDropdownMenuDivider from '@/components/dropdown-menu/AppDropdownMenuDivider.vue'
+import AppDropdownMenuGroup from '@/components/dropdown-menu/AppDropdownMenuGroup.vue'
+import AppDropdownMenuOption from '@/components/dropdown-menu/AppDropdownMenuOption.vue'
+import AppDropdownMenuRadioGroup from '@/components/dropdown-menu/AppDropdownMenuRadioGroup.vue'
+import AppDropdownMenuSub from '@/components/dropdown-menu/AppDropdownMenuSub.vue'
+import AppDropdownMenuSubContent from '@/components/dropdown-menu/AppDropdownMenuSubContent.vue'
+import AppDropdownMenuSubTrigger from '@/components/dropdown-menu/AppDropdownMenuSubTrigger.vue'
+import type { DropdownMenuItem } from '@/types/dropdownMenuItem.type'
 
 const props = defineProps<{
   item: DropdownMenuItem

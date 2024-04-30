@@ -5,13 +5,13 @@ import {
   TagsInputItemText,
 } from 'radix-vue'
 
-import type { AcceptableValue } from '../../types/selectItem.type'
-import AppIconButton from '../button/AppIconButton.vue'
-import AppText from '../text/AppText.vue'
+import AppIconButton from '@/components/button/AppIconButton.vue'
+import AppText from '@/components/text/AppText.vue'
+import type { AcceptableValue } from '@/types/selectItem.type'
 
 const props = withDefaults(defineProps<{
-  displayFn: (value: TValue) => string
   isDisabled?: boolean
+  displayFn: (value: TValue) => string
   value: TValue
 }>(), {
   isDisabled: false,

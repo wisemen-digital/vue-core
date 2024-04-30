@@ -23,11 +23,12 @@ export function useCollection(key?: string, name = ITEM_DATA_ATTR) {
   const COLLECTION_SYMBOL = key ?? (Symbol('') as InjectionKey<ContextValue>)
 
   function createCollection(sourceRef?: Ref<HTMLElement | undefined>) {
-    const items = ref([]) as Ref<HTMLElement[]> // ref<HTMLElement[]> is causing type inference issue
+    const items = ref<HTMLElement[]>([]) as Ref<HTMLElement[]> // ref<HTMLElement[]> is causing type inference issue
 
     function setCollection() {
       const sourceEl = unrefElement(sourceRef)
-      if (!sourceEl) {
+
+      if (sourceEl == null) {
         return (items.value = [])
       }
 
@@ -51,7 +52,7 @@ export function useCollection(key?: string, name = ITEM_DATA_ATTR) {
   }
 
   function injectCollection() {
-    return inject(COLLECTION_SYMBOL, ref([]))
+    return inject(COLLECTION_SYMBOL, ref<any[]>([]))
   }
 
   return { createCollection, injectCollection }

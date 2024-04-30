@@ -1,11 +1,11 @@
 <script setup lang="ts" generic="TControlKeys extends string">
 import AppText from '@components/components/text/AppText.vue'
+import type { Control, Controls } from '@docs/playground/types/controls.type'
 import {
   type Ref,
   ref,
 } from 'vue'
 
-import type { Control, Controls } from '../types/controls.type'
 import ComponentPlaygroundControls from './ComponentPlaygroundControls.vue'
 
 interface Props<Keys extends string> {
@@ -24,17 +24,20 @@ function setControlValues({ control, value }: { control: TControlKeys, value: an
 
 function getControlValueDefault() {
   const controlsAsArray = Object.entries(props.controls) as [TControlKeys, Control][]
+
   return controlsAsArray.reduce((acc, [
     control,
     controlField,
   ]) => {
     acc[control as TControlKeys] = controlField.default
+
     return acc
   }, {} as Record<TControlKeys, any>)
 }
 </script>
 
 <template>
+  <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
   <div
     class="vp-raw my-8 flex w-full flex-col rounded border border-foreground bg-neutral-900"
   >

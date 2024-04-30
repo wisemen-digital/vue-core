@@ -10,10 +10,16 @@ import {
   watch,
 } from 'vue'
 
-import AppDialogContent from './AppDialogContent.vue'
-import AppDialogOverlay from './AppDialogOverlay.vue'
+import AppDialogContent from '@/components/dialog/AppDialogContent.vue'
+import AppDialogOverlay from '@/components/dialog/AppDialogOverlay.vue'
 
 const props = withDefaults(defineProps<{
+  /**
+   * The id of the element that triggers the dialog.
+   * Will be set automatically when using the `useDialog` composable
+   * @default null
+   */
+  triggerId?: null | string
   /**
    * Whether to animate the dialog with the View Transitions API
    * @default false
@@ -24,16 +30,10 @@ const props = withDefaults(defineProps<{
    * @default false
    */
   hideCloseButton?: boolean
-  /**
-   * The id of the element that triggers the dialog.
-   * Will be set automatically when using the `useDialog` composable
-   * @default null
-   */
-  triggerId?: null | string
 }>(), {
+  triggerId: null,
   animateFromTrigger: false,
   hideCloseButton: false,
-  triggerId: null,
 })
 
 const emit = defineEmits<{
@@ -92,6 +92,7 @@ function animateInWithViewTransitionsApi(): void {
 
   void transition.finished.finally(() => {
     const dialog = getDialogElement()
+
     dialog.style.viewTransitionName = ''
   })
 }

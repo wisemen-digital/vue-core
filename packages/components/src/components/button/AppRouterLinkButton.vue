@@ -6,16 +6,15 @@ import {
 } from 'vue'
 import { type RouteLocationNamedRaw, RouterLink } from 'vue-router'
 
+import type { ButtonStyleProps } from '@/components/button/button.style'
+import { button, buttonIcon } from '@/components/button/button.style'
+import AppIcon from '@/components/icon/AppIcon.vue'
+import AppKeyboardShortcut from '@/components/keyboard/AppKeyboardShortcut.vue'
+import type { KeyboardKeyStyleProps } from '@/components/keyboard/keyboardKey.style'
+import AppLoader from '@/components/loader/AppLoader.vue'
 import { useKeyboardShortcut } from '@/composables/keyboardShortcut.composable'
+import type { Icon } from '@/icons/icons'
 import type { KeyboardShortcutConfig } from '@/types/keyboardShortcut.type'
-
-import type { Icon } from '../../icons/icons'
-import AppIcon from '../icon/AppIcon.vue'
-import AppKeyboardShortcut from '../keyboard/AppKeyboardShortcut.vue'
-import type { KeyboardKeyStyleProps } from '../keyboard/keyboardKey.style'
-import AppLoader from '../loader/AppLoader.vue'
-import type { ButtonStyleProps } from './button.style'
-import { button, buttonIcon } from './button.style'
 
 interface Props {
   /**

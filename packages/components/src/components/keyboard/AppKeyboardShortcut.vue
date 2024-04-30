@@ -2,12 +2,12 @@
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import AppKeyboardKey from '@/components/keyboard/AppKeyboardKey.vue'
+import type { KeyboardKeyStyleProps } from '@/components/keyboard/keyboardKey.style'
+import AppText from '@/components/text/AppText.vue'
 import type {
   KeyboardKey,
-} from '../../types/keyboard.type'
-import AppText from '../text/AppText.vue'
-import AppKeyboardKey from './AppKeyboardKey.vue'
-import type { KeyboardKeyStyleProps } from './keyboardKey.style'
+} from '@/types/keyboard.type'
 
 const props = withDefaults(defineProps<{
   keys: KeyboardKey[]

@@ -7,6 +7,13 @@ import {
 } from 'vue'
 import type { RouteLocationNamedRaw } from 'vue-router'
 
+import AppTableActiveFiltersWarning from '@/components/table/AppTableActiveFiltersWarning.vue'
+import AppTableBody from '@/components/table/AppTableBody.vue'
+import AppTableEmptyState from '@/components/table/AppTableEmptyState.vue'
+import AppTableEmptyStateOverlay from '@/components/table/AppTableEmptyStateOverlay.vue'
+import AppTableFooter from '@/components/table/AppTableFooter.vue'
+import AppTableHeader from '@/components/table/AppTableHeader.vue'
+import AppTableTop from '@/components/table/AppTableTop.vue'
 import type {
   PageChangeEvent,
   PaginatedData,
@@ -14,22 +21,15 @@ import type {
   SortChangeEvent,
   TableColumn,
   TableFilter,
-} from '../../types/table.type'
-import AppTableActiveFiltersWarning from './AppTableActiveFiltersWarning.vue'
-import AppTableBody from './AppTableBody.vue'
-import AppTableEmptyState from './AppTableEmptyState.vue'
-import AppTableEmptyStateOverlay from './AppTableEmptyStateOverlay.vue'
-import AppTableFooter from './AppTableFooter.vue'
-import AppTableHeader from './AppTableHeader.vue'
-import AppTableTop from './AppTableTop.vue'
+} from '@/types/table.type'
 
 const props = withDefaults(
   defineProps<{
+    isInfiniteScroll?: boolean
+    isLoading: boolean
     columns: TableColumn<TSchema>[]
     data: PaginatedData<TSchema> | null
     filters: TableFilter<TFilters>[]
-    isInfiniteScroll?: boolean
-    isLoading: boolean
     pagination: Pagination<TFilters>
     rowClick?: ((row: TSchema) => void) | null
     rowTo?: ((row: TSchema) => RouteLocationNamedRaw) | null
@@ -136,6 +136,7 @@ function handlePageChange(event: PageChangeEvent): void {
 
 function createResizeObserver(element: HTMLElement, onResize: () => void): ResizeObserver {
   const observer = new ResizeObserver(onResize)
+
   observer.observe(element)
 
   return observer

@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
+import AppSkeletonLoaderRow from '@/components/skeleton-loader/AppSkeletonLoaderRow.vue'
+import AppTablePagination from '@/components/table/AppTablePagination.vue'
+import AppText from '@/components/text/AppText.vue'
 import type { PageChangeEvent, PaginationOptions } from '@/types/table.type'
-
-import { toLocaleNumber } from '../../utils/number.util'
-import AppSkeletonLoaderRow from '../skeleton-loader/AppSkeletonLoaderRow.vue'
-import AppText from '../text/AppText.vue'
-import AppTablePagination from './AppTablePagination.vue'
+import { toLocaleNumber } from '@/utils/number.util'
 
 const props = defineProps<{
   isLoading: boolean
@@ -36,6 +35,8 @@ function handlePageEvent(event: PageChangeEvent): void {
 </script>
 
 <template>
+  <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
+
   <div class="sticky bottom-0 left-0 z-10 flex h-14 w-full items-center justify-between border-t border-solid border-border bg-background px-6 py-2">
     <AppSkeletonLoaderRow
       v-if="props.isLoading"

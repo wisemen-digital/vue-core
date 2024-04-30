@@ -1,21 +1,12 @@
 <script setup lang="ts">
-import type { Icon } from '../../icons/icons'
-import AppIcon from '../icon/AppIcon.vue'
-import type { IconStyleProps } from '../icon/icon.style'
-import AppButton from './AppButton.vue'
-import type { ButtonStyleProps } from './button.style'
+import AppButton from '@/components/button/AppButton.vue'
+import type { ButtonStyleProps } from '@/components/button/button.style'
+import AppIcon from '@/components/icon/AppIcon.vue'
+import type { IconStyleProps } from '@/components/icon/icon.style'
+import type { Icon } from '@/icons/icons'
 
 const props = withDefaults(
   defineProps<{
-    /**
-     * The icon to display
-     */
-    icon: Icon
-    /**
-     * The size of the icon
-     * @default default
-     */
-    iconSize?: IconStyleProps['size']
     /**
      * Whether the button is disabled
      * @default false
@@ -27,6 +18,15 @@ const props = withDefaults(
      */
     isLoading?: boolean
     /**
+     * The icon to display
+     */
+    icon: Icon
+    /**
+     * The size of the icon
+     * @default default
+     */
+    iconSize?: IconStyleProps['size']
+    /**
      * The label for the button for accessibility
      */
     label: string
@@ -37,9 +37,9 @@ const props = withDefaults(
     variant?: ButtonStyleProps['variant']
   }>(),
   {
-    iconSize: 'default',
     isDisabled: false,
     isLoading: false,
+    iconSize: 'default',
     variant: 'default',
   },
 )

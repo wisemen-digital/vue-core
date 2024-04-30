@@ -2,11 +2,10 @@
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import AppButton from '@/components/button/AppButton.vue'
+import AppIconButton from '@/components/button/AppIconButton.vue'
+import AppText from '@/components/text/AppText.vue'
 import type { PageChangeEvent, PaginationOptions } from '@/types/table.type'
-
-import AppButton from '../button/AppButton.vue'
-import AppIconButton from '../button/AppIconButton.vue'
-import AppText from '../text/AppText.vue'
 
 const props = defineProps<{
   paginationOptions: PaginationOptions<unknown>

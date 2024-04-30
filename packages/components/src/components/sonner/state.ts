@@ -8,7 +8,7 @@ import type {
   ToastT,
   ToastToDismiss,
   ToastTypes,
-} from './types'
+} from '@/components/sonner/types'
 
 let toastsCounter = 0
 
@@ -42,11 +42,12 @@ class Observer {
       this.toasts = this.toasts.map((toast) => {
         if (toast.id === id) {
           this.publish({ ...toast, ...data, id, title: message })
+
           return {
             ...toast,
             ...data,
-            dismissible,
             id,
+            dismissible,
             title: message,
           }
         }
@@ -55,16 +56,18 @@ class Observer {
       })
     }
     else {
-      this.addToast({ title: message, ...rest, dismissible, id })
+      this.addToast({ title: message, ...rest, id, dismissible })
     }
 
     return id
   }
 
-  // We can't provide the toast we just created as a prop as we didn't create it yet, so we can create a default toast object, I just don't know how to use function in argument when calling()?
+  // We can't provide the toast we just created as a prop as we didn't create it yet,
+  // so we can create a default toast object, I just don't know how to use function in argument when calling()?
   custom = (component: Component, data?: ExternalToast) => {
     const id = data?.id || toastsCounter++
-    this.publish({ component, id, ...data })
+
+    this.publish({ id, component, ...data })
 
     return id
   }
@@ -73,11 +76,12 @@ class Observer {
     if (!id) {
       this.toasts.forEach((toast) => {
         this.subscribers.forEach(subscriber =>
-          subscriber({ dismiss: true, id: toast.id }))
+          subscriber({ id: toast.id, dismiss: true }))
       })
     }
 
-    this.subscribers.forEach(subscriber => subscriber({ dismiss: true, id }))
+    this.subscribers.forEach(subscriber => subscriber({ id, dismiss: true }))
+
     return id
   }
 
@@ -107,6 +111,7 @@ class Observer {
     }
 
     let id: number | string | undefined
+
     if (data.loading !== undefined) {
       id = this.create({
         ...data,
@@ -131,46 +136,45 @@ class Observer {
         && !promiseData.ok
       ) {
         shouldDismiss = false
+
         const message
-          = typeof data.error === 'function'
-            ? // @ts-expect-error test
-            data.error(`HTTP error! status: ${response.status}`)
+          = typeof data.error === 'function' // @ts-expect-error test
+            ? data.error(`HTTP error! status: ${response.status}`)
             : data.error
         const description
-          = typeof data.description === 'function'
-            ? // @ts-expect-error test
-            data.description(`HTTP error! status: ${response.status}`)
+          = typeof data.description === 'function' // @ts-expect-error test
+            ? data.description(`HTTP error! status: ${response.status}`)
             : data.description
 
-        this.create({ description, id, message, type: 'error' })
+        this.create({ id, description, message, type: 'error' })
       }
       else if (data.success !== undefined) {
         shouldDismiss = false
+
         const message
           = typeof data.success === 'function'
             ? data.success(promiseData)
             : data.success
         const description
-          = typeof data.description === 'function'
-            ? // @ts-expect-error test
-            data.description(promiseData)
+          = typeof data.description === 'function' // @ts-expect-error test
+            ? data.description(promiseData)
             : data.description
 
-        this.create({ description, id, message, type: 'success' })
+        this.create({ id, description, message, type: 'success' })
       }
     })
       .catch((error) => {
         if (data.error !== undefined) {
           shouldDismiss = false
+
           const message
             = typeof data.error === 'function' ? data.error(error) : data.error
           const description
-            = typeof data.description === 'function'
-              ? // @ts-expect-error
-              data.description(error)
+            = typeof data.description === 'function' // @ts-expect-error test
+              ? data.description(error)
               : data.description
 
-          this.create({ description, id, message, type: 'error' })
+          this.create({ id, description, message, type: 'error' })
         }
       })
       .finally(() => {
@@ -196,6 +200,7 @@ class Observer {
 
     return () => {
       const index = this.subscribers.indexOf(subscriber as any)
+
       this.subscribers.splice(index, 1)
     }
   }

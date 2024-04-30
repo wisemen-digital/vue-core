@@ -2,12 +2,17 @@
 import { TooltipPortal, TooltipTrigger } from 'radix-vue'
 import { useSlots } from 'vue'
 
-import AppText from '../text/AppText.vue'
-import AppTooltipContent from './AppTooltipContent.vue'
-import AppTooltipProvider from './AppTooltipProvider.vue'
+import AppText from '@/components/text/AppText.vue'
+import AppTooltipContent from '@/components/tooltip/AppTooltipContent.vue'
+import AppTooltipProvider from '@/components/tooltip/AppTooltipProvider.vue'
 
 const props = withDefaults(
   defineProps<{
+    /**
+     * When true, the tooltip will be hidden.
+     * @default false
+     */
+    isHidden?: boolean
     /**
      * The alignment of the tooltip content.
      * @default 'center'
@@ -39,11 +44,6 @@ const props = withDefaults(
      */
     hideArrow?: boolean
     /**
-     * When true, the tooltip will be hidden.
-     * @default false
-     */
-    isHidden?: boolean
-    /**
      * The offset of the tooltip content.
      * @default 10
      */
@@ -55,13 +55,13 @@ const props = withDefaults(
     side?: 'bottom' | 'left' | 'right' | 'top'
   }>(),
   {
+    isHidden: false,
     align: 'center',
     content: null,
     delayDuration: 0,
     disableCloseOnTriggerClick: false,
     disableHoverableContent: false,
     hideArrow: false,
-    isHidden: false,
     offset: 10,
     side: 'top',
   },

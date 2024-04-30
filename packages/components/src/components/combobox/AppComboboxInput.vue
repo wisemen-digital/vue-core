@@ -2,19 +2,18 @@
 import { ComboboxInput, ComboboxTrigger } from 'radix-vue'
 import { ref } from 'vue'
 
+import AppIcon from '@/components/icon/AppIcon.vue'
+import AppLoader from '@/components/loader/AppLoader.vue'
 import type { Icon } from '@/icons/icons'
 
-import AppIcon from '../icon/AppIcon.vue'
-import AppLoader from '../loader/AppLoader.vue'
-
 const props = withDefaults(defineProps<{
-  iconLeft: Icon | null
-  iconRight: Icon | null
   id: null | string
   isChevronHidden: boolean
   isDisabled: boolean
   isInvalid: boolean
   isLoading: boolean
+  iconLeft: Icon | null
+  iconRight: Icon | null
   placeholder: null | string
   showPlaceholderAsValue?: boolean
 }>(), {

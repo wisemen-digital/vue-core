@@ -10,42 +10,18 @@ import {
   ref,
 } from 'vue'
 
+import AppComboboxContent from '@/components/combobox/AppComboboxContent.vue'
+import AppComboboxEmpty from '@/components/combobox/AppComboboxEmpty.vue'
+import AppComboboxInput from '@/components/combobox/AppComboboxInput.vue'
+import AppComboboxItem from '@/components/combobox/AppComboboxItem.vue'
+import AppComboboxViewport from '@/components/combobox/AppComboboxViewport.vue'
+import { useCombobox } from '@/components/combobox/combobox.composable'
 import type { Icon } from '@/icons/icons'
-
-import type { ComboboxItem } from '../../types/comboboxItem.type'
-import type { AcceptableValue } from '../../types/selectItem.type'
-import AppComboboxContent from './AppComboboxContent.vue'
-import AppComboboxEmpty from './AppComboboxEmpty.vue'
-import AppComboboxInput from './AppComboboxInput.vue'
-import AppComboboxItem from './AppComboboxItem.vue'
-import AppComboboxViewport from './AppComboboxViewport.vue'
-import { useCombobox } from './combobox.composable'
+import type { ComboboxItem } from '@/types/comboboxItem.type'
+import type { AcceptableValue } from '@/types/selectItem.type'
 
 const props = withDefaults(
   defineProps<{
-    /**
-     * Display function for the selected value
-     */
-    displayFn: (value: TValue) => string
-    /**
-     * The text to display when there are no options.
-     * @default t('components.combobox.empty')
-     */
-    emptyText?: null | string
-    /**
-     * The function to filter the options.
-     */
-    filterFn: (options: TValue[], searchTerm: string) => TValue[]
-    /**
-     * The icon to display on the left side of the combobox.
-     * @default null
-     */
-    iconLeft?: Icon | null
-    /**
-     * The icon to display on the right side of the combobox.
-     * @default null
-     */
-    iconRight?: Icon | null
     /**
      * The html id of the combobox.
      */
@@ -71,6 +47,29 @@ const props = withDefaults(
      */
     isLoading?: boolean
     /**
+     * Display function for the selected value
+     */
+    displayFn: (value: TValue) => string
+    /**
+     * The text to display when there are no options.
+     * @default t('components.combobox.empty')
+     */
+    emptyText?: null | string
+    /**
+     * The function to filter the options.
+     */
+    filterFn: (options: TValue[], searchTerm: string) => TValue[]
+    /**
+     * The icon to display on the left side of the combobox.
+     * @default null
+     */
+    iconLeft?: Icon | null
+    /**
+     * The icon to display on the right side of the combobox.
+     * @default null
+     */
+    iconRight?: Icon | null
+    /**
      * The options to display in the combobox.
      */
     items: ComboboxItem<TValue>[]
@@ -85,14 +84,14 @@ const props = withDefaults(
     placeholder?: null | string
   }>(),
   {
-    emptyText: null,
-    iconLeft: undefined,
-    iconRight: undefined,
     id: null,
     isChevronHidden: false,
     isDisabled: false,
     isInvalid: false,
     isLoading: false,
+    emptyText: null,
+    iconLeft: undefined,
+    iconRight: undefined,
     placeholder: null,
   },
 )

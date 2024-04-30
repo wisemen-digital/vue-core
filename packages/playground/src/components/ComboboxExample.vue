@@ -1,8 +1,7 @@
 <script setup lang="ts">
+import AppCombobox from '@components/components/combobox/AppCombobox.vue'
+import type { ComboboxItem } from '@components/types/comboboxItem.type'
 import { ref } from 'vue'
-
-import AppCombobox from '../../../components/src/components/combobox/AppCombobox.vue'
-import type { ComboboxItem } from '../../../components/src/types/comboboxItem.type'
 
 interface Item {
   firstName: string
@@ -33,12 +32,19 @@ const items: ComboboxItem<Item>[] = [
     },
   },
 ]
+
+function filterFn(values: Item[], search: string): Item[] {
+  return values.filter((value) => {
+    return value.firstName.toLowerCase().includes(search.toLowerCase())
+  })
+}
 </script>
 
 <template>
   <div>
     <AppCombobox
       v-model="value"
+      :filter-fn="filterFn"
       :items="items"
       :display-fn="(value) => `${value.firstName} ${value.lastName}`"
       search=""

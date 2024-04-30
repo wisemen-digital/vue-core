@@ -7,8 +7,8 @@ import {
 } from 'radix-vue'
 import { useSlots } from 'vue'
 
-import AppPopoverCloseButton from './AppPopoverCloseButton.vue'
-import AppPopoverTrigger from './AppPopoverTrigger.vue'
+import AppPopoverCloseButton from '@/components/popover/AppPopoverCloseButton.vue'
+import AppPopoverTrigger from '@/components/popover/AppPopoverTrigger.vue'
 
 const props = withDefaults(
   defineProps<{

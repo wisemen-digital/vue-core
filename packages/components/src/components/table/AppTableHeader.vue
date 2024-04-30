@@ -1,20 +1,20 @@
 <script setup lang="ts" generic="TSchema">
 import { computed } from 'vue'
 
-import type { Icon } from '../../icons/icons'
+import AppIcon from '@/components/icon/AppIcon.vue'
+import AppText from '@/components/text/AppText.vue'
+import type { Icon } from '@/icons/icons'
 import type {
   PaginationOptions,
   SortChangeEvent,
   SortDirection,
   TableColumn,
-} from '../../types/table.type'
-import AppIcon from '../icon/AppIcon.vue'
-import AppText from '../text/AppText.vue'
+} from '@/types/table.type'
 
 const props = defineProps<{
-  columns: TableColumn<TSchema>[]
   hasReachedHorizontalScrollEnd: boolean
   isScrolledToRight: boolean
+  columns: TableColumn<TSchema>[]
   paginationOptions: PaginationOptions<unknown>
   shouldPinFirstColumn: boolean
   shouldPinLastColumn: boolean
@@ -26,6 +26,7 @@ const emit = defineEmits<{
 
 const currentSortDirection = computed<SortDirection>(() => {
   const { sort } = props.paginationOptions
+
   return getCurrentSortDirection(sort?.direction ?? null)
 })
 
@@ -50,6 +51,7 @@ function handleSortChange(columnId: string): void {
 
   if (shouldRemoveSort(isSameColumn, direction)) {
     removeSort()
+
     return
   }
 
@@ -69,6 +71,7 @@ function shouldRemoveSort(isSameColumn: boolean, direction: 'asc' | 'desc'): boo
 
 function removeSort(): void {
   const updatedSort = {} as SortChangeEvent
+
   emit('sort', updatedSort)
 }
 

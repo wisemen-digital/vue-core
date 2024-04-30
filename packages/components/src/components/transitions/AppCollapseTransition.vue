@@ -37,6 +37,7 @@ function enter(element: Element): void {
 
 function afterEnter(element: Element): void {
   const htmlElement: HTMLElement = element as HTMLElement
+
   htmlElement.style.height = 'auto'
 }
 

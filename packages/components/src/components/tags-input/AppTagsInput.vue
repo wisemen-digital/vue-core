@@ -4,7 +4,7 @@ import {
   TagsInputRoot,
 } from 'radix-vue'
 
-import AppTagsInputItem from './AppTagsInputItem.vue'
+import AppTagsInputItem from '@/components/tags-input/AppTagsInputItem.vue'
 
 const props = withDefaults(defineProps<{
   id?: null | string
