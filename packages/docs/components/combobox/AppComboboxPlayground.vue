@@ -1,15 +1,13 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-
+import AppCombobox from '@components/components/combobox/AppCombobox.vue'
+import type { ComboboxItem } from '@components/index'
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
-import { createControls } from '@docs/playground/utils/createContols';
-import { ComboboxItem } from '@components/index';
-import AppCombobox from '@components/components/combobox/AppCombobox.vue';
-
+import { createControls } from '@docs/playground/utils/createContols'
+import { ref } from 'vue'
 
 const controls = createControls({
   emptyText: {
-    default: "Empty Text",
+    default: 'Empty Text',
     label: 'Empty Text',
     type: 'text',
   },
@@ -48,8 +46,7 @@ const controls = createControls({
     label: 'Is Loading',
     type: 'switch',
   },
-
-});
+})
 
 interface User {
   firstName: string
@@ -75,20 +72,28 @@ const userItems: ComboboxItem<User>[] = [
 
 const user = ref<User | null>(null)
 
-
 function displayFn(user: User): string {
   return `${user.firstName} ${user.lastName}`
 }
 
 function filterFn(users: User[], searchTerm: string): User[] {
-  return users.filter(user => {
+  return users.filter((user) => {
     return displayFn(user).toLowerCase().includes(searchTerm.toLowerCase())
   })
 }
-
 </script>
+
 <template>
-  <ComponentPlayground v-slot="{ values }" :controls="controls">
-    <AppCombobox v-model="user" :items="userItems" :displayFn="displayFn" :filterFn="filterFn" v-bind="values" />
+  <ComponentPlayground
+    v-slot="{ values }"
+    :controls="controls"
+  >
+    <AppCombobox
+      v-model="user"
+      :items="userItems"
+      :display-fn="displayFn"
+      :filter-fn="filterFn"
+      v-bind="values"
+    />
   </ComponentPlayground>
 </template>
