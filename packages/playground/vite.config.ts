@@ -1,3 +1,5 @@
+import { resolve } from 'node:path'
+
 import vue from '@vitejs/plugin-vue'
 import { defineConfig } from 'vite'
 
@@ -7,11 +9,8 @@ export default defineConfig({
     vue(),
   ],
   resolve: {
-    alias: [
-      // {
-      //   find: '@lib',
-      //   replacement: '../components/src/',
-      // },
-    ],
+    alias: {
+      '@components': resolve(__dirname, '../components/src'),
+    },
   },
 })

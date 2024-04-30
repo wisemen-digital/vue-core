@@ -9,9 +9,11 @@
     /* Bundler mode */
     "moduleResolution": "bundler",
 
-    // "paths": {
-    //   "@lib": ["../components/src/*"]
-    // },
+    "paths": {
+      "@components/*": [
+        "../components/src/*"
+      ]
+    },
     "resolveJsonModule": true,
     "allowImportingTsExtensions": true,
 
@@ -25,7 +27,22 @@
     "skipLibCheck": true
   },
   "references": [{ "path": "./tsconfig.node.json" }],
-  "files": ["tailwind.config.ts", "postcss.config.js", "vite.config.ts", "eslint.config.js"],
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "App.vue",
+    "../components/env.d.ts",
+    "../components/src/**/*",
+    "../components/src/**/*.ts",
+    "../components/src/**/*.tsx",
+    "../components/src/**/*.vue",
+    "./components/**/*.vue",
+
+    "tailwind.config.ts",
+    "postcss.config.js",
+    "vite.config.ts",
+    "eslint.config.js"
+  ]
 
 }
