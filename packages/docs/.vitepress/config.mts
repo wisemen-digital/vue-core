@@ -99,6 +99,24 @@ const docs = [
   {
     items: [
       {
+        link: '/components/text/app-text',
+        text: 'AppText',
+      },
+    ],
+    text: 'Text',
+  },
+  {
+    items: [
+      {
+        link: '/components/textarea/app-textarea',
+        text: 'AppTextarea',
+      },
+    ],
+    text: 'Textarea',
+  },
+  {
+    items: [
+      {
         link: '/components/tooltip/app-tooltip',
         text: 'AppTooltip',
       },

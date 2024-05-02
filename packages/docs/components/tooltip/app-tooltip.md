@@ -42,6 +42,7 @@ import AppTooltipPlayground from '@docs/components/tooltip/AppTooltipPlayground.
 ```vue [Usage]
 <script setup lang="ts">
 import { AppTooltip } from '@wisemen/vue-core'
+import { AppText } from '@wisemen/vue-core'
 </script>
   
 <template>
