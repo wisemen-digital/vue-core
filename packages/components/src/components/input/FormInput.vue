@@ -98,17 +98,21 @@ const { classAttr, otherAttrs } = useComponentAttrs()
       :icon-left="props.iconLeft ?? undefined"
       :icon-right="props.iconRight ?? undefined"
     >
-      <template #left>
+      <template
+        v-if="slots.left !== undefined"
+        #left
+      >
         <Component
           :is="slots.left"
-          v-if="slots.left !== undefined"
         />
       </template>
 
-      <template #right>
+      <template
+        v-if="slots.right !== undefined"
+        #right
+      >
         <Component
           :is="slots.right"
-          v-if="slots.right !== undefined"
         />
       </template>
     </AppInput>
