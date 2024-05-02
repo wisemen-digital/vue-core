@@ -13,19 +13,19 @@ import AppTablePlayground from './AppTablePlayground.vue'
 
 ## Props
 
-| Prop                | Type                                                    | Description                                          | Default     |
-| ------------------- | ------------------------------------------------------- | ---------------------------------------------------- | ----------- |
-| title               | `string`                                                | The title of the table.                              | `'default'` |
-| data                | `PaginatedData<TSchema>` \|  `null`                     | The data for the table, in paginated form.           | `'default'` |
-| columns             | `TableColumn<TSchema>[]`                                | The different columns to be displayed.               | `'button'`  |
-| filters             | `TableFilter<TFilters>[]`                               | Determines how the data will be filtered.            | `null`      |
-| pagination          | `Pagination<TFilters>`                                  | The pagination options.                              | `null`      |
-| isLoading           | `boolean`                                               | Whether the data is loading.                         | `false`     |
-| rowClick            | `((row: TSchema) => void)` \| `null`                    | Returns the row as a button.                         | `false`     |
-| rowTo               | `((row: TSchema) => RouteLocationNamedRaw)` \| `null`   | Returns the row as a RouterLink                      | `false`     |
-| isInfiniteScroll    | `boolean` \| `undefined`                                | .......                                              | `false`     |
-| shouldPinFirstColumn| `boolean` \| `undefined`                                | Pins the first column of the table.                  | `false`     |
-| shouldPinLastColumn | `boolean` \| `undefined`                                | Pins the last column of the table.                   | `false`     |
+| Prop                | Type                                                    | Description                                                  | Default     |
+| ------------------- | ------------------------------------------------------- | ------------------------------------------------------------ | ----------- |
+| title               | `string`                                                | The title of the table.                                      |             |
+| data                | `PaginatedData<TSchema>` \|  `null`                     | The data for the table, in paginated form.                   |             |
+| columns             | `TableColumn<TSchema>[]`                                | The different columns to be displayed.                       |             |
+| filters             | `TableFilter<TFilters>[]`                               | Determines how the data will be filtered.                    |             |
+| pagination          | `Pagination<TFilters>`                                  | The pagination options.                                      |             |
+| isLoading           | `boolean`                                               | Whether the data is loading.                                 |             |
+| rowClick            | `((row: TSchema) => void)` \| `null`                    | Returns the row as a button.                                 | `null`      |
+| rowTo               | `((row: TSchema) => RouteLocationNamedRaw)` \| `null`   | Returns the row as a RouterLink                              | `null`      |
+| isInfiniteScroll    | `boolean` \| `undefined`                                | Whether the table footer is hidden and allows infinite scroll| `false`     |
+| shouldPinFirstColumn| `boolean` \| `undefined`                                | Whether the first column of the table is pinned.             | `false`     |
+| shouldPinLastColumn | `boolean` \| `undefined`                                | Whether the last column of the table is pinned.              | `false`     |
 
 
 ## Types
