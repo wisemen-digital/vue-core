@@ -2,7 +2,12 @@
 sidebar: auto
 ---
 
-# FormInput Component
+# FormInput
+<script setup>
+import FormInputPlayground from './FormInputPlayground.vue'
+</script>
+
+<FormInputPlayground />
 
 ## Props
 

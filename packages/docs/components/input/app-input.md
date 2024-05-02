@@ -3,17 +3,23 @@ sidebar: auto
 ---
 
 # AppInput
+<script setup>
+import AppInputPlayground from './AppInputPlayground.vue'
+</script>
+
+<AppInputPlayground />
+
 
 ## Props
 
-| Prop        | Type                                                                                      | Description                                       | Default     |
-|-------------|-------------------------------------------------------------------------------------------|---------------------------------------------------|-------------|
+| Prop        | Type                                                                                     | Description                                       | Default     |
+|-------------|------------------------------------------------------------------------------------------|---------------------------------------------------|-------------|
+| id          | `null` \| `string`                                                                       | The id of the input.                              | `null`      |
 | iconLeft    | `Icon` \| `null`                                                                         | The left icon of the input.                       | `null`      |
 | iconRight   | `Icon` \| `null`                                                                         | The right icon of the input.                      | `null`      |
-| id          | `null` \| `string`                                                                       | The id of the input.                              | `null`      |
 | isDisabled  | `boolean`                                                                                | Whether the input is disabled.                    | `false`     |
 | isInvalid   | `boolean`                                                                                | Whether the input is invalid.                     | `false`     |
-| isLoading   | `boolean`                                                                                | Whether the input is loading.                     | `false`           |
+| isLoading   | `boolean`                                                                                | Whether the input is loading.                     | `false`     |
 | placeholder | `null` \| `string`                                                                       | The placeholder of the input.                     | `null`      |
 | type        | `'date'` \| `'datetime-local'` \| `'email'` \| `'number'` \| `'password'` \| `'search'` \| `'tel'` \| `'text'` \| `'time'` \| `'url'` | The type of the input.               | `'text'`    |
 
