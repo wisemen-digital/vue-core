@@ -22,6 +22,15 @@ const docs = [
   {
     items: [
       {
+        link: '/components/breadcrumbs/app-breadcrumbs',
+        text: 'AppBreadcrumbs',
+      },
+    ],
+    text: 'Breadcrumbs',
+  },
+  {
+    items: [
+      {
         link: '/components/button/app-button',
         text: 'AppButton',
       },
@@ -73,11 +82,11 @@ const docs = [
   {
     items: [
       {
-        link: '/components/app-input',
+        link: '/components/input/app-input',
         text: 'AppInput',
       },
       {
-        link: '/components/form-input',
+        link: '/components/input/form-input',
         text: 'FormInput',
       },
     ],
@@ -104,6 +113,15 @@ const docs = [
       },
     ],
     text: 'Select',
+  },
+  {
+    items: [
+      {
+        link: '/components/table/app-table',
+        text: 'AppTable',
+      },
+    ],
+    text: 'Table',
   },
   {
     items: [
