@@ -20,7 +20,7 @@ import AppBreadcrumbsPlayground from './AppBreadcrumbsPlayground.vue'
 ## Types
 
 ::: code-group
-```js [BreadcrumbItem]
+```ts [BreadcrumbItem]
 export interface BreadcrumbRoute {
   icon?: Icon
   label?: string
