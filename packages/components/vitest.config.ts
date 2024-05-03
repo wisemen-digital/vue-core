@@ -4,7 +4,7 @@ import { configDefaults, defineConfig, mergeConfig } from 'vitest/config'
 
 import viteConfig from './vite.config'
 
-const URL = import.meta.url;
+const META_URL = import.meta.url;
 
 export default defineConfig(() =>
 	mergeConfig(
@@ -13,7 +13,7 @@ export default defineConfig(() =>
 			test: {
 				environment: 'jsdom',
 				exclude: [...configDefaults.exclude],
-				root: fileURLToPath(new URL('./', URL)),
+				root: fileURLToPath(new URL('./', META_URL)),
 			},
 		})
 	)

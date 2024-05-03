@@ -20,12 +20,12 @@
     "./dist"
   ],
   "scripts": {
-    "build": "pnpm type-check && pnpm build-only && npm pack && cp web-types.json dist/web-types.json",
+    "build": "pnpm type-check && pnpm test:unit && pnpm build-only && npm pack && cp web-types.json dist/web-types.json",
     "build-only": "vite build",
     "type-check": "vue-tsc -p tsconfig.check.json --noEmit",
     "pub:release": "pnpm publish --access public",
     "gen:web-types": "vue-docgen-web-types",
-    "test:unit": "vitest",
+    "test:unit": "vitest --run",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
