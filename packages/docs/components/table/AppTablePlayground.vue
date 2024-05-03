@@ -37,16 +37,18 @@ const controls = createControls({
 interface ExampleDataType {
   firstName: string;
   lastName: string;
+  age: number;
+  hasDriversLicense: boolean;
 }
 interface ExampleFilters {}
 
 const exampleData: PaginatedData<ExampleDataType> = {
   data: [
-    { firstName: 'John', lastName: 'Doe' },
-    { firstName: 'Jane', lastName: 'Doe' },
-    { firstName: 'James', lastName: 'Doe' },
+    { firstName: 'John', lastName: 'Doe', age: 30, hasDriversLicense: true},
+    { firstName: 'Jane', lastName: 'Doe', age: 35, hasDriversLicense: false},
+    { firstName: 'James', lastName: 'Doe', age: 62, hasDriversLicense: true },
   ],
-  total: 3
+  total: 3,
 }
 const exampleColumns: TableColumn<ExampleDataType>[] = [
   {
@@ -60,7 +62,19 @@ const exampleColumns: TableColumn<ExampleDataType>[] = [
     label: 'Last Name',
     size: '300px',
     value: (row: ExampleDataType) => row.lastName,
-  }
+  },
+  {
+    id: 'age',
+    label: 'Age',
+    size: '100px',
+    value: (row: ExampleDataType) => `{row.age}`,
+  },
+  {
+    id: 'hasDriversLicense',
+    label: 'Drivers license?',
+    size: '200px',
+    value: (row: ExampleDataType) => row.hasDriversLicense ? 'Yes' : 'No',
+  },
 ]
 
 const paginationOptions = computed<PaginationOptions<ExampleFilters>>(() => ({
