@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import AppText from '@/components/text/AppText.vue';
-import AppTextarea from '@/components/textarea/AppTextarea.vue';
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols'
-import { ref } from 'vue';
+import { computed, ref } from 'vue'
+
+import AppText from '@/components/text/AppText.vue'
+import AppTextarea from '@/components/textarea/AppTextarea.vue'
 
 const controls = createControls({
   id: {
@@ -11,7 +12,7 @@ const controls = createControls({
     cols: 2,
     label: 'Id',
     type: 'text',
-  }, 
+  },
   heightClass: {
     default: 'h-32',
     cols: 2,
@@ -45,10 +46,12 @@ const controls = createControls({
     default: false,
     label: 'Is invalid',
     type: 'switch',
-  }, 
+  },
 })
 
-const model = ref<string | null>(null)
+const model = ref<null | string>(null)
+
+const result = computed<string>(() => `Model value: ${model.value}`)
 </script>
 
 <template>
@@ -57,14 +60,14 @@ const model = ref<string | null>(null)
   >
     <template #default="{ values }">
       <div>
-        <AppTextarea 
-          class="mb-3"
-          v-bind="values" 
+        <AppTextarea
+          v-bind="values"
           v-model="model"
+          class="mb-3"
         />
 
         <AppText variant="caption">
-          Model value: {{ model }}
+          {{ result }}
         </AppText>
       </div>
     </template>
