@@ -1,13 +1,15 @@
 <script setup lang="ts">
-import AppTable from '@/components/table/AppTable.vue';
-import AppText from '@/components/text/AppText.vue';
-import { PaginatedData, PaginationOptions, TableColumn } from '@/index';
-import { FilterChangeEvent, PageChangeEvent, Pagination, SortChangeEvent } from '@/types/table.type';
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols'
-import { title } from 'process';
-import { computed } from 'vue';
-import { ComputedRef } from 'vue';
+import { computed } from 'vue'
+
+import AppTable from '@/components/table/AppTable.vue'
+import type {
+  PaginatedData,
+  PaginationOptions,
+  TableColumn,
+} from '@/index'
+import type { Pagination } from '@/types/table.type'
 
 const controls = createControls({
   title: {
@@ -25,21 +27,21 @@ const controls = createControls({
     default: false,
     label: 'Pin last column',
     type: 'switch',
-  }
+  },
 })
 
 interface ExampleDataType {
-  firstName: string;
-  lastName: string;
-  age: number;
-  hasDriversLicense: boolean;
+  hasDriversLicense: boolean
+  age: number
+  firstName: string
+  lastName: string
 }
 interface ExampleFilters {}
 
 const exampleData: PaginatedData<ExampleDataType> = {
   data: [
-    { firstName: 'John', lastName: 'Doe', age: 30, hasDriversLicense: true},
-    { firstName: 'Jane', lastName: 'Doe', age: 35, hasDriversLicense: false},
+    { firstName: 'John', lastName: 'Doe', age: 30, hasDriversLicense: true },
+    { firstName: 'Jane', lastName: 'Doe', age: 35, hasDriversLicense: false },
     { firstName: 'James', lastName: 'Doe', age: 62, hasDriversLicense: true },
   ],
   total: 3,
@@ -49,25 +51,25 @@ const exampleColumns: TableColumn<ExampleDataType>[] = [
     id: 'firstName',
     label: 'First Name',
     size: '300px',
-    value: (row: ExampleDataType) => row.firstName,
+    value: row => row.firstName,
   },
   {
     id: 'lastName',
     label: 'Last Name',
     size: '300px',
-    value: (row: ExampleDataType) => row.lastName,
+    value: row => row.lastName,
   },
   {
     id: 'age',
     label: 'Age',
     size: '100px',
-    value: (row: ExampleDataType) => `${row.age}`,
+    value: row => `${row.age}`,
   },
   {
     id: 'hasDriversLicense',
     label: 'Drivers license?',
     size: '200px',
-    value: (row: ExampleDataType) => row.hasDriversLicense ? 'Yes' : 'No',
+    value: row => row.hasDriversLicense ? 'Yes' : 'No',
   },
 ]
 
@@ -79,10 +81,11 @@ const paginationOptions = computed<PaginationOptions<ExampleFilters>>(() => ({
 }))
 
 const examplePagination: Pagination<ExampleFilters> = {
-  paginationOptions: paginationOptions,
-};
+  paginationOptions,
+}
 
 function onRowClick(row: ExampleDataType) {
+  // eslint-disable-next-line no-alert
   alert(`Row clicked: ${row.firstName} ${row.lastName}`)
 }
 </script>
