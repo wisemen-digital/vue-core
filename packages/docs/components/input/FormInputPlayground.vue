@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import FormInput from '@/components/input/FormInput.vue';
-import AppText from '@/components/text/AppText.vue';
-import { FormFieldErrors } from '@/index';
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols'
-import { ref } from 'vue';
+import { ref } from 'vue'
+
+import FormInput from '@/components/input/FormInput.vue'
+import AppText from '@/components/text/AppText.vue'
+import type { FormFieldErrors } from '@/index'
 
 const controls = createControls({
   label: {
@@ -66,13 +67,15 @@ const controls = createControls({
     default: false,
     label: 'Is loading',
     type: 'switch',
-  },  
+  },
 })
 
-const model = ref<string | null>(null)
+const model = ref<null | string>(null)
 
 const exampleError: FormFieldErrors = {
-  _errors: ['The name has an error'],
+  _errors: [
+    'The name has an error',
+  ],
 }
 </script>
 
@@ -83,10 +86,10 @@ const exampleError: FormFieldErrors = {
     <template #default="{ values }">
       <div>
         <FormInput
-          class="mb-3"
           v-bind="values"
-          :errors="exampleError"
           v-model="model"
+          :errors="exampleError"
+          class="mb-3"
         />
 
         <AppText variant="caption">
