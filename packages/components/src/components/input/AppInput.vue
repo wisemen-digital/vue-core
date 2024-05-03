@@ -72,12 +72,12 @@ const { classAttr, otherAttrs } = useComponentAttrs()
     :class="[
       classAttr,
       {
-        'border-input-border [&:has(:focus-visible)]:border-primary [&:has(:focus-visible)]:ring-ring': !props.isInvalid,
-        'border-destructive [&:has(:focus-visible)]:ring-destructive': props.isInvalid,
+        'border-input-border [&:has(:focus-visible)]:ring-ring': !props.isInvalid,
+        'border-destructive [&:has(:focus-visible)]:border-input-border [&:has(:focus-visible)]:ring-destructive': props.isInvalid,
         'cursor-not-allowed opacity-50': props.isDisabled,
       },
     ]"
-    class="relative flex h-10 items-center rounded-input border border-solid bg-input outline-none ring-offset-1 ring-offset-background duration-200 [&:has(:focus-visible)]:ring-2"
+    class="relative flex h-10 items-center rounded-input border border-solid bg-input outline-none ring-offset-background duration-200 [&:has(:focus-visible)]:ring-2"
   >
     <Component
       :is="slots.left"
