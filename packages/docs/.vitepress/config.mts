@@ -22,6 +22,15 @@ const docs = [
   {
     items: [
       {
+        link: '/components/breadcrumbs/app-breadcrumbs',
+        text: 'AppBreadcrumbs',
+      },
+    ],
+    text: 'Breadcrumbs',
+  },
+  {
+    items: [
+      {
         link: '/components/button/app-button',
         text: 'AppButton',
       },
@@ -104,6 +113,15 @@ const docs = [
       },
     ],
     text: 'Select',
+  },
+  {
+    items: [
+      {
+        link: '/components/table/app-table',
+        text: 'AppTable',
+      },
+    ],
+    text: 'Table',
   },
   {
     items: [
