@@ -16,12 +16,6 @@ const controls = createControls({
     label: 'Title',
     type: 'text',
   },
-  isInfiniteScroll: {
-    default: false,
-    cols: 2,
-    label: 'Is infinite scroll',
-    type: 'switch',
-  },
   shouldPinFirstColumn: {
     default: false,
     label: 'Pin first column',
@@ -67,7 +61,7 @@ const exampleColumns: TableColumn<ExampleDataType>[] = [
     id: 'age',
     label: 'Age',
     size: '100px',
-    value: (row: ExampleDataType) => `{row.age}`,
+    value: (row: ExampleDataType) => `${row.age}`,
   },
   {
     id: 'hasDriversLicense',

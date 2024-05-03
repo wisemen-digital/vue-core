@@ -23,7 +23,6 @@ import AppTablePlayground from './AppTablePlayground.vue'
 | isLoading           | `boolean`                                               | Whether the data is loading.                                 |             |
 | rowClick            | `((row: TSchema) => void)` \| `null`                    | Returns the row as a button.                                 | `null`      |
 | rowTo               | `((row: TSchema) => RouteLocationNamedRaw)` \| `null`   | Returns the row as a RouterLink                              | `null`      |
-| isInfiniteScroll    | `boolean` \| `undefined`                                | Whether the table footer is hidden and allows infinite scroll| `false`     |
 | shouldPinFirstColumn| `boolean` \| `undefined`                                | Whether the first column of the table is pinned.             | `false`     |
 | shouldPinLastColumn | `boolean` \| `undefined`                                | Whether the last column of the table is pinned.              | `false`     |
 
@@ -176,7 +175,6 @@ import type {
 
 const props = withDefaults(
   defineProps<{
-    isInfiniteScroll?: boolean
     isLoading: boolean
     columns: TableColumn<TSchema>[]
     data: PaginatedData<TSchema> | null
@@ -189,7 +187,6 @@ const props = withDefaults(
     title: string
   }>(),
   {
-    isInfiniteScroll: false,
     rowClick: null,
     rowTo: null,
     shouldPinFirstColumn: false,
@@ -200,8 +197,6 @@ const props = withDefaults(
 const emit = defineEmits<{
   clearFilters: []
 }>()
-
-const INFINITE_SCROLL_OFFSET = 100
 
 const tableContainerRef = ref<HTMLElement | null>(null)
 
@@ -231,50 +226,8 @@ function getHasReachedHorizontalScrollEnd(element: HTMLElement): boolean {
   return element.scrollLeft + element.clientWidth === element.scrollWidth
 }
 
-function handleInfiniteScroll(): void {
-  if (!props.isInfiniteScroll) {
-    return
-  }
-
-  if (tableContainerRef.value === null) {
-    return
-  }
-
-  if (props.data === null) {
-    return
-  }
-
-  if (props.isLoading) {
-    return
-  }
-
-  const {
-    clientHeight,
-    scrollHeight,
-    scrollTop,
-  } = tableContainerRef.value
-
-  if (scrollHeight - scrollTop > clientHeight + INFINITE_SCROLL_OFFSET) {
-    return
-  }
-
-  const { page, perPage } = props.pagination.paginationOptions.value.pagination
-
-  const totalPages = Math.ceil(props.data.total / perPage)
-
-  if (page === totalPages) {
-    return
-  }
-
-  props.pagination.handlePageChange({
-    page: page + 1,
-    perPage,
-  })
-}
-
 function onScroll(): void {
   handleTableResize()
-  handleInfiniteScroll()
 }
 
 function handleSortChange(sortChangeEvent: SortChangeEvent): void {
@@ -341,7 +294,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="flex h-full flex-1 flex-col overflow-hidden rounded-xl border border-solid border-border">
+  <div class="flex h-full flex-1 flex-col overflow-hidden rounded-xl border border-solid border-border bg-background">
     <AppTableTop
       :is-loading="props.isLoading"
       :title="props.title"
@@ -408,7 +361,6 @@ onBeforeUnmount(() => {
     />
 
     <AppTableFooter
-      v-if="!props.isInfiniteScroll"
       :is-loading="props.isLoading"
       :pagination-options="props.pagination.paginationOptions.value"
       :total="props.data?.total ?? null"
@@ -416,6 +368,7 @@ onBeforeUnmount(() => {
     />
   </div>
 </template>
+
 ```
 
 :::
