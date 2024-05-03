@@ -16,13 +16,13 @@ import AppIconPlayground from './AppIconPlayground.vue'
 | Prop | Type                     | Description              | Default     |
 | ---- | ------------------------ | ------------------------ | ----------- |
 | icon | `Icon`                   | The icon to be displayed |             |
-| size | `IconStyleProps['size']` | the size of the icon     | `'default'` |
+| size | `IconStyleProps['size']` | The size of the icon     | `'default'` |
 
 
 ## Types
 
 ::: code-group
-```js [IconStyleProps['size']]
+```ts [IconStyleProps['size']]
 export const sizeOptions = {
   default: 'h-4 w-4',
   full: 'h-full w-full',
