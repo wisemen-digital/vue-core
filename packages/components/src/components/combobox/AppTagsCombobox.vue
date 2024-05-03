@@ -134,10 +134,10 @@ function onBlur(): void {
             :class="[
               {
                 'border-input-border focus-within:ring-ring': !props.isInvalid,
-                'border-destructive focus-within:ring-destructive': props.isInvalid,
+                'border-destructive focus-within:border-input-border focus-within:ring-destructive': props.isInvalid,
               },
             ]"
-            class="flex min-h-10 w-full flex-wrap items-center gap-1 truncate rounded-input border border-solid bg-input p-1.5 ring-offset-background transition-shadow duration-200 placeholder:text-input-placeholder focus-within:ring-2 focus-within:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+            class="flex min-h-10 w-full flex-wrap items-center gap-1 truncate rounded-input border border-solid bg-input p-1.5 ring-offset-background transition-shadow duration-200 placeholder:text-input-placeholder focus-within:ring-2 disabled:cursor-not-allowed disabled:opacity-50"
           >
             <template
               v-for="tag in model"

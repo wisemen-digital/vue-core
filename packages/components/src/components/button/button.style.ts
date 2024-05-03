@@ -38,7 +38,7 @@ export const buttonIcon = cva({
     size: {
       default: '!size-3.5',
       icon: '!size-3.5',
-      lg: '!size-8',
+      lg: '!size-4',
       sm: '!size-3.5',
       unset: '',
       xs: '!size-2.5',
@@ -47,3 +47,4 @@ export const buttonIcon = cva({
 })
 
 export type ButtonStyleProps = VariantProps<typeof button>
+export type ButtonIconStyleProps = VariantProps<typeof buttonIcon>

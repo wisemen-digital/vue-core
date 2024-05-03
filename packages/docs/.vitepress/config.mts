@@ -73,15 +73,24 @@ const docs = [
   {
     items: [
       {
-        link: '/components/app-input',
+        link: '/components/input/app-input',
         text: 'AppInput',
       },
       {
-        link: '/components/form-input',
+        link: '/components/input/form-input',
         text: 'FormInput',
       },
     ],
     text: 'Input',
+  },
+  {
+    items: [
+      {
+        link: '/components/popover/app-popover',
+        text: 'AppPopover',
+      },
+    ],
+    text: 'Popover',
   },
   {
     items: [
