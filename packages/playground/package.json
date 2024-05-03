@@ -7,6 +7,7 @@
     "dev": "vite",
     "preview": "vite preview",
     "lint": "eslint .",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "lint:fix": "eslint --fix ."
   },
   "dependencies": {
