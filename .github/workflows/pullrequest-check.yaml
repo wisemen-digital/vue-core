@@ -1,0 +1,13 @@
+---
+name: PR Check
+
+on:  # yamllint disable-line rule:truthy
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+    branches:
+      - master
+
+jobs:
+  lint-build-test:
+    uses: wisemen-digital/devops-github-actions/.github/workflows/web-build-and-test.yml@main
+    if: github.event.pull_request.draft == false
