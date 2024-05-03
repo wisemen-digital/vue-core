@@ -9,7 +9,7 @@ import {
 import ComponentPlaygroundControls from './ComponentPlaygroundControls.vue'
 
 interface Props<Keys extends string> {
-  controls: Controls<Keys>
+  controls: Controls<Keys> | null
 }
 const props = defineProps<Props<TControlKeys>>()
 
@@ -23,6 +23,10 @@ function setControlValues({ control, value }: { control: TControlKeys, value: an
 }
 
 function getControlValueDefault() {
+  if (!props.controls) {
+    return {} as Record<TControlKeys, any>
+  }
+
   const controlsAsArray = Object.entries(props.controls) as [TControlKeys, Control][]
 
   return controlsAsArray.reduce((acc, [
@@ -46,7 +50,10 @@ function getControlValueDefault() {
     </div>
 
     <div class="h-px w-full bg-primary/50" />
-    <div class="flex flex-col gap-4 rounded-b border-t-4 border-primary bg-neutral-800/80 p-4">
+    <div
+      v-if="props.controls" 
+      class="flex flex-col gap-4 rounded-b border-t-4 border-primary bg-neutral-800/80 p-4"
+    >
       <AppText
         as="p"
         class="!m-0 text-foreground"
