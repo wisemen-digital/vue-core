@@ -22,6 +22,15 @@ const docs = [
   {
     items: [
       {
+        link: '/components/breadcrumbs/app-breadcrumbs',
+        text: 'AppBreadcrumbs',
+      },
+    ],
+    text: 'Breadcrumbs',
+  },
+  {
+    items: [
+      {
         link: '/components/button/app-button',
         text: 'AppButton',
       },
