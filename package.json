@@ -13,7 +13,6 @@
     "docs:build": "pnpm run -r docs:build",
     "pub:release": "cd packages/components && pnpm pub:release --no-git-checks",
     "dev": "pnpm run -r dev",
-    "vitest": "echo \"no test specified\"",
     "lint": "pnpm run -r lint",
     "type-check": "pnpm run -r type-check"
   },
