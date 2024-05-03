@@ -12,7 +12,6 @@
     "docs:build": "__VUE_PROD_DEVTOOLS__=false vitepress build",
     "docs:preview": "vitepress preview",
     "lint": "eslint .",
-    "vitest": "echo \"no test specified\"",
     "lint:fix": "eslint --fix .",
     "type-check": "vue-tsc --noEmit"
   },
