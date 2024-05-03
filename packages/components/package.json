@@ -25,6 +25,7 @@
     "type-check": "vue-tsc -p tsconfig.check.json --noEmit",
     "pub:release": "pnpm publish --access public",
     "gen:web-types": "vue-docgen-web-types",
+    "test:unit": "vitest",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
@@ -33,6 +34,7 @@
     "@types/dom-view-transitions": "^1.0.4",
     "@types/node": "^18.19.31",
     "@vitejs/plugin-vue": "^5.0.4",
+    "@vue/test-utils": "^2.4.5",
     "@vue/tsconfig": "^0.4.0",
     "@vueuse/core": "^10.9.0",
     "@vueuse/router": "^10.9.0",
@@ -52,6 +54,7 @@
     "typescript": "^5.4.5",
     "vite": "^5.2.10",
     "vite-plugin-dts": "^3.9.0",
+    "vitest": "^1.5.3",
     "vue": "^3.4.26",
     "vue-docgen-web-types": "^0.1.8",
     "vue-i18n": "^9.13.1",
