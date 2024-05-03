@@ -86,6 +86,15 @@ const docs = [
   {
     items: [
       {
+        link: '/components/popover/app-popover',
+        text: 'AppPopover',
+      },
+    ],
+    text: 'Popover',
+  },
+  {
+    items: [
+      {
         link: '/components/app-select',
         text: 'AppSelect',
       },
