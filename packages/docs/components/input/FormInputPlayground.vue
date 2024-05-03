@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import FormInput from '@/components/input/FormInput.vue';
 import AppText from '@/components/text/AppText.vue';
+import { FormFieldErrors } from '@/index';
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols'
 import { ref } from 'vue';
@@ -46,6 +47,11 @@ const controls = createControls({
     label: 'Type',
     type: 'select',
   },
+  isTouched: {
+    default: false,
+    label: 'Is touched',
+    type: 'switch',
+  },
   isDisabled: {
     default: false,
     label: 'Is disabled',
@@ -64,6 +70,10 @@ const controls = createControls({
 })
 
 const model = ref<string | null>(null)
+
+const exampleError: FormFieldErrors = {
+  _errors: ['The name has an error'],
+}
 </script>
 
 <template>
@@ -75,8 +85,7 @@ const model = ref<string | null>(null)
         <FormInput
           class="mb-3"
           v-bind="values"
-          :is-touched="false"
-          :errors="null"
+          :errors="exampleError"
           v-model="model"
         />
 
