@@ -117,6 +117,15 @@ const docs = [
   {
     items: [
       {
+        link: '/components/table/app-table',
+        text: 'AppTable',
+      },
+    ],
+    text: 'Table',
+  },
+  {
+    items: [
+      {
         link: '/components/text/app-text',
         text: 'AppText',
       },
