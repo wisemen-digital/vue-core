@@ -1,15 +1,13 @@
 <script setup lang="ts">
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols'
-import { computed } from 'vue'
 
 import AppTable from '@/components/table/AppTable.vue'
-import type {
-  PaginatedData,
-  PaginationOptions,
-  TableColumn,
+import {
+  type PaginatedData,
+  type TableColumn,
+  usePagination,
 } from '@/index'
-import type { Pagination } from '@/types/table.type'
 
 const controls = createControls({
   title: {
@@ -27,6 +25,11 @@ const controls = createControls({
     default: false,
     label: 'Pin last column',
     type: 'switch',
+  },
+  isLoading: {
+    type: 'switch',
+    default: false,
+    label: 'Is loading',
   },
 })
 
@@ -50,7 +53,7 @@ const exampleColumns: TableColumn<ExampleDataType>[] = [
   {
     id: 'firstName',
     label: 'First Name',
-    size: '300px',
+    size: 'auto',
     value: row => row.firstName,
   },
   {
@@ -68,21 +71,21 @@ const exampleColumns: TableColumn<ExampleDataType>[] = [
   {
     id: 'hasDriversLicense',
     label: 'Drivers license?',
-    size: '200px',
+    size: 'auto',
     value: row => row.hasDriversLicense ? 'Yes' : 'No',
   },
 ]
 
-const paginationOptions = computed<PaginationOptions<ExampleFilters>>(() => ({
-  pagination: {
-    page: 0,
-    perPage: 3,
+const pagination = usePagination<ExampleFilters>({
+  id: 'example',
+  disableRouteQuery: true,
+  defaultPaginationOptions: {
+    pagination: {
+      page: 0,
+      perPage: 3,
+    },
   },
-}))
-
-const examplePagination: Pagination<ExampleFilters> = {
-  paginationOptions,
-}
+})
 
 function onRowClick(row: ExampleDataType) {
   // eslint-disable-next-line no-alert
@@ -100,8 +103,7 @@ function onRowClick(row: ExampleDataType) {
         :data="exampleData"
         :columns="exampleColumns"
         :filters="[]"
-        :pagination="examplePagination"
-        :is-loading="false"
+        :pagination="pagination"
         :row-click="onRowClick"
       />
     </template>

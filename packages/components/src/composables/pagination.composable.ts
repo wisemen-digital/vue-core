@@ -13,19 +13,25 @@ import type {
   PaginationFilters,
   PaginationOptions,
   SortChangeEvent,
-  UseTablePaginationReturnType,
-} from '@/types/table.type'
+  UsePaginationReturnType,
+} from '@/types/pagination.type'
 import { base64Decode, base64Encode } from '@/utils/base64.util'
 
-interface UseTablePaginationOptions<TFilters> {
+interface UsePaginationOptions<TFilters> {
   /**
    * Identifier used to store pagination options in a route query.
    */
-  id: string // TODO: Enum?
+  id: string
   /**
    * Default pagination options. If not provided, the default options will be used.
+   * @default null
    */
   defaultPaginationOptions?: MaybeRefOrGetter<PaginationOptions<TFilters>> | null
+  /**
+   * If true, the route query will be disabled.
+   * @default false
+   */
+  disableRouteQuery?: boolean
 }
 
 const DEFAULT_PAGINATION_OPTIONS = {
@@ -37,11 +43,12 @@ const DEFAULT_PAGINATION_OPTIONS = {
   sort: {},
 } as const
 
-export function useTablePagination<TFilters>({
+export function usePagination<TFilters>({
   id,
   defaultPaginationOptions = null,
-}: UseTablePaginationOptions<TFilters>): UseTablePaginationReturnType<TFilters> {
-  const routeQuery = useRouteQuery<string | undefined>(id)
+  disableRouteQuery = false,
+}: UsePaginationOptions<TFilters>): UsePaginationReturnType<TFilters> {
+  const routeQuery = disableRouteQuery ? null : useRouteQuery(id)
   const paginationOptions = shallowRef<PaginationOptions<TFilters>>(getDefaultPaginationOptions())
 
   function mergePaginationOptions(
@@ -117,11 +124,27 @@ export function useTablePagination<TFilters>({
     }
   }
 
+  function clearFilters(): void {
+    paginationOptions.value = {
+      ...paginationOptions.value,
+      filters: paginationOptions.value.filters,
+      pagination: {
+        ...paginationOptions.value.pagination,
+        page: 0,
+      },
+    }
+  }
+
   watch(paginationOptions, (newPaginationoptions) => {
-    routeQuery.value = base64Encode(JSON.stringify(newPaginationoptions))
+    if (disableRouteQuery) {
+      return
+    }
+
+    routeQuery!.value = base64Encode(JSON.stringify(newPaginationoptions))
   })
 
   return {
+    clearFilters,
     handleFilterChange,
     handlePageChange,
     handleSortChange,

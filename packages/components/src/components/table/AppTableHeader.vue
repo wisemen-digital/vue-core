@@ -8,8 +8,8 @@ import type {
   PaginationOptions,
   SortChangeEvent,
   SortDirection,
-  TableColumn,
-} from '@/types/table.type'
+} from '@/types/pagination.type'
+import type { TableColumn } from '@/types/table.type'
 
 const props = defineProps<{
   hasReachedHorizontalScrollEnd: boolean
@@ -39,9 +39,7 @@ function toggleSortDirection(direction: SortDirection): SortDirection {
 }
 
 function isColumnSorted(columnId: string): boolean {
-  const isSameColumn = Object.keys(props.paginationOptions.sort ?? {})[0] === columnId
-
-  return isSameColumn
+  return Object.keys(props.paginationOptions.sort ?? {})[0] === columnId
 }
 
 function handleSortChange(columnId: string): void {
