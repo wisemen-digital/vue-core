@@ -127,7 +127,7 @@ export function usePagination<TFilters>({
   function clearFilters(): void {
     paginationOptions.value = {
       ...paginationOptions.value,
-      filters: paginationOptions.value.filters,
+      filters: toValue(defaultPaginationOptions)?.filters ?? {} as PaginationFilters<TFilters>,
       pagination: {
         ...paginationOptions.value.pagination,
         page: 0,
