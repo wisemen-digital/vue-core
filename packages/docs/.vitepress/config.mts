@@ -135,6 +135,19 @@ const docs = [
   {
     items: [
       {
+        link: '/components/tags-input/app-tags-input',
+        text: 'AppTagsInput',
+      },
+      {
+        link: '/components/tags-input/form-tags-input',
+        text: 'FormTagsInput',
+      },
+    ],
+    text: 'TagsInput',
+  },
+  {
+    items: [
+      {
         link: '/components/text/app-text',
         text: 'AppText',
       },
