@@ -82,6 +82,15 @@ const docs = [
   {
     items: [
       {
+        link: '/components/icon/app-icon',
+        text: 'AppIcon',
+      },
+    ],
+    text: 'Icon',
+  },
+  {
+    items: [
+      {
         link: '/components/input/app-input',
         text: 'AppInput',
       },
