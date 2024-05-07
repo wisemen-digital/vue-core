@@ -40,10 +40,10 @@ function onBlur(): void {
   <label
     :class="{
       'border-input-border [&:has(:focus-visible)]:ring-ring': !props.isInvalid,
-      'border-destructive [&:has(:focus-visible)]:ring-destructive': props.isInvalid,
+      'border-destructive [&:has(:focus-visible)]:border-input-border [&:has(:focus-visible)]:ring-destructive': props.isInvalid,
       'cursor-not-allowed opacity-50': props.isDisabled,
     }"
-    class="flex h-10 items-center rounded-input border border-solid bg-input ring-offset-background duration-200 [&:has(:focus-visible)]:outline-none [&:has(:focus-visible)]:ring-2 [&:has(:focus-visible)]:ring-offset-1"
+    class="flex h-10 items-center rounded-input border border-solid bg-input outline-none ring-offset-background duration-200 [&:has(:focus-visible)]:ring-2"
   >
     <slot name="left">
       <AppIcon
