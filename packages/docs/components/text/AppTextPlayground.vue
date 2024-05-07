@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import AppText from '@/components/text/AppText.vue';
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols'
+
+import AppText from '@/components/text/AppText.vue'
 
 const controls = createControls({
   slot: {
