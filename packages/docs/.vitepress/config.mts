@@ -133,6 +133,14 @@ const docs = [
         link: '/components/skeleton-loader/app-skeleton-loader-button',
         text: 'AppSkeletonLoaderButton',
       },
+      {
+        link: '/components/skeleton-loader/app-skeleton-loader-row',
+        text: 'AppSkeletonLoaderRow',
+      },
+      {
+        link: '/components/skeleton-loader/app-skeleton-loader-rows',
+        text: 'AppSkeletonLoaderRows',
+      },
     ],
     text: 'SkeletonLoader',
   },
