@@ -93,7 +93,7 @@ const exampleError: FormFieldErrors = {
         />
 
         <AppText variant="caption">
-          Model value: {{ model }}
+          {{ `Model value: ${model}` }}
         </AppText>
       </div>
     </template>

@@ -25,6 +25,11 @@ const props = withDefaults(defineProps<{
    */
   label: string
   /**
+   * The maximum amount of tags allowed.
+   * @default null
+   */
+  max?: null | number
+  /**
    * The placeholder of the input.
    * @default null
    */
@@ -32,6 +37,7 @@ const props = withDefaults(defineProps<{
 }>(), {
   isDisabled: false,
   isRequired: false,
+  max: null,
   placeholder: null,
 })
 
@@ -68,6 +74,7 @@ function onBlur(): void {
       :is-invalid="isInvalid"
       :placeholder="props.placeholder"
       :is-disabled="props.isDisabled"
+      :max="props.max"
       @focus="onFocus"
       @blur="onBlur"
     >

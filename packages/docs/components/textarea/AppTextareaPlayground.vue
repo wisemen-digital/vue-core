@@ -50,8 +50,6 @@ const controls = createControls({
 })
 
 const model = ref<null | string>(null)
-
-const result = computed<string>(() => `Model value: ${model.value}`)
 </script>
 
 <template>
@@ -67,7 +65,7 @@ const result = computed<string>(() => `Model value: ${model.value}`)
         />
 
         <AppText variant="caption">
-          {{ result }}
+          {{ `Model value: ${model}` }}
         </AppText>
       </div>
     </template>
