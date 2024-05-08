@@ -14,7 +14,8 @@
     "pub:release": "cd packages/components && pnpm pub:release --no-git-checks",
     "dev": "pnpm run -r dev",
     "lint": "pnpm run -r lint",
-    "type-check": "pnpm run -r type-check"
+    "type-check": "pnpm run -r type-check",
+    "clean": "pnpm run -r lint && pnpm run -r type-check && pnpm run -r test"
   },
   "devDependencies": {
     "radix-vue": "^1.7.3",

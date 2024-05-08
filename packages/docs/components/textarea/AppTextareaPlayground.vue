@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols'
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 
 import AppText from '@/components/text/AppText.vue'
 import AppTextarea from '@/components/textarea/AppTextarea.vue'
