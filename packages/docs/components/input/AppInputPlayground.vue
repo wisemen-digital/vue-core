@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import AppInput from '@/components/input/AppInput.vue';
-import AppText from '@/components/text/AppText.vue';
-import AppButton from '@components/components/button/AppButton.vue'
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols'
-import { ref } from 'vue';
+import { ref } from 'vue'
+
+import AppInput from '@/components/input/AppInput.vue'
+import AppText from '@/components/text/AppText.vue'
 
 const controls = createControls({
   id: {
@@ -61,10 +61,10 @@ const controls = createControls({
     default: false,
     label: 'Is loading',
     type: 'switch',
-  },  
+  },
 })
 
-const model = ref<string | null>(null)
+const model = ref<null | string>(null)
 </script>
 
 <template>
@@ -74,13 +74,13 @@ const model = ref<string | null>(null)
     <template #default="{ values }">
       <div>
         <AppInput
-          class="mb-3"
-          v-bind="values" 
+          v-bind="values"
           v-model="model"
+          class="mb-3"
         />
 
         <AppText variant="caption">
-          Model value: {{ model }}
+          {{ `Model value: ${model}` }}
         </AppText>
       </div>
     </template>

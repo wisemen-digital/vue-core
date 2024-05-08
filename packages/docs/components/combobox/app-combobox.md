@@ -9,7 +9,7 @@ import AppComboboxPlayground from './AppComboboxPlayground.vue'
 
 <AppComboboxPlayground />
 
-For multi value select, see [AppMultiCombobox] //TODO.
+For multi value select, see [AppMultiCombobox](/components/combobox/app-multi-combobox.md)
 
 
 ## Props
@@ -41,16 +41,17 @@ For multi value select, see [AppMultiCombobox] //TODO.
 
 ## v-model
 
-| Prop                          | Type               | Description                |
-| ----------------------------- | ------------------ | -------------------------- |
-| v-model **(required)**        | `TValue` \| `null` | The value of the combobox. |
-| v-model:search **(required)** | `string` \| `null` | The search term            |
+| Prop            | Type               | Description                |
+| --------------- | ------------------ | -------------------------- |
+| v-model         | `TValue` \| `null` | The value of the combobox. |
+| v-model:search  | `string` \| `null` | The search term            |
 
 ## Events
 
-| Event Name | Type | Description                            |
-| ---------- | ---- | -------------------------------------- |
-| blur       | None | Emitted when the combobox loses focus. |
+| Event Name       | Type | Description                                    |
+| ---------------- | ---- | ---------------------------------------------- |
+| blur             | None | Emitted when the combobox loses focus.         |
+| update:modelValue| None | Emitted when value of the combobox is updated. |
 
 ## Code
 
