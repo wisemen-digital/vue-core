@@ -16,18 +16,18 @@ For multi value select, see [AppMultiCombobox](/components/combobox/app-multi-co
 
 | Prop            | Type                                                  | Description                                                 | Default                          |
 | --------------- | ----------------------------------------------------- | ----------------------------------------------------------- | -------------------------------- |
-| displayFn       | `(value: TValue) => string`                           | Display function for the selected value.                    | -                                |
-| emptyText       | `null \| string`                                      | The text to display when there are no options.              | `t('components.combobox.empty')` |
-| filterFn        | `(options: TValue[], searchTerm: string) => TValue[]` | The function to filter the options.                         | -                                |
-| iconLeft        | `Icon \| null`                                        | The icon to display on the left side of the combobox.       | `null`                           |
-| iconRight       | `Icon \| null`                                        | The icon to display on the right side of the combobox.      | `null`                           |
 | id              | `null \| string`                                      | The HTML id of the combobox.                                | -                                |
 | isChevronHidden | `boolean`                                             | Whether the chevron icon is hidden.                         | `false`                          |
 | isDisabled      | `boolean`                                             | Whether the combobox is disabled.                           | `false`                          |
-| isInvalid       | `boolean`                                             | Whether the combobox is in an invalid state.                | `false`                          |
 | isLoading       | `boolean`                                             | Whether the combobox is loading.                            | `false`                          |
+| isInvalid       | `boolean`                                             | Whether the combobox is in an invalid state.                | `false`                          |
+| emptyText       | `null \| string`                                      | The text to display when there are no options.              | `t('components.combobox.empty')` |
+| iconLeft        | `Icon \| null`                                        | The icon to display on the left side of the combobox.       | `null`                           |
+| iconRight       | `Icon \| null`                                        | The icon to display on the right side of the combobox.      | `null`                           |
 | items           | `ComboboxItem<TValue>[]`                              | The options to display in the combobox.                     | -                                |
 | placeholder     | `null \| string`                                      | The placeholder text to display when the combobox is empty. | `null`                           |
+| displayFn       | `(value: TValue) => string`                           | Display function for the selected value.                    | -                                |
+| filterFn        | `(options: TValue[], searchTerm: string) => TValue[]` | The function to filter the options.                         | -                                |
 
 ## Slots
 
