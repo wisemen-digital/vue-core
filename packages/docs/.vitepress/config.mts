@@ -69,11 +69,11 @@ const docs = [
   {
     items: [
       {
-        link: '/components/form-checkbox',
+        link: '/components/checkbox/form-checkbox',
         text: 'FormCheckbox',
       },
       {
-        link: '/components/form-checkbox-group',
+        link: '/components/checkbox/form-checkbox-group',
         text: 'FormCheckboxGroup',
       },
     ],
