@@ -150,6 +150,10 @@ const docs = [
         link: '/components/table/app-table',
         text: 'AppTable',
       },
+      {
+        link: '/components/table/app-table-skeleton-loader',
+        text: 'AppTableSkeletonLoader',
+      },
     ],
     text: 'Table',
   },
