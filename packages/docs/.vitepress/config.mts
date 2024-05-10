@@ -82,6 +82,15 @@ const docs = [
   {
     items: [
       {
+        link: '/components/icon/app-icon',
+        text: 'AppIcon',
+      },
+    ],
+    text: 'Icon',
+  },
+  {
+    items: [
+      {
         link: '/components/input/app-input',
         text: 'AppInput',
       },
@@ -122,6 +131,19 @@ const docs = [
       },
     ],
     text: 'Table',
+  },
+  {
+    items: [
+      {
+        link: '/components/tags-input/app-tags-input',
+        text: 'AppTagsInput',
+      },
+      {
+        link: '/components/tags-input/form-tags-input',
+        text: 'FormTagsInput',
+      },
+    ],
+    text: 'TagsInput',
   },
   {
     items: [
