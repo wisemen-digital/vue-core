@@ -23,7 +23,7 @@ function setControlValues({ control, value }: { control: TControlKeys, value: an
 }
 
 function getControlValueDefault() {
-  if (!props.controls) {
+  if (props.controls === null) {
     return {} as Record<TControlKeys, any>
   }
 
@@ -51,7 +51,7 @@ function getControlValueDefault() {
 
     <div class="h-px w-full bg-primary/50" />
     <div
-      v-if="props.controls" 
+      v-if="props.controls"
       class="flex flex-col gap-4 rounded-b border-t-4 border-primary bg-neutral-800/80 p-4"
     >
       <AppText

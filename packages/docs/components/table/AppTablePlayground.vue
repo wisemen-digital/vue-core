@@ -3,6 +3,7 @@ import ComponentPlayground from '@docs/playground/components/ComponentPlayground
 import { createControls } from '@docs/playground/utils/createContols'
 
 import AppTable from '@/components/table/AppTable.vue'
+
 import {
   type PaginatedData,
   type TableColumn,
@@ -39,6 +40,7 @@ interface ExampleDataType {
   firstName: string
   lastName: string
 }
+
 interface ExampleFilters {}
 
 const exampleData: PaginatedData<ExampleDataType> = {
@@ -104,6 +106,7 @@ function onRowClick(row: ExampleDataType) {
         :columns="exampleColumns"
         :filters="[]"
         :pagination="pagination"
+        :is-loading="false"
         :row-click="onRowClick"
       />
     </template>

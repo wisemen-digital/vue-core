@@ -8,7 +8,6 @@
   "keywords": [],
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "docs:dev": "vitepress dev",
     "docs:build": "__VUE_PROD_DEVTOOLS__=false vitepress build",
     "docs:preview": "vitepress preview",

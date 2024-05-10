@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import AppButton from '@/components/button/AppButton.vue';
-import AppPopover from '@/components/popover/AppPopover.vue';
-import AppText from '@/components/text/AppText.vue';
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols'
+
+import AppButton from '@/components/button/AppButton.vue'
+import AppPopover from '@/components/popover/AppPopover.vue'
+import AppText from '@/components/text/AppText.vue'
 
 const controls = createControls({
   align: {
@@ -56,8 +57,18 @@ const controls = createControls({
         </template>
         <template #content>
           <div class="w-56 p-2">
-            <AppText variant="subtitle" class="pr-8 font-bold text-black">A title</AppText>
-            <AppText variant="body" class="text-black">And some content</AppText>
+            <AppText
+              variant="subtitle"
+              class="pr-8 font-bold text-black"
+            >
+              A title
+            </AppText>
+            <AppText
+              variant="body"
+              class="text-black"
+            >
+              And some content
+            </AppText>
           </div>
         </template>
       </AppPopover>

@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import AppTooltip from '@/components/tooltip/AppTooltip.vue';
-import AppText from '@components/components/text/AppText.vue';
+import AppText from '@components/components/text/AppText.vue'
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols'
+
+import AppTooltip from '@/components/tooltip/AppTooltip.vue'
 
 const controls = createControls({
   align: {
@@ -74,9 +75,12 @@ const controls = createControls({
     :controls="controls"
   >
     <template #default="{ values }">
-      <AppTooltip v-bind="values" :content="values.content">
+      <AppTooltip
+        v-bind="values"
+        :content="values.content"
+      >
         <AppText variant="body">
-          Trigger element     
+          Trigger element
         </AppText>
       </AppTooltip>
     </template>
