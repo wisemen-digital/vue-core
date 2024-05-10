@@ -93,6 +93,56 @@ export type Pagination<TFilters> = UseTablePaginationReturnType<TFilters>
 
 ::: code-group
 ```vue [Usage]
+<script setup lang="ts">
+import { AppTable } from '@wisemen/vue-core'
+
+const exampleData: PaginatedData<ExampleDataType> = {
+  data: [
+    { firstName: 'John', lastName: 'Doe' },
+    { firstName: 'Jane', lastName: 'Doe' },
+    { firstName: 'James', lastName: 'Doe' },
+  ],
+  total: 3
+}
+
+const exampleColumns: TableColumn<ExampleDataType>[] = [
+  {
+    id: 'firstName',
+    label: 'First Name',
+    size: 'auto',
+    value: (row) => row.firstName,
+  },
+  {
+    id: 'lastName',
+    label: 'Last Name',
+    size: '300px',
+    value: (row) => row.lastName,
+  }
+]
+
+const examplePagination: Pagination<ExampleFilters> = {
+  ...
+}
+
+function onRowClick(row: ExampleDataType) {
+  alert(`Row clicked: ${row.firstName} ${row.lastName}`)
+}
+</script>
+  
+<template>
+  <AppTable
+    title="Users"
+    :data="exampleData"
+    :columns="exampleColumns"
+    :filters="[]"
+    :pagination="examplePagination"
+    :is-loading="false"
+    :row-click="onRowClick"
+  />
+</template>
+```
+
+```vue [Source code]
 <script setup lang="ts"  generic="TSchema, TFilters">
 import {
   computed,
