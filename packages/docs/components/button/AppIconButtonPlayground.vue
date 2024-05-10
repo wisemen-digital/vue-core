@@ -27,18 +27,16 @@ const controls = createControls({
     label: 'Variant',
     type: 'select',
   },
-  iconSize: {
+  size: {
     default: 'default',
     items: [
-      'full',
-      'xs',
-      'sm',
       'default',
       'lg',
-      'xl',
-      'xxl',
+      'sm',
+      'unset',
+      'xs',
     ],
-    label: 'Icon Size',
+    label: 'Size',
     type: 'select',
   },
   isDisabled: {

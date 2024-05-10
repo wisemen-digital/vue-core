@@ -1,15 +1,13 @@
 <script setup lang="ts">
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols'
-import { computed } from 'vue'
 
 import AppTable from '@/components/table/AppTable.vue'
 import type {
   PaginatedData,
-  PaginationOptions,
   TableColumn,
 } from '@/index'
-import type { Pagination } from '@/types/table.type'
+import { useTablePagination } from '@/index'
 
 const controls = createControls({
   title: {
@@ -73,16 +71,9 @@ const exampleColumns: TableColumn<ExampleDataType>[] = [
   },
 ]
 
-const paginationOptions = computed<PaginationOptions<ExampleFilters>>(() => ({
-  pagination: {
-    page: 0,
-    perPage: 3,
-  },
-}))
-
-const examplePagination: Pagination<ExampleFilters> = {
-  paginationOptions,
-}
+const pagination = useTablePagination<ExampleFilters>({
+  id: 'example',
+})
 
 function onRowClick(row: ExampleDataType) {
   // eslint-disable-next-line no-alert
@@ -100,7 +91,7 @@ function onRowClick(row: ExampleDataType) {
         :data="exampleData"
         :columns="exampleColumns"
         :filters="[]"
-        :pagination="examplePagination"
+        :pagination="pagination"
         :is-loading="false"
         :row-click="onRowClick"
       />
