@@ -3,7 +3,6 @@ import ComponentPlayground from '@docs/playground/components/ComponentPlayground
 import { createControls } from '@docs/playground/utils/createContols'
 
 import AppTable from '@/components/table/AppTable.vue'
-
 import {
   type PaginatedData,
   type TableColumn,
