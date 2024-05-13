@@ -80,7 +80,7 @@ const model = ref<null | string>(null)
         />
 
         <AppText variant="caption">
-          Model value: {{ model }}
+          {{ `Model value: ${model}` }}
         </AppText>
       </div>
     </template>

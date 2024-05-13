@@ -52,7 +52,7 @@ const docs = [
         text: 'AppCombobox',
       },
       {
-        link: '/components/app-multi-combobox',
+        link: '/components/combobox/app-multi-combobox',
         text: 'AppMultiCombobox',
       },
       {
@@ -60,7 +60,7 @@ const docs = [
         text: 'FormCombobox',
       },
       {
-        link: '/components/form-multi-combobox',
+        link: '/components/combobox/form-multi-combobox',
         text: 'FormMultiCombobox',
       },
     ],
