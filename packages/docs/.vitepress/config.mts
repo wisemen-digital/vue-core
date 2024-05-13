@@ -48,6 +48,15 @@ const docs = [
   {
     items: [
       {
+        link: '/components/command/app-command',
+        text: 'AppCommand'
+      }
+    ],
+    text: 'Command'
+  },
+  {
+    items: [
+      {
         link: '/components/combobox/app-combobox',
         text: 'AppCombobox',
       },
