@@ -123,7 +123,7 @@ export { default as AppTooltip } from './components/tooltip/AppTooltip.vue'
 // Composables
 export { useDialog } from './composables/dialog.composable'
 export { useKeyboardShortcut } from './composables/keyboardShortcut.composable'
-export { useTablePagination } from './composables/tablePagination.composable'
+export { usePagination } from './composables/pagination.composable'
 export { useToast } from './composables/toast.composable'
 
 // Types
@@ -134,16 +134,22 @@ export type { DropdownMenuItem } from './types/dropdownMenuItem.type'
 export type { FormFieldErrors } from './types/formFieldErrors.type'
 export type { KeyboardKey } from './types/keyboard.type'
 export type { KeyboardShortcut, KeyboardShortcutConfig } from './types/keyboardShortcut.type'
+export type {
+  FilterChangeEvent,
+  PageChangeEvent,
+  PaginatedData,
+  Pagination,
+  PaginationFilter,
+  PaginationFilters,
+  PaginationOptions,
+  SortChangeEvent,
+  SortDirection,
+  UsePaginationReturnType,
+} from './types/pagination.type'
 export type { Routes } from './types/routes.type'
 export type { SelectItem } from './types/selectItem.type'
 export type { RouteTabItem, TabItem } from './types/tabItem.type'
-export type {
-  PaginatedData,
-  Pagination,
-  PaginationOptions,
-  TableColumn,
-  TableFilter,
-} from './types/table.type'
+export type { TableColumn } from './types/table.type'
 
 // Other
 export { extendIcons } from './icons/icons'
