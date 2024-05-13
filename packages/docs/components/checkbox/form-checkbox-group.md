@@ -51,7 +51,7 @@ const options = ref<DataItem<string>[]>([
 </script>
 
 <template>
-  <AppCheckboxGroupInput
+  <FormCheckboxGroup
     v-bind="value"
     :options="options"
     label="Options"
