@@ -9,6 +9,8 @@ import FormComboboxPlayground from './FormComboboxPlayground.vue'
 
 <FormComboboxPlayground />
 
+For multi value select, see [FormMultiCombobox](/components/combobox/form-multi-combobox.md).
+
 ## Props
 
 | Prop                     | Type                                                  | Description                                                  | Default                          |
