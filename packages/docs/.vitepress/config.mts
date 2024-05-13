@@ -49,10 +49,10 @@ const docs = [
     items: [
       {
         link: '/components/command/app-command',
-        text: 'AppCommand'
-      }
+        text: 'AppCommand',
+      },
     ],
-    text: 'Command'
+    text: 'Command',
   },
   {
     items: [
