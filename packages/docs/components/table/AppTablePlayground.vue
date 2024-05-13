@@ -3,11 +3,11 @@ import ComponentPlayground from '@docs/playground/components/ComponentPlayground
 import { createControls } from '@docs/playground/utils/createContols'
 
 import AppTable from '@/components/table/AppTable.vue'
-import type {
-  PaginatedData,
-  TableColumn,
+import {
+  type PaginatedData,
+  type TableColumn,
+  usePagination,
 } from '@/index'
-import { useTablePagination } from '@/index'
 
 const controls = createControls({
   title: {
@@ -26,6 +26,11 @@ const controls = createControls({
     label: 'Pin last column',
     type: 'switch',
   },
+  isLoading: {
+    type: 'switch',
+    default: false,
+    label: 'Is loading',
+  },
 })
 
 interface ExampleDataType {
@@ -34,6 +39,7 @@ interface ExampleDataType {
   firstName: string
   lastName: string
 }
+
 interface ExampleFilters {}
 
 const exampleData: PaginatedData<ExampleDataType> = {
@@ -48,7 +54,7 @@ const exampleColumns: TableColumn<ExampleDataType>[] = [
   {
     id: 'firstName',
     label: 'First Name',
-    size: '300px',
+    size: 'auto',
     value: row => row.firstName,
   },
   {
@@ -66,13 +72,20 @@ const exampleColumns: TableColumn<ExampleDataType>[] = [
   {
     id: 'hasDriversLicense',
     label: 'Drivers license?',
-    size: '200px',
+    size: 'auto',
     value: row => row.hasDriversLicense ? 'Yes' : 'No',
   },
 ]
 
-const pagination = useTablePagination<ExampleFilters>({
+const pagination = usePagination<ExampleFilters>({
   id: 'example',
+  disableRouteQuery: true,
+  defaultPaginationOptions: {
+    pagination: {
+      page: 0,
+      perPage: 3,
+    },
+  },
 })
 
 function onRowClick(row: ExampleDataType) {
