@@ -126,8 +126,33 @@ const docs = [
   {
     items: [
       {
+        link: '/components/skeleton-loader/app-page-skeleton-loader',
+        text: 'AppPageSkeletonLoader',
+      },
+      {
+        link: '/components/skeleton-loader/app-skeleton-loader-button',
+        text: 'AppSkeletonLoaderButton',
+      },
+      {
+        link: '/components/skeleton-loader/app-skeleton-loader-row',
+        text: 'AppSkeletonLoaderRow',
+      },
+      {
+        link: '/components/skeleton-loader/app-skeleton-loader-rows',
+        text: 'AppSkeletonLoaderRows',
+      },
+    ],
+    text: 'SkeletonLoader',
+  },
+  {
+    items: [
+      {
         link: '/components/table/app-table',
         text: 'AppTable',
+      },
+      {
+        link: '/components/table/app-table-skeleton-loader',
+        text: 'AppTableSkeletonLoader',
       },
     ],
     text: 'Table',
