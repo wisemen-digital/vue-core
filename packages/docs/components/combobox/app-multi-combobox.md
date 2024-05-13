@@ -67,18 +67,27 @@ const userItems: ComboboxItem<User>[] = [
     },
   },
   {
-    type: 'option',
-    value: {
-      firstName: 'Jane',
-      lastName: 'Doe',
-    },
+    type: 'divider',
   },
   {
-    type: 'option',
-    value: {
-      firstName: 'James',
-      lastName: 'Doe',
-    },
+    type: 'group',
+    label: 'Group 1',
+    items: [
+      {
+        type: 'option',
+        value: {
+          firstName: 'Jane',
+          lastName: 'Doe',
+        },
+      },
+      {
+        type: 'option',
+        value: {
+          firstName: 'James',
+          lastName: 'Doe',
+        },
+      },
+    ],
   },
 ]
 
