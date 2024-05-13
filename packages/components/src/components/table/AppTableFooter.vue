@@ -4,7 +4,7 @@ import { computed } from 'vue'
 import AppSkeletonLoaderRow from '@/components/skeleton-loader/AppSkeletonLoaderRow.vue'
 import AppTablePagination from '@/components/table/AppTablePagination.vue'
 import AppText from '@/components/text/AppText.vue'
-import type { PageChangeEvent, PaginationOptions } from '@/types/table.type'
+import type { PageChangeEvent, PaginationOptions } from '@/types/pagination.type'
 import { toLocaleNumber } from '@/utils/number.util'
 
 const props = defineProps<{
