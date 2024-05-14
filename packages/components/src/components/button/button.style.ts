@@ -15,10 +15,12 @@ export const baseButton = cva({
       'destructive-outline': 'border-destructive bg-transparent text-destructive ring-destructive',
       'ghost':
         'border-transparent bg-transparent text-muted-foreground ring-ring hover:enabled:bg-muted-background focus:enabled:bg-muted-background',
+      'muted':
+        'border-muted-background bg-muted-background text-muted-foreground ring-ring',
       'outline':
         'border-primary bg-background text-primary ring-ring',
       'secondary':
-        'border-muted-background bg-muted-background text-muted-foreground ring-ring',
+        'border-transparent bg-secondary text-secondary-foreground ring-ring',
     },
   },
 })
