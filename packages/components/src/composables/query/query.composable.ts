@@ -5,7 +5,7 @@ import {
   type MaybeRef,
 } from 'vue'
 
-import type { QueryKeys } from '@/index'
+import type { QueryKeys } from '@/types/queryKeys.type'
 
 type NonOptionalKeys<T> = {
   [K in keyof T]-?: T[K]

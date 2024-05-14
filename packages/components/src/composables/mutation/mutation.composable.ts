@@ -5,7 +5,7 @@ import {
   type UnwrapRef,
 } from 'vue'
 
-import type { QueryKeys } from '@/index'
+import type { QueryKeys } from '@/types/queryKeys.type'
 
 type RequestParams<TReqData, TParams> = TReqData extends void
   ? TParams extends void
