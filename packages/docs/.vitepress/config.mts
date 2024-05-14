@@ -52,7 +52,7 @@ const docs = [
         text: 'AppCombobox',
       },
       {
-        link: '/components/app-multi-combobox',
+        link: '/components/combobox/app-multi-combobox',
         text: 'AppMultiCombobox',
       },
       {
@@ -60,7 +60,7 @@ const docs = [
         text: 'FormCombobox',
       },
       {
-        link: '/components/form-multi-combobox',
+        link: '/components/combobox/form-multi-combobox',
         text: 'FormMultiCombobox',
       },
     ],
@@ -69,11 +69,11 @@ const docs = [
   {
     items: [
       {
-        link: '/components/form-checkbox',
+        link: '/components/checkbox/form-checkbox',
         text: 'FormCheckbox',
       },
       {
-        link: '/components/form-checkbox-group',
+        link: '/components/checkbox/form-checkbox-group',
         text: 'FormCheckboxGroup',
       },
     ],
@@ -126,8 +126,33 @@ const docs = [
   {
     items: [
       {
+        link: '/components/skeleton-loader/app-page-skeleton-loader',
+        text: 'AppPageSkeletonLoader',
+      },
+      {
+        link: '/components/skeleton-loader/app-skeleton-loader-button',
+        text: 'AppSkeletonLoaderButton',
+      },
+      {
+        link: '/components/skeleton-loader/app-skeleton-loader-row',
+        text: 'AppSkeletonLoaderRow',
+      },
+      {
+        link: '/components/skeleton-loader/app-skeleton-loader-rows',
+        text: 'AppSkeletonLoaderRows',
+      },
+    ],
+    text: 'SkeletonLoader',
+  },
+  {
+    items: [
+      {
         link: '/components/table/app-table',
         text: 'AppTable',
+      },
+      {
+        link: '/components/table/app-table-skeleton-loader',
+        text: 'AppTableSkeletonLoader',
       },
     ],
     text: 'Table',
