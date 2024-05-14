@@ -45,7 +45,7 @@ function onClearFilters(): void {
         </AppText>
 
         <AppButton
-          variant="secondary"
+          variant="muted"
           icon-right="close"
           size="sm"
           class="mx-auto mt-4"
