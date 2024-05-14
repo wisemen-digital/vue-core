@@ -18,17 +18,17 @@ import type {
   PageChangeEvent,
   PaginatedData,
   Pagination,
+  PaginationFilter,
   SortChangeEvent,
-  TableColumn,
-  TableFilter,
-} from '@/types/table.type'
+} from '@/types/pagination.type'
+import type { TableColumn } from '@/types/table.type'
 
 const props = withDefaults(
   defineProps<{
     isLoading: boolean
     columns: TableColumn<TSchema>[]
     data: PaginatedData<TSchema> | null
-    filters: TableFilter<TFilters>[]
+    filters: PaginationFilter<TFilters>[]
     pagination: Pagination<TFilters>
     rowClick?: ((row: TSchema) => void) | null
     rowTo?: ((row: TSchema) => RouteLocationNamedRaw) | null
@@ -43,10 +43,6 @@ const props = withDefaults(
     shouldPinLastColumn: false,
   },
 )
-
-const emit = defineEmits<{
-  clearFilters: []
-}>()
 
 const tableContainerRef = ref<HTMLElement | null>(null)
 
@@ -107,7 +103,7 @@ function handleTableResize(): void {
 }
 
 function onClearFilters(): void {
-  emit('clearFilters')
+  props.pagination.clearFilters()
 }
 
 const gridColsStyle = computed<string>(() => {
@@ -172,17 +168,6 @@ onBeforeUnmount(() => {
           @sort="handleSortChange"
         />
 
-        <AppTableEmptyState
-          v-if="hasNoData || props.isLoading"
-          :active-filter-count="activeFilterCount"
-          :column-count="props.columns.length"
-          :should-pin-first-column="props.shouldPinFirstColumn"
-          :should-pin-last-column="props.shouldPinLastColumn"
-          :has-reached-horizontal-scroll-end="hasReachedHorizontalScrollEnd"
-          :is-scrolled-to-right="isScrolledToRight"
-          @clear-filters="onClearFilters"
-        />
-
         <AppTableBody
           :columns="props.columns"
           :data="props.data?.data ?? []"
@@ -194,6 +179,17 @@ onBeforeUnmount(() => {
           :has-active-filters="activeFilterCount > 0 && !props.isLoading"
           :row-click="props.rowClick"
           :row-to="props.rowTo"
+        />
+
+        <AppTableEmptyState
+          v-if="hasNoData || props.isLoading"
+          :active-filter-count="activeFilterCount"
+          :column-count="props.columns.length"
+          :should-pin-first-column="props.shouldPinFirstColumn"
+          :should-pin-last-column="props.shouldPinLastColumn"
+          :has-reached-horizontal-scroll-end="hasReachedHorizontalScrollEnd"
+          :is-scrolled-to-right="isScrolledToRight"
+          @clear-filters="onClearFilters"
         />
       </div>
 
