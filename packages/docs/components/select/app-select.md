@@ -3,17 +3,24 @@ sidebar: auto
 ---
 
 # AppSelect
+<script setup>
+import AppSelectPlayground from './AppSelectPlayground.vue'
+</script>
+
+<AppSelectPlayground />
 
 ## Props
 
-| Prop                      | Type                   | Description                                               | Default |
-| ------------------------- | ---------------------- | --------------------------------------------------------- | ------- |
-| items  **(required)**     | `SelectItem<T>[]`      | The items to display in the select.                       |         |
-| displayFn  **(required)** | `(value: T) => string` | Display function for the selected value.                  |         |
-| isDisabled                | `boolean`              | Whether the select is disabled.                           | `false` |
-| isInvalid                 | `boolean`              | Whether the select is in an invalid state.                | `false` |
-| isLoading                 | `boolean`              | Whether the select is loading.                            | `false` |
-| placeholder               | `null` \| `string`     | The placeholder text to display when the select is empty. | `null`  |
+| Prop                      | Type                   | Description                                               | Default     |
+| ------------------------- | ---------------------- | --------------------------------------------------------- | -------     |
+| id                        | `string \| null`       | The id of the select                                      | `null`      |
+| isDisabled                | `boolean`              | Whether the select is disabled.                           | `false`     |
+| isInvalid                 | `boolean`              | Whether the select is in an invalid state.                | `false`     |
+| isLoading                 | `boolean`              | Whether the select is loading.                            | `false`     |
+| displayFn  **(required)** | `(value: T) => string` | Display function for the selected value.                  |             |
+| iconLeft                  | `Icon`                 | The icon to display on the left side of the select.       | `undefined` |
+| items  **(required)**     | `SelectItem<T>[]`      | The items to display in the select.                       |             |
+| placeholder               | `null` \| `string`     | The placeholder text to display when the select is empty. | `null`      |
 
 ## v-model
 
@@ -29,9 +36,6 @@ sidebar: auto
 | filter     | Emitted when the select filters options based on user input. |
 
 ## Example Usage
-
-
-
 
 ```vue
 <script setup lang="ts">
