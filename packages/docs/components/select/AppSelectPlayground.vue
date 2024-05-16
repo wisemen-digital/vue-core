@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { SelectItem, AppSelect } from '@/index';
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
-import { ref } from 'vue'
 import { createControls } from '@docs/playground/utils/createContols'
+import { ref } from 'vue'
+
+import type { SelectItem } from '@/index'
+import { AppSelect } from '@/index'
 
 interface User {
   firstName: string
@@ -46,7 +48,7 @@ const userItems: SelectItem<User>[] = [
     },
   },
   {
-    type: 'divider'
+    type: 'divider',
   },
   {
     type: 'option',
@@ -65,15 +67,15 @@ function displayFn(user: User): string {
 </script>
 
 <template>
-  <ComponentPlayground 
-    :controls="controls" 
-    v-slot="{values}"
+  <ComponentPlayground
+    v-slot="{ values }"
+    :controls="controls"
   >
-    <AppSelect 
-      v-model="user" 
-      :items="userItems" 
-      :display-fn="(test) => displayFn(test)" 
-      v-bind="values" 
+    <AppSelect
+      v-model="user"
+      :items="userItems"
+      :display-fn="(test) => displayFn(test)"
+      v-bind="values"
     />
   </ComponentPlayground>
 </template>
