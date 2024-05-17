@@ -17,6 +17,8 @@ const items: CommandItem[] = [
 ]
 
 function onSelect() {
+  // eslint-disable-next-line no-alert
+  alert('Selected')
 }
 </script>
 
