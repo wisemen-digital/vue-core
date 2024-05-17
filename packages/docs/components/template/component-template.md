@@ -45,8 +45,6 @@ sidebar: auto
 ```vue [Usage]
 
 ```
-
-```vue [Source code]
-```
-
 :::
+
+For full source code, see [Github]().
