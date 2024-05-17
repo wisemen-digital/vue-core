@@ -19,23 +19,23 @@ For single value select, see [FormCombobox](/components/combobox/form-combobox.m
 | isDisabled      | `boolean`                                             | Whether the combobox is disabled.                           | `false`                          |
 | isLoading       | `boolean`                                             | Whether the combobox is loading.                            | `false`                          |
 | isRequired      | `boolean`                                             | Whether the combobox is required.                           | `false`                          |
-| isTouched       | `boolean`                                             | Whether the combobox has been touched (focused and blurred).|                                  |
+| isTouched*      | `boolean`                                             | Whether the combobox has been touched (focused and blurred).|                                  |
 | emptyText       | `null` \| `string`                                    | The text to display when there are no options.              | `t('components.combobox.empty')` |
-| errors          | `FormFieldErrors`                                     | The errors associated with the combobox.                    |                                  |
+| errors*         | `FormFieldErrors`                                     | The errors associated with the combobox.                    |                                  |
 | iconLeft        | `Icon` \| `null`                                      | The icon to display on the left side of the combobox.       | `null`                           |
 | iconRight       | `Icon` \| `null`                                      | The icon to display on the right side of the combobox.      | `null`                           |
-| items           | `ComboboxItem<TValue>[]`                              | The options of the combobox.                                |                                  |
-| label           | `string`                                              | The label of the combobox.                                  |                                  |
+| items*          | `ComboboxItem<TValue>[]`                              | The options of the combobox.                                |                                  |
+| label*          | `string`                                              | The label of the combobox.                                  |                                  |
 | placeholder     | `null` \| `string`                                    | The placeholder of the combobox.                            | `null`                           |
-| displayFn       | `(value: T) => string`                                | Display function for the selected value.                    |                                  |
-| filterFn        | `(options: TValue[], searchTerm: string) => TValue[]` | The function to filter the options.                         |                                  |
+| displayFn*      | `(value: T) => string`                                | Display function for the selected value.                    |                                  |
+| filterFn*       | `(options: TValue[], searchTerm: string) => TValue[]` | The function to filter the options.                         |                                  |
 
 
 ## v-model
 
 | Prop            | Type                 | Description                |
 | --------------- | -------------------- | -------------------------- |
-| v-model         | `TValue[]`           | The value of the combobox. |
+| v-model*        | `TValue[]`           | The value of the combobox. |
 | v-model:search  | `string` \| `null`   | The search term.           |
 
 ## Events
@@ -44,7 +44,7 @@ For single value select, see [FormCombobox](/components/combobox/form-combobox.m
 | ---------- | -------------------------------------- |
 | blur       | Emitted when the combobox loses focus. |
 
-## Example Usage
+## Code
 
 ::: code-group
 ```vue [Usage]
@@ -104,146 +104,6 @@ const users = form.register('users')
 </template>
 
 ```
-
-```vue [Source code]
-<script setup lang="ts" generic="TValue extends AcceptableValue">
-import AppMultiCombobox from '@/components/combobox/AppMultiCombobox.vue'
-import FormElement from '@/components/form-element/FormElement.vue'
-import type { Icon } from '@/icons/icons'
-import type { ComboboxItem } from '@/types/comboboxItem.type'
-import type { FormFieldErrors } from '@/types/formFieldErrors.type'
-import type { AcceptableValue } from '@/types/selectItem.type'
-
-const props = withDefaults(
-  defineProps<{
-    /**
-     * Whether the chevron icon is hidden.
-     * @default false
-     */
-    isChevronHidden?: boolean
-    /**
-     * Whether the combobox is disabled.
-     * @default false
-     */
-    isDisabled?: boolean
-    /**
-     * Whether the select is loading.
-     * @default false
-     */
-    isLoading?: boolean
-    /**
-     * Whether the combobox is required.
-     * @default false
-     */
-    isRequired?: boolean
-    /**
-     * Whether the combobox has been touched (focused and blurred).
-     */
-    isTouched: boolean
-    /**
-     * Display function for the selected value
-     */
-    displayFn: (value: TValue) => string
-    /**
-     * The text to display when there are no options.
-     * @default t('components.combobox.empty')
-     */
-    emptyText?: null | string
-    /**
-     * The errors associated with the combobox.
-     */
-    errors: FormFieldErrors
-    /**
-     * The function to filter the options.
-     */
-    filterFn: (options: TValue[], searchTerm: string) => TValue[]
-    /**
-     * The icon to display on the left side of the combobox.
-     * @default null
-     */
-    iconLeft?: Icon | null
-    /**
-     * The icon to display on the right side of the combobox.
-     * @default null
-     */
-    iconRight?: Icon | null
-    /**
-     * The options of the combobox.
-     */
-    items: ComboboxItem<TValue>[]
-    /**
-     * The label of the combobox.
-     */
-    label: string
-    /**
-     * The placeholder of the combobox.
-     * @default null
-     */
-    placeholder?: null | string
-  }>(),
-  {
-    isDisabled: false,
-    isLoading: false,
-    isRequired: false,
-    isTouched: false,
-    emptyText: null,
-    placeholder: null,
-  },
-)
-
-const emit = defineEmits<{
-  blur: []
-}>()
-
-const model = defineModel<TValue[]>({
-  required: true,
-})
-
-const search = defineModel<null | string>('search', {
-  default: '',
-  required: false,
-})
-
-function onBlur(): void {
-  emit('blur')
-}
-</script>
-
-<template>
-  <FormElement
-    v-slot="{ isInvalid, id }"
-    :errors="props.errors"
-    :is-required="props.isRequired"
-    :is-touched="props.isTouched"
-    :is-disabled="props.isDisabled"
-    :label="props.label"
-  >
-    <AppMultiCombobox
-      :id="id"
-      v-model:search="search"
-      v-model="model"
-      :is-invalid="isInvalid"
-      :items="props.items"
-      :display-fn="props.displayFn"
-      :filter-fn="props.filterFn"
-      :empty-text="props.emptyText"
-      :is-disabled="props.isDisabled"
-      :is-required="props.isRequired"
-      :placeholder="props.placeholder"
-      :is-loading="props.isLoading"
-      :icon-left="props.iconLeft"
-      :icon-right="props.iconRight"
-      :is-chevron-hidden="props.isChevronHidden"
-      @blur="onBlur"
-    >
-      <template #option="{ value }">
-        <slot
-          :value="value"
-          name="option"
-        />
-      </template>
-    </AppMultiCombobox>
-  </FormElement>
-</template>
-```
 :::
+
+For full source code, see [Github](https://github.com/wisemen-digital/vue-core/blob/main/packages/components/src/components/combobox/FormMultiCombobox.vue).

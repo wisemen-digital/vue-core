@@ -15,7 +15,8 @@ import AppBreadcrumbsPlayground from './AppBreadcrumbsPlayground.vue'
 
 | Prop  | Type               | Description                             | Default |
 | ----- | ------------------ | --------------------------------------- | ------- |
-| items | `BreadcrumbItem[]` | The items to display in the breadcrumb. |         |
+| items* | `BreadcrumbItem[]` | The items to display in the breadcrumb.|         |
+
 
 ## Types
 
@@ -68,35 +69,6 @@ const items: BreadcrumbItem[] = [
   <AppBreadcrumbs :items="items" />
 </template>
 ```
-
-```vue [Source code]
-<script setup lang="ts">
-import AppBreadcrumbDivider from '@/components/breadcrumbs/AppBreadcrumbDivider.vue'
-import AppBreadcrumbItem from '@/components/breadcrumbs/AppBreadcrumbItem.vue'
-import type { BreadcrumbItem } from '@/types/breadcrumbItem.type'
-
-const props = defineProps<{
-  /**
-   * The items to display in the breadcrumb.
-   */
-  items: BreadcrumbItem[]
-}>()
-</script>
-
-<template>
-  <nav aria-label="breadcrumb">
-    <ol class="flex items-center gap-x-3">
-      <template
-        v-for="(item, i) of props.items"
-        :key="item.label"
-      >
-        <AppBreadcrumbItem :item="item" />
-
-        <AppBreadcrumbDivider v-if="i < props.items.length - 1" />
-      </template>
-    </ol>
-  </nav>
-</template>
-```
-
 :::
+
+For full source code, see [Github](https://github.com/wisemen-digital/vue-core/blob/main/packages/components/src/components/breadcrumbs/AppBreadcrumbs.vue).
