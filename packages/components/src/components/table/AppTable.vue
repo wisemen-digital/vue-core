@@ -140,7 +140,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="flex h-full flex-1 flex-col overflow-hidden rounded-xl border border-solid border-border bg-background">
+  <div class="relative flex h-full flex-1 flex-col overflow-hidden rounded-xl border border-solid border-border bg-background">
     <AppTableTop
       :is-loading="props.isLoading"
       :title="props.title"
