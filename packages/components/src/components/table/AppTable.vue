@@ -149,7 +149,7 @@ onBeforeUnmount(() => {
 
     <div
       ref="tableContainerRef"
-      class="h-full overflow-y-auto"
+      class="h-full flex-1 overflow-y-auto"
       @scroll="onScroll"
     >
       <div
