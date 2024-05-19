@@ -113,11 +113,15 @@ const docs = [
   {
     items: [
       {
-        link: '/components/app-select',
+        link: '/components/select/app-select',
         text: 'AppSelect',
       },
       {
-        link: '/components/form-select',
+        link: '/components/select/app-multi-select',
+        text: 'AppMultiSelect',
+      },
+      {
+        link: '/components/select/form-select',
         text: 'FormSelect',
       },
     ],
