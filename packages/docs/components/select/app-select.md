@@ -13,13 +13,13 @@ import AppSelectPlayground from './AppSelectPlayground.vue'
 
 | Prop                      | Type                   | Description                                               | Default     |
 | ------------------------- | ---------------------- | --------------------------------------------------------- | -------     |
+| items*                    | `SelectItem<T>[]`      | The items to display in the select.                       |             |
+| displayFn*                | `(value: T) => string` | Display function for the selected value.                  |             |
 | id                        | `string \| null`       | The id of the select                                      | `null`      |
 | isDisabled                | `boolean`              | Whether the select is disabled.                           | `false`     |
 | isInvalid                 | `boolean`              | Whether the select is in an invalid state.                | `false`     |
 | isLoading                 | `boolean`              | Whether the select is loading.                            | `false`     |
-| displayFn  **(required)** | `(value: T) => string` | Display function for the selected value.                  |             |
 | iconLeft                  | `Icon`                 | The icon to display on the left side of the select.       | `undefined` |
-| items  **(required)**     | `SelectItem<T>[]`      | The items to display in the select.                       |             |
 | placeholder               | `null` \| `string`     | The placeholder text to display when the select is empty. | `null`      |
 
 ## v-model
