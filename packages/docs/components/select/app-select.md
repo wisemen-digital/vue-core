@@ -35,7 +35,7 @@ import AppSelectPlayground from './AppSelectPlayground.vue'
 | blur       | Emitted when the select loses focus.                         |
 | filter     | Emitted when the select filters options based on user input. |
 
-## Example Usage
+## Code
 
 ```vue
 <script setup lang="ts">
@@ -86,3 +86,6 @@ const value = ref<User | null>(null)
     </template>
   </AppSelect>
 </template>
+```
+
+For full source code, see [Github](https://github.com/wisemen-digital/vue-core/blob/main/packages/components/src/components/select/AppSelect.vue)
