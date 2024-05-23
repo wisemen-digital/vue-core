@@ -118,7 +118,7 @@ function onBlur(): void {
                 ? t('components.password_input.hide_password')
                 : t('components.password_input.show_password')"
               tabindex="-1"
-              icon-size="sm"
+              size="sm"
               variant="ghost"
               class="m-1 size-8"
             />
