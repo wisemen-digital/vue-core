@@ -6,7 +6,7 @@ import AppIcon from '@/components/icon/AppIcon.vue'
 
 <template>
   <SelectScrollDownButton
-    class="absolute bottom-0 z-10 flex w-full justify-center bg-gradient-to-b from-transparent to-white p-2"
+    class="absolute bottom-0 z-10 flex w-full justify-center bg-gradient-to-b from-transparent to-popover p-2"
   >
     <AppIcon
       class="text-muted-foreground"

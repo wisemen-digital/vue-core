@@ -15,6 +15,7 @@ const controls = createControls({
     cols: 2,
     items: [
       'default',
+      'muted',
       'secondary',
       'outline',
       'ghost',
@@ -48,12 +49,12 @@ const controls = createControls({
     type: 'select',
   },
   iconLeft: {
-    default: 'alertCircle',
+    default: null,
     label: 'Left icon',
     type: 'icon',
   },
   iconRight: {
-    default: 'alertCircle',
+    default: null,
     label: 'Right icon',
     type: 'icon',
   },
@@ -71,9 +72,7 @@ const controls = createControls({
 </script>
 
 <template>
-  <ComponentPlayground
-    :controls="controls"
-  >
+  <ComponentPlayground :controls="controls">
     <template #default="{ values }">
       <AppButton v-bind="values">
         {{ values.slot }}
