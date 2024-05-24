@@ -33,7 +33,7 @@ function onClearFilters(): void {
     <AppButton
       size="xs"
       icon-right="close"
-      variant="secondary"
+      variant="muted"
       @click="onClearFilters"
     >
       {{ t('components.table.clear_filters') }}
