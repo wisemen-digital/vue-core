@@ -105,7 +105,6 @@ function onRowClick(row: ExampleDataType) {
         :columns="exampleColumns"
         :filters="[]"
         :pagination="pagination"
-        :is-loading="false"
         :row-click="onRowClick"
       />
     </template>
