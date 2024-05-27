@@ -47,4 +47,4 @@ sidebar: auto
 ```
 :::
 
-For full source code, see [Github]().
+For full source code, see [Github](https://github.com/wisemen-digital/vue-core/tree/main/packages).
