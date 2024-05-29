@@ -82,6 +82,24 @@ const docs = [
   {
     items: [
       {
+        link: '/components/form-element/form-element',
+        text: 'FormElement',
+      },
+    ],
+    text: 'FormElement',
+  },
+  {
+    items: [
+      {
+        link: '/components/form-group/form-group',
+        text: 'FormGroup',
+      },
+    ],
+    text: 'FormGroup',
+  },
+  {
+    items: [
+      {
         link: '/components/icon/app-icon',
         text: 'AppIcon',
       },
