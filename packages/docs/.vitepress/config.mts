@@ -82,6 +82,15 @@ const docs = [
   {
     items: [
       {
+        link: '/components/form-error/form-error',
+        text: 'FormError',
+      },
+    ],
+    text: 'FormError',
+  },
+  {
+    items: [
+      {
         link: '/components/icon/app-icon',
         text: 'AppIcon',
       },
