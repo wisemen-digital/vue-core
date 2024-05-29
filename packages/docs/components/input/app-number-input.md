@@ -28,9 +28,10 @@ import AppNumberInputPlayground from './AppNumberInputPlayground.vue'
 
 ## Slots
 
-| Slot      | Type | Description                                |
-| --------- | ---- | ------------------------------------------ |
+| Slot      | Type | Description                                                                                   |
+| --------- | ---- | --------------------------------------------------------------------------------------------- |
 | `right`   | None | Optional content on the right of the input (to the right of the increment/decrement controls) |
+| `left`    | None | Optional content on the left of the input (overrides the rendering of the left Icon)          |
 
 > The `right` slot will only show if hideControls is set to `false`
 
