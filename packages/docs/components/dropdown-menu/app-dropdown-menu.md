@@ -95,11 +95,11 @@ export interface DropdownMenuRadio {
 
 ## Slots
 
-| Slot name   | Type | Description                                |
-| ----------- | ---- | ------------------------------------------ |
-| `'default'`*| None | Trigger element to show the dropdown items |
-| `'header'`  | None |             |
-| `'footer'`  | None |             |
+| Slot name   | Type | Description                                                        |
+| ----------- | ---- | ------------------------------------------------------------------ |
+| `'default'`*| None | Trigger element to show the dropdown items                         |
+| `'header'`  | None | Optional header content in the dropdown, before the dropdown items |
+| `'footer'`  | None | Optional footer content in the dropdown, after the dropdown items  |
 
 
 ## Code
