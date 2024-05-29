@@ -76,6 +76,10 @@ const docs = [
         link: '/components/combobox/form-multi-combobox',
         text: 'FormMultiCombobox',
       },
+      {
+        link: '/components/combobox/form-multi-combobox',
+        text: 'FormMultiCombobox',
+      },
     ],
     text: 'Combobox',
   },
@@ -97,6 +101,10 @@ const docs = [
       {
         link: '/components/input/form-input',
         text: 'FormInput',
+      },
+      {
+        link: '/components/input/form-phone-number-input',
+        text: 'FormPhoneNumberInput',
       },
     ],
     text: 'Input',
