@@ -3,21 +3,23 @@ sidebar: auto
 ---
 
 
-# AppNumberInput
+# FormNumberInput
 <script setup>
-import AppNumberInputPlayground from './AppNumberInputPlayground.vue'
+import FormNumberInputPlayground from './FormNumberInputPlayground.vue'
 </script>
 
-<AppNumberInputPlayground />
+<FormNumberInputPlayground />
 
 ## Props
 
 | Prop          | Type                                         | Description                                          | Default     |
 | ------------ | ----------------------------------------------| ---------------------------------------------------- | ----------- |
-| id           | `string` \| `null`                            | The id of the input.                                 | `null`      |
+| label*       | `string`                                      | The label of the input.                              |             |
+| errors*      | `FormFieldErrors`                             | The errors associated with the input.                |             |
 | isDisabled   | `boolean`                                     | Whether the input is disabled.                       | `false`     |
-| isInvalid    | `boolean`                                     | Whether the input is invalid.                        | `false`     |
 | isLoading    | `boolean`                                     | Whether the input is loading.                        | `false`     |
+| isRequired   | `boolean`                                     | Whether the input is required.                       | `false`     |
+| isTouched*   | `boolean`                                     | Whether the input is invalid.                        | `false`     |
 | hideControls | `boolean`                                     | Whether to hide the increment and decrement controls.| `false`     |
 | iconLeft     | `Icon` \| `null`                              | The left icon of the input.                          | `null`      |
 | max          | `number` \| `null`                            | The maximum value of the input.                      | `null`      |
@@ -28,9 +30,10 @@ import AppNumberInputPlayground from './AppNumberInputPlayground.vue'
 
 ## Slots
 
-| Slot      | Type | Description                                |
-| --------- | ---- | ------------------------------------------ |
+| Slot      | Type | Description                                                                                   |
+| --------- | ---- | --------------------------------------------------------------------------------------------- |
 | `right`   | None | Optional content on the right of the input (to the right of the increment/decrement controls) |
+| `left`    | None | Optional content on the left of the input (overrides the rendering of the left Icon)          |
 
 > The `right` slot will only show if hideControls is set to `false`
 
@@ -40,18 +43,37 @@ import AppNumberInputPlayground from './AppNumberInputPlayground.vue'
 | ------- | ------------------ | ------------------ |
 | `model`*| `number` \| `null` | Value of the input |
 
+## Events
+
+| Event Name  | Description                                          |
+|-------------|------------------------------------------------------|
+| blur        | Emitted when the input loses focus.                  |
+| focus       | Emitted when the input gains focus.                  |
+
 ## Code
 
 ::: code-group
 ```vue [Usage]
 <script setup lang="ts">
-import { AppNumberInput } from '@wisemen/vue-core'
+import { FormNumberInput } from '@wisemen/vue-core'
+import { useForm } from 'formango'
+import { z } from 'zod'
 
-const value = ref<number | null>(null)
+const { form } = useForm({
+  schema: z.object({
+    percentage: z.string()
+  })
+})
+
+const percentage = form.register('percentage')
 </script>
   
 <template>
-  <AppNumberInput v-model="value" />
+  <FormNumberInput 
+    v-bind="percentage" 
+    :min="0" 
+    :max="100" 
+  />
 </template>
 ```
 :::
