@@ -76,10 +76,6 @@ const docs = [
         link: '/components/combobox/form-multi-combobox',
         text: 'FormMultiCombobox',
       },
-      {
-        link: '/components/combobox/form-multi-combobox',
-        text: 'FormMultiCombobox',
-      },
     ],
     text: 'Combobox',
   },
