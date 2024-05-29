@@ -95,8 +95,16 @@ const docs = [
         text: 'AppInput',
       },
       {
+        link: '/components/input/app-number-input',
+        text: 'AppNumberInput',
+      },
+      {
         link: '/components/input/form-input',
         text: 'FormInput',
+      },
+      {
+        link: '/components/input/form-number-input',
+        text: 'FormNumberInput',
       },
     ],
     text: 'Input',
