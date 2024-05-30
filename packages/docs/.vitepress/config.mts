@@ -113,7 +113,7 @@ const docs = [
   {
     items: [
       {
-        link: '/components/app-select',
+        link: '/components/select/app-select',
         text: 'AppSelect',
       },
       {
