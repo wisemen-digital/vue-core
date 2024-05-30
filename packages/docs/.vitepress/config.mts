@@ -104,6 +104,15 @@ const docs = [
   {
     items: [
       {
+        link: '/components/keyboard/app-keyboard-key',
+        text: 'AppKeyboardKey',
+      },
+    ],
+    text: 'Keyboard',
+  },
+  {
+    items: [
+      {
         link: '/components/popover/app-popover',
         text: 'AppPopover',
       },
