@@ -82,6 +82,15 @@ const docs = [
   {
     items: [
       {
+        link: '/components/dropdown-menu/app-dropdown-menu',
+        text: 'AppDropdownMenu',
+      },
+    ],
+    text: 'DropdownMenu',
+  },
+  {
+    items: [
+      {
         link: '/components/icon/app-icon',
         text: 'AppIcon',
       },
