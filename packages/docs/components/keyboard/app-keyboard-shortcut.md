@@ -2,18 +2,18 @@
 sidebar: auto
 ---
 
-# AppKeyboardKey
+# AppKeyboardShortcut
 <script setup>
-import AppKeyboardKeyPlayground from './AppKeyboardKeyPlayground.vue'
+import AppKeyboardShortcutPlayground from './AppKeyboardShortcutPlayground.vue'
 </script>
 
-<AppKeyboardKeyPlayground />
+<AppKeyboardShortcutPlayground />
 
 ## Props
 
 | Prop         | Type                                                                 | Description                                      | Default     |
 |--------------|----------------------------------------------------------------------|--------------------------------------------------|-------------|
-| keyboardKey* | `KeyboardKey`                                                        | The keyboard key to display                      |             |
+| keys*        | `KeyboardKey[]`                                                      | The keyboard key to display                      |             |
 | variant      | `'default'` \| `'bordered'` \| `'ghost'` \| `'secondary'`            | The style variant                                | `'default'` |
 
 
@@ -30,12 +30,12 @@ export type KeyboardKey = ' ' | ',' | '.' | ';' | '<' | '>' | '0' | '1' | '2' | 
 ::: code-group
 ```vue [Usage]
 <script setup lang="ts">
-import { AppKeyboardKey } from '@wisemen/vue-core'
+import { AppKeyboardShortcut } from '@wisemen/vue-core'
 </script>
 
 <template>
-  <AppKeyboardKey 
-    keyboard-key="shift"
+  <AppKeyboardShortcut 
+    :keys="['ctrl', 's']"
   />
 </template>
 ```

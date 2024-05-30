@@ -107,6 +107,10 @@ const docs = [
         link: '/components/keyboard/app-keyboard-key',
         text: 'AppKeyboardKey',
       },
+      {
+        link: '/components/keyboard/app-keyboard-shortcut',
+        text: 'AppKeyboardShortcut',
+      },
     ],
     text: 'Keyboard',
   },
