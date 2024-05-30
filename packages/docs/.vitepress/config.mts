@@ -143,6 +143,10 @@ const docs = [
         text: 'FormNumberInput',
       },
       {
+        link: '/components/input/form-password-input',
+        text: 'FormPasswordInput',
+      },
+      {
         link: '/components/input/form-phone-number-input',
         text: 'FormPhoneNumberInput',
       },
