@@ -82,6 +82,15 @@ const docs = [
   {
     items: [
       {
+        link: '/components/dropdown-menu/app-dropdown-menu',
+        text: 'AppDropdownMenu',
+      },
+    ],
+    text: 'DropdownMenu',
+  },
+  {
+    items: [
+      {
         link: '/components/form-error/form-error',
         text: 'FormError',
       },
@@ -122,7 +131,7 @@ const docs = [
   {
     items: [
       {
-        link: '/components/app-select',
+        link: '/components/select/app-select',
         text: 'AppSelect',
       },
       {
