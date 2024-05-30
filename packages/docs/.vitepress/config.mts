@@ -82,11 +82,29 @@ const docs = [
   {
     items: [
       {
+        link: '/components/dropdown-menu/app-dropdown-menu',
+        text: 'AppDropdownMenu',
+      },
+    ],
+    text: 'DropdownMenu',
+  },
+  {
+    items: [
+      {
         link: '/components/form-element/form-element',
         text: 'FormElement',
       },
     ],
     text: 'FormElement',
+  },
+  {
+    items: [
+      {
+        link: '/components/form-error/form-error',
+        text: 'FormError',
+      },
+    ],
+    text: 'FormError',
   },
   {
     items: [
@@ -131,7 +149,7 @@ const docs = [
   {
     items: [
       {
-        link: '/components/app-select',
+        link: '/components/select/app-select',
         text: 'AppSelect',
       },
       {
