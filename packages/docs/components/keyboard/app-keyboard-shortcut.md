@@ -13,7 +13,7 @@ import AppKeyboardShortcutPlayground from './AppKeyboardShortcutPlayground.vue'
 
 | Prop         | Type                                                                 | Description                                      | Default     |
 |--------------|----------------------------------------------------------------------|--------------------------------------------------|-------------|
-| keys*        | `KeyboardKey[]`                                                      | The keyboard key to display                      |             |
+| keys*        | `KeyboardKey[]`                                                      | The keyboard key(s) to display                   |             |
 | variant      | `'default'` \| `'bordered'` \| `'ghost'` \| `'secondary'`            | The style variant                                | `'default'` |
 
 

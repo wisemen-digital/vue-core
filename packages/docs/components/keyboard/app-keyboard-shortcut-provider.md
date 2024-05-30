@@ -11,9 +11,9 @@ import AppKeyboardShortcutProviderPlayground from './AppKeyboardShortcutProvider
 
 ## Props
 
-| Prop         | Type                                                                 | Description                                      | Default     |
-|--------------|----------------------------------------------------------------------|--------------------------------------------------|-------------|
-| config       | `KeyboardShortcutConfig`                                             | The keyboard key to display                      |             |
+| Prop         | Type                      | Description                                      | Default     |
+|--------------|---------------------------|--------------------------------------------------|-------------|
+| config       | `KeyboardShortcutConfig`  | The keyboard shortcut configuration              |             |
 
 
 ## Types
