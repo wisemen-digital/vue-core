@@ -143,6 +143,9 @@ function increment(): void {
     :icon-left="props.iconLeft ?? undefined"
     type="number"
   >
+    <template #left>
+      <slot name="left" />
+    </template>
     <template
       v-if="!props.hideControls"
       #right
