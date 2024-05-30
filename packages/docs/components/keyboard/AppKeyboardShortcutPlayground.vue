@@ -3,6 +3,7 @@ import ComponentPlayground from '@docs/playground/components/ComponentPlayground
 import { createControls } from '@docs/playground/utils/createContols'
 
 import AppKeyboardShortcut from '@/components/keyboard/AppKeyboardShortcut.vue'
+import AppText from '@/components/text/AppText.vue'
 
 const controls = createControls({
   variant: {
@@ -25,10 +26,29 @@ const controls = createControls({
     :controls="controls"
   >
     <template #default="{ values }">
-      <AppKeyboardShortcut
-        v-bind="values"
-        :keys="['ctrl', 's']"
-      />
+      <div class="flex gap-2">
+        <AppText variant="subtext">
+          As sequence:
+        </AppText>
+        <AppKeyboardShortcut
+          v-bind="values"
+          :keys="['k', 's']"
+        />
+
+        <AppText
+          variant="subtext"
+          class="px-3"
+        >
+          OR
+        </AppText>
+        <AppText variant="subtext">
+          As combination:
+        </AppText>
+        <AppKeyboardShortcut
+          v-bind="values"
+          :keys="['ctrl', 's']"
+        />
+      </div>
     </template>
   </ComponentPlayground>
 </template>

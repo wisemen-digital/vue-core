@@ -35,10 +35,13 @@ import { AppKeyboardShortcut } from '@wisemen/vue-core'
 
 <template>
   <AppKeyboardShortcut 
+    :keys="['k', 's']"
+  />
+  <AppKeyboardShortcut 
     :keys="['ctrl', 's']"
   />
 </template>
 ```
 :::
 
-For full source code, see [Github](https://github.com/wisemen-digital/vue-core/blob/main/packages/components/src/components/keyboard/AppKeyboardKey.vue).
+For full source code, see [Github](https://github.com/wisemen-digital/vue-core/blob/main/packages/components/src/components/keyboard/AppKeyboardShortcut.vue).
