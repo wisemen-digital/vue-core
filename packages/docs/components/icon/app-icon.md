@@ -15,7 +15,7 @@ import AppIconPlayground from './AppIconPlayground.vue'
 
 | Prop | Type                     | Description              | Default     |
 | ---- | ------------------------ | ------------------------ | ----------- |
-| icon | `Icon`                   | The icon to be displayed |             |
+| icon*| `Icon`                   | The icon to be displayed |             |
 | size | `IconStyleProps['size']` | The size of the icon     | `'default'` |
 
 
@@ -48,48 +48,6 @@ import { AppIcon } from '@wisemen/vue-core'
   <AppIcon icon="search" size="lg" />
 </template>
 ```
-
-```vue [Source code]
-<script setup lang="ts">
-import type { Component } from 'vue'
-import { shallowRef, watch } from 'vue'
-
-import { type IconStyleProps, iconVariants } from '@/components/icon/icon.style'
-import { type Icon, icons } from '@/icons/icons'
-import { cn } from '@/utils/style.util'
-
-const props = withDefaults(
-  defineProps<{
-    icon: Icon
-    size?: IconStyleProps['size']
-  }>(),
-  {
-    size: 'default',
-  },
-)
-
-const svgComponent = shallowRef<Component | null>(null)
-
-watch(
-  () => props.icon,
-  async () => {
-    const resolvedComponent = await icons[props.icon]
-
-    svgComponent.value = resolvedComponent.default
-  },
-  {
-    immediate: true,
-  },
-)
-</script>
-
-<template>
-  <Component
-    :is="svgComponent"
-    v-if="svgComponent !== null"
-    :class="cn(iconVariants({ size }))"
-  />
-</template>
-```
-
 :::
+
+For full source code, see [Github](https://github.com/wisemen-digital/vue-core/blob/main/packages/components/src/components/icon/AppIcon.vue).

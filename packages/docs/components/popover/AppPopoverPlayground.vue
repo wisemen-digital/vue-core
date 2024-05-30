@@ -49,7 +49,10 @@ const controls = createControls({
     :controls="controls"
   >
     <template #default="{ values }">
-      <AppPopover v-bind="values">
+      <AppPopover
+        v-bind="values"
+        :offset="+values.offset"
+      >
         <template #default>
           <AppButton>
             Trigger element

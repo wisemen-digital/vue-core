@@ -48,6 +48,19 @@ const docs = [
   {
     items: [
       {
+        link: '/components/checkbox/form-checkbox',
+        text: 'FormCheckbox',
+      },
+      {
+        link: '/components/checkbox/form-checkbox-group',
+        text: 'FormCheckboxGroup',
+      },
+    ],
+    text: 'Checkbox',
+  },
+  {
+    items: [
+      {
         link: '/components/combobox/app-combobox',
         text: 'AppCombobox',
       },
@@ -65,19 +78,6 @@ const docs = [
       },
     ],
     text: 'Combobox',
-  },
-  {
-    items: [
-      {
-        link: '/components/checkbox/form-checkbox',
-        text: 'FormCheckbox',
-      },
-      {
-        link: '/components/checkbox/form-checkbox-group',
-        text: 'FormCheckboxGroup',
-      },
-    ],
-    text: 'FormCheckbox',
   },
   {
     items: [
