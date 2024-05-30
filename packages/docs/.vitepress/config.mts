@@ -98,6 +98,10 @@ const docs = [
         link: '/components/input/form-input',
         text: 'FormInput',
       },
+      {
+        link: '/components/input/form-password-input',
+        text: 'FormPasswordInput',
+      },
     ],
     text: 'Input',
   },
