@@ -110,6 +110,7 @@ function onBlur(): void {
       :is-disabled="props.isDisabled"
       :is-loading="props.isLoading"
       :icon-left="props.iconLeft"
+      :hide-controls="props.hideControls"
       :min="props.min"
       :max="props.max"
       @focus="onFocus"

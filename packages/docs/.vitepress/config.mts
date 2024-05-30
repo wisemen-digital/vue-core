@@ -82,6 +82,42 @@ const docs = [
   {
     items: [
       {
+        link: '/components/dropdown-menu/app-dropdown-menu',
+        text: 'AppDropdownMenu',
+      },
+    ],
+    text: 'DropdownMenu',
+  },
+  {
+    items: [
+      {
+        link: '/components/form-element/form-element',
+        text: 'FormElement',
+      },
+    ],
+    text: 'FormElement',
+  },
+  {
+    items: [
+      {
+        link: '/components/form-error/form-error',
+        text: 'FormError',
+      },
+    ],
+    text: 'FormError',
+  },
+  {
+    items: [
+      {
+        link: '/components/form-group/form-group',
+        text: 'FormGroup',
+      },
+    ],
+    text: 'FormGroup',
+  },
+  {
+    items: [
+      {
         link: '/components/icon/app-icon',
         text: 'AppIcon',
       },
@@ -95,8 +131,16 @@ const docs = [
         text: 'AppInput',
       },
       {
+        link: '/components/input/app-number-input',
+        text: 'AppNumberInput',
+      },
+      {
         link: '/components/input/form-input',
         text: 'FormInput',
+      },
+      {
+        link: '/components/input/form-number-input',
+        text: 'FormNumberInput',
       },
       {
         link: '/components/input/form-phone-number-input',
@@ -117,7 +161,7 @@ const docs = [
   {
     items: [
       {
-        link: '/components/app-select',
+        link: '/components/select/app-select',
         text: 'AppSelect',
       },
       {
