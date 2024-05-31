@@ -130,8 +130,8 @@ function handlePageButtonClick(page: number): void {
   setPage(page)
 }
 
-function pageControlButtonVariant(page: number): 'ghost' | 'secondary' {
-  return page === props.paginationOptions.pagination.page ? 'secondary' : 'ghost'
+function pageControlButtonVariant(page: number): 'ghost' | 'muted' {
+  return page === props.paginationOptions.pagination.page ? 'muted' : 'ghost'
 }
 </script>
 
@@ -142,7 +142,6 @@ function pageControlButtonVariant(page: number): 'ghost' | 'secondary' {
       :label="t('components.table.previous')"
       :is-disabled="isFirstPage"
       icon="arrowLeft"
-      icon-size="sm"
       variant="ghost"
       @click="handlePrevPageButtonClick"
     />
@@ -175,7 +174,6 @@ function pageControlButtonVariant(page: number): 'ghost' | 'secondary' {
       v-if="hasMoreThanOnePage"
       :is-disabled="isLastPage"
       :label="t('components.table.next')"
-      icon-size="sm"
       icon="arrowRight"
       variant="ghost"
       @click="handleNextPageButtonClick"

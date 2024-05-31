@@ -48,6 +48,19 @@ const docs = [
   {
     items: [
       {
+        link: '/components/checkbox/form-checkbox',
+        text: 'FormCheckbox',
+      },
+      {
+        link: '/components/checkbox/form-checkbox-group',
+        text: 'FormCheckboxGroup',
+      },
+    ],
+    text: 'Checkbox',
+  },
+  {
+    items: [
+      {
         link: '/components/combobox/app-combobox',
         text: 'AppCombobox',
       },
@@ -69,15 +82,38 @@ const docs = [
   {
     items: [
       {
-        link: '/components/checkbox/form-checkbox',
-        text: 'FormCheckbox',
-      },
-      {
-        link: '/components/checkbox/form-checkbox-group',
-        text: 'FormCheckboxGroup',
+        link: '/components/dropdown-menu/app-dropdown-menu',
+        text: 'AppDropdownMenu',
       },
     ],
-    text: 'FormCheckbox',
+    text: 'DropdownMenu',
+  },
+  {
+    items: [
+      {
+        link: '/components/form-element/form-element',
+        text: 'FormElement',
+      },
+    ],
+    text: 'FormElement',
+  },
+  {
+    items: [
+      {
+        link: '/components/form-error/form-error',
+        text: 'FormError',
+      },
+    ],
+    text: 'FormError',
+  },
+  {
+    items: [
+      {
+        link: '/components/form-group/form-group',
+        text: 'FormGroup',
+      },
+    ],
+    text: 'FormGroup',
   },
   {
     items: [
@@ -95,8 +131,24 @@ const docs = [
         text: 'AppInput',
       },
       {
+        link: '/components/input/app-number-input',
+        text: 'AppNumberInput',
+      },
+      {
         link: '/components/input/form-input',
         text: 'FormInput',
+      },
+      {
+        link: '/components/input/form-number-input',
+        text: 'FormNumberInput',
+      },
+      {
+        link: '/components/input/form-password-input',
+        text: 'FormPasswordInput',
+      },
+      {
+        link: '/components/input/form-phone-number-input',
+        text: 'FormPhoneNumberInput',
       },
     ],
     text: 'Input',
@@ -113,7 +165,7 @@ const docs = [
   {
     items: [
       {
-        link: '/components/app-select',
+        link: '/components/select/app-select',
         text: 'AppSelect',
       },
       {

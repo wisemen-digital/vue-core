@@ -68,7 +68,6 @@ const props = withDefaults(
     max: null,
     min: 0,
     placeholder: null,
-    type: 'text',
   },
 )
 
@@ -109,9 +108,9 @@ function onBlur(): void {
       :is-invalid="isInvalid"
       :placeholder="props.placeholder"
       :is-disabled="props.isDisabled"
-      :type="props.type"
       :is-loading="props.isLoading"
       :icon-left="props.iconLeft"
+      :hide-controls="props.hideControls"
       :min="props.min"
       :max="props.max"
       @focus="onFocus"

@@ -83,6 +83,7 @@ const iconSize = computed<IconStyleProps['size']>(() => {
     :is-loading="props.isLoading"
     :class="buttonClasses"
     :disabled="isDisabled || isLoading"
+    :type="props.type"
   >
     <div
       v-if="props.isLoading"
