@@ -12,6 +12,7 @@ import AppComboboxItem from '@/components/combobox/AppComboboxItem.vue'
 import AppComboboxViewport from '@/components/combobox/AppComboboxViewport.vue'
 import AppMultiSelectInput from '@/components/select/AppMultiSelectInput.vue'
 import type { Icon } from '@/icons/icons'
+import type { ComboboxProps } from '@/types/comboboxProps.type'
 import type { AcceptableValue, SelectItem } from '@/types/selectItem.type'
 
 const props = withDefaults(
@@ -57,6 +58,11 @@ const props = withDefaults(
      * @default null
      */
     placeholder?: null | string
+    /**
+     * The props of the popover.
+     * @default null
+     */
+    popoverProps?: ComboboxProps['popoverProps']
   }>(),
   {
     id: null,
@@ -150,7 +156,7 @@ function onOpen(): void {
             v-if="isOpen"
             class="z-popover"
           >
-            <AppComboboxContent>
+            <AppComboboxContent :popover-props="props.popoverProps">
               <AppComboboxViewport>
                 <AppComboboxItem
                   v-for="item of props.items"
