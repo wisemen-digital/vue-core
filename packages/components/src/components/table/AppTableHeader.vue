@@ -96,11 +96,11 @@ function getColumnIcon(columnId: string): Icon {
   const isColumnCurrentlySorted = isColumnSorted(columnId)
 
   if (isColumnCurrentlySorted && currentSortDirection.value === 'asc') {
-    return 'arrowDown'
+    return 'arrowUp'
   }
 
   if (isColumnCurrentlySorted && currentSortDirection.value === 'desc') {
-    return 'arrowUp'
+    return 'arrowDown'
   }
 
   return 'arrowUpDown'
