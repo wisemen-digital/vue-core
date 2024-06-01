@@ -53,35 +53,35 @@ export type TableColumn<TSchema> = TableColumnWithRender<TSchema> | TableColumnW
 
 ```js [TableFilter]
 interface TableFilterBase<TFilters> {
-	id: keyof TFilters
-	label: string
+  id: keyof TFilters
+  label: string
 }
 
 export interface TableFilterWithOptions<TFilters> extends TableFilterBase<TFilters> {
-	options: { label: string, value: string }[]
-	type: 'multiselect' | 'select'
+  options: { label: string, value: string }[]
+  type: 'multiselect' | 'select'
 }
 
 export interface TableFilterBoolean<TFilters> extends TableFilterBase<TFilters> {
-	type: 'boolean'
+  type: 'boolean'
 }
 
 export interface TableFilterText<TFilters> extends TableFilterBase<TFilters> {
-	type: 'text'
+  type: 'text'
 }
 
 export type TableFilter<TFilters> =
-| TableFilterBoolean<TFilters>
-| TableFilterText<TFilters>
-| TableFilterWithOptions<TFilters>
+  | TableFilterBoolean<TFilters>
+  | TableFilterText<TFilters>
+  | TableFilterWithOptions<TFilters>
 ```
 
 ```js [Pagination]
 export interface UseTablePaginationReturnType<TFilters> {
-	handleFilterChange: (event: FilterChangeEvent<TFilters>) => void
-		handlePageChange: (event: PageChangeEvent) => void
-	handleSortChange: (event: SortChangeEvent) => void
-	paginationOptions: ComputedRef<PaginationOptions<TFilters>>
+  handleFilterChange: (event: FilterChangeEvent<TFilters>) => void
+  handlePageChange: (event: PageChangeEvent) => void
+  handleSortChange: (event: SortChangeEvent) => void
+  paginationOptions: ComputedRef<PaginationOptions<TFilters>>
 }
 
 export type Pagination<TFilters> = UseTablePaginationReturnType<TFilters>
@@ -94,50 +94,50 @@ export type Pagination<TFilters> = UseTablePaginationReturnType<TFilters>
 ::: code-group
 ```vue [Usage]
 <script setup lang="ts">
-  import { AppTable } from '@wisemen/vue-core'
+import { AppTable } from '@wisemen/vue-core'
 
-  const exampleData: PaginatedData<ExampleDataType> = {
-    data: [
-      { firstName: 'John', lastName: 'Doe' },
-      { firstName: 'Jane', lastName: 'Doe' },
-      { firstName: 'James', lastName: 'Doe' },
-    ],
-    total: 3
+const exampleData: PaginatedData<ExampleDataType> = {
+  data: [
+    { firstName: 'John', lastName: 'Doe' },
+    { firstName: 'Jane', lastName: 'Doe' },
+    { firstName: 'James', lastName: 'Doe' },
+  ],
+  total: 3
+}
+
+const exampleColumns: TableColumn<ExampleDataType>[] = [
+  {
+    id: 'firstName',
+    label: 'First Name',
+    size: 'auto',
+    value: (row) => row.firstName,
+  },
+  {
+    id: 'lastName',
+    label: 'Last Name',
+    size: '300px',
+    value: (row) => row.lastName,
   }
+]
 
-  const exampleColumns: TableColumn<ExampleDataType>[] = [
-    {
-      id: 'firstName',
-      label: 'First Name',
-      size: 'auto',
-      value: (row) => row.firstName,
-    },
-    {
-      id: 'lastName',
-      label: 'Last Name',
-      size: '300px',
-      value: (row) => row.lastName,
-    }
-  ]
+const examplePagination: Pagination<ExampleFilters> = {
+  ...
+}
 
-  const examplePagination: Pagination<ExampleFilters> = {
-    ...
-  }
-
-  function onRowClick(row: ExampleDataType) {
-    alert(`Row clicked: ${row.firstName} ${row.lastName}`)
-  }
+function onRowClick(row: ExampleDataType) {
+  alert(`Row clicked: ${row.firstName} ${row.lastName}`)
+}
 </script>
-
+  
 <template>
   <AppTable
-      title="Users"
-      :data="exampleData"
-      :columns="exampleColumns"
-      :filters="[]"
-      :pagination="examplePagination"
-      :is-loading="false"
-      :row-click="onRowClick"
+    title="Users"
+    :data="exampleData"
+    :columns="exampleColumns"
+    :filters="[]"
+    :pagination="examplePagination"
+    :is-loading="false"
+    :row-click="onRowClick"
   />
 </template>
 ```
