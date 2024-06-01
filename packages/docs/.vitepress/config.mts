@@ -82,6 +82,19 @@ const docs = [
   {
     items: [
       {
+        link: '/components/date/app-date-picker',
+        text: 'AppDatePicker',
+      },
+      {
+        link: '/components/date/form-date-picker',
+        text: 'FormDatePicker',
+      },
+    ],
+    text: 'Date',
+  },
+  {
+    items: [
+      {
         link: '/components/dropdown-menu/app-dropdown-menu',
         text: 'AppDropdownMenu',
       },

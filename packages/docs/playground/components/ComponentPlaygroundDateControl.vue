@@ -1,0 +1,22 @@
+<script setup lang="ts">
+import FormDatePicker from '@components/components/date/FormDatePicker.vue'
+
+const props = defineProps<{
+  label: string
+}>()
+
+const model = defineModel<Date | null>({
+  required: true,
+})
+</script>
+
+<template>
+  <div>
+    <FormDatePicker
+      v-model="model"
+      :label="props.label"
+      :errors="{ _errors: [] }"
+      :is-touched="false"
+    />
+  </div>
+</template>

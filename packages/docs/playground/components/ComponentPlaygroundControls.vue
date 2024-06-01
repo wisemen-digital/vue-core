@@ -1,4 +1,5 @@
 <script setup lang="ts" generic="TControlKeys extends string">
+import ComponentPlaygroundDateControl from '@docs/playground/components/ComponentPlaygroundDateControl.vue'
 import type { Controls } from '@docs/playground/types/controls.type'
 
 import ComponentPlaygroundIconControl from './ComponentPlaygroundIconControl.vue'
@@ -15,7 +16,7 @@ const emits = defineEmits<{
   updateControlValue: [{ control: TControlKeys, value: any }]
 }>()
 
-function onUpdateContralValue(control: TControlKeys, value: any) {
+function onUpdateControlValue(control: TControlKeys, value: any) {
   emits('updateControlValue', { control, value })
 }
 </script>
@@ -31,26 +32,32 @@ function onUpdateContralValue(control: TControlKeys, value: any) {
           v-if="control.type === 'text'"
           :model-value="props.controlValues[key]"
           :label="control.label"
-          @update:model-value="value => onUpdateContralValue(key, value)"
+          @update:model-value="value => onUpdateControlValue(key, value)"
         />
         <ComponentPlaygroundSelectControl
           v-else-if="control.type === 'select'"
           :items="control.items"
           :label="control.label"
           :model-value="props.controlValues[key]"
-          @update:model-value="(value: any) => onUpdateContralValue(key, value)"
+          @update:model-value="(value: any) => onUpdateControlValue(key, value)"
         />
         <ComponentPlaygroundSwitchControl
           v-else-if="control.type === 'switch'"
           :label="control.label"
           :model-value="props.controlValues[key]"
-          @update:model-value="(value: any) => onUpdateContralValue(key, value)"
+          @update:model-value="(value: any) => onUpdateControlValue(key, value)"
+        />
+        <ComponentPlaygroundDateControl
+          v-else-if="control.type === 'date'"
+          :label="control.label"
+          :model-value="props.controlValues[key]"
+          @update:model-value="(value: any) => onUpdateControlValue(key, value)"
         />
         <ComponentPlaygroundIconControl
           v-else-if="control.type === 'icon'"
           :label="control.label"
           :model-value="props.controlValues[key]"
-          @update:model-value="(value: any) => onUpdateContralValue(key, value)"
+          @update:model-value="(value: any) => onUpdateControlValue(key, value)"
         />
       </div>
     </template>

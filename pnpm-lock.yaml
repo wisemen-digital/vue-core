@@ -20,6 +20,9 @@ importers:
 
   packages/components:
     dependencies:
+      '@internationalized/date':
+        specifier: ^3.5.4
+        version: 3.5.4
       '@tanstack/vue-query':
         specifier: ^5.36.0
         version: 5.36.0(vue@3.4.26)
@@ -1129,8 +1132,8 @@ packages:
     resolution: {integrity: sha512-6EwiSjwWYP7pTckG6I5eyFANjPhmPjUX9JRLUSfNPC7FX7zK9gyZAfUEaECL6ALTpGX5AjnBq3C9XmVWPitNpw==}
     dev: true
 
-  /@internationalized/date@3.5.2:
-    resolution: {integrity: sha512-vo1yOMUt2hzp63IutEaTUxROdvQg1qlMRsbCvbay2AK2Gai7wIgCyK5weEX3nHkiLgo4qCXHijFNC/ILhlRpOQ==}
+  /@internationalized/date@3.5.4:
+    resolution: {integrity: sha512-qoVJVro+O0rBaw+8HPjUB1iH8Ihf8oziEnqMnvhJUSuVIrHOuZ6eNLHNvzXJKUvAtaDiqMnRlg8Z2mgh09BlUw==}
     dependencies:
       '@swc/helpers': 0.5.6
 
@@ -8153,7 +8156,7 @@ packages:
     dependencies:
       '@floating-ui/dom': 1.6.3
       '@floating-ui/vue': 1.0.6(vue@3.4.26)
-      '@internationalized/date': 3.5.2
+      '@internationalized/date': 3.5.4
       '@tanstack/vue-virtual': 3.5.0(vue@3.4.26)
       '@vueuse/core': 10.9.0(vue@3.4.26)
       '@vueuse/shared': 10.9.0(vue@3.4.26)

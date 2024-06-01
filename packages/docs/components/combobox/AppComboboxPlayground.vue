@@ -46,6 +46,11 @@ const controls = createControls({
     label: 'Is Loading',
     type: 'switch',
   },
+  hasSearchInDropdown: {
+    default: false,
+    label: 'Has search in dropdown',
+    type: 'switch',
+  },
 })
 
 interface User {
