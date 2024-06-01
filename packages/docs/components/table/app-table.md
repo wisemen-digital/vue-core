@@ -32,20 +32,20 @@ import AppTablePlayground from './AppTablePlayground.vue'
 ::: code-group
 ```js [TableColumn]
 interface BaseTableColumn {
-	id: string
-	isSortable?: boolean
-	label: string
-	size: string
+  id: string
+  isSortable?: boolean
+  label: string
+  size: string
 }
 
 interface TableColumnWithRender<TSchema> extends BaseTableColumn {
-	render: (row: TSchema) => VNode
-	value?: never
+  render: (row: TSchema) => VNode
+  value?: never
 }
 
 interface TableColumnWithValue<TSchema> extends BaseTableColumn {
-	render?: never
-	value: (row: TSchema) => string
+  render?: never
+  value: (row: TSchema) => string
 }
 
 export type TableColumn<TSchema> = TableColumnWithRender<TSchema> | TableColumnWithValue<TSchema>
