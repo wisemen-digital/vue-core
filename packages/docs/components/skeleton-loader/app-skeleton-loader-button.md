@@ -25,11 +25,6 @@ import { AppSkeletonLoaderButton } from '@wisemen/vue-core'
   </div>
 </template>
 ```
-
-```vue [Source code]
-<template>
-  <div class="h-10 rounded-md bg-neutral-100" />
-</template>
-```
-
 :::
+
+For full source code, see [Github](https://github.com/wisemen-digital/vue-core/blob/main/packages/components/src/components/skeleton-loader/AppSkeletonLoaderButton.vue).

@@ -31,6 +31,9 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
+  "dependencies": {
+    "@tanstack/vue-query": "^5.36.0"
+  },
   "devDependencies": {
     "@tsconfig/node18": "^2.0.1",
     "@types/dom-view-transitions": "^1.0.4",

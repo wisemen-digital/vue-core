@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DropdownMenuPortal } from 'radix-vue'
+import { DropdownMenuLabel, DropdownMenuPortal } from 'radix-vue'
 
 import AppDropdownMenuCheckbox from '@/components/dropdown-menu/AppDropdownMenuCheckbox.vue'
 import AppDropdownMenuDivider from '@/components/dropdown-menu/AppDropdownMenuDivider.vue'
@@ -9,6 +9,7 @@ import AppDropdownMenuRadioGroup from '@/components/dropdown-menu/AppDropdownMen
 import AppDropdownMenuSub from '@/components/dropdown-menu/AppDropdownMenuSub.vue'
 import AppDropdownMenuSubContent from '@/components/dropdown-menu/AppDropdownMenuSubContent.vue'
 import AppDropdownMenuSubTrigger from '@/components/dropdown-menu/AppDropdownMenuSubTrigger.vue'
+import AppText from '@/components/text/AppText.vue'
 import type { DropdownMenuItem } from '@/types/dropdownMenuItem.type'
 
 const props = defineProps<{
@@ -52,9 +53,20 @@ const props = defineProps<{
   />
 
   <AppDropdownMenuOption
-    v-if="props.item.type === 'option'"
+    v-else-if="props.item.type === 'option'"
     :item="props.item"
   >
     <slot :item="props.item" />
   </AppDropdownMenuOption>
+
+  <DropdownMenuLabel
+    v-else-if="props.item.type === 'label'"
+  >
+    <AppText
+      variant="subtext"
+      class="px-2 py-1.5"
+    >
+      {{ props.item.label }}
+    </AppText>
+  </DropdownMenuLabel>
 </template>

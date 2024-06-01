@@ -30,29 +30,6 @@ import { AppSkeletonLoaderRows } from '@wisemen/vue-core'
   </div>
 </template>
 ```
-
-```vue [Source code]
-<script setup lang="ts">
-import AppSkeletonLoaderRow from '@/components/skeleton-loader/AppSkeletonLoaderRow.vue'
-
-const props = withDefaults(
-  defineProps<{
-    rows?: number
-  }>(),
-  {
-    rows: 3,
-  },
-)
-</script>
-
-<template>
-  <div class="flex flex-col gap-y-4 p-4">
-    <AppSkeletonLoaderRow
-      v-for="i in props.rows"
-      :key="i"
-    />
-  </div>
-</template>
-```
-
 :::
+
+For full source code, see [Github](https://github.com/wisemen-digital/vue-core/blob/main/packages/components/src/components/skeleton-loader/AppSkeletonLoaderRows.vue).
