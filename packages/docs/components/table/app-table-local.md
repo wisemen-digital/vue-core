@@ -18,14 +18,11 @@ import AppTableLocalPlayground from './AppTableLocalPlayground.vue'
 <script setup lang="ts">
 import { AppTable } from '@wisemen/vue-core'
 
-const exampleData: PaginatedData<ExampleDataType> = {
-  data: [
+const exampleData: ExampleDataType[] = [
     { firstName: 'John', lastName: 'Doe' },
     { firstName: 'Jane', lastName: 'Doe' },
     { firstName: 'James', lastName: 'Doe' },
-  ],
-  total: 3
-}
+],
 
 const exampleColumns: TableColumn<ExampleDataType>[] = [
   {
@@ -42,25 +39,34 @@ const exampleColumns: TableColumn<ExampleDataType>[] = [
   }
 ]
 
-const examplePagination: Pagination<ExampleFilters> = {
-  ...
-}
+
+const localPagination = useLocalPagination<ExampleDataType, ExampleFilters>({
+  id: 'example',
+  items: exampleData,
+  disableRouteQuery: true,
+  defaultPaginationOptions: {
+    pagination: {
+      page: 0,
+      perPage: 10,
+    },
+  },
+})
 
 function onRowClick(row: ExampleDataType) {
   alert(`Row clicked: ${row.firstName} ${row.lastName}`)
 }
 </script>
-  
+
 <template>
-  <AppTable
-    title="Users"
-    :data="exampleData"
+<AppTable
+    :is-loading="false"
+    :data="localPagination.data.value"
     :columns="exampleColumns"
     :filters="[]"
-    :pagination="examplePagination"
-    :is-loading="false"
+    :pagination="localPagination.pagination"
     :row-click="onRowClick"
-  />
+    title="Table"
+/>
 </template>
 ```
 :::
