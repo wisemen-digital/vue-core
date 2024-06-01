@@ -82,7 +82,9 @@ export { default as FormRadioGroupItem } from './components/radio-group/FormRadi
 export { default as FormRadioGroupRoot } from './components/radio-group/FormRadioGroupRoot.vue'
 
 // Select
+export { default as AppMultiSelect } from './components/select/AppMultiSelect.vue'
 export { default as AppSelect } from './components/select/AppSelect.vue'
+export { default as FormMultiSelect } from './components/select/FormMultiSelect.vue'
 export { default as FormSelect } from './components/select/FormSelect.vue'
 
 // Skeleton loader
