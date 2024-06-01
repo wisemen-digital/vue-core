@@ -16,12 +16,6 @@ const controls = createControls({
     label: 'Id',
     type: 'text',
   },
-  placeholder: {
-    default: 'Placeholder...',
-    cols: 2,
-    label: 'Placeholder',
-    type: 'text',
-  },
   minDate: {
     default: null,
     label: 'Min date',
