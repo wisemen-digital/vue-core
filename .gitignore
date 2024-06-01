@@ -8,6 +8,8 @@ node_modules
 dist
 *.local
 
+**/.vitepress/cache
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
