@@ -12,7 +12,6 @@ import { computed, ref } from 'vue'
 import FormElement from '@/components/form-element/FormElement.vue'
 import AppInput from '@/components/input/AppInput.vue'
 import AppSelect from '@/components/select/AppSelect.vue'
-import type { Icon } from '@/icons/icons'
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 import type { SelectItem } from '@/types/selectItem.type'
 
@@ -40,11 +39,6 @@ const props = withDefaults(
      */
     errors: FormFieldErrors<string>
     /**
-     * The right icon of the input.
-     * @default null
-     */
-    iconRight?: Icon | null
-    /**
      * The label of the input.
      */
     label: string
@@ -59,7 +53,6 @@ const props = withDefaults(
     isLoading: false,
     isRequired: false,
     isTouched: false,
-    iconRight: undefined,
     placeholder: null,
   },
 )
