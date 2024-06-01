@@ -123,7 +123,11 @@ export { default as AppTooltip } from './components/tooltip/AppTooltip.vue'
 // Composables
 export { useDialog } from './composables/dialog.composable'
 export { useKeyboardShortcut } from './composables/keyboardShortcut.composable'
+export type { UseMutationReturnType } from './composables/mutation/mutation.composable'
+export { useMutation } from './composables/mutation/mutation.composable'
 export { usePagination } from './composables/pagination.composable'
+export type { UseQueryReturnType } from './composables/query/query.composable'
+export { useQuery } from './composables/query/query.composable'
 export { useToast } from './composables/toast.composable'
 
 // Types
@@ -146,6 +150,7 @@ export type {
   SortDirection,
   UsePaginationReturnType,
 } from './types/pagination.type'
+export type { QueryKeys } from './types/queryKeys.type'
 export type { Routes } from './types/routes.type'
 export type { SelectItem } from './types/selectItem.type'
 export type { RouteTabItem, TabItem } from './types/tabItem.type'
