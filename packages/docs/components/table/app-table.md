@@ -96,14 +96,11 @@ export type Pagination<TFilters> = UseTablePaginationReturnType<TFilters>
 <script setup lang="ts">
 import { AppTable } from '@wisemen/vue-core'
 
-const exampleData: PaginatedData<ExampleDataType> = {
-  data: [
+const exampleData: ExampleDataType[] = [
     { firstName: 'John', lastName: 'Doe' },
     { firstName: 'Jane', lastName: 'Doe' },
     { firstName: 'James', lastName: 'Doe' },
-  ],
-  total: 3
-}
+],
 
 const exampleColumns: TableColumn<ExampleDataType>[] = [
   {
@@ -120,9 +117,17 @@ const exampleColumns: TableColumn<ExampleDataType>[] = [
   }
 ]
 
-const examplePagination: Pagination<ExampleFilters> = {
-  ...
-}
+const localPagination = useLocalPagination<ExampleDataType, ExampleFilters>({
+  id: 'example',
+  items: exampleData,
+  disableRouteQuery: true,
+  defaultPaginationOptions: {
+    pagination: {
+      page: 0,
+      perPage: 10,
+    },
+  },
+})
 
 function onRowClick(row: ExampleDataType) {
   alert(`Row clicked: ${row.firstName} ${row.lastName}`)
@@ -131,13 +136,13 @@ function onRowClick(row: ExampleDataType) {
   
 <template>
   <AppTable
-    title="Users"
-    :data="exampleData"
-    :columns="exampleColumns"
-    :filters="[]"
-    :pagination="examplePagination"
-    :is-loading="false"
-    :row-click="onRowClick"
+      :is-loading="false"
+      :data="localPagination.data.value"
+      :columns="exampleColumns"
+      :filters="[]"
+      :pagination="localPagination.pagination"
+      :row-click="onRowClick"
+      title="Table"
   />
 </template>
 ```

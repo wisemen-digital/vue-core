@@ -25,9 +25,7 @@ const emit = defineEmits<{
 }>()
 
 const currentSortDirection = computed<SortDirection>(() => {
-  const { sort } = props.paginationOptions
-
-  return getCurrentSortDirection(sort?.direction ?? null)
+  return getCurrentSortDirection(props.paginationOptions.sort?.direction ?? null)
 })
 
 function getCurrentSortDirection(currentDirection: SortDirection | null): SortDirection {
@@ -39,7 +37,7 @@ function toggleSortDirection(direction: SortDirection): SortDirection {
 }
 
 function isColumnSorted(columnId: string): boolean {
-  return Object.keys(props.paginationOptions.sort ?? {})[0] === columnId
+  return props.paginationOptions.sort?.key === columnId
 }
 
 function handleSortChange(columnId: string): void {
@@ -98,11 +96,11 @@ function getColumnIcon(columnId: string): Icon {
   const isColumnCurrentlySorted = isColumnSorted(columnId)
 
   if (isColumnCurrentlySorted && currentSortDirection.value === 'asc') {
-    return 'arrowUp'
+    return 'arrowDown'
   }
 
   if (isColumnCurrentlySorted && currentSortDirection.value === 'desc') {
-    return 'arrowDown'
+    return 'arrowUp'
   }
 
   return 'arrowUpDown'
