@@ -203,7 +203,7 @@ function getCountryFlagUrl(countryCode: CountryCode): string {
         :is-disabled="props.isDisabled"
         :is-required="props.isRequired"
         class="w-28"
-        select-trigger-class="rounded-r-none"
+        select-trigger-class="rounded-r-none focus-within:z-[1] relative"
         @update:model-value="onCountryCodeSelect"
       >
         <template #left>
