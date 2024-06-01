@@ -51,6 +51,10 @@ const props = withDefaults(
      * The placeholder of the select.
      */
     placeholder?: null | string
+    /**
+     * The class to apply to the select trigger.
+     */
+    selectTriggerClass?: null | string
   }>(),
   {
     id: null,
@@ -95,6 +99,7 @@ function onTriggerBlur(): void {
         :id="id"
         :is-disabled="props.isDisabled"
         :is-invalid="props.isInvalid"
+        :class="props.selectTriggerClass"
         @blur="onTriggerBlur"
       >
         <slot name="left">

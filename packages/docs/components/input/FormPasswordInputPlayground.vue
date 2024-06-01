@@ -3,7 +3,7 @@ import ComponentPlayground from '@docs/playground/components/ComponentPlayground
 import { createControls } from '@docs/playground/utils/createContols'
 import { ref } from 'vue'
 
-import FormPasswordInput from '@/components/input/FormPasswordInput.vue'
+import FormPasswordInput from '@/components/input/password/FormPasswordInput.vue'
 import AppText from '@/components/text/AppText.vue'
 import type { FormFieldErrors } from '@/index'
 

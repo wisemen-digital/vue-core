@@ -3,7 +3,7 @@ import ComponentPlayground from '@docs/playground/components/ComponentPlayground
 import { createControls } from '@docs/playground/utils/createContols'
 import { ref } from 'vue'
 
-import AppNumberInput from '@/components/input/AppNumberInput.vue'
+import AppNumberInput from '@/components/input/number/AppNumberInput.vue'
 
 const controls = createControls({
   id: {

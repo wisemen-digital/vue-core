@@ -3,7 +3,7 @@ import ComponentPlayground from '@docs/playground/components/ComponentPlayground
 import { createControls } from '@docs/playground/utils/createContols'
 import { ref } from 'vue'
 
-import FormPhoneNumberInput from '@/components/input/FormPhoneNumberInput.vue'
+import FormPhoneNumberInput from '@/components/input/phone-number/FormPhoneNumberInput.vue'
 import AppText from '@/components/text/AppText.vue'
 import type { FormFieldErrors } from '@/index'
 

@@ -3,7 +3,7 @@ import ComponentPlayground from '@docs/playground/components/ComponentPlayground
 import { createControls } from '@docs/playground/utils/createContols'
 import { ref } from 'vue'
 
-import FormNumberInput from '@/components/input/FormNumberInput.vue'
+import FormNumberInput from '@/components/input/number/FormNumberInput.vue'
 import type { FormFieldErrors } from '@/index'
 
 const controls = createControls({
