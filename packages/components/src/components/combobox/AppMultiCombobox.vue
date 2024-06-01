@@ -15,6 +15,7 @@ import AppComboboxViewport from '@/components/combobox/AppComboboxViewport.vue'
 import { useCombobox } from '@/components/combobox/combobox.composable'
 import type { Icon } from '@/icons/icons'
 import type { ComboboxItem } from '@/types/comboboxItem.type'
+import type { ComboboxProps } from '@/types/comboboxProps.type'
 import type { AcceptableValue } from '@/types/selectItem.type'
 
 const props = withDefaults(
@@ -79,6 +80,11 @@ const props = withDefaults(
      * @default null
      */
     placeholder?: null | string
+
+    /**
+     * The props to pass to the popover.
+     */
+    popoverProps?: ComboboxProps['popoverProps']
   }>(),
   {
     id: null,
@@ -90,6 +96,7 @@ const props = withDefaults(
     iconLeft: undefined,
     iconRight: undefined,
     placeholder: null,
+    popoverProps: null,
   },
 )
 
@@ -191,7 +198,7 @@ function onBlur(): void {
             v-if="isOpen && canOpenDropdown"
             class="z-popover"
           >
-            <AppComboboxContent>
+            <AppComboboxContent :popover-props="props.popoverProps">
               <AppComboboxViewport>
                 <AppComboboxEmpty :empty-text="props.emptyText">
                   <slot name="empty" />
@@ -221,4 +228,4 @@ function onBlur(): void {
       </ComboboxPortal>
     </ComboboxRoot>
   </div>
-</template>
+</template>import type { ComboboxProps } from '@/types/comboboxProps.type'

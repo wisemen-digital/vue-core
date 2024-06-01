@@ -42,9 +42,7 @@ function getControlValueDefault() {
 
 <template>
   <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
-  <div
-    class="vp-raw my-8 flex w-full flex-col rounded border border-foreground bg-neutral-900"
-  >
+  <div class="vp-raw my-8 flex w-full flex-col overflow-hidden rounded-lg border border-solid border-border bg-background">
     <div class="flex items-center justify-center rounded-t p-4">
       <slot :values="controlValues" />
     </div>

@@ -2,12 +2,14 @@
 import {
   ComboboxAnchor,
   ComboboxArrow,
+  ComboboxInput,
   ComboboxPortal,
   ComboboxRoot,
 } from 'radix-vue'
 import {
   computed,
   ref,
+  watch,
 } from 'vue'
 
 import AppComboboxContent from '@/components/combobox/AppComboboxContent.vue'
@@ -18,6 +20,7 @@ import AppComboboxViewport from '@/components/combobox/AppComboboxViewport.vue'
 import { useCombobox } from '@/components/combobox/combobox.composable'
 import type { Icon } from '@/icons/icons'
 import type { ComboboxItem } from '@/types/comboboxItem.type'
+import type { ComboboxProps } from '@/types/comboboxProps.type'
 import type { AcceptableValue } from '@/types/selectItem.type'
 
 const props = withDefaults(
@@ -26,6 +29,11 @@ const props = withDefaults(
      * The html id of the combobox.
      */
     id?: null | string
+    /**
+     * Whether to show the search input in the dropdown instead of inline.
+     * @default false
+     */
+    hasSearchInDropdown?: boolean
     /**
      * Whether the chevron icon is hidden.
      * @default false
@@ -82,9 +90,15 @@ const props = withDefaults(
      * @default null
      */
     placeholder?: null | string
+    /**
+     * The props of the popover.
+     * @default null
+     */
+    popoverProps?: ComboboxProps['popoverProps']
   }>(),
   {
     id: null,
+    hasSearchInDropdown: false,
     isChevronHidden: false,
     isDisabled: false,
     isInvalid: false,
@@ -93,6 +107,7 @@ const props = withDefaults(
     iconLeft: undefined,
     iconRight: undefined,
     placeholder: null,
+    popoverProps: null,
   },
 )
 
@@ -107,6 +122,7 @@ const searchModel = defineModel<null | string>('search', {
 })
 
 const isOpen = ref<boolean>(false)
+const inputRef = ref<InstanceType<typeof AppComboboxInput> | null>(null)
 
 const model = computed<TValue | undefined>({
   get: () => props.modelValue ?? undefined,
@@ -139,6 +155,20 @@ const placeholderValue = computed<null | string>(() => {
 function onBlur(): void {
   emit('blur')
 }
+
+// When the search input is in the dropdown, we want to focus the "fake" input
+// when the dropdown closes
+watch(isOpen, (isOpen) => {
+  if (isOpen || !props.hasSearchInDropdown) {
+    return
+  }
+
+  const input = inputRef.value?.$el ?? null
+
+  if (input !== null) {
+    input.focus()
+  }
+})
 </script>
 
 <template>
@@ -154,13 +184,18 @@ function onBlur(): void {
       <ComboboxAnchor>
         <AppComboboxInput
           :id="props.id"
+          ref="inputRef"
+          :value="model ?? null"
           :icon-left="props.iconLeft ?? null"
           :icon-right="props.iconRight ?? null"
           :is-chevron-hidden="props.isChevronHidden"
+          :display-fn="props.displayFn"
+          :is-open="isOpen"
           :is-disabled="props.isDisabled"
           :is-invalid="props.isInvalid"
           :is-loading="props.isLoading"
           :placeholder="placeholderValue"
+          :has-search-in-dropdown="props.hasSearchInDropdown"
           @blur="onBlur"
         >
           <template #left>
@@ -186,8 +221,14 @@ function onBlur(): void {
             v-if="isOpen && canOpenDropdown"
             class="z-popover"
           >
-            <AppComboboxContent>
+            <AppComboboxContent :popover-props="props.popoverProps">
               <AppComboboxViewport>
+                <ComboboxInput
+                  v-if="props.hasSearchInDropdown"
+                  :placeholder="props.placeholder"
+                  class="w-full p-1.5 text-sm outline-none placeholder:text-input-placeholder"
+                />
+
                 <AppComboboxEmpty :empty-text="props.emptyText">
                   <slot name="empty" />
                 </AppComboboxEmpty>
@@ -216,4 +257,4 @@ function onBlur(): void {
       </ComboboxPortal>
     </ComboboxRoot>
   </div>
-</template>
+</template>ComboboxProps,
