@@ -18,6 +18,7 @@ const props = defineProps<{
   columns: TableColumn<TSchema>[]
   data: TSchema[]
   rowClick: ((row: TSchema) => void) | null
+  rowTarget?: string
   rowTo: ((row: TSchema) => RouteLocationNamedRaw) | null
   shouldPinFirstColumn: boolean
   shouldPinLastColumn: boolean
@@ -49,6 +50,7 @@ function onRowClick(row: TSchema): void {
     :is="rowComponent"
     v-for="(row, i) of data"
     :key="i"
+    :target="props.rowTarget"
     :to="props.rowTo ? props.rowTo(row) : undefined"
     :class="{
       'last:border-0': canScrollVertically && !hasActiveFilters,
