@@ -55,38 +55,75 @@ const controls = createControls({
 
 const exampleItems: DropdownMenuItem[] = [
   {
-    type: 'option',
-    label: 'Option 1',
-    onSelect: () => {
-      alert('Option 1 selected')
-    },
-    keyboardShortcutKeys: [
-      'e',
+    type: 'group',
+    items: [
+      {
+        type: 'option',
+        label: 'Option 1',
+        icon: 'search',
+        onSelect: () => {
+          alert('Option 1 selected')
+        },
+      },
+      {
+        type: 'option',
+        label: 'Option 2',
+        icon: 'search',
+        onSelect: () => {
+          alert('Option 2 selected')
+        },
+      },
     ],
   },
   {
     type: 'divider',
   },
   {
-    type: 'label',
-    label: 'Label 1',
-  },
-  {
     type: 'group',
     items: [
       {
-        type: 'option',
-        label: 'Option 2',
-        onSelect: () => {
-          alert('Option 2 selected')
-        },
-      },
-      {
-        type: 'option',
-        label: 'Option 3',
-        onSelect: () => {
-          alert('Option 3 selected')
-        },
+        type: 'subMenu',
+        label: 'More',
+        items: [
+          {
+            type: 'group',
+            items: [
+              {
+                type: 'option',
+                label: 'Option 1',
+                keyboardShortcutKeys: [
+                  'ctrl',
+                  '1',
+                ],
+                onSelect: () => {
+                  alert('More > Option 1 selected')
+                },
+              },
+              {
+                type: 'option',
+                label: 'Option 2',
+                keyboardShortcutKeys: [
+                  'ctrl',
+                  '2',
+                ],
+                onSelect: () => {
+                  alert('More > Option 2 selected')
+                },
+              },
+              {
+                type: 'option',
+                label: 'Option 3',
+                keyboardShortcutKeys: [
+                  'ctrl',
+                  '3',
+                ],
+                onSelect: () => {
+                  alert('More > Option 3 selected')
+                },
+              },
+            ],
+          },
+        ],
       },
     ],
   },
@@ -105,8 +142,8 @@ const exampleItems: DropdownMenuItem[] = [
       >
         <template #header>
           <AppText
-            variant="body"
-            class="p-2"
+            variant="subtext"
+            class="p-1 text-muted-foreground"
           >
             This is a header slot
           </AppText>

@@ -79,4 +79,5 @@ export type DropdownMenuItem = DropdownMenuCheckbox
   | DropdownMenuLabel
   | DropdownMenuOption
   | DropdownMenuRadioGroup
+  | DropdownMenuRouteOption
   | DropdownMenuSubMenu
