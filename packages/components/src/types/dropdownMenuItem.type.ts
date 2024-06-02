@@ -35,16 +35,17 @@ interface DropdownMenuBaseOption {
   keyboardShortcutKeys?: KeyboardKey[]
   label: string
   render?: () => VNode
-  type: 'option'
 }
 
-interface DropdownMenuSelectOption extends DropdownMenuBaseOption {
+export interface DropdownMenuSelectOption extends DropdownMenuBaseOption {
+  type: 'option'
   onSelect: () => void
 }
 
-interface DropdownMenuRouteOption extends DropdownMenuBaseOption {
+export interface DropdownMenuRouteOption extends DropdownMenuBaseOption {
   target?: string
-  to?: RouteLocationNamedRaw | null
+  to: RouteLocationNamedRaw
+  type: 'routeOption'
 }
 
 export type DropdownMenuOption = DropdownMenuRouteOption | DropdownMenuSelectOption

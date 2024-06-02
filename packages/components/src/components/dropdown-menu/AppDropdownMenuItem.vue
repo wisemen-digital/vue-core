@@ -53,19 +53,19 @@ const props = defineProps<{
     :item="props.item"
   />
 
+  <AppDropdownMenuRouteOption
+    v-else-if="props.item.type === 'routeOption'"
+    :item="props.item"
+  >
+    <slot :item="props.item" />
+  </AppDropdownMenuRouteOption>
+
   <AppDropdownMenuOption
     v-else-if="props.item.type === 'option'"
     :item="props.item"
   >
     <slot :item="props.item" />
   </AppDropdownMenuOption>
-
-  <AppDropdownMenuRouteOption
-    v-else-if="props.item.type === 'route-option'"
-    :item="props.item"
-  >
-    <slot :item="props.item" />
-  </AppDropdownMenuRouteOption>
 
   <DropdownMenuLabel
     v-else-if="props.item.type === 'label'"

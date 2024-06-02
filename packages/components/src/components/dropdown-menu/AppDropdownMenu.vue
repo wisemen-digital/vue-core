@@ -105,6 +105,10 @@ onMounted(() => {
       itemsWithKeyboardShortcuts.value.forEach((item) => {
         const { keyboardShortcutKeys } = item
 
+        if (item.type !== 'option') {
+          return
+        }
+
         if (keyboardShortcutKeys === undefined) {
           return
         }
