@@ -72,6 +72,13 @@ export { default as AppKeyboardShortcutProvider } from './components/keyboard/Ap
 // Loader
 export { default as AppLoader } from './components/loader/AppLoader.vue'
 
+// Pagination
+export { default as AppPaginationNext } from './components/pagination/AppPaginationNext.vue'
+export { default as AppPaginationPages } from './components/pagination/AppPaginationPages.vue'
+export { default as AppPaginationPrev } from './components/pagination/AppPaginationPrev.vue'
+export { default as AppPaginationResultIndicator } from './components/pagination/AppPaginationResultIndicator.vue'
+export { default as AppPaginationRoot } from './components/pagination/AppPaginationRoot.vue'
+
 // Popover
 export { default as AppPopover } from './components/popover/AppPopover.vue'
 
