@@ -8,7 +8,8 @@ node_modules
 dist
 *.local
 
-**/.vitepress/cache
+**/.vitepress
+!**/.vitepress/config.mts
 
 # Editor directories and files
 .vscode/*
