@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+
 import AppBadge from '@/components/badge/AppBadge.vue'
 import AppSkeletonLoaderRow from '@/components/skeleton-loader/AppSkeletonLoaderRow.vue'
 import AppText from '@/components/text/AppText.vue'
@@ -9,10 +11,11 @@ const props = defineProps<{
   title: string
   total: null | number
 }>()
+
+const { t } = useI18n()
 </script>
 
 <template>
-  <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
   <div class="border-b border-solid border-border px-6 py-4">
     <div class="flex items-center gap-x-2">
       <AppText
@@ -26,7 +29,7 @@ const props = defineProps<{
         v-if="props.total !== null"
         class="mt-0.5"
       >
-        {{ toLocaleNumber(props.total) }} items
+        {{ toLocaleNumber(props.total) }} {{ t('components.table.items', { count: props.total }) }}
       </AppBadge>
 
       <AppSkeletonLoaderRow

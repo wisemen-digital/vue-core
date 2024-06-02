@@ -4,6 +4,7 @@ import {
   onBeforeUnmount,
   onMounted,
   ref,
+  useSlots,
 } from 'vue'
 import type { RouteLocationNamedRaw } from 'vue-router'
 
@@ -21,13 +22,14 @@ import type {
   PaginationFilter,
   SortChangeEvent,
 } from '@/types/pagination.type'
-import type { TableColumn } from '@/types/table.type'
+import type { TableColumn, TableEmptyTextProp } from '@/types/table.type'
 
 const props = withDefaults(
   defineProps<{
     isLoading: boolean
     columns: TableColumn<TSchema>[]
     data: PaginatedData<TSchema> | null
+    emptyText?: TableEmptyTextProp | null
     filters: PaginationFilter<TFilters>[]
     pagination: Pagination<TFilters>
     rowClick?: ((row: TSchema) => void) | null
@@ -37,6 +39,7 @@ const props = withDefaults(
     title: string
   }>(),
   {
+    emptyText: null,
     rowClick: null,
     rowTo: null,
     shouldPinFirstColumn: false,
@@ -59,6 +62,8 @@ const hasReachedHorizontalScrollEnd = ref<boolean>(false)
 
 // If vertically scrollable, the last item's border bottom will be removed
 const canScrollVertically = ref<boolean>(false)
+
+const slots = useSlots()
 
 function getIsScrolledtoRight(element: HTMLElement): boolean {
   return element.scrollLeft > 0
@@ -105,6 +110,10 @@ function handleTableResize(): void {
 function onClearFilters(): void {
   props.pagination.clearFilters()
 }
+
+const hasEmptyStateSlot = computed<boolean>(() => {
+  return slots['empty-state'] !== undefined
+})
 
 const gridColsStyle = computed<string>(() => {
   return `${props.columns.map(col => `minmax(${col.size},auto)`).join(' ')}`
@@ -182,7 +191,7 @@ onBeforeUnmount(() => {
         />
 
         <AppTableEmptyState
-          v-if="hasNoData || props.isLoading"
+          v-if="!hasEmptyStateSlot && (hasNoData || props.isLoading)"
           :active-filter-count="activeFilterCount"
           :column-count="props.columns.length"
           :should-pin-first-column="props.shouldPinFirstColumn"
@@ -200,11 +209,14 @@ onBeforeUnmount(() => {
       />
     </div>
 
-    <AppTableEmptyStateOverlay
-      v-if="hasNoData"
-      :active-filter-count="activeFilterCount"
-      @clear-filters="onClearFilters"
-    />
+    <slot name="empty-state">
+      <AppTableEmptyStateOverlay
+        v-if="hasNoData"
+        :active-filter-count="activeFilterCount"
+        :empty-text="props.emptyText"
+        @clear-filters="onClearFilters"
+      />
+    </slot>
 
     <AppTableFooter
       :is-loading="props.isLoading"

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import AppSkeletonLoaderRow from '@/components/skeleton-loader/AppSkeletonLoaderRow.vue'
 import AppTablePagination from '@/components/table/AppTablePagination.vue'
@@ -16,6 +17,8 @@ const props = defineProps<{
 const emit = defineEmits<{
   page: [event: PageChangeEvent]
 }>()
+
+const { t } = useI18n()
 
 const currentPageFrom = computed<number>(() => {
   const { page, perPage } = props.paginationOptions.pagination
@@ -35,8 +38,6 @@ function handlePageEvent(event: PageChangeEvent): void {
 </script>
 
 <template>
-  <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
-
   <div class="sticky bottom-0 left-0 z-10 flex h-14 w-full items-center justify-between border-t border-solid border-border bg-background px-6 py-2">
     <AppSkeletonLoaderRow
       v-if="props.isLoading"
@@ -47,8 +48,9 @@ function handlePageEvent(event: PageChangeEvent): void {
       v-else-if="props.total !== null"
       variant="subtext"
     >
+      <!-- eslint-disable-next-line @intlify/vue-i18n/no-raw-text -->
       {{ toLocaleNumber(currentPageFrom) }} -
-      {{ toLocaleNumber(currentPageUntil) }} of
+      {{ toLocaleNumber(currentPageUntil) }} {{ t('components.table.of') }}
       {{ toLocaleNumber(props.total) }}
     </AppText>
 
