@@ -9,8 +9,6 @@ import type { DropdownMenuOption } from '@/types/dropdownMenuItem.type'
 const props = defineProps<{
   item: DropdownMenuOption
 }>()
-
-// TODO update this component so that it supports :to="..." and target="_blank" for external links
 </script>
 
 <template>

@@ -6,6 +6,7 @@ import AppDropdownMenuDivider from '@/components/dropdown-menu/AppDropdownMenuDi
 import AppDropdownMenuGroup from '@/components/dropdown-menu/AppDropdownMenuGroup.vue'
 import AppDropdownMenuOption from '@/components/dropdown-menu/AppDropdownMenuOption.vue'
 import AppDropdownMenuRadioGroup from '@/components/dropdown-menu/AppDropdownMenuRadioGroup.vue'
+import AppDropdownMenuRouteOption from '@/components/dropdown-menu/AppDropdownMenuRouteOption.vue'
 import AppDropdownMenuSub from '@/components/dropdown-menu/AppDropdownMenuSub.vue'
 import AppDropdownMenuSubContent from '@/components/dropdown-menu/AppDropdownMenuSubContent.vue'
 import AppDropdownMenuSubTrigger from '@/components/dropdown-menu/AppDropdownMenuSubTrigger.vue'
@@ -58,6 +59,13 @@ const props = defineProps<{
   >
     <slot :item="props.item" />
   </AppDropdownMenuOption>
+
+  <AppDropdownMenuRouteOption
+    v-else-if="props.item.type === 'route-option'"
+    :item="props.item"
+  >
+    <slot :item="props.item" />
+  </AppDropdownMenuRouteOption>
 
   <DropdownMenuLabel
     v-else-if="props.item.type === 'label'"
