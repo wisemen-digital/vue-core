@@ -228,4 +228,4 @@ function onBlur(): void {
       </ComboboxPortal>
     </ComboboxRoot>
   </div>
-</template>import type { ComboboxProps } from '@/types/comboboxProps.type'
+</template>

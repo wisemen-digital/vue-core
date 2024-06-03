@@ -257,4 +257,4 @@ watch(isOpen, (isOpen) => {
       </ComboboxPortal>
     </ComboboxRoot>
   </div>
-</template>ComboboxProps,
+</template>
