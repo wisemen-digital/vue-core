@@ -1,15 +1,14 @@
 {
-  "name": "@wisemen/vue-core",
+  "name": "@wisemen/vue-core-query",
   "type": "module",
-  "version": "0.0.64",
+  "version": "0.0.1",
   "license": "MIT",
   "sideEffects": false,
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
-    },
-    "./style.css": "./dist/style.css"
+    }
   },
   "main": "./dist/index.umd.cjs",
   "module": "./dist/index.js",
@@ -20,7 +19,7 @@
     "./dist"
   ],
   "scripts": {
-    "build": "pnpm type-check && pnpm build-only && npm pack && cp web-types.json dist/web-types.json",
+    "build": "pnpm type-check && pnpm build-only && npm pack && pnpm gen:web-types",
     "precommit": "pnpm type-check && test:unit && pnpm build-only",
     "build-only": "vite build",
     "type-check": "vue-tsc -p tsconfig.check.json --noEmit",
@@ -32,7 +31,7 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "@wisemen/vue-core-query": "workspace:*"
+    "@tanstack/vue-query": "^5.40.0"
   },
   "devDependencies": {
     "@tsconfig/node18": "^18.2.4",
@@ -41,21 +40,10 @@
     "@vitejs/plugin-vue": "^5.0.5",
     "@vue/test-utils": "^2.4.6",
     "@vue/tsconfig": "^0.5.1",
-    "@vueuse/core": "^10.10.0",
-    "@vueuse/router": "^10.10.0",
     "@wisemen/eslint-config-vue": "0.1.0",
-    "autoprefixer": "^10.4.19",
-    "clsx": "^2.1.1",
-    "cva": "1.0.0-beta.1",
     "eslint": "9.4",
     "jsdom": "^24.1.0",
-    "libphonenumber-js": "^1.11.2",
-    "maska": "^2.1.11",
     "minimist": "^1.2.8",
-    "radix-vue": "^1.8.2",
-    "sass": "^1.77.4",
-    "tailwind-merge": "^2.3.0",
-    "tailwindcss": "^3.4.3",
     "typescript": "^5.4.5",
     "vite": "^5.2.12",
     "vite-plugin-dts": "^3.9.1",
@@ -63,9 +51,6 @@
     "vue": "^3.4.27",
     "vue-component-type-helpers": "^2.0.19",
     "vue-docgen-web-types": "^0.1.8",
-    "vue-i18n": "^9.13.1",
-    "vue-router": "^4.3.2",
-    "vue-tsc": "^2.0.19",
-    "zod": "^3.23.8"
+    "vue-tsc": "^2.0.19"
   }
 }
