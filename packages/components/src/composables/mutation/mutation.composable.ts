@@ -74,7 +74,7 @@ export function useMutation<
         const qkp = queryKeyParams as Record<string, (params: TParams, data: TResData) => unknown>
 
         const isExact = Object.keys(qkp).length > 0
-        const paramValues = Object.values(qkp).map(param => param(params, responseData))
+        const paramValues = Object.values(qkp).map((param) => param(params, responseData))
 
         if (isDebug) {
           // eslint-disable-next-line no-console

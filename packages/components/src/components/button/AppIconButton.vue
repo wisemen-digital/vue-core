@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import { iconButton, type IconButtonStyleProps } from '@/components/button/button.style'
+import {
+  iconButton,
+  type IconButtonStyleProps,
+} from '@/components/button/button.style'
 import AppIcon from '@/components/icon/AppIcon.vue'
 import type { IconStyleProps } from '@/components/icon/icon.style'
 import AppLoader from '@/components/loader/AppLoader.vue'

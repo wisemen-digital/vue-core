@@ -15,7 +15,7 @@ const exampleConfig: KeyboardShortcutConfig = {
   stopPropagation: false,
 }
 
-function onClick() {
+function onClick(): void {
   // eslint-disable-next-line no-alert
   alert('Alert')
 }

@@ -12,6 +12,7 @@ import {
   computed,
   ref,
 } from 'vue'
+import type { ComponentExposed } from 'vue-component-type-helpers'
 
 import AppComboboxContent from '@/components/combobox/AppComboboxContent.vue'
 import AppComboboxEmpty from '@/components/combobox/AppComboboxEmpty.vue'
@@ -95,8 +96,7 @@ const searchModel = defineModel<null | string>('search', {
 
 const isOpen = ref<boolean>(false)
 
-// @ts-expect-error - `TagsInputRoot`
-const tagsInputRootRef = ref<InstanceType<typeof TagsInputRoot> | null>(null)
+const tagsInputRootRef = ref<ComponentExposed<typeof TagsInputRoot> | null>(null)
 
 const { canOpenDropdown } = useCombobox({
   isLoading: computed<boolean>(() => props.isLoading),

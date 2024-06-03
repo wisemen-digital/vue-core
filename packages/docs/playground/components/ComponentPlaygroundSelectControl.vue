@@ -18,13 +18,13 @@ const model = defineModel<TItem | null>({
 })
 
 const selectItems = computed<SelectItemOption<TItem>[]>(() => {
-  return props.items.map(item => ({
+  return props.items.map((item) => ({
     type: 'option',
     value: item,
   }))
 })
 
-function displayFunction(item: TItem) {
+function displayFunction(item: TItem): string {
   return item as string
 }
 </script>

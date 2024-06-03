@@ -15,14 +15,14 @@ const props = defineProps<Props<TControlKeys>>()
 
 const controlValues = ref<Record<TControlKeys, any>>(getControlValueDefault()) as Ref<Record<TControlKeys, any>>
 
-function setControlValues({ control, value }: { control: TControlKeys, value: any }) {
+function setControlValues({ control, value }: { control: TControlKeys, value: any }): void {
   controlValues.value = {
     ...controlValues.value,
     [control]: value,
   }
 }
 
-function getControlValueDefault() {
+function getControlValueDefault(): Record<TControlKeys, any> {
   if (props.controls === null) {
     return {} as Record<TControlKeys, any>
   }

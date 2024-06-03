@@ -19,13 +19,13 @@ const model = defineModel<Icon | null>({
 })
 
 const selectItems = computed<SelectItemOption<Icon>[]>(() => {
-  return Object.keys(icons).map(item => ({
+  return Object.keys(icons).map((item) => ({
     type: 'option',
     value: item as Icon,
   }))
 })
 
-function displayFunction(item: Icon) {
+function displayFunction(item: Icon): string {
   return item as string
 }
 </script>
