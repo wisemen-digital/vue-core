@@ -54,25 +54,26 @@ const exampleColumns: TableColumn<ExampleDataType>[] = [
   {
     id: 'firstName',
     label: 'First Name',
-    size: 'auto',
+    width: 'auto',
     value: (row) => row.firstName,
   },
   {
     id: 'lastName',
     label: 'Last Name',
-    size: '300px',
+    width: '300px',
     value: (row) => row.lastName,
   },
   {
     id: 'age',
     label: 'Age',
-    size: '100px',
+    width: '100px',
     value: (row) => `${row.age}`,
   },
   {
     id: 'hasDriversLicense',
     label: 'Drivers license?',
-    size: 'auto',
+    width: 'auto',
+    maxWidth: '100px',
     value: (row) => row.hasDriversLicense ? 'Yes' : 'No',
   },
 ]

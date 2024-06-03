@@ -4,7 +4,8 @@ interface BaseTableColumn {
   id: string
   isSortable?: boolean
   label: string
-  size: string
+  maxWidth?: string
+  width: string
 }
 
 interface TableColumnWithRender<TSchema> extends BaseTableColumn {

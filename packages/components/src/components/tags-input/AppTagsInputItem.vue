@@ -25,7 +25,7 @@ const props = withDefaults(defineProps<{
     :class="{
       'opacity-50': props.isDisabled,
     }"
-    class="flex items-center gap-x-1 overflow-hidden rounded-tag border border-solid border-border bg-muted-background px-2 py-0.5 aria-[current=true]:border-foreground aria-[current=true]:bg-foreground aria-[current=true]:text-background"
+    class="group flex items-center gap-x-1 overflow-hidden rounded-tag border border-solid border-border bg-muted-background px-2 py-0.5 aria-[current=true]:border-foreground aria-[current=true]:bg-foreground aria-[current=true]:text-background"
   >
     <TagsInputItemText :as-child="true">
       <AppText
@@ -40,10 +40,10 @@ const props = withDefaults(defineProps<{
       <AppIconButton
         :is-disabled="props.isDisabled"
         icon="close"
-        icon-size="sm"
+        size="xs"
         variant="ghost"
         label="Delete"
-        class="size-4 !bg-transparent !text-inherit !duration-0"
+        class="!bg-transparent !duration-0 aria-[current=true]:text-background"
       />
     </TagsInputItemDelete>
   </TagsInputItem>

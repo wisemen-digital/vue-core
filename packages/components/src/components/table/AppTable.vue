@@ -107,7 +107,7 @@ function onClearFilters(): void {
 }
 
 const gridColsStyle = computed<string>(() => {
-  return `${props.columns.map((col) => `minmax(${col.size},auto)`).join(' ')}`
+  return `${props.columns.map((col) => `minmax(${col.width},${col.maxWidth ?? 'auto'})`).join(' ')}`
 })
 
 const hasNoData = computed<boolean>(() => {
