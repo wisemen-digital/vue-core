@@ -6,18 +6,20 @@ interface PaginationSort {
   direction: SortDirection
   key: string
 }
-
 export type PaginationFilters<TFilters> = {
-  [K in keyof TFilters]: TFilters[K]
-}
+  key: keyof TFilters
+  value: FilterValues | null
+}[]
 
 export interface PageChangeEvent {
   page: number
   perPage: number
 }
 
-export type FilterChangeEvent<TFilters> = {
-  [K in keyof TFilters]?: unknown
+export type FilterChangeEvent<TFilters> = PaginationFilters<TFilters>
+export interface TableFilterEvent<TFilters> {
+  key: keyof TFilters
+  value: FilterValues | null
 }
 
 export interface SortChangeEvent {
@@ -36,8 +38,15 @@ export interface PaginationOptions<TFilters> {
 
 interface PaginationFilterBase<TFilters> {
   id: keyof TFilters
+  isVisible?: boolean
   label: string
 }
+
+export type FilterValues = boolean
+  | number
+  | string
+  | string[]
+export type Filters = Record<string, FilterValues | undefined>
 
 export interface PaginationFilterWithOptions<TFilters> extends PaginationFilterBase<TFilters> {
   options: { label: string, value: string }[]

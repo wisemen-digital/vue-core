@@ -32,6 +32,7 @@ const props = withDefaults(
     pagination: Pagination<TFilters>
     rowClick?: ((row: TSchema) => void) | null
     rowTo?: ((row: TSchema) => RouteLocationNamedRaw) | null
+    searchFilterKey?: keyof TFilters
     shouldPinFirstColumn?: boolean
     shouldPinLastColumn?: boolean
     title: string
@@ -111,7 +112,7 @@ const gridColsStyle = computed<string>(() => {
 })
 
 const hasNoData = computed<boolean>(() => {
-  return props.data?.data.length === 0 && !props.isLoading
+  return props.data?.data.length === 0 && props.isLoading === false
 })
 
 const activeFilterCount = computed<number>(() => {
@@ -121,9 +122,7 @@ const activeFilterCount = computed<number>(() => {
     return 0
   }
 
-  return Object
-    .values(filters)
-    .filter((value) => value !== null && value !== undefined && value !== '').length
+  return filters.length
 })
 
 onMounted(() => {
@@ -145,6 +144,9 @@ onBeforeUnmount(() => {
       :is-loading="props.isLoading"
       :title="props.title"
       :total="props.data?.total ?? null"
+      :filters="props.filters"
+      :pagination="props.pagination"
+      :search-filter-key="props.searchFilterKey"
     />
 
     <div

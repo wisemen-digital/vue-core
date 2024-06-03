@@ -1,20 +1,21 @@
 import {
   toValue,
   tryOnScopeDispose
-} from "./chunk-7VP5DAQT.js";
-import "./chunk-UM7RCC42.js";
+} from "./chunk-DZKGDS5F.js";
 import {
   useRoute,
   useRouter
-} from "./chunk-CN6TQWOT.js";
+} from "./chunk-YN4CGXY2.js";
 import "./chunk-WBYI4UQ7.js";
+import "./chunk-YZLX4RJG.js";
 import {
   customRef,
   nextTick,
   watch
-} from "./chunk-ZQ3ESIZP.js";
+} from "./chunk-LRI6K42L.js";
+import "./chunk-2HYBKCYP.js";
 
-// ../../node_modules/.pnpm/@vueuse+router@10.9.0_vue-router@4.3.2_vue@3.4.26/node_modules/@vueuse/router/index.mjs
+// ../../node_modules/.pnpm/@vueuse+router@10.10.0_vue-router@4.3.2_vue@3.4.27/node_modules/@vueuse/router/index.mjs
 var _hash;
 function useRouteHash(defaultValue, {
   mode = "replace",
@@ -76,7 +77,7 @@ function useRouteParams(name, defaultValue, options = {}) {
     return {
       get() {
         track();
-        return transform(param !== void 0 ? param : toValue(defaultValue));
+        return transform(param !== void 0 && param !== "" ? param : toValue(defaultValue));
       },
       set(v) {
         if (param === v)

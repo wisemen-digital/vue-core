@@ -1,0 +1,131 @@
+<script setup lang="ts" generic="TFilters">
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+import AppButton from '@/components/button/AppButton.vue'
+import AppIconButton from '@/components/button/AppIconButton.vue'
+import AppPopover from '@/components/popover/AppPopover.vue'
+import AppSelectDivider from '@/components/select/AppSelectDivider.vue'
+import AppText from '@/components/text/AppText.vue'
+import type {
+  Pagination,
+  PaginationFilter,
+  TableFilterEvent,
+} from '@/types/pagination.type'
+
+const props = defineProps<{
+  filters: PaginationFilter<TFilters>[]
+  pagination: Pagination<TFilters>
+}>()
+
+const emit = defineEmits<{
+  clear: []
+  filter: [event: TableFilterEvent<TFilters>]
+}>()
+
+const { t } = useI18n()
+
+const filteredFilters = computed<PaginationFilter<TFilters>[]>(() => {
+  return props.filters.filter((filter) => isFilterVisible(filter))
+})
+
+const numberOfActiveFilters = computed<number>(() => {
+  return props.pagination.paginationOptions.value.filters?.length ?? 0
+})
+
+function onFilterUpdate(event: TableFilterEvent<TFilters>): void {
+  emit('filter', event)
+}
+
+function onClearAllButtonClick(): void {
+  emit('clear')
+}
+
+function isFilterVisible(filter: PaginationFilter<TFilters>): boolean {
+  return filter.isVisible === undefined || filter.isVisible
+}
+</script>
+
+<template>
+  <AppPopover>
+    <template #default>
+      <div class="relative">
+        <AppIconButton
+          variant="outline"
+          class="w-10"
+          icon="arrowDown"
+          icon-size="default"
+          label="Filter"
+        />
+        <div
+          v-if="numberOfActiveFilters > 0"
+          class="absolute -right-2 -top-2 flex size-5 items-center justify-center rounded-full bg-primary text-xs text-white"
+        >
+          {{ numberOfActiveFilters }}
+        </div>
+      </div>
+    </template>
+
+    <template #content>
+      <div
+        :prioritize-position="false"
+        :trap-focus="true"
+        align="end"
+        class="border border-solid border-muted p-0"
+      >
+        <div>
+          <div class="flex items-center justify-between px-4 py-2">
+            <AppText
+              variant="body"
+              class="font-medium"
+            >
+              {{ t('shared.filters') }}
+            </AppText>
+            <AppButton
+              class="text-primary"
+              size="sm"
+              variant="ghost"
+              @click="onClearAllButtonClick"
+            >
+              {{ t('shared.clear_all') }}
+            </AppButton>
+          </div>
+          <AppSelectDivider direction="horizontal" />
+          <div
+            v-for="filter in filteredFilters"
+            :key="filter.id"
+          >
+            <!-- <div class="m-1 space-y-1">
+              <AppTableMultiSelectFilter
+                v-if="filter.type === 'multiselect'"
+                :filter="filter"
+                :pagination="props.pagination"
+                @change="onFilterUpdate"
+              />
+              <AppTableSelectFilter
+                v-if="filter.type === 'select'"
+                :filter="filter"
+                :pagination="props.pagination"
+                @change="onFilterUpdate"
+              />
+              <AppTableTextFilter
+                v-if="filter.type === 'text'"
+                :filter="filter"
+                :pagination="props.pagination"
+                @change="onFilterUpdate"
+              />
+              <AppTableBooleanFilter
+                v-if="filter.type === 'boolean'"
+                :filter="filter"
+                :pagination="props.pagination"
+                @change="onFilterUpdate"
+              />
+            </div>
+            <AppDivider direction="horizontal" />
+          </div> -->
+          </div>
+        </div>
+      </div>
+    </template>
+  </AppPopover>
+</template>
