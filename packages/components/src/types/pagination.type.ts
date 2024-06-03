@@ -1,4 +1,7 @@
-import type { ComputedRef, MaybeRefOrGetter } from 'vue'
+import type {
+  ComputedRef,
+  MaybeRefOrGetter,
+} from 'vue'
 
 export type SortDirection = 'asc' | 'desc'
 

@@ -53,7 +53,7 @@ export function useLocalPagination<TSchema, TFilters>({
       const start = paginationValue.page * paginationValue.perPage
       const end = start + paginationValue.perPage
 
-      const result = rawItems.filter(item => filterItem(item))
+      const result = rawItems.filter((item) => filterItem(item))
         .sort((a, b) => sortItem(a, b))
         .slice(start, end)
 

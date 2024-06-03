@@ -53,15 +53,15 @@ const exampleColumns: TableColumn<ExampleDataType>[] = [
     id: 'firstName',
     label: 'First Name',
     isSortable: true,
-    size: 'auto',
-    value: row => row.firstName,
+    width: 'auto',
+    value: (row) => row.firstName,
   },
   {
     id: 'age',
     label: 'Age',
     isSortable: true,
-    size: '100px',
-    value: row => `${row.age}`,
+    width: '100px',
+    value: (row) => `${row.age}`,
   },
 ]
 
@@ -77,7 +77,7 @@ const localPagination = useLocalPagination<ExampleDataType, ExampleFilters>({
   },
 })
 
-function onRowClick(row: ExampleDataType) {
+function onRowClick(row: ExampleDataType): void {
   // eslint-disable-next-line no-alert
   alert(`Row clicked: ${row.firstName} ${row.lastName}`)
 }
