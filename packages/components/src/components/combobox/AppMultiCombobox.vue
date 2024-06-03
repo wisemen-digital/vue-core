@@ -130,7 +130,7 @@ const placeholderValue = computed<null | string>(() => {
     return props.placeholder
   }
 
-  return model.value.map(value => props.displayFn(value)).join(', ')
+  return model.value.map((value) => props.displayFn(value)).join(', ')
 })
 
 const isEmpty = computed<boolean>(() => {

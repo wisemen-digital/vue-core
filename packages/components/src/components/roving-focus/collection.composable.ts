@@ -14,19 +14,23 @@ import {
 const ITEM_DATA_ATTR = 'data-radix-vue-collection-item'
 
 type ContextValue = Ref<HTMLElement[]>
+
 /**
  * Composables for provide/inject collections
  * @param key (optional) Name to replace the default `Symbol()` as provide's key
  * @param name (optional) Name to replace the default `ITEM_DATA_ATTR` for the item's attirbutes
  */
-export function useCollection(key?: string, name = ITEM_DATA_ATTR) {
+export function useCollection(key?: string, name = ITEM_DATA_ATTR): {
+  createCollection: (sourceRef?: Ref<HTMLElement | undefined>) => Ref<HTMLElement[]>
+  injectCollection: () => ContextValue
+} {
   const COLLECTION_SYMBOL = key ?? (Symbol('') as InjectionKey<ContextValue>)
 
-  function createCollection(sourceRef?: Ref<HTMLElement | undefined>) {
+  function createCollection(sourceRef?: Ref<HTMLElement | undefined>): Ref<HTMLElement[]> {
     // eslint-disable-next-line require-explicit-generics/require-explicit-generics
     const items = ref([]) as Ref<HTMLElement[]> // ref<HTMLElement[]> is causing type inference issue
 
-    function setCollection() {
+    function setCollection(): HTMLElement[] {
       const sourceEl = unrefElement(sourceRef)
 
       if (sourceEl === undefined) {
@@ -52,7 +56,7 @@ export function useCollection(key?: string, name = ITEM_DATA_ATTR) {
     return items
   }
 
-  function injectCollection() {
+  function injectCollection(): ContextValue {
     // eslint-disable-next-line require-explicit-generics/require-explicit-generics
     return inject(COLLECTION_SYMBOL, ref([]))
   }

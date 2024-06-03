@@ -72,7 +72,7 @@ export function useKeyboardShortcut(
 
   function isShortcutActive(pressedKeys: KeyboardKey[]): boolean {
     if (shortcutMode === 'combination') {
-      return pressedKeys.every(key => keys.includes(key)) && pressedKeys.length === keys.length
+      return pressedKeys.every((key) => keys.includes(key)) && pressedKeys.length === keys.length
     }
 
     if (shortcutMode === 'sequence') {

@@ -18,8 +18,8 @@
     "clean": "pnpm run -r lint && pnpm run -r type-check && pnpm run -r test"
   },
   "devDependencies": {
-    "radix-vue": "^1.7.3",
-    "rimraf": "^5.0.5",
-    "vitest": "^1.5.3"
+    "radix-vue": "^1.8.2",
+    "rimraf": "^5.0.7",
+    "vitest": "^1.6.0"
   }
 }

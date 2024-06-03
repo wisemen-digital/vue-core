@@ -40,15 +40,15 @@ const model = defineModel<T[]>({
   required: true,
 })
 
-function isOptionSelected(value: T) {
+function isOptionSelected(value: T): boolean {
   return model.value.includes(value)
 }
 
-function toggleOption(value: T) {
+function toggleOption(value: T): void {
   const isSelected = isOptionSelected(value)
 
   if (isSelected) {
-    model.value = model.value.filter(v => v !== value)
+    model.value = model.value.filter((v) => v !== value)
   }
   else {
     model.value = [

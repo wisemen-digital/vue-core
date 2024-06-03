@@ -64,7 +64,7 @@ const { currentElement, forwardRef } = useForwardExpose()
 const { createCollection } = useCollection('rovingFocus')
 const collections = createCollection(currentElement)
 
-function handleFocus(event: FocusEvent) {
+function handleFocus(event: FocusEvent): void {
   // We normally wouldn't need this check, because we already check
   // that the focus is on the current target and not bubbling to it.
   // We do this because Safari doesn't focus buttons when clicked, and
@@ -84,9 +84,9 @@ function handleFocus(event: FocusEvent) {
 
     if (!entryFocusEvent.defaultPrevented) {
       const items = collections.value
-      const activeItem = items.find(item => item.getAttribute('data-active') === 'true')
+      const activeItem = items.find((item) => item.getAttribute('data-active') === 'true')
       const currentItem = items.find(
-        item => item.id === currentTabStopId.value,
+        (item) => item.id === currentTabStopId.value,
       )
       const candidateItems = [
         activeItem,

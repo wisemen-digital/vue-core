@@ -20,7 +20,7 @@ const activeTabModel = defineModel<TabItem>('tab', {
 const computedModel = computed<string>({
   get: () => activeTabModel.value.id,
   set: (value) => {
-    activeTabModel.value = props.items.find(tab => tab.id === value)!
+    activeTabModel.value = props.items.find((tab) => tab.id === value)!
   },
 })
 </script>

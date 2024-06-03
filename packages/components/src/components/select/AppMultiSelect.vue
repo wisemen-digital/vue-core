@@ -12,7 +12,10 @@ import AppComboboxItem from '@/components/combobox/AppComboboxItem.vue'
 import AppComboboxViewport from '@/components/combobox/AppComboboxViewport.vue'
 import AppMultiSelectInput from '@/components/select/AppMultiSelectInput.vue'
 import type { Icon } from '@/icons/icons'
-import type { AcceptableValue, SelectItem } from '@/types/selectItem.type'
+import type {
+  AcceptableValue,
+  SelectItem,
+} from '@/types/selectItem.type'
 
 const props = withDefaults(
   defineProps<{
@@ -87,7 +90,7 @@ const placeholderValue = computed<null | string>(() => {
     return props.placeholder
   }
 
-  return model.value.map(value => props.displayFn(value)).join(', ')
+  return model.value.map((value) => props.displayFn(value)).join(', ')
 })
 
 const isEmpty = computed<boolean>(() => {

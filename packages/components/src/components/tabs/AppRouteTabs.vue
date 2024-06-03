@@ -40,7 +40,7 @@ watch(() => route.name, (routeName) => {
 })
 
 watch(activeRouteName, (activeRouteName) => {
-  const tab = props.tabs.find(tab => tab.to.name === activeRouteName) ?? null
+  const tab = props.tabs.find((tab) => tab.to.name === activeRouteName) ?? null
 
   if (tab === null) {
     throw new Error(`Tab with route name "${String(activeRouteName)}" not found`)
