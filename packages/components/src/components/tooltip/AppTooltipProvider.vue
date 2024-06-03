@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { TooltipProvider, TooltipRoot } from 'radix-vue'
+import {
+  TooltipProvider,
+  TooltipRoot,
+} from 'radix-vue'
 
 const props = defineProps<{
   delayDuration: number

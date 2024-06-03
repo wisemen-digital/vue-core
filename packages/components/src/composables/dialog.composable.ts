@@ -34,7 +34,7 @@ export function useDialog<TComponent extends Record<string, unknown>>({
   const triggerId = useId()
 
   function removeDialogFromContainer(): void {
-    dialogs.value = dialogs.value.filter(dialog => dialog.id !== triggerId)
+    dialogs.value = dialogs.value.filter((dialog) => dialog.id !== triggerId)
   }
 
   async function openDialog(attrs: Attrs<TComponent>): Promise<void> {
@@ -48,7 +48,7 @@ export function useDialog<TComponent extends Record<string, unknown>>({
   }
 
   function closeDialog(): void {
-    const dialog = dialogs.value.find(dialog => dialog.id === triggerId) ?? null
+    const dialog = dialogs.value.find((dialog) => dialog.id === triggerId) ?? null
 
     if (dialog === null) {
       return
@@ -60,7 +60,7 @@ export function useDialog<TComponent extends Record<string, unknown>>({
   }
 
   async function createDialog(attrs: Attrs<TComponent>): Promise<Ref<Dialog>> {
-    const dialogWithSameTriggerId = dialogs.value.find(dialog => dialog.id === triggerId) ?? null
+    const dialogWithSameTriggerId = dialogs.value.find((dialog) => dialog.id === triggerId) ?? null
 
     if (dialogWithSameTriggerId !== null) {
       throw new Error(`Dialog with triggerId ${triggerId} already exists`)

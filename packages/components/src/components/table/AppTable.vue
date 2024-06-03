@@ -116,7 +116,7 @@ const hasEmptyStateSlot = computed<boolean>(() => {
 })
 
 const gridColsStyle = computed<string>(() => {
-  return `${props.columns.map(col => `minmax(${col.size},auto)`).join(' ')}`
+  return `${props.columns.map((col) => `minmax(${col.width},${col.maxWidth ?? 'auto'})`).join(' ')}`
 })
 
 const hasNoData = computed<boolean>(() => {
@@ -132,7 +132,7 @@ const activeFilterCount = computed<number>(() => {
 
   return Object
     .values(filters)
-    .filter(value => value !== null && value !== undefined && value !== '').length
+    .filter((value) => value !== null && value !== undefined && value !== '').length
 })
 
 onMounted(() => {

@@ -57,7 +57,7 @@ const exampleItems: DropdownMenuItem[] = [
   {
     type: 'option',
     label: 'Option 1',
-    onSelect: () => {
+    onSelect: (): void => {
       alert('Option 1 selected')
     },
     keyboardShortcutKeys: [
@@ -77,14 +77,14 @@ const exampleItems: DropdownMenuItem[] = [
       {
         type: 'option',
         label: 'Option 2',
-        onSelect: () => {
+        onSelect: (): void => {
           alert('Option 2 selected')
         },
       },
       {
         type: 'option',
         label: 'Option 3',
-        onSelect: () => {
+        onSelect: (): void => {
           alert('Option 3 selected')
         },
       },

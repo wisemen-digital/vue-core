@@ -81,7 +81,7 @@ function getCountryFromPhoneNumber(phoneNumber: string): CountryCode | null {
   for (let i = 3; i > 0; i--) {
     const callingCode = phoneNumber.slice(0, i).replace('+', '')
 
-    country = countries.find(country => getCountryCallingCode(country) === callingCode)
+    country = countries.find((country) => getCountryCallingCode(country) === callingCode)
 
     if (country !== undefined) {
       break

@@ -13,6 +13,12 @@ type NonOptionalKeys<T> = {
 
 interface UseQueryOptions<TResData> {
   /**
+   * The time in milliseconds after which the query will be considered stale
+   * After this time, the query will be refetched automatically in the background when it is rendered or accessed
+   * @default 0
+   */
+  staleTime?: number
+  /**
    * Whether to enable debug mode
    */
   isDebug?: boolean
@@ -33,12 +39,6 @@ interface UseQueryOptions<TResData> {
       [TQueryKeyParam in keyof NonOptionalKeys<QueryKeys[TQueryKey]>]: MaybeRef<QueryKeys[TQueryKey][TQueryKeyParam]>
     }
   }
-  /**
-   * The time in milliseconds after which the query will be considered stale
-   * After this time, the query will be refetched automatically in the background when it is rendered or accessed
-   * @default 0
-   */
-  staleTime?: number
 }
 
 export interface UseQueryReturnType<TResData> {
@@ -68,11 +68,11 @@ export function useQuery<TResData>(options: UseQueryOptions<TResData>): UseQuery
   const isDebug = options.isDebug ?? false
 
   const query = useTanstackQuery({
+    staleTime: options.staleTime,
     enabled: options.isEnabled,
-    placeholderData: data => data,
+    placeholderData: (data) => data,
     queryFn: options.queryFn,
     queryKey: getQueryKey(),
-    staleTime: options.staleTime,
   })
 
   function getQueryKey(): string[] {

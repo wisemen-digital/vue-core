@@ -63,7 +63,6 @@ export interface ToastT<T extends Component = Component> {
   class?: string
   classes?: ToastClasses
   closeButton?: boolean
-  component?: T
   componentProps?: any
   delete?: boolean
   description?: Component | string
@@ -79,6 +78,7 @@ export interface ToastT<T extends Component = Component> {
   title?: Component | string
   type?: ToastTypes
   unstyled?: boolean
+  component?: T
   onAutoClose?: (toast: ToastT) => void
   onDismiss?: (toast: ToastT) => void
 }
