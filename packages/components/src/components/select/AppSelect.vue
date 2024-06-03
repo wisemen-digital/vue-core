@@ -13,7 +13,10 @@ import AppSelectRoot from '@/components/select/AppSelectRoot.vue'
 import AppSelectTrigger from '@/components/select/AppSelectTrigger.vue'
 import AppSelectValue from '@/components/select/AppSelectValue.vue'
 import type { Icon } from '@/icons/icons'
-import type { AcceptableValue, SelectItem } from '@/types/selectItem.type'
+import type {
+  AcceptableValue,
+  SelectItem,
+} from '@/types/selectItem.type'
 
 const props = withDefaults(
   defineProps<{

@@ -10,16 +10,18 @@
   "scripts": {
     "build": "rimraf packages/vue-core/dist && pnpm run -r build",
     "docs:dev": "pnpm run -r docs:dev",
+    "postinstall": "pnpm build",
     "docs:build": "pnpm run -r docs:build",
     "pub:release": "cd packages/components && pnpm pub:release --no-git-checks",
+    "pub:release-query": "cd packages/query && pnpm pub:release --no-git-checks",
     "dev": "pnpm run -r dev",
     "lint": "pnpm run -r lint",
     "type-check": "pnpm run -r type-check",
     "clean": "pnpm run -r lint && pnpm run -r type-check && pnpm run -r test"
   },
   "devDependencies": {
-    "radix-vue": "^1.7.3",
-    "rimraf": "^5.0.5",
-    "vitest": "^1.5.3"
+    "radix-vue": "^1.8.2",
+    "rimraf": "^5.0.7",
+    "vitest": "^1.6.0"
   }
 }
