@@ -52,7 +52,7 @@
     "libphonenumber-js": "^1.10.61",
     "maska": "^2.1.11",
     "minimist": "^1.2.8",
-    "radix-vue": "^1.7.3",
+    "radix-vue": "^1.8.0",
     "sass": "^1.75.0",
     "tailwind-merge": "^2.3.0",
     "tailwindcss": "^3.4.3",
