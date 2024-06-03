@@ -16,7 +16,7 @@ const props = defineProps<{
     <ol class="flex items-center gap-x-3">
       <template
         v-for="(item, i) of props.items"
-        :key="item.label"
+        :key="i"
       >
         <AppBreadcrumbItem :item="item" />
 

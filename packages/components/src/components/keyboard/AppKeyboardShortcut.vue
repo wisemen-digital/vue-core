@@ -23,7 +23,7 @@ function isModifier(key: KeyboardKey): boolean {
 }
 
 const isSequence = computed<boolean>(() => {
-  return !props.keys.some(key => isModifier(key))
+  return !props.keys.some((key) => isModifier(key))
 })
 
 const foregroundColorClass = computed<string>(() => {
