@@ -10,6 +10,7 @@ dist
 
 **/.vitepress
 !**/.vitepress/config.mts
+!**/.vitepress/theme
 
 # Editor directories and files
 .vscode/*
