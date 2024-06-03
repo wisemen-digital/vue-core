@@ -3,17 +3,24 @@ sidebar: auto
 ---
 
 # AppSelect
+<script setup>
+import AppSelectPlayground from './AppSelectPlayground.vue'
+</script>
+
+<AppSelectPlayground />
 
 ## Props
 
-| Prop                      | Type                   | Description                                               | Default |
-| ------------------------- | ---------------------- | --------------------------------------------------------- | ------- |
-| items  **(required)**     | `SelectItem<T>[]`      | The items to display in the select.                       |         |
-| displayFn  **(required)** | `(value: T) => string` | Display function for the selected value.                  |         |
-| isDisabled                | `boolean`              | Whether the select is disabled.                           | `false` |
-| isInvalid                 | `boolean`              | Whether the select is in an invalid state.                | `false` |
-| isLoading                 | `boolean`              | Whether the select is loading.                            | `false` |
-| placeholder               | `null` \| `string`     | The placeholder text to display when the select is empty. | `null`  |
+| Prop                      | Type                   | Description                                               | Default     |
+| ------------------------- | ---------------------- | --------------------------------------------------------- | -------     |
+| items*                    | `SelectItem<T>[]`      | The items to display in the select.                       |             |
+| displayFn*                | `(value: T) => string` | Display function for the selected value.                  |             |
+| id                        | `string \| null`       | The id of the select                                      | `null`      |
+| isDisabled                | `boolean`              | Whether the select is disabled.                           | `false`     |
+| isInvalid                 | `boolean`              | Whether the select is in an invalid state.                | `false`     |
+| isLoading                 | `boolean`              | Whether the select is loading.                            | `false`     |
+| iconLeft                  | `Icon`                 | The icon to display on the left side of the select.       | `undefined` |
+| placeholder               | `null` \| `string`     | The placeholder text to display when the select is empty. | `null`      |
 
 ## v-model
 
@@ -28,10 +35,38 @@ sidebar: auto
 | blur       | Emitted when the select loses focus.                         |
 | filter     | Emitted when the select filters options based on user input. |
 
-## Example Usage
+## Types
 
+::: code-group
+```ts [SelectItem]
+export type AcceptableValue = Record<string, any>
+  | boolean
+  | number
+  | string
 
+export interface SelectItemDivider {
+  type: 'divider'
+}
 
+export interface SelectItemGroup<TValue extends AcceptableValue> {
+  items: SelectItem<TValue>[]
+  label: string
+  type: 'group'
+}
+
+export interface SelectItemOption<TValue extends AcceptableValue> {
+  isDisabled?: boolean
+  type: 'option'
+  value: TValue
+}
+
+export type SelectItem<TValue extends AcceptableValue> = SelectItemDivider
+  | SelectItemGroup<TValue>
+  | SelectItemOption<TValue>
+```
+:::
+
+## Code
 
 ```vue
 <script setup lang="ts">
@@ -82,3 +117,6 @@ const value = ref<User | null>(null)
     </template>
   </AppSelect>
 </template>
+```
+
+For full source code, see [Github](https://github.com/wisemen-digital/vue-core/blob/main/packages/components/src/components/select/AppSelect.vue)
