@@ -9,6 +9,13 @@ const guide = [
   },
 ]
 
+const query = [
+  {
+    link: '/query/getting-started',
+    text: 'Getting started',
+  },
+]
+
 const docs = [
   {
     collapsed: true,
@@ -322,6 +329,10 @@ export default defineConfig({
       {
         items: guide,
         text: 'Guide',
+      },
+      {
+        items: query,
+        text: 'Query',
       },
       {
         collapsed: false,
