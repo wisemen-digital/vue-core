@@ -264,6 +264,15 @@ const docs = [
   {
     items: [
       {
+        link: '/components/toggle/app-toggle',
+        text: 'AppToggle',
+      },
+    ],
+    text: 'Toggle',
+  },
+  {
+    items: [
+      {
         link: '/components/tooltip/app-tooltip',
         text: 'AppTooltip',
       },
