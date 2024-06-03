@@ -154,6 +154,7 @@ export type {
 } from './types/pagination.type'
 export type { QueryKeys } from './types/queryKeys.type'
 export type { Routes } from './types/routes.type'
+export type { AcceptableValue } from './types/selectItem.type'
 export type { SelectItem } from './types/selectItem.type'
 export type { RouteTabItem, TabItem } from './types/tabItem.type'
 export type { TableColumn } from './types/table.type'
