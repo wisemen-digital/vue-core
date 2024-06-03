@@ -54,26 +54,27 @@ const exampleColumns: TableColumn<ExampleDataType>[] = [
   {
     id: 'firstName',
     label: 'First Name',
-    size: 'auto',
-    value: row => row.firstName,
+    width: 'auto',
+    value: (row) => row.firstName,
   },
   {
     id: 'lastName',
     label: 'Last Name',
-    size: '300px',
-    value: row => row.lastName,
+    width: '300px',
+    value: (row) => row.lastName,
   },
   {
     id: 'age',
     label: 'Age',
-    size: '100px',
-    value: row => `${row.age}`,
+    width: '100px',
+    value: (row) => `${row.age}`,
   },
   {
     id: 'hasDriversLicense',
     label: 'Drivers license?',
-    size: 'auto',
-    value: row => row.hasDriversLicense ? 'Yes' : 'No',
+    width: 'auto',
+    maxWidth: '100px',
+    value: (row) => row.hasDriversLicense ? 'Yes' : 'No',
   },
 ]
 
@@ -88,7 +89,7 @@ const pagination = usePagination<ExampleFilters>({
   },
 })
 
-function onRowClick(row: ExampleDataType) {
+function onRowClick(row: ExampleDataType): void {
   // eslint-disable-next-line no-alert
   alert(`Row clicked: ${row.firstName} ${row.lastName}`)
 }

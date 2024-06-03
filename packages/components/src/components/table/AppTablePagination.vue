@@ -5,7 +5,10 @@ import { useI18n } from 'vue-i18n'
 import AppButton from '@/components/button/AppButton.vue'
 import AppIconButton from '@/components/button/AppIconButton.vue'
 import AppText from '@/components/text/AppText.vue'
-import type { PageChangeEvent, PaginationOptions } from '@/types/pagination.type'
+import type {
+  PageChangeEvent,
+  PaginationOptions,
+} from '@/types/pagination.type'
 
 const props = defineProps<{
   paginationOptions: PaginationOptions<unknown>

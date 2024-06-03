@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { DropdownMenuItemIndicator, DropdownMenuRadioItem } from 'radix-vue'
+import {
+  DropdownMenuItemIndicator,
+  DropdownMenuRadioItem,
+} from 'radix-vue'
 
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppKeyboardShortcut from '@/components/keyboard/AppKeyboardShortcut.vue'

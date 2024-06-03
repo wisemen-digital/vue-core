@@ -156,6 +156,23 @@ const docs = [
   {
     items: [
       {
+        link: '/components/keyboard/app-keyboard-key',
+        text: 'AppKeyboardKey',
+      },
+      {
+        link: '/components/keyboard/app-keyboard-shortcut',
+        text: 'AppKeyboardShortcut',
+      },
+      {
+        link: '/components/keyboard/app-keyboard-shortcut-provider',
+        text: 'AppKeyboardShortcutProvider',
+      },
+    ],
+    text: 'Keyboard',
+  },
+  {
+    items: [
+      {
         link: '/components/popover/app-popover',
         text: 'AppPopover',
       },
@@ -247,6 +264,15 @@ const docs = [
       },
     ],
     text: 'Textarea',
+  },
+  {
+    items: [
+      {
+        link: '/components/toggle/app-toggle',
+        text: 'AppToggle',
+      },
+    ],
+    text: 'Toggle',
   },
   {
     items: [

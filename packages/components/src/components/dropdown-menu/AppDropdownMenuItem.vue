@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { DropdownMenuLabel, DropdownMenuPortal } from 'radix-vue'
+import {
+  DropdownMenuLabel,
+  DropdownMenuPortal,
+} from 'radix-vue'
 
 import AppDropdownMenuCheckbox from '@/components/dropdown-menu/AppDropdownMenuCheckbox.vue'
 import AppDropdownMenuDivider from '@/components/dropdown-menu/AppDropdownMenuDivider.vue'

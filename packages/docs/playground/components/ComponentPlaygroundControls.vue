@@ -15,7 +15,7 @@ const emits = defineEmits<{
   updateControlValue: [{ control: TControlKeys, value: any }]
 }>()
 
-function onUpdateContralValue(control: TControlKeys, value: any) {
+function onUpdateContralValue(control: TControlKeys, value: any): void {
   emits('updateControlValue', { control, value })
 }
 </script>
