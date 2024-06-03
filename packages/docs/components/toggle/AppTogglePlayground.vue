@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import AppIconButton from '@/components/button/AppIconButton.vue';
-import AppIcon from '@/components/icon/AppIcon.vue';
-import AppToggle from '@/components/toggle/AppToggle.vue';
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols'
-import { ref } from 'vue';
+import { ref } from 'vue'
+
+import AppIconButton from '@/components/button/AppIconButton.vue'
+import AppToggle from '@/components/toggle/AppToggle.vue'
 
 const controls = createControls({
   isDisabled: {
@@ -23,9 +23,15 @@ const model = ref<boolean>(true)
     :controls="controls"
   >
     <template #default="{ values }">
-      <AppToggle v-bind="values" v-model:is-toggled="model">
+      <AppToggle
+        v-bind="values"
+        v-model:is-toggled="model"
+      >
         <template #default="toggle">
-          <AppIconButton label="toggle-view" :icon="toggle.isToggled ? 'eye' : 'eyeSlash'"/>
+          <AppIconButton
+            :icon="toggle.isToggled ? 'eye' : 'eyeSlash'"
+            label="toggle-view"
+          />
         </template>
       </AppToggle>
     </template>
