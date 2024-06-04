@@ -56,9 +56,9 @@ function isFilterVisible(filter: PaginationFilter<TFilters>): boolean {
     <template #default>
       <div class="relative">
         <AppIconButton
-          variant="outline"
-          class="w-10"
-          icon="search"
+          variant="ghost"
+          class="w-10 !border-border"
+          icon="filterLines"
           icon-size="default"
           label="Filter"
         />
