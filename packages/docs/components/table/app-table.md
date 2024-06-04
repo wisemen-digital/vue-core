@@ -18,7 +18,8 @@ import AppTablePlayground from './AppTablePlayground.vue'
 | title*              | `string`                                                | The title of the table.                                      |             |
 | data*               | `PaginatedData<TSchema>` \|  `null`                     | The data for the table, in paginated form.                   |             |
 | columns*            | `TableColumn<TSchema>[]`                                | The different columns to be displayed.                       |             |
-| filters*            | `TableFilter<TFilters>[]`                               | Determines how the data will be filtered.                    |             |
+| filters*            | `PaginationFilter<TFilters>[]`                          | Determines how the data will be filtered.                    |             |
+| searchFilterKey     | `keyof TFilters`                                        | The key on which the items will be searched & filtered       |             |
 | pagination*         | `Pagination<TFilters>`                                  | The pagination options.                                      |             |
 | isLoading*          | `boolean`                                               | Whether the data is loading.                                 |             |
 | rowClick            | `((row: TSchema) => void)` \| `null`                    | Returns the row as a button.                                 | `null`      |
@@ -51,29 +52,39 @@ interface TableColumnWithValue<TSchema> extends BaseTableColumn {
 export type TableColumn<TSchema> = TableColumnWithRender<TSchema> | TableColumnWithValue<TSchema>
 ```
 
-```js [TableFilter]
-interface TableFilterBase<TFilters> {
+```js [PaginationFilter]
+interface PaginationFilterBase<TFilters> {
   id: keyof TFilters
+  isVisible?: boolean
   label: string
 }
-
-export interface TableFilterWithOptions<TFilters> extends TableFilterBase<TFilters> {
-  options: { label: string, value: string }[]
-  type: 'multiselect' | 'select'
+export interface PaginationFilterWithMultipleOptions<TFilters> extends PaginationFilterBase<TFilters> {
+  displayFn: (value: string) => string
+  options: ComboboxItem<string>[]
+  placeholder: string
+  type: 'multiselect'
 }
 
-export interface TableFilterBoolean<TFilters> extends TableFilterBase<TFilters> {
+export interface PaginationFilterWithSingleOption<TFilters> extends PaginationFilterBase<TFilters> {
+  options: SelectItem<FilterValues>[]
+  placeholder: string
+  type: 'select'
+}
+
+export interface PaginationFilterBoolean<TFilters> extends PaginationFilterBase<TFilters> {
   type: 'boolean'
 }
 
-export interface TableFilterText<TFilters> extends TableFilterBase<TFilters> {
+export interface PaginationFilterText<TFilters> extends PaginationFilterBase<TFilters> {
+  placeholder: string
   type: 'text'
 }
 
-export type TableFilter<TFilters> =
-  | TableFilterBoolean<TFilters>
-  | TableFilterText<TFilters>
-  | TableFilterWithOptions<TFilters>
+export type PaginationFilter<TFilters> =
+  | PaginationFilterBoolean<TFilters>
+  | PaginationFilterText<TFilters>
+  | PaginationFilterWithMultipleOptions<TFilters>
+  | PaginationFilterWithSingleOption<TFilters>
 ```
 
 ```js [Pagination]
@@ -95,6 +106,10 @@ export type Pagination<TFilters> = UseTablePaginationReturnType<TFilters>
 ```vue [Usage]
 <script setup lang="ts">
 import { AppTable } from '@wisemen/vue-core'
+
+interface ExampleFilters {
+  firstName: string
+}
 
 const exampleData: PaginatedData<ExampleDataType> = {
   data: [
@@ -124,6 +139,15 @@ const examplePagination: Pagination<ExampleFilters> = {
   ...
 }
 
+const exampleFilters: PaginationFilter<ExampleFilters>[] = [
+  {
+    id: 'firstName',
+    label: 'First name',
+    type: 'text',
+    placeholder: 'Search first name',
+  },
+]
+
 function onRowClick(row: ExampleDataType) {
   alert(`Row clicked: ${row.firstName} ${row.lastName}`)
 }
@@ -134,7 +158,7 @@ function onRowClick(row: ExampleDataType) {
     title="Users"
     :data="exampleData"
     :columns="exampleColumns"
-    :filters="[]"
+    :filters="exampleFilters"
     :pagination="examplePagination"
     :is-loading="false"
     :row-click="onRowClick"
