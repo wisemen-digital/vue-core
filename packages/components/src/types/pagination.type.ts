@@ -58,6 +58,7 @@ export interface PaginationFilterBoolean<TFilters> extends PaginationFilterBase<
 }
 
 export interface PaginationFilterText<TFilters> extends PaginationFilterBase<TFilters> {
+  placeholder: string
   type: 'text'
 }
 

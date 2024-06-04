@@ -3,6 +3,7 @@ import ComponentPlayground from '@docs/playground/components/ComponentPlayground
 import { createControls } from '@docs/playground/utils/createContols'
 
 import AppTable from '@/components/table/AppTable.vue'
+import AppText from '@/components/text/AppText.vue'
 import type {
   PaginatedData,
   PaginationFilter,
@@ -45,6 +46,7 @@ interface ExampleDataType {
 
 interface ExampleFilters {
   hasDriversLicense: boolean
+  firstName: string
 }
 
 const exampleData: PaginatedData<ExampleDataType> = {
@@ -91,16 +93,16 @@ const pagination = usePagination<ExampleFilters>({
       page: 0,
       perPage: 3,
     },
-    filters: [
-      {
-        key: 'hasDriversLicense',
-        value: false,
-      },
-    ],
   },
 })
 
 const filters: PaginationFilter<ExampleFilters>[] = [
+  {
+    id: 'firstName',
+    label: 'First name',
+    type: 'text',
+    placeholder: 'Search by first name',
+  },
   {
     id: 'hasDriversLicense',
     label: 'Has drivers license',
@@ -119,15 +121,23 @@ function onRowClick(row: ExampleDataType): void {
     :controls="controls"
   >
     <template #default="{ values }">
-      <AppTable
-        v-bind="values"
-        :data="exampleData"
-        :columns="exampleColumns"
-        :filters="filters"
-        :pagination="pagination"
-        :row-click="onRowClick"
-        search-filter-key="hasDriversLicense"
-      />
+      <div class="flex flex-col">
+        <AppTable
+          v-bind="values"
+          :data="exampleData"
+          :columns="exampleColumns"
+          :filters="filters"
+          :pagination="pagination"
+          :row-click="onRowClick"
+        />
+
+        <AppText
+          variant="subtext"
+          class="pt-3"
+        >
+          Pagination options: {{ pagination.paginationOptions.value }}
+        </AppText>
+      </div>
     </template>
   </ComponentPlayground>
 </template>

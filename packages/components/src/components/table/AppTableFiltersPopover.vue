@@ -6,6 +6,8 @@ import AppButton from '@/components/button/AppButton.vue'
 import AppIconButton from '@/components/button/AppIconButton.vue'
 import AppPopover from '@/components/popover/AppPopover.vue'
 import AppSelectDivider from '@/components/select/AppSelectDivider.vue'
+import AppTableBooleanFilter from '@/components/table/filters/AppTableBooleanFilter.vue'
+import AppTableTextFilter from '@/components/table/filters/AppTableTextFilter.vue'
 import AppText from '@/components/text/AppText.vue'
 import type {
   Pagination,
@@ -47,13 +49,13 @@ function isFilterVisible(filter: PaginationFilter<TFilters>): boolean {
 </script>
 
 <template>
-  <AppPopover>
+  <AppPopover align="end">
     <template #default>
       <div class="relative">
         <AppIconButton
           variant="outline"
           class="w-10"
-          icon="arrowDown"
+          icon="search"
           icon-size="default"
           label="Filter"
         />
@@ -68,10 +70,7 @@ function isFilterVisible(filter: PaginationFilter<TFilters>): boolean {
 
     <template #content>
       <div
-        :prioritize-position="false"
-        :trap-focus="true"
-        align="end"
-        class="border border-solid border-muted p-0"
+        class="border border-solid border-muted bg-white p-0"
       >
         <div>
           <div class="flex items-center justify-between px-4 py-2">
@@ -95,8 +94,8 @@ function isFilterVisible(filter: PaginationFilter<TFilters>): boolean {
             v-for="filter in filteredFilters"
             :key="filter.id"
           >
-            <!-- <div class="m-1 space-y-1">
-              <AppTableMultiSelectFilter
+            <div class="m-1 space-y-1">
+              <!-- <AppTableMultiSelectFilter
                 v-if="filter.type === 'multiselect'"
                 :filter="filter"
                 :pagination="props.pagination"
@@ -107,7 +106,7 @@ function isFilterVisible(filter: PaginationFilter<TFilters>): boolean {
                 :filter="filter"
                 :pagination="props.pagination"
                 @change="onFilterUpdate"
-              />
+              /> -->
               <AppTableTextFilter
                 v-if="filter.type === 'text'"
                 :filter="filter"
@@ -121,8 +120,6 @@ function isFilterVisible(filter: PaginationFilter<TFilters>): boolean {
                 @change="onFilterUpdate"
               />
             </div>
-            <AppDivider direction="horizontal" />
-          </div> -->
           </div>
         </div>
       </div>

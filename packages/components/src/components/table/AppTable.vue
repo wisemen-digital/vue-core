@@ -15,6 +15,7 @@ import AppTableFooter from '@/components/table/AppTableFooter.vue'
 import AppTableHeader from '@/components/table/AppTableHeader.vue'
 import AppTableTop from '@/components/table/AppTableTop.vue'
 import type {
+  FilterChangeEvent,
   PageChangeEvent,
   PaginatedData,
   Pagination,
@@ -125,6 +126,11 @@ const activeFilterCount = computed<number>(() => {
   return filters.length
 })
 
+function onFilterChange(filterChangeEvent: FilterChangeEvent<TFilters>): void {
+  props.pagination.handleFilterChange(filterChangeEvent)
+  props.pagination.handlePageChange({ page: 0, perPage: props.pagination.paginationOptions.value.pagination.perPage })
+}
+
 onMounted(() => {
   if (tableContainerRef.value === null) {
     throw new Error('Table ref is null')
@@ -147,6 +153,7 @@ onBeforeUnmount(() => {
       :filters="props.filters"
       :pagination="props.pagination"
       :search-filter-key="props.searchFilterKey"
+      @filter="onFilterChange"
     />
 
     <div

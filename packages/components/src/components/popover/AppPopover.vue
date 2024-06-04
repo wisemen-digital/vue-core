@@ -72,7 +72,7 @@ if (slots.default === undefined) {
           v-if="!props.hideArrow"
           :as-child="true"
         >
-          <div class="relative z-popover -mb-4 h-4 w-10 overflow-hidden">
+          <div class="relative z-50 -mb-4 h-4 w-10 overflow-hidden">
             <div
               class="absolute left-1/2 size-4 -translate-x-1/2 -translate-y-3 rotate-45 rounded-sm bg-popover shadow-popover-shadow"
             />
