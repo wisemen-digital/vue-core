@@ -23,6 +23,7 @@ import AppNumberInputPlayground from './AppNumberInputPlayground.vue'
 | max          | `number` \| `null`                            | The maximum value of the input.                      | `null`      |
 | min          | `number` \| `null`                            | The minimum value of the input.                      | `0`         |
 | placeholder  | `string` \| `null`                            | The placeholder of the input.                        | `null`      |
+| suffix       | `string` \| `null`                            | A suffix for the input. Overrides the right slot.    | `null`      |
 
 
 
