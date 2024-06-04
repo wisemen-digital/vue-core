@@ -1,5 +1,8 @@
 import type { ComputedRef } from 'vue'
 
+import type { ComboboxItem } from '@/types/comboboxItem.type'
+import type { SelectItem } from '@/types/selectItem.type'
+
 export type SortDirection = 'asc' | 'desc'
 
 interface PaginationSort {
@@ -48,9 +51,17 @@ export type FilterValues = boolean
   | string[]
 export type Filters = Record<string, FilterValues | undefined>
 
-export interface PaginationFilterWithOptions<TFilters> extends PaginationFilterBase<TFilters> {
-  options: { label: string, value: string }[]
-  type: 'multiselect' | 'select'
+export interface PaginationFilterWithMultipleOptions<TFilters> extends PaginationFilterBase<TFilters> {
+  displayFn: (value: string) => string
+  options: ComboboxItem<string>[]
+  placeholder: string
+  type: 'multiselect'
+}
+
+export interface PaginationFilterWithSingleOption<TFilters> extends PaginationFilterBase<TFilters> {
+  options: SelectItem<FilterValues>[]
+  placeholder: string
+  type: 'select'
 }
 
 export interface PaginationFilterBoolean<TFilters> extends PaginationFilterBase<TFilters> {
@@ -65,7 +76,8 @@ export interface PaginationFilterText<TFilters> extends PaginationFilterBase<TFi
 export type PaginationFilter<TFilters> =
   | PaginationFilterBoolean<TFilters>
   | PaginationFilterText<TFilters>
-  | PaginationFilterWithOptions<TFilters>
+  | PaginationFilterWithMultipleOptions<TFilters>
+  | PaginationFilterWithSingleOption<TFilters>
 
 export interface UsePaginationReturnType<TFilters> {
   clearFilters: () => void

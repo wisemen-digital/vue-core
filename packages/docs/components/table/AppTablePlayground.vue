@@ -101,11 +101,11 @@ const filters: PaginationFilter<ExampleFilters>[] = [
     id: 'firstName',
     label: 'First name',
     type: 'text',
-    placeholder: 'Search by first name',
+    placeholder: 'Search first name',
   },
   {
     id: 'hasDriversLicense',
-    label: 'Has drivers license',
+    label: 'Has drivers license?',
     type: 'boolean',
   },
 ]

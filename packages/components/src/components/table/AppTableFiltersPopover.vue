@@ -7,6 +7,8 @@ import AppIconButton from '@/components/button/AppIconButton.vue'
 import AppPopover from '@/components/popover/AppPopover.vue'
 import AppSelectDivider from '@/components/select/AppSelectDivider.vue'
 import AppTableBooleanFilter from '@/components/table/filters/AppTableBooleanFilter.vue'
+import AppTableMultiSelectFilter from '@/components/table/filters/AppTableMultiSelectFilter.vue'
+import AppTableSelectFilter from '@/components/table/filters/AppTableSelectFilter.vue'
 import AppTableTextFilter from '@/components/table/filters/AppTableTextFilter.vue'
 import AppText from '@/components/text/AppText.vue'
 import type {
@@ -95,7 +97,7 @@ function isFilterVisible(filter: PaginationFilter<TFilters>): boolean {
             :key="filter.id"
           >
             <div class="m-1 space-y-1">
-              <!-- <AppTableMultiSelectFilter
+              <AppTableMultiSelectFilter
                 v-if="filter.type === 'multiselect'"
                 :filter="filter"
                 :pagination="props.pagination"
@@ -106,7 +108,7 @@ function isFilterVisible(filter: PaginationFilter<TFilters>): boolean {
                 :filter="filter"
                 :pagination="props.pagination"
                 @change="onFilterUpdate"
-              /> -->
+              />
               <AppTableTextFilter
                 v-if="filter.type === 'text'"
                 :filter="filter"
