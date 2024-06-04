@@ -70,7 +70,7 @@ const exampleItems: DropdownMenuItem[] = [
         type: 'option',
         label: 'Option 2',
         icon: 'search',
-        onSelect: () => {
+        onSelect: (): void => {
           alert('Option 2 selected')
         },
       },
@@ -96,7 +96,7 @@ const exampleItems: DropdownMenuItem[] = [
                   'ctrl',
                   '1',
                 ],
-                onSelect: () => {
+                onSelect: (): void => {
                   alert('More > Option 1 selected')
                 },
               },
