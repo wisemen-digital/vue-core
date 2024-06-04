@@ -80,8 +80,17 @@ export interface PaginationFilterText<TFilters> extends PaginationFilterBase<TFi
   type: 'text'
 }
 
+export interface PaginationFilterNumber<TFilters> extends PaginationFilterBase<TFilters> {
+  max?: number
+  min?: number
+  placeholder: string
+  suffix?: string
+  type: 'number'
+}
+
 export type PaginationFilter<TFilters> =
   | PaginationFilterBoolean<TFilters>
+  | PaginationFilterNumber<TFilters>
   | PaginationFilterText<TFilters>
   | PaginationFilterWithMultipleOptions<TFilters>
   | PaginationFilterWithSingleOption<TFilters>

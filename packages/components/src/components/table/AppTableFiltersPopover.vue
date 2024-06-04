@@ -8,6 +8,7 @@ import AppPopover from '@/components/popover/AppPopover.vue'
 import AppSelectDivider from '@/components/select/AppSelectDivider.vue'
 import AppTableBooleanFilter from '@/components/table/filters/AppTableBooleanFilter.vue'
 import AppTableMultiSelectFilter from '@/components/table/filters/AppTableMultiSelectFilter.vue'
+import AppTableNumberFilter from '@/components/table/filters/AppTableNumberFilter.vue'
 import AppTableSelectFilter from '@/components/table/filters/AppTableSelectFilter.vue'
 import AppTableTextFilter from '@/components/table/filters/AppTableTextFilter.vue'
 import AppText from '@/components/text/AppText.vue'
@@ -117,6 +118,12 @@ function isFilterVisible(filter: PaginationFilter<TFilters>): boolean {
               />
               <AppTableBooleanFilter
                 v-if="filter.type === 'boolean'"
+                :filter="filter"
+                :pagination="props.pagination"
+                @change="onFilterUpdate"
+              />
+              <AppTableNumberFilter
+                v-if="filter.type === 'number'"
                 :filter="filter"
                 :pagination="props.pagination"
                 @change="onFilterUpdate"
