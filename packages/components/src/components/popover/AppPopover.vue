@@ -61,7 +61,7 @@ if (slots.default === undefined) {
         :has-arrow="!props.hideArrow"
         :side="props.side"
         :side-offset="props.offset"
-        class="popover-content rounded-popover bg-popover shadow-popover-shadow"
+        class="popover-content z-popover rounded-popover bg-popover shadow-popover-shadow"
       >
         <!-- eslint-enable tailwindcss/no-custom-classname -->
         <AppPopoverCloseButton class="!absolute right-0 top-0" />
