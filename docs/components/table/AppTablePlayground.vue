@@ -30,6 +30,11 @@ const controls = createControls({
     default: false,
     label: 'Is loading',
   },
+  hideTop: {
+    type: 'switch',
+    default: false,
+    label: 'Hide top',
+  },
 })
 
 interface ExampleDataType {
