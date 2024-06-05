@@ -30,7 +30,7 @@ const controls = createControls({
     default: false,
     label: 'Is loading',
   },
-  hideTop: {
+  isTopHidden: {
     type: 'switch',
     default: false,
     label: 'Hide top',

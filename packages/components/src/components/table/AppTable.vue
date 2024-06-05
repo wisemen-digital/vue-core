@@ -26,10 +26,10 @@ import type { TableColumn } from '@/types/table.type'
 const props = withDefaults(
   defineProps<{
     isLoading: boolean
+    isTopHidden?: boolean
     columns: TableColumn<TSchema>[]
     data: PaginatedData<TSchema> | null
     filters: PaginationFilter<TFilters>[]
-    hideTop?: boolean
     pagination: Pagination<TFilters>
     rowClick?: ((row: TSchema) => void) | null
     rowTarget?: string
@@ -39,7 +39,7 @@ const props = withDefaults(
     title: string
   }>(),
   {
-    hideTop: false,
+    isTopHidden: false,
     rowClick: null,
     rowTo: null,
     shouldPinFirstColumn: false,
@@ -145,7 +145,7 @@ onBeforeUnmount(() => {
 <template>
   <div class="relative flex h-full flex-1 flex-col overflow-hidden rounded-xl border border-solid border-border bg-background">
     <AppTableTop
-      v-if="props.hideTop !== true"
+      v-if="!isTopHidden"
       :is-loading="props.isLoading"
       :title="props.title"
       :total="props.data?.total ?? null"
