@@ -24,6 +24,7 @@ import AppTablePlayground from './AppTablePlayground.vue'
 | rowClick             | `((row: TSchema) => void)` \| `null`                  | Returns the row as a button.                      | `null`      |
 | rowTo                | `((row: TSchema) => RouteLocationNamedRaw)` \| `null` | Returns the row as a RouterLink                   | `null`      |
 | rowTarget            | `string` \| `undefined`                               | Adds a target to the RouterLink when using row-to |       |
+| hideTop              | `boolean` \| `undefined`                              | Hides the top of the table when set to true       |       |
 | shouldPinFirstColumn | `boolean` \| `undefined`                              | Whether the first column of the table is pinned.  | `false`     |
 | shouldPinLastColumn  | `boolean` \| `undefined`                              | Whether the last column of the table is pinned.   | `false`     |
 
