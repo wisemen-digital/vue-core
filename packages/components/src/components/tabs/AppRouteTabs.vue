@@ -13,9 +13,8 @@ import {
 import type { RouteRecordName } from 'vue-router'
 import { useRoute, useRouter } from 'vue-router'
 
+import AppText from '@/components/text/AppText.vue'
 import type { RouteTabItem } from '@/types/tabItem.type'
-
-import AppText from '../text/AppText.vue'
 
 const props = defineProps<{
   tabs: RouteTabItem[]
@@ -41,7 +40,7 @@ watch(() => route.name, (routeName) => {
 })
 
 watch(activeRouteName, (activeRouteName) => {
-  const tab = props.tabs.find(tab => tab.to.name === activeRouteName) ?? null
+  const tab = props.tabs.find((tab) => tab.to.name === activeRouteName) ?? null
 
   if (tab === null) {
     throw new Error(`Tab with route name "${String(activeRouteName)}" not found`)

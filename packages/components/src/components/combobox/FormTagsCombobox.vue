@@ -1,12 +1,28 @@
 <script setup lang="ts" generic="TValue extends AcceptableValue">
-import type { ComboboxItem } from '../../types/comboboxItem.type'
-import type { FormFieldErrors } from '../../types/formFieldErrors.type'
-import type { AcceptableValue } from '../../types/selectItem.type'
-import FormElement from '../form-element/FormElement.vue'
-import AppTagsCombobox from './AppTagsCombobox.vue'
+import AppTagsCombobox from '@/components/combobox/AppTagsCombobox.vue'
+import FormElement from '@/components/form-element/FormElement.vue'
+import type { ComboboxItem } from '@/types/comboboxItem.type'
+import type { FormFieldErrors } from '@/types/formFieldErrors.type'
+import type { AcceptableValue } from '@/types/selectItem.type'
 
 const props = withDefaults(
   defineProps<{
+    /**
+     * Whether the combobox is disabled.
+     */
+    isDisabled?: boolean
+    /**
+     * Whether the select is loading.
+     */
+    isLoading?: boolean
+    /**
+     *  Whether the combobox is required.
+     */
+    isRequired?: boolean
+    /**
+     * Whether the combobox has been touched (focused and blurred).
+     */
+    isTouched: boolean
     /**
      * Display function for the selected value
      */
@@ -24,22 +40,6 @@ const props = withDefaults(
      * The function to filter the options.
      */
     filterFn: (options: TValue[], searchTerm: string) => TValue[]
-    /**
-     * Whether the combobox is disabled.
-     */
-    isDisabled?: boolean
-    /**
-     * Whether the select is loading.
-     */
-    isLoading?: boolean
-    /**
-     *  Whether the combobox is required.
-     */
-    isRequired?: boolean
-    /**
-     * Whether the combobox has been touched (focused and blurred).
-     */
-    isTouched: boolean
     /**
      * The options of the combobox.
      */
@@ -59,11 +59,11 @@ const props = withDefaults(
     placeholder?: null | string
   }>(),
   {
-    emptyText: null,
     isDisabled: false,
     isLoading: false,
     isRequired: false,
     isTouched: false,
+    emptyText: null,
     max: null,
     placeholder: null,
   },

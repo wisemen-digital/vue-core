@@ -1,20 +1,11 @@
 <script setup lang="ts">
-import { useComponentAttrs } from '../../composables/componentAttrs.composable'
-import type { FormFieldErrors } from '../../types/formFieldErrors.type'
-import FormElement from '../form-element/FormElement.vue'
-import AppTextarea from './AppTextarea.vue'
+import FormElement from '@/components/form-element/FormElement.vue'
+import AppTextarea from '@/components/textarea/AppTextarea.vue'
+import { useComponentAttrs } from '@/composables/componentAttrs.composable'
+import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
 const props = withDefaults(
   defineProps<{
-    /**
-     * The errors associated with the input.
-     */
-    errors: FormFieldErrors
-    /**
-     * The height class of the textarea.
-     * @default null
-     */
-    heightClass?: null | string
     /**
      * Whether the input is disabled.
      */
@@ -27,6 +18,15 @@ const props = withDefaults(
      * Whether the input is touched.
      */
     isTouched: boolean
+    /**
+     * The errors associated with the input.
+     */
+    errors: FormFieldErrors
+    /**
+     * The height class of the textarea.
+     * @default null
+     */
+    heightClass?: null | string
     /**
      * The label of the input.
      */
@@ -43,10 +43,10 @@ const props = withDefaults(
     resize?: 'both' | 'horizontal' | 'none' | 'vertical'
   }>(),
   {
-    heightClass: null,
     isDisabled: false,
     isRequired: false,
     isTouched: false,
+    heightClass: null,
     placeholder: null,
     resize: 'none',
   },

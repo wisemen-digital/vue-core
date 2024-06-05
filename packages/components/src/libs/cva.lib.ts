@@ -1,6 +1,6 @@
 import { defineConfig } from 'cva'
 
-import { twMerge } from './twMerge.lib'
+import { twMerge } from '@/libs/twMerge.lib'
 
 export type { VariantProps } from 'cva'
 export const {
@@ -9,6 +9,6 @@ export const {
   cx,
 } = defineConfig({
   hooks: {
-    onComplete: className => twMerge(className),
+    onComplete: (className) => twMerge(className),
   },
 })

@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { DropdownMenuCheckboxItem, DropdownMenuItemIndicator } from 'radix-vue'
+import {
+  DropdownMenuCheckboxItem,
+  DropdownMenuItemIndicator,
+} from 'radix-vue'
 
+import AppIcon from '@/components/icon/AppIcon.vue'
+import AppKeyboardShortcut from '@/components/keyboard/AppKeyboardShortcut.vue'
+import AppText from '@/components/text/AppText.vue'
 import type { DropdownMenuCheckbox } from '@/types/dropdownMenuItem.type'
-
-import AppIcon from '../icon/AppIcon.vue'
-import AppKeyboardShortcut from '../keyboard/AppKeyboardShortcut.vue'
-import AppText from '../text/AppText.vue'
 
 const props = defineProps<{
   item: DropdownMenuCheckbox

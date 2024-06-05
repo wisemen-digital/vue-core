@@ -1,13 +1,9 @@
 <script setup lang="ts">
-import type { FormFieldErrors } from '../../types/formFieldErrors.type'
-import FormElement from '../form-element/FormElement.vue'
-import AppTagsInput from './AppTagsInput.vue'
+import FormElement from '@/components/form-element/FormElement.vue'
+import AppTagsInput from '@/components/tags-input/AppTagsInput.vue'
+import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
 const props = withDefaults(defineProps<{
-  /**
-   * The errors associated with the input.
-   */
-  errors: FormFieldErrors
   /**
    * Whether the input is disabled.
    */
@@ -21,9 +17,18 @@ const props = withDefaults(defineProps<{
    */
   isTouched: boolean
   /**
+   * The errors associated with the input.
+   */
+  errors: FormFieldErrors
+  /**
    * The label of the input.
    */
   label: string
+  /**
+   * The maximum amount of tags allowed.
+   * @default null
+   */
+  max?: null | number
   /**
    * The placeholder of the input.
    * @default null
@@ -32,6 +37,7 @@ const props = withDefaults(defineProps<{
 }>(), {
   isDisabled: false,
   isRequired: false,
+  max: null,
   placeholder: null,
 })
 
@@ -68,6 +74,7 @@ function onBlur(): void {
       :is-invalid="isInvalid"
       :placeholder="props.placeholder"
       :is-disabled="props.isDisabled"
+      :max="props.max"
       @focus="onFocus"
       @blur="onBlur"
     >

@@ -1,20 +1,22 @@
 <script setup lang="ts">
-import { ComboboxInput, ComboboxTrigger } from 'radix-vue'
+import {
+  ComboboxInput,
+  ComboboxTrigger,
+} from 'radix-vue'
 import { ref } from 'vue'
 
+import AppIcon from '@/components/icon/AppIcon.vue'
+import AppLoader from '@/components/loader/AppLoader.vue'
 import type { Icon } from '@/icons/icons'
 
-import AppIcon from '../icon/AppIcon.vue'
-import AppLoader from '../loader/AppLoader.vue'
-
 const props = withDefaults(defineProps<{
-  iconLeft: Icon | null
-  iconRight: Icon | null
   id: null | string
   isChevronHidden: boolean
   isDisabled: boolean
   isInvalid: boolean
   isLoading: boolean
+  iconLeft: Icon | null
+  iconRight: Icon | null
   placeholder: null | string
   showPlaceholderAsValue?: boolean
 }>(), {
@@ -41,10 +43,10 @@ function onBlur(): void {
   <label
     :class="{
       'border-input-border [&:has(:focus-visible)]:ring-ring': !props.isInvalid,
-      'border-destructive [&:has(:focus-visible)]:ring-destructive': props.isInvalid,
+      'border-destructive [&:has(:focus-visible)]:border-input-border [&:has(:focus-visible)]:ring-destructive': props.isInvalid,
       'cursor-not-allowed opacity-50': props.isDisabled,
     }"
-    class="flex h-10 items-center rounded-input border border-solid bg-input ring-offset-background duration-200 [&:has(:focus-visible)]:outline-none [&:has(:focus-visible)]:ring-2 [&:has(:focus-visible)]:ring-offset-2"
+    class="flex h-10 items-center rounded-input border border-solid bg-input outline-none ring-offset-background duration-200 [&:has(:focus-visible)]:ring-2"
   >
     <slot name="left">
       <AppIcon

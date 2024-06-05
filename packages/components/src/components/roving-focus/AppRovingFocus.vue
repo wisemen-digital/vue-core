@@ -1,20 +1,21 @@
 <script setup lang="ts">
 import { useVModel } from '@vueuse/core'
-import type { PrimitiveProps } from 'radix-vue'
-import { Primitive, useForwardExpose } from 'radix-vue'
+import {
+  Primitive,
+  type PrimitiveProps,
+  useForwardExpose,
+} from 'radix-vue'
 import { ref, toRefs } from 'vue'
 
-import { useCollection } from './collection.composable'
-import { provideRovingFocusGroupContext } from './rovingFocus.context'
-import type {
-  Direction,
-  Orientation,
-} from './rovingFocus.util'
+import { useCollection } from '@/components/roving-focus/collection.composable'
+import { provideRovingFocusGroupContext } from '@/components/roving-focus/rovingFocus.context'
 import {
+  type Direction,
   ENTRY_FOCUS,
   EVENT_OPTIONS,
   focusFirst,
-} from './rovingFocus.util'
+  type Orientation,
+} from '@/components/roving-focus/rovingFocus.util'
 
 interface RovingFocusGroupProps extends PrimitiveProps {
   currentTabStopId?: null | string
@@ -41,8 +42,8 @@ const props = withDefaults(defineProps<RovingFocusGroupProps>(), {
 })
 
 const emits = defineEmits<{
-  'entryFocus': [event: Event]
   'update:currentTabStopId': [value: null | string | undefined]
+  'entryFocus': [event: Event]
 }>()
 
 const {
@@ -63,7 +64,7 @@ const { currentElement, forwardRef } = useForwardExpose()
 const { createCollection } = useCollection('rovingFocus')
 const collections = createCollection(currentElement)
 
-function handleFocus(event: FocusEvent) {
+function handleFocus(event: FocusEvent): void {
   // We normally wouldn't need this check, because we already check
   // that the focus is on the current target and not bubbling to it.
   // We do this because Safari doesn't focus buttons when clicked, and
@@ -77,14 +78,15 @@ function handleFocus(event: FocusEvent) {
     && !isTabbingBackOut.value
   ) {
     const entryFocusEvent = new CustomEvent(ENTRY_FOCUS, EVENT_OPTIONS)
+
     event.currentTarget.dispatchEvent(entryFocusEvent)
     emits('entryFocus', entryFocusEvent)
 
     if (!entryFocusEvent.defaultPrevented) {
       const items = collections.value
-      const activeItem = items.find(item => item.getAttribute('data-active') === 'true')
+      const activeItem = items.find((item) => item.getAttribute('data-active') === 'true')
       const currentItem = items.find(
-        item => item.id === currentTabStopId.value,
+        (item) => item.id === currentTabStopId.value,
       )
       const candidateItems = [
         activeItem,
@@ -105,6 +107,7 @@ provideRovingFocusGroupContext({
   currentTabStopId,
   dir,
   loop,
+  orientation,
   onFocusableItemAdd: () => {
     focusableItemsCount.value++
   },
@@ -117,7 +120,6 @@ provideRovingFocusGroupContext({
   onItemShiftTab: () => {
     isTabbingBackOut.value = true
   },
-  orientation,
 })
 </script>
 

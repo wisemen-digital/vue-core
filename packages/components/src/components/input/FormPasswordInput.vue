@@ -2,24 +2,15 @@
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import type { Icon } from '../../icons/icons'
-import type { FormFieldErrors } from '../../types/formFieldErrors.type'
-import AppIconButton from '../button/AppIconButton.vue'
-import FormElement from '../form-element/FormElement.vue'
-import AppToggle from '../toggle/AppToggle.vue'
-import AppInput from './AppInput.vue'
+import AppIconButton from '@/components/button/AppIconButton.vue'
+import FormElement from '@/components/form-element/FormElement.vue'
+import AppInput from '@/components/input/AppInput.vue'
+import AppToggle from '@/components/toggle/AppToggle.vue'
+import type { Icon } from '@/icons/icons'
+import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
 const props = withDefaults(
   defineProps<{
-    /**
-     * The errors associated with the input.
-     */
-    errors: FormFieldErrors
-    /**
-     * The left icon of the input.
-     * @default null
-     */
-    iconLeft?: Icon | null
     /**
      * Whether the input is disabled.
      */
@@ -38,6 +29,15 @@ const props = withDefaults(
      */
     isTouched: boolean
     /**
+     * The errors associated with the input.
+     */
+    errors: FormFieldErrors
+    /**
+     * The left icon of the input.
+     * @default null
+     */
+    iconLeft?: Icon | null
+    /**
      * The label of the input.
      */
     label: string
@@ -48,11 +48,11 @@ const props = withDefaults(
     placeholder?: null | string
   }>(),
   {
-    iconLeft: undefined,
     isDisabled: false,
     isLoading: false,
     isRequired: false,
     isTouched: false,
+    iconLeft: undefined,
     placeholder: null,
   },
 )
@@ -99,7 +99,7 @@ function onBlur(): void {
       :is-disabled="props.isDisabled"
       :is-invalid="isInvalid"
       :placeholder="props.placeholder"
-      :icon-left="props.iconLeft"
+      :icon-left="props.iconLeft ?? undefined"
       :is-loading="props.isLoading"
       @focus="onFocus"
       @blur="onBlur"
@@ -118,7 +118,7 @@ function onBlur(): void {
                 ? t('components.password_input.hide_password')
                 : t('components.password_input.show_password')"
               tabindex="-1"
-              icon-size="sm"
+              size="sm"
               variant="ghost"
               class="m-1 size-8"
             />

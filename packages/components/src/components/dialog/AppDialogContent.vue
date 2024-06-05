@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { DialogContent } from 'radix-vue'
 
-import AppDialogCloseButton from './AppDialogCloseButton.vue'
+import AppDialogCloseButton from '@/components/dialog/AppDialogCloseButton.vue'
 
 const props = defineProps<{
   hideCloseButton: boolean

@@ -18,10 +18,11 @@ export const MAP_KEY_TO_FOCUS_INTENT: Record<string, FocusIntent> = {
   PageUp: 'first',
 }
 
-export function getDirectionAwareKey(key: string, dir?: Direction) {
+export function getDirectionAwareKey(key: string, dir?: Direction): string {
   if (dir !== 'rtl') {
     return key
   }
+
   return key === 'ArrowLeft'
     ? 'ArrowRight'
     : key === 'ArrowRight'
@@ -35,8 +36,9 @@ export function getFocusIntent(
   event: KeyboardEvent,
   orientation?: Orientation,
   dir?: Direction,
-) {
+): FocusIntent | undefined {
   const key = getDirectionAwareKey(event.key, dir)
+
   if (orientation === 'vertical' && [
     'ArrowLeft',
     'ArrowRight',
@@ -49,14 +51,17 @@ export function getFocusIntent(
   return MAP_KEY_TO_FOCUS_INTENT[key]
 }
 
-export function focusFirst(candidates: HTMLElement[]) {
+export function focusFirst(candidates: HTMLElement[]): void {
   const PREVIOUSLY_FOCUSED_ELEMENT = document.activeElement
+
   for (const candidate of candidates) {
     // if focus is already where we want to go, we don't want to keep going through the candidates
     if (candidate === PREVIOUSLY_FOCUSED_ELEMENT) {
       return
     }
+
     candidate.focus()
+
     if (document.activeElement !== PREVIOUSLY_FOCUSED_ELEMENT) {
       return
     }
@@ -67,6 +72,6 @@ export function focusFirst(candidates: HTMLElement[]) {
  * Wraps an array around itself at a given start index
  * Example: `wrapArray(['a', 'b', 'c', 'd'], 2) === ['c', 'd', 'a', 'b']`
  */
-export function wrapArray<T>(array: T[], startIndex: number) {
+export function wrapArray<T>(array: T[], startIndex: number): T[] {
   return array.map((_, index) => array[(startIndex + index) % array.length])
 }

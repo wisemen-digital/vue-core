@@ -1,8 +1,8 @@
 import { h } from 'vue'
 
-import { toast as vueSonnerToast } from '../components/sonner/state'
-import AppToast from '../components/toast/AppToast.vue'
-import type { Toast } from '../types/toast.type'
+import { toast as vueSonnerToast } from '@/components/sonner/state'
+import AppToast from '@/components/toast/AppToast.vue'
+import type { Toast } from '@/types/toast.type'
 
 interface NamedToast {
   description?: string
@@ -18,7 +18,7 @@ interface UseToastReturnType {
 export function useToast(): UseToastReturnType {
   const TOAST_DURATION = 10000
 
-  function showToast(toast: Toast) {
+  function showToast(toast: Toast): void {
     vueSonnerToast.custom(h(AppToast, {
       action: toast.action,
       description: toast.description ?? null,
@@ -30,7 +30,7 @@ export function useToast(): UseToastReturnType {
     })
   }
 
-  function showErrorToast(toast: NamedToast) {
+  function showErrorToast(toast: NamedToast): void {
     vueSonnerToast.custom(h(AppToast, {
       description: toast.description ?? null,
       icon: 'alertCircle',
@@ -41,7 +41,7 @@ export function useToast(): UseToastReturnType {
     })
   }
 
-  function showSuccessToast(toast: NamedToast) {
+  function showSuccessToast(toast: NamedToast): void {
     vueSonnerToast.custom(h(AppToast, {
       description: toast.description ?? null,
       icon: 'checkmarkCircle',

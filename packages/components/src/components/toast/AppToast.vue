@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { toValue } from 'vue'
 
-import type { Icon } from '../../icons/icons'
-import type { ToastAction, ToastType } from '../../types/toast.type'
-import AppUnstyledButton from '../button/AppUnstyledButton.vue'
-import AppIcon from '../icon/AppIcon.vue'
-import AppLoader from '../loader/AppLoader.vue'
-import AppText from '../text/AppText.vue'
+import AppUnstyledButton from '@/components/button/AppUnstyledButton.vue'
+import AppIcon from '@/components/icon/AppIcon.vue'
+import AppLoader from '@/components/loader/AppLoader.vue'
+import AppText from '@/components/text/AppText.vue'
+import type { Icon } from '@/icons/icons'
+import type { ToastAction, ToastType } from '@/types/toast.type'
 
 const props = withDefaults(defineProps<{
   action?: ToastAction | null

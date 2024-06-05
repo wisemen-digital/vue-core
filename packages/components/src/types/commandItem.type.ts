@@ -1,4 +1,4 @@
-import type { Icon } from '../icons/icons'
+import type { Icon } from '@/icons/icons'
 
 export interface CommandOption {
   icon?: Icon

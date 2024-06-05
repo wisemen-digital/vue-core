@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { BreadcrumbItem } from '../../types/breadcrumbItem.type'
-import AppBreadcrumbDivider from './AppBreadcrumbDivider.vue'
-import AppBreadcrumbItem from './AppBreadcrumbItem.vue'
+import AppBreadcrumbDivider from '@/components/breadcrumbs/AppBreadcrumbDivider.vue'
+import AppBreadcrumbItem from '@/components/breadcrumbs/AppBreadcrumbItem.vue'
+import type { BreadcrumbItem } from '@/types/breadcrumbItem.type'
 
 const props = defineProps<{
   /**
@@ -16,7 +16,7 @@ const props = defineProps<{
     <ol class="flex items-center gap-x-3">
       <template
         v-for="(item, i) of props.items"
-        :key="item.label"
+        :key="i"
       >
         <AppBreadcrumbItem :item="item" />
 

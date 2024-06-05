@@ -7,7 +7,7 @@ import {
 } from 'radix-vue'
 import { computed } from 'vue'
 
-import type { TabItem } from '../../types/tabItem.type'
+import type { TabItem } from '@/types/tabItem.type'
 
 const props = defineProps<{
   items: TabItem[]
@@ -20,7 +20,7 @@ const activeTabModel = defineModel<TabItem>('tab', {
 const computedModel = computed<string>({
   get: () => activeTabModel.value.id,
   set: (value) => {
-    activeTabModel.value = props.items.find(tab => tab.id === value)!
+    activeTabModel.value = props.items.find((tab) => tab.id === value)!
   },
 })
 </script>

@@ -8,18 +8,18 @@ import {
   onUnmounted,
 } from 'vue'
 
-import { useCollection } from './collection.composable'
-import { injectRovingFocusGroupContext } from './rovingFocus.context'
+import { useCollection } from '@/components/roving-focus/collection.composable'
+import { injectRovingFocusGroupContext } from '@/components/roving-focus/rovingFocus.context'
 import {
   focusFirst,
   getFocusIntent,
   wrapArray,
-} from './rovingFocus.util'
+} from '@/components/roving-focus/rovingFocus.util'
 
 export interface RovingFocusItemProps extends PrimitiveProps {
+  tabStopId?: string
   active?: boolean
   focusable?: boolean
-  tabStopId?: string
 }
 
 const props = withDefaults(defineProps<RovingFocusItemProps>(), {
@@ -53,6 +53,7 @@ onUnmounted(() => {
 function handleKeydown(event: KeyboardEvent): void {
   if (event.key === 'Tab' && event.shiftKey) {
     context.onItemShiftTab()
+
     return
   }
 

@@ -9,21 +9,12 @@ import examples from 'libphonenumber-js/mobile/examples'
 import { vMaska } from 'maska'
 import { computed } from 'vue'
 
-import type { Icon } from '../../icons/icons'
-import type { FormFieldErrors } from '../../types/formFieldErrors.type'
-import FormInput from './FormInput.vue'
+import FormInput from '@/components/input/FormInput.vue'
+import type { Icon } from '@/icons/icons'
+import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
 const props = withDefaults(
   defineProps<{
-    /**
-     * The errors associated with the input.
-     */
-    errors: FormFieldErrors<string>
-    /**
-     * The right icon of the input.
-     * @default null
-     */
-    iconRight?: Icon | null
     /**
      * Whether the input is disabled.
      */
@@ -42,6 +33,15 @@ const props = withDefaults(
      */
     isTouched: boolean
     /**
+     * The errors associated with the input.
+     */
+    errors: FormFieldErrors<string>
+    /**
+     * The right icon of the input.
+     * @default null
+     */
+    iconRight?: Icon | null
+    /**
      * The label of the input.
      */
     label: string
@@ -52,11 +52,11 @@ const props = withDefaults(
     placeholder?: null | string
   }>(),
   {
-    iconRight: undefined,
     isDisabled: false,
     isLoading: false,
     isRequired: false,
     isTouched: false,
+    iconRight: undefined,
     placeholder: null,
   },
 )
@@ -81,7 +81,7 @@ function getCountryFromPhoneNumber(phoneNumber: string): CountryCode | null {
   for (let i = 3; i > 0; i--) {
     const callingCode = phoneNumber.slice(0, i).replace('+', '')
 
-    country = countries.find(country => getCountryCallingCode(country) === callingCode)
+    country = countries.find((country) => getCountryCallingCode(country) === callingCode)
 
     if (country !== undefined) {
       break
@@ -162,6 +162,7 @@ function getCountryFlagUrl(countryCode: string): string {
     :is-touched="props.isTouched"
     :label="props.label"
     :placeholder="props.placeholder"
+    type="tel"
   >
     <template #left>
       <div class="ml-3 h-3 w-5 overflow-hidden rounded-sm">

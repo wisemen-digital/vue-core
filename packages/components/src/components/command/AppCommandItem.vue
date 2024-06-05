@@ -1,11 +1,10 @@
 <script setup lang="ts"  generic="TValue extends AcceptableValue">
 import { ComboboxItem } from 'radix-vue'
 
+import AppIcon from '@/components/icon/AppIcon.vue'
+import AppText from '@/components/text/AppText.vue'
 import type { CommandItem } from '@/types/commandItem.type'
 import type { AcceptableValue } from '@/types/selectItem.type'
-
-import AppIcon from '../icon/AppIcon.vue'
-import AppText from '../text/AppText.vue'
 
 const props = defineProps<{
   item: CommandItem

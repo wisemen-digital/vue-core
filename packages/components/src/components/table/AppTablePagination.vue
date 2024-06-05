@@ -2,11 +2,13 @@
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import type { PageChangeEvent, PaginationOptions } from '@/types/table.type'
-
-import AppButton from '../button/AppButton.vue'
-import AppIconButton from '../button/AppIconButton.vue'
-import AppText from '../text/AppText.vue'
+import AppButton from '@/components/button/AppButton.vue'
+import AppIconButton from '@/components/button/AppIconButton.vue'
+import AppText from '@/components/text/AppText.vue'
+import type {
+  PageChangeEvent,
+  PaginationOptions,
+} from '@/types/pagination.type'
 
 const props = defineProps<{
   paginationOptions: PaginationOptions<unknown>
@@ -131,8 +133,8 @@ function handlePageButtonClick(page: number): void {
   setPage(page)
 }
 
-function pageControlButtonVariant(page: number): 'ghost' | 'secondary' {
-  return page === props.paginationOptions.pagination.page ? 'secondary' : 'ghost'
+function pageControlButtonVariant(page: number): 'ghost' | 'muted' {
+  return page === props.paginationOptions.pagination.page ? 'muted' : 'ghost'
 }
 </script>
 
@@ -143,7 +145,6 @@ function pageControlButtonVariant(page: number): 'ghost' | 'secondary' {
       :label="t('components.table.previous')"
       :is-disabled="isFirstPage"
       icon="arrowLeft"
-      icon-size="sm"
       variant="ghost"
       @click="handlePrevPageButtonClick"
     />
@@ -176,7 +177,6 @@ function pageControlButtonVariant(page: number): 'ghost' | 'secondary' {
       v-if="hasMoreThanOnePage"
       :is-disabled="isLastPage"
       :label="t('components.table.next')"
-      icon-size="sm"
       icon="arrowRight"
       variant="ghost"
       @click="handleNextPageButtonClick"

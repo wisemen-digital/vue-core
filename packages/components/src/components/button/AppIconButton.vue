@@ -1,21 +1,17 @@
 <script setup lang="ts">
-import type { Icon } from '../../icons/icons'
-import AppIcon from '../icon/AppIcon.vue'
-import type { IconStyleProps } from '../icon/icon.style'
-import AppButton from './AppButton.vue'
-import type { ButtonStyleProps } from './button.style'
+import { computed } from 'vue'
+
+import {
+  iconButton,
+  type IconButtonStyleProps,
+} from '@/components/button/button.style'
+import AppIcon from '@/components/icon/AppIcon.vue'
+import type { IconStyleProps } from '@/components/icon/icon.style'
+import AppLoader from '@/components/loader/AppLoader.vue'
+import type { Icon } from '@/icons/icons'
 
 const props = withDefaults(
   defineProps<{
-    /**
-     * The icon to display
-     */
-    icon: Icon
-    /**
-     * The size of the icon
-     * @default default
-     */
-    iconSize?: IconStyleProps['size']
     /**
      * Whether the button is disabled
      * @default false
@@ -27,35 +23,82 @@ const props = withDefaults(
      */
     isLoading?: boolean
     /**
+     * The icon to display
+     */
+    icon: Icon
+    /**
      * The label for the button for accessibility
      */
     label: string
     /**
+     * The size of the button
+     * @default default
+     */
+    size?: IconButtonStyleProps['size']
+    /**
+     * The type of the button.
+     * @default 'button'
+     */
+    type?: 'button' | 'reset' | 'submit'
+    /**
      * The variant of the button
      * @default default
      */
-    variant?: ButtonStyleProps['variant']
+    variant?: IconButtonStyleProps['variant']
   }>(),
   {
-    iconSize: 'default',
     isDisabled: false,
     isLoading: false,
+    size: 'default',
+    type: 'button',
     variant: 'default',
   },
 )
+
+const buttonClasses = computed<string>(() =>
+  iconButton({
+    size: props.size,
+    variant: props.variant,
+  }))
+
+const iconSize = computed<IconStyleProps['size']>(() => {
+  if (props.size === 'sm' || props.size === 'xs') {
+    return 'sm'
+  }
+
+  if (props.size === 'lg') {
+    return 'lg'
+  }
+
+  if (props.size === 'default') {
+    return 'default'
+  }
+
+  return 'full'
+})
 </script>
 
 <template>
-  <AppButton
+  <button
     :variant="props.variant"
     :aria-label="props.label"
     :is-disabled="props.isDisabled"
     :is-loading="props.isLoading"
-    size="icon"
+    :class="buttonClasses"
+    :disabled="isDisabled || isLoading"
+    :type="props.type"
   >
+    <div
+      v-if="props.isLoading"
+      class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+    >
+      <AppLoader class="size-4" />
+    </div>
+
     <AppIcon
+      v-else
       :icon="props.icon"
-      :size="props.iconSize"
+      :size="iconSize"
     />
-  </AppButton>
+  </button>
 </template>

@@ -1,26 +1,12 @@
 <script setup lang="ts">
-import { useComponentAttrs } from '../../composables/componentAttrs.composable'
-import type { Icon } from '../../icons/icons'
-import type { FormFieldErrors } from '../../types/formFieldErrors.type'
-import FormElement from '../form-element/FormElement.vue'
-import AppNumberInput from '../input/AppNumberInput.vue'
+import FormElement from '@/components/form-element/FormElement.vue'
+import AppNumberInput from '@/components/input/AppNumberInput.vue'
+import { useComponentAttrs } from '@/composables/componentAttrs.composable'
+import type { Icon } from '@/icons/icons'
+import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
 const props = withDefaults(
   defineProps<{
-    /**
-     * The errors associated with the input.
-     */
-    errors: FormFieldErrors
-    /**
-     * Whether to hide the increment and decrement controls.
-     * @default false
-     */
-    hideControls?: boolean
-    /**
-     * The left icon of the input.
-     * @default null
-     */
-    iconLeft?: Icon | null
     /**
      * Whether the input is disabled.
      */
@@ -38,6 +24,20 @@ const props = withDefaults(
      *
      */
     isTouched: boolean
+    /**
+     * The errors associated with the input.
+     */
+    errors: FormFieldErrors
+    /**
+     * Whether to hide the increment and decrement controls.
+     * @default false
+     */
+    hideControls?: boolean
+    /**
+     * The left icon of the input.
+     * @default null
+     */
+    iconLeft?: Icon | null
     /**
      * The label of the input.
      */
@@ -59,16 +59,15 @@ const props = withDefaults(
     placeholder?: null | string
   }>(),
   {
-    hideControls: false,
-    iconLeft: undefined,
     isDisabled: false,
     isLoading: false,
     isRequired: false,
     isTouched: false,
+    hideControls: false,
+    iconLeft: undefined,
     max: null,
     min: 0,
     placeholder: null,
-    type: 'text',
   },
 )
 
@@ -109,9 +108,9 @@ function onBlur(): void {
       :is-invalid="isInvalid"
       :placeholder="props.placeholder"
       :is-disabled="props.isDisabled"
-      :type="props.type"
       :is-loading="props.isLoading"
       :icon-left="props.iconLeft"
+      :hide-controls="props.hideControls"
       :min="props.min"
       :max="props.max"
       @focus="onFocus"

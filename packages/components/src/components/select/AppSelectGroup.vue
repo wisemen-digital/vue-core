@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { SelectGroup, SelectLabel } from 'radix-vue'
 
-import AppText from '../text/AppText.vue'
+import AppText from '@/components/text/AppText.vue'
 
 const props = defineProps<{
   label: string

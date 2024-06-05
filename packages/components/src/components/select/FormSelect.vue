@@ -1,24 +1,15 @@
 <script setup lang="ts" generic="TValue extends AcceptableValue">
-import type { Icon } from '../../icons/icons'
-import type { FormFieldErrors } from '../../types/formFieldErrors.type'
-import type { AcceptableValue, SelectItem } from '../../types/selectItem.type'
-import FormElement from '../form-element/FormElement.vue'
-import AppSelect from '../select/AppSelect.vue'
+import FormElement from '@/components/form-element/FormElement.vue'
+import AppSelect from '@/components/select/AppSelect.vue'
+import type { Icon } from '@/icons/icons'
+import type { FormFieldErrors } from '@/types/formFieldErrors.type'
+import type {
+  AcceptableValue,
+  SelectItem,
+} from '@/types/selectItem.type'
 
 const props = withDefaults(
   defineProps<{
-    /**
-     * display function for the selected value
-     */
-    displayFn: (value: TValue) => string
-    /**
-     * The errors associated with the select.
-     */
-    errors: FormFieldErrors
-    /**
-     * The icon to display on the left side of the select.
-     */
-    iconLeft?: Icon
     /**
      * Whether the select is disabled.
      */
@@ -36,6 +27,18 @@ const props = withDefaults(
      */
     isTouched: boolean
     /**
+     * display function for the selected value
+     */
+    displayFn: (value: TValue) => string
+    /**
+     * The errors associated with the select.
+     */
+    errors: FormFieldErrors
+    /**
+     * The icon to display on the left side of the select.
+     */
+    iconLeft?: Icon
+    /**
      * The items of the select.
      */
     items: SelectItem<TValue>[]
@@ -49,11 +52,11 @@ const props = withDefaults(
      */
     placeholder?: null | string
   }>(),
-  { iconLeft: undefined,
-    isDisabled: false,
+  { isDisabled: false,
     isLoading: false,
     isRequired: false,
     isTouched: false,
+    iconLeft: undefined,
     placeholder: null },
 )
 

@@ -12,34 +12,23 @@ import {
   computed,
   ref,
 } from 'vue'
+import type { ComponentExposed } from 'vue-component-type-helpers'
 
-import type { ComboboxItem } from '../../types/comboboxItem.type'
-import type { AcceptableValue } from '../../types/selectItem.type'
-import AppIcon from '../icon/AppIcon.vue'
-import AppLoader from '../loader/AppLoader.vue'
-import AppTagsInputItem from '../tags-input/AppTagsInputItem.vue'
-import AppComboboxContent from './AppComboboxContent.vue'
-import AppComboboxEmpty from './AppComboboxEmpty.vue'
-import AppComboboxItem from './AppComboboxItem.vue'
-import AppComboboxTrigger from './AppComboboxTrigger.vue'
-import AppComboboxViewport from './AppComboboxViewport.vue'
-import { useCombobox } from './combobox.composable'
+import AppComboboxContent from '@/components/combobox/AppComboboxContent.vue'
+import AppComboboxEmpty from '@/components/combobox/AppComboboxEmpty.vue'
+import AppComboboxItem from '@/components/combobox/AppComboboxItem.vue'
+import AppComboboxTrigger from '@/components/combobox/AppComboboxTrigger.vue'
+import AppComboboxViewport from '@/components/combobox/AppComboboxViewport.vue'
+import { useCombobox } from '@/components/combobox/combobox.composable'
+import AppIcon from '@/components/icon/AppIcon.vue'
+import AppLoader from '@/components/loader/AppLoader.vue'
+import AppTagsInputItem from '@/components/tags-input/AppTagsInputItem.vue'
+import type { ComboboxItem } from '@/types/comboboxItem.type'
+import type { ComboboxProps } from '@/types/comboboxProps.type'
+import type { AcceptableValue } from '@/types/selectItem.type'
 
 const props = withDefaults(
   defineProps<{
-    /**
-     * Function to use to display the value.
-     */
-    displayFn: (value: TValue) => string
-    /**
-     * The text to display when there are no options.
-     * @default t('components.combobox.empty')
-     */
-    emptyText?: null | string
-    /**
-     * The function to filter the options.
-     */
-    filterFn: (options: TValue[], searchTerm: string) => TValue[]
     /**
      * Whether the combobox is disabled.
      * @default false
@@ -56,6 +45,19 @@ const props = withDefaults(
      */
     isLoading?: boolean
     /**
+     * Function to use to display the value.
+     */
+    displayFn: (value: TValue) => string
+    /**
+     * The text to display when there are no options.
+     * @default t('components.combobox.empty')
+     */
+    emptyText?: null | string
+    /**
+     * The function to filter the options.
+     */
+    filterFn: (options: TValue[], searchTerm: string) => TValue[]
+    /**
      * The options to display in the combobox.
      */
     items: ComboboxItem<TValue>[]
@@ -64,13 +66,18 @@ const props = withDefaults(
      * @default null
      */
     placeholder?: null | string
+    /**
+     * The props to pass to the popover.
+     */
+    popoverProps?: ComboboxProps['popoverProps']
   }>(),
   {
-    emptyText: null,
     isDisabled: false,
     isInvalid: false,
     isLoading: false,
+    emptyText: null,
     placeholder: null,
+    popoverProps: null,
   },
 )
 
@@ -89,7 +96,7 @@ const searchModel = defineModel<null | string>('search', {
 
 const isOpen = ref<boolean>(false)
 
-const tagsInputRootRef = ref<InstanceType<typeof TagsInputRoot> | null>(null)
+const tagsInputRootRef = ref<ComponentExposed<typeof TagsInputRoot> | null>(null)
 
 const { canOpenDropdown } = useCombobox({
   isLoading: computed<boolean>(() => props.isLoading),
@@ -134,10 +141,10 @@ function onBlur(): void {
             :class="[
               {
                 'border-input-border focus-within:ring-ring': !props.isInvalid,
-                'border-destructive focus-within:ring-destructive': props.isInvalid,
+                'border-destructive focus-within:border-input-border focus-within:ring-destructive': props.isInvalid,
               },
             ]"
-            class="flex min-h-10 w-full flex-wrap items-center gap-1 truncate rounded-input border border-solid bg-input p-1.5 ring-offset-background transition-shadow duration-200 placeholder:text-input-placeholder focus-within:ring-2 focus-within:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+            class="flex min-h-10 w-full flex-wrap items-center gap-1 truncate rounded-input border border-solid bg-input p-1.5 ring-offset-background transition-shadow duration-200 placeholder:text-input-placeholder focus-within:ring-2 disabled:cursor-not-allowed disabled:opacity-50"
           >
             <template
               v-for="tag in model"
@@ -161,7 +168,7 @@ function onBlur(): void {
                   'ml-0.5': model.length === 0,
                 }"
                 :placeholder="props.placeholder ?? undefined"
-                class="size-full flex-1 bg-transparent px-1 text-sm outline-none placeholder:text-input-placeholder"
+                class="size-full min-w-10 flex-1 bg-transparent px-1 text-sm outline-none placeholder:text-input-placeholder"
                 @blur="onBlur"
                 @keydown.enter.prevent
               />
@@ -196,8 +203,11 @@ function onBlur(): void {
           leave-from-class="opacity-100"
           leave-to-class="opacity-0"
         >
-          <div v-if="isOpen && canOpenDropdown">
-            <AppComboboxContent>
+          <div
+            v-if="isOpen && canOpenDropdown"
+            class="z-popover"
+          >
+            <AppComboboxContent :popover-props="props.popoverProps">
               <AppComboboxViewport>
                 <AppComboboxEmpty :empty-text="props.emptyText">
                   <slot name="empty" />

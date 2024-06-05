@@ -1,0 +1,50 @@
+---
+sidebar: auto
+---
+
+
+# [CHANGE TO COMPONENT NAME]
+<script setup>
+// IMPORT COMPONENT PLAYGROUND
+</script>
+
+// RENDER COMPONENT PLAYGROUND
+
+
+## Props
+
+| Prop | Type | Description | Default |
+| ---- | ---- | ----------- | ------- |
+|      |      |             |         |
+
+
+## Slots
+
+| Slot name | Type | Description |
+| --------- | ---- | ----------- |
+|           |      |             |
+
+
+## v-model
+
+| Model | Type | Description |
+| ----- | ---- | ----------- |
+|       |      |             |
+
+
+## Events
+
+| Event name | Type | Description |
+| ---------- | ---- | ----------- |
+|            |      |             |
+
+
+## Code
+
+::: code-group
+```vue [Usage]
+
+```
+:::
+
+For full source code, see [Github](https://github.com/wisemen-digital/vue-core/tree/main/packages).

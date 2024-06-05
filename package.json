@@ -2,23 +2,26 @@
   "name": "@wisemen/vue-core",
   "type": "module",
   "version": "0.0.0",
-  "packageManager": "pnpm@8.15.4",
+  "packageManager": "pnpm@9.0.6",
   "license": "MIT",
   "workspaces": [
-    "packages/*",
-    "docs"
+    "packages/*"
   ],
   "scripts": {
     "build": "rimraf packages/vue-core/dist && pnpm run -r build",
     "docs:dev": "pnpm run -r docs:dev",
+    "postinstall": "pnpm build",
     "docs:build": "pnpm run -r docs:build",
     "pub:release": "cd packages/components && pnpm pub:release --no-git-checks",
-    "dev": "pnpm run -r dev"
+    "pub:release-query": "cd packages/query && pnpm pub:release --no-git-checks",
+    "dev": "pnpm run -r dev",
+    "lint": "pnpm run -r lint",
+    "type-check": "pnpm run -r type-check",
+    "clean": "pnpm run -r lint && pnpm run -r type-check && pnpm run -r test"
   },
   "devDependencies": {
-    "@wisemen/eslint-config-vue": "^0.0.10",
-    "eslint": "^8.57.0",
-    "radix-vue": "^1.5.3",
-    "rimraf": "^5.0.5"
+    "radix-vue": "^1.8.2",
+    "rimraf": "^5.0.7",
+    "vitest": "^1.6.0"
   }
 }

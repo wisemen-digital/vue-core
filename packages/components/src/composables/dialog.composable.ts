@@ -17,7 +17,7 @@ import type {
   UseDialogContainerReturnType,
   UseDialogOptions,
   UseDialogReturnType,
-} from '../types/dialog.type'
+} from '@/types/dialog.type'
 
 const dialogs = ref<Dialog[]>([])
 
@@ -34,7 +34,7 @@ export function useDialog<TComponent extends Record<string, unknown>>({
   const triggerId = useId()
 
   function removeDialogFromContainer(): void {
-    dialogs.value = dialogs.value.filter(dialog => dialog.id !== triggerId)
+    dialogs.value = dialogs.value.filter((dialog) => dialog.id !== triggerId)
   }
 
   async function openDialog(attrs: Attrs<TComponent>): Promise<void> {
@@ -48,7 +48,7 @@ export function useDialog<TComponent extends Record<string, unknown>>({
   }
 
   function closeDialog(): void {
-    const dialog = dialogs.value.find(dialog => dialog.id === triggerId) ?? null
+    const dialog = dialogs.value.find((dialog) => dialog.id === triggerId) ?? null
 
     if (dialog === null) {
       return
@@ -60,7 +60,7 @@ export function useDialog<TComponent extends Record<string, unknown>>({
   }
 
   async function createDialog(attrs: Attrs<TComponent>): Promise<Ref<Dialog>> {
-    const dialogWithSameTriggerId = dialogs.value.find(dialog => dialog.id === triggerId) ?? null
+    const dialogWithSameTriggerId = dialogs.value.find((dialog) => dialog.id === triggerId) ?? null
 
     if (dialogWithSameTriggerId !== null) {
       throw new Error(`Dialog with triggerId ${triggerId} already exists`)
@@ -73,25 +73,25 @@ export function useDialog<TComponent extends Record<string, unknown>>({
         c.default as Component,
         reactive<Attrs<TComponent>>({
           ...attrs,
+          triggerId,
           animateFromTrigger,
           onClose: () => {
             closeDialog()
           },
-          triggerId,
         }),
       )
     })
 
     return ref<Dialog>({
-      component: markRaw(dialogComponent),
       id: triggerId,
       isOpen: false,
+      component: markRaw(dialogComponent),
     })
   }
 
   return {
+    triggerId,
     close: closeDialog,
     open: openDialog as UseDialogReturnType<TComponent>['open'],
-    triggerId,
   }
 }

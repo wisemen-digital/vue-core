@@ -1,25 +1,23 @@
 <script setup lang="ts" generic="TSchema">
 import { computed } from 'vue'
 
-import type { Icon } from '../../icons/icons'
+import AppIcon from '@/components/icon/AppIcon.vue'
+import AppText from '@/components/text/AppText.vue'
+import type { Icon } from '@/icons/icons'
 import type {
   PaginationOptions,
   SortChangeEvent,
   SortDirection,
-  TableColumn,
-} from '../../types/table.type'
-import AppIcon from '../icon/AppIcon.vue'
-import AppText from '../text/AppText.vue'
+} from '@/types/pagination.type'
+import type { TableColumn } from '@/types/table.type'
 
 const props = defineProps<{
-  columns: TableColumn<TSchema>[]
-  gridTemplateColumns: string
   hasReachedHorizontalScrollEnd: boolean
-  isHorizontallyScrollable: boolean
   isScrolledToRight: boolean
+  columns: TableColumn<TSchema>[]
   paginationOptions: PaginationOptions<unknown>
-  pinFirstColumn: boolean
-  pinLastColumn: boolean
+  shouldPinFirstColumn: boolean
+  shouldPinLastColumn: boolean
 }>()
 
 const emit = defineEmits<{
@@ -29,13 +27,11 @@ const emit = defineEmits<{
 const currentSortDirection = computed<SortDirection>(() => {
   const { sort } = props.paginationOptions
 
-  const columnId = Object.keys(sort ?? {})[0]
-
-  return getCurrentSortDirection(sort ?? null, columnId)
+  return getCurrentSortDirection(sort?.direction ?? null)
 })
 
-function getCurrentSortDirection(sort: SortChangeEvent | null, columnId: string): SortDirection {
-  return sort?.[columnId] ?? 'asc'
+function getCurrentSortDirection(currentDirection: SortDirection | null): SortDirection {
+  return currentDirection ?? 'asc'
 }
 
 function toggleSortDirection(direction: SortDirection): SortDirection {
@@ -43,18 +39,17 @@ function toggleSortDirection(direction: SortDirection): SortDirection {
 }
 
 function isColumnSorted(columnId: string): boolean {
-  const isSameColumn = Object.keys(props.paginationOptions.sort ?? {})[0] === columnId
-
-  return isSameColumn
+  return Object.keys(props.paginationOptions.sort ?? {})[0] === columnId
 }
 
 function handleSortChange(columnId: string): void {
   const isSameColumn = isColumnSorted(columnId)
 
-  let direction = getCurrentSortDirection(props.paginationOptions.sort ?? null, columnId)
+  let direction = getCurrentSortDirection(props.paginationOptions.sort?.direction ?? null)
 
   if (shouldRemoveSort(isSameColumn, direction)) {
     removeSort()
+
     return
   }
 
@@ -74,15 +69,15 @@ function shouldRemoveSort(isSameColumn: boolean, direction: 'asc' | 'desc'): boo
 
 function removeSort(): void {
   const updatedSort = {} as SortChangeEvent
+
   emit('sort', updatedSort)
 }
 
 function updateSort(columnId: string, direction: 'asc' | 'desc'): void {
-  const updatedSort = {
-    [columnId]: direction,
-  } as SortChangeEvent
-
-  emit('sort', updatedSort)
+  emit('sort', {
+    direction,
+    key: columnId,
+  })
 }
 
 function getComponent(isSortable: boolean): string {
@@ -116,28 +111,22 @@ function getColumnIcon(columnId: string): Icon {
 
 <template>
   <div
-    :class="[props.isHorizontallyScrollable ? 'w-fit' : 'w-full']"
     :style="{
-      gridTemplateColumns: props.gridTemplateColumns,
+      gridColumn: '1 / -1',
     }"
-    class="sticky top-0 z-20 grid border-y border-solid border-border bg-muted-background"
+    class="sticky top-0 z-20 grid min-w-full grid-cols-subgrid border-b border-solid border-border bg-muted-background"
   >
     <Component
       :is="getComponent(column.isSortable ?? false)"
-      v-for="column in columns"
+      v-for="column in props.columns"
       :key="column.id"
-      :class="[
-        isScrolledToRight ? 'first:border-r-border' : 'first:border-r-transparent',
-        hasReachedHorizontalScrollEnd ? 'last:border-l-transparent' : 'last:border-l-border',
-        {
-          'left-0 bg-muted-background first:sticky first:z-10 first:border-r first:border-solid': props.pinFirstColumn,
-        },
-        {
-          'right-0 bg-muted-background last:sticky last:z-10 last:border-l last:border-solid':
-            props.pinLastColumn && props.isHorizontallyScrollable,
-        },
-      ]"
-      class="group flex items-center gap-x-2 rounded-none px-6 py-3 outline-none focus-visible:bg-neutral-100"
+      :class="{
+        'first:sticky first:left-0 first:z-10 first:border-r first:border-solid first:border-r-transparent': props.shouldPinFirstColumn,
+        'last:sticky last:right-0 last:z-10 last:border-l last:border-solid last:border-l-transparent': props.shouldPinLastColumn,
+        'first:!border-r-border': props.isScrolledToRight && props.shouldPinFirstColumn,
+        'last:!border-l-border': !props.hasReachedHorizontalScrollEnd && props.shouldPinLastColumn,
+      }"
+      class="group relative flex items-center gap-x-2 bg-muted-background px-6 py-3 text-left outline-none focus-visible:bg-neutral-100"
       @click="handleSortColumnButtonClick(column)"
     >
       <AppText

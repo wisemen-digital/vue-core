@@ -2,16 +2,12 @@
 import { useId } from 'radix-vue'
 import { computed } from 'vue'
 
-import type { FormFieldErrors } from '../../types/formFieldErrors.type'
-import FormError from '../form-error/FormError.vue'
-import FormGroup from '../form-group/FormGroup.vue'
-import FormLabel from '../form-label/FormLabel.vue'
+import FormError from '@/components/form-error/FormError.vue'
+import FormGroup from '@/components/form-group/FormGroup.vue'
+import FormLabel from '@/components/form-label/FormLabel.vue'
+import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
 const props = defineProps<{
-  /**
-   * The errors associated with the input.
-   */
-  errors: FormFieldErrors
   /**
    * Whether the input is disabled.
    */
@@ -24,6 +20,10 @@ const props = defineProps<{
    * Whether the input is touched. This is used to determine if the input should be marked as invalid.
    */
   isTouched: boolean
+  /**
+   * The errors associated with the input.
+   */
+  errors: FormFieldErrors
   /**
    * The label of the input.
    */
