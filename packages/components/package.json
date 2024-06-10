@@ -32,7 +32,7 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "@tanstack/vue-query": "^5.40.0"
+    "@wisemen/vue-core-query": "workspace:*"
   },
   "devDependencies": {
     "@tsconfig/node18": "^18.2.4",

@@ -33,6 +33,7 @@ const props = withDefaults(
     filters: PaginationFilter<TFilters>[]
     pagination: Pagination<TFilters>
     rowClick?: ((row: TSchema) => void) | null
+    rowTarget?: string
     rowTo?: ((row: TSchema) => RouteLocationNamedRaw) | null
     shouldPinFirstColumn?: boolean
     shouldPinLastColumn?: boolean
@@ -188,6 +189,7 @@ onBeforeUnmount(() => {
           :has-active-filters="activeFilterCount > 0 && !props.isLoading"
           :row-click="props.rowClick"
           :row-to="props.rowTo"
+          :row-target="props.rowTarget"
         />
 
         <AppTableEmptyState
