@@ -14,14 +14,15 @@
     "docs:build": "pnpm run -r docs:build",
     "pub:release": "cd packages/components && pnpm pub:release --no-git-checks",
     "pub:release-query": "cd packages/query && pnpm pub:release --no-git-checks",
-    "dev": "pnpm run -r dev",
     "lint": "pnpm run -r lint",
+    "dev": "turbo run dev",
     "type-check": "pnpm run -r type-check",
     "clean": "pnpm run -r lint && pnpm run -r type-check && pnpm run -r test"
   },
   "devDependencies": {
     "radix-vue": "^1.8.2",
     "rimraf": "^5.0.7",
+    "turbo": "^2.0.1",
     "vitest": "^1.6.0"
   }
 }
