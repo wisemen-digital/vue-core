@@ -73,10 +73,10 @@ function isFilterVisible(filter: PaginationFilter<TFilters>): boolean {
 
     <template #content>
       <div
-        class="border border-solid border-muted bg-white p-0"
+        class="border border-solid border-border bg-white rounded-md p-2"
       >
         <div>
-          <div class="flex items-center justify-between px-4 py-2">
+          <div class="flex items-center justify-between gap-10 py-2 pr-6 pl-2">
             <AppText
               variant="body"
               class="font-medium"
@@ -96,8 +96,8 @@ function isFilterVisible(filter: PaginationFilter<TFilters>): boolean {
           <div
             v-for="filter in filteredFilters"
             :key="filter.id"
+            class="p-2"
           >
-            <div class="m-1 space-y-1">
               <AppTableMultiSelectFilter
                 v-if="filter.type === 'multiselect'"
                 :filter="filter"
@@ -128,7 +128,6 @@ function isFilterVisible(filter: PaginationFilter<TFilters>): boolean {
                 :pagination="props.pagination"
                 @change="onFilterUpdate"
               />
-            </div>
           </div>
         </div>
       </div>

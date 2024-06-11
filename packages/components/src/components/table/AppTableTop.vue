@@ -47,8 +47,9 @@ function mergeFilter(filterKey: keyof TFilters, filterValue: FilterValues | null
 
   const filterAlreadyExists = filters.find((filter) => filter.key === filterKey)
   const filterValueIsEmpty = filterValue === null || (Array.isArray(filterValue) && filterValue.length === 0)
+  const filterValueIsFalse = filterValue === false
 
-  if (filterAlreadyExists === undefined && !filterValueIsEmpty) {
+  if (filterAlreadyExists === undefined && !filterValueIsEmpty && !filterValueIsFalse) {
     filters.push({
       key: filterKey,
       value: filterValue,
@@ -73,6 +74,9 @@ function mergeFilter(filterKey: keyof TFilters, filterValue: FilterValues | null
 
       return filter.value !== null && filter.value !== ''
     })
+    .filter((filter) => {
+      return filter.value !== false
+    })
 }
 
 const debounceSearch = useDebounceFn((value: string) => {
@@ -92,6 +96,7 @@ async function onSearchInputUpdate(value: null | string): Promise<void> {
 }
 
 function onFilterChange(event: { key: keyof TFilters, value: FilterValues | null }): void {
+  console.log('onFilterChange', event)
   emit('filter', mergeFilter(event.key, event.value))
 }
 

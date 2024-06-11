@@ -3,6 +3,7 @@ import { ref, watch } from 'vue'
 
 import FormSelect from '@/components/select/FormSelect.vue'
 import type {
+FilterValues,
   Pagination,
   PaginationFilterWithSingleOption,
   PaginationOptions,
@@ -40,7 +41,7 @@ watch(
   },
 )
 
-function onUpdate(value: string): void {
+function onUpdate(value: FilterValues | null): void {
   emit('change', { key: props.filter.id, value })
 }
 </script>
