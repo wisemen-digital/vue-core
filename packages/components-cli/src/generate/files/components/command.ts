@@ -7,6 +7,10 @@ export const command: Component = {
       path: 'command',
       type: ComponentType.COMPONENTS,
     },
+    {
+      path: 'commandItem.type.ts',
+      type: ComponentType.TYPES,
+    },
   ],
   component: ComponentName.COMMAND,
 }

@@ -7,19 +7,14 @@ import { command } from '@/generate/files/components/command'
 import { container } from '@/generate/files/components/container'
 import { dialog } from '@/generate/files/components/dialog'
 import { dropdownMenu } from '@/generate/files/components/dropdownMenu'
-import { formElement } from '@/generate/files/components/formElement'
-import { formError } from '@/generate/files/components/formError'
-import { formGroup } from '@/generate/files/components/formGroup'
-import { formLabel } from '@/generate/files/components/formLabel'
+import { form } from '@/generate/files/components/form'
 import { input } from '@/generate/files/components/input'
 import { keyboard } from '@/generate/files/components/keyboard'
-import { loader } from '@/generate/files/components/loader'
 import { popover } from '@/generate/files/components/popover'
 import { radioGroup } from '@/generate/files/components/radioGroup'
 import { rovingFocus } from '@/generate/files/components/rovingFocus'
 import { select } from '@/generate/files/components/select'
 import { skeletonLoader } from '@/generate/files/components/skeletonLoader'
-import { sonner } from '@/generate/files/components/sonner'
 import { switchy } from '@/generate/files/components/switch'
 import { table } from '@/generate/files/components/table'
 import { tabs } from '@/generate/files/components/tabs'
@@ -40,19 +35,14 @@ export const components: Component[] = [
   container,
   dialog,
   dropdownMenu,
-  formElement,
-  formError,
-  formGroup,
-  formLabel,
+  form,
   input,
   keyboard,
-  loader,
   popover,
   radioGroup,
   rovingFocus,
   select,
   skeletonLoader,
-  sonner,
   switchy,
   table,
   tabs,

@@ -7,6 +7,14 @@ export const breadcrumbs: Component = {
       path: 'breadcrumbs',
       type: ComponentType.COMPONENTS,
     },
+    {
+      path: 'breadcrumbItem.type.ts',
+      type: ComponentType.TYPES,
+    },
+  ],
+  internalDependencies: [
+    ComponentName.BUTTON,
+    ComponentName.DROPDOWN_MENU,
   ],
   component: ComponentName.BREADCRUMBS,
 }

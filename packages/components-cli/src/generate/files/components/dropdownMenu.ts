@@ -7,6 +7,13 @@ export const dropdownMenu: Component = {
       path: 'dropdown-menu',
       type: ComponentType.COMPONENTS,
     },
+    {
+      path: 'dropdownMenuItem.type.ts',
+      type: ComponentType.TYPES,
+    },
+  ],
+  internalDependencies: [
+    ComponentName.KEYBOARD,
   ],
   component: ComponentName.DROPDOWN_MENU,
 }

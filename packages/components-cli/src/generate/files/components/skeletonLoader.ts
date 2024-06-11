@@ -8,5 +8,8 @@ export const skeletonLoader: Component = {
       type: ComponentType.COMPONENTS,
     },
   ],
+  internalDependencies: [
+    ComponentName.CONTAINER,
+  ],
   component: ComponentName.SKELETON_LOADER,
 }

@@ -1,12 +1,15 @@
 import type { Component } from '@/generate/components.type'
 import { ComponentName, ComponentType } from '@/generate/components.type'
 
-export const formGroup: Component = {
+export const textarea: Component = {
   files: [
     {
-      path: 'form-group',
+      path: 'textarea',
       type: ComponentType.COMPONENTS,
     },
   ],
-  component: ComponentName.FORM_GROUP,
+  internalDependencies: [
+    ComponentName.FORM,
+  ],
+  component: ComponentName.TEXTAREA,
 }

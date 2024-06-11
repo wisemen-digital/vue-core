@@ -7,6 +7,14 @@ export const table: Component = {
       path: 'table',
       type: ComponentType.COMPONENTS,
     },
+    {
+      path: 'table.type.ts',
+      type: ComponentType.TYPES,
+    },
+  ],
+  internalDependencies: [
+    ComponentName.BUTTON,
+    ComponentName.SKELETON_LOADER,
   ],
   component: ComponentName.TABLE,
 }

@@ -8,5 +8,8 @@ export const radioGroup: Component = {
       type: ComponentType.COMPONENTS,
     },
   ],
+  internalDependencies: [
+    ComponentName.FORM,
+  ],
   component: ComponentName.RADIO_GROUP,
 }

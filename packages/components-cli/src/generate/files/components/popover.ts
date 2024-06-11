@@ -8,5 +8,8 @@ export const popover: Component = {
       type: ComponentType.COMPONENTS,
     },
   ],
+  internalDependencies: [
+    ComponentName.BUTTON,
+  ],
   component: ComponentName.POPOVER,
 }

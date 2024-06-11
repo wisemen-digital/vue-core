@@ -2,6 +2,7 @@ import chalk from 'chalk'
 import type { Command } from 'commander'
 import * as z from 'zod'
 
+import type { Config } from '@/utils/getConfig'
 import { diffComponent } from '@/utils/getDifferenceComponent'
 import { getInstalledComponents } from '@/utils/getInstalledComponents'
 import { logger } from '@/utils/logger'
@@ -12,13 +13,18 @@ const updateOptionsSchema = z.object({
   component: z.string().optional(),
 })
 
-export function addDiffCommand({ program }: { program: Command }) {
+export function addDiffCommand({ cliConfig, program }: { cliConfig: Config | null, program: Command }) {
   program
     .command('diff')
     .name('diff')
     .description('check for updates against the registry')
     .argument('[component]', 'the component name')
     .action(async (name, _opts) => {
+      if (cliConfig == null) {
+        logger.error(`No config found. Please run 'init' first.`)
+
+        return
+      }
       const options = updateOptionsSchema.parse({
         component: name,
       })
@@ -45,7 +51,7 @@ export function addDiffCommand({ program }: { program: Command }) {
         process.exit(1)
       }
 
-      const changes = await diffComponent(component)
+      const changes = await diffComponent(component, cliConfig)
 
       if (changes.length === 0) {
         logger.info(`No updates found for ${options.component}.`)

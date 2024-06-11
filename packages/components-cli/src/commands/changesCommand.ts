@@ -1,16 +1,23 @@
 import chalk from 'chalk'
 import type { Command } from 'commander'
 
+import type { Config } from '@/utils/getConfig'
 import { diffComponent } from '@/utils/getDifferenceComponent'
 import { getInstalledComponents } from '@/utils/getInstalledComponents'
 import { logger } from '@/utils/logger'
 
-export function addChangesCommand({ program }: { program: Command }) {
+export function addChangesCommand({ cliConfig, program }:
+{ cliConfig: Config | null, program: Command }) {
   program
     .command('changes')
     .name('changes')
     .description('check for changes against the registry')
     .action(async (_name, _opts) => {
+      if (cliConfig == null) {
+        logger.error(`No config found. Please run 'init' first.`)
+
+        return
+      }
       const installedComponents = await getInstalledComponents()
 
       if (installedComponents == null) {
@@ -22,7 +29,7 @@ export function addChangesCommand({ program }: { program: Command }) {
         if (component == null) {
           return
         }
-        const changes = await diffComponent(component)
+        const changes = await diffComponent(component, cliConfig)
 
         if (changes.length === 0) {
           return

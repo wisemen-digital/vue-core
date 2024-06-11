@@ -8,5 +8,8 @@ export const checkbox: Component = {
       type: ComponentType.COMPONENTS,
     },
   ],
+  internalDependencies: [
+    ComponentName.FORM,
+  ],
   component: ComponentName.CHECKBOX,
 }

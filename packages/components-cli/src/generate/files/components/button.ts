@@ -8,5 +8,8 @@ export const button: Component = {
       type: ComponentType.COMPONENTS,
     },
   ],
+  internalDependencies: [
+    ComponentName.KEYBOARD,
+  ],
   component: ComponentName.BUTTON,
 }

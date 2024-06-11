@@ -7,6 +7,18 @@ export const keyboard: Component = {
       path: 'keyboard',
       type: ComponentType.COMPONENTS,
     },
+    {
+      path: 'keyboard.type.ts',
+      type: ComponentType.TYPES,
+    },
+    {
+      path: 'keyboardShortcut.type.ts',
+      type: ComponentType.TYPES,
+    },
+    {
+      path: 'keyboardShortcut.composable.ts',
+      type: ComponentType.COMPOSABLES,
+    },
   ],
   component: ComponentName.KEYBOARD,
 }

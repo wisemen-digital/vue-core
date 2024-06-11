@@ -5,25 +5,24 @@ export enum ComponentName {
   CHECKBOX = 'Checkbox',
   COMBOBOX = 'Combobox',
   COMMAND = 'Command',
+  COMPOSABLES = 'Composables',
   CONFIG_PACKAGES = 'GlobalPackages',
   CONFIG_TAILWIND = 'TailwindConfig',
   CONTAINER = 'Container',
   DIALOG = 'Dialog',
   DROPDOWN_MENU = 'DropdownMenu',
-  FORM_ELEMENT = 'FormElement',
-  FORM_ERROR = 'FormError',
-  FORM_GROUP = 'FormGroup',
-  FORM_LABEL = 'FormLabel',
+  FORM = 'Form',
   ICON = 'Icon',
   INPUT = 'Input',
   KEYBOARD = 'Keyboard',
+  LIB = 'Lib',
   LOADER = 'Loader',
   POPOVER = 'Popover',
   RADIO_GROUP = 'RadioGroup',
   ROVING_FOCUS = 'RovingFocus',
   SELECT = 'Select',
   SKELETON_LOADER = 'SkeletonLoader',
-  SONNER = 'Sonner',
+  STYLES = 'Styles',
   SWITCH = 'Switch',
   TABLE = 'Table',
   TABS = 'Tabs',
@@ -34,6 +33,8 @@ export enum ComponentName {
   TOGGLE = 'Toggle',
   TOOLTIP = 'Tooltip',
   TRANSITIONS = 'Transitions',
+  TYPES = 'Types',
+  UTILS = 'Utils',
 }
 
 export enum ComponentType {
@@ -41,8 +42,8 @@ export enum ComponentType {
   COMPOSABLES = 'composables',
   CONFIG = 'config',
   ICONS = 'icons',
+  LIBS = 'libs',
   STYLES = 'styles',
-  TRANSITIONS = 'transitions',
   TYPES = 'types',
   UTILS = 'utils',
 }
@@ -57,4 +58,25 @@ export interface Component {
   files: ComponentFile[]
   internalDependencies?: ComponentName[]
   component: ComponentName
+}
+
+export function getComponentTypeFolder(component: ComponentType): string {
+  switch (component) {
+    case ComponentType.COMPONENTS:
+      return '/src/components'
+    case ComponentType.COMPOSABLES:
+      return '/src/composables'
+    case ComponentType.CONFIG:
+      return '/'
+    case ComponentType.ICONS:
+      return '/src/icons'
+    case ComponentType.STYLES:
+      return '/src/styles'
+    case ComponentType.TYPES:
+      return '/src/types'
+    case ComponentType.UTILS:
+      return '/src/utils'
+    case ComponentType.LIBS:
+      return '/src/libs'
+  }
 }

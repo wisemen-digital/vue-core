@@ -1,12 +1,12 @@
 import type { Component } from '@/generate/components.type'
 import { ComponentName, ComponentType } from '@/generate/components.type'
 
-export const formLabel: Component = {
+export const utils: Component = {
   files: [
     {
-      path: 'form-label',
-      type: ComponentType.COMPONENTS,
+      path: './',
+      type: ComponentType.UTILS,
     },
   ],
-  component: ComponentName.FORM_LABEL,
+  component: ComponentName.UTILS,
 }

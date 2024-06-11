@@ -3,8 +3,6 @@ import path from 'node:path'
 
 import chalk from 'chalk'
 import type { Command } from 'commander'
-import { execa } from 'execa'
-import ora from 'ora'
 import prompts from 'prompts'
 
 import {
@@ -35,27 +33,18 @@ interface AddInitCommandOptions {
   }
 }
 
-const PROJECT_DEPENDENCIES: string[] = [
-  'formango',
-  'cva@beta',
-  'tailwind-merge',
-  'zod',
-]
-
-export const DEFAULT_ROOT = './src'
-
-export const DEFAULT_STYLE = 'default'
-export const DEFAULT_COMPONENTS = '@/ui/components'
-export const DEFAULT_UTILS = '@/ui/utils'
-export const DEFAULT_STYLES = '@/assets/styles'
 export const DEFAULT_CONFIG = './'
-export const DEFAULT_COMPOSABLES = '@/ui/composables'
-export const DEFAULT_TRANSITIONS = '@/ui/transitions'
+export const DEFAULT_ROOT = './src'
+export const DEFAULT_COMPONENTS = '@/components/app'
+export const DEFAULT_UTILS = '@/utils/app'
+export const DEFAULT_COMPOSABLES = '@/composables/app'
+export const DEFAULT_LIBS = '@/ui/libs'
+export const DEFAULT_STYLES = '@/assets/styles'
 export const DEFAULT_ICONS = '@/ui/icons'
 export const DEFAULT_TYPES = '@/ui/types'
 
 function highlight(text: string) {
-  chalk.cyan(text)
+  return chalk.cyan(text)
 }
 
 async function promptForConfig(optionsCwd: any) {
@@ -81,15 +70,21 @@ async function promptForConfig(optionsCwd: any) {
       type: 'text',
     },
     {
+      initial: DEFAULT_CONFIG,
+      message: `Where are your ${highlight('config files')}, like tailwind.config.js located?`,
+      name: 'config',
+      type: 'text',
+    },
+    {
       initial: DEFAULT_STYLES,
-      message: `Where is your ${highlight('style')} files?`,
+      message: `Configure the import alias for ${highlight('styles')}:`,
       name: 'styles',
       type: 'text',
     },
     {
-      initial: DEFAULT_CONFIG,
-      message: `Where is your ${highlight('config files')}, like tailwind.config.js located?`,
-      name: 'config',
+      initial: DEFAULT_LIBS,
+      message: `Configure the import alias for ${highlight('libs')}:`,
+      name: 'libs',
       type: 'text',
     },
     {
@@ -117,12 +112,6 @@ async function promptForConfig(optionsCwd: any) {
       type: 'text',
     },
     {
-      initial: DEFAULT_TRANSITIONS,
-      message: `Configure the import alias for ${highlight('transitions')}:`,
-      name: 'transitions',
-      type: 'text',
-    },
-    {
       initial: DEFAULT_ICONS,
       message: `Configure the import alias for ${highlight('icons')}:`,
       name: 'icons',
@@ -137,9 +126,9 @@ async function promptForConfig(optionsCwd: any) {
       composables: options.composables,
       config: options.config,
       icons: options.icons,
+      libs: options.libs,
       root: options.root,
       styles: options.styles,
-      transitions: options.transitions,
       types: options.types,
       utils: options.utils,
     },
@@ -176,17 +165,6 @@ export function addInitCommand({
       logger.info('No config found. Setting up new config.')
 
       const configOptions = await promptForConfig(options)
-
-      // Install dependencies.
-      if (PROJECT_DEPENDENCIES.length > 0) {
-        const dependenciesSpinner = ora(`Installing dependencies...`).start()
-
-        await execa(packageManager, [
-          packageManager === 'npm' ? 'install' : 'add',
-          ...PROJECT_DEPENDENCIES,
-        ])
-        dependenciesSpinner.succeed()
-      }
 
       const globalConfig = await getGlobalConfig()
       const globalComponents = await getGlobalComponents()

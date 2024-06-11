@@ -7,9 +7,12 @@ import type {
   ComponentFile,
   ComponentName,
 } from '@/generate/components.type'
-import { ComponentType } from '@/generate/components.type'
+import {
+  ComponentType,
+  getComponentTypeFolder,
+} from '@/generate/components.type'
 
-const BASE_COMPONENTS_PATH = '../components/src/components'
+const BASE_COMPONENTS_PATH = '../components'
 const BASE_GENERATION_PATH = '../../docs/public/_generation'
 
 interface ProcessedFile {
@@ -29,7 +32,10 @@ export interface ProcessedComponent {
 export const FILE_EXTENSIONS = [
   '.ts',
   '.vue',
+  '.css',
+  '.scss',
 ]
+
 export function isFile(file: ComponentFile): boolean {
   return FILE_EXTENSIONS.some((extension) => file.path.endsWith(extension))
 }
@@ -55,7 +61,7 @@ export function getAllFilesWithingFolder(folder: string): ComponentFile[] {
 }
 
 export function handleFile(file: ComponentFile): ProcessedFile | null {
-  const content = fs.readFileSync(path.join(process?.cwd(), BASE_COMPONENTS_PATH, file.path), 'utf8')
+  const content = fs.readFileSync(path.join(process?.cwd(), `${BASE_COMPONENTS_PATH}${getComponentTypeFolder(file.type)}`, file.path), 'utf8')
 
   return {
     content,
@@ -69,14 +75,14 @@ export function handleComponent(component: Component): ProcessedComponent {
   const files = component.files?.reduce((handledFiles, file) => {
     try {
       if (!isFile(file)) {
-        const folderFiles = getAllFilesWithingFolder(path.join(process?.cwd(), BASE_COMPONENTS_PATH, file.path))
+        const folderFiles = getAllFilesWithingFolder(path.join(process?.cwd(), `${BASE_COMPONENTS_PATH}${getComponentTypeFolder(file.type)}`, file.path))
 
         const handledFolderFiles = folderFiles.map((folderFile) => {
-          const shortPath = folderFile.path.split('/src/components')[1]
+          const shortPath = folderFile.path.split(`/src/${file.type}`)[1]
 
           return handleFile({
             path: shortPath,
-            type: ComponentType.COMPONENTS,
+            type: file.type,
           })
         })
 

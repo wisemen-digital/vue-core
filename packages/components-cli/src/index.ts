@@ -34,8 +34,8 @@ async function main() {
   addInitCommand({ cliConfig, packageManager, program, projectInfo })
   addAddCommand({ cliConfig, packageManager, program })
   addInstalledCommand({ program })
-  addDiffCommand({ program })
-  addChangesCommand({ program })
+  addDiffCommand({ cliConfig, program })
+  addChangesCommand({ cliConfig, program })
 
   program.parse()
 }

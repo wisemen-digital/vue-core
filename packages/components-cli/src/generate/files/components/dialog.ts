@@ -7,6 +7,17 @@ export const dialog: Component = {
       path: 'dialog',
       type: ComponentType.COMPONENTS,
     },
+    {
+      path: 'dialog.type.ts',
+      type: ComponentType.TYPES,
+    },
+    {
+      path: 'dialog.composable.ts',
+      type: ComponentType.COMPOSABLES,
+    },
+  ],
+  internalDependencies: [
+    ComponentName.BUTTON,
   ],
   component: ComponentName.DIALOG,
 }

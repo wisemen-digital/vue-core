@@ -8,5 +8,9 @@ export const select: Component = {
       type: ComponentType.COMPONENTS,
     },
   ],
+  internalDependencies: [
+    ComponentName.COMBOBOX,
+    ComponentName.FORM,
+  ],
   component: ComponentName.SELECT,
 }

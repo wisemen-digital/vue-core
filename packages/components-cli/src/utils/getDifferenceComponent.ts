@@ -3,6 +3,9 @@ import { existsSync, promises as fs } from 'node:fs'
 import type { Change } from 'diff'
 import { diffLines } from 'diff'
 
+import type { Config } from '@/utils/getConfig'
+import { replaceFileDirectories } from '@/utils/replaceFileDirectories'
+
 import type { Component } from './getComponents'
 
 export interface FileDiff {
@@ -13,6 +16,7 @@ export interface FileDiff {
 
 export async function diffComponent(
   component: Component,
+  config: Config,
 ): Promise<FileDiff[]> {
   const changes: FileDiff[] = []
 
@@ -28,9 +32,8 @@ export async function diffComponent(
     }
 
     const fileContent = await fs.readFile(localFilePath, 'utf8')
-    const registryContent = registryFile.content
-
-    const patch = diffLines(registryContent, fileContent)
+    const resolvedFile = replaceFileDirectories(registryFile, config)
+    const patch = diffLines(resolvedFile.content, fileContent)
 
     if (patch.length > 1) {
       changes.push({

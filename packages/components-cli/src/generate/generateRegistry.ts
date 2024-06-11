@@ -1,5 +1,6 @@
-import { components } from './components'
-import { globalComponents } from './globalComponents'
+import { components } from '@/generate/components'
+import { globalComponents } from '@/generate/globalComponents'
+
 import { globalConfig } from './globalConfig'
 import { generateRegistryFile } from './utils/generateRegistryFile'
 

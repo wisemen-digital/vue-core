@@ -6,8 +6,8 @@ const defaultDirectories = {
   components: '@/components',
   composables: '@/composables',
   icons: '@/icons',
+  libs: '@/libs',
   styles: '@/styles',
-  transitions: '@/transitions',
   types: '@/types',
   utils: '@/utils',
 }
