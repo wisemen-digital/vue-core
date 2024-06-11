@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols'
+import type {
+  PaginatedData,
+  PaginationFilter,
+  TableColumn,
+} from '@wisemen/vue-core'
 import {
   AppTable,
-  type PaginatedData,
-  type TableColumn,
+  AppText,
   usePagination,
-PaginationFilter,
 } from '@wisemen/vue-core'
 
 const controls = createControls({
@@ -82,7 +85,7 @@ const exampleColumns: TableColumn<ExampleDataType>[] = [
     label: 'Drivers license?',
     width: 'auto',
     maxWidth: '100px',
-    value: (row) => row.hasDriversLicense ? 'Yes' : 'No',
+    value: (row) => row.hasDriversLicense === true ? 'Yes' : 'No',
   },
 ]
 

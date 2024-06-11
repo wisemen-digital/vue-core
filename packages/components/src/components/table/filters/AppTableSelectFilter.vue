@@ -3,7 +3,7 @@ import { ref, watch } from 'vue'
 
 import FormSelect from '@/components/select/FormSelect.vue'
 import type {
-FilterValues,
+  FilterValues,
   Pagination,
   PaginationFilterWithSingleOption,
   PaginationOptions,

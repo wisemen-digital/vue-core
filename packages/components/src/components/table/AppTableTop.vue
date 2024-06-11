@@ -96,7 +96,6 @@ async function onSearchInputUpdate(value: null | string): Promise<void> {
 }
 
 function onFilterChange(event: { key: keyof TFilters, value: FilterValues | null }): void {
-  console.log('onFilterChange', event)
   emit('filter', mergeFilter(event.key, event.value))
 }
 
