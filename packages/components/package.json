@@ -32,9 +32,6 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
-  "dependencies": {
-    "@wisemen/vue-core-query": "workspace:*"
-  },
   "devDependencies": {
     "@tsconfig/node18": "^18.2.4",
     "@types/dom-view-transitions": "^1.0.4",
