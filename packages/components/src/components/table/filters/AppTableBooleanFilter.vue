@@ -23,7 +23,7 @@ const filterModel = ref<boolean>(getValue(props.pagination.paginationOptions.val
 function getValue(value: PaginationOptions<TFilters>): boolean {
   const data = value.filters?.find((filter) => filter.key === props.filter.id)
 
-  return (data?.value as boolean) ?? false
+  return (Boolean(data?.value)) ?? false
 }
 
 watch(

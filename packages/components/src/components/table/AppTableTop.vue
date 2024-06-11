@@ -140,7 +140,7 @@ function onFilterClear(): void {
       </div>
 
       <AppTableFiltersPopover
-        v-if="props.filters.length"
+        v-if="props.filters.length !== 0"
         :filters="props.filters"
         :pagination="props.pagination"
         @clear="onFilterClear"
