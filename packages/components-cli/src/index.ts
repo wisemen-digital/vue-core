@@ -23,13 +23,14 @@ async function main() {
   const packageManager = await getPackageManager()
 
   const program = new Command()
-    .name('wisemen-ui')
-    .description('Add wisemen-ui components to your project')
+    .name('@wisemen/vue-core')
+    .description('Add vue-core components to your project')
     .version(
       packageInfo.version ?? '0.0.1',
       '-v, --version',
       'display the version number',
     )
+
   addInitCommand({ cliConfig, packageManager, program, projectInfo })
   addAddCommand({ cliConfig, packageManager, program })
   addInstalledCommand({ program })

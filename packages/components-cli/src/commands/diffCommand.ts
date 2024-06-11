@@ -2,13 +2,11 @@ import chalk from 'chalk'
 import type { Command } from 'commander'
 import * as z from 'zod'
 
-import { logger } from '@/src/utils/logger'
-
-import type { Component } from '../utils/getComponents'
-import { diffComponent } from '../utils/getDifferenceComponent'
-import { getInstalledComponents } from '../utils/getInstalledComponents'
-import { printDiff } from '../utils/printDifferences'
-import { promptForComponent } from '../utils/promptComponents'
+import { diffComponent } from '@/utils/getDifferenceComponent'
+import { getInstalledComponents } from '@/utils/getInstalledComponents'
+import { logger } from '@/utils/logger'
+import { printDiff } from '@/utils/printDifferences'
+import { promptForComponent } from '@/utils/promptComponents'
 
 const updateOptionsSchema = z.object({
   component: z.string().optional(),
@@ -26,17 +24,20 @@ export function addDiffCommand({ program }: { program: Command }) {
       })
 
       const installedComponents = await getInstalledComponents()
+
       if (installedComponents == null) {
         return
       }
 
       if (options.component == null) {
-        const component = await promptForComponent(installedComponents) as Component
-        options.component = component.name
+        const component = await promptForComponent(installedComponents)
+
+        options.component = component.component
       }
       const component = installedComponents.find((component) => {
-        return component?.name === options.component
+        return component?.component === options.component
       })
+
       if (component == null) {
         logger.error(
           `The component ${chalk.green(options.component)} does not exist.`,

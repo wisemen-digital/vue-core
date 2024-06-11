@@ -2,34 +2,31 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "display": "Default",
   "compilerOptions": {
-    "composite": false,
-    "lib": [
-      "ESNext"
-    ],
+    "target": "esnext",
+    "jsx": "preserve",
+    "lib": ["esnext", "dom"],
     "baseUrl": ".",
+    "module": "esnext",
     "moduleResolution": "node",
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@/*": ["src/*"]
     },
+    "resolveJsonModule": true,
     "allowJs": true,
     "strict": true,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "declaration": true,
-    "declarationMap": true,
-    "inlineSources": false,
+    "declaration": false,
+    "outDir": "dist",
+    "sourceMap": true,
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "preserveWatchOutput": true,
-    "isolatedModules": false,
     "skipLibCheck": true
   },
-  "files": ["tsup.config.ts"],
+
+  "files": [
+    "tsup.config.ts",
+    "eslint.config.js"
+  ],
   "include": [
-    "src/**/*.ts",
-    "./eslint.config.js"
+    "src/**/*.ts"
   ],
   "exclude": [
     "node_modules"

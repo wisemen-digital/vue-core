@@ -1,12 +1,12 @@
 import type { Command } from 'commander'
 
-import { addInternalDependencies } from '../utils/addInternalDependencies'
-import { getAvailableComponents } from '../utils/getComponents'
-import type { Config } from '../utils/getConfig'
-import type { PackageManager } from '../utils/getPackageManager'
-import { installComponent } from '../utils/installComponent'
-import { logger } from '../utils/logger'
-import { promptForComponents } from '../utils/promptComponents'
+import { addInternalDependencies } from '@/utils/addInternalDependencies'
+import { getAvailableComponents } from '@/utils/getComponents'
+import type { Config } from '@/utils/getConfig'
+import type { PackageManager } from '@/utils/getPackageManager'
+import { installComponent } from '@/utils/installComponent'
+import { logger } from '@/utils/logger'
+import { promptForComponents } from '@/utils/promptComponents'
 
 interface AddAddCommandOptions {
   cliConfig: Config | null
@@ -27,6 +27,7 @@ export function addAddCommand({
     .action(async (components: string[], options: { overwrite: boolean }) => {
       if (cliConfig == null) {
         logger.error(`No config found. Please run 'init' first.`)
+
         return
       }
 
@@ -39,8 +40,8 @@ export function addAddCommand({
         process.exit(0)
       }
 
-      let selectedComponents = availableComponents.filter(component =>
-        components.includes(component.name) || components.includes(component.component))
+      let selectedComponents = availableComponents.filter((component) =>
+        components.includes(component.component))
 
       if (components.includes('all') || components.includes('*')) {
         selectedComponents = availableComponents
@@ -63,12 +64,13 @@ export function addAddCommand({
       const allComponents = new Set(addInternalDependencies(
         { addedComponents: selectedComponents, availableComponents, selectedComponents },
       ))
+
       for (const component of Array.from(allComponents)) {
         await installComponent({
           cliConfig,
-          component,
           options,
           packageManager,
+          component,
         })
       }
     })

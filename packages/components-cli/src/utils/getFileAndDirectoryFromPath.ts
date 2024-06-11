@@ -1,5 +1,6 @@
 export function getFileAndDirectoryFromPath(path: string) {
   const splitPath = path.split('/')
+
   if (splitPath.length === 1) {
     return { directory: '.', fileName: path }
   }

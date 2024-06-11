@@ -12,24 +12,25 @@ import { replaceFileDirectories } from './replaceFileDirectories'
 
 export interface InstallComponentOptions {
   cliConfig: Config | null
-  component: Component
   inRoot?: boolean
   options: {
     overwrite: boolean
   }
   packageManager: PackageManager
+  component: Component
 }
 
-export async function installComponent({ cliConfig, component, options, packageManager }: InstallComponentOptions) {
-  const componentSpinner = ora(`${component.name}...`).start()
+export async function installComponent({ cliConfig, options, packageManager, component }: InstallComponentOptions) {
+  const componentSpinner = ora(`${component.component}...`).start()
+
   if (cliConfig == null) {
-    return componentSpinner.fail(`No config found. Please run 'wisemen-ui init' first.`)
+    return componentSpinner.fail(`No config found. Please run '@wisemen/vue-core-cli init' first.`)
   }
 
   // Write the files.
   for (const file of component.files) {
     const installationDir = getFileInstallationFolder(file.type, cliConfig)
-    const fileDir = file.placementDir === '' ? `${installationDir}` : `${installationDir}/${file.placementDir}`
+    const fileDir = file.dir === '' ? `${installationDir}` : `${installationDir}/${file.dir}`
     const resolvedFile = await replaceFileDirectories(file, cliConfig)
     const spinner = ora(`Creating ${fileDir}/${resolvedFile.name}...`).start()
 
@@ -38,14 +39,16 @@ export async function installComponent({ cliConfig, component, options, packageM
     }
 
     const filePath = path.resolve(fileDir, resolvedFile.name)
+
     if (existsSync(filePath) && !options.overwrite) {
       spinner.warn(`${resolvedFile.name} already exists. Skipping. Use --overwrite to overwrite existing files`)
       spinner.stop()
+
       continue
     }
-    spinner.succeed(`Created ${fileDir}/${resolvedFile.name}`)
-    spinner.stop()
+
     await fs.writeFile(filePath, resolvedFile.content)
+    spinner.stop()
   }
 
   // Install dependencies.
@@ -60,5 +63,6 @@ export async function installComponent({ cliConfig, component, options, packageM
       `Installed ${component.dependencies.length} dependencies.\n${component.dependencies.join(', ')}`,
     )
   }
-  componentSpinner.succeed(component.name)
+
+  componentSpinner.succeed(`${component.component} installed.`)
 }

@@ -12,12 +12,16 @@ export interface FileDiff {
 }
 
 export async function diffComponent(
-  component: Component & { files: { localPath: string }[] },
+  component: Component,
 ): Promise<FileDiff[]> {
   const changes: FileDiff[] = []
 
   for (const registryFile of component.files) {
     const localFilePath = registryFile.localPath
+
+    if (localFilePath == null) {
+      continue
+    }
 
     if (!existsSync(localFilePath)) {
       continue
@@ -27,6 +31,7 @@ export async function diffComponent(
     const registryContent = registryFile.content
 
     const patch = diffLines(registryContent, fileContent)
+
     if (patch.length > 1) {
       changes.push({
         file: registryFile.name,
@@ -35,5 +40,6 @@ export async function diffComponent(
       })
     }
   }
+
   return changes
 }

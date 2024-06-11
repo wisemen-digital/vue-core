@@ -7,17 +7,20 @@ import { execa } from 'execa'
 import ora from 'ora'
 import prompts from 'prompts'
 
-import { getGlobalComponents, getGlobalConfig } from '../utils/getComponents'
-import type { Config } from '../utils/getConfig'
+import {
+  getGlobalComponents,
+  getGlobalConfig,
+} from '@/utils/getComponents'
+import type { Config } from '@/utils/getConfig'
 import {
   getConfig,
   rawConfigSchema,
   resolveConfigPaths,
-} from '../utils/getConfig'
-import type { PackageManager } from '../utils/getPackageManager'
-import { installComponent } from '../utils/installComponent'
-import { logger } from '../utils/logger'
-import { baseUrl } from '../utils/staticVariables'
+} from '@/utils/getConfig'
+import type { PackageManager } from '@/utils/getPackageManager'
+import { installComponent } from '@/utils/installComponent'
+import { logger } from '@/utils/logger'
+import { baseUrl } from '@/utils/staticVariables'
 
 interface AddInitCommandOptions {
   cliConfig: Config | null
@@ -39,10 +42,12 @@ const PROJECT_DEPENDENCIES: string[] = [
   'zod',
 ]
 
+export const DEFAULT_ROOT = './src'
+
 export const DEFAULT_STYLE = 'default'
 export const DEFAULT_COMPONENTS = '@/ui/components'
 export const DEFAULT_UTILS = '@/ui/utils'
-export const DEFAULT_STYLES = 'src/assets/styles'
+export const DEFAULT_STYLES = '@/assets/styles'
 export const DEFAULT_CONFIG = './'
 export const DEFAULT_COMPOSABLES = '@/ui/composables'
 export const DEFAULT_TRANSITIONS = '@/ui/transitions'
@@ -69,6 +74,12 @@ async function promptForConfig(optionsCwd: any) {
   }
 
   const options = await prompts([
+    {
+      initial: DEFAULT_ROOT,
+      message: `Where is your ${highlight('root')} of your project?`,
+      name: 'root',
+      type: 'text',
+    },
     {
       initial: DEFAULT_STYLES,
       message: `Where is your ${highlight('style')} files?`,
@@ -126,6 +137,7 @@ async function promptForConfig(optionsCwd: any) {
       composables: options.composables,
       config: options.config,
       icons: options.icons,
+      root: options.root,
       styles: options.styles,
       transitions: options.transitions,
       types: options.types,
@@ -135,9 +147,10 @@ async function promptForConfig(optionsCwd: any) {
   })
 
   const targetPath = path.resolve('components.json')
+
   await fs.writeFile(targetPath, JSON.stringify(config, null, 2), 'utf8')
 
-  return await resolveConfigPaths('./', config)
+  return resolveConfigPaths('./', config)
 }
 
 export function addInitCommand({
@@ -155,12 +168,15 @@ export function addInitCommand({
       logger.warn('')
 
       const config = await getConfig('/')
+
       if (config != null) {
         logger.error('Project already configured.')
       }
+
       logger.info('No config found. Setting up new config.')
 
       const configOptions = await promptForConfig(options)
+
       // Install dependencies.
       if (PROJECT_DEPENDENCIES.length > 0) {
         const dependenciesSpinner = ora(`Installing dependencies...`).start()
@@ -178,20 +194,20 @@ export function addInitCommand({
       for (const component of Array.from(globalConfig)) {
         await installComponent({
           cliConfig: configOptions,
-          component,
           inRoot: true,
           options,
           packageManager,
+          component,
         })
       }
 
       for (const component of Array.from(globalComponents)) {
         await installComponent({
           cliConfig: configOptions,
-          component,
           inRoot: true,
           options,
           packageManager,
+          component,
         })
       }
     })

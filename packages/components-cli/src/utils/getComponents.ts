@@ -18,20 +18,20 @@ export const fileTypeSchema = z.enum([
   'styles',
   'types',
 ])
-const componentSchema = z.object({
-  component: z.string(),
-  dependencies: z.array(z.string()).optional(),
-  files: z.array(
-    z.object({
-      content: z.string(),
-      dir: z.string(),
-      name: z.string(),
-      placementDir: z.string(),
-      type: fileTypeSchema,
-    }),
-  ),
-  internalDependencies: z.array(z.string()).optional(),
+
+export const fileSchema = z.object({
+  content: z.string(),
+  dir: z.string(),
+  localPath: z.string().optional(),
   name: z.string(),
+  type: fileTypeSchema,
+})
+
+const componentSchema = z.object({
+  dependencies: z.array(z.string()).optional(),
+  files: z.array(fileSchema),
+  internalDependencies: z.array(z.string()).optional(),
+  component: z.string(),
 })
 
 export type Component = z.infer<typeof componentSchema>
@@ -40,42 +40,43 @@ const componentsSchema = z.array(componentSchema)
 
 export async function getAvailableComponents() {
   try {
-    const response = await fetch(`${baseUrl}/api/components.json`, { agent })
+    const response = await fetch(`${baseUrl}/components.json`, { agent })
     const components = await response.json()
 
     return componentsSchema.parse(components)
   }
   catch (error) {
     throw new Error(
-      `Failed to fetch components from ${baseUrl}/api/components.json.`,
+      `Failed to fetch components from ${baseUrl}/components.json.`,
     )
   }
 }
 
 export async function getGlobalConfig() {
   try {
-    const response = await fetch(`${baseUrl}/api/globalConfig.json`, { agent })
+    const response = await fetch(`${baseUrl}/globalConfig.json`, { agent })
 
     const components = await response.json()
+
     return componentsSchema.parse(components)
   }
   catch (error) {
     throw new Error(
-      `Failed to fetch config from ${baseUrl}/api/globalConfig.json.`,
+      `Failed to fetch config from ${baseUrl}/globalConfig.json.`,
     )
   }
 }
 
 export async function getGlobalComponents() {
   try {
-    const response = await fetch(`${baseUrl}/api/globalComponents.json`, { agent })
+    const response = await fetch(`${baseUrl}/globalComponents.json`, { agent })
     const components = await response.json()
 
     return componentsSchema.parse(components)
   }
   catch (error) {
     throw new Error(
-      `Failed to fetch components from ${baseUrl}/api/globalComponents.json.`,
+      `Failed to fetch components from ${baseUrl}/globalComponents.json.`,
     )
   }
 }

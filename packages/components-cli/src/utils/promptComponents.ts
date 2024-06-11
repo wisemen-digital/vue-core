@@ -5,8 +5,8 @@ import type { Component } from './getComponents'
 export async function promptForComponents(components: Component[]) {
   const { components: selectedComponents } = await prompts({
     choices: components
-      .map(component => ({
-        title: component.name,
+      .map((component) => ({
+        title: component.component,
         value: component,
       })),
     hint: 'Space to select. A to select all. I to invert selection.',
@@ -20,11 +20,11 @@ export async function promptForComponents(components: Component[]) {
 }
 
 export async function promptForComponent(components: (Component | undefined)[]) {
-  const allComponents = components.filter(component => component) as Component[]
+  const allComponents = components.filter((component) => component) as Component[]
   const { component: selectedComponent } = await prompts({
     choices: allComponents
-      .map(component => ({
-        title: component?.name,
+      .map((component) => ({
+        title: component?.component,
         value: component,
       })),
     hint: 'Space to select.',

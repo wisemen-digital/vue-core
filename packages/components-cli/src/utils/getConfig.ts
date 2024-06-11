@@ -4,7 +4,7 @@ import { cosmiconfig } from 'cosmiconfig'
 import { loadConfig } from 'tsconfig-paths'
 import * as z from 'zod'
 
-import { resolveImport } from '@/src/utils/resolveImport'
+import { resolveImport } from '@/utils/resolveImport'
 
 export const DEFAULT_STYLE = 'default'
 export const DEFAULT_COMPONENTS = '@/components'
@@ -27,6 +27,7 @@ export const rawConfigSchema = z
       composables: z.string(),
       config: z.string(),
       icons: z.string(),
+      root: z.string(),
       styles: z.string(),
       transitions: z.string(),
       types: z.string(),
@@ -60,11 +61,11 @@ export async function getConfig(cwd: string) {
     return null
   }
 
-  return await resolveConfigPaths(cwd, config)
+  return resolveConfigPaths(cwd, config)
 }
 
-export async function resolveConfigPaths(cwd: string, config: RawConfig) {
-  const tsConfig = await loadConfig(cwd)
+export function resolveConfigPaths(cwd: string, config: RawConfig) {
+  const tsConfig = loadConfig(cwd)
 
   if (tsConfig.resultType === 'failed') {
     throw new Error(
@@ -75,14 +76,14 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
   return configSchema.parse({
     ...config,
     resolvedPaths: {
-      components: await resolveImport(config.aliases.components),
-      composables: await resolveImport(config.aliases.composables),
-      config: path.resolve(cwd, config.aliases.config),
-      icons: await resolveImport(config.aliases.icons),
-      styles: path.resolve(cwd, config.aliases.styles),
-      transitions: await resolveImport(config.aliases.transitions),
-      types: await resolveImport(config.aliases.types),
-      utils: await resolveImport(config.aliases.utils),
+      components: resolveImport(config.aliases.components, config.aliases.root),
+      composables: resolveImport(config.aliases.composables, config.aliases.root),
+      config: path.resolve(cwd, config.aliases.config, config.aliases.root),
+      icons: resolveImport(config.aliases.icons, config.aliases.root),
+      styles: path.resolve(cwd, config.aliases.styles, config.aliases.root),
+      transitions: resolveImport(config.aliases.transitions, config.aliases.root),
+      types: resolveImport(config.aliases.types, config.aliases.root),
+      utils: resolveImport(config.aliases.utils, config.aliases.root),
     },
   })
 }

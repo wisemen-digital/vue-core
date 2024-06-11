@@ -12,7 +12,7 @@ const defaultDirectories = {
   utils: '@/utils',
 }
 
-export async function replaceFileDirectories(file: Component['files'][number], config: Config) {
+export function replaceFileDirectories(file: Component['files'][number], config: Config) {
   const defaultDirectoriesKeys = Object.keys(defaultDirectories)
 
   for (const key of defaultDirectoriesKeys) {
@@ -20,7 +20,9 @@ export async function replaceFileDirectories(file: Component['files'][number], c
       continue
     }
 
-    const unresolvedPath = await unresolveImport(config.resolvedPaths[key as keyof typeof defaultDirectories])
+    const unresolvedPath
+    = unresolveImport(config.resolvedPaths[key as keyof typeof defaultDirectories], config.aliases.root)
+
     file.content = file.content.replaceAll(
       defaultDirectories[key as keyof typeof defaultDirectories],
       unresolvedPath,

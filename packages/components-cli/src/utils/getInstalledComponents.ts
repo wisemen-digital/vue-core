@@ -7,19 +7,21 @@ import { getConfig } from './getConfig'
 import { getFilePath } from './getFilePath'
 import { logger } from './logger'
 
-export async function getInstalledComponent({ availableComponents, componentName, config }:
-{ availableComponents: Component[], componentName: string, config: Config }) {
+export function getInstalledComponent({ availableComponents, componentName, config }:
+{ availableComponents: Component[], componentName: string, config: Config }): Component | null {
   const component = availableComponents.find((component) => {
-    return component.name === componentName
+    return component.component === componentName
   })
+
   if (component == null) {
-    return
+    return null
   }
 
   const installedFiles: (Component['files'][number] & { localPath: string })[] = []
 
   for (const file of component.files) {
-    const filePath = await getFilePath(file, config)
+    const filePath = getFilePath(file, config)
+
     if (existsSync(filePath)) {
       installedFiles.push({
         ...file,
@@ -27,12 +29,12 @@ export async function getInstalledComponent({ availableComponents, componentName
       })
     }
     else {
-      return
+      return null
     }
   }
 
   if (installedFiles.length === 0) {
-    return
+    return null
   }
 
   return {
@@ -41,23 +43,26 @@ export async function getInstalledComponent({ availableComponents, componentName
   }
 }
 
-export async function getInstalledComponents() {
+export async function getInstalledComponents(): Promise<Component[] | null> {
   const config = await getConfig('.')
+
   if (config == null) {
     logger.error('No config file found. Please run `init` to create a config file.')
-    return
+
+    return null
   }
   const components = await getAvailableComponents()
-  const installedComponents = await Promise.all(components.map(async (component) => {
-    const installedComponent = await getInstalledComponent(
-      { availableComponents: components, componentName: component.name, config },
+  const installedComponents = await Promise.all(components.map((component) => {
+    const installedComponent = getInstalledComponent(
+      { availableComponents: components, componentName: component.component, config },
     )
+
     if (installedComponent == null) {
-      return
+      return null
     }
 
     return installedComponent
   }))
 
-  return installedComponents.filter(component => component)
+  return installedComponents.filter((component): component is Component => component != null)
 }

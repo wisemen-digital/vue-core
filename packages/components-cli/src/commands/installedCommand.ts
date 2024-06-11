@@ -1,9 +1,8 @@
 import chalk from 'chalk'
 import type { Command } from 'commander'
 
-import { logger } from '@/src/utils/logger'
-
-import { getInstalledComponents } from '../utils/getInstalledComponents'
+import { getInstalledComponents } from '@/utils/getInstalledComponents'
+import { logger } from '@/utils/logger'
 
 interface AddInstalledCommand {
   program: Command
@@ -16,6 +15,7 @@ export function addInstalledCommand({ program }: AddInstalledCommand) {
     .action(async (_name, _opts) => {
       try {
         const allComponents = await getInstalledComponents()
+
         if (allComponents?.length === 0) {
           logger.info(
             `No components installed. Run ${chalk.green(
@@ -24,8 +24,9 @@ export function addInstalledCommand({ program }: AddInstalledCommand) {
           )
           process.exit(0)
         }
+
         allComponents?.forEach((component) => {
-          logger.info(`Component: ${chalk.green(component?.name)}`)
+          logger.info(`Component: ${chalk.green(component?.component)}`)
           component?.files.forEach((file) => {
             logger.info(chalk.magenta(`File: ${chalk.yellow(file.localPath)}`))
           })
