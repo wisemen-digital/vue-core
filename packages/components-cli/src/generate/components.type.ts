@@ -1,6 +1,5 @@
 export enum ComponentName {
   APP_BUTTON = 'AppButton',
-
   CONFIG_PACKAGES = 'GlobalPackages',
   CONFIG_TAILWIND = 'TailwindConfig',
 }
