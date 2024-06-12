@@ -165,6 +165,9 @@ importers:
 
   packages/components-cli:
     dependencies:
+      '@wisemen/vue-core-cli':
+        specifier: workspace:^
+        version: 'link:'
       chalk:
         specifier: 5.3.0
         version: 5.3.0
