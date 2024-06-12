@@ -16,6 +16,7 @@ import AppTableFooter from '@/components/table/AppTableFooter.vue'
 import AppTableHeader from '@/components/table/AppTableHeader.vue'
 import AppTableTop from '@/components/table/AppTableTop.vue'
 import type {
+  FilterChangeEvent,
   PageChangeEvent,
   PaginatedData,
   Pagination,
@@ -27,6 +28,7 @@ import type { TableColumn, TableEmptyTextProp } from '@/types/table.type'
 const props = withDefaults(
   defineProps<{
     isLoading: boolean
+    isTopHidden?: boolean
     columns: TableColumn<TSchema>[]
     data: PaginatedData<TSchema> | null
     emptyText?: TableEmptyTextProp | null
@@ -35,12 +37,14 @@ const props = withDefaults(
     rowClick?: ((row: TSchema) => void) | null
     rowTarget?: string
     rowTo?: ((row: TSchema) => RouteLocationNamedRaw) | null
+    searchFilterKey?: keyof TFilters
     shouldPinFirstColumn?: boolean
     shouldPinLastColumn?: boolean
     title: string
   }>(),
   {
     emptyText: null,
+    isTopHidden: false,
     rowClick: null,
     rowTo: null,
     shouldPinFirstColumn: false,
@@ -121,7 +125,7 @@ const gridColsStyle = computed<string>(() => {
 })
 
 const hasNoData = computed<boolean>(() => {
-  return props.data?.data.length === 0 && !props.isLoading
+  return props.data?.data.length === 0 && props.isLoading === false
 })
 
 const activeFilterCount = computed<number>(() => {
@@ -131,10 +135,13 @@ const activeFilterCount = computed<number>(() => {
     return 0
   }
 
-  return Object
-    .values(filters)
-    .filter((value) => value !== null && value !== undefined && value !== '').length
+  return filters.length
 })
+
+function onFilterChange(filterChangeEvent: FilterChangeEvent<TFilters>): void {
+  props.pagination.handleFilterChange(filterChangeEvent)
+  props.pagination.handlePageChange({ page: 0, perPage: props.pagination.paginationOptions.value.pagination.perPage })
+}
 
 onMounted(() => {
   if (tableContainerRef.value === null) {
@@ -152,9 +159,14 @@ onBeforeUnmount(() => {
 <template>
   <div class="relative flex h-full flex-1 flex-col overflow-hidden rounded-xl border border-solid border-border bg-background">
     <AppTableTop
+      v-if="!isTopHidden"
       :is-loading="props.isLoading"
       :title="props.title"
       :total="props.data?.total ?? null"
+      :filters="props.filters"
+      :pagination="props.pagination"
+      :search-filter-key="props.searchFilterKey"
+      @filter="onFilterChange"
     />
 
     <div

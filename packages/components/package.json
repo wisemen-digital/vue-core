@@ -20,6 +20,7 @@
     "./dist"
   ],
   "scripts": {
+    "dev": "vite build --watch",
     "build": "pnpm type-check && pnpm build-only && npm pack && cp web-types.json dist/web-types.json",
     "precommit": "pnpm type-check && test:unit && pnpm build-only",
     "build-only": "vite build",
@@ -30,9 +31,6 @@
     "test": "vitest --run",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
-  },
-  "dependencies": {
-    "@wisemen/vue-core-query": "workspace:*"
   },
   "devDependencies": {
     "@tsconfig/node18": "^18.2.4",

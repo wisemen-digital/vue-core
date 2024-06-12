@@ -17,4 +17,9 @@ export default [
       ],
     },
   },
+  {
+    ignores: [
+      '**/public/*',
+    ],
+  },
 ]

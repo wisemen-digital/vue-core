@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="TFilters">
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -13,7 +13,7 @@ import { toLocaleNumber } from '@/utils/number.util'
 
 const props = defineProps<{
   isLoading: boolean
-  paginationOptions: PaginationOptions<unknown>
+  paginationOptions: PaginationOptions<TFilters>
   total: null | number
 }>()
 
