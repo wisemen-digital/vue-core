@@ -7,6 +7,10 @@ const guide = [
     link: '/guide/getting-started',
     text: 'Getting started',
   },
+  {
+    link: '/guide/cli',
+    text: 'CLI',
+  },
 ]
 
 const query = [
