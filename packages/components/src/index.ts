@@ -99,6 +99,7 @@ export { default as FormSwitch } from './components/switch/FormSwitch.vue'
 
 // Table
 export { default as AppTable } from './components/table/AppTable.vue'
+export { default as AppTableFiltersPopover } from './components/table/AppTableFiltersPopover.vue'
 
 // Tabs
 export { default as AppRouteTabs } from './components/tabs/AppRouteTabs.vue'

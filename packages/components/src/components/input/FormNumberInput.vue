@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import FormElement from '@/components/form-element/FormElement.vue'
 import AppNumberInput from '@/components/input/AppNumberInput.vue'
+import AppText from '@/components/text/AppText.vue'
 import { useComponentAttrs } from '@/composables/componentAttrs.composable'
 import type { Icon } from '@/icons/icons'
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
@@ -57,6 +58,11 @@ const props = withDefaults(
      * @default null
      */
     placeholder?: null | string
+    /**
+     * A suffix for the input. Overrides the right slot.
+     * @default null
+     */
+    suffix?: null | string
   }>(),
   {
     isDisabled: false,
@@ -68,6 +74,7 @@ const props = withDefaults(
     max: null,
     min: 0,
     placeholder: null,
+    suffix: null,
   },
 )
 
@@ -121,7 +128,18 @@ function onBlur(): void {
       </template>
 
       <template #right>
-        <slot name="right" />
+        <div
+          v-if="props.suffix"
+          class="border-l border-solid border-border p-2"
+        >
+          <AppText variant="subtext">
+            {{ props.suffix }}
+          </AppText>
+        </div>
+        <slot
+          v-else
+          name="right"
+        />
       </template>
     </AppNumberInput>
   </FormElement>

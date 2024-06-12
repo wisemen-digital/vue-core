@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="TFilters">
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -11,7 +11,7 @@ import type {
 } from '@/types/pagination.type'
 
 const props = defineProps<{
-  paginationOptions: PaginationOptions<unknown>
+  paginationOptions: PaginationOptions<TFilters>
   total: number
 }>()
 
