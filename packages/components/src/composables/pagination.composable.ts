@@ -35,12 +35,11 @@ interface UsePaginationOptions<TFilters> {
 }
 
 const DEFAULT_PAGINATION_OPTIONS = {
-  filters: {},
+  filters: [] as PaginationFilters<unknown>,
   pagination: {
     page: 0,
     perPage: 20,
   },
-  sort: {},
 } as const
 
 export function usePagination<TFilters>({
@@ -55,11 +54,13 @@ export function usePagination<TFilters>({
     userOptions: PaginationOptions<TFilters>,
     currentOptions: PaginationOptions<TFilters>,
   ): PaginationOptions<TFilters> {
+    const mergedFilters = [
+      ...(currentOptions.filters ?? []),
+      ...(userOptions.filters ?? []),
+    ]
+
     return {
-      filters: {
-        ...currentOptions.filters,
-        ...userOptions.filters,
-      } as PaginationFilters<TFilters>,
+      filters: mergedFilters,
       pagination: {
         ...currentOptions.pagination,
         ...userOptions.pagination,
@@ -106,10 +107,9 @@ export function usePagination<TFilters>({
   function handleFilterChange(event: FilterChangeEvent<TFilters>): void {
     paginationOptions.value = {
       ...paginationOptions.value,
-      filters: {
-        ...paginationOptions.value.filters,
+      filters: [
         ...event,
-      } as PaginationFilters<TFilters>,
+      ] as PaginationFilters<TFilters>,
       pagination: {
         ...paginationOptions.value.pagination,
         page: 0,
@@ -127,7 +127,7 @@ export function usePagination<TFilters>({
   function clearFilters(): void {
     paginationOptions.value = {
       ...paginationOptions.value,
-      filters: toValue(defaultPaginationOptions)?.filters ?? {} as PaginationFilters<TFilters>,
+      filters: toValue(defaultPaginationOptions)?.filters ?? [] as PaginationFilters<TFilters>,
       pagination: {
         ...paginationOptions.value.pagination,
         page: 0,

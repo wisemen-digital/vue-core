@@ -3,7 +3,10 @@ import FormElement from '@/components/form-element/FormElement.vue'
 import AppMultiSelect from '@/components/select/AppMultiSelect.vue'
 import type { Icon } from '@/icons/icons'
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
-import type { AcceptableValue, SelectItem } from '@/types/selectItem.type'
+import type {
+  AcceptableValue,
+  SelectItem,
+} from '@/types/selectItem.type'
 
 const props = withDefaults(
   defineProps<{

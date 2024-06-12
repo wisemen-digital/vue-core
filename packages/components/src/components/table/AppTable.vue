@@ -16,28 +16,36 @@ import AppTableFooter from '@/components/table/AppTableFooter.vue'
 import AppTableHeader from '@/components/table/AppTableHeader.vue'
 import AppTableTop from '@/components/table/AppTableTop.vue'
 import type {
+  FilterChangeEvent,
   PaginatedData,
   Pagination,
   PaginationFilter,
   SortChangeEvent,
 } from '@/types/pagination.type'
-import type { TableColumn, TableEmptyTextProp } from '@/types/table.type'
+import type {
+  TableColumn,
+  TableEmptyTextProp,
+} from '@/types/table.type'
 
 const props = withDefaults(
   defineProps<{
     isLoading: boolean
+    isTopHidden?: boolean
     columns: TableColumn<TSchema>[]
     data: PaginatedData<TSchema> | null
     emptyText?: TableEmptyTextProp | null
     filters: PaginationFilter<TFilters>[]
     pagination: Pagination<TFilters>
     rowClick?: ((row: TSchema) => void) | null
+    rowTarget?: string
     rowTo?: ((row: TSchema) => RouteLocationNamedRaw) | null
+    searchFilterKey?: keyof TFilters
     shouldPinFirstColumn?: boolean
     shouldPinLastColumn?: boolean
     title: string
   }>(),
   {
+    isTopHidden: false,
     emptyText: null,
     rowClick: null,
     rowTo: null,
@@ -111,11 +119,11 @@ const hasEmptyStateSlot = computed<boolean>(() => {
 })
 
 const gridColsStyle = computed<string>(() => {
-  return `${props.columns.map(col => `minmax(${col.size},auto)`).join(' ')}`
+  return `${props.columns.map((col) => `minmax(${col.width},${col.maxWidth ?? 'auto'})`).join(' ')}`
 })
 
 const hasNoData = computed<boolean>(() => {
-  return props.data?.data.length === 0 && !props.isLoading
+  return props.data?.data.length === 0 && props.isLoading === false
 })
 
 const activeFilterCount = computed<number>(() => {
@@ -125,10 +133,13 @@ const activeFilterCount = computed<number>(() => {
     return 0
   }
 
-  return Object
-    .values(filters)
-    .filter(value => value !== null && value !== undefined && value !== '').length
+  return filters.length
 })
+
+function onFilterChange(filterChangeEvent: FilterChangeEvent<TFilters>): void {
+  props.pagination.handleFilterChange(filterChangeEvent)
+  props.pagination.handlePageChange({ page: 0, perPage: props.pagination.paginationOptions.value.pagination.perPage })
+}
 
 onMounted(() => {
   if (tableContainerRef.value === null) {
@@ -146,9 +157,14 @@ onBeforeUnmount(() => {
 <template>
   <div class="relative flex h-full flex-1 flex-col overflow-hidden rounded-xl border border-solid border-border bg-background">
     <AppTableTop
+      v-if="!isTopHidden"
       :is-loading="props.isLoading"
       :title="props.title"
       :total="props.data?.total ?? null"
+      :filters="props.filters"
+      :pagination="props.pagination"
+      :search-filter-key="props.searchFilterKey"
+      @filter="onFilterChange"
     />
 
     <div
@@ -183,6 +199,7 @@ onBeforeUnmount(() => {
           :has-active-filters="activeFilterCount > 0 && !props.isLoading"
           :row-click="props.rowClick"
           :row-to="props.rowTo"
+          :row-target="props.rowTarget"
         />
 
         <AppTableEmptyState
@@ -215,7 +232,7 @@ onBeforeUnmount(() => {
 
     <AppTableFooter
       :is-loading="props.isLoading"
-      :pagination="props.pagination"
+      :pagination="(props.pagination as Pagination<unknown>)"
       :total="props.data?.total ?? null"
     />
   </div>

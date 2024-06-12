@@ -1,3 +1,4 @@
+/* eslint-disable ts/explicit-function-return-type */
 /* eslint-disable ts/strict-boolean-expressions */
 import type { Component } from 'vue'
 
@@ -75,12 +76,12 @@ class Observer {
   dismiss = (id?: number | string) => {
     if (!id) {
       this.toasts.forEach((toast) => {
-        this.subscribers.forEach(subscriber =>
+        this.subscribers.forEach((subscriber) =>
           subscriber({ id: toast.id, dismiss: true }))
       })
     }
 
-    this.subscribers.forEach(subscriber => subscriber({ id, dismiss: true }))
+    this.subscribers.forEach((subscriber) => subscriber({ id, dismiss: true }))
 
     return id
   }
@@ -191,7 +192,7 @@ class Observer {
   }
 
   publish = (data: ToastT) => {
-    this.subscribers.forEach(subscriber => subscriber(data))
+    this.subscribers.forEach((subscriber) => subscriber(data))
   }
 
   // We use arrow functions to maintain the correct `this` reference

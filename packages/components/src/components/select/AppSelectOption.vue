@@ -1,10 +1,16 @@
 <script setup lang="ts" generic="TValue extends AcceptableValue">
-import { SelectItem as RadixSelectItem, SelectItemIndicator } from 'radix-vue'
+import {
+  SelectItem as RadixSelectItem,
+  SelectItemIndicator,
+} from 'radix-vue'
 import { computed } from 'vue'
 
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppText from '@/components/text/AppText.vue'
-import type { AcceptableValue, SelectItemOption } from '@/types/selectItem.type'
+import type {
+  AcceptableValue,
+  SelectItemOption,
+} from '@/types/selectItem.type'
 
 const props = defineProps<{
   displayFn: (value: TValue) => null | string
