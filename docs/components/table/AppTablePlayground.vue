@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols'
+import type {
+  PaginatedData,
+  PaginationFilter,
+  TableColumn,
+} from '@wisemen/vue-core'
 import {
   AppTable,
-  type PaginatedData,
-  type TableColumn,
+  AppText,
   usePagination,
 } from '@wisemen/vue-core'
 
@@ -44,7 +48,10 @@ interface ExampleDataType {
   lastName: string
 }
 
-interface ExampleFilters {}
+interface ExampleFilters {
+  hasDriversLicense: boolean
+  firstName: string
+}
 
 const exampleData: PaginatedData<ExampleDataType> = {
   data: [
@@ -78,7 +85,7 @@ const exampleColumns: TableColumn<ExampleDataType>[] = [
     label: 'Drivers license?',
     width: 'auto',
     maxWidth: '100px',
-    value: (row) => row.hasDriversLicense ? 'Yes' : 'No',
+    value: (row) => row.hasDriversLicense === true ? 'Yes' : 'No',
   },
 ]
 
@@ -93,6 +100,20 @@ const pagination = usePagination<ExampleFilters>({
   },
 })
 
+const filters: PaginationFilter<ExampleFilters>[] = [
+  {
+    id: 'firstName',
+    label: 'First name',
+    type: 'text',
+    placeholder: 'Search first name',
+  },
+  {
+    id: 'hasDriversLicense',
+    label: 'Has drivers license?',
+    type: 'boolean',
+  },
+]
+
 function onRowClick(row: ExampleDataType): void {
   // eslint-disable-next-line no-alert
   alert(`Row clicked: ${row.firstName} ${row.lastName}`)
@@ -104,14 +125,23 @@ function onRowClick(row: ExampleDataType): void {
     :controls="controls"
   >
     <template #default="{ values }">
-      <AppTable
-        v-bind="values"
-        :data="exampleData"
-        :columns="exampleColumns"
-        :filters="[]"
-        :pagination="pagination"
-        :row-click="onRowClick"
-      />
+      <div class="flex flex-col">
+        <AppTable
+          v-bind="values"
+          :data="exampleData"
+          :columns="exampleColumns"
+          :filters="filters"
+          :pagination="pagination"
+          :row-click="onRowClick"
+        />
+
+        <AppText
+          variant="subtext"
+          class="pt-3"
+        >
+          Pagination options: {{ pagination.paginationOptions.value }}
+        </AppText>
+      </div>
     </template>
   </ComponentPlayground>
 </template>

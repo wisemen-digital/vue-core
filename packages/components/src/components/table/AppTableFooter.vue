@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="TFilters">
 import { computed } from 'vue'
 
 import AppSkeletonLoaderRow from '@/components/skeleton-loader/AppSkeletonLoaderRow.vue'
@@ -12,7 +12,7 @@ import { toLocaleNumber } from '@/utils/number.util'
 
 const props = defineProps<{
   isLoading: boolean
-  paginationOptions: PaginationOptions<unknown>
+  paginationOptions: PaginationOptions<TFilters>
   total: null | number
 }>()
 

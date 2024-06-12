@@ -15,6 +15,7 @@ import AppTableFooter from '@/components/table/AppTableFooter.vue'
 import AppTableHeader from '@/components/table/AppTableHeader.vue'
 import AppTableTop from '@/components/table/AppTableTop.vue'
 import type {
+  FilterChangeEvent,
   PageChangeEvent,
   PaginatedData,
   Pagination,
@@ -34,6 +35,7 @@ const props = withDefaults(
     rowClick?: ((row: TSchema) => void) | null
     rowTarget?: string
     rowTo?: ((row: TSchema) => RouteLocationNamedRaw) | null
+    searchFilterKey?: keyof TFilters
     shouldPinFirstColumn?: boolean
     shouldPinLastColumn?: boolean
     title: string
@@ -114,7 +116,7 @@ const gridColsStyle = computed<string>(() => {
 })
 
 const hasNoData = computed<boolean>(() => {
-  return props.data?.data.length === 0 && !props.isLoading
+  return props.data?.data.length === 0 && props.isLoading === false
 })
 
 const activeFilterCount = computed<number>(() => {
@@ -124,10 +126,13 @@ const activeFilterCount = computed<number>(() => {
     return 0
   }
 
-  return Object
-    .values(filters)
-    .filter((value) => value !== null && value !== undefined && value !== '').length
+  return filters.length
 })
+
+function onFilterChange(filterChangeEvent: FilterChangeEvent<TFilters>): void {
+  props.pagination.handleFilterChange(filterChangeEvent)
+  props.pagination.handlePageChange({ page: 0, perPage: props.pagination.paginationOptions.value.pagination.perPage })
+}
 
 onMounted(() => {
   if (tableContainerRef.value === null) {
@@ -149,6 +154,10 @@ onBeforeUnmount(() => {
       :is-loading="props.isLoading"
       :title="props.title"
       :total="props.data?.total ?? null"
+      :filters="props.filters"
+      :pagination="props.pagination"
+      :search-filter-key="props.searchFilterKey"
+      @filter="onFilterChange"
     />
 
     <div
