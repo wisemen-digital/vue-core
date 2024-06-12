@@ -38,10 +38,10 @@ export const DEFAULT_ROOT = './src'
 export const DEFAULT_COMPONENTS = '@/components/app'
 export const DEFAULT_UTILS = '@/utils/app'
 export const DEFAULT_COMPOSABLES = '@/composables/app'
-export const DEFAULT_LIBS = '@/ui/libs'
+export const DEFAULT_LIBS = '@/libs'
 export const DEFAULT_STYLES = '@/assets/styles'
-export const DEFAULT_ICONS = '@/ui/icons'
-export const DEFAULT_TYPES = '@/ui/types'
+export const DEFAULT_ICONS = '@/icons'
+export const DEFAULT_TYPES = '@/types/app'
 
 function highlight(text: string) {
   return chalk.cyan(text)

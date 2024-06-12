@@ -1,7 +1,7 @@
 {
-  "name": "wisemen-ui",
+  "name": "@wisemen/vue-core-cli",
   "type": "module",
-  "version": "0.2.2",
+  "version": "0.0.1",
   "description": "Add components to your apps.",
   "publishConfig": {
     "access": "public"
@@ -15,7 +15,9 @@
     "ui",
     "tailwind",
     "vue",
-    "shadcn"
+    "shadcn",
+    "radix-vue",
+    "wisemen"
   ],
   "exports": "./dist/index.js",
   "bin": "./dist/index.js",
@@ -34,7 +36,7 @@
     "release": "changeset version",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "cli:generate": "tsx ./src/generate/generateComponents.ts",
+    "cli:generate": "pnpm registry",
     "pub:beta": "pnpm lint && pnpm typecheck && pnpm build && pnpm publish --no-git-checks --access public --tag beta",
     "pub:next": "pnpm build && ppnpm lint && pnpm typecheck && npm publish --no-git-checks --access public --tag next",
     "pub:release": "pnpm typecheck && pnpm build && pnpm publish --access public"

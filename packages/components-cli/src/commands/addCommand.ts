@@ -23,8 +23,9 @@ export function addAddCommand({
     .command('add')
     .description('add components to your project')
     .option('-o, --overwrite', 'Overwrite existing components.')
+    .option('-a, --all', 'Install all components.')
     .argument('[components...]', 'name of components')
-    .action(async (components: string[], options: { overwrite: boolean }) => {
+    .action(async (components: string[], options: { all: boolean, overwrite: boolean }) => {
       if (cliConfig == null) {
         logger.error(`No config found. Please run 'init' first.`)
 
@@ -43,7 +44,7 @@ export function addAddCommand({
       let selectedComponents = availableComponents.filter((component) =>
         components.includes(component.component))
 
-      if (components.includes('all') || components.includes('*')) {
+      if (options.all) {
         selectedComponents = availableComponents
       }
 
