@@ -81,7 +81,7 @@ const computedModel = computed<null | string>({
       return
     }
 
-    const parsed = Number.parseInt(value, 10)
+    const parsed = Number.parseFloat(value)
 
     if (Number.isNaN(parsed)) {
       model.value = null
