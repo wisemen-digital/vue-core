@@ -17,7 +17,6 @@ import AppTableHeader from '@/components/table/AppTableHeader.vue'
 import AppTableTop from '@/components/table/AppTableTop.vue'
 import type {
   FilterChangeEvent,
-  PageChangeEvent,
   PaginatedData,
   Pagination,
   PaginationFilter,
@@ -91,10 +90,6 @@ function onScroll(): void {
 
 function handleSortChange(sortChangeEvent: SortChangeEvent): void {
   props.pagination.handleSortChange(sortChangeEvent)
-}
-
-function handlePageChange(event: PageChangeEvent): void {
-  props.pagination.handlePageChange(event)
 }
 
 function createResizeObserver(element: HTMLElement, onResize: () => void): ResizeObserver {
@@ -237,9 +232,8 @@ onBeforeUnmount(() => {
 
     <AppTableFooter
       :is-loading="props.isLoading"
-      :pagination-options="props.pagination.paginationOptions.value"
+      :pagination="(props.pagination as Pagination<unknown>)"
       :total="props.data?.total ?? null"
-      @page="handlePageChange"
     />
   </div>
 </template>
