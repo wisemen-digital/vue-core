@@ -23,7 +23,10 @@ import type {
   PaginationFilter,
   SortChangeEvent,
 } from '@/types/pagination.type'
-import type { TableColumn, TableEmptyTextProp } from '@/types/table.type'
+import type {
+  TableColumn,
+  TableEmptyTextProp,
+} from '@/types/table.type'
 
 const props = withDefaults(
   defineProps<{
@@ -43,8 +46,8 @@ const props = withDefaults(
     title: string
   }>(),
   {
-    emptyText: null,
     isTopHidden: false,
+    emptyText: null,
     rowClick: null,
     rowTo: null,
     shouldPinFirstColumn: false,
