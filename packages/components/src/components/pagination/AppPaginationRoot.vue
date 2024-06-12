@@ -2,7 +2,10 @@
 import { computed } from 'vue'
 
 import { providePaginationContext } from '@/components/pagination/pagination.context'
-import type { PageChangeEvent, Pagination } from '@/types/pagination.type'
+import type {
+  PageChangeEvent,
+  Pagination,
+} from '@/types/pagination.type'
 
 const props = defineProps<{
   pagination: Pagination<unknown>
