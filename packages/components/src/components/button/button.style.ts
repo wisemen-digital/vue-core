@@ -25,11 +25,6 @@ export const useButtonStyle = tv({
     unstyledButton: 'block rounded-button outline-none ring-ring ring-offset-1 ring-offset-background duration-200 focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-50',
   },
   variants: {
-    isLoading: {
-      true: {
-        buttonIcon: 'opacity-0',
-      },
-    },
     size: {
       default: {
         button: 'h-10 px-4 py-2 text-sm',
@@ -85,6 +80,11 @@ export const useButtonStyle = tv({
       'secondary': {
         button: buttonSecondaryClasses,
         iconButton: buttonSecondaryClasses,
+      },
+    },
+    isLoading: {
+      true: {
+        buttonIcon: 'opacity-0',
       },
     },
   },
