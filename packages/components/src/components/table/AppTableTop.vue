@@ -105,7 +105,6 @@ function onFilterClear(): void {
 </script>
 
 <template>
-  <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
   <div class="border-b border-solid border-border px-6 py-4">
     <div class="flex items-center gap-x-2">
       <AppText
@@ -119,7 +118,7 @@ function onFilterClear(): void {
         v-if="props.total !== null"
         class="mt-0.5"
       >
-        {{ toLocaleNumber(props.total) }} items
+        {{ toLocaleNumber(props.total) }} {{ t('components.table.items', { count: props.total }) }}
       </AppBadge>
 
       <AppSkeletonLoaderRow
