@@ -108,12 +108,12 @@ function createKeyboardShortcut(): void {
 
   useKeyboardShortcut({
     isDisabled: props.keyboardShortcut.isDisabled,
-    keys: props.keyboardShortcut.keys,
     onTrigger: () => {
       if (buttonRef.value !== null) {
         buttonRef.value.click()
       }
     },
+    keys: props.keyboardShortcut.keys,
   })
 }
 

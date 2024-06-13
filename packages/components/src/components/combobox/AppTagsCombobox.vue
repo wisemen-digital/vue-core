@@ -20,6 +20,7 @@ import AppComboboxItem from '@/components/combobox/AppComboboxItem.vue'
 import AppComboboxTrigger from '@/components/combobox/AppComboboxTrigger.vue'
 import AppComboboxViewport from '@/components/combobox/AppComboboxViewport.vue'
 import { useCombobox } from '@/components/combobox/combobox.composable'
+import { useComboboxStyle } from '@/components/combobox/combobox.style'
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppLoader from '@/components/loader/AppLoader.vue'
 import AppTagsInputItem from '@/components/tags-input/AppTagsInputItem.vue'
@@ -94,6 +95,16 @@ const searchModel = defineModel<null | string>('search', {
   required: false,
 })
 
+const comboboxStyle = useComboboxStyle()
+
+const tagsInputContainerClasses = computed<string>(() => comboboxStyle.tagsInputContainer({
+  isInvalid: props.isInvalid,
+}))
+
+const tagsInputClasses = computed<string>(() => comboboxStyle.tagsInput())
+const iconClasses = computed<string>(() => comboboxStyle.icon())
+const loaderClasses = computed<string>(() => comboboxStyle.inputLoader())
+
 const isOpen = ref<boolean>(false)
 
 const tagsInputRootRef = ref<ComponentExposed<typeof TagsInputRoot> | null>(null)
@@ -138,13 +149,7 @@ function onBlur(): void {
             ref="tagsInputRootRef"
             :model-value="(model as string[])"
             :disabled="props.isDisabled"
-            :class="[
-              {
-                'border-input-border focus-within:ring-ring': !props.isInvalid,
-                'border-destructive focus-within:border-input-border focus-within:ring-destructive': props.isInvalid,
-              },
-            ]"
-            class="flex min-h-10 w-full flex-wrap items-center gap-1 truncate rounded-input border border-solid bg-input p-1.5 ring-offset-background transition-shadow duration-200 placeholder:text-input-placeholder focus-within:ring-2 disabled:cursor-not-allowed disabled:opacity-50"
+            :class="tagsInputContainerClasses"
           >
             <template
               v-for="tag in model"
@@ -164,11 +169,13 @@ function onBlur(): void {
 
             <ComboboxInput :as-child="true">
               <TagsInputInput
-                :class="{
-                  'ml-0.5': model.length === 0,
-                }"
+                :class="[
+                  {
+                    'ml-0.5': model.length === 0,
+                  },
+                  tagsInputClasses,
+                ]"
                 :placeholder="props.placeholder ?? undefined"
-                class="size-full min-w-10 flex-1 bg-transparent px-1 text-sm outline-none placeholder:text-input-placeholder"
                 @blur="onBlur"
                 @keydown.enter.prevent
               />
@@ -180,12 +187,12 @@ function onBlur(): void {
             >
               <AppLoader
                 v-if="props.isLoading"
-                class="pointer-events-none size-4 text-muted-foreground"
+                :class="loaderClasses"
               />
 
               <AppIcon
                 v-else
-                class="text-muted-foreground"
+                :class="iconClasses"
                 icon="chevronDown"
                 size="sm"
               />

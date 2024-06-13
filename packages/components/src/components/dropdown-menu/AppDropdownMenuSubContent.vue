@@ -7,7 +7,7 @@ import { DropdownMenuSubContent } from 'radix-vue'
   <DropdownMenuSubContent
     :side-offset="4"
     :align-offset="-5"
-    class="popover-content z-popover min-w-40 max-w-60 overflow-hidden rounded-popover border border-solid border-border bg-popover shadow-popover-shadow"
+    class="custom-popover-content z-popover min-w-40 max-w-60 overflow-hidden rounded-popover border border-solid border-border bg-popover shadow-popover-shadow"
   >
     <!-- eslint-enable tailwindcss/no-custom-classname -->
     <slot />

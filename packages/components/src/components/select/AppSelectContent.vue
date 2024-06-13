@@ -10,7 +10,7 @@ import AppSelectScrollUpButton from '@/components/select/AppSelectScrollUpButton
   <SelectContent
     :force-mount="true"
     align="center"
-    class="select-content popover-content relative z-popover min-w-min overflow-hidden rounded-popover bg-background shadow-popover-shadow"
+    class="select-content custom-popover-content relative z-popover min-w-min overflow-hidden rounded-popover bg-background shadow-popover-shadow"
     position="popper"
   >
     <!-- eslint-enable tailwindcss/no-custom-classname -->

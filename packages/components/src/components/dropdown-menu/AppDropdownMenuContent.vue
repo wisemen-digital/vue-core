@@ -23,7 +23,7 @@ const props = defineProps<{
       'w-[--radix-dropdown-menu-trigger-width]': props.inheritTriggerWidth,
       'min-w-40 max-w-60': !props.inheritTriggerWidth,
     }"
-    class="popover-content z-popover rounded-popover bg-popover shadow-popover-shadow"
+    class="custom-popover-content z-popover rounded-popover bg-popover shadow-popover-shadow"
   >
     <!-- eslint-enable tailwindcss/no-custom-classname -->
     <div class="max-h-96 overflow-y-auto rounded-popover border border-solid border-border">

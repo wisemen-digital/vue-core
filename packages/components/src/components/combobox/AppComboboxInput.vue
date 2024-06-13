@@ -3,8 +3,9 @@ import {
   ComboboxInput,
   ComboboxTrigger,
 } from 'radix-vue'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
+import { useComboboxStyle } from '@/components/combobox/combobox.style'
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppLoader from '@/components/loader/AppLoader.vue'
 import type { Icon } from '@/icons/icons'
@@ -29,6 +30,19 @@ const emit = defineEmits<{
 
 const isFocused = ref<boolean>(false)
 
+const comboboxStyle = useComboboxStyle()
+const inputContainerClasses = computed<string>(() => comboboxStyle.inputContainer({
+  isDisabled: props.isDisabled,
+  isInvalid: props.isInvalid,
+}))
+
+const inputClasses = computed<string>(() => comboboxStyle.input({
+  placeholderAsValue: props.showPlaceholderAsValue && !isFocused.value,
+}))
+
+const iconClasses = computed<string>(() => comboboxStyle.icon())
+const loaderClasses = computed<string>(() => comboboxStyle.inputLoader())
+
 function onFocus(): void {
   isFocused.value = true
 }
@@ -40,29 +54,20 @@ function onBlur(): void {
 </script>
 
 <template>
-  <label
-    :class="{
-      'border-input-border [&:has(:focus-visible)]:ring-ring': !props.isInvalid,
-      'border-destructive [&:has(:focus-visible)]:border-input-border [&:has(:focus-visible)]:ring-destructive': props.isInvalid,
-      'cursor-not-allowed opacity-50': props.isDisabled,
-    }"
-    class="flex h-10 items-center rounded-input border border-solid bg-input outline-none ring-offset-background duration-200 [&:has(:focus-visible)]:ring-2"
-  >
+  <label :class="inputContainerClasses">
     <slot name="left">
       <AppIcon
         v-if="props.iconLeft !== null && props.iconLeft !== undefined"
         :icon="props.iconLeft"
-        class="ml-3 text-muted-foreground"
+        :class="iconClasses"
+        class="ml-3"
       />
     </slot>
 
     <ComboboxInput
       :id="props.id"
       :placeholder="props.placeholder"
-      :class="[
-        props.showPlaceholderAsValue && !isFocused ? 'placeholder:text-input-foreground' : 'placeholder:text-input-placeholder',
-      ]"
-      class="block size-full truncate bg-transparent px-3 py-2 text-sm text-input-foreground outline-none duration-200 disabled:cursor-not-allowed"
+      :class="inputClasses"
       @blur="onBlur"
       @focus="onFocus"
       @keydown.enter.prevent
@@ -70,7 +75,8 @@ function onBlur(): void {
 
     <AppLoader
       v-if="props.isLoading"
-      class="mr-3 size-4 text-muted-foreground"
+      :class="loaderClasses"
+      class="mr-3"
     />
 
     <slot
@@ -80,7 +86,8 @@ function onBlur(): void {
       <AppIcon
         v-if="props.iconRight !== null && props.iconRight !== undefined"
         :icon="props.iconRight"
-        class="mr-3 text-muted-foreground"
+        :class="iconClasses"
+        class="mr-3"
       />
 
       <ComboboxTrigger
@@ -88,8 +95,8 @@ function onBlur(): void {
         class="mr-1 p-2"
       >
         <AppIcon
+          :class="iconClasses"
           icon="chevronDown"
-          class="text-muted-foreground"
           size="sm"
         />
       </ComboboxTrigger>
