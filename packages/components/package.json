@@ -32,6 +32,9 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
+  "dependencies": {
+    "tailwind-variants": "^0.2.1"
+  },
   "devDependencies": {
     "@tsconfig/node18": "^18.2.4",
     "@types/dom-view-transitions": "^1.0.4",
@@ -65,8 +68,5 @@
     "vue-router": "^4.3.2",
     "vue-tsc": "^2.0.19",
     "zod": "^3.23.8"
-  },
-  "dependencies": {
-    "tailwind-variants": "^0.2.1"
   }
 }

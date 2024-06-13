@@ -1,7 +1,16 @@
+<script setup lang="ts">
+import { computed } from 'vue'
+
+import { useButtonStyle } from '@/components/button/button.style'
+
+const buttonStyle = useButtonStyle()
+const unstyledButtonClasses = computed<string>(() => buttonStyle.unstyledButton())
+</script>
+
 <template>
   <button
+    :class="unstyledButtonClasses"
     type="button"
-    class="block rounded-button outline-none ring-ring ring-offset-1 ring-offset-background duration-200 focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-50"
   >
     <slot />
   </button>

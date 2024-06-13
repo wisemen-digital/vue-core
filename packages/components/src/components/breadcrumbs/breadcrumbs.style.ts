@@ -1,7 +1,7 @@
 import type { VariantProps } from '@/libs/twVariants.lib'
 import { tv } from '@/libs/twVariants.lib'
 
-export const breadcrumbsStyle = tv({
+export const useBreadcrumbsStyle = tv({
   slots: {
     container: 'flex items-center gap-x-3',
     itemPage: 'flex items-center gap-x-2 p-0.5',
@@ -13,4 +13,4 @@ export const breadcrumbsStyle = tv({
   },
 })
 
-export type BadgeStyleProps = VariantProps<typeof breadcrumbsStyle>
+export type BadgeStyleProps = VariantProps<typeof useBreadcrumbsStyle>

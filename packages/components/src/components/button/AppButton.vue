@@ -6,7 +6,7 @@ import {
 } from 'vue'
 
 import type { ButtonStyleProps } from '@/components/button/button.style'
-import { button, buttonIcon } from '@/components/button/button.style'
+import { useButtonStyle } from '@/components/button/button.style'
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppKeyboardShortcut from '@/components/keyboard/AppKeyboardShortcut.vue'
 import type { KeyboardKeyStyleProps } from '@/components/keyboard/keyboardKey.style'
@@ -72,16 +72,22 @@ const props = withDefaults(defineProps<AppButtonProps>(), {
 
 const buttonRef = ref<HTMLButtonElement | null>(null)
 
+const buttonStyle = useButtonStyle()
+
 const buttonClasses = computed<string>(() =>
-  button({
+  buttonStyle.button({
     size: props.size,
     variant: props.variant,
   }))
 
 const buttonIconClasses = computed<string>(() =>
-  buttonIcon({
+  buttonStyle.buttonIcon({
+    isLoading: props.isLoading,
     size: props.size,
   }))
+
+const buttonLoaderClasses = computed<string>(() => buttonStyle.loader())
+const buttonLoaderContainerClasses = computed<string>(() => buttonStyle.loaderContainer())
 
 const keyboardKeyVariant = computed<KeyboardKeyStyleProps['variant']>(() => {
   if (props.variant === 'default' || props.variant === 'destructive') {
@@ -128,9 +134,7 @@ onMounted(() => {
     <AppIcon
       v-if="props.iconLeft !== null && props.iconLeft !== undefined"
       :icon="props.iconLeft"
-      :class="[{
-        'opacity-0': props.isLoading,
-      }, buttonIconClasses]"
+      :class="buttonIconClasses"
       class="mr-2"
     />
 
@@ -145,19 +149,17 @@ onMounted(() => {
 
     <div
       v-if="props.isLoading"
-      class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+      :class="buttonLoaderContainerClasses"
     >
       <AppLoader
-        class="size-4"
+        :class="buttonLoaderClasses"
       />
     </div>
 
     <AppIcon
       v-if="props.iconRight !== null && props.iconRight !== undefined"
       :icon="props.iconRight"
-      :class="[buttonIconClasses, {
-        'opacity-0': props.isLoading,
-      }]"
+      :class="buttonIconClasses"
       class="ml-2"
     />
 

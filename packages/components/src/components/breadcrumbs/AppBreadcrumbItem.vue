@@ -3,7 +3,7 @@ import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
 
 import AppBreadcrumbEllipsis from '@/components/breadcrumbs/AppBreadcrumbEllipsis.vue'
-import { breadcrumbsStyle } from '@/components/breadcrumbs/breadcrumbs.style'
+import { useBreadcrumbsStyle } from '@/components/breadcrumbs/breadcrumbs.style'
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppText from '@/components/text/AppText.vue'
 import type { BreadcrumbItem } from '@/types/breadcrumbItem.type'
@@ -12,7 +12,7 @@ const props = defineProps<{
   item: BreadcrumbItem
 }>()
 
-const breadcrumbItemVariants = breadcrumbsStyle()
+const breadcrumbItemVariants = useBreadcrumbsStyle()
 
 const breadcrumbRouteClasses = computed<string>(() => breadcrumbItemVariants.itemRoute())
 const breadcrumbRouteIconClasses = computed<string>(() => breadcrumbItemVariants.itemRouteIcon())

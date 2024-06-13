@@ -1,75 +1,93 @@
-import { compose } from 'cva'
+import type { VariantProps } from '@/libs/twVariants.lib'
+import { tv } from '@/libs/twVariants.lib'
 
-import { cva, type VariantProps } from '@/libs/cva.lib'
+const buttonBaseClasses = 'relative flex items-center justify-center rounded-button border border-solid outline-none ring-offset-1 ring-offset-background duration-200 focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-50'
+const buttonDefaultClasses = 'border-primary bg-primary text-primary-foreground ring-ring'
+const buttonDestructiveClasses = 'border-destructive bg-destructive text-destructive-foreground focus-visible:ring-destructive'
+const buttonDestructiveOutlineClasses = 'border-destructive bg-transparent text-destructive ring-destructive'
+const buttonGhostClasses = 'border-transparent bg-transparent text-muted-foreground ring-ring hover:enabled:bg-muted-background focus:enabled:bg-muted-background'
+const buttonMutedClasses = 'border-muted-background bg-muted-background text-muted-foreground ring-ring'
+const buttonOutlineClasses = 'border-primary bg-background text-primary ring-ring'
+const buttonSecondaryClasses = 'border-transparent bg-secondary text-secondary-foreground ring-ring'
 
-export const baseButton = cva({
-  base: 'relative flex items-center justify-center rounded-button border border-solid outline-none ring-offset-1 ring-offset-background duration-200 focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-50',
+export const useButtonStyle = tv({
   defaultVariants: {
+    isLoading: false,
+    size: 'default',
     variant: 'default',
   },
+  slots: {
+    button: buttonBaseClasses,
+    buttonIcon: '',
+    iconButton: buttonBaseClasses,
+    loader: 'size-4',
+    loaderContainer: 'absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2',
+    unstyledButton: 'block rounded-button outline-none ring-ring ring-offset-1 ring-offset-background duration-200 focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-50',
+  },
   variants: {
+    isLoading: {
+      true: {
+        buttonIcon: 'opacity-0',
+      },
+    },
+    size: {
+      default: {
+        button: 'h-10 px-4 py-2 text-sm',
+        buttonIcon: '!size-3.5',
+        iconButton: 'size-10',
+      },
+      lg: {
+        button: 'h-11 px-8 text-base',
+        buttonIcon: '!size-4',
+        iconButton: 'size-12',
+      },
+      sm: {
+        button: 'h-9 px-3 text-xs',
+        buttonIcon: '!size-2.5',
+        iconButton: 'size-8',
+      },
+      unset: {
+        button: '',
+        buttonIcon: '',
+        iconButton: '',
+      },
+      xs: {
+        button: 'h-6 px-2 text-xs',
+        buttonIcon: '!size-3.5',
+        iconButton: 'size-6',
+      },
+    },
     variant: {
-      'default':
-        'border-primary bg-primary text-primary-foreground ring-ring',
-      'destructive': 'border-destructive bg-destructive text-destructive-foreground focus-visible:ring-destructive',
-      'destructive-outline': 'border-destructive bg-transparent text-destructive ring-destructive',
-      'ghost':
-        'border-transparent bg-transparent text-muted-foreground ring-ring hover:enabled:bg-muted-background focus:enabled:bg-muted-background',
-      'muted':
-        'border-muted-background bg-muted-background text-muted-foreground ring-ring',
-      'outline':
-        'border-primary bg-background text-primary ring-ring',
-      'secondary':
-        'border-transparent bg-secondary text-secondary-foreground ring-ring',
+      'default': {
+        button: buttonDefaultClasses,
+        iconButton: buttonDefaultClasses,
+      },
+      'destructive': {
+        button: buttonDestructiveClasses,
+        iconButton: buttonDestructiveClasses,
+      },
+      'destructive-outline': {
+        button: buttonDestructiveOutlineClasses,
+        iconButton: buttonDestructiveOutlineClasses,
+      },
+      'ghost': {
+        button: buttonGhostClasses,
+        iconButton: buttonGhostClasses,
+      },
+      'muted': {
+        button: buttonMutedClasses,
+        iconButton: buttonMutedClasses,
+      },
+      'outline': {
+        button: buttonOutlineClasses,
+        iconButton: buttonOutlineClasses,
+      },
+      'secondary': {
+        button: buttonSecondaryClasses,
+        iconButton: buttonSecondaryClasses,
+      },
     },
   },
 })
 
-export const button = compose(cva({
-  defaultVariants: {
-    size: 'default',
-  },
-  variants: {
-    size: {
-      default: 'h-10 px-4 py-2 text-sm',
-      lg: 'h-11 px-8 text-base',
-      sm: 'h-9 px-3 text-xs',
-      unset: '',
-      xs: 'h-6 px-2 text-xs',
-    },
-  },
-}), baseButton)
-
-export const iconButton = compose(cva({
-  defaultVariants: {
-    size: 'default',
-  },
-  variants: {
-    size: {
-      default: 'size-10',
-      lg: 'size-12',
-      sm: 'size-8',
-      unset: '',
-      xs: 'size-6',
-    },
-  },
-}), baseButton)
-
-export const buttonIcon = cva({
-  defaultVariants: {
-    size: 'default',
-  },
-  variants: {
-    size: {
-      default: '!size-3.5',
-      lg: '!size-4',
-      sm: '!size-3.5',
-      unset: '',
-      xs: '!size-2.5',
-    },
-  },
-})
-
-export type ButtonStyleProps = VariantProps<typeof button>
-export type ButtonIconStyleProps = VariantProps<typeof buttonIcon>
-export type IconButtonStyleProps = VariantProps<typeof iconButton>
+export type ButtonStyleProps = VariantProps<typeof useButtonStyle>
