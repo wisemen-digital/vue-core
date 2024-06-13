@@ -42,7 +42,6 @@
     "pub:release": "pnpm typecheck && pnpm build && pnpm publish --access public"
   },
   "dependencies": {
-    "@wisemen/vue-core-cli": "workspace:^",
     "chalk": "5.3.0",
     "commander": "^12.1.0",
     "cosmiconfig": "^9.0.0",

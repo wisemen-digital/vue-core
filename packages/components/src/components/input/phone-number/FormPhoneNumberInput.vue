@@ -44,6 +44,10 @@ const props = withDefaults(
      */
     label: string
     /**
+     * The model value of the input.
+     */
+    modelValue: null | string
+    /**
      * The placeholder of the input.
      * @default null
      */
@@ -58,10 +62,29 @@ const props = withDefaults(
   },
 )
 
+const emit = defineEmits<{
+  'update:modelValue': [null | string]
+}>()
+
 const countries = getCountries()
 
-const model = defineModel<null | string>({
-  required: true,
+const model = computed<null | string>({
+  get: () => {
+    return props.modelValue
+  },
+  set: (value: null | string) => {
+    emit('update:modelValue', value)
+  },
+})
+
+const numberModel = computed<null | string>(() => {
+  if (model.value === null) {
+    return null
+  }
+
+  const parsedPhoneNumber = parsePhoneNumber(model.value)
+
+  return parsedPhoneNumber?.nationalNumber ?? null
 })
 
 const countryCodeModel = ref<CountryCode | null>(getCountryCodeFromPhoneNumber(model.value))
@@ -91,6 +114,8 @@ const mask = computed<null | string>(() => {
     return '###'
   }
 
+  console.log(getMaskFromExampleNumber(exampleNumber))
+
   return getMaskFromExampleNumber(exampleNumber)
 })
 
@@ -117,7 +142,10 @@ function getExamplePhoneNumberByCountry(countryCode: CountryCode): null | string
 }
 
 function getMaskFromExampleNumber(exampleNumber: string): string {
+  const dialCode = exampleNumber.match(/\d+/)?.[0]
+
   return exampleNumber
+    .replace(`+${dialCode}`, '')
     .replace(/\d/g, '#')
     .replace(/ /g, ' ')
     .replace(/\(/g, '(')
@@ -185,6 +213,20 @@ function onCountryCodeSelect(countryCode: CountryCode | null): void {
 function getCountryFlagUrl(countryCode: CountryCode): string {
   return `https://purecatamphetamine.github.io/country-flag-icons/3x2/${countryCode}.svg`
 }
+
+function onNationalNumberUpdate(nationalNumber: null | string): void {
+  if (nationalNumber === null) {
+    model.value = null
+
+    return
+  }
+
+  if (countryCodeModel.value === null) {
+    return
+  }
+
+  model.value = `+${getCountryCallingCode(countryCodeModel.value)}${nationalNumber}`
+}
 </script>
 
 <template>
@@ -246,7 +288,7 @@ function getCountryFlagUrl(countryCode: CountryCode): string {
       </AppSelect>
       <AppInput
         :id="id"
-        v-model="model"
+        :model-value="numberModel"
         :data-maska="mask"
         :is-invalid="isInvalid"
         :is-disabled="props.isDisabled"
@@ -255,6 +297,7 @@ function getCountryFlagUrl(countryCode: CountryCode): string {
         :placeholder="props.placeholder"
         class="rounded-l-none border-l-0"
         type="tel"
+        @update:model-value="onNationalNumberUpdate"
         v-maska
       >
         <template #left>
