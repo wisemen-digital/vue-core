@@ -1,9 +1,15 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+
+import { badgeStyle } from '@/components/badge/badge.style'
 import AppText from '@/components/text/AppText.vue'
+
+const badgeVariants = badgeStyle()
+const badgeClasses = computed<string>(() => badgeVariants.badge())
 </script>
 
 <template>
-  <div class="rounded-md border border-solid border-border px-1 py-0.5 shadow-sm">
+  <div :class="badgeClasses">
     <AppText variant="caption">
       <slot />
     </AppText>
