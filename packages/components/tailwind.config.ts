@@ -42,7 +42,9 @@ export default {
         border: 'rgba(var(--border), <alpha-value>)',
 
         button: {
-          border: 'rgba(var(--button-border), <alpha-value>)',
+          outline: {
+            border: 'rgba(var(--button-outline-border), <alpha-value>)',
+          },
         },
 
         card: {

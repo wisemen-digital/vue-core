@@ -22,7 +22,7 @@ const controls = createControls({
       'destructive',
       'destructive-outline',
       'secondary-outline',
-      'muted-outline',
+      'input-outline',
     ],
     label: 'Variant',
     type: 'select',
