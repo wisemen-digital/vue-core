@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import type { Component } from 'vue'
-import { shallowRef, watch } from 'vue'
+import {
+  onServerPrefetch,
+  shallowRef,
+  watch,
+} from 'vue'
 
 import { type IconStyleProps, iconVariants } from '@/components/icon/icon.style'
 import { type Icon, icons } from '@/icons/icons'
@@ -18,18 +22,26 @@ const props = withDefaults(
 
 const svgComponent = shallowRef<Component | null>(null)
 
+async function setIcon(): Promise<void> {
+  const resolvedComponent = await icons[props.icon]
+
+  // @ts-expect-error TODO: Fix this
+  svgComponent.value = resolvedComponent.default
+}
+
 watch(
   () => props.icon,
   async () => {
-    const resolvedComponent = await icons[props.icon]
-
-    // @ts-expect-error TODO: Fix this
-    svgComponent.value = resolvedComponent.default
+    await setIcon()
   },
   {
     immediate: true,
   },
 )
+
+onServerPrefetch(async () => {
+  await setIcon()
+})
 </script>
 
 <template>
