@@ -21,6 +21,8 @@ const controls = createControls({
       'ghost',
       'destructive',
       'destructive-outline',
+      'secondary-outline',
+      'muted-outline',
     ],
     label: 'Variant',
     type: 'select',

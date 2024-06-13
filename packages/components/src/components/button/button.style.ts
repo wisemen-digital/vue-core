@@ -10,17 +10,21 @@ export const baseButton = cva({
   variants: {
     variant: {
       'default':
-        'border-primary bg-primary text-primary-foreground ring-ring',
+      'border-primary bg-primary text-primary-foreground ring-ring',
       'destructive': 'border-destructive bg-destructive text-destructive-foreground focus-visible:ring-destructive',
       'destructive-outline': 'border-destructive bg-transparent text-destructive ring-destructive',
       'ghost':
         'border-transparent bg-transparent text-muted-foreground ring-ring hover:enabled:bg-muted-background focus:enabled:bg-muted-background',
       'muted':
         'border-muted-background bg-muted-background text-muted-foreground ring-ring',
+      'muted-outline':
+        'border-button-border bg-transparent text-input-foreground ring-ring',
       'outline':
         'border-primary bg-background text-primary ring-ring',
       'secondary':
         'border-transparent bg-secondary text-secondary-foreground ring-ring',
+      'secondary-outline':
+        'border-secondary bg-transparent text-secondary ring-ring',
     },
   },
 })
