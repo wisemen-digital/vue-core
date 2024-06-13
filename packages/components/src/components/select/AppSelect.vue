@@ -26,6 +26,10 @@ const props = withDefaults(
      */
     id?: null | string
     /**
+     * Whether the select chevron is hidden.
+     */
+    isChevronHidden?: boolean
+    /**
      * Whether the select is disabled.
      */
     isDisabled?: boolean
@@ -61,6 +65,7 @@ const props = withDefaults(
   }>(),
   {
     id: null,
+    isChevronHidden: false,
     isDisabled: false,
     isInvalid: false,
     isLoading: false,
@@ -129,7 +134,7 @@ function onTriggerBlur(): void {
         />
 
         <SelectIcon
-          v-else
+          v-else-if="!isChevronHidden"
           :as-child="true"
           class="mr-3"
         >

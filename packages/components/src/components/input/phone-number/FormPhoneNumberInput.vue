@@ -12,6 +12,7 @@ import { computed, ref } from 'vue'
 import FormElement from '@/components/form-element/FormElement.vue'
 import AppInput from '@/components/input/AppInput.vue'
 import AppSelect from '@/components/select/AppSelect.vue'
+import AppText from '@/components/text/AppText.vue'
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 import type { SelectItem } from '@/types/selectItem.type'
 
@@ -65,21 +66,29 @@ const model = defineModel<null | string>({
 
 const countryCodeModel = ref<CountryCode | null>(getCountryCodeFromPhoneNumber(model.value))
 
+const countryCodeDialCodeModel = computed<null | string>(() => {
+  if (countryCodeModel.value === null) {
+    return null
+  }
+
+  return getCountryCallingCode(countryCodeModel.value)
+})
+
 const mask = computed<null | string>(() => {
   if (model.value === null) {
-    return '+####'
+    return '###'
   }
 
   const country = getCountryCodeFromPhoneNumber(model.value)
 
   if (country === null) {
-    return '+####'
+    return '###'
   }
 
   const exampleNumber = getExamplePhoneNumberByCountry(country)
 
   if (exampleNumber === null) {
-    return '+####'
+    return '###'
   }
 
   return getMaskFromExampleNumber(exampleNumber)
@@ -94,7 +103,7 @@ const countryFlagUrl = computed<null | string>(() => {
 })
 
 const countryCodes = computed<SelectItem<CountryCode>[]>(() => {
-  return countries.map(country => ({
+  return countries.map((country) => ({
     label: country,
     type: 'option',
     value: country,
@@ -134,7 +143,7 @@ function getCountryCodeFromPhoneNumber(phoneNumber: null | string): CountryCode 
   for (let i = 3; i > 0; i--) {
     const callingCode = phoneNumber.slice(0, i).replace('+', '')
 
-    country = countries.find(country => getCountryCallingCode(country) === callingCode)
+    country = countries.find((country) => getCountryCallingCode(country) === callingCode)
 
     if (country !== undefined) {
       break
@@ -153,24 +162,25 @@ function onCountryCodeSelect(countryCode: CountryCode | null): void {
     return
   }
 
-  model.value = `+${getCountryCallingCode(countryCode)}`
-}
-
-function onPhoneNumberUpdate(phoneNumber: null | string): void {
-  if ((phoneNumber === '' || phoneNumber === null) && countryCodeModel.value !== null) {
-    model.value = `+${getCountryCallingCode(countryCodeModel.value)}`
-
-    return
-  }
-
-  const countryCode = getCountryCodeFromPhoneNumber(phoneNumber)
-
-  if (countryCode === null) {
-    return
-  }
-
+  // model.value = `+${getCountryCallingCode(countryCode)}`
   countryCodeModel.value = countryCode
 }
+
+// function onPhoneNumberUpdate(phoneNumber: null | string): void {
+//   if ((phoneNumber === '' || phoneNumber === null) && countryCodeModel.value !== null) {
+//     model.value = `+${getCountryCallingCode(countryCodeModel.value)}`
+
+//     return
+//   }
+
+//   const countryCode = getCountryCodeFromPhoneNumber(phoneNumber)
+
+//   if (countryCode === null) {
+//     return
+//   }
+
+//   countryCodeModel.value = countryCode
+// }
 
 function getCountryFlagUrl(countryCode: CountryCode): string {
   return `https://purecatamphetamine.github.io/country-flag-icons/3x2/${countryCode}.svg`
@@ -195,13 +205,14 @@ function getCountryFlagUrl(countryCode: CountryCode): string {
         :display-fn="(value: CountryCode) => value"
         :is-disabled="props.isDisabled"
         :is-required="props.isRequired"
-        class="w-28"
+        :is-chevron-hidden="true"
+        class="w-[5.5rem]"
         select-trigger-class="rounded-r-none focus-within:z-[1] relative"
         @update:model-value="onCountryCodeSelect"
       >
         <template #left>
           <div class="flex items-center pl-3">
-            <div class="h-4 w-6 overflow-hidden rounded-sm">
+            <div class="h-3 w-5 overflow-hidden rounded-sm">
               <img
                 v-if="countryFlagUrl !== null"
                 :src="countryFlagUrl"
@@ -214,6 +225,7 @@ function getCountryFlagUrl(countryCode: CountryCode): string {
             </div>
           </div>
         </template>
+
         <template #option="{ value }">
           <div class="flex w-24 items-center gap-2 text-sm">
             <div
@@ -243,9 +255,18 @@ function getCountryFlagUrl(countryCode: CountryCode): string {
         :placeholder="props.placeholder"
         class="rounded-l-none border-l-0"
         type="tel"
-        @update:model-value="onPhoneNumberUpdate"
         v-maska
-      />
+      >
+        <template #left>
+          <AppText
+            variant="subtext"
+            class="text-muted-foreground"
+          >
+            <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
+            +{{ countryCodeDialCodeModel }}
+          </AppText>
+        </template>
+      </AppInput>
     </div>
   </FormElement>
 </template>
