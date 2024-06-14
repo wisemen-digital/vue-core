@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import FormElement from '@/components/form-element/FormElement.vue'
-import AppNumberInput from '@/components/input/AppNumberInput.vue'
+import AppNumberInput from '@/components/input/number/AppNumberInput.vue'
 import AppText from '@/components/text/AppText.vue'
 import { useComponentAttrs } from '@/composables/componentAttrs.composable'
 import type { Icon } from '@/icons/icons'

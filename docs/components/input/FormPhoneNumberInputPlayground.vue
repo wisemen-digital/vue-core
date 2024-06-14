@@ -21,12 +21,6 @@ const controls = createControls({
     label: 'Placeholder',
     type: 'text',
   },
-  iconRight: {
-    default: null,
-    cols: 2,
-    label: 'Right icon',
-    type: 'icon',
-  },
   isTouched: {
     default: false,
     label: 'Is touched',
