@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+
 import FormElement from '@/components/form-element/FormElement.vue'
 import AppNumberInput from '@/components/input/AppNumberInput.vue'
+import { useInputStyle } from '@/components/input/input.style'
 import AppText from '@/components/text/AppText.vue'
 import { useComponentAttrs } from '@/composables/componentAttrs.composable'
 import type { Icon } from '@/icons/icons'
@@ -96,6 +99,10 @@ function onFocus(): void {
 function onBlur(): void {
   emit('blur')
 }
+
+const inputStyle = useInputStyle()
+
+const numberSuffixClasses = computed<string>(() => inputStyle.numberSuffix())
 </script>
 
 <template>
@@ -130,7 +137,7 @@ function onBlur(): void {
       <template #right>
         <div
           v-if="props.suffix"
-          class="border-l border-solid border-border p-2"
+          :class="numberSuffixClasses"
         >
           <AppText variant="subtext">
             {{ props.suffix }}
