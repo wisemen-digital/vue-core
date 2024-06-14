@@ -43,6 +43,10 @@ const props = withDefaults(
      */
     isLoading?: boolean
     /**
+     * The value can be hidden to provide more customization.
+     */
+    isValueHidden?: boolean
+    /**
      * display function for the selected value
      */
     displayFn: (value: TValue) => null | string
@@ -69,6 +73,7 @@ const props = withDefaults(
     isDisabled: false,
     isInvalid: false,
     isLoading: false,
+    isValueHidden: false,
     iconLeft: undefined,
     placeholder: null,
   },
@@ -118,7 +123,10 @@ function onTriggerBlur(): void {
           />
         </slot>
 
-        <AppSelectValue :is-empty="model === null">
+        <AppSelectValue
+          v-if="!isValueHidden"
+          :is-empty="model === null"
+        >
           <template v-if="placeholder !== null && model === null">
             {{ props.placeholder }}
           </template>

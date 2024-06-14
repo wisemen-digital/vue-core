@@ -114,8 +114,6 @@ const mask = computed<null | string>(() => {
     return '###'
   }
 
-  console.log(getMaskFromExampleNumber(exampleNumber))
-
   return getMaskFromExampleNumber(exampleNumber)
 })
 
@@ -151,6 +149,7 @@ function getMaskFromExampleNumber(exampleNumber: string): string {
     .replace(/\(/g, '(')
     .replace(/\)/g, ')')
     .replace(/-/g, '-')
+    .trim()
 }
 
 function getCountryCodeFromPhoneNumber(phoneNumber: null | string): CountryCode | null {
@@ -190,25 +189,8 @@ function onCountryCodeSelect(countryCode: CountryCode | null): void {
     return
   }
 
-  // model.value = `+${getCountryCallingCode(countryCode)}`
   countryCodeModel.value = countryCode
 }
-
-// function onPhoneNumberUpdate(phoneNumber: null | string): void {
-//   if ((phoneNumber === '' || phoneNumber === null) && countryCodeModel.value !== null) {
-//     model.value = `+${getCountryCallingCode(countryCodeModel.value)}`
-
-//     return
-//   }
-
-//   const countryCode = getCountryCodeFromPhoneNumber(phoneNumber)
-
-//   if (countryCode === null) {
-//     return
-//   }
-
-//   countryCodeModel.value = countryCode
-// }
 
 function getCountryFlagUrl(countryCode: CountryCode): string {
   return `https://purecatamphetamine.github.io/country-flag-icons/3x2/${countryCode}.svg`
@@ -225,7 +207,9 @@ function onNationalNumberUpdate(nationalNumber: null | string): void {
     return
   }
 
-  model.value = `+${getCountryCallingCode(countryCodeModel.value)}${nationalNumber}`
+  console.log(nationalNumber)
+
+  // model.value = `+${getCountryCallingCode(countryCodeModel.value)}${nationalNumber}`
 }
 </script>
 
@@ -244,11 +228,11 @@ function onNationalNumberUpdate(nationalNumber: null | string): void {
         v-model="countryCodeModel"
         :is-invalid="isInvalid"
         :items="countryCodes"
-        :display-fn="(value: CountryCode) => value"
+        :is-value-hidden="true"
+        :display-fn="() => ''"
         :is-disabled="props.isDisabled"
         :is-required="props.isRequired"
-        :is-chevron-hidden="true"
-        class="w-[5.5rem]"
+        class="w-16"
         select-trigger-class="rounded-r-none focus-within:z-[1] relative"
         @update:model-value="onCountryCodeSelect"
       >
@@ -303,7 +287,7 @@ function onNationalNumberUpdate(nationalNumber: null | string): void {
         <template #left>
           <AppText
             variant="subtext"
-            class="text-muted-foreground"
+            class="-mr-2 ml-2 text-muted-foreground"
           >
             <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
             +{{ countryCodeDialCodeModel }}
