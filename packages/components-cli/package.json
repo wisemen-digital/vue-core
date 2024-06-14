@@ -25,7 +25,7 @@
     "dist"
   ],
   "scripts": {
-    "dev": "tsup --watch",
+    "watch": "tsup --watch",
     "build": "tsup",
     "typecheck": "tsc --noEmit",
     "clean": "rimraf dist && rimraf components",

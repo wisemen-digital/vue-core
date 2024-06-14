@@ -165,6 +165,7 @@ onBeforeUnmount(() => {
       :pagination="props.pagination"
       :search-filter-key="props.searchFilterKey"
       @filter="onFilterChange"
+      @clear="onClearFilters"
     />
 
     <div
