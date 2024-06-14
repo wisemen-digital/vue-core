@@ -4,20 +4,20 @@ import { ComponentName, ComponentType } from '@/generate/components.type'
 export const toast: Component = {
   files: [
     {
+      type: ComponentType.COMPONENTS,
       path: 'toast',
-      type: ComponentType.COMPONENTS,
     },
     {
-      path: 'toast.type.ts',
       type: ComponentType.TYPES,
+      path: 'toast.type.ts',
     },
     {
-      path: 'toast.composable.ts',
       type: ComponentType.COMPOSABLES,
+      path: 'toast.composable.ts',
     },
     {
-      path: 'sonner',
       type: ComponentType.COMPONENTS,
+      path: 'sonner',
     },
   ],
   internalDependencies: [

@@ -4,8 +4,8 @@ import { ComponentName, ComponentType } from '@/generate/components.type'
 export const icons: Component = {
   files: [
     {
-      path: './',
       type: ComponentType.ICONS,
+      path: './',
     },
   ],
   component: ComponentName.ICON,

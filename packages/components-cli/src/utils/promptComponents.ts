@@ -4,6 +4,7 @@ import type { Component } from './getComponents'
 
 export async function promptForComponents(components: Component[]) {
   const { components: selectedComponents } = await prompts({
+    name: 'components',
     choices: components
       .map((component) => ({
         title: component.component,
@@ -12,7 +13,6 @@ export async function promptForComponents(components: Component[]) {
     hint: 'Space to select. A to select all. I to invert selection.',
     instructions: false,
     message: 'Which component(s) would you like to add?',
-    name: 'components',
     type: 'autocompleteMultiselect',
   })
 
@@ -22,6 +22,7 @@ export async function promptForComponents(components: Component[]) {
 export async function promptForComponent(components: (Component | undefined)[]) {
   const allComponents = components.filter((component) => component) as Component[]
   const { component: selectedComponent } = await prompts({
+    name: 'component',
     choices: allComponents
       .map((component) => ({
         title: component?.component,
@@ -30,7 +31,6 @@ export async function promptForComponent(components: (Component | undefined)[]) 
     hint: 'Space to select.',
     instructions: false,
     message: 'Which component would you like to check?',
-    name: 'component',
     type: 'autocomplete',
   })
 

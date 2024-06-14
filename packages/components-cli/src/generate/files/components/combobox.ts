@@ -4,20 +4,20 @@ import { ComponentName, ComponentType } from '@/generate/components.type'
 export const combobox: Component = {
   files: [
     {
-      path: 'combobox',
       type: ComponentType.COMPONENTS,
+      path: 'combobox',
     },
     {
+      type: ComponentType.TYPES,
       path: 'comboboxItem.type.ts',
-      type: ComponentType.TYPES,
     },
     {
+      type: ComponentType.TYPES,
       path: 'comboboxProps.type.ts',
-      type: ComponentType.TYPES,
     },
     {
-      path: 'combobox.type.ts',
       type: ComponentType.TYPES,
+      path: 'combobox.type.ts',
     },
   ],
   internalDependencies: [
