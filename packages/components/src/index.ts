@@ -56,11 +56,11 @@ export { default as AppIcon } from './components/icon/AppIcon.vue'
 
 // Input
 export { default as AppInput } from './components/input/AppInput.vue'
-export { default as AppNumberInput } from './components/input/AppNumberInput.vue'
 export { default as FormInput } from './components/input/FormInput.vue'
-export { default as FormNumberInput } from './components/input/FormNumberInput.vue'
-export { default as FormPasswordInput } from './components/input/FormPasswordInput.vue'
-export { default as FormPhoneNumberInput } from './components/input/FormPhoneNumberInput.vue'
+export { default as AppNumberInput } from './components/input/number/AppNumberInput.vue'
+export { default as FormNumberInput } from './components/input/number/FormNumberInput.vue'
+export { default as FormPasswordInput } from './components/input/password/FormPasswordInput.vue'
+export { default as FormPhoneNumberInput } from './components/input/phone-number/FormPhoneNumberInput.vue'
 export { default as AppTextarea } from './components/textarea/AppTextarea.vue'
 export { default as FormTextarea } from './components/textarea/FormTextarea.vue'
 
