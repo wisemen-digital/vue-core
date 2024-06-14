@@ -1,7 +1,7 @@
 <script setup lang="ts" generic="TFilters">
 import { ref, watch } from 'vue'
 
-import FormNumberInput from '@/components/input/FormNumberInput.vue'
+import FormNumberInput from '@/components/input/number/FormNumberInput.vue'
 import type {
   Pagination,
   PaginationFilterNumber,
