@@ -10,9 +10,9 @@ const projectRootDir = resolve(__dirname)
 export default defineConfig({
   build: {
     lib: {
+      name: 'vue-core',
       entry: resolve(__dirname, 'src/index.ts'),
       fileName: 'index',
-      name: 'vue-core',
     },
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled

@@ -48,8 +48,8 @@ class Observer {
             ...toast,
             ...data,
             id,
-            dismissible,
             title: message,
+            dismissible,
           }
         }
 

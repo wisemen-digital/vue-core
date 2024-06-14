@@ -4,20 +4,20 @@ import { ComponentName, ComponentType } from '@/generate/components.type'
 export const keyboard: Component = {
   files: [
     {
-      path: 'keyboard',
       type: ComponentType.COMPONENTS,
+      path: 'keyboard',
     },
     {
+      type: ComponentType.TYPES,
       path: 'keyboard.type.ts',
-      type: ComponentType.TYPES,
     },
     {
+      type: ComponentType.TYPES,
       path: 'keyboardShortcut.type.ts',
-      type: ComponentType.TYPES,
     },
     {
-      path: 'keyboardShortcut.composable.ts',
       type: ComponentType.COMPOSABLES,
+      path: 'keyboardShortcut.composable.ts',
     },
   ],
   component: ComponentName.KEYBOARD,
