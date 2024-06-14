@@ -2,7 +2,6 @@ import type { VariantProps } from '@/libs/twVariants.lib'
 import { tv } from '@/libs/twVariants.lib'
 
 export const useCommandStyle = tv({
-  defaultVariants: {},
   slots: {
     container: 'rounded-lg bg-background shadow-popover-shadow',
     input: 'w-full truncate border-b border-solid border-border bg-transparent p-5 text-lg outline-none placeholder:text-input-placeholder',
@@ -11,7 +10,6 @@ export const useCommandStyle = tv({
     itemImg: 'size-5 rounded',
     itemText: 'text-muted-foreground',
   },
-  variants: {},
 })
 
 export type CommandStyleProps = VariantProps<typeof useCommandStyle>
