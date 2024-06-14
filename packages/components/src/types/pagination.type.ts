@@ -54,11 +54,11 @@ export type Filters = Record<string, FilterValues | undefined>
 export interface PaginationFilterWithMultipleOptions<TFilters> extends PaginationFilterBase<TFilters> {
   displayFn: (value: string) => string
   options: ComboboxItem<string>[]
-  placeholder: string
   type: 'multiselect'
 }
 
 export interface PaginationFilterWithSingleOption<TFilters> extends PaginationFilterBase<TFilters> {
+  displayFn: (value: FilterValues) => string
   options: SelectItem<FilterValues>[]
   placeholder: string
   type: 'select'
