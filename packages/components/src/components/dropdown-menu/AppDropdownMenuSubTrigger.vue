@@ -21,7 +21,6 @@ const triggerIconClasses = computed<string>(() => dropdownMenuStyle.itemSubTrigg
 </script>
 
 <template>
-  <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
   <DropdownMenuSubTrigger :class="containerClasses">
     <div :class="contentClasses">
       <AppIcon
