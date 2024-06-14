@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import type { CountryCode } from 'libphonenumber-js'
+import type {
+  CountryCode,
+} from 'libphonenumber-js'
 import parsePhoneNumber, {
   getCountries,
   getCountryCallingCode,
@@ -7,7 +9,11 @@ import parsePhoneNumber, {
 } from 'libphonenumber-js'
 import examples from 'libphonenumber-js/mobile/examples'
 import { vMaska } from 'maska'
-import { computed, ref } from 'vue'
+import {
+  computed,
+  ref,
+  watch,
+} from 'vue'
 
 import FormElement from '@/components/form-element/FormElement.vue'
 import AppInput from '@/components/input/AppInput.vue'
@@ -46,7 +52,6 @@ const props = withDefaults(
     /**
      * The model value of the input.
      */
-    modelValue: null | string
     /**
      * The placeholder of the input.
      * @default null
@@ -62,32 +67,44 @@ const props = withDefaults(
   },
 )
 
-const emit = defineEmits<{
-  'update:modelValue': [null | string]
-}>()
-
 const countries = getCountries()
-
-const model = computed<null | string>({
-  get: () => {
-    return props.modelValue
-  },
-  set: (value: null | string) => {
-    emit('update:modelValue', value)
-  },
-})
-
-const numberModel = computed<null | string>(() => {
-  if (model.value === null) {
-    return null
-  }
-
-  const parsedPhoneNumber = parsePhoneNumber(model.value)
-
-  return parsedPhoneNumber?.nationalNumber ?? null
+const model = defineModel<null | string>({
+  required: true,
 })
 
 const countryCodeModel = ref<CountryCode | null>(getCountryCodeFromPhoneNumber(model.value))
+const numberModel = ref<null | string>(getNumberFromModel())
+
+const fullNumber = computed<null | string>(() => {
+  if (numberModel.value === null || countryCodeModel.value === null) {
+    return null
+  }
+
+  const countryCallingCode = getCountryCallingCode(countryCodeModel.value)
+  const fullNumber = `+${countryCallingCode}${numberModel.value}`
+
+  return fullNumber.replaceAll(' ', '')
+})
+
+watch(
+  () => [
+    numberModel.value,
+    countryCodeModel.value,
+  ],
+  () => {
+    model.value = fullNumber.value
+  },
+)
+
+function getNumberFromModel(): null | string {
+  if (model.value === null || countryCodeModel.value === null) {
+    return null
+  }
+
+  const getCountryCodeCallingCode = getCountryCallingCode(countryCodeModel.value)
+
+  return model.value.replace(`+${getCountryCodeCallingCode}`, '')
+}
 
 const countryCodeDialCodeModel = computed<null | string>(() => {
   if (countryCodeModel.value === null) {
@@ -184,33 +201,13 @@ function getCountryCodeFromPhoneNumber(phoneNumber: null | string): CountryCode 
   return country ?? null
 }
 
-function onCountryCodeSelect(countryCode: CountryCode | null): void {
-  if (countryCode === null) {
-    return
-  }
-
-  countryCodeModel.value = countryCode
-}
-
 function getCountryFlagUrl(countryCode: CountryCode): string {
   return `https://purecatamphetamine.github.io/country-flag-icons/3x2/${countryCode}.svg`
 }
 
-function onNationalNumberUpdate(nationalNumber: null | string): void {
-  if (nationalNumber === null) {
-    model.value = null
-
-    return
-  }
-
-  if (countryCodeModel.value === null) {
-    return
-  }
-
-  console.log(nationalNumber)
-
-  // model.value = `+${getCountryCallingCode(countryCodeModel.value)}${nationalNumber}`
-}
+const dialCodeDisplayValue = computed<string>(() => {
+  return `+${countryCodeDialCodeModel.value}`
+})
 </script>
 
 <template>
@@ -234,7 +231,6 @@ function onNationalNumberUpdate(nationalNumber: null | string): void {
         :is-required="props.isRequired"
         class="w-16"
         select-trigger-class="rounded-r-none focus-within:z-[1] relative"
-        @update:model-value="onCountryCodeSelect"
       >
         <template #left>
           <div class="flex items-center pl-3">
@@ -272,7 +268,7 @@ function onNationalNumberUpdate(nationalNumber: null | string): void {
       </AppSelect>
       <AppInput
         :id="id"
-        :model-value="numberModel"
+        v-model="numberModel"
         :data-maska="mask"
         :is-invalid="isInvalid"
         :is-disabled="props.isDisabled"
@@ -281,7 +277,6 @@ function onNationalNumberUpdate(nationalNumber: null | string): void {
         :placeholder="props.placeholder"
         class="rounded-l-none border-l-0"
         type="tel"
-        @update:model-value="onNationalNumberUpdate"
         v-maska
       >
         <template #left>
@@ -289,8 +284,7 @@ function onNationalNumberUpdate(nationalNumber: null | string): void {
             variant="subtext"
             class="-mr-2 ml-2 text-muted-foreground"
           >
-            <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
-            +{{ countryCodeDialCodeModel }}
+            {{ dialCodeDisplayValue }}
           </AppText>
         </template>
       </AppInput>
