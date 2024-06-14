@@ -116,9 +116,9 @@ onMounted(() => {
         // Shortcut for when the dropdown trigger is focused.
         const shortcut = useKeyboardShortcut({
           isDisabled: computed<boolean>(() => props.enableGlobalKeyboardShortcuts),
+          onTrigger: item.onSelect,
           element: dropdownMenuTriggerRef.value?.$el,
           keys: keyboardShortcutKeys,
-          onTrigger: item.onSelect,
         })
 
         // Shortcut for when the dropdown is open.
@@ -130,11 +130,11 @@ onMounted(() => {
 
             return !isOpen.value
           }),
-          keys: keyboardShortcutKeys,
           onTrigger: () => {
             item.onSelect()
             isOpen.value = false
           },
+          keys: keyboardShortcutKeys,
         })
 
         keyboardShortcutsUnbindFns.push(shortcut.unbind, globalShortcut.unbind)
