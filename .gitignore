@@ -12,6 +12,8 @@ dist
 !**/.vitepress/config.mts
 !**/.vitepress/theme
 
+.turbo
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
