@@ -1,4 +1,4 @@
-<script setup lang="ts" generic="TSchema">
+<script setup lang="ts" generic="TSchema, TFilters">
 import { computed } from 'vue'
 
 import AppIcon from '@/components/icon/AppIcon.vue'
@@ -15,7 +15,7 @@ const props = defineProps<{
   hasReachedHorizontalScrollEnd: boolean
   isScrolledToRight: boolean
   columns: TableColumn<TSchema>[]
-  paginationOptions: PaginationOptions<unknown>
+  paginationOptions: PaginationOptions<TFilters>
   shouldPinFirstColumn: boolean
   shouldPinLastColumn: boolean
 }>()

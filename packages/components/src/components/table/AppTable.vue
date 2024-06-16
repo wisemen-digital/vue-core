@@ -4,6 +4,7 @@ import {
   onBeforeUnmount,
   onMounted,
   ref,
+  useSlots,
 } from 'vue'
 import type { RouteLocationNamedRaw } from 'vue-router'
 
@@ -15,28 +16,37 @@ import AppTableFooter from '@/components/table/AppTableFooter.vue'
 import AppTableHeader from '@/components/table/AppTableHeader.vue'
 import AppTableTop from '@/components/table/AppTableTop.vue'
 import type {
-  PageChangeEvent,
+  FilterChangeEvent,
   PaginatedData,
   Pagination,
   PaginationFilter,
   SortChangeEvent,
 } from '@/types/pagination.type'
-import type { TableColumn } from '@/types/table.type'
+import type {
+  TableColumn,
+  TableEmptyTextProp,
+} from '@/types/table.type'
 
 const props = withDefaults(
   defineProps<{
+    title: string
     isLoading: boolean
+    isTopHidden?: boolean
     columns: TableColumn<TSchema>[]
     data: PaginatedData<TSchema> | null
+    emptyText?: TableEmptyTextProp | null
     filters: PaginationFilter<TFilters>[]
     pagination: Pagination<TFilters>
     rowClick?: ((row: TSchema) => void) | null
+    rowTarget?: string
     rowTo?: ((row: TSchema) => RouteLocationNamedRaw) | null
+    searchFilterKey?: keyof TFilters
     shouldPinFirstColumn?: boolean
     shouldPinLastColumn?: boolean
-    title: string
   }>(),
   {
+    isTopHidden: false,
+    emptyText: null,
     rowClick: null,
     rowTo: null,
     shouldPinFirstColumn: false,
@@ -60,6 +70,8 @@ const hasReachedHorizontalScrollEnd = ref<boolean>(false)
 // If vertically scrollable, the last item's border bottom will be removed
 const canScrollVertically = ref<boolean>(false)
 
+const slots = useSlots()
+
 function getIsScrolledtoRight(element: HTMLElement): boolean {
   return element.scrollLeft > 0
 }
@@ -78,10 +90,6 @@ function onScroll(): void {
 
 function handleSortChange(sortChangeEvent: SortChangeEvent): void {
   props.pagination.handleSortChange(sortChangeEvent)
-}
-
-function handlePageChange(event: PageChangeEvent): void {
-  props.pagination.handlePageChange(event)
 }
 
 function createResizeObserver(element: HTMLElement, onResize: () => void): ResizeObserver {
@@ -106,12 +114,16 @@ function onClearFilters(): void {
   props.pagination.clearFilters()
 }
 
+const hasEmptyStateSlot = computed<boolean>(() => {
+  return slots['empty-state'] !== undefined
+})
+
 const gridColsStyle = computed<string>(() => {
   return `${props.columns.map((col) => `minmax(${col.width},${col.maxWidth ?? 'auto'})`).join(' ')}`
 })
 
 const hasNoData = computed<boolean>(() => {
-  return props.data?.data.length === 0 && !props.isLoading
+  return props.data?.data.length === 0 && props.isLoading === false
 })
 
 const activeFilterCount = computed<number>(() => {
@@ -121,10 +133,13 @@ const activeFilterCount = computed<number>(() => {
     return 0
   }
 
-  return Object
-    .values(filters)
-    .filter((value) => value !== null && value !== undefined && value !== '').length
+  return filters.length
 })
+
+function onFilterChange(filterChangeEvent: FilterChangeEvent<TFilters>): void {
+  props.pagination.handleFilterChange(filterChangeEvent)
+  props.pagination.handlePageChange({ page: 0, perPage: props.pagination.paginationOptions.value.pagination.perPage })
+}
 
 onMounted(() => {
   if (tableContainerRef.value === null) {
@@ -142,9 +157,15 @@ onBeforeUnmount(() => {
 <template>
   <div class="relative flex h-full flex-1 flex-col overflow-hidden rounded-xl border border-solid border-border bg-background">
     <AppTableTop
+      v-if="!isTopHidden"
       :is-loading="props.isLoading"
       :title="props.title"
       :total="props.data?.total ?? null"
+      :filters="props.filters"
+      :pagination="props.pagination"
+      :search-filter-key="props.searchFilterKey"
+      @filter="onFilterChange"
+      @clear="onClearFilters"
     />
 
     <div
@@ -179,10 +200,11 @@ onBeforeUnmount(() => {
           :has-active-filters="activeFilterCount > 0 && !props.isLoading"
           :row-click="props.rowClick"
           :row-to="props.rowTo"
+          :row-target="props.rowTarget"
         />
 
         <AppTableEmptyState
-          v-if="hasNoData || props.isLoading"
+          v-if="!hasEmptyStateSlot && (hasNoData || props.isLoading)"
           :active-filter-count="activeFilterCount"
           :column-count="props.columns.length"
           :should-pin-first-column="props.shouldPinFirstColumn"
@@ -200,17 +222,19 @@ onBeforeUnmount(() => {
       />
     </div>
 
-    <AppTableEmptyStateOverlay
-      v-if="hasNoData"
-      :active-filter-count="activeFilterCount"
-      @clear-filters="onClearFilters"
-    />
+    <slot name="empty-state">
+      <AppTableEmptyStateOverlay
+        v-if="hasNoData"
+        :active-filter-count="activeFilterCount"
+        :empty-text="props.emptyText"
+        @clear-filters="onClearFilters"
+      />
+    </slot>
 
     <AppTableFooter
       :is-loading="props.isLoading"
-      :pagination-options="props.pagination.paginationOptions.value"
+      :pagination="(props.pagination as Pagination<unknown>)"
       :total="props.data?.total ?? null"
-      @page="handlePageChange"
     />
   </div>
 </template>

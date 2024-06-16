@@ -3,14 +3,14 @@ logs
 *.log
 npm-debug.log*
 pnpm-debug.log*
+_generation
 
 node_modules
 dist
 *.local
 
-**/.vitepress
-!**/.vitepress/config.mts
-!**/.vitepress/theme
+**/.vitepress/dist
+**/.vitepress/cache
 
 .turbo
 
@@ -21,3 +21,5 @@ dist
 .DS_Store
 *.tgz
 *storybook.log
+
+.turbo

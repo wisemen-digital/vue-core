@@ -3,24 +3,29 @@ import type {
   MaybeRefOrGetter,
 } from 'vue'
 
+import type { ComboboxItem } from '@/types/comboboxItem.type'
+import type { SelectItem } from '@/types/selectItem.type'
+
 export type SortDirection = 'asc' | 'desc'
 
 export interface PaginationSort {
   direction: SortDirection
   key: string
 }
-
 export type PaginationFilters<TFilters> = {
-  [K in keyof TFilters]: TFilters[K]
-}
+  key: keyof TFilters
+  value: FilterValues | null
+}[]
 
 export interface PageChangeEvent {
   page: number
   perPage: number
 }
 
-export type FilterChangeEvent<TFilters> = {
-  [K in keyof TFilters]?: unknown
+export type FilterChangeEvent<TFilters> = PaginationFilters<TFilters>
+export interface TableFilterEvent<TFilters> {
+  key: keyof TFilters
+  value: FilterValues | null
 }
 
 export interface SortChangeEvent {
@@ -39,12 +44,27 @@ export interface PaginationOptions<TFilters> {
 
 interface PaginationFilterBase<TFilters> {
   id: keyof TFilters
+  isVisible?: boolean
   label: string
 }
 
-export interface PaginationFilterWithOptions<TFilters> extends PaginationFilterBase<TFilters> {
-  options: { label: string, value: string }[]
-  type: 'multiselect' | 'select'
+export type FilterValues = boolean
+  | number
+  | string
+  | string[]
+export type Filters = Record<string, FilterValues | undefined>
+
+export interface PaginationFilterWithMultipleOptions<TFilters> extends PaginationFilterBase<TFilters> {
+  displayFn: (value: string) => string
+  options: ComboboxItem<string>[]
+  placeholder: string
+  type: 'multiselect'
+}
+
+export interface PaginationFilterWithSingleOption<TFilters> extends PaginationFilterBase<TFilters> {
+  options: SelectItem<FilterValues>[]
+  placeholder: string
+  type: 'select'
 }
 
 export interface PaginationFilterBoolean<TFilters> extends PaginationFilterBase<TFilters> {
@@ -52,13 +72,24 @@ export interface PaginationFilterBoolean<TFilters> extends PaginationFilterBase<
 }
 
 export interface PaginationFilterText<TFilters> extends PaginationFilterBase<TFilters> {
+  placeholder: string
   type: 'text'
+}
+
+export interface PaginationFilterNumber<TFilters> extends PaginationFilterBase<TFilters> {
+  max?: number
+  min?: number
+  placeholder: string
+  suffix?: string
+  type: 'number'
 }
 
 export type PaginationFilter<TFilters> =
   | PaginationFilterBoolean<TFilters>
+  | PaginationFilterNumber<TFilters>
   | PaginationFilterText<TFilters>
-  | PaginationFilterWithOptions<TFilters>
+  | PaginationFilterWithMultipleOptions<TFilters>
+  | PaginationFilterWithSingleOption<TFilters>
 
 export type Pagination<TFilters> = UsePaginationReturnType<TFilters>
 

@@ -1,0 +1,57 @@
+{
+  "name": "@wisemen/vue-core-query",
+  "type": "module",
+  "version": "0.0.1",
+  "license": "MIT",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.umd.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "typings": "./dist/index.d.ts",
+  "web-types": "./dist/web-types.json",
+  "files": [
+    "./dist"
+  ],
+  "scripts": {
+    "build": "pnpm type-check && pnpm build-only && npm pack && pnpm gen:web-types",
+    "precommit": "pnpm type-check && test:unit && pnpm build-only",
+    "build-only": "vite build",
+    "type-check": "vue-tsc -p tsconfig.check.json --noEmit",
+    "pub:release": "pnpm publish --access public",
+    "gen:web-types": "vue-docgen-web-types",
+    "test:unit": "vitest --run",
+    "test": "vitest --run",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "dev": "vite build --watch"
+  },
+  "dependencies": {
+    "@tanstack/vue-query": "^5.45.0"
+  },
+  "devDependencies": {
+    "@tsconfig/node18": "^18.2.4",
+    "@types/dom-view-transitions": "^1.0.4",
+    "@types/node": "^20.14.2",
+    "@vitejs/plugin-vue": "^5.0.5",
+    "@vue/test-utils": "^2.4.6",
+    "@vue/tsconfig": "^0.5.1",
+    "@wisemen/eslint-config-vue": "0.1.4",
+    "eslint": "9.4",
+    "jsdom": "^24.1.0",
+    "minimist": "^1.2.8",
+    "typescript": "^5.4.5",
+    "vite": "^5.3.1",
+    "vite-plugin-dts": "^3.9.1",
+    "vitest": "^1.6.0",
+    "vue": "^3.4.28",
+    "vue-component-type-helpers": "^2.0.21",
+    "vue-docgen-web-types": "^0.1.8",
+    "vue-tsc": "^2.0.21"
+  }
+}

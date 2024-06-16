@@ -1,0 +1,36 @@
+{
+  "name": "docs",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "main": "index.js",
+  "scripts": {
+    "dev": "vitepress dev",
+    "docs:dev": "vitepress dev",
+    "docs:build": "__VUE_PROD_DEVTOOLS__=false vitepress build",
+    "docs:preview": "vitepress preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "type-check": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "@wisemen/vue-core": "workspace:*",
+    "vue": "^3.4.28",
+    "vue-i18n": "^9.13.1",
+    "vue-router": "^4.3.3"
+  },
+  "devDependencies": {
+    "@types/dom-view-transitions": "^1.0.4",
+    "@types/node": "^20.14.2",
+    "@wisemen/eslint-config-vue": "^0.1.4",
+    "eslint": "9.4",
+    "postcss": "^8.4.38",
+    "postcss-prefix-selector": "^1.16.1",
+    "tailwindcss": "^3.4.4",
+    "vitepress": "1.2.3",
+    "vue-tsc": "^2.0.21"
+  }
+}

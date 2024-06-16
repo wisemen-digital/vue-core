@@ -2,6 +2,7 @@ import type {
   Ref,
   VNode,
 } from 'vue'
+import type { RouteLocationNamedRaw } from 'vue-router'
 
 import type { Icon } from '@/icons/icons'
 import type { KeyboardKey } from '@/types/keyboard.type'
@@ -29,14 +30,25 @@ export interface DropdownMenuGroup {
   type: 'group'
 }
 
-export interface DropdownMenuOption {
+interface DropdownMenuBaseOption {
   icon?: Icon
   keyboardShortcutKeys?: KeyboardKey[]
   label: string
   render?: () => VNode
+}
+
+export interface DropdownMenuSelectOption extends DropdownMenuBaseOption {
   type: 'option'
   onSelect: () => void
 }
+
+export interface DropdownMenuRouteOption extends DropdownMenuBaseOption {
+  target?: string
+  to: RouteLocationNamedRaw
+  type: 'routeOption'
+}
+
+export type DropdownMenuOption = DropdownMenuRouteOption | DropdownMenuSelectOption
 
 export interface DropdownMenuCheckbox {
   isSelected: Ref<boolean>
@@ -68,4 +80,5 @@ export type DropdownMenuItem = DropdownMenuCheckbox
   | DropdownMenuLabel
   | DropdownMenuOption
   | DropdownMenuRadioGroup
+  | DropdownMenuRouteOption
   | DropdownMenuSubMenu

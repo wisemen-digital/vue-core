@@ -1,0 +1,75 @@
+{
+  "name": "@wisemen/vue-core-cli",
+  "type": "module",
+  "version": "0.0.2",
+  "description": "Add components to your apps.",
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": {
+    "name": "Robbe Vaes"
+  },
+  "license": "MIT",
+  "keywords": [
+    "components",
+    "ui",
+    "tailwind",
+    "vue",
+    "shadcn",
+    "radix-vue",
+    "wisemen"
+  ],
+  "exports": "./dist/index.js",
+  "bin": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "watch": "tsup --watch",
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "clean": "rimraf dist && rimraf components",
+    "start:dev": "cross-env COMPONENTS_BASE_URL=http://localhost:3001 node dist/index.js",
+    "start": "node dist/index.js",
+    "registry": "tsx ./src/generate/generateRegistry.ts",
+    "changeset": "changeset",
+    "release": "changeset version",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "cli:generate": "pnpm registry",
+    "pub:beta": "pnpm lint && pnpm typecheck && pnpm build && pnpm publish --no-git-checks --access public --tag beta",
+    "pub:next": "pnpm build && ppnpm lint && pnpm typecheck && npm publish --no-git-checks --access public --tag next",
+    "pub:release": "pnpm typecheck && pnpm build && pnpm publish --access public"
+  },
+  "dependencies": {
+    "chalk": "5.3.0",
+    "commander": "^12.1.0",
+    "cosmiconfig": "^9.0.0",
+    "diff": "^5.2.0",
+    "execa": "^9.2.0",
+    "find-up": "^7.0.0",
+    "fs-extra": "^11.2.0",
+    "https-proxy-agent": "^7.0.4",
+    "node-fetch": "^3.3.2",
+    "ora": "^8.0.1",
+    "prompts": "^2.4.2",
+    "tailwind-merge": "^2.3.0",
+    "tailwindcss": "^3.4.4",
+    "tsconfig-paths": "^4.2.0",
+    "tsx": "^4.15.4",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.5",
+    "@types/diff": "^5.2.1",
+    "@types/fs-extra": "^11.0.4",
+    "@types/prompts": "^2.4.9",
+    "@wisemen/eslint-config-vue": "^0.1.4",
+    "changeset": "^0.2.6",
+    "eslint": "~9.4.0",
+    "rimraf": "^5.0.7",
+    "tsup": "^8.1.0",
+    "type-fest": "^4.20.0",
+    "typescript": "^5.4.5"
+  }
+}
