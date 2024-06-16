@@ -2,12 +2,10 @@
 <script setup lang="ts">
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols'
+import type { FormFieldErrors } from '@wisemen/vue-core'
+import { AppText, FormDatePicker } from '@wisemen/vue-core'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-
-import FormDatePicker from '@/components/date/FormDatePicker.vue'
-import AppText from '@/components/text/AppText.vue'
-import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
 const controls = createControls({
   id: {

@@ -2,11 +2,9 @@
 <script setup lang="ts">
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols'
+import { AppDatePicker, AppText } from '@wisemen/vue-core'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-
-import AppDatePicker from '@/components/date/AppDatePicker.vue'
-import AppText from '@/components/text/AppText.vue'
 
 const controls = createControls({
   id: {

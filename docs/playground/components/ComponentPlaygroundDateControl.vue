@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import FormDatePicker from '@components/components/date/FormDatePicker.vue'
+import { FormDatePicker } from '@wisemen/vue-core'
 
 const props = defineProps<{
   label: string

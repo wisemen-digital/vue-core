@@ -1,7 +1,7 @@
 <script setup lang="ts" generic="TControlKeys extends string">
-import ComponentPlaygroundDateControl from '@docs/playground/components/ComponentPlaygroundDateControl.vue'
 import type { Controls } from '@docs/playground/types/controls.type'
 
+import ComponentPlaygroundDateControl from './ComponentPlaygroundDateControl.vue'
 import ComponentPlaygroundIconControl from './ComponentPlaygroundIconControl.vue'
 import ComponentPlaygroundSelectControl from './ComponentPlaygroundSelectControl.vue'
 import ComponentPlaygroundSwitchControl from './ComponentPlaygroundSwitchControl.vue'
