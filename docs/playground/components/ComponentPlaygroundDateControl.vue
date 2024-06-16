@@ -1,11 +1,12 @@
 <script setup lang="ts">
+import type { CalendarDate } from '@internationalized/date'
 import { FormDatePicker } from '@wisemen/vue-core'
 
 const props = defineProps<{
   label: string
 }>()
 
-const model = defineModel<Date | null>({
+const model = defineModel<CalendarDate | null>({
   required: true,
 })
 </script>

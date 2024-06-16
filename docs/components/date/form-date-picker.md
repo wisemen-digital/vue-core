@@ -18,4 +18,4 @@ import FormDatePickerPlayground from './FormDatePickerPlayground.vue'
 
 ## Code
 
-For full source code, see [Github](https://github.com/wisemen-digital/vue-core/blob/main/packages/components/src/components/date/AppDatePicker.vue).
+For full source code, see [Github](https://github.com/wisemen-digital/vue-core/blob/main/packages/components/src/components/date/FormDatePicker.vue).

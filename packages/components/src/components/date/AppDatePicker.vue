@@ -1,14 +1,16 @@
 <script setup lang="ts">
-import { CalendarDate, type DateValue } from '@internationalized/date'
+import { CalendarDate } from '@internationalized/date'
 import {
   DatePickerRoot,
   useId,
 } from 'radix-vue'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import AppDateMonthPickerContent from '@/components/date/AppDateMonthPickerContent.vue'
 import AppDatePickerContent from '@/components/date/AppDatePickerContent.vue'
 import AppDatePickerField from '@/components/date/AppDatePickerField.vue'
+import AppDateYearPickerContent from '@/components/date/AppDateYearPickerContent.vue'
 
 const props = withDefaults(defineProps<{
   /**
@@ -20,12 +22,12 @@ const props = withDefaults(defineProps<{
    * The max date.
    * @default null
    */
-  maxDate?: Date | null
+  maxDate?: CalendarDate | null
   /**
    * The min date.
    * @default null
    */
-  minDate?: Date | null
+  minDate?: CalendarDate | null
   /**
    * Whether the input is disabled.
    * @default false
@@ -40,12 +42,7 @@ const props = withDefaults(defineProps<{
    * The modelValue of the date picker.
    * @default null
    */
-  modelValue: Date | null
-  /**
-   * The placeholder of the input.
-   * @default null
-   */
-  placeholder?: null | string
+  modelValue: CalendarDate | null
 }>(), {
   id: null,
   isDisabled: false,
@@ -59,10 +56,10 @@ const props = withDefaults(defineProps<{
 
 const emit = defineEmits<{
   'blur': []
-  'update:modelValue': [Date | null]
+  'update:modelValue': [CalendarDate | null]
 }>()
 
-const model = computed<DateValue | undefined>({
+const model = computed<CalendarDate | undefined>({
   get: () => {
     const value = props.modelValue
 
@@ -70,14 +67,14 @@ const model = computed<DateValue | undefined>({
       return undefined
     }
 
-    return dateToCalendarDate(value)
+    return value
   },
-  set: (value: DateValue | undefined) => {
+  set: (value: CalendarDate | undefined) => {
     if (value === undefined) {
       return null
     }
 
-    return emit('update:modelValue', new Date(value.year, value.month - 1, value.day))
+    return emit('update:modelValue', value)
   },
 })
 
@@ -85,28 +82,68 @@ const { locale } = useI18n()
 
 const id = props.id ?? useId()
 
-function dateToCalendarDate(date: Date): CalendarDate {
-  return new CalendarDate(date.getFullYear(), date.getMonth() + 1, date.getDate())
-}
-
-const minDate = computed<DateValue | undefined>(() => {
+const minDate = computed<CalendarDate | undefined>(() => {
   if (props.minDate === null || props.minDate === undefined) {
     return undefined
   }
 
-  return dateToCalendarDate(props.minDate)
+  return props.minDate
 })
 
-const maxDate = computed<DateValue | undefined>(() => {
+const maxDate = computed<CalendarDate | undefined>(() => {
   if (props.maxDate === null || props.maxDate === undefined) {
     return undefined
   }
 
-  return dateToCalendarDate(props.maxDate)
+  return props.maxDate
 })
 
 function onBlur(): void {
   emit('blur')
+}
+
+const isYearPickerVisible = ref<boolean>(false)
+const isMonthPickerVisible = ref<boolean>(false)
+
+function onShowYearPickerButtonClick(): void {
+  isYearPickerVisible.value = true
+  isMonthPickerVisible.value = false
+}
+
+function onShowMonthPickerButtonClick(): void {
+  isMonthPickerVisible.value = true
+  isYearPickerVisible.value = false
+}
+
+function onMonthSelect(number: number): void {
+  if (model.value === undefined) {
+    model.value = new CalendarDate(new Date().getFullYear(), number, 1)
+  }
+  else {
+    model.value?.set({
+      day: model.value?.day ?? new Date().getDate(),
+      month: number,
+      year: model.value?.year ?? new Date().getFullYear(),
+    })
+  }
+
+  isMonthPickerVisible.value = false
+}
+
+function onYearSelect(number: number): void {
+  if (model.value === undefined) {
+    model.value = new CalendarDate(number, new Date().getMonth() + 1, 1)
+  }
+  else {
+    model.value?.set({
+      day: model.value?.day ?? new Date().getDate(),
+      month: model.value?.month ?? new Date().getMonth(),
+      year: number,
+    })
+  }
+
+  isYearPickerVisible.value = false
+  isMonthPickerVisible.value = true
 }
 </script>
 
@@ -122,7 +159,20 @@ function onBlur(): void {
       @blur="onBlur"
     >
       <AppDatePickerField />
-      <AppDatePickerContent />
+      <AppDatePickerContent
+        v-if="!isMonthPickerVisible && !isYearPickerVisible"
+        @month-click="onShowMonthPickerButtonClick"
+        @year-click="onShowYearPickerButtonClick"
+      />
+      <AppDateMonthPickerContent
+        v-if="isMonthPickerVisible"
+        @month-click="onMonthSelect"
+        @year-click="onShowYearPickerButtonClick"
+      />
+      <AppDateYearPickerContent
+        v-if="isYearPickerVisible"
+        @year-click="onYearSelect"
+      />
     </DatePickerRoot>
   </div>
 </template>
