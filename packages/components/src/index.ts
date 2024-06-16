@@ -133,7 +133,8 @@ export { default as AppTooltip } from './components/tooltip/AppTooltip.vue'
 // Composables
 export { useDialog } from './composables/dialog.composable'
 export { useKeyboardShortcut } from './composables/keyboardShortcut.composable'
-export { usePagination } from './composables/pagination.composable'
+export { useLocalPagination } from './composables/pagination/localPagination.composable'
+export { usePagination } from './composables/pagination/pagination.composable'
 export { useToast } from './composables/toast.composable'
 
 // Types
