@@ -10,25 +10,6 @@ import AppTableLocalPlayground from './AppTableLocalPlayground.vue'
 
 <AppTableLocalPlayground />
 
-## Props
-
-See [AppTable](./app-table.md) for the full list of props.
-
-## Types
-
-Todo
-
-```js [PaginationFilter]
-
-Todo
-```
-
-```js [Pagination]
-Todo
-```
-::: 
-
-
 ## Code
 
 ::: code-group
