@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { ComboboxInput, ComboboxTrigger } from 'radix-vue'
+import {
+  ComboboxInput,
+  ComboboxTrigger,
+} from 'radix-vue'
 import { ref } from 'vue'
 
 import AppIcon from '@/components/icon/AppIcon.vue'

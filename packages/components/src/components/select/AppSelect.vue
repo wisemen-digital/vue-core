@@ -13,7 +13,10 @@ import AppSelectRoot from '@/components/select/AppSelectRoot.vue'
 import AppSelectTrigger from '@/components/select/AppSelectTrigger.vue'
 import AppSelectValue from '@/components/select/AppSelectValue.vue'
 import type { Icon } from '@/icons/icons'
-import type { AcceptableValue, SelectItem } from '@/types/selectItem.type'
+import type {
+  AcceptableValue,
+  SelectItem,
+} from '@/types/selectItem.type'
 
 const props = withDefaults(
   defineProps<{
@@ -22,6 +25,10 @@ const props = withDefaults(
      * @default null
      */
     id?: null | string
+    /**
+     * Whether the select chevron is hidden.
+     */
+    isChevronHidden?: boolean
     /**
      * Whether the select is disabled.
      */
@@ -35,6 +42,10 @@ const props = withDefaults(
      * Whether the select is loading.
      */
     isLoading?: boolean
+    /**
+     * The value can be hidden to provide more customization.
+     */
+    isValueHidden?: boolean
     /**
      * display function for the selected value
      */
@@ -51,12 +62,18 @@ const props = withDefaults(
      * The placeholder of the select.
      */
     placeholder?: null | string
+    /**
+     * The class to apply to the select trigger.
+     */
+    selectTriggerClass?: null | string
   }>(),
   {
     id: null,
+    isChevronHidden: false,
     isDisabled: false,
     isInvalid: false,
     isLoading: false,
+    isValueHidden: false,
     iconLeft: undefined,
     placeholder: null,
   },
@@ -95,6 +112,7 @@ function onTriggerBlur(): void {
         :id="id"
         :is-disabled="props.isDisabled"
         :is-invalid="props.isInvalid"
+        :class="props.selectTriggerClass"
         @blur="onTriggerBlur"
       >
         <slot name="left">
@@ -105,7 +123,10 @@ function onTriggerBlur(): void {
           />
         </slot>
 
-        <AppSelectValue :is-empty="model === null">
+        <AppSelectValue
+          v-if="!isValueHidden"
+          :is-empty="model === null"
+        >
           <template v-if="placeholder !== null && model === null">
             {{ props.placeholder }}
           </template>
@@ -121,7 +142,7 @@ function onTriggerBlur(): void {
         />
 
         <SelectIcon
-          v-else
+          v-else-if="!isChevronHidden"
           :as-child="true"
           class="mr-3"
         >

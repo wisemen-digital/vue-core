@@ -138,6 +138,7 @@ onMounted(() => {
       :class="{
         'opacity-0': props.isLoading,
       }"
+      class="w-full"
     >
       <slot />
     </span>

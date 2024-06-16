@@ -9,6 +9,6 @@ export const {
   cx,
 } = defineConfig({
   hooks: {
-    onComplete: className => twMerge(className),
+    onComplete: (className) => twMerge(className),
   },
 })

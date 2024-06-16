@@ -3,11 +3,13 @@ logs
 *.log
 npm-debug.log*
 pnpm-debug.log*
+_generation
 
 node_modules
 dist
 *.local
 
+**/.vitepress/dist
 **/.vitepress/cache
 
 # Editor directories and files
@@ -17,3 +19,5 @@ dist
 .DS_Store
 *.tgz
 *storybook.log
+
+.turbo

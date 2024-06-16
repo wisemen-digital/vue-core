@@ -1,7 +1,7 @@
 {
   "name": "@wisemen/vue-core",
   "type": "module",
-  "version": "0.0.64",
+  "version": "0.0.73",
   "license": "MIT",
   "sideEffects": false,
   "exports": {
@@ -20,6 +20,7 @@
     "./dist"
   ],
   "scripts": {
+    "dev": "vite build --watch",
     "build": "pnpm type-check && pnpm build-only && npm pack && cp web-types.json dist/web-types.json",
     "precommit": "pnpm type-check && test:unit && pnpm build-only",
     "build-only": "vite build",
@@ -32,40 +33,40 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "@internationalized/date": "^3.5.4",
-    "@tanstack/vue-query": "^5.36.0"
+    "@internationalized/date": "^3.5.4"
   },
   "devDependencies": {
-    "@tsconfig/node18": "^2.0.1",
+    "@tsconfig/node18": "^18.2.4",
     "@types/dom-view-transitions": "^1.0.4",
-    "@types/node": "^18.19.31",
-    "@vitejs/plugin-vue": "^5.0.4",
-    "@vue/test-utils": "^2.4.5",
-    "@vue/tsconfig": "^0.4.0",
-    "@vueuse/core": "^10.9.0",
-    "@vueuse/router": "^10.9.0",
-    "@wisemen/eslint-config-vue": "0.0.15",
+    "@types/node": "^20.14.2",
+    "@vitejs/plugin-vue": "^5.0.5",
+    "@vue/test-utils": "^2.4.6",
+    "@vue/tsconfig": "^0.5.1",
+    "@vueuse/core": "^10.11.0",
+    "@vueuse/router": "^10.11.0",
+    "@wisemen/eslint-config-vue": "0.1.4",
     "autoprefixer": "^10.4.19",
     "clsx": "^2.1.1",
     "cva": "1.0.0-beta.1",
-    "eslint": "8.57",
-    "jsdom": "^24.0.0",
-    "libphonenumber-js": "^1.10.61",
+    "eslint": "9.4",
+    "jsdom": "^24.1.0",
+    "libphonenumber-js": "^1.11.3",
     "maska": "^2.1.11",
     "minimist": "^1.2.8",
-    "radix-vue": "^1.7.3",
-    "sass": "^1.75.0",
+    "radix-vue": "^1.8.3",
+    "sass": "^1.77.5",
     "tailwind-merge": "^2.3.0",
-    "tailwindcss": "^3.4.3",
+    "tailwindcss": "^3.4.4",
     "typescript": "^5.4.5",
-    "vite": "^5.2.10",
-    "vite-plugin-dts": "^3.9.0",
-    "vitest": "^1.5.3",
-    "vue": "^3.4.26",
+    "vite": "^5.3.1",
+    "vite-plugin-dts": "^3.9.1",
+    "vitest": "^1.6.0",
+    "vue": "^3.4.28",
+    "vue-component-type-helpers": "^2.0.21",
     "vue-docgen-web-types": "^0.1.8",
     "vue-i18n": "^9.13.1",
-    "vue-router": "^4.3.2",
-    "vue-tsc": "^2.0.15",
-    "zod": "^3.23.5"
+    "vue-router": "^4.3.3",
+    "vue-tsc": "^2.0.21",
+    "zod": "^3.23.8"
   }
 }

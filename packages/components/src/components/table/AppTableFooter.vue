@@ -1,67 +1,36 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-
-import AppSkeletonLoaderRow from '@/components/skeleton-loader/AppSkeletonLoaderRow.vue'
-import AppTablePagination from '@/components/table/AppTablePagination.vue'
-import AppText from '@/components/text/AppText.vue'
-import type { PageChangeEvent, PaginationOptions } from '@/types/pagination.type'
-import { toLocaleNumber } from '@/utils/number.util'
+import AppPaginationNext from '@/components/pagination/AppPaginationNext.vue'
+import AppPaginationPages from '@/components/pagination/AppPaginationPages.vue'
+import AppPaginationPrev from '@/components/pagination/AppPaginationPrev.vue'
+import AppPaginationResultIndicator from '@/components/pagination/AppPaginationResultIndicator.vue'
+import AppPaginationRoot from '@/components/pagination/AppPaginationRoot.vue'
+import type {
+  Pagination,
+} from '@/types/pagination.type'
 
 const props = defineProps<{
   isLoading: boolean
-  paginationOptions: PaginationOptions<unknown>
+  pagination: Pagination<unknown>
   total: null | number
 }>()
-
-const emit = defineEmits<{
-  page: [event: PageChangeEvent]
-}>()
-
-const currentPageFrom = computed<number>(() => {
-  const { page, perPage } = props.paginationOptions.pagination
-
-  return perPage * page + 1
-})
-
-const currentPageUntil = computed<number>(() => {
-  const { page, perPage } = props.paginationOptions.pagination
-
-  return Math.min(perPage * (page + 1), props.total ?? 0)
-})
-
-function handlePageEvent(event: PageChangeEvent): void {
-  emit('page', event)
-}
 </script>
 
 <template>
-  <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
-
-  <div class="sticky bottom-0 left-0 z-10 flex h-14 w-full items-center justify-between border-t border-solid border-border bg-background px-6 py-2">
-    <AppSkeletonLoaderRow
-      v-if="props.isLoading"
-      class="w-20"
-    />
-
-    <AppText
-      v-else-if="props.total !== null"
-      variant="subtext"
+  <div
+    v-if="!props.isLoading"
+    class="sticky bottom-0 left-0 z-10 flex h-14 w-full items-center justify-between border-t border-solid border-border bg-background px-6 py-2"
+  >
+    <AppPaginationRoot
+      :pagination="props.pagination"
+      :total="props.total ?? 0"
     >
-      {{ toLocaleNumber(currentPageFrom) }} -
-      {{ toLocaleNumber(currentPageUntil) }} of
-      {{ toLocaleNumber(props.total) }}
-    </AppText>
+      <AppPaginationResultIndicator />
 
-    <AppSkeletonLoaderRow
-      v-if="props.isLoading"
-      class="w-24"
-    />
-
-    <AppTablePagination
-      v-else-if="props.total !== null"
-      :pagination-options="paginationOptions"
-      :total="props.total"
-      @page="handlePageEvent"
-    />
+      <div class="flex items-center gap-x-2">
+        <AppPaginationPrev />
+        <AppPaginationPages />
+        <AppPaginationNext />
+      </div>
+    </AppPaginationRoot>
   </div>
 </template>

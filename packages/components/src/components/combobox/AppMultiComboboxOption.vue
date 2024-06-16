@@ -1,5 +1,8 @@
 <script setup lang="ts" generic="TValue extends AcceptableValue">
-import { ComboboxItem as RadixComboboxItem, ComboboxItemIndicator } from 'radix-vue'
+import {
+  ComboboxItem as RadixComboboxItem,
+  ComboboxItemIndicator,
+} from 'radix-vue'
 
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppText from '@/components/text/AppText.vue'

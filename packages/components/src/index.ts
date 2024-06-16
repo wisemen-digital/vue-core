@@ -56,11 +56,11 @@ export { default as AppIcon } from './components/icon/AppIcon.vue'
 
 // Input
 export { default as AppInput } from './components/input/AppInput.vue'
-export { default as AppNumberInput } from './components/input/AppNumberInput.vue'
 export { default as FormInput } from './components/input/FormInput.vue'
-export { default as FormNumberInput } from './components/input/FormNumberInput.vue'
-export { default as FormPasswordInput } from './components/input/FormPasswordInput.vue'
-export { default as FormPhoneNumberInput } from './components/input/FormPhoneNumberInput.vue'
+export { default as AppNumberInput } from './components/input/number/AppNumberInput.vue'
+export { default as FormNumberInput } from './components/input/number/FormNumberInput.vue'
+export { default as FormPasswordInput } from './components/input/password/FormPasswordInput.vue'
+export { default as FormPhoneNumberInput } from './components/input/phone-number/FormPhoneNumberInput.vue'
 export { default as AppTextarea } from './components/textarea/AppTextarea.vue'
 export { default as FormTextarea } from './components/textarea/FormTextarea.vue'
 
@@ -71,6 +71,13 @@ export { default as AppKeyboardShortcutProvider } from './components/keyboard/Ap
 
 // Loader
 export { default as AppLoader } from './components/loader/AppLoader.vue'
+
+// Pagination
+export { default as AppPaginationNext } from './components/pagination/AppPaginationNext.vue'
+export { default as AppPaginationPages } from './components/pagination/AppPaginationPages.vue'
+export { default as AppPaginationPrev } from './components/pagination/AppPaginationPrev.vue'
+export { default as AppPaginationResultIndicator } from './components/pagination/AppPaginationResultIndicator.vue'
+export { default as AppPaginationRoot } from './components/pagination/AppPaginationRoot.vue'
 
 // Popover
 export { default as AppPopover } from './components/popover/AppPopover.vue'
@@ -103,6 +110,7 @@ export { default as FormSwitch } from './components/switch/FormSwitch.vue'
 
 // Table
 export { default as AppTable } from './components/table/AppTable.vue'
+export { default as AppTableFiltersPopover } from './components/table/AppTableFiltersPopover.vue'
 
 // Tabs
 export { default as AppRouteTabs } from './components/tabs/AppRouteTabs.vue'
@@ -129,11 +137,7 @@ export { default as AppTooltip } from './components/tooltip/AppTooltip.vue'
 // Composables
 export { useDialog } from './composables/dialog.composable'
 export { useKeyboardShortcut } from './composables/keyboardShortcut.composable'
-export type { UseMutationReturnType } from './composables/mutation/mutation.composable'
-export { useMutation } from './composables/mutation/mutation.composable'
 export { usePagination } from './composables/pagination.composable'
-export type { UseQueryReturnType } from './composables/query/query.composable'
-export { useQuery } from './composables/query/query.composable'
 export { useToast } from './composables/toast.composable'
 
 // Types
@@ -156,8 +160,8 @@ export type {
   SortDirection,
   UsePaginationReturnType,
 } from './types/pagination.type'
-export type { QueryKeys } from './types/queryKeys.type'
 export type { Routes } from './types/routes.type'
+export type { AcceptableValue } from './types/selectItem.type'
 export type { SelectItem } from './types/selectItem.type'
 export type { RouteTabItem, TabItem } from './types/tabItem.type'
 export type { TableColumn } from './types/table.type'

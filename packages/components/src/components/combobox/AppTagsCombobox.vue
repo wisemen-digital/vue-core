@@ -12,6 +12,7 @@ import {
   computed,
   ref,
 } from 'vue'
+import type { ComponentExposed } from 'vue-component-type-helpers'
 
 import AppComboboxContent from '@/components/combobox/AppComboboxContent.vue'
 import AppComboboxEmpty from '@/components/combobox/AppComboboxEmpty.vue'
@@ -23,6 +24,7 @@ import AppIcon from '@/components/icon/AppIcon.vue'
 import AppLoader from '@/components/loader/AppLoader.vue'
 import AppTagsInputItem from '@/components/tags-input/AppTagsInputItem.vue'
 import type { ComboboxItem } from '@/types/comboboxItem.type'
+import type { ComboboxProps } from '@/types/comboboxProps.type'
 import type { AcceptableValue } from '@/types/selectItem.type'
 
 const props = withDefaults(
@@ -64,6 +66,10 @@ const props = withDefaults(
      * @default null
      */
     placeholder?: null | string
+    /**
+     * The props to pass to the popover.
+     */
+    popoverProps?: ComboboxProps['popoverProps']
   }>(),
   {
     isDisabled: false,
@@ -71,6 +77,7 @@ const props = withDefaults(
     isLoading: false,
     emptyText: null,
     placeholder: null,
+    popoverProps: null,
   },
 )
 
@@ -89,7 +96,7 @@ const searchModel = defineModel<null | string>('search', {
 
 const isOpen = ref<boolean>(false)
 
-const tagsInputRootRef = ref<InstanceType<typeof TagsInputRoot> | null>(null)
+const tagsInputRootRef = ref<ComponentExposed<typeof TagsInputRoot> | null>(null)
 
 const { canOpenDropdown } = useCombobox({
   isLoading: computed<boolean>(() => props.isLoading),
@@ -161,7 +168,7 @@ function onBlur(): void {
                   'ml-0.5': model.length === 0,
                 }"
                 :placeholder="props.placeholder ?? undefined"
-                class="size-full flex-1 bg-transparent px-1 text-sm outline-none placeholder:text-input-placeholder"
+                class="size-full min-w-10 flex-1 bg-transparent px-1 text-sm outline-none placeholder:text-input-placeholder"
                 @blur="onBlur"
                 @keydown.enter.prevent
               />
@@ -200,7 +207,7 @@ function onBlur(): void {
             v-if="isOpen && canOpenDropdown"
             class="z-popover"
           >
-            <AppComboboxContent>
+            <AppComboboxContent :popover-props="props.popoverProps">
               <AppComboboxViewport>
                 <AppComboboxEmpty :empty-text="props.emptyText">
                   <slot name="empty" />

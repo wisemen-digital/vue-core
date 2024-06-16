@@ -4,7 +4,10 @@ import {
   onMounted,
   ref,
 } from 'vue'
-import { type RouteLocationNamedRaw, RouterLink } from 'vue-router'
+import {
+  type RouteLocationNamedRaw,
+  RouterLink,
+} from 'vue-router'
 
 import type { ButtonStyleProps } from '@/components/button/button.style'
 import { button, buttonIcon } from '@/components/button/button.style'

@@ -87,7 +87,7 @@ function getAllItems(items: DropdownMenuItem[]): DropdownMenuItem[] {
 
 const itemsWithKeyboardShortcuts = computed<ItemsWithKeyboardShortcuts[]>(() => {
   return getAllItems(props.items)
-    .filter(item => item.type === 'option' || item.type === 'checkbox') as ItemsWithKeyboardShortcuts[]
+    .filter((item) => item.type === 'option' || item.type === 'checkbox') as ItemsWithKeyboardShortcuts[]
 })
 
 let keyboardShortcutsUnbindFns: (() => void)[] = []
@@ -104,6 +104,10 @@ onMounted(() => {
 
       itemsWithKeyboardShortcuts.value.forEach((item) => {
         const { keyboardShortcutKeys } = item
+
+        if (item.type !== 'option') {
+          return
+        }
 
         if (keyboardShortcutKeys === undefined) {
           return
