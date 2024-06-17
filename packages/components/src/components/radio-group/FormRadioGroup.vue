@@ -1,4 +1,4 @@
-<script setup lang="ts" generic="T extends string">
+<script setup lang="ts" generic="T extends string | boolean">
 import FormElement from '@/components/form-element/FormElement.vue'
 import FormRadioGroupIndicator from '@/components/radio-group/FormRadioGroupIndicator.vue'
 import FormRadioGroupItem from '@/components/radio-group/FormRadioGroupItem.vue'
@@ -38,7 +38,7 @@ const props = withDefaults(defineProps<{
   label: null,
 })
 
-const model = defineModel<T | null>({
+const model = defineModel<null | string>({
   required: true,
 })
 </script>
@@ -60,14 +60,14 @@ const model = defineModel<T | null>({
         >
           <FormRadioGroupItem
             :id="option.value"
-            :value="option.value"
+            :value="option.value.toString()"
             class="flex size-5 items-center justify-center gap-x-2 rounded-full border-[1.5px] border-solid border-input-border data-[state=checked]:border-primary"
           >
             <FormRadioGroupIndicator class="block size-2 rounded-full bg-primary" />
           </FormRadioGroupItem>
 
           <label
-            :for="option.value"
+            :for="option.value.toString()"
             class="text-sm text-secondary-foreground"
           >
             {{ option.label }}
