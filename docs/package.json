@@ -18,8 +18,8 @@
   },
   "dependencies": {
     "@wisemen/vue-core": "workspace:*",
-    "vue": "^3.4.28",
     "@internationalized/date": "^3.5.4",
+    "vue": "^3.4.28",
     "vue-i18n": "^9.13.1",
     "vue-router": "^4.3.3"
   },
