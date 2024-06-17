@@ -23,6 +23,9 @@ importers:
 
   docs:
     dependencies:
+      '@internationalized/date':
+        specifier: ^3.5.4
+        version: 3.5.4
       '@wisemen/vue-core':
         specifier: workspace:*
         version: link:../packages/components
