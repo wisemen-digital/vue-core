@@ -35,12 +35,6 @@
   "dependencies": {
     "@internationalized/date": "^3.5.4"
   },
-  "peerDependencies": {
-    "@internationalized/date": "^3.5.4"
-  },
-  "bundledDependencies": [
-    "@internationalized/date"
-  ],
   "devDependencies": {
     "@tsconfig/node18": "^18.2.4",
     "@types/dom-view-transitions": "^1.0.4",
