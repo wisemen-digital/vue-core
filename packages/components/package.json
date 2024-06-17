@@ -35,6 +35,9 @@
   "dependencies": {
     "@internationalized/date": "^3.5.4"
   },
+  "peerDependencies": {
+    "@internationalized/date": "^3.5.4"
+  },
   "bundledDependencies": [
     "@internationalized/date"
   ],
