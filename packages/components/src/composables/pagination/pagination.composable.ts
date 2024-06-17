@@ -1,5 +1,4 @@
 import { useRouteQuery } from '@vueuse/router'
-import type { MaybeRefOrGetter } from 'vue'
 import {
   computed,
   shallowRef,
@@ -13,26 +12,10 @@ import type {
   PaginationFilters,
   PaginationOptions,
   SortChangeEvent,
+  UsePaginationOptions,
   UsePaginationReturnType,
 } from '@/types/pagination.type'
 import { base64Decode, base64Encode } from '@/utils/base64.util'
-
-interface UsePaginationOptions<TFilters> {
-  /**
-   * Identifier used to store pagination options in a route query.
-   */
-  id: string
-  /**
-   * Default pagination options. If not provided, the default options will be used.
-   * @default null
-   */
-  defaultPaginationOptions?: MaybeRefOrGetter<PaginationOptions<TFilters>> | null
-  /**
-   * If true, the route query will be disabled.
-   * @default false
-   */
-  disableRouteQuery?: boolean
-}
 
 const DEFAULT_PAGINATION_OPTIONS = {
   filters: [] as PaginationFilters<unknown>,
@@ -135,12 +118,12 @@ export function usePagination<TFilters>({
     }
   }
 
-  watch(paginationOptions, (newPaginationoptions) => {
+  watch(paginationOptions, (newPaginationOptions) => {
     if (disableRouteQuery) {
       return
     }
 
-    routeQuery!.value = base64Encode(JSON.stringify(newPaginationoptions))
+    routeQuery!.value = base64Encode(JSON.stringify(newPaginationOptions))
   })
 
   return {
