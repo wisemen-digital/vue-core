@@ -50,10 +50,10 @@ function highlight(text: string) {
 async function promptForConfig(optionsCwd: any) {
   if (optionsCwd.yes == null) {
     const { proceed } = await prompts({
+      name: 'proceed',
       initial: true,
       message:
         'Running this command will install dependencies and overwrite your existing tailwind.config.js / globals.css. Proceed?',
-      name: 'proceed',
       type: 'confirm',
     })
 
@@ -64,57 +64,57 @@ async function promptForConfig(optionsCwd: any) {
 
   const options = await prompts([
     {
+      name: 'root',
       initial: DEFAULT_ROOT,
       message: `Where is your ${highlight('root')} of your project?`,
-      name: 'root',
       type: 'text',
     },
     {
+      name: 'config',
       initial: DEFAULT_CONFIG,
       message: `Where are your ${highlight('config files')}, like tailwind.config.js located?`,
-      name: 'config',
       type: 'text',
     },
     {
+      name: 'styles',
       initial: DEFAULT_STYLES,
       message: `Configure the import alias for ${highlight('styles')}:`,
-      name: 'styles',
       type: 'text',
     },
     {
+      name: 'libs',
       initial: DEFAULT_LIBS,
       message: `Configure the import alias for ${highlight('libs')}:`,
-      name: 'libs',
       type: 'text',
     },
     {
+      name: 'components',
       initial: DEFAULT_COMPONENTS,
       message: `Configure the import alias for ${highlight('components')}:`,
-      name: 'components',
       type: 'text',
     },
     {
+      name: 'types',
       initial: DEFAULT_TYPES,
       message: `Configure the import alias for ${highlight('types')}:`,
-      name: 'types',
       type: 'text',
     },
     {
+      name: 'utils',
       initial: DEFAULT_UTILS,
       message: `Configure the import alias for ${highlight('utils')}:`,
-      name: 'utils',
       type: 'text',
     },
     {
+      name: 'composables',
       initial: DEFAULT_COMPOSABLES,
       message: `Configure the import alias for ${highlight('composables')}:`,
-      name: 'composables',
       type: 'text',
     },
     {
+      name: 'icons',
       initial: DEFAULT_ICONS,
       message: `Configure the import alias for ${highlight('icons')}:`,
-      name: 'icons',
       type: 'text',
     },
   ])

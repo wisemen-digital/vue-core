@@ -4,8 +4,8 @@ import { ComponentName, ComponentType } from '@/generate/components.type'
 export const utils: Component = {
   files: [
     {
-      path: './',
       type: ComponentType.UTILS,
+      path: './',
     },
   ],
   component: ComponentName.UTILS,

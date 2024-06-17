@@ -4,12 +4,12 @@ import { ComponentName, ComponentType } from '@/generate/components.type'
 export const tabs: Component = {
   files: [
     {
-      path: 'tabs',
       type: ComponentType.COMPONENTS,
+      path: 'tabs',
     },
     {
-      path: 'tabItem.type.ts',
       type: ComponentType.TYPES,
+      path: 'tabItem.type.ts',
     },
   ],
   internalDependencies: [

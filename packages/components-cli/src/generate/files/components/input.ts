@@ -8,8 +8,8 @@ export const input: Component = {
   ],
   files: [
     {
-      path: 'input',
       type: ComponentType.COMPONENTS,
+      path: 'input',
     },
   ],
   internalDependencies: [

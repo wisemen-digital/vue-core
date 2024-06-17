@@ -4,8 +4,8 @@ import { ComponentName, ComponentType } from '@/generate/components.type'
 export const loader: Component = {
   files: [
     {
-      path: 'loader',
       type: ComponentType.COMPONENTS,
+      path: 'loader',
     },
   ],
   component: ComponentName.LOADER,

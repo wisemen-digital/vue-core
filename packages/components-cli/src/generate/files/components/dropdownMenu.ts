@@ -4,12 +4,12 @@ import { ComponentName, ComponentType } from '@/generate/components.type'
 export const dropdownMenu: Component = {
   files: [
     {
-      path: 'dropdown-menu',
       type: ComponentType.COMPONENTS,
+      path: 'dropdown-menu',
     },
     {
-      path: 'dropdownMenuItem.type.ts',
       type: ComponentType.TYPES,
+      path: 'dropdownMenuItem.type.ts',
     },
   ],
   internalDependencies: [

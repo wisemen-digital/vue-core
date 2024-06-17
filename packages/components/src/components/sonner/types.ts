@@ -23,6 +23,7 @@ export type PromiseData<ToastData = any> = ExternalToast & {
 }
 
 export interface ToastClasses {
+  title?: string
   action?: string
   actionButton?: string
   cancelButton?: string
@@ -35,7 +36,6 @@ export interface ToastClasses {
   loading?: string
   normal?: string
   success?: string
-  title?: string
   toast?: string
   warning?: string
 }
@@ -50,6 +50,7 @@ export interface ToastIcons {
 
 export interface ToastT<T extends Component = Component> {
   id: number | string
+  title?: Component | string
   action?: {
     label: Component | string
     onClick: (event: MouseEvent) => void
@@ -75,7 +76,6 @@ export interface ToastT<T extends Component = Component> {
   position?: Position
   promise?: PromiseT
   style?: CSSProperties
-  title?: Component | string
   type?: ToastTypes
   unstyled?: boolean
   component?: T

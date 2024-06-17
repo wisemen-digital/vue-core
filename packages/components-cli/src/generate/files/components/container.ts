@@ -4,8 +4,8 @@ import { ComponentName, ComponentType } from '@/generate/components.type'
 export const container: Component = {
   files: [
     {
-      path: 'container',
       type: ComponentType.COMPONENTS,
+      path: 'container',
     },
   ],
   component: ComponentName.CONTAINER,
