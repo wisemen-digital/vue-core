@@ -2,6 +2,7 @@
 <script setup lang="ts">
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols'
+import type { CalendarDate } from '@internationalized/date'
 import type { FormFieldErrors } from '@wisemen/vue-core'
 import { AppText, FormDatePicker } from '@wisemen/vue-core'
 import { ref } from 'vue'
@@ -41,7 +42,7 @@ const controls = createControls({
   },
 })
 
-const model = ref<Date | null>(null)
+const model = ref<CalendarDate | null>(null)
 
 const { locale } = useI18n()
 
@@ -69,7 +70,7 @@ const exampleError: FormFieldErrors = {
         />
 
         <AppText variant="caption">
-          {{ `Model value: ${model ? new Date(model).toDateString() : 'null'}` }}
+          {{ `Model value: ${model ? model.toString() : 'null'}` }}
         </AppText>
       </div>
     </template>
