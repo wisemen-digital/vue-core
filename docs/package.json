@@ -17,7 +17,6 @@
     "type-check": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "@internationalized/date": "^3.5.4",
     "@wisemen/vue-core": "workspace:*",
     "vue": "^3.4.28",
     "vue-i18n": "^9.13.1",
