@@ -50,7 +50,7 @@ function onUpdate(value: FilterValues | null): void {
   <div>
     <FormSelect
       v-model="filterModel"
-      :display-fn="(option) => option.toString()"
+      :display-fn="(option) => props.filter.displayFn(option)"
       :errors="null"
       :is-touched="false"
       :items="props.filter.options"
