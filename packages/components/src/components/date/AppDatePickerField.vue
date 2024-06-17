@@ -13,7 +13,15 @@ const props = defineProps<{
   isInvalid?: boolean
 }>()
 
+const emit = defineEmits<{
+  dateClick: []
+}>()
+
 const { classAttr } = useComponentAttrs()
+
+function onTriggerClick(): void {
+  emit('dateClick')
+}
 </script>
 
 <template>
@@ -50,7 +58,10 @@ const { classAttr } = useComponentAttrs()
       </template>
     </div>
 
-    <DatePickerTrigger as-child>
+    <DatePickerTrigger
+      as-child
+      @click="onTriggerClick"
+    >
       <AppIconButton
         label="calendar"
         class="ml-auto"

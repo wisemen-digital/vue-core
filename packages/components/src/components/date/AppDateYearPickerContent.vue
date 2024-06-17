@@ -14,6 +14,7 @@ import {
   DatePickerNext,
   DatePickerPrev,
 } from 'radix-vue'
+import { ref } from 'vue'
 
 import AppButton from '@/components/button/AppButton.vue'
 import AppIconButton from '@/components/button/AppIconButton.vue'
@@ -23,12 +24,14 @@ const emit = defineEmits<{
 }>()
 
 function onYearClick(year: number): void {
-  emit('yearClick')
+  emit('yearClick', year)
 }
+
+const localYear = ref<number>(0)
 
 function getYears(currentDate: DateValue): number[] {
   const years = []
-  const currentYear = currentDate.year
+  const currentYear = currentDate.year + localYear.value
 
   const startOfDecade = currentYear - (currentYear % 10)
   const endOfDecade = startOfDecade + 9
@@ -39,12 +42,29 @@ function getYears(currentDate: DateValue): number[] {
 
   return years
 }
+
+function onPreviousYearsButtonClick(): void {
+  localYear.value = localYear.value - 10
+}
+
+function getRangeLabel(currentDate: string): string {
+  const year = Number(currentDate.split(' ')[1])
+
+  const currentYear = year + localYear.value
+  const startOfDecade = currentYear - (currentYear % 10)
+  const endOfDecade = startOfDecade + 9
+
+  return `${startOfDecade} - ${endOfDecade}`
+}
+
+function onNextYearsButtonClick(): void {
+  localYear.value = localYear.value + 10
+}
 </script>
 
 <template>
   <DatePickerContent
     :side-offset="4"
-    :class="{ }"
     class="rounded-popover bg-popover shadow-popover-shadow will-change-[transform,opacity]"
   >
     <DatePickerArrow class="fill-white" />
@@ -62,6 +82,7 @@ function getYears(currentDate: DateValue): number[] {
             variant="ghost"
             size="sm"
             icon="chevronLeft"
+            @click.stop="onPreviousYearsButtonClick"
           />
         </DatePickerPrev>
 
@@ -72,7 +93,7 @@ function getYears(currentDate: DateValue): number[] {
                 size="sm"
                 variant="ghost"
               >
-                {{ headingValue.split(' ')[1] }}
+                {{ getRangeLabel(headingValue) }}
               </AppButton>
             </div>
           </template>
@@ -86,6 +107,7 @@ function getYears(currentDate: DateValue): number[] {
             variant="ghost"
             size="sm"
             icon="chevronRight"
+            @click.stop="onNextYearsButtonClick"
           />
         </DatePickerNext>
       </DatePickerHeader>

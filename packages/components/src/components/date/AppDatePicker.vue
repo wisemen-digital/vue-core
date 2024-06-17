@@ -63,11 +63,7 @@ const model = computed<CalendarDate | undefined>({
   get: () => {
     const value = props.modelValue
 
-    if (value === null) {
-      return undefined
-    }
-
-    return value
+    return value === null ? undefined : value
   },
   set: (value: CalendarDate | undefined) => {
     if (value === undefined) {
@@ -130,6 +126,11 @@ function onMonthSelect(number: number): void {
   isMonthPickerVisible.value = false
 }
 
+function onTriggerClick(): void {
+  isYearPickerVisible.value = false
+  isMonthPickerVisible.value = false
+}
+
 function onYearSelect(number: number): void {
   if (model.value === undefined) {
     model.value = new CalendarDate(number, new Date().getMonth() + 1, 1)
@@ -158,7 +159,7 @@ function onYearSelect(number: number): void {
       :disabled="props.isDisabled"
       @blur="onBlur"
     >
-      <AppDatePickerField />
+      <AppDatePickerField @date-click="onTriggerClick" />
       <AppDatePickerContent
         v-if="!isMonthPickerVisible && !isYearPickerVisible"
         @month-click="onShowMonthPickerButtonClick"

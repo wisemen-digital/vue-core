@@ -14,7 +14,6 @@ import {
   DatePickerNext,
   DatePickerPrev,
 } from 'radix-vue'
-import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import AppButton from '@/components/button/AppButton.vue'
@@ -32,25 +31,25 @@ interface Month {
 
 const { locale } = useI18n()
 
-const months = computed<Month[]>(() => {
+function getMonths(currentDate: DateValue): Month[] {
   const months = []
 
   for (let i = 0; i < 12; i++) {
     months.push({
       label: new Date(0, i).toLocaleString(locale.value, { month: 'long' }),
-      value: new CalendarDate(0, i + 1, 1),
+      value: new CalendarDate(currentDate.year, i + 1, currentDate.day),
     })
   }
 
   return months
-})
+}
+
+function onYearClick(): void {
+  emit('yearClick')
+}
 
 function onMonthClick(number: number): void {
   emit('monthClick', number)
-}
-
-function onYearButtonClick(): void {
-  emit('yearClick')
 }
 </script>
 
@@ -84,7 +83,7 @@ function onYearButtonClick(): void {
               <AppButton
                 size="sm"
                 variant="ghost"
-                @click="onYearButtonClick"
+                @click="onYearClick"
               >
                 {{ headingValue.split(' ')[1] }}
               </AppButton>
@@ -104,25 +103,22 @@ function onYearButtonClick(): void {
           />
         </DatePickerNext>
       </DatePickerHeader>
-      <div
-        class="grid grid-cols-2 gap-2"
-      >
-        <DatePickerGrid
-          v-for="month in months"
-          :key="month.value.toString()"
-          as-child
-        >
-          <DatePickerGridBody as-child>
-            <DatePickerGridRow as-child>
+      <div>
+        <DatePickerGrid>
+          <DatePickerGridBody class="grid grid-cols-2">
+            <DatePickerGridRow
+              v-for="month in getMonths(grid[0].value)"
+              :key="month.value.toString()"
+              as-child
+            >
               <DatePickerCell
-                :key="month.value.toString()"
-                :date="new CalendarDate(grid[0].value.year, month.value.month, grid[0].value.day)"
+                :date="month.value"
                 as-child
               >
                 <DatePickerCellTrigger
-                  :day="new CalendarDate(grid[0].value.year, month.value.month, grid[0].value.day)"
-                  :month="new CalendarDate(grid[0].value.year, month.value.month, grid[0].value.day)"
-                  class="relative flex h-8 items-center justify-center whitespace-nowrap rounded-button border border-transparent bg-transparent px-4 text-sm font-normal text-foreground outline-none before:absolute before:top-[5px] before:hidden before:size-1 before:rounded-full before:bg-background hover:border-primary focus:shadow-[0_0_0_2px] focus:shadow-primary/50 data-[unavailable]:pointer-events-none data-[selected]:bg-primary data-[selected]:font-medium data-[disabled]:text-foreground/30 data-[selected]:text-white data-[unavailable]:text-foreground/30 data-[unavailable]:line-through data-[today]:before:block data-[selected]:before:bg-background data-[today]:before:bg-primary"
+                  :day="month.value"
+                  :month="month.value"
+                  class="relative flex h-8 w-full items-center justify-center whitespace-nowrap rounded-button border border-transparent bg-transparent px-4 text-center text-sm font-normal text-foreground outline-none before:absolute before:top-[5px] before:hidden before:size-1 before:rounded-full before:bg-background hover:border-primary focus:shadow-[0_0_0_2px] focus:shadow-primary/50 data-[unavailable]:pointer-events-none data-[selected]:bg-primary data-[selected]:font-medium data-[disabled]:text-foreground/30 data-[selected]:text-white data-[unavailable]:text-foreground/30 data-[unavailable]:line-through data-[today]:before:block data-[selected]:before:bg-background data-[today]:before:bg-primary"
                   @click="onMonthClick(month.value.month)"
                 >
                   {{ month.label }}
