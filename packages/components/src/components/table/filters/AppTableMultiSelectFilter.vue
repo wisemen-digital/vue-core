@@ -23,8 +23,6 @@ const emit = defineEmits<{
 const isExpanded = ref<boolean>(false)
 
 const filterModel = computed<string[]>(() => {
-  // const data = props.pagination.paginationOptions.value.filters?.find((filter) => filter.key === props.filter.id)
-
   const data = props.pagination.paginationOptions.value.filters?.[props.filter.id] ?? null
 
   if (data === null) {
