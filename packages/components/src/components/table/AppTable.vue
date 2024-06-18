@@ -133,7 +133,7 @@ const activeFilterCount = computed<number>(() => {
     return 0
   }
 
-  return filters.length
+  return Object.keys(filters).length
 })
 
 function onFilterChange(filterChangeEvent: FilterChangeEvent<TFilters>): void {
