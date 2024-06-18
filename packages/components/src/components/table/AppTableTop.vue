@@ -35,48 +35,37 @@ const emit = defineEmits<{
 const { t } = useI18n()
 
 const searchInputValue = computed<string>(() => {
-  const searchFilter = props.pagination.paginationOptions.value.filters?.find(
-    (filter) => filter.key === props.searchFilterKey,
-  )
+  // const searchFilter = props.pagination.paginationOptions.value.filters?.find(
+  //   (filter) => filter.key === props.searchFilterKey,
+  // )
 
-  return searchFilter?.value?.toString() ?? ''
+  // return searchFilter?.value?.toString() ?? ''
+
+  const filters = props.pagination.paginationOptions.value.filters ?? {}
+
+  return Object.entries(filters)
+    .find(([
+      key,
+    ]) => key === props.searchFilterKey)
+    ?.[1]?.toString() ?? ''
 })
 
 function mergeFilter(filterKey: keyof TFilters, filterValue: FilterValues | null): PaginationFilters<TFilters> {
-  const filters = props.pagination.paginationOptions.value.filters ?? []
+  const filters = props.pagination.paginationOptions.value.filters ?? {} as PaginationFilters<TFilters>
 
-  const filterAlreadyExists = filters.find((filter) => filter.key === filterKey)
-  const filterValueIsEmpty = filterValue === null || (Array.isArray(filterValue) && filterValue.length === 0)
-  const filterValueIsFalse = filterValue === false
+  filters[filterKey] = filterValue as PaginationFilters<TFilters>[keyof TFilters]
 
-  if (filterAlreadyExists === undefined && !filterValueIsEmpty && !filterValueIsFalse) {
-    filters.push({
-      key: filterKey,
-      value: filterValue,
-    })
-  }
+  // Remove empty filters
+  // Empty means `null`, `''` or `false`
+  const newFilters = Object.fromEntries(
+    Object.entries(filters)
+      .filter(([
+        _key,
+        value,
+      ]) => value !== null && value !== '' && value !== false),
+  ) as PaginationFilters<TFilters>
 
-  return filters
-    .map((filter) => {
-      if (filter.key === filterKey) {
-        return {
-          key: filterKey,
-          value: filterValue,
-        }
-      }
-
-      return filter
-    })
-    .filter((filter) => {
-      if (Array.isArray(filter.value)) {
-        return filter.value.length !== 0
-      }
-
-      return filter.value !== null && filter.value !== ''
-    })
-    .filter((filter) => {
-      return filter.value !== false
-    })
+  return newFilters
 }
 
 const debounceSearch = useDebounceFn((value: string) => {

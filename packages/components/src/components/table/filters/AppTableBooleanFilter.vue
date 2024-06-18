@@ -21,9 +21,13 @@ const emit = defineEmits<{
 const filterModel = ref<boolean>(getValue(props.pagination.paginationOptions.value))
 
 function getValue(value: PaginationOptions<TFilters>): boolean {
-  const data = value.filters?.find((filter) => filter.key === props.filter.id)
+  const data = value.filters?.[props.filter.id] ?? null
 
-  return (Boolean(data?.value))
+  if (data === null) {
+    return false
+  }
+
+  return data === true
 }
 
 watch(
@@ -39,10 +43,6 @@ watch(
     emit('change', { key: props.filter.id, value })
   },
 )
-
-function onUpdate(value: boolean): void {
-  emit('change', { key: props.filter.id, value })
-}
 </script>
 
 <template>
@@ -50,7 +50,6 @@ function onUpdate(value: boolean): void {
     <FormCheckbox
       v-model="filterModel"
       :label="props.filter.label"
-      @update:model-value="onUpdate"
     />
   </div>
 </template>

@@ -35,7 +35,7 @@ interface UsePaginationOptions<TFilters> {
 }
 
 const DEFAULT_PAGINATION_OPTIONS = {
-  filters: [] as PaginationFilters<unknown>,
+  filters: {} as PaginationFilters<unknown>,
   pagination: {
     page: 0,
     perPage: 20,
@@ -54,10 +54,10 @@ export function usePagination<TFilters>({
     userOptions: PaginationOptions<TFilters>,
     currentOptions: PaginationOptions<TFilters>,
   ): PaginationOptions<TFilters> {
-    const mergedFilters = [
-      ...(currentOptions.filters ?? []),
-      ...(userOptions.filters ?? []),
-    ]
+    const mergedFilters = {
+      ...(currentOptions.filters ?? {}),
+      ...(userOptions.filters ?? {}),
+    } as PaginationFilters<TFilters>
 
     return {
       filters: mergedFilters,
@@ -107,9 +107,9 @@ export function usePagination<TFilters>({
   function handleFilterChange(event: FilterChangeEvent<TFilters>): void {
     paginationOptions.value = {
       ...paginationOptions.value,
-      filters: [
+      filters: {
         ...event,
-      ] as PaginationFilters<TFilters>,
+      } as PaginationFilters<TFilters>,
       pagination: {
         ...paginationOptions.value.pagination,
         page: 0,
@@ -127,7 +127,7 @@ export function usePagination<TFilters>({
   function clearFilters(): void {
     paginationOptions.value = {
       ...paginationOptions.value,
-      filters: toValue(defaultPaginationOptions)?.filters ?? [] as PaginationFilters<TFilters>,
+      filters: toValue(defaultPaginationOptions)?.filters ?? {} as PaginationFilters<TFilters>,
       pagination: {
         ...paginationOptions.value.pagination,
         page: 0,
