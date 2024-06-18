@@ -1,4 +1,4 @@
-import { h } from 'vue'
+import { h, type VNode } from 'vue'
 
 import { toast as vueSonnerToast } from '@/components/sonner/state'
 import AppToast from '@/components/toast/AppToast.vue'
@@ -12,6 +12,7 @@ interface NamedToast {
 interface UseToastReturnType {
   custom: (toast: Toast) => void
   error: (toast: NamedToast) => void
+  h: (h: () => VNode) => void
   success: (toast: NamedToast) => void
 }
 
@@ -52,9 +53,16 @@ export function useToast(): UseToastReturnType {
     })
   }
 
+  function customToast(h: () => VNode): void {
+    vueSonnerToast.custom(h(), {
+      duration: TOAST_DURATION,
+    })
+  }
+
   return {
     custom: showToast,
     error: showErrorToast,
+    h: customToast,
     success: showSuccessToast,
   }
 }
