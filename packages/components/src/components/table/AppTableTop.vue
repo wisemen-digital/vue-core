@@ -18,12 +18,12 @@ import type {
 import { toLocaleNumber } from '@/utils/number.util'
 
 const props = defineProps<{
-  title: string
   isLoading: boolean
   filters: PaginationFilter<TFilters>[]
   pagination: Pagination<TFilters>
   searchFilterKey?: keyof TFilters
   searchValue?: null | string
+  title: string
   total: null | number
 }>()
 
@@ -35,12 +35,6 @@ const emit = defineEmits<{
 const { t } = useI18n()
 
 const searchInputValue = computed<string>(() => {
-  // const searchFilter = props.pagination.paginationOptions.value.filters?.find(
-  //   (filter) => filter.key === props.searchFilterKey,
-  // )
-
-  // return searchFilter?.value?.toString() ?? ''
-
   const filters = props.pagination.paginationOptions.value.filters ?? {}
 
   return Object.entries(filters)
