@@ -275,7 +275,7 @@ const dialCodeDisplayValue = computed<string>(() => {
         :is-loading="props.isLoading"
         :is-touched="props.isTouched"
         :placeholder="props.placeholder"
-        class="rounded-l-none border-l-0"
+        class="w-full rounded-l-none border-l-0"
         type="tel"
         v-maska
       >
