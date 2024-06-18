@@ -4,8 +4,8 @@ import { ComponentName, ComponentType } from '@/generate/components.type'
 export const badge: Component = {
   files: [
     {
-      path: 'badge',
       type: ComponentType.COMPONENTS,
+      path: 'badge',
     },
   ],
   component: ComponentName.BADGE,

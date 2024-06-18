@@ -29,6 +29,7 @@ import type {
 
 const props = withDefaults(
   defineProps<{
+    title: string
     isLoading: boolean
     isTopHidden?: boolean
     columns: TableColumn<TSchema>[]
@@ -42,7 +43,6 @@ const props = withDefaults(
     searchFilterKey?: keyof TFilters
     shouldPinFirstColumn?: boolean
     shouldPinLastColumn?: boolean
-    title: string
   }>(),
   {
     isTopHidden: false,

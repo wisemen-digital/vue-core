@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import type { Component } from 'vue'
-import { shallowRef, watch } from 'vue'
+import AppAsyncIcon from '@/components/icon/AppAsyncIcon.vue'
+import type { IconStyleProps } from '@/components/icon/icon.style'
+import { useComponentAttrs } from '@/composables/componentAttrs.composable'
+import type { Icon } from '@/icons/icons'
 
-import { type IconStyleProps, iconVariants } from '@/components/icon/icon.style'
-import { type Icon, icons } from '@/icons/icons'
-import { cn } from '@/utils/style.util'
-
-const props = withDefaults(
+withDefaults(
   defineProps<{
     icon: Icon
     size?: IconStyleProps['size']
@@ -16,26 +14,15 @@ const props = withDefaults(
   },
 )
 
-const svgComponent = shallowRef<Component | null>(null)
-
-watch(
-  () => props.icon,
-  async () => {
-    const resolvedComponent = await icons[props.icon]
-
-    // @ts-expect-error TODO: Fix this
-    svgComponent.value = resolvedComponent.default
-  },
-  {
-    immediate: true,
-  },
-)
+const { classAttr } = useComponentAttrs()
 </script>
 
 <template>
-  <Component
-    :is="svgComponent"
-    v-if="svgComponent !== null"
-    :class="cn(iconVariants({ size }))"
-  />
+  <Suspense>
+    <AppAsyncIcon
+      :icon="icon"
+      :size="size"
+      :class="classAttr"
+    />
+  </Suspense>
 </template>

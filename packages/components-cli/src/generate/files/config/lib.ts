@@ -11,8 +11,8 @@ export const lib: Component = {
   ],
   files: [
     {
-      path: './',
       type: ComponentType.LIBS,
+      path: './',
     },
   ],
   component: ComponentName.LIB,

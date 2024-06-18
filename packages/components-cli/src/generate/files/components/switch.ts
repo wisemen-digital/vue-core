@@ -4,8 +4,8 @@ import { ComponentName, ComponentType } from '@/generate/components.type'
 export const switchy: Component = {
   files: [
     {
-      path: 'switch',
       type: ComponentType.COMPONENTS,
+      path: 'switch',
     },
   ],
   component: ComponentName.SWITCH,

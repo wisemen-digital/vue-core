@@ -2,12 +2,12 @@ import type { VNode } from 'vue'
 
 export interface TableEmptyTextProp {
   noData: {
-    message: string
     title: string
+    message: string
   }
   noResults: {
-    message: string
     title: string
+    message: string
   }
 }
 

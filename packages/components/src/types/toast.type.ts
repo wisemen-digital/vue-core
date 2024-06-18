@@ -15,10 +15,10 @@ export interface ToastAction {
 }
 
 export interface Toast {
+  title: string
   action?: ToastAction
   description?: string
   duration?: number
   icon: Icon
-  title: string
   type: ToastType
 }

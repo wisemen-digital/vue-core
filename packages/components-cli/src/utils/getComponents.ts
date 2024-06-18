@@ -20,10 +20,10 @@ export const fileTypeSchema = z.enum([
 ])
 
 export const fileSchema = z.object({
+  name: z.string(),
   content: z.string(),
   dir: z.string(),
   localPath: z.string().optional(),
-  name: z.string(),
   type: fileTypeSchema,
 })
 

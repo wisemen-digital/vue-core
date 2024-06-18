@@ -4,8 +4,8 @@ import { ComponentName, ComponentType } from '@/generate/components.type'
 export const button: Component = {
   files: [
     {
-      path: 'button',
       type: ComponentType.COMPONENTS,
+      path: 'button',
     },
   ],
   internalDependencies: [
