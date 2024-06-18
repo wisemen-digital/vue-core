@@ -14,7 +14,7 @@ export interface PaginationSort {
 }
 
 export type PaginationFilters<TFilters> = {
-  [K in keyof TFilters]: TFilters[K]
+  [K in keyof TFilters]?: TFilters[K]
 }
 
 export interface PageChangeEvent {
