@@ -5,11 +5,17 @@ import AppDialogCloseButton from '@/components/dialog/AppDialogCloseButton.vue'
 
 const props = defineProps<{
   hideCloseButton: boolean
+  shouldPreventClickOutside: boolean
 }>()
 
 function onInteractOutside(e: CustomEvent): void {
-  const target = e.target as HTMLElement
+  if (props.shouldPreventClickOutside) {
+    e.preventDefault()
 
+    return
+  }
+
+  const target = e.target as HTMLElement
   const isOverlay = target.classList.contains('dialog-overlay')
 
   if (!isOverlay) {

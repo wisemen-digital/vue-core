@@ -35,7 +35,7 @@ const filteredFilters = computed<PaginationFilter<TFilters>[]>(() => {
 })
 
 const numberOfActiveFilters = computed<number>(() => {
-  return props.pagination.paginationOptions.value.filters?.length ?? 0
+  return Object.keys(props.pagination.paginationOptions.value.filters ?? {}).length
 })
 
 function onFilterUpdate(event: TableFilterEvent<TFilters>): void {

@@ -162,7 +162,7 @@ export type {
   SortDirection,
   UsePaginationReturnType,
 } from './types/pagination.type'
-export type { Routes } from './types/routes.type'
+export type { RouteLocationTyped, Routes } from './types/routes.type'
 export type { AcceptableValue } from './types/selectItem.type'
 export type { SelectItem } from './types/selectItem.type'
 export type { RouteTabItem, TabItem } from './types/tabItem.type'
