@@ -1,8 +1,11 @@
-<!-- eslint-disable no-alert -->
 <script setup lang="ts">
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols'
-import { AppDatePicker, AppText } from '@wisemen/vue-core'
+import type { CalendarDate } from '@internationalized/date'
+import {
+  AppDatePicker,
+  AppText,
+} from '@wisemen/vue-core'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -28,14 +31,9 @@ const controls = createControls({
     label: 'Is disabled',
     type: 'switch',
   },
-  isInvalid: {
-    default: false,
-    label: 'Is invalid',
-    type: 'switch',
-  },
 })
 
-const model = ref<Date | null>(null)
+const model = ref<CalendarDate | null>(null)
 
 const { locale } = useI18n()
 
@@ -54,7 +52,7 @@ locale.value = 'nl'
         />
 
         <AppText variant="caption">
-          {{ `Model value: ${model ? new Date(model).toDateString() : 'null'}` }}
+          {{ `Model value: ${model?.toString()}` }}
         </AppText>
       </div>
     </template>

@@ -7,8 +7,8 @@ import {
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import AppDateCalendarPickerContent from '@/components/date/AppDateCalendarPickerContent.vue'
 import AppDateMonthPickerContent from '@/components/date/AppDateMonthPickerContent.vue'
-import AppDatePickerContent from '@/components/date/AppDatePickerContent.vue'
 import AppDatePickerField from '@/components/date/AppDatePickerField.vue'
 import AppDateYearPickerContent from '@/components/date/AppDateYearPickerContent.vue'
 
@@ -111,22 +111,17 @@ function onShowMonthPickerButtonClick(): void {
   isYearPickerVisible.value = false
 }
 
-function onMonthSelect(number: number): void {
-  if (model.value === undefined) {
-    model.value = new CalendarDate(new Date().getFullYear(), number, 1)
-  }
-  else {
-    model.value?.set({
-      day: model.value?.day ?? new Date().getDate(),
-      month: number,
-      year: model.value?.year ?? new Date().getFullYear(),
-    })
-  }
+function onMonthSelect(month: number, year: number): void {
+  model.value = new CalendarDate(year ?? new Date().getFullYear(), month, model.value?.day ?? new Date().getDate())
 
   isMonthPickerVisible.value = false
 }
 
 function onTriggerClick(): void {
+  if (props.isDisabled) {
+    return
+  }
+
   isYearPickerVisible.value = false
   isMonthPickerVisible.value = false
 }
@@ -153,14 +148,20 @@ function onYearSelect(number: number): void {
     <DatePickerRoot
       :id="id"
       v-model="model"
+      :fixed-weeks="true"
       :min-value="minDate"
       :max-value="maxDate"
       :locale="locale"
       :disabled="props.isDisabled"
       @blur="onBlur"
     >
-      <AppDatePickerField @date-click="onTriggerClick" />
-      <AppDatePickerContent
+      <AppDatePickerField
+        :is-invalid="props.isInvalid"
+        type="date"
+        @date-click="onTriggerClick"
+      />
+
+      <AppDateCalendarPickerContent
         v-if="!isMonthPickerVisible && !isYearPickerVisible"
         @month-click="onShowMonthPickerButtonClick"
         @year-click="onShowYearPickerButtonClick"

@@ -65,7 +65,6 @@ const exampleError: FormFieldErrors = {
           v-model="model"
           :errors="exampleError"
           label="Date"
-
           v-bind="values"
         />
 

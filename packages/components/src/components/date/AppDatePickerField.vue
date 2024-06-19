@@ -4,6 +4,7 @@ import {
   DatePickerInput,
   DatePickerTrigger,
 } from 'radix-vue'
+import { useI18n } from 'vue-i18n'
 
 import AppIconButton from '@/components/button/AppIconButton.vue'
 import { useComponentAttrs } from '@/composables/componentAttrs.composable'
@@ -11,16 +12,33 @@ import { useComponentAttrs } from '@/composables/componentAttrs.composable'
 const props = defineProps<{
   isDisabled?: boolean
   isInvalid?: boolean
+  type: 'date' | 'month' | 'year'
 }>()
 
 const emit = defineEmits<{
   dateClick: []
 }>()
 
+const { locale } = useI18n()
+
 const { classAttr } = useComponentAttrs()
 
 function onTriggerClick(): void {
+  if (props.isDisabled) {
+    return
+  }
+
   emit('dateClick')
+}
+
+function formatMonth(month: null | string | undefined): string {
+  if (month === null || month === undefined || month === 'mm') {
+    return 'mm'
+  }
+
+  return new Date(`2021-${month}-01`).toLocaleString(locale.value, {
+    month: 'long',
+  })
 }
 </script>
 
@@ -42,19 +60,30 @@ function onTriggerClick(): void {
         v-for="item in segments"
         :key="item.part"
       >
-        <DatePickerInput
-          v-if="item.part === 'literal'"
-          :part="item.part"
-        >
-          {{ item.value }}
-        </DatePickerInput>
-        <DatePickerInput
-          v-else
-          :part="item.part"
-          class="rounded-md p-0.5 focus:shadow-[0_0_0_2px] focus:shadow-primary focus:outline-none data-[placeholder]:text-input-placeholder"
-        >
-          {{ item.value }}
-        </DatePickerInput>
+        <div v-if="props.type === 'month'">
+          <DatePickerInput
+            v-if="item.part === 'month'"
+            :part="item.part"
+            class="rounded-md p-0.5 focus:shadow-[0_0_0_2px] focus:shadow-primary focus:outline-none data-[placeholder]:text-input-placeholder"
+          >
+            {{ formatMonth(item.value) }}
+          </DatePickerInput>
+        </div>
+        <div v-else>
+          <DatePickerInput
+            v-if="item.part === 'literal'"
+            :part="item.part"
+          >
+            {{ item.value }}
+          </DatePickerInput>
+          <DatePickerInput
+            v-else
+            :part="item.part"
+            class="rounded-md p-0.5 focus:shadow-[0_0_0_2px] focus:shadow-primary focus:outline-none data-[placeholder]:text-input-placeholder"
+          >
+            {{ item.value }}
+          </DatePickerInput>
+        </div>
       </template>
     </div>
 
@@ -63,6 +92,7 @@ function onTriggerClick(): void {
       @click="onTriggerClick"
     >
       <AppIconButton
+        :is-disabled="props.isDisabled"
         label="calendar"
         class="ml-auto"
         variant="ghost"
