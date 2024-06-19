@@ -3,7 +3,10 @@ import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import AppKeyboardKey from '@/components/keyboard/AppKeyboardKey.vue'
-import type { KeyboardKeyStyleProps } from '@/components/keyboard/keyboardKey.style'
+import {
+  type KeyboardStyleProps,
+  useKeyboardStyle,
+} from '@/components/keyboard/keyboardKey.style'
 import AppText from '@/components/text/AppText.vue'
 import type {
   KeyboardKey,
@@ -11,7 +14,7 @@ import type {
 
 const props = withDefaults(defineProps<{
   keys: KeyboardKey[]
-  variant?: KeyboardKeyStyleProps['variant']
+  variant?: KeyboardStyleProps['variant']
 }>(), {
   variant: 'default',
 })
@@ -26,21 +29,15 @@ const isSequence = computed<boolean>(() => {
   return !props.keys.some((key) => isModifier(key))
 })
 
-const foregroundColorClass = computed<string>(() => {
-  if (props.variant === 'bordered' || props.variant === 'ghost') {
-    return 'text-muted-foreground'
-  }
-
-  if (props.variant === 'secondary') {
-    return 'text-primary-foreground'
-  }
-
-  return 'text-secondary-foreground'
-})
+const keyboardStyle = useKeyboardStyle()
+const shortcutContainerClasses = computed<string>(() => keyboardStyle.shortcutContainer())
+const shortcutTextClasses = computed<string>(() => keyboardStyle.shortcutText({
+  variant: props.variant,
+}))
 </script>
 
 <template>
-  <div class="flex items-center gap-x-1">
+  <div :class="shortcutContainerClasses">
     <template
       v-for="(keyboardKey, index) of props.keys"
       :key="keyboardKey"
@@ -52,7 +49,7 @@ const foregroundColorClass = computed<string>(() => {
 
       <template v-if="index < props.keys.length - 1 && isSequence">
         <AppText
-          :class="foregroundColorClass"
+          :class="shortcutTextClasses"
           variant="caption"
         >
           {{ t('components.keyboard_shortcut.then') }}
