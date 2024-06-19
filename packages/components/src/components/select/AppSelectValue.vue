@@ -1,17 +1,23 @@
 <script setup lang="ts">
 import { SelectValue } from 'radix-vue'
+import { computed } from 'vue'
+
+import { useSelectStyle } from '@/components/select/select.style'
 
 const props = defineProps<{
   isEmpty: boolean
 }>()
+
+const selectStyle = useSelectStyle()
+
+const valueClasses = computed<string>(() => selectStyle.value({
+  isEmpty: props.isEmpty,
+}))
 </script>
 
 <template>
   <SelectValue
-    :class="{
-      'text-input-placeholder': props.isEmpty,
-    }"
-    class="w-full truncate px-3 text-left text-sm"
+    :class="valueClasses"
   >
     <slot />
   </SelectValue>

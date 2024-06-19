@@ -3,7 +3,7 @@ import {
   SelectIcon,
   SelectPortal,
 } from 'radix-vue'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppLoader from '@/components/loader/AppLoader.vue'
@@ -12,6 +12,7 @@ import AppSelectItem from '@/components/select/AppSelectItem.vue'
 import AppSelectRoot from '@/components/select/AppSelectRoot.vue'
 import AppSelectTrigger from '@/components/select/AppSelectTrigger.vue'
 import AppSelectValue from '@/components/select/AppSelectValue.vue'
+import { useSelectStyle } from '@/components/select/select.style'
 import type { Icon } from '@/icons/icons'
 import type {
   AcceptableValue,
@@ -85,6 +86,13 @@ function onTriggerBlur(): void {
     onBlur()
   }
 }
+
+const selectStyle = useSelectStyle()
+
+const iconLeftClasses = computed<string>(() => selectStyle.iconLeft())
+const loaderClasses = computed<string>(() => selectStyle.loader())
+const triggerIconClasses = computed<string>(() => selectStyle.triggerIcon())
+const popoverContainerClasses = computed<string>(() => selectStyle.popoverContainer())
 </script>
 
 <template>
@@ -104,7 +112,7 @@ function onTriggerBlur(): void {
           <AppIcon
             v-if="props.iconLeft !== undefined"
             :icon="props.iconLeft"
-            class="ml-3 text-muted-foreground"
+            :class="iconLeftClasses"
           />
         </slot>
 
@@ -120,7 +128,7 @@ function onTriggerBlur(): void {
 
         <AppLoader
           v-if="props.isLoading"
-          class="size-4 text-muted-foreground"
+          :class="loaderClasses"
         />
 
         <SelectIcon
@@ -129,7 +137,7 @@ function onTriggerBlur(): void {
           class="mr-3"
         >
           <AppIcon
-            class="text-muted-foreground"
+            :class="triggerIconClasses"
             icon="chevronDown"
             size="sm"
           />
@@ -147,7 +155,7 @@ function onTriggerBlur(): void {
         >
           <div
             v-if="isOpen"
-            class="z-popover"
+            :class="popoverContainerClasses"
           >
             <AppSelectContent>
               <AppSelectItem
