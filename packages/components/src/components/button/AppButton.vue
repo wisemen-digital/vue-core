@@ -9,7 +9,7 @@ import type { ButtonStyleProps } from '@/components/button/button.style'
 import { useButtonStyle } from '@/components/button/button.style'
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppKeyboardShortcut from '@/components/keyboard/AppKeyboardShortcut.vue'
-import type { KeyboardKeyStyleProps } from '@/components/keyboard/keyboardKey.style'
+import type { KeyboardStyleProps } from '@/components/keyboard/keyboardKey.style'
 import AppLoader from '@/components/loader/AppLoader.vue'
 import { useKeyboardShortcut } from '@/composables/keyboardShortcut.composable'
 import type { Icon } from '@/icons/icons'
@@ -89,7 +89,7 @@ const buttonIconClasses = computed<string>(() =>
 const buttonLoaderClasses = computed<string>(() => buttonStyle.loader())
 const buttonLoaderContainerClasses = computed<string>(() => buttonStyle.loaderContainer())
 
-const keyboardKeyVariant = computed<KeyboardKeyStyleProps['variant']>(() => {
+const keyboardKeyVariant = computed<KeyboardStyleProps['variant']>(() => {
   if (props.variant === 'default' || props.variant === 'destructive') {
     return 'secondary'
   }
@@ -108,12 +108,12 @@ function createKeyboardShortcut(): void {
 
   useKeyboardShortcut({
     isDisabled: props.keyboardShortcut.isDisabled,
+    keys: props.keyboardShortcut.keys,
     onTrigger: () => {
       if (buttonRef.value !== null) {
         buttonRef.value.click()
       }
     },
-    keys: props.keyboardShortcut.keys,
   })
 }
 

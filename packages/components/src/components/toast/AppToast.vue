@@ -9,10 +9,10 @@ import type { Icon } from '@/icons/icons'
 import type { ToastAction, ToastType } from '@/types/toast.type'
 
 const props = withDefaults(defineProps<{
+  title: string
   action?: ToastAction | null
   description?: null | string
   icon: Icon
-  title: string
   type: ToastType
 }>(), {
   action: null,
