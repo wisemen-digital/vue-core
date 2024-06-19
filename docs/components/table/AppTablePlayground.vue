@@ -56,11 +56,31 @@ interface ExampleFilters {
 const exampleData: PaginatedData<ExampleDataType> = {
   data: [
     { firstName: 'John', lastName: 'Doe', age: 30, hasDriversLicense: true },
-    { firstName: 'Jane', lastName: 'Doe', age: 35, hasDriversLicense: false },
-    { firstName: 'James', lastName: 'Doe', age: 62, hasDriversLicense: true },
+    { firstName: 'Jane', lastName: 'Doe', age: 25, hasDriversLicense: false },
+    { firstName: 'Alice', lastName: 'Smith', age: 35, hasDriversLicense: true },
+    { firstName: 'Bob', lastName: 'Smith', age: 40, hasDriversLicense: false },
+    { firstName: 'Charlie', lastName: 'Brown', age: 45, hasDriversLicense: true },
+    { firstName: 'Daisy', lastName: 'Brown', age: 50, hasDriversLicense: false },
+    { firstName: 'Eve', lastName: 'Johnson', age: 55, hasDriversLicense: true },
+    { firstName: 'Frank', lastName: 'Johnson', age: 60, hasDriversLicense: false },
+    { firstName: 'Grace', lastName: 'Williams', age: 65, hasDriversLicense: true },
+    { firstName: 'Henry', lastName: 'Williams', age: 70, hasDriversLicense: false },
+    { firstName: 'Ivy', lastName: 'Davis', age: 75, hasDriversLicense: true },
+    { firstName: 'Jack', lastName: 'Davis', age: 80, hasDriversLicense: false },
+    { firstName: 'Kelly', lastName: 'Martinez', age: 85, hasDriversLicense: true },
+    { firstName: 'Liam', lastName: 'Martinez', age: 90, hasDriversLicense: false },
+    { firstName: 'Mia', lastName: 'Garcia', age: 95, hasDriversLicense: true },
+    { firstName: 'Noah', lastName: 'Garcia', age: 100, hasDriversLicense: false },
+    { firstName: 'Olivia', lastName: 'Rodriguez', age: 105, hasDriversLicense: true },
+    { firstName: 'Oliver', lastName: 'Rodriguez', age: 110, hasDriversLicense: false },
+    { firstName: 'Sophia', lastName: 'Lopez', age: 115, hasDriversLicense: true },
+    { firstName: 'William', lastName: 'Lopez', age: 120, hasDriversLicense: false },
+    { firstName: 'Zoe', lastName: 'Hernandez', age: 125, hasDriversLicense: true },
+    { firstName: 'Zach', lastName: 'Hernandez', age: 130, hasDriversLicense: false },
   ],
-  total: 3,
+  total: 22,
 }
+
 const exampleColumns: TableColumn<ExampleDataType>[] = [
   {
     id: 'firstName',
@@ -95,7 +115,7 @@ const pagination = usePagination<ExampleFilters>({
   defaultPaginationOptions: {
     pagination: {
       page: 0,
-      perPage: 3,
+      perPage: 10,
     },
   },
 })

@@ -123,7 +123,7 @@ const gridColsStyle = computed<string>(() => {
 })
 
 const hasNoData = computed<boolean>(() => {
-  return props.data?.data.length === 0 && props.isLoading === false
+  return props.data?.data.length === 0 && !props.isLoading
 })
 
 const activeFilterCount = computed<number>(() => {
