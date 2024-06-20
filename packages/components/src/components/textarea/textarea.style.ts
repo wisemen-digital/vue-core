@@ -1,5 +1,4 @@
-import type { VariantProps } from '@/libs/cva.lib'
-import { tv } from '@/libs/twVariants.lib'
+import { tv, type VariantProps } from '@/libs/twVariants.lib'
 
 export const useTextareaStyle = tv({
   slots: {

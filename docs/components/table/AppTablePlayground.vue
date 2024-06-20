@@ -162,6 +162,7 @@ const filters: PaginationFilter<ExampleFilters>[] = [
         value: 'option3',
       },
     ],
+    placeholder: 'Search more data',
     displayFn: (value: string) => value,
   },
 ]

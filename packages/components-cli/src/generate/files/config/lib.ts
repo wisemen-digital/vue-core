@@ -4,7 +4,7 @@ import { ComponentName, ComponentType } from '@/generate/components.type'
 export const lib: Component = {
   dependencies: [
     'formango',
-    'cva@beta',
+    'tailwind-variants',
     '@wisemen/vue-core',
     'tailwind-merge',
     'zod',

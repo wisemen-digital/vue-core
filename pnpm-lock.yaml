@@ -96,16 +96,13 @@ importers:
         version: 10.11.0(vue-router@4.3.3)(vue@3.4.29)
       '@wisemen/eslint-config-vue':
         specifier: 0.1.4
-        version: 0.1.4(@vue/compiler-sfc@3.4.27)(eslint@9.4.0)(putout@35.7.1)(tailwindcss@3.4.4)(typescript@5.4.5)(vitest@1.6.0)
+        version: 0.1.4(@vue/compiler-sfc@3.4.29)(eslint@9.4.0)(putout@35.7.1)(tailwindcss@3.4.4)(typescript@5.4.5)(vitest@1.6.0)
       autoprefixer:
         specifier: ^10.4.19
         version: 10.4.19(postcss@8.4.38)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
-      cva:
-        specifier: 1.0.0-beta.1
-        version: 1.0.0-beta.1(typescript@5.4.5)
       eslint:
         specifier: '9.4'
         version: 9.4.0
@@ -539,6 +536,96 @@ packages:
       eslint-plugin-vue: 9.26.0(eslint@9.4.0)
       eslint-plugin-yml: 1.14.0(eslint@9.4.0)
       eslint-processor-vue-blocks: 0.1.2(@vue/compiler-sfc@3.4.27)(eslint@9.4.0)
+      globals: 15.6.0
+      jsonc-eslint-parser: 2.4.0
+      local-pkg: 0.5.0
+      parse-gitignore: 2.0.0
+      picocolors: 1.0.1
+      toml-eslint-parser: 0.9.3
+      vue-eslint-parser: 9.4.3(eslint@9.4.0)
+      yaml-eslint-parser: 1.2.3
+      yargs: 17.7.2
+    transitivePeerDependencies:
+      - '@vue/compiler-sfc'
+      - supports-color
+      - svelte
+      - typescript
+      - vitest
+    dev: true
+
+  /@antfu/eslint-config@2.21.1(@vue/compiler-sfc@3.4.29)(eslint@9.4.0)(typescript@5.4.5)(vitest@1.6.0):
+    resolution: {integrity: sha512-CG7U7nihU73zufrxe5Rr4pxsHrW60GXl9yzRpRY+ImGQ2CVhd0eb3fqJYdNwDJBgKgqHGWX4p1ovYvno/jfWHA==}
+    hasBin: true
+    peerDependencies:
+      '@eslint-react/eslint-plugin': ^1.5.8
+      '@prettier/plugin-xml': ^3.4.1
+      '@unocss/eslint-plugin': '>=0.50.0'
+      astro-eslint-parser: ^1.0.2
+      eslint: '>=8.40.0'
+      eslint-plugin-astro: ^1.2.0
+      eslint-plugin-format: '>=0.1.0'
+      eslint-plugin-react-hooks: ^4.6.0
+      eslint-plugin-react-refresh: ^0.4.4
+      eslint-plugin-solid: ^0.13.2
+      eslint-plugin-svelte: '>=2.35.1'
+      prettier-plugin-astro: ^0.13.0
+      prettier-plugin-slidev: ^1.0.5
+      svelte-eslint-parser: ^0.33.1
+    peerDependenciesMeta:
+      '@eslint-react/eslint-plugin':
+        optional: true
+      '@prettier/plugin-xml':
+        optional: true
+      '@unocss/eslint-plugin':
+        optional: true
+      astro-eslint-parser:
+        optional: true
+      eslint-plugin-astro:
+        optional: true
+      eslint-plugin-format:
+        optional: true
+      eslint-plugin-react-hooks:
+        optional: true
+      eslint-plugin-react-refresh:
+        optional: true
+      eslint-plugin-solid:
+        optional: true
+      eslint-plugin-svelte:
+        optional: true
+      prettier-plugin-astro:
+        optional: true
+      prettier-plugin-slidev:
+        optional: true
+      svelte-eslint-parser:
+        optional: true
+    dependencies:
+      '@antfu/install-pkg': 0.3.3
+      '@clack/prompts': 0.7.0
+      '@stylistic/eslint-plugin': 2.1.0(eslint@9.4.0)(typescript@5.4.5)
+      '@typescript-eslint/eslint-plugin': 7.13.1(@typescript-eslint/parser@7.13.1)(eslint@9.4.0)(typescript@5.4.5)
+      '@typescript-eslint/parser': 7.13.1(eslint@9.4.0)(typescript@5.4.5)
+      eslint: 9.4.0
+      eslint-config-flat-gitignore: 0.1.5
+      eslint-flat-config-utils: 0.2.5
+      eslint-merge-processors: 0.1.0(eslint@9.4.0)
+      eslint-plugin-antfu: 2.3.3(eslint@9.4.0)
+      eslint-plugin-command: 0.2.3(eslint@9.4.0)
+      eslint-plugin-eslint-comments: 3.2.0(eslint@9.4.0)
+      eslint-plugin-import-x: 0.5.1(eslint@9.4.0)(typescript@5.4.5)
+      eslint-plugin-jsdoc: 48.2.12(eslint@9.4.0)
+      eslint-plugin-jsonc: 2.16.0(eslint@9.4.0)
+      eslint-plugin-markdown: 5.0.0(eslint@9.4.0)
+      eslint-plugin-n: 17.9.0(eslint@9.4.0)
+      eslint-plugin-no-only-tests: 3.1.0
+      eslint-plugin-perfectionist: 2.11.0(eslint@9.4.0)(typescript@5.4.5)(vue-eslint-parser@9.4.3)
+      eslint-plugin-regexp: 2.6.0(eslint@9.4.0)
+      eslint-plugin-toml: 0.11.0(eslint@9.4.0)
+      eslint-plugin-unicorn: 53.0.0(eslint@9.4.0)
+      eslint-plugin-unused-imports: 3.2.0(@typescript-eslint/eslint-plugin@7.13.1)(eslint@9.4.0)
+      eslint-plugin-vitest: 0.5.4(@typescript-eslint/eslint-plugin@7.13.1)(eslint@9.4.0)(typescript@5.4.5)(vitest@1.6.0)
+      eslint-plugin-vue: 9.26.0(eslint@9.4.0)
+      eslint-plugin-yml: 1.14.0(eslint@9.4.0)
+      eslint-processor-vue-blocks: 0.1.2(@vue/compiler-sfc@3.4.29)(eslint@9.4.0)
       globals: 15.6.0
       jsonc-eslint-parser: 2.4.0
       local-pkg: 0.5.0
@@ -4458,6 +4545,51 @@ packages:
       - vue-eslint-parser
     dev: true
 
+  /@wisemen/eslint-config-vue@0.1.4(@vue/compiler-sfc@3.4.29)(eslint@9.4.0)(putout@35.7.1)(tailwindcss@3.4.4)(typescript@5.4.5)(vitest@1.6.0):
+    resolution: {integrity: sha512-W4DXscaH7h4uxaKFL23niZsva3vRKQL4+DKHms6cL2GZU52rAq2NT/JcPJtmC1L23rEjS10yVbhuUvuiBE/owQ==}
+    peerDependencies:
+      eslint: ^9.3.0
+    dependencies:
+      '@antfu/eslint-config': 2.21.1(@vue/compiler-sfc@3.4.29)(eslint@9.4.0)(typescript@5.4.5)(vitest@1.6.0)
+      '@eslint/eslintrc': 3.1.0
+      '@intlify/eslint-plugin-vue-i18n': 3.0.0-next.9(eslint@9.4.0)
+      '@typescript-eslint/parser': 7.13.1(eslint@9.4.0)(typescript@5.4.5)
+      eslint: 9.4.0
+      eslint-plugin-check-file: 2.8.0(eslint@9.4.0)
+      eslint-plugin-cypress: 3.3.0(eslint@9.4.0)
+      eslint-plugin-path: 1.3.0(eslint@9.4.0)
+      eslint-plugin-perfectionist: 2.11.0(eslint@9.4.0)(typescript@5.4.5)(vue-eslint-parser@9.4.3)
+      eslint-plugin-putout: 22.10.0(eslint@9.4.0)(putout@35.7.1)
+      eslint-plugin-require-explicit-generics: 1.0.0
+      eslint-plugin-simple-import-sort: 12.1.0(eslint@9.4.0)
+      eslint-plugin-tailwindcss: 3.17.3(tailwindcss@3.4.4)
+      eslint-plugin-unused-imports: 4.0.0(eslint@9.4.0)
+    transitivePeerDependencies:
+      - '@babel/preset-typescript'
+      - '@eslint-react/eslint-plugin'
+      - '@prettier/plugin-xml'
+      - '@typescript-eslint/eslint-plugin'
+      - '@unocss/eslint-plugin'
+      - '@vue/compiler-sfc'
+      - astro-eslint-parser
+      - eslint-plugin-astro
+      - eslint-plugin-format
+      - eslint-plugin-react-hooks
+      - eslint-plugin-react-refresh
+      - eslint-plugin-solid
+      - eslint-plugin-svelte
+      - prettier-plugin-astro
+      - prettier-plugin-slidev
+      - putout
+      - supports-color
+      - svelte
+      - svelte-eslint-parser
+      - tailwindcss
+      - typescript
+      - vitest
+      - vue-eslint-parser
+    dev: true
+
   /abbrev@2.0.0:
     resolution: {integrity: sha512-6/mh1E2u2YgEsCHdY0Yx5oW+61gZU+1vXaoiHHrpKeuRNNgFvS+/jrwHiQhB5apAf5oB7UB7E19ol2R2LKH8hQ==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
@@ -5047,11 +5179,6 @@ packages:
     engines: {node: '>=0.8'}
     dev: true
 
-  /clsx@2.0.0:
-    resolution: {integrity: sha512-rQ1+kcj+ttHG0MKVGBUXwayCCF1oh39BF5COIpRzuCEv8Mwjv0XucrI2ExNTOn9IlLifGClWQcU9BrZORvtw6Q==}
-    engines: {node: '>=6'}
-    dev: true
-
   /clsx@2.1.1:
     resolution: {integrity: sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==}
     engines: {node: '>=6'}
@@ -5230,18 +5357,6 @@ packages:
 
   /currify@4.0.0:
     resolution: {integrity: sha512-ABfH28PWp5oqqp31cLXJQdeMqoFNej9rJOu84wKhN3jPCH7FAZg3zY1MVI27PTFoqfPlxOyhGmh9PzOVv+yN2g==}
-    dev: true
-
-  /cva@1.0.0-beta.1(typescript@5.4.5):
-    resolution: {integrity: sha512-gznFqTgERU9q4wg7jfgqtt34+RUt9S5t0xDAAEuDwQEAXEgjdDkKXpLLNjwSxsB4Ln/sqWJEH7yhE8Ny0mxd0w==}
-    peerDependencies:
-      typescript: '>= 4.5.5 < 6'
-    peerDependenciesMeta:
-      typescript:
-        optional: true
-    dependencies:
-      clsx: 2.0.0
-      typescript: 5.4.5
     dev: true
 
   /data-uri-to-buffer@4.0.1:
@@ -6148,6 +6263,16 @@ packages:
       eslint: ^8.50.0 || ^9.0.0
     dependencies:
       '@vue/compiler-sfc': 3.4.27
+      eslint: 9.4.0
+    dev: true
+
+  /eslint-processor-vue-blocks@0.1.2(@vue/compiler-sfc@3.4.29)(eslint@9.4.0):
+    resolution: {integrity: sha512-PfpJ4uKHnqeL/fXUnzYkOax3aIenlwewXRX8jFinA1a2yCFnLgMuiH3xvCgvHHUlV2xJWQHbCTdiJWGwb3NqpQ==}
+    peerDependencies:
+      '@vue/compiler-sfc': ^3.3.0
+      eslint: ^8.50.0 || ^9.0.0
+    dependencies:
+      '@vue/compiler-sfc': 3.4.29
       eslint: 9.4.0
     dev: true
 
