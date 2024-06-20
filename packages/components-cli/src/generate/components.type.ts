@@ -49,8 +49,8 @@ export enum ComponentType {
 }
 
 export interface ComponentFile {
-  path: string
   type: ComponentType
+  path: string
 }
 
 export interface Component {

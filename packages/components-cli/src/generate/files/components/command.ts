@@ -4,12 +4,12 @@ import { ComponentName, ComponentType } from '@/generate/components.type'
 export const command: Component = {
   files: [
     {
-      path: 'command',
       type: ComponentType.COMPONENTS,
+      path: 'command',
     },
     {
-      path: 'commandItem.type.ts',
       type: ComponentType.TYPES,
+      path: 'commandItem.type.ts',
     },
   ],
   component: ComponentName.COMMAND,

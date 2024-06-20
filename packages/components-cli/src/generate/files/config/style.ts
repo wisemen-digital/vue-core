@@ -4,12 +4,12 @@ import { ComponentName, ComponentType } from '@/generate/components.type'
 export const style: Component = {
   files: [
     {
-      path: './',
       type: ComponentType.STYLES,
+      path: './',
     },
     {
-      path: './tailwind.config.ts',
       type: ComponentType.CONFIG,
+      path: './tailwind.config.ts',
     },
   ],
   component: ComponentName.STYLES,

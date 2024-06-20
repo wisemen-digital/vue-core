@@ -12,6 +12,8 @@ dist
 **/.vitepress/dist
 **/.vitepress/cache
 
+.turbo
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

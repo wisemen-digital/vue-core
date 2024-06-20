@@ -4,12 +4,12 @@ import { ComponentName, ComponentType } from '@/generate/components.type'
 export const transitions: Component = {
   files: [
     {
-      path: 'view-transition',
       type: ComponentType.COMPONENTS,
+      path: 'view-transition',
     },
     {
-      path: 'transitions',
       type: ComponentType.COMPONENTS,
+      path: 'transitions',
     },
   ],
   component: ComponentName.TRANSITIONS,

@@ -4,10 +4,7 @@ import {
   onMounted,
   ref,
 } from 'vue'
-import {
-  type RouteLocationNamedRaw,
-  RouterLink,
-} from 'vue-router'
+import { RouterLink } from 'vue-router'
 
 import {
   type ButtonStyleProps,
@@ -20,6 +17,10 @@ import AppLoader from '@/components/loader/AppLoader.vue'
 import { useKeyboardShortcut } from '@/composables/keyboardShortcut.composable'
 import type { Icon } from '@/icons/icons'
 import type { KeyboardShortcutConfig } from '@/types/keyboardShortcut.type'
+import type {
+  RouteLocationTyped,
+  Routes,
+} from '@/types/routes.type.js'
 
 interface Props {
   /**
@@ -45,7 +46,7 @@ interface Props {
   /**
    * The route to link to.
    */
-  to: RouteLocationNamedRaw
+  to: RouteLocationTyped<keyof Routes>
   /**
    * The variant of the button.
    * @default 'default'

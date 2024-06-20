@@ -27,6 +27,10 @@ const props = withDefaults(
      */
     id?: null | string
     /**
+     * Whether the select chevron is hidden.
+     */
+    isChevronHidden?: boolean
+    /**
      * Whether the select is disabled.
      */
     isDisabled?: boolean
@@ -39,6 +43,10 @@ const props = withDefaults(
      * Whether the select is loading.
      */
     isLoading?: boolean
+    /**
+     * The value can be hidden to provide more customization.
+     */
+    isValueHidden?: boolean
     /**
      * display function for the selected value
      */
@@ -55,12 +63,18 @@ const props = withDefaults(
      * The placeholder of the select.
      */
     placeholder?: null | string
+    /**
+     * The class to apply to the select trigger.
+     */
+    selectTriggerClass?: null | string
   }>(),
   {
     id: null,
+    isChevronHidden: false,
     isDisabled: false,
     isInvalid: false,
     isLoading: false,
+    isValueHidden: false,
     iconLeft: undefined,
     placeholder: null,
   },
@@ -106,6 +120,7 @@ const popoverContainerClasses = computed<string>(() => selectStyle.popoverContai
         :id="id"
         :is-disabled="props.isDisabled"
         :is-invalid="props.isInvalid"
+        :class="props.selectTriggerClass"
         @blur="onTriggerBlur"
       >
         <slot name="left">
@@ -116,7 +131,10 @@ const popoverContainerClasses = computed<string>(() => selectStyle.popoverContai
           />
         </slot>
 
-        <AppSelectValue :is-empty="model === null">
+        <AppSelectValue
+          v-if="!isValueHidden"
+          :is-empty="model === null"
+        >
           <template v-if="placeholder !== null && model === null">
             {{ props.placeholder }}
           </template>
@@ -132,7 +150,7 @@ const popoverContainerClasses = computed<string>(() => selectStyle.popoverContai
         />
 
         <SelectIcon
-          v-else
+          v-else-if="!isChevronHidden"
           :as-child="true"
           class="mr-3"
         >

@@ -4,8 +4,8 @@ import { ComponentName, ComponentType } from '@/generate/components.type'
 export const toggle: Component = {
   files: [
     {
-      path: 'toggle',
       type: ComponentType.COMPONENTS,
+      path: 'toggle',
     },
   ],
   component: ComponentName.TOGGLE,

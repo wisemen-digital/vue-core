@@ -331,6 +331,7 @@ onUnmounted(() => {
       '--z-index': toasts.length - index,
       '--offset': `${removed ? offsetBeforeRemove : offset}px`,
       '--initial-height': expandByDefault ? 'auto' : `${initialHeight}px`,
+      'right': 0,
       ...style,
       ...toastStyle,
     }"

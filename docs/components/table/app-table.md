@@ -21,9 +21,11 @@ import AppTablePlayground from './AppTablePlayground.vue'
 | filters*             | `TableFilter<TFilters>[]`                             | Determines how the data will be filtered.         |            |
 | pagination*          | `Pagination<TFilters>`                                | The pagination options.                           |            |
 | isLoading*           | `boolean`                                             | Whether the data is loading.                      |            |
+| searchFilterKey      | `keyof TFilters`                                      | The key from the Fitlers object used for search   |            |
+| emptyText            | `TableEmptyTextProp` \| `null`                        | Optional empty text to replace defaults           |            |
 | rowClick             | `((row: TSchema) => void)` \| `null`                  | Returns the row as a button.                      | `null`     |
 | rowTo                | `((row: TSchema) => RouteLocationNamedRaw)` \| `null` | Returns the row as a RouterLink                   | `null`     |
-| rowTarget            | `string` \| `undefined`                               | Adds a target to the RouterLink when using row-to | `undefined` |
+| rowTarget            | `string` \| `undefined`                               | Adds a target to the RouterLink when using row-to | `undefined`|
 | isTopHidden          | `boolean` \| `undefined`                              | Hides the top of the table when set to true       | `false`    |
 | shouldPinFirstColumn | `boolean` \| `undefined`                              | Whether the first column of the table is pinned.  | `false`    |
 | shouldPinLastColumn  | `boolean` \| `undefined`                              | Whether the last column of the table is pinned.   | `false`    |
@@ -51,6 +53,19 @@ interface TableColumnWithValue<TSchema> extends BaseTableColumn {
 }
 
 export type TableColumn<TSchema> = TableColumnWithRender<TSchema> | TableColumnWithValue<TSchema>
+```
+
+```js [TableEmptyTextProp]
+export interface TableEmptyTextProp {
+  noData: {
+    message: string
+    title: string
+  }
+  noResults: {
+    message: string
+    title: string
+  }
+}
 ```
 
 ```js [PaginationFilter]
@@ -108,6 +123,13 @@ export interface UseTablePaginationReturnType<TFilters> {
 export type Pagination<TFilters> = UseTablePaginationReturnType<TFilters>
 ```
 ::: 
+
+
+## Slots
+
+| Slot name  | Type            | Description                                          |
+| ---------- | --------------- | ---------------------------------------------------- |
+| empty-state| none            | Override the Empty state overlay with custom content |
 
 
 ## Code

@@ -134,7 +134,7 @@ const activeFilterCount = computed<number>(() => {
     return 0
   }
 
-  return filters.length
+  return Object.keys(filters).length
 })
 
 function onFilterChange(filterChangeEvent: FilterChangeEvent<TFilters>): void {
@@ -172,6 +172,7 @@ const tableClasses = computed<string>(() => tableStyle.table())
       :pagination="props.pagination"
       :search-filter-key="props.searchFilterKey"
       @filter="onFilterChange"
+      @clear="onClearFilters"
     />
 
     <div

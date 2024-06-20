@@ -4,12 +4,12 @@ import { ComponentName, ComponentType } from '@/generate/components.type'
 export const breadcrumbs: Component = {
   files: [
     {
-      path: 'breadcrumbs',
       type: ComponentType.COMPONENTS,
+      path: 'breadcrumbs',
     },
     {
-      path: 'breadcrumbItem.type.ts',
       type: ComponentType.TYPES,
+      path: 'breadcrumbItem.type.ts',
     },
   ],
   internalDependencies: [

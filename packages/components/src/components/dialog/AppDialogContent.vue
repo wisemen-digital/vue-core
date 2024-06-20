@@ -7,6 +7,7 @@ import { useDialogStyle } from '@/components/dialog/dialog.style'
 
 const props = defineProps<{
   hideCloseButton: boolean
+  shouldPreventClickOutside: boolean
 }>()
 
 const dialogStyle = useDialogStyle()
@@ -14,8 +15,13 @@ const contentClasses = computed<string>(() => dialogStyle.content())
 const closeButtonClasses = computed<string>(() => dialogStyle.closeButton())
 
 function onInteractOutside(e: CustomEvent): void {
-  const target = e.target as HTMLElement
+  if (props.shouldPreventClickOutside) {
+    e.preventDefault()
 
+    return
+  }
+
+  const target = e.target as HTMLElement
   const isOverlay = target.classList.contains('custom-dialog-overlay')
 
   if (!isOverlay) {

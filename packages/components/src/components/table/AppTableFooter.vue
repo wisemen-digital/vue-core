@@ -32,9 +32,12 @@ const footerClasses = computed<string>(() => tableStyle.footer())
       :total="props.total ?? 0"
     >
       <AppPaginationResultIndicator />
-      <AppPaginationPrev />
-      <AppPaginationPages />
-      <AppPaginationNext />
+
+      <div class="flex items-center gap-x-2">
+        <AppPaginationPrev />
+        <AppPaginationPages />
+        <AppPaginationNext />
+      </div>
     </AppPaginationRoot>
   </div>
 </template>

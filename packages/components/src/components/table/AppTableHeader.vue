@@ -26,9 +26,7 @@ const emit = defineEmits<{
 }>()
 
 const currentSortDirection = computed<SortDirection>(() => {
-  const { sort } = props.paginationOptions
-
-  return getCurrentSortDirection(sort?.direction ?? null)
+  return getCurrentSortDirection(props.paginationOptions.sort?.direction ?? null)
 })
 
 function getCurrentSortDirection(currentDirection: SortDirection | null): SortDirection {

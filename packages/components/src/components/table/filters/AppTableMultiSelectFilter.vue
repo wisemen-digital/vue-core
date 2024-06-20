@@ -24,17 +24,19 @@ const emit = defineEmits<{
 const isExpanded = ref<boolean>(false)
 
 const filterModel = computed<string[]>(() => {
-  const data = props.pagination.paginationOptions.value.filters?.find((filter) => filter.key === props.filter.id)
+  const data = props.pagination.paginationOptions.value.filters?.[props.filter.id] ?? null
 
-  if (data?.value === undefined || data?.value === null) {
+  if (data === null) {
     return []
   }
 
-  return Array.isArray(data?.value)
-    ? data.value ?? []
-    : [
-        data?.value as string,
-      ] ?? []
+  if (Array.isArray(data)) {
+    return data as string[]
+  }
+
+  return ([
+    data,
+  ] ?? []) as string[]
 })
 
 const numberOfSelectedItems = computed<number>(() => {
