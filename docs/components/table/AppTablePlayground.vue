@@ -59,6 +59,7 @@ interface ExampleDataType {
 interface ExampleFilters {
   hasDriversLicense: boolean
   firstName: string
+  moreData: string[]
 }
 
 const emptyData = computed<PaginatedData<ExampleDataType>>(() => {
@@ -142,6 +143,27 @@ const filters: PaginationFilter<ExampleFilters>[] = [
     id: 'hasDriversLicense',
     label: 'Has drivers license?',
     type: 'boolean',
+  },
+  {
+    id: 'moreData',
+    label: 'More data',
+    type: 'multiselect',
+    options: [
+      {
+        type: 'option',
+        value: 'option1',
+      },
+      {
+        type: 'option',
+        value: 'option2',
+      },
+      {
+        type: 'option',
+        value: 'option3',
+      },
+    ],
+    placeholder: 'Search more data',
+    displayFn: (value: string) => value,
   },
 ]
 

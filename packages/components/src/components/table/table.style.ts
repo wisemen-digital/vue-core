@@ -17,6 +17,7 @@ export const useTableStyle = tv({
     emptyOverlayIcon: 'mx-auto text-muted-foreground',
     emptyOverlayText: 'text-center text-muted-foreground',
     emptyOverlayTitle: 'mt-4 text-center font-medium text-muted-foreground',
+    filterBooleanOption: 'py-2',
     filterMultiSelectButton: 'block w-full py-0',
     filterMultiSelectContainer: 'flex w-full items-center justify-between gap-2',
     filterMultiSelectExpandedItems: 'max-h-40 overflow-y-auto px-2',
