@@ -1,4 +1,6 @@
 <script setup lang="ts" generic="T extends string | boolean">
+import { computed } from 'vue'
+
 import FormElement from '@/components/form-element/FormElement.vue'
 import FormRadioGroupIndicator from '@/components/radio-group/FormRadioGroupIndicator.vue'
 import FormRadioGroupItem from '@/components/radio-group/FormRadioGroupItem.vue'
@@ -29,6 +31,10 @@ const props = withDefaults(defineProps<{
    */
   label?: null | string
   /**
+   * The model value of the radio group.
+   */
+  modelValue: T | null
+  /**
    * The options of the radio group.
    */
   options: DataItem<T>[]
@@ -38,8 +44,15 @@ const props = withDefaults(defineProps<{
   label: null,
 })
 
-const model = defineModel<null | string>({
-  required: true,
+const emit = defineEmits<{
+  'update:modelValue': [T | null]
+}>()
+
+const model = computed<null | string>({
+  get: () => props.modelValue !== null ? props.modelValue.toString() : null,
+  set: (value: null | string) => {
+    emit('update:modelValue', value as T | null)
+  },
 })
 </script>
 
