@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { toValue } from 'vue'
+import { computed, toValue } from 'vue'
 
 import AppUnstyledButton from '@/components/button/AppUnstyledButton.vue'
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppLoader from '@/components/loader/AppLoader.vue'
 import AppText from '@/components/text/AppText.vue'
+import { useToastStyle } from '@/components/toast/toast.style'
 import type { Icon } from '@/icons/icons'
 import type { ToastAction, ToastType } from '@/types/toast.type'
 
@@ -26,49 +27,63 @@ const emit = defineEmits<{
 function onClose(): void {
   emit('closeToast')
 }
+
+const toastStyle = useToastStyle()
+
+const containerClasses = computed<string>(() => toastStyle.container())
+const closeContainerClasses = computed<string>(() => toastStyle.closeContainer())
+const closeButtonClasses = computed<string>(() => toastStyle.closeButton())
+const closeIconClasses = computed<string>(() => toastStyle.closeIcon())
+const actionContainerClasses = computed<string>(() => toastStyle.actionContainer())
+const actionButtonClasses = computed<string>(() => toastStyle.actionButton())
+const actionButtonTextClasses = computed<string>(() => toastStyle.actionButtonText())
+const actionLoaderClasses = computed<string>(() => toastStyle.actionLoader())
+
+const contentContainerClasses = computed<string>(() => toastStyle.contentContainer())
+const contentTitleClasses = computed<string>(() => toastStyle.contentTitle())
+const contentDescriptionClasses = computed<string>(() => toastStyle.contentDescription())
+const contentIconClasses = computed<string>(() => toastStyle.contentIcon({
+  variant: props.type,
+}))
+const contentWrapperClasses = computed<string>(() => toastStyle.contentWrapper())
 </script>
 
 <template>
-  <div class="pointer-events-auto relative z-above-everything w-[22rem] rounded-popover border border-solid border-neutral-100 bg-popover p-4 shadow-toast-shadow">
-    <div class="absolute right-0 top-0 -translate-y-1/3 translate-x-1/3">
+  <div :class="containerClasses">
+    <div :class="closeContainerClasses">
       <button
+        :class="closeButtonClasses"
         type="button"
-        class="flex size-5 items-center justify-center rounded-full border border-solid border-neutral-100 bg-background p-1"
         @click.stop="onClose"
       >
         <AppIcon
+          :class="closeIconClasses"
           icon="close"
           size="full"
-          class="text-muted-foreground"
         />
       </button>
     </div>
 
-    <div class="flex shrink-0 items-start gap-x-4">
+    <div :class="contentContainerClasses">
       <AppIcon
         :icon="props.icon"
-        :class="{
-          'text-destructive': props.type === 'error',
-          'text-success': props.type === 'success',
-          'text-primary': props.type === 'info',
-        }"
+        :class="contentIconClasses"
         size="lg"
-        class="mt-[3px]"
       />
 
-      <div class="w-full pr-4">
+      <div :class="contentWrapperClasses">
         <div>
           <AppText
+            :class="contentTitleClasses"
             variant="body"
-            class="font-medium"
           >
             {{ props.title }}
           </AppText>
 
           <AppText
             v-if="props.description !== null"
+            :class="contentDescriptionClasses"
             variant="subtext"
-            class="mt-1"
           >
             {{ props.description }}
           </AppText>
@@ -76,22 +91,22 @@ function onClose(): void {
 
         <div
           v-if="props.action !== null"
-          class="mt-4"
+          :class="actionContainerClasses"
         >
           <AppLoader
             v-if="props.action.isLoading?.value ?? false"
-            class="size-5 text-muted-foreground"
+            :class="actionLoaderClasses"
           />
 
           <AppUnstyledButton
             v-else
-            class="h-5"
+            :class="actionButtonClasses"
             @click="props.action.onClick(onClose)"
           >
             <AppText
+              :class="actionButtonTextClasses"
               variant="subtext"
               as="span"
-              class="font-medium text-muted-foreground"
             >
               {{ toValue(props.action.label) }}
             </AppText>
