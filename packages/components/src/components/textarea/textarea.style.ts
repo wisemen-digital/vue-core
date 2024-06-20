@@ -36,4 +36,4 @@ export const useTextareaStyle = tv({
   },
 })
 
-export type TextAreaStyleProps = VariantProps<typeof useTextAreaStyle>
+export type TextAreaStyleProps = VariantProps<typeof useTextareaStyle>
