@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+
+import { useTextareaStyle } from '@/components/textarea/textarea.style'
+
 const props = withDefaults(defineProps<{
   /**
    * The id of the input.
@@ -55,6 +59,15 @@ function onBlur(): void {
 function onFocus(): void {
   emit('focus')
 }
+
+const textareaStyle = useTextareaStyle()
+
+const textareaClasses = computed<string>(() => textareaStyle.textarea({
+  isDisabled: props.isDisabled,
+  isInvalid: props.isInvalid,
+  class: props.heightClass,
+  resize: props.resize,
+}))
 </script>
 
 <template>
@@ -64,22 +77,10 @@ function onFocus(): void {
     :aria-invalid="props.isInvalid"
     :disabled="props.isDisabled"
     :placeholder="props.placeholder ?? undefined"
-    :class="[
-      props.heightClass,
-      {
-        'border-input-border focus-visible:ring-ring': !props.isInvalid,
-        'border-destructive focus-visible:border-input-border focus-visible:ring-destructive': props.isInvalid,
-        'cursor-not-allowed opacity-50': props.isDisabled,
-        'resize-none': props.resize === 'none',
-        'resize': props.resize === 'both',
-        'resize-x': props.resize === 'horizontal',
-        'resize-y': props.resize === 'vertical',
-      },
-    ]"
+    :class="textareaClasses"
     :style="{
       transitionProperty: 'border-color, background-color, box-shadow',
     }"
-    class="size-full rounded-input border border-solid bg-input px-3 py-2 text-sm text-input-foreground outline-none ring-offset-background duration-200 placeholder:text-input-placeholder focus-visible:ring-2 disabled:cursor-not-allowed"
     @blur="onBlur"
     @focus="onFocus"
   />
