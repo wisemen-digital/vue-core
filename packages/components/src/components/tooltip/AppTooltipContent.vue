@@ -1,24 +1,28 @@
 <script setup lang="ts">
 import { TooltipContent } from 'radix-vue'
+import { computed } from 'vue'
 
 import AppTooltipArrow from '@/components/tooltip/AppTooltipArrow.vue'
+import { useTooltipStyle } from '@/components/tooltip/tooltip.style'
 
 const props = defineProps<{
   hasArrow: boolean
   align: 'center' | 'end' | 'start'
   offset: number
 }>()
+
+const tooltipStyle = useTooltipStyle()
+
+const contentClasses = computed<string>(() => tooltipStyle.content())
 </script>
 
 <template>
-  <!-- eslint-disable tailwindcss/no-custom-classname -->
   <TooltipContent
     :align="props.align"
     :arrow-padding="12"
     :side-offset="props.offset"
-    class="custom-popover-content z-popover rounded-popover border bg-popover shadow-popover-shadow"
+    :class="contentClasses"
   >
-    <!-- eslint-enable tailwindcss/no-custom-classname -->
     <slot />
 
     <AppTooltipArrow v-if="props.hasArrow" />
