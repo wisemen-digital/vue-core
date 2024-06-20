@@ -12,10 +12,10 @@ export interface PaginationSort {
   direction: SortDirection
   key: string
 }
+
 export type PaginationFilters<TFilters> = {
-  key: keyof TFilters
-  value: FilterValues | null
-}[]
+  [K in keyof TFilters]?: TFilters[K]
+}
 
 export interface PageChangeEvent {
   page: number

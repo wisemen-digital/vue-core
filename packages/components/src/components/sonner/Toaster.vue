@@ -374,7 +374,7 @@ const VIEWPORT_OFFSET = '32px'
 const TOAST_LIFETIME = 4000
 
 // Default toast width
-const TOAST_WIDTH = 356
+const TOAST_WIDTH = 600
 
 // Default gap between toasts
 const GAP = 14

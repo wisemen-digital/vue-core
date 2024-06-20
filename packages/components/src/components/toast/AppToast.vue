@@ -86,7 +86,7 @@ function onClose(): void {
           <AppUnstyledButton
             v-else
             class="h-5"
-            @click="props.action.onClick(onClose)"
+            @click="props.action?.onClick(onClose)"
           >
             <AppText
               variant="subtext"
