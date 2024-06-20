@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 
 import {
-  type TextAreaStyleProps,
+  type TextareaStyleProps,
   useTextareaStyle,
 } from '@/components/textarea/textarea.style'
 
@@ -36,7 +36,7 @@ const props = withDefaults(defineProps<{
    * The resize property of the textarea.
    * @default 'none'
    */
-  resize?: TextAreaStyleProps['resize']
+  resize?: TextareaStyleProps['resize']
 }>(), {
   id: null,
   isDisabled: false,
