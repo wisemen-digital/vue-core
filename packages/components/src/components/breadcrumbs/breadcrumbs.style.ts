@@ -13,4 +13,4 @@ export const useBreadcrumbsStyle = tv({
   },
 })
 
-export type BadgeStyleProps = VariantProps<typeof useBreadcrumbsStyle>
+export type BreadcrumbsStyleProps = VariantProps<typeof useBreadcrumbsStyle>
