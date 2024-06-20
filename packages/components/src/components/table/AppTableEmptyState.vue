@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+
 import AppSkeletonLoaderRow from '@/components/skeleton-loader/AppSkeletonLoaderRow.vue'
+import { useTableStyle } from '@/components/table/table.style'
 
 const props = defineProps<{
   hasReachedHorizontalScrollEnd: boolean
@@ -9,6 +12,22 @@ const props = defineProps<{
   shouldPinFirstColumn: boolean
   shouldPinLastColumn: boolean
 }>()
+
+const hasLeftBorder = computed<boolean>(() => props.isScrolledToRight && props.shouldPinFirstColumn)
+const hasRightBorder = computed<boolean>(() => !props.hasReachedHorizontalScrollEnd && props.shouldPinLastColumn)
+
+const tableStyle = useTableStyle()
+
+const emptyColumnClasses = computed<string>(() => tableStyle.emptyColumn({
+  hasLeftBorder: hasLeftBorder.value,
+  hasRightBorder: hasRightBorder.value,
+  shouldPinFirstColumn: props.shouldPinFirstColumn,
+  shouldPinLastColumn: props.shouldPinLastColumn,
+}))
+
+const emptyContainerClasses = computed<string>(() => tableStyle.emptyContainer())
+const emptyGridClasses = computed<string>(() => tableStyle.emptyGrid())
+const emptyBackgroundClasses = computed<string>(() => tableStyle.emptyBackground())
 </script>
 
 <template>
@@ -16,7 +35,7 @@ const props = defineProps<{
     :style="{
       gridColumn: '1 / -1',
     }"
-    class="relative grid h-full grid-cols-subgrid"
+    :class="emptyContainerClasses"
   >
     <div
       v-for="i in 7"
@@ -24,23 +43,17 @@ const props = defineProps<{
       :style="{
         gridColumn: '1 / -1',
       }"
-      class="grid grid-cols-subgrid"
+      :class="emptyGridClasses"
     >
       <div
         v-for="columnIndex of props.columnCount"
         :key="columnIndex"
-        :class="{
-          'first:sticky first:left-0 first:z-10 first:border-r first:border-solid first:border-r-transparent first:bg-background group-hover:bg-muted-background group-focus:bg-muted-background': shouldPinFirstColumn,
-          'bg-background last:sticky last:right-0 last:z-10 last:border-l last:border-solid last:border-l-transparent group-hover:bg-muted-background group-focus:bg-muted-background': shouldPinLastColumn,
-          'first:!border-r-border': props.isScrolledToRight && props.shouldPinFirstColumn,
-          'last:!border-l-border': !props.hasReachedHorizontalScrollEnd && props.shouldPinLastColumn,
-        }"
-        class="px-6 py-4"
+        :class="emptyColumnClasses"
       >
         <AppSkeletonLoaderRow />
       </div>
     </div>
 
-    <div class="absolute left-0 top-0 z-10 size-full bg-gradient-to-b from-transparent to-background" />
+    <div :class="emptyBackgroundClasses" />
   </div>
 </template>

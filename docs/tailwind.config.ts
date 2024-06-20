@@ -7,6 +7,8 @@ export default {
     '../packages/components/src/components/**/*.{vue,ts}',
     './playground/**/*.{vue,ts}',
     './components/**/*.{vue,ts}',
+    './icons/**/*.{vue,ts}',
+
     './index.html',
   ],
 }

@@ -11,6 +11,7 @@ import {
   AppText,
   usePagination,
 } from '@wisemen/vue-core'
+import { computed } from 'vue'
 
 const controls = createControls({
   title: {
@@ -34,6 +35,11 @@ const controls = createControls({
     default: false,
     label: 'Is loading',
   },
+  isEmpty: {
+    type: 'switch',
+    default: false,
+    label: 'Is empty',
+  },
   isTopHidden: {
     type: 'switch',
     default: false,
@@ -44,8 +50,10 @@ const controls = createControls({
 interface ExampleDataType {
   hasDriversLicense: boolean
   age: number
+  evenMoreData: string
   firstName: string
   lastName: string
+  moreData: string
 }
 
 interface ExampleFilters {
@@ -53,19 +61,29 @@ interface ExampleFilters {
   firstName: string
 }
 
-const exampleData: PaginatedData<ExampleDataType> = {
-  data: [
-    { firstName: 'John', lastName: 'Doe', age: 30, hasDriversLicense: true },
-    { firstName: 'Jane', lastName: 'Doe', age: 35, hasDriversLicense: false },
-    { firstName: 'James', lastName: 'Doe', age: 62, hasDriversLicense: true },
-  ],
-  total: 3,
-}
+const emptyData = computed<PaginatedData<ExampleDataType>>(() => {
+  return {
+    data: [],
+    total: 0,
+  }
+})
+
+const exampleData = computed<PaginatedData<ExampleDataType>>(() => {
+  return {
+    data: [
+      { firstName: 'John', lastName: 'Doe', age: 30, hasDriversLicense: true, moreData: 'more data', evenMoreData: 'even more data' },
+      { firstName: 'Jane', lastName: 'Doe', age: 35, hasDriversLicense: false, moreData: 'more data', evenMoreData: 'even more data' },
+      { firstName: 'James', lastName: 'Doe', age: 62, hasDriversLicense: true, moreData: 'more data', evenMoreData: 'even more data' },
+    ],
+    total: 3,
+  }
+})
 const exampleColumns: TableColumn<ExampleDataType>[] = [
   {
     id: 'firstName',
     label: 'First Name',
     width: 'auto',
+    isSortable: true,
     value: (row) => row.firstName,
   },
   {
@@ -77,6 +95,7 @@ const exampleColumns: TableColumn<ExampleDataType>[] = [
   {
     id: 'age',
     label: 'Age',
+    isSortable: true,
     width: '100px',
     value: (row) => `${row.age}`,
   },
@@ -86,6 +105,18 @@ const exampleColumns: TableColumn<ExampleDataType>[] = [
     width: 'auto',
     maxWidth: '100px',
     value: (row) => row.hasDriversLicense === true ? 'Yes' : 'No',
+  },
+  {
+    id: 'moreData',
+    label: 'More data',
+    width: 'auto',
+    value: (row) => row.moreData,
+  },
+  {
+    id: 'evenMoreData',
+    label: 'Even more data',
+    width: 'auto',
+    value: (row) => row.evenMoreData,
   },
 ]
 
@@ -125,10 +156,10 @@ function onRowClick(row: ExampleDataType): void {
     :controls="controls"
   >
     <template #default="{ values }">
-      <div class="flex flex-col">
+      <div class="flex w-full flex-col">
         <AppTable
           v-bind="values"
-          :data="exampleData"
+          :data="values.isEmpty ? emptyData : exampleData"
           :columns="exampleColumns"
           :filters="filters"
           :pagination="pagination"

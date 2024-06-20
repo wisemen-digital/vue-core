@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 
 import AppIcon from '@/components/icon/AppIcon.vue'
+import { useTableStyle } from '@/components/table/table.style'
 import AppText from '@/components/text/AppText.vue'
 import type { Icon } from '@/icons/icons'
 import type {
@@ -39,7 +40,7 @@ function toggleSortDirection(direction: SortDirection): SortDirection {
 }
 
 function isColumnSorted(columnId: string): boolean {
-  return Object.keys(props.paginationOptions.sort ?? {})[0] === columnId
+  return props.paginationOptions.sort?.key === columnId
 }
 
 function handleSortChange(columnId: string): void {
@@ -107,6 +108,19 @@ function getColumnIcon(columnId: string): Icon {
 
   return 'arrowUpDown'
 }
+
+const hasRightBorder = computed<boolean>(() => props.isScrolledToRight && props.shouldPinFirstColumn)
+const hasLeftBorder = computed<boolean>(() => !props.hasReachedHorizontalScrollEnd && props.shouldPinLastColumn)
+const tableStyle = useTableStyle()
+
+const headerContainerClasses = computed<string>(() => tableStyle.headerContainer())
+const headerColumnClasses = computed<string>(() => tableStyle.headerColumn({
+  hasLeftBorder: hasLeftBorder.value,
+  hasRightBorder: hasRightBorder.value,
+  shouldPinFirstColumn: props.shouldPinFirstColumn,
+  shouldPinLastColumn: props.shouldPinLastColumn,
+}))
+const headerTextClasses = computed<string>(() => tableStyle.headerText())
 </script>
 
 <template>
@@ -114,23 +128,17 @@ function getColumnIcon(columnId: string): Icon {
     :style="{
       gridColumn: '1 / -1',
     }"
-    class="sticky top-0 z-20 grid min-w-full grid-cols-subgrid border-b border-solid border-border bg-muted-background"
+    :class="headerContainerClasses"
   >
     <Component
       :is="getComponent(column.isSortable ?? false)"
       v-for="column in props.columns"
       :key="column.id"
-      :class="{
-        'first:sticky first:left-0 first:z-10 first:border-r first:border-solid first:border-r-transparent': props.shouldPinFirstColumn,
-        'last:sticky last:right-0 last:z-10 last:border-l last:border-solid last:border-l-transparent': props.shouldPinLastColumn,
-        'first:!border-r-border': props.isScrolledToRight && props.shouldPinFirstColumn,
-        'last:!border-l-border': !props.hasReachedHorizontalScrollEnd && props.shouldPinLastColumn,
-      }"
-      class="group relative flex items-center gap-x-2 bg-muted-background px-6 py-3 text-left outline-none focus-visible:bg-neutral-100"
+      :class="headerColumnClasses"
       @click="handleSortColumnButtonClick(column)"
     >
       <AppText
-        class="truncate"
+        :class="headerTextClasses"
         variant="subtext"
       >
         {{ column.label }}
@@ -138,13 +146,8 @@ function getColumnIcon(columnId: string): Icon {
 
       <AppIcon
         v-if="column.isSortable ?? false"
-        :class="[
-          isColumnSorted(column.id)
-            ? 'text-foreground'
-            : 'text-muted-foreground/50 group-hover:text-foreground group-focus-visible:text-foreground',
-        ]"
+        :class="tableStyle.headerIcon({ isColumnSorted: isColumnSorted(column.id) })"
         :icon="getColumnIcon(column.id)"
-        class="duration-200"
         size="sm"
       />
     </Component>
