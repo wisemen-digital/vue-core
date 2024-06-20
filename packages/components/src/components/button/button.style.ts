@@ -18,8 +18,11 @@ export const useButtonStyle = tv({
   },
   slots: {
     button: buttonBaseClasses,
-    buttonIcon: '',
+    buttonContent: 'w-full',
+    buttonLeftIcon: 'mr-2',
+    buttonRightIcon: 'ml-2',
     iconButton: buttonBaseClasses,
+    keyboardShortcut: 'ml-3 mt-px',
     loader: 'size-4',
     loaderContainer: 'absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2',
     unstyledButton: 'block rounded-button outline-none ring-ring ring-offset-1 ring-offset-background duration-200 focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-50',
@@ -28,27 +31,32 @@ export const useButtonStyle = tv({
     size: {
       default: {
         button: 'h-10 px-4 py-2 text-sm',
-        buttonIcon: '!size-3.5',
+        buttonLeftIcon: '!size-3.5',
+        buttonRightIcon: '!size-3.5',
         iconButton: 'size-10',
       },
       lg: {
         button: 'h-11 px-8 text-base',
-        buttonIcon: '!size-4',
+        buttonLeftIcon: '!size-4',
+        buttonRightIcon: '!size-4',
         iconButton: 'size-12',
       },
       sm: {
         button: 'h-9 px-3 text-xs',
-        buttonIcon: '!size-2.5',
+        buttonLeftIcon: '!size-2.5',
+        buttonRightIcon: '!size-2.5',
         iconButton: 'size-8',
       },
       unset: {
         button: '',
-        buttonIcon: '',
+        buttonLeftIcon: '',
+        buttonRightIcon: '',
         iconButton: '',
       },
       xs: {
         button: 'h-6 px-2 text-xs',
-        buttonIcon: '!size-3.5',
+        buttonLeftIcon: '!size-3.5',
+        buttonRightIcon: '!size-3.5',
         iconButton: 'size-6',
       },
     },
@@ -84,7 +92,10 @@ export const useButtonStyle = tv({
     },
     isLoading: {
       true: {
-        buttonIcon: 'opacity-0',
+        buttonContent: 'opacity-0',
+        buttonLeftIcon: 'opacity-0',
+        buttonRightIcon: 'opacity-0',
+        keyboardShortcut: 'opacity-0',
       },
     },
   },
