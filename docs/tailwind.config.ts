@@ -8,7 +8,6 @@ export default {
     './playground/**/*.{vue,ts}',
     './components/**/*.{vue,ts}',
     './icons/**/*.{vue,ts}',
-
     './index.html',
   ],
 }

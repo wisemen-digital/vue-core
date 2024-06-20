@@ -3,7 +3,7 @@ import { tv } from '@/libs/twVariants.lib'
 
 export const useFormLabelStyle = tv({
   slots: {
-    label: 'text-sm duration-200',
+    label: 'text-subtext duration-200',
   },
   variants: {
     isInvalid: {
