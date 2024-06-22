@@ -19,7 +19,7 @@ const currentPageFrom = computed<number>(() => {
 const currentPageUntil = computed<number>(() => {
   const page = paginationContext.page.value
   const perPage = paginationContext.perPage.value
-  const pages = paginationContext.pages.value
+  const pages = paginationContext.totalPages.value
 
   return Math.min(perPage * (page + 1), pages ?? 0)
 })
@@ -30,6 +30,6 @@ const currentPageUntil = computed<number>(() => {
     <!-- eslint-disable-next-line @intlify/vue-i18n/no-raw-text -->
     {{ toLocaleNumber(currentPageFrom) }} -
     {{ toLocaleNumber(currentPageUntil) }} {{ t('components.table.of') }}
-    {{ toLocaleNumber(paginationContext.pages.value) }}
+    {{ toLocaleNumber(paginationContext.totalPages.value) }}
   </AppText>
 </template>

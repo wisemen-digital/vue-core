@@ -8,7 +8,9 @@ import { injectPaginationContext } from '@/components/pagination/pagination.cont
 const { t } = useI18n()
 const paginationContext = injectPaginationContext()
 
-const isLastPage = computed<boolean>(() => paginationContext.page.value === paginationContext.pages.value - 1)
+const isLastPage = computed<boolean>(() => {
+  return paginationContext.page.value === paginationContext.totalPages.value - 1
+})
 
 function onNextClick(): void {
   paginationContext.onPageChange(paginationContext.page.value + 1)
