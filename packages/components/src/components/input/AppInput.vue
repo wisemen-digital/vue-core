@@ -119,3 +119,13 @@ const { classAttr, otherAttrs } = useComponentAttrs()
     />
   </label>
 </template>
+
+<style lang="postcss" scoped>
+input::-webkit-datetime-edit {
+  @apply h-full
+}
+
+input::-webkit-datetime-edit-fields-wrapper {
+  @apply flex items-center h-full
+}
+</style>
