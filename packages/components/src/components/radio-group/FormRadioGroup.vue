@@ -49,10 +49,17 @@ const emit = defineEmits<{
 }>()
 
 const model = computed<null | string>({
-  get: () => props.modelValue !== null ? props.modelValue.toString() : null,
+  get: () => props.modelValue !== null ? JSON.stringify(props.modelValue) : null,
   set: (value: null | string) => {
-    emit('update:modelValue', value as T | null)
+    emit('update:modelValue', value !== null ? JSON.parse(value) as T : null)
   },
+})
+
+const options = computed<DataItem<string>[]>(() => {
+  return props.options.map((option) => ({
+    ...option,
+    value: JSON.stringify(option.value),
+  }))
 })
 </script>
 
@@ -67,20 +74,20 @@ const model = computed<null | string>({
     <FormRadioGroupRoot v-model="model">
       <div class="flex flex-col gap-y-2">
         <div
-          v-for="option of props.options"
+          v-for="option of options"
           :key="option.label"
           class="flex items-center gap-x-2"
         >
           <FormRadioGroupItem
             :id="option.value"
-            :value="option.value.toString()"
+            :value="option.value"
             class="flex size-5 items-center justify-center gap-x-2 rounded-full border-[1.5px] border-solid border-input-border data-[state=checked]:border-primary"
           >
             <FormRadioGroupIndicator class="block size-2 rounded-full bg-primary" />
           </FormRadioGroupItem>
 
           <label
-            :for="option.value.toString()"
+            :for="option.value"
             class="text-sm text-secondary-foreground"
           >
             {{ option.label }}
