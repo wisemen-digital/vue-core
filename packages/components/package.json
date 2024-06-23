@@ -32,6 +32,9 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
+  "dependencies": {
+    "@internationalized/date": "^3.5.4"
+  },
   "devDependencies": {
     "@tsconfig/node18": "^18.2.4",
     "@types/dom-view-transitions": "^1.0.4",
