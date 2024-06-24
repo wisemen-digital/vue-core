@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+
+import { useFormErrorStyle } from '@/components/form-error/formError.style'
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppText from '@/components/text/AppText.vue'
 import AppCollapseTransition from '@/components/transitions/AppCollapseTransition.vue'
@@ -8,21 +11,27 @@ const props = defineProps<{
   isVisible: boolean
   errors: FormFieldErrors
 }>()
+
+const formErrorStyle = useFormErrorStyle()
+
+const textClasses = computed<string>(() => formErrorStyle.text())
+const iconClasses = computed<string>(() => formErrorStyle.icon())
+const containerClasses = computed<string>(() => formErrorStyle.container())
 </script>
 
 <template>
   <AppCollapseTransition :duration="0.2">
     <div v-if="props.errors !== undefined && props.isVisible">
-      <div class="flex items-center gap-x-2">
+      <div :class="containerClasses">
         <AppIcon
+          :class="iconClasses"
           size="default"
-          class="shrink-0 text-destructive"
           icon="warning"
         />
 
         <AppText
+          :class="textClasses"
           variant="subtext"
-          class="text-destructive"
         >
           {{ props.errors?._errors[0] }}
         </AppText>

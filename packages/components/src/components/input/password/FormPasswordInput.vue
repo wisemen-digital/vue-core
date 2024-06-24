@@ -5,6 +5,7 @@ import { useI18n } from 'vue-i18n'
 import AppIconButton from '@/components/button/AppIconButton.vue'
 import FormElement from '@/components/form-element/FormElement.vue'
 import AppInput from '@/components/input/AppInput.vue'
+import { useInputStyle } from '@/components/input/input.style'
 import AppToggle from '@/components/toggle/AppToggle.vue'
 import type { Icon } from '@/icons/icons'
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
@@ -81,6 +82,10 @@ function onFocus(): void {
 function onBlur(): void {
   emit('blur')
 }
+
+const inputStyle = useInputStyle()
+
+const passwordIconClasses = computed<string>(() => inputStyle.passwordIcon())
 </script>
 
 <template>
@@ -117,10 +122,10 @@ function onBlur(): void {
               :label="isToggled
                 ? t('components.password_input.hide_password')
                 : t('components.password_input.show_password')"
+              :class="passwordIconClasses"
               tabindex="-1"
               size="sm"
               variant="ghost"
-              class="m-1 size-8"
             />
           </template>
         </AppToggle>

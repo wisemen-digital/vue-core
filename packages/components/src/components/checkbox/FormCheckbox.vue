@@ -6,6 +6,7 @@ import {
 } from 'radix-vue'
 import { computed } from 'vue'
 
+import { useCheckboxStyle } from '@/components/checkbox/checkbox.style'
 import FormLabel from '@/components/form-label/FormLabel.vue'
 import AppIcon from '@/components/icon/AppIcon.vue'
 
@@ -30,6 +31,13 @@ const emit = defineEmits<{
 const model = defineModel<boolean>({
   required: true,
 })
+
+const checkboxStyle = useCheckboxStyle()
+
+const checkboxRootClasses = computed<string>(() => checkboxStyle.root({
+  isInvalid: props.isInvalid,
+}))
+const checkboxIndicatorClasses = computed<string>(() => checkboxStyle.indicator())
 
 const id = props.id ?? useId()
 
@@ -61,24 +69,20 @@ function onBlur(): void {
       :id="id"
       v-model:checked="computedModel"
       :disabled="props.isDisabled"
-      :class="{
-        'border-destructive focus-visible:ring-destructive data-[state=checked]:border-destructive data-[state=checked]:bg-destructive': props.isInvalid,
-        'border-input-border focus-visible:ring-ring data-[state=checked]:border-primary data-[state=checked]:bg-primary': !props.isInvalid,
-      }"
-      class="flex size-5 items-center justify-center rounded border-[1.5px] border-solid outline-none ring-offset-1 ring-offset-background duration-200 focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-50"
+      :class="checkboxRootClasses"
       @blur="onBlur"
     >
       <CheckboxIndicator>
         <AppIcon
           v-if="props.isIndeterminate"
+          :class="checkboxIndicatorClasses"
           icon="minus"
-          class="text-primary-foreground"
         />
 
         <AppIcon
           v-else-if="computedModel === true"
+          :class="checkboxIndicatorClasses"
           icon="checkmark"
-          class="text-primary-foreground"
         />
       </CheckboxIndicator>
     </CheckboxRoot>

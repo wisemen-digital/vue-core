@@ -1,29 +1,44 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+
 import AppContainer from '@/components/container/AppContainer.vue'
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppSkeletonLoaderButton from '@/components/skeleton-loader/AppSkeletonLoaderButton.vue'
 import AppSkeletonLoaderRow from '@/components/skeleton-loader/AppSkeletonLoaderRow.vue'
+import { useSkeletonLoaderStyle } from '@/components/skeleton-loader/skeletonLoader.style'
+
+const skeletonLoaderStyle = useSkeletonLoaderStyle()
+
+const pageContainerClasses = computed<string>(() => skeletonLoaderStyle.pageContainer())
+const pageContentContainerClasses = computed<string>(() => skeletonLoaderStyle.pageContentContainer())
+const pageContentButtonClasses = computed<string>(() => skeletonLoaderStyle.pageContentButton())
+const pageContentRowClasses = computed<string>(() => skeletonLoaderStyle.pageContentRow())
+const pageHeaderContainerClasses = computed<string>(() => skeletonLoaderStyle.pageHeaderContainer())
+const pageHeaderIconClasses = computed<string>(() => skeletonLoaderStyle.pageHeaderIcon())
+const pageHeaderRowClasses = computed<string>(() => skeletonLoaderStyle.pageHeaderRow())
+const pagePaddingClasses = computed<string>(() => skeletonLoaderStyle.pagePadding())
+const pageFlexClasses = computed<string>(() => skeletonLoaderStyle.pageFlex())
 </script>
 
 <template>
-  <div class="flex w-full flex-1 flex-col bg-background">
-    <AppContainer class="pb-2 pt-10">
-      <div class="space-y-2">
-        <div class="flex items-center gap-x-2">
-          <AppSkeletonLoaderRow class="w-32" />
+  <div :class="pageContainerClasses">
+    <AppContainer :class="pagePaddingClasses">
+      <div :class="pageFlexClasses">
+        <div :class="pageHeaderContainerClasses">
+          <AppSkeletonLoaderRow :class="pageHeaderRowClasses" />
 
           <AppIcon
-            class="text-muted"
+            :class="pageHeaderIconClasses"
             icon="chevronRight"
             size="sm"
           />
 
-          <AppSkeletonLoaderRow class="w-32" />
+          <AppSkeletonLoaderRow :class="pageHeaderRowClasses" />
         </div>
 
-        <div class="flex items-center justify-between">
-          <AppSkeletonLoaderRow class="w-60" />
-          <AppSkeletonLoaderButton class="w-40" />
+        <div :class="pageContentContainerClasses">
+          <AppSkeletonLoaderRow :class="pageContentRowClasses" />
+          <AppSkeletonLoaderButton :class="pageContentButtonClasses" />
         </div>
       </div>
     </AppContainer>

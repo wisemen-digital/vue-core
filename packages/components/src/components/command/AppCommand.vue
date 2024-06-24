@@ -7,9 +7,10 @@ import {
   ComboboxRoot,
   ComboboxViewport,
 } from 'radix-vue'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
 import AppCommandItem from '@/components/command/AppCommandItem.vue'
+import { useCommandStyle } from '@/components/command/command.style'
 import type { CommandItem } from '@/types/commandItem.type'
 import type { AcceptableValue } from '@/types/selectItem.type'
 
@@ -25,6 +26,11 @@ const props = defineProps<{
 }>()
 
 const search = ref<string>('')
+
+const commandStyle = useCommandStyle()
+
+const containerClasses = computed<string>(() => commandStyle.container())
+const inputClasses = computed<string>(() => commandStyle.input())
 </script>
 
 <template>
@@ -33,14 +39,14 @@ const search = ref<string>('')
     <ComboboxRoot
       v-model:search-term="search"
       :open="true"
+      :class="containerClasses"
       model-value=""
-      class="rounded-lg bg-background shadow-popover-shadow"
     >
       <ComboboxAnchor>
         <ComboboxInput
           :auto-focus="true"
           :placeholder="placeholder"
-          class="w-full truncate border-b border-solid border-border bg-transparent p-5 text-lg outline-none placeholder:text-input-placeholder"
+          :class="inputClasses"
         />
       </ComboboxAnchor>
 

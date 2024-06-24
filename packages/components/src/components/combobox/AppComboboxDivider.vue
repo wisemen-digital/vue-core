@@ -1,7 +1,13 @@
 <script setup lang="ts">
 import { ComboboxSeparator } from 'radix-vue'
+import { computed } from 'vue'
+
+import { useComboboxStyle } from '@/components/combobox/combobox.style'
+
+const comboboxStyle = useComboboxStyle()
+const dividerStyle = computed<string>(() => comboboxStyle.divider())
 </script>
 
 <template>
-  <ComboboxSeparator class="my-1 h-px bg-border" />
+  <ComboboxSeparator :class="dividerStyle" />
 </template>

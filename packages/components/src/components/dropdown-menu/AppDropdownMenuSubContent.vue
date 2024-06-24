@@ -1,15 +1,20 @@
 <script setup lang="ts">
 import { DropdownMenuSubContent } from 'radix-vue'
+import { computed } from 'vue'
+
+import { useDropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style'
+
+const dropdownMenuStyle = useDropdownMenuStyle()
+
+const subContentClasses = computed<string>(() => dropdownMenuStyle.itemSubContent())
 </script>
 
 <template>
-  <!-- eslint-disable tailwindcss/no-custom-classname -->
   <DropdownMenuSubContent
     :side-offset="4"
     :align-offset="-5"
-    class="popover-content z-popover min-w-40 max-w-60 overflow-hidden rounded-popover border border-solid border-border bg-popover shadow-popover-shadow"
+    :class="subContentClasses"
   >
-    <!-- eslint-enable tailwindcss/no-custom-classname -->
     <slot />
   </DropdownMenuSubContent>
 </template>

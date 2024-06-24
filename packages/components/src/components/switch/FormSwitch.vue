@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { SwitchRoot, SwitchThumb } from 'radix-vue'
+import { computed } from 'vue'
+
+import { useSwitchStyle } from '@/components/switch/switch.style'
 
 const props = withDefaults(defineProps<{
   id?: null | string
@@ -14,6 +17,13 @@ const props = withDefaults(defineProps<{
 const model = defineModel<boolean>({
   required: true,
 })
+
+const switchStyle = useSwitchStyle()
+
+const containerClasses = computed<string>(() => switchStyle.container({
+  isInvalid: props.isInvalid,
+}))
+const thumbClasses = computed<string>(() => switchStyle.thumb())
 </script>
 
 <template>
@@ -21,12 +31,8 @@ const model = defineModel<boolean>({
     :id="props.id ?? undefined"
     v-model:checked="model"
     :disabled="props.isDisabled"
-    :class="{
-      'focus-visible:ring-ring data-[state=checked]:bg-primary': !props.isInvalid,
-      'bg-destructive focus-visible:ring-destructive': props.isInvalid,
-    }"
-    class="w-10 rounded-2xl bg-switch-background p-0.5 outline-none ring-offset-1 ring-offset-background duration-300 focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-50"
+    :class="containerClasses"
   >
-    <SwitchThumb class="block size-5 rounded-full bg-switch-foreground shadow-sm duration-300 ease-switch data-[state=checked]:translate-x-4" />
+    <SwitchThumb :class="thumbClasses" />
   </SwitchRoot>
 </template>

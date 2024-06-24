@@ -229,7 +229,7 @@ watch(isActuallyOpen, () => {
   }
 }
 
-.dialog-overlay {
+.custom-dialog-overlay {
   &[data-state='open'] {
     animation: dialog-overlay-animate-in 0.5s cubic-bezier(0.17, 0.67, 0.16, 0.99);
   }

@@ -3,7 +3,9 @@ import {
   DropdownMenuCheckboxItem,
   DropdownMenuItemIndicator,
 } from 'radix-vue'
+import { computed } from 'vue'
 
+import { useDropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style'
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppKeyboardShortcut from '@/components/keyboard/AppKeyboardShortcut.vue'
 import AppText from '@/components/text/AppText.vue'
@@ -12,20 +14,28 @@ import type { DropdownMenuCheckbox } from '@/types/dropdownMenuItem.type'
 const props = defineProps<{
   item: DropdownMenuCheckbox
 }>()
+
+const dropdownMenuStyle = useDropdownMenuStyle()
+
+const checkboxClasses = computed<string>(() => dropdownMenuStyle.itemCheckbox())
+const containerClasses = computed<string>(() => dropdownMenuStyle.itemContainer())
+const contentClasses = computed<string>(() => dropdownMenuStyle.itemContent())
+const indicatorClasses = computed<string>(() => dropdownMenuStyle.itemCheckboxIndicator())
+const textClasses = computed<string>(() => dropdownMenuStyle.itemText())
 </script>
 
 <template>
   <DropdownMenuCheckboxItem
     :checked="props.item.isSelected.value"
-    class="group flex cursor-default items-center justify-between overflow-hidden rounded-md px-2 py-1.5 outline-none focus:bg-muted-background"
+    :class="containerClasses"
     @select.prevent="props.item.onSelect"
   >
     <!-- Content -->
-    <div class="flex items-center gap-x-3">
-      <div class="flex size-4 items-center justify-center rounded border border-solid border-transparent duration-100 group-data-[highlighted]:border-input-border group-data-[state=checked]:border-primary group-data-[state=checked]:bg-primary">
+    <div :class="contentClasses">
+      <div :class="checkboxClasses">
         <DropdownMenuItemIndicator>
           <AppIcon
-            class="text-primary-foreground"
+            :class="indicatorClasses"
             icon="checkmark"
             size="sm"
           />
@@ -39,8 +49,8 @@ const props = defineProps<{
 
       <AppText
         v-else
+        :class="textClasses"
         variant="subtext"
-        class="truncate text-muted-foreground"
       >
         {{ props.item.label }}
       </AppText>

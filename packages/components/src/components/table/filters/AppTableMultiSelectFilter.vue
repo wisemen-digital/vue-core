@@ -4,6 +4,7 @@ import { computed, ref } from 'vue'
 import AppButton from '@/components/button/AppButton.vue'
 import FormCheckbox from '@/components/checkbox/FormCheckbox.vue'
 import AppIcon from '@/components/icon/AppIcon.vue'
+import { useTableStyle } from '@/components/table/table.style'
 import AppText from '@/components/text/AppText.vue'
 import type {
   Pagination,
@@ -64,26 +65,35 @@ function isEnabled(value: string): boolean {
 function onToggleFilterButtonClick(): void {
   isExpanded.value = !isExpanded.value
 }
+
+const tableStyle = useTableStyle()
+
+const filterMultiSelectButtonClasses = computed<string>(() => tableStyle.filterMultiSelectButton())
+const filterMultiSelectTextClasses = computed<string>(() => tableStyle.filterMultiSelectText())
+const filterMultiSelectContainerClasses = computed<string>(() => tableStyle.filterMultiSelectContainer())
+const filterMultiSelectSelectedItemsClasses = computed<string>(() => tableStyle.filterMultiSelectSelectedItems())
+const filterMultiSelectExpandedItemsClasses = computed<string>(() => tableStyle.filterMultiSelectExpandedItems())
+const filterMultiSelectOptionClasses = computed<string>(() => tableStyle.filterMultiSelectOption())
 </script>
 
 <template>
   <div>
     <AppButton
-      class="block w-full py-0"
+      :class="filterMultiSelectButtonClasses"
       size="sm"
       variant="ghost"
       @click="onToggleFilterButtonClick"
     >
-      <div class="flex w-full items-center justify-between gap-2">
+      <div :class="filterMultiSelectContainerClasses">
         <AppText
-          class="mr-auto"
+          :class="filterMultiSelectTextClasses"
           variant="subtext"
         >
           {{ props.filter.label }}
         </AppText>
         <div
           v-if="numberOfSelectedItems > 0"
-          class="flex size-5 items-center justify-center rounded-full bg-primary text-xs text-white"
+          :class="filterMultiSelectSelectedItemsClasses"
         >
           {{ numberOfSelectedItems.toString() }}
         </div>
@@ -95,12 +105,12 @@ function onToggleFilterButtonClick(): void {
     </AppButton>
     <div
       v-if="isExpanded"
-      class="max-h-40 overflow-y-auto px-2"
+      :class="filterMultiSelectExpandedItemsClasses"
     >
       <div
         v-for="(option, index) in props.filter.options"
         :key="`${props.filter.id.toString()}-${index}`"
-        class="my-2"
+        :class="filterMultiSelectOptionClasses"
       >
         <FormCheckbox
           v-if="option.type === 'option'"

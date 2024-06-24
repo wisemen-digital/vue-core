@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { TooltipPortal, TooltipTrigger } from 'radix-vue'
-import { useSlots } from 'vue'
+import { computed, useSlots } from 'vue'
 
 import AppText from '@/components/text/AppText.vue'
 import AppTooltipContent from '@/components/tooltip/AppTooltipContent.vue'
 import AppTooltipProvider from '@/components/tooltip/AppTooltipProvider.vue'
+import { useTooltipStyle } from '@/components/tooltip/tooltip.style'
 
 const props = withDefaults(
   defineProps<{
@@ -72,6 +73,10 @@ const slots = useSlots()
 if (props.content === null && slots.content === undefined) {
   throw new Error('[TOOLTIP] Either the `content` prop or `content` slot must be provided.')
 }
+
+const tooltipStyle = useTooltipStyle()
+
+const contentTextClasses = computed<string>(() => tooltipStyle.contentText())
 </script>
 
 <template>
@@ -94,7 +99,7 @@ if (props.content === null && slots.content === undefined) {
       >
         <slot name="content">
           <AppText
-            class="max-w-xs px-3 py-1.5 text-center text-sm text-popover-foreground"
+            :class="contentTextClasses"
             variant="subtext"
           >
             {{ props.content }}

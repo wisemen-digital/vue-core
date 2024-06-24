@@ -1,4 +1,7 @@
 <script setup lang="ts" generic="T extends string">
+import { computed } from 'vue'
+
+import { useCheckboxStyle } from '@/components/checkbox/checkbox.style'
 import FormCheckbox from '@/components/checkbox/FormCheckbox.vue'
 import FormElement from '@/components/form-element/FormElement.vue'
 import type { DataItem } from '@/types/dataItem.type'
@@ -40,6 +43,10 @@ const model = defineModel<T[]>({
   required: true,
 })
 
+const checkboxStyle = useCheckboxStyle()
+const checkboxContainerClasses = computed<string>(() => checkboxStyle.container())
+const checkboxGroupContainerClasses = computed<string>(() => checkboxStyle.groupContainer())
+
 function isOptionSelected(value: T): boolean {
   return model.value.includes(value)
 }
@@ -67,11 +74,11 @@ function toggleOption(value: T): void {
     :is-disabled="props.isDisabled"
     :is-required="props.isRequired"
   >
-    <div class="flex flex-col gap-y-2">
+    <div :class="checkboxGroupContainerClasses">
       <div
         v-for="option of props.options"
         :key="option.label"
-        class="flex items-center gap-x-2"
+        :class="checkboxContainerClasses"
       >
         <FormCheckbox
           :id="option.value"

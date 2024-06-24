@@ -1,6 +1,10 @@
-import { extendTailwindMerge } from 'tailwind-merge'
+import {
+  createTailwindMerge,
+  getDefaultConfig,
+  mergeConfigs,
+} from 'tailwind-merge'
 
-export const twMerge = extendTailwindMerge({
+export const extendedConfig = {
   extend: {
     classGroups: {
       'font-size': [
@@ -18,4 +22,8 @@ export const twMerge = extendTailwindMerge({
       ],
     },
   },
-})
+}
+
+export const config = mergeConfigs(getDefaultConfig(), extendedConfig)
+
+export const twMerge = createTailwindMerge(() => config)

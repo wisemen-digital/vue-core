@@ -5,6 +5,7 @@ import FormElement from '@/components/form-element/FormElement.vue'
 import FormRadioGroupIndicator from '@/components/radio-group/FormRadioGroupIndicator.vue'
 import FormRadioGroupItem from '@/components/radio-group/FormRadioGroupItem.vue'
 import FormRadioGroupRoot from '@/components/radio-group/FormRadioGroupRoot.vue'
+import { useRadioGroupStyle } from '@/components/radio-group/radioGroup.style'
 import type { DataItem } from '@/types/dataItem.type'
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
@@ -61,6 +62,14 @@ const options = computed<DataItem<string>[]>(() => {
     value: JSON.stringify(option.value),
   }))
 })
+
+const radioGroupStyle = useRadioGroupStyle()
+
+const containerClasses = computed<string>(() => radioGroupStyle.container())
+const itemIndicatorClasses = computed<string>(() => radioGroupStyle.itemIndicator())
+const itemTextClasses = computed<string>(() => radioGroupStyle.itemText())
+const itemWrapperClasses = computed<string>(() => radioGroupStyle.itemWrapper())
+const itemsContainerClasses = computed<string>(() => radioGroupStyle.itemsContainer())
 </script>
 
 <template>
@@ -72,23 +81,23 @@ const options = computed<DataItem<string>[]>(() => {
     :is-required="props.isRequired"
   >
     <FormRadioGroupRoot v-model="model">
-      <div class="flex flex-col gap-y-2">
+      <div :class="containerClasses">
         <div
           v-for="option of options"
           :key="option.label"
-          class="flex items-center gap-x-2"
+          :class="itemsContainerClasses"
         >
           <FormRadioGroupItem
             :id="option.value"
             :value="option.value"
-            class="flex size-5 items-center justify-center gap-x-2 rounded-full border-[1.5px] border-solid border-input-border data-[state=checked]:border-primary"
+            :class="itemWrapperClasses"
           >
-            <FormRadioGroupIndicator class="block size-2 rounded-full bg-primary" />
+            <FormRadioGroupIndicator :class="itemIndicatorClasses" />
           </FormRadioGroupItem>
 
           <label
             :for="option.value"
-            class="text-sm text-secondary-foreground"
+            :class="itemTextClasses"
           >
             {{ option.label }}
           </label>

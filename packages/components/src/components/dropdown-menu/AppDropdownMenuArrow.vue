@@ -1,12 +1,20 @@
 <script setup lang="ts">
 import { DropdownMenuArrow } from 'radix-vue'
+import { computed } from 'vue'
+
+import { useDropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style'
+
+const dropdownMenuStyle = useDropdownMenuStyle()
+
+const arrowContainerClasses = computed<string>(() => dropdownMenuStyle.arrowContainer())
+const arrowClasses = computed<string>(() => dropdownMenuStyle.arrow())
 </script>
 
 <template>
   <DropdownMenuArrow :as-child="true">
-    <div class="relative z-10 -mb-4 size-4 -translate-y-px overflow-hidden">
+    <div :class="arrowContainerClasses">
       <div
-        class="size-4 -translate-y-2.5 rotate-45 rounded-sm border border-solid border-border bg-popover"
+        :class="arrowClasses"
       />
     </div>
   </DropdownMenuArrow>

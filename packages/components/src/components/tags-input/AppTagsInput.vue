@@ -3,8 +3,10 @@ import {
   TagsInputInput,
   TagsInputRoot,
 } from 'radix-vue'
+import { computed } from 'vue'
 
 import AppTagsInputItem from '@/components/tags-input/AppTagsInputItem.vue'
+import { useTagsInputStyle } from '@/components/tags-input/tagsInput.style'
 
 const props = withDefaults(defineProps<{
   id?: null | string
@@ -36,6 +38,17 @@ function onFocus(): void {
 function onBlur(): void {
   emit('blur')
 }
+
+const tagsInputStyle = useTagsInputStyle()
+
+const containerClasses = computed<string>(() => tagsInputStyle.container({
+  isInvalid: props.isInvalid,
+  isModelEmpty: model.value.length === 0,
+}))
+
+const inputClasses = computed<string>(() => tagsInputStyle.input({
+  isDisabled: props.isDisabled,
+}))
 </script>
 
 <template>
@@ -44,14 +57,7 @@ function onBlur(): void {
     :disabled="props.isDisabled"
     :add-on-paste="true"
     :max="props.max ?? undefined"
-    :class="[
-      model.length === 0 ? 'px-2' : 'px-1',
-      {
-        'border-input-border focus-within:ring-ring': !props.isInvalid,
-        'border-destructive focus-within:ring-destructive': props.isInvalid,
-      },
-    ]"
-    class="flex min-h-10 w-full flex-wrap items-center gap-1 rounded-input border border-solid bg-input py-1 transition-shadow duration-200 focus-within:ring-2 focus-within:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+    :class="containerClasses"
   >
     <template
       v-for="tag of model"
@@ -72,10 +78,7 @@ function onBlur(): void {
     <TagsInputInput
       :id="id"
       :placeholder="props.placeholder ?? undefined"
-      :class="{
-        'cursor-not-allowed opacity-50': props.isDisabled,
-      }"
-      class="flex-1 bg-transparent p-1 text-sm outline-none placeholder:text-input-placeholder"
+      :class="inputClasses"
       @focus="onFocus"
       @blur="onBlur"
     />

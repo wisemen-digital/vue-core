@@ -2,6 +2,8 @@
 import { Label } from 'radix-vue'
 import { computed } from 'vue'
 
+import { useFormLabelStyle } from '@/components/form-label/formLabel.style'
+
 const props = withDefaults(defineProps<{
   isDisabled?: boolean
   isInvalid?: boolean
@@ -21,18 +23,18 @@ const label = computed<string>(() => {
 
   return props.label
 })
+
+const formLabelStyle = useFormLabelStyle()
+
+const labelClasses = computed<string>(() => formLabelStyle.label({
+  isDisabled: props.isDisabled,
+  isInvalid: props.isInvalid,
+}))
 </script>
 
 <template>
   <Label :for="props.for">
-    <span
-      :class="{
-        'text-destructive': props.isInvalid,
-        'text-muted-foreground': !props.isInvalid,
-        'opacity-50': props.isDisabled,
-      }"
-      class="text-sm duration-200"
-    >
+    <span :class="labelClasses">
       {{ label }}
     </span>
   </Label>

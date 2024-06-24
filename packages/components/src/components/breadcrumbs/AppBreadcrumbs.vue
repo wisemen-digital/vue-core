@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+
 import AppBreadcrumbDivider from '@/components/breadcrumbs/AppBreadcrumbDivider.vue'
 import AppBreadcrumbItem from '@/components/breadcrumbs/AppBreadcrumbItem.vue'
+import { useBreadcrumbsStyle } from '@/components/breadcrumbs/breadcrumbs.style'
 import type { BreadcrumbItem } from '@/types/breadcrumbItem.type'
 
 const props = defineProps<{
@@ -9,11 +12,14 @@ const props = defineProps<{
    */
   items: BreadcrumbItem[]
 }>()
+
+const breadcrumbsVariants = useBreadcrumbsStyle()
+const breadcrumbsContainerClasses = computed<string>(() => breadcrumbsVariants.container())
 </script>
 
 <template>
   <nav aria-label="breadcrumb">
-    <ol class="flex items-center gap-x-3">
+    <ol :class="breadcrumbsContainerClasses">
       <template
         v-for="(item, i) of props.items"
         :key="i"

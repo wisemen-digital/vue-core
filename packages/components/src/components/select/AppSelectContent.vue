@@ -1,22 +1,27 @@
 <script setup lang="ts">
 import { SelectContent, SelectViewport } from 'radix-vue'
+import { computed } from 'vue'
 
 import AppSelectScrollDownButton from '@/components/select/AppSelectScrollDownButton.vue'
 import AppSelectScrollUpButton from '@/components/select/AppSelectScrollUpButton.vue'
+import { useSelectStyle } from '@/components/select/select.style'
+
+const selectStyle = useSelectStyle()
+
+const contentContainerClasses = computed<string>(() => selectStyle.contentContainer())
+const contentViewportClasses = computed<string>(() => selectStyle.contentViewport())
 </script>
 
 <template>
-  <!-- eslint-disable tailwindcss/no-custom-classname -->
   <SelectContent
     :force-mount="true"
+    :class="contentContainerClasses"
     align="center"
-    class="select-content popover-content relative z-popover min-w-min overflow-hidden rounded-popover bg-background shadow-popover-shadow"
     position="popper"
   >
-    <!-- eslint-enable tailwindcss/no-custom-classname -->
     <AppSelectScrollUpButton />
 
-    <SelectViewport class="max-h-[25rem] p-1.5">
+    <SelectViewport :class="contentViewportClasses">
       <slot />
     </SelectViewport>
 
@@ -25,7 +30,7 @@ import AppSelectScrollUpButton from '@/components/select/AppSelectScrollUpButton
 </template>
 
 <style>
-.select-content {
+.custom-select-content {
   width: var(--radix-select-trigger-width);
   max-height: var(--radix-select-content-available-height);
 }

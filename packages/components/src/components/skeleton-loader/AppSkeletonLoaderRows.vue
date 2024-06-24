@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+
 import AppSkeletonLoaderRow from '@/components/skeleton-loader/AppSkeletonLoaderRow.vue'
+import { useSkeletonLoaderStyle } from '@/components/skeleton-loader/skeletonLoader.style'
 
 const props = withDefaults(
   defineProps<{
@@ -9,10 +12,14 @@ const props = withDefaults(
     rows: 3,
   },
 )
+
+const skeletonLoaderStyle = useSkeletonLoaderStyle()
+
+const rowContainer = computed<string>(() => skeletonLoaderStyle.rowContainer())
 </script>
 
 <template>
-  <div class="flex flex-col gap-y-4 p-4">
+  <div :class="rowContainer">
     <AppSkeletonLoaderRow
       v-for="i in props.rows"
       :key="i"

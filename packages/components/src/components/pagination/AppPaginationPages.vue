@@ -3,6 +3,7 @@ import { computed } from 'vue'
 
 import AppButton from '@/components/button/AppButton.vue'
 import { injectPaginationContext } from '@/components/pagination/pagination.context'
+import { usePaginationStyle } from '@/components/pagination/pagination.style'
 import AppText from '@/components/text/AppText.vue'
 
 const paginationContext = injectPaginationContext()
@@ -66,10 +67,14 @@ function pageControlButtonVariant(page: number): 'ghost' | 'muted' {
 function onPageClick(page: number): void {
   paginationContext.onPageChange(page)
 }
+
+const paginationStyle = usePaginationStyle()
+const pagesContainerClasses = computed<string>(() => paginationStyle.pagesContainer())
+const pageClasses = computed<string>(() => paginationStyle.page())
 </script>
 
 <template>
-  <div class="flex items-center">
+  <div :class="pagesContainerClasses">
     <div
       v-for="(page, index) of pageControls"
       :key="index"
@@ -85,7 +90,7 @@ function onPageClick(page: number): void {
 
       <AppText
         v-else
-        class="cursor-default px-2 text-muted-foreground"
+        :class="pageClasses"
         variant="subtext"
       >
         {{ page }}

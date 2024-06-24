@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import type { KeyboardKeyStyleProps } from '@/components/keyboard/keyboardKey.style'
-import { keyboardKey } from '@/components/keyboard/keyboardKey.style'
+import type { KeyboardStyleProps } from '@/components/keyboard/keyboardKey.style'
+import { useKeyboardStyle } from '@/components/keyboard/keyboardKey.style'
 import type { KeyboardKey } from '@/types/keyboard.type'
 
 const props = withDefaults(defineProps<{
   keyboardKey: KeyboardKey
-  variant?: KeyboardKeyStyleProps['variant']
+  variant?: KeyboardStyleProps['variant']
 }>(), {
   variant: 'default',
 })
@@ -60,8 +60,8 @@ const keyMap = new Map<KeyboardKey, string>([
 ])
 
 const key = computed<string>(() => keyMap.get(props.keyboardKey) ?? props.keyboardKey)
-
-const keyboardKeyClasses = computed<string>(() => keyboardKey({
+const keyboardStyle = useKeyboardStyle()
+const keyboardKeyClasses = computed<string>(() => keyboardStyle.key({
   variant: props.variant,
 }))
 </script>

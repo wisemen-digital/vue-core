@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { useSlots } from 'vue'
+import { computed, useSlots } from 'vue'
 
 import AppIcon from '@/components/icon/AppIcon.vue'
+import { useInputStyle } from '@/components/input/input.style'
 import AppLoader from '@/components/loader/AppLoader.vue'
 import { useComponentAttrs } from '@/composables/componentAttrs.composable'
 import type { Icon } from '@/icons/icons'
@@ -64,20 +65,23 @@ const model = defineModel<null | string>({
 const slots = useSlots()
 
 const { classAttr, otherAttrs } = useComponentAttrs()
+const inputStyle = useInputStyle()
+
+const containerClasses = computed<string>(() => inputStyle.container({
+  isDisabled: props.isDisabled,
+  isInvalid: props.isInvalid,
+  class: classAttr.value,
+}))
+const leftIconClasses = computed<string>(() => inputStyle.leftIcon())
+const rightIconClasses = computed<string>(() => inputStyle.rightIcon())
+const inputClasses = computed<string>(() => inputStyle.input())
+const loaderClasses = computed<string>(() => inputStyle.loader())
 </script>
 
 <template>
   <label
     :aria-disabled="props.isDisabled"
-    :class="[
-      classAttr,
-      {
-        'border-input-border [&:has(:focus-visible)]:ring-ring': !props.isInvalid,
-        'border-destructive [&:has(:focus-visible)]:border-input-border [&:has(:focus-visible)]:ring-destructive': props.isInvalid,
-        'cursor-not-allowed opacity-50': props.isDisabled,
-      },
-    ]"
-    class="relative flex h-10 items-center rounded-input border border-solid bg-input outline-none ring-offset-background duration-200 [&:has(:focus-visible)]:ring-2"
+    :class="containerClasses"
   >
     <Component
       :is="slots.left"
@@ -87,7 +91,7 @@ const { classAttr, otherAttrs } = useComponentAttrs()
     <AppIcon
       v-else-if="props.iconLeft !== null && props.iconLeft !== undefined"
       :icon="props.iconLeft"
-      class="ml-3 text-muted-foreground"
+      :class="leftIconClasses"
     />
 
     <!-- I'm not sure why, but without the `.stop` modifier, the events seem to fire twice -->
@@ -99,12 +103,12 @@ const { classAttr, otherAttrs } = useComponentAttrs()
       :aria-invalid="props.isInvalid"
       :disabled="props.isDisabled"
       :placeholder="props.placeholder ?? undefined"
-      class="block size-full truncate bg-transparent px-3 text-sm text-input-foreground outline-none placeholder:text-input-placeholder disabled:cursor-not-allowed"
+      :class="inputClasses"
     >
 
     <AppLoader
       v-if="props.isLoading"
-      class="mr-3 size-4 text-muted-foreground"
+      :class="loaderClasses"
     />
 
     <Component
@@ -115,7 +119,7 @@ const { classAttr, otherAttrs } = useComponentAttrs()
     <AppIcon
       v-else-if="props.iconRight !== null && props.iconRight !== undefined"
       :icon="props.iconRight"
-      class="mr-3 text-muted-foreground"
+      :class="rightIconClasses"
     />
   </label>
 </template>
