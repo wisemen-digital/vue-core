@@ -1,4 +1,4 @@
-<script setup lang="ts" generic="T extends string">
+<script setup lang="ts" generic="T extends string | boolean">
 import { computed } from 'vue'
 
 import FormElement from '@/components/form-element/FormElement.vue'
@@ -32,6 +32,10 @@ const props = withDefaults(defineProps<{
    */
   label?: null | string
   /**
+   * The model value of the radio group.
+   */
+  modelValue: T | null
+  /**
    * The options of the radio group.
    */
   options: DataItem<T>[]
@@ -41,8 +45,22 @@ const props = withDefaults(defineProps<{
   label: null,
 })
 
-const model = defineModel<T | null>({
-  required: true,
+const emit = defineEmits<{
+  'update:modelValue': [T | null]
+}>()
+
+const model = computed<null | string>({
+  get: () => props.modelValue !== null ? JSON.stringify(props.modelValue) : null,
+  set: (value: null | string) => {
+    emit('update:modelValue', value !== null ? JSON.parse(value) as T : null)
+  },
+})
+
+const options = computed<DataItem<string>[]>(() => {
+  return props.options.map((option) => ({
+    ...option,
+    value: JSON.stringify(option.value),
+  }))
 })
 
 const radioGroupStyle = useRadioGroupStyle()
@@ -65,7 +83,7 @@ const itemsContainerClasses = computed<string>(() => radioGroupStyle.itemsContai
     <FormRadioGroupRoot v-model="model">
       <div :class="containerClasses">
         <div
-          v-for="option of props.options"
+          v-for="option of options"
           :key="option.label"
           :class="itemsContainerClasses"
         >

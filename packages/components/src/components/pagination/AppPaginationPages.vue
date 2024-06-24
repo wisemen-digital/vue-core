@@ -10,9 +10,7 @@ const paginationContext = injectPaginationContext()
 
 const pageControls = computed<(number | string)[]>(() => {
   const page = paginationContext.page.value
-  const perPage = paginationContext.perPage.value
-
-  const totalPages = Math.ceil(paginationContext.pages.value / perPage)
+  const totalPages = paginationContext.totalPages.value
 
   const activePage = page + 1
 

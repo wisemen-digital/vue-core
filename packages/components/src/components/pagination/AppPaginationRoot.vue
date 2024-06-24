@@ -28,8 +28,10 @@ function setPage(page: number): void {
 providePaginationContext({
   hasMoreThanOnePage,
   page: computed<number>(() => props.pagination.paginationOptions.value.pagination.page),
-  pages: computed<number>(() => props.total),
   perPage: computed<number>(() => props.pagination.paginationOptions.value.pagination.perPage),
+  totalPages: computed<number>(() => {
+    return Math.ceil(props.total / props.pagination.paginationOptions.value.pagination.perPage)
+  }),
   onPageChange: setPage,
 })
 </script>
