@@ -39,6 +39,12 @@ const controls = createControls({
     label: 'Is required',
     type: 'switch',
   },
+  tooltip: {
+    default: 'This is a tooltip',
+    label: 'Tooltip',
+    type: 'text',
+    cols: 2,
+  },
 })
 
 const model = ref<string[]>([

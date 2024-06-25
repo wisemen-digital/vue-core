@@ -52,6 +52,12 @@ const controls = createControls({
     label: 'Is Touched',
     type: 'switch',
   },
+  tooltip: {
+    default: 'This is a tooltip',
+    label: 'Tooltip',
+    type: 'text',
+    cols: 2,
+  },
 })
 
 interface User {

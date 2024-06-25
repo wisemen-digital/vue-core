@@ -40,6 +40,12 @@ const controls = createControls({
     label: 'Is touched',
     type: 'switch',
   },
+  tooltip: {
+    default: 'This is a tooltip',
+    label: 'Tooltip',
+    type: 'text',
+    cols: 2,
+  },
 })
 
 const model = ref<CalendarDate | null>(null)

@@ -38,6 +38,10 @@ const props = withDefaults(
      * The label of the input.
      */
     label: string
+    /**
+     * The tooltip of the input.
+     */
+    tooltip?: string
   }>(),
   {
     isDisabled: false,
@@ -56,6 +60,7 @@ const { classAttr, otherAttrs } = useComponentAttrs()
 <template>
   <FormElement
     v-slot="{ isInvalid, id }"
+    :tooltip="props.tooltip"
     :class="classAttr"
     :errors="props.errors"
     :is-required="props.isRequired"

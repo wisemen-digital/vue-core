@@ -41,6 +41,12 @@ const controls = createControls({
     label: 'Is loading',
     type: 'switch',
   },
+  tooltip: {
+    default: 'This is a tooltip',
+    label: 'Tooltip',
+    type: 'text',
+    cols: 2,
+  },
 })
 
 const model = ref<null | string>('+32412345678')
