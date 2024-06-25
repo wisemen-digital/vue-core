@@ -15,6 +15,7 @@ import AppTableEmptyStateOverlay from '@/components/table/AppTableEmptyStateOver
 import AppTableFooter from '@/components/table/AppTableFooter.vue'
 import AppTableHeader from '@/components/table/AppTableHeader.vue'
 import AppTableTop from '@/components/table/AppTableTop.vue'
+import { useTableStyle } from '@/components/table/table.style'
 import type {
   FilterChangeEvent,
   PaginatedData,
@@ -152,10 +153,16 @@ onMounted(() => {
 onBeforeUnmount(() => {
   resizeObserver?.disconnect()
 })
+
+const tableStyle = useTableStyle()
+
+const containerClasses = computed<string>(() => tableStyle.container())
+const gridClasses = computed<string>(() => tableStyle.grid())
+const tableClasses = computed<string>(() => tableStyle.table())
 </script>
 
 <template>
-  <div class="relative flex h-full flex-1 flex-col overflow-hidden rounded-xl border border-solid border-border bg-background">
+  <div :class="tableClasses">
     <AppTableTop
       v-if="!isTopHidden"
       :is-loading="props.isLoading"
@@ -170,14 +177,14 @@ onBeforeUnmount(() => {
 
     <div
       ref="tableContainerRef"
-      class="h-full flex-1 overflow-y-auto"
+      :class="containerClasses"
       @scroll="onScroll"
     >
       <div
         :style="{
           gridTemplateColumns: gridColsStyle,
         }"
-        class="grid items-start bg-background"
+        :class="gridClasses"
       >
         <AppTableHeader
           :columns="props.columns"

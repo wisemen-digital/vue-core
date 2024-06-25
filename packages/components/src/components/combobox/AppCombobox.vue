@@ -18,6 +18,7 @@ import AppComboboxInput from '@/components/combobox/AppComboboxInput.vue'
 import AppComboboxItem from '@/components/combobox/AppComboboxItem.vue'
 import AppComboboxViewport from '@/components/combobox/AppComboboxViewport.vue'
 import { useCombobox } from '@/components/combobox/combobox.composable'
+import { useComboboxStyle } from '@/components/combobox/combobox.style'
 import type { Icon } from '@/icons/icons'
 import type { ComboboxItem } from '@/types/comboboxItem.type'
 import type { ComboboxProps } from '@/types/comboboxProps.type'
@@ -120,6 +121,10 @@ const searchModel = defineModel<null | string>('search', {
   default: '',
   required: false,
 })
+
+const comboboxStyle = useComboboxStyle()
+
+const dropdownSearchStyle = computed<string>(() => comboboxStyle.dropdownSearch())
 
 const isOpen = ref<boolean>(false)
 const inputRef = ref<InstanceType<typeof AppComboboxInput> | null>(null)
@@ -226,7 +231,7 @@ watch(isOpen, (isOpen) => {
                 <ComboboxInput
                   v-if="props.hasSearchInDropdown"
                   :placeholder="props.placeholder"
-                  class="w-full p-1.5 text-sm outline-none placeholder:text-input-placeholder"
+                  :class="dropdownSearchStyle"
                 />
 
                 <AppComboboxEmpty :empty-text="props.emptyText">

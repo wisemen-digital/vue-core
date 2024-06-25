@@ -34,6 +34,11 @@ const controls = createControls({
     default: false,
     label: 'Is loading',
   },
+  isEmpty: {
+    type: 'switch',
+    default: false,
+    label: 'Is empty',
+  },
   isTopHidden: {
     type: 'switch',
     default: false,
@@ -51,6 +56,7 @@ interface ExampleDataType {
 interface ExampleFilters {
   hasDriversLicense: boolean
   firstName: string
+  moreData: string[]
 }
 
 const exampleData: PaginatedData<ExampleDataType> = {
@@ -86,6 +92,7 @@ const exampleColumns: TableColumn<ExampleDataType>[] = [
     id: 'firstName',
     label: 'First Name',
     width: 'auto',
+    isSortable: true,
     value: (row) => row.firstName,
   },
   {
@@ -97,6 +104,7 @@ const exampleColumns: TableColumn<ExampleDataType>[] = [
   {
     id: 'age',
     label: 'Age',
+    isSortable: true,
     width: '100px',
     value: (row) => `${row.age}`,
   },
@@ -108,6 +116,11 @@ const exampleColumns: TableColumn<ExampleDataType>[] = [
     value: (row) => row.hasDriversLicense === true ? 'Yes' : 'No',
   },
 ]
+
+const emptyData: PaginatedData<ExampleDataType> = {
+  data: [],
+  total: 0,
+}
 
 const pagination = usePagination<ExampleFilters>({
   id: 'example',
@@ -132,6 +145,26 @@ const filters: PaginationFilter<ExampleFilters>[] = [
     label: 'Has drivers license?',
     type: 'boolean',
   },
+  {
+    id: 'moreData',
+    label: 'More data',
+    type: 'multiselect',
+    options: [
+      {
+        type: 'option',
+        value: 'option1',
+      },
+      {
+        type: 'option',
+        value: 'option2',
+      },
+      {
+        type: 'option',
+        value: 'option3',
+      },
+    ],
+    displayFn: (value: string) => value,
+  },
 ]
 
 function onRowClick(row: ExampleDataType): void {
@@ -145,16 +178,15 @@ function onRowClick(row: ExampleDataType): void {
     :controls="controls"
   >
     <template #default="{ values }">
-      <div class="flex flex-col">
+      <div class="flex w-full flex-col">
         <AppTable
           v-bind="values"
-          :data="exampleData"
+          :data="values.isEmpty ? emptyData : exampleData"
           :columns="exampleColumns"
           :filters="filters"
           :pagination="pagination"
           :row-click="onRowClick"
         />
-
         <AppText
           variant="subtext"
           class="pt-3"

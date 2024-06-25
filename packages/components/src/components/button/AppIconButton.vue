@@ -2,8 +2,8 @@
 import { computed } from 'vue'
 
 import {
-  iconButton,
-  type IconButtonStyleProps,
+  type ButtonStyleProps,
+  useButtonStyle,
 } from '@/components/button/button.style'
 import AppIcon from '@/components/icon/AppIcon.vue'
 import type { IconStyleProps } from '@/components/icon/icon.style'
@@ -34,7 +34,7 @@ const props = withDefaults(
      * The size of the button
      * @default default
      */
-    size?: IconButtonStyleProps['size']
+    size?: ButtonStyleProps['size']
     /**
      * The type of the button.
      * @default 'button'
@@ -44,7 +44,7 @@ const props = withDefaults(
      * The variant of the button
      * @default default
      */
-    variant?: IconButtonStyleProps['variant']
+    variant?: ButtonStyleProps['variant']
   }>(),
   {
     isDisabled: false,
@@ -55,11 +55,15 @@ const props = withDefaults(
   },
 )
 
-const buttonClasses = computed<string>(() =>
-  iconButton({
+const buttonStyle = useButtonStyle()
+const iconButtonClasses = computed<string>(() =>
+  buttonStyle.iconButton({
     size: props.size,
     variant: props.variant,
   }))
+
+const buttonLoaderClasses = computed<string>(() => buttonStyle.loader())
+const buttonLoaderContainerClasses = computed<string>(() => buttonStyle.loaderContainer())
 
 const iconSize = computed<IconStyleProps['size']>(() => {
   if (props.size === 'sm' || props.size === 'xs') {
@@ -84,15 +88,15 @@ const iconSize = computed<IconStyleProps['size']>(() => {
     :aria-label="props.label"
     :is-disabled="props.isDisabled"
     :is-loading="props.isLoading"
-    :class="buttonClasses"
+    :class="iconButtonClasses"
     :disabled="isDisabled || isLoading"
     :type="props.type"
   >
     <div
       v-if="props.isLoading"
-      class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+      :class="buttonLoaderContainerClasses"
     >
-      <AppLoader class="size-4" />
+      <AppLoader :class="buttonLoaderClasses" />
     </div>
 
     <AppIcon

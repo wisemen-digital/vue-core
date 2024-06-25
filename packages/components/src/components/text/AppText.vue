@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed, useAttrs } from 'vue'
 
-import type { TextProps } from '@/components/text/text.style'
-import { textVariants } from '@/components/text/text.style'
+import type { TextStyleProps } from '@/components/text/text.style'
+import { useTextStyle } from '@/components/text/text.style'
 
 type TextType = 'blockquote' | 'div' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span'
 
@@ -16,69 +16,26 @@ const props = withDefaults(
     /**
      * The variant of the text
      */
-    variant: TextProps['variant']
+    variant: TextStyleProps['variant']
   }>(),
   {
     as: 'p',
   },
 )
 
-const classes = computed<string>(() => {
-  const classes: string[] = [
-    'text-foreground',
-  ]
-
-  switch (props.variant) {
-    case 'hero':
-      classes.push('text-hero font-bold')
-
-      break
-
-    case 'title':
-      classes.push('text-title font-semibold')
-
-      break
-
-    case 'subtitle':
-      classes.push('text-subtitle')
-
-      break
-
-    case 'heading':
-      classes.push('text-heading')
-
-      break
-
-    case 'body':
-      classes.push('text-body')
-
-      break
-
-    case 'subtext':
-      classes.push('text-subtext')
-
-      break
-
-    case 'caption':
-      classes.push('text-caption')
-
-      break
-  }
-
-  return classes.join(' ')
-})
 const attrs = useAttrs()
+const textStyle = useTextStyle()
+
+const textClasses = computed<string>(() => textStyle.text({
+  class: attrs.class as string,
+  variant: props.variant,
+}))
 </script>
 
 <template>
   <Component
     :is="as"
-    :class="
-      textVariants({
-        variant: props.variant,
-        class: [classes, attrs.class],
-      })
-    "
+    :class="textClasses"
   >
     <slot />
   </Component>

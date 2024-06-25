@@ -3,7 +3,9 @@ import {
   ComboboxItem as RadixComboboxItem,
   ComboboxItemIndicator,
 } from 'radix-vue'
+import { computed } from 'vue'
 
+import { useComboboxStyle } from '@/components/combobox/combobox.style'
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppText from '@/components/text/AppText.vue'
 import type { ComboboxItemOption } from '@/types/comboboxItem.type'
@@ -13,19 +15,26 @@ const props = defineProps<{
   displayFn: (value: TValue) => string
   item: ComboboxItemOption<TValue>
 }>()
+
+const comboboxStyle = useComboboxStyle()
+
+const containerClasses = computed<string>(() => comboboxStyle.multiOptionContainer())
+const indicatorContainerClasses = computed<string>(() => comboboxStyle.multiOptionIndicatorContainer())
+const optionSpacer = computed<string>(() => comboboxStyle.multiOptionSpacer())
+const indicatorClasses = computed<string>(() => comboboxStyle.multiOptionIndicator())
 </script>
 
 <template>
   <RadixComboboxItem
     :disabled="props.item.isDisabled === true"
     :value="props.item.value"
-    class="group cursor-default rounded-md px-3 py-1.5 outline-none hover:bg-muted-background focus:bg-muted-background data-[disabled]:cursor-not-allowed data-[disabled]:bg-background data-[highlighted]:bg-muted-background data-[disabled]:opacity-50"
+    :class="containerClasses"
   >
-    <div class="flex items-center gap-x-3">
-      <div class="flex size-4 items-center justify-center rounded border border-solid border-transparent duration-100 group-data-[highlighted]:border-input-border group-data-[state=checked]:border-primary group-data-[state=checked]:bg-primary">
+    <div :class="optionSpacer">
+      <div :class="indicatorContainerClasses">
         <ComboboxItemIndicator>
           <AppIcon
-            class="text-primary-foreground"
+            :class="indicatorClasses"
             icon="checkmark"
             size="sm"
           />

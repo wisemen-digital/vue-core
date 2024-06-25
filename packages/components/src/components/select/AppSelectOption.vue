@@ -6,6 +6,7 @@ import {
 import { computed } from 'vue'
 
 import AppIcon from '@/components/icon/AppIcon.vue'
+import { useSelectStyle } from '@/components/select/select.style'
 import AppText from '@/components/text/AppText.vue'
 import type {
   AcceptableValue,
@@ -18,27 +19,34 @@ const props = defineProps<{
 }>()
 
 const value = computed<string>(() => JSON.stringify(props.item.value))
+
+const selectStyle = useSelectStyle()
+
+const optionContainerClasses = computed<string>(() => selectStyle.optionContainer())
+const optionIndicatorClasses = computed<string>(() => selectStyle.optionIndicator())
+const optionIndicatorContainerClasses = computed<string>(() => selectStyle.optionIndicatorContainer())
+const optionWrapperClasses = computed<string>(() => selectStyle.optionWrapper())
 </script>
 
 <template>
   <RadixSelectItem
     :disabled="props.item.isDisabled === true"
     :value="value"
-    class="cursor-default rounded-md px-3 py-1.5 outline-none hover:bg-muted-background focus:bg-muted-background data-[disabled]:cursor-not-allowed data-[disabled]:bg-background data-[disabled]:opacity-50"
+    :class="optionContainerClasses"
   >
-    <div class="flex items-center justify-between gap-x-3">
+    <div :class="optionWrapperClasses">
       <slot>
         <AppText variant="subtext">
           {{ displayFn((item as SelectItemOption<TValue>).value) }}
         </AppText>
       </slot>
 
-      <div class="w-4">
+      <div :class="optionIndicatorContainerClasses">
         <SelectItemIndicator>
           <AppIcon
+            :class="optionIndicatorClasses"
             icon="checkmark"
             size="default"
-            class="text-muted-foreground"
           />
         </SelectItemIndicator>
       </div>

@@ -4,6 +4,7 @@ import { useI18n } from 'vue-i18n'
 
 import AppButton from '@/components/button/AppButton.vue'
 import AppIcon from '@/components/icon/AppIcon.vue'
+import { useTableStyle } from '@/components/table/table.style'
 import AppText from '@/components/text/AppText.vue'
 import type { TableEmptyTextProp } from '@/types/table.type'
 
@@ -41,37 +42,46 @@ const emptyTextMessage = computed<string>(() => {
 
   return props.emptyText?.noData.message ?? t('components.table.empty_state.no_data.message')
 })
+
+const tableStyle = useTableStyle()
+
+const emptyOverlayContainerClasses = computed<string>(() => tableStyle.emptyOverlayContainer())
+const emptyOverlayContentClasses = computed<string>(() => tableStyle.emptyOverlayContent())
+const emptyOverlayIconClasses = computed<string>(() => tableStyle.emptyOverlayIcon())
+const emptyOverlayTextClasses = computed<string>(() => tableStyle.emptyOverlayText())
+const emptyOverlayTitleClasses = computed<string>(() => tableStyle.emptyOverlayTitle())
+const emptyOverlayClearButtonClasses = computed<string>(() => tableStyle.emptyOverlayClearButton())
 </script>
 
 <template>
-  <div class="absolute left-1/2 top-1/2 z-10 w-[26rem] -translate-x-1/2 -translate-y-1/2 rounded-lg bg-background/25 p-8 shadow-card-shadow backdrop-blur-sm">
+  <div :class="emptyOverlayContainerClasses">
     <AppIcon
+      :class="emptyOverlayIconClasses"
       icon="search"
       size="xl"
-      class="mx-auto text-muted-foreground"
     />
 
     <AppText
+      :class="emptyOverlayTitleClasses"
       variant="body"
-      class="mt-4 text-center font-medium text-muted-foreground"
     >
       {{ emptyTextTitle }}
     </AppText>
 
-    <div class="mt-2">
+    <div :class="emptyOverlayContentClasses">
       <template v-if="props.activeFilterCount > 0">
         <AppText
+          :class="emptyOverlayTextClasses"
           variant="subtext"
-          class="text-center text-muted-foreground"
         >
           {{ emptyTextMessage }}
         </AppText>
 
         <AppButton
+          :class="emptyOverlayClearButtonClasses"
           variant="muted"
           icon-right="close"
           size="sm"
-          class="mx-auto mt-4"
           @click="onClearFilters"
         >
           {{ t('components.table.clear_filter_filters', { count: props.activeFilterCount }) }}
@@ -80,8 +90,8 @@ const emptyTextMessage = computed<string>(() => {
 
       <AppText
         v-else
+        :class="emptyOverlayTextClasses"
         variant="subtext"
-        class="text-center text-muted-foreground"
       >
         {{ emptyTextMessage }}
       </AppText>

@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+
 import AppContainer from '@/components/container/AppContainer.vue'
+import { useTableStyle } from '@/components/table/table.style'
 
 const props = withDefaults(
   defineProps<{
@@ -11,39 +14,50 @@ const props = withDefaults(
     withoutHeader: false,
   },
 )
+
+const tableStyle = useTableStyle()
+
+const skeletonLoaderContainerClasses = computed<string>(() => tableStyle.skeletonLoaderContainer())
+const skeletonLoaderContentContainerClasses = computed<string>(() => tableStyle.skeletonLoaderContentContainer())
+const skeletonLoaderContentGridClasses = computed<string>(() => tableStyle.skeletonLoaderContentGrid())
+const skeletonLoaderContentCellClasses = computed<string>(() => tableStyle.skeletonLoaderContentCell())
+const skeletonLoaderContentRowClasses = computed<string>(() => tableStyle.skeletonLoaderContentRow())
+const skeletonLoaderHeaderContainerClasses = computed<string>(() => tableStyle.skeletonLoaderHeaderContainer())
+const skeletonLoaderHeaderGridClasses = computed<string>(() => tableStyle.skeletonLoaderHeaderGrid())
+const skeletonLoaderHeaderRowClasses = computed<string>(() => tableStyle.skeletonLoaderHeaderRow())
 </script>
 
 <template>
-  <div class="w-full">
+  <div :class="skeletonLoaderContainerClasses">
     <div
       v-if="!props.withoutHeader"
-      class="mb-4 border-y border-solid border-border pb-4"
+      :class="skeletonLoaderHeaderContainerClasses"
     >
-      <AppContainer class="grid grid-cols-table-skeleton gap-x-8 px-8">
+      <AppContainer :class="skeletonLoaderHeaderGridClasses">
         <div
           v-for="i of 4"
           :key="i"
-          class="mt-4 rounded-md bg-neutral-100 p-3"
+          :class="skeletonLoaderHeaderRowClasses"
         />
       </AppContainer>
     </div>
 
-    <div class="relative">
+    <div :class="skeletonLoaderContentContainerClasses">
       <div
         v-for="i of props.numberOfRows"
         :key="i"
-        class="odd:bg-neutral-100"
+        :class="skeletonLoaderContentRowClasses"
       >
-        <AppContainer class="grid grid-cols-table-skeleton gap-x-8 px-8 py-4">
+        <AppContainer :class="skeletonLoaderContentGridClasses">
           <div
             v-for="j of 4"
             :key="j"
-            class="rounded-md bg-neutral-200 p-3"
+            :class="skeletonLoaderContentCellClasses"
           />
         </AppContainer>
       </div>
 
-      <div class="absolute left-0 top-0 z-10 size-full bg-gradient-to-b from-transparent to-background" />
+      <div class="" />
     </div>
   </div>
 </template>

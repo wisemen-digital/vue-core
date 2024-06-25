@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import FormElement from '@/components/form-element/FormElement.vue'
 import AppTextarea from '@/components/textarea/AppTextarea.vue'
+import type { TextareaStyleProps } from '@/components/textarea/textarea.style'
 import { useComponentAttrs } from '@/composables/componentAttrs.composable'
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
@@ -40,7 +41,7 @@ const props = withDefaults(
      * The resize property of the textarea.
      * @default 'none'
      */
-    resize?: 'both' | 'horizontal' | 'none' | 'vertical'
+    resize?: TextareaStyleProps['resize']
   }>(),
   {
     isDisabled: false,

@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { DropdownMenuSubTrigger } from 'radix-vue'
+import { computed } from 'vue'
 
+import { useDropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style'
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppText from '@/components/text/AppText.vue'
 import type { DropdownMenuSubMenu } from '@/types/dropdownMenuItem.type'
@@ -8,37 +10,45 @@ import type { DropdownMenuSubMenu } from '@/types/dropdownMenuItem.type'
 const props = defineProps<{
   item: DropdownMenuSubMenu
 }>()
+
+const dropdownMenuStyle = useDropdownMenuStyle()
+
+const containerClasses = computed<string>(() => dropdownMenuStyle.itemContainer())
+const contentClasses = computed<string>(() => dropdownMenuStyle.itemContent())
+const iconClasses = computed<string>(() => dropdownMenuStyle.itemOptionIcon())
+const textClasses = computed<string>(() => dropdownMenuStyle.itemText())
+const triggerIconClasses = computed<string>(() => dropdownMenuStyle.itemSubTriggerIcon())
 </script>
 
 <template>
-  <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
-  <DropdownMenuSubTrigger class="group cursor-default overflow-hidden rounded-md p-2 py-1.5 outline-none focus:bg-muted-background">
-    <div class="flex items-center justify-between gap-x-3 overflow-hidden">
-      <div class="flex items-center gap-x-3 overflow-hidden">
-        <AppIcon
-          v-if="props.item.icon !== undefined"
-          :icon="props.item.icon"
-          class="shrink-0 text-muted-foreground group-focus:text-foreground"
-          size="default"
-        />
+  <DropdownMenuSubTrigger :class="containerClasses">
+    <div :class="contentClasses">
+      <AppIcon
+        v-if="props.item.icon !== undefined"
+        :icon="props.item.icon"
+        :class="iconClasses"
+        size="default"
+      />
 
-        <Component
-          :is="props.item.render()"
-          v-if="props.item.render !== undefined"
-        />
+      <Component
+        :is="props.item.render()"
+        v-if="props.item.render !== undefined"
+      />
 
-        <AppText
-          v-else
-          class="truncate text-muted-foreground group-focus:text-foreground"
-          variant="subtext"
-        >
-          {{ props.item.label }}
-        </AppText>
-      </div>
-
-      <span class="ml-4 text-[8px] text-muted-foreground/50">
-        ▶
-      </span>
+      <AppText
+        v-else
+        :class="textClasses"
+        variant="subtext"
+      >
+        {{ props.item.label }}
+      </AppText>
     </div>
+
+    <span :class="triggerIconClasses">
+      <AppIcon
+        icon="chevronRight"
+        size="sm"
+      />
+    </span>
   </DropdownMenuSubTrigger>
 </template>

@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
 
 import AppBreadcrumbEllipsis from '@/components/breadcrumbs/AppBreadcrumbEllipsis.vue'
+import { useBreadcrumbsStyle } from '@/components/breadcrumbs/breadcrumbs.style'
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppText from '@/components/text/AppText.vue'
 import type { BreadcrumbItem } from '@/types/breadcrumbItem.type'
@@ -9,6 +11,16 @@ import type { BreadcrumbItem } from '@/types/breadcrumbItem.type'
 const props = defineProps<{
   item: BreadcrumbItem
 }>()
+
+const breadcrumbItemVariants = useBreadcrumbsStyle()
+
+const breadcrumbRouteClasses = computed<string>(() => breadcrumbItemVariants.itemRoute())
+const breadcrumbRouteIconClasses = computed<string>(() => breadcrumbItemVariants.itemRouteIcon())
+const breadcrumbRouteTextClasses = computed<string>(() => breadcrumbItemVariants.itemRouteText())
+
+const breadcrumbPageClasses = computed<string>(() => breadcrumbItemVariants.itemPage())
+const breadcrumbPageIconClasses = computed<string>(() => breadcrumbItemVariants.itemPageIcon())
+const breadcrumbPageTextClasses = computed<string>(() => breadcrumbItemVariants.itemPageText())
 </script>
 
 <template>
@@ -16,18 +28,18 @@ const props = defineProps<{
     <RouterLink
       v-if="props.item.type === 'route'"
       :to="props.item.to"
-      class="flex items-center gap-x-2 rounded p-0.5 outline-none ring-offset-background duration-200 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+      :class="breadcrumbRouteClasses"
     >
       <AppIcon
         v-if="props.item.icon !== undefined"
         :icon="props.item.icon"
-        class="text-muted-foreground/75"
+        :class="breadcrumbRouteIconClasses"
       />
 
       <AppText
         v-if="props.item.label !== undefined"
+        :class="breadcrumbRouteTextClasses"
         variant="subtext"
-        class="max-w-32 truncate text-muted-foreground/75"
       >
         {{ props.item.label }}
       </AppText>
@@ -40,18 +52,18 @@ const props = defineProps<{
 
     <div
       v-else-if="props.item.type === 'page'"
-      class="flex items-center gap-x-2 p-0.5"
+      :class="breadcrumbPageClasses"
     >
       <AppIcon
         v-if="props.item.icon !== undefined"
         :icon="props.item.icon"
-        class="text-muted-foreground"
+        :class="breadcrumbPageIconClasses"
       />
 
       <AppText
         v-if="props.item.label !== undefined"
+        :class="breadcrumbPageTextClasses"
         variant="subtext"
-        class="max-w-32 truncate text-muted-foreground"
       >
         {{ props.item.label }}
       </AppText>

@@ -13,6 +13,7 @@ import {
 import type { RouteRecordName } from 'vue-router'
 import { useRoute, useRouter } from 'vue-router'
 
+import { useTabsStyle } from '@/components/tabs/tabs.style'
 import AppText from '@/components/text/AppText.vue'
 import type { RouteTabItem } from '@/types/tabItem.type'
 
@@ -54,28 +55,33 @@ function isTabActive(tab: RouteTabItem): boolean {
 }
 
 // TODO: tabs should render a RouterLink instead of a button
+
+const tabsStyle = useTabsStyle()
+
+const listClasses = computed<string>(() => tabsStyle.list())
+const indicatorClasses = computed<string>(() => tabsStyle.indicator())
+const routeTriggerGroup = computed<string>(() => tabsStyle.routeTriggerGroup())
+const routeTriggerTab = computed<string>(() => tabsStyle.routeTriggerTab())
 </script>
 
 <template>
   <TabsRoot v-model="computedModel">
-    <TabsList class="relative flex border-b border-solid border-border">
-      <TabsIndicator class="absolute bottom-0 left-0 h-[2px] w-[--radix-tabs-indicator-size] translate-x-[--radix-tabs-indicator-position] rounded-t-full bg-primary px-8 duration-200" />
+    <TabsList :class="listClasses">
+      <TabsIndicator :class="indicatorClasses" />
 
       <TabsTrigger
         v-for="tab of tabs"
         :key="tab.label"
         :value="(tab.to.name as string)"
-        class="group py-2 outline-none"
+        :class="routeTriggerGroup"
       >
-        <div class="rounded-button px-3 py-2 duration-200 group-hover:bg-muted-background group-focus-visible:bg-muted-background">
+        <div :class="routeTriggerTab">
           <AppText
-            :class="{
-              'text-primary': isTabActive(tab),
-              'text-muted-foreground': !isTabActive(tab),
-            }"
+            :class="tabsStyle.routeText({
+              isActive: isTabActive(tab),
+            })"
             as="span"
             variant="subtext"
-            class="duration-200"
           >
             {{ tab.label }}
           </AppText>

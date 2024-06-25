@@ -1,8 +1,11 @@
-<script setup lang="ts" generic="T extends string">
+<script setup lang="ts" generic="T extends string | boolean">
+import { computed } from 'vue'
+
 import FormElement from '@/components/form-element/FormElement.vue'
 import FormRadioGroupIndicator from '@/components/radio-group/FormRadioGroupIndicator.vue'
 import FormRadioGroupItem from '@/components/radio-group/FormRadioGroupItem.vue'
 import FormRadioGroupRoot from '@/components/radio-group/FormRadioGroupRoot.vue'
+import { useRadioGroupStyle } from '@/components/radio-group/radioGroup.style'
 import type { DataItem } from '@/types/dataItem.type'
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
@@ -29,6 +32,10 @@ const props = withDefaults(defineProps<{
    */
   label?: null | string
   /**
+   * The model value of the radio group.
+   */
+  modelValue: T | null
+  /**
    * The options of the radio group.
    */
   options: DataItem<T>[]
@@ -38,9 +45,31 @@ const props = withDefaults(defineProps<{
   label: null,
 })
 
-const model = defineModel<T | null>({
-  required: true,
+const emit = defineEmits<{
+  'update:modelValue': [T | null]
+}>()
+
+const model = computed<null | string>({
+  get: () => props.modelValue !== null ? JSON.stringify(props.modelValue) : null,
+  set: (value: null | string) => {
+    emit('update:modelValue', value !== null ? JSON.parse(value) as T : null)
+  },
 })
+
+const options = computed<DataItem<string>[]>(() => {
+  return props.options.map((option) => ({
+    ...option,
+    value: JSON.stringify(option.value),
+  }))
+})
+
+const radioGroupStyle = useRadioGroupStyle()
+
+const containerClasses = computed<string>(() => radioGroupStyle.container())
+const itemIndicatorClasses = computed<string>(() => radioGroupStyle.itemIndicator())
+const itemTextClasses = computed<string>(() => radioGroupStyle.itemText())
+const itemWrapperClasses = computed<string>(() => radioGroupStyle.itemWrapper())
+const itemsContainerClasses = computed<string>(() => radioGroupStyle.itemsContainer())
 </script>
 
 <template>
@@ -52,23 +81,23 @@ const model = defineModel<T | null>({
     :is-required="props.isRequired"
   >
     <FormRadioGroupRoot v-model="model">
-      <div class="flex flex-col gap-y-2">
+      <div :class="containerClasses">
         <div
-          v-for="option of props.options"
+          v-for="option of options"
           :key="option.label"
-          class="flex items-center gap-x-2"
+          :class="itemsContainerClasses"
         >
           <FormRadioGroupItem
             :id="option.value"
             :value="option.value"
-            class="flex size-5 items-center justify-center gap-x-2 rounded-full border-[1.5px] border-solid border-input-border data-[state=checked]:border-primary"
+            :class="itemWrapperClasses"
           >
-            <FormRadioGroupIndicator class="block size-2 rounded-full bg-primary" />
+            <FormRadioGroupIndicator :class="itemIndicatorClasses" />
           </FormRadioGroupItem>
 
           <label
             :for="option.value"
-            class="text-sm text-secondary-foreground"
+            :class="itemTextClasses"
           >
             {{ option.label }}
           </label>

@@ -5,10 +5,11 @@ import {
   PopoverPortal,
   PopoverRoot,
 } from 'radix-vue'
-import { useSlots } from 'vue'
+import { computed, useSlots } from 'vue'
 
 import AppPopoverCloseButton from '@/components/popover/AppPopoverCloseButton.vue'
 import AppPopoverTrigger from '@/components/popover/AppPopoverTrigger.vue'
+import { usePopoverStyle } from '@/components/popover/popover.style'
 
 const props = withDefaults(
   defineProps<{
@@ -46,6 +47,13 @@ const slots = useSlots()
 if (slots.default === undefined) {
   throw new Error('[POPOVER] The `trigger` slot is required.')
 }
+
+const popoverStyle = usePopoverStyle()
+
+const arrowContainerClasses = computed<string>(() => popoverStyle.arrowContainer())
+const closeButtonContainerClasses = computed<string>(() => popoverStyle.closeButtonContainer())
+const contentClasses = computed<string>(() => popoverStyle.content())
+const arrowClasses = computed<string>(() => popoverStyle.arrow())
 </script>
 
 <template>
@@ -61,10 +69,10 @@ if (slots.default === undefined) {
         :has-arrow="!props.hideArrow"
         :side="props.side"
         :side-offset="props.offset"
-        class="popover-content z-popover rounded-popover bg-popover shadow-popover-shadow"
+        :class="contentClasses"
       >
         <!-- eslint-enable tailwindcss/no-custom-classname -->
-        <AppPopoverCloseButton class="!absolute right-0 top-0" />
+        <AppPopoverCloseButton :class="closeButtonContainerClasses" />
 
         <slot name="content" />
 
@@ -72,9 +80,9 @@ if (slots.default === undefined) {
           v-if="!props.hideArrow"
           :as-child="true"
         >
-          <div class="relative z-50 -mb-4 h-4 w-10 overflow-hidden">
+          <div :class="arrowContainerClasses">
             <div
-              class="absolute left-1/2 size-4 -translate-x-1/2 -translate-y-3 rotate-45 rounded-sm bg-popover shadow-popover-shadow"
+              :class="arrowClasses"
             />
           </div>
         </PopoverArrow>

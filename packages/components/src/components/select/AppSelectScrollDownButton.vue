@@ -1,15 +1,22 @@
 <script setup lang="ts">
 import { SelectScrollDownButton } from 'radix-vue'
+import { computed } from 'vue'
 
 import AppIcon from '@/components/icon/AppIcon.vue'
+import { useSelectStyle } from '@/components/select/select.style'
+
+const selectStyle = useSelectStyle()
+
+const scrollButtonDownClasses = computed<string>(() => selectStyle.scrollButtonDown())
+const scrollButtonIconClasses = computed<string>(() => selectStyle.scrollButtonIcon())
 </script>
 
 <template>
   <SelectScrollDownButton
-    class="absolute bottom-0 z-10 flex w-full justify-center bg-gradient-to-b from-transparent to-popover p-2"
+    :class="scrollButtonDownClasses"
   >
     <AppIcon
-      class="text-muted-foreground"
+      :class="scrollButtonIconClasses"
       icon="chevronDown"
       size="default"
     />
