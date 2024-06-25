@@ -60,6 +60,7 @@ function onBlur(): void {
         v-if="props.iconLeft !== null && props.iconLeft !== undefined"
         :icon="props.iconLeft"
         :class="iconClasses"
+        class="ml-3"
       />
     </slot>
 
