@@ -33,6 +33,10 @@ const props = withDefaults(defineProps<{
    * The options of the checkbox group.
    */
   options: DataItem<T>[]
+  /**
+   * The tooltip of the checkbox group.
+   */
+  tooltip?: string
 }>(), {
   isDisabled: false,
   isRequired: false,
@@ -68,6 +72,7 @@ function toggleOption(value: T): void {
 
 <template>
   <FormElement
+    :tooltip="props.tooltip"
     :errors="props.errors"
     :is-touched="props.isTouched"
     :label="props.label"

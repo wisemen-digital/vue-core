@@ -47,6 +47,10 @@ const props = withDefaults(
      * @default null
      */
     placeholder?: null | string
+    /**
+     * The tooltip of the input.
+     */
+    tooltip?: string
   }>(),
   {
     isDisabled: false,
@@ -96,6 +100,7 @@ const passwordIconClasses = computed<string>(() => inputStyle.passwordIcon())
     :is-touched="props.isTouched"
     :is-disabled="props.isDisabled"
     :label="props.label"
+    :tooltip="props.tooltip"
   >
     <AppInput
       :id="id"

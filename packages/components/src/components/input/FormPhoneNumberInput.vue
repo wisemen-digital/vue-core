@@ -50,6 +50,10 @@ const props = withDefaults(
      * @default null
      */
     placeholder?: null | string
+    /**
+     * The tooltip of the input.
+     */
+    tooltip?: string
   }>(),
   {
     isDisabled: false,
@@ -153,6 +157,7 @@ function getCountryFlagUrl(countryCode: string): string {
   <FormInput
     v-maska
     v-model="model"
+    :tooltip="props.tooltip"
     :data-maska="mask"
     :errors="props.errors"
     :icon-right="props.iconRight"

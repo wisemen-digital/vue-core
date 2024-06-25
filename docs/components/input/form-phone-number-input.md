@@ -11,23 +11,24 @@ import FormPhoneNumberInputPlayground from './FormPhoneNumberInputPlayground.vue
 
 ## Props
 
-| Prop        | Type                                 | Description                                      | Default     |
-|-------------|--------------------------------------|--------------------------------------------------|-------------|
-| label*      | `string`                             | The label of the input.                           |             |
-| errors*     | `FormFieldErrors`                    | The errors associated with the input.             |             |
-| isDisabled  | `boolean`                            | Whether the input is disabled.                    | `false`     |
-| isLoading   | `boolean`                            | Whether the input is loading.                     | `false`     |
-| isRequired  | `boolean`                            | Whether the input is required.                    | `false`     |
-| isTouched*  | `boolean`                            | Whether the input is touched.                     | `false`      |
-| iconRight   | `Icon` \| `null`                     | The right icon of the input.                      | `null`      |
-| placeholder | `null` \| `string`                   | The placeholder of the input.                     | `null`      |
+| Prop        | Type               | Description                           | Default |
+|-------------|--------------------|---------------------------------------|---------|
+| label*      | `string`           | The label of the input.               |         |
+| errors*     | `FormFieldErrors`  | The errors associated with the input. |         |
+| isDisabled  | `boolean`          | Whether the input is disabled.        | `false` |
+| isLoading   | `boolean`          | Whether the input is loading.         | `false` |
+| isRequired  | `boolean`          | Whether the input is required.        | `false` |
+| isTouched*  | `boolean`          | Whether the input is touched.         | `false` |
+| iconRight   | `Icon` \| `null`   | The right icon of the input.          | `null`  |
+| placeholder | `null` \| `string` | The placeholder of the input.         | `null`  |
+| tooltip     | `string`           | The tooltip of the input.             |         |
 
 
 ## Slots
 
-| Slot name | Type | Description                               |
-| --------- | ---- | ----------------------------------------- |
-| `right`   | None | Replace the right icon with custom content|
+| Slot name | Type | Description                                |
+|-----------|------|--------------------------------------------|
+| `right`   | None | Replace the right icon with custom content |
 
 
 ## v-model

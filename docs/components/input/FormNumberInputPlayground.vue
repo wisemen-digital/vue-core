@@ -59,6 +59,12 @@ const controls = createControls({
     label: 'Hide controls',
     type: 'switch',
   },
+  tooltip: {
+    default: 'This is a tooltip',
+    label: 'Tooltip',
+    type: 'text',
+    cols: 2,
+  },
 })
 
 const model = ref<null | number>(50)
