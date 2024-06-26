@@ -45,19 +45,24 @@ const searchInputValue = computed<string>(() => {
     ?.[1]?.toString() ?? ''
 })
 
+function filterOutEmptyFilters([
+  _key,
+  value]: [string, any,
+]): boolean {
+  // Empty means `null`, `''`, `false` or empty array
+  return value !== null
+    && value !== ''
+    && value !== false
+    && (Array.isArray(value) ? value.length !== 0 : true)
+}
+
 function mergeFilter(filterKey: keyof TFilters, filterValue: FilterValues | null): PaginationFilters<TFilters> {
   const filters = props.pagination.paginationOptions.value.filters ?? {} as PaginationFilters<TFilters>
 
   filters[filterKey] = filterValue as PaginationFilters<TFilters>[keyof TFilters]
 
-  // Remove empty filters
-  // Empty means `null`, `''` or `false`
   const newFilters = Object.fromEntries(
-    Object.entries(filters)
-      .filter(([
-        _key,
-        value,
-      ]) => value !== null && value !== '' && value !== false),
+    Object.entries(filters).filter(filterOutEmptyFilters),
   ) as PaginationFilters<TFilters>
 
   return newFilters
