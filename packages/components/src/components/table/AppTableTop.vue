@@ -19,12 +19,12 @@ import type {
 import { toLocaleNumber } from '@/utils/number.util'
 
 const props = defineProps<{
+  title: string
   isLoading: boolean
   filters: PaginationFilter<TFilters>[]
   pagination: Pagination<TFilters>
   searchFilterKey?: keyof TFilters
   searchValue?: null | string
-  title: string
   total: null | number
 }>()
 
