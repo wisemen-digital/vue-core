@@ -19,12 +19,12 @@ import type {
 import { toLocaleNumber } from '@/utils/number.util'
 
 const props = defineProps<{
-  title: string
   isLoading: boolean
   filters: PaginationFilter<TFilters>[]
   pagination: Pagination<TFilters>
   searchFilterKey?: keyof TFilters
   searchValue?: null | string
+  title: string
   total: null | number
 }>()
 
@@ -57,7 +57,7 @@ function mergeFilter(filterKey: keyof TFilters, filterValue: FilterValues | null
       .filter(([
         _key,
         value,
-      ]) => value !== null && value !== '' && value !== false),
+      ]) => value !== null && value !== '' && value !== false && (Array.isArray(value) ? value?.length !== 0 : true)),
   ) as PaginationFilters<TFilters>
 
   return newFilters
