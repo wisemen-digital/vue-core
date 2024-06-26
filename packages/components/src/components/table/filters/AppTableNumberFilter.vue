@@ -18,13 +18,13 @@ const emit = defineEmits<{
   change: [event: TableFilterEvent<TFilters>]
 }>()
 
-const filterModel = ref<number>(getValue(props.pagination.paginationOptions.value))
+const filterModel = ref<number | null>(getValue(props.pagination.paginationOptions.value))
 
-function getValue(value: PaginationOptions<TFilters>): number {
+function getValue(value: PaginationOptions<TFilters>): number | null {
   const data = value.filters?.[props.filter.id] ?? null
 
   if (data === null) {
-    return 0
+    return null
   }
 
   return data as number
