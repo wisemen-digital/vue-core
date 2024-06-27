@@ -4,7 +4,10 @@ import {
   DatePickerRoot,
   useId,
 } from 'radix-vue'
-import { computed, ref } from 'vue'
+import {
+  computed,
+  ref,
+} from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import AppDateCalendarPickerContent from '@/components/date/AppDateCalendarPickerContent.vue'
@@ -178,3 +181,9 @@ function onYearSelect(number: number): void {
     </DatePickerRoot>
   </div>
 </template>
+
+<style>
+[data-radix-popper-content-wrapper] {
+  @apply !z-popover;
+}
+</style>
