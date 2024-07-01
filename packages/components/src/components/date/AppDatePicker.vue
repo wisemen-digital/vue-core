@@ -7,6 +7,7 @@ import {
 import {
   computed,
   ref,
+  watch,
 } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -48,6 +49,8 @@ const props = withDefaults(defineProps<{
   modelValue: CalendarDate | null
 }>(), {
   id: null,
+  maxDate: null,
+  minDate: null,
   isDisabled: false,
   isInvalid: false,
   isLoading: false,
@@ -73,6 +76,14 @@ const model = computed<CalendarDate | undefined>({
       return null
     }
 
+    if (props.minDate !== null && value.toString() < props.minDate.toString()) {
+      return emit('update:modelValue', props.minDate)
+    }
+
+    if (props.maxDate !== null && value.toString() > props.maxDate.toString()) {
+      return emit('update:modelValue', props.maxDate)
+    }
+
     return emit('update:modelValue', value)
   },
 })
@@ -82,7 +93,7 @@ const { locale } = useI18n()
 const id = props.id ?? useId()
 
 const minDate = computed<CalendarDate | undefined>(() => {
-  if (props.minDate === null || props.minDate === undefined) {
+  if (props.minDate === null) {
     return undefined
   }
 
@@ -90,7 +101,7 @@ const minDate = computed<CalendarDate | undefined>(() => {
 })
 
 const maxDate = computed<CalendarDate | undefined>(() => {
-  if (props.maxDate === null || props.maxDate === undefined) {
+  if (props.maxDate === null) {
     return undefined
   }
 
@@ -144,6 +155,28 @@ function onYearSelect(number: number): void {
   isYearPickerVisible.value = false
   isMonthPickerVisible.value = true
 }
+
+watch([
+  minDate,
+  maxDate,
+], ([
+  minDate,
+  maxDate,
+]) => {
+  if (model.value === undefined) {
+    return
+  }
+
+  if (minDate !== undefined && model.value.toString() < minDate.toString()) {
+    model.value = minDate
+
+    return
+  }
+
+  if (maxDate !== undefined && model.value.toString() > maxDate.toString()) {
+    model.value = maxDate
+  }
+})
 </script>
 
 <template>
