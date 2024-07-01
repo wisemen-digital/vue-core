@@ -50,6 +50,10 @@ const props = withDefaults(
      */
     placeholder?: null | string
     /**
+     * The tooltip of the input.
+     */
+    tooltip?: string
+    /**
      * The type of the input.
      * @default 'text'
      */
@@ -85,6 +89,7 @@ const { classAttr, otherAttrs } = useComponentAttrs()
     :is-touched="props.isTouched"
     :is-disabled="props.isDisabled"
     :label="props.label"
+    :tooltip="props.tooltip"
   >
     <AppInput
       :id="id"

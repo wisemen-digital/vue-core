@@ -42,6 +42,10 @@ const props = withDefaults(
      * @default 'none'
      */
     resize?: TextareaStyleProps['resize']
+    /**
+     * The tooltip of the input.
+     */
+    tooltip?: string
   }>(),
   {
     isDisabled: false,
@@ -78,6 +82,7 @@ function onBlur(): void {
     v-slot="{ isInvalid, id }"
     :class="classAttr"
     :errors="props.errors"
+    :tooltip="props.tooltip"
     :is-required="props.isRequired"
     :is-touched="props.isTouched"
     :is-disabled="props.isDisabled"

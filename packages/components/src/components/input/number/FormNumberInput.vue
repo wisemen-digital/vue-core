@@ -66,6 +66,10 @@ const props = withDefaults(
      * @default null
      */
     suffix?: null | string
+    /**
+     * The tooltip of the input.
+     */
+    tooltip?: string
   }>(),
   {
     isDisabled: false,
@@ -108,6 +112,7 @@ const numberSuffixClasses = computed<string>(() => inputStyle.numberSuffix())
 <template>
   <FormElement
     v-slot="{ isInvalid, id }"
+    :tooltip="props.tooltip"
     :class="classAttr"
     :errors="props.errors"
     :is-required="props.isRequired"

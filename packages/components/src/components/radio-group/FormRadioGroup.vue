@@ -39,6 +39,10 @@ const props = withDefaults(defineProps<{
    * The options of the radio group.
    */
   options: DataItem<T>[]
+  /**
+   * The tooltip of the input.
+   */
+  tooltip?: string
 }>(), {
   isDisabled: false,
   isRequired: false,
@@ -76,6 +80,7 @@ const itemsContainerClasses = computed<string>(() => radioGroupStyle.itemsContai
   <FormElement
     :errors="props.errors"
     :is-touched="props.isTouched"
+    :tooltip="props.tooltip"
     :label="props.label"
     :is-disabled="props.isDisabled"
     :is-required="props.isRequired"

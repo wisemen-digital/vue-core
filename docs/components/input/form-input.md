@@ -11,26 +11,27 @@ import FormInputPlayground from './FormInputPlayground.vue'
 
 ## Props
 
-| Prop        | Type                                                                                      | Description                                      | Default     |
-|-------------|-------------------------------------------------------------------------------------------|--------------------------------------------------|-------------|
-| label*      | `string`                                                                                 | The label of the input.                           |             |
-| errors*     | `FormFieldErrors`                                                                        | The errors associated with the input.             |             |
-| isTouched*  | `boolean`                                                                                | Whether the input is touched.                     |             |
-| iconLeft    | `Icon` \| `null`                                                                         | The left icon of the input.                       | `null`      |
-| iconRight   | `Icon` \| `null`                                                                         | The right icon of the input.                      | `null`      |
-| isDisabled  | `boolean`                                                                                | Whether the input is disabled.                    | `false`     |
-| isLoading   | `boolean`                                                                                | Whether the input is loading.                     | `false`     |
-| isRequired  | `boolean`                                                                                | Whether the input is required.                    | `false`     |
-| placeholder | `null` \| `string`                                                                       | The placeholder of the input.                     | `null`      |
-| type        | `'date'` \| `'datetime-local'` \| `'email'` \| `'number'` \| `'password'` \| `'search'` \| `'tel'` \| `'text'` \| `'time'` \| `'url'` | The type of the input.               | `'text'`    |
+| Prop        | Type                                                                                                                                  | Description                           | Default  |
+|-------------|---------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------|----------|
+| label*      | `string`                                                                                                                              | The label of the input.               |          |
+| errors*     | `FormFieldErrors`                                                                                                                     | The errors associated with the input. |          |
+| isTouched*  | `boolean`                                                                                                                             | Whether the input is touched.         |          |
+| iconLeft    | `Icon` \| `null`                                                                                                                      | The left icon of the input.           | `null`   |
+| iconRight   | `Icon` \| `null`                                                                                                                      | The right icon of the input.          | `null`   |
+| isDisabled  | `boolean`                                                                                                                             | Whether the input is disabled.        | `false`  |
+| isLoading   | `boolean`                                                                                                                             | Whether the input is loading.         | `false`  |
+| isRequired  | `boolean`                                                                                                                             | Whether the input is required.        | `false`  |
+| placeholder | `null` \| `string`                                                                                                                    | The placeholder of the input.         | `null`   |
+| type        | `'date'` \| `'datetime-local'` \| `'email'` \| `'number'` \| `'password'` \| `'search'` \| `'tel'` \| `'text'` \| `'time'` \| `'url'` | The type of the input.                | `'text'` |
+| tooltip     | `string`                                                                                                                              | The tooltip of the input.             |          |
 
 
 ## Slots
 
-| Slot name | Type | Description                               |
-| --------- | ---- | ----------------------------------------- |
-| `left`    | None | Replace the left icon with custom content |
-| `right`   | None | Replace the right icon with custom content|
+| Slot name | Type | Description                                |
+|-----------|------|--------------------------------------------|
+| `left`    | None | Replace the left icon with custom content  |
+| `right`   | None | Replace the right icon with custom content |
 
 
 ## v-model
@@ -42,10 +43,10 @@ import FormInputPlayground from './FormInputPlayground.vue'
 
 ## Events
 
-| Event Name  | Description                                          |
-|-------------|------------------------------------------------------|
-| blur     | Emitted when the input loses focus.                  |
-| focus     | Emitted when the input gains focus.                  |
+| Event Name | Description                         |
+|------------|-------------------------------------|
+| blur       | Emitted when the input loses focus. |
+| focus      | Emitted when the input gains focus. |
 
 
 ## Code
