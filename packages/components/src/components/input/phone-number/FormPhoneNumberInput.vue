@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import i18nCountries from 'i18n-iso-countries'
 import type {
   CountryCode,
 } from 'libphonenumber-js'
@@ -14,6 +15,7 @@ import {
   ref,
   watch,
 } from 'vue'
+import type { Locale } from 'vue-i18n'
 
 import FormElement from '@/components/form-element/FormElement.vue'
 import AppInput from '@/components/input/AppInput.vue'
@@ -53,6 +55,12 @@ const props = withDefaults(
      * The model value of the input.
      */
     /**
+     * The locale of the input.
+     * For registering locales, see: https://www.npmjs.com/package/i18n-iso-countries
+     * @default 'en'
+     */
+    locale?: Locale | null
+    /**
      * The placeholder of the input.
      * @default null
      */
@@ -67,6 +75,7 @@ const props = withDefaults(
     isLoading: false,
     isRequired: false,
     isTouched: false,
+    locale: null,
     placeholder: null,
   },
 )
@@ -178,31 +187,7 @@ function getCountryCodeFromPhoneNumber(phoneNumber: null | string): CountryCode 
     return null
   }
 
-  const parsedPhoneNumber = parsePhoneNumber(phoneNumber)
-
-  if (phoneNumber.length < 3) {
-    return null
-  }
-
-  // Loop over first 3 characters of the phone number to find the calling code
-  // 3 has priority, but if 3 has no match, then 2, and if 2 has no match, then 1
-  let country = null
-
-  for (let i = 3; i > 0; i--) {
-    const callingCode = phoneNumber.slice(0, i).replace('+', '')
-
-    country = countries.find((country) => getCountryCallingCode(country) === callingCode)
-
-    if (country !== undefined) {
-      break
-    }
-  }
-
-  // Find the country based on the calling code
-  // the parsed phone number is preferred because it is more accurate, but it is not always available
-  country = parsedPhoneNumber?.country ?? country
-
-  return country ?? null
+  return parsePhoneNumber(phoneNumber)?.country ?? null
 }
 
 function getCountryFlagUrl(countryCode: CountryCode): string {
@@ -211,6 +196,22 @@ function getCountryFlagUrl(countryCode: CountryCode): string {
 
 const dialCodeDisplayValue = computed<string>(() => {
   return `+${countryCodeDialCodeModel.value}`
+})
+
+function getCountryName(countryCode: CountryCode): null | string {
+  if (props.locale === null) {
+    return null
+  }
+
+  return i18nCountries.getName(countryCode, props.locale, { select: 'official' }) ?? null
+}
+
+const countryName = computed<null | string>(() => {
+  if (countryCodeModel.value === null) {
+    return null
+  }
+
+  return getCountryName(countryCodeModel.value) ?? null
 })
 </script>
 
@@ -243,7 +244,7 @@ const dialCodeDisplayValue = computed<string>(() => {
               <img
                 v-if="countryFlagUrl !== null"
                 :src="countryFlagUrl"
-                :alt="`Flag of ${countryCodeModel}`"
+                :alt="`Flag of ${countryName ?? countryCodeModel}`"
               >
               <div
                 v-else
@@ -254,19 +255,18 @@ const dialCodeDisplayValue = computed<string>(() => {
         </template>
 
         <template #option="{ value }">
-          <div class="flex w-24 items-center gap-2 text-sm">
+          <div class="flex w-48 items-center gap-2 text-sm">
             <div
-              v-if="false"
               class="w-4 overflow-hidden rounded-sm"
             >
               <img
                 v-if="getCountryFlagUrl(value)"
                 :src="getCountryFlagUrl(value)"
-                :alt="`Flag of ${value}`"
+                :alt="`Flag of ${getCountryName(value) ?? value}`"
               >
             </div>
             <p>
-              {{ `${value} (+${getCountryCallingCode(value)})` }}
+              {{ `${getCountryName(value) ?? value} (+${getCountryCallingCode(value)})` }}
             </p>
           </div>
         </template>
