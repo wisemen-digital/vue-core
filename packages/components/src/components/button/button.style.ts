@@ -12,7 +12,6 @@ const buttonOutlineClasses = 'border-primary bg-background text-primary ring-rin
 const buttonSecondaryClasses = 'border-transparent bg-secondary text-secondary-foreground ring-ring'
 const buttonSecondaryOutlineClasses = 'border-secondary bg-transparent text-secondary ring-ring'
 
-
 export const useButtonStyle = tv({
   defaultVariants: {
     isLoading: false,
@@ -80,6 +79,10 @@ export const useButtonStyle = tv({
         button: buttonGhostClasses,
         iconButton: buttonGhostClasses,
       },
+      'input-outline': {
+        button: buttonInputOutlineClasses,
+        iconButton: buttonInputOutlineClasses,
+      },
       'muted': {
         button: buttonMutedClasses,
         iconButton: buttonMutedClasses,
@@ -92,14 +95,10 @@ export const useButtonStyle = tv({
         button: buttonSecondaryClasses,
         iconButton: buttonSecondaryClasses,
       },
-        'input-outline': {
-          button: buttonInputOutlineClasses,
-            iconButton: buttonInputOutlineClasses,
-        },
-        'secondary-outline': {
-          button: buttonSecondaryOutlineClasses,
-            iconButton: buttonSecondaryOutlineClasses,
-        },
+      'secondary-outline': {
+        button: buttonSecondaryOutlineClasses,
+        iconButton: buttonSecondaryOutlineClasses,
+      },
     },
     isLoading: {
       true: {
