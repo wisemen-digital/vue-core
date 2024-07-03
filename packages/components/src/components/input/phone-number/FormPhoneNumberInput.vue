@@ -77,7 +77,7 @@ const model = defineModel<null | string>({
 })
 
 const countryCodeModel = ref<CountryCode | null>(getCountryCodeFromPhoneNumber(model.value))
-const numberModel = ref<null | string>(getNumberFromModel())
+const numberModel = ref<null | string>(getNumberFromPhoneNumber(model.value))
 
 const fullNumber = computed<null | string>(() => {
   if (numberModel.value === null || countryCodeModel.value === null) {
@@ -96,18 +96,34 @@ watch(
     countryCodeModel.value,
   ],
   () => {
+    if (fullNumber.value === model.value) {
+      return
+    }
+
     model.value = fullNumber.value
   },
 )
 
-function getNumberFromModel(): null | string {
-  if (model.value === null || countryCodeModel.value === null) {
+watch(
+  () => model.value,
+  () => {
+    if (fullNumber.value === model.value) {
+      return
+    }
+
+    countryCodeModel.value = getCountryCodeFromPhoneNumber(model.value)
+    numberModel.value = getNumberFromPhoneNumber(model.value)
+  },
+)
+
+function getNumberFromPhoneNumber(phoneNumber: null | string): null | string {
+  if (phoneNumber === null || countryCodeModel.value === null) {
     return null
   }
 
   const getCountryCodeCallingCode = getCountryCallingCode(countryCodeModel.value)
 
-  return model.value.replace(`+${getCountryCodeCallingCode}`, '')
+  return phoneNumber.replace(`+${getCountryCodeCallingCode}`, '')
 }
 
 const countryCodeDialCodeModel = computed<null | string>(() => {
