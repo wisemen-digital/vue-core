@@ -21,7 +21,6 @@ const totalPages = computed<number>(() => {
 <template>
   <AppText variant="subtext">
     {{ t('components.table.page') }}
-    <!-- eslint-disable-next-line @intlify/vue-i18n/no-raw-text -->
     {{ toLocaleNumber(currentPage) }}
     {{ t('components.table.of') }}
     {{ toLocaleNumber(totalPages) }}
