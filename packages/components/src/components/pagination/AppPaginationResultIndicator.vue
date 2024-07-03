@@ -10,7 +10,7 @@ const { t } = useI18n()
 const paginationContext = injectPaginationContext()
 
 const currentPage = computed<number>(() => {
-  return paginationContext.page.value
+  return paginationContext.page.value + 1
 })
 
 const totalPages = computed<number>(() => {
@@ -21,8 +21,7 @@ const totalPages = computed<number>(() => {
 <template>
   <AppText variant="subtext">
     {{ t('components.table.page') }}
-    <!-- eslint-disable-next-line @intlify/vue-i18n/no-raw-text -->
-    {{ toLocaleNumber(currentPage) }} -
+    {{ toLocaleNumber(currentPage) }}
     {{ t('components.table.of') }}
     {{ toLocaleNumber(totalPages) }}
   </AppText>
