@@ -11,7 +11,6 @@ import examples from 'libphonenumber-js/mobile/examples'
 import { vMaska } from 'maska'
 import {
   computed,
-  ref,
   watch,
 } from 'vue'
 
@@ -76,8 +75,23 @@ const model = defineModel<null | string>({
   required: true,
 })
 
-const countryCodeModel = ref<CountryCode | null>(getCountryCodeFromPhoneNumber(model.value))
-const numberModel = ref<null | string>(getNumberFromModel())
+const countryCodeModel = computed<CountryCode | null>({
+  get() {
+    return getCountryCodeFromPhoneNumber(model.value)
+  },
+  set(value) {
+    countryCodeModel.value = value
+  },
+})
+
+const numberModel = computed<null | string>({
+  get() {
+    return getNumberFromModel()
+  },
+  set(value) {
+    numberModel.value = value
+  },
+})
 
 const fullNumber = computed<null | string>(() => {
   if (numberModel.value === null || countryCodeModel.value === null) {
