@@ -6,9 +6,11 @@ const buttonDefaultClasses = 'border-primary bg-primary text-primary-foreground 
 const buttonDestructiveClasses = 'border-destructive bg-destructive text-destructive-foreground focus-visible:ring-destructive'
 const buttonDestructiveOutlineClasses = 'border-destructive bg-transparent text-destructive ring-destructive'
 const buttonGhostClasses = 'border-transparent bg-transparent text-muted-foreground ring-ring hover:enabled:bg-muted-background focus:enabled:bg-muted-background'
+const buttonInputOutlineClasses = 'border-input-border bg-transparent text-input-foreground ring-ring'
 const buttonMutedClasses = 'border-muted-background bg-muted-background text-muted-foreground ring-ring'
 const buttonOutlineClasses = 'border-primary bg-background text-primary ring-ring'
 const buttonSecondaryClasses = 'border-transparent bg-secondary text-secondary-foreground ring-ring'
+const buttonSecondaryOutlineClasses = 'border-secondary bg-transparent text-secondary ring-ring'
 
 export const useButtonStyle = tv({
   defaultVariants: {
@@ -77,6 +79,10 @@ export const useButtonStyle = tv({
         button: buttonGhostClasses,
         iconButton: buttonGhostClasses,
       },
+      'input-outline': {
+        button: buttonInputOutlineClasses,
+        iconButton: buttonInputOutlineClasses,
+      },
       'muted': {
         button: buttonMutedClasses,
         iconButton: buttonMutedClasses,
@@ -88,6 +94,10 @@ export const useButtonStyle = tv({
       'secondary': {
         button: buttonSecondaryClasses,
         iconButton: buttonSecondaryClasses,
+      },
+      'secondary-outline': {
+        button: buttonSecondaryOutlineClasses,
+        iconButton: buttonSecondaryOutlineClasses,
       },
     },
     isLoading: {

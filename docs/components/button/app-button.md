@@ -12,15 +12,15 @@ import AppButtonPlayground from './AppButtonPlayground.vue'
 
 ## Props
 
-| Prop       | Type                                                                                                   | Description                                          | Default     |
-| ---------- | ------------------------------------------------------------------------------------------------------ | ---------------------------------------------------- | ----------- |
-| variant    | `'default'` \| `'secondary'` \| `'outline'` \| `'ghost'` \| `'destructive'` \| `'destructive-outline'` | The variant of the button.                           | `'default'` |
-| size       | `'xs'` \|  `'sm'` \| `'default'` \| `'lg'`  \|  `'unset'`  \|  `'icon'`                                | The size of the button.                              | `'default'` |
-| type       | `'button'` \| `'reset'` \| `'submit'`                                                                  | The type of the button.                              | `'button'`  |
-| iconLeft   | `Icon` \| `null`                                                                                       | The icon to display on the left side of the button.  | `null`      |
-| iconRight  | `Icon` \| `null`                                                                                       | The icon to display on the right side of the button. | `null`      |
-| isDisabled | `boolean`                                                                                              | Whether the button is disabled.                      | `false`     |
-| isLoading  | `boolean`                                                                                              | Whether the button is in a loading state.            | `false`     |
+| Prop       | Type                                                                                                                                                                     | Description                                        | Default     |
+| ---------- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------| ----------- |
+| variant    | `'default'` \| `'secondary'` \| `'outline'` \| `'ghost'` \| `'destructive'` \| `'destructive-outline'` \| `'secondary-outline'` \| `'input-outline'` | The variant of the button.                           | `'default'` |
+| size       | `'xs'` \|  `'sm'` \| `'default'` \| `'lg'`  \|  `'unset'`  \|  `'icon'`                                                                                                  | The size of the button.                            | `'default'` |
+| type       | `'button'` \| `'reset'` \| `'submit'`                                                                                                                                    | The type of the button.                            | `'button'`  |
+| iconLeft   | `Icon` \| `null`                                                                                                                                                         | The icon to display on the left side of the button. | `null`      |
+| iconRight  | `Icon` \| `null`                                                                                                                                                         | The icon to display on the right side of the button. | `null`      |
+| isDisabled | `boolean`                                                                                                                                                                | Whether the button is disabled.                    | `false`     |
+| isLoading  | `boolean`                                                                                                                                                                | Whether the button is in a loading state.          | `false`     |
 
 
 
