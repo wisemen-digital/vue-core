@@ -1,11 +1,16 @@
 <script setup lang="ts">
 import { ComboboxContent } from 'radix-vue'
+import { computed } from 'vue'
 
+import { useComboboxStyle } from '@/components/combobox/combobox.style'
 import type { ComboboxProps } from '@/types/comboboxProps.type'
 
 const props = defineProps<{
   popoverProps: ComboboxProps['popoverProps']
 }>()
+
+const comboboxStyle = useComboboxStyle()
+const contentStyle = computed<string>(() => comboboxStyle.content())
 </script>
 
 <template>
@@ -16,7 +21,7 @@ const props = defineProps<{
     :style="{
       minWidth: props.popoverProps?.minWidth,
     }"
-    class="combobox-content popover-content relative z-popover max-h-[--radix-combobox-content-available-height] w-[--radix-combobox-trigger-width] min-w-min overflow-hidden rounded-popover border border-solid border-border bg-background shadow-popover-shadow"
+    :class="contentStyle"
     position="popper"
   >
     <slot />

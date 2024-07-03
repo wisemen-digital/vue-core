@@ -28,6 +28,10 @@ const props = defineProps<{
    * The label of the input.
    */
   label: null | string
+  /**
+   * The tooltip of the input.
+   */
+  tooltip?: string
 }>()
 
 const inputId = useId(null, 'input')
@@ -46,6 +50,7 @@ const isInvalid = computed<boolean>(() => {
       :is-required="props.isRequired"
       :is-invalid="isInvalid"
       :is-disabled="props.isDisabled"
+      :tooltip="props.tooltip"
     />
 
     <slot

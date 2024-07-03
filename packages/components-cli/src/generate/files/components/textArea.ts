@@ -4,8 +4,8 @@ import { ComponentName, ComponentType } from '@/generate/components.type'
 export const textarea: Component = {
   files: [
     {
-      path: 'textarea',
       type: ComponentType.COMPONENTS,
+      path: 'textarea',
     },
   ],
   internalDependencies: [

@@ -3,7 +3,9 @@ import {
   ComboboxItem as RadixComboboxItem,
   ComboboxItemIndicator,
 } from 'radix-vue'
+import { computed } from 'vue'
 
+import { useComboboxStyle } from '@/components/combobox/combobox.style'
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppText from '@/components/text/AppText.vue'
 import type { ComboboxItemOption } from '@/types/comboboxItem.type'
@@ -13,27 +15,34 @@ const props = defineProps<{
   displayFn: (value: TValue) => string
   item: ComboboxItemOption<TValue>
 }>()
+
+const comboboxStyle = useComboboxStyle()
+
+const optionContainerClasses = computed<string>(() => comboboxStyle.optionContainer())
+const optionIndicatorContainerClasses = computed<string>(() => comboboxStyle.optionIndicatorContainer())
+const optionIndicatorClasses = computed<string>(() => comboboxStyle.optionIndicator())
+const optionSpacerClasses = computed<string>(() => comboboxStyle.optionSpacer())
 </script>
 
 <template>
   <RadixComboboxItem
     :disabled="props.item.isDisabled === true"
     :value="props.item.value"
-    class="cursor-default rounded-md px-3 py-1.5 outline-none hover:bg-muted-background focus:bg-muted-background data-[disabled]:cursor-not-allowed data-[disabled]:bg-background data-[highlighted]:bg-muted-background data-[disabled]:opacity-50"
+    :class="optionContainerClasses"
   >
-    <div class="flex items-center justify-between gap-x-3">
+    <div :class="optionSpacerClasses">
       <slot>
         <AppText variant="subtext">
           {{ props.displayFn(props.item.value) }}
         </AppText>
       </slot>
 
-      <div class="w-4">
+      <div :class="optionIndicatorContainerClasses">
         <ComboboxItemIndicator>
           <AppIcon
+            :class="optionIndicatorClasses"
             icon="checkmark"
             size="default"
-            class="text-muted-foreground"
           />
         </ComboboxItemIndicator>
       </div>

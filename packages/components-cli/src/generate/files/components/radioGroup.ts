@@ -4,8 +4,8 @@ import { ComponentName, ComponentType } from '@/generate/components.type'
 export const radioGroup: Component = {
   files: [
     {
-      path: 'radio-group',
       type: ComponentType.COMPONENTS,
+      path: 'radio-group',
     },
   ],
   internalDependencies: [

@@ -22,28 +22,29 @@ import FormTagsInputPlayground from './FormTagsInputPlayground.vue'
 | isTouched*  | `boolean`                                       | Whether the input is touched.                     |             |
 | max         | `null` \| `number`                              | The maximum amount of tags allowed.               | `null`      |
 | placeholder | `null` \| `string`                              | The placeholder of the input.                     | `null`      |
+| tooltip     | `string`                                        | The tooltip of the input.                         |             |
 
 
 ## Slots
 
 | Slot name | Type            | Description                |
-| --------- | --------------- | -------------------------- |
+|-----------|-----------------|----------------------------|
 | `tag`     | `value: string` | Override the tag rendering |
 
 
 ## v-model
 
-| Prop                    | Type        | Description               |
-|------------------------ | ----------- | ------------------------- |
-| v-model*                | `string[]`  | The value of the input.   |
+| Prop     | Type       | Description             |
+|----------|------------|-------------------------|
+| v-model* | `string[]` | The value of the input. |
 
 
 ## Events
 
-| Event Name  | Description                                          |
-|-------------|------------------------------------------------------|
-| blur      | Emitted when the input loses focus.                  |
-| focus     | Emitted when the input gains focus.                  |
+| Event Name | Description                         |
+|------------|-------------------------------------|
+| blur       | Emitted when the input loses focus. |
+| focus      | Emitted when the input gains focus. |
 
 
 ## Code

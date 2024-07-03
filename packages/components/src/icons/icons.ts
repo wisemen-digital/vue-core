@@ -7,6 +7,7 @@ export interface BaseIcons {
   arrowRight: Promise<Component>
   arrowUp: Promise<Component>
   arrowUpDown: Promise<Component>
+  calendar: Promise<Component>
   checkmark: Promise<Component>
   checkmarkCircle: Promise<Component>
   chevronDown: Promise<Component>
@@ -33,6 +34,7 @@ export const icons: AllIcons = {
   arrowRight: import('@/icons/ArrowRightIcon.vue'),
   arrowUp: import('@/icons/ArrowUpIcon.vue'),
   arrowUpDown: import('@/icons/ArrowUpDownIcon.vue'),
+  calendar: import('@/icons/CalendarIcon.vue'),
   checkmark: import('@/icons/CheckmarkIcon.vue'),
   checkmarkCircle: import('@/icons/CheckmarkCircleIcon.vue'),
   chevronDown: import('@/icons/ChevronDownIcon.vue'),

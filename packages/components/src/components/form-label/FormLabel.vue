@@ -2,12 +2,17 @@
 import { Label } from 'radix-vue'
 import { computed } from 'vue'
 
+import { useFormLabelStyle } from '@/components/form-label/formLabel.style'
+import AppIcon from '@/components/icon/AppIcon.vue'
+import AppTooltip from '@/components/tooltip/AppTooltip.vue'
+
 const props = withDefaults(defineProps<{
   isDisabled?: boolean
   isInvalid?: boolean
   isRequired?: boolean
   for: string
   label: string
+  tooltip?: string
 }>(), {
   isDisabled: false,
   isInvalid: false,
@@ -21,19 +26,39 @@ const label = computed<string>(() => {
 
   return props.label
 })
+
+const formLabelStyle = useFormLabelStyle()
+
+const labelClasses = computed<string>(() => formLabelStyle.label({
+  isDisabled: props.isDisabled,
+  isInvalid: props.isInvalid,
+}))
+
+const hasTooltip = computed<boolean>(() => props.tooltip !== undefined)
 </script>
 
 <template>
-  <Label :for="props.for">
-    <span
-      :class="{
-        'text-destructive': props.isInvalid,
-        'text-muted-foreground': !props.isInvalid,
-        'opacity-50': props.isDisabled,
-      }"
-      class="text-sm duration-200"
+  <Label
+    :for="props.for"
+  >
+    <AppTooltip
+      :is-hidden="!hasTooltip"
+      :content="props.tooltip ?? ''"
+      side="right"
     >
-      {{ label }}
-    </span>
+      <div class="flex w-fit flex-row items-center gap-2">
+        <span :class="labelClasses">
+          {{ label }}
+        </span>
+
+        <AppIcon
+          v-if="hasTooltip"
+          class="text-muted-foreground"
+          icon="alertCircle"
+          size="sm"
+        />
+      </div>
+    </AppTooltip>
+
   </Label>
 </template>

@@ -1,6 +1,8 @@
 <script setup lang="ts"  generic="TValue extends AcceptableValue">
 import { ComboboxItem } from 'radix-vue'
+import { computed } from 'vue'
 
+import { useCommandStyle } from '@/components/command/command.style'
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppText from '@/components/text/AppText.vue'
 import type { CommandItem } from '@/types/commandItem.type'
@@ -9,30 +11,37 @@ import type { AcceptableValue } from '@/types/selectItem.type'
 const props = defineProps<{
   item: CommandItem
 }>()
+
+const commandStyle = useCommandStyle()
+
+const itemClasses = computed<string>(() => commandStyle.item())
+const itemIconClasses = computed<string>(() => commandStyle.itemIcon())
+const itemImgClasses = computed<string>(() => commandStyle.itemImg())
+const itemTextClasses = computed<string>(() => commandStyle.itemText())
 </script>
 
 <template>
   <ComboboxItem
     :value="props.item.label"
-    class="relative flex cursor-pointer items-center gap-x-3 rounded-lg p-3.5 text-muted-foreground outline-none duration-100 data-[highlighted]:bg-muted-background data-[highlighted]:text-foreground"
+    :class="itemClasses"
     @select="props.item.onSelect"
   >
     <AppIcon
       v-if="props.item.icon !== undefined"
       :icon="props.item.icon"
-      class="text-muted-foreground"
+      :class="itemIconClasses"
     />
 
     <img
       v-if="props.item.image !== undefined"
       :src="props.item.image"
-      class="size-5 rounded"
+      :class="itemImgClasses"
       alt=""
     >
 
     <AppText
+      :class="itemTextClasses"
       variant="subtext"
-      class="text-muted-foreground"
     >
       {{ props.item.label }}
     </AppText>

@@ -1,17 +1,18 @@
-import { h } from 'vue'
+import { h, type VNode } from 'vue'
 
 import { toast as vueSonnerToast } from '@/components/sonner/state'
 import AppToast from '@/components/toast/AppToast.vue'
 import type { Toast } from '@/types/toast.type'
 
 interface NamedToast {
-  description?: string
   title: string
+  description?: string
 }
 
 interface UseToastReturnType {
   custom: (toast: Toast) => void
   error: (toast: NamedToast) => void
+  h: (h: () => VNode) => void
   success: (toast: NamedToast) => void
 }
 
@@ -20,10 +21,10 @@ export function useToast(): UseToastReturnType {
 
   function showToast(toast: Toast): void {
     vueSonnerToast.custom(h(AppToast, {
+      title: toast.title,
       action: toast.action,
       description: toast.description ?? null,
       icon: toast.icon,
-      title: toast.title,
       type: toast.type,
     }), {
       duration: toast.duration ?? TOAST_DURATION,
@@ -32,9 +33,9 @@ export function useToast(): UseToastReturnType {
 
   function showErrorToast(toast: NamedToast): void {
     vueSonnerToast.custom(h(AppToast, {
+      title: toast.title,
       description: toast.description ?? null,
       icon: 'alertCircle',
-      title: toast.title,
       type: 'error',
     }), {
       duration: TOAST_DURATION,
@@ -43,11 +44,17 @@ export function useToast(): UseToastReturnType {
 
   function showSuccessToast(toast: NamedToast): void {
     vueSonnerToast.custom(h(AppToast, {
+      title: toast.title,
       description: toast.description ?? null,
       icon: 'checkmarkCircle',
-      title: toast.title,
       type: 'success',
     }), {
+      duration: TOAST_DURATION,
+    })
+  }
+
+  function customToast(h: () => VNode): void {
+    vueSonnerToast.custom(h(), {
       duration: TOAST_DURATION,
     })
   }
@@ -55,6 +62,7 @@ export function useToast(): UseToastReturnType {
   return {
     custom: showToast,
     error: showErrorToast,
+    h: customToast,
     success: showSuccessToast,
   }
 }

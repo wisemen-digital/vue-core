@@ -32,26 +32,26 @@
     "dev": "vite build --watch"
   },
   "dependencies": {
-    "@tanstack/vue-query": "^5.40.0"
+    "@tanstack/vue-query": "5.45.0"
   },
   "devDependencies": {
-    "@tsconfig/node18": "^18.2.4",
-    "@types/dom-view-transitions": "^1.0.4",
-    "@types/node": "^20.14.0",
-    "@vitejs/plugin-vue": "^5.0.5",
-    "@vue/test-utils": "^2.4.6",
-    "@vue/tsconfig": "^0.5.1",
-    "@wisemen/eslint-config-vue": "0.1.0",
+    "@tsconfig/node18": "18.2.4",
+    "@types/dom-view-transitions": "1.0.4",
+    "@types/node": "20.14.5",
+    "@vitejs/plugin-vue": "5.0.5",
+    "@vue/test-utils": "2.4.6",
+    "@vue/tsconfig": "0.5.1",
+    "@wisemen/eslint-config-vue": "0.1.4",
     "eslint": "9.4",
-    "jsdom": "^24.1.0",
-    "minimist": "^1.2.8",
-    "typescript": "^5.4.5",
-    "vite": "^5.2.12",
-    "vite-plugin-dts": "^3.9.1",
-    "vitest": "^1.6.0",
-    "vue": "^3.4.27",
-    "vue-component-type-helpers": "^2.0.19",
-    "vue-docgen-web-types": "^0.1.8",
-    "vue-tsc": "^2.0.19"
+    "jsdom": "24.1.0",
+    "minimist": "1.2.8",
+    "typescript": "5.4.5",
+    "vite": "5.3.1",
+    "vite-plugin-dts": "3.9.1",
+    "vitest": "1.6.0",
+    "vue": "3.4.29",
+    "vue-component-type-helpers": "2.0.21",
+    "vue-docgen-web-types": "0.1.8",
+    "vue-tsc": "2.0.21"
   }
 }

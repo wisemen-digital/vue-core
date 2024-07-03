@@ -4,20 +4,23 @@ import {
   onMounted,
   ref,
 } from 'vue'
-import {
-  type RouteLocationNamedRaw,
-  RouterLink,
-} from 'vue-router'
+import { RouterLink } from 'vue-router'
 
-import type { ButtonStyleProps } from '@/components/button/button.style'
-import { button, buttonIcon } from '@/components/button/button.style'
+import {
+  type ButtonStyleProps,
+  useButtonStyle,
+} from '@/components/button/button.style'
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppKeyboardShortcut from '@/components/keyboard/AppKeyboardShortcut.vue'
-import type { KeyboardKeyStyleProps } from '@/components/keyboard/keyboardKey.style'
+import type { KeyboardStyleProps } from '@/components/keyboard/keyboardKey.style'
 import AppLoader from '@/components/loader/AppLoader.vue'
 import { useKeyboardShortcut } from '@/composables/keyboardShortcut.composable'
 import type { Icon } from '@/icons/icons'
 import type { KeyboardShortcutConfig } from '@/types/keyboardShortcut.type'
+import type {
+  RouteLocationTyped,
+  Routes,
+} from '@/types/routes.type.js'
 
 interface Props {
   /**
@@ -43,7 +46,7 @@ interface Props {
   /**
    * The route to link to.
    */
-  to: RouteLocationNamedRaw
+  to: RouteLocationTyped<keyof Routes>
   /**
    * The variant of the button.
    * @default 'default'
@@ -63,19 +66,39 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const routerLinkRef = ref<InstanceType<any> | null>(null)
-
+const buttonStyle = useButtonStyle()
 const buttonClasses = computed<string>(() =>
-  button({
+  buttonStyle.button({
     size: props.size,
     variant: props.variant,
   }))
 
-const buttonIconClasses = computed<string>(() =>
-  buttonIcon({
+const buttonLeftIconClasses = computed<string>(() =>
+  buttonStyle.buttonLeftIcon({
+    isLoading: props.isLoading,
     size: props.size,
   }))
 
-const keyboardKeyVariant = computed<KeyboardKeyStyleProps['variant']>(() => {
+const buttonRightIconClasses = computed<string>(() =>
+  buttonStyle.buttonRightIcon({
+    isLoading: props.isLoading,
+    size: props.size,
+  }))
+
+const buttonContentClasses = computed<string>(() =>
+  buttonStyle.buttonContent({
+    isLoading: props.isLoading,
+  }))
+
+const keyboardShortcutClasses = computed<string>(() =>
+  buttonStyle.keyboardShortcut({
+    isLoading: props.isLoading,
+  }))
+
+const buttonLoaderClasses = computed<string>(() => buttonStyle.loader())
+const buttonLoaderContainerClasses = computed<string>(() => buttonStyle.loaderContainer())
+
+const keyboardKeyVariant = computed<KeyboardStyleProps['variant']>(() => {
   if (props.variant === 'default' || props.variant === 'destructive') {
     return 'secondary'
   }
@@ -118,43 +141,33 @@ onMounted(() => {
     <AppIcon
       v-if="props.iconLeft !== null && props.iconLeft !== undefined"
       :icon="props.iconLeft"
-      :class="[{
-        'opacity-0': props.isLoading,
-      }, buttonIconClasses]"
-      class="mr-3"
+      :class="buttonLeftIconClasses"
     />
 
-    <span
-      :class="{
-        'opacity-0': props.isLoading,
-      }"
-    >
+    <span :class="buttonContentClasses">
       <slot />
     </span>
 
     <div
       v-if="props.isLoading"
-      class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+      :class="buttonLoaderContainerClasses"
     >
       <AppLoader
-        class="size-4"
+        :class="buttonLoaderClasses"
       />
     </div>
 
     <AppIcon
       v-if="props.iconRight !== null && props.iconRight !== undefined"
       :icon="props.iconRight"
-      :class="[{
-        'opacity-0': props.isLoading,
-      }, buttonIconClasses]"
-      class="ml-3"
+      :class="buttonRightIconClasses"
     />
 
     <AppKeyboardShortcut
       v-if="props.keyboardShortcut !== null"
       :keys="props.keyboardShortcut.keys"
       :variant="keyboardKeyVariant"
-      class="ml-3 mt-px"
+      :class="keyboardShortcutClasses"
     />
   </RouterLink>
 </template>

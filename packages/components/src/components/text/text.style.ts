@@ -1,26 +1,37 @@
-import type { VariantProps } from '@/libs/cva.lib'
-import { cva } from '@/libs/cva.lib'
+import { tv, type VariantProps } from '@/libs/twVariants.lib'
 
-export const variantOptions = {
-  body: 'text-body',
-  caption: 'text-caption',
-  heading: 'text-heading',
-  hero: 'text-hero',
-  subtext: 'text-subtext',
-  subtitle: 'text-subtitle',
-  title: 'text-title',
-}
-
-export const textVariants = cva({
-  base: null,
+export const useTextStyle = tv({
   defaultVariants: {
     variant: 'body',
   },
+  slots: {
+    text: '',
+  },
   variants: {
-    variant: variantOptions,
+    variant: {
+      title: {
+        text: 'text-title font-semibold',
+      },
+      body: {
+        text: 'text-body',
+      },
+      caption: {
+        text: 'text-caption',
+      },
+      heading: {
+        text: 'text-heading',
+      },
+      hero: {
+        text: 'text-hero font-bold',
+      },
+      subtext: {
+        text: 'text-subtext',
+      },
+      subtitle: {
+        text: 'text-subtitle',
+      },
+    },
   },
 })
 
-export type TextProps = VariantProps<typeof textVariants>
-
-export const textVariantOptions = Object.keys(variantOptions)
+export type TextStyleProps = VariantProps<typeof useTextStyle>

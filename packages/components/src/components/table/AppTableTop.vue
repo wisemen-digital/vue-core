@@ -7,6 +7,7 @@ import AppBadge from '@/components/badge/AppBadge.vue'
 import AppInput from '@/components/input/AppInput.vue'
 import AppSkeletonLoaderRow from '@/components/skeleton-loader/AppSkeletonLoaderRow.vue'
 import AppTableFiltersPopover from '@/components/table/AppTableFiltersPopover.vue'
+import { useTableStyle } from '@/components/table/table.style'
 import AppText from '@/components/text/AppText.vue'
 import type {
   FilterChangeEvent,
@@ -18,12 +19,12 @@ import type {
 import { toLocaleNumber } from '@/utils/number.util'
 
 const props = defineProps<{
+  title: string
   isLoading: boolean
   filters: PaginationFilter<TFilters>[]
   pagination: Pagination<TFilters>
   searchFilterKey?: keyof TFilters
   searchValue?: null | string
-  title: string
   total: null | number
 }>()
 
@@ -35,48 +36,36 @@ const emit = defineEmits<{
 const { t } = useI18n()
 
 const searchInputValue = computed<string>(() => {
-  const searchFilter = props.pagination.paginationOptions.value.filters?.find(
-    (filter) => filter.key === props.searchFilterKey,
-  )
+  const filters = props.pagination.paginationOptions.value.filters ?? {}
 
-  return searchFilter?.value?.toString() ?? ''
+  return Object.entries(filters)
+    .find(([
+      key,
+    ]) => key === props.searchFilterKey)
+    ?.[1]?.toString() ?? ''
 })
 
+function filterOutEmptyFilters([
+  _key,
+  value]: [string, any,
+]): boolean {
+  // Empty means `null`, `''`, `false` or empty array
+  return value !== null
+    && value !== ''
+    && value !== false
+    && (Array.isArray(value) ? value.length !== 0 : true)
+}
+
 function mergeFilter(filterKey: keyof TFilters, filterValue: FilterValues | null): PaginationFilters<TFilters> {
-  const filters = props.pagination.paginationOptions.value.filters ?? []
+  const filters = props.pagination.paginationOptions.value.filters ?? {} as PaginationFilters<TFilters>
 
-  const filterAlreadyExists = filters.find((filter) => filter.key === filterKey)
-  const filterValueIsEmpty = filterValue === null || (Array.isArray(filterValue) && filterValue.length === 0)
-  const filterValueIsFalse = filterValue === false
+  filters[filterKey] = filterValue as PaginationFilters<TFilters>[keyof TFilters]
 
-  if (filterAlreadyExists === undefined && !filterValueIsEmpty && !filterValueIsFalse) {
-    filters.push({
-      key: filterKey,
-      value: filterValue,
-    })
-  }
+  const newFilters = Object.fromEntries(
+    Object.entries(filters).filter(filterOutEmptyFilters),
+  ) as PaginationFilters<TFilters>
 
-  return filters
-    .map((filter) => {
-      if (filter.key === filterKey) {
-        return {
-          key: filterKey,
-          value: filterValue,
-        }
-      }
-
-      return filter
-    })
-    .filter((filter) => {
-      if (Array.isArray(filter.value)) {
-        return filter.value.length !== 0
-      }
-
-      return filter.value !== null && filter.value !== ''
-    })
-    .filter((filter) => {
-      return filter.value !== false
-    })
+  return newFilters
 }
 
 const debounceSearch = useDebounceFn((value: string) => {
@@ -102,50 +91,55 @@ function onFilterChange(event: { key: keyof TFilters, value: FilterValues | null
 function onFilterClear(): void {
   emit('clear')
 }
+
+const tableStyle = useTableStyle()
+
+const topContainerClasses = computed<string>(() => tableStyle.topContainer())
+const topTitleClasses = computed<string>(() => tableStyle.topTitle())
+const topBadgeClasses = computed<string>(() => tableStyle.topBadge())
+const topSearchInputClasses = computed<string>(() => tableStyle.topSearchInput())
+const topSkeletonRowClasses = computed<string>(() => tableStyle.topSkeletonRow())
 </script>
 
 <template>
-  <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
-  <div class="border-b border-solid border-border px-6 py-4">
-    <div class="flex items-center gap-x-2">
-      <AppText
-        class="font-medium"
-        variant="subtitle"
-      >
-        {{ props.title }}
-      </AppText>
+  <div :class="topContainerClasses">
+    <AppText
+      :class="topTitleClasses"
+      variant="subtitle"
+    >
+      {{ props.title }}
+    </AppText>
 
-      <AppBadge
-        v-if="props.total !== null"
-        class="mt-0.5"
-      >
-        {{ toLocaleNumber(props.total) }} items
-      </AppBadge>
+    <AppBadge
+      v-if="props.total !== null"
+      :class="topBadgeClasses"
+    >
+      {{ toLocaleNumber(props.total) }} {{ t('components.table.items', { count: props.total }) }}
+    </AppBadge>
 
-      <AppSkeletonLoaderRow
-        v-else-if="props.isLoading"
-        class="mt-1 w-20"
-      />
+    <AppSkeletonLoaderRow
+      v-else-if="props.isLoading"
+      :class="topSkeletonRowClasses"
+    />
 
-      <div class="ml-auto w-28 md:w-72">
-        <AppInput
-          v-if="props.searchFilterKey"
-          id="search-input"
-          :model-value="searchInputValue"
-          :placeholder="t('shared.search')"
-          :suffix-icon="props.isLoading ? 'loading' : undefined"
-          prefix-icon="search"
-          @update:model-value="onSearchInputUpdate"
-        />
-      </div>
-
-      <AppTableFiltersPopover
-        v-if="props.filters.length !== 0"
-        :filters="props.filters"
-        :pagination="props.pagination"
-        @clear="onFilterClear"
-        @filter="onFilterChange"
+    <div :class="topSearchInputClasses">
+      <AppInput
+        v-if="props.searchFilterKey"
+        id="search-input"
+        :model-value="searchInputValue"
+        :placeholder="t('shared.search')"
+        :suffix-icon="props.isLoading ? 'loading' : undefined"
+        prefix-icon="search"
+        @update:model-value="onSearchInputUpdate"
       />
     </div>
+
+    <AppTableFiltersPopover
+      v-if="props.filters.length !== 0"
+      :filters="props.filters"
+      :pagination="props.pagination"
+      @clear="onFilterClear"
+      @filter="onFilterChange"
+    />
   </div>
 </template>

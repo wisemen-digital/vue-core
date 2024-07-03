@@ -11,6 +11,7 @@ import AppTableMultiSelectFilter from '@/components/table/filters/AppTableMultiS
 import AppTableNumberFilter from '@/components/table/filters/AppTableNumberFilter.vue'
 import AppTableSelectFilter from '@/components/table/filters/AppTableSelectFilter.vue'
 import AppTableTextFilter from '@/components/table/filters/AppTableTextFilter.vue'
+import { useTableStyle } from '@/components/table/table.style'
 import AppText from '@/components/text/AppText.vue'
 import type {
   Pagination,
@@ -35,7 +36,7 @@ const filteredFilters = computed<PaginationFilter<TFilters>[]>(() => {
 })
 
 const numberOfActiveFilters = computed<number>(() => {
-  return props.pagination.paginationOptions.value.filters?.length ?? 0
+  return Object.keys(props.pagination.paginationOptions.value.filters ?? {}).length
 })
 
 function onFilterUpdate(event: TableFilterEvent<TFilters>): void {
@@ -49,22 +50,33 @@ function onClearAllButtonClick(): void {
 function isFilterVisible(filter: PaginationFilter<TFilters>): boolean {
   return filter.isVisible === undefined || filter.isVisible
 }
+
+const tableStyle = useTableStyle()
+
+const filterPopoverContainerClasses = computed<string>(() => tableStyle.filterPopoverContainer())
+const filterPopoverContentContainerClasses = computed<string>(() => tableStyle.filterPopoverContentContainer())
+const filterPopoverButtonClasses = computed<string>(() => tableStyle.filterPopoverButton())
+const filterPopoverClearContainerClasses = computed<string>(() => tableStyle.filterPopoverClearContainer())
+const filterPopoverClearTextClasses = computed<string>(() => tableStyle.filterPopoverClearText())
+const filterPopoverActiveFiltersClasses = computed<string>(() => tableStyle.filterPopoverActiveFilters())
+const filterPopoverClearButtonClasses = computed<string>(() => tableStyle.filterPopoverClearButton())
+const filterPopoverFiltersContainerClasses = computed<string>(() => tableStyle.filterPopoverFiltersContainer())
 </script>
 
 <template>
   <AppPopover align="end">
     <template #default>
-      <div class="relative">
+      <div :class="filterPopoverContainerClasses">
         <AppIconButton
+          :class="filterPopoverButtonClasses"
           variant="ghost"
-          class="w-10 !border-border"
           icon="filterLines"
           icon-size="default"
           label="Filter"
         />
         <div
           v-if="numberOfActiveFilters > 0"
-          class="absolute -right-2 -top-2 flex size-5 items-center justify-center rounded-full bg-primary text-xs text-white"
+          :class="filterPopoverActiveFiltersClasses"
         >
           {{ numberOfActiveFilters }}
         </div>
@@ -73,18 +85,18 @@ function isFilterVisible(filter: PaginationFilter<TFilters>): boolean {
 
     <template #content>
       <div
-        class="rounded-md border border-solid border-border bg-white p-2"
+        :class="filterPopoverContentContainerClasses"
       >
         <div>
-          <div class="flex items-center justify-between gap-10 py-2 pl-2 pr-6">
+          <div :class="filterPopoverClearContainerClasses">
             <AppText
+              :class="filterPopoverClearTextClasses"
               variant="body"
-              class="font-medium"
             >
               {{ t('shared.filters') }}
             </AppText>
             <AppButton
-              class="text-primary"
+              :class="filterPopoverClearButtonClasses"
               size="sm"
               variant="ghost"
               @click="onClearAllButtonClick"
@@ -96,7 +108,7 @@ function isFilterVisible(filter: PaginationFilter<TFilters>): boolean {
           <div
             v-for="filter in filteredFilters"
             :key="filter.id"
-            class="p-2"
+            :class="filterPopoverFiltersContainerClasses"
           >
             <AppTableMultiSelectFilter
               v-if="filter.type === 'multiselect'"

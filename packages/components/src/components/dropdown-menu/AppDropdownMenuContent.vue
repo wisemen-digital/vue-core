@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { DropdownMenuContent } from 'radix-vue'
+import { computed } from 'vue'
 
 import AppDropdownMenuArrow from '@/components/dropdown-menu/AppDropdownMenuArrow.vue'
+import { useDropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style'
 
 const props = defineProps<{
   hasArrow: boolean
@@ -10,23 +12,24 @@ const props = defineProps<{
   side: 'bottom' | 'left' | 'right' | 'top'
   sideOffset: number
 }>()
+
+const dropdownMenuStyle = useDropdownMenuStyle()
+
+const contentContainerClasses = computed<string>(() => dropdownMenuStyle.contentContainer({
+  inheritTriggerWidth: props.inheritTriggerWidth,
+}))
+const contentClasses = computed<string>(() => dropdownMenuStyle.content())
 </script>
 
 <template>
-  <!-- eslint-disable tailwindcss/no-custom-classname -->
   <DropdownMenuContent
     :align="props.align"
     :arrow-padding="12"
     :side="props.side"
     :side-offset="props.sideOffset"
-    :class="{
-      'w-[--radix-dropdown-menu-trigger-width]': props.inheritTriggerWidth,
-      'min-w-40 max-w-60': !props.inheritTriggerWidth,
-    }"
-    class="popover-content z-popover rounded-popover bg-popover shadow-popover-shadow"
+    :class="contentContainerClasses"
   >
-    <!-- eslint-enable tailwindcss/no-custom-classname -->
-    <div class="max-h-96 overflow-y-auto rounded-popover border border-solid border-border">
+    <div :class="contentClasses">
       <slot />
     </div>
 

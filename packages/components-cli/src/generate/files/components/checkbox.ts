@@ -4,8 +4,8 @@ import { ComponentName, ComponentType } from '@/generate/components.type'
 export const checkbox: Component = {
   files: [
     {
-      path: 'checkbox',
       type: ComponentType.COMPONENTS,
+      path: 'checkbox',
     },
   ],
   internalDependencies: [

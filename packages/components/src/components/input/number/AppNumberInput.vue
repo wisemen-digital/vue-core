@@ -3,6 +3,7 @@ import { computed } from 'vue'
 
 import AppIconButton from '@/components/button/AppIconButton.vue'
 import AppInput from '@/components/input/AppInput.vue'
+import { useInputStyle } from '@/components/input/input.style'
 import type { Icon } from '@/icons/icons'
 
 const props = withDefaults(defineProps<{
@@ -128,6 +129,12 @@ function increment(): void {
 
   model.value += 1
 }
+
+const inputStyle = useInputStyle()
+
+const controlsClasses = computed<string>(() => inputStyle.numberControls())
+const downButtonClasses = computed<string>(() => inputStyle.numberDownButton())
+const upButtonClasses = computed<string>(() => inputStyle.numberUpButton())
 </script>
 
 <template>
@@ -150,26 +157,26 @@ function increment(): void {
       v-if="!props.hideControls"
       #right
     >
-      <div class="mr-0.5 flex flex-col items-center justify-center">
+      <div :class="controlsClasses">
         <AppIconButton
           :is-disabled="props.isDisabled || hasReachedMax"
+          :class="upButtonClasses"
           icon="chevronUp"
           variant="ghost"
           label="Minus"
           icon-size="sm"
-          class="h-4 w-7 rounded-b-none"
           tabindex="-1"
           @click="increment"
         />
 
         <AppIconButton
           :is-disabled="props.isDisabled || hasReachedMin"
+          :class="downButtonClasses"
           variant="ghost"
           icon="chevronDown"
           icon-size="sm"
           label="Plus"
           tabindex="-1"
-          class="h-4 w-7 rounded-t-none"
           @click="decrement"
         />
       </div>

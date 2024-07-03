@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { SelectTrigger } from 'radix-vue'
+import { computed } from 'vue'
+
+import { useSelectStyle } from '@/components/select/select.style'
 
 const props = withDefaults(defineProps<{
   id?: null | string
@@ -10,17 +13,19 @@ const props = withDefaults(defineProps<{
   isDisabled: false,
   isInvalid: false,
 })
+
+const selectStyle = useSelectStyle()
+
+const triggerClasses = computed<string>(() => selectStyle.trigger({
+  isDisabled: props.isDisabled,
+  isInvalid: props.isInvalid,
+}))
 </script>
 
 <template>
   <SelectTrigger
     :id="props.id"
-    :class="{
-      'border-input-border focus-visible:ring-ring': !props.isInvalid,
-      'border-destructive focus-visible:border-input-border focus-visible:ring-destructive': props.isInvalid,
-      'cursor-not-allowed opacity-50': props.isDisabled,
-    }"
-    class="flex h-10 w-full items-center justify-between rounded-input border border-solid bg-input ring-offset-background duration-200 focus-visible:outline-none focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-50"
+    :class="triggerClasses"
   >
     <slot />
   </SelectTrigger>

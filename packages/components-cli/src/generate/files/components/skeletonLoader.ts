@@ -4,8 +4,8 @@ import { ComponentName, ComponentType } from '@/generate/components.type'
 export const skeletonLoader: Component = {
   files: [
     {
-      path: 'skeleton-loader',
       type: ComponentType.COMPONENTS,
+      path: 'skeleton-loader',
     },
   ],
   internalDependencies: [

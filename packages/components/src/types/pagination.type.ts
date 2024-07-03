@@ -1,18 +1,21 @@
-import type { ComputedRef } from 'vue'
+import type {
+  ComputedRef,
+  MaybeRefOrGetter,
+} from 'vue'
 
 import type { ComboboxItem } from '@/types/comboboxItem.type'
 import type { SelectItem } from '@/types/selectItem.type'
 
 export type SortDirection = 'asc' | 'desc'
 
-interface PaginationSort {
+export interface PaginationSort {
   direction: SortDirection
   key: string
 }
+
 export type PaginationFilters<TFilters> = {
-  key: keyof TFilters
-  value: FilterValues | null
-}[]
+  [K in keyof TFilters]?: TFilters[K]
+}
 
 export interface PageChangeEvent {
   page: number
@@ -54,11 +57,11 @@ export type Filters = Record<string, FilterValues | undefined>
 export interface PaginationFilterWithMultipleOptions<TFilters> extends PaginationFilterBase<TFilters> {
   displayFn: (value: string) => string
   options: ComboboxItem<string>[]
-  placeholder: string
   type: 'multiselect'
 }
 
 export interface PaginationFilterWithSingleOption<TFilters> extends PaginationFilterBase<TFilters> {
+  displayFn: (value: FilterValues) => string
   options: SelectItem<FilterValues>[]
   placeholder: string
   type: 'select'
@@ -88,6 +91,32 @@ export type PaginationFilter<TFilters> =
   | PaginationFilterWithMultipleOptions<TFilters>
   | PaginationFilterWithSingleOption<TFilters>
 
+export type Pagination<TFilters> = UsePaginationReturnType<TFilters>
+
+export interface PaginatedData<TSchema> {
+  data: TSchema[]
+  total: number
+}
+
+// Pagination composable types
+
+export interface UsePaginationOptions<TFilters> {
+  /**
+   * Identifier used to store pagination options in a route query.
+   */
+  id: string
+  /**
+   * Default pagination options. If not provided, the default options will be used.
+   * @default null
+   */
+  defaultPaginationOptions?: MaybeRefOrGetter<PaginationOptions<TFilters>> | null
+  /**
+   * If true, the route query will be disabled.
+   * @default false
+   */
+  disableRouteQuery?: boolean
+}
+
 export interface UsePaginationReturnType<TFilters> {
   clearFilters: () => void
   handleFilterChange: (event: FilterChangeEvent<TFilters>) => void
@@ -96,9 +125,13 @@ export interface UsePaginationReturnType<TFilters> {
   paginationOptions: ComputedRef<PaginationOptions<TFilters>>
 }
 
-export type Pagination<TFilters> = UsePaginationReturnType<TFilters>
+// Local pagination composable types
 
-export interface PaginatedData<TSchema> {
-  data: TSchema[]
-  total: number
+export interface UseLocalPaginationOptions<TSchema, TFilters> extends UsePaginationOptions<TFilters> {
+  items: MaybeRefOrGetter<TSchema[]>
+}
+
+export interface UseLocalPaginationReturnType<TSchema, TFilters> {
+  data: ComputedRef<PaginatedData<TSchema>>
+  pagination: UsePaginationReturnType<TFilters>
 }

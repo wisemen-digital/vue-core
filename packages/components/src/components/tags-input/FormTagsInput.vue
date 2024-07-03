@@ -34,6 +34,10 @@ const props = withDefaults(defineProps<{
    * @default null
    */
   placeholder?: null | string
+  /**
+   * The tooltip of the input.
+   */
+  tooltip?: string
 }>(), {
   isDisabled: false,
   isRequired: false,
@@ -64,6 +68,7 @@ function onBlur(): void {
     v-slot="{ isInvalid, id }"
     :errors="props.errors"
     :is-required="props.isRequired"
+    :tooltip="props.tooltip"
     :is-touched="props.isTouched"
     :is-disabled="props.isDisabled"
     :label="props.label"

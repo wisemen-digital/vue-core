@@ -118,6 +118,12 @@ export default {
       fontFamily: {},
 
       fontSize: {
+        title: [
+          'var(--font-size-title)',
+          {
+            lineHeight: 'var(--font-line-height-title)',
+          },
+        ],
         body: [
           'var(--font-size-body)',
           {
@@ -152,12 +158,6 @@ export default {
           'var(--font-size-subtitle)',
           {
             lineHeight: 'var(--font-line-height-subtitle)',
-          },
-        ],
-        title: [
-          'var(--font-size-title)',
-          {
-            lineHeight: 'var(--font-line-height-title)',
           },
         ],
       },

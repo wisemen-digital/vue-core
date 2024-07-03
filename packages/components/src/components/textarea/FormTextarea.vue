@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import FormElement from '@/components/form-element/FormElement.vue'
 import AppTextarea from '@/components/textarea/AppTextarea.vue'
+import type { TextareaStyleProps } from '@/components/textarea/textarea.style'
 import { useComponentAttrs } from '@/composables/componentAttrs.composable'
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
@@ -40,7 +41,11 @@ const props = withDefaults(
      * The resize property of the textarea.
      * @default 'none'
      */
-    resize?: 'both' | 'horizontal' | 'none' | 'vertical'
+    resize?: TextareaStyleProps['resize']
+    /**
+     * The tooltip of the input.
+     */
+    tooltip?: string
   }>(),
   {
     isDisabled: false,
@@ -77,6 +82,7 @@ function onBlur(): void {
     v-slot="{ isInvalid, id }"
     :class="classAttr"
     :errors="props.errors"
+    :tooltip="props.tooltip"
     :is-required="props.isRequired"
     :is-touched="props.isTouched"
     :is-disabled="props.isDisabled"

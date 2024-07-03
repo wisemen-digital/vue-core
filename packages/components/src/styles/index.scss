@@ -179,8 +179,8 @@
   }
 }
 
-.popover-content[data-state='open'],
-.popover-content[data-state='delayed-open'] {
+.custom-popover-content[data-state='open'],
+.custom-popover-content[data-state='delayed-open'] {
   &[data-side='top'] {
     animation: fade-in-from-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
   }
@@ -198,8 +198,8 @@
   }
 }
 
-.popover-content[data-state='closed'],
-.popover-content[data-state='delayed-closed'] {
+.custom-popover-content[data-state='closed'],
+.custom-popover-content[data-state='delayed-closed'] {
   &[data-side='top'] {
     animation: fade-out-to-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
   }

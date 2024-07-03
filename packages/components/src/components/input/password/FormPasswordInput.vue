@@ -1,8 +1,12 @@
 <script setup lang="ts">
+import { computed, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+import AppIconButton from '@/components/button/AppIconButton.vue'
 import FormElement from '@/components/form-element/FormElement.vue'
-import AppNumberInput from '@/components/input/AppNumberInput.vue'
-import AppText from '@/components/text/AppText.vue'
-import { useComponentAttrs } from '@/composables/componentAttrs.composable'
+import AppInput from '@/components/input/AppInput.vue'
+import { useInputStyle } from '@/components/input/input.style'
+import AppToggle from '@/components/toggle/AppToggle.vue'
 import type { Icon } from '@/icons/icons'
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
@@ -22,18 +26,13 @@ const props = withDefaults(
      */
     isRequired?: boolean
     /**
-     *
+     * Whether the input is touched.
      */
     isTouched: boolean
     /**
      * The errors associated with the input.
      */
     errors: FormFieldErrors
-    /**
-     * Whether to hide the increment and decrement controls.
-     * @default false
-     */
-    hideControls?: boolean
     /**
      * The left icon of the input.
      * @default null
@@ -44,37 +43,22 @@ const props = withDefaults(
      */
     label: string
     /**
-     * The maximum value of the input.
-     * @default null
-     */
-    max?: null | number
-    /**
-     * The minimum value of the input.
-     * @default 0
-     */
-    min?: null | number
-    /**
      * The placeholder of the input.
      * @default null
      */
     placeholder?: null | string
     /**
-     * A suffix for the input. Overrides the right slot.
-     * @default null
+     * The tooltip of the input.
      */
-    suffix?: null | string
+    tooltip?: string
   }>(),
   {
     isDisabled: false,
     isLoading: false,
     isRequired: false,
     isTouched: false,
-    hideControls: false,
     iconLeft: undefined,
-    max: null,
-    min: 0,
     placeholder: null,
-    suffix: null,
   },
 )
 
@@ -83,11 +67,17 @@ const emit = defineEmits<{
   focus: []
 }>()
 
-const model = defineModel<null | number>({
+const model = defineModel<null | string>({
   required: true,
 })
 
-const { classAttr, otherAttrs } = useComponentAttrs()
+const isPasswordVisible = ref<boolean>(false)
+
+const { t } = useI18n()
+
+const inputType = computed<'password' | 'text'>(() => {
+  return isPasswordVisible.value ? 'text' : 'password'
+})
 
 function onFocus(): void {
   emit('focus')
@@ -96,51 +86,55 @@ function onFocus(): void {
 function onBlur(): void {
   emit('blur')
 }
+
+const inputStyle = useInputStyle()
+
+const passwordIconClasses = computed<string>(() => inputStyle.passwordIcon())
 </script>
 
 <template>
   <FormElement
     v-slot="{ isInvalid, id }"
-    :class="classAttr"
     :errors="props.errors"
     :is-required="props.isRequired"
     :is-touched="props.isTouched"
     :is-disabled="props.isDisabled"
     :label="props.label"
+    :tooltip="props.tooltip"
   >
-    <AppNumberInput
+    <AppInput
       :id="id"
       v-model="model"
-      v-bind="otherAttrs"
+      :type="inputType"
+      :is-disabled="props.isDisabled"
       :is-invalid="isInvalid"
       :placeholder="props.placeholder"
-      :is-disabled="props.isDisabled"
+      :icon-left="props.iconLeft ?? undefined"
       :is-loading="props.isLoading"
-      :icon-left="props.iconLeft"
-      :hide-controls="props.hideControls"
-      :min="props.min"
-      :max="props.max"
       @focus="onFocus"
       @blur="onBlur"
     >
-      <template #left>
-        <slot name="left" />
-      </template>
-
       <template #right>
-        <div
-          v-if="props.suffix"
-          class="border-l border-solid border-border p-2"
+        <AppToggle
+          v-model:is-toggled="isPasswordVisible"
+          :is-disabled="props.isDisabled"
         >
-          <AppText variant="subtext">
-            {{ props.suffix }}
-          </AppText>
-        </div>
-        <slot
-          v-else
-          name="right"
-        />
+          <template #default="{ isToggled }">
+            <AppIconButton
+              :icon="isToggled
+                ? 'eyeSlash'
+                : 'eye'"
+              :label="isToggled
+                ? t('components.password_input.hide_password')
+                : t('components.password_input.show_password')"
+              :class="passwordIconClasses"
+              tabindex="-1"
+              size="sm"
+              variant="ghost"
+            />
+          </template>
+        </AppToggle>
       </template>
-    </AppNumberInput>
+    </AppInput>
   </FormElement>
 </template>

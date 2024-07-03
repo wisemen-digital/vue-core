@@ -25,7 +25,7 @@
     "dist"
   ],
   "scripts": {
-    "dev": "tsup --watch",
+    "watch": "tsup --watch",
     "build": "tsup",
     "typecheck": "tsc --noEmit",
     "clean": "rimraf dist && rimraf components",
@@ -56,7 +56,7 @@
     "tailwind-merge": "^2.3.0",
     "tailwindcss": "^3.4.4",
     "tsconfig-paths": "^4.2.0",
-    "tsx": "^4.15.2",
+    "tsx": "^4.15.4",
     "zod": "^3.23.8"
   },
   "devDependencies": {
@@ -64,7 +64,7 @@
     "@types/diff": "^5.2.1",
     "@types/fs-extra": "^11.0.4",
     "@types/prompts": "^2.4.9",
-    "@wisemen/eslint-config-vue": "^0.1.0",
+    "@wisemen/eslint-config-vue": "^0.1.4",
     "changeset": "^0.2.6",
     "eslint": "~9.4.0",
     "rimraf": "^5.0.7",

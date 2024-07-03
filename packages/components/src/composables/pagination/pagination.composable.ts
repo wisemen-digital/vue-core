@@ -1,5 +1,4 @@
 import { useRouteQuery } from '@vueuse/router'
-import type { MaybeRefOrGetter } from 'vue'
 import {
   computed,
   shallowRef,
@@ -13,29 +12,13 @@ import type {
   PaginationFilters,
   PaginationOptions,
   SortChangeEvent,
+  UsePaginationOptions,
   UsePaginationReturnType,
 } from '@/types/pagination.type'
 import { base64Decode, base64Encode } from '@/utils/base64.util'
 
-interface UsePaginationOptions<TFilters> {
-  /**
-   * Identifier used to store pagination options in a route query.
-   */
-  id: string
-  /**
-   * Default pagination options. If not provided, the default options will be used.
-   * @default null
-   */
-  defaultPaginationOptions?: MaybeRefOrGetter<PaginationOptions<TFilters>> | null
-  /**
-   * If true, the route query will be disabled.
-   * @default false
-   */
-  disableRouteQuery?: boolean
-}
-
 const DEFAULT_PAGINATION_OPTIONS = {
-  filters: [] as PaginationFilters<unknown>,
+  filters: {} as PaginationFilters<unknown>,
   pagination: {
     page: 0,
     perPage: 20,
@@ -54,10 +37,10 @@ export function usePagination<TFilters>({
     userOptions: PaginationOptions<TFilters>,
     currentOptions: PaginationOptions<TFilters>,
   ): PaginationOptions<TFilters> {
-    const mergedFilters = [
-      ...(currentOptions.filters ?? []),
-      ...(userOptions.filters ?? []),
-    ]
+    const mergedFilters = {
+      ...(currentOptions.filters ?? {}),
+      ...(userOptions.filters ?? {}),
+    } as PaginationFilters<TFilters>
 
     return {
       filters: mergedFilters,
@@ -107,9 +90,9 @@ export function usePagination<TFilters>({
   function handleFilterChange(event: FilterChangeEvent<TFilters>): void {
     paginationOptions.value = {
       ...paginationOptions.value,
-      filters: [
+      filters: {
         ...event,
-      ] as PaginationFilters<TFilters>,
+      } as PaginationFilters<TFilters>,
       pagination: {
         ...paginationOptions.value.pagination,
         page: 0,
@@ -127,7 +110,7 @@ export function usePagination<TFilters>({
   function clearFilters(): void {
     paginationOptions.value = {
       ...paginationOptions.value,
-      filters: toValue(defaultPaginationOptions)?.filters ?? [] as PaginationFilters<TFilters>,
+      filters: toValue(defaultPaginationOptions)?.filters ?? {} as PaginationFilters<TFilters>,
       pagination: {
         ...paginationOptions.value.pagination,
         page: 0,
@@ -135,12 +118,12 @@ export function usePagination<TFilters>({
     }
   }
 
-  watch(paginationOptions, (newPaginationoptions) => {
+  watch(paginationOptions, (newPaginationOptions) => {
     if (disableRouteQuery) {
       return
     }
 
-    routeQuery!.value = base64Encode(JSON.stringify(newPaginationoptions))
+    routeQuery!.value = base64Encode(JSON.stringify(newPaginationOptions))
   })
 
   return {

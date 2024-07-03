@@ -3,7 +3,7 @@ import {
   SelectIcon,
   SelectPortal,
 } from 'radix-vue'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppLoader from '@/components/loader/AppLoader.vue'
@@ -12,6 +12,7 @@ import AppSelectItem from '@/components/select/AppSelectItem.vue'
 import AppSelectRoot from '@/components/select/AppSelectRoot.vue'
 import AppSelectTrigger from '@/components/select/AppSelectTrigger.vue'
 import AppSelectValue from '@/components/select/AppSelectValue.vue'
+import { useSelectStyle } from '@/components/select/select.style'
 import type { Icon } from '@/icons/icons'
 import type {
   AcceptableValue,
@@ -26,6 +27,10 @@ const props = withDefaults(
      */
     id?: null | string
     /**
+     * Whether the select chevron is hidden.
+     */
+    isChevronHidden?: boolean
+    /**
      * Whether the select is disabled.
      */
     isDisabled?: boolean
@@ -38,6 +43,10 @@ const props = withDefaults(
      * Whether the select is loading.
      */
     isLoading?: boolean
+    /**
+     * The value can be hidden to provide more customization.
+     */
+    isValueHidden?: boolean
     /**
      * display function for the selected value
      */
@@ -54,12 +63,18 @@ const props = withDefaults(
      * The placeholder of the select.
      */
     placeholder?: null | string
+    /**
+     * The class to apply to the select trigger.
+     */
+    selectTriggerClass?: null | string
   }>(),
   {
     id: null,
+    isChevronHidden: false,
     isDisabled: false,
     isInvalid: false,
     isLoading: false,
+    isValueHidden: false,
     iconLeft: undefined,
     placeholder: null,
   },
@@ -85,6 +100,13 @@ function onTriggerBlur(): void {
     onBlur()
   }
 }
+
+const selectStyle = useSelectStyle()
+
+const iconLeftClasses = computed<string>(() => selectStyle.iconLeft())
+const loaderClasses = computed<string>(() => selectStyle.loader())
+const triggerIconClasses = computed<string>(() => selectStyle.triggerIcon())
+const popoverContainerClasses = computed<string>(() => selectStyle.popoverContainer())
 </script>
 
 <template>
@@ -98,17 +120,21 @@ function onTriggerBlur(): void {
         :id="id"
         :is-disabled="props.isDisabled"
         :is-invalid="props.isInvalid"
+        :class="props.selectTriggerClass"
         @blur="onTriggerBlur"
       >
         <slot name="left">
           <AppIcon
             v-if="props.iconLeft !== undefined"
             :icon="props.iconLeft"
-            class="ml-3 text-muted-foreground"
+            :class="iconLeftClasses"
           />
         </slot>
 
-        <AppSelectValue :is-empty="model === null">
+        <AppSelectValue
+          v-if="!isValueHidden"
+          :is-empty="model === null"
+        >
           <template v-if="placeholder !== null && model === null">
             {{ props.placeholder }}
           </template>
@@ -120,16 +146,16 @@ function onTriggerBlur(): void {
 
         <AppLoader
           v-if="props.isLoading"
-          class="size-4 text-muted-foreground"
+          :class="loaderClasses"
         />
 
         <SelectIcon
-          v-else
+          v-else-if="!isChevronHidden"
           :as-child="true"
           class="mr-3"
         >
           <AppIcon
-            class="text-muted-foreground"
+            :class="triggerIconClasses"
             icon="chevronDown"
             size="sm"
           />
@@ -147,7 +173,7 @@ function onTriggerBlur(): void {
         >
           <div
             v-if="isOpen"
-            class="z-popover"
+            :class="popoverContainerClasses"
           >
             <AppSelectContent>
               <AppSelectItem

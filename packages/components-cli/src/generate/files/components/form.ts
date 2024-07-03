@@ -4,20 +4,20 @@ import { ComponentName, ComponentType } from '@/generate/components.type'
 export const form: Component = {
   files: [
     {
+      type: ComponentType.COMPONENTS,
       path: 'form-element',
-      type: ComponentType.COMPONENTS,
     },
     {
+      type: ComponentType.COMPONENTS,
       path: 'form-error',
-      type: ComponentType.COMPONENTS,
     },
     {
+      type: ComponentType.COMPONENTS,
       path: 'form-group',
-      type: ComponentType.COMPONENTS,
     },
     {
-      path: 'form-label',
       type: ComponentType.COMPONENTS,
+      path: 'form-label',
     },
   ],
   component: ComponentName.FORM,

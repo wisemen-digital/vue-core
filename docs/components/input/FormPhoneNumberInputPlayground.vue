@@ -21,12 +21,6 @@ const controls = createControls({
     label: 'Placeholder',
     type: 'text',
   },
-  iconRight: {
-    default: null,
-    cols: 2,
-    label: 'Right icon',
-    type: 'icon',
-  },
   isTouched: {
     default: false,
     label: 'Is touched',
@@ -46,6 +40,12 @@ const controls = createControls({
     default: false,
     label: 'Is loading',
     type: 'switch',
+  },
+  tooltip: {
+    default: 'This is a tooltip',
+    label: 'Tooltip',
+    type: 'text',
+    cols: 2,
   },
 })
 

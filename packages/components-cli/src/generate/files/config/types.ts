@@ -4,24 +4,24 @@ import { ComponentName, ComponentType } from '@/generate/components.type'
 export const types: Component = {
   files: [
     {
+      type: ComponentType.TYPES,
       path: 'dataItem.type.ts',
-      type: ComponentType.TYPES,
     },
     {
+      type: ComponentType.TYPES,
       path: 'formFieldErrors.type.ts',
-      type: ComponentType.TYPES,
     },
     {
+      type: ComponentType.TYPES,
       path: 'pagination.type.ts',
-      type: ComponentType.TYPES,
     },
     {
+      type: ComponentType.TYPES,
       path: 'routes.type.ts',
-      type: ComponentType.TYPES,
     },
     {
-      path: 'selectItem.type.ts',
       type: ComponentType.TYPES,
+      path: 'selectItem.type.ts',
     },
   ],
   component: ComponentName.TYPES,

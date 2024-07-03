@@ -30,10 +30,16 @@ const props = withDefaults(defineProps<{
    * @default false
    */
   hideCloseButton?: boolean
+  /**
+   * Prevent clicks outside the dialog content to close the dialog
+   * @default false
+   */
+  shouldPreventClickOutside?: boolean
 }>(), {
   triggerId: null,
   animateFromTrigger: false,
   hideCloseButton: false,
+  shouldPreventClickOutside: false,
 })
 
 const emit = defineEmits<{
@@ -200,6 +206,7 @@ watch(isActuallyOpen, () => {
           <AppDialogContent
             v-if="isActuallyOpen"
             :hide-close-button="props.hideCloseButton"
+            :should-prevent-click-outside="props.shouldPreventClickOutside"
           >
             <slot />
           </AppDialogContent>
@@ -222,7 +229,7 @@ watch(isActuallyOpen, () => {
   }
 }
 
-.dialog-overlay {
+.custom-dialog-overlay {
   &[data-state='open'] {
     animation: dialog-overlay-animate-in 0.5s cubic-bezier(0.17, 0.67, 0.16, 0.99);
   }

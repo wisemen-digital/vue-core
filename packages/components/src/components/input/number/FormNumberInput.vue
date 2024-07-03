@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
-import { useI18n } from 'vue-i18n'
+import { computed } from 'vue'
 
-import AppIconButton from '@/components/button/AppIconButton.vue'
 import FormElement from '@/components/form-element/FormElement.vue'
-import AppInput from '@/components/input/AppInput.vue'
-import AppToggle from '@/components/toggle/AppToggle.vue'
+import { useInputStyle } from '@/components/input/input.style'
+import AppNumberInput from '@/components/input/number/AppNumberInput.vue'
+import AppText from '@/components/text/AppText.vue'
+import { useComponentAttrs } from '@/composables/componentAttrs.composable'
 import type { Icon } from '@/icons/icons'
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
@@ -25,13 +25,18 @@ const props = withDefaults(
      */
     isRequired?: boolean
     /**
-     * Whether the input is touched.
+     *
      */
     isTouched: boolean
     /**
      * The errors associated with the input.
      */
     errors: FormFieldErrors
+    /**
+     * Whether to hide the increment and decrement controls.
+     * @default false
+     */
+    hideControls?: boolean
     /**
      * The left icon of the input.
      * @default null
@@ -42,18 +47,41 @@ const props = withDefaults(
      */
     label: string
     /**
+     * The maximum value of the input.
+     * @default null
+     */
+    max?: null | number
+    /**
+     * The minimum value of the input.
+     * @default 0
+     */
+    min?: null | number
+    /**
      * The placeholder of the input.
      * @default null
      */
     placeholder?: null | string
+    /**
+     * A suffix for the input. Overrides the right slot.
+     * @default null
+     */
+    suffix?: null | string
+    /**
+     * The tooltip of the input.
+     */
+    tooltip?: string
   }>(),
   {
     isDisabled: false,
     isLoading: false,
     isRequired: false,
     isTouched: false,
+    hideControls: false,
     iconLeft: undefined,
+    max: null,
+    min: 0,
     placeholder: null,
+    suffix: null,
   },
 )
 
@@ -62,17 +90,11 @@ const emit = defineEmits<{
   focus: []
 }>()
 
-const model = defineModel<null | string>({
+const model = defineModel<null | number>({
   required: true,
 })
 
-const isPasswordVisible = ref<boolean>(false)
-
-const { t } = useI18n()
-
-const inputType = computed<'password' | 'text'>(() => {
-  return isPasswordVisible.value ? 'text' : 'password'
-})
+const { classAttr, otherAttrs } = useComponentAttrs()
 
 function onFocus(): void {
   emit('focus')
@@ -81,50 +103,56 @@ function onFocus(): void {
 function onBlur(): void {
   emit('blur')
 }
+
+const inputStyle = useInputStyle()
+
+const numberSuffixClasses = computed<string>(() => inputStyle.numberSuffix())
 </script>
 
 <template>
   <FormElement
     v-slot="{ isInvalid, id }"
+    :tooltip="props.tooltip"
+    :class="classAttr"
     :errors="props.errors"
     :is-required="props.isRequired"
     :is-touched="props.isTouched"
     :is-disabled="props.isDisabled"
     :label="props.label"
   >
-    <AppInput
+    <AppNumberInput
       :id="id"
       v-model="model"
-      :type="inputType"
-      :is-disabled="props.isDisabled"
+      v-bind="otherAttrs"
       :is-invalid="isInvalid"
       :placeholder="props.placeholder"
-      :icon-left="props.iconLeft ?? undefined"
+      :is-disabled="props.isDisabled"
       :is-loading="props.isLoading"
+      :icon-left="props.iconLeft"
+      :hide-controls="props.hideControls"
+      :min="props.min"
+      :max="props.max"
       @focus="onFocus"
       @blur="onBlur"
     >
-      <template #right>
-        <AppToggle
-          v-model:is-toggled="isPasswordVisible"
-          :is-disabled="props.isDisabled"
-        >
-          <template #default="{ isToggled }">
-            <AppIconButton
-              :icon="isToggled
-                ? 'eyeSlash'
-                : 'eye'"
-              :label="isToggled
-                ? t('components.password_input.hide_password')
-                : t('components.password_input.show_password')"
-              tabindex="-1"
-              size="sm"
-              variant="ghost"
-              class="m-1 size-8"
-            />
-          </template>
-        </AppToggle>
+      <template #left>
+        <slot name="left" />
       </template>
-    </AppInput>
+
+      <template #right>
+        <div
+          v-if="props.suffix"
+          :class="numberSuffixClasses"
+        >
+          <AppText variant="subtext">
+            {{ props.suffix }}
+          </AppText>
+        </div>
+        <slot
+          v-else
+          name="right"
+        />
+      </template>
+    </AppNumberInput>
   </FormElement>
 </template>

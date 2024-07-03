@@ -56,11 +56,11 @@ export { default as AppIcon } from './components/icon/AppIcon.vue'
 
 // Input
 export { default as AppInput } from './components/input/AppInput.vue'
-export { default as AppNumberInput } from './components/input/AppNumberInput.vue'
 export { default as FormInput } from './components/input/FormInput.vue'
-export { default as FormNumberInput } from './components/input/FormNumberInput.vue'
-export { default as FormPasswordInput } from './components/input/FormPasswordInput.vue'
-export { default as FormPhoneNumberInput } from './components/input/FormPhoneNumberInput.vue'
+export { default as AppNumberInput } from './components/input/number/AppNumberInput.vue'
+export { default as FormNumberInput } from './components/input/number/FormNumberInput.vue'
+export { default as FormPasswordInput } from './components/input/password/FormPasswordInput.vue'
+export { default as FormPhoneNumberInput } from './components/input/phone-number/FormPhoneNumberInput.vue'
 export { default as AppTextarea } from './components/textarea/AppTextarea.vue'
 export { default as FormTextarea } from './components/textarea/FormTextarea.vue'
 
@@ -72,8 +72,20 @@ export { default as AppKeyboardShortcutProvider } from './components/keyboard/Ap
 // Loader
 export { default as AppLoader } from './components/loader/AppLoader.vue'
 
+// Pagination
+export { default as AppPaginationNext } from './components/pagination/AppPaginationNext.vue'
+export { default as AppPaginationPages } from './components/pagination/AppPaginationPages.vue'
+export { default as AppPaginationPrev } from './components/pagination/AppPaginationPrev.vue'
+export { default as AppPaginationResultIndicator } from './components/pagination/AppPaginationResultIndicator.vue'
+export { default as AppPaginationRoot } from './components/pagination/AppPaginationRoot.vue'
+
 // Popover
 export { default as AppPopover } from './components/popover/AppPopover.vue'
+
+// Date
+export { default as AppDatePicker } from './components/date/AppDatePicker.vue'
+export { default as FormDatePicker } from './components/date/FormDatePicker.vue'
+export { default as AppMonthPicker } from './components/date/month/AppMonthPicker.vue'
 
 // Radio group
 export { default as FormRadioGroup } from './components/radio-group/FormRadioGroup.vue'
@@ -126,7 +138,8 @@ export { default as AppTooltip } from './components/tooltip/AppTooltip.vue'
 // Composables
 export { useDialog } from './composables/dialog.composable'
 export { useKeyboardShortcut } from './composables/keyboardShortcut.composable'
-export { usePagination } from './composables/pagination.composable'
+export { useLocalPagination } from './composables/pagination/localPagination.composable'
+export { usePagination } from './composables/pagination/pagination.composable'
 export { useToast } from './composables/toast.composable'
 
 // Types
@@ -149,7 +162,7 @@ export type {
   SortDirection,
   UsePaginationReturnType,
 } from './types/pagination.type'
-export type { Routes } from './types/routes.type'
+export type { RouteLocationTyped, Routes } from './types/routes.type'
 export type { AcceptableValue } from './types/selectItem.type'
 export type { SelectItem } from './types/selectItem.type'
 export type { RouteTabItem, TabItem } from './types/tabItem.type'
@@ -157,3 +170,61 @@ export type { TableColumn } from './types/table.type'
 
 // Other
 export { extendIcons } from './icons/icons'
+
+// Styles Props
+export type { BadgeStyleProps } from './components/badge/badge.style'
+export type { BreadcrumbsStyleProps } from './components/breadcrumbs/breadcrumbs.style'
+export type { ButtonStyleProps } from './components/button/button.style'
+export type { CheckboxStyleProps } from './components/checkbox/checkbox.style'
+export type { ComboboxStyleProps } from './components/combobox/combobox.style'
+export type { CommandStyleProps } from './components/command/command.style'
+export type { ContainerStyleProps } from './components/container/container.style'
+export type { DialogStyleProps } from './components/dialog/dialog.style'
+export type { DropdownMenuStyleProps } from './components/dropdown-menu/dropdownMenu.style'
+export type { FormErrorStyleProps } from './components/form-error/formError.style'
+export type { FormGroupStyleProps } from './components/form-group/formGroup.style'
+export type { IconStyleProps } from './components/icon/icon.style'
+export type { InputStyleProps } from './components/input/input.style'
+export type { KeyboardStyleProps } from './components/keyboard/keyboardKey.style'
+export type { PaginationStyleProps } from './components/pagination/pagination.style'
+export type { PopoverStyleProps } from './components/popover/popover.style'
+export type { RadioGroupStyleProps } from './components/radio-group/radioGroup.style'
+export type { SelectStyleProps } from './components/select/select.style'
+export type { SkeletonLoaderStyleProps } from './components/skeleton-loader/skeletonLoader.style'
+export type { SwitchStyleProps } from './components/switch/switch.style'
+export type { TableStyleProps } from './components/table/table.style'
+export type { TabsStyleProps } from './components/tabs/tabs.style'
+export type { TagsInputStyleProps } from './components/tags-input/tagsInput.style'
+export type { TextStyleProps } from './components/text/text.style'
+export type { TextareaStyleProps } from './components/textarea/textarea.style'
+export type { ToastStyleProps } from './components/toast/toast.style'
+export type { TooltipStyleProps } from './components/tooltip/tooltip.style'
+
+// Styles
+export { useBadgeStyle } from './components/badge/badge.style'
+export { useBreadcrumbsStyle } from './components/breadcrumbs/breadcrumbs.style'
+export { useButtonStyle } from './components/button/button.style'
+export { useCheckboxStyle } from './components/checkbox/checkbox.style'
+export { useComboboxStyle } from './components/combobox/combobox.style'
+export { useCommandStyle } from './components/command/command.style'
+export { useContainerStyle } from './components/container/container.style'
+export { useDialogStyle } from './components/dialog/dialog.style'
+export { useDropdownMenuStyle } from './components/dropdown-menu/dropdownMenu.style'
+export { useFormErrorStyle } from './components/form-error/formError.style'
+export { useFormGroupStyle } from './components/form-group/formGroup.style'
+export { useIconStyle } from './components/icon/icon.style'
+export { useInputStyle } from './components/input/input.style'
+export { useKeyboardStyle } from './components/keyboard/keyboardKey.style'
+export { usePaginationStyle } from './components/pagination/pagination.style'
+export { usePopoverStyle } from './components/popover/popover.style'
+export { useRadioGroupStyle } from './components/radio-group/radioGroup.style'
+export { useSelectStyle } from './components/select/select.style'
+export { useSkeletonLoaderStyle } from './components/skeleton-loader/skeletonLoader.style'
+export { useSwitchStyle } from './components/switch/switch.style'
+export { useTableStyle } from './components/table/table.style'
+export { useTabsStyle } from './components/tabs/tabs.style'
+export { useTagsInputStyle } from './components/tags-input/tagsInput.style'
+export { useTextStyle } from './components/text/text.style'
+export { useTextareaStyle } from './components/textarea/textarea.style'
+export { useToastStyle } from './components/toast/toast.style'
+export { useTooltipStyle } from './components/tooltip/tooltip.style'

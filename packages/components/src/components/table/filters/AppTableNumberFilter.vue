@@ -1,7 +1,7 @@
 <script setup lang="ts" generic="TFilters">
 import { ref, watch } from 'vue'
 
-import FormNumberInput from '@/components/input/FormNumberInput.vue'
+import FormNumberInput from '@/components/input/number/FormNumberInput.vue'
 import type {
   Pagination,
   PaginationFilterNumber,
@@ -18,12 +18,16 @@ const emit = defineEmits<{
   change: [event: TableFilterEvent<TFilters>]
 }>()
 
-const filterModel = ref<number>(getValue(props.pagination.paginationOptions.value))
+const filterModel = ref<null | number>(getValue(props.pagination.paginationOptions.value))
 
-function getValue(value: PaginationOptions<TFilters>): number {
-  const data = value.filters?.find((filter) => filter.key === props.filter.id)
+function getValue(value: PaginationOptions<TFilters>): null | number {
+  const data = value.filters?.[props.filter.id] ?? null
 
-  return Number(data?.value) ?? 0
+  if (data === null) {
+    return null
+  }
+
+  return data as number
 }
 
 watch(
@@ -39,10 +43,6 @@ watch(
     emit('change', { key: props.filter.id, value })
   },
 )
-
-function onUpdate(value: null | number): void {
-  emit('change', { key: props.filter.id, value })
-}
 </script>
 
 <template>
@@ -56,7 +56,6 @@ function onUpdate(value: null | number): void {
       :min="props.filter.min"
       :max="props.filter.max"
       :suffix="props.filter.suffix"
-      @update:model-value="onUpdate"
     />
   </div>
 </template>

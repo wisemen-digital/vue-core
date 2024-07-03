@@ -1,12 +1,16 @@
 <script setup lang="ts">
 import { DialogOverlay } from 'radix-vue'
+import { computed } from 'vue'
+
+import { useDialogStyle } from '@/components/dialog/dialog.style'
+
+const dialogStyle = useDialogStyle()
+const overlayClasses = computed<string>(() => dialogStyle.overlay())
 </script>
 
 <template>
-  <!-- eslint-disable tailwindcss/no-custom-classname -->
   <DialogOverlay
     :force-mount="true"
-    class="dialog-overlay fixed inset-0 z-dialog-overlay bg-black/30 backdrop-blur-sm"
+    :class="overlayClasses"
   />
-  <!-- eslint-enable tailwindcss/no-custom-classname -->
 </template>

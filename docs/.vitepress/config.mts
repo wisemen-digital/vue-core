@@ -100,6 +100,19 @@ const docs = [
     collapsed: true,
     items: [
       {
+        link: '/components/date/app-date-picker',
+        text: 'AppDatePicker',
+      },
+      {
+        link: '/components/date/form-date-picker',
+        text: 'FormDatePicker',
+      },
+    ],
+    text: 'Date',
+  },
+  {
+    items: [
+      {
         link: '/components/dropdown-menu/app-dropdown-menu',
         text: 'AppDropdownMenu',
       },
@@ -250,6 +263,10 @@ const docs = [
       {
         link: '/components/table/app-table',
         text: 'AppTable',
+      },
+      {
+        link: '/components/table/app-table-local',
+        text: 'AppTable (local)',
       },
       {
         link: '/components/table/app-table-skeleton-loader',

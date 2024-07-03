@@ -1,7 +1,12 @@
 <script setup lang="ts" generic="TFilters">
-import { ref, watch } from 'vue'
+import {
+  computed,
+  ref,
+  watch,
+} from 'vue'
 
 import FormCheckbox from '@/components/checkbox/FormCheckbox.vue'
+import { useTableStyle } from '@/components/table/table.style'
 import type {
   Pagination,
   PaginationFilterBoolean,
@@ -21,9 +26,13 @@ const emit = defineEmits<{
 const filterModel = ref<boolean>(getValue(props.pagination.paginationOptions.value))
 
 function getValue(value: PaginationOptions<TFilters>): boolean {
-  const data = value.filters?.find((filter) => filter.key === props.filter.id)
+  const data = value.filters?.[props.filter.id] ?? null
 
-  return (Boolean(data?.value))
+  if (data === null) {
+    return false
+  }
+
+  return data === true
 }
 
 watch(
@@ -40,17 +49,16 @@ watch(
   },
 )
 
-function onUpdate(value: boolean): void {
-  emit('change', { key: props.filter.id, value })
-}
+const tableStyle = useTableStyle()
+
+const filterBooleanOptionClasses = computed<string>(() => tableStyle.filterBooleanOption())
 </script>
 
 <template>
-  <div class="py-2">
+  <div :class="filterBooleanOptionClasses">
     <FormCheckbox
       v-model="filterModel"
       :label="props.filter.label"
-      @update:model-value="onUpdate"
     />
   </div>
 </template>

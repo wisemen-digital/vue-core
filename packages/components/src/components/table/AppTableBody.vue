@@ -8,6 +8,7 @@ import type { RouteLocationNamedRaw } from 'vue-router'
 import { RouterLink } from 'vue-router'
 
 import AppTableTextCell from '@/components/table/AppTableTextCell.vue'
+import { useTableStyle } from '@/components/table/table.style'
 import type { TableColumn } from '@/types/table.type'
 
 const props = defineProps<{
@@ -43,6 +44,23 @@ function onRowClick(row: TSchema): void {
     props.rowClick (row)
   }
 }
+
+const tableStyle = useTableStyle()
+
+const hasLastBorder = computed<boolean>(() => props.canScrollVertically && !props.hasActiveFilters)
+const hasRightBorder = computed<boolean>(() => props.isScrolledToRight && props.shouldPinFirstColumn)
+const hasLeftBorder = computed<boolean>(() => !props.hasReachedHorizontalScrollEnd && props.shouldPinLastColumn)
+
+const bodyColumnClasses = computed<string>(() => tableStyle.bodyColumn({
+  hasLeftBorder: hasLeftBorder.value,
+  hasRightBorder: hasRightBorder.value,
+  shouldPinFirstColumn: props.shouldPinFirstColumn,
+  shouldPinLastColumn: props.shouldPinLastColumn,
+}))
+
+const bodyContainerClasses = computed<string>(() => tableStyle.bodyContainer({
+  hasLastBorder: hasLastBorder.value,
+}))
 </script>
 
 <template>
@@ -52,25 +70,16 @@ function onRowClick(row: TSchema): void {
     :key="i"
     :target="props.rowTarget"
     :to="props.rowTo ? props.rowTo(row) : undefined"
-    :class="{
-      'last:border-0': canScrollVertically && !hasActiveFilters,
-    }"
     :style="{
       gridColumn: '1 / -1',
     }"
-    class="group grid grid-cols-subgrid items-center border-b border-solid border-border outline-none hover:bg-muted-background focus:bg-muted-background"
+    :class="bodyContainerClasses"
     @click="onRowClick(row)"
   >
     <div
       v-for="column of columns"
       :key="column.id"
-      :class="{
-        'first:sticky first:left-0 first:z-10 first:border-r first:border-solid first:border-r-transparent first:bg-background group-hover:bg-muted-background group-focus:bg-muted-background': shouldPinFirstColumn,
-        'bg-background last:sticky last:right-0 last:z-10 last:border-l last:border-solid last:border-l-transparent group-hover:bg-muted-background group-focus:bg-muted-background': shouldPinLastColumn,
-        'first:!border-r-border': props.isScrolledToRight && props.shouldPinFirstColumn,
-        'last:!border-l-border': !props.hasReachedHorizontalScrollEnd && props.shouldPinLastColumn,
-      }"
-      class="relative flex h-full items-center px-6 py-4 text-left"
+      :class="bodyColumnClasses"
     >
       <Component
         :is="column.render(row)"

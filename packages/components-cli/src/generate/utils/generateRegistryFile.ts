@@ -16,9 +16,9 @@ const BASE_COMPONENTS_PATH = '../components'
 const BASE_GENERATION_PATH = '../../docs/public/_generation'
 
 interface ProcessedFile {
+  name: string
   content: string
   dir: string
-  name: string
   type: ComponentType
 }
 
@@ -51,8 +51,8 @@ export function getAllFilesWithingFolder(folder: string): ComponentFile[] {
     return [
       ...handledFiles,
       {
-        path: componentPath,
         type: ComponentType.COMPONENTS,
+        path: componentPath,
       },
     ]
   }, [] as ComponentFile[])
@@ -64,9 +64,9 @@ export function handleFile(file: ComponentFile): ProcessedFile | null {
   const content = fs.readFileSync(path.join(process?.cwd(), `${BASE_COMPONENTS_PATH}${getComponentTypeFolder(file.type)}`, file.path), 'utf8')
 
   return {
+    name: basename(file.path),
     content,
     dir: dirname(file.path),
-    name: basename(file.path),
     type: file.type,
   }
 }
@@ -81,8 +81,8 @@ export function handleComponent(component: Component): ProcessedComponent {
           const shortPath = folderFile.path.split(`/src/${file.type}`)[1]
 
           return handleFile({
-            path: shortPath,
             type: file.type,
+            path: shortPath,
           })
         })
 

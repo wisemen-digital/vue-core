@@ -4,16 +4,16 @@ import { ComponentName, ComponentType } from '@/generate/components.type'
 export const dialog: Component = {
   files: [
     {
-      path: 'dialog',
       type: ComponentType.COMPONENTS,
+      path: 'dialog',
     },
     {
-      path: 'dialog.type.ts',
       type: ComponentType.TYPES,
+      path: 'dialog.type.ts',
     },
     {
-      path: 'dialog.composable.ts',
       type: ComponentType.COMPOSABLES,
+      path: 'dialog.composable.ts',
     },
   ],
   internalDependencies: [
