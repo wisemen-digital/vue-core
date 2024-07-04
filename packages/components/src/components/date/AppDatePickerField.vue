@@ -16,6 +16,7 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<{
+  blur: []
   dateClick: []
 }>()
 
@@ -39,6 +40,10 @@ function formatMonth(month: null | string | undefined): string {
   return new Date(`2021-${month}-01`).toLocaleString(locale.value, {
     month: 'long',
   })
+}
+
+function onBlur(): void {
+  emit('blur')
 }
 </script>
 
@@ -65,6 +70,7 @@ function formatMonth(month: null | string | undefined): string {
             v-if="item.part === 'month'"
             :part="item.part"
             class="rounded-md p-0.5 focus:shadow-[0_0_0_2px] focus:shadow-primary focus:outline-none data-[placeholder]:text-input-placeholder"
+            @blur="onBlur"
           >
             {{ formatMonth(item.value) }}
           </DatePickerInput>
@@ -73,6 +79,7 @@ function formatMonth(month: null | string | undefined): string {
           <DatePickerInput
             v-if="item.part === 'literal'"
             :part="item.part"
+            @blur="onBlur"
           >
             {{ item.value }}
           </DatePickerInput>
@@ -80,6 +87,7 @@ function formatMonth(month: null | string | undefined): string {
             v-else
             :part="item.part"
             class="rounded-md p-0.5 focus:shadow-[0_0_0_2px] focus:shadow-primary focus:outline-none data-[placeholder]:text-input-placeholder"
+            @blur="onBlur"
           >
             {{ item.value }}
           </DatePickerInput>
