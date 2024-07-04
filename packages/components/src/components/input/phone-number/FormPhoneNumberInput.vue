@@ -3,12 +3,17 @@ import {
   AsYouType,
   type CountryCode,
   formatIncompletePhoneNumber,
+  validatePhoneNumberLength,
 } from 'libphonenumber-js'
 import {
   getCountries,
   getCountryCallingCode,
 } from 'libphonenumber-js'
-import { computed, ref } from 'vue'
+import {
+  computed,
+  nextTick,
+  ref,
+} from 'vue'
 
 import FormElement from '@/components/form-element/FormElement.vue'
 import AppInput from '@/components/input/AppInput.vue'
@@ -117,6 +122,19 @@ const inputModel = computed<null | string>({
   set: (value) => {
     if (value === null) {
       model.value = null
+
+      return
+    }
+
+    const phoneNumberValidation = validatePhoneNumberLength(value, countryCode.value)
+
+    if (phoneNumberValidation === 'TOO_LONG') {
+      const tempModelValue = structuredClone(model.value)
+
+      model.value = ''
+      void nextTick(() => {
+        model.value = tempModelValue
+      })
 
       return
     }
