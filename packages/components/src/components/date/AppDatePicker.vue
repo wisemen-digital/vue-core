@@ -156,12 +156,12 @@ function onYearSelect(number: number): void {
       :max-value="maxDate"
       :locale="locale"
       :disabled="props.isDisabled"
-      @blur="onBlur"
     >
       <AppDatePickerField
         :is-invalid="props.isInvalid"
         type="date"
         @date-click="onTriggerClick"
+        @blur="onBlur"
       />
 
       <AppDateCalendarPickerContent
