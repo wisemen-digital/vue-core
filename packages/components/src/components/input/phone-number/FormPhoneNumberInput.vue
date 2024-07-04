@@ -260,7 +260,7 @@ const countryName = computed<null | string>(() => {
               class="w-4 overflow-hidden rounded-sm"
             >
               <img
-                v-if="getCountryFlagUrl(value)"
+                v-if="false"
                 :src="getCountryFlagUrl(value)"
                 :alt="`Flag of ${getCountryName(value) ?? value}`"
               >
