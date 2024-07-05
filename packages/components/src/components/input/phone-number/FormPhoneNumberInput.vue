@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {
+import parsePhoneNumber, {
   AsYouType,
   type CountryCode,
   formatIncompletePhoneNumber,
@@ -13,6 +13,7 @@ import {
   computed,
   nextTick,
   ref,
+  watch,
 } from 'vue'
 
 import FormElement from '@/components/form-element/FormElement.vue'
@@ -170,6 +171,20 @@ function getCountryFlagUrl(countryCode: CountryCode): string {
 
 const dialCodeDisplayValue = computed<string>(() => {
   return `+${getCountryCallingCode(countryCodeModel.value)}`
+})
+
+watch(model, (value) => {
+  if (value === null) {
+    return
+  }
+
+  const country = parsePhoneNumber(value)?.country ?? null
+
+  if (country !== null) {
+    countryCode.value = country
+  }
+}, {
+  immediate: true,
 })
 </script>
 

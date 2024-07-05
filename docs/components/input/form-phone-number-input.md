@@ -2,7 +2,7 @@
 sidebar: auto
 ---
 
-# FormInput
+# FormPhoneNumberInput
 <script setup>
 import FormPhoneNumberInputPlayground from './FormPhoneNumberInputPlayground.vue'
 </script>
