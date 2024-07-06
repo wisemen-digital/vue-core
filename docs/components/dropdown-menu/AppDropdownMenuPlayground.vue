@@ -59,7 +59,7 @@ const exampleItems: DropdownMenuItem[] = [
     type: 'group',
     items: [
       {
-        type: 'option',
+        type: 'selectOption',
         label: 'Option 1',
         icon: 'search',
         onSelect: (): void => {
@@ -67,11 +67,30 @@ const exampleItems: DropdownMenuItem[] = [
         },
       },
       {
-        type: 'option',
+        type: 'selectOption',
         label: 'Option 2',
         icon: 'search',
+        variant: 'destructive',
         onSelect: (): void => {
           alert('Option 2 selected')
+        },
+      },
+      {
+        type: 'selectOption',
+        label: 'Option 3 (disabled)',
+        isDisabled: true,
+        icon: 'search',
+        onSelect: (): void => {
+          alert('Option 3 selected')
+        },
+      },
+      {
+        type: 'selectOption',
+        label: 'Option 3 (hidden)',
+        isHidden: true,
+        icon: 'search',
+        onSelect: (): void => {
+          alert('Option 4 selected')
         },
       },
     ],
@@ -90,19 +109,21 @@ const exampleItems: DropdownMenuItem[] = [
             type: 'group',
             items: [
               {
-                type: 'option',
+                type: 'selectOption',
                 label: 'Option 1',
                 keyboardShortcutKeys: [
                   'ctrl',
                   '1',
                 ],
+                variant: 'destructive',
                 onSelect: (): void => {
                   alert('More > Option 1 selected')
                 },
               },
               {
-                type: 'option',
+                type: 'selectOption',
                 label: 'Option 2',
+                isDisabled: true,
                 keyboardShortcutKeys: [
                   'ctrl',
                   '2',
@@ -112,7 +133,7 @@ const exampleItems: DropdownMenuItem[] = [
                 },
               },
               {
-                type: 'option',
+                type: 'selectOption',
                 label: 'Option 3',
                 keyboardShortcutKeys: [
                   'ctrl',

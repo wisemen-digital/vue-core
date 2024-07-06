@@ -1,16 +1,17 @@
 <script setup lang="ts">
 import { DropdownMenuPortal } from 'radix-vue'
 
-import AppDropdownMenuCheckbox from '@/components/dropdown-menu/AppDropdownMenuCheckbox.vue'
 import AppDropdownMenuDivider from '@/components/dropdown-menu/AppDropdownMenuDivider.vue'
 import AppDropdownMenuGroup from '@/components/dropdown-menu/AppDropdownMenuGroup.vue'
 import AppDropdownMenuLabel from '@/components/dropdown-menu/AppDropdownMenuLabel.vue'
-import AppDropdownMenuOption from '@/components/dropdown-menu/AppDropdownMenuOption.vue'
 import AppDropdownMenuRadioGroup from '@/components/dropdown-menu/AppDropdownMenuRadioGroup.vue'
-import AppDropdownMenuRouteOption from '@/components/dropdown-menu/AppDropdownMenuRouteOption.vue'
 import AppDropdownMenuSub from '@/components/dropdown-menu/AppDropdownMenuSub.vue'
 import AppDropdownMenuSubContent from '@/components/dropdown-menu/AppDropdownMenuSubContent.vue'
 import AppDropdownMenuSubTrigger from '@/components/dropdown-menu/AppDropdownMenuSubTrigger.vue'
+import AppDropdownMenuCheckboxOption from '@/components/dropdown-menu/option/AppDropdownMenuCheckboxOption.vue'
+import AppDropdownMenuRenderOption from '@/components/dropdown-menu/option/AppDropdownMenuRenderOption.vue'
+import AppDropdownMenuRouteOption from '@/components/dropdown-menu/option/AppDropdownMenuRouteOption.vue'
+import AppDropdownMenuSelectOption from '@/components/dropdown-menu/option/AppDropdownMenuSelectOption.vue'
 import type { DropdownMenuItem } from '@/types/dropdownMenuItem.type'
 
 const props = defineProps<{
@@ -43,8 +44,8 @@ const props = defineProps<{
     </DropdownMenuPortal>
   </AppDropdownMenuSub>
 
-  <AppDropdownMenuCheckbox
-    v-else-if="props.item.type === 'checkbox'"
+  <AppDropdownMenuCheckboxOption
+    v-else-if="props.item.type === 'checkboxOption'"
     :item="props.item"
   />
 
@@ -60,12 +61,19 @@ const props = defineProps<{
     <slot :item="props.item" />
   </AppDropdownMenuRouteOption>
 
-  <AppDropdownMenuOption
-    v-else-if="props.item.type === 'option'"
+  <AppDropdownMenuRenderOption
+    v-else-if="props.item.type === 'renderOption'"
     :item="props.item"
   >
     <slot :item="props.item" />
-  </AppDropdownMenuOption>
+  </AppDropdownMenuRenderOption>
+
+  <AppDropdownMenuSelectOption
+    v-else-if="props.item.type === 'selectOption'"
+    :item="props.item"
+  >
+    <slot :item="props.item" />
+  </AppDropdownMenuSelectOption>
 
   <AppDropdownMenuLabel
     v-else-if="props.item.type === 'label'"
