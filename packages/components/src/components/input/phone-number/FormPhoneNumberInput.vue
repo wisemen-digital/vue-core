@@ -1,16 +1,17 @@
 <script setup lang="ts">
-import type {
-  CountryCode,
-} from 'libphonenumber-js'
 import parsePhoneNumber, {
+  AsYouType,
+  type CountryCode,
+  formatIncompletePhoneNumber,
+  validatePhoneNumberLength,
+} from 'libphonenumber-js'
+import {
   getCountries,
   getCountryCallingCode,
-  getExampleNumber,
 } from 'libphonenumber-js'
-import examples from 'libphonenumber-js/mobile/examples'
-import { vMaska } from 'maska'
 import {
   computed,
+  nextTick,
   ref,
   watch,
 } from 'vue'
@@ -42,6 +43,11 @@ const props = withDefaults(
      */
     isTouched: boolean
     /**
+     * The default country code of the phone number.
+     * @default 'BE'
+     */
+    defaultCountryCode?: CountryCode
+    /**
      * The errors associated with the input.
      */
     errors: FormFieldErrors<string>
@@ -49,9 +55,6 @@ const props = withDefaults(
      * The label of the input.
      */
     label: string
-    /**
-     * The model value of the input.
-     */
     /**
      * The placeholder of the input.
      * @default null
@@ -67,82 +70,90 @@ const props = withDefaults(
     isLoading: false,
     isRequired: false,
     isTouched: false,
+    defaultCountryCode: 'BE',
     placeholder: null,
   },
 )
 
 const countries = getCountries()
+
+const countryCode = ref<CountryCode>(props.defaultCountryCode)
+
+const asYouType = computed<AsYouType>(() => {
+  return new AsYouType(countryCode.value)
+})
+
 const model = defineModel<null | string>({
   required: true,
 })
 
-const countryCodeModel = ref<CountryCode | null>(getCountryCodeFromPhoneNumber(model.value))
-const numberModel = ref<null | string>(getNumberFromModel())
-
-const fullNumber = computed<null | string>(() => {
-  if (numberModel.value === null || countryCodeModel.value === null) {
-    return null
-  }
-
-  const countryCallingCode = getCountryCallingCode(countryCodeModel.value)
-  const fullNumber = `+${countryCallingCode}${numberModel.value}`
-
-  return fullNumber.replaceAll(' ', '')
-})
-
-watch(
-  () => [
-    numberModel.value,
-    countryCodeModel.value,
-  ],
-  () => {
-    model.value = fullNumber.value
+const countryCodeModel = computed<CountryCode>({
+  get: () => {
+    return countryCode.value
   },
-)
+  set: (value) => {
+    if (model.value === null) {
+      countryCode.value = value as CountryCode
 
-function getNumberFromModel(): null | string {
-  if (model.value === null || countryCodeModel.value === null) {
-    return null
-  }
+      return
+    }
 
-  const getCountryCodeCallingCode = getCountryCallingCode(countryCodeModel.value)
+    const newModel = model.value?.replace(`+${getCountryCallingCode(countryCode.value)}`, `+${getCountryCallingCode(value)}`) ?? null
 
-  return model.value.replace(`+${getCountryCodeCallingCode}`, '')
-}
+    if (newModel !== null) {
+      model.value = formatIncompletePhoneNumber(newModel, value as CountryCode)
+    }
 
-const countryCodeDialCodeModel = computed<null | string>(() => {
-  if (countryCodeModel.value === null) {
-    return null
-  }
-
-  return getCountryCallingCode(countryCodeModel.value)
+    countryCode.value = value as CountryCode
+  },
 })
 
-const mask = computed<null | string>(() => {
-  if (model.value === null) {
-    return '###'
-  }
+const inputModel = computed<null | string>({
+  get: () => {
+    if (model.value === null) {
+      return null
+    }
 
-  const country = getCountryCodeFromPhoneNumber(model.value)
+    const dialCode = getCountryCallingCode(countryCodeModel.value).toString()
 
-  if (country === null) {
-    return '###'
-  }
+    const formattedNumber = formatIncompletePhoneNumber(model.value, countryCodeModel.value)
 
-  const exampleNumber = getExamplePhoneNumberByCountry(country)
+    return formattedNumber.replace(`+${dialCode}`, '').trim()
+  },
+  set: (value) => {
+    if (value === null) {
+      model.value = null
 
-  if (exampleNumber === null) {
-    return '###'
-  }
+      return
+    }
 
-  return getMaskFromExampleNumber(exampleNumber)
+    const phoneNumberValidation = validatePhoneNumberLength(value, countryCode.value)
+
+    if (phoneNumberValidation === 'TOO_LONG') {
+      const tempModelValue = structuredClone(model.value)
+
+      model.value = ''
+      void nextTick(() => {
+        model.value = tempModelValue
+      })
+
+      return
+    }
+
+    const fullNumber = `+${getCountryCallingCode(countryCodeModel.value)} ${value}`
+
+    asYouType.value.reset()
+    asYouType.value.input(fullNumber)
+
+    if (asYouType.value.isValid()) {
+      model.value = asYouType.value.getNumber()?.formatInternational() ?? fullNumber
+    }
+
+    model.value = fullNumber
+  },
 })
 
-const countryFlagUrl = computed<null | string>(() => {
-  if (countryCodeModel.value === null) {
-    return null
-  }
-
+const countryFlagUrl = computed<string>(() => {
   return getCountryFlagUrl(countryCodeModel.value)
 })
 
@@ -154,63 +165,26 @@ const countryCodes = computed<SelectItem<CountryCode>[]>(() => {
   }))
 })
 
-function getExamplePhoneNumberByCountry(countryCode: CountryCode): null | string {
-  const exampleNumber = getExampleNumber(countryCode, examples)
-
-  return exampleNumber?.formatInternational() ?? null
-}
-
-function getMaskFromExampleNumber(exampleNumber: string): string {
-  const dialCode = exampleNumber.match(/\d+/)?.[0]
-
-  return exampleNumber
-    .replace(`+${dialCode}`, '')
-    .replace(/\d/g, '#')
-    .replace(/ /g, ' ')
-    .replace(/\(/g, '(')
-    .replace(/\)/g, ')')
-    .replace(/-/g, '-')
-    .trim()
-}
-
-function getCountryCodeFromPhoneNumber(phoneNumber: null | string): CountryCode | null {
-  if (phoneNumber === null) {
-    return null
-  }
-
-  const parsedPhoneNumber = parsePhoneNumber(phoneNumber)
-
-  if (phoneNumber.length < 3) {
-    return null
-  }
-
-  // Loop over first 3 characters of the phone number to find the calling code
-  // 3 has priority, but if 3 has no match, then 2, and if 2 has no match, then 1
-  let country = null
-
-  for (let i = 3; i > 0; i--) {
-    const callingCode = phoneNumber.slice(0, i).replace('+', '')
-
-    country = countries.find((country) => getCountryCallingCode(country) === callingCode)
-
-    if (country !== undefined) {
-      break
-    }
-  }
-
-  // Find the country based on the calling code
-  // the parsed phone number is preferred because it is more accurate, but it is not always available
-  country = parsedPhoneNumber?.country ?? country
-
-  return country ?? null
-}
-
 function getCountryFlagUrl(countryCode: CountryCode): string {
   return `https://purecatamphetamine.github.io/country-flag-icons/3x2/${countryCode}.svg`
 }
 
 const dialCodeDisplayValue = computed<string>(() => {
-  return `+${countryCodeDialCodeModel.value}`
+  return `+${getCountryCallingCode(countryCodeModel.value)}`
+})
+
+watch(model, (value) => {
+  if (value === null) {
+    return
+  }
+
+  const country = parsePhoneNumber(value)?.country ?? null
+
+  if (country !== null) {
+    countryCode.value = country
+  }
+}, {
+  immediate: true,
 })
 </script>
 
@@ -241,14 +215,9 @@ const dialCodeDisplayValue = computed<string>(() => {
           <div class="flex items-center pl-3">
             <div class="h-3 w-5 overflow-hidden rounded-sm">
               <img
-                v-if="countryFlagUrl !== null"
                 :src="countryFlagUrl"
-                :alt="`Flag of ${countryCodeModel}`"
+                :alt="`Flag of ${asYouType.getCountry()}`"
               >
-              <div
-                v-else
-                class="size-full bg-neutral-200"
-              />
             </div>
           </div>
         </template>
@@ -273,8 +242,7 @@ const dialCodeDisplayValue = computed<string>(() => {
       </AppSelect>
       <AppInput
         :id="id"
-        v-model="numberModel"
-        :data-maska="mask"
+        v-model="inputModel"
         :is-invalid="isInvalid"
         :is-disabled="props.isDisabled"
         :is-loading="props.isLoading"
@@ -282,7 +250,6 @@ const dialCodeDisplayValue = computed<string>(() => {
         :placeholder="props.placeholder"
         class="w-full rounded-l-none border-l-0"
         type="tel"
-        v-maska
       >
         <template #left>
           <AppText
