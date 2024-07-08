@@ -8,6 +8,7 @@ import {
   AppText,
   type DropdownMenuItem,
 } from '@wisemen/vue-core'
+import { ref } from 'vue'
 
 const controls = createControls({
   offset: {
@@ -84,15 +85,6 @@ const exampleItems: DropdownMenuItem[] = [
           alert('Option 3 selected')
         },
       },
-      {
-        type: 'selectOption',
-        label: 'Option 3 (hidden)',
-        isHidden: true,
-        icon: 'search',
-        onSelect: (): void => {
-          alert('Option 4 selected')
-        },
-      },
     ],
   },
   {
@@ -121,27 +113,16 @@ const exampleItems: DropdownMenuItem[] = [
                 },
               },
               {
-                type: 'selectOption',
+                type: 'checkboxOption',
                 label: 'Option 2',
-                isDisabled: true,
+                isSelected: ref<boolean>(false),
+                onSelect: (): void => {
+                  alert('More > Option 2 selected')
+                },
                 keyboardShortcutKeys: [
                   'ctrl',
                   '2',
                 ],
-                onSelect: (): void => {
-                  alert('More > Option 2 selected')
-                },
-              },
-              {
-                type: 'selectOption',
-                label: 'Option 3',
-                keyboardShortcutKeys: [
-                  'ctrl',
-                  '3',
-                ],
-                onSelect: (): void => {
-                  alert('More > Option 3 selected')
-                },
               },
             ],
           },
