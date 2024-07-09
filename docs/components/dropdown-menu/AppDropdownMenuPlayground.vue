@@ -8,6 +8,7 @@ import {
   AppText,
   type DropdownMenuItem,
 } from '@wisemen/vue-core'
+import { ref } from 'vue'
 
 const controls = createControls({
   offset: {
@@ -59,7 +60,7 @@ const exampleItems: DropdownMenuItem[] = [
     type: 'group',
     items: [
       {
-        type: 'option',
+        type: 'selectOption',
         label: 'Option 1',
         icon: 'search',
         onSelect: (): void => {
@@ -67,11 +68,21 @@ const exampleItems: DropdownMenuItem[] = [
         },
       },
       {
-        type: 'option',
+        type: 'selectOption',
         label: 'Option 2',
         icon: 'search',
+        variant: 'destructive',
         onSelect: (): void => {
           alert('Option 2 selected')
+        },
+      },
+      {
+        type: 'selectOption',
+        label: 'Option 3 (disabled)',
+        isDisabled: true,
+        icon: 'search',
+        onSelect: (): void => {
+          alert('Option 3 selected')
         },
       },
     ],
@@ -90,37 +101,28 @@ const exampleItems: DropdownMenuItem[] = [
             type: 'group',
             items: [
               {
-                type: 'option',
+                type: 'selectOption',
                 label: 'Option 1',
                 keyboardShortcutKeys: [
                   'ctrl',
                   '1',
                 ],
+                variant: 'destructive',
                 onSelect: (): void => {
                   alert('More > Option 1 selected')
                 },
               },
               {
-                type: 'option',
+                type: 'checkboxOption',
                 label: 'Option 2',
+                isSelected: ref<boolean>(false),
+                onSelect: (): void => {
+                  alert('More > Option 2 selected')
+                },
                 keyboardShortcutKeys: [
                   'ctrl',
                   '2',
                 ],
-                onSelect: (): void => {
-                  alert('More > Option 2 selected')
-                },
-              },
-              {
-                type: 'option',
-                label: 'Option 3',
-                keyboardShortcutKeys: [
-                  'ctrl',
-                  '3',
-                ],
-                onSelect: (): void => {
-                  alert('More > Option 3 selected')
-                },
               },
             ],
           },

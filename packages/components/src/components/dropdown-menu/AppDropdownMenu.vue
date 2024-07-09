@@ -15,12 +15,13 @@ import AppDropdownMenuContent from '@/components/dropdown-menu/AppDropdownMenuCo
 import AppDropdownMenuItem from '@/components/dropdown-menu/AppDropdownMenuItem.vue'
 import { useKeyboardShortcut } from '@/composables/keyboardShortcut.composable'
 import type {
-  DropdownMenuCheckbox,
+  DropdownMenuCheckboxOption,
   DropdownMenuItem,
-  DropdownMenuOption,
+  DropdownMenuRouteOption,
+  DropdownMenuSelectOption,
 } from '@/types/dropdownMenuItem.type'
 
-type ItemsWithKeyboardShortcuts = DropdownMenuCheckbox | DropdownMenuOption
+type ItemsWithKeyboardShortcuts = DropdownMenuCheckboxOption | DropdownMenuRouteOption | DropdownMenuSelectOption
 
 const props = withDefaults(
   defineProps<{
@@ -87,7 +88,11 @@ function getAllItems(items: DropdownMenuItem[]): DropdownMenuItem[] {
 
 const itemsWithKeyboardShortcuts = computed<ItemsWithKeyboardShortcuts[]>(() => {
   return getAllItems(props.items)
-    .filter((item) => item.type === 'option' || item.type === 'checkbox') as ItemsWithKeyboardShortcuts[]
+    .filter((item) => {
+      return item.type === 'selectOption'
+        || item.type === 'checkboxOption'
+        || item.type === 'routeOption'
+    }) as ItemsWithKeyboardShortcuts[]
 })
 
 let keyboardShortcutsUnbindFns: (() => void)[] = []
@@ -105,7 +110,7 @@ onMounted(() => {
       itemsWithKeyboardShortcuts.value.forEach((item) => {
         const { keyboardShortcutKeys } = item
 
-        if (item.type !== 'option') {
+        if (item.type !== 'selectOption') {
           return
         }
 
