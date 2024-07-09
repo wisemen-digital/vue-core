@@ -5,6 +5,7 @@ import {
 } from 'radix-vue'
 import { computed, ref } from 'vue'
 
+import AppUnstyledButton from '@/components/button/AppUnstyledButton.vue'
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppLoader from '@/components/loader/AppLoader.vue'
 import AppSelectContent from '@/components/select/AppSelectContent.vue'
@@ -101,6 +102,10 @@ function onTriggerBlur(): void {
   }
 }
 
+function onClearButtonClick(): void {
+  emit('update:modelValue', null)
+}
+
 const selectStyle = useSelectStyle()
 
 const iconLeftClasses = computed<string>(() => selectStyle.iconLeft())
@@ -116,51 +121,63 @@ const popoverContainerClasses = computed<string>(() => selectStyle.popoverContai
       v-model:is-open="isOpen"
       :is-disabled="props.isDisabled"
     >
-      <AppSelectTrigger
-        :id="id"
-        :is-disabled="props.isDisabled"
-        :is-invalid="props.isInvalid"
-        :class="props.selectTriggerClass"
-        @blur="onTriggerBlur"
-      >
-        <slot name="left">
-          <AppIcon
-            v-if="props.iconLeft !== undefined"
-            :icon="props.iconLeft"
-            :class="iconLeftClasses"
-          />
-        </slot>
-
-        <AppSelectValue
-          v-if="!isValueHidden"
-          :is-empty="model === null"
+      <div class="flex size-full flex-row">
+        <AppSelectTrigger
+          :id="id"
+          :is-disabled="props.isDisabled"
+          :is-invalid="props.isInvalid"
+          :class="props.selectTriggerClass"
+          @blur="onTriggerBlur"
         >
-          <template v-if="placeholder !== null && model === null">
-            {{ props.placeholder }}
-          </template>
+          <slot name="left">
+            <AppIcon
+              v-if="props.iconLeft !== undefined"
+              :icon="props.iconLeft"
+              :class="iconLeftClasses"
+            />
+          </slot>
 
-          <template v-else-if="model !== null">
-            {{ props.displayFn(model) }}
-          </template>
-        </AppSelectValue>
+          <AppSelectValue
+            v-if="!isValueHidden"
+            :is-empty="model === null"
+          >
+            <template v-if="placeholder !== null && model === null">
+              {{ props.placeholder }}
+            </template>
 
-        <AppLoader
-          v-if="props.isLoading"
-          :class="loaderClasses"
-        />
+            <template v-else-if="model !== null">
+              {{ props.displayFn(model) }}
+            </template>
+          </AppSelectValue>
 
-        <SelectIcon
-          v-else-if="!isChevronHidden"
-          :as-child="true"
-          class="mr-3"
+          <AppLoader
+            v-if="props.isLoading"
+            :class="loaderClasses"
+          />
+
+          <SelectIcon
+            v-else-if="!isChevronHidden"
+            :as-child="true"
+            class="mr-3"
+          >
+            <AppIcon
+              :class="[triggerIconClasses, { 'ml-4': model !== null }]"
+              icon="chevronDown"
+              size="sm"
+            />
+          </SelectIcon>
+        </AppSelectTrigger>
+
+        <AppUnstyledButton
+          v-if="model !== null"
+          class="relative right-14 flex w-0 items-center"
+          @click.stop="onClearButtonClick"
         >
           <AppIcon
-            :class="triggerIconClasses"
-            icon="chevronDown"
-            size="sm"
+            icon="close"
           />
-        </SelectIcon>
-      </AppSelectTrigger>
+        </AppUnstyledButton>
+      </div>
 
       <SelectPortal>
         <Transition
