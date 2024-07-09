@@ -5,6 +5,7 @@ import {
 } from 'radix-vue'
 import { computed, ref } from 'vue'
 
+import AppUnstyledButton from '@/components/button/AppUnstyledButton.vue'
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppLoader from '@/components/loader/AppLoader.vue'
 import AppSelectContent from '@/components/select/AppSelectContent.vue'
@@ -102,7 +103,6 @@ function onTriggerBlur(): void {
 }
 
 function onClearButtonClick(): void {
-  console.log('clear')
   emit('update:modelValue', null)
 }
 
@@ -168,7 +168,7 @@ const popoverContainerClasses = computed<string>(() => selectStyle.popoverContai
           </SelectIcon>
         </AppSelectTrigger>
 
-        <button
+        <AppUnstyledButton
           v-if="model !== null"
           class="relative right-14 flex w-0 items-center"
           @click.stop="onClearButtonClick"
@@ -176,7 +176,7 @@ const popoverContainerClasses = computed<string>(() => selectStyle.popoverContai
           <AppIcon
             icon="close"
           />
-        </button>
+        </AppUnstyledButton>
       </div>
 
       <SelectPortal>
