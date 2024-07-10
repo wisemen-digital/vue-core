@@ -17,7 +17,7 @@ sidebar: auto
 | isLoading                 | `boolean`              | Whether the select is loading.                             | `false` |
 | isRequired                | `boolean`              | Whether the select is required.                            | `false` |
 | placeholder               | `null` \| `string`     | The placeholder of the select.                             | `null`  |
-| hasClearButton            | `boolean`              | Whether the select has a clear button.                     | `true`  |
+| hasClearButton            | `boolean`              | Whether the select has a clear button.                     | `false`  |
 
 ## v-model
 

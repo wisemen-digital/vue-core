@@ -29,7 +29,7 @@ const props = withDefaults(
     id?: null | string
     /**
      * Whether the select has a clear button.
-     * @default true
+     * @default false
      */
     hasClearButton?: boolean
     /**
@@ -76,7 +76,7 @@ const props = withDefaults(
   }>(),
   {
     id: null,
-    hasClearButton: true,
+    hasClearButton: false,
     isChevronHidden: false,
     isDisabled: false,
     isInvalid: false,

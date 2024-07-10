@@ -37,7 +37,7 @@ const controls = createControls({
     type: 'switch',
   },
   hasClearButton: {
-    default: true,
+    default: false,
     label: 'Has Clear Button',
     type: 'switch',
   },

@@ -21,7 +21,7 @@ import AppSelectPlayground from './AppSelectPlayground.vue'
 | isLoading      | `boolean`              | Whether the select is loading.                            | `false`     |
 | iconLeft       | `Icon`                 | The icon to display on the left side of the select.       | `undefined` |
 | placeholder    | `null` \| `string`     | The placeholder text to display when the select is empty. | `null`      |
-| hasClearButton | `boolean`              | Whether the select has a clear button.                    | `true`      |
+| hasClearButton | `boolean`              | Whether the select has a clear button.                    | `false`      |
 
 ## v-model
 
