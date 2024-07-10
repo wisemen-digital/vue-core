@@ -28,6 +28,11 @@ const props = withDefaults(
      */
     id?: null | string
     /**
+     * Whether the select has a clear button.
+     * @default true
+     */
+    hasClearButton?: boolean
+    /**
      * Whether the select chevron is hidden.
      */
     isChevronHidden?: boolean
@@ -71,6 +76,7 @@ const props = withDefaults(
   }>(),
   {
     id: null,
+    hasClearButton: true,
     isChevronHidden: false,
     isDisabled: false,
     isInvalid: false,
@@ -161,7 +167,7 @@ const popoverContainerClasses = computed<string>(() => selectStyle.popoverContai
             class="mr-3"
           >
             <AppIcon
-              :class="[triggerIconClasses, { 'ml-4': model !== null }]"
+              :class="[triggerIconClasses, { 'ml-4': model !== null && props.hasClearButton }]"
               icon="chevronDown"
               size="sm"
             />
@@ -169,7 +175,7 @@ const popoverContainerClasses = computed<string>(() => selectStyle.popoverContai
         </AppSelectTrigger>
 
         <AppUnstyledButton
-          v-if="model !== null"
+          v-if="model !== null && props.hasClearButton"
           class="relative right-14 flex w-0 items-center"
           @click.stop="onClearButtonClick"
         >

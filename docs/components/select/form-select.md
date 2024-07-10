@@ -6,30 +6,31 @@ sidebar: auto
 
 ## Props
 
-| Prop       | Type                      | Description                                                  | Default          |
-|------------|---------------------------|--------------------------------------------------------------|------------------|
-| label **(required)**      | `string`                  | The label of the select.                                   |                 |
-| items **(required)**    | `SelectItem<T>[]`           | The items of the select.                                 |                 |
-| displayFn  **(required)**      | `(value: T) => string` | Display function for the selected value.                           |                                  |
-| isTouched **(required)**  | `boolean`                 | Whether the select has been touched (focused and blurred). | `false`          |
-| errors **(required)**     | `FormFieldErrors`         | The errors associated with the select.                     |                 |
-| isDisabled | `boolean`                 | Whether the select is disabled.                            | `false`          |
-| isLoading  | `boolean`                 | Whether the select is loading.                             | `false`          |
-| isRequired | `boolean`                 | Whether the select is required.                            | `false`          |
-| placeholder| `null` \| `string`          | The placeholder of the select.                             | `null`           |
+| Prop                      | Type                   | Description                                                | Default |
+|---------------------------|------------------------|------------------------------------------------------------|---------|
+| label **(required)**      | `string`               | The label of the select.                                   |         |
+| items **(required)**      | `SelectItem<T>[]`      | The items of the select.                                   |         |
+| displayFn  **(required)** | `(value: T) => string` | Display function for the selected value.                   |         |
+| isTouched **(required)**  | `boolean`              | Whether the select has been touched (focused and blurred). | `false` |
+| errors **(required)**     | `FormFieldErrors`      | The errors associated with the select.                     |         |
+| isDisabled                | `boolean`              | Whether the select is disabled.                            | `false` |
+| isLoading                 | `boolean`              | Whether the select is loading.                             | `false` |
+| isRequired                | `boolean`              | Whether the select is required.                            | `false` |
+| placeholder               | `null` \| `string`     | The placeholder of the select.                             | `null`  |
+| hasClearButton            | `boolean`              | Whether the select has a clear button.                     | `true`  |
 
 ## v-model
 
-| Prop       | Type           | Description                                          |
-|------------|----------------|------------------------------------------------------|
-| v-model    | `T` \| `null` | The value of the select.                           |
+| Prop    | Type          | Description              |
+|---------|---------------|--------------------------|
+| v-model | `T` \| `null` | The value of the select. |
 
 ## Events
 
-| Event Name  | Description                                          |
-|-------------|------------------------------------------------------|
-| blur        | Emitted when the select loses focus.               |
-| filter      | Emitted when the select is filtered.              |
+| Event Name | Description                          |
+|------------|--------------------------------------|
+| blur       | Emitted when the select loses focus. |
+| filter     | Emitted when the select is filtered. |
 
 ## Example Usage
 
