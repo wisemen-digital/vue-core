@@ -166,6 +166,10 @@ export default {
         ],
       },
 
+      fontWeight: {
+        'form-label': 'var(--form-label-font-weight)',
+      },
+
       gridTemplateColumns: {
         'table-skeleton': '1fr 4fr 2fr 1fr',
       },
