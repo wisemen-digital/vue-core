@@ -111,6 +111,20 @@ const docs = [
     text: 'Date',
   },
   {
+    collapsed: true,
+    items: [
+      {
+        link: '/components/date-range/app-date-range-picker',
+        text: 'AppDateRangePicker',
+      },
+      {
+        link: '/components/date-range/form-date-range-picker',
+        text: 'FormDateRangePicker',
+      },
+    ],
+    text: 'Date range',
+  },
+  {
     items: [
       {
         link: '/components/dropdown-menu/app-dropdown-menu',
