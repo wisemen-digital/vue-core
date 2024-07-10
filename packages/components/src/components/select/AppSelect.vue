@@ -4,6 +4,7 @@ import {
   SelectPortal,
 } from 'radix-vue'
 import { computed, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import AppUnstyledButton from '@/components/button/AppUnstyledButton.vue'
 import AppIcon from '@/components/icon/AppIcon.vue'
@@ -29,7 +30,7 @@ const props = withDefaults(
     id?: null | string
     /**
      * Whether the select has a clear button.
-     * @default true
+     * @default false
      */
     hasClearButton?: boolean
     /**
@@ -76,7 +77,7 @@ const props = withDefaults(
   }>(),
   {
     id: null,
-    hasClearButton: true,
+    hasClearButton: false,
     isChevronHidden: false,
     isDisabled: false,
     isInvalid: false,
@@ -95,6 +96,8 @@ const emit = defineEmits<{
 const model = defineModel<TValue | null>({
   required: true,
 })
+
+const { t } = useI18n()
 
 const isOpen = ref<boolean>(false)
 
@@ -118,6 +121,11 @@ const iconLeftClasses = computed<string>(() => selectStyle.iconLeft())
 const loaderClasses = computed<string>(() => selectStyle.loader())
 const triggerIconClasses = computed<string>(() => selectStyle.triggerIcon())
 const popoverContainerClasses = computed<string>(() => selectStyle.popoverContainer())
+const clearButtonClasses = computed<string>(() => selectStyle.clearButton())
+
+const isClearButtonVisible = computed<boolean>(() => {
+  return model.value !== null && props.hasClearButton
+})
 </script>
 
 <template>
@@ -127,7 +135,7 @@ const popoverContainerClasses = computed<string>(() => selectStyle.popoverContai
       v-model:is-open="isOpen"
       :is-disabled="props.isDisabled"
     >
-      <div class="flex size-full flex-row">
+      <div class="relative size-full">
         <AppSelectTrigger
           :id="id"
           :is-disabled="props.isDisabled"
@@ -146,6 +154,9 @@ const popoverContainerClasses = computed<string>(() => selectStyle.popoverContai
           <AppSelectValue
             v-if="!isValueHidden"
             :is-empty="model === null"
+            :class="{
+              'pr-8': isClearButtonVisible,
+            }"
           >
             <template v-if="placeholder !== null && model === null">
               {{ props.placeholder }}
@@ -167,7 +178,7 @@ const popoverContainerClasses = computed<string>(() => selectStyle.popoverContai
             class="mr-3"
           >
             <AppIcon
-              :class="[triggerIconClasses, { 'ml-4': model !== null && props.hasClearButton }]"
+              :class="triggerIconClasses"
               icon="chevronDown"
               size="sm"
             />
@@ -175,13 +186,12 @@ const popoverContainerClasses = computed<string>(() => selectStyle.popoverContai
         </AppSelectTrigger>
 
         <AppUnstyledButton
-          v-if="model !== null && props.hasClearButton"
-          class="relative right-14 flex w-0 items-center"
-          @click.stop="onClearButtonClick"
+          v-if="isClearButtonVisible"
+          :label="t('shared.clear')"
+          :class="clearButtonClasses"
+          @click="onClearButtonClick"
         >
-          <AppIcon
-            icon="close"
-          />
+          <AppIcon icon="close" />
         </AppUnstyledButton>
       </div>
 

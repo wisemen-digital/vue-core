@@ -3,6 +3,7 @@ import { tv } from '@/libs/twVariants.lib'
 
 export const useSelectStyle = tv({
   slots: {
+    clearButton: 'absolute right-7 top-1/2 -translate-y-1/2 p-2',
     contentContainer: 'custom-select-content custom-popover-content relative z-popover min-w-min overflow-hidden rounded-popover bg-background shadow-popover-shadow',
     contentViewport: 'max-h-[25rem] p-1.5',
     divider: 'my-1 h-px bg-border',

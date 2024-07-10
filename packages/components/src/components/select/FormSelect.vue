@@ -12,7 +12,7 @@ const props = withDefaults(
   defineProps<{
     /**
      * Whether the select has a clear button.
-     * @default true
+     * @default false
      */
     hasClearButton?: boolean
     /**
@@ -62,7 +62,7 @@ const props = withDefaults(
     tooltip?: string
   }>(),
   {
-    hasClearButton: true,
+    hasClearButton: false,
     isDisabled: false,
     isLoading: false,
     isRequired: false,
