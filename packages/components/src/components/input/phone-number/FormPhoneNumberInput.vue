@@ -208,6 +208,7 @@ watch(model, (value) => {
         :display-fn="() => ''"
         :is-disabled="props.isDisabled"
         :is-required="props.isRequired"
+        :has-clear-button="false"
         class="w-16"
         select-trigger-class="rounded-r-none focus-within:z-[1] relative"
       >
