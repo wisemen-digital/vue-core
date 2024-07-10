@@ -4,6 +4,7 @@ import {
   SelectPortal,
 } from 'radix-vue'
 import { computed, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import AppUnstyledButton from '@/components/button/AppUnstyledButton.vue'
 import AppIcon from '@/components/icon/AppIcon.vue'
@@ -96,6 +97,8 @@ const model = defineModel<TValue | null>({
   required: true,
 })
 
+const { t } = useI18n()
+
 const isOpen = ref<boolean>(false)
 
 function onBlur(): void {
@@ -118,6 +121,10 @@ const iconLeftClasses = computed<string>(() => selectStyle.iconLeft())
 const loaderClasses = computed<string>(() => selectStyle.loader())
 const triggerIconClasses = computed<string>(() => selectStyle.triggerIcon())
 const popoverContainerClasses = computed<string>(() => selectStyle.popoverContainer())
+
+const isClearButtonVisible = computed<boolean>(() => {
+  return model.value !== null && props.hasClearButton
+})
 </script>
 
 <template>
@@ -127,7 +134,7 @@ const popoverContainerClasses = computed<string>(() => selectStyle.popoverContai
       v-model:is-open="isOpen"
       :is-disabled="props.isDisabled"
     >
-      <div class="flex size-full flex-row">
+      <div class="relative flex size-full flex-row">
         <AppSelectTrigger
           :id="id"
           :is-disabled="props.isDisabled"
@@ -146,6 +153,9 @@ const popoverContainerClasses = computed<string>(() => selectStyle.popoverContai
           <AppSelectValue
             v-if="!isValueHidden"
             :is-empty="model === null"
+            :class="{
+              'pr-6': isClearButtonVisible,
+            }"
           >
             <template v-if="placeholder !== null && model === null">
               {{ props.placeholder }}
@@ -175,13 +185,12 @@ const popoverContainerClasses = computed<string>(() => selectStyle.popoverContai
         </AppSelectTrigger>
 
         <AppUnstyledButton
-          v-if="model !== null && props.hasClearButton"
-          class="relative right-14 flex w-0 items-center"
-          @click.stop="onClearButtonClick"
+          v-if="isClearButtonVisible"
+          :label="t('shared.clear')"
+          class="absolute right-7 top-1/2 -translate-y-1/2 p-2"
+          @click="onClearButtonClick"
         >
-          <AppIcon
-            icon="close"
-          />
+          <AppIcon icon="close" />
         </AppUnstyledButton>
       </div>
 
