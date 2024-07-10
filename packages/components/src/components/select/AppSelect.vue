@@ -121,6 +121,7 @@ const iconLeftClasses = computed<string>(() => selectStyle.iconLeft())
 const loaderClasses = computed<string>(() => selectStyle.loader())
 const triggerIconClasses = computed<string>(() => selectStyle.triggerIcon())
 const popoverContainerClasses = computed<string>(() => selectStyle.popoverContainer())
+const clearButtonClasses = computed<string>(() => selectStyle.clearButton())
 
 const isClearButtonVisible = computed<boolean>(() => {
   return model.value !== null && props.hasClearButton
@@ -134,7 +135,7 @@ const isClearButtonVisible = computed<boolean>(() => {
       v-model:is-open="isOpen"
       :is-disabled="props.isDisabled"
     >
-      <div class="relative flex size-full flex-row">
+      <div class="relative size-full">
         <AppSelectTrigger
           :id="id"
           :is-disabled="props.isDisabled"
@@ -154,7 +155,7 @@ const isClearButtonVisible = computed<boolean>(() => {
             v-if="!isValueHidden"
             :is-empty="model === null"
             :class="{
-              'pr-6': isClearButtonVisible,
+              'pr-8': isClearButtonVisible,
             }"
           >
             <template v-if="placeholder !== null && model === null">
@@ -177,7 +178,7 @@ const isClearButtonVisible = computed<boolean>(() => {
             class="mr-3"
           >
             <AppIcon
-              :class="[triggerIconClasses, { 'ml-4': model !== null && props.hasClearButton }]"
+              :class="triggerIconClasses"
               icon="chevronDown"
               size="sm"
             />
@@ -187,7 +188,7 @@ const isClearButtonVisible = computed<boolean>(() => {
         <AppUnstyledButton
           v-if="isClearButtonVisible"
           :label="t('shared.clear')"
-          class="absolute right-7 top-1/2 -translate-y-1/2 p-2"
+          :class="clearButtonClasses"
           @click="onClearButtonClick"
         >
           <AppIcon icon="close" />
