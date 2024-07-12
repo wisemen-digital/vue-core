@@ -94,6 +94,7 @@ const itemsContainerClasses = computed<string>(() => radioGroupStyle.itemsContai
         >
           <FormRadioGroupItem
             :id="option.value"
+            :data-testid="option.testId"
             :value="option.value"
             :class="itemWrapperClasses"
           >
