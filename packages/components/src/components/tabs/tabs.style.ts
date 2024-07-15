@@ -7,8 +7,8 @@ export const useTabsStyle = tv({
     list: 'relative flex border-b border-solid border-border',
     routeText: 'duration-200',
     routeTriggerGroup: 'group py-2 outline-none',
-    routeTriggerTab: 'rounded-button px-3 py-2 duration-200 group-hover:bg-muted-background group-focus-visible:bg-muted-background',
-    trigger: 'rounded px-4 py-3 outline-none ring-offset-background duration-200 focus-visible:rounded focus-visible:ring-2 focus-visible:ring-ring',
+    routeTriggerTab: 'flex flex-row items-center gap-2 rounded-button px-3 py-2 duration-200 group-hover:bg-muted-background group-focus-visible:bg-muted-background',
+    trigger: 'flex flex-row items-center gap-2 rounded px-4 py-3 outline-none ring-offset-background duration-200 focus-visible:rounded focus-visible:ring-2 focus-visible:ring-ring',
   },
   variants: {
     isActive: {
