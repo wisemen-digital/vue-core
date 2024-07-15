@@ -5,7 +5,7 @@ sidebar: auto
 # ProgressBar
 
 <script setup>
-import AppProgressBar from "./AppProgressBar.vue";
+import AppProgressBar from "./AppProgressBarPlayground.vue";
 </script>
 
 <AppProgressBar /> 

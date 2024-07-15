@@ -1,53 +1,86 @@
 <script setup lang="ts">
-import { computed, defineProps } from 'vue'
+import {
+  computed,
+  defineProps,
+  withDefaults,
+} from 'vue'
 
-import { useProgressBarStyle } from './progressBarStyles'
+const props = withDefaults(
+  defineProps<{
+    maxValue?: number
+    minValue?: number
+    percentagePosition?: 'inside' | 'outside'
+    progress: number
+    showPercentage?: boolean
+  }>(),
+  {
+    maxValue: 100,
+    minValue: 0,
+    percentage: 0,
+    percentagePosition: 'outside',
+    showPercentage: false,
+  },
+)
 
-const props = defineProps<{
-  percentagePosition?: 'inside' | 'outside'
-  progress: number
-  showPercentage?: boolean
-}>()
+const progressBarColor = computed<string>(() => {
+  return calculateProgressBarColor(props.progress)
+})
 
-const styles = computed(() => useProgressBarStyle({
-  percentagePosition: props.percentagePosition,
-  showPercentage: props.showPercentage,
-}))
+const percentageTextColor = computed<string>(() => {
+  return calculatePercentageTextColor(props.progress)
+})
 
-const progressBarColor = computed(() => {
-  if (props.progress > 80) { return 'bg-green-500' }
-  if (props.progress >= 50) { return 'bg-orange-500' }
+function calculateProgressBarColor(progress?: number): string {
+  if (progress == null) {
+    return 'bg-gray-200'
+  }
+
+  const normalizedProgress = Math.min(Math.max(progress, props.minValue), props.maxValue)
+
+  if (normalizedProgress > props.maxValue * 0.8) {
+    return 'bg-green-500'
+  }
+  else if (normalizedProgress >= props.maxValue * 0.5) {
+    return 'bg-orange-500'
+  }
 
   return 'bg-red-500'
-})
+}
 
-const percentageTextColor = computed(() => {
-  if (props.progress > 50) { return 'text-black' }
+function calculatePercentageTextColor(progress?: number): string {
+  if (progress == null) {
+    return 'text-gray-400'
+  }
 
-  return 'text-white'
-})
+  const normalizedProgress = Math.min(Math.max(progress, props.minValue), props.maxValue)
+
+  return normalizedProgress > props.maxValue * 0.5 ? 'text-black' : 'text-white'
+}
 </script>
 
 <template>
   <div class="flex items-center">
-    <div :class="styles.container">
+    <div class="relative h-6 w-full rounded-full bg-gray-200">
       <div
-        :style="{ width: `${progress}%` }"
-        :class="progressBarColor"
+        :style="{ width: `${props.percentage || 0}%` }"
+        :class="[progressBarColor]"
+        class="h-full rounded-full"
+        Handle
+        indeterminate
+        progress
       >
         <span
-          v-if="showPercentage && percentagePosition === 'inside'"
-          :class="percentageTextColor"
+          v-if="props.showPercentage && props.percentagePosition === 'inside'"
+          :class="[percentageTextColor]"
+          class="absolute inset-0 flex items-center justify-center"
         >
-          {{ progress }}%
-        </span>
+          {{ props.progress || 0 }} </span>
       </div>
     </div>
     <span
-      v-if="showPercentage && percentagePosition === 'outside'"
-      :class="styles.percentageOutside"
+      v-if="props.showPercentage && props.percentagePosition === 'outside'"
+      class="ml-2"
     >
-      {{ progress }}%
-    </span>
+      {{ props.progress || 0 }} </span>
   </div>
 </template>
