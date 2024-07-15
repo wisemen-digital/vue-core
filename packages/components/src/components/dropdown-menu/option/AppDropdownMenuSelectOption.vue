@@ -16,13 +16,21 @@ const dropdownMenuStyle = useDropdownMenuStyle()
 
 const containerClasses = computed<string>(() => dropdownMenuStyle.itemContainer())
 const contentClasses = computed<string>(() => dropdownMenuStyle.itemContent())
-const iconClasses = computed<string>(() => dropdownMenuStyle.itemOptionIcon())
-const textClasses = computed<string>(() => dropdownMenuStyle.itemText())
+
+const iconClasses = computed<string>(() => dropdownMenuStyle.itemOptionIcon({
+  variant: props.item.variant,
+}))
+
+const textClasses = computed<string>(() => dropdownMenuStyle.itemText({
+  variant: props.item.variant,
+}))
 </script>
 
 <template>
   <RadixDropdownMenuItem
+    v-if="props.item.isHidden !== true"
     :class="containerClasses"
+    :disabled="props.item.isDisabled"
     @select="props.item.onSelect"
   >
     <div :class="contentClasses">
@@ -33,13 +41,7 @@ const textClasses = computed<string>(() => dropdownMenuStyle.itemText())
         size="default"
       />
 
-      <Component
-        :is="props.item.render()"
-        v-if="props.item.render !== undefined"
-      />
-
       <AppText
-        v-else
         :class="textClasses"
         variant="subtext"
       >

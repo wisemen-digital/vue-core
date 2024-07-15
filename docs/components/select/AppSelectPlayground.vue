@@ -36,6 +36,11 @@ const controls = createControls({
     label: 'Is Loading',
     type: 'switch',
   },
+  hasClearButton: {
+    default: false,
+    label: 'Has Clear Button',
+    type: 'switch',
+  },
 })
 
 const userItems: SelectItem<User>[] = [

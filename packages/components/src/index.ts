@@ -162,11 +162,13 @@ export type {
   SortDirection,
   UsePaginationReturnType,
 } from './types/pagination.type'
+export type { FilterValues } from './types/pagination.type'
 export type { RouteLocationTyped, Routes } from './types/routes.type'
 export type { AcceptableValue } from './types/selectItem.type'
 export type { SelectItem } from './types/selectItem.type'
 export type { RouteTabItem, TabItem } from './types/tabItem.type'
 export type { TableColumn } from './types/table.type'
+export type { TableEmptyTextProp } from './types/table.type'
 
 // Other
 export { extendIcons } from './icons/icons'

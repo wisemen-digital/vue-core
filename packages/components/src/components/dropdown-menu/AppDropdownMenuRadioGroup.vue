@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { DropdownMenuRadioGroup } from 'radix-vue'
 
-import AppDropdownMenuRadio from '@/components/dropdown-menu/AppDropdownMenuRadio.vue'
+import AppDropdownMenuRadio from '@/components/dropdown-menu/option/AppDropdownMenuRadioOption.vue'
 import type { DropdownMenuRadioGroup as DropdownMenuRadioGroupType } from '@/types/dropdownMenuItem.type'
 
 const props = defineProps<{

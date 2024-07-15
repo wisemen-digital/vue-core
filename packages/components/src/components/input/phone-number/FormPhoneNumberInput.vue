@@ -1,17 +1,18 @@
 <script setup lang="ts">
 import i18nCountries from 'i18n-iso-countries'
-import type {
-  CountryCode,
-} from 'libphonenumber-js'
 import parsePhoneNumber, {
+  AsYouType,
+  type CountryCode,
+  formatIncompletePhoneNumber,
+  validatePhoneNumberLength,
+} from 'libphonenumber-js'
+import {
   getCountries,
   getCountryCallingCode,
-  getExampleNumber,
 } from 'libphonenumber-js'
-import examples from 'libphonenumber-js/mobile/examples'
-import { vMaska } from 'maska'
 import {
   computed,
+  nextTick,
   ref,
   watch,
 } from 'vue'
@@ -44,6 +45,11 @@ const props = withDefaults(
      */
     isTouched: boolean
     /**
+     * The default country code of the phone number.
+     * @default 'BE'
+     */
+    defaultCountryCode?: CountryCode
+    /**
      * The errors associated with the input.
      */
     errors: FormFieldErrors<string>
@@ -51,9 +57,6 @@ const props = withDefaults(
      * The label of the input.
      */
     label: string
-    /**
-     * The model value of the input.
-     */
     /**
      * The locale of the input.
      * For registering locales, see: https://www.npmjs.com/package/i18n-iso-countries
@@ -75,83 +78,91 @@ const props = withDefaults(
     isLoading: false,
     isRequired: false,
     isTouched: false,
+    defaultCountryCode: 'BE',
     locale: null,
     placeholder: null,
   },
 )
 
 const countries = getCountries()
+
+const countryCode = ref<CountryCode>(props.defaultCountryCode)
+
+const asYouType = computed<AsYouType>(() => {
+  return new AsYouType(countryCode.value)
+})
+
 const model = defineModel<null | string>({
   required: true,
 })
 
-const countryCodeModel = ref<CountryCode | null>(getCountryCodeFromPhoneNumber(model.value))
-const numberModel = ref<null | string>(getNumberFromModel())
-
-const fullNumber = computed<null | string>(() => {
-  if (numberModel.value === null || countryCodeModel.value === null) {
-    return null
-  }
-
-  const countryCallingCode = getCountryCallingCode(countryCodeModel.value)
-  const fullNumber = `+${countryCallingCode}${numberModel.value}`
-
-  return fullNumber.replaceAll(' ', '')
-})
-
-watch(
-  () => [
-    numberModel.value,
-    countryCodeModel.value,
-  ],
-  () => {
-    model.value = fullNumber.value
+const countryCodeModel = computed<CountryCode>({
+  get: () => {
+    return countryCode.value
   },
-)
+  set: (value) => {
+    if (model.value === null) {
+      countryCode.value = value as CountryCode
 
-function getNumberFromModel(): null | string {
-  if (model.value === null || countryCodeModel.value === null) {
-    return null
-  }
+      return
+    }
 
-  const getCountryCodeCallingCode = getCountryCallingCode(countryCodeModel.value)
+    const newModel = model.value?.replace(`+${getCountryCallingCode(countryCode.value)}`, `+${getCountryCallingCode(value)}`) ?? null
 
-  return model.value.replace(`+${getCountryCodeCallingCode}`, '')
-}
+    if (newModel !== null) {
+      model.value = formatIncompletePhoneNumber(newModel, value as CountryCode)
+    }
 
-const countryCodeDialCodeModel = computed<null | string>(() => {
-  if (countryCodeModel.value === null) {
-    return null
-  }
-
-  return getCountryCallingCode(countryCodeModel.value)
+    countryCode.value = value as CountryCode
+  },
 })
 
-const mask = computed<null | string>(() => {
-  if (model.value === null) {
-    return '###'
-  }
+const inputModel = computed<null | string>({
+  get: () => {
+    if (model.value === null) {
+      return null
+    }
 
-  const country = getCountryCodeFromPhoneNumber(model.value)
+    const dialCode = getCountryCallingCode(countryCodeModel.value).toString()
 
-  if (country === null) {
-    return '###'
-  }
+    const formattedNumber = formatIncompletePhoneNumber(model.value, countryCodeModel.value)
 
-  const exampleNumber = getExamplePhoneNumberByCountry(country)
+    return formattedNumber.replace(`+${dialCode}`, '').trim()
+  },
+  set: (value) => {
+    if (value === null) {
+      model.value = null
 
-  if (exampleNumber === null) {
-    return '###'
-  }
+      return
+    }
 
-  return getMaskFromExampleNumber(exampleNumber)
+    const phoneNumberValidation = validatePhoneNumberLength(value, countryCode.value)
+
+    if (phoneNumberValidation === 'TOO_LONG') {
+      const tempModelValue = structuredClone(model.value)
+
+      model.value = ''
+      void nextTick(() => {
+        model.value = tempModelValue
+      })
+
+      return
+    }
+
+    const fullNumber = `+${getCountryCallingCode(countryCodeModel.value)} ${value}`
+
+    asYouType.value.reset()
+    asYouType.value.input(fullNumber)
+
+    if (asYouType.value.isValid()) {
+      model.value = asYouType.value.getNumber()?.formatInternational() ?? fullNumber
+    }
+
+    model.value = fullNumber
+  },
 })
 
-const countryFlagUrl = computed<null | string>(() => {
-  if (countryCodeModel.value === null) {
-    return null
-  }
-
+const countryFlagUrl = computed<string>(() => {
   return getCountryFlagUrl(countryCodeModel.value)
 })
 
@@ -163,39 +174,26 @@ const countryCodes = computed<SelectItem<CountryCode>[]>(() => {
   }))
 })
 
-function getExamplePhoneNumberByCountry(countryCode: CountryCode): null | string {
-  const exampleNumber = getExampleNumber(countryCode, examples)
-
-  return exampleNumber?.formatInternational() ?? null
-}
-
-function getMaskFromExampleNumber(exampleNumber: string): string {
-  const dialCode = exampleNumber.match(/\d+/)?.[0]
-
-  return exampleNumber
-    .replace(`+${dialCode}`, '')
-    .replace(/\d/g, '#')
-    .replace(/ /g, ' ')
-    .replace(/\(/g, '(')
-    .replace(/\)/g, ')')
-    .replace(/-/g, '-')
-    .trim()
-}
-
-function getCountryCodeFromPhoneNumber(phoneNumber: null | string): CountryCode | null {
-  if (phoneNumber === null) {
-    return null
-  }
-
-  return parsePhoneNumber(phoneNumber)?.country ?? null
-}
-
 function getCountryFlagUrl(countryCode: CountryCode): string {
   return `https://purecatamphetamine.github.io/country-flag-icons/3x2/${countryCode}.svg`
 }
 
 const dialCodeDisplayValue = computed<string>(() => {
-  return `+${countryCodeDialCodeModel.value}`
+  return `+${getCountryCallingCode(countryCodeModel.value)}`
+})
+
+watch(model, (value) => {
+  if (value === null) {
+    return
+  }
+
+  const country = parsePhoneNumber(value)?.country ?? null
+
+  if (country !== null) {
+    countryCode.value = country
+  }
+}, {
+  immediate: true,
 })
 
 function getCountryName(countryCode: CountryCode): null | string {
@@ -207,11 +205,13 @@ function getCountryName(countryCode: CountryCode): null | string {
 }
 
 const countryName = computed<null | string>(() => {
-  if (countryCodeModel.value === null) {
+  const countryCode = asYouType.value.getCountry() ?? null
+
+  if (countryCode === null) {
     return null
   }
 
-  return getCountryName(countryCodeModel.value) ?? null
+  return getCountryName(countryCode)
 })
 </script>
 
@@ -235,6 +235,7 @@ const countryName = computed<null | string>(() => {
         :display-fn="() => ''"
         :is-disabled="props.isDisabled"
         :is-required="props.isRequired"
+        :has-clear-button="false"
         class="w-16"
         select-trigger-class="rounded-r-none focus-within:z-[1] relative"
       >
@@ -242,14 +243,9 @@ const countryName = computed<null | string>(() => {
           <div class="flex items-center pl-3">
             <div class="h-3 w-5 overflow-hidden rounded-sm">
               <img
-                v-if="countryFlagUrl !== null"
                 :src="countryFlagUrl"
                 :alt="`Flag of ${countryName ?? countryCodeModel}`"
               >
-              <div
-                v-else
-                class="size-full bg-neutral-200"
-              />
             </div>
           </div>
         </template>
@@ -273,8 +269,7 @@ const countryName = computed<null | string>(() => {
       </AppSelect>
       <AppInput
         :id="id"
-        v-model="numberModel"
-        :data-maska="mask"
+        v-model="inputModel"
         :is-invalid="isInvalid"
         :is-disabled="props.isDisabled"
         :is-loading="props.isLoading"
@@ -282,7 +277,6 @@ const countryName = computed<null | string>(() => {
         :placeholder="props.placeholder"
         class="w-full rounded-l-none border-l-0"
         type="tel"
-        v-maska
       >
         <template #left>
           <AppText

@@ -11,27 +11,28 @@ import AppSelectPlayground from './AppSelectPlayground.vue'
 
 ## Props
 
-| Prop                      | Type                   | Description                                               | Default     |
-| ------------------------- | ---------------------- | --------------------------------------------------------- | -------     |
-| items*                    | `SelectItem<T>[]`      | The items to display in the select.                       |             |
-| displayFn*                | `(value: T) => string` | Display function for the selected value.                  |             |
-| id                        | `string \| null`       | The id of the select                                      | `null`      |
-| isDisabled                | `boolean`              | Whether the select is disabled.                           | `false`     |
-| isInvalid                 | `boolean`              | Whether the select is in an invalid state.                | `false`     |
-| isLoading                 | `boolean`              | Whether the select is loading.                            | `false`     |
-| iconLeft                  | `Icon`                 | The icon to display on the left side of the select.       | `undefined` |
-| placeholder               | `null` \| `string`     | The placeholder text to display when the select is empty. | `null`      |
+| Prop           | Type                   | Description                                               | Default     |
+|----------------|------------------------|-----------------------------------------------------------|-------------|
+| items*         | `SelectItem<T>[]`      | The items to display in the select.                       |             |
+| displayFn*     | `(value: T) => string` | Display function for the selected value.                  |             |
+| id             | `string \| null`       | The id of the select                                      | `null`      |
+| isDisabled     | `boolean`              | Whether the select is disabled.                           | `false`     |
+| isInvalid      | `boolean`              | Whether the select is in an invalid state.                | `false`     |
+| isLoading      | `boolean`              | Whether the select is loading.                            | `false`     |
+| iconLeft       | `Icon`                 | The icon to display on the left side of the select.       | `undefined` |
+| placeholder    | `null` \| `string`     | The placeholder text to display when the select is empty. | `null`      |
+| hasClearButton | `boolean`              | Whether the select has a clear button.                    | `false`      |
 
 ## v-model
 
 | Prop                   | Type                   | Description              |
-| ---------------------- | ---------------------- | ------------------------ |
+|------------------------|------------------------|--------------------------|
 | v-model **(required)** | `SelectItem` \| `null` | The value of the select. |
 
 ## Events
 
 | Event Name | Description                                                  |
-| ---------- | ------------------------------------------------------------ |
+|------------|--------------------------------------------------------------|
 | blur       | Emitted when the select loses focus.                         |
 | filter     | Emitted when the select filters options based on user input. |
 

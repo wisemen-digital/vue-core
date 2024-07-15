@@ -11,6 +11,11 @@ import type {
 const props = withDefaults(
   defineProps<{
     /**
+     * Whether the select has a clear button.
+     * @default false
+     */
+    hasClearButton?: boolean
+    /**
      * Whether the select is disabled.
      */
     isDisabled?: boolean
@@ -56,12 +61,15 @@ const props = withDefaults(
      */
     tooltip?: string
   }>(),
-  { isDisabled: false,
+  {
+    hasClearButton: false,
+    isDisabled: false,
     isLoading: false,
     isRequired: false,
     isTouched: false,
     iconLeft: undefined,
-    placeholder: null },
+    placeholder: null,
+  },
 )
 
 const emit = defineEmits<{
@@ -97,6 +105,7 @@ function onBlur(): void {
       :is-disabled="props.isDisabled"
       :is-required="props.isRequired"
       :is-loading="props.isLoading"
+      :has-clear-button="props.hasClearButton"
       :placeholder="props.placeholder"
       @blur="onBlur"
     >
