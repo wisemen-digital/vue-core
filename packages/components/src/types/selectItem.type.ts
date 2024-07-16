@@ -8,12 +8,14 @@ export interface SelectItemDivider {
 }
 
 export interface SelectItemGroup<TValue extends AcceptableValue> {
+  testId?: string
   items: SelectItem<TValue>[]
   label: string
   type: 'group'
 }
 
 export interface SelectItemOption<TValue extends AcceptableValue> {
+  testId?: string
   isDisabled?: boolean
   type: 'option'
   value: TValue
