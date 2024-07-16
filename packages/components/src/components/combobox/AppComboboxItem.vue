@@ -37,6 +37,7 @@ const props = defineProps<{
   <AppComboboxOption
     v-else-if="props.item.type === 'option' && !isMultiple"
     :item="props.item"
+    :data-testid="props.item.testId"
     :display-fn="props.displayFn"
   >
     <slot :item="props.item" />
@@ -45,6 +46,7 @@ const props = defineProps<{
   <AppMultiComboboxOption
     v-else-if="props.item.type === 'option' && isMultiple"
     :item="props.item"
+    :data-testid="props.item.testId"
     :display-fn="props.displayFn"
   >
     <slot :item="props.item" />
