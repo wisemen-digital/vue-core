@@ -29,6 +29,7 @@ const textClasses = computed<string>(() => dropdownMenuStyle.itemText({
   <RadixDropdownMenuItem
     v-if="props.item.isHidden !== true"
     :as-child="true"
+    :data-testid="props.item.testId"
     :disabled="props.item.isDisabled"
   >
     <RouterLink

@@ -32,6 +32,7 @@ const textClasses = computed<string>(() => dropdownMenuStyle.itemText({
     v-if="props.item.isHidden !== true"
     :checked="props.item.isSelected.value"
     :disabled="props.item.isDisabled"
+    :data-testid="props.item.testId"
     :class="containerClasses"
     @select.prevent="props.item.onSelect"
   >
