@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useDebounceFn } from '@vueuse/core'
 import { DropdownMenuItem as RadixDropdownMenuItem } from 'radix-vue'
 import { computed } from 'vue'
 
@@ -24,6 +25,10 @@ const iconClasses = computed<string>(() => dropdownMenuStyle.itemOptionIcon({
 const textClasses = computed<string>(() => dropdownMenuStyle.itemText({
   variant: props.item.variant,
 }))
+
+const onSelect = useDebounceFn(() => {
+  props.item.onSelect()
+})
 </script>
 
 <template>
@@ -32,7 +37,7 @@ const textClasses = computed<string>(() => dropdownMenuStyle.itemText({
     :class="containerClasses"
     :data-testid="props.item.testId"
     :disabled="props.item.isDisabled"
-    @select="props.item.onSelect"
+    @select="onSelect"
   >
     <div :class="contentClasses">
       <AppIcon
