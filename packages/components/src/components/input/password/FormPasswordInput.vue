@@ -13,6 +13,11 @@ import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 const props = withDefaults(
   defineProps<{
     /**
+     * The testId of the input.
+     * @default undefined
+     */
+    testId?: string
+    /**
      * Whether the input is disabled.
      */
     isDisabled?: boolean
@@ -107,6 +112,7 @@ const passwordIconClasses = computed<string>(() => inputStyle.passwordIcon())
       v-model="model"
       :type="inputType"
       :is-disabled="props.isDisabled"
+      :test-id="props.testId"
       :is-invalid="isInvalid"
       :placeholder="props.placeholder"
       :icon-left="props.iconLeft ?? undefined"
