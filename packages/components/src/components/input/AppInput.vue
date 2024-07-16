@@ -14,7 +14,7 @@ const props = withDefaults(defineProps<{
    */
   id?: null | string
   /**
-   * The testID of the input.
+   * The test id of the input.
    * @default undefined
    */
   testId?: string

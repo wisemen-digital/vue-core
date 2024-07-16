@@ -10,7 +10,7 @@ import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 const props = withDefaults(
   defineProps<{
     /**
-     * The testId of the input.
+     * The test id of the input.
      * @default undefined
      */
     testId?: string
