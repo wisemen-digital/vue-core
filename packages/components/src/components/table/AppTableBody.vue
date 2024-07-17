@@ -79,6 +79,7 @@ const bodyContainerClasses = computed<string>(() => tableStyle.bodyContainer({
     <div
       v-for="column of columns"
       :key="column.id"
+      :data-testid="column.testId"
       :class="bodyColumnClasses"
     >
       <Component

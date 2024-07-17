@@ -4,7 +4,10 @@ import {
   DatePickerRoot,
   useId,
 } from 'radix-vue'
-import { computed, ref } from 'vue'
+import {
+  computed,
+  ref,
+} from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import AppDateCalendarPickerContent from '@/components/date/AppDateCalendarPickerContent.vue'
@@ -45,6 +48,8 @@ const props = withDefaults(defineProps<{
   modelValue: CalendarDate | null
 }>(), {
   id: null,
+  maxDate: null,
+  minDate: null,
   isDisabled: false,
   isInvalid: false,
   isLoading: false,
@@ -70,6 +75,14 @@ const model = computed<CalendarDate | undefined>({
       return null
     }
 
+    if (props.minDate !== null && value.compare(props.minDate) < 0) {
+      return emit('update:modelValue', props.minDate)
+    }
+
+    if (props.maxDate !== null && value.compare(props.maxDate) > 0) {
+      return emit('update:modelValue', props.maxDate)
+    }
+
     return emit('update:modelValue', value)
   },
 })
@@ -79,7 +92,7 @@ const { locale } = useI18n()
 const id = props.id ?? useId()
 
 const minDate = computed<CalendarDate | undefined>(() => {
-  if (props.minDate === null || props.minDate === undefined) {
+  if (props.minDate === null) {
     return undefined
   }
 
@@ -87,7 +100,7 @@ const minDate = computed<CalendarDate | undefined>(() => {
 })
 
 const maxDate = computed<CalendarDate | undefined>(() => {
-  if (props.maxDate === null || props.maxDate === undefined) {
+  if (props.maxDate === null) {
     return undefined
   }
 
@@ -153,12 +166,12 @@ function onYearSelect(number: number): void {
       :max-value="maxDate"
       :locale="locale"
       :disabled="props.isDisabled"
-      @blur="onBlur"
     >
       <AppDatePickerField
         :is-invalid="props.isInvalid"
         type="date"
         @date-click="onTriggerClick"
+        @blur="onBlur"
       />
 
       <AppDateCalendarPickerContent
@@ -178,3 +191,9 @@ function onYearSelect(number: number): void {
     </DatePickerRoot>
   </div>
 </template>
+
+<style>
+[data-radix-popper-content-wrapper] {
+  @apply !z-popover;
+}
+</style>

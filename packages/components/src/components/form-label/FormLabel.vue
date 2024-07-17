@@ -38,9 +38,7 @@ const hasTooltip = computed<boolean>(() => props.tooltip !== undefined)
 </script>
 
 <template>
-  <Label
-    :for="props.for"
-  >
+  <Label :for="props.for">
     <AppTooltip
       :is-hidden="!hasTooltip"
       :content="props.tooltip ?? ''"

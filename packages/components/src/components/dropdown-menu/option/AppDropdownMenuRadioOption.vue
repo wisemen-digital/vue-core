@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {
-  DropdownMenuCheckboxItem,
   DropdownMenuItemIndicator,
+  DropdownMenuRadioItem,
 } from 'radix-vue'
 import { computed } from 'vue'
 
@@ -9,46 +9,42 @@ import { useDropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.st
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppKeyboardShortcut from '@/components/keyboard/AppKeyboardShortcut.vue'
 import AppText from '@/components/text/AppText.vue'
-import type { DropdownMenuCheckbox } from '@/types/dropdownMenuItem.type'
+import type { DropdownMenuRadioOption } from '@/types/dropdownMenuItem.type'
 
 const props = defineProps<{
-  item: DropdownMenuCheckbox
+  item: DropdownMenuRadioOption
 }>()
 
 const dropdownMenuStyle = useDropdownMenuStyle()
 
-const checkboxClasses = computed<string>(() => dropdownMenuStyle.itemCheckbox())
 const containerClasses = computed<string>(() => dropdownMenuStyle.itemContainer())
 const contentClasses = computed<string>(() => dropdownMenuStyle.itemContent())
-const indicatorClasses = computed<string>(() => dropdownMenuStyle.itemCheckboxIndicator())
-const textClasses = computed<string>(() => dropdownMenuStyle.itemText())
+const radioIndicatorContainerClasses = computed<string>(() => dropdownMenuStyle.itemRadioIndicatorContainer())
+const radioIndicatorClasses = computed<string>(() => dropdownMenuStyle.itemRadioIndicator())
+const textClasses = computed<string>(() => dropdownMenuStyle.itemText({
+  variant: props.item.variant,
+}))
 </script>
 
 <template>
-  <DropdownMenuCheckboxItem
-    :checked="props.item.isSelected.value"
+  <DropdownMenuRadioItem
+    v-if="props.item.isHidden !== true"
+    :value="JSON.stringify(props.item.value)"
     :class="containerClasses"
-    @select.prevent="props.item.onSelect"
+    :disabled="props.item.isDisabled"
+    @select.prevent
   >
-    <!-- Content -->
     <div :class="contentClasses">
-      <div :class="checkboxClasses">
+      <div :class="radioIndicatorContainerClasses">
         <DropdownMenuItemIndicator>
           <AppIcon
-            :class="indicatorClasses"
+            :class="radioIndicatorClasses"
             icon="checkmark"
-            size="sm"
           />
         </DropdownMenuItemIndicator>
       </div>
 
-      <Component
-        :is="props.item.render()"
-        v-if="props.item.render !== undefined"
-      />
-
       <AppText
-        v-else
         :class="textClasses"
         variant="subtext"
       >
@@ -60,5 +56,5 @@ const textClasses = computed<string>(() => dropdownMenuStyle.itemText())
       v-if="props.item.keyboardShortcutKeys !== undefined"
       :keys="props.item.keyboardShortcutKeys"
     />
-  </DropdownMenuCheckboxItem>
+  </DropdownMenuRadioItem>
 </template>

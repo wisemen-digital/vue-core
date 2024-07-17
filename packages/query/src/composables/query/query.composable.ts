@@ -47,7 +47,11 @@ export interface UseQueryReturnType<TResData> {
    */
   isError: ComputedRef<boolean>
   /**
-   * Whether query is loading
+   * Whether query is currently loading
+   */
+  isFetching: ComputedRef<boolean>
+  /**
+   * Whether query is initially loading
    */
   isLoading: ComputedRef<boolean>
   /**
@@ -62,6 +66,10 @@ export interface UseQueryReturnType<TResData> {
    * Error object, if in error state
    */
   error: ComputedRef<unknown>
+  /**
+   * Refetch the query
+   */
+  refetch: () => Promise<void>
 }
 
 export function useQuery<TResData>(options: UseQueryOptions<TResData>): UseQueryReturnType<TResData> {
@@ -94,11 +102,17 @@ export function useQuery<TResData>(options: UseQueryOptions<TResData>): UseQuery
     ]
   }
 
+  async function refetch(): Promise<void> {
+    await query.refetch()
+  }
+
   return {
     isError: computed<boolean>(() => query.isError.value),
+    isFetching: computed<boolean>(() => query.isFetching.value),
     isLoading: computed<boolean>(() => query.isLoading.value),
     isSuccess: computed<boolean>(() => query.isSuccess.value),
     data: computed<TResData | null>(() => query.data.value ?? null),
     error: computed<unknown>(() => query.error.value),
+    refetch,
   }
 }

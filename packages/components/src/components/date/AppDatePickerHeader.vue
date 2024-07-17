@@ -2,6 +2,7 @@
 import {
   DatePickerHeader,
   DatePickerHeading,
+  DatePickerNext,
   DatePickerPrev,
 } from 'radix-vue'
 import { computed } from 'vue'
@@ -119,7 +120,7 @@ const pickerStep = computed<'month' | 'year'>(() => {
       </template>
     </DatePickerHeading>
 
-    <DatePickerPrev
+    <DatePickerNext
       :step="pickerStep"
       as="div"
       as-child
@@ -132,6 +133,6 @@ const pickerStep = computed<'month' | 'year'>(() => {
         icon="chevronRight"
         @click.stop="onNextClick"
       />
-    </DatePickerPrev>
+    </DatePickerNext>
   </DatePickerHeader>
 </template>

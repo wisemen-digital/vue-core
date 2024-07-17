@@ -40,6 +40,7 @@ const triggerClasses = computed<string>(() => tabsStyle.trigger())
       <TabsTrigger
         v-for="tab of items"
         :key="tab.label"
+        :data-testid="tab.testId"
         :value="tab.id"
         :class="triggerClasses"
       >

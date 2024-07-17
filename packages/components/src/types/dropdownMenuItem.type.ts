@@ -4,6 +4,7 @@ import type {
 } from 'vue'
 import type { RouteLocationNamedRaw } from 'vue-router'
 
+import type { DropdownMenuStyleProps } from '@/components/dropdown-menu/dropdownMenu.style'
 import type { Icon } from '@/icons/icons'
 import type { KeyboardKey } from '@/types/keyboard.type'
 import type { AcceptableValue } from '@/types/selectItem.type'
@@ -30,15 +31,23 @@ export interface DropdownMenuGroup {
   type: 'group'
 }
 
+export interface DropdownMenuRenderOption {
+  render: () => VNode
+  type: 'renderOption'
+}
+
 interface DropdownMenuBaseOption {
+  testId?: string
+  isDisabled?: boolean
+  isHidden?: boolean
   icon?: Icon
   keyboardShortcutKeys?: KeyboardKey[]
   label: string
-  render?: () => VNode
+  variant?: DropdownMenuStyleProps['variant']
 }
 
 export interface DropdownMenuSelectOption extends DropdownMenuBaseOption {
-  type: 'option'
+  type: 'selectOption'
   onSelect: () => void
 }
 
@@ -48,37 +57,31 @@ export interface DropdownMenuRouteOption extends DropdownMenuBaseOption {
   type: 'routeOption'
 }
 
-export type DropdownMenuOption = DropdownMenuRouteOption | DropdownMenuSelectOption
-
-export interface DropdownMenuCheckbox {
+export interface DropdownMenuCheckboxOption extends DropdownMenuBaseOption {
   isSelected: Ref<boolean>
-  keyboardShortcutKeys?: KeyboardKey[]
-  label: string
-  render?: () => VNode
-  type: 'checkbox'
+  type: 'checkboxOption'
   onSelect: () => void
 }
 
 export interface DropdownMenuRadioGroup {
-  items: DropdownMenuRadio[]
+  items: DropdownMenuRadioOption[]
   modelValue: Ref<AcceptableValue | null>
   type: 'radioGroup'
   updateModelValue: (value: AcceptableValue) => void
 }
 
-export interface DropdownMenuRadio {
-  keyboardShortcutKeys?: KeyboardKey[]
-  label: string
-  render?: () => VNode
-  type: 'radio'
+export interface DropdownMenuRadioOption extends DropdownMenuBaseOption {
+  type: 'radioOption'
   value: AcceptableValue
 }
 
-export type DropdownMenuItem = DropdownMenuCheckbox
+export type DropdownMenuItem =
+  | DropdownMenuCheckboxOption
   | DropdownMenuDivider
   | DropdownMenuGroup
   | DropdownMenuLabel
-  | DropdownMenuOption
   | DropdownMenuRadioGroup
+  | DropdownMenuRenderOption
   | DropdownMenuRouteOption
+  | DropdownMenuSelectOption
   | DropdownMenuSubMenu

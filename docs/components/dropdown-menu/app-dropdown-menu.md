@@ -32,7 +32,8 @@ export type DropdownMenuItem = DropdownMenuCheckbox
   | DropdownMenuDivider
   | DropdownMenuGroup
   | DropdownMenuLabel
-  | DropdownMenuOption
+  | DropdownMenuSelectOption
+  | DropdownMenuRouteOption
   | DropdownMenuRadioGroup
   | DropdownMenuSubMenu
 
@@ -58,13 +59,27 @@ export interface DropdownMenuGroup {
   type: 'group'
 }
 
-export interface DropdownMenuOption {
+export interface DropdownMenuSelectOption {
   icon?: Icon
   keyboardShortcutKeys?: KeyboardKey[]
   label: string
-  render?: () => VNode
-  type: 'option'
+  isHidden: boolean
+  isDisabled: boolean
+  variant?: DropdownMenuStyleProps['variant']
+  type: 'select-option'
   onSelect: () => void
+}
+
+export interface DropdownMenuRouteOption {
+  icon?: Icon
+  keyboardShortcutKeys?: KeyboardKey[]
+  label: string
+  isHidden: boolean
+  isDisabled: boolean
+  variant?: DropdownMenuStyleProps['variant']
+  target?: string
+  to: RouteLocationNamedRaw
+  type: 'route-option'
 }
 
 export interface DropdownMenuCheckbox {
