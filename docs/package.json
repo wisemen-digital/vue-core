@@ -21,6 +21,8 @@
     "@wisemen/vue-core": "workspace:*",
     "vue": "^3.4.28",
     "vue-i18n": "^9.13.1",
+    "formango": "2.0.35",
+    "zod": "3.23.8",
     "vue-router": "^4.3.3"
   },
   "devDependencies": {

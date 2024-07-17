@@ -25,12 +25,12 @@ const props = withDefaults(defineProps<{
    * The max date.
    * @default null
    */
-  maxDate?: CalendarDate | null
+  maxDate?: Date | null
   /**
    * The min date.
    * @default null
    */
-  minDate?: CalendarDate | null
+  minDate?: Date | null
   /**
    * Whether the input is disabled.
    * @default false
@@ -42,10 +42,15 @@ const props = withDefaults(defineProps<{
    */
   isInvalid?: boolean
   /**
+   * Whether the input is required.
+   * @default false
+   */
+  isRequired?: boolean
+  /**
    * The modelValue of the date picker.
    * @default null
    */
-  modelValue: CalendarDate | null
+  modelValue: Date | null
 }>(), {
   id: null,
   maxDate: null,
@@ -61,29 +66,25 @@ const props = withDefaults(defineProps<{
 
 const emit = defineEmits<{
   'blur': []
-  'update:modelValue': [CalendarDate | null]
+  'update:modelValue': [Date | null]
 }>()
 
 const model = computed<CalendarDate | undefined>({
   get: () => {
     const value = props.modelValue
 
-    return value === null ? undefined : value
+    if (value === null) {
+      return undefined
+    }
+
+    return dateToCalendarDate(value)
   },
   set: (value: CalendarDate | undefined) => {
     if (value === undefined) {
-      return null
+      return emit('update:modelValue', null)
     }
 
-    if (props.minDate !== null && value.compare(props.minDate) < 0) {
-      return emit('update:modelValue', props.minDate)
-    }
-
-    if (props.maxDate !== null && value.compare(props.maxDate) > 0) {
-      return emit('update:modelValue', props.maxDate)
-    }
-
-    return emit('update:modelValue', value)
+    return emit('update:modelValue', calendarDateToDate(value))
   },
 })
 
@@ -91,12 +92,20 @@ const { locale } = useI18n()
 
 const id = props.id ?? useId()
 
+function dateToCalendarDate(date: Date): CalendarDate {
+  return new CalendarDate(date.getFullYear(), date.getMonth() + 1, date.getDate())
+}
+
+function calendarDateToDate(calendarDate: CalendarDate): Date {
+  return new Date(calendarDate.year, calendarDate.month - 1, calendarDate.day)
+}
+
 const minDate = computed<CalendarDate | undefined>(() => {
   if (props.minDate === null) {
     return undefined
   }
 
-  return props.minDate
+  return dateToCalendarDate(props.minDate)
 })
 
 const maxDate = computed<CalendarDate | undefined>(() => {
@@ -104,7 +113,7 @@ const maxDate = computed<CalendarDate | undefined>(() => {
     return undefined
   }
 
-  return props.maxDate
+  return dateToCalendarDate(props.maxDate)
 })
 
 function onBlur(): void {
@@ -125,7 +134,16 @@ function onShowMonthPickerButtonClick(): void {
 }
 
 function onMonthSelect(month: number, year: number): void {
-  model.value = new CalendarDate(year ?? new Date().getFullYear(), month, model.value?.day ?? new Date().getDate())
+  if (model.value === undefined) {
+    model.value = new CalendarDate(year, month, 1)
+  }
+  else {
+    model.value.set({
+      day: 1,
+      month,
+      year,
+    })
+  }
 
   isMonthPickerVisible.value = false
 }
@@ -139,20 +157,30 @@ function onTriggerClick(): void {
   isMonthPickerVisible.value = false
 }
 
-function onYearSelect(number: number): void {
+function onYearSelect(year: number): void {
   if (model.value === undefined) {
-    model.value = new CalendarDate(number, new Date().getMonth() + 1, 1)
+    model.value = new CalendarDate(year, 1, 1)
   }
   else {
-    model.value?.set({
-      day: model.value?.day ?? new Date().getDate(),
-      month: model.value?.month ?? new Date().getMonth(),
-      year: number,
+    model.value.set({
+      day: model.value.day,
+      month: model.value.month,
+      year,
     })
   }
 
   isYearPickerVisible.value = false
   isMonthPickerVisible.value = true
+}
+
+function onModelValueUpdate(value: CalendarDate | undefined): void {
+  if (value === undefined) {
+    model.value = undefined
+
+    return
+  }
+
+  model.value = new CalendarDate(value.year, value.month, value.day)
 }
 </script>
 
@@ -162,16 +190,22 @@ function onYearSelect(number: number): void {
       :id="id"
       v-model="model"
       :fixed-weeks="true"
+      :required="props.isRequired"
       :min-value="minDate"
       :max-value="maxDate"
+      :prevent-deselect="true"
       :locale="locale"
       :disabled="props.isDisabled"
     >
       <AppDatePickerField
         :is-invalid="props.isInvalid"
+        :model-value="modelValue"
+        :min-value="props.minDate"
+        :max-value="props.maxDate"
         type="date"
-        @date-click="onTriggerClick"
+        @update:model-value="onModelValueUpdate"
         @blur="onBlur"
+        @date-click="onTriggerClick"
       />
 
       <AppDateCalendarPickerContent
