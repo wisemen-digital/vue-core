@@ -6,6 +6,7 @@ import {
   AppText,
   FormPhoneNumberInput,
 } from '@wisemen/vue-core'
+import countries from 'i18n-iso-countries'
 import { ref } from 'vue'
 
 const controls = createControls({
@@ -46,6 +47,13 @@ const controls = createControls({
     label: 'Tooltip',
     type: 'text',
     cols: 2,
+  },
+  locale: {
+    cols: 2,
+    default: 'en',
+    label: 'Locale',
+    type: 'select',
+    items: countries.getSupportedLanguages(),
   },
 })
 
