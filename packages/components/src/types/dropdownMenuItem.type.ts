@@ -37,6 +37,7 @@ export interface DropdownMenuRenderOption {
 }
 
 interface DropdownMenuBaseOption {
+  testId?: string
   isDisabled?: boolean
   isHidden?: boolean
   icon?: Icon

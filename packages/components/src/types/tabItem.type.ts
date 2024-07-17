@@ -2,6 +2,7 @@ import type { RouteLocationNamedRaw } from 'vue-router'
 
 export interface TabItem {
   id: string
+  testId?: string
   badge?: {
     class?: string
     label: string
@@ -10,6 +11,7 @@ export interface TabItem {
 }
 
 export interface RouteTabItem {
+  testId?: string
   badge?: {
     class?: string
     label: string
