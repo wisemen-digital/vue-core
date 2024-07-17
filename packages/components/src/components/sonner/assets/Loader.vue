@@ -11,8 +11,6 @@ const bars = Array(12).fill(0)
     :data-visible="visible"
     class="sonner-loading-wrapper"
   >
-    {{ 'qwww' }}
-
     <div class="sonner-spinner">
       <template
         v-for="bar in bars"
