@@ -23,11 +23,11 @@ export interface BaseIcons {
   warning: Promise<Component>
 }
 
-export interface Icons extends BaseIcons {}
+export interface Icons {}
 
-export type AllIcons = Icons
+export type AllIcons = BaseIcons & Icons
 
-export const icons: AllIcons = {
+export const baseIcons: BaseIcons = {
   alertCircle: import('@/icons/AlertCircleIcon.vue'),
   arrowDown: import('@/icons/ArrowDownIcon.vue'),
   arrowLeft: import('@/icons/ArrowLeftIcon.vue'),
@@ -49,6 +49,8 @@ export const icons: AllIcons = {
   search: import('@/icons/SearchIcon.vue'),
   warning: import('@/icons/WarningIcon.vue'),
 }
+
+export const icons: AllIcons = { ...baseIcons } as AllIcons
 
 export function extendIcons(customIcons: Icons): void {
   Object.assign(icons, customIcons)
