@@ -10,8 +10,12 @@ import { useI18n } from 'vue-i18n'
 const controls = createControls({
   id: {
     default: 'input-id',
-    cols: 2,
     label: 'Id',
+    type: 'text',
+  },
+  label: {
+    default: 'Date',
+    label: 'Label',
     type: 'text',
   },
   minDate: {
@@ -70,7 +74,6 @@ const exampleError: FormFieldErrors = {
           v-model="model"
           v-bind="values"
           :errors="exampleError"
-          label="Date"
         />
 
         <AppText variant="caption">
