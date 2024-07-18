@@ -23,6 +23,7 @@ const DEFAULT_PAGINATION_OPTIONS = {
     page: 0,
     perPage: 20,
   },
+  staticFilters: {} as PaginationFilters<unknown>,
 } as const
 
 export function usePagination<TFilters>({
@@ -49,6 +50,10 @@ export function usePagination<TFilters>({
         ...userOptions.pagination,
       },
       sort: currentOptions.sort ?? userOptions.sort ?? undefined,
+      staticFilters: {
+        ...currentOptions.staticFilters,
+        ...userOptions.staticFilters,
+      },
     }
   }
 
@@ -72,7 +77,7 @@ export function usePagination<TFilters>({
 
     if (defaultPaginationOptions !== null) {
       return mergePaginationOptions(
-        toValue(defaultPaginationOptions),
+        toValue(defaultPaginationOptions as PaginationOptions<TFilters>),
         DEFAULT_PAGINATION_OPTIONS as PaginationOptions<TFilters>,
       )
     }
