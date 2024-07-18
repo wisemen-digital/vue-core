@@ -1,9 +1,10 @@
 <script setup lang="ts">
+import dayjs from 'dayjs'
 import {
   DatePickerField,
-  DatePickerInput,
   DatePickerTrigger,
 } from 'radix-vue'
+import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import AppIconButton from '@/components/button/AppIconButton.vue'
@@ -12,12 +13,16 @@ import { useComponentAttrs } from '@/composables/componentAttrs.composable'
 const props = defineProps<{
   isDisabled?: boolean
   isInvalid?: boolean
-  type: 'date' | 'month' | 'year'
+  format: string
+  maxValue: Date | null
+  minValue: Date | null
+  modelValue: Date | null
 }>()
 
 const emit = defineEmits<{
-  blur: []
-  dateClick: []
+  'blur': []
+  'dateClick': []
+  'update:modelValue': [Date | null]
 }>()
 
 const { locale } = useI18n()
@@ -32,24 +37,52 @@ function onTriggerClick(): void {
   emit('dateClick')
 }
 
-function formatMonth(month: null | string | undefined): string {
-  if (month === null || month === undefined || month === 'mm') {
-    return 'mm'
-  }
-
-  return new Date(`2021-${month}-01`).toLocaleString(locale.value, {
-    month: 'long',
-  })
-}
+const dateValue = ref<string>('')
 
 function onBlur(): void {
+  if (!dayjs(dateValue.value).isValid()) {
+    emit('update:modelValue', null)
+
+    return
+  }
+
+  const date = dayjs(dateValue.value, undefined, locale.value)
+
   emit('blur')
+
+  if (props.minValue !== null && date.isBefore(props.minValue)) {
+    emit('update:modelValue', props.minValue)
+
+    return
+  }
+
+  if (props.maxValue !== null && date.isAfter(props.maxValue)) {
+    emit('update:modelValue', props.maxValue)
+
+    return
+  }
+
+  emit('update:modelValue', date.toDate())
 }
+
+const formattedDate = computed<string>(() => {
+  if (props.modelValue === null) {
+    return dateValue.value
+  }
+
+  return dayjs(props.modelValue.toString()).format(props.format)
+})
+
+const dateModel = computed<string>({
+  get: () => formattedDate.value,
+  set: (value: string) => {
+    dateValue.value = value
+  },
+})
 </script>
 
 <template>
   <DatePickerField
-    v-slot="{ segments }"
     :class="[
       classAttr,
       {
@@ -60,40 +93,14 @@ function onBlur(): void {
     ]"
     class="relative flex h-10 w-full items-center rounded-input border border-solid bg-input pl-3 pr-1 text-sm text-input-foreground outline-none ring-offset-background duration-200 [&:has(:focus-visible)]:ring-2"
   >
-    <div class="flex items-center">
-      <template
-        v-for="item in segments"
-        :key="item.part"
-      >
-        <div v-if="props.type === 'month'">
-          <DatePickerInput
-            v-if="item.part === 'month'"
-            :part="item.part"
-            class="rounded-md p-0.5 focus:shadow-[0_0_0_2px] focus:shadow-primary focus:outline-none data-[placeholder]:text-input-placeholder"
-            @blur="onBlur"
-          >
-            {{ formatMonth(item.value) }}
-          </DatePickerInput>
-        </div>
-        <div v-else>
-          <DatePickerInput
-            v-if="item.part === 'literal'"
-            :part="item.part"
-            @blur="onBlur"
-          >
-            {{ item.value }}
-          </DatePickerInput>
-          <DatePickerInput
-            v-else
-            :part="item.part"
-            class="rounded-md p-0.5 focus:shadow-[0_0_0_2px] focus:shadow-primary focus:outline-none data-[placeholder]:text-input-placeholder"
-            @blur="onBlur"
-          >
-            {{ item.value }}
-          </DatePickerInput>
-        </div>
-      </template>
-    </div>
+    <input
+      v-model="dateModel"
+      :placeholder="props.format.toLowerCase()"
+      :disabled="props.isDisabled"
+      class="w-full bg-input outline-none"
+      type="text"
+      @blur="onBlur"
+    >
 
     <DatePickerTrigger
       as-child

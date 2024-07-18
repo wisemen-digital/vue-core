@@ -39,6 +39,7 @@ const props = defineProps<{
   <AppSelectOption
     v-else-if="props.item.type === 'option'"
     :item="props.item"
+    :data-testid="props.item.testId"
     :display-fn="displayFn"
   >
     <slot :item="props.item" />

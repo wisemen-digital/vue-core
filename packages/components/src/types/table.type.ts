@@ -13,6 +13,7 @@ export interface TableEmptyTextProp {
 
 interface BaseTableColumn {
   id: string
+  testId?: string
   isSortable?: boolean
   label: string
   maxWidth?: string

@@ -10,26 +10,17 @@ interface NamedToast {
 }
 
 interface UseToastReturnType {
-  custom: (toast: Toast) => void
+  custom: (toast: {
+    duration?: number
+    h: () => VNode
+  }) => void
   error: (toast: NamedToast) => void
-  h: (h: () => VNode) => void
+  show: (toast: Toast) => void
   success: (toast: NamedToast) => void
 }
 
 export function useToast(): UseToastReturnType {
-  const TOAST_DURATION = 10000
-
-  function showToast(toast: Toast): void {
-    vueSonnerToast.custom(h(AppToast, {
-      title: toast.title,
-      action: toast.action,
-      description: toast.description ?? null,
-      icon: toast.icon,
-      type: toast.type,
-    }), {
-      duration: toast.duration ?? TOAST_DURATION,
-    })
-  }
+  const DEFAULT_TOAST_DURATION = 10000
 
   function showErrorToast(toast: NamedToast): void {
     vueSonnerToast.custom(h(AppToast, {
@@ -38,7 +29,7 @@ export function useToast(): UseToastReturnType {
       icon: 'alertCircle',
       type: 'error',
     }), {
-      duration: TOAST_DURATION,
+      duration: DEFAULT_TOAST_DURATION,
     })
   }
 
@@ -49,20 +40,35 @@ export function useToast(): UseToastReturnType {
       icon: 'checkmarkCircle',
       type: 'success',
     }), {
-      duration: TOAST_DURATION,
+      duration: DEFAULT_TOAST_DURATION,
     })
   }
 
-  function customToast(h: () => VNode): void {
-    vueSonnerToast.custom(h(), {
-      duration: TOAST_DURATION,
+  function showToast(toast: Toast): void {
+    vueSonnerToast.custom(h(AppToast, {
+      title: toast.title,
+      action: toast.action,
+      description: toast.description ?? null,
+      icon: toast.icon,
+      type: toast.type,
+    }), {
+      duration: toast.duration ?? DEFAULT_TOAST_DURATION,
+    })
+  }
+
+  function customToast(toast: {
+    duration?: number
+    h: () => VNode
+  }): void {
+    vueSonnerToast.custom(toast.h(), {
+      duration: toast.duration,
     })
   }
 
   return {
-    custom: showToast,
+    custom: customToast,
     error: showErrorToast,
-    h: customToast,
+    show: showToast,
     success: showSuccessToast,
   }
 }

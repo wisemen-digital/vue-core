@@ -85,8 +85,8 @@ export { default as AppPopover } from './components/popover/AppPopover.vue'
 // Date
 export { default as AppDatePicker } from './components/date/AppDatePicker.vue'
 export { default as FormDatePicker } from './components/date/FormDatePicker.vue'
-export { default as AppMonthPicker } from './components/date/month/AppMonthPicker.vue'
 export { default as AppDateRangePicker } from './components/date-range/AppDateRangePicker.vue'
+export { default as FormDateRangePicker } from './components/date-range/FormDateRangePicker.vue'
 
 // Radio group
 export { default as FormRadioGroup } from './components/radio-group/FormRadioGroup.vue'
@@ -163,11 +163,13 @@ export type {
   SortDirection,
   UsePaginationReturnType,
 } from './types/pagination.type'
+export type { FilterValues } from './types/pagination.type'
 export type { RouteLocationTyped, Routes } from './types/routes.type'
 export type { AcceptableValue } from './types/selectItem.type'
 export type { SelectItem } from './types/selectItem.type'
 export type { RouteTabItem, TabItem } from './types/tabItem.type'
 export type { TableColumn } from './types/table.type'
+export type { TableEmptyTextProp } from './types/table.type'
 
 // Other
 export { extendIcons } from './icons/icons'

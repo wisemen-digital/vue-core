@@ -53,6 +53,7 @@ watch(
       :errors="null"
       :is-touched="false"
       :items="props.filter.options"
+      :has-clear-button="true"
       :label="props.filter.label"
       :placeholder="props.filter.placeholder"
     />

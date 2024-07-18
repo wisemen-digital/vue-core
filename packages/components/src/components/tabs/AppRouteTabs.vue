@@ -5,14 +5,10 @@ import {
   TabsRoot,
   TabsTrigger,
 } from 'radix-vue'
-import {
-  computed,
-  ref,
-  watch,
-} from 'vue'
-import type { RouteRecordName } from 'vue-router'
+import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
+import AppBadge from '@/components/badge/AppBadge.vue'
 import { useTabsStyle } from '@/components/tabs/tabs.style'
 import AppText from '@/components/text/AppText.vue'
 import type { RouteTabItem } from '@/types/tabItem.type'
@@ -23,31 +19,18 @@ const props = defineProps<{
 
 const route = useRoute()
 const router = useRouter()
-const activeRouteName = ref<RouteRecordName>(route.name as RouteRecordName)
 
-const computedModel = computed<string>({
-  get: () => activeRouteName.value as string,
-  set: (value) => {
-    activeRouteName.value = value as RouteRecordName
+const activeRouteName = computed<string>({
+  get: () => route.name as string,
+  set: (value: string) => {
+    const tab = props.tabs.find((tab) => tab.to.name === value) ?? null
+
+    if (tab === null) {
+      throw new Error(`Tab with route name "${String(value)}" not found`)
+    }
+
+    void router.push(tab.to)
   },
-})
-
-watch(() => route.name, (routeName) => {
-  if (routeName !== null && routeName !== undefined) {
-    activeRouteName.value = routeName
-  }
-}, {
-  immediate: true,
-})
-
-watch(activeRouteName, (activeRouteName) => {
-  const tab = props.tabs.find((tab) => tab.to.name === activeRouteName) ?? null
-
-  if (tab === null) {
-    throw new Error(`Tab with route name "${String(activeRouteName)}" not found`)
-  }
-
-  void router.push(tab.to)
 })
 
 function isTabActive(tab: RouteTabItem): boolean {
@@ -65,7 +48,7 @@ const routeTriggerTab = computed<string>(() => tabsStyle.routeTriggerTab())
 </script>
 
 <template>
-  <TabsRoot v-model="computedModel">
+  <TabsRoot v-model="activeRouteName">
     <TabsList :class="listClasses">
       <TabsIndicator :class="indicatorClasses" />
 
@@ -85,6 +68,12 @@ const routeTriggerTab = computed<string>(() => tabsStyle.routeTriggerTab())
           >
             {{ tab.label }}
           </AppText>
+          <AppBadge
+            v-if="tab.badge"
+            :class="tab.badge.class"
+          >
+            {{ tab.badge.label }}
+          </AppBadge>
         </div>
       </TabsTrigger>
     </TabsList>
