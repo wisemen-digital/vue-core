@@ -38,7 +38,6 @@
     ".vitepress/config.mts",
     ".vitepress/theme/index.ts",
     "tailwind.config.ts",
-
     "../components/env.d.ts",
     "../components/src/**/*",
     "../components/src/**/*.ts",
