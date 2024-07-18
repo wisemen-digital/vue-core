@@ -4,6 +4,22 @@ import { createControls } from '@docs/playground/utils/createContols'
 import { FormLabel } from '@wisemen/vue-core'
 
 const controls = createControls({
+  label: {
+    default: 'Name',
+    label: 'Label',
+    type: 'text',
+    cols: 2,
+  },
+  tooltip: {
+    default: 'This is a tooltip',
+    label: 'Tooltip',
+    type: 'text',
+  },
+  for: {
+    default: 'input',
+    label: 'For',
+    type: 'text',
+  },
   isDisabled: {
     default: false,
     label: 'Is disabled',
@@ -18,21 +34,6 @@ const controls = createControls({
     default: false,
     label: 'Is required',
     type: 'switch',
-  },
-  for: {
-    default: 'input',
-    label: 'For',
-    type: 'text',
-  },
-  label: {
-    default: 'Name',
-    label: 'Label',
-    type: 'text',
-  },
-  tooltip: {
-    default: 'This is a tooltip',
-    label: 'Tooltip',
-    type: 'text',
   },
 })
 </script>
