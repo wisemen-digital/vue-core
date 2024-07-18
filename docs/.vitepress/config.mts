@@ -211,6 +211,16 @@ const docs = [
     collapsed: true,
     items: [
       {
+        link: '/components/loader/app-loader',
+        text: 'AppLoader',
+      },
+    ],
+    text: 'Loader',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
         link: '/components/popover/app-popover',
         text: 'AppPopover',
       },
