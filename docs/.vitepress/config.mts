@@ -1,6 +1,6 @@
-import {resolve} from 'node:path'
+import { resolve } from 'node:path'
 
-import {defineConfig} from 'vitepress'
+import { defineConfig } from 'vitepress'
 
 const guide = [
     {
@@ -348,8 +348,8 @@ export default defineConfig({
     themeConfig: {
         // https://vitepress.dev/reference/default-theme-config
         nav: [
-            {link: '/', text: 'Home'},
-            {link: '/markdown-examples', text: 'Examples'},
+            { link: '/', text: 'Home' },
+            { link: '/markdown-examples', text: 'Examples' },
         ],
 
         search: {
