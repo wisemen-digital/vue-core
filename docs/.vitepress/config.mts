@@ -381,7 +381,7 @@ export default defineConfig({
       { link: '/', text: 'Home' },
       { link: '/markdown-examples', text: 'Examples' },
     ],
-    
+
     search: {
       provider: 'local',
     },
