@@ -5,7 +5,6 @@ import { FormSwitch } from '@wisemen/vue-core'
 import { ref } from 'vue'
 
 const controls = createControls({
-
   isDisabled: {
     default: false,
     label: 'Disabled',
