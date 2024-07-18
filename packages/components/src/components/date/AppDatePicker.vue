@@ -47,6 +47,11 @@ const props = withDefaults(defineProps<{
    */
   isRequired?: boolean
   /**
+   * The format of the date.
+   * @default 'DD/MM/YYYY'
+   */
+  format?: string
+  /**
    * The modelValue of the date picker.
    * @default null
    */
@@ -57,11 +62,7 @@ const props = withDefaults(defineProps<{
   minDate: null,
   isDisabled: false,
   isInvalid: false,
-  isLoading: false,
-  iconLeft: undefined,
-  iconRight: undefined,
-  placeholder: null,
-  type: 'text',
+  format: 'DD/MM/YYYY',
 })
 
 const emit = defineEmits<{
@@ -91,14 +92,6 @@ const model = computed<CalendarDate | undefined>({
 const { locale } = useI18n()
 
 const id = props.id ?? useId()
-
-function dateToCalendarDate(date: Date): CalendarDate {
-  return new CalendarDate(date.getFullYear(), date.getMonth() + 1, date.getDate())
-}
-
-function calendarDateToDate(calendarDate: CalendarDate): Date {
-  return new Date(calendarDate.year, calendarDate.month - 1, calendarDate.day)
-}
 
 const minDate = computed<CalendarDate | undefined>(() => {
   if (props.minDate === null) {
@@ -173,14 +166,22 @@ function onYearSelect(year: number): void {
   isMonthPickerVisible.value = true
 }
 
-function onModelValueUpdate(value: CalendarDate | undefined): void {
-  if (value === undefined) {
+function onModelValueUpdate(value: Date | null): void {
+  if (value === null) {
     model.value = undefined
 
     return
   }
 
-  model.value = new CalendarDate(value.year, value.month, value.day)
+  model.value = dateToCalendarDate(value)
+}
+
+function dateToCalendarDate(date: Date): CalendarDate {
+  return new CalendarDate(date.getFullYear(), date.getMonth() + 1, date.getDate())
+}
+
+function calendarDateToDate(calendarDate: CalendarDate): Date {
+  return new Date(calendarDate.year, calendarDate.month - 1, calendarDate.day)
 }
 </script>
 
@@ -200,9 +201,10 @@ function onModelValueUpdate(value: CalendarDate | undefined): void {
       <AppDatePickerField
         :is-invalid="props.isInvalid"
         :model-value="modelValue"
+        :is-disabled="props.isDisabled"
+        :format="props.format"
         :min-value="props.minDate"
         :max-value="props.maxDate"
-        type="date"
         @update:model-value="onModelValueUpdate"
         @blur="onBlur"
         @date-click="onTriggerClick"
@@ -227,8 +229,8 @@ function onModelValueUpdate(value: CalendarDate | undefined): void {
   </div>
 </template>
 
-<style>
+<style lang="postcss" scoped>
 [data-radix-popper-content-wrapper] {
-  @apply !z-popover;
+  @apply z-popover !important;
 }
 </style>

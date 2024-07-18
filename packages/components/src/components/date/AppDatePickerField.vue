@@ -13,10 +13,10 @@ import { useComponentAttrs } from '@/composables/componentAttrs.composable'
 const props = defineProps<{
   isDisabled?: boolean
   isInvalid?: boolean
-  maxValue?: Date | null
-  minValue?: Date | null
-  modelValue: Date | undefined
-  type: 'date' | 'month' | 'year'
+  format: string
+  maxValue: Date | null
+  minValue: Date | null
+  modelValue: Date | null
 }>()
 
 const emit = defineEmits<{
@@ -50,13 +50,13 @@ function onBlur(): void {
 
   emit('blur')
 
-  if (props.minValue !== undefined && date.isBefore(props.minValue)) {
+  if (props.minValue !== null && date.isBefore(props.minValue)) {
     emit('update:modelValue', props.minValue)
 
     return
   }
 
-  if (props.maxValue !== undefined && date.isAfter(props.maxValue)) {
+  if (props.maxValue !== null && date.isAfter(props.maxValue)) {
     emit('update:modelValue', props.maxValue)
 
     return
@@ -66,16 +66,12 @@ function onBlur(): void {
 }
 
 const formattedDate = computed<string>(() => {
-  if (props.modelValue === undefined) {
+  if (props.modelValue === null) {
     return dateValue.value
   }
 
-  return dayjs(props.modelValue.toString()).format('DD/MM/YYYY')
+  return dayjs(props.modelValue.toString()).format(props.format)
 })
-
-const dateMask = '##/##/####'
-
-const placeholder = 'dd/mm/yyyy'
 
 const dateModel = computed<string>({
   get: () => formattedDate.value,
@@ -99,8 +95,9 @@ const dateModel = computed<string>({
   >
     <input
       v-model="dateModel"
-      :placeholder="placeholder"
-      class="outline-none"
+      :placeholder="props.format.toLowerCase()"
+      :disabled="props.isDisabled"
+      class="w-full bg-input outline-none"
       type="text"
       @blur="onBlur"
     >

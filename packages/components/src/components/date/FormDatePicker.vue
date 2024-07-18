@@ -33,6 +33,11 @@ const props = withDefaults(
      */
     errors: FormFieldErrors
     /**
+     * The format of the date.
+     * @default 'DD/MM/YYYY'
+     */
+    format?: string
+    /**
      * The label of the input.
      */
     label: string
@@ -71,6 +76,7 @@ const { classAttr, otherAttrs } = useComponentAttrs()
       v-model="model"
       v-bind="otherAttrs"
       :min-date="props.minDate"
+      :format="props.format"
       :is-required="props.isRequired"
       :max-date="props.maxDate"
       :is-invalid="isInvalid"

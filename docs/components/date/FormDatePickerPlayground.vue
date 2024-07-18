@@ -2,13 +2,10 @@
 <script setup lang="ts">
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols'
-import type { CalendarDate } from '@internationalized/date'
 import type { FormFieldErrors } from '@wisemen/vue-core'
 import { AppText, FormDatePicker } from '@wisemen/vue-core'
-import { useForm } from 'formango'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { z } from 'zod'
 
 const controls = createControls({
   id: {
@@ -50,20 +47,7 @@ const controls = createControls({
   },
 })
 
-const model = ref<CalendarDate | null>(null)
-
-const formSchema = z.object({
-  date: z.date(),
-})
-
-const { form, onSubmitForm } = useForm({
-  initialState() {
-    return {
-      date: null,
-    }
-  },
-  schema: formSchema,
-})
+const model = ref<Date | null>(null)
 
 const { locale } = useI18n()
 
@@ -74,41 +58,23 @@ const exampleError: FormFieldErrors = {
     'The name has an error',
   ],
 }
-
-const dateField = form.register('date')
-
-onSubmitForm((value) => {
-  console.log({ value })
-})
 </script>
 
 <template>
   <ComponentPlayground
     :controls="controls"
   >
-    <template #default>
+    <template #default="{ values }">
       <div>
         <FormDatePicker
-          v-bind="dateField"
-          :is-required="true"
-          :min-date="new Date(2024, 0, 1)"
-          :max-date="new Date(2030, 0, 1)"
+          v-model="model"
+          v-bind="values"
+          :errors="exampleError"
           label="Date"
         />
 
-        <button @click="form.submit()">
-          submit
-        </button>
-
-        <br>
-        {{ form.errors }}
-        <br>
-        {{ form.state.date }}
-        <br>
-        {{ form.isValid }}
-
         <AppText variant="caption">
-          {{ `Model value: ${model ? model.toString() : 'null'}` }}
+          {{ `Model value: ${model ? model.toISOString() : null}` }}
         </AppText>
       </div>
     </template>

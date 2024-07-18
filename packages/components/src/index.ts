@@ -85,7 +85,6 @@ export { default as AppPopover } from './components/popover/AppPopover.vue'
 // Date
 export { default as AppDatePicker } from './components/date/AppDatePicker.vue'
 export { default as FormDatePicker } from './components/date/FormDatePicker.vue'
-export { default as AppMonthPicker } from './components/date/month/AppMonthPicker.vue'
 
 // Radio group
 export { default as FormRadioGroup } from './components/radio-group/FormRadioGroup.vue'

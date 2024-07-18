@@ -29,9 +29,6 @@ importers:
       '@wisemen/vue-core':
         specifier: workspace:*
         version: link:../packages/components
-      formango:
-        specifier: 2.0.35
-        version: 2.0.35(vue@3.4.29)(zod@3.23.8)
       i18n-iso-countries:
         specifier: ^7.11.2
         version: 7.11.2
@@ -44,9 +41,6 @@ importers:
       vue-router:
         specifier: ^4.3.3
         version: 4.3.3(vue@3.4.29)
-      zod:
-        specifier: 3.23.8
-        version: 3.23.8
     devDependencies:
       '@types/dom-view-transitions':
         specifier: ^1.0.4
@@ -4908,15 +4902,6 @@ packages:
       wrap-ansi: 7.0.0
     dev: true
 
-  /clone-deep@4.0.1:
-    resolution: {integrity: sha512-neHB9xuzh/wk0dIHweyAXv2aPGZIVk3pLMe+/RNzINf17fe0OG96QroktYAUm7SM1PBnzTabaLboqqxDyMU+SQ==}
-    engines: {node: '>=6'}
-    dependencies:
-      is-plain-object: 2.0.4
-      kind-of: 6.0.3
-      shallow-clone: 3.0.1
-    dev: false
-
   /clone@1.0.4:
     resolution: {integrity: sha512-JQHZ2QMW6l3aH/j6xCqQThY/9OH4D/9ls34cgkUBiEeocRTU04tHfKPBsUK1PqZCUQM7GiA0IIXJSuXHI64Kbg==}
     engines: {node: '>=0.8'}
@@ -6343,18 +6328,6 @@ packages:
       mime-types: 2.1.35
     dev: true
 
-  /formango@2.0.35(vue@3.4.29)(zod@3.23.8):
-    resolution: {integrity: sha512-EP7mPLztMGfesBPM2HEup2OAvn855EvduGeNK/2ED23A5FgH25xObtbQ9RdNigmt5795bvaZknBIzXDVKFVepQ==}
-    peerDependencies:
-      vue: ^3.2.47
-      zod: ^3.21.4
-    dependencies:
-      '@vue/devtools-api': 6.6.1
-      clone-deep: 4.0.1
-      vue: 3.4.29(typescript@5.4.5)
-      zod: 3.23.8
-    dev: false
-
   /format-io@2.0.0:
     resolution: {integrity: sha512-iQz8w2qr4f+doWBV6LsfScHbu1gXhccByjbmA1wjBTaKRhweH2baJL96UGR4C7Fjpr8zSkK7EXiLmbzZWTyQIA==}
     engines: {node: '>=8'}
@@ -6962,13 +6935,6 @@ packages:
     resolution: {integrity: sha512-+Pgi+vMuUNkJyExiMBt5IlFoMyKnr5zhJ4Uspz58WOhBF5QoIZkFyNHIbBAtHwzVAgk5RtndVNsDRN61/mmDqg==}
     engines: {node: '>=12'}
 
-  /is-plain-object@2.0.4:
-    resolution: {integrity: sha512-h5PpgXkWitc38BBMYawTYMWJHFZJVnBquFE57xFpjB8pJFiF6gZ+bU+WyI/yqXiFR5mdLsgYNaPe8uao6Uv9Og==}
-    engines: {node: '>=0.10.0'}
-    dependencies:
-      isobject: 3.0.1
-    dev: false
-
   /is-plain-object@5.0.0:
     resolution: {integrity: sha512-VRSzKkbMm5jMDoKLbltAkFQ5Qr7VDiTFGXxYFXXowVj387GeGNOCsOH6Msy00SGZ3Fp84b1Naa1psqgcCIEP5Q==}
     engines: {node: '>=0.10.0'}
@@ -7099,11 +7065,6 @@ packages:
 
   /isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
-
-  /isobject@3.0.1:
-    resolution: {integrity: sha512-WhB9zCku7EGTj/HQQRz5aUQEUeoQZH2bWcltRErOpymJ4boYE6wL9Tbr23krRPSZ+C5zqNSrSw+Cc7sZZ4b7vg==}
-    engines: {node: '>=0.10.0'}
-    dev: false
 
   /iterator.prototype@1.1.2:
     resolution: {integrity: sha512-DR33HMMr8EzwuRL8Y9D3u2BMj8+RqSE850jfGu59kS7tbmPLzGkZmVSfyCFSDxuZiEY6Rzt3T2NA/qU+NwVj1w==}
@@ -7333,6 +7294,7 @@ packages:
   /kind-of@6.0.3:
     resolution: {integrity: sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==}
     engines: {node: '>=0.10.0'}
+    dev: true
 
   /kleur@3.0.3:
     resolution: {integrity: sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w==}
@@ -9643,13 +9605,6 @@ packages:
       functions-have-names: 1.2.3
       has-property-descriptors: 1.0.2
     dev: true
-
-  /shallow-clone@3.0.1:
-    resolution: {integrity: sha512-/6KqX+GVUdqPuPPd2LxDDxzX6CAbjJehAAOKlNpqqUpAqPM6HeL8f+o3a+JsyGjn2lv0WY8UsTgUJjU9Ok55NA==}
-    engines: {node: '>=8'}
-    dependencies:
-      kind-of: 6.0.3
-    dev: false
 
   /shebang-command@1.2.0:
     resolution: {integrity: sha512-EV3L1+UQWGor21OmnvojK36mhg+TyIKDh3iFBKBohr5xeXIhNBcx8oWdgkTEEQ+BEFFYdLRuqMfd5L84N1V5Vg==}

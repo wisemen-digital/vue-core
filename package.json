@@ -15,6 +15,7 @@
     "pub:release": "cd packages/components && pnpm pub:release --no-git-checks",
     "pub:release-query": "cd packages/query && pnpm pub:release --no-git-checks",
     "lint": "pnpm run -r lint",
+    "lint:fix": "pnpm run -r lint --fix",
     "dev": "turbo run dev",
     "type-check": "pnpm run -r type-check",
     "clean": "pnpm run -r lint && pnpm run -r type-check && pnpm run -r test"

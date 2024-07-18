@@ -34,7 +34,7 @@ const labelClasses = computed<string>(() => formLabelStyle.label({
   isInvalid: props.isInvalid,
 }))
 
-const hasTooltip = computed<boolean>(() => props.tooltip !== undefined)
+const hasTooltip = computed<boolean>(() => props.tooltip !== undefined && props.tooltip !== '')
 </script>
 
 <template>
