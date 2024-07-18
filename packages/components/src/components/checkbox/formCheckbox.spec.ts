@@ -59,4 +59,13 @@ describe('checkboxComponent', () => {
       false,
     ])
   })
+
+  it('emits blur event', async () => {
+    const wrapper = mount(FormCheckbox, {
+      props: { modelValue: false },
+    })
+
+    await wrapper.find('button').trigger('blur')
+    expect(wrapper.emitted('blur')).toBeTruthy()
+  })
 })
