@@ -23,9 +23,9 @@ export interface BaseIcons {
   warning: Promise<Component>
 }
 
-export interface Icons {}
+export interface Icons extends BaseIcons {}
 
-export type AllIcons = BaseIcons & Icons
+export type AllIcons = Icons
 
 export const baseIcons: BaseIcons = {
   alertCircle: import('@/icons/AlertCircleIcon.vue'),
