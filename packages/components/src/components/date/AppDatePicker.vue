@@ -177,6 +177,7 @@ function onYearSelect(number: number): void {
       <AppDateCalendarPickerContent
         v-if="!isMonthPickerVisible && !isYearPickerVisible"
         @month-click="onShowMonthPickerButtonClick"
+        @blur="onBlur"
         @year-click="onShowYearPickerButtonClick"
       />
       <AppDateMonthPickerContent

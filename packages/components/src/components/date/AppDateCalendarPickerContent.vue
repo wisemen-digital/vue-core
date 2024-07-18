@@ -14,6 +14,7 @@ import AppDatePickerContent from '@/components/date/AppDatePickerContent.vue'
 import AppDatePickerHeader from '@/components/date/AppDatePickerHeader.vue'
 
 const emit = defineEmits<{
+  blur: []
   monthClick: []
   yearClick: []
 }>()
@@ -25,12 +26,17 @@ function onMonthButtonClick(): void {
 function onYearButtonClick(): void {
   emit('yearClick')
 }
+
+function onBlur(): void {
+  emit('blur')
+}
 </script>
 
 <template>
-  <AppDatePickerContent>
+  <AppDatePickerContent
+    @blur="onBlur"
+  >
     <DatePickerCalendar
-
       v-slot="{ weekDays, grid }"
       class="p-4"
     >
