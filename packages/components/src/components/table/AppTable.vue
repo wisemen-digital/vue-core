@@ -139,7 +139,10 @@ const activeFilterCount = computed<number>(() => {
 
 function onFilterChange(filterChangeEvent: FilterChangeEvent<TFilters>): void {
   props.pagination.handleFilterChange(filterChangeEvent)
-  props.pagination.handlePageChange({ page: 0, perPage: props.pagination.paginationOptions.value.pagination.perPage })
+  props.pagination.handlePageChange({
+    page: 0,
+    perPage: props.pagination.paginationOptions.value.pagination.perPage,
+  })
 }
 
 onMounted(() => {
@@ -218,7 +221,6 @@ const tableClasses = computed<string>(() => tableStyle.table())
           :should-pin-last-column="props.shouldPinLastColumn"
           :has-reached-horizontal-scroll-end="hasReachedHorizontalScrollEnd"
           :is-scrolled-to-right="isScrolledToRight"
-          @clear-filters="onClearFilters"
         />
       </div>
 

@@ -40,6 +40,7 @@ export interface PaginationOptions<TFilters> {
     perPage: number
   }
   sort?: PaginationSort | undefined
+  staticFilters?: PaginationFilters<TFilters>
 }
 
 interface PaginationFilterBase<TFilters> {
@@ -109,7 +110,7 @@ export interface UsePaginationOptions<TFilters> {
    * Default pagination options. If not provided, the default options will be used.
    * @default null
    */
-  defaultPaginationOptions?: MaybeRefOrGetter<PaginationOptions<TFilters>> | null
+  defaultPaginationOptions?: MaybeRefOrGetter<DeepPartial<PaginationOptions<TFilters>>> | null
   /**
    * If true, the route query will be disabled.
    * @default false
@@ -134,4 +135,8 @@ export interface UseLocalPaginationOptions<TSchema, TFilters> extends UsePaginat
 export interface UseLocalPaginationReturnType<TSchema, TFilters> {
   data: ComputedRef<PaginatedData<TSchema>>
   pagination: UsePaginationReturnType<TFilters>
+}
+
+export type DeepPartial<T> = {
+  [P in keyof T]?: DeepPartial<T[P]>
 }
