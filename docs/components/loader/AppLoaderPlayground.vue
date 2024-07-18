@@ -3,7 +3,7 @@ import ComponentPlayground from '@docs/playground/components/ComponentPlayground
 import { createControls } from '@docs/playground/utils/createContols'
 import { AppLoader } from '@wisemen/vue-core'
 
-const controls = createControls({})
+const controls = createControls(null)
 </script>
 
 <template>
@@ -11,7 +11,9 @@ const controls = createControls({})
     :controls="controls"
   >
     <template #default="{ values }">
-      <AppLoader v-bind="values" />
+      <div class="size-20">
+        <AppLoader v-bind="values" />
+      </div>
     </template>
   </ComponentPlayground>
 </template>
