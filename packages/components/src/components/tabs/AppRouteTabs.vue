@@ -8,6 +8,7 @@ import {
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
+import AppBadge from '@/components/badge/AppBadge.vue'
 import { useTabsStyle } from '@/components/tabs/tabs.style'
 import AppText from '@/components/text/AppText.vue'
 import type { RouteTabItem } from '@/types/tabItem.type'
@@ -67,6 +68,12 @@ const routeTriggerTab = computed<string>(() => tabsStyle.routeTriggerTab())
           >
             {{ tab.label }}
           </AppText>
+          <AppBadge
+            v-if="tab.badge"
+            :class="tab.badge.class"
+          >
+            {{ tab.badge.label }}
+          </AppBadge>
         </div>
       </TabsTrigger>
     </TabsList>

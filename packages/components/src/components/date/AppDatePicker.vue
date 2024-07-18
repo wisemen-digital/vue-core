@@ -211,6 +211,7 @@ function onModelValueUpdate(value: CalendarDate | undefined): void {
       <AppDateCalendarPickerContent
         v-if="!isMonthPickerVisible && !isYearPickerVisible"
         @month-click="onShowMonthPickerButtonClick"
+        @blur="onBlur"
         @year-click="onShowYearPickerButtonClick"
       />
       <AppDateMonthPickerContent

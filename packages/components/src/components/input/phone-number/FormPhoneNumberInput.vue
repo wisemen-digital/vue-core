@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import i18nCountries from 'i18n-iso-countries'
 import parsePhoneNumber, {
   AsYouType,
   type CountryCode,
@@ -15,6 +16,7 @@ import {
   ref,
   watch,
 } from 'vue'
+import type { Locale } from 'vue-i18n'
 
 import FormElement from '@/components/form-element/FormElement.vue'
 import AppInput from '@/components/input/AppInput.vue'
@@ -56,6 +58,12 @@ const props = withDefaults(
      */
     label: string
     /**
+     * The locale of the input.
+     * For registering locales, see: https://www.npmjs.com/package/i18n-iso-countries
+     * @default 'en'
+     */
+    locale?: Locale | null
+    /**
      * The placeholder of the input.
      * @default null
      */
@@ -71,6 +79,7 @@ const props = withDefaults(
     isRequired: false,
     isTouched: false,
     defaultCountryCode: 'BE',
+    locale: null,
     placeholder: null,
   },
 )
@@ -186,6 +195,24 @@ watch(model, (value) => {
 }, {
   immediate: true,
 })
+
+function getCountryName(countryCode: CountryCode): null | string {
+  if (props.locale === null) {
+    return null
+  }
+
+  return i18nCountries.getName(countryCode, props.locale, { select: 'official' }) ?? null
+}
+
+const countryName = computed<null | string>(() => {
+  const countryCode = asYouType.value.getCountry() ?? null
+
+  if (countryCode === null) {
+    return null
+  }
+
+  return getCountryName(countryCode)
+})
 </script>
 
 <template>
@@ -217,26 +244,25 @@ watch(model, (value) => {
             <div class="h-3 w-5 overflow-hidden rounded-sm">
               <img
                 :src="countryFlagUrl"
-                :alt="`Flag of ${asYouType.getCountry()}`"
+                :alt="`Flag of ${countryName ?? countryCodeModel}`"
               >
             </div>
           </div>
         </template>
 
         <template #option="{ value }">
-          <div class="flex w-24 items-center gap-2 text-sm">
+          <div class="flex w-48 items-center gap-2 text-sm">
             <div
-              v-if="false"
               class="w-4 overflow-hidden rounded-sm"
             >
               <img
-                v-if="getCountryFlagUrl(value)"
+                v-if="false"
                 :src="getCountryFlagUrl(value)"
-                :alt="`Flag of ${value}`"
+                :alt="`Flag of ${getCountryName(value) ?? value}`"
               >
             </div>
             <p>
-              {{ `${value} (+${getCountryCallingCode(value)})` }}
+              {{ `${getCountryName(value) ?? value} (+${getCountryCallingCode(value)})` }}
             </p>
           </div>
         </template>
