@@ -38,7 +38,7 @@ describe('checkboxComponent', () => {
         modelValue: false,
       },
     })
-    const input = wrapper.find('input[type="checkbox"]')
+    const input = wrapper.find('button')
 
     expect(input.attributes('disabled')).toBeDefined()
   })
