@@ -30,6 +30,7 @@ For multi value select, see [FormMultiCombobox](/components/combobox/form-multi-
 | label*          | `string`                                              | The label of the combobox.                                   |                                  |
 | placeholder     | `null \| string`                                      | The placeholder of the combobox.                             | `null`                           |
 | tooltip         | `string`                                              | The tooltip of the combobox.                                 |                                  |
+| hasClearButton  | `boolean`                                             | Whether the combobox has a clear button.                     | `false`                          |
 
 ## Slots
 

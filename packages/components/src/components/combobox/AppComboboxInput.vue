@@ -4,7 +4,9 @@ import {
   ComboboxTrigger,
 } from 'radix-vue'
 import { computed, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
+import AppUnstyledButton from '@/components/button/AppUnstyledButton.vue'
 import { useComboboxStyle } from '@/components/combobox/combobox.style'
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppLoader from '@/components/loader/AppLoader.vue'
@@ -13,6 +15,7 @@ import type { Icon } from '@/icons/icons'
 const props = withDefaults(defineProps<{
   id: null | string
   isChevronHidden: boolean
+  isClearButtonVisible: boolean
   isDisabled: boolean
   isInvalid: boolean
   isLoading: boolean
@@ -26,7 +29,10 @@ const props = withDefaults(defineProps<{
 
 const emit = defineEmits<{
   blur: []
+  clear: []
 }>()
+
+const { t } = useI18n()
 
 const isFocused = ref<boolean>(false)
 
@@ -50,6 +56,10 @@ function onFocus(): void {
 function onBlur(): void {
   isFocused.value = false
   emit('blur')
+}
+
+function onClearButtonClick(): void {
+  emit('clear')
 }
 </script>
 
@@ -92,8 +102,15 @@ function onBlur(): void {
 
       <ComboboxTrigger
         v-else-if="!props.isChevronHidden"
-        class="mr-1 p-2"
+        class="mr-1 flex flex-row gap-2 p-2"
       >
+        <AppUnstyledButton
+          v-if="props.isClearButtonVisible"
+          :label="t('shared.clear')"
+          @click.stop="onClearButtonClick"
+        >
+          <AppIcon icon="close" />
+        </AppUnstyledButton>
         <AppIcon
           :class="iconClasses"
           icon="chevronDown"

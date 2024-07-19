@@ -31,6 +31,11 @@ const props = withDefaults(
      */
     id?: null | string
     /**
+     * Whether the combobox has a clear button.
+     * @default false
+     */
+    hasClearButton?: boolean
+    /**
      * Whether to show the search input in the dropdown instead of inline.
      * @default false
      */
@@ -99,6 +104,7 @@ const props = withDefaults(
   }>(),
   {
     id: null,
+    hasClearButton: false,
     hasSearchInDropdown: false,
     isChevronHidden: false,
     isDisabled: false,
@@ -157,8 +163,16 @@ const placeholderValue = computed<null | string>(() => {
   return props.displayFn(model.value as TValue)
 })
 
+const isClearButtonVisible = computed<boolean>(() => {
+  return model.value !== undefined && props.hasClearButton
+})
+
 function onBlur(): void {
   emit('blur')
+}
+
+function onClear(): void {
+  emit('update:modelValue', null)
 }
 
 // When the search input is in the dropdown, we want to focus the "fake" input
@@ -190,6 +204,7 @@ watch(isOpen, (isOpen) => {
         <AppComboboxInput
           :id="props.id"
           ref="inputRef"
+          :is-clear-button-visible="isClearButtonVisible"
           :value="model ?? null"
           :icon-left="props.iconLeft ?? null"
           :icon-right="props.iconRight ?? null"
@@ -202,6 +217,7 @@ watch(isOpen, (isOpen) => {
           :placeholder="placeholderValue"
           :has-search-in-dropdown="props.hasSearchInDropdown"
           @blur="onBlur"
+          @clear="onClear"
         >
           <template #left>
             <slot name="left" />

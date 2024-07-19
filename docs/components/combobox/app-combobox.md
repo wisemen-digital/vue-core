@@ -15,7 +15,7 @@ For multi value select, see [AppMultiCombobox](/components/combobox/app-multi-co
 ## Props
 
 | Prop            | Type                                                  | Description                                                 | Default                          |
-| --------------- | ----------------------------------------------------- | ----------------------------------------------------------- | -------------------------------- |
+|-----------------|-------------------------------------------------------|-------------------------------------------------------------|----------------------------------|
 | id              | `null \| string`                                      | The HTML id of the combobox.                                |                                  |
 | isChevronHidden | `boolean`                                             | Whether the chevron icon is hidden.                         | `false`                          |
 | isDisabled      | `boolean`                                             | Whether the combobox is disabled.                           | `false`                          |
@@ -28,11 +28,12 @@ For multi value select, see [AppMultiCombobox](/components/combobox/app-multi-co
 | placeholder     | `null \| string`                                      | The placeholder text to display when the combobox is empty. | `null`                           |
 | displayFn*      | `(value: TValue) => string`                           | Display function for the selected value.                    |                                  |
 | filterFn*       | `(options: TValue[], searchTerm: string) => TValue[]` | The function to filter the options.                         |                                  |
+| hasClearButton  | `boolean`                                             | Whether the combobox has a clear button.                    | `false`                          |
 
 ## Slots
 
 | Slot name | Type            | Description                                       |
-| --------- | --------------- | ------------------------------------------------- |
+|-----------|-----------------|---------------------------------------------------|
 | option    | `value: TValue` | Override the option rendering of the combobox     |
 | empty     | none            | Override the empty state of the combobox dropdown |
 | left      | none            | Override the left content of the combobox input   |
@@ -41,17 +42,17 @@ For multi value select, see [AppMultiCombobox](/components/combobox/app-multi-co
 
 ## v-model
 
-| Prop            | Type               | Description                |
-| --------------- | ------------------ | -------------------------- |
-| v-model*        | `TValue` \| `null` | The value of the combobox. |
-| v-model:search  | `string` \| `null` | The search term            |
+| Prop           | Type               | Description                |
+|----------------|--------------------|----------------------------|
+| v-model*       | `TValue` \| `null` | The value of the combobox. |
+| v-model:search | `string` \| `null` | The search term            |
 
 ## Events
 
-| Event Name       | Type | Description                                    |
-| ---------------- | ---- | ---------------------------------------------- |
-| blur             | None | Emitted when the combobox loses focus.         |
-| update:modelValue| None | Emitted when value of the combobox is updated. |
+| Event Name        | Type | Description                                    |
+|-------------------|------|------------------------------------------------|
+| blur              | None | Emitted when the combobox loses focus.         |
+| update:modelValue | None | Emitted when value of the combobox is updated. |
 
 ## Code
 
