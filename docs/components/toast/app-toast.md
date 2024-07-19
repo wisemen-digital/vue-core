@@ -7,6 +7,9 @@ sidebar: auto
 <script setup>
 import AppToastPlayground from './AppToastPlayground.vue'
 </script>
+
+<AppToastPlayground />
+
 ## Props
 
 | Prop | Type | Description | Default |
@@ -21,7 +24,7 @@ import AppToastPlayground from './AppToastPlayground.vue'
 
 | Event name | Type | Description |
 | ---------- | ---- | ----------- |
-| closeToast | None |  |
+| closeToast | [] |  |
 
 
 <!-- Anything above this line is automatically generated, do not edit manually. -->

@@ -33,29 +33,6 @@ const allComponents = fg.sync(['src/components/**/*.vue'], {
 const listOfComponents = Object.values(components).flatMap(i => i)
 const primitiveComponents = allComponents.filter(i => listOfComponents.includes(parse(i).name))
 
-function parseTypeFromSchema(schema: any): string {
-  if (typeof schema === 'object' && (schema.kind === 'enum' || schema.kind === 'array')) {
-    const isFlatEnum = schema.schema?.every((val: any) => typeof val === 'string')
-    const enumValue = schema?.schema?.filter((i: any) => i !== 'undefined') ?? []
-
-    if (isFlatEnum && /^[A-Z]/.test(schema.type))
-      return enumValue.join(' | ')
-    else if (typeof schema.schema?.[0] === 'object' && schema.schema?.[0].kind === 'enum')
-      return schema.schema.map((s: any) => parseTypeFromSchema(s)).join(' | ')
-    else
-      return schema.type
-  }
-  else if (typeof schema === 'object' && schema.kind === 'object') {
-    return schema.type
-  }
-  else if (typeof schema === 'string') {
-    return schema
-  }
-  else {
-    return ''
-  }
-}
-
 function parseMeta(meta: any) {
   const props = meta.props
     .filter((prop: any) => !prop.global)
@@ -69,13 +46,13 @@ function parseMeta(meta: any) {
 
       return ({
         name,
-        description: md.render(description),
+        description: description,
         type: type.replace(/\s*\|\s*undefined/g, ''),
         required,
         default: defaultValue ?? undefined,
       })
     })
-    .sort((a: { name: string }, b: { name: any }) => a.name.localeCompare(b.name))
+    .sort((a: { name: string }, b: { name: string }) => a.name.localeCompare(b.name))
 
   const events = meta.events
     .map((event: any) => {
@@ -86,23 +63,19 @@ function parseMeta(meta: any) {
         type: type.replace(/\s*\|\s*undefined/g, ''),
       })
     })
-    .sort((a: { name: string }, b: { name: any }) => a.name.localeCompare(b.name))
+    .sort((a: { name: string }, b: { name: string }) => a.name.localeCompare(b.name))
 
-  const defaultSlot = meta.slots?.[0]
-  const slots: { name: string, description: string, type: string }[] = []
-
-  if (defaultSlot && defaultSlot.type !== '{}') {
-    const schema = defaultSlot.schema
-    if (typeof schema === 'object' && schema.schema) {
-      Object.values(schema.schema).forEach((childMeta: any) => {
-        slots.push({
-          name: childMeta.name,
-          description: md.render(childMeta.description),
-          type: parseTypeFromSchema(childMeta.schema),
-        })
+  const slots = meta.slots
+    .map((slot: any) => {
+      const { name, type, description } = slot
+      return ({
+        name,
+        description: md.render((description ?? '').replace(/^[ \t]+/gm, '')),
+        type: type === "{}" ? "None" : type.replace(/\s*\|\s*undefined/g, ''),
       })
-    }
-  }
+    })
+    .sort((a: { name: string }, b: { name: string }) => a.name.localeCompare(b.name))
+    console.log(meta.slots)
 
   return {
     props,
@@ -130,7 +103,7 @@ function generateDocsForComponents() {
     const componentPlaygroundName = `${componentName}Playground`
 
     // Create string: playground file & title
-    let parsedString = `---\nsidebar: auto\n---\n\n\n# ${componentName}\n<script setup>\nimport ${componentPlaygroundName} from './${componentPlaygroundName}.vue'\n</script>`
+    let parsedString = `---\nsidebar: auto\n---\n\n\n# ${componentName}\n<script setup>\nimport ${componentPlaygroundName} from './${componentPlaygroundName}.vue'\n</script>\n\n<${componentPlaygroundName} />\n`
 
     // Create: tables for props & models, slots, events
     if (meta.props.length) {
@@ -155,7 +128,11 @@ function generateDocsForComponents() {
       parsedString += '## Slots\n\n'
       parsedString += '| Slot | Type | Description |\n'
       parsedString += '| --------- | ---- | ----------- |\n'
-      meta.slots.forEach(slot => {
+      meta.slots.forEach((slot: {
+        name: string;
+        type: string;
+        description: string;
+      }) => {
         parsedString += `| ${slot.name} | ${slot.type} | ${slot.description} |\n`
       })
       parsedString += '\n'
@@ -166,8 +143,7 @@ function generateDocsForComponents() {
       parsedString += '| Event name | Type | Description |\n'
       parsedString += '| ---------- | ---- | ----------- |\n'
       meta.events.forEach((event: { name: string; type: string; description: string }) => {
-        const type = event.type === '[]' ? 'None' : event.type
-        parsedString += `| ${event.name} | ${type} | ${event.description} |\n`
+        parsedString += `| ${event.name} | ${event.type} | ${event.description} |\n`
       })
       parsedString += '\n'
     }
@@ -177,11 +153,11 @@ function generateDocsForComponents() {
     parsedString += `\n<!-- Anything above this line is automatically generated, do not edit manually. -->\n`
     parsedString += customTag
 
-    // Check file content: if custom section, anything after custom tag won't be rewritten.
-    const markdownContent = readFileSync(metaMdFilePath, 'utf8');
-    const customContentIndex = markdownContent.indexOf(customTag);
+    // Check file content: if file exists & has custom section, anything after custom tag won't be rewritten.
+    const markdownContent = existsSync(metaMdFilePath) ? readFileSync(metaMdFilePath, 'utf8') : null;
+    const customContentIndex = markdownContent?.indexOf(customTag);
 
-    if (customContentIndex !== -1) {
+    if (markdownContent && customContentIndex !== undefined && customContentIndex !== -1) {
       const contentAfterCustom = markdownContent.slice(customContentIndex + customTag.length);
       const updatedContent = `${parsedString}\n\n${contentAfterCustom}`;
 
