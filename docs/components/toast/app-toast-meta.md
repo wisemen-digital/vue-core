@@ -10,15 +10,15 @@ import AppToastPlayground from './AppToastPlayground.vue'
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| action | ToastAction \| null |  | null |
-| description | string \| null |  | null |
-| icon* | keyof BaseIcons |  |  |
-| title* | string |  |  |
-| type* | ToastType |  |  |
+| action | `ToastAction \| null` |  | `null` |
+| description | `string \| null` |  | `null` |
+| icon* | `keyof BaseIcons` |  |  |
+| title* | `string` |  |  |
+| type* | `ToastType` |  |  |
 
 ## Events
 
 | Event name | Type | Description |
 | ---------- | ---- | ----------- |
-| closeToast | [] |  |
+| `closeToast` | [] |  |
 

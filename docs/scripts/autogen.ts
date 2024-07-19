@@ -114,8 +114,9 @@ function generateDocsForComponents() {
         default?: string;
       }) => {
         const name = `${prop.name}${prop.required ? '*' : ''}`
-        const type = prop.type.replace(/\|/g, '\\|')
-        parsedString += `| ${name} | ${type} | ${prop.description} | ${prop.default ?? ''} |\n`
+        const type = `\`${prop.type.replace(/\|/g, '\\|')}\``
+        const defaultValue = prop.default === undefined ? '' : `\`${prop.default}\``
+        parsedString += `| ${name} | ${type} | ${prop.description} | ${defaultValue} |\n`
       })
       parsedString += '\n'
     }
@@ -139,7 +140,7 @@ function generateDocsForComponents() {
       parsedString += '| Event name | Type | Description |\n'
       parsedString += '| ---------- | ---- | ----------- |\n'
       meta.events.forEach((event: { name: string; type: string; description: string }) => {
-        parsedString += `| ${event.name} | ${event.type} | ${event.description} |\n`
+        parsedString += `| \`${event.name}\` | ${event.type} | ${event.description} |\n`
       })
       parsedString += '\n'
     }
