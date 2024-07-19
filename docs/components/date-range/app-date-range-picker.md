@@ -3,7 +3,7 @@ sidebar: auto
 ---
 
 
-# AppDatePicker
+# AppDateRangePicker
 <script setup>
 import AppDateRangePickerPlayground from './AppDateRangePickerPlayground.vue'
 </script>
@@ -12,13 +12,14 @@ import AppDateRangePickerPlayground from './AppDateRangePickerPlayground.vue'
 
 ## Props
 
-| Prop        | Type                         | Description                                               | Default     |
-|-------------|------------------------------|-----------------------------------------------------------|-------------|
-| id          | `string \| null`             | The id of the date picker                                 | `null`      |
-| isDisabled  | `boolean`                    | Whether the date picker is disabled.                      | `false`     |
-| isInvalid   | `boolean`                    | Whether the date picker is in an invalid state.           | `false`     |
-| minDate     | `CalendarDate \| null`       | The minimum date that you can select.                     | `undefined` |
-| maxDate     | `CalendarDate \| null`       | The maximum date the you can select.                      | `undefined` |
+| Prop       | Type             | Description                                     | Default |
+|------------|------------------|-------------------------------------------------|---------|
+| id         | `string \| null` | The id of the date picker                       | `null`  |
+| isDisabled | `boolean`        | Whether the date picker is disabled.            | `false` |
+| isInvalid  | `boolean`        | Whether the date picker is in an invalid state. | `false` |
+| modelValue | `Date \| null`   | The model value.                                | `null`  |
+| minDate    | `Date \| null`   | The minimum date that you can select.           | `null`  |
+| maxDate    | `date \| null`   | The maximum date the you can select.            | `null`  |
 
 ## Types
 

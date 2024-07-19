@@ -1,14 +1,12 @@
 <script setup lang="ts">
+import type { DateValue } from '@internationalized/date'
 import { CalendarDate } from '@internationalized/date'
 import {
   type DateRange,
   DateRangePickerRoot,
   useId,
 } from 'radix-vue'
-import {
-  computed,
-  ref,
-} from 'vue'
+import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import AppDateRangePickerContent from '@/components/date-range/AppDateRangePickerContent.vue'
@@ -102,87 +100,60 @@ const { locale } = useI18n()
 
 const id = props.id ?? useId()
 
-const minDate = computed<CalendarDate | undefined>(() => {
-  if (props.minDate === null) {
-    return undefined
-  }
-
-  return props.minDate
+const minValue = computed<CalendarDate | undefined>(() => {
+  return props.minDate === null ? undefined : props.minDate
 })
 
-const maxDate = computed<CalendarDate | undefined>(() => {
-  if (props.maxDate === null) {
-    return undefined
-  }
+const maxValue = computed<CalendarDate | undefined>(() => {
+  return props.maxDate === null ? undefined : props.maxDate
+})
 
-  return props.maxDate
+const startDate = computed<Date | null>(() => {
+  return model.value?.start === undefined ? null : calendarDateToDate(model.value.start)
+})
+
+const endDate = computed<Date | null>(() => {
+  return model.value?.end === undefined ? null : calendarDateToDate(model.value.end)
 })
 
 function onBlur(): void {
   emit('blur')
 }
 
-const isYearPickerVisible = ref<boolean>(false)
-const isMonthPickerVisible = ref<boolean>(false)
-
-function onShowYearPickerButtonClick(): void {
-  isYearPickerVisible.value = true
-  isMonthPickerVisible.value = false
+function dateToCalendarDate(date: Date): CalendarDate {
+  return new CalendarDate(date.getFullYear(), date.getMonth() + 1, date.getDate())
 }
 
-function onShowMonthPickerButtonClick(): void {
-  isMonthPickerVisible.value = true
-  isYearPickerVisible.value = false
-}
-
-function onMonthSelect(month: number, year: number): void {
-  model.value = new CalendarDate(year ?? new Date().getFullYear(), month, model.value?.day ?? new Date().getDate())
-
-  isMonthPickerVisible.value = false
-}
-
-function onTriggerClick(): void {
-  if (props.isDisabled) {
-    return
-  }
-
-  isYearPickerVisible.value = false
-  isMonthPickerVisible.value = false
-}
-
-function onYearSelect(number: number): void {
-  if (model.value === undefined) {
-    model.value = new CalendarDate(number, new Date().getMonth() + 1, 1)
-  }
-  else {
-    model.value?.set({
-      day: model.value?.day ?? new Date().getDate(),
-      month: model.value?.month ?? new Date().getMonth(),
-      year: number,
-    })
-  }
-
-  isYearPickerVisible.value = false
-  isMonthPickerVisible.value = true
+function calendarDateToDate(calendarDate: DateValue): Date {
+  return new Date(calendarDate.year, calendarDate.month - 1, calendarDate.day)
 }
 </script>
 
 <template>
   <div class="flex flex-col gap-2">
     <DateRangePickerRoot
-      id="date-field"
+      :id="id"
+      v-model="model"
+      :max-value="maxValue"
+      :min-value="minValue"
       :number-of-months="props.numberOfMonths"
       :is-date-unavailable="date => date.day === 19"
     >
-      <AppDateRangePickerField />
+      <AppDateRangePickerField
+        :start-date="startDate"
+        :end-date="endDate"
+        :is-disabled="props.isDisabled"
+        :is-invalid="props.isInvalid"
+        @blur="onBlur"
+      />
 
       <AppDateRangePickerContent />
     </DateRangePickerRoot>
   </div>
 </template>
 
-<style>
+<style lang="postcss" scoped>
 [data-radix-popper-content-wrapper] {
-  @apply !z-popover;
+  @apply z-popover !important;
 }
 </style>

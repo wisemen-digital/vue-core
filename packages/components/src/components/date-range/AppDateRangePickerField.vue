@@ -1,24 +1,33 @@
 <script setup lang="ts">
+import dayjs from 'dayjs'
 import {
   DateRangePickerField,
-  DateRangePickerInput,
   DateRangePickerTrigger,
 } from 'radix-vue'
+import { computed } from 'vue'
 
 import AppIcon from '@/components/icon/AppIcon.vue'
 import { useComponentAttrs } from '@/composables/componentAttrs.composable'
 
 const props = defineProps<{
+  endDate: Date | null
+  startDate: Date | null
   isDisabled?: boolean
   isInvalid?: boolean
 }>()
 
 const { classAttr } = useComponentAttrs()
+
+const formattedDate = computed<string>(() => {
+  const start = props.startDate !== null ? dayjs(props.startDate).format('DD/MM/YYYY') : 'dd/mm/yyyy'
+  const end = props.endDate !== null ? dayjs(props.endDate).format('DD/MM/YYYY') : 'dd/mm/yyyy'
+
+  return `${start} - ${end}`
+})
 </script>
 
 <template>
   <DateRangePickerField
-    v-slot="{ segments }"
     :class="[
       classAttr,
       {
@@ -27,54 +36,21 @@ const { classAttr } = useComponentAttrs()
         'cursor-not-allowed opacity-50': props.isDisabled,
       },
     ]"
-    class="relative flex h-10 w-full items-center rounded-input border border-solid bg-input pl-3 pr-1 text-sm text-input-foreground outline-none ring-offset-background duration-200 [&:has(:focus-visible)]:ring-2"
+    class="relative flex h-10 w-full items-center gap-2 rounded-input border border-solid bg-input px-3 text-sm text-input-foreground outline-none ring-offset-background duration-200 [&:has(:focus-visible)]:ring-2"
   >
-    <template
-      v-for="item in segments.start"
-      :key="item.part"
+    <DateRangePickerTrigger
+      as-child
     >
-      <DateRangePickerInput
-        v-if="item.part === 'literal'"
-        :part="item.part"
-        type="start"
-      >
-        {{ item.value }}
-      </DateRangePickerInput>
-      <DateRangePickerInput
-        v-else
-        :part="item.part"
-        class="data-[placeholder]:text-green9 rounded-md p-0.5 focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none"
-        type="start"
-      >
-        {{ item.value }}
-      </DateRangePickerInput>
-    </template>
-    <span class="mx-2">
-      -
-    </span>
-    <template
-      v-for="item in segments.end"
-      :key="item.part"
-    >
-      <DateRangePickerInput
-        v-if="item.part === 'literal'"
-        :part="item.part"
-        type="end"
-      >
-        {{ item.value }}
-      </DateRangePickerInput>
-      <DateRangePickerInput
-        v-else
-        :part="item.part"
-        class="data-[placeholder]:text-green9 rounded-md p-0.5 focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none"
-        type="end"
-      >
-        {{ item.value }}
-      </DateRangePickerInput>
-    </template>
-
-    <DateRangePickerTrigger class="ml-4 focus:shadow-[0_0_0_2px] focus:shadow-black">
-      <AppIcon icon="calendar" />
+      <div class="flex  items-center gap-2">
+        <p :class="{ 'text-muted-foreground': props.startDate === null && props.endDate === null }">
+          {{ formattedDate }}
+        </p>
+        <AppIcon
+          class="ml-auto text-muted-foreground"
+          size="sm"
+          icon="calendar"
+        />
+      </div>
     </DateRangePickerTrigger>
   </DateRangePickerField>
 </template>
