@@ -36,8 +36,8 @@ export const useTableStyle = tv({
     filterWarningText: 'text-muted-foreground',
     footer: 'sticky bottom-0 left-0 z-10 flex h-14 w-full items-center justify-between border-t border-solid border-border bg-background px-6 py-2',
     grid: 'grid items-start bg-background',
-    headerColumn: 'group relative flex items-center gap-x-2 bg-muted-background px-6 py-3 text-left outline-none focus-visible:bg-neutral-100',
-    headerContainer: 'sticky top-0 z-20 grid min-w-full grid-cols-subgrid bg-muted-background',
+    headerColumn: 'group relative flex items-center gap-x-2 px-6 py-3 text-left outline-none focus-visible:bg-neutral-100',
+    headerContainer: 'sticky top-0 z-20 grid min-w-full grid-cols-subgrid border-b border-solid border-border',
     headerIcon: 'duration-200',
     headerText: 'truncate',
     skeletonLoaderBackground: 'absolute left-0 top-0 z-10 size-full bg-gradient-to-b from-transparent to-background',
@@ -59,10 +59,11 @@ export const useTableStyle = tv({
   variants: {
     variant: {
       borderless: {
-        headerContainer: 'overflow-hidden rounded-md',
+        headerText: 'text-caption font-medium uppercase text-muted-foreground',
       },
       default: {
-        headerContainer: 'border-b border-solid border-border',
+        headerColumn: 'bg-muted-background',
+        headerContainer: 'bg-muted-background',
         table: 'rounded-xl border border-solid border-border',
         topContainer: 'border-b border-solid border-border',
       },

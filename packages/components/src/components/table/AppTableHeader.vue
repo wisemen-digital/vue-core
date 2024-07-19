@@ -118,13 +118,17 @@ const tableStyle = useTableStyle()
 const headerContainerClasses = computed<string>(() => tableStyle.headerContainer({
   variant: props.variant,
 }))
+
 const headerColumnClasses = computed<string>(() => tableStyle.headerColumn({
   hasLeftBorder: hasLeftBorder.value,
   hasRightBorder: hasRightBorder.value,
   shouldPinFirstColumn: props.shouldPinFirstColumn,
   shouldPinLastColumn: props.shouldPinLastColumn,
+  variant: props.variant,
 }))
-const headerTextClasses = computed<string>(() => tableStyle.headerText())
+const headerTextClasses = computed<string>(() => tableStyle.headerText({
+  variant: props.variant,
+}))
 </script>
 
 <template>
