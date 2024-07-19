@@ -1,28 +1,30 @@
 # Automatically generated docs
 
-The automatically generated docs are composed of 2 parts.
-These 2 parts are separated by a comment to explain where the generated part and the custom parts are separated.
-
 ## Run the script
 
-You can run the script to generate docs with:
+1. You can run the script to generate docs with:
 ```
 pnpm run docs:gen
 ```
 > ! The script will only loop through components defined in packages/constant/components.ts
 
+2. Make sure that for each component, a file exist with such a structure: `docs/components/component-category/component-name.md`. Let's call it the head documentation
+
+3. The script will create a file `docs/components/folder/component-name-mate.md` with the component's meta information documented. You can then import this file in your head documentation like this:
+```
+<!-- @include: ./component-name-meta.md -->
+```
 
 ## Automatically generated
 
 The generated parts are:
-- File title
 - Playground imports (sibling of the docs file)
 - Playground rendering
 - Tables with Props / Events (emits) / Slots
 
 ## Custom content
 
-The custom content is free content that will not be rewritten by running the script to generate the docs.
+You can add Other custom content in you component-name.md file
 Usually consists of:
 - Types definitions (optional)
 - Code usage example
@@ -57,10 +59,4 @@ defineSlots<{
   /** Description */
   default: () => void
 }>()
-```
-
-## Run the script with files that already have some content
-If you want to run the script in a file that already has content, for example code usage, just paste this line before the section you wish to keep. The script will regenerate docuemnation as precised above, ignore everything after this line, allowing you to keep existing sections as needed.
-```
-<!-- !Custom! Anything after this line can be edited manually: please only add code usage and link to full source code on Github -->
 ```
