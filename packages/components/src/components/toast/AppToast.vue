@@ -21,9 +21,6 @@ const props = withDefaults(defineProps<{
 })
 
 const emit = defineEmits<{
-  /**
-   * Success event.
-   */
   closeToast: []
 }>()
 
