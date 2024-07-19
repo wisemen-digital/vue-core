@@ -44,6 +44,15 @@ const controls = createControls({
     default: false,
     label: 'Hide top',
   },
+  variant: {
+    default: 'default',
+    items: [
+      'default',
+      'borderless',
+    ],
+    label: 'Variant',
+    type: 'select',
+  },
 })
 
 interface ExampleDataType {

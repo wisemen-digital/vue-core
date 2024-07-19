@@ -12,7 +12,7 @@ export const useTableStyle = tv({
     emptyContainer: 'relative grid h-full grid-cols-subgrid',
     emptyGrid: 'grid grid-cols-subgrid',
     emptyOverlayClearButton: 'mx-auto mt-4',
-    emptyOverlayContainer: 'absolute left-1/2 top-1/2 z-10 w-[26rem] -translate-x-1/2 -translate-y-1/2 rounded-lg bg-background/25 p-8 shadow-card-shadow backdrop-blur-sm',
+    emptyOverlayContainer: 'absolute left-1/2 top-1/2 z-10 w-[26rem] -translate-x-1/2 -translate-y-1/2 rounded-lg p-8 backdrop-blur-sm',
     emptyOverlayContent: 'mt-2',
     emptyOverlayIcon: 'mx-auto text-muted-foreground',
     emptyOverlayText: 'text-center text-muted-foreground',
@@ -37,7 +37,7 @@ export const useTableStyle = tv({
     footer: 'sticky bottom-0 left-0 z-10 flex h-14 w-full items-center justify-between border-t border-solid border-border bg-background px-6 py-2',
     grid: 'grid items-start bg-background',
     headerColumn: 'group relative flex items-center gap-x-2 bg-muted-background px-6 py-3 text-left outline-none focus-visible:bg-neutral-100',
-    headerContainer: 'sticky top-0 z-20 grid min-w-full grid-cols-subgrid border-b border-solid border-border bg-muted-background',
+    headerContainer: 'sticky top-0 z-20 grid min-w-full grid-cols-subgrid bg-muted-background',
     headerIcon: 'duration-200',
     headerText: 'truncate',
     skeletonLoaderBackground: 'absolute left-0 top-0 z-10 size-full bg-gradient-to-b from-transparent to-background',
@@ -49,14 +49,24 @@ export const useTableStyle = tv({
     skeletonLoaderHeaderContainer: 'mb-4 border-y border-solid border-border pb-4',
     skeletonLoaderHeaderGrid: 'grid grid-cols-table-skeleton gap-x-8 px-8',
     skeletonLoaderHeaderRow: 'mt-4 rounded-md bg-neutral-100 p-3',
-    table: 'relative flex h-full flex-1 flex-col overflow-hidden rounded-xl border border-solid border-border bg-background',
+    table: 'relative flex h-full flex-1 flex-col overflow-hidden bg-background',
     topBadge: 'mt-0.5',
-    topContainer: 'flex items-center gap-x-2 border-b border-solid border-border px-6 py-4',
+    topContainer: 'flex items-center gap-x-2 px-6 py-4',
     topSearchInput: 'ml-auto w-28 md:w-72',
     topSkeletonRow: 'mt-1 w-20',
     topTitle: 'font-medium',
   },
   variants: {
+    variant: {
+      borderless: {
+        headerContainer: 'overflow-hidden rounded-md',
+      },
+      default: {
+        headerContainer: 'border-b border-solid border-border',
+        table: 'rounded-xl border border-solid border-border',
+        topContainer: 'border-b border-solid border-border',
+      },
+    },
     isColumnSorted: {
       false: {
         headerIcon: 'text-muted-foreground/50 group-hover:text-foreground group-focus-visible:text-foreground',

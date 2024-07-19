@@ -2,7 +2,10 @@
 import { computed } from 'vue'
 
 import AppIcon from '@/components/icon/AppIcon.vue'
-import { useTableStyle } from '@/components/table/table.style'
+import {
+  type TableStyleProps,
+  useTableStyle,
+} from '@/components/table/table.style'
 import AppText from '@/components/text/AppText.vue'
 import type { Icon } from '@/icons/icons'
 import type {
@@ -19,6 +22,7 @@ const props = defineProps<{
   paginationOptions: PaginationOptions<TFilters>
   shouldPinFirstColumn: boolean
   shouldPinLastColumn: boolean
+  variant: TableStyleProps['variant']
 }>()
 
 const emit = defineEmits<{
@@ -111,7 +115,9 @@ const hasRightBorder = computed<boolean>(() => props.isScrolledToRight && props.
 const hasLeftBorder = computed<boolean>(() => !props.hasReachedHorizontalScrollEnd && props.shouldPinLastColumn)
 const tableStyle = useTableStyle()
 
-const headerContainerClasses = computed<string>(() => tableStyle.headerContainer())
+const headerContainerClasses = computed<string>(() => tableStyle.headerContainer({
+  variant: props.variant,
+}))
 const headerColumnClasses = computed<string>(() => tableStyle.headerColumn({
   hasLeftBorder: hasLeftBorder.value,
   hasRightBorder: hasRightBorder.value,
