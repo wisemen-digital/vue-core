@@ -42,12 +42,7 @@ const controls = createControls({
   <ComponentPlayground :controls="controls">
     <template #default="{ values }">
       <FormLabel
-        :is-disabled="values.isDisabled"
-        :is-invalid="values.isInvalid"
-        :is-required="values.isRequired"
-        :for="values.for"
-        :label="values.label"
-        :tooltip="values.tooltip"
+        v-bind="values"
       />
     </template>
   </ComponentPlayground>

@@ -173,16 +173,6 @@ const docs = [
     collapsed: true,
     items: [
       {
-        link: '/components/icon/app-icon',
-        text: 'AppIcon',
-      },
-    ],
-    text: 'Icon',
-  },
-  {
-    collapsed: true,
-    items: [
-      {
         link: '/components/input/app-input',
         text: 'AppInput',
       },
