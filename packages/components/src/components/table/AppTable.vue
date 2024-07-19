@@ -47,7 +47,7 @@ const props = withDefaults(
     searchFilterKey?: keyof TFilters
     shouldPinFirstColumn?: boolean
     shouldPinLastColumn?: boolean
-    variant: TableStyleProps['variant']
+    variant?: TableStyleProps['variant']
   }>(),
   {
     isTopHidden: false,
