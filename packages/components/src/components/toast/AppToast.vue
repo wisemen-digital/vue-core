@@ -21,6 +21,7 @@ const props = withDefaults(defineProps<{
 })
 
 const emit = defineEmits<{
+  /** Current input values */
   closeToast: []
 }>()
 

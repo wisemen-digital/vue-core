@@ -4,13 +4,7 @@ import fg from 'fast-glob'
 import MarkdownIt from 'markdown-it'
 import { createChecker  } from 'vue-component-meta'
 import { fileURLToPath } from 'node:url'
-
-
-export const components = {
-  toast: [
-    'AppToast',
-  ],
-}
+import { components } from '../../packages/constant/components'
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 const md = new MarkdownIt()
@@ -75,7 +69,7 @@ function parseMeta(meta: any) {
       })
     })
     .sort((a: { name: string }, b: { name: string }) => a.name.localeCompare(b.name))
-    console.log(meta.slots)
+    console.log(meta.events, meta.slots)
 
   return {
     props,
