@@ -4,17 +4,8 @@ sidebar: auto
 
 
 # AppSkeletonLoaderRows
-<script setup>
-import AppSkeletonLoaderRowsPlayground from './AppSkeletonLoaderRowsPlayground.vue'
-</script>
 
-<AppSkeletonLoaderRowsPlayground />
-
-## Props
-
-| Prop | Type   | Description                         | Default |
-| ---- | ------ | ----------------------------------- | ------- |
-| rows |`number`| The number of skeleton rows to show |   `3`   |
+<!-- @include: ./app-skeleton-loader-rows-meta.md -->
 
 ## Code
 

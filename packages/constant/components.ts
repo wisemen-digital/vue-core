@@ -67,6 +67,12 @@ export const components = {
     'AppMultiSelect',
     'FormSelect',
   ],
+  skeletonLoader: [
+    'AppPageSkeletonLoader',
+    'AppSkeletonLoaderButton',
+    'AppSkeletonLoaderRow',
+    'AppSkeletonLoaderRows',
+  ],
   switch: [
     'FormSwitch',
   ],

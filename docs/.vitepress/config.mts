@@ -260,16 +260,6 @@ const docs = [
     collapsed: true,
     items: [
       {
-        link: '/components/switch/form-switch',
-        text: 'FormSwitch',
-      },
-    ],
-    text: 'Switch',
-  },
-  {
-    collapsed: true,
-    items: [
-      {
         link: '/components/skeleton-loader/app-page-skeleton-loader',
         text: 'AppPageSkeletonLoader',
       },
@@ -287,6 +277,16 @@ const docs = [
       },
     ],
     text: 'SkeletonLoader',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
+        link: '/components/switch/form-switch',
+        text: 'FormSwitch',
+      },
+    ],
+    text: 'Switch',
   },
   {
     collapsed: true,
