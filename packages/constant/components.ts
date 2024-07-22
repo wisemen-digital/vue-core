@@ -56,6 +56,9 @@ export const components = {
     'AppKeyboardShortcut',
     'AppKeyboardShortcutProvider',
   ],
+  loader: [
+    'AppLoader',
+  ],
   toast: [
     'AppToast',
   ],
