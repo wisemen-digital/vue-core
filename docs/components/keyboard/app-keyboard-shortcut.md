@@ -3,19 +3,8 @@ sidebar: auto
 ---
 
 # AppKeyboardShortcut
-<script setup>
-import AppKeyboardShortcutPlayground from './AppKeyboardShortcutPlayground.vue'
-</script>
 
-<AppKeyboardShortcutPlayground />
-
-## Props
-
-| Prop         | Type                                                                 | Description                                      | Default     |
-|--------------|----------------------------------------------------------------------|--------------------------------------------------|-------------|
-| keys*        | `KeyboardKey[]`                                                      | The keyboard key(s) to display                   |             |
-| variant      | `'default'` \| `'bordered'` \| `'ghost'` \| `'secondary'`            | The style variant                                | `'default'` |
-
+<!-- @include: ./app-keyboard-shortcut-meta.md -->
 
 ## Types
 

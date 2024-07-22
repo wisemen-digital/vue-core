@@ -51,6 +51,11 @@ export const components = {
     'FormPasswordInput',
     'FormPhoneNumberInput',
   ],
+  keyboard: [
+    'AppKeyboardKey',
+    'AppKeyboardShortcut',
+    'AppKeyboardShortcutProvider',
+  ],
   toast: [
     'AppToast',
   ],
