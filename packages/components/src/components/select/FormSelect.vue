@@ -72,6 +72,15 @@ const props = withDefaults(
   },
 )
 
+defineSlots<{
+  /** Override the display of the left icon */
+  left: () => any
+  /** Override the option rendering of the select */
+  option: (props: {
+    value: AcceptableValue
+  }) => any
+}>()
+
 const emit = defineEmits<{
   blur: []
 }>()
