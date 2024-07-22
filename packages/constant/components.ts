@@ -5,6 +5,11 @@ export const components = {
   breadcrumbs: [
     'AppBreadcrumbs',
   ],
+  button: [
+    'AppButton',
+    'AppIconButton',
+    'AppRouterLinkButton',
+  ],
   toast: [
     'AppToast',
   ]
