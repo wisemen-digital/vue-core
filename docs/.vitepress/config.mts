@@ -111,6 +111,7 @@ const docs = [
     text: 'Date',
   },
   {
+    collapsed: true,
     items: [
       {
         link: '/components/dropdown-menu/app-dropdown-menu',

@@ -7,7 +7,10 @@ import AppBadge from '@/components/badge/AppBadge.vue'
 import AppInput from '@/components/input/AppInput.vue'
 import AppSkeletonLoaderRow from '@/components/skeleton-loader/AppSkeletonLoaderRow.vue'
 import AppTableFiltersPopover from '@/components/table/AppTableFiltersPopover.vue'
-import { useTableStyle } from '@/components/table/table.style'
+import {
+  type TableStyleProps,
+  useTableStyle,
+} from '@/components/table/table.style'
 import AppText from '@/components/text/AppText.vue'
 import type {
   FilterChangeEvent,
@@ -26,6 +29,7 @@ const props = defineProps<{
   searchFilterKey?: keyof TFilters
   searchValue?: null | string
   total: null | number
+  variant: TableStyleProps['variant']
 }>()
 
 const emit = defineEmits<{
@@ -94,7 +98,9 @@ function onFilterClear(): void {
 
 const tableStyle = useTableStyle()
 
-const topContainerClasses = computed<string>(() => tableStyle.topContainer())
+const topContainerClasses = computed<string>(() => tableStyle.topContainer({
+  variant: props.variant,
+}))
 const topTitleClasses = computed<string>(() => tableStyle.topTitle())
 const topBadgeClasses = computed<string>(() => tableStyle.topBadge())
 const topSearchInputClasses = computed<string>(() => tableStyle.topSearchInput())

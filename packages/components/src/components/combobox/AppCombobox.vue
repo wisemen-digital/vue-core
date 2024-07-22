@@ -22,7 +22,9 @@ import { useComboboxStyle } from '@/components/combobox/combobox.style'
 import type { Icon } from '@/icons/icons'
 import type { ComboboxItem } from '@/types/comboboxItem.type'
 import type { ComboboxProps } from '@/types/comboboxProps.type'
-import type { AcceptableValue } from '@/types/selectItem.type'
+import type {
+  AcceptableValue,
+} from '@/types/selectItem.type'
 
 const props = withDefaults(
   defineProps<{
@@ -115,6 +117,20 @@ const props = withDefaults(
 const emit = defineEmits<{
   'blur': []
   'update:modelValue': [value: TValue | null]
+}>()
+
+defineSlots<{
+  /** Override the empty state of the combobox dropdown */
+  empty: () => void
+  /** Override the left content of the combobox input */
+  left: () => void
+  /** Override the option rendering of the combobox, and have access to the dataTestId */
+  option: (props: {
+    dataTestid?: string
+    value: TValue
+  }) => any
+  /** Override the right content of the combobox input */
+  right: () => void
 }>()
 
 const searchModel = defineModel<null | string>('search', {

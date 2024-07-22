@@ -42,6 +42,7 @@ const hasTooltip = computed<boolean>(() => props.tooltip !== undefined)
     <AppTooltip
       :is-hidden="!hasTooltip"
       :content="props.tooltip ?? ''"
+      :disable-close-on-trigger-click="true"
       side="right"
     >
       <div class="flex w-fit flex-row items-center gap-2">

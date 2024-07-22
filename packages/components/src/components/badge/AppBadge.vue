@@ -4,6 +4,11 @@ import { computed } from 'vue'
 import { useBadgeStyle } from '@/components/badge/badge.style'
 import AppText from '@/components/text/AppText.vue'
 
+defineSlots<{
+  /** The content of the badge */
+  default: () => void
+}>()
+
 const badgeStyle = useBadgeStyle()
 const badgeClasses = computed<string>(() => badgeStyle.badge())
 </script>

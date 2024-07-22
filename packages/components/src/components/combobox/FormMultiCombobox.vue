@@ -91,6 +91,16 @@ const emit = defineEmits<{
   blur: []
 }>()
 
+defineSlots<{
+  /** Override the left content of the combobox input */
+  left: () => void
+  /** Override the option rendering of the combobox, and have access to the dataTestId */
+  option: (props: {
+    dataTestid?: string
+    value: TValue
+  }) => any
+}>()
+
 const model = defineModel<TValue[]>({
   required: true,
 })
@@ -133,9 +143,10 @@ function onBlur(): void {
       :is-chevron-hidden="props.isChevronHidden"
       @blur="onBlur"
     >
-      <template #option="{ value }">
+      <template #option="{ value, dataTestid }">
         <slot
           :value="value"
+          :data-testid="dataTestid"
           name="option"
         />
       </template>
