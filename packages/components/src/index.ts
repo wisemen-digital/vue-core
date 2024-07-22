@@ -82,6 +82,9 @@ export { default as AppPaginationRoot } from './components/pagination/AppPaginat
 // Popover
 export { default as AppPopover } from './components/popover/AppPopover.vue'
 
+// Progress
+export { default as AppProgressBar } from './components/progress/AppProgressBar.vue'
+
 // Date
 export { default as AppDatePicker } from './components/date/AppDatePicker.vue'
 export { default as FormDatePicker } from './components/date/FormDatePicker.vue'

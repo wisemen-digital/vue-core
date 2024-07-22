@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols'
-
-import { AppProgressBar } from '@/wisemen/vue-core'
+import { AppProgressBar } from '@wisemen/vue-core'
 
 const controls = createControls({
-  progress: {
+  value: {
     type: 'text',
-    label: 'Progress',
-    default: '50',
+    label: 'value',
+    default: '0',
   },
   showPercentage: {
     type: 'switch',
@@ -34,20 +33,36 @@ const controls = createControls({
     label: 'Maximum Value',
     default: '100',
   },
+  useAutoColor: {
+    type: 'switch',
+    label: 'Use Auto Color',
+    default: false,
+  },
+  color: {
+    type: 'select',
+    label: 'Color',
+    items: [
+      'destructive',
+      'primary',
+      'secondary',
+      'success',
+      'warn',
+    ],
+    default: 'primary',
+  },
+  transitionDuration: {
+    type: 'text',
+    label: 'Transition Duration',
+    default: '10',
+  },
 })
 </script>
 
 <template>
-  <ComponentPlayground
-    :controls="controls"
-  >
+  <ComponentPlayground :controls="controls">
     <template #default="{ values }">
       <AppProgressBar
-        :progress="values.progress"
-        :show-percentage="values.showPercentage"
-        :percentage-position="values.percentagePosition"
-        :min-value="values.minValue"
-        :max-value="values.maxValue"
+        v-bind="values"
       />
     </template>
   </ComponentPlayground>
