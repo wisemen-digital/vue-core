@@ -48,6 +48,8 @@ export const components = {
     'AppNumberInput',
     'FormInput',
     'FormNumberInput',
+    'FormPasswordInput',
+    'FormPhoneNumberInput',
   ],
   toast: [
     'AppToast',
