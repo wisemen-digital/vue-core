@@ -84,6 +84,12 @@ export const components = {
     'AppTagsInput',
     'FormTagsInput',
   ],
+  text: [
+    'AppText',
+  ],
+  textarea: [
+    'AppTextarea',
+  ],
   toast: [
     'AppToast',
   ],
