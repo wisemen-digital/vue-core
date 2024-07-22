@@ -164,6 +164,16 @@ const docs = [
     collapsed: true,
     items: [
       {
+        link: '/components/form-label/form-label',
+        text: 'FormLabel',
+      },
+    ],
+    text: 'FormLabel',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
         link: '/components/input/app-input',
         text: 'AppInput',
       },
