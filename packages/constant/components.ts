@@ -93,4 +93,10 @@ export const components = {
   toast: [
     'AppToast',
   ],
+  toggle: [
+    'AppToggle',
+  ],
+  tooltip: [
+    'AppTooltip',
+  ],
 }
