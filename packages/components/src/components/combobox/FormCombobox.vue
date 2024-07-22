@@ -95,6 +95,16 @@ const emit = defineEmits<{
   filter: [value: string]
 }>()
 
+defineSlots<{
+  /** Override the left content of the combobox input */
+  left: () => void
+  /** Override the option rendering of the combobox, and have access to the dataTestId */
+  option: (props: {
+    dataTestid?: string
+    value: TValue
+  }) => any
+}>()
+
 const model = defineModel<TValue | null>({
   required: true,
 })
@@ -103,16 +113,6 @@ const search = defineModel<null | string>('search', {
   default: '',
   required: false,
 })
-
-defineSlots<{
-  /** Override the left content of the combobox input */
-  left: () => void
-  /** Override the option rendering of the combobox, and have access to the dataTestId */
-  option: (props: {
-    value: TValue
-    dataTestid?: string
-  }) => any
-}>()
 
 function onBlur(): void {
   emit('blur')
