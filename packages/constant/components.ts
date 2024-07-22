@@ -28,6 +28,9 @@ export const components = {
   dropdownMenu: [
     'AppDropdownMenu',
   ],
+  formElement: [
+    'FormElement',
+  ],
   toast: [
     'AppToast',
   ],

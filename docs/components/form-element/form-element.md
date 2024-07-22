@@ -4,29 +4,8 @@ sidebar: auto
 
 
 # FormElement
-<script setup>
-import FormElementPlayground from './FormElementPlayground.vue'
-</script>
 
-<FormElementPlayground />
-
-## Props
-
-| Prop        | Type                  | Description                                                                                      | Default     |
-| ----------- | --------------------- | ------------------------------------------------------------------------------------------------ | ----------- |
-| isDisabled* | `boolean`             | Whether the input is disabled.                                                                   |             |
-| isRequired* | `boolean`             | Whether the input is required.                                                                   |             |
-| isTouched*  | `boolean`             | Whether the input is touched. This is used to determine if the input should be marked as invalid.|             |
-| errors*     | `FormFieldErrors`     | The errors associated with the input.                                                            |             |
-| label*      | `string` \| `null`    | The label of the input.                                                                          |             |
-
-
-
-## Slots
-
-| Slot      | Type                               | Description               |
-| --------- | ---------------------------------- | ------------------------- |
-| `default` | `id: string`, `isInvalid: boolean` | Content of the element    |
+<!-- @include: ./form-element-meta.md -->
 
 ## Code
 
