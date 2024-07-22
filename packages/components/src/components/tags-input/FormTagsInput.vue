@@ -45,6 +45,13 @@ const props = withDefaults(defineProps<{
   placeholder: null,
 })
 
+defineSlots<{
+  /** Override the tag rendering */
+  tag: (props: {
+    value: string
+  }) => any
+}>()
+
 const emit = defineEmits<{
   blur: []
   focus: []

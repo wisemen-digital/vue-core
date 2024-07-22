@@ -80,6 +80,10 @@ export const components = {
     'AppTable',
     'AppTableSkeletonLoader',
   ],
+  tagsInput: [
+    'AppTagsInput',
+    'FormTagsInput',
+  ],
   toast: [
     'AppToast',
   ],
