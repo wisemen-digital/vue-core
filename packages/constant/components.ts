@@ -31,6 +31,12 @@ export const components = {
   formElement: [
     'FormElement',
   ],
+  formError: [
+    'FormError',
+  ],
+  formGroup: [
+    'FormGroup',
+  ],
   toast: [
     'AppToast',
   ],

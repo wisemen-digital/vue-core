@@ -37,8 +37,8 @@ const props = defineProps<{
 defineSlots<{
   /** Content of the element */
   default: (props: {
-    id: string; 
-    isInvalid: boolean;
+    id: string
+    isInvalid: boolean
   }) => any
 }>()
 
