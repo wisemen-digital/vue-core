@@ -83,6 +83,14 @@ function onClearButtonClick(): void {
       @keydown.enter.prevent
     />
 
+    <AppUnstyledButton
+      v-if="props.isClearButtonVisible"
+      :label="t('shared.clear')"
+      @click.stop="onClearButtonClick"
+    >
+      <AppIcon icon="close" />
+    </AppUnstyledButton>
+
     <AppLoader
       v-if="props.isLoading"
       :class="loaderClasses"
@@ -104,13 +112,6 @@ function onClearButtonClick(): void {
         v-else-if="!props.isChevronHidden"
         class="mr-1 flex flex-row gap-2 p-2"
       >
-        <AppUnstyledButton
-          v-if="props.isClearButtonVisible"
-          :label="t('shared.clear')"
-          @click.stop="onClearButtonClick"
-        >
-          <AppIcon icon="close" />
-        </AppUnstyledButton>
         <AppIcon
           :class="iconClasses"
           icon="chevronDown"
