@@ -40,7 +40,12 @@ function onTriggerClick(): void {
 const dateValue = ref<string>('')
 
 function onBlur(): void {
-  if (!dayjs(dateValue.value).isValid()) {
+  const isValidDate = dayjs(dateValue.value).isValid()
+
+  console.log('isValidDate', isValidDate)
+
+  if (!isValidDate) {
+    dateValue.value = ''
     emit('update:modelValue', null)
 
     return
@@ -65,16 +70,14 @@ function onBlur(): void {
   emit('update:modelValue', date.toDate())
 }
 
-const formattedDate = computed<string>(() => {
-  if (props.modelValue === null) {
-    return dateValue.value
-  }
-
-  return dayjs(props.modelValue.toString()).format(props.format)
-})
-
 const dateModel = computed<string>({
-  get: () => formattedDate.value,
+  get: () => {
+    if (props.modelValue === null) {
+      return dateValue.value
+    }
+
+    return dayjs(props.modelValue.toString()).format(props.format)
+  },
   set: (value: string) => {
     dateValue.value = value
   },
