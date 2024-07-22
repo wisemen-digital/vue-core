@@ -12,9 +12,10 @@ import AppToastPlayground from './AppToastPlayground.vue'
 | ---- | ---- | ----------- | ------- |
 | action | `ToastAction \| null` |  | `null` |
 | description | `string \| null` |  | `null` |
-| icon* | `keyof BaseIcons` |  |  |
+| icon* | `keyof Icons` |  |  |
 | title* | `string` |  |  |
 | type* | `ToastType` |  |  |
+
 
 ## Events
 
