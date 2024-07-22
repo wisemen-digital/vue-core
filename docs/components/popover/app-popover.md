@@ -4,32 +4,8 @@ sidebar: auto
 
 
 # AppPopover
-<script setup>
-import AppPopoverPlayground from './AppPopoverPlayground.vue'
-</script>
 
-<AppPopoverPlayground />
-
-
-## Props
-
-| Prop       | Type                                                            | Description                                          | Default     |
-| ---------- | --------------------------------------------------------------- | ---------------------------------------------------- | ----------- |
-| align      | `'center'` \| `'end'` \| `'start'`                              | The alignment of the popover content.                | `'center'`  |
-| hideArrow  | `boolean`                                                       | When true, the arrow will be hidden.                 | `false`     |
-| offset     | `number`                                                        | The offset of the popover content.                   | `10`        |
-| side       | `'bottom'` \| `'left'` \| `'right'` \| `'top'`                  | The side of the trigger the popover should be on.    | `'bottom'`  |
-
-
-## Slots
-
-| Slot name | Type | Description                         |
-| --------- | ---- | ----------------------------------- |
-|`'default'`*| None | Trigger element for the popover     |
-|`'content'`| None | Content of the popover              |
-
-> ⚠️ The trigger element slot is required.
-
+<!-- @include: ./app-popover-meta.md -->
 
 ## Code
 

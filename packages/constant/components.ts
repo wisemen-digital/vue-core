@@ -59,6 +59,9 @@ export const components = {
   loader: [
     'AppLoader',
   ],
+  popover: [
+    'AppPopover',
+  ],
   toast: [
     'AppToast',
   ],

@@ -42,6 +42,13 @@ const props = withDefaults(
   },
 )
 
+defineSlots<{
+  /** Trigger element for the popover */
+  default: () => void
+  /** Content of the popover */
+  content: () => void
+}>()
+
 const slots = useSlots()
 
 if (slots.default === undefined) {
