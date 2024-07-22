@@ -37,6 +37,12 @@ export const components = {
   formGroup: [
     'FormGroup',
   ],
+  // formLabel: [
+  //   'FormLabel',
+  // ],
+  icon: [
+    'AppIcon',
+  ],
   toast: [
     'AppToast',
   ],
