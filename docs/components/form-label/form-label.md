@@ -4,22 +4,7 @@ sidebar: auto
 
 # FormLabel
 
-<script setup>
-import FormLabelPlayground from './FormLabelPlayground.vue'
-</script>
-
-<FormLabelPlayground />
-
-## Props
-
-| Prop       | Type                  | Description                                  | Default     |
-|------------|-----------------------|----------------------------------------------|-------------|
-| isDisabled | `boolean`             | Checks whether the label is disabled or not. | `false`     |
-| isInvalid  | `boolean`             | Checks whether the label is invalid or not.  | `false`     |
-| isRequired | `boolean`             | Checks whether the label is required or not. | `false`     |
-| for*       | `string`              | The id of the form element.                  |             |
-| label*     | `string`              | The label of the form.                       |             |
-| tooltip    | `string \| undefined` | The tooltip of the label.                    | `undefined` |
+<!-- @include: ./form-label-meta.md -->
 
 ## Code
 

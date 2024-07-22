@@ -63,6 +63,13 @@ const props = withDefaults(defineProps<{
   type: 'text',
 })
 
+defineSlots<{
+  /** Replace the left icon with custom content */
+  left: () => void
+  /** Replace the right icon with custom content */
+  right: () => void
+}>()
+
 const model = defineModel<null | string>({
   required: true,
 })

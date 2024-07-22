@@ -22,7 +22,9 @@ const tsconfigChecker = createChecker(
 const allComponents = fg.sync(['src/components/**/*.vue'], {
   cwd: resolve(__dirname, '../../packages/components'),
   absolute: true,
-})
+  // Deep should be defaulted to infinity, but then it doesn't read nested folders. Specifying a number fixes it
+  deep: 10,
+});
 
 const listOfComponents = Object.values(components).flatMap(i => i)
 const primitiveComponents = allComponents.filter(i => listOfComponents.includes(parse(i).name))
@@ -83,7 +85,7 @@ function generateDocsForComponents() {
     const componentName = parse(componentPath).name
     const meta = parseMeta(tsconfigChecker.getComponentMeta(componentPath))
 
-    const componentFolderName = parse(componentPath).dir.split('/').slice(-1)[0]
+    const componentFolderName = parse(componentPath).dir.match(/src\/components\/([^\/]+)/)?.[1]
 
     const metaDirPath = resolve(__dirname, `../components/${componentFolderName}`)
 

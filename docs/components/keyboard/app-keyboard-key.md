@@ -3,19 +3,8 @@ sidebar: auto
 ---
 
 # AppKeyboardKey
-<script setup>
-import AppKeyboardKeyPlayground from './AppKeyboardKeyPlayground.vue'
-</script>
 
-<AppKeyboardKeyPlayground />
-
-## Props
-
-| Prop         | Type                                                                 | Description                                      | Default     |
-|--------------|----------------------------------------------------------------------|--------------------------------------------------|-------------|
-| keyboardKey* | `KeyboardKey`                                                        | The keyboard key to display                      |             |
-| variant      | `'default'` \| `'bordered'` \| `'ghost'` \| `'secondary'`            | The style variant                                | `'default'` |
-
+<!-- @include: ./app-keyboard-key-meta.md -->
 
 ## Types
 

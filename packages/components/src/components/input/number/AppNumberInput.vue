@@ -63,6 +63,13 @@ const props = withDefaults(defineProps<{
   placeholder: null,
 })
 
+defineSlots<{
+  /** Optional content on the left of the input (overrides the rendering of the left Icon) */
+  left: () => void
+  /** Optional content on the right of the input (to the right of the increment/decrement controls) */
+  right: () => void
+}>()
+
 const model = defineModel<null | number>({
   required: true,
 })

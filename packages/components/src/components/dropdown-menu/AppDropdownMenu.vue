@@ -69,6 +69,15 @@ const props = withDefaults(
   },
 )
 
+defineSlots<{
+  /** Trigger element to show the dropdown items */
+  default: () => void
+  /** Optional footer content in the dropdown, after the dropdown items */
+  footer: () => void
+  /** Optional header content in the dropdown, before the dropdown items */
+  header: () => void
+}>()
+
 const dropdownMenuTriggerRef = ref<InstanceType<typeof DropdownMenuTrigger> | null>(null)
 const isOpen = ref<boolean>(false)
 
