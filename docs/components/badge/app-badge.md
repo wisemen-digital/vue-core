@@ -4,19 +4,8 @@ sidebar: auto
 
 
 # AppBadge
-<script setup>
-import AppBadgePlayground from './AppBadgePlayground.vue'
-</script>
 
-<AppBadgePlayground />
-
-
-## Slots
-
-| Slot      | Type | Description               |
-| --------- | ---- | ------------------------- |
-| `default` | None | The content of the badge  |
-
+<!-- @include: ./app-badge-meta.md -->
 
 ## Code
 

@@ -11,10 +11,30 @@ import FormLabel from '@/components/form-label/FormLabel.vue'
 import AppIcon from '@/components/icon/AppIcon.vue'
 
 const props = withDefaults(defineProps<{
+  /**
+   * The id of the checkbox.
+   * @default null
+   */
   id?: null | string
+  /**
+   * Whether the checkbox is disabled.
+   * @default false
+   */
   isDisabled?: boolean
+  /**
+   * Whether the checkbox is in an indeterminate state.
+   * @default false
+   */
   isIndeterminate?: boolean
+  /**
+   * Whether the checkbox is invalid.
+   * @default false
+   */
   isInvalid?: boolean
+  /**
+   *  The label of the checkbox
+   * @default null
+   */
   label?: null | string
 }>(), {
   id: null,

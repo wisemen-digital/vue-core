@@ -1,25 +1,11 @@
 ---
 sidebar: auto
 ---
-<script setup>
-import AppIconButtonPlayground from './AppIconButtonPlayground.vue'
-</script>
 
 
 # AppIconButton
-<AppIconButtonPlayground />
 
-## Props
-
-| Prop       | Type                                                                                                   | Description                                                     | Default     |
-| ---------- | ------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------- | ----------- |
-| variant    | `'default'` \| `'secondary'` \| `'outline'` \| `'ghost'` \| `'destructive'` \| `'destructive-outline'` | The variant of the button                                       | `'default'` |
-| icon*      | `Icon`                                                                                                 | The icon to display                                             |             |
-| label*     | `string`                                                                                               | The label for the button for accessibility. Will not be visible |             |
-| size       | `'xs'` \|  `'sm'` \| `'default'` \| `'lg'`  \|  `'unset'`                                              | The size of the button.                                         | `'default'` |
-| isDisabled | `boolean`                                                                                              | Whether the button is disabled.                                 | `false`     |
-| isLoading  | `boolean`                                                                                              | Whether the button is in a loading state.                       | `false`     |
-
+<!-- @include: ./app-icon-button-meta.md -->
 
 ## Code
 
