@@ -67,6 +67,9 @@ export const components = {
     'AppMultiSelect',
     'FormSelect',
   ],
+  switch: [
+    'FormSwitch',
+  ],
   toast: [
     'AppToast',
   ],
