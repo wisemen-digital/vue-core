@@ -10,6 +10,10 @@ export const components = {
     'AppIconButton',
     'AppRouterLinkButton',
   ],
+  checkbox: [
+    'FormCheckbox',
+    'FormCheckboxGroup',
+  ],
   toast: [
     'AppToast',
   ]
