@@ -131,7 +131,7 @@ function generateDocsForComponents() {
         type: string;
         description: string;
       }) => {
-        parsedString += `| \`${slot.name}\` | ${slot.type} | ${slot.description} |\n`
+        parsedString += `| \`${slot.name}\` | ${slot.type.replace(/\{/g, '\\{').replace(/\}/g, '\\}')} | ${slot.description} |\n`
       })
       parsedString += '\n'
     }

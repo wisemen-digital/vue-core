@@ -118,7 +118,10 @@ defineSlots<{
   /** Override the right content of the combobox input */
   right: () => void
   /** Override the option rendering of the combobox, and have access to the dataTestId */
-  option: (value: AcceptableValue, dataTestid: string) => void
+  option: (props: {
+    value: TValue
+    dataTestid?: string
+  }) => any
 }>()
 
 const isOpen = ref<boolean>(false)

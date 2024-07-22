@@ -17,6 +17,8 @@ export const components = {
   combobox: [
     'AppCombobox',
     'AppMultiCombobox',
+    'FormCombobox',
+    'FormMultiCombobox',
   ],
   toast: [
     'AppToast',

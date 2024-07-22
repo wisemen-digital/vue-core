@@ -104,6 +104,16 @@ const search = defineModel<null | string>('search', {
   required: false,
 })
 
+defineSlots<{
+  /** Override the left content of the combobox input */
+  left: () => void
+  /** Override the option rendering of the combobox, and have access to the dataTestId */
+  option: (props: {
+    value: TValue
+    dataTestid?: string
+  }) => any
+}>()
+
 function onBlur(): void {
   emit('blur')
 }
@@ -146,9 +156,10 @@ function onFilter(filter: string): void {
         <slot name="left" />
       </template>
 
-      <template #option="{ value }">
+      <template #option="{ value, dataTestid }">
         <slot
           :value="value"
+          :data-testid="dataTestid"
           name="option"
         />
       </template>
