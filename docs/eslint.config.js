@@ -20,6 +20,7 @@ export default [
   {
     ignores: [
       '**/public/*',
+      '**/scripts/**',
     ],
   },
 ]

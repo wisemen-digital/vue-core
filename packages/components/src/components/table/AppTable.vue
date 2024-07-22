@@ -15,7 +15,10 @@ import AppTableEmptyStateOverlay from '@/components/table/AppTableEmptyStateOver
 import AppTableFooter from '@/components/table/AppTableFooter.vue'
 import AppTableHeader from '@/components/table/AppTableHeader.vue'
 import AppTableTop from '@/components/table/AppTableTop.vue'
-import { useTableStyle } from '@/components/table/table.style'
+import {
+  type TableStyleProps,
+  useTableStyle,
+} from '@/components/table/table.style'
 import type {
   FilterChangeEvent,
   PaginatedData,
@@ -44,6 +47,7 @@ const props = withDefaults(
     searchFilterKey?: keyof TFilters
     shouldPinFirstColumn?: boolean
     shouldPinLastColumn?: boolean
+    variant?: TableStyleProps['variant']
   }>(),
   {
     isTopHidden: false,
@@ -52,6 +56,7 @@ const props = withDefaults(
     rowTo: null,
     shouldPinFirstColumn: false,
     shouldPinLastColumn: false,
+    variant: 'default',
   },
 )
 
@@ -161,7 +166,9 @@ const tableStyle = useTableStyle()
 
 const containerClasses = computed<string>(() => tableStyle.container())
 const gridClasses = computed<string>(() => tableStyle.grid())
-const tableClasses = computed<string>(() => tableStyle.table())
+const tableClasses = computed<string>(() => tableStyle.table({
+  variant: props.variant,
+}))
 </script>
 
 <template>
@@ -172,6 +179,7 @@ const tableClasses = computed<string>(() => tableStyle.table())
       :title="props.title"
       :total="props.data?.total ?? null"
       :filters="props.filters"
+      :variant="props.variant"
       :pagination="props.pagination"
       :search-filter-key="props.searchFilterKey"
       @filter="onFilterChange"
@@ -192,6 +200,7 @@ const tableClasses = computed<string>(() => tableStyle.table())
         <AppTableHeader
           :columns="props.columns"
           :pagination-options="props.pagination.paginationOptions.value"
+          :variant="props.variant"
           :should-pin-first-column="props.shouldPinFirstColumn"
           :should-pin-last-column="props.shouldPinLastColumn"
           :is-scrolled-to-right="isScrolledToRight"
