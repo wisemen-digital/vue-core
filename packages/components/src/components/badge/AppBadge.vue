@@ -6,6 +6,11 @@ import AppText from '@/components/text/AppText.vue'
 
 const badgeStyle = useBadgeStyle()
 const badgeClasses = computed<string>(() => badgeStyle.badge())
+
+defineSlots<{
+  /** The content of the badge */
+  default: () => void
+}>()
 </script>
 
 <template>
