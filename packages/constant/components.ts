@@ -14,6 +14,10 @@ export const components = {
     'FormCheckbox',
     'FormCheckboxGroup',
   ],
+  combobox: [
+    'AppCombobox',
+    'AppMultiCombobox',
+  ],
   toast: [
     'AppToast',
   ]

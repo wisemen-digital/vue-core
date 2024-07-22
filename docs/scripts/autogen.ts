@@ -141,7 +141,7 @@ function generateDocsForComponents() {
       parsedString += '| Event name | Type | Description |\n'
       parsedString += '| ---------- | ---- | ----------- |\n'
       meta.events.forEach((event: { name: string; type: string; description: string }) => {
-        parsedString += `| \`${event.name}\` | ${event.type} | ${event.description} |\n`
+        parsedString += `| \`${event.name}\` | ${event.type.replace(/\|/g, '\\|')} | ${event.description} |\n`
       })
       parsedString += '\n'
     }

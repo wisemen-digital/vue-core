@@ -110,6 +110,17 @@ const searchModel = defineModel<null | string>('search', {
   required: false,
 })
 
+defineSlots<{
+  /** Override the empty state of the combobox dropdown */
+  empty: () => void
+  /** Override the left content of the combobox input */
+  left: () => void
+  /** Override the right content of the combobox input */
+  right: () => void
+  /** Override the option rendering of the combobox, and have access to the dataTestId */
+  option: (value: AcceptableValue, dataTestid: string) => void
+}>()
+
 const isOpen = ref<boolean>(false)
 
 const model = computed<TValue[]>({
