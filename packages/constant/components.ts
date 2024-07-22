@@ -43,6 +43,10 @@ export const components = {
   icon: [
     'AppIcon',
   ],
+  input: [
+    'AppInput',
+    'AppNumberInput',
+  ],
   toast: [
     'AppToast',
   ],
