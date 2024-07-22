@@ -7,12 +7,12 @@ import { useTableStyle } from '@/components/table/table.style'
 const props = withDefaults(
   defineProps<{
     /**
-   * The number of skeleton rows to show in the table
-   */
+     * The number of skeleton rows to show in the table
+     */
     numberOfRows?: number
     /**
-   * Set to true to hide the table header
-   */
+     * Set to true to hide the table header
+     */
     withoutHeader?: boolean
   }>(),
   {

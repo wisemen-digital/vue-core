@@ -14,8 +14,8 @@ const props = withDefaults(defineProps<{
 defineSlots<{
   /** Content to be toggled */
   default: (props: {
-    isToggled: boolean
     isDisabled: boolean
+    isToggled: boolean
   }) => any
 }>()
 

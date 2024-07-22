@@ -2,8 +2,8 @@
 import { ref } from 'vue'
 
 import { useKeyboardShortcut } from '@/composables/keyboardShortcut.composable'
-import type { KeyboardShortcutConfig } from '@/types/keyboardShortcut.type'
 import type { KeyboardKey } from '@/types/keyboard.type'
+import type { KeyboardShortcutConfig } from '@/types/keyboardShortcut.type'
 
 const props = defineProps<{
   /**

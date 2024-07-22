@@ -10,10 +10,10 @@ withDefaults(
    * The icon to be displayed
    */
     icon: Icon
-  /**
-   * The size of the icon
-   * @default 'default'
-   */
+    /**
+     * The size of the icon
+     * @default 'default'
+     */
     size?: IconStyleProps['size']
   }>(),
   {

@@ -45,16 +45,16 @@ const props = withDefaults(defineProps<{
   placeholder: null,
 })
 
+const emit = defineEmits<{
+  blur: []
+  focus: []
+}>()
+
 defineSlots<{
   /** Override the tag rendering */
   tag: (props: {
     value: string
   }) => any
-}>()
-
-const emit = defineEmits<{
-  blur: []
-  focus: []
 }>()
 
 const model = defineModel<string[]>({

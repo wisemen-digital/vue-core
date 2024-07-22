@@ -72,6 +72,10 @@ const props = withDefaults(
   },
 )
 
+const emit = defineEmits<{
+  blur: []
+}>()
+
 defineSlots<{
   /** Override the display of the left icon */
   left: () => any
@@ -79,10 +83,6 @@ defineSlots<{
   option: (props: {
     value: AcceptableValue
   }) => any
-}>()
-
-const emit = defineEmits<{
-  blur: []
 }>()
 
 const model = defineModel<TValue | null>({

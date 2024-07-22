@@ -88,6 +88,11 @@ const props = withDefaults(
   },
 )
 
+const emit = defineEmits<{
+  'blur': []
+  'update:modelValue': [value: TValue | null]
+}>()
+
 defineSlots<{
   /** Override the display of the left icon */
   left: () => any
@@ -95,11 +100,6 @@ defineSlots<{
   option: (props: {
     value: AcceptableValue
   }) => any
-}>()
-
-const emit = defineEmits<{
-  'blur': []
-  'update:modelValue': [value: TValue | null]
 }>()
 
 const model = defineModel<TValue | null>({

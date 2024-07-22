@@ -7,7 +7,7 @@ import { useSkeletonLoaderStyle } from '@/components/skeleton-loader/skeletonLoa
 const props = withDefaults(
   defineProps<{
   /**
-   * The number of skeleton rows to show	
+   * The number of skeleton rows to show
    */
     rows?: number
   }>(),

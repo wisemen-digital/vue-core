@@ -77,6 +77,11 @@ const props = withDefaults(
   },
 )
 
+const emit = defineEmits<{
+  'blur': []
+  'update:modelValue': [value: TValue[]]
+}>()
+
 defineSlots<{
   /** Override the display of the left icon */
   left: () => any
@@ -84,11 +89,6 @@ defineSlots<{
   option: (props: {
     value: AcceptableValue
   }) => any
-}>()
-
-const emit = defineEmits<{
-  'blur': []
-  'update:modelValue': [value: TValue[]]
 }>()
 
 const isOpen = ref<boolean>(false)
