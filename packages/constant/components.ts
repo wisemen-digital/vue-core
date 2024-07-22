@@ -76,6 +76,10 @@ export const components = {
   switch: [
     'FormSwitch',
   ],
+  table: [
+    'AppTable',
+    'AppTableSkeletonLoader',
+  ],
   toast: [
     'AppToast',
   ],
