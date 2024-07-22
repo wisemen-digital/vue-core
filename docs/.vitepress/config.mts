@@ -344,6 +344,16 @@ const docs = [
     collapsed: true,
     items: [
       {
+        link: '/components/toast/app-toast',
+        text: 'AppToast',
+      },
+    ],
+    text: 'Toast',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
         link: '/components/toggle/app-toggle',
         text: 'AppToggle',
       },
