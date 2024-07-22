@@ -62,6 +62,11 @@ export const components = {
   popover: [
     'AppPopover',
   ],
+  select: [
+    'AppSelect',
+    'AppMultiSelect',
+    'FormSelect',
+  ],
   toast: [
     'AppToast',
   ],
