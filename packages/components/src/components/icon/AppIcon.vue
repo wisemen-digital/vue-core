@@ -6,7 +6,14 @@ import type { Icon } from '@/icons/icons'
 
 withDefaults(
   defineProps<{
+  /**
+   * The icon to be displayed
+   */
     icon: Icon
+    /**
+     * The size of the icon
+     * @default 'default'
+     */
     size?: IconStyleProps['size']
   }>(),
   {

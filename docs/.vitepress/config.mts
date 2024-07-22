@@ -111,6 +111,7 @@ const docs = [
     text: 'Date',
   },
   {
+    collapsed: true,
     items: [
       {
         link: '/components/dropdown-menu/app-dropdown-menu',
@@ -148,6 +149,16 @@ const docs = [
       },
     ],
     text: 'FormGroup',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
+        link: '/components/form-label/form-label',
+        text: 'FormLabel',
+      },
+    ],
+    text: 'FormLabel',
   },
   {
     collapsed: true,

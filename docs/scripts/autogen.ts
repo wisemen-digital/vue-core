@@ -22,7 +22,9 @@ const tsconfigChecker = createChecker(
 const allComponents = fg.sync(['src/components/**/*.vue'], {
   cwd: resolve(__dirname, '../../packages/components'),
   absolute: true,
-})
+  // Deep should be defaulted to infinity, but then it doesn't read nested folders. Specifying a number fixes it
+  deep: 10,
+});
 
 const listOfComponents = Object.values(components).flatMap(i => i)
 const primitiveComponents = allComponents.filter(i => listOfComponents.includes(parse(i).name))
@@ -62,9 +64,10 @@ function parseMeta(meta: any) {
   const slots = meta.slots
     .map((slot: any) => {
       const { name, type, description } = slot
+      const descriptionString = description ?? ''
       return ({
         name,
-        description: md.render((description ?? '').replace(/^[ \t]+/gm, '')),
+        description: descriptionString.replace(/^[ \t]+/gm, ''),
         type: type === "{}" ? "None" : type.replace(/\s*\|\s*undefined/g, ''),
       })
     })
@@ -82,7 +85,7 @@ function generateDocsForComponents() {
     const componentName = parse(componentPath).name
     const meta = parseMeta(tsconfigChecker.getComponentMeta(componentPath))
 
-    const componentFolderName = parse(componentPath).dir.split('/').slice(-1)[0]
+    const componentFolderName = parse(componentPath).dir.match(/src\/components\/([^\/]+)/)?.[1]
 
     const metaDirPath = resolve(__dirname, `../components/${componentFolderName}`)
 
@@ -122,7 +125,7 @@ function generateDocsForComponents() {
     }
 
     if (meta.slots.length) {
-      parsedString += '## Slots\n\n'
+      parsedString += '\n## Slots\n\n'
       parsedString += '| Slot | Type | Description |\n'
       parsedString += '| --------- | ---- | ----------- |\n'
       meta.slots.forEach((slot: {
@@ -130,17 +133,17 @@ function generateDocsForComponents() {
         type: string;
         description: string;
       }) => {
-        parsedString += `| ${slot.name} | ${slot.type} | ${slot.description} |\n`
+        parsedString += `| \`${slot.name}\` | ${slot.type.replace(/\{/g, '\\{').replace(/\}/g, '\\}')} | ${slot.description} |\n`
       })
       parsedString += '\n'
     }
 
     if (meta.events.length) {
-      parsedString += '## Events\n\n'
+      parsedString += '\n## Events\n\n'
       parsedString += '| Event name | Type | Description |\n'
       parsedString += '| ---------- | ---- | ----------- |\n'
       meta.events.forEach((event: { name: string; type: string; description: string }) => {
-        parsedString += `| \`${event.name}\` | ${event.type} | ${event.description} |\n`
+        parsedString += `| \`${event.name}\` | ${event.type.replace(/\|/g, '\\|')} | ${event.description} |\n`
       })
       parsedString += '\n'
     }

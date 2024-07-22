@@ -4,25 +4,13 @@ sidebar: auto
 
 
 # AppIcon
-<script setup>
-import AppIconPlayground from './AppIconPlayground.vue'
-</script>
 
-<AppIconPlayground />
-
-
-## Props
-
-| Prop | Type                     | Description              | Default     |
-| ---- | ------------------------ | ------------------------ | ----------- |
-| icon*| `Icon`                   | The icon to be displayed |             |
-| size | `IconStyleProps['size']` | The size of the icon     | `'default'` |
-
+<!-- @include: ./app-icon-meta.md -->
 
 ## Types
 
 ::: code-group
-```ts [IconStyleProps['size']]
+```ts [sizeOptions]
 export const sizeOptions = {
   default: 'h-4 w-4',
   full: 'h-full w-full',

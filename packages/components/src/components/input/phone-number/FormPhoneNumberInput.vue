@@ -58,8 +58,7 @@ const props = withDefaults(
      */
     label: string
     /**
-     * The locale of the input.
-     * For registering locales, see: https://www.npmjs.com/package/i18n-iso-countries
+     * The locale of the input. For registering locales, see: https://www.npmjs.com/package/i18n-iso-countries
      * @default 'en'
      */
     locale?: Locale | null

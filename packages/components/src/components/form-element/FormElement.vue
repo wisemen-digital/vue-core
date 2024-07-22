@@ -34,6 +34,14 @@ const props = defineProps<{
   tooltip?: string
 }>()
 
+defineSlots<{
+  /** Content of the element */
+  default: (props: {
+    id: string
+    isInvalid: boolean
+  }) => any
+}>()
+
 const inputId = useId(null, 'input')
 
 const isInvalid = computed<boolean>(() => {

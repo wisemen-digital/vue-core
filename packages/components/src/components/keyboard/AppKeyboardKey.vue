@@ -6,7 +6,13 @@ import { useKeyboardStyle } from '@/components/keyboard/keyboardKey.style'
 import type { KeyboardKey } from '@/types/keyboard.type'
 
 const props = withDefaults(defineProps<{
+  /**
+   * The keyboard key to display
+   */
   keyboardKey: KeyboardKey
+  /**
+   * The style variant
+   */
   variant?: KeyboardStyleProps['variant']
 }>(), {
   variant: 'default',

@@ -70,6 +70,11 @@ const props = withDefaults(defineProps<AppButtonProps>(), {
   variant: 'default',
 })
 
+defineSlots<{
+  /** The content of the button */
+  default: () => void
+}>()
+
 const buttonRef = ref<HTMLButtonElement | null>(null)
 
 const buttonStyle = useButtonStyle()

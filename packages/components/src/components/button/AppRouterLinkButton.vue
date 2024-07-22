@@ -65,6 +65,11 @@ const props = withDefaults(defineProps<Props>(), {
   variant: 'default',
 })
 
+defineSlots<{
+  /** The content of the button */
+  default: () => void
+}>()
+
 const routerLinkRef = ref<InstanceType<any> | null>(null)
 const buttonStyle = useButtonStyle()
 const buttonClasses = computed<string>(() =>

@@ -7,11 +7,29 @@ import AppIcon from '@/components/icon/AppIcon.vue'
 import AppTooltip from '@/components/tooltip/AppTooltip.vue'
 
 const props = withDefaults(defineProps<{
+  /**
+   * Whether the label is disabled.
+   */
   isDisabled?: boolean
+  /**
+   * Whether the label is invalid.
+   */
   isInvalid?: boolean
+  /**
+   * Whether the label is required.
+   */
   isRequired?: boolean
+  /**
+   * The id of the form element.
+   */
   for: string
+  /**
+   * The label of the form.
+   */
   label: string
+  /**
+   * The tooltip of the label.
+   */
   tooltip?: string
 }>(), {
   isDisabled: false,

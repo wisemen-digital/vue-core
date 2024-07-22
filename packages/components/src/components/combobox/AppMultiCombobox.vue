@@ -105,6 +105,20 @@ const emit = defineEmits<{
   'update:modelValue': [value: TValue[]]
 }>()
 
+defineSlots<{
+  /** Override the empty state of the combobox dropdown */
+  empty: () => void
+  /** Override the left content of the combobox input */
+  left: () => void
+  /** Override the option rendering of the combobox, and have access to the dataTestId */
+  option: (props: {
+    dataTestid?: string
+    value: TValue
+  }) => any
+  /** Override the right content of the combobox input */
+  right: () => void
+}>()
+
 const searchModel = defineModel<null | string>('search', {
   default: '',
   required: false,
