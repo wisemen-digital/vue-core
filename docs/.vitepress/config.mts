@@ -154,21 +154,21 @@ const docs = [
     collapsed: true,
     items: [
       {
-        link: '/components/icon/app-icon',
-        text: 'AppIcon',
-      },
-    ],
-    text: 'Icon',
-  },
-  {
-    collapsed: true,
-    items: [
-      {
         link: '/components/form-label/form-label',
         text: 'FormLabel',
       },
     ],
     text: 'FormLabel',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
+        link: '/components/icon/app-icon',
+        text: 'AppIcon',
+      },
+    ],
+    text: 'Icon',
   },
   {
     collapsed: true,
