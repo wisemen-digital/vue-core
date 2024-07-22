@@ -98,7 +98,7 @@ defineSlots<{
   left: () => any
   /** Override the option rendering of the select */
   option: (props: {
-    value: AcceptableValue
+    value: TValue
   }) => any
 }>()
 
