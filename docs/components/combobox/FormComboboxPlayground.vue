@@ -58,6 +58,11 @@ const controls = createControls({
     type: 'text',
     cols: 2,
   },
+  hasClearButton: {
+    default: false,
+    label: 'Has Clear Button',
+    type: 'switch',
+  },
 })
 
 interface User {
