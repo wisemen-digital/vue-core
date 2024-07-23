@@ -6,11 +6,10 @@ import {
 import {
   computed,
   defineProps,
-  ref,
-  watch,
 } from 'vue'
 
 import { useProgressBarStyle } from '@/components/progress/progress.style'
+import type { ProgressPosition } from '@/components/sonner/types'
 
 type ProgressBarColor = 'destructive'
   | 'primary'
@@ -21,36 +20,42 @@ type ProgressBarColor = 'destructive'
 
 const props = withDefaults(
   defineProps<{
+    hasAutoColor: boolean
+
+    isPercentageVisible: boolean
+
     color: ProgressBarColor
 
     maxValue: number
 
     minValue: number
 
-    percentagePosition: string
+    percentagePosition: ProgressPosition
 
-    showPercentage: boolean
+    tooltip: boolean
 
     transitionDuration: number
-
-    useAutoColor: boolean
 
     value: number
 
   }>(),
   {
+    hasAutoColor: false,
+    isPercentageVisible: false,
     color: 'primary',
     maxValue: 100,
     minValue: 0,
     percentagePosition: 'outside',
-    showPercentage: false,
+    tooltip: false,
     transitionDuration: 10,
-    useAutoColor: false,
     value: 0,
   },
 )
 
-const progress = ref<number>(props.value)
+const progress = computed<number>(() => {
+  return Math.max(props.minValue, Math.min(props.value, props.maxValue))
+})
+
 const progressStyle = useProgressBarStyle()
 
 const progressContainerClass = computed<string>(() => progressStyle.container())
@@ -70,17 +75,13 @@ const progressPercentage = computed<number>(() => {
 })
 
 const progressBarColorClass = computed<string>(() => {
-  const color = props.useAutoColor
+  const color = props.hasAutoColor
     ? (progressPercentage.value >= 80 ? 'success' : progressPercentage.value >= 50 ? 'warn' : 'destructive')
     : (props.color ?? 'primary')
 
   return progressStyle.progressIndicator({
     color,
   })
-})
-
-watch(() => props.value, (newValue) => {
-  progress.value = Math.max(props.minValue, Math.min(newValue, props.maxValue))
 })
 </script>
 
@@ -93,10 +94,10 @@ watch(() => props.value, (newValue) => {
     <ProgressIndicator
 
       :style="`transform: translateX(-${100 - progressPercentage}%)`"
-      :class="`${progressBarColorClass} transition ease-in duration-${props.transitionDuration} `"
+      :class="`absolute left-0 top-0 h-full rounded-full transition-all ${progressBarColorClass} transition ease-in duration-${props.transitionDuration} `"
     />
     <span
-      v-if="props.showPercentage && props.percentagePosition === 'inside'"
+      v-if="props.isPercentageVisible && props.percentagePosition === 'inside'"
       :style="percentageInside"
       class="z-10 text-white mix-blend-difference"
     >
@@ -104,7 +105,7 @@ watch(() => props.value, (newValue) => {
     </span>
   </ProgressRoot>
   <span
-    v-if="props.showPercentage && props.percentagePosition === 'outside'"
+    v-if="props.isPercentageVisible && props.percentagePosition === 'outside'"
     :style="percentageOutside"
   >
     {{ `${progressPercentage.toFixed(2)}%` }}
