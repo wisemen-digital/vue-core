@@ -86,12 +86,20 @@ const docs = [
         text: 'AppMultiCombobox',
       },
       {
+        link: '/components/combobox/app-tags-combobox',
+        text: 'AppTagsCombobox',
+      },
+      {
         link: '/components/combobox/form-combobox',
         text: 'FormCombobox',
       },
       {
         link: '/components/combobox/form-multi-combobox',
         text: 'FormMultiCombobox',
+      },
+      {
+        link: '/components/combobox/form-tags-combobox',
+        text: 'FormTagsCombobox',
       },
     ],
     text: 'Combobox',

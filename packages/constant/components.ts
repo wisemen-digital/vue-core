@@ -17,8 +17,10 @@ export const components = {
   combobox: [
     'AppCombobox',
     'AppMultiCombobox',
+    'AppTagsCombobox',
     'FormCombobox',
     'FormMultiCombobox',
+    'FormTagsCombobox',
   ],
   // TODO: add datepicker in auto-gen components once refactored by kiryl: https://github.com/wisemen-digital/vue-core/pull/130
   // date: [
