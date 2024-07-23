@@ -2,19 +2,19 @@
 sidebar: auto
 ---
 
-# AppMultiSelect
+# FormMultiSelect
 
-For single value select, see [AppSelect](/components/select/app-select.md).
+For single value select, see [FormSelect](/components/select/form-select.md).
 
-<!-- @include: ./app-multi-select-meta.md -->
-
+<!-- @include: ./form-multi-select-meta.md -->
 ## Code
 
 ::: code-group
 ```vue [Usage]
 <script setup lang="ts">
 import { AppSelect, SelectItem } from '@wisemen/vue-core'
-import { ref } from 'vue'
+import { useForm } from 'formango'
+import { z } from 'zod'
 
 interface User {
   firstName: string
@@ -41,31 +41,37 @@ const userItems: SelectItem<User>[] = [
   },
 ]
 
-const users = ref<User[]>([])
+const { form } = useForm({
+  schema: z.object({
+    users: z.object({
+      firstName: z.string(),
+      lastName: z.string(),
+    }).array()
+  })
+})
+
+const users = form.register('users')
 
 function displayFn(user: User): string {
   return `${user.firstName} ${user.lastName}`
 }
 
-function filterFn(users: User[], searchTerm: string): User[] {
-  return users.filter((user) => {
-    return displayFn(user).toLowerCase().includes(searchTerm.toLowerCase())
-  })
-}
 </script>
 
 <template>
-  <AppMultiSelect
-    v-model="users"
+  <FormMultiSelect
+    v-bind="users"
     :items="userItems"
     :display-fn="displayFn"
+    label="Users"
   />
 
   <!-- Or with a custom option slot -->
-  <AppMultiSelect
-    v-model="users"
+  <FormMultiSelect
+    v-bind="users"
     :items="userItems"
     :display-fn="displayFn"
+    label="Users"
   >
     <template #option="{ value }">
       <!-- custom html -->
@@ -75,4 +81,4 @@ function filterFn(users: User[], searchTerm: string): User[] {
 ```
 :::
 
-For full source code, see [Github](https://github.com/wisemen-digital/vue-core/blob/main/packages/components/src/components/select/AppMultiSelect.vue)
+For full source code, see [Github](https://github.com/wisemen-digital/vue-core/blob/main/packages/components/src/components/select/FormMultiSelect.vue)

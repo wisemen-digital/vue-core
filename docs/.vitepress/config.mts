@@ -253,6 +253,10 @@ const docs = [
         link: '/components/select/form-select',
         text: 'FormSelect',
       },
+      {
+        link: '/components/select/form-multi-select',
+        text: 'FormMultiSelect',
+      },
     ],
     text: 'Select',
   },

@@ -66,6 +66,7 @@ export const components = {
     'AppSelect',
     'AppMultiSelect',
     'FormSelect',
+    'FormMultiSelect',
   ],
   skeletonLoader: [
     'AppPageSkeletonLoader',
