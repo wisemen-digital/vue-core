@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CalendarDate } from '@internationalized/date'
+import { CalendarDate as IntCalendarDate } from '@internationalized/date'
 import {
   DatePickerRoot,
   useId,
@@ -14,6 +14,8 @@ import AppDateCalendarPickerContent from '@/components/date/AppDateCalendarPicke
 import AppDateMonthPickerContent from '@/components/date/AppDateMonthPickerContent.vue'
 import AppDatePickerField from '@/components/date/AppDatePickerField.vue'
 import AppDateYearPickerContent from '@/components/date/AppDateYearPickerContent.vue'
+import { useDatePickerStyle } from '@/components/date/datePicker.style'
+import type { CalendarDate } from '@/objects/calendarDate.object'
 
 const props = withDefaults(defineProps<{
   /**
@@ -25,12 +27,12 @@ const props = withDefaults(defineProps<{
    * The max date.
    * @default null
    */
-  maxDate?: Date | null
+  maxDate?: CalendarDate | null
   /**
    * The min date.
    * @default null
    */
-  minDate?: Date | null
+  minDate?: CalendarDate | null
   /**
    * Whether the input is disabled.
    * @default false
@@ -55,7 +57,7 @@ const props = withDefaults(defineProps<{
    * The modelValue of the date picker.
    * @default null
    */
-  modelValue: Date | null
+  modelValue: CalendarDate | null | undefined
 }>(), {
   id: null,
   maxDate: null,
@@ -70,17 +72,17 @@ const emit = defineEmits<{
   'update:modelValue': [Date | null]
 }>()
 
-const model = computed<CalendarDate | undefined>({
+const model = computed<IntCalendarDate | undefined>({
   get: () => {
     const value = props.modelValue
 
-    if (value === null) {
+    if (value === null || value === undefined) {
       return undefined
     }
 
     return dateToCalendarDate(value)
   },
-  set: (value: CalendarDate | undefined) => {
+  set: (value: IntCalendarDate | undefined) => {
     if (value === undefined) {
       return emit('update:modelValue', null)
     }
@@ -93,7 +95,11 @@ const { locale } = useI18n()
 
 const id = props.id ?? useId()
 
-const minDate = computed<CalendarDate | undefined>(() => {
+const datePickerStyle = useDatePickerStyle()
+
+const pickerClasses = computed<string>(() => datePickerStyle.picker())
+
+const minDate = computed<IntCalendarDate | undefined>(() => {
   if (props.minDate === null) {
     return undefined
   }
@@ -101,7 +107,7 @@ const minDate = computed<CalendarDate | undefined>(() => {
   return dateToCalendarDate(props.minDate)
 })
 
-const maxDate = computed<CalendarDate | undefined>(() => {
+const maxDate = computed<IntCalendarDate | undefined>(() => {
   if (props.maxDate === null) {
     return undefined
   }
@@ -128,7 +134,7 @@ function onShowMonthPickerButtonClick(): void {
 
 function onMonthSelect(month: number, year: number): void {
   if (model.value === undefined) {
-    model.value = new CalendarDate(year, month, 1)
+    model.value = new IntCalendarDate(year, month, 1)
   }
   else {
     model.value.set({
@@ -152,7 +158,7 @@ function onTriggerClick(): void {
 
 function onYearSelect(year: number): void {
   if (model.value === undefined) {
-    model.value = new CalendarDate(year, 1, 1)
+    model.value = new IntCalendarDate(year, 1, 1)
   }
   else {
     model.value.set({
@@ -176,17 +182,17 @@ function onModelValueUpdate(value: Date | null): void {
   model.value = dateToCalendarDate(value)
 }
 
-function dateToCalendarDate(date: Date): CalendarDate {
-  return new CalendarDate(date.getFullYear(), date.getMonth() + 1, date.getDate())
+function dateToCalendarDate(date: Date): IntCalendarDate {
+  return new IntCalendarDate(date.getFullYear(), date.getMonth() + 1, date.getDate())
 }
 
-function calendarDateToDate(calendarDate: CalendarDate): Date {
+function calendarDateToDate(calendarDate: IntCalendarDate): Date {
   return new Date(calendarDate.year, calendarDate.month - 1, calendarDate.day)
 }
 </script>
 
 <template>
-  <div class="flex w-full flex-col gap-2">
+  <div :class="pickerClasses">
     <DatePickerRoot
       :id="id"
       v-model="model"

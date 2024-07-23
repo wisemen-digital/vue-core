@@ -8,20 +8,26 @@ import {
   DatePickerGridBody,
   DatePickerGridRow,
 } from 'radix-vue'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
 import AppDatePickerContent from '@/components/date/AppDatePickerContent.vue'
 import AppDatePickerHeader from '@/components/date/AppDatePickerHeader.vue'
+import { useDatePickerStyle } from '@/components/date/datePicker.style'
 
 const emit = defineEmits<{
   yearClick: [number]
 }>()
 
+const datePickerStyle = useDatePickerStyle()
+
+const localYear = ref<number>(0)
+
+const yearPickerContentGridClasses = computed<string>(() => datePickerStyle.yearPickerContentGrid())
+const yearPickerContentCellTriggerClasses = computed<string>(() => datePickerStyle.yearPickerContentCellTrigger())
+
 function onYearClick(year: number): void {
   emit('yearClick', year)
 }
-
-const localYear = ref<number>(0)
 
 function getYears(currentDate: DateValue): number[] {
   const years = []
@@ -54,7 +60,6 @@ function getYear(date: DateValue, year: number): CalendarDate {
   <AppDatePickerContent>
     <DatePickerCalendar
       v-slot="{ grid }"
-      class="p-4"
     >
       <AppDatePickerHeader
         step="year"
@@ -63,7 +68,7 @@ function getYear(date: DateValue, year: number): CalendarDate {
       />
 
       <div
-        class="grid grid-cols-2 gap-4"
+        :class="yearPickerContentGridClasses"
       >
         <DatePickerGrid
           v-for="year in getYears(grid[0].value)"
@@ -77,8 +82,8 @@ function getYear(date: DateValue, year: number): CalendarDate {
               >
                 <DatePickerCellTrigger
                   :day="getYear(grid[0].value, year)"
+                  :class="yearPickerContentCellTriggerClasses"
                   :month="getYear(grid[0].value, year)"
-                  class="relative flex h-8 items-center justify-center whitespace-nowrap rounded-button border border-transparent bg-transparent px-4 text-sm font-normal text-foreground outline-none before:absolute before:top-[5px] before:hidden before:size-1 before:rounded-full before:bg-background hover:border-primary focus:shadow-[0_0_0_2px] focus:shadow-primary/50 data-[unavailable]:pointer-events-none data-[selected]:bg-primary data-[selected]:font-medium data-[disabled]:text-foreground/30 data-[selected]:text-white data-[unavailable]:text-foreground/30 data-[unavailable]:line-through data-[today]:before:block data-[selected]:before:bg-background data-[today]:before:bg-primary"
                   @click="onYearClick(year)"
                 >
                   {{ year }}

@@ -9,6 +9,7 @@ import { computed } from 'vue'
 
 import AppButton from '@/components/button/AppButton.vue'
 import AppIconButton from '@/components/button/AppIconButton.vue'
+import { useDatePickerStyle } from '@/components/date/datePicker.style'
 
 const props = defineProps<{
   step: 'calendar' | 'month' | 'year'
@@ -21,10 +22,14 @@ const emit = defineEmits<{
   yearClick: []
 }>()
 
-function getRangeLabel(currentDate: string): string {
-  const year = Number(currentDate.split(' ')[1])
+const datePickerStyle = useDatePickerStyle()
 
-  const currentYear = year
+const pickerHeaderClasses = computed<string>(() => datePickerStyle.pickerHeader())
+const pickerHeaderHeadingClasses = computed<string>(() => datePickerStyle.pickerHeaderHeading())
+const pickerHeaderHeadingButtonClasses = computed<string>(() => datePickerStyle.pickerHeaderHeadingButton())
+
+function getRangeLabel(currentDate: string): string {
+  const currentYear = Number(currentDate.split(' ')[1])
   const startOfDecade = currentYear - (currentYear % 10)
   const endOfDecade = startOfDecade + 9
 
@@ -57,7 +62,9 @@ const pickerStep = computed<'month' | 'year'>(() => {
 </script>
 
 <template>
-  <DatePickerHeader class="flex items-center justify-between">
+  <DatePickerHeader
+    :class="pickerHeaderClasses"
+  >
     <DatePickerPrev
       :step="pickerStep"
       as="div"
@@ -72,11 +79,13 @@ const pickerStep = computed<'month' | 'year'>(() => {
       />
     </DatePickerPrev>
 
-    <DatePickerHeading class="font-medium text-foreground">
+    <DatePickerHeading
+      :class="pickerHeaderHeadingClasses"
+    >
       <template #default="{ headingValue }">
         <div
           v-if="props.step === 'year'"
-          class="flex items-center"
+          :class="pickerHeaderHeadingButtonClasses"
         >
           <AppButton
             size="sm"
@@ -88,7 +97,7 @@ const pickerStep = computed<'month' | 'year'>(() => {
         </div>
         <div
           v-if="props.step === 'month'"
-          class="flex items-center"
+          :class="pickerHeaderHeadingButtonClasses"
         >
           <AppButton
             size="sm"
@@ -100,7 +109,7 @@ const pickerStep = computed<'month' | 'year'>(() => {
         </div>
         <div
           v-if="props.step === 'calendar'"
-          class="flex items-center"
+          :class="pickerHeaderHeadingButtonClasses"
         >
           <AppButton
             size="sm"
@@ -129,7 +138,6 @@ const pickerStep = computed<'month' | 'year'>(() => {
         label="chevronRight"
         variant="ghost"
         size="sm"
-
         icon="chevronRight"
         @click.stop="onNextClick"
       />

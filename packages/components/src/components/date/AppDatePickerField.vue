@@ -8,7 +8,7 @@ import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import AppIconButton from '@/components/button/AppIconButton.vue'
-import { useComponentAttrs } from '@/composables/componentAttrs.composable'
+import { useDatePickerStyle } from '@/components/date/datePicker.style'
 
 const props = defineProps<{
   isDisabled?: boolean
@@ -16,7 +16,7 @@ const props = defineProps<{
   format: string
   maxValue: Date | null
   minValue: Date | null
-  modelValue: Date | null
+  modelValue: Date | null | undefined
 }>()
 
 const emit = defineEmits<{
@@ -27,8 +27,6 @@ const emit = defineEmits<{
 
 const { locale } = useI18n()
 
-const { classAttr } = useComponentAttrs()
-
 function onTriggerClick(): void {
   if (props.isDisabled) {
     return
@@ -37,12 +35,12 @@ function onTriggerClick(): void {
   emit('dateClick')
 }
 
-const dateValue = ref<string>('')
+const initialValue = props.modelValue === null || props.modelValue === undefined ? '' : dayjs(props.modelValue).format(props.format)
+
+const dateValue = ref<string>(initialValue)
 
 function onBlur(): void {
   const isValidDate = dayjs(dateValue.value).isValid()
-
-  console.log('isValidDate', isValidDate)
 
   if (!isValidDate) {
     dateValue.value = ''
@@ -72,7 +70,7 @@ function onBlur(): void {
 
 const dateModel = computed<string>({
   get: () => {
-    if (props.modelValue === null) {
+    if (props.modelValue === null || props.modelValue === undefined) {
       return dateValue.value
     }
 
@@ -82,25 +80,26 @@ const dateModel = computed<string>({
     dateValue.value = value
   },
 })
+
+const datePickerStyle = useDatePickerStyle()
+
+const pickerFieldClasses = computed<string>(() => datePickerStyle.pickerField({
+  isDisabled: props.isDisabled,
+  isInvalid: props.isInvalid,
+}))
+
+const pickerFieldInputClasses = computed<string>(() => datePickerStyle.pickerFieldInput())
 </script>
 
 <template>
   <DatePickerField
-    :class="[
-      classAttr,
-      {
-        'border-input-border [&:has(:focus-visible)]:ring-ring': !props.isInvalid,
-        'border-destructive [&:has(:focus-visible)]:border-input-border [&:has(:focus-visible)]:ring-destructive': props.isInvalid,
-        'cursor-not-allowed opacity-50': props.isDisabled,
-      },
-    ]"
-    class="relative flex h-10 w-full items-center rounded-input border border-solid bg-input pl-3 pr-1 text-sm text-input-foreground outline-none ring-offset-background duration-200 [&:has(:focus-visible)]:ring-2"
+    :class="pickerFieldClasses"
   >
     <input
       v-model="dateModel"
       :placeholder="props.format.toLowerCase()"
       :disabled="props.isDisabled"
-      class="w-full bg-input outline-none"
+      :class="pickerFieldInputClasses"
       type="text"
       @blur="onBlur"
     >

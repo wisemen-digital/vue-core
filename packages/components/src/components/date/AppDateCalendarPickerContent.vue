@@ -9,15 +9,26 @@ import {
   DatePickerGridRow,
   DatePickerHeadCell,
 } from 'radix-vue'
+import { computed } from 'vue'
 
 import AppDatePickerContent from '@/components/date/AppDatePickerContent.vue'
 import AppDatePickerHeader from '@/components/date/AppDatePickerHeader.vue'
+import { useDatePickerStyle } from '@/components/date/datePicker.style'
 
 const emit = defineEmits<{
   blur: []
   monthClick: []
   yearClick: []
 }>()
+
+const datePickerStyle = useDatePickerStyle()
+
+const calendarPickerGridContainerClasses = computed<string>(() => datePickerStyle.calendarPickerGridContainer())
+const calendarPickerGridClasses = computed<string>(() => datePickerStyle.calendarPickerGrid())
+const calendarPickerGridHeadRowClasses = computed<string>(() => datePickerStyle.calendarPickerGridHeadRow())
+const calendarPickerGridBodyRowClasses = computed<string>(() => datePickerStyle.calendarPickerGridBodyRow())
+const calendarPickerGridHeadCellClasses = computed<string>(() => datePickerStyle.calendarPickerGridHeadCell())
+const calendarPickerGridCellTriggerClasses = computed<string>(() => datePickerStyle.calendarPickerGridCellTrigger())
 
 function onMonthButtonClick(): void {
   emit('monthClick')
@@ -38,7 +49,6 @@ function onBlur(): void {
   >
     <DatePickerCalendar
       v-slot="{ weekDays, grid }"
-      class="p-4"
     >
       <AppDatePickerHeader
         step="calendar"
@@ -47,19 +57,19 @@ function onBlur(): void {
       />
 
       <div
-        class="flex flex-col space-y-4 pt-4 sm:flex-row sm:space-x-4 sm:space-y-0"
+        :class="calendarPickerGridContainerClasses"
       >
         <DatePickerGrid
           v-for="month in grid"
           :key="month.value.toString()"
-          class="w-full border-collapse select-none space-y-1"
+          :class="calendarPickerGridClasses"
         >
           <DatePickerGridHead>
-            <DatePickerGridRow class="mb-1 flex w-full justify-between">
+            <DatePickerGridRow :class="calendarPickerGridHeadRowClasses">
               <DatePickerHeadCell
                 v-for="day in weekDays"
                 :key="day"
-                class="w-8 rounded-md text-xs text-muted-foreground"
+                :class="calendarPickerGridHeadCellClasses"
               >
                 {{ day }}
               </DatePickerHeadCell>
@@ -69,7 +79,7 @@ function onBlur(): void {
             <DatePickerGridRow
               v-for="(weekDates, index) in month.rows"
               :key="`weekDate-${index}`"
-              class="flex w-full"
+              :class="calendarPickerGridBodyRowClasses"
             >
               <DatePickerCell
                 v-for="weekDate in weekDates"
@@ -78,8 +88,8 @@ function onBlur(): void {
               >
                 <DatePickerCellTrigger
                   :day="weekDate"
+                  :class="calendarPickerGridCellTriggerClasses"
                   :month="month.value"
-                  class="relative flex size-8 items-center justify-center whitespace-nowrap rounded-button border border-transparent bg-transparent text-sm font-normal text-foreground outline-none before:absolute before:top-[5px] before:hidden before:size-1 before:rounded-full before:bg-background hover:border-primary focus:shadow-[0_0_0_2px] focus:shadow-primary/50 data-[unavailable]:pointer-events-none data-[selected]:bg-primary data-[selected]:font-medium data-[disabled]:text-foreground/30 data-[selected]:text-white data-[unavailable]:text-foreground/30 data-[unavailable]:line-through data-[today]:before:block data-[selected]:before:bg-background data-[today]:before:bg-primary"
                 />
               </DatePickerCell>
             </DatePickerGridRow>

@@ -8,10 +8,12 @@ import {
   DatePickerGridBody,
   DatePickerGridRow,
 } from 'radix-vue'
+import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import AppDatePickerContent from '@/components/date/AppDatePickerContent.vue'
 import AppDatePickerHeader from '@/components/date/AppDatePickerHeader.vue'
+import { useDatePickerStyle } from '@/components/date/datePicker.style'
 
 const props = defineProps<{
   hideHeader?: boolean
@@ -28,6 +30,11 @@ interface Month {
 }
 
 const { locale } = useI18n()
+
+const datePickerStyle = useDatePickerStyle()
+
+const monthPickerContentGridBodyClasses = computed<string>(() => datePickerStyle.monthPickerContentGridBody())
+const monthPickerContentCellTriggerClasses = computed<string>(() => datePickerStyle.monthPickerContentCellTrigger())
 
 function getMonths(currentDate: DateValue): Month[] {
   const months = []
@@ -55,7 +62,6 @@ function onMonthClick(number: number, year: number): void {
   <AppDatePickerContent>
     <DatePickerCalendar
       v-slot="{ grid }"
-      class="p-4"
     >
       <AppDatePickerHeader
         v-if="!Boolean(props.hideHeader)"
@@ -64,7 +70,9 @@ function onMonthClick(number: number, year: number): void {
       />
 
       <DatePickerGrid>
-        <DatePickerGridBody class="grid grid-cols-2">
+        <DatePickerGridBody
+          :class="monthPickerContentGridBodyClasses"
+        >
           <DatePickerGridRow
             v-for="month in getMonths(grid[0].value)"
             :key="month.value.toString()"
@@ -76,8 +84,8 @@ function onMonthClick(number: number, year: number): void {
             >
               <DatePickerCellTrigger
                 :day="month.value"
+                :class="monthPickerContentCellTriggerClasses"
                 :month="month.value"
-                class="relative flex h-8 w-full items-center justify-center whitespace-nowrap rounded-button border border-transparent bg-transparent px-4 text-center text-sm font-normal text-foreground outline-none before:absolute before:top-[5px] before:hidden before:size-1 before:rounded-full before:bg-background hover:border-primary focus:shadow-[0_0_0_2px] focus:shadow-primary/50 data-[unavailable]:pointer-events-none data-[selected]:bg-primary data-[selected]:font-medium data-[disabled]:text-foreground/30 data-[selected]:text-white data-[unavailable]:text-foreground/30 data-[unavailable]:line-through data-[today]:before:block data-[selected]:before:bg-background data-[today]:before:bg-primary"
                 @click="onMonthClick(month.value.month, grid[0].value.year)"
               >
                 {{ month.label }}
