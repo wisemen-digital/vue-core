@@ -78,6 +78,17 @@ const emit = defineEmits<{
   filter: [value: string]
 }>()
 
+defineSlots<{
+  /** Override the option rendering of the combobox */
+  option: (props: {
+    value: TValue
+  }) => any
+  /** Override the tag rendering */
+  tag: (props: {
+    value: TValue
+  }) => any
+}>()
+
 const model = defineModel<TValue[]>({
   required: true,
 })
