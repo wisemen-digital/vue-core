@@ -2,7 +2,7 @@
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols'
 import type { SelectItem } from '@wisemen/vue-core'
-import { AppSelect, FormSelect } from '@wisemen/vue-core'
+import { FormSelect } from '@wisemen/vue-core'
 import { ref } from 'vue'
 
 interface User {

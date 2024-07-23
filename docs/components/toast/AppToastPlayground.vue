@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols'
-import { useToast } from '@wisemen/vue-core'
-import { AppToastContainer, AppButton } from '@wisemen/vue-core';
+import {
+  AppButton,
+  AppToastContainer,
+  useToast,
+} from '@wisemen/vue-core'
 
 const controls = createControls({
   title: {
@@ -32,25 +35,33 @@ const controls = createControls({
 
 const toast = useToast()
 
-const onButtonClick = (title: string, description:string, type: 'info' | 'error' | 'success') => {
-  if (type === 'info') toast.show({
-    title,
-    description,
-  })
-  if (type === 'success') toast.success({
-    title,
-    description,
-  })
-  if (type === 'error') toast.error({
-    title,
-    description,
-  })
+function onButtonClick(title: string, description: string, type: 'error' | 'info' | 'success') {
+  if (type === 'info') {
+    toast.show({
+      title,
+      description,
+      icon: 'checkmark',
+      type: 'info',
+    })
+  }
+  if (type === 'success') {
+    toast.success({
+      title,
+      description,
+    })
+  }
+  if (type === 'error') {
+    toast.error({
+      title,
+      description,
+    })
+  }
 }
 </script>
 
 <template>
   <ComponentPlayground
-  :controls="controls"
+    :controls="controls"
   >
     <template #default="{ values }">
       <AppToastContainer />
@@ -60,4 +71,3 @@ const onButtonClick = (title: string, description:string, type: 'info' | 'error'
     </template>
   </ComponentPlayground>
 </template>
-
