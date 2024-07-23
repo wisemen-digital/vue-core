@@ -33,20 +33,65 @@ import type {
 
 const props = withDefaults(
   defineProps<{
+    /**
+     * The title of the table.
+     */
     title: string
+    /**
+     * Whether the data is loading.
+     */
     isLoading: boolean
+    /**
+     * Hides the top of the table when set to true.
+     */
     isTopHidden?: boolean
+    /**
+     * The different columns to be displayed.
+     */
     columns: TableColumn<TSchema>[]
+    /**
+     * The data for the table, in paginated form.
+     */
     data: PaginatedData<TSchema> | null
+    /**
+     * Optional empty text to replace defaults
+     */
     emptyText?: TableEmptyTextProp | null
+    /**
+     * Determines how the data will be filtered.
+     */
     filters: PaginationFilter<TFilters>[]
+    /**
+     * The pagination options.
+     */
     pagination: Pagination<TFilters>
+    /**
+     * Returns the row as a button.
+     */
     rowClick?: ((row: TSchema) => void) | null
+    /**
+     * Adds a target to the RouterLink when using row-to.
+     */
     rowTarget?: string
+    /**
+     * Returns the row as a RouterLink.
+     */
     rowTo?: ((row: TSchema) => RouteLocationNamedRaw) | null
+    /**
+     * The key from the Fitlers object used for search
+     */
     searchFilterKey?: keyof TFilters
+    /**
+     * Whether the first column of the table is pinned.
+     */
     shouldPinFirstColumn?: boolean
+    /**
+     * Whether the last column of the table is pinned.
+     */
     shouldPinLastColumn?: boolean
+    /**
+     * Table style variant
+     */
     variant?: TableStyleProps['variant']
   }>(),
   {
@@ -59,6 +104,11 @@ const props = withDefaults(
     variant: 'default',
   },
 )
+
+defineSlots<{
+  /** Override the empty state overlay with custom content */
+  'empty-state': () => void
+}>()
 
 const tableContainerRef = ref<HTMLElement | null>(null)
 

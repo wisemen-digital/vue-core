@@ -4,12 +4,8 @@ sidebar: auto
 
 
 # AppPageSkeletonLoader
-<script setup>
-import AppPageSkeletonLoaderPlayground from './AppPageSkeletonLoaderPlayground.vue'
-</script>
 
-<AppPageSkeletonLoaderPlayground />
-
+<!-- @include: ./app-page-skeleton-loader-meta.md -->
 
 ## Code
 

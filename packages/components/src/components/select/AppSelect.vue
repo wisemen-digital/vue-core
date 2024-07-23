@@ -93,6 +93,15 @@ const emit = defineEmits<{
   'update:modelValue': [value: TValue | null]
 }>()
 
+defineSlots<{
+  /** Override the display of the left icon */
+  left: () => any
+  /** Override the option rendering of the select */
+  option: (props: {
+    value: TValue
+  }) => any
+}>()
+
 const model = defineModel<TValue | null>({
   required: true,
 })

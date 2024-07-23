@@ -10,11 +10,11 @@ import AppToastPlayground from './AppToastPlayground.vue'
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| action | `ToastAction \| null` |  | `null` |
-| description | `string \| null` |  | `null` |
-| icon* | `keyof Icons` |  |  |
-| title* | `string` |  |  |
-| type* | `ToastType` |  |  |
+| action | `ToastAction \| null` | Optional action to be displayed in the toast. | `null` |
+| description | `string \| null` | Optional description text added under the title. | `null` |
+| icon* | `keyof Icons` | The icon of the toast. |  |
+| title* | `string` | The title of the toast. |  |
+| type* | `ToastType` | The type of the toast. |  |
 
 
 ## Events

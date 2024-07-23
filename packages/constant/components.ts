@@ -59,7 +59,44 @@ export const components = {
   loader: [
     'AppLoader',
   ],
+  popover: [
+    'AppPopover',
+  ],
+  select: [
+    'AppSelect',
+    'AppMultiSelect',
+    'FormSelect',
+  ],
+  skeletonLoader: [
+    'AppPageSkeletonLoader',
+    'AppSkeletonLoaderButton',
+    'AppSkeletonLoaderRow',
+    'AppSkeletonLoaderRows',
+  ],
+  switch: [
+    'FormSwitch',
+  ],
+  table: [
+    'AppTable',
+    'AppTableSkeletonLoader',
+  ],
+  tagsInput: [
+    'AppTagsInput',
+    'FormTagsInput',
+  ],
+  text: [
+    'AppText',
+  ],
+  textarea: [
+    'AppTextarea',
+  ],
   toast: [
     'AppToast',
+  ],
+  toggle: [
+    'AppToggle',
+  ],
+  tooltip: [
+    'AppTooltip',
   ],
 }
