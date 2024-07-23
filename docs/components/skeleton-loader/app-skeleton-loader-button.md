@@ -4,12 +4,8 @@ sidebar: auto
 
 
 # AppSkeletonLoaderButton
-<script setup>
-import AppSkeletonLoaderButtonPlayground from './AppSkeletonLoaderButtonPlayground.vue'
-</script>
 
-<AppSkeletonLoaderButtonPlayground />
-
+<!-- @include: ./app-skeleton-loader-button-meta.md -->
 
 ## Code
 

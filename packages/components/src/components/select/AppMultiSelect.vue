@@ -82,6 +82,15 @@ const emit = defineEmits<{
   'update:modelValue': [value: TValue[]]
 }>()
 
+defineSlots<{
+  /** Override the display of the left icon */
+  left: () => any
+  /** Override the option rendering of the select */
+  option: (props: {
+    value: AcceptableValue
+  }) => any
+}>()
+
 const isOpen = ref<boolean>(false)
 
 const model = computed<TValue[]>({
@@ -138,10 +147,6 @@ function onOpen(): void {
         >
           <template #left>
             <slot name="left" />
-          </template>
-
-          <template #right>
-            <slot name="right" />
           </template>
         </AppMultiSelectInput>
       </ComboboxAnchor>

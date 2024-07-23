@@ -4,19 +4,8 @@ sidebar: auto
 
 
 # FormGroup
-<script setup>
-import FormGroupPlayground from './FormGroupPlayground.vue'
-</script>
 
-<FormGroupPlayground />
-
-
-## Slots
-
-| Slot      | Type | Description                   |
-| --------- | ---- | ----------------------------- |
-| `default` | None | The elements inside the group |
-
+<!-- @include: ./form-group-meta.md -->
 
 ## Code
 
@@ -37,7 +26,7 @@ const lastName = form.register('lastName')
 </script>
   
 <template>
-  <FormGroup v-bind="values">
+  <FormGroup>
     <FormInput
       v-model="firstName"
       :errors="null"

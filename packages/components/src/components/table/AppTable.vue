@@ -15,7 +15,10 @@ import AppTableEmptyStateOverlay from '@/components/table/AppTableEmptyStateOver
 import AppTableFooter from '@/components/table/AppTableFooter.vue'
 import AppTableHeader from '@/components/table/AppTableHeader.vue'
 import AppTableTop from '@/components/table/AppTableTop.vue'
-import { useTableStyle } from '@/components/table/table.style'
+import {
+  type TableStyleProps,
+  useTableStyle,
+} from '@/components/table/table.style'
 import type {
   FilterChangeEvent,
   PaginatedData,
@@ -30,20 +33,66 @@ import type {
 
 const props = withDefaults(
   defineProps<{
+    /**
+     * The title of the table.
+     */
     title: string
+    /**
+     * Whether the data is loading.
+     */
     isLoading: boolean
+    /**
+     * Hides the top of the table when set to true.
+     */
     isTopHidden?: boolean
+    /**
+     * The different columns to be displayed.
+     */
     columns: TableColumn<TSchema>[]
+    /**
+     * The data for the table, in paginated form.
+     */
     data: PaginatedData<TSchema> | null
+    /**
+     * Optional empty text to replace defaults
+     */
     emptyText?: TableEmptyTextProp | null
+    /**
+     * Determines how the data will be filtered.
+     */
     filters: PaginationFilter<TFilters>[]
+    /**
+     * The pagination options.
+     */
     pagination: Pagination<TFilters>
+    /**
+     * Returns the row as a button.
+     */
     rowClick?: ((row: TSchema) => void) | null
+    /**
+     * Adds a target to the RouterLink when using row-to.
+     */
     rowTarget?: string
+    /**
+     * Returns the row as a RouterLink.
+     */
     rowTo?: ((row: TSchema) => RouteLocationNamedRaw) | null
+    /**
+     * The key from the Fitlers object used for search
+     */
     searchFilterKey?: keyof TFilters
+    /**
+     * Whether the first column of the table is pinned.
+     */
     shouldPinFirstColumn?: boolean
+    /**
+     * Whether the last column of the table is pinned.
+     */
     shouldPinLastColumn?: boolean
+    /**
+     * Table style variant
+     */
+    variant?: TableStyleProps['variant']
   }>(),
   {
     isTopHidden: false,
@@ -52,8 +101,14 @@ const props = withDefaults(
     rowTo: null,
     shouldPinFirstColumn: false,
     shouldPinLastColumn: false,
+    variant: 'default',
   },
 )
+
+defineSlots<{
+  /** Override the empty state overlay with custom content */
+  'empty-state': () => void
+}>()
 
 const tableContainerRef = ref<HTMLElement | null>(null)
 
@@ -161,7 +216,9 @@ const tableStyle = useTableStyle()
 
 const containerClasses = computed<string>(() => tableStyle.container())
 const gridClasses = computed<string>(() => tableStyle.grid())
-const tableClasses = computed<string>(() => tableStyle.table())
+const tableClasses = computed<string>(() => tableStyle.table({
+  variant: props.variant,
+}))
 </script>
 
 <template>
@@ -172,6 +229,7 @@ const tableClasses = computed<string>(() => tableStyle.table())
       :title="props.title"
       :total="props.data?.total ?? null"
       :filters="props.filters"
+      :variant="props.variant"
       :pagination="props.pagination"
       :search-filter-key="props.searchFilterKey"
       @filter="onFilterChange"
@@ -192,6 +250,7 @@ const tableClasses = computed<string>(() => tableStyle.table())
         <AppTableHeader
           :columns="props.columns"
           :pagination-options="props.pagination.paginationOptions.value"
+          :variant="props.variant"
           :should-pin-first-column="props.shouldPinFirstColumn"
           :should-pin-last-column="props.shouldPinLastColumn"
           :is-scrolled-to-right="isScrolledToRight"

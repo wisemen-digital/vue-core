@@ -4,11 +4,7 @@ sidebar: auto
 
 # AppLoader
 
-<script setup>
-import AppLoaderPlayground from './AppLoaderPlayground.vue'
-</script>
-
-<AppLoaderPlayground/> 
+<!-- @include: ./app-loader-meta.md -->
 
 ## Code
 

@@ -9,10 +9,25 @@ import AppTagsInputItem from '@/components/tags-input/AppTagsInputItem.vue'
 import { useTagsInputStyle } from '@/components/tags-input/tagsInput.style'
 
 const props = withDefaults(defineProps<{
+  /**
+   * The id of the input.
+   */
   id?: null | string
+  /**
+   * Whether the input is disabled.
+   */
   isDisabled?: boolean
+  /**
+   * Whether the input is invalid.
+   */
   isInvalid?: boolean
+  /**
+   * The maximum amount of tags allowed.
+   */
   max?: null | number
+  /**
+   * The placeholder of the input.
+   */
   placeholder?: null | string
 }>(), {
   id: null,
@@ -25,6 +40,13 @@ const props = withDefaults(defineProps<{
 const emit = defineEmits<{
   blur: []
   focus: []
+}>()
+
+defineSlots<{
+  /** Override the tag rendering */
+  tag: (props: {
+    value: string
+  }) => any
 }>()
 
 const model = defineModel<TValue[]>({

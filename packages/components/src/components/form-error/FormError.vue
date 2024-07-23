@@ -8,7 +8,13 @@ import AppCollapseTransition from '@/components/transitions/AppCollapseTransitio
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
 const props = defineProps<{
+  /**
+   *  Whether the error is visible
+   */
   isVisible: boolean
+  /**
+   *  The errors to display
+   */
   errors: FormFieldErrors
 }>()
 

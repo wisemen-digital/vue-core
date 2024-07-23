@@ -86,12 +86,20 @@ const docs = [
         text: 'AppMultiCombobox',
       },
       {
+        link: '/components/combobox/app-tags-combobox',
+        text: 'AppTagsCombobox',
+      },
+      {
         link: '/components/combobox/form-combobox',
         text: 'FormCombobox',
       },
       {
         link: '/components/combobox/form-multi-combobox',
         text: 'FormMultiCombobox',
+      },
+      {
+        link: '/components/combobox/form-tags-combobox',
+        text: 'FormTagsCombobox',
       },
     ],
     text: 'Combobox',
@@ -111,6 +119,7 @@ const docs = [
     text: 'Date',
   },
   {
+    collapsed: true,
     items: [
       {
         link: '/components/dropdown-menu/app-dropdown-menu',
@@ -148,6 +157,16 @@ const docs = [
       },
     ],
     text: 'FormGroup',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
+        link: '/components/form-label/form-label',
+        text: 'FormLabel',
+      },
+    ],
+    text: 'FormLabel',
   },
   {
     collapsed: true,
@@ -249,16 +268,6 @@ const docs = [
     collapsed: true,
     items: [
       {
-        link: '/components/switch/form-switch',
-        text: 'FormSwitch',
-      },
-    ],
-    text: 'Switch',
-  },
-  {
-    collapsed: true,
-    items: [
-      {
         link: '/components/skeleton-loader/app-page-skeleton-loader',
         text: 'AppPageSkeletonLoader',
       },
@@ -276,6 +285,16 @@ const docs = [
       },
     ],
     text: 'SkeletonLoader',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
+        link: '/components/switch/form-switch',
+        text: 'FormSwitch',
+      },
+    ],
+    text: 'Switch',
   },
   {
     collapsed: true,
@@ -328,6 +347,16 @@ const docs = [
       },
     ],
     text: 'Textarea',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
+        link: '/components/toast/app-toast',
+        text: 'AppToast',
+      },
+    ],
+    text: 'Toast',
   },
   {
     collapsed: true,

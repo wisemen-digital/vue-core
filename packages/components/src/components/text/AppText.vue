@@ -23,6 +23,11 @@ const props = withDefaults(
   },
 )
 
+defineSlots<{
+  /** Content of the text */
+  default: () => void
+}>()
+
 const attrs = useAttrs()
 const textStyle = useTextStyle()
 

@@ -100,6 +100,16 @@ const emit = defineEmits<{
   filter: [value: string]
 }>()
 
+defineSlots<{
+  /** Override the left content of the combobox input */
+  left: () => void
+  /** Override the option rendering of the combobox, and have access to the dataTestId */
+  option: (props: {
+    dataTestid?: string
+    value: TValue
+  }) => any
+}>()
+
 const model = defineModel<TValue | null>({
   required: true,
 })
@@ -152,9 +162,10 @@ function onFilter(filter: string): void {
         <slot name="left" />
       </template>
 
-      <template #option="{ value }">
+      <template #option="{ value, dataTestid }">
         <slot
           :value="value"
+          :data-testid="dataTestid"
           name="option"
         />
       </template>
