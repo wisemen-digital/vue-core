@@ -16,13 +16,17 @@ type ProgressBarColor = 'destructive'
   | 'secondary'
   | 'success'
   | 'warn'
-  | undefined
+
+interface AutoColor {
+  color: ProgressBarColor
+  value: number
+}
 
 const props = withDefaults(
   defineProps<{
-    hasAutoColor: boolean
-
     isPercentageVisible: boolean
+
+    autoColor?: AutoColor[]
 
     color: ProgressBarColor
 
@@ -75,12 +79,16 @@ const progressPercentage = computed<number>(() => {
 })
 
 const progressBarColorClass = computed<string>(() => {
-  const color = props.hasAutoColor
-    ? (progressPercentage.value >= 80 ? 'success' : progressPercentage.value >= 50 ? 'warn' : 'destructive')
-    : (props.color ?? 'primary')
+  if (props.autoColor !== undefined && props.autoColor.length > 0) {
+    const autoColor = props.autoColor.find((color) => progressPercentage.value >= color.value)
+
+    return progressStyle.progressIndicator({
+      color: autoColor?.color ?? 'primary',
+    })
+  }
 
   return progressStyle.progressIndicator({
-    color,
+    color: props.color,
   })
 })
 </script>
