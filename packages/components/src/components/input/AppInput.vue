@@ -14,6 +14,11 @@ const props = withDefaults(defineProps<{
    */
   id?: null | string
   /**
+   * The test id of the input.
+   * @default undefined
+   */
+  testId?: string
+  /**
    * Whether the input is disabled.
    * @default false
    */
@@ -58,6 +63,13 @@ const props = withDefaults(defineProps<{
   type: 'text',
 })
 
+defineSlots<{
+  /** Replace the left icon with custom content */
+  left: () => void
+  /** Replace the right icon with custom content */
+  right: () => void
+}>()
+
 const model = defineModel<null | string>({
   required: true,
 })
@@ -100,6 +112,7 @@ const loaderClasses = computed<string>(() => inputStyle.loader())
       :id="props.id ?? undefined"
       v-model="model"
       :type="props.type"
+      :data-testid="props.testId"
       :aria-invalid="props.isInvalid"
       :disabled="props.isDisabled"
       :placeholder="props.placeholder ?? undefined"

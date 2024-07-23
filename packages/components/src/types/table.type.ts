@@ -3,16 +3,17 @@ import type { VNode } from 'vue'
 export interface TableEmptyTextProp {
   noData: {
     title: string
-    message: string
+    message?: string
   }
   noResults: {
     title: string
-    message: string
+    message?: string
   }
 }
 
 interface BaseTableColumn {
   id: string
+  testId?: string
   isSortable?: boolean
   label: string
   maxWidth?: string

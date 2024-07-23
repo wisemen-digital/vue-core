@@ -3,18 +3,8 @@ sidebar: auto
 ---
 
 # AppKeyboardShortcutProvider
-<script setup>
-import AppKeyboardShortcutProviderPlayground from './AppKeyboardShortcutProviderPlayground.vue'
-</script>
 
-<AppKeyboardShortcutProviderPlayground />
-
-## Props
-
-| Prop         | Type                      | Description                                      | Default     |
-|--------------|---------------------------|--------------------------------------------------|-------------|
-| config       | `KeyboardShortcutConfig`  | The keyboard shortcut configuration              |             |
-
+<!-- @include: ./app-keyboard-shortcut-provider-meta.md -->
 
 ## Types
 

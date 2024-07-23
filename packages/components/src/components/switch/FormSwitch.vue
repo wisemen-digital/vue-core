@@ -5,8 +5,17 @@ import { computed } from 'vue'
 import { useSwitchStyle } from '@/components/switch/switch.style'
 
 const props = withDefaults(defineProps<{
+  /**
+   * The ID of the item.
+   */
   id?: null | string
+  /**
+   * Whether the switch is disabled or not.
+   */
   isDisabled?: boolean
+  /**
+   * Whether the switch is invalid or not.
+   */
   isInvalid?: boolean
 }>(), {
   id: null,

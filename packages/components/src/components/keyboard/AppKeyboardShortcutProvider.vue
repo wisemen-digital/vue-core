@@ -2,10 +2,21 @@
 import { ref } from 'vue'
 
 import { useKeyboardShortcut } from '@/composables/keyboardShortcut.composable'
+import type { KeyboardKey } from '@/types/keyboard.type'
 import type { KeyboardShortcutConfig } from '@/types/keyboardShortcut.type'
 
 const props = defineProps<{
+  /**
+   * The keyboard shortcut configuration
+   */
   config: KeyboardShortcutConfig
+}>()
+
+defineSlots<{
+  /** The keyboard shortcut content */
+  default: (props: {
+    keys: KeyboardKey[]
+  }) => any
 }>()
 
 const wrapperRef = ref<HTMLElement | null>(null)

@@ -111,6 +111,7 @@ const docs = [
     text: 'Date',
   },
   {
+    collapsed: true,
     items: [
       {
         link: '/components/dropdown-menu/app-dropdown-menu',
@@ -148,6 +149,16 @@ const docs = [
       },
     ],
     text: 'FormGroup',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
+        link: '/components/form-label/form-label',
+        text: 'FormLabel',
+      },
+    ],
+    text: 'FormLabel',
   },
   {
     collapsed: true,
@@ -206,6 +217,16 @@ const docs = [
       },
     ],
     text: 'Keyboard',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
+        link: '/components/loader/app-loader',
+        text: 'AppLoader',
+      },
+    ],
+    text: 'Loader',
   },
   {
     collapsed: true,
@@ -271,6 +292,16 @@ const docs = [
     collapsed: true,
     items: [
       {
+        link: '/components/switch/form-switch',
+        text: 'FormSwitch',
+      },
+    ],
+    text: 'Switch',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
         link: '/components/table/app-table',
         text: 'AppTable',
       },
@@ -318,6 +349,16 @@ const docs = [
       },
     ],
     text: 'Textarea',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
+        link: '/components/toast/app-toast',
+        text: 'AppToast',
+      },
+    ],
+    text: 'Toast',
   },
   {
     collapsed: true,

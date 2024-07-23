@@ -3,29 +3,8 @@ sidebar: auto
 ---
 
 # FormCheckboxGroup
-<script setup>
-import FormCheckboxGroupPlayground from './FormCheckboxGroupPlayground.vue'
-</script>
 
-<FormCheckboxGroupPlayground />
-
-## Props
-
-| Prop       | Type               | Description                                    | Default |
-|------------|--------------------|------------------------------------------------|---------|
-| label      | `null` \| `string` | The label of the checkbox group.               | `null`  |
-| options*   | `DataItem<T>[]`    | The options of the checkbox group.             |         |
-| errors*    | `FormFieldErrors`  | The errors associated with the checkbox group. |         |
-| isTouched* | `boolean`          | Whether the checkbox group has been touched.   |         |
-| isDisabled | `boolean`          | Whether the checkbox group is disabled.        | `false` |
-| isRequired | `boolean`          | Whether the checkbox group is required.        | `false` |
-| tooltip    | `string`           | The tooltip of the checkbox group.             | `null`  |
-
-## v-model
-
-| Prop     | Type  | Description                      |
-|----------|-------|----------------------------------|
-| v-model* | `T[]` | The value of the checkbox group. |
+<!-- @include: ./form-checkbox-group-meta.md -->
 
 ## Code
 

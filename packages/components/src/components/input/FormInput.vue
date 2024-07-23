@@ -10,6 +10,11 @@ import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 const props = withDefaults(
   defineProps<{
     /**
+     * The test id of the input.
+     * @default undefined
+     */
+    testId?: string
+    /**
      * Whether the input is disabled.
      */
     isDisabled?: boolean
@@ -71,6 +76,13 @@ const props = withDefaults(
   },
 )
 
+defineSlots<{
+  /** Replace the left icon with custom content */
+  left: () => void
+  /** Replace the right icon with custom content */
+  right: () => void
+}>()
+
 const model = defineModel<null | string>({
   required: true,
 })
@@ -94,6 +106,7 @@ const { classAttr, otherAttrs } = useComponentAttrs()
     <AppInput
       :id="id"
       v-model="model"
+      :test-id="props.testId"
       v-bind="otherAttrs"
       :is-invalid="isInvalid"
       :placeholder="props.placeholder"

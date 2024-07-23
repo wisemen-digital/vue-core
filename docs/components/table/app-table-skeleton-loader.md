@@ -4,18 +4,8 @@ sidebar: auto
 
 
 # AppTableSkeletonLoader
-<script setup>
-import AppTableSkeletonLoaderPlayground from './AppTableSkeletonLoaderPlayground.vue'
-</script>
 
-<AppTableSkeletonLoaderPlayground />
-
-## Props
-
-| Prop         | Type    | Description                                      | Default |
-| ------------ | ------- | ------------------------------------------------ | ------- |
-| numberOfRows |`number` | The number of skeleton rows to show in the table |   `7`   |
-| withoutHeader|`boolean`| Set to true to hide the table header             | `false` |
+<!-- @include: ./app-table-skeleton-loader-meta.md -->
 
 ## Code
 

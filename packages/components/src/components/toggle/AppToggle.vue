@@ -11,6 +11,14 @@ const props = withDefaults(defineProps<{
   isDisabled: false,
 })
 
+defineSlots<{
+  /** Content to be toggled */
+  default: (props: {
+    isDisabled: boolean
+    isToggled: boolean
+  }) => any
+}>()
+
 const isToggledModel = defineModel<boolean>('isToggled', {
   required: true,
 })

@@ -10,10 +10,12 @@ import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 const props = withDefaults(defineProps<{
   /**
    * Whether the checkbox group is disabled.
+   * @default false
    */
   isDisabled?: boolean
   /**
    *  Whether the checkbox group is required.
+   * @default false
    */
   isRequired?: boolean
   /**
@@ -88,6 +90,7 @@ function toggleOption(value: T): void {
         <FormCheckbox
           :id="option.value"
           :is-disabled="props.isDisabled"
+          :data-testid="option.testId"
           :model-value="isOptionSelected(option.value)"
           @update:model-value="toggleOption(option.value)"
         />
