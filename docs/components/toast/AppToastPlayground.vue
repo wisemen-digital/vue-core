@@ -35,7 +35,7 @@ const controls = createControls({
 
 const toast = useToast()
 
-function onButtonClick(title: string, description: string, type: 'error' | 'info' | 'success') {
+function onButtonClick(title: string, description: string, type: 'error' | 'info' | 'success'): void {
   if (type === 'info') {
     toast.show({
       title,
