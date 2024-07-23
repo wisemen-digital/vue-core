@@ -2,9 +2,7 @@
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols'
 import type { ComboboxItem } from '@wisemen/vue-core'
-import {
-  FormTagsCombobox,
-} from '@wisemen/vue-core'
+import { FormTagsCombobox } from '@wisemen/vue-core'
 import { ref } from 'vue'
 
 const controls = createControls({
