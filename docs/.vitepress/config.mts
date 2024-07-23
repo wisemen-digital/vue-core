@@ -114,6 +114,16 @@ const docs = [
     collapsed: true,
     items: [
       {
+        link: '/components/dialog/app-dialog',
+        text: 'AppDialog',
+      },
+    ],
+    text: 'Dialog',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
         link: '/components/dropdown-menu/app-dropdown-menu',
         text: 'AppDropdownMenu',
       },
