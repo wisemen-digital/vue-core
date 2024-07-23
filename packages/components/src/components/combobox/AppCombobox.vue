@@ -204,7 +204,7 @@ watch(isOpen, (isOpen) => {
         <AppComboboxInput
           :id="props.id"
           ref="inputRef"
-          :is-clear-button-visible="isClearButtonVisible"
+          :has-clear-button="isClearButtonVisible"
           :value="model ?? null"
           :icon-left="props.iconLeft ?? null"
           :icon-right="props.iconRight ?? null"

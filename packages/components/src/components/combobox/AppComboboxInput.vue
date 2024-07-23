@@ -14,8 +14,8 @@ import type { Icon } from '@/icons/icons'
 
 const props = withDefaults(defineProps<{
   id: null | string
+  hasClearButton: boolean
   isChevronHidden: boolean
-  isClearButtonVisible: boolean
   isDisabled: boolean
   isInvalid: boolean
   isLoading: boolean
@@ -84,7 +84,7 @@ function onClearButtonClick(): void {
     />
 
     <AppUnstyledButton
-      v-if="props.isClearButtonVisible"
+      v-if="props.hasClearButton"
       :label="t('shared.clear')"
       @click.stop="onClearButtonClick"
     >

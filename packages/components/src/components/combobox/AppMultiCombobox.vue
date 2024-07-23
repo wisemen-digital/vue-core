@@ -166,7 +166,7 @@ function onBlur(): void {
         <AppComboboxInput
           :id="props.id"
           :icon-left="props.iconLeft ?? null"
-          :is-clear-button-visible="false"
+          :has-clear-button="false"
           :icon-right="props.iconRight ?? null"
           :is-chevron-hidden="props.isChevronHidden"
           :is-disabled="props.isDisabled"
