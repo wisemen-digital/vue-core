@@ -90,6 +90,10 @@ export const components = {
     'AppTable',
     'AppTableSkeletonLoader',
   ],
+  tabs: [
+    'AppTabs',
+    'AppRouteTabs',
+  ],
   tagsInput: [
     'AppTagsInput',
     'FormTagsInput',

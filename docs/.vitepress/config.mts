@@ -346,6 +346,20 @@ const docs = [
     collapsed: true,
     items: [
       {
+        link: '/components/tabs/app-tabs',
+        text: 'AppTabs',
+      },
+      {
+        link: '/components/tabs/app-route-tabs',
+        text: 'AppRouteTabs',
+      },
+    ],
+    text: 'Tabs',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
         link: '/components/tags-input/app-tags-input',
         text: 'AppTagsInput',
       },
