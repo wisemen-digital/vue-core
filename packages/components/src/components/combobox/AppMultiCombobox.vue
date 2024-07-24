@@ -93,8 +93,8 @@ const props = withDefaults(
     isInvalid: false,
     isLoading: false,
     emptyText: null,
-    iconLeft: undefined,
-    iconRight: undefined,
+    iconLeft: null,
+    iconRight: null,
     placeholder: null,
     popoverProps: null,
   },
@@ -179,9 +179,9 @@ function onBlur(): void {
       <ComboboxAnchor>
         <AppComboboxInput
           :id="props.id"
-          :icon-left="props.iconLeft ?? null"
+          :icon-left="props.iconLeft"
+          :icon-right="props.iconRight"
           :has-clear-button="false"
-          :icon-right="props.iconRight ?? null"
           :is-chevron-hidden="props.isChevronHidden"
           :is-disabled="props.isDisabled"
           :is-invalid="props.isInvalid"

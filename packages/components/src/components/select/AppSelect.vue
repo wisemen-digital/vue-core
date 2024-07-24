@@ -61,7 +61,7 @@ const props = withDefaults(
     /**
      * The icon to display on the left side of the select.
      */
-    iconLeft?: Icon
+    iconLeft?: Icon | null
     /**
      * The items of the select.
      */
@@ -83,7 +83,7 @@ const props = withDefaults(
     isInvalid: false,
     isLoading: false,
     isValueHidden: false,
-    iconLeft: undefined,
+    iconLeft: null,
     placeholder: null,
   },
 )
@@ -154,7 +154,7 @@ const isClearButtonVisible = computed<boolean>(() => {
         >
           <slot name="left">
             <AppIcon
-              v-if="props.iconLeft !== undefined"
+              v-if="props.iconLeft !== null"
               :icon="props.iconLeft"
               :class="iconLeftClasses"
             />

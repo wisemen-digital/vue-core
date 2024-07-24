@@ -11,7 +11,7 @@ import AppNumberInputPlayground from './AppNumberInputPlayground.vue'
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
 | hideControls | `boolean` | Whether to hide the increment and decrement controls. | `false` |
-| iconLeft | `keyof Icons \| null` | The left icon of the input. |  |
+| iconLeft | `keyof Icons \| null` | The left icon of the input. | `null` |
 | id | `string \| null` | The id of the input. | `null` |
 | isDisabled | `boolean` | Whether the input is disabled. | `false` |
 | isInvalid | `boolean` | Whether the input is invalid. | `false` |

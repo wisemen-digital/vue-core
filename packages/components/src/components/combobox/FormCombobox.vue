@@ -89,8 +89,8 @@ const props = withDefaults(
     isRequired: false,
     isTouched: false,
     emptyText: null,
-    iconLeft: undefined,
-    iconRight: undefined,
+    iconLeft: null,
+    iconRight: null,
     placeholder: null,
   },
 )

@@ -10,8 +10,8 @@ import AppButtonPlayground from './AppButtonPlayground.vue'
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| iconLeft | `keyof Icons \| null` | The icon to display on the left side of the button. |  |
-| iconRight | `keyof Icons \| null` | The icon to display on the right side of the button. |  |
+| iconLeft | `keyof Icons \| null` | The icon to display on the left side of the button. | `null` |
+| iconRight | `keyof Icons \| null` | The icon to display on the right side of the button. | `null` |
 | isDisabled | `boolean` | Whether the button is disabled. | `false` |
 | isLoading | `boolean` | Whether the button is in a loading state. | `false` |
 | keyboardShortcut | `KeyboardShortcutConfig \| null` | The keyboard shortcut keys which trigger the button. | `null` |

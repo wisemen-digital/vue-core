@@ -13,7 +13,7 @@ import FormSelectPlayground from './FormSelectPlayground.vue'
 | displayFn* | `(value: AcceptableValue) => string` | display function for the selected value |  |
 | errors* | `FormFieldErrors` | The errors associated with the select. |  |
 | hasClearButton | `boolean` | Whether the select has a clear button. | `false` |
-| iconLeft | `keyof Icons` | The icon to display on the left side of the select. |  |
+| iconLeft | `keyof Icons \| null` | The icon to display on the left side of the select. | `null` |
 | isDisabled | `boolean` | Whether the select is disabled. | `false` |
 | isLoading | `boolean` | Whether the select is loading. | `false` |
 | isRequired | `boolean` | Whether the select is required. | `false` |

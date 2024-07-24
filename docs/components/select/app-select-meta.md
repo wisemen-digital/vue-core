@@ -12,7 +12,7 @@ import AppSelectPlayground from './AppSelectPlayground.vue'
 | ---- | ---- | ----------- | ------- |
 | displayFn* | `(value: AcceptableValue) => string \| null` | display function for the selected value |  |
 | hasClearButton | `boolean` | Whether the select has a clear button. | `false` |
-| iconLeft | `keyof Icons` | The icon to display on the left side of the select. |  |
+| iconLeft | `keyof Icons \| null` | The icon to display on the left side of the select. | `null` |
 | id | `string \| null` | The id of the select. | `null` |
 | isChevronHidden | `boolean` | Whether the select chevron is hidden. | `false` |
 | isDisabled | `boolean` | Whether the select is disabled. | `false` |

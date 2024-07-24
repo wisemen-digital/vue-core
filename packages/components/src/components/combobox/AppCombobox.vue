@@ -113,8 +113,8 @@ const props = withDefaults(
     isInvalid: false,
     isLoading: false,
     emptyText: null,
-    iconLeft: undefined,
-    iconRight: undefined,
+    iconLeft: null,
+    iconRight: null,
     placeholder: null,
     popoverProps: null,
   },
@@ -222,8 +222,8 @@ watch(isOpen, (isOpen) => {
           ref="inputRef"
           :has-clear-button="isClearButtonVisible"
           :value="model ?? null"
-          :icon-left="props.iconLeft ?? null"
-          :icon-right="props.iconRight ?? null"
+          :icon-left="props.iconLeft"
+          :icon-right="props.iconRight"
           :is-chevron-hidden="props.isChevronHidden"
           :display-fn="props.displayFn"
           :is-open="isOpen"
