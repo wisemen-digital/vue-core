@@ -387,6 +387,10 @@ const docs = [
         link: '/components/textarea/app-textarea',
         text: 'AppTextarea',
       },
+      {
+        link: '/components/textarea/form-textarea',
+        text: 'FormTextarea',
+      },
     ],
     text: 'Textarea',
   },

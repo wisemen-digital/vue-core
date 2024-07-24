@@ -103,6 +103,7 @@ export const components = {
   ],
   textarea: [
     'AppTextarea',
+    'FormTextarea',
   ],
   toast: [
     'AppToast',
