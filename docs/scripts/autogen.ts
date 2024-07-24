@@ -43,7 +43,7 @@ function parseMeta(meta: any) {
       return ({
         name,
         description: description,
-        type: type.replace(/\s*\|\s*undefined/g, ''),
+        type: type.replace(/\s*\|\s*undefined/g, '').replace('unknown', 'T'),
         required,
         default: defaultValue ?? undefined,
       })
@@ -52,11 +52,13 @@ function parseMeta(meta: any) {
 
   const events = meta.events
     .map((event: any) => {
-      const { name, type } = event
+      const { name } = event
+      const type = event.type.replace(/\s*\|\s*undefined/g, '').replace('unknown', 'T').replace(/\</g, '\\<').replace(/\>/g, '\\>')
+      console.log(type)
       return ({
         name,
         description: md.render((event.description ?? '').replace(/^[ \t]+/gm, '')),
-        type: type.replace(/\s*\|\s*undefined/g, ''),
+        type: type
       })
     })
     .sort((a: { name: string }, b: { name: string }) => a.name.localeCompare(b.name))
