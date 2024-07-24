@@ -135,6 +135,9 @@ export { default as AppToggle } from './components/toggle/AppToggle.vue'
 // Tooltip
 export { default as AppTooltip } from './components/tooltip/AppTooltip.vue'
 
+// TRansition
+export { default as AppCollapseTransition } from './components/transitions/AppCollapseTransition.vue'
+
 // Composables
 export { useDialog } from './composables/dialog.composable'
 export { useKeyboardShortcut } from './composables/keyboardShortcut.composable'

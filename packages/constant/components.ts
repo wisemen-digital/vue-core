@@ -105,4 +105,7 @@ export const components = {
   tooltip: [
     'AppTooltip',
   ],
+  transitions: [
+    'AppCollapseTransition',
+  ],
 }

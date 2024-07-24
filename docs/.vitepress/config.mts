@@ -392,6 +392,16 @@ const docs = [
     ],
     text: 'Tooltip',
   },
+  {
+    collapsed: true,
+    items: [
+      {
+        link: '/components/transitions/app-collapse-transition',
+        text: 'AppCollapseTransition',
+      },
+    ],
+    text: 'Transitions',
+  },
 ]
 
 // https://vitepress.dev/reference/site-config
