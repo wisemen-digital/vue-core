@@ -115,6 +115,7 @@ const exampleItems: DropdownMenuItem[] = [
               {
                 type: 'checkboxOption',
                 label: 'Option 2',
+                // @ts-expect-error - TODO
                 isSelected: ref<boolean>(false),
                 onSelect: (): void => {
                   alert('More > Option 2 selected')

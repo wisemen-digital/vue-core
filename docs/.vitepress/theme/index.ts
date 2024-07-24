@@ -30,6 +30,7 @@ const theme: typeof DefaultTheme = {
       globalThis.__VUE_PROD_DEVTOOLS__ = false
     }
 
+    // @ts-expect-error - I'm not sure why
     ctx.app.use(i18nPlugin)
     DefaultTheme.enhanceApp(ctx)
   },

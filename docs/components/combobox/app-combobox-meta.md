@@ -13,9 +13,10 @@ import AppComboboxPlayground from './AppComboboxPlayground.vue'
 | displayFn* | `(value: AcceptableValue) => string` | Display function for the selected value |  |
 | emptyText | `string \| null` | The text to display when there are no options. | `null` |
 | filterFn* | `(options: AcceptableValue[], searchTerm: string) => AcceptableValue[]` | The function to filter the options. |  |
+| hasClearButton | `boolean` | Whether the combobox has a clear button. | `false` |
 | hasSearchInDropdown | `boolean` | Whether to show the search input in the dropdown instead of inline. | `false` |
-| iconLeft | `keyof Icons \| null` | The icon to display on the left side of the combobox. |  |
-| iconRight | `keyof Icons \| null` | The icon to display on the right side of the combobox. |  |
+| iconLeft | `keyof Icons \| null` | The icon to display on the left side of the combobox. | `null` |
+| iconRight | `keyof Icons \| null` | The icon to display on the right side of the combobox. | `null` |
 | id | `string \| null` | The html id of the combobox. | `null` |
 | isChevronHidden | `boolean` | Whether the chevron icon is hidden. | `false` |
 | isDisabled | `boolean` | Whether the combobox is disabled. | `false` |

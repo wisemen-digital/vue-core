@@ -11,7 +11,7 @@ import AppMultiSelectPlayground from './AppMultiSelectPlayground.vue'
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
 | displayFn* | `(value: AcceptableValue) => string` | Display function for the selected value |  |
-| iconLeft | `keyof Icons \| null` | The icon to display on the left side of the select. |  |
+| iconLeft | `keyof Icons \| null` | The icon to display on the left side of the select. | `null` |
 | id | `string \| null` | The id of the select. | `null` |
 | isDisabled | `boolean` | Whether the select is disabled. | `false` |
 | isInvalid | `boolean` | Whether the select is in an invalid state. | `false` |

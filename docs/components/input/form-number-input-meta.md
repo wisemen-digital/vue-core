@@ -12,7 +12,7 @@ import FormNumberInputPlayground from './FormNumberInputPlayground.vue'
 | ---- | ---- | ----------- | ------- |
 | errors* | `FormFieldErrors` | The errors associated with the input. |  |
 | hideControls | `boolean` | Whether to hide the increment and decrement controls. | `false` |
-| iconLeft | `keyof Icons \| null` | The left icon of the input. |  |
+| iconLeft | `keyof Icons \| null` | The left icon of the input. | `null` |
 | isDisabled | `boolean` | Whether the input is disabled. | `false` |
 | isLoading | `boolean` | Whether the input is loading. | `false` |
 | isRequired | `boolean` | Whether the input is required. | `false` |
