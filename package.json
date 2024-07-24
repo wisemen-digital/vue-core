@@ -2,6 +2,7 @@
   "name": "@wisemen/vue-core",
   "type": "module",
   "version": "0.0.0",
+  "author": "Wisemen",
   "packageManager": "pnpm@9.0.6",
   "license": "MIT",
   "workspaces": [
