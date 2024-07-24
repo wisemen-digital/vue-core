@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
-import {
-  AppUnstyledButton,
-} from '@wisemen/vue-core'
+import { AppUnstyledButton } from '@wisemen/vue-core'
 
 const controls = null
 </script>
