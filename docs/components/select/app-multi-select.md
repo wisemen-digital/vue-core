@@ -13,7 +13,7 @@ For single value select, see [AppSelect](/components/select/app-select.md).
 ::: code-group
 ```vue [Usage]
 <script setup lang="ts">
-import { AppSelect, SelectItem } from '@wisemen/vue-core'
+import { AppMultiSelect, SelectItem } from '@wisemen/vue-core'
 import { ref } from 'vue'
 
 interface User {
@@ -70,7 +70,7 @@ function filterFn(users: User[], searchTerm: string): User[] {
     <template #option="{ value }">
       <!-- custom html -->
     </template>
-  </AppSelect>
+  </AppMultiSelect>
 </template>
 ```
 :::

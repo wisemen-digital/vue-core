@@ -12,7 +12,7 @@ For single value select, see [FormSelect](/components/select/form-select.md).
 ::: code-group
 ```vue [Usage]
 <script setup lang="ts">
-import { AppSelect, SelectItem } from '@wisemen/vue-core'
+import { FormMultiSelect, SelectItem } from '@wisemen/vue-core'
 import { useForm } from 'formango'
 import { z } from 'zod'
 
@@ -76,7 +76,7 @@ function displayFn(user: User): string {
     <template #option="{ value }">
       <!-- custom html -->
     </template>
-  </AppSelect>
+  </FormMultiSelect>
 </template>
 ```
 :::
