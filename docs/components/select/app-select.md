@@ -40,7 +40,8 @@ export type SelectItem<TValue extends AcceptableValue> = SelectItemDivider
 
 ## Code
 
-```vue
+::: code-group
+```vue [Usage]
 <script setup lang="ts">
 import { AppSelect, SelectItem } from '@wisemen/vue-core'
 import { ref } from 'vue'
@@ -90,5 +91,6 @@ const value = ref<User | null>(null)
   </AppSelect>
 </template>
 ```
+:::
 
 For full source code, see [Github](https://github.com/wisemen-digital/vue-core/blob/main/packages/components/src/components/select/AppSelect.vue)
