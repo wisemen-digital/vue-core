@@ -57,6 +57,10 @@ const docs = [
         link: '/components/button/app-router-link-button',
         text: 'AppRouterLinkButton',
       },
+      {
+        link: '/components/button/app-unstyled-button',
+        text: 'AppUnstyledButton',
+      },
     ],
     text: 'Button',
   },
@@ -103,6 +107,16 @@ const docs = [
       },
     ],
     text: 'Combobox',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
+        link: '/components/container/app-container',
+        text: 'AppContainer',
+      },
+    ],
+    text: 'Container',
   },
   {
     collapsed: true,
@@ -391,6 +405,16 @@ const docs = [
       },
     ],
     text: 'Tooltip',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
+        link: '/components/transitions/app-collapse-transition',
+        text: 'AppCollapseTransition',
+      },
+    ],
+    text: 'Transitions',
   },
 ]
 

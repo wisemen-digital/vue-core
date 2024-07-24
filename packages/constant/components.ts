@@ -9,6 +9,7 @@ export const components = {
     'AppButton',
     'AppIconButton',
     'AppRouterLinkButton',
+    'AppUnstyledButton',
   ],
   checkbox: [
     'FormCheckbox',
@@ -21,6 +22,9 @@ export const components = {
     'FormCombobox',
     'FormMultiCombobox',
     'FormTagsCombobox',
+  ],
+  container: [
+    'AppContainer',
   ],
   // TODO: add datepicker in auto-gen components once refactored by kiryl: https://github.com/wisemen-digital/vue-core/pull/130
   // date: [
@@ -104,5 +108,8 @@ export const components = {
   ],
   tooltip: [
     'AppTooltip',
+  ],
+  transitions: [
+    'AppCollapseTransition',
   ],
 }

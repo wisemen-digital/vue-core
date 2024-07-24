@@ -31,8 +31,8 @@ import FormTagsComboboxPlayground from './FormTagsComboboxPlayground.vue'
 
 | Slot | Type | Description |
 | --------- | ---- | ----------- |
-| `option` | \{ value: AcceptableValue; \} |  |
-| `tag` | \{ value: AcceptableValue; \} |  |
+| `option` | \{ value: AcceptableValue; \} | Override the option rendering of the combobox |
+| `tag` | \{ value: AcceptableValue; \} | Override the tag rendering |
 
 
 ## Events
