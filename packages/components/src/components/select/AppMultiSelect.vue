@@ -72,7 +72,7 @@ const props = withDefaults(
     isDisabled: false,
     isInvalid: false,
     isLoading: false,
-    iconLeft: undefined,
+    iconLeft: null,
     placeholder: null,
   },
 )
@@ -80,6 +80,15 @@ const props = withDefaults(
 const emit = defineEmits<{
   'blur': []
   'update:modelValue': [value: TValue[]]
+}>()
+
+defineSlots<{
+  /** Override the display of the left icon */
+  left: () => any
+  /** Override the option rendering of the select */
+  option: (props: {
+    value: AcceptableValue
+  }) => any
 }>()
 
 const isOpen = ref<boolean>(false)
@@ -127,7 +136,7 @@ function onOpen(): void {
       <ComboboxAnchor>
         <AppMultiSelectInput
           :id="props.id"
-          :icon-left="props.iconLeft ?? null"
+          :icon-left="props.iconLeft"
           :is-disabled="props.isDisabled"
           :is-invalid="props.isInvalid"
           :is-loading="props.isLoading"
@@ -138,10 +147,6 @@ function onOpen(): void {
         >
           <template #left>
             <slot name="left" />
-          </template>
-
-          <template #right>
-            <slot name="right" />
           </template>
         </AppMultiSelectInput>
       </ComboboxAnchor>

@@ -37,7 +37,7 @@ const props = withDefaults(
     /**
      * The icon to display on the left side of the select.
      */
-    iconLeft?: Icon
+    iconLeft?: Icon | null
     /**
      * The items of the select.
      */
@@ -61,13 +61,22 @@ const props = withDefaults(
     isLoading: false,
     isRequired: false,
     isTouched: false,
-    iconLeft: undefined,
+    iconLeft: null,
     placeholder: null,
   },
 )
 
 const emit = defineEmits<{
   blur: []
+}>()
+
+defineSlots<{
+  /** Override the display of the left icon */
+  left: () => any
+  /** Override the option rendering of the select */
+  option: (props: {
+    value: AcceptableValue
+  }) => any
 }>()
 
 const model = defineModel<TValue[]>({

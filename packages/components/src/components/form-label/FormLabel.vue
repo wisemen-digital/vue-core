@@ -7,11 +7,29 @@ import AppIcon from '@/components/icon/AppIcon.vue'
 import AppTooltip from '@/components/tooltip/AppTooltip.vue'
 
 const props = withDefaults(defineProps<{
+  /**
+   * Whether the label is disabled.
+   */
   isDisabled?: boolean
+  /**
+   * Whether the label is invalid.
+   */
   isInvalid?: boolean
+  /**
+   * Whether the label is required.
+   */
   isRequired?: boolean
+  /**
+   * The id of the form element.
+   */
   for: string
+  /**
+   * The label of the form.
+   */
   label: string
+  /**
+   * The tooltip of the label.
+   */
   tooltip?: string
 }>(), {
   isDisabled: false,
@@ -42,6 +60,7 @@ const hasTooltip = computed<boolean>(() => props.tooltip !== undefined)
     <AppTooltip
       :is-hidden="!hasTooltip"
       :content="props.tooltip ?? ''"
+      :disable-close-on-trigger-click="true"
       side="right"
     >
       <div class="flex w-fit flex-row items-center gap-2">

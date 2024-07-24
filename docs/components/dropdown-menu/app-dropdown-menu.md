@@ -4,25 +4,8 @@ sidebar: auto
 
 
 # AppDropdownMenu
-<script setup>
-import AppDropdownMenuPlayground from './AppDropdownMenuPlayground.vue'
-</script>
 
-<AppDropdownMenuPlayground />
-
-
-## Props
-
-| Prop                          | Type                                              | Description                                                                   | Default   |
-| ----------------------------- | ------------------------------------------------- | ----------------------------------------------------------------------------- | --------- |
-| hasArrow                      | `boolean`                                         | Whether the dropdown has an arrow.                                            | `false`   |
-| align                         | `'center'` \|  `'end'` \| `'start'`               | The alignment of the dropdown.                                                | `'center'`|
-| enableGlobalKeyboardShortcuts | `boolean`                                         | Whether keyboard commands are enabled without the need to focus the dropdown. | `false`   |
-| inheritTriggerWidth           | `boolean`                                         | Whether to inherit the trigger's width.                                       | `false`   |
-| items*                        | `DropdownMenuItem[]`                              | The dropdown items.                                                           |           |
-| offset                        | `number`                                          | The offset of the dropdown.                                                   | `4`       |
-| side                          |`'bottom'` \|  `'left'` \| `'right'` \| `'top'`    | The side of the dropdown.                                                     | `bottom`  |
-
+<!-- @include: ./app-dropdown-menu-meta.md -->
 
 ## Types
 
@@ -107,15 +90,6 @@ export interface DropdownMenuRadio {
 }
 ```
 ::: 
-
-## Slots
-
-| Slot name   | Type | Description                                                        |
-| ----------- | ---- | ------------------------------------------------------------------ |
-| `'default'`*| None | Trigger element to show the dropdown items                         |
-| `'header'`  | None | Optional header content in the dropdown, before the dropdown items |
-| `'footer'`  | None | Optional footer content in the dropdown, after the dropdown items  |
-
 
 ## Code
 

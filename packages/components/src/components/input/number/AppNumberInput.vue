@@ -57,11 +57,18 @@ const props = withDefaults(defineProps<{
   isInvalid: false,
   isLoading: false,
   hideControls: false,
-  iconLeft: undefined,
+  iconLeft: null,
   max: null,
   min: 0,
   placeholder: null,
 })
+
+defineSlots<{
+  /** Optional content on the left of the input (overrides the rendering of the left Icon) */
+  left: () => void
+  /** Optional content on the right of the input (to the right of the increment/decrement controls) */
+  right: () => void
+}>()
 
 const model = defineModel<null | number>({
   required: true,
@@ -147,7 +154,7 @@ const upButtonClasses = computed<string>(() => inputStyle.numberUpButton())
     :is-invalid="props.isInvalid"
     :is-loading="props.isLoading"
     :placeholder="props.placeholder"
-    :icon-left="props.iconLeft ?? undefined"
+    :icon-left="props.iconLeft"
     type="number"
   >
     <template #left>

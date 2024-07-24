@@ -9,6 +9,11 @@ import type { AcceptableValue } from '@/types/selectItem.type'
 const props = withDefaults(
   defineProps<{
     /**
+     * Whether the combobox has a clear button.
+     * @default false
+     */
+    hasClearButton?: boolean
+    /**
      * Whether the chevron icon is hidden.
      * @default false
      */
@@ -84,8 +89,8 @@ const props = withDefaults(
     isRequired: false,
     isTouched: false,
     emptyText: null,
-    iconLeft: undefined,
-    iconRight: undefined,
+    iconLeft: null,
+    iconRight: null,
     placeholder: null,
   },
 )
@@ -93,6 +98,16 @@ const props = withDefaults(
 const emit = defineEmits<{
   blur: []
   filter: [value: string]
+}>()
+
+defineSlots<{
+  /** Override the left content of the combobox input */
+  left: () => void
+  /** Override the option rendering of the combobox, and have access to the dataTestId */
+  option: (props: {
+    dataTestid?: string
+    value: TValue
+  }) => any
 }>()
 
 const model = defineModel<TValue | null>({
@@ -132,6 +147,7 @@ function onFilter(filter: string): void {
       :display-fn="props.displayFn"
       :filter-fn="props.filterFn"
       :empty-text="props.emptyText"
+      :has-clear-button="props.hasClearButton"
       :is-disabled="props.isDisabled"
       :is-required="props.isRequired"
       :placeholder="props.placeholder"
@@ -146,9 +162,10 @@ function onFilter(filter: string): void {
         <slot name="left" />
       </template>
 
-      <template #option="{ value }">
+      <template #option="{ value, dataTestid }">
         <slot
           :value="value"
+          :data-testid="dataTestid"
           name="option"
         />
       </template>

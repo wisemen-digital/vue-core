@@ -10,10 +10,25 @@ import type { Icon } from '@/icons/icons'
 import type { ToastAction, ToastType } from '@/types/toast.type'
 
 const props = withDefaults(defineProps<{
+  /**
+   * The title of the toast.
+   */
   title: string
+  /**
+   * Optional action to be displayed in the toast.
+   */
   action?: ToastAction | null
+  /**
+   * Optional description text added under the title.
+   */
   description?: null | string
+  /**
+   * The icon of the toast.
+   */
   icon: Icon
+  /**
+   * The type of the toast.
+   */
   type: ToastType
 }>(), {
   action: null,

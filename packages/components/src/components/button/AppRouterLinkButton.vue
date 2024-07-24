@@ -55,15 +55,19 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  // TODO: find out why defaulting these to `null` breaks the `Icon` prop type when using `declare module`.
-  // iconLeft: undefined,
   isLoading: false,
-  // iconRight: undefined,
+  iconLeft: null,
+  iconRight: null,
   keyboardShortcut: null,
   size: 'default',
   type: 'button',
   variant: 'default',
 })
+
+defineSlots<{
+  /** The content of the button */
+  default: () => void
+}>()
 
 const routerLinkRef = ref<InstanceType<any> | null>(null)
 const buttonStyle = useButtonStyle()
@@ -139,7 +143,7 @@ onMounted(() => {
     :class="buttonClasses"
   >
     <AppIcon
-      v-if="props.iconLeft !== null && props.iconLeft !== undefined"
+      v-if="props.iconLeft !== null"
       :icon="props.iconLeft"
       :class="buttonLeftIconClasses"
     />
@@ -158,7 +162,7 @@ onMounted(() => {
     </div>
 
     <AppIcon
-      v-if="props.iconRight !== null && props.iconRight !== undefined"
+      v-if="props.iconRight !== null"
       :icon="props.iconRight"
       :class="buttonRightIconClasses"
     />

@@ -7,10 +7,14 @@ import {
 } from 'radix-vue'
 import { computed } from 'vue'
 
+import AppBadge from '@/components/badge/AppBadge.vue'
 import { useTabsStyle } from '@/components/tabs/tabs.style'
 import type { TabItem } from '@/types/tabItem.type'
 
 const props = defineProps<{
+  /**
+   * All the tabs to be rendered.
+   */
   items: TabItem[]
 }>()
 
@@ -45,6 +49,12 @@ const triggerClasses = computed<string>(() => tabsStyle.trigger())
         :class="triggerClasses"
       >
         {{ tab.label }}
+        <AppBadge
+          v-if="tab.badge"
+          :class="tab.badge.class"
+        >
+          {{ tab.badge.label }}
+        </AppBadge>
       </TabsTrigger>
     </TabsList>
   </TabsRoot>

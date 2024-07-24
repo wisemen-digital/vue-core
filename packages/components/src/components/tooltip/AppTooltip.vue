@@ -68,6 +68,13 @@ const props = withDefaults(
   },
 )
 
+defineSlots<{
+  /** Override the content of the tooltip */
+  content: () => void
+  /** Trigger element for the toolip */
+  default: () => void
+}>()
+
 const slots = useSlots()
 
 if (props.content === null && slots.content === undefined) {

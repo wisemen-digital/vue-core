@@ -6,11 +6,6 @@ import { AppMultiSelect } from '@wisemen/vue-core'
 import { ref } from 'vue'
 
 const controls = createControls({
-  emptyText: {
-    default: 'Empty Text',
-    label: 'Empty Text',
-    type: 'text',
-  },
   placeholder: {
     default: 'Placeholder',
     label: 'Placeholder',
@@ -20,16 +15,6 @@ const controls = createControls({
     default: null,
     label: 'Left Icon',
     type: 'icon',
-  },
-  iconRight: {
-    default: null,
-    label: 'Right Icon',
-    type: 'icon',
-  },
-  isChevronHidden: {
-    default: false,
-    label: 'Is Chevron Hidden',
-    type: 'switch',
   },
   isDisabled: {
     default: false,
@@ -91,12 +76,6 @@ const users = ref<User[]>([])
 function displayFn(user: User): string {
   return `${user.firstName} ${user.lastName}`
 }
-
-function filterFn(users: User[], searchTerm: string): User[] {
-  return users.filter((user) => {
-    return displayFn(user).toLowerCase().includes(searchTerm.toLowerCase())
-  })
-}
 </script>
 
 <template>
@@ -108,7 +87,6 @@ function filterFn(users: User[], searchTerm: string): User[] {
       v-model="users"
       :items="userItems"
       :display-fn="displayFn"
-      :filter-fn="filterFn"
       v-bind="values"
     />
   </ComponentPlayground>

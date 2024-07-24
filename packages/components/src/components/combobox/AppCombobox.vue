@@ -22,7 +22,9 @@ import { useComboboxStyle } from '@/components/combobox/combobox.style'
 import type { Icon } from '@/icons/icons'
 import type { ComboboxItem } from '@/types/comboboxItem.type'
 import type { ComboboxProps } from '@/types/comboboxProps.type'
-import type { AcceptableValue } from '@/types/selectItem.type'
+import type {
+  AcceptableValue,
+} from '@/types/selectItem.type'
 
 const props = withDefaults(
   defineProps<{
@@ -30,6 +32,11 @@ const props = withDefaults(
      * The html id of the combobox.
      */
     id?: null | string
+    /**
+     * Whether the combobox has a clear button.
+     * @default false
+     */
+    hasClearButton?: boolean
     /**
      * Whether to show the search input in the dropdown instead of inline.
      * @default false
@@ -99,14 +106,15 @@ const props = withDefaults(
   }>(),
   {
     id: null,
+    hasClearButton: false,
     hasSearchInDropdown: false,
     isChevronHidden: false,
     isDisabled: false,
     isInvalid: false,
     isLoading: false,
     emptyText: null,
-    iconLeft: undefined,
-    iconRight: undefined,
+    iconLeft: null,
+    iconRight: null,
     placeholder: null,
     popoverProps: null,
   },
@@ -115,6 +123,20 @@ const props = withDefaults(
 const emit = defineEmits<{
   'blur': []
   'update:modelValue': [value: TValue | null]
+}>()
+
+defineSlots<{
+  /** Override the empty state of the combobox dropdown */
+  empty: () => void
+  /** Override the left content of the combobox input */
+  left: () => void
+  /** Override the option rendering of the combobox, and have access to the dataTestId */
+  option: (props: {
+    dataTestid?: string
+    value: TValue
+  }) => any
+  /** Override the right content of the combobox input */
+  right: () => void
 }>()
 
 const searchModel = defineModel<null | string>('search', {
@@ -157,8 +179,16 @@ const placeholderValue = computed<null | string>(() => {
   return props.displayFn(model.value as TValue)
 })
 
+const isClearButtonVisible = computed<boolean>(() => {
+  return model.value !== undefined && props.hasClearButton
+})
+
 function onBlur(): void {
   emit('blur')
+}
+
+function onClear(): void {
+  emit('update:modelValue', null)
 }
 
 // When the search input is in the dropdown, we want to focus the "fake" input
@@ -190,9 +220,10 @@ watch(isOpen, (isOpen) => {
         <AppComboboxInput
           :id="props.id"
           ref="inputRef"
+          :has-clear-button="isClearButtonVisible"
           :value="model ?? null"
-          :icon-left="props.iconLeft ?? null"
-          :icon-right="props.iconRight ?? null"
+          :icon-left="props.iconLeft"
+          :icon-right="props.iconRight"
           :is-chevron-hidden="props.isChevronHidden"
           :display-fn="props.displayFn"
           :is-open="isOpen"
@@ -202,6 +233,7 @@ watch(isOpen, (isOpen) => {
           :placeholder="placeholderValue"
           :has-search-in-dropdown="props.hasSearchInDropdown"
           @blur="onBlur"
+          @clear="onClear"
         >
           <template #left>
             <slot name="left" />

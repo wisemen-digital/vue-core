@@ -4,12 +4,8 @@ sidebar: auto
 
 
 # AppSkeletonLoaderRow
-<script setup>
-import AppSkeletonLoaderRowPlayground from './AppSkeletonLoaderRowPlayground.vue'
-</script>
 
-<AppSkeletonLoaderRowPlayground />
-
+<!-- @include: ./app-skeleton-loader-row-meta.md -->
 
 ## Code
 

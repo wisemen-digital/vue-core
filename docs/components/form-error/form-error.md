@@ -4,18 +4,8 @@ sidebar: auto
 
 
 # FormError
-<script setup>
-import FormErrorPlayground from './FormErrorPlayground.vue'
-</script>
 
-<FormErrorPlayground />
-
-## Props
-
-| Prop       | Type                        | Description                               | Default     |
-| ---------- | --------------------------- | ----------------------------------------- | ----------- |
-| isVisible* | `boolean`                   | Whether the error is visible              |             |
-| errors*    | `FormFieldErrors`           | The errors to display                     |             |
+<!-- @include: ./form-error-meta.md -->
 
 ## Code
 

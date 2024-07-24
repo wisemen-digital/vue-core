@@ -51,6 +51,11 @@ const controls = createControls({
     label: 'Has search in dropdown',
     type: 'switch',
   },
+  hasClearButton: {
+    default: false,
+    label: 'Has Clear Button',
+    type: 'switch',
+  },
 })
 
 interface User {

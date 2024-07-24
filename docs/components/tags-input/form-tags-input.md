@@ -4,48 +4,8 @@ sidebar: auto
 
 
 # FormTagsInput
-<script setup>
-import FormTagsInputPlayground from './FormTagsInputPlayground.vue'
-</script>
 
-<FormTagsInputPlayground />
-
-
-## Props
-
-| Prop        | Type                                            | Description                                       | Default     |
-|-------------|-------------------------------------------------|---------------------------------------------------|-------------|
-| label*      | `null` \| `string`                              | The label of the input.                           |             |
-| errors*     | `FormFieldErrors`                               | The errors associated with the input.             |             |
-| isDisabled  | `boolean`                                       | Whether the input is disabled.                    | `false`     |
-| isRequired  | `boolean`                                       | Whether the input is required.                    | `false`     |
-| isTouched*  | `boolean`                                       | Whether the input is touched.                     |             |
-| max         | `null` \| `number`                              | The maximum amount of tags allowed.               | `null`      |
-| placeholder | `null` \| `string`                              | The placeholder of the input.                     | `null`      |
-| tooltip     | `string`                                        | The tooltip of the input.                         |             |
-
-
-## Slots
-
-| Slot name | Type            | Description                |
-|-----------|-----------------|----------------------------|
-| `tag`     | `value: string` | Override the tag rendering |
-
-
-## v-model
-
-| Prop     | Type       | Description             |
-|----------|------------|-------------------------|
-| v-model* | `string[]` | The value of the input. |
-
-
-## Events
-
-| Event Name | Description                         |
-|------------|-------------------------------------|
-| blur       | Emitted when the input loses focus. |
-| focus      | Emitted when the input gains focus. |
-
+<!-- @include: ./form-tags-input-meta.md -->
 
 ## Code
 

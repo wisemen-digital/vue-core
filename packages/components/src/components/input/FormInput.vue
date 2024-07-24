@@ -69,12 +69,19 @@ const props = withDefaults(
     isLoading: false,
     isRequired: false,
     isTouched: false,
-    iconLeft: undefined,
-    iconRight: undefined,
+    iconLeft: null,
+    iconRight: null,
     placeholder: null,
     type: 'text',
   },
 )
+
+defineSlots<{
+  /** Replace the left icon with custom content */
+  left: () => void
+  /** Replace the right icon with custom content */
+  right: () => void
+}>()
 
 const model = defineModel<null | string>({
   required: true,
@@ -106,25 +113,21 @@ const { classAttr, otherAttrs } = useComponentAttrs()
       :is-disabled="props.isDisabled"
       :type="props.type"
       :is-loading="props.isLoading"
-      :icon-left="props.iconLeft ?? undefined"
-      :icon-right="props.iconRight ?? undefined"
+      :icon-left="props.iconLeft"
+      :icon-right="props.iconRight"
     >
       <template
         v-if="slots.left !== undefined"
         #left
       >
-        <Component
-          :is="slots.left"
-        />
+        <slot name="left" />
       </template>
 
       <template
         v-if="slots.right !== undefined"
         #right
       >
-        <Component
-          :is="slots.right"
-        />
+        <slot name="right" />
       </template>
     </AppInput>
   </FormElement>

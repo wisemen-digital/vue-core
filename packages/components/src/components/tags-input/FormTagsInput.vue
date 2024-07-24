@@ -50,6 +50,13 @@ const emit = defineEmits<{
   focus: []
 }>()
 
+defineSlots<{
+  /** Override the tag rendering */
+  tag: (props: {
+    value: string
+  }) => any
+}>()
+
 const model = defineModel<string[]>({
   required: true,
 })

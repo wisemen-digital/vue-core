@@ -4,19 +4,8 @@ sidebar: auto
 
 
 # AppBreadcrumbs
-<script setup>
-import AppBreadcrumbsPlayground from './AppBreadcrumbsPlayground.vue'
-</script>
 
-<AppBreadcrumbsPlayground />
-
-
-## Props
-
-| Prop  | Type               | Description                             | Default |
-| ----- | ------------------ | --------------------------------------- | ------- |
-| items* | `BreadcrumbItem[]` | The items to display in the breadcrumb.|         |
-
+<!-- @include: ./app-breadcrumbs-meta.md -->
 
 ## Types
 
