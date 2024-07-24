@@ -108,6 +108,16 @@ const docs = [
     collapsed: true,
     items: [
       {
+        link: '/components/container/app-container',
+        text: 'AppContainer',
+      },
+    ],
+    text: 'Container',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
         link: '/components/date/app-date-picker',
         text: 'AppDatePicker',
       },
