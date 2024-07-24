@@ -92,6 +92,7 @@ export const components = {
   table: [
     'AppTable',
     'AppTableSkeletonLoader',
+    'AppTableFiltersPopover',
   ],
   tabs: [
     'AppTabs',

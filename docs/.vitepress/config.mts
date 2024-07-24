@@ -349,6 +349,10 @@ const docs = [
         link: '/components/table/app-table-skeleton-loader',
         text: 'AppTableSkeletonLoader',
       },
+      {
+        link: '/components/table/app-table-filters-popover',
+        text: 'AppTableFiltersPopover',
+      },
     ],
     text: 'Table',
   },

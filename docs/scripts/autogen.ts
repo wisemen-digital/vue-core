@@ -54,7 +54,6 @@ function parseMeta(meta: any) {
     .map((event: any) => {
       const { name } = event
       const type = event.type.replace(/\s*\|\s*undefined/g, '').replace('unknown', 'T').replace(/\</g, '\\<').replace(/\>/g, '\\>')
-      console.log(type)
       return ({
         name,
         description: md.render((event.description ?? '').replace(/^[ \t]+/gm, '')),
