@@ -37,7 +37,7 @@ const props = withDefaults(
     /**
      * The icon to display on the left side of the select.
      */
-    iconLeft?: Icon
+    iconLeft?: Icon | null
     /**
      * The items of the select.
      */
@@ -61,7 +61,7 @@ const props = withDefaults(
     isLoading: false,
     isRequired: false,
     isTouched: false,
-    iconLeft: undefined,
+    iconLeft: null,
     placeholder: null,
   },
 )

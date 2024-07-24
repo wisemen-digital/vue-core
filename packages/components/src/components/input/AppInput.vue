@@ -36,12 +36,12 @@ const props = withDefaults(defineProps<{
    * The left icon of the input.
    * @default null
    */
-  iconLeft?: Icon
+  iconLeft?: Icon | null
   /**
    * The right icon of the input.
    * @default null
    */
-  iconRight?: Icon
+  iconRight?: Icon | null
   /**
    * The placeholder of the input.
    * @default null
@@ -57,8 +57,8 @@ const props = withDefaults(defineProps<{
   isDisabled: false,
   isInvalid: false,
   isLoading: false,
-  iconLeft: undefined,
-  iconRight: undefined,
+  iconLeft: null,
+  iconRight: null,
   placeholder: null,
   type: 'text',
 })
@@ -95,13 +95,13 @@ const loaderClasses = computed<string>(() => inputStyle.loader())
     :aria-disabled="props.isDisabled"
     :class="containerClasses"
   >
-    <Component
-      :is="slots.left"
+    <slot
       v-if="slots.left !== undefined"
+      name="left"
     />
 
     <AppIcon
-      v-else-if="props.iconLeft !== null && props.iconLeft !== undefined"
+      v-else-if="props.iconLeft !== null"
       :icon="props.iconLeft"
       :class="leftIconClasses"
     />
@@ -124,13 +124,13 @@ const loaderClasses = computed<string>(() => inputStyle.loader())
       :class="loaderClasses"
     />
 
-    <Component
-      :is="slots.right"
+    <slot
       v-else-if="slots.right !== undefined"
+      name="right"
     />
 
     <AppIcon
-      v-else-if="props.iconRight !== null && props.iconRight !== undefined"
+      v-else-if="props.iconRight !== null"
       :icon="props.iconRight"
       :class="rightIconClasses"
     />
