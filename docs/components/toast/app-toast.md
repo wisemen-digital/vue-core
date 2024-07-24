@@ -30,7 +30,7 @@ const onButtonClick = () => {
   <AppToastContainer />
 
   <!-- Event triggering the toast -->
-  <AppButton @click="onButtonClick(values.title, values.description, values.type)">
+  <AppButton @click="onButtonClick()">
     Click to show toast
   </AppButton>
 </template>

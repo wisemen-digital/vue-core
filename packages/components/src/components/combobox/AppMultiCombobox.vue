@@ -181,6 +181,7 @@ function onBlur(): void {
           :id="props.id"
           :icon-left="props.iconLeft"
           :icon-right="props.iconRight"
+          :has-clear-button="false"
           :is-chevron-hidden="props.isChevronHidden"
           :is-disabled="props.isDisabled"
           :is-invalid="props.isInvalid"

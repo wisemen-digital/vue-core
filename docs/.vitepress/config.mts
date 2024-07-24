@@ -57,6 +57,10 @@ const docs = [
         link: '/components/button/app-router-link-button',
         text: 'AppRouterLinkButton',
       },
+      {
+        link: '/components/button/app-unstyled-button',
+        text: 'AppUnstyledButton',
+      },
     ],
     text: 'Button',
   },
@@ -86,6 +90,10 @@ const docs = [
         text: 'AppMultiCombobox',
       },
       {
+        link: '/components/combobox/app-tags-combobox',
+        text: 'AppTagsCombobox',
+      },
+      {
         link: '/components/combobox/form-combobox',
         text: 'FormCombobox',
       },
@@ -93,8 +101,22 @@ const docs = [
         link: '/components/combobox/form-multi-combobox',
         text: 'FormMultiCombobox',
       },
+      {
+        link: '/components/combobox/form-tags-combobox',
+        text: 'FormTagsCombobox',
+      },
     ],
     text: 'Combobox',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
+        link: '/components/container/app-container',
+        text: 'AppContainer',
+      },
+    ],
+    text: 'Container',
   },
   {
     collapsed: true,
@@ -109,6 +131,16 @@ const docs = [
       },
     ],
     text: 'Date',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
+        link: '/components/dialog/app-dialog',
+        text: 'AppDialog',
+      },
+    ],
+    text: 'Dialog',
   },
   {
     collapsed: true,
@@ -253,6 +285,10 @@ const docs = [
         link: '/components/select/form-select',
         text: 'FormSelect',
       },
+      {
+        link: '/components/select/form-multi-select',
+        text: 'FormMultiSelect',
+      },
     ],
     text: 'Select',
   },
@@ -369,6 +405,16 @@ const docs = [
       },
     ],
     text: 'Tooltip',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
+        link: '/components/transitions/app-collapse-transition',
+        text: 'AppCollapseTransition',
+      },
+    ],
+    text: 'Transitions',
   },
 ]
 

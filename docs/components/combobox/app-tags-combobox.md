@@ -2,18 +2,16 @@
 sidebar: auto
 ---
 
-# AppMultiSelect
+# AppTagsCombobox
 
-For single value select, see [AppSelect](/components/select/app-select.md).
-
-<!-- @include: ./app-multi-select-meta.md -->
+<!-- @include: ./app-tags-combobox-meta.md -->
 
 ## Code
 
 ::: code-group
 ```vue [Usage]
 <script setup lang="ts">
-import { AppMultiSelect, SelectItem } from '@wisemen/vue-core'
+import { AppTagsCombobox, ComboboxItem } from '@wisemen/vue-core'
 import { ref } from 'vue'
 
 interface User {
@@ -21,7 +19,7 @@ interface User {
   lastName: string
 }
 
-const userItems: SelectItem<User>[] = [
+const userItems: ComboboxItem<User>[] = [
   {
     type: 'option',
     value: {
@@ -41,7 +39,7 @@ const userItems: SelectItem<User>[] = [
   },
 ]
 
-const users = ref<User[]>([])
+const user = ref<User[]>([])
 
 function displayFn(user: User): string {
   return `${user.firstName} ${user.lastName}`
@@ -55,24 +53,31 @@ function filterFn(users: User[], searchTerm: string): User[] {
 </script>
 
 <template>
-  <AppMultiSelect
-    v-model="users"
-    :items="userItems"
+  <AppTagsCombobox
+    v-model="user"
     :display-fn="displayFn"
+    :filter-fn="filterFn"
+    :items="userItems"
+    class="w-96"
   />
 
-  <!-- Or with a custom option slot -->
-  <AppMultiSelect
-    v-model="users"
-    :items="userItems"
+  <!-- Or with custom slots -->
+  <AppTagsCombobox
+    v-model="user"
     :display-fn="displayFn"
+    :filter-fn="filterFn"
+    :items="userItems"
+    class="w-96"
   >
     <template #option="{ value }">
       <!-- custom html -->
     </template>
-  </AppMultiSelect>
+    <template #tag="{ value }">
+      <!-- custom html -->
+    </template>
+  </AppCombobox>
 </template>
 ```
 :::
 
-For full source code, see [Github](https://github.com/wisemen-digital/vue-core/blob/main/packages/components/src/components/select/AppMultiSelect.vue)
+For full source code, see [Github](https://github.com/wisemen-digital/vue-core/blob/main/packages/components/src/components/combobox/AppTagsCombobox.vue).

@@ -4,11 +4,14 @@ sidebar: auto
 
 # FormSelect
 
+For mutliple value select, see [FormMultiSelect](/components/select/form-multi-select.md).
+
 <!-- @include: ./form-select-meta.md -->
 
-## Example Usage
+## Code
 
-```vue
+::: code-group
+```vue [Usage]
 <script setup lang="ts">
 import { FormSelect } from '@wisemen/vue-core'
 
@@ -67,3 +70,7 @@ const user = form.register('user')
     </template>
   </FormSelect>
 </template>
+```
+::: 
+
+For full source code, see [Github](https://github.com/wisemen-digital/vue-core/blob/main/packages/components/src/components/select/FormSelect.vue)

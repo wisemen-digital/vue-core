@@ -70,6 +70,15 @@ const emit = defineEmits<{
   blur: []
 }>()
 
+defineSlots<{
+  /** Override the display of the left icon */
+  left: () => any
+  /** Override the option rendering of the select */
+  option: (props: {
+    value: AcceptableValue
+  }) => any
+}>()
+
 const model = defineModel<TValue[]>({
   required: true,
 })

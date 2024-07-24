@@ -18,7 +18,7 @@ import AppTogglePlayground from './AppTogglePlayground.vue'
 
 | Slot | Type | Description |
 | --------- | ---- | ----------- |
-| `default` | \{ isToggled: boolean; isDisabled: boolean; \} | Content to be toggled |
+| `default` | \{ isDisabled: boolean; isToggled: boolean; \} | Content to be toggled |
 
 
 ## Events
