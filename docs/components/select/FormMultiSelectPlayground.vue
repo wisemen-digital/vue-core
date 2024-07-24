@@ -2,13 +2,23 @@
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols'
 import type { SelectItem } from '@wisemen/vue-core'
-import { AppMultiSelect } from '@wisemen/vue-core'
+import { FormMultiSelect } from '@wisemen/vue-core'
 import { ref } from 'vue'
 
 const controls = createControls({
+  label: {
+    default: 'Label',
+    label: 'Label',
+    type: 'text',
+  },
   placeholder: {
     default: 'Placeholder',
     label: 'Placeholder',
+    type: 'text',
+  },
+  tooltip: {
+    default: 'Tooltip',
+    label: 'Tooltip',
     type: 'text',
   },
   iconLeft: {
@@ -21,14 +31,19 @@ const controls = createControls({
     label: 'Is Disabled',
     type: 'switch',
   },
-  isInvalid: {
+  isRequired: {
     default: false,
-    label: 'Is Invalid',
+    label: 'Is required',
     type: 'switch',
   },
   isLoading: {
     default: false,
     label: 'Is Loading',
+    type: 'switch',
+  },
+  isTouched: {
+    default: false,
+    label: 'Is touched',
     type: 'switch',
   },
 })
@@ -83,9 +98,10 @@ function displayFn(user: User): string {
     v-slot="{ values }"
     :controls="controls"
   >
-    <AppMultiSelect
+    <FormMultiSelect
       v-model="users"
       :items="userItems"
+      :errors="{ _errors: ['This is an error'] }"
       :display-fn="displayFn"
       v-bind="values"
     />

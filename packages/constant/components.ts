@@ -31,6 +31,9 @@ export const components = {
   //   'AppDatePicker',
   //   'FormDatePicker',
   // ],
+  dialog: [
+    'AppDialog',
+  ],
   dropdownMenu: [
     'AppDropdownMenu',
   ],
@@ -72,6 +75,7 @@ export const components = {
     'AppSelect',
     'AppMultiSelect',
     'FormSelect',
+    'FormMultiSelect',
   ],
   skeletonLoader: [
     'AppPageSkeletonLoader',

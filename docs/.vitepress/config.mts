@@ -136,6 +136,16 @@ const docs = [
     collapsed: true,
     items: [
       {
+        link: '/components/dialog/app-dialog',
+        text: 'AppDialog',
+      },
+    ],
+    text: 'Dialog',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
         link: '/components/dropdown-menu/app-dropdown-menu',
         text: 'AppDropdownMenu',
       },
@@ -274,6 +284,10 @@ const docs = [
       {
         link: '/components/select/form-select',
         text: 'FormSelect',
+      },
+      {
+        link: '/components/select/form-multi-select',
+        text: 'FormMultiSelect',
       },
     ],
     text: 'Select',

@@ -15,8 +15,7 @@ import AppDialogOverlay from '@/components/dialog/AppDialogOverlay.vue'
 
 const props = withDefaults(defineProps<{
   /**
-   * The id of the element that triggers the dialog.
-   * Will be set automatically when using the `useDialog` composable
+   * The id of the element that triggers the dialog: Will be set automatically when using the `useDialog` composable
    * @default null
    */
   triggerId?: null | string
@@ -44,6 +43,11 @@ const props = withDefaults(defineProps<{
 
 const emit = defineEmits<{
   close: []
+}>()
+
+defineSlots<{
+  /** Content of the dialog */
+  default: () => void
 }>()
 
 const isOpen = defineModel<boolean>('isOpen', {
