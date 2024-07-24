@@ -45,4 +45,4 @@ function toggleShow(): void {
 ```
 :::
 
-For full source code, see [Github](https://github.com/wisemen-digital/vue-core/blob/main/packages/components/src/components/container/AppContainer.vue).
+For full source code, see [Github](https://github.com/wisemen-digital/vue-core/blob/main/packages/components/src/components/transitions/AppCollapseTransition.vue).
