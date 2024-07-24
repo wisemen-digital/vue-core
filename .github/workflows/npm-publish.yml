@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Publish 
+      - name: Publish
         run: pnpm pub:release
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
