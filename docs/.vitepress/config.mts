@@ -274,6 +274,16 @@ const docs = [
     collapsed: true,
     items: [
       {
+        link: '/components/radio-group/form-radio-group',
+        text: 'FormRadioGroup',
+      },
+    ],
+    text: 'Radio-group',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
         link: '/components/select/app-select',
         text: 'AppSelect',
       },

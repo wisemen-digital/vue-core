@@ -71,6 +71,9 @@ export const components = {
   popover: [
     'AppPopover',
   ],
+  radioGroup: [
+    'FormRadioGroup',
+  ],
   select: [
     'AppSelect',
     'AppMultiSelect',
