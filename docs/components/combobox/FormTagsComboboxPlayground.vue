@@ -2,7 +2,7 @@
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols'
 import type { ComboboxItem } from '@wisemen/vue-core'
-import { FormCombobox } from '@wisemen/vue-core'
+import { FormTagsCombobox } from '@wisemen/vue-core'
 import { ref } from 'vue'
 
 const controls = createControls({
@@ -22,24 +22,14 @@ const controls = createControls({
     label: 'Placeholder',
     type: 'text',
   },
-  iconLeft: {
-    default: null,
-    label: 'Left Icon',
-    type: 'icon',
-  },
-  iconRight: {
-    default: null,
-    label: 'Right Icon',
-    type: 'icon',
-  },
-  isChevronHidden: {
-    default: false,
-    label: 'Is Chevron Hidden',
-    type: 'switch',
-  },
   isDisabled: {
     default: false,
     label: 'Is Disabled',
+    type: 'switch',
+  },
+  isInvalid: {
+    default: false,
+    label: 'Is Invalid',
     type: 'switch',
   },
   isLoading: {
@@ -57,11 +47,6 @@ const controls = createControls({
     label: 'Tooltip',
     type: 'text',
     cols: 2,
-  },
-  hasClearButton: {
-    default: false,
-    label: 'Has Clear Button',
-    type: 'switch',
   },
 })
 
@@ -85,9 +70,16 @@ const userItems: ComboboxItem<User>[] = [
       lastName: 'Doe',
     },
   },
+  {
+    type: 'option',
+    value: {
+      firstName: 'Jimmy',
+      lastName: 'Doe',
+    },
+  },
 ]
 
-const user = ref<User | null>(null)
+const user = ref<User[]>([])
 
 function displayFn(user: User): string {
   return `${user.firstName} ${user.lastName}`
@@ -102,17 +94,18 @@ function filterFn(users: User[], searchTerm: string): User[] {
 
 <template>
   <ComponentPlayground
-    v-slot="{ values }"
     :controls="controls"
   >
-    <FormCombobox
-      v-model="user"
-      :errors="{ _errors: ['This is an error'] }"
-      :items="userItems"
-      :display-fn="displayFn"
-      :filter-fn="filterFn"
-
-      v-bind="values"
-    />
+    <template #default="{ values }">
+      <FormTagsCombobox
+        v-bind="values"
+        v-model="user"
+        :errors="{ _errors: ['This is an error'] }"
+        :display-fn="displayFn"
+        :filter-fn="filterFn"
+        :items="userItems"
+        class="w-96"
+      />
+    </template>
   </ComponentPlayground>
 </template>
