@@ -57,6 +57,10 @@ const docs = [
         link: '/components/button/app-router-link-button',
         text: 'AppRouterLinkButton',
       },
+      {
+        link: '/components/button/app-unstyled-button',
+        text: 'AppUnstyledButton',
+      },
     ],
     text: 'Button',
   },

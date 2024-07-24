@@ -9,6 +9,7 @@ export const components = {
     'AppButton',
     'AppIconButton',
     'AppRouterLinkButton',
+    'AppUnstyledButton',
   ],
   checkbox: [
     'FormCheckbox',
