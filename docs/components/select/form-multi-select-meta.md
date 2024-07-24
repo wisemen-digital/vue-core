@@ -12,7 +12,7 @@ import FormMultiSelectPlayground from './FormMultiSelectPlayground.vue'
 | ---- | ---- | ----------- | ------- |
 | displayFn* | `(value: AcceptableValue) => string` | display function for the selected value |  |
 | errors* | `FormFieldErrors` | The errors associated with the select. |  |
-| iconLeft | `keyof Icons` | The icon to display on the left side of the select. |  |
+| iconLeft | `keyof Icons \| null` | The icon to display on the left side of the select. | `null` |
 | isDisabled | `boolean` | Whether the select is disabled. | `false` |
 | isLoading | `boolean` | Whether the select is loading. | `false` |
 | isRequired | `boolean` | Whether the select is required. | `false` |

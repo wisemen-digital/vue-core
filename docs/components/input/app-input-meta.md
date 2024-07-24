@@ -10,8 +10,8 @@ import AppInputPlayground from './AppInputPlayground.vue'
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| iconLeft | `keyof Icons` | The left icon of the input. |  |
-| iconRight | `keyof Icons` | The right icon of the input. |  |
+| iconLeft | `keyof Icons \| null` | The left icon of the input. | `null` |
+| iconRight | `keyof Icons \| null` | The right icon of the input. | `null` |
 | id | `string \| null` | The id of the input. | `null` |
 | isDisabled | `boolean` | Whether the input is disabled. | `false` |
 | isInvalid | `boolean` | Whether the input is invalid. | `false` |

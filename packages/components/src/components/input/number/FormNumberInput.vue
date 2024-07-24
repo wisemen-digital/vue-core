@@ -77,7 +77,7 @@ const props = withDefaults(
     isRequired: false,
     isTouched: false,
     hideControls: false,
-    iconLeft: undefined,
+    iconLeft: null,
     max: null,
     min: 0,
     placeholder: null,
