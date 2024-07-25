@@ -8,11 +8,6 @@ import {
 } from '@wisemen/vue-core'
 
 const controls = createControls({
-  animateFromTrigger: {
-    default: false,
-    label: 'Animate from trigger',
-    type: 'switch',
-  },
   hideCloseButton: {
     default: false,
     label: 'Hide close button',
@@ -29,14 +24,28 @@ const dialog = useDialog({
   component: () => import('@docs/components/dialog/AppDialogExample.vue'),
 })
 
+const dialogAnimated = useDialog({
+  component: () => import('@docs/components/dialog/AppDialogExample.vue'),
+  animateFromTrigger: true,
+})
+
 function onButtonClick(
-  animateFromTrigger: boolean,
   hideCloseButton: boolean,
   shouldPreventClickOutside?: boolean,
 ): void {
   void dialog.open({
     title: 'This is a dialog',
-    animateFromTrigger,
+    hideCloseButton,
+    shouldPreventClickOutside,
+  })
+}
+
+function onButtonClickAnimated(
+  hideCloseButton: boolean,
+  shouldPreventClickOutside?: boolean,
+): void {
+  void dialogAnimated.open({
+    title: 'This is a dialog',
     hideCloseButton,
     shouldPreventClickOutside,
   })
@@ -49,12 +58,22 @@ function onButtonClick(
   >
     <template #default="{ values }">
       <AppDialogContainer />
-      <AppButton
-        @click="onButtonClick(
-          values.animateFromTrigger, values.hideCloseButton, values.shouldPreventClickOutside)"
-      >
-        Click to show dialog
-      </AppButton>
+
+      <div class="flex gap-x-2">
+        <AppButton
+          :id="dialog.triggerId"
+          @click="onButtonClick(values.hideCloseButton, values.shouldPreventClickOutside)"
+        >
+          Click to show dialog
+        </AppButton>
+
+        <AppButton
+          :id="dialogAnimated.triggerId"
+          @click="onButtonClickAnimated(values.hideCloseButton, values.shouldPreventClickOutside)"
+        >
+          Click to show dialog (animated)
+        </AppButton>
+      </div>
     </template>
   </ComponentPlayground>
 </template>
