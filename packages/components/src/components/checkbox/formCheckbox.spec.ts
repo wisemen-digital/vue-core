@@ -7,7 +7,7 @@ import {
 
 import FormCheckbox from '@/components/checkbox/FormCheckbox.vue'
 
-describe('checkboxComponent', () => {
+describe('formCheckbox', () => {
   it('renders correctly with default props', () => {
     const wrapper = mount(FormCheckbox, {
       props: {
