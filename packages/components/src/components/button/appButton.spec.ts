@@ -7,6 +7,8 @@ import {
 
 import AppButton from '@/components/button/AppButton.vue'
 import { useButtonStyle } from '@/components/button/button.style'
+import AppIcon from '@/components/icon/AppIcon.vue'
+import AppLoader from '@/components/loader/AppLoader.vue'
 
 const buttonStyle = useButtonStyle()
 
@@ -54,6 +56,11 @@ describe('appButton', () => {
 
   it('renders icons correctly', () => {
     const wrapper = mount(AppButton, {
+      global: {
+        components: {
+          AppIcon,
+        },
+      },
       props: {
         iconLeft: 'checkmark',
       },
@@ -64,8 +71,85 @@ describe('appButton', () => {
 
     expect(wrapper.exists()).toBe(true)
     expect(wrapper.element.tagName).toBe('BUTTON')
-    // expect(wrapper.find('svg').exists()).toBe(true)
 
-    // console.log(wrapper.html())
+    const iconComponent = wrapper.findComponent(AppIcon)
+
+    expect(iconComponent.props('icon')).toBe('checkmark')
+  })
+
+  it('shows loader if isLoading is true', () => {
+    const wrapper = mount(AppButton, {
+      global: {
+        components: {
+          AppLoader,
+        },
+      },
+      props: {
+        isLoading: true,
+      },
+      slots: {
+        default: 'Test content',
+      },
+    })
+
+    expect(wrapper.exists()).toBe(true)
+    expect(wrapper.element.tagName).toBe('BUTTON')
+
+    const loaderComponent = wrapper.findComponent(AppLoader)
+
+    expect(loaderComponent.exists()).toBe(true)
+  })
+
+  it('doesn\'t show loader if isLoading is false', () => {
+    const wrapper = mount(AppButton, {
+      global: {
+        components: {
+          AppLoader,
+        },
+      },
+      props: {
+        isLoading: false,
+      },
+      slots: {
+        default: 'Test content',
+      },
+    })
+
+    expect(wrapper.exists()).toBe(true)
+    expect(wrapper.element.tagName).toBe('BUTTON')
+
+    const loaderComponent = wrapper.findComponent(AppLoader)
+
+    expect(loaderComponent.exists()).toBe(false)
+  })
+
+  it('disabled attribute exists if isDisabled is true', () => {
+    const wrapper = mount(AppButton, {
+      props: {
+        isDisabled: true,
+      },
+      slots: {
+        default: 'Test content',
+      },
+    })
+
+    expect(wrapper.exists()).toBe(true)
+    expect(wrapper.element.tagName).toBe('BUTTON')
+    expect(wrapper.attributes('disabled')).toBe('')
+  })
+
+  it('disabled attribute doesn\'t exist if isDisabled is false', () => {
+    const wrapper = mount(AppButton, {
+      props: {
+        isDisabled: false,
+      },
+      slots: {
+        default: 'Test content',
+      },
+    })
+
+    expect(wrapper.exists()).toBe(true)
+    expect(wrapper.element.tagName).toBe('BUTTON')
+    expect(wrapper.attributes('disabled')).toBe(undefined)
   })
 })
