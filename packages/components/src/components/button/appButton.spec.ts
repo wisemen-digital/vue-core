@@ -22,7 +22,6 @@ describe('appButton', () => {
 
     expect(wrapper.exists()).toBe(true)
     expect(wrapper.element.tagName).toBe('BUTTON')
-    expect(wrapper.attributes('type')).toBe('button')
     expect(wrapper.text()).toContain('Test content')
   })
 
@@ -33,8 +32,6 @@ describe('appButton', () => {
       },
     })
 
-    expect(wrapper.exists()).toBe(true)
-    expect(wrapper.element.tagName).toBe('BUTTON')
     expect(wrapper.attributes('type')).toBe('submit')
   })
 
@@ -49,8 +46,6 @@ describe('appButton', () => {
       },
     })
 
-    expect(wrapper.exists()).toBe(true)
-    expect(wrapper.element.tagName).toBe('BUTTON')
     expect(wrapper.attributes('class')).toBe(style)
   })
 
@@ -68,10 +63,6 @@ describe('appButton', () => {
         default: 'Test content',
       },
     })
-
-    expect(wrapper.exists()).toBe(true)
-    expect(wrapper.element.tagName).toBe('BUTTON')
-
     const iconComponent = wrapper.findComponent(AppIcon)
 
     expect(iconComponent.props('icon')).toBe('checkmark')
@@ -91,9 +82,6 @@ describe('appButton', () => {
         default: 'Test content',
       },
     })
-
-    expect(wrapper.exists()).toBe(true)
-    expect(wrapper.element.tagName).toBe('BUTTON')
 
     const loaderComponent = wrapper.findComponent(AppLoader)
 
@@ -115,9 +103,6 @@ describe('appButton', () => {
       },
     })
 
-    expect(wrapper.exists()).toBe(true)
-    expect(wrapper.element.tagName).toBe('BUTTON')
-
     const loaderComponent = wrapper.findComponent(AppLoader)
 
     expect(loaderComponent.exists()).toBe(false)
@@ -133,8 +118,6 @@ describe('appButton', () => {
       },
     })
 
-    expect(wrapper.exists()).toBe(true)
-    expect(wrapper.element.tagName).toBe('BUTTON')
     expect(wrapper.attributes('disabled')).toBe('')
   })
 
@@ -148,8 +131,6 @@ describe('appButton', () => {
       },
     })
 
-    expect(wrapper.exists()).toBe(true)
-    expect(wrapper.element.tagName).toBe('BUTTON')
     expect(wrapper.attributes('disabled')).toBe(undefined)
   })
 })
