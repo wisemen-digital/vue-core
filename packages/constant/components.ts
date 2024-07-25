@@ -62,6 +62,9 @@ export const components = {
   popover: [
     'AppPopover',
   ],
+  progressBar: [
+    'AppProgressBar',
+  ],
   select: [
     'AppSelect',
     'AppMultiSelect',

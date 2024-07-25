@@ -8,7 +8,7 @@ import {
   defineProps,
 } from 'vue'
 
-import { useProgressBarStyle } from '@/components/progress/progress.style'
+import { useProgressBarStyle } from '@/components/progress-bar/progress.style'
 import type { ProgressPosition } from '@/components/sonner/types'
 
 type ProgressBarColor = 'destructive'
