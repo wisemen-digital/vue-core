@@ -1,7 +1,7 @@
 {
   "name": "@wisemen/vue-core",
   "type": "module",
-  "version": "0.0.98",
+  "version": "0.0.99",
   "license": "MIT",
   "sideEffects": false,
   "exports": {
