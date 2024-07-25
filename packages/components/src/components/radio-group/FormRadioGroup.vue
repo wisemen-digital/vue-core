@@ -74,6 +74,10 @@ const itemIndicatorClasses = computed<string>(() => radioGroupStyle.itemIndicato
 const itemTextClasses = computed<string>(() => radioGroupStyle.itemText())
 const itemWrapperClasses = computed<string>(() => radioGroupStyle.itemWrapper())
 const itemsContainerClasses = computed<string>(() => radioGroupStyle.itemsContainer())
+
+function removeQuotes(value: string): string {
+  return value.replace(/"/g, '')
+}
 </script>
 
 <template>
@@ -93,7 +97,7 @@ const itemsContainerClasses = computed<string>(() => radioGroupStyle.itemsContai
           :class="itemsContainerClasses"
         >
           <FormRadioGroupItem
-            :id="option.value"
+            :id="removeQuotes(option.value)"
             :data-testid="option.testId"
             :value="option.value"
             :class="itemWrapperClasses"
@@ -102,7 +106,7 @@ const itemsContainerClasses = computed<string>(() => radioGroupStyle.itemsContai
           </FormRadioGroupItem>
 
           <label
-            :for="option.value"
+            :for="removeQuotes(option.value)"
             :class="itemTextClasses"
           >
             {{ option.label }}
