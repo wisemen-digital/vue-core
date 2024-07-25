@@ -20,7 +20,13 @@ import type {
 } from '@/types/pagination.type'
 
 const props = defineProps<{
+  /**
+   * The filters to be shown
+   */
   filters: PaginationFilter<TFilters>[]
+  /**
+   * Your pagination informations
+   */
   pagination: Pagination<TFilters>
 }>()
 
