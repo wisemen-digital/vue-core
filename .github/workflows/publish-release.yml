@@ -1,0 +1,22 @@
+---
+name: Publish Package to NPM
+
+on:
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Version that's being published (tag must exist)
+        required: true
+        type: string
+
+jobs:
+  build-and-publish:
+    uses: wisemen-digital/devops-github-actions/.github/workflows/node-publish-package.yml@main
+    with:
+      access: public
+      packages: '@wisemen/vue-core,@wisemen/vue-core-query'
+      tag: ${{ inputs.version || github.ref_name }}
+    secrets: inherit
