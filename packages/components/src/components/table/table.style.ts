@@ -59,6 +59,7 @@ export const useTableStyle = tv({
   variants: {
     variant: {
       borderless: {
+        headerContainer: 'bg-white',
         headerText: 'text-caption font-medium uppercase text-muted-foreground',
       },
       default: {
