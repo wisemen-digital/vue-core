@@ -14,6 +14,9 @@ export { default as AppRouterLinkButton } from './components/button/AppRouterLin
 export { default as AppUnstyledButton } from './components/button/AppUnstyledButton.vue'
 export * from './components/button/button.style'
 
+// Calendar
+export { default as AppCalendar } from './components/calendar/AppCalendar.vue'
+
 // Checkbox
 export { default as FormCheckbox } from './components/checkbox/FormCheckbox.vue'
 export { default as FormCheckboxGroup } from './components/checkbox/FormCheckboxGroup.vue'

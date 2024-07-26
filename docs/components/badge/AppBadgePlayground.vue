@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols'
-import { AppBadge } from '@wisemen/vue-core'
+import type { CalendarDate } from '@internationalized/date'
+import { AppBadge, AppCalendar } from '@wisemen/vue-core'
+import { ref } from 'vue'
 
 const controls = createControls({
   slot: {
@@ -11,6 +13,8 @@ const controls = createControls({
     type: 'text',
   },
 })
+
+const date = ref<CalendarDate | null>(null)
 </script>
 
 <template>
@@ -21,6 +25,9 @@ const controls = createControls({
       <AppBadge v-bind="values">
         {{ values.slot }}
       </AppBadge>
+
+      <AppCalendar v-model="date" />
+      {{ date }}
     </template>
   </ComponentPlayground>
 </template>
