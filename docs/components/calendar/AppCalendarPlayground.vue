@@ -55,7 +55,7 @@ const datesArray = ref<DateValue[]>([
           </AppText>
           <AppCalendar
             v-bind="values"
-            v-model="date"
+            v-model="date as DateValue"
           />
           <AppText variant="caption">
             Model value: {{ date }}
@@ -67,7 +67,7 @@ const datesArray = ref<DateValue[]>([
           </AppText>
           <AppCalendar
             v-bind="values"
-            v-model="datesArray"
+            v-model="datesArray as DateValue[]"
             :multiple="true"
           />
 
