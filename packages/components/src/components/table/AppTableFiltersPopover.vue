@@ -75,7 +75,7 @@ const filterPopoverFiltersContainerClasses = computed<string>(() => tableStyle.f
       <div :class="filterPopoverContainerClasses">
         <AppIconButton
           :class="filterPopoverButtonClasses"
-          variant="ghost"
+          variant="input-outline"
           icon="filterLines"
           icon-size="default"
           label="Filter"

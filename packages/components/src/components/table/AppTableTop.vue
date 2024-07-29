@@ -1,19 +1,17 @@
 <script setup lang="ts" generic="TFilters">
-import { useDebounceFn } from '@vueuse/core'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import AppBadge from '@/components/badge/AppBadge.vue'
-import AppInput from '@/components/input/AppInput.vue'
 import AppSkeletonLoaderRow from '@/components/skeleton-loader/AppSkeletonLoaderRow.vue'
 import AppTableFiltersPopover from '@/components/table/AppTableFiltersPopover.vue'
+import AppTableSearchInput from '@/components/table/AppTableSearchInput.vue'
 import {
   type TableStyleProps,
   useTableStyle,
 } from '@/components/table/table.style'
 import AppText from '@/components/text/AppText.vue'
 import type {
-  FilterChangeEvent,
   FilterValues,
   Pagination,
   PaginationFilter,
@@ -23,31 +21,25 @@ import { toLocaleNumber } from '@/utils/number.util'
 
 const props = defineProps<{
   title: string
+  hasSearch: boolean
   isLoading: boolean
   filters: PaginationFilter<TFilters>[]
   pagination: Pagination<TFilters>
-  searchFilterKey?: keyof TFilters
-  searchValue?: null | string
   total: null | number
   variant: TableStyleProps['variant']
 }>()
 
-const emit = defineEmits<{
-  clear: []
-  filter: [filters: FilterChangeEvent<TFilters>]
-}>()
-
 const { t } = useI18n()
 
-const searchInputValue = computed<string>(() => {
-  const filters = props.pagination.paginationOptions.value.filters ?? {}
+const tableStyle = useTableStyle()
 
-  return Object.entries(filters)
-    .find(([
-      key,
-    ]) => key === props.searchFilterKey)
-    ?.[1]?.toString() ?? ''
-})
+const topContainerClasses = computed<string>(() => tableStyle.topContainer({
+  variant: props.variant,
+}))
+const topTitleClasses = computed<string>(() => tableStyle.topTitle())
+const topBadgeClasses = computed<string>(() => tableStyle.topBadge())
+const topSearchInputClasses = computed<string>(() => tableStyle.topSearchInput())
+const topSkeletonRowClasses = computed<string>(() => tableStyle.topSkeletonRow())
 
 function filterOutEmptyFilters([
   _key,
@@ -72,39 +64,17 @@ function mergeFilter(filterKey: keyof TFilters, filterValue: FilterValues | null
   return newFilters
 }
 
-const debounceSearch = useDebounceFn((value: string) => {
-  if (props.searchFilterKey === undefined) {
-    throw new Error('Prop "searchFilterKey" is not defined')
-  }
-
-  emit('filter', mergeFilter(props.searchFilterKey, value))
-}, 300)
-
-async function onSearchInputUpdate(value: null | string): Promise<void> {
-  if (value === null) {
-    return
-  }
-
-  await debounceSearch(value)
-}
-
 function onFilterChange(event: { key: keyof TFilters, value: FilterValues | null }): void {
-  emit('filter', mergeFilter(event.key, event.value))
+  props.pagination.handleFilterChange(mergeFilter(event.key, event.value))
+  props.pagination.handlePageChange({
+    page: 0,
+    perPage: props.pagination.paginationOptions.value.pagination.perPage,
+  })
 }
 
 function onFilterClear(): void {
-  emit('clear')
+  props.pagination.clearFilters()
 }
-
-const tableStyle = useTableStyle()
-
-const topContainerClasses = computed<string>(() => tableStyle.topContainer({
-  variant: props.variant,
-}))
-const topTitleClasses = computed<string>(() => tableStyle.topTitle())
-const topBadgeClasses = computed<string>(() => tableStyle.topBadge())
-const topSearchInputClasses = computed<string>(() => tableStyle.topSearchInput())
-const topSkeletonRowClasses = computed<string>(() => tableStyle.topSkeletonRow())
 </script>
 
 <template>
@@ -128,15 +98,13 @@ const topSkeletonRowClasses = computed<string>(() => tableStyle.topSkeletonRow()
       :class="topSkeletonRowClasses"
     />
 
-    <div :class="topSearchInputClasses">
-      <AppInput
-        v-if="props.searchFilterKey"
-        id="search-input"
-        :model-value="searchInputValue"
-        :placeholder="t('shared.search')"
-        :suffix-icon="props.isLoading ? 'loading' : undefined"
-        prefix-icon="search"
-        @update:model-value="onSearchInputUpdate"
+    <div
+      v-if="props.hasSearch"
+      :class="topSearchInputClasses"
+    >
+      <AppTableSearchInput
+        :pagination="props.pagination"
+        :is-loading="props.isLoading"
       />
     </div>
 
