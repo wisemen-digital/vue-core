@@ -82,8 +82,8 @@ defineSlots<{
             />
           </AccordionTrigger>
         </AccordionHeader>
-        <AppCollapseTransition>
-          <AccordionContent class="overflow-hidden bg-white text-black">
+        <AccordionContent class="overflow-hidden bg-white text-black data-[state=closed]:animate-slideUp data-[state=open]:animate-slideDown">
+          <AppCollapseTransition>
             <slot
               :content="item.content"
               name="content"
@@ -92,8 +92,8 @@ defineSlots<{
                 {{ item.content }}
               </div>
             </slot>
-          </AccordionContent>
-        </AppCollapseTransition>
+          </AppCollapseTransition>
+        </AccordionContent>
       </AccordionItem>
     </template>
   </AccordionRoot>
