@@ -44,4 +44,4 @@ const url = '...'
 ```
 :::
 
-For full source code, see [Github](https://github.com/wisemen-digital/vue-core/tree/main/packages).
+For full source code, see [Github](https://github.com/wisemen-digital/vue-core/tree/main/packages/components/src/components/avatar/AppAvatar.vue).

@@ -1,4 +1,7 @@
 export const components = {
+  accordion: [
+    'AppAccordion',
+  ],
   avatar: [
     'AppAvatar',
   ],
