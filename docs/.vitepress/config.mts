@@ -68,6 +68,16 @@ const docs = [
     collapsed: true,
     items: [
       {
+        link: '/components/calendar/app-calendar',
+        text: 'AppCalendar',
+      },
+    ],
+    text: 'Calendar',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
         link: '/components/checkbox/form-checkbox',
         text: 'FormCheckbox',
       },

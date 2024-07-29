@@ -15,9 +15,9 @@ import AppCalendarHeader from './AppCalendarHeader.vue'
 
 const props = withDefaults(
   defineProps<{
-  /**
-   * A function that returns whether or not a date is disabled
-   */
+    /**
+     * A function that returns whether or not a date is disabled
+     */
     isDateDisabled?: (date: DateValue) => boolean
     /**
      * A function that returns whether or not a date is unavailable
@@ -66,7 +66,7 @@ const props = withDefaults(
   }>(),
   {
     isDisabled: false,
-    fixedWeeks: false,
+    fixedWeeks: true,
     locale: 'nl',
     multiple: false,
     numberOfMonths: 1,
@@ -87,7 +87,7 @@ const modelValue = defineModel<DateValue | DateValue[]>({
     :is-date-unavailable="props.isDateUnavailable"
     :is-date-disabled="props.isDateDisabled"
     :fixed-weeks="props.fixedWeeks"
-    :is-disabled="props.isDisabled"
+    :disabled="props.isDisabled"
     :locale="props.locale"
     :max-value="props.maxValue"
     :min-value="props.minValue"
@@ -97,7 +97,7 @@ const modelValue = defineModel<DateValue | DateValue[]>({
     :placeholder="props.placeholder"
     :readonly="props.readonly"
     :week-starts-on="0"
-    class="mt-6 rounded-xl bg-white p-4 shadow-md"
+    class="rounded-xl bg-white p-4 shadow-md"
   >
     <AppCalendarHeader />
 
