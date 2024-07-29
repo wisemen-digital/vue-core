@@ -39,6 +39,10 @@ const searchInputValue = computed<string>(() => {
   return props.pagination.paginationOptions.value.search ?? ''
 })
 
+const isLoading = computed<boolean>(() => {
+  return props.isLoading && searchInputValue.value.trim().length > 0
+})
+
 const debounceSearch = useDebounceFn((value: string) => {
   props.pagination.handleSearchChange(value)
 }, 300)
@@ -55,7 +59,7 @@ async function onSearchInputUpdate(value: null | string): Promise<void> {
 <template>
   <AppInput
     :id="id"
-    :is-loading="props.isLoading"
+    :is-loading="isLoading"
     :model-value="searchInputValue"
     :placeholder="props.placeholder ?? t('components.table.search_placeholder')"
     icon-left="search"
