@@ -30,7 +30,7 @@ export const useTableStyle = tv({
     filterPopoverClearContainer: 'flex items-center justify-between px-4 py-2',
     filterPopoverClearText: 'font-medium',
     filterPopoverContainer: 'relative',
-    filterPopoverContentContainer: 'min-w-[320px] rounded-md border border-solid border-border bg-white pb-2',
+    filterPopoverContentContainer: 'min-w-[320px] rounded-md border border-solid border-border bg-white py-2',
     filterPopoverFiltersContainer: 'shrink-0 px-4 py-2',
     filterWarningContainer: 'sticky left-0 flex items-center justify-center gap-x-2 p-4',
     filterWarningText: 'text-muted-foreground',

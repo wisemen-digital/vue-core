@@ -55,9 +55,9 @@ async function onSearchInputUpdate(value: null | string): Promise<void> {
 <template>
   <AppInput
     :id="id"
+    :is-loading="props.isLoading"
     :model-value="searchInputValue"
     :placeholder="props.placeholder ?? t('components.table.search_placeholder')"
-    :icon-right="props.isLoading ? 'loading' : undefined"
     icon-left="search"
     @update:model-value="onSearchInputUpdate"
   />
