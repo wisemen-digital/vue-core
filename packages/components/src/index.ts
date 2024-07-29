@@ -1,5 +1,8 @@
 import './styles/index.scss'
 
+// Avatar
+export { default as AppAvatar } from './components/avatar/AppAvatar.vue'
+
 // Badge
 export { default as AppBadge } from './components/badge/AppBadge.vue'
 

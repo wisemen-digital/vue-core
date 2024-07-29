@@ -1,4 +1,7 @@
 export const components = {
+  avatar: [
+    'AppAvatar',
+  ],
   badge: [
     'AppBadge',
   ],
