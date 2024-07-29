@@ -4,9 +4,7 @@ import {
   AvatarImage,
   AvatarRoot,
 } from 'radix-vue'
-import {
-  computed,
-} from 'vue'
+import { computed } from 'vue'
 
 import AppTooltip from '@/components/tooltip/AppTooltip.vue'
 
