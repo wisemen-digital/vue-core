@@ -110,7 +110,7 @@ export function usePagination<TFilters>({
   function handleSearchChange(value: string): void {
     paginationOptions.value = {
       ...paginationOptions.value,
-      search: value.length > 0 ? value : undefined,
+      search: value.trim().length > 0 ? value : undefined,
     }
   }
 
