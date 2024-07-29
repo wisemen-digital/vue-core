@@ -70,7 +70,12 @@ const filterPopoverFiltersContainerClasses = computed<string>(() => tableStyle.f
 </script>
 
 <template>
-  <AppPopover align="end">
+  <AppPopover
+    :offset="4"
+    align="end"
+    is-close-button-hidden
+    hide-arrow
+  >
     <template #default>
       <div :class="filterPopoverContainerClasses">
         <AppIconButton
@@ -93,27 +98,30 @@ const filterPopoverFiltersContainerClasses = computed<string>(() => tableStyle.f
       <div
         :class="filterPopoverContentContainerClasses"
       >
-        <div>
-          <div :class="filterPopoverClearContainerClasses">
-            <AppText
-              :class="filterPopoverClearTextClasses"
-              variant="body"
-            >
-              {{ t('shared.filters') }}
-            </AppText>
-            <AppButton
-              :class="filterPopoverClearButtonClasses"
-              size="sm"
-              variant="ghost"
-              @click="onClearAllButtonClick"
-            >
-              {{ t('shared.clear_all') }}
-            </AppButton>
-          </div>
-          <AppSelectDivider direction="horizontal" />
+        <div :class="filterPopoverClearContainerClasses">
+          <AppText
+            :class="filterPopoverClearTextClasses"
+            variant="body"
+          >
+            {{ t('shared.filters') }}
+          </AppText>
+          <AppButton
+            :class="filterPopoverClearButtonClasses"
+            size="sm"
+            variant="ghost"
+            @click="onClearAllButtonClick"
+          >
+            {{ t('shared.clear_all') }}
+          </AppButton>
+        </div>
+        <div
+          v-for="filter in filteredFilters"
+          :key="filter.id"
+        >
+          <AppSelectDivider
+            direction="horizontal"
+          />
           <div
-            v-for="filter in filteredFilters"
-            :key="filter.id"
             :class="filterPopoverFiltersContainerClasses"
           >
             <AppTableMultiSelectFilter

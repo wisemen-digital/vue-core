@@ -1,5 +1,6 @@
 <script setup lang="ts" generic="TFilters">
 import { useDebounceFn } from '@vueuse/core'
+import { useId } from 'radix-vue'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -9,11 +10,30 @@ import type {
 } from '@/types/pagination.type'
 
 const props = defineProps<{
+  /**
+   * The id of the input.
+   * @default null
+   */
+  id?: null | string
+  /**
+   * Whether the input is loading.
+   * @default false
+   */
   isLoading?: boolean
+  /**
+   * pagination object
+   */
   pagination: Pagination<TFilters>
+  /**
+   * The placeholder of the input.
+   * @default t('components.table.search_placeholder')
+   */
+  placeholder?: string
 }>()
 
 const { t } = useI18n()
+
+const id = props.id ?? useId()
 
 const searchInputValue = computed<string>(() => {
   return props.pagination.paginationOptions.value.search ?? ''
@@ -34,11 +54,11 @@ async function onSearchInputUpdate(value: null | string): Promise<void> {
 
 <template>
   <AppInput
-    id="search-input"
+    :id="id"
     :model-value="searchInputValue"
-    :placeholder="t('shared.search')"
-    :suffix-icon="props.isLoading ? 'loading' : undefined"
-    prefix-icon="search"
+    :placeholder="props.placeholder ?? t('components.table.search_placeholder')"
+    :icon-right="props.isLoading ? 'loading' : undefined"
+    icon-left="search"
     @update:model-value="onSearchInputUpdate"
   />
 </template>

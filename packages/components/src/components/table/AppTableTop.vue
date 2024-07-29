@@ -108,12 +108,14 @@ function onFilterClear(): void {
       />
     </div>
 
-    <AppTableFiltersPopover
-      v-if="props.filters.length !== 0"
-      :filters="props.filters"
-      :pagination="props.pagination"
-      @clear="onFilterClear"
-      @filter="onFilterChange"
-    />
+    <div class="ml-auto">
+      <AppTableFiltersPopover
+        v-if="props.filters.length !== 0"
+        :filters="props.filters"
+        :pagination="props.pagination"
+        @clear="onFilterClear"
+        @filter="onFilterChange"
+      />
+    </div>
   </div>
 </template>
