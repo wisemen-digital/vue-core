@@ -13,9 +13,9 @@ import { useAvatarStyle } from './avatar.style'
 
 export interface Props {
   /**
-   * Wether the avatar is a tooltip. Also give the tooltip slot content then.
+   * Wether the avatar has a tooltip. Also give the tooltip slot content then.
    */
-  isTooltip?: boolean
+  hasTooltip?: boolean
   /**
    * Delays rendering so the fallback only appears for those with slower connections.
    */
@@ -43,7 +43,7 @@ export interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  isTooltip: false,
+  hasTooltip: false,
   delayMs: 600,
   size: 'default',
   srcset: null,
@@ -51,7 +51,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 defineSlots<{
-  /** Content of the tooltip. Only rendered if isTooltip is true */
+  /** Content of the tooltip. Only rendered if hasTooltip is true */
   tooltip: () => void
 }>()
 
@@ -72,7 +72,7 @@ const imageClasses = computed<string>(() => avatarStyle.image())
 
 <template>
   <AvatarRoot
-    v-if="!props.isTooltip"
+    v-if="!props.hasTooltip"
     :class="`${sizeClasses} ${rootClasses}`"
   >
     <AvatarImage
