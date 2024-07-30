@@ -10,8 +10,10 @@ import {
   CalendarHeadCell,
   CalendarRoot,
 } from 'radix-vue'
+import { computed } from 'vue'
 
 import AppCalendarHeader from './AppCalendarHeader.vue'
+import { useCalendarStyle } from './calendar.style'
 
 const props = withDefaults(
   defineProps<{
@@ -78,6 +80,17 @@ const props = withDefaults(
 const modelValue = defineModel<DateValue | DateValue[]>({
   required: true,
 })
+
+const calendarStyle = useCalendarStyle()
+
+const rootClasses = computed<string>(() => calendarStyle.root())
+const gridContainerClasses = computed<string>(() => calendarStyle.gridContainer())
+const gridClasses = computed<string>(() => calendarStyle.grid())
+const headGridRowClasses = computed<string>(() => calendarStyle.headGridRow())
+const headCellClasses = computed<string>(() => calendarStyle.headCell())
+const dataGridRowClasses = computed<string>(() => calendarStyle.dataGridRow())
+const dataCellClasses = computed<string>(() => calendarStyle.dataCell())
+const cellTriggerClasses = computed<string>(() => calendarStyle.cellTrigger())
 </script>
 
 <template>
@@ -97,24 +110,22 @@ const modelValue = defineModel<DateValue | DateValue[]>({
     :placeholder="props.placeholder"
     :readonly="props.readonly"
     :week-starts-on="0"
-    class="rounded-xl bg-white p-4 shadow-md"
+    :class="rootClasses"
   >
     <AppCalendarHeader />
 
-    <div
-      class="flex flex-col space-y-4 pt-4 sm:flex-row sm:space-x-4 sm:space-y-0"
-    >
+    <div :class="gridContainerClasses">
       <CalendarGrid
         v-for="month in grid"
         :key="month.value.toString()"
-        class="w-full border-collapse select-none space-y-1"
+        :class="gridClasses"
       >
         <CalendarGridHead>
-          <CalendarGridRow class="mb-1 grid w-full grid-cols-7">
+          <CalendarGridRow :class="headGridRowClasses">
             <CalendarHeadCell
               v-for="day in weekDays"
               :key="day"
-              class="rounded-md text-xs text-primary"
+              :class="headCellClasses"
             >
               {{ day }}
             </CalendarHeadCell>
@@ -124,18 +135,18 @@ const modelValue = defineModel<DateValue | DateValue[]>({
           <CalendarGridRow
             v-for="(weekDates, index) in month.rows"
             :key="`weekDate-${index}`"
-            class="grid grid-cols-7"
+            :class="dataGridRowClasses"
           >
             <CalendarCell
               v-for="weekDate in weekDates"
               :key="weekDate.toString()"
               :date="weekDate"
-              class="relative text-center text-sm"
+              :class="dataCellClasses"
             >
               <CalendarCellTrigger
                 :day="weekDate"
                 :month="month.value"
-                class="relative flex size-8 items-center justify-center whitespace-nowrap rounded-full text-sm font-normal text-black outline-none before:absolute before:top-[5px] before:hidden before:size-1 before:rounded-full before:bg-white hover:bg-primary/20 focus:shadow-[0_0_0_2px] focus:shadow-primary data-[unavailable]:pointer-events-none data-[highlighted]:bg-primary/5 data-[selected]:!bg-primary data-[disabled]:text-black/30 data-[selected]:text-white data-[unavailable]:text-black/30 data-[unavailable]:line-through data-[today]:before:block data-[today]:before:bg-primary/60 "
+                :class="cellTriggerClasses"
               />
             </CalendarCell>
           </CalendarGridRow>

@@ -5,22 +5,31 @@ import {
   CalendarNext,
   CalendarPrev,
 } from 'radix-vue'
+import { computed } from 'vue'
 
 import AppIcon from '@/components/icon/AppIcon.vue'
+
+import { useCalendarStyle } from './calendar.style'
+
+const calendarStyle = useCalendarStyle()
+
+const headerClasses = computed<string>(() => calendarStyle.header())
+const headerPrevNextClasses = computed<string>(() => calendarStyle.headerPrevNext())
+const headerHeadingClasses = computed<string>(() => calendarStyle.headerHeading())
 </script>
 
 <template>
-  <CalendarHeader class="flex items-center justify-between">
+  <CalendarHeader :class="headerClasses">
     <CalendarPrev
-      class="inline-flex size-8 cursor-pointer items-center justify-center rounded-[9px] bg-transparent text-black hover:bg-primary/20 focus:shadow-[0_0_0_2px] focus:shadow-primary/20 active:transition-all"
+      :class="headerPrevNextClasses"
     >
       <AppIcon icon="chevronLeft" />
     </CalendarPrev>
 
-    <CalendarHeading class="text-body font-medium text-black" />
+    <CalendarHeading :class="headerHeadingClasses" />
 
     <CalendarNext
-      class="inline-flex size-8 cursor-pointer items-center justify-center rounded-[9px] bg-transparent text-black hover:bg-primary/20 focus:shadow-[0_0_0_2px] focus:shadow-primary/20 active:transition-all"
+      :class="headerPrevNextClasses"
     >
       <AppIcon icon="chevronRight" />
     </CalendarNext>

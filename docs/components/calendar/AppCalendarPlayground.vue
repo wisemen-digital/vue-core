@@ -63,7 +63,7 @@ const datesArray = ref<DateValue[]>([
         </div>
         <div class="flex flex-col gap-3">
           <AppText variant="subtext">
-            Mulitple values:
+            Multiple values:
           </AppText>
           <AppCalendar
             v-bind="values"
