@@ -27,11 +27,11 @@ export const useTableStyle = tv({
     filterPopoverActiveFilters: 'absolute -right-2 -top-2 flex size-5 items-center justify-center rounded-full bg-primary text-xs text-white',
     filterPopoverButton: 'w-10 !border-border',
     filterPopoverClearButton: 'text-primary',
-    filterPopoverClearContainer: 'flex items-center justify-between gap-10 py-2 pl-2 pr-6',
+    filterPopoverClearContainer: 'flex items-center justify-between px-4 py-2',
     filterPopoverClearText: 'font-medium',
     filterPopoverContainer: 'relative',
-    filterPopoverContentContainer: 'rounded-md border border-solid border-border bg-white p-2',
-    filterPopoverFiltersContainer: 'p-2',
+    filterPopoverContentContainer: 'min-w-[320px] rounded-md border border-solid border-border bg-white py-2',
+    filterPopoverFiltersContainer: 'shrink-0 px-4 py-2',
     filterWarningContainer: 'sticky left-0 flex items-center justify-center gap-x-2 p-4',
     filterWarningText: 'text-muted-foreground',
     footer: 'sticky bottom-0 left-0 z-10 flex h-14 w-full items-center justify-between border-t border-solid border-border bg-background px-6 py-2',
@@ -59,6 +59,7 @@ export const useTableStyle = tv({
   variants: {
     variant: {
       borderless: {
+        headerContainer: 'bg-white',
         headerText: 'text-caption font-medium uppercase text-muted-foreground',
       },
       default: {

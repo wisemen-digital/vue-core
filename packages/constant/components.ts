@@ -71,6 +71,9 @@ export const components = {
   popover: [
     'AppPopover',
   ],
+  radioGroup: [
+    'FormRadioGroup',
+  ],
   select: [
     'AppSelect',
     'AppMultiSelect',
@@ -89,6 +92,11 @@ export const components = {
   table: [
     'AppTable',
     'AppTableSkeletonLoader',
+    'AppTableFiltersPopover',
+  ],
+  tabs: [
+    'AppTabs',
+    'AppRouteTabs',
   ],
   tagsInput: [
     'AppTagsInput',
@@ -99,6 +107,7 @@ export const components = {
   ],
   textarea: [
     'AppTextarea',
+    'FormTextarea',
   ],
   toast: [
     'AppToast',

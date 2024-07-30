@@ -112,6 +112,7 @@ export { default as FormSwitch } from './components/switch/FormSwitch.vue'
 // Table
 export { default as AppTable } from './components/table/AppTable.vue'
 export { default as AppTableFiltersPopover } from './components/table/AppTableFiltersPopover.vue'
+export { default as AppTableSearchInput } from './components/table/AppTableSearchInput.vue'
 
 // Tabs
 export { default as AppRouteTabs } from './components/tabs/AppRouteTabs.vue'
@@ -149,6 +150,7 @@ export { useToast } from './composables/toast.composable'
 export type { Icon, Icons } from './icons/icons'
 export type { BreadcrumbItem } from './types/breadcrumbItem.type'
 export type { ComboboxItem } from './types/comboboxItem.type'
+export type { DataItem } from './types/dataItem.type'
 export type { DropdownMenuItem } from './types/dropdownMenuItem.type'
 export type { FormFieldErrors } from './types/formFieldErrors.type'
 export type { KeyboardKey } from './types/keyboard.type'

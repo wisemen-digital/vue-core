@@ -10,17 +10,17 @@ import AppTablePlayground from './AppTablePlayground.vue'
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| columns* | `TableColumn<unknown>[]` | The different columns to be displayed. |  |
-| data* | `PaginatedData<unknown> \| null` | The data for the table, in paginated form. |  |
+| columns* | `TableColumn<T>[]` | The different columns to be displayed. |  |
+| data* | `PaginatedData<T> \| null` | The data for the table, in paginated form. |  |
 | emptyText | `TableEmptyTextProp \| null` | Optional empty text to replace defaults | `null` |
-| filters* | `PaginationFilter<unknown>[]` | Determines how the data will be filtered. |  |
+| filters* | `PaginationFilter<T>[]` | Determines how the data will be filtered. |  |
+| hasSearch | `boolean` | Shows the search input in the table header | `false` |
 | isLoading* | `boolean` | Whether the data is loading. |  |
 | isTopHidden | `boolean` | Hides the top of the table when set to true. | `false` |
-| pagination* | `Pagination<unknown>` | The pagination options. |  |
-| rowClick | `((row: unknown) => void) \| null` | Returns the row as a button. | `null` |
+| pagination* | `Pagination<T>` | The pagination options. |  |
+| rowClick | `((row: T) => void) \| null` | Returns the row as a button. | `null` |
 | rowTarget | `string` | Adds a target to the RouterLink when using row-to. |  |
-| rowTo | `((row: unknown) => RouteLocationNamedRaw) \| null` | Returns the row as a RouterLink. | `null` |
-| searchFilterKey | `undefined` | The key from the Fitlers object used for search |  |
+| rowTo | `((row: T) => RouteLocationNamedRaw) \| null` | Returns the row as a RouterLink. | `null` |
 | shouldPinFirstColumn | `boolean` | Whether the first column of the table is pinned. | `false` |
 | shouldPinLastColumn | `boolean` | Whether the last column of the table is pinned. | `false` |
 | title* | `string` | The title of the table. |  |

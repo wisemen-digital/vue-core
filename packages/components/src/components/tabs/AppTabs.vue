@@ -12,6 +12,9 @@ import { useTabsStyle } from '@/components/tabs/tabs.style'
 import type { TabItem } from '@/types/tabItem.type'
 
 const props = defineProps<{
+  /**
+   * All the tabs to be rendered.
+   */
   items: TabItem[]
 }>()
 

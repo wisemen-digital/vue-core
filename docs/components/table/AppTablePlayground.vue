@@ -44,6 +44,11 @@ const controls = createControls({
     default: false,
     label: 'Hide top',
   },
+  hasSearch: {
+    type: 'switch',
+    default: false,
+    label: 'Has search',
+  },
   variant: {
     default: 'default',
     items: [

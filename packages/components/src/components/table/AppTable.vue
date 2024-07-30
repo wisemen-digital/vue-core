@@ -20,7 +20,6 @@ import {
   useTableStyle,
 } from '@/components/table/table.style'
 import type {
-  FilterChangeEvent,
   PaginatedData,
   Pagination,
   PaginationFilter,
@@ -37,6 +36,10 @@ const props = withDefaults(
      * The title of the table.
      */
     title: string
+    /**
+     * Shows the search input in the table header
+     */
+    hasSearch?: boolean
     /**
      * Whether the data is loading.
      */
@@ -78,10 +81,6 @@ const props = withDefaults(
      */
     rowTo?: ((row: TSchema) => RouteLocationNamedRaw) | null
     /**
-     * The key from the Fitlers object used for search
-     */
-    searchFilterKey?: keyof TFilters
-    /**
      * Whether the first column of the table is pinned.
      */
     shouldPinFirstColumn?: boolean
@@ -95,6 +94,7 @@ const props = withDefaults(
     variant?: TableStyleProps['variant']
   }>(),
   {
+    hasSearch: false,
     isTopHidden: false,
     emptyText: null,
     rowClick: null,
@@ -192,14 +192,6 @@ const activeFilterCount = computed<number>(() => {
   return Object.keys(filters).length
 })
 
-function onFilterChange(filterChangeEvent: FilterChangeEvent<TFilters>): void {
-  props.pagination.handleFilterChange(filterChangeEvent)
-  props.pagination.handlePageChange({
-    page: 0,
-    perPage: props.pagination.paginationOptions.value.pagination.perPage,
-  })
-}
-
 onMounted(() => {
   if (tableContainerRef.value === null) {
     throw new Error('Table ref is null')
@@ -231,9 +223,7 @@ const tableClasses = computed<string>(() => tableStyle.table({
       :filters="props.filters"
       :variant="props.variant"
       :pagination="props.pagination"
-      :search-filter-key="props.searchFilterKey"
-      @filter="onFilterChange"
-      @clear="onClearFilters"
+      :has-search="props.hasSearch"
     />
 
     <div

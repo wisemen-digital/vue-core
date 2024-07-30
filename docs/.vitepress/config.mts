@@ -274,6 +274,16 @@ const docs = [
     collapsed: true,
     items: [
       {
+        link: '/components/radio-group/form-radio-group',
+        text: 'FormRadioGroup',
+      },
+    ],
+    text: 'Radio-group',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
         link: '/components/select/app-select',
         text: 'AppSelect',
       },
@@ -339,8 +349,26 @@ const docs = [
         link: '/components/table/app-table-skeleton-loader',
         text: 'AppTableSkeletonLoader',
       },
+      {
+        link: '/components/table/app-table-filters-popover',
+        text: 'AppTableFiltersPopover',
+      },
     ],
     text: 'Table',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
+        link: '/components/tabs/app-tabs',
+        text: 'AppTabs',
+      },
+      {
+        link: '/components/tabs/app-route-tabs',
+        text: 'AppRouteTabs',
+      },
+    ],
+    text: 'Tabs',
   },
   {
     collapsed: true,
@@ -372,6 +400,10 @@ const docs = [
       {
         link: '/components/textarea/app-textarea',
         text: 'AppTextarea',
+      },
+      {
+        link: '/components/textarea/form-textarea',
+        text: 'FormTextarea',
       },
     ],
     text: 'Textarea',
