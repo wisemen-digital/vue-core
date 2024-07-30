@@ -13,7 +13,9 @@ import AppAvatarPlayground from './AppAvatarPlayground.vue'
 | delayMs | `number` | Delays rendering so the fallback only appears for those with slower connections. | `600` |
 | fallback* | `string` | Text for the avatar fallback |  |
 | isTooltip | `boolean` | Wether the avatar is a tooltip. Also give the tooltip slot content then. | `false` |
+| size | `"default" \| "sm" \| "lg" \| "xl" \| "full" \| "xxl"` | The size of the avatar. | `"default"` |
 | src* | `string \| null` | Source of the image for the avatar |  |
+| srcset | `string \| null` | Defines multiple sizes of the same image, allowing the browser to select the appropriate image source. | `null` |
 | variant | `"default" \| "ghost" \| "muted" \| "secondary"` | The variant of the fallback. | `"default"` |
 
 

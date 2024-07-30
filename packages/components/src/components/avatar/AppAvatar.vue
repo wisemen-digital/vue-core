@@ -25,9 +25,17 @@ export interface Props {
    */
   fallback: string
   /**
+   * The size of the avatar.
+   */
+  size?: AvatarStyleProps['size']
+  /**
    * Source of the image for the avatar
    */
   src: null | string
+  /**
+   * Defines multiple sizes of the same image, allowing the browser to select the appropriate image source.
+   */
+  srcset?: null | string
   /**
    * The variant of the fallback.
    */
@@ -37,6 +45,8 @@ export interface Props {
 const props = withDefaults(defineProps<Props>(), {
   isTooltip: false,
   delayMs: 600,
+  size: 'default',
+  srcset: null,
   variant: 'default',
 })
 
@@ -50,16 +60,23 @@ const avatarStyle = useAvatarStyle()
 const fallbackClasses = computed<string>(() =>
   avatarStyle.fallback({
     fallback: props.variant,
+    size: props.size,
+  }))
+const sizeClasses = computed<string>(() =>
+  avatarStyle.size({
+    size: props.size,
   }))
 </script>
 
 <template>
   <AvatarRoot
     v-if="!props.isTooltip"
-    class="inline-flex size-11 select-none items-center justify-center overflow-hidden rounded-full align-middle"
+    :class="sizeClasses"
+    class="inline-flex select-none items-center justify-center overflow-hidden rounded-full align-middle"
   >
     <AvatarImage
       :src="props.src ?? ''"
+      :srcset="props.srcset ?? ''"
       class="size-full rounded-[inherit] object-cover"
     />
     <AvatarFallback
@@ -73,10 +90,12 @@ const fallbackClasses = computed<string>(() =>
   <AppTooltip v-else>
     <template #default>
       <AvatarRoot
-        class="inline-flex size-11 select-none items-center justify-center overflow-hidden rounded-full align-middle"
+        :class="sizeClasses"
+        class="inline-flex select-none items-center justify-center overflow-hidden rounded-full align-middle"
       >
         <AvatarImage
           :src="props.src ?? ''"
+          :srcset="props.srcset ?? ''"
           class="size-full rounded-[inherit] object-cover"
         />
         <AvatarFallback

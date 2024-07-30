@@ -12,7 +12,6 @@ const controls = createControls({
   },
   variant: {
     default: 'default',
-    cols: 2,
     items: [
       'default',
       'muted',
@@ -20,6 +19,19 @@ const controls = createControls({
       'ghost',
     ],
     label: 'Variant of the fallback',
+    type: 'select',
+  },
+  size: {
+    default: 'default',
+    items: [
+      'default',
+      'full',
+      'sm',
+      'lg',
+      'xl',
+      'xxl',
+    ],
+    label: 'Size',
     type: 'select',
   },
 })
