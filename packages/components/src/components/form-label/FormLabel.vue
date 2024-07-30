@@ -4,6 +4,7 @@ import { computed } from 'vue'
 
 import { useFormLabelStyle } from '@/components/form-label/formLabel.style'
 import AppIcon from '@/components/icon/AppIcon.vue'
+import AppInput from '@/components/input/AppInput.vue'
 import AppTooltip from '@/components/tooltip/AppTooltip.vue'
 
 const props = withDefaults(defineProps<{
@@ -30,11 +31,12 @@ const props = withDefaults(defineProps<{
   /**
    * The tooltip of the label.
    */
-  tooltip?: string
+  tooltip?: null | string
 }>(), {
   isDisabled: false,
   isInvalid: false,
   isRequired: false,
+  tooltip: null,
 })
 
 const label = computed<string>(() => {
@@ -52,30 +54,41 @@ const labelClasses = computed<string>(() => formLabelStyle.label({
   isInvalid: props.isInvalid,
 }))
 
-const hasTooltip = computed<boolean>(() => props.tooltip !== undefined)
+const tooltipClasses = computed<string>(() => formLabelStyle.tooltip({
+  isDisabled: props.isDisabled,
+  isInvalid: props.isInvalid,
+}))
+
+const hasTooltip = computed<boolean>(() => props.tooltip !== null && props.tooltip.trim() !== '')
 </script>
 
 <template>
   <Label :for="props.for">
     <AppTooltip
       :is-hidden="!hasTooltip"
-      :content="props.tooltip ?? ''"
+      :content="props.tooltip"
       :disable-close-on-trigger-click="true"
       side="right"
     >
-      <div class="flex w-fit flex-row items-center gap-2">
+      <div class="flex w-fit flex-row items-center gap-x-1.5">
         <span :class="labelClasses">
           {{ label }}
         </span>
 
-        <AppIcon
+        <div
           v-if="hasTooltip"
-          class="text-muted-foreground"
-          icon="alertCircle"
-          size="sm"
-        />
+          class="size-3.5"
+        >
+          <AppIcon
+            :class="tooltipClasses"
+            icon="alertCircle"
+            size="full"
+          />
+        </div>
       </div>
     </AppTooltip>
+
+    <AppInput :model-value="null" />
 
   </Label>
 </template>

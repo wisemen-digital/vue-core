@@ -10,7 +10,31 @@ export const i18nPlugin = createI18n({
   legacy: false,
   messages: {
     en: {
-      'components.keyboard_shortcut.then': 'then',
+      components: {
+        keyboard_shortcut: {
+          then: 'then',
+        },
+        table: {
+          clear_filter_filters: 'Clear filter | Clear {count} filters',
+          clear_filters: 'Clear filters',
+          empty_state: {
+            no_data: {
+              message: 'There is no data to display at this moment.',
+              title: 'No items found',
+            },
+            no_results: {
+              message: 'Your query did not match any results. Try changing your filters or clearing them.',
+              title: 'No results found',
+            },
+          },
+          items: 'items',
+          next: 'Next',
+          of: 'of',
+          page: 'Page',
+          previous: 'Previous',
+          results_might_be_hidden_because_of_active_filters: 'Results might be hidden because of {count} active filter | Results might be hidden because of {count} active filters',
+        },
+      },
     },
   },
   missingWarn: false,
