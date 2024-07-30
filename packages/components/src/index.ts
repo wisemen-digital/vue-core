@@ -1,5 +1,11 @@
 import './styles/index.scss'
 
+// Accordion
+export { default as AppAccordion } from './components/accordion/AppAccordion.vue'
+
+// Avatar
+export { default as AppAvatar } from './components/avatar/AppAvatar.vue'
+
 // Badge
 export { default as AppBadge } from './components/badge/AppBadge.vue'
 
@@ -148,6 +154,7 @@ export { useToast } from './composables/toast.composable'
 
 // Types
 export type { Icon, Icons } from './icons/icons'
+export type { Accordion } from './types/accordionItem.type'
 export type { BreadcrumbItem } from './types/breadcrumbItem.type'
 export type { ComboboxItem } from './types/comboboxItem.type'
 export type { DataItem } from './types/dataItem.type'

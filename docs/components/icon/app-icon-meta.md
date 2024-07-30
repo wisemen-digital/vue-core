@@ -11,5 +11,5 @@ import AppIconPlayground from './AppIconPlayground.vue'
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
 | icon* | `keyof Icons` | The icon to be displayed |  |
-| size | `"default" \| "sm" \| "lg" \| "xl" \| "full" \| "xs" \| "xxl"` | The size of the icon | `"default"` |
+| size | `"default" \| "sm" \| "lg" \| "xl" \| "full" \| "xxl" \| "xs"` | The size of the icon | `"default"` |
 
