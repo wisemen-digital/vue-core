@@ -12,7 +12,7 @@ export const useSelectStyle = tv({
     groupLabelText: 'text-secondary-foreground',
     iconLeft: 'ml-3 text-muted-foreground',
     input: 'block size-full cursor-pointer truncate bg-transparent py-2 pl-3 pr-8 text-sm outline-none duration-200 placeholder:text-input-foreground disabled:cursor-not-allowed',
-    loader: 'mr-3 size-4 text-muted-foreground',
+    loader: 'mr-3 size-3 flex-shrink-0 text-muted-foreground',
     multiInputContainer: 'relative flex h-10 items-center rounded-input border border-solid bg-input outline-none ring-offset-background duration-200 [&:has(:focus-visible)]:ring-2',
     multiTrigger: 'absolute right-0 top-0 mr-1 flex size-full items-center justify-end p-2',
     optionContainer: 'cursor-default rounded-md px-3 py-1.5 outline-none hover:bg-muted-background focus:bg-muted-background data-[disabled]:cursor-not-allowed data-[disabled]:bg-background data-[highlighted]:bg-muted-background data-[disabled]:opacity-50',
@@ -24,7 +24,7 @@ export const useSelectStyle = tv({
     scrollButtonIcon: 'text-muted-foreground',
     scrollButtonUp: 'absolute top-0 z-10 flex w-full justify-center bg-gradient-to-t from-transparent to-popover p-2',
     trigger: 'flex h-10 w-full items-center justify-between rounded-input border border-solid bg-input ring-offset-background duration-200 focus-visible:outline-none focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-50',
-    triggerIcon: 'size-4 text-muted-foreground',
+    triggerIcon: 'size-3 text-muted-foreground',
     value: 'w-full truncate px-3 text-left text-subtext',
   },
   variants: {
