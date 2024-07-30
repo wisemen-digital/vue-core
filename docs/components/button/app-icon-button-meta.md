@@ -16,5 +16,5 @@ import AppIconButtonPlayground from './AppIconButtonPlayground.vue'
 | label* | `string` | The label for the button for accessibility |  |
 | size | `"default" \| "sm" \| "lg" \| "unset" \| "xs"` | The size of the button | `"default"` |
 | type | `"button" \| "reset" \| "submit"` | The type of the button. | `"button"` |
-| variant | `"default" \| "outline" \| "destructive" \| "destructive-outline" \| "ghost" \| "input-outline" \| "muted" \| "secondary" \| "secondary-outline"` | The variant of the button | `"default"` |
+| variant | `"default" \| "outline" \| "ghost" \| "muted" \| "secondary" \| "destructive" \| "destructive-outline" \| "input-outline" \| "secondary-outline"` | The variant of the button | `"default"` |
 

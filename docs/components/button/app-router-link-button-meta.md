@@ -15,7 +15,7 @@ import AppRouterLinkButtonPlayground from './AppRouterLinkButtonPlayground.vue'
 | keyboardShortcut | `KeyboardShortcutConfig \| null` | The keyboard shortcut keys which trigger the button. | `null` |
 | size | `"default" \| "sm" \| "lg" \| "unset" \| "xs"` | The size of the button. | `"default"` |
 | to* | `RouteLocationNamedRaw & object & { name: "test"; }` | The route to link to. |  |
-| variant | `"default" \| "outline" \| "destructive" \| "destructive-outline" \| "ghost" \| "input-outline" \| "muted" \| "secondary" \| "secondary-outline"` | The variant of the button. | `"default"` |
+| variant | `"default" \| "outline" \| "ghost" \| "muted" \| "secondary" \| "destructive" \| "destructive-outline" \| "input-outline" \| "secondary-outline"` | The variant of the button. | `"default"` |
 
 
 ## Slots

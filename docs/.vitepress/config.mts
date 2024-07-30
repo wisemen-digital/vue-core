@@ -25,6 +25,27 @@ const docs = [
     collapsed: true,
     items: [
       {
+        link: '/components/accordion/app-accordion',
+        text: 'AppAccordion',
+      },
+    ],
+    text: 'Accordion',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
+        link: '/components/avatar/app-avatar',
+        text: 'AppAvatar',
+      },
+    ],
+
+    text: 'Avatar',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
         link: '/components/badge/app-badge',
         text: 'AppBadge',
       },
