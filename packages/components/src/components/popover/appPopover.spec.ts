@@ -12,6 +12,7 @@ import {
 } from 'vue'
 
 import AppPopover from '@/components/popover/AppPopover.vue'
+import AppPopoverCloseButton from '@/components/popover/AppPopoverCloseButton.vue'
 
 describe('appPopover', () => {
   let wrapper: VueWrapper<InstanceType<typeof AppPopover>>
@@ -43,59 +44,52 @@ describe('appPopover', () => {
   it('renders the content when triggered', async () => {
     await wrapper.find('button').trigger('click')
 
-    // const popoverContent = document.body.querySelector('[data-radix-popper-content-wrapper]')
+    const popoverContent = document.body.querySelector('[data-radix-popper-content-wrapper]')
 
-    // expect(popoverContent).not.toBeNull()
-    // expect(document.body.innerHTML).toContain('Popover content')
+    expect(popoverContent).not.toBeNull()
+    expect(document.body.innerHTML).toContain('Popover content')
   })
 
-  // it('renders no content if not triggered', () => {
-  //   const popoverContent = document.body.querySelector('[data-radix-popper-content-wrapper]')
+  it('renders no content if not triggered', () => {
+    const popoverContent = document.body.querySelector('[data-radix-popper-content-wrapper]')
 
-  //   expect(popoverContent).toBeNull()
-  //   expect(document.body.innerHTML).not.toContain('Popover content')
-  // })
+    expect(popoverContent).toBeNull()
+    expect(document.body.innerHTML).not.toContain('Popover content')
+  })
 
-  // it('renders close button if not hidden', async () => {
-  //   await wrapper.find('button').trigger('click')
+  it('does not render close button if hidden', async () => {
+    await wrapper.setProps({ isCloseButtonHidden: true })
+    await wrapper.find('button').trigger('click')
 
-  //   const closeButton = wrapper.findComponent(AppPopoverCloseButton)
+    const closeButton = wrapper.findComponent(AppPopoverCloseButton)
 
-  //   expect(closeButton.exists()).toBe(true)
-  // })
+    expect(closeButton.exists()).toBe(false)
+  })
 
-  // it('does not render close button if hidden', async () => {
-  //   await wrapper.setProps({ isCloseButtonHidden: true })
-  //   await wrapper.find('button').trigger('click')
+  it('does not render arrow if hideArrow is true', async () => {
+    await wrapper.setProps({ hideArrow: true })
+    await wrapper.find('button').trigger('click')
 
-  //   const closeButton = wrapper.findComponent(AppPopoverCloseButton)
+    const arrow = document.body.querySelector('[data-radix-popper-content-wrapper] span')
 
-  //   expect(closeButton.exists()).toBe(false)
-  // })
+    expect(arrow).toBeNull()
+  })
 
-  // it('renders arrow by default', async () => {
-  //   await wrapper.find('button').trigger('click')
+  it('applies alignment correctly', async () => {
+    await wrapper.setProps({ align: 'start' })
+    await wrapper.find('button').trigger('click')
 
-  //   const arrow = document.body.querySelector('[data-radix-popover-arrow]')
+    const popoverContentContainer = document.body.querySelector('[data-radix-popper-content-wrapper] .custom-popover-content')
 
-  //   expect(arrow).not.toBeNull()
-  // })
+    expect(popoverContentContainer?.getAttribute('data-align')).toBe('start')
+  })
 
-  // it('does not render arrow if hideArrow is true', async () => {
-  //   await wrapper.setProps({ hideArrow: true })
-  //   await wrapper.find('button').trigger('click')
+  it('applies side correctly', async () => {
+    await wrapper.setProps({ side: 'top' })
+    await wrapper.find('button').trigger('click')
 
-  //   const arrow = document.body.querySelector('[data-radix-popover-arrow]')
+    const popoverContentContainer = document.body.querySelector('[data-radix-popper-content-wrapper] .custom-popover-content')
 
-  //   expect(arrow).toBeNull()
-  // })
-
-  // it('applies alignment and side props correctly', async () => {
-  //   await wrapper.find('button').trigger('click')
-
-  //   const popoverContent = wrapper.find('[data-radix-popover-content]')
-
-  //   expect(popoverContent.classes()).toContain('center') // Assuming the CSS class is named accordingly
-  //   expect(popoverContent.attributes('data-side')).toBe('bottom')
-  // })
+    expect(popoverContentContainer?.getAttribute('data-side')).toBe('top')
+  })
 })
