@@ -17,6 +17,9 @@ export const components = {
     'AppRouterLinkButton',
     'AppUnstyledButton',
   ],
+  calendar: [
+    'AppCalendar',
+  ],
   checkbox: [
     'FormCheckbox',
     'FormCheckboxGroup',
