@@ -66,6 +66,7 @@ export function useLocalPagination<TSchema, TFilters>({
       clearFilters: pagination.clearFilters,
       handleFilterChange: pagination.handleFilterChange,
       handlePageChange: pagination.handlePageChange,
+      handleSearchChange: pagination.handleSearchChange,
       handleSortChange: pagination.handleSortChange,
       paginationOptions: pagination.paginationOptions,
     },
