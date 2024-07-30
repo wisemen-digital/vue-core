@@ -66,18 +66,19 @@ const sizeClasses = computed<string>(() =>
   avatarStyle.size({
     size: props.size,
   }))
+const rootClasses = computed<string>(() => avatarStyle.root())
+const imageClasses = computed<string>(() => avatarStyle.image())
 </script>
 
 <template>
   <AvatarRoot
     v-if="!props.isTooltip"
-    :class="sizeClasses"
-    class="inline-flex select-none items-center justify-center overflow-hidden rounded-full align-middle"
+    :class="`${sizeClasses} ${rootClasses}`"
   >
     <AvatarImage
       :src="props.src ?? ''"
       :srcset="props.srcset ?? ''"
-      class="size-full rounded-[inherit] object-cover"
+      :class="imageClasses"
     />
     <AvatarFallback
       :delay-ms="props.delayMs"
@@ -90,13 +91,12 @@ const sizeClasses = computed<string>(() =>
   <AppTooltip v-else>
     <template #default>
       <AvatarRoot
-        :class="sizeClasses"
-        class="inline-flex select-none items-center justify-center overflow-hidden rounded-full align-middle"
+        :class="`${sizeClasses} ${rootClasses}`"
       >
         <AvatarImage
           :src="props.src ?? ''"
           :srcset="props.srcset ?? ''"
-          class="size-full rounded-[inherit] object-cover"
+          :class="imageClasses"
         />
         <AvatarFallback
           :delay-ms="props.delayMs"

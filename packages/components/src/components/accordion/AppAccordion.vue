@@ -6,11 +6,14 @@ import {
   AccordionRoot,
   AccordionTrigger,
 } from 'radix-vue'
+import { computed } from 'vue'
 
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppText from '@/components/text/AppText.vue'
 import AppCollapseTransition from '@/components/transitions/AppCollapseTransition.vue'
 import type { Accordion } from '@/types/accordionItem.type'
+
+import { useAccordionStyle } from './accordion.style'
 
 const props = withDefaults(
   defineProps<{
@@ -44,13 +47,23 @@ defineSlots<{
     content: string
   }) => any
 }>()
+
+const accordionStyle = useAccordionStyle()
+
+const rootClasses = computed<string>(() => accordionStyle.root())
+const itemClasses = computed<string>(() => accordionStyle.item())
+const triggerClasses = computed<string>(() => accordionStyle.trigger())
+const iconClasses = computed<string>(() => accordionStyle.icon())
+const contentClasses = computed<string>(() => accordionStyle.content())
+const contentDivClasses = computed<string>(() => accordionStyle.contentDiv())
+const titleClasses = computed<string>(() => accordionStyle.title())
 </script>
 
 <template>
   <AccordionRoot
     :type="props.type"
     :collapsible="props.collapsible"
-    class="rounded-popover shadow-popover-shadow"
+    :class="rootClasses"
   >
     <template
       v-for="item in props.items"
@@ -58,16 +71,16 @@ defineSlots<{
     >
       <AccordionItem
         :value="item.value"
-        class="overflow-hidden first:mt-0 first:rounded-t-popover last:rounded-b-popover"
+        :class="itemClasses"
       >
         <AccordionHeader class="flex">
-          <AccordionTrigger class="group flex flex-1 cursor-pointer items-center justify-between gap-10 border-t border-solid border-primary/10 bg-white px-3 py-2 text-black outline-none hover:bg-muted-background">
+          <AccordionTrigger :class="triggerClasses">
             <slot
               :title="item.title"
               :subtitle="item.subtitle"
               name="title"
             >
-              <div class="flex flex-col items-start">
+              <div :class="titleClasses">
                 <AppText variant="subtext">
                   {{ item.title }}
                 </AppText>
@@ -77,18 +90,18 @@ defineSlots<{
               </div>
             </slot>
             <AppIcon
+              :class="iconClasses"
               icon="chevronDown"
-              class="text-primary transition-transform duration-300 ease-in-out group-data-[state=open]:rotate-180"
             />
           </AccordionTrigger>
         </AccordionHeader>
-        <AccordionContent class="overflow-hidden bg-white text-black data-[state=closed]:animate-slideUp data-[state=open]:animate-slideDown">
+        <AccordionContent :class="contentClasses">
           <AppCollapseTransition>
             <slot
               :content="item.content"
               name="content"
             >
-              <div class="px-3 py-2 text-subtext">
+              <div :class="contentDivClasses">
                 {{ item.content }}
               </div>
             </slot>

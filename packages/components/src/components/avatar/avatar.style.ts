@@ -8,6 +8,8 @@ export const useAvatarStyle = tv({
   },
   slots: {
     fallback: 'flex size-full items-center justify-center font-medium',
+    image: 'size-full rounded-[inherit] object-cover',
+    root: 'inline-flex select-none items-center justify-center overflow-hidden rounded-full align-middle',
     size: 'aspect-square',
   },
   variants: {
