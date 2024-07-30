@@ -17,12 +17,14 @@ import type {
 } from '@/types/pagination.type'
 import { base64Decode, base64Encode } from '@/utils/base64.util'
 
-const DEFAULT_PAGINATION_OPTIONS = {
+const DEFAULT_PAGINATION_OPTIONS: PaginationOptions<unknown> = {
   filters: {} as PaginationFilters<unknown>,
   pagination: {
     page: 0,
     perPage: 20,
   },
+  search: undefined,
+  sort: undefined,
   staticFilters: {} as PaginationFilters<unknown>,
 } as const
 
@@ -105,6 +107,13 @@ export function usePagination<TFilters>({
     }
   }
 
+  function handleSearchChange(value: string): void {
+    paginationOptions.value = {
+      ...paginationOptions.value,
+      search: value.trim().length > 0 ? value : undefined,
+    }
+  }
+
   function handleSortChange(event: SortChangeEvent): void {
     paginationOptions.value = {
       ...paginationOptions.value,
@@ -135,6 +144,7 @@ export function usePagination<TFilters>({
     clearFilters,
     handleFilterChange,
     handlePageChange,
+    handleSearchChange,
     handleSortChange,
     paginationOptions: computed<PaginationOptions<TFilters>>(() => paginationOptions.value),
   }

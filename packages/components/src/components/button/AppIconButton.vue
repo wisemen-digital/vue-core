@@ -84,20 +84,17 @@ const iconSize = computed<IconStyleProps['size']>(() => {
 
 <template>
   <button
-    :variant="props.variant"
     :aria-label="props.label"
-    :is-disabled="props.isDisabled"
-    :is-loading="props.isLoading"
     :class="iconButtonClasses"
     :disabled="isDisabled || isLoading"
     :type="props.type"
   >
-    <div
+    <span
       v-if="props.isLoading"
       :class="buttonLoaderContainerClasses"
     >
       <AppLoader :class="buttonLoaderClasses" />
-    </div>
+    </span>
 
     <AppIcon
       v-else
