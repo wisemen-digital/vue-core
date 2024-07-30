@@ -10,7 +10,7 @@ import AppAccordionPlayground from './AppAccordionPlayground.vue'
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| collapsible | `boolean` | When type is "single", allows closing content when clicking trigger for an open item. | `true` |
+| isStatic | `boolean` | When type is "single", prevents closing content when clicking trigger for an open item. | `false` |
 | items* | `Accordion[]` | Content of the accordion. |  |
 | type | `"single" \| "multiple"` | Determines whether "single" or "multiple" items can be pressed at a time. | `"single"` |
 

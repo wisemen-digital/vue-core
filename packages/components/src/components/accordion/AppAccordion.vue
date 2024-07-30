@@ -18,9 +18,9 @@ import { useAccordionStyle } from './accordion.style'
 const props = withDefaults(
   defineProps<{
     /**
-     * When type is "single", allows closing content when clicking trigger for an open item.
+     * When type is "single", prevents closing content when clicking trigger for an open item.
      */
-    collapsible: boolean
+    isStatic: boolean
     /**
      * Content of the accordion.
      */
@@ -31,7 +31,7 @@ const props = withDefaults(
     type: 'multiple' | 'single'
   }>(),
   {
-    collapsible: true,
+    isStatic: false,
     type: 'single',
   },
 )
@@ -62,7 +62,7 @@ const titleClasses = computed<string>(() => accordionStyle.title())
 <template>
   <AccordionRoot
     :type="props.type"
-    :collapsible="props.collapsible"
+    :collapsible="!props.isStatic"
     :class="rootClasses"
   >
     <template
