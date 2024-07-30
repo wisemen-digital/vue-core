@@ -3,6 +3,7 @@ import { computed } from 'vue'
 
 import AppSkeletonLoaderRow from '@/components/skeleton-loader/AppSkeletonLoaderRow.vue'
 import { useTableStyle } from '@/components/table/table.style'
+import { generateRandomNumber } from '@/utils/number.util.js'
 
 const props = defineProps<{
   hasReachedHorizontalScrollEnd: boolean
@@ -50,7 +51,11 @@ const emptyBackgroundClasses = computed<string>(() => tableStyle.emptyBackground
         :key="columnIndex"
         :class="emptyColumnClasses"
       >
-        <AppSkeletonLoaderRow />
+        <AppSkeletonLoaderRow
+          :style="{
+            width: `${generateRandomNumber(70, 100)}%`,
+          }"
+        />
       </div>
     </div>
 

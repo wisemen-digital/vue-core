@@ -17,7 +17,6 @@ import type {
   PaginationFilter,
   PaginationFilters,
 } from '@/types/pagination.type'
-import { toLocaleNumber } from '@/utils/number.util'
 
 const props = defineProps<{
   title: string
@@ -90,7 +89,7 @@ function onFilterClear(): void {
       v-if="props.total !== null"
       :class="topBadgeClasses"
     >
-      {{ toLocaleNumber(props.total) }} {{ t('components.table.items', { count: props.total }) }}
+      {{ t('components.table.items', { count: props.total }) }}
     </AppBadge>
 
     <AppSkeletonLoaderRow
