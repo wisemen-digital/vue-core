@@ -41,9 +41,7 @@ const controls = createControls({
 <template>
   <ComponentPlayground :controls="controls">
     <template #default="{ values }">
-      <FormLabel
-        v-bind="values"
-      />
+      <FormLabel v-bind="values" />
     </template>
   </ComponentPlayground>
 </template>
