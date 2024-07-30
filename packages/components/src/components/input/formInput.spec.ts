@@ -8,9 +8,11 @@ import {
 } from 'vitest'
 
 import FormElement from '@/components/form-element/FormElement.vue'
+import AppIcon from '@/components/icon/AppIcon.vue'
 import AppInput from '@/components/input/AppInput.vue'
 import FormInput from '@/components/input/FormInput.vue'
 import AppLoader from '@/components/loader/AppLoader.vue'
+import AppTooltip from '@/components/tooltip/AppTooltip.vue'
 
 describe('formInput', () => {
   let wrapper: VueWrapper<InstanceType<typeof FormInput>>
@@ -66,5 +68,12 @@ describe('formInput', () => {
 
   it('handles custom slot content', () => {
     expect(wrapper.find('.custom-right-slot').exists()).toBe(true)
+  })
+
+  it('renders given tooltip content and icon', async () => {
+    await wrapper.setProps({ tooltip: 'Tooltip' })
+
+    expect(wrapper.findComponent(AppTooltip).props('content')).toBe('Tooltip')
+    expect(wrapper.findComponent(AppIcon).exists()).toBe(true)
   })
 })
