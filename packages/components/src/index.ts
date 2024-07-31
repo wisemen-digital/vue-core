@@ -154,6 +154,9 @@ export { useLocalPagination } from './composables/pagination/localPagination.com
 export { usePagination } from './composables/pagination/pagination.composable'
 export { useToast } from './composables/toast.composable'
 
+// Objects
+export { CalendarDate } from './objects/calendarDate.object'
+
 // Types
 export type { Icon, Icons } from './icons/icons'
 export type { Accordion } from './types/accordionItem.type'

@@ -127,4 +127,10 @@ describe('calendarDate', () => {
 
     expect(value.toString()).toEqual('2023-1-1')
   })
+
+  it('parses a date from a string', () => {
+    const value = CalendarDate.parse('2023-1-1')
+
+    expect(value.toString()).toEqual('2023-1-1')
+  })
 })

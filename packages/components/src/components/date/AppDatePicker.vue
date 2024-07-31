@@ -1,13 +1,7 @@
 <script setup lang="ts">
 import { CalendarDate as IntCalendarDate } from '@internationalized/date'
-import {
-  DatePickerRoot,
-  useId,
-} from 'radix-vue'
-import {
-  computed,
-  ref,
-} from 'vue'
+import { DatePickerRoot, useId } from 'radix-vue'
+import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import AppDateCalendarPickerContent from '@/components/date/AppDateCalendarPickerContent.vue'
@@ -15,7 +9,7 @@ import AppDateMonthPickerContent from '@/components/date/AppDateMonthPickerConte
 import AppDatePickerField from '@/components/date/AppDatePickerField.vue'
 import AppDateYearPickerContent from '@/components/date/AppDateYearPickerContent.vue'
 import { useDatePickerStyle } from '@/components/date/datePicker.style'
-import type { CalendarDate } from '@/objects/calendarDate.object'
+import { CalendarDate } from '@/objects/calendarDate.object'
 
 const props = withDefaults(defineProps<{
   /**
@@ -69,7 +63,7 @@ const props = withDefaults(defineProps<{
 
 const emit = defineEmits<{
   'blur': []
-  'update:modelValue': [Date | null]
+  'update:modelValue': [CalendarDate | null]
 }>()
 
 const model = computed<IntCalendarDate | undefined>({
@@ -117,6 +111,14 @@ const maxDate = computed<IntCalendarDate | undefined>(() => {
 
 function onBlur(): void {
   emit('blur')
+
+  if (minDate.value !== undefined && model.value !== undefined && model.value.compare(minDate.value) < 0) {
+    model.value = minDate.value
+  }
+
+  if (maxDate.value !== undefined && model.value !== undefined && model.value.compare(maxDate.value) > 0) {
+    model.value = maxDate.value
+  }
 }
 
 const isYearPickerVisible = ref<boolean>(false)
@@ -172,22 +174,22 @@ function onYearSelect(year: number): void {
   isMonthPickerVisible.value = true
 }
 
-function onModelValueUpdate(value: Date | null): void {
+function onModelValueUpdate(value: IntCalendarDate | null): void {
   if (value === null) {
     model.value = undefined
 
     return
   }
 
-  model.value = dateToCalendarDate(value)
+  model.value = value
 }
 
-function dateToCalendarDate(date: Date): IntCalendarDate {
-  return new IntCalendarDate(date.getFullYear(), date.getMonth() + 1, date.getDate())
+function dateToCalendarDate(date: CalendarDate): IntCalendarDate {
+  return new IntCalendarDate(date.year, date.month, date.day)
 }
 
-function calendarDateToDate(calendarDate: IntCalendarDate): Date {
-  return new Date(calendarDate.year, calendarDate.month - 1, calendarDate.day)
+function calendarDateToDate(calendarDate: IntCalendarDate): CalendarDate {
+  return new CalendarDate(calendarDate.year, calendarDate.month, calendarDate.day)
 }
 </script>
 
@@ -206,11 +208,9 @@ function calendarDateToDate(calendarDate: IntCalendarDate): Date {
     >
       <AppDatePickerField
         :is-invalid="props.isInvalid"
-        :model-value="modelValue"
+        :model-value="model"
         :is-disabled="props.isDisabled"
         :format="props.format"
-        :min-value="props.minDate"
-        :max-value="props.maxDate"
         @update:model-value="onModelValueUpdate"
         @blur="onBlur"
         @date-click="onTriggerClick"

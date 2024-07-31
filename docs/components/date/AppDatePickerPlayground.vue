@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols'
+import type { CalendarDate } from '@wisemen/vue-core'
 import {
   AppDatePicker,
   AppText,
@@ -32,7 +33,7 @@ const controls = createControls({
   },
 })
 
-const model = ref<Date | null>(null)
+const model = ref<CalendarDate | null>(null)
 
 const { locale } = useI18n()
 
@@ -51,7 +52,7 @@ locale.value = 'nl'
         />
 
         <AppText variant="caption">
-          {{ `Model value: ${model?.toISOString() ?? null}` }}
+          {{ `Model value: ${model?.toString() ?? null}` }}
         </AppText>
       </div>
     </template>

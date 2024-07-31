@@ -7,8 +7,21 @@ export class CalendarDate {
   * @param month - The month of the date (1-12)
   * @param day - The day of the date
   */
-  constructor(year: number, month: number, day: number) {
+  constructor(year?: number, month?: number, day?: number) {
     this.set({ day, month, year })
+  }
+
+  /*
+  * Parses a date string in the format 'YYYY-MM-DD'
+  */
+  static parse(value: string): CalendarDate {
+    const [
+      year,
+      month,
+      day,
+    ] = value.split('-').map(Number)
+
+    return new CalendarDate(year, month, day)
   }
 
   /*
@@ -65,8 +78,8 @@ export class CalendarDate {
   }
 
   /*
-    * Returns the month of the date as a number from 1 (January) to 12 (December)
-   */
+  * Returns the month of the date as a number from 1 (January) to 12 (December)
+  */
   get month(): number {
     return this.value.getMonth() + 1
   }

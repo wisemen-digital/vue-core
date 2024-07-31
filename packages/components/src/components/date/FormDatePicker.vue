@@ -2,6 +2,7 @@
 import AppDatePicker from '@/components/date/AppDatePicker.vue'
 import FormElement from '@/components/form-element/FormElement.vue'
 import { useComponentAttrs } from '@/composables/componentAttrs.composable'
+import type { CalendarDate } from '@/objects/calendarDate.object'
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
 const props = withDefaults(
@@ -10,12 +11,12 @@ const props = withDefaults(
      * The max date.
      * @default null
      */
-    maxDate?: Date | null
+    maxDate?: CalendarDate | null
     /**
      * The min date.
      * @default null
      */
-    minDate?: Date | null
+    minDate?: CalendarDate | null
     /**
      * Whether the input is disabled.
      */
@@ -53,7 +54,7 @@ const props = withDefaults(
   },
 )
 
-const model = defineModel<Date | null>({
+const model = defineModel<CalendarDate | null>({
   required: true,
 })
 

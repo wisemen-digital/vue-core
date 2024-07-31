@@ -5,11 +5,11 @@ export const useDatePickerStyle = tv({
   slots: {
     calendarPickerGrid: 'w-full border-collapse select-none space-y-1',
     calendarPickerGridBodyRow: 'flex w-full',
-    calendarPickerGridCellTrigger: 'relative flex size-8 items-center justify-center whitespace-nowrap rounded-button border border-transparent bg-transparent text-sm font-normal text-foreground outline-none before:absolute before:top-[5px] before:hidden before:size-1 before:rounded-full before:bg-background hover:border-primary focus:shadow-[0_0_0_2px] focus:shadow-primary',
+    calendarPickerGridCellTrigger: 'relative flex size-8 items-center justify-center whitespace-nowrap rounded-button border border-transparent bg-transparent text-sm font-normal text-foreground outline-none before:absolute before:top-[5px] before:hidden before:size-1 before:rounded-full before:bg-background hover:border-primary focus:shadow-[0_0_0_2px] focus:shadow-primary/50 data-[unavailable]:pointer-events-none data-[selected]:bg-primary data-[selected]:font-medium data-[disabled]:text-foreground/30 data-[selected]:text-white data-[unavailable]:text-foreground/30 data-[unavailable]:line-through data-[today]:before:block data-[selected]:before:bg-background data-[today]:before:bg-primary',
     calendarPickerGridContainer: 'flex flex-col space-y-4 pt-4 sm:flex-row sm:space-x-4 sm:space-y-0',
     calendarPickerGridHeadCell: 'w-8 rounded-md text-xs text-muted-foreground',
     calendarPickerGridHeadRow: 'mb-1 flex w-full justify-between',
-    monthPickerContentCellTrigger: 'relative flex h-8 w-full items-center justify-center whitespace-nowrap rounded-button border border-transparent bg-transparent px-4 text-center text-sm font-normal text-foreground outline-none before:absolute before:top-[5px] before:hidden before:size-1 before:rounded-full before:bg-background hover:border-primary focus:shadow-[0_0_0_2px] focus:shadow-primary',
+    monthPickerContentCellTrigger: 'relative flex h-8 w-full items-center justify-center whitespace-nowrap rounded-button border border-transparent bg-transparent px-4 text-center text-sm font-normal text-foreground outline-none before:absolute before:top-[5px] before:hidden before:size-1 before:rounded-full before:bg-background hover:border-primary focus:shadow-[0_0_0_2px] focus:shadow-primary/50 data-[unavailable]:pointer-events-none data-[selected]:bg-primary data-[selected]:font-medium data-[disabled]:text-foreground/30 data-[selected]:text-white data-[unavailable]:text-foreground/30 data-[unavailable]:line-through data-[today]:before:block data-[selected]:before:bg-background data-[today]:before:bg-primary',
     monthPickerContentGridBody: 'grid grid-cols-2',
     picker: 'flex w-full flex-col gap-2',
     pickerContent: 'rounded-popover bg-popover p-3 shadow-popover-shadow will-change-[transform,opacity]',
@@ -19,7 +19,7 @@ export const useDatePickerStyle = tv({
     pickerHeader: 'flex items-center justify-between',
     pickerHeaderHeading: 'font-medium text-foreground',
     pickerHeaderHeadingButton: 'flex items-center',
-    yearPickerContentCellTrigger: 'relative flex h-8 items-center justify-center whitespace-nowrap rounded-button border border-transparent bg-transparent px-4 text-sm font-normal text-foreground outline-none before:absolute before:top-[5px] before:hidden before:size-1 before:rounded-full before:bg-background hover:border-primary focus:shadow-[0_0_0_2px] focus:shadow-primary',
+    yearPickerContentCellTrigger: 'relative flex h-8 items-center justify-center whitespace-nowrap rounded-button border border-transparent bg-transparent px-4 text-sm font-normal text-foreground outline-none before:absolute before:top-[5px] before:hidden before:size-1 before:rounded-full before:bg-background hover:border-primary focus:shadow-[0_0_0_2px] focus:shadow-primary/50 data-[unavailable]:pointer-events-none data-[selected]:bg-primary data-[selected]:font-medium data-[disabled]:text-foreground/30 data-[selected]:text-white data-[unavailable]:text-foreground/30 data-[unavailable]:line-through data-[today]:before:block data-[selected]:before:bg-background data-[today]:before:bg-primary',
     yearPickerContentGrid: 'grid grid-cols-2 gap-4',
   },
   variants: {

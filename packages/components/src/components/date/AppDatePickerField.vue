@@ -1,11 +1,11 @@
 <script setup lang="ts">
+import { CalendarDate as IntCalendarDate } from '@internationalized/date'
 import dayjs from 'dayjs'
 import {
   DatePickerField,
   DatePickerTrigger,
 } from 'radix-vue'
 import { computed, ref } from 'vue'
-import { useI18n } from 'vue-i18n'
 
 import AppIconButton from '@/components/button/AppIconButton.vue'
 import { useDatePickerStyle } from '@/components/date/datePicker.style'
@@ -14,18 +14,14 @@ const props = defineProps<{
   isDisabled?: boolean
   isInvalid?: boolean
   format: string
-  maxValue: Date | null
-  minValue: Date | null
-  modelValue: Date | null | undefined
+  modelValue: IntCalendarDate | null | undefined
 }>()
 
 const emit = defineEmits<{
   'blur': []
   'dateClick': []
-  'update:modelValue': [Date | null]
+  'update:modelValue': [IntCalendarDate | null]
 }>()
-
-const { locale } = useI18n()
 
 function onTriggerClick(): void {
   if (props.isDisabled) {
@@ -35,37 +31,21 @@ function onTriggerClick(): void {
   emit('dateClick')
 }
 
-const initialValue = props.modelValue === null || props.modelValue === undefined ? '' : dayjs(props.modelValue).format(props.format)
-
-const dateValue = ref<string>(initialValue)
+const dateValue = ref<string>(getInitialValue())
 
 function onBlur(): void {
-  const isValidDate = dayjs(dateValue.value).isValid()
+  const isValidDate = dayjs(dateValue.value, props.format).isValid()
 
-  if (!isValidDate) {
-    dateValue.value = ''
-    emit('update:modelValue', null)
+  if (isValidDate) {
+    const newDate = dayjs(dateValue.value).toDate()
 
-    return
-  }
-
-  const date = dayjs(dateValue.value, undefined, locale.value)
-
-  emit('blur')
-
-  if (props.minValue !== null && date.isBefore(props.minValue)) {
-    emit('update:modelValue', props.minValue)
+    emit('update:modelValue', new IntCalendarDate(newDate.getFullYear(), newDate.getMonth() + 1, newDate.getDate()))
 
     return
   }
 
-  if (props.maxValue !== null && date.isAfter(props.maxValue)) {
-    emit('update:modelValue', props.maxValue)
-
-    return
-  }
-
-  emit('update:modelValue', date.toDate())
+  dateValue.value = ''
+  emit('update:modelValue', null)
 }
 
 const dateModel = computed<string>({
@@ -89,6 +69,14 @@ const pickerFieldClasses = computed<string>(() => datePickerStyle.pickerField({
 }))
 
 const pickerFieldInputClasses = computed<string>(() => datePickerStyle.pickerFieldInput())
+
+function getInitialValue(): string {
+  if (props.modelValue === null || props.modelValue === undefined) {
+    return ''
+  }
+
+  return dayjs(props.modelValue.toString()).format(props.format)
+}
 </script>
 
 <template>
