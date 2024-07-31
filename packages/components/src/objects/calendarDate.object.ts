@@ -1,3 +1,6 @@
+import type { ZodSchema } from 'zod'
+import { z } from 'zod'
+
 export class CalendarDate {
   value: Date = new Date()
 
@@ -9,6 +12,25 @@ export class CalendarDate {
   */
   constructor(year: number, month: number, day: number) {
     this.set({ day, month, year })
+  }
+
+  /*
+    * Returns a Zod schema for the class with validation rules
+   */
+  static toZodSchema(options: {
+    equal?: CalendarDate
+    max?: CalendarDate
+    min?: CalendarDate
+  } = {}): ZodSchema<CalendarDate> {
+    return z.custom<CalendarDate>((value) => value instanceof CalendarDate, {
+      message: 'vue_core.invalid_date',
+    }).refine((value) => options.min !== undefined ? value.isAfter(options.min) : true, {
+      message: 'vue_core.date_must_be_after_min',
+    }).refine((value) => options.max !== undefined ? value.isBefore(options.max) : true, {
+      message: 'vue_core.date_must_be_before_max',
+    }).refine((value) => options.equal !== undefined ? value.isEqualTo(options.equal) : true, {
+      message: 'vue_core.date_must_be_equal',
+    })
   }
 
   /*
