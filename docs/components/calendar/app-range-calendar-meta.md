@@ -10,18 +10,18 @@ import AppRangeCalendarPlayground from './AppRangeCalendarPlayground.vue'
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| fixedWeeks | `boolean` | Whether or not to always display 6 weeks in the calendar | `true` |
+| hasFixedWeeks | `boolean` | Whether or not to always display 6 weeks in the calendar | `true` |
+| hasPagedNavigation | `boolean` | True causes the previous/next buttons to navigate by the number of months displayed at once rather than one month | `false` |
 | isDateDisabled | `((date: DateValue) => boolean)` | A function that returns whether or not a date is disabled |  |
 | isDateUnavailable | `((date: DateValue) => boolean)` | A function that returns whether or not a date is unavailable |  |
 | isDisabled | `boolean` | Whether or not the calendar is disabled | `false` |
+| isReadonly | `boolean` | Whether or not the calendar is readonly | `false` |
 | locale | `string` | The locale to use for formatting dates | `"nl"` |
 | maxValue | `DateValue` | The maximum date that can be selected |  |
 | minValue | `DateValue` | The minimum date that can be selected |  |
 | modelValue* | `DateRange` |  |  |
 | numberOfMonths | `number` | The number of months to display at once | `1` |
-| pagedNavigation | `boolean` | True causes the previous/next buttons to navigate by the number of months displayed at once rather than one month | `false` |
 | placeholder | `DateValue` | The placeholder date, which is used to determine what month to display when no date is selected. |  |
-| readonly | `boolean` | Whether or not the calendar is readonly | `false` |
 
 
 ## Events

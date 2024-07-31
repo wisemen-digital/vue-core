@@ -20,6 +20,14 @@ import { useCalendarStyle } from './calendar.style'
 const props = withDefaults(
   defineProps<{
     /**
+     * Whether or not to always display 6 weeks in the calendar
+     */
+    hasFixedWeeks?: boolean
+    /**
+     * True causes the previous/next buttons to navigate by the number of months displayed at once rather than one month
+     */
+    hasPagedNavigation?: boolean
+    /**
      * A function that returns whether or not a date is disabled
      */
     isDateDisabled?: (date: DateValue) => boolean
@@ -32,9 +40,9 @@ const props = withDefaults(
      */
     isDisabled?: boolean
     /**
-     * Whether or not to always display 6 weeks in the calendar
+     * Whether or not the calendar is readonly
      */
-    fixedWeeks?: boolean
+    isReadonly?: boolean
     /**
      * The locale to use for formatting dates
      */
@@ -52,26 +60,18 @@ const props = withDefaults(
      */
     numberOfMonths?: number
     /**
-     * True causes the previous/next buttons to navigate by the number of months displayed at once rather than one month
-     */
-    pagedNavigation?: boolean
-    /**
      * The placeholder date, which is used to determine what month to display when no date is selected.
      */
     placeholder?: DateValue
-    /**
-     * Whether or not the calendar is readonly
-     */
-    readonly?: boolean
   }>(),
   {
+    hasFixedWeeks: true,
+    hasPagedNavigation: false,
     isDisabled: false,
-    fixedWeeks: true,
+    isReadonly: false,
     locale: 'nl',
     multiple: false,
     numberOfMonths: 1,
-    pagedNavigation: false,
-    readonly: false,
   },
 )
 
@@ -97,15 +97,15 @@ const cellTriggerClasses = computed<string>(() => calendarStyle.cellTrigger())
     v-model="modelValue"
     :is-date-unavailable="props.isDateUnavailable"
     :is-date-disabled="props.isDateDisabled"
-    :fixed-weeks="props.fixedWeeks"
+    :fixed-weeks="props.hasFixedWeeks"
     :disabled="props.isDisabled"
     :locale="props.locale"
     :max-value="props.maxValue"
     :min-value="props.minValue"
     :number-of-months="props.numberOfMonths"
-    :paged-navigation="props.pagedNavigation"
+    :paged-navigation="props.hasPagedNavigation"
     :placeholder="props.placeholder"
-    :readonly="props.readonly"
+    :readonly="props.isReadonly"
     :week-starts-on="0"
     :class="rootClasses"
   >
