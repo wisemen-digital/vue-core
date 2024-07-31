@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols'
 import { AppAvatar } from '@wisemen/vue-core'
@@ -47,7 +47,7 @@ const catImage = 'https://images.pexels.com/photos/736532/pexels-photo-736532.jp
       <div class="flex gap-4">
         <AppAvatar
           :src="catImage"
-          is-tooltip
+          has-tooltip
           v-bind="values"
         >
           <template #tooltip>
