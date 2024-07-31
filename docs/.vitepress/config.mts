@@ -92,6 +92,10 @@ const docs = [
         link: '/components/calendar/app-calendar',
         text: 'AppCalendar',
       },
+      {
+        link: '/components/calendar/app-range-calendar',
+        text: 'AppRangeCalendar',
+      },
     ],
     text: 'Calendar',
   },

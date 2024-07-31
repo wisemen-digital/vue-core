@@ -102,7 +102,6 @@ const cellTriggerClasses = computed<string>(() => calendarStyle.cellTrigger())
     :locale="props.locale"
     :max-value="props.maxValue"
     :min-value="props.minValue"
-    :multiple="props.multiple"
     :number-of-months="props.numberOfMonths"
     :paged-navigation="props.pagedNavigation"
     :placeholder="props.placeholder"
