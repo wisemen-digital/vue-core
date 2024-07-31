@@ -19,7 +19,7 @@ import AppMultiSelectPlayground from './AppMultiSelectPlayground.vue'
 | items* | `SelectItem<AcceptableValue>[]` | The options to display in the select. |  |
 | modelValue* | `AcceptableValue[]` | The value of the select. |  |
 | placeholder | `string \| null` | The placeholder text to display when the select is empty. | `null` |
-| popoverProps | `{ align?: "start" \| "end" \| "center"; minWidth?: string; } \| null` | The props of the popover. |  |
+| popoverProps | `{ align?: "center" \| "end" \| "start"; minWidth?: string; } \| null` | The props of the popover. |  |
 
 
 ## Slots

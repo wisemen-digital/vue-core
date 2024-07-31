@@ -10,8 +10,9 @@ import AppPopoverPlayground from './AppPopoverPlayground.vue'
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| align | `"start" \| "end" \| "center"` | The alignment of the popover content. | `"center"` |
+| align | `"center" \| "end" \| "start"` | The alignment of the popover content. | `"center"` |
 | hideArrow | `boolean` | When true, the arrow will be hidden. | `false` |
+| isCloseButtonHidden | `boolean` | Whether the close button is hidden. | `false` |
 | offset | `number` | The offset of the popover content. | `10` |
 | side | `"left" \| "right" \| "bottom" \| "top"` | The side of the trigger the popover should be on. | `"bottom"` |
 

@@ -2,6 +2,9 @@ export const components = {
   accordion: [
     'AppAccordion',
   ],
+  autocomplete: [
+    'AppAutocomplete',
+  ],
   avatar: [
     'AppAvatar',
   ],

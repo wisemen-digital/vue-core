@@ -10,7 +10,7 @@ import AppDropdownMenuPlayground from './AppDropdownMenuPlayground.vue'
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| align | `"start" \| "end" \| "center"` | The alignment of the dropdown. | `"center"` |
+| align | `"center" \| "end" \| "start"` | The alignment of the dropdown. | `"center"` |
 | enableGlobalKeyboardShortcuts | `boolean` | Whether keyboard commands are enabled without the need to focus the dropdown. | `false` |
 | hasArrow | `boolean` | Whether the dropdown has an arrow. | `false` |
 | inheritTriggerWidth | `boolean` | Whether to inherit the trigger's width. | `false` |

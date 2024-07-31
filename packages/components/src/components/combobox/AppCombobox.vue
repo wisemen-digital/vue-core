@@ -17,14 +17,11 @@ import AppComboboxEmpty from '@/components/combobox/AppComboboxEmpty.vue'
 import AppComboboxInput from '@/components/combobox/AppComboboxInput.vue'
 import AppComboboxItem from '@/components/combobox/AppComboboxItem.vue'
 import AppComboboxViewport from '@/components/combobox/AppComboboxViewport.vue'
-import { useCombobox } from '@/components/combobox/combobox.composable'
 import { useComboboxStyle } from '@/components/combobox/combobox.style'
 import type { Icon } from '@/icons/icons'
 import type { ComboboxItem } from '@/types/comboboxItem.type'
 import type { ComboboxProps } from '@/types/comboboxProps.type'
-import type {
-  AcceptableValue,
-} from '@/types/selectItem.type'
+import type { AcceptableValue } from '@/types/selectItem.type'
 
 const props = withDefaults(
   defineProps<{
@@ -165,12 +162,6 @@ const search = computed<string | undefined>({
   },
 })
 
-const { canOpenDropdown } = useCombobox({
-  isLoading: computed<boolean>(() => props.isLoading),
-  items: computed<ComboboxItem<TValue>[]>(() => props.items),
-  search: computed<null | string>(() => searchModel.value),
-})
-
 const placeholderValue = computed<null | string>(() => {
   if (model.value === undefined) {
     return props.placeholder
@@ -190,6 +181,14 @@ function onBlur(): void {
 function onClear(): void {
   emit('update:modelValue', null)
 }
+
+const canOpenDropdown = computed<boolean>(() => {
+  if (props.items.length > 0) {
+    return true
+  }
+
+  return !props.isLoading
+})
 
 // When the search input is in the dropdown, we want to focus the "fake" input
 // when the dropdown closes
@@ -266,7 +265,10 @@ watch(isOpen, (isOpen) => {
                   :class="dropdownSearchStyle"
                 />
 
-                <AppComboboxEmpty :empty-text="props.emptyText">
+                <AppComboboxEmpty
+                  v-if="!props.isLoading"
+                  :empty-text="props.emptyText"
+                >
                   <slot name="empty" />
                 </AppComboboxEmpty>
 

@@ -19,7 +19,7 @@ import AppTagsComboboxPlayground from './AppTagsComboboxPlayground.vue'
 | items* | `ComboboxItem<AcceptableValue>[]` | The options to display in the combobox. |  |
 | modelValue* | `AcceptableValue[]` |  |  |
 | placeholder | `string \| null` | The placeholder text to display when the combobox is empty. | `null` |
-| popoverProps | `{ align?: "start" \| "end" \| "center"; minWidth?: string; } \| null` | The props to pass to the popover. | `null` |
+| popoverProps | `{ align?: "center" \| "end" \| "start"; minWidth?: string; } \| null` | The props to pass to the popover. | `null` |
 | search | `string \| null` |  |  |
 
 

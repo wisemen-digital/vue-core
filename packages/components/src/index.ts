@@ -3,6 +3,9 @@ import './styles/index.scss'
 // Accordion
 export { default as AppAccordion } from './components/accordion/AppAccordion.vue'
 
+// Autocomplete
+export { default as AppAutocomplete } from './components/autocomplete/AppAutocomplete.vue'
+
 // Avatar
 export { default as AppAvatar } from './components/avatar/AppAvatar.vue'
 
