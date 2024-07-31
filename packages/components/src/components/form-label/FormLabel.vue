@@ -4,7 +4,6 @@ import { computed } from 'vue'
 
 import { useFormLabelStyle } from '@/components/form-label/formLabel.style'
 import AppIcon from '@/components/icon/AppIcon.vue'
-import AppInput from '@/components/input/AppInput.vue'
 import AppTooltip from '@/components/tooltip/AppTooltip.vue'
 
 const props = withDefaults(defineProps<{
@@ -87,8 +86,5 @@ const hasTooltip = computed<boolean>(() => props.tooltip !== null && props.toolt
         </div>
       </div>
     </AppTooltip>
-
-    <AppInput :model-value="null" />
-
   </Label>
 </template>
