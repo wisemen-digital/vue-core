@@ -6,7 +6,11 @@ import {
   getLocalTimeZone,
   today,
 } from '@internationalized/date'
-import { AppCalendar, AppText } from '@wisemen/vue-core'
+import {
+  AppCalendar,
+  AppRangeCalendar,
+  AppText,
+} from '@wisemen/vue-core'
 import { ref } from 'vue'
 
 const controls = createControls({
@@ -78,6 +82,8 @@ const datesArray = ref<DateValue[]>([
             Model value: {{ datesArray }}
           </AppText>
         </div>
+
+        <AppRangeCalendar />
       </div>
     </template>
   </ComponentPlayground>

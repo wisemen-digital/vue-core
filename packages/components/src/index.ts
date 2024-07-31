@@ -22,6 +22,7 @@ export * from './components/button/button.style'
 
 // Calendar
 export { default as AppCalendar } from './components/calendar/AppCalendar.vue'
+export { default as AppRangeCalendar } from './components/calendar/AppRangeCalendar.vue'
 
 // Checkbox
 export { default as FormCheckbox } from './components/checkbox/FormCheckbox.vue'
