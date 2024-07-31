@@ -38,6 +38,7 @@ describe('formInput', () => {
     expect(wrapper.exists()).toBe(true)
     expect(wrapper.findComponent(AppInput).exists()).toBe(true)
     expect(wrapper.find('label').text()).toBe('Label')
+    expect(wrapper.find('.error').exists()).toBe(false)
   })
 
   it('handles required field correctly', async () => {
@@ -45,7 +46,20 @@ describe('formInput', () => {
     expect(wrapper.findComponent(FormElement).props('isRequired')).toBe(true)
   })
 
-  it('handles error messages correctly', async () => {
+  it('renders errors when isTouched is true and errors are provided', async () => {
+    const errors = {
+      _errors: [
+        'Example error',
+      ],
+    }
+
+    await wrapper.setProps({ errors })
+    await wrapper.setProps({ isTouched: true })
+    expect(wrapper.findComponent(FormElement).props('errors')).toEqual(errors)
+    expect(wrapper.find('p.text-destructive').text()).toBe('Example error')
+  })
+
+  it('does not render errors when isTouched is false and errors are provided', async () => {
     const errors = {
       _errors: [
         'Example error',
@@ -54,6 +68,7 @@ describe('formInput', () => {
 
     await wrapper.setProps({ errors })
     expect(wrapper.findComponent(FormElement).props('errors')).toEqual(errors)
+    expect(wrapper.find('.p.text-destructive').exists()).toBe(false)
   })
 
   it('handles disabled state correctly', async () => {

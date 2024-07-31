@@ -56,6 +56,11 @@ describe('appInput', () => {
     expect(wrapper.find('input').attributes('type')).toBe('password')
   })
 
+  it('applies testId correctly', async () => {
+    await wrapper.setProps({ testId: 'test' })
+    expect(wrapper.find('input').attributes('data-testid')).toBe('test')
+  })
+
   it('handles custom slot content', () => {
     expect(wrapper.find('.custom-right-slot').exists()).toBe(true)
   })
