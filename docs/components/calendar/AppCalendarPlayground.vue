@@ -8,7 +8,6 @@ import {
 } from '@internationalized/date'
 import {
   AppCalendar,
-  AppRangeCalendar,
   AppText,
 } from '@wisemen/vue-core'
 import { ref } from 'vue'
@@ -82,8 +81,6 @@ const datesArray = ref<DateValue[]>([
             Model value: {{ datesArray }}
           </AppText>
         </div>
-
-        <AppRangeCalendar />
       </div>
     </template>
   </ComponentPlayground>
