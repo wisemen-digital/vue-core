@@ -4,27 +4,16 @@ sidebar: auto
 
 
 # AppText
-<script setup>
-import AppTextPlayground from './AppTextPlayground.vue'
-</script>
 
-<AppTextPlayground />
+<!-- @include: ./app-text-meta.md -->
 
+## Types
 
-## Props
-
-| Prop    | Type                                                                                                         | Description                                          | Default     |
-| ------- | ------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------- | ----------- |
-| as      | `'blockquote'` \| `'div'` \| `'h1'` \| `'h2'` \| `'h3'` \| `'h4'` \| `'h5'` \| `'h6'` \| `'p'` \| `'span'`   | The HTML tag to render the component as              | `'p'`       |
-| variant*| `'hero'` \| `'title'` \| `'subtitle'` \| `'heading'` \| `'body'` \| `'subtext'` \| `'caption'`               | The variant of the text                              |             |
-
-
-## Slots
-
-| Slot      | Type | Description               |
-| --------- | ---- | ------------------------- |
-| `default` | None | The content of the text   |
-
+::: code-group
+```js [TextType]
+type TextType = 'blockquote' | 'div' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span'
+```
+:::
 
 ## Code
 

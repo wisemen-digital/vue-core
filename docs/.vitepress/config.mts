@@ -25,6 +25,27 @@ const docs = [
     collapsed: true,
     items: [
       {
+        link: '/components/accordion/app-accordion',
+        text: 'AppAccordion',
+      },
+    ],
+    text: 'Accordion',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
+        link: '/components/avatar/app-avatar',
+        text: 'AppAvatar',
+      },
+    ],
+
+    text: 'Avatar',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
         link: '/components/badge/app-badge',
         text: 'AppBadge',
       },
@@ -57,8 +78,22 @@ const docs = [
         link: '/components/button/app-router-link-button',
         text: 'AppRouterLinkButton',
       },
+      {
+        link: '/components/button/app-unstyled-button',
+        text: 'AppUnstyledButton',
+      },
     ],
     text: 'Button',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
+        link: '/components/calendar/app-calendar',
+        text: 'AppCalendar',
+      },
+    ],
+    text: 'Calendar',
   },
   {
     collapsed: true,
@@ -86,6 +121,10 @@ const docs = [
         text: 'AppMultiCombobox',
       },
       {
+        link: '/components/combobox/app-tags-combobox',
+        text: 'AppTagsCombobox',
+      },
+      {
         link: '/components/combobox/form-combobox',
         text: 'FormCombobox',
       },
@@ -93,8 +132,22 @@ const docs = [
         link: '/components/combobox/form-multi-combobox',
         text: 'FormMultiCombobox',
       },
+      {
+        link: '/components/combobox/form-tags-combobox',
+        text: 'FormTagsCombobox',
+      },
     ],
     text: 'Combobox',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
+        link: '/components/container/app-container',
+        text: 'AppContainer',
+      },
+    ],
+    text: 'Container',
   },
   {
     collapsed: true,
@@ -109,6 +162,16 @@ const docs = [
       },
     ],
     text: 'Date',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
+        link: '/components/dialog/app-dialog',
+        text: 'AppDialog',
+      },
+    ],
+    text: 'Dialog',
   },
   {
     collapsed: true,
@@ -242,6 +305,16 @@ const docs = [
     collapsed: true,
     items: [
       {
+        link: '/components/radio-group/form-radio-group',
+        text: 'FormRadioGroup',
+      },
+    ],
+    text: 'Radio-group',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
         link: '/components/select/app-select',
         text: 'AppSelect',
       },
@@ -253,18 +326,12 @@ const docs = [
         link: '/components/select/form-select',
         text: 'FormSelect',
       },
-    ],
-    text: 'Select',
-  },
-  {
-    collapsed: true,
-    items: [
       {
-        link: '/components/switch/form-switch',
-        text: 'FormSwitch',
+        link: '/components/select/form-multi-select',
+        text: 'FormMultiSelect',
       },
     ],
-    text: 'Switch',
+    text: 'Select',
   },
   {
     collapsed: true,
@@ -292,6 +359,16 @@ const docs = [
     collapsed: true,
     items: [
       {
+        link: '/components/switch/form-switch',
+        text: 'FormSwitch',
+      },
+    ],
+    text: 'Switch',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
         link: '/components/table/app-table',
         text: 'AppTable',
       },
@@ -303,8 +380,26 @@ const docs = [
         link: '/components/table/app-table-skeleton-loader',
         text: 'AppTableSkeletonLoader',
       },
+      {
+        link: '/components/table/app-table-filters-popover',
+        text: 'AppTableFiltersPopover',
+      },
     ],
     text: 'Table',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
+        link: '/components/tabs/app-tabs',
+        text: 'AppTabs',
+      },
+      {
+        link: '/components/tabs/app-route-tabs',
+        text: 'AppRouteTabs',
+      },
+    ],
+    text: 'Tabs',
   },
   {
     collapsed: true,
@@ -337,8 +432,22 @@ const docs = [
         link: '/components/textarea/app-textarea',
         text: 'AppTextarea',
       },
+      {
+        link: '/components/textarea/form-textarea',
+        text: 'FormTextarea',
+      },
     ],
     text: 'Textarea',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
+        link: '/components/toast/app-toast',
+        text: 'AppToast',
+      },
+    ],
+    text: 'Toast',
   },
   {
     collapsed: true,
@@ -359,6 +468,16 @@ const docs = [
       },
     ],
     text: 'Tooltip',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
+        link: '/components/transitions/app-collapse-transition',
+        text: 'AppCollapseTransition',
+      },
+    ],
+    text: 'Transitions',
   },
 ]
 

@@ -14,6 +14,9 @@ import AppText from '@/components/text/AppText.vue'
 import type { RouteTabItem } from '@/types/tabItem.type'
 
 const props = defineProps<{
+  /**
+   * All the tabs to be rendered.
+   */
   tabs: RouteTabItem[]
 }>()
 

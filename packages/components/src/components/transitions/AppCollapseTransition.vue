@@ -10,6 +10,11 @@ const props = withDefaults(defineProps<{
   duration: 0.5,
 })
 
+defineSlots<{
+  /** Content of the transition */
+  default: () => void
+}>()
+
 const durationString = computed<string>(() => `${props.duration}s`)
 
 function enter(element: Element): void {

@@ -20,7 +20,6 @@ import {
   useTableStyle,
 } from '@/components/table/table.style'
 import type {
-  FilterChangeEvent,
   PaginatedData,
   Pagination,
   PaginationFilter,
@@ -33,23 +32,69 @@ import type {
 
 const props = withDefaults(
   defineProps<{
+    /**
+     * The title of the table.
+     */
     title: string
+    /**
+     * Shows the search input in the table header
+     */
+    hasSearch?: boolean
+    /**
+     * Whether the data is loading.
+     */
     isLoading: boolean
+    /**
+     * Hides the top of the table when set to true.
+     */
     isTopHidden?: boolean
+    /**
+     * The different columns to be displayed.
+     */
     columns: TableColumn<TSchema>[]
+    /**
+     * The data for the table, in paginated form.
+     */
     data: PaginatedData<TSchema> | null
+    /**
+     * Optional empty text to replace defaults
+     */
     emptyText?: TableEmptyTextProp | null
+    /**
+     * Determines how the data will be filtered.
+     */
     filters: PaginationFilter<TFilters>[]
+    /**
+     * The pagination options.
+     */
     pagination: Pagination<TFilters>
+    /**
+     * Returns the row as a button.
+     */
     rowClick?: ((row: TSchema) => void) | null
+    /**
+     * Adds a target to the RouterLink when using row-to.
+     */
     rowTarget?: string
+    /**
+     * Returns the row as a RouterLink.
+     */
     rowTo?: ((row: TSchema) => RouteLocationNamedRaw) | null
-    searchFilterKey?: keyof TFilters
+    /**
+     * Whether the first column of the table is pinned.
+     */
     shouldPinFirstColumn?: boolean
+    /**
+     * Whether the last column of the table is pinned.
+     */
     shouldPinLastColumn?: boolean
+    /**
+     * Table style variant
+     */
     variant?: TableStyleProps['variant']
   }>(),
   {
+    hasSearch: false,
     isTopHidden: false,
     emptyText: null,
     rowClick: null,
@@ -59,6 +104,11 @@ const props = withDefaults(
     variant: 'default',
   },
 )
+
+defineSlots<{
+  /** Override the empty state overlay with custom content */
+  'empty-state': () => void
+}>()
 
 const tableContainerRef = ref<HTMLElement | null>(null)
 
@@ -142,14 +192,6 @@ const activeFilterCount = computed<number>(() => {
   return Object.keys(filters).length
 })
 
-function onFilterChange(filterChangeEvent: FilterChangeEvent<TFilters>): void {
-  props.pagination.handleFilterChange(filterChangeEvent)
-  props.pagination.handlePageChange({
-    page: 0,
-    perPage: props.pagination.paginationOptions.value.pagination.perPage,
-  })
-}
-
 onMounted(() => {
   if (tableContainerRef.value === null) {
     throw new Error('Table ref is null')
@@ -181,9 +223,7 @@ const tableClasses = computed<string>(() => tableStyle.table({
       :filters="props.filters"
       :variant="props.variant"
       :pagination="props.pagination"
-      :search-filter-key="props.searchFilterKey"
-      @filter="onFilterChange"
-      @clear="onClearFilters"
+      :has-search="props.hasSearch"
     />
 
     <div

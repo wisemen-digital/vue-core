@@ -59,11 +59,10 @@ export interface AppButtonProps {
 }
 
 const props = withDefaults(defineProps<AppButtonProps>(), {
-  // TODO: find out why defaulting these to `null` breaks the `Icon` prop type when using `declare module`.
-  // iconLeft: null,
-  // iconRight: null,
   isDisabled: false,
   isLoading: false,
+  iconLeft: null,
+  iconRight: null,
   keyboardShortcut: null,
   size: 'default',
   type: 'button',
@@ -153,7 +152,7 @@ onMounted(() => {
     :class="buttonClasses"
   >
     <AppIcon
-      v-if="props.iconLeft !== null && props.iconLeft !== undefined"
+      v-if="props.iconLeft !== null"
       :icon="props.iconLeft"
       :class="buttonIconLeftClasses"
     />
@@ -166,13 +165,11 @@ onMounted(() => {
       v-if="props.isLoading"
       :class="buttonLoaderContainerClasses"
     >
-      <AppLoader
-        :class="buttonLoaderClasses"
-      />
+      <AppLoader :class="buttonLoaderClasses" />
     </div>
 
     <AppIcon
-      v-if="props.iconRight !== null && props.iconRight !== undefined"
+      v-if="props.iconRight !== null"
       :icon="props.iconRight"
       :class="buttonIconRightClasses"
     />

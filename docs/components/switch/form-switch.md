@@ -4,29 +4,8 @@ sidebar: auto
 
 
 # FormSwitch
-<script setup>
-import FormSwitchPlayground from './FormSwitchPlayground.vue';
-</script>
 
-<FormSwitchPlayground />
-
-
-## Props
-
-| Prop       | Type             | Description                            | Default |
-|------------|------------------|----------------------------------------|---------|
-| id         | `string \| null` | The ID of the item.                    | null    |
-| isDisabled | `boolean`        | Whether the switch is disabled or not. | false   |
-| isInvalid  | `boolean`        | Whether the switch is invalid or not.  | false   |
-
-
-
-## v-model
-
-| Model           | Type    | Description                     |
-|-----------------|---------|---------------------------------|
-| v-model:checked | boolean | The checked state of the switch |
-
+<!-- @include: ./form-switch-meta.md -->
 
 ## Code
 

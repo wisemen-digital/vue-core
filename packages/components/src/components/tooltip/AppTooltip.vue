@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { TooltipPortal, TooltipTrigger } from 'radix-vue'
-import { computed, useSlots } from 'vue'
+import { computed } from 'vue'
 
 import AppText from '@/components/text/AppText.vue'
 import AppTooltipContent from '@/components/tooltip/AppTooltipContent.vue'
@@ -68,11 +68,12 @@ const props = withDefaults(
   },
 )
 
-const slots = useSlots()
-
-if (props.content === null && slots.content === undefined) {
-  throw new Error('[TOOLTIP] Either the `content` prop or `content` slot must be provided.')
-}
+defineSlots<{
+  /** Override the content of the tooltip */
+  content: () => void
+  /** Trigger element for the toolip */
+  default: () => void
+}>()
 
 const tooltipStyle = useTooltipStyle()
 
