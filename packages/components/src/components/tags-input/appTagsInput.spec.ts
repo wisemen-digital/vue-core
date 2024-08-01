@@ -9,7 +9,7 @@ import {
 
 import AppTagsInput from '@/components/tags-input/AppTagsInput.vue'
 
-describe('appText', () => {
+describe('appTagsInput', () => {
   let wrapper: VueWrapper<InstanceType<typeof AppTagsInput>>
 
   beforeEach(() => {

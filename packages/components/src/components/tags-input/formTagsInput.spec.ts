@@ -13,7 +13,7 @@ import AppTagsInput from '@/components/tags-input/AppTagsInput.vue'
 import FormTagsInput from '@/components/tags-input/FormTagsInput.vue'
 import AppTooltip from '@/components/tooltip/AppTooltip.vue'
 
-describe('appText', () => {
+describe('formTagsInput', () => {
   let wrapper: VueWrapper<InstanceType<typeof FormTagsInput>>
 
   beforeEach(() => {
