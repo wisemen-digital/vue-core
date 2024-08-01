@@ -6,7 +6,10 @@ import {
   getLocalTimeZone,
   today,
 } from '@internationalized/date'
-import { AppCalendar, AppText } from '@wisemen/vue-core'
+import {
+  AppCalendar,
+  AppText,
+} from '@wisemen/vue-core'
 import { ref } from 'vue'
 
 const controls = createControls({

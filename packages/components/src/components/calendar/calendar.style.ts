@@ -3,7 +3,7 @@ import { tv } from '@/libs/twVariants.lib'
 
 export const useCalendarStyle = tv({
   slots: {
-    cellTrigger: 'relative flex size-8 items-center justify-center whitespace-nowrap rounded-full text-sm font-normal text-foreground outline-none before:absolute before:top-[5px] before:hidden before:size-1 before:rounded-full before:bg-background hover:bg-primary/20 focus:shadow-[0_0_0_2px] focus:shadow-primary data-[unavailable]:pointer-events-none data-[highlighted]:bg-primary/5 data-[selected]:!bg-primary data-[disabled]:text-foreground/30 data-[selected]:text-background data-[unavailable]:text-foreground/30 data-[unavailable]:line-through data-[today]:before:block data-[selected]:data-[today]:before:bg-background/60 data-[today]:before:bg-primary/60',
+    cellTrigger: 'relative flex size-8 items-center justify-center whitespace-nowrap rounded-full text-sm font-normal text-foreground outline-none before:absolute before:top-[5px] before:hidden before:size-1 before:rounded-full before:bg-background hover:bg-primary/20 focus:shadow-[0_0_0_2px] focus:shadow-primary data-[unavailable]:pointer-events-none data-[highlighted]:bg-primary/20 data-[selected]:!bg-primary data-[disabled]:text-foreground/30 data-[selected]:text-background data-[unavailable]:text-foreground/30 data-[unavailable]:line-through data-[today]:before:block data-[selected]:data-[today]:before:bg-background/60 data-[today]:before:bg-primary/60',
     dataCell: 'relative text-center text-sm',
     dataGridRow: 'grid grid-cols-7',
     grid: 'w-full select-none space-y-1',
