@@ -157,7 +157,10 @@ const upButtonClasses = computed<string>(() => inputStyle.numberUpButton())
     :icon-left="props.iconLeft"
     type="number"
   >
-    <template #left>
+    <template
+      v-if="props.iconLeft === null"
+      #left
+    >
       <slot name="left" />
     </template>
     <template
