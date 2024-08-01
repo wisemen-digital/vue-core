@@ -1,18 +1,19 @@
 <script setup lang="ts">
 import type { DateValue } from '@internationalized/date'
+import type { DateRange } from 'radix-vue'
 import {
-  CalendarCell,
-  CalendarCellTrigger,
-  CalendarGrid,
-  CalendarGridBody,
-  CalendarGridHead,
-  CalendarGridRow,
-  CalendarHeadCell,
-  CalendarRoot,
+  RangeCalendarCell,
+  RangeCalendarCellTrigger,
+  RangeCalendarGrid,
+  RangeCalendarGridBody,
+  RangeCalendarGridHead,
+  RangeCalendarGridRow,
+  RangeCalendarHeadCell,
+  RangeCalendarRoot,
 } from 'radix-vue'
 import { computed } from 'vue'
 
-import AppCalendarHeader from './AppCalendarHeader.vue'
+import AppRangeCalendarHeader from './AppRangeCalendarHeader.vue'
 import { useCalendarStyle } from './calendar.style'
 
 const props = withDefaults(
@@ -54,10 +55,6 @@ const props = withDefaults(
      */
     minValue?: DateValue
     /**
-     * Whether or not multiple dates can be selected
-     */
-    multiple?: boolean
-    /**
      * The number of months to display at once
      */
     numberOfMonths?: number
@@ -77,7 +74,7 @@ const props = withDefaults(
   },
 )
 
-const modelValue = defineModel<DateValue | DateValue[]>({
+const modelValue = defineModel<DateRange>({
   required: true,
 })
 
@@ -94,7 +91,7 @@ const cellTriggerClasses = computed<string>(() => calendarStyle.cellTrigger())
 </script>
 
 <template>
-  <CalendarRoot
+  <RangeCalendarRoot
     v-slot="{ weekDays, grid }"
     v-model="modelValue"
     :is-date-unavailable="props.isDateUnavailable"
@@ -104,7 +101,6 @@ const cellTriggerClasses = computed<string>(() => calendarStyle.cellTrigger())
     :locale="props.locale"
     :max-value="props.maxValue"
     :min-value="props.minValue"
-    :multiple="props.multiple"
     :number-of-months="props.numberOfMonths"
     :paged-navigation="props.hasPagedNavigation"
     :placeholder="props.placeholder"
@@ -112,46 +108,46 @@ const cellTriggerClasses = computed<string>(() => calendarStyle.cellTrigger())
     :week-starts-on="0"
     :class="rootClasses"
   >
-    <AppCalendarHeader />
+    <AppRangeCalendarHeader />
 
     <div :class="gridContainerClasses">
-      <CalendarGrid
+      <RangeCalendarGrid
         v-for="month in grid"
         :key="month.value.toString()"
         :class="gridClasses"
       >
-        <CalendarGridHead>
-          <CalendarGridRow :class="headGridRowClasses">
-            <CalendarHeadCell
+        <RangeCalendarGridHead>
+          <RangeCalendarGridRow :class="headGridRowClasses">
+            <RangeCalendarHeadCell
               v-for="day in weekDays"
               :key="day"
               :class="headCellClasses"
             >
               {{ day }}
-            </CalendarHeadCell>
-          </CalendarGridRow>
-        </CalendarGridHead>
-        <CalendarGridBody class="grid">
-          <CalendarGridRow
+            </RangeCalendarHeadCell>
+          </RangeCalendarGridRow>
+        </RangeCalendarGridHead>
+        <RangeCalendarGridBody class="grid">
+          <RangeCalendarGridRow
             v-for="(weekDates, index) in month.rows"
             :key="`weekDate-${index}`"
             :class="dataGridRowClasses"
           >
-            <CalendarCell
+            <RangeCalendarCell
               v-for="weekDate in weekDates"
               :key="weekDate.toString()"
               :date="weekDate"
               :class="dataCellClasses"
             >
-              <CalendarCellTrigger
+              <RangeCalendarCellTrigger
                 :day="weekDate"
                 :month="month.value"
                 :class="cellTriggerClasses"
               />
-            </CalendarCell>
-          </CalendarGridRow>
-        </CalendarGridBody>
-      </CalendarGrid>
+            </RangeCalendarCell>
+          </RangeCalendarGridRow>
+        </RangeCalendarGridBody>
+      </RangeCalendarGrid>
     </div>
-  </CalendarRoot>
+  </RangeCalendarRoot>
 </template>

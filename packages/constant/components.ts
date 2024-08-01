@@ -19,6 +19,7 @@ export const components = {
   ],
   calendar: [
     'AppCalendar',
+    'AppRangeCalendar',
   ],
   checkbox: [
     'FormCheckbox',
