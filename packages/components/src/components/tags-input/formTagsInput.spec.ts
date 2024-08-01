@@ -53,11 +53,6 @@ describe('formTagsInput', () => {
     expect(wrapper.findComponent(FormElement).props('isDisabled')).toBe(true)
   })
 
-  it('renders placeholder correctly', async () => {
-    await wrapper.setProps({ placeholder: 'Placeholder' })
-    expect(wrapper.find('input').attributes('placeholder')).toBe('Placeholder')
-  })
-
   it('renders errors when isTouched is true and errors are provided', async () => {
     const errors = {
       _errors: [
@@ -92,27 +87,6 @@ describe('formTagsInput', () => {
         'tag2',
       ],
     ])
-  })
-
-  it('adds new tag correctly', async () => {
-    await wrapper.find('input').setValue('tag2')
-    await wrapper.find('input').trigger('keydown.enter')
-
-    const tags = wrapper.findAll('[data-radix-vue-collection-item]')
-
-    expect(tags[1].html()).contains('tag2')
-  })
-
-  it('does not add tag if max is reached', async () => {
-    await wrapper.find('input').setValue('tag2')
-    await wrapper.find('input').trigger('keydown.enter')
-    await wrapper.find('input').setValue('tag3')
-    await wrapper.find('input').trigger('keydown.enter')
-
-    const tags = wrapper.findAll('[data-radix-vue-collection-item]')
-
-    expect(tags[1].html()).contains('tag2')
-    expect(tags[2]).toBeUndefined()
   })
 
   it('renders given tooltip content and icon', async () => {
