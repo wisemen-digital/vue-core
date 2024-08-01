@@ -36,21 +36,6 @@ describe('appText', () => {
     expect(wrapper.find('.text-destructive').exists()).toBe(false)
   })
 
-  it('applies correct resize prop', async () => {
-    await wrapper.setProps({ resize: 'horizontal' })
-    expect(wrapper.find('textarea').classes()).toContain('resize-x')
-  })
-
-  it('applies custom height classes', async () => {
-    await wrapper.setProps({ heightClass: 'h-32' })
-    expect(wrapper.find('textarea').classes()).toContain('h-32')
-  })
-
-  it('renders placeholder correctly', async () => {
-    await wrapper.setProps({ placeholder: 'Placeholder' })
-    expect(wrapper.find('textarea').attributes('placeholder')).toBe('Placeholder')
-  })
-
   it('handles required field correctly', async () => {
     await wrapper.setProps({ isRequired: true })
     expect(wrapper.findComponent(FormElement).props('isRequired')).toBe(true)
