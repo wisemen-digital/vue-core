@@ -18,7 +18,7 @@
     "lint": "pnpm run -r lint",
     "dev": "turbo run dev",
     "type-check": "pnpm run -r type-check",
-    "clean": "pnpm run -r lint && pnpm run -r type-check && pnpm run -r test"
+    "precommit": "pnpm run -r lint && pnpm run -r type-check && pnpm run -r test"
   },
   "devDependencies": {
     "radix-vue": "^1.8.2",
