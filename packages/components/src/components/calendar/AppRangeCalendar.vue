@@ -13,7 +13,6 @@ import {
 } from 'radix-vue'
 import { computed } from 'vue'
 
-// import type { DateRange } from '@/types/calendarDateRange.type'
 import AppRangeCalendarHeader from './AppRangeCalendarHeader.vue'
 import { useCalendarStyle } from './calendar.style'
 
