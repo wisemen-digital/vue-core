@@ -4,10 +4,21 @@ import { createControls } from '@docs/playground/utils/createContols'
 import { AppAvatar } from '@wisemen/vue-core'
 
 const controls = createControls({
+  src: {
+    default: 'https://images.pexels.com/photos/736532/pexels-photo-736532.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    label: 'Source',
+    cols: 2,
+    type: 'text',
+  },
   fallback: {
     default: 'CAT',
-    cols: 2,
     label: 'Fallback',
+    type: 'text',
+  },
+
+  slot: {
+    default: 'This is a cat',
+    label: 'Slot (tooltip content)',
     type: 'text',
   },
   variant: {
@@ -34,9 +45,12 @@ const controls = createControls({
     label: 'Size',
     type: 'select',
   },
+  hasTooltip: {
+    default: false,
+    label: 'Has tooltip',
+    type: 'switch',
+  },
 })
-
-const catImage = 'https://images.pexels.com/photos/736532/pexels-photo-736532.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
 </script>
 
 <template>
@@ -46,26 +60,14 @@ const catImage = 'https://images.pexels.com/photos/736532/pexels-photo-736532.jp
     <template #default="{ values }">
       <div class="flex gap-4">
         <AppAvatar
-          :src="catImage"
-          has-tooltip
           v-bind="values"
         >
           <template #tooltip>
             <div class="p-4 text-center">
-              <p class="text-sm">
-                This is a cat
-              </p>
+              {{ values.slot }}
             </div>
           </template>
         </AppAvatar>
-        <AppAvatar
-          :src="catImage"
-          v-bind="values"
-        />
-        <AppAvatar
-          :src="null"
-          v-bind="values"
-        />
       </div>
     </template>
   </ComponentPlayground>
