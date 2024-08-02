@@ -9,7 +9,7 @@ export const composables: Component = {
     },
     {
       type: ComponentType.COMPOSABLES,
-      path: 'pagination.composable.ts',
+      path: 'pagination',
     },
     {
       type: ComponentType.COMPOSABLES,

@@ -22,6 +22,7 @@ export const rawConfigSchema = z
       icons: z.string(),
       libs: z.string(),
       root: z.string(),
+      rootAlias: z.string(),
       styles: z.string(),
       types: z.string(),
       utils: z.string(),
@@ -70,15 +71,43 @@ export function resolveConfigPaths(cwd: string, config: RawConfig) {
   return configSchema.parse({
     ...config,
     resolvedPaths: {
-      components: resolveImport(config.aliases.components, config.aliases.root),
-      composables: resolveImport(config.aliases.composables, config.aliases.root),
+      components: resolveImport({
+        importPath: config.aliases.components,
+        rootAlias: config.aliases.rootAlias,
+        rootDirectory: config.aliases.root,
+      }),
+      composables: resolveImport({
+        importPath: config.aliases.composables,
+        rootAlias: config.aliases.rootAlias,
+        rootDirectory: config.aliases.root,
+      }),
       config: path.resolve(cwd, config.aliases.config),
-      icons: resolveImport(config.aliases.icons, config.aliases.root),
-      libs: resolveImport(config.aliases.libs, config.aliases.root),
+      icons: resolveImport({
+        importPath: config.aliases.icons,
+        rootAlias: config.aliases.rootAlias,
+        rootDirectory: config.aliases.root,
+      }),
+      libs: resolveImport({
+        importPath: config.aliases.libs,
+        rootAlias: config.aliases.rootAlias,
+        rootDirectory: config.aliases.root,
+      }),
       root: config.aliases.root,
-      styles: resolveImport(config.aliases.styles, config.aliases.root),
-      types: resolveImport(config.aliases.types, config.aliases.root),
-      utils: resolveImport(config.aliases.utils, config.aliases.root),
+      styles: resolveImport({
+        importPath: config.aliases.styles,
+        rootAlias: config.aliases.rootAlias,
+        rootDirectory: config.aliases.root,
+      }),
+      types: resolveImport({
+        importPath: config.aliases.types,
+        rootAlias: config.aliases.rootAlias,
+        rootDirectory: config.aliases.root,
+      }),
+      utils: resolveImport({
+        importPath: config.aliases.utils,
+        rootAlias: config.aliases.rootAlias,
+        rootDirectory: config.aliases.root,
+      }),
     },
   })
 }

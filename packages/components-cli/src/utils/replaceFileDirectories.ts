@@ -20,8 +20,11 @@ export function replaceFileDirectories(file: Component['files'][number], config:
       continue
     }
 
-    const unresolvedPath
-    = unresolveImport(config.resolvedPaths[key as keyof typeof defaultDirectories], config.aliases.root)
+    const unresolvedPath = unresolveImport({
+      importPath: config.resolvedPaths[key as keyof typeof defaultDirectories],
+      rootAlias: config.aliases.rootAlias,
+      rootDirectory: config.aliases.root,
+    })
 
     file.content = file.content.replaceAll(
       defaultDirectories[key as keyof typeof defaultDirectories],
