@@ -11,6 +11,10 @@ import type { ToastAction, ToastType } from '@/types/toast.type'
 
 const props = withDefaults(defineProps<{
   /**
+   * The test id of the toast.
+   */
+  testId?: string
+  /**
    * The title of the toast.
    */
   title: string
@@ -64,7 +68,10 @@ const contentWrapperClasses = computed<string>(() => toastStyle.contentWrapper()
 </script>
 
 <template>
-  <div :class="containerClasses">
+  <div
+    :data-testid="props.testId"
+    :class="containerClasses"
+  >
     <div :class="closeContainerClasses">
       <button
         :class="closeButtonClasses"
