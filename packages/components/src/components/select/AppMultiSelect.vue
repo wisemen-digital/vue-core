@@ -72,7 +72,7 @@ const props = withDefaults(
     isDisabled: false,
     isInvalid: false,
     isLoading: false,
-    iconLeft: undefined,
+    iconLeft: null,
     placeholder: null,
   },
 )
@@ -136,7 +136,7 @@ function onOpen(): void {
       <ComboboxAnchor>
         <AppMultiSelectInput
           :id="props.id"
-          :icon-left="props.iconLeft ?? null"
+          :icon-left="props.iconLeft"
           :is-disabled="props.isDisabled"
           :is-invalid="props.isInvalid"
           :is-loading="props.isLoading"

@@ -1,5 +1,11 @@
 import './styles/index.scss'
 
+// Accordion
+export { default as AppAccordion } from './components/accordion/AppAccordion.vue'
+
+// Avatar
+export { default as AppAvatar } from './components/avatar/AppAvatar.vue'
+
 // Badge
 export { default as AppBadge } from './components/badge/AppBadge.vue'
 
@@ -13,6 +19,10 @@ export { default as AppIconButton } from './components/button/AppIconButton.vue'
 export { default as AppRouterLinkButton } from './components/button/AppRouterLinkButton.vue'
 export { default as AppUnstyledButton } from './components/button/AppUnstyledButton.vue'
 export * from './components/button/button.style'
+
+// Calendar
+export { default as AppCalendar } from './components/calendar/AppCalendar.vue'
+export { default as AppRangeCalendar } from './components/calendar/AppRangeCalendar.vue'
 
 // Checkbox
 export { default as FormCheckbox } from './components/checkbox/FormCheckbox.vue'
@@ -115,6 +125,7 @@ export { default as FormSwitch } from './components/switch/FormSwitch.vue'
 // Table
 export { default as AppTable } from './components/table/AppTable.vue'
 export { default as AppTableFiltersPopover } from './components/table/AppTableFiltersPopover.vue'
+export { default as AppTableSearchInput } from './components/table/AppTableSearchInput.vue'
 
 // Tabs
 export { default as AppRouteTabs } from './components/tabs/AppRouteTabs.vue'
@@ -138,6 +149,9 @@ export { default as AppToggle } from './components/toggle/AppToggle.vue'
 // Tooltip
 export { default as AppTooltip } from './components/tooltip/AppTooltip.vue'
 
+// TRansition
+export { default as AppCollapseTransition } from './components/transitions/AppCollapseTransition.vue'
+
 // Composables
 export { useDialog } from './composables/dialog.composable'
 export { useKeyboardShortcut } from './composables/keyboardShortcut.composable'
@@ -147,8 +161,10 @@ export { useToast } from './composables/toast.composable'
 
 // Types
 export type { Icon, Icons } from './icons/icons'
+export type { Accordion } from './types/accordionItem.type'
 export type { BreadcrumbItem } from './types/breadcrumbItem.type'
 export type { ComboboxItem } from './types/comboboxItem.type'
+export type { DataItem } from './types/dataItem.type'
 export type { DropdownMenuItem } from './types/dropdownMenuItem.type'
 export type { FormFieldErrors } from './types/formFieldErrors.type'
 export type { KeyboardKey } from './types/keyboard.type'

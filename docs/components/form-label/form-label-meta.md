@@ -15,5 +15,5 @@ import FormLabelPlayground from './FormLabelPlayground.vue'
 | isInvalid | `boolean` | Whether the label is invalid. | `false` |
 | isRequired | `boolean` | Whether the label is required. | `false` |
 | label* | `string` | The label of the form. |  |
-| tooltip | `string` | The tooltip of the label. |  |
+| tooltip | `string \| null` | The tooltip of the label. | `null` |
 

@@ -20,7 +20,13 @@ import type {
 } from '@/types/pagination.type'
 
 const props = defineProps<{
+  /**
+   * The filters to be shown
+   */
   filters: PaginationFilter<TFilters>[]
+  /**
+   * Your pagination informations
+   */
   pagination: Pagination<TFilters>
 }>()
 
@@ -64,12 +70,17 @@ const filterPopoverFiltersContainerClasses = computed<string>(() => tableStyle.f
 </script>
 
 <template>
-  <AppPopover align="end">
+  <AppPopover
+    :offset="4"
+    align="end"
+    is-close-button-hidden
+    hide-arrow
+  >
     <template #default>
       <div :class="filterPopoverContainerClasses">
         <AppIconButton
           :class="filterPopoverButtonClasses"
-          variant="ghost"
+          variant="input-outline"
           icon="filterLines"
           icon-size="default"
           label="Filter"
@@ -87,27 +98,30 @@ const filterPopoverFiltersContainerClasses = computed<string>(() => tableStyle.f
       <div
         :class="filterPopoverContentContainerClasses"
       >
-        <div>
-          <div :class="filterPopoverClearContainerClasses">
-            <AppText
-              :class="filterPopoverClearTextClasses"
-              variant="body"
-            >
-              {{ t('shared.filters') }}
-            </AppText>
-            <AppButton
-              :class="filterPopoverClearButtonClasses"
-              size="sm"
-              variant="ghost"
-              @click="onClearAllButtonClick"
-            >
-              {{ t('shared.clear_all') }}
-            </AppButton>
-          </div>
-          <AppSelectDivider direction="horizontal" />
+        <div :class="filterPopoverClearContainerClasses">
+          <AppText
+            :class="filterPopoverClearTextClasses"
+            variant="body"
+          >
+            {{ t('shared.filters') }}
+          </AppText>
+          <AppButton
+            :class="filterPopoverClearButtonClasses"
+            size="sm"
+            variant="ghost"
+            @click="onClearAllButtonClick"
+          >
+            {{ t('shared.clear_all') }}
+          </AppButton>
+        </div>
+        <div
+          v-for="filter in filteredFilters"
+          :key="filter.id"
+        >
+          <AppSelectDivider
+            direction="horizontal"
+          />
           <div
-            v-for="filter in filteredFilters"
-            :key="filter.id"
             :class="filterPopoverFiltersContainerClasses"
           >
             <AppTableMultiSelectFilter

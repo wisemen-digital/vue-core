@@ -14,8 +14,9 @@ import FormComboboxPlayground from './FormComboboxPlayground.vue'
 | emptyText | `string \| null` | The text to display when there are no options. | `null` |
 | errors* | `FormFieldErrors` | The errors associated with the combobox. |  |
 | filterFn* | `(options: AcceptableValue[], searchTerm: string) => AcceptableValue[]` | The function to filter the options. |  |
-| iconLeft | `keyof Icons \| null` | The icon to display on the left side of the combobox. |  |
-| iconRight | `keyof Icons \| null` | The icon to display on the right side of the combobox. |  |
+| hasClearButton | `boolean` | Whether the combobox has a clear button. |  |
+| iconLeft | `keyof Icons \| null` | The icon to display on the left side of the combobox. | `null` |
+| iconRight | `keyof Icons \| null` | The icon to display on the right side of the combobox. | `null` |
 | isChevronHidden | `boolean` | Whether the chevron icon is hidden. | `false` |
 | isDisabled | `boolean` | Whether the combobox is disabled. | `false` |
 | isLoading | `boolean` | Whether the select is loading. | `false` |

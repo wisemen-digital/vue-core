@@ -1,4 +1,10 @@
 export const components = {
+  accordion: [
+    'AppAccordion',
+  ],
+  avatar: [
+    'AppAvatar',
+  ],
   badge: [
     'AppBadge',
   ],
@@ -9,6 +15,11 @@ export const components = {
     'AppButton',
     'AppIconButton',
     'AppRouterLinkButton',
+    'AppUnstyledButton',
+  ],
+  calendar: [
+    'AppCalendar',
+    'AppRangeCalendar',
   ],
   checkbox: [
     'FormCheckbox',
@@ -17,14 +28,22 @@ export const components = {
   combobox: [
     'AppCombobox',
     'AppMultiCombobox',
+    'AppTagsCombobox',
     'FormCombobox',
     'FormMultiCombobox',
+    'FormTagsCombobox',
+  ],
+  container: [
+    'AppContainer',
   ],
   // TODO: add datepicker in auto-gen components once refactored by kiryl: https://github.com/wisemen-digital/vue-core/pull/130
   // date: [
   //   'AppDatePicker',
   //   'FormDatePicker',
   // ],
+  dialog: [
+    'AppDialog',
+  ],
   dropdownMenu: [
     'AppDropdownMenu',
   ],
@@ -65,10 +84,14 @@ export const components = {
   progressBar: [
     'AppProgressBar',
   ],
+  radioGroup: [
+    'FormRadioGroup',
+  ],
   select: [
     'AppSelect',
     'AppMultiSelect',
     'FormSelect',
+    'FormMultiSelect',
   ],
   skeletonLoader: [
     'AppPageSkeletonLoader',
@@ -82,6 +105,11 @@ export const components = {
   table: [
     'AppTable',
     'AppTableSkeletonLoader',
+    'AppTableFiltersPopover',
+  ],
+  tabs: [
+    'AppTabs',
+    'AppRouteTabs',
   ],
   tagsInput: [
     'AppTagsInput',
@@ -92,6 +120,7 @@ export const components = {
   ],
   textarea: [
     'AppTextarea',
+    'FormTextarea',
   ],
   toast: [
     'AppToast',
@@ -101,5 +130,8 @@ export const components = {
   ],
   tooltip: [
     'AppTooltip',
+  ],
+  transitions: [
+    'AppCollapseTransition',
   ],
 }

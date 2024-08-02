@@ -23,6 +23,7 @@ export interface PageChangeEvent {
 }
 
 export type FilterChangeEvent<TFilters> = PaginationFilters<TFilters>
+
 export interface TableFilterEvent<TFilters> {
   key: keyof TFilters
   value: FilterValues | null
@@ -39,6 +40,7 @@ export interface PaginationOptions<TFilters> {
     page: number
     perPage: number
   }
+  search?: string
   sort?: PaginationSort | undefined
   staticFilters?: PaginationFilters<TFilters>
 }
@@ -122,6 +124,7 @@ export interface UsePaginationReturnType<TFilters> {
   clearFilters: () => void
   handleFilterChange: (event: FilterChangeEvent<TFilters>) => void
   handlePageChange: (event: PageChangeEvent) => void
+  handleSearchChange: (value: string) => void
   handleSortChange: (event: SortChangeEvent) => void
   paginationOptions: ComputedRef<PaginationOptions<TFilters>>
 }

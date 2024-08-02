@@ -33,6 +33,11 @@ const props = withDefaults(
      */
     id?: null | string
     /**
+     * Whether the combobox has a clear button.
+     * @default false
+     */
+    hasClearButton?: boolean
+    /**
      * Whether to show the search input in the dropdown instead of inline.
      * @default false
      */
@@ -101,14 +106,15 @@ const props = withDefaults(
   }>(),
   {
     id: null,
+    hasClearButton: false,
     hasSearchInDropdown: false,
     isChevronHidden: false,
     isDisabled: false,
     isInvalid: false,
     isLoading: false,
     emptyText: null,
-    iconLeft: undefined,
-    iconRight: undefined,
+    iconLeft: null,
+    iconRight: null,
     placeholder: null,
     popoverProps: null,
   },
@@ -173,8 +179,16 @@ const placeholderValue = computed<null | string>(() => {
   return props.displayFn(model.value as TValue)
 })
 
+const isClearButtonVisible = computed<boolean>(() => {
+  return model.value !== undefined && props.hasClearButton
+})
+
 function onBlur(): void {
   emit('blur')
+}
+
+function onClear(): void {
+  emit('update:modelValue', null)
 }
 
 // When the search input is in the dropdown, we want to focus the "fake" input
@@ -206,9 +220,10 @@ watch(isOpen, (isOpen) => {
         <AppComboboxInput
           :id="props.id"
           ref="inputRef"
+          :has-clear-button="isClearButtonVisible"
           :value="model ?? null"
-          :icon-left="props.iconLeft ?? null"
-          :icon-right="props.iconRight ?? null"
+          :icon-left="props.iconLeft"
+          :icon-right="props.iconRight"
           :is-chevron-hidden="props.isChevronHidden"
           :display-fn="props.displayFn"
           :is-open="isOpen"
@@ -218,6 +233,7 @@ watch(isOpen, (isOpen) => {
           :placeholder="placeholderValue"
           :has-search-in-dropdown="props.hasSearchInDropdown"
           @blur="onBlur"
+          @clear="onClear"
         >
           <template #left>
             <slot name="left" />

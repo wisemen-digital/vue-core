@@ -62,7 +62,7 @@ const props = withDefaults(
     isLoading: false,
     isRequired: false,
     isTouched: false,
-    iconLeft: undefined,
+    iconLeft: null,
     placeholder: null,
   },
 )
@@ -115,7 +115,7 @@ const passwordIconClasses = computed<string>(() => inputStyle.passwordIcon())
       :test-id="props.testId"
       :is-invalid="isInvalid"
       :placeholder="props.placeholder"
-      :icon-left="props.iconLeft ?? undefined"
+      :icon-left="props.iconLeft"
       :is-loading="props.isLoading"
       @focus="onFocus"
       @blur="onBlur"

@@ -5,11 +5,13 @@ import AppToast from '@/components/toast/AppToast.vue'
 import type { Toast } from '@/types/toast.type'
 
 interface NamedToast {
+  testId?: string
   title: string
   description?: string
 }
 
 interface UseToastReturnType {
+  testId?: string
   custom: (toast: {
     duration?: number
     h: () => VNode
@@ -24,6 +26,7 @@ export function useToast(): UseToastReturnType {
 
   function showErrorToast(toast: NamedToast): void {
     vueSonnerToast.custom(h(AppToast, {
+      testId: toast.testId,
       title: toast.title,
       description: toast.description ?? null,
       icon: 'alertCircle',
@@ -35,6 +38,7 @@ export function useToast(): UseToastReturnType {
 
   function showSuccessToast(toast: NamedToast): void {
     vueSonnerToast.custom(h(AppToast, {
+      testId: toast.testId,
       title: toast.title,
       description: toast.description ?? null,
       icon: 'checkmarkCircle',
@@ -46,6 +50,7 @@ export function useToast(): UseToastReturnType {
 
   function showToast(toast: Toast): void {
     vueSonnerToast.custom(h(AppToast, {
+      testId: toast.testId,
       title: toast.title,
       action: toast.action,
       description: toast.description ?? null,

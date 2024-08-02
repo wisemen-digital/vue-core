@@ -11,7 +11,7 @@ import AppTextPlayground from './AppTextPlayground.vue'
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
 | as | `TextType` | The HTML tag to render the component as | `"p"` |
-| variant* | `"subtext" \| "caption" \| "hero" \| "title" \| "subtitle" \| "heading" \| "body"` | The variant of the text |  |
+| variant* | `"title" \| "subtext" \| "caption" \| "hero" \| "subtitle" \| "heading" \| "body"` | The variant of the text |  |
 
 
 ## Slots

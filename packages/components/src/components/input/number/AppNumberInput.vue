@@ -57,7 +57,7 @@ const props = withDefaults(defineProps<{
   isInvalid: false,
   isLoading: false,
   hideControls: false,
-  iconLeft: undefined,
+  iconLeft: null,
   max: null,
   min: 0,
   placeholder: null,
@@ -154,10 +154,13 @@ const upButtonClasses = computed<string>(() => inputStyle.numberUpButton())
     :is-invalid="props.isInvalid"
     :is-loading="props.isLoading"
     :placeholder="props.placeholder"
-    :icon-left="props.iconLeft ?? undefined"
+    :icon-left="props.iconLeft"
     type="number"
   >
-    <template #left>
+    <template
+      v-if="props.iconLeft === null"
+      #left
+    >
       <slot name="left" />
     </template>
     <template
