@@ -45,7 +45,7 @@ pnpx @wisemen/vue-core-cli changes
 
 #### See the specific changes made to a component compared to the registry
 ```bash
-pnpx @wisemen/vue-core-cli di
+pnpx @wisemen/vue-core-cli diff
 ```
 
 #### Merge the changes from the registry into your project, using merge conflicts
