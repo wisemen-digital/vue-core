@@ -1,5 +1,11 @@
 # @wisemen/vue-core-cli
 
+## 0.1.1
+
+### Patch Changes
+
+- Fix: Updated local url to registry to online url
+
 ## 0.1.0
 
 ### Minor Changes
