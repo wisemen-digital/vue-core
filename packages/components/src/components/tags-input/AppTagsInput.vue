@@ -1,4 +1,4 @@
-<script setup lang="ts" generic="TValue extends string">
+<script setup lang="ts">
 import {
   TagsInputInput,
   TagsInputRoot,
@@ -49,7 +49,7 @@ defineSlots<{
   }) => any
 }>()
 
-const model = defineModel<TValue[]>({
+const model = defineModel<string[]>({
   required: true,
 })
 
