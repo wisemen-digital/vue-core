@@ -13,6 +13,7 @@ import AppToastPlayground from './AppToastPlayground.vue'
 | action | `ToastAction \| null` | Optional action to be displayed in the toast. | `null` |
 | description | `string \| null` | Optional description text added under the title. | `null` |
 | icon* | `keyof Icons` | The icon of the toast. |  |
+| testId | `string` | The test id of the toast. |  |
 | title* | `string` | The title of the toast. |  |
 | type* | `ToastType` | The type of the toast. |  |
 
