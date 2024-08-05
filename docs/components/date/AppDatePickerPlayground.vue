@@ -18,6 +18,16 @@ const controls = createControls({
     cols: 2,
     type: 'text',
   },
+  minDate: {
+    default: null,
+    label: 'Min date',
+    type: 'date',
+  },
+  maxDate: {
+    default: null,
+    label: 'Max date',
+    type: 'date',
+  },
   enableTimePicker: {
     default: false,
     label: 'Enable time picker',
