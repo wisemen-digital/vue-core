@@ -66,3 +66,7 @@
 .dp__theme_light .dp__today {
   @apply border-none;
 }
+
+.dp__theme_light[invalid='true'] input {
+  @apply border-destructive [&:has(:focus-visible)]:border-input-border [&:has(:focus-visible)]:ring-destructive;
+}

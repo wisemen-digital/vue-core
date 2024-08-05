@@ -25,7 +25,7 @@ const controls = createControls({
   },
   disableMonthYearPickers: {
     default: false,
-    label: 'Disable moth and year pickers',
+    label: 'Disable month and year pickers',
     type: 'switch',
   },
   multiple: {
@@ -53,7 +53,12 @@ const controls = createControls({
     label: 'Is disabled',
     type: 'switch',
   },
-  readonly: {
+  isInvalid: {
+    default: false,
+    label: 'Is invalid',
+    type: 'switch',
+  },
+  isReadonly: {
     default: false,
     label: 'Is readonly',
     type: 'switch',

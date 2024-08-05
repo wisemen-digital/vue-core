@@ -1,56 +1,110 @@
 <script setup lang="ts">
-import type { CalendarDate } from '@internationalized/date'
-
 import AppDatePicker from '@/components/date/AppDatePicker.vue'
 import FormElement from '@/components/form-element/FormElement.vue'
 import { useComponentAttrs } from '@/composables/componentAttrs.composable'
+import type {
+  DatePickerHighlightConfig,
+  DatePickerMarker,
+} from '@/types/datePickerConfig.type.ts'
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
-const props = withDefaults(
-  defineProps<{
-    /**
-     * The max date.
-     * @default null
-     */
-    maxDate?: CalendarDate | null
-    /**
-     * The min date.
-     * @default null
-     */
-    minDate?: CalendarDate | null
-    /**
-     * Whether the input is disabled.
-     */
-    isDisabled?: boolean
-    /**
-     *  Whether the input is required.
-     */
-    isRequired?: boolean
-    /**
-     * Whether the input is touched.
-     */
-    isTouched: boolean
-    /**
-     * The errors associated with the input.
-     */
-    errors: FormFieldErrors
-    /**
-     * The label of the input.
-     */
-    label: string
-    /**
-     * The tooltip of the input.
-     */
-    tooltip?: string
-  }>(),
-  {
-    isDisabled: false,
-    isRequired: false,
-    isTouched: false,
-  },
-)
+const props = withDefaults(defineProps<{
+  /**
+   * All dates after the given date will be disabled.
+   */
+  maxDate?: Date | string
+  /**
+   * All dates before the given date will be disabled.
+   */
+  minDate?: Date | string
+  /**
+   * Add a clear icon to the input field where you can set the value to null.
+   */
+  hasClearButton?: boolean
+  /**
+   * Disables the input.
+   */
+  isDisabled?: boolean
+  /**
+   *  Whether the input is required.
+   */
+  isRequired?: boolean
+  /**
+   * Whether the input is touched.
+   */
+  isTouched: boolean
+  /**
+   * When true, will try to parse the date from the user input.
+   */
+  allowTextInput?: boolean
+  /**
+   * If false, clicking on a date value will not automatically select the value.
+   */
+  disableAutoApply?: boolean
+  /**
+   * If true, removes the month and year picker.
+   */
+  disableMonthYearPickers?: boolean
+  /**
+   * Disable specific dates.
+   */
+  disabledDates?: ((date: Date) => boolean) | Date[] | string[]
+  /**
+   * Whether the time picker is also enabled or not.
+   */
+  enableTimePicker?: boolean
+  /**
+   * The errors associated with the input.
+   */
+  errors: FormFieldErrors
+  /**
+   * Define the selecting order. Position in the array will specify the execution step.
+   * @default []
+   */
+  flow?: ('calendar' | 'hours' | 'minutes' | 'month' | 'seconds' | 'time' | 'year')[]
+  /**
+   * Specify highlighted dates.
+   */
+  highlightConfig?: Partial<DatePickerHighlightConfig>
+  /**
+   * The label of the input.
+   */
+  label: string
+  /**
+   * Set datepicker locale: to extract month and weekday names.
+   */
+  locale?: string
+  /**
+   * Add markers to the specified dates with (optional) tooltips. For color options, you can use any css valid color.
+   */
+  markers?: DatePickerMarker[]
+  /**
+   * Allow selecting multiple single dates. When changing time, the latest selected date is affected.
+   */
+  multiple?: boolean
+  /**
+   * Placeholder of the input.
+   */
+  placeholder?: string
+  /**
+   * The tooltip of the input.
+   */
+  tooltip?: string
+}>(), {
+  hasClearButton: false,
+  isDisabled: false,
+  isRequired: false,
+  isTouched: false,
+  allowTextInput: false,
+  disableAutoApply: false,
+  disableMonthYearPickers: false,
+  enableTimePicker: false,
+  locale: 'nl',
+  mode: 'date',
+  multiple: false,
+})
 
-const model = defineModel<CalendarDate | null>({
+const model = defineModel<Date | null>({
   required: true,
 })
 
@@ -59,7 +113,7 @@ const { classAttr, otherAttrs } = useComponentAttrs()
 
 <template>
   <FormElement
-    v-slot="{ isInvalid, id }"
+    v-slot="{ isInvalid }"
     :tooltip="props.tooltip"
     :class="classAttr"
     :errors="props.errors"
@@ -69,13 +123,25 @@ const { classAttr, otherAttrs } = useComponentAttrs()
     :label="props.label"
   >
     <AppDatePicker
-      :id="id"
       v-model="model"
       v-bind="otherAttrs"
-      :min-date="props.minDate"
-      :max-date="props.maxDate"
+      :auto-apply="!props.disableAutoApply"
+      :clearable="props.hasClearButton"
+      :disabled="props.isDisabled"
+      :disabled-dates="props.disabledDates"
+      :disable-month-year-select="props.disableMonthYearPickers"
+      :enable-time-picker="props.enableTimePicker"
+      :flow="props.flow"
+      :highlight="props.highlightConfig"
       :is-invalid="isInvalid"
-      :is-disabled="props.isDisabled"
+      :locale="props.locale"
+      :min-date="props.minDate"
+      :markers="props.markers"
+      :max-date="props.maxDate"
+      :multi-dates="props.multiple"
+      :partial-flow="!props.disableAutoApply"
+      :placeholder="props.placeholder"
+      :text-input="props.allowTextInput"
     />
   </FormElement>
 </template>

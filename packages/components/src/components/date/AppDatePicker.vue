@@ -27,6 +27,14 @@ const props = withDefaults(defineProps<{
    */
   isDisabled?: boolean
   /**
+   * Set an invalid state to the input.
+   */
+  isInvalid?: boolean
+  /**
+   * Sets the input in readonly state.
+   */
+  isReadonly?: boolean
+  /**
    * When true, will try to parse the date from the user input.
    */
   allowTextInput?: boolean
@@ -71,13 +79,10 @@ const props = withDefaults(defineProps<{
    * Placeholder of the input.
    */
   placeholder?: string
-  /**
-   * Sets the input in readonly state.
-   */
-  readonly?: boolean
 }>(), {
   hasClearButton: false,
   isDisabled: false,
+  isInvalid: false,
   allowTextInput: false,
   disableAutoApply: false,
   disableMonthYearPickers: false,
@@ -103,6 +108,7 @@ const modelValue = defineModel<Date | null>({
     :enable-time-picker="props.enableTimePicker"
     :flow="props.flow"
     :highlight="props.highlightConfig"
+    :invalid="props.isInvalid"
     :locale="props.locale"
     :min-date="props.minDate"
     :markers="props.markers"
@@ -110,7 +116,7 @@ const modelValue = defineModel<Date | null>({
     :multi-dates="props.multiple"
     :partial-flow="!props.disableAutoApply"
     :placeholder="props.placeholder"
-    :readonly="props.readonly"
+    :readonly="props.isReadonly"
     :text-input="props.allowTextInput"
   />
 </template>
