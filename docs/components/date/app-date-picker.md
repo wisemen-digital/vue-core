@@ -4,26 +4,72 @@ sidebar: auto
 
 
 # AppDatePicker
-<script setup>
-import AppDatePickerPlayground from './AppDatePickerPlayground.vue'
-</script>
 
-<AppDatePickerPlayground />
-
-## Props
-
-| Prop        | Type                         | Description                                               | Default     |
-|-------------|------------------------------|-----------------------------------------------------------|-------------|
-| id          | `string \| null`             | The id of the date picker                                 | `null`      |
-| isDisabled  | `boolean`                    | Whether the date picker is disabled.                      | `false`     |
-| isInvalid   | `boolean`                    | Whether the date picker is in an invalid state.           | `false`     |
-| minDate     | `CalendarDate \| null`       | The minimum date that you can select.                     | `undefined` |
-| maxDate     | `CalendarDate \| null`       | The maximum date the you can select.                      | `undefined` |
+<!-- @include: ./app-date-picker-meta.md -->
 
 ## Types
+::: code-group
+```ts [DatePickerHighlightConfig]
+export interface DatePickerHighlightConfig {
+  dates: Date[]
+  months: { month: number, year: number }[]
+  options: { highlightDisabled: boolean }
+  quarters: { quarter: number, year: number }[]
+  weekdays: number[]
+  years: number[]
+}
+```
+```ts [DatePickerMarker]
+export interface DatePickerMarker {
+  color?: string
+  // el is a HTML element of a calendar cell
+  customPosition?: (el: HTMLElement) => Record<string, number | string>
+  date: Date | string
+  tooltip?: { color?: string, text: string }[]
+  type?: 'dot' | 'line'
+}
+```
+:::
 
-## Slots
 
 ## Code
+
+::: code-group
+```vue [Usage]
+<script setup lang="ts">
+import type {
+  DatePickerHighlightConfig,
+  DatePickerMarker,
+} from '@wisemen/vue-core'
+import { AppDatePicker } from '@wisemen/vue-core'
+
+const today = new Date()
+
+const model = ref<Date | null>(new Date())
+
+const highlighted: Partial<DatePickerHighlightConfig> = {
+  dates: [
+    new Date(today.setDate(today.getDate() + 1)),
+  ],
+}
+
+const markers: DatePickerMarker[] = [
+  {
+    date: new Date(today.setDate(today.getDate() + 3)),
+    type: 'dot',
+    color: 'lightblue',
+  },
+]
+</script>
+  
+<template>
+  <AppDatePicker
+    v-model="model"
+    :highlight-config="highlighted"
+    :markers="markers"
+  />
+</template>
+```
+:::
 
 For full source code, see [Github](https://github.com/wisemen-digital/vue-core/blob/main/packages/components/src/components/date/AppDatePicker.vue).

@@ -1,43 +1,81 @@
 <script setup lang="ts">
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols'
-import type { CalendarDate } from '@internationalized/date'
+import type {
+  DatePickerHighlightConfig,
+  DatePickerMarker,
+} from '@wisemen/vue-core'
 import {
   AppDatePicker,
   AppText,
 } from '@wisemen/vue-core'
 import { ref } from 'vue'
-import { useI18n } from 'vue-i18n'
 
 const controls = createControls({
-  id: {
-    default: 'input-id',
+  placeholder: {
+    default: 'Choose a date',
+    label: 'Placeholder',
     cols: 2,
-    label: 'Id',
     type: 'text',
   },
-  minDate: {
-    default: null,
-    label: 'Min date',
-    type: 'date',
+  enableTimePicker: {
+    default: false,
+    label: 'Enable time picker',
+    type: 'switch',
   },
-  maxDate: {
-    default: null,
-    label: 'Max date',
-    type: 'date',
+  multiple: {
+    default: false,
+    label: 'Choose multiple dates',
+    type: 'switch',
+  },
+  hasClearButton: {
+    default: false,
+    label: 'Has clear button',
+    type: 'switch',
+  },
+  allowTextInput: {
+    default: false,
+    label: 'Allow text input',
+    type: 'switch',
+  },
+  disableAutoApply: {
+    default: false,
+    label: 'Disable auto apply',
+    type: 'switch',
   },
   isDisabled: {
     default: false,
     label: 'Is disabled',
     type: 'switch',
   },
+  readonly: {
+    default: false,
+    label: 'Is readonly',
+    type: 'switch',
+  },
 })
+const today = new Date()
 
-const model = ref<CalendarDate | null>(null)
+const model = ref<Date | null>(new Date())
 
-const { locale } = useI18n()
+const highlighted: Partial<DatePickerHighlightConfig> = {
+  dates: [
+    new Date(today.setDate(today.getDate() + 1)),
+  ],
+}
 
-locale.value = 'nl'
+const markers: DatePickerMarker[] = [
+  {
+    date: new Date(today.setDate(today.getDate() + 3)),
+    type: 'dot',
+    color: 'lightblue',
+    tooltip: [
+      {
+        text: 'This is a tooltip',
+      },
+    ],
+  },
+]
 </script>
 
 <template>
@@ -45,14 +83,16 @@ locale.value = 'nl'
     :controls="controls"
   >
     <template #default="{ values }">
-      <div>
+      <div class="max-w-64">
         <AppDatePicker
           v-model="model"
+          :highlight-config="highlighted"
+          :markers="markers"
           v-bind="values"
         />
 
         <AppText variant="caption">
-          {{ `Model value: ${model?.toString()}` }}
+          {{ `Model value: ${model ? model?.toString() : "null"}` }}
         </AppText>
       </div>
     </template>

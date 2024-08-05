@@ -1,200 +1,97 @@
 <script setup lang="ts">
-import { CalendarDate } from '@internationalized/date'
-import {
-  DatePickerRoot,
-  useId,
-} from 'radix-vue'
-import {
-  computed,
-  ref,
-} from 'vue'
-import { useI18n } from 'vue-i18n'
+import '@vuepic/vue-datepicker/dist/main.css'
 
-import AppDateCalendarPickerContent from '@/components/date/AppDateCalendarPickerContent.vue'
-import AppDateMonthPickerContent from '@/components/date/AppDateMonthPickerContent.vue'
-import AppDatePickerField from '@/components/date/AppDatePickerField.vue'
-import AppDateYearPickerContent from '@/components/date/AppDateYearPickerContent.vue'
+import VueDatePicker from '@vuepic/vue-datepicker'
+
+import type {
+  DatePickerHighlightConfig,
+  DatePickerMarker,
+} from '@/types/datePickerConfig.type.ts'
 
 const props = withDefaults(defineProps<{
   /**
-   * The id of the input.
-   * @default null
+   * Add a clear icon to the input field where you can set the value to null.
    */
-  id?: null | string
+  hasClearButton?: boolean
   /**
-   * The max date.
-   * @default null
-   */
-  maxDate?: CalendarDate | null
-  /**
-   * The min date.
-   * @default null
-   */
-  minDate?: CalendarDate | null
-  /**
-   * Whether the input is disabled.
-   * @default false
+   * Disables the input.
    */
   isDisabled?: boolean
   /**
-   * Whether the input is invalid.
-   * @default false
+   * When true, will try to parse the date from the user input.
    */
-  isInvalid?: boolean
+  allowTextInput?: boolean
   /**
-   * The modelValue of the date picker.
-   * @default null
+   * If false, clicking on a date value will not automatically select the value
    */
-  modelValue: CalendarDate | null
+  disableAutoApply?: boolean
+  /**
+   * Whether the time picker is also enabled or not.
+   */
+  enableTimePicker?: boolean
+  /**
+   * Define the selecting order. Position in the array will specify the execution step.
+   * @default []
+   */
+  flow?: ('calendar' | 'hours' | 'minutes' | 'month' | 'seconds' | 'time' | 'year')[]
+  /**
+   * Define the selecting order. Position in the array will specify the execution step.
+   * @default []
+   */
+  hideNavigation?: ('calendar' | 'hours' | 'minutes' | 'month' | 'seconds' | 'time' | 'year')[]
+  /**
+   * Specify highlighted dates
+   */
+  highlightConfig?: Partial<DatePickerHighlightConfig>
+  /**
+   * Add markers to the specified dates with (optional) tooltips. For color options, you can use any css valid color.
+   */
+  markers?: DatePickerMarker[]
+  /**
+   * Allow selecting multiple single dates. When changing time, the latest selected date is affected.
+   */
+  multiple?: boolean
+  /**
+   * Placeholder of the input.
+   */
+  placeholder?: string
+  /**
+   * Sets the input in readonly state.
+   */
+  readonly?: boolean
 }>(), {
-  id: null,
-  maxDate: null,
-  minDate: null,
+  hasClearButton: false,
   isDisabled: false,
-  isInvalid: false,
-  isLoading: false,
-  iconLeft: undefined,
-  iconRight: undefined,
-  placeholder: null,
-  type: 'text',
+  allowTextInput: false,
+  disableAutoApply: false,
+  enableTimePicker: false,
+  mode: 'date',
+  multiple: false,
 })
 
-const emit = defineEmits<{
-  'blur': []
-  'update:modelValue': [CalendarDate | null]
-}>()
-
-const model = computed<CalendarDate | undefined>({
-  get: () => {
-    const value = props.modelValue
-
-    return value === null ? undefined : value
-  },
-  set: (value: CalendarDate | undefined) => {
-    if (value === undefined) {
-      return null
-    }
-
-    if (props.minDate !== null && value.compare(props.minDate) < 0) {
-      return emit('update:modelValue', props.minDate)
-    }
-
-    if (props.maxDate !== null && value.compare(props.maxDate) > 0) {
-      return emit('update:modelValue', props.maxDate)
-    }
-
-    return emit('update:modelValue', value)
-  },
+const modelValue = defineModel<Date | null>({
+  required: true,
 })
-
-const { locale } = useI18n()
-
-const id = props.id ?? useId()
-
-const minDate = computed<CalendarDate | undefined>(() => {
-  if (props.minDate === null) {
-    return undefined
-  }
-
-  return props.minDate
-})
-
-const maxDate = computed<CalendarDate | undefined>(() => {
-  if (props.maxDate === null) {
-    return undefined
-  }
-
-  return props.maxDate
-})
-
-function onBlur(): void {
-  emit('blur')
-}
-
-const isYearPickerVisible = ref<boolean>(false)
-const isMonthPickerVisible = ref<boolean>(false)
-
-function onShowYearPickerButtonClick(): void {
-  isYearPickerVisible.value = true
-  isMonthPickerVisible.value = false
-}
-
-function onShowMonthPickerButtonClick(): void {
-  isMonthPickerVisible.value = true
-  isYearPickerVisible.value = false
-}
-
-function onMonthSelect(month: number, year: number): void {
-  model.value = new CalendarDate(year ?? new Date().getFullYear(), month, model.value?.day ?? new Date().getDate())
-
-  isMonthPickerVisible.value = false
-}
-
-function onTriggerClick(): void {
-  if (props.isDisabled) {
-    return
-  }
-
-  isYearPickerVisible.value = false
-  isMonthPickerVisible.value = false
-}
-
-function onYearSelect(number: number): void {
-  if (model.value === undefined) {
-    model.value = new CalendarDate(number, new Date().getMonth() + 1, 1)
-  }
-  else {
-    model.value?.set({
-      day: model.value?.day ?? new Date().getDate(),
-      month: model.value?.month ?? new Date().getMonth(),
-      year: number,
-    })
-  }
-
-  isYearPickerVisible.value = false
-  isMonthPickerVisible.value = true
-}
 </script>
 
 <template>
-  <div class="flex w-full flex-col gap-2">
-    <DatePickerRoot
-      :id="id"
-      v-model="model"
-      :fixed-weeks="true"
-      :min-value="minDate"
-      :max-value="maxDate"
-      :locale="locale"
-      :disabled="props.isDisabled"
-    >
-      <AppDatePickerField
-        :is-invalid="props.isInvalid"
-        type="date"
-        @date-click="onTriggerClick"
-        @blur="onBlur"
-      />
-
-      <AppDateCalendarPickerContent
-        v-if="!isMonthPickerVisible && !isYearPickerVisible"
-        @month-click="onShowMonthPickerButtonClick"
-        @blur="onBlur"
-        @year-click="onShowYearPickerButtonClick"
-      />
-      <AppDateMonthPickerContent
-        v-if="isMonthPickerVisible"
-        @month-click="onMonthSelect"
-        @year-click="onShowYearPickerButtonClick"
-      />
-      <AppDateYearPickerContent
-        v-if="isYearPickerVisible"
-        @year-click="onYearSelect"
-      />
-    </DatePickerRoot>
-  </div>
+  <VueDatePicker
+    v-model="modelValue"
+    :text-input="props.allowTextInput"
+    :flow="props.flow"
+    :clearable="props.hasClearButton"
+    :auto-apply="!props.disableAutoApply"
+    :partial-flow="!props.disableAutoApply"
+    :placeholder="props.placeholder"
+    :markers="props.markers"
+    :highlight="props.highlightConfig"
+    :readonly="props.readonly"
+    :disabled="props.isDisabled"
+    :multi-dates="props.multiple"
+    :hide-navigation="props.hideNavigation"
+    :enable-time-picker="props.enableTimePicker"
+  />
 </template>
 
 <style>
-[data-radix-popper-content-wrapper] {
-  @apply !z-popover;
-}
 </style>
