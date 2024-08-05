@@ -70,3 +70,7 @@
 .dp__theme_light[invalid='true'] input {
   @apply border-destructive [&:has(:focus-visible)]:border-input-border [&:has(:focus-visible)]:ring-destructive;
 }
+
+.dp__theme_light .dp__overlay_cell.dp__overlay_cell_disabled {
+  @apply text-muted-foreground;
+}

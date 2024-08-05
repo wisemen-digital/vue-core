@@ -39,6 +39,11 @@ export { default as FormCombobox } from './components/combobox/FormCombobox.vue'
 export { default as FormMultiCombobox } from './components/combobox/FormMultiCombobox.vue'
 export { default as FormTagsCombobox } from './components/combobox/FormTagsCombobox.vue'
 
+// Date
+export { default as AppDatePicker } from './components/date/AppDatePicker.vue'
+export { default as FormDatePicker } from './components/date/FormDatePicker.vue'
+export { default as AppMonthPicker } from './components/date/month/AppMonthPicker.vue'
+
 // Dialog
 export { default as AppDialog } from './components/dialog/AppDialog.vue'
 export { default as AppDialogCloseButton } from './components/dialog/AppDialogCloseButton.vue'
@@ -91,11 +96,6 @@ export { default as AppPaginationRoot } from './components/pagination/AppPaginat
 
 // Popover
 export { default as AppPopover } from './components/popover/AppPopover.vue'
-
-// Date
-export { default as AppDatePicker } from './components/date/AppDatePicker.vue'
-export { default as FormDatePicker } from './components/date/FormDatePicker.vue'
-// export { default as AppMonthPicker } from './components/date/month/AppMonthPicker.vue'
 
 // Radio group
 export { default as FormRadioGroup } from './components/radio-group/FormRadioGroup.vue'
@@ -162,6 +162,7 @@ export type { Accordion } from './types/accordionItem.type'
 export type { BreadcrumbItem } from './types/breadcrumbItem.type'
 export type { ComboboxItem } from './types/comboboxItem.type'
 export type { DataItem } from './types/dataItem.type'
+export type { MonthPickerValue } from './types/date.type'
 export type { DatePickerHighlightConfig, DatePickerMarker } from './types/datePickerConfig.type'
 export type { DropdownMenuItem } from './types/dropdownMenuItem.type'
 export type { FormFieldErrors } from './types/formFieldErrors.type'
