@@ -3,18 +3,24 @@ import { tv } from '@/libs/twVariants.lib'
 
 export const useBadgeStyle = tv({
   defaultVariants: {
-    rounded: false,
+    rounded: 'default',
   },
   slots: {
     badge: '',
   },
   variants: {
     rounded: {
-      false: {
+      default: {
         badge: 'rounded-md',
       },
-      true: {
+      full: {
         badge: 'rounded-full',
+      },
+      lg: {
+        badge: 'rounded-lg',
+      },
+      sm: {
+        badge: 'rounded-sm',
       },
     },
     unstyled: {

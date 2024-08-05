@@ -24,10 +24,17 @@ const controls = createControls({
     ],
     type: 'select',
   },
-  isFullyRounded: {
-    default: false,
-    label: 'Is fully rounded?',
-    type: 'switch',
+  rounded: {
+    default: 'default',
+    cols: 2,
+    label: 'Rounded variant',
+    items: [
+      'default',
+      'sm',
+      'lg',
+      'full',
+    ],
+    type: 'select',
   },
   isUnstyled: {
     default: false,

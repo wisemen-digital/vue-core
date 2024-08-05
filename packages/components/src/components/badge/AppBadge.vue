@@ -8,21 +8,21 @@ import AppText from '@/components/text/AppText.vue'
 const props = withDefaults(
   defineProps<{
     /**
-     * Set true to make the badge 'rounded-full'.
-     */
-    isFullyRounded?: boolean
-    /**
      * Set true to remove border, padding and shadow classes.
      */
     isUnstyled?: boolean
+    /**
+     * Badge rounded borders variant.
+     */
+    rounded?: BadgeStyleProps['rounded']
     /**
      * Badge style variant.
      */
     variant?: BadgeStyleProps['variant']
   }>(),
   {
-    isFullyRounded: false,
     isUnstyled: false,
+    rounded: 'default',
     variant: 'default',
   },
 )
@@ -34,7 +34,7 @@ defineSlots<{
 
 const badgeStyle = useBadgeStyle()
 const badgeClasses = computed<string>(() => badgeStyle.badge({
-  rounded: props.isFullyRounded,
+  rounded: props.rounded,
   unstyled: props.isUnstyled,
   variant: props.variant,
 }))

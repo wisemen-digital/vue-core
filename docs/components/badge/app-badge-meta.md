@@ -10,8 +10,8 @@ import AppBadgePlayground from './AppBadgePlayground.vue'
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| isFullyRounded | `boolean` | Set true to make the badge 'rounded-full'. | `false` |
 | isUnstyled | `boolean` | Set true to remove border, padding and shadow classes. | `false` |
+| rounded | `"default" \| "sm" \| "lg" \| "full"` | Badge rounded borders variant. | `"default"` |
 | variant | `"default" \| "secondary" \| "destructive" \| "primary" \| "success" \| "warning"` | Badge style variant. | `"default"` |
 
 
