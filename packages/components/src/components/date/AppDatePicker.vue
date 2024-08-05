@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import '@vuepic/vue-datepicker/dist/main.css'
+import '@/components/date/style.css'
 
 import VueDatePicker from '@vuepic/vue-datepicker'
 
@@ -22,7 +23,7 @@ const props = withDefaults(defineProps<{
    */
   allowTextInput?: boolean
   /**
-   * If false, clicking on a date value will not automatically select the value
+   * If false, clicking on a date value will not automatically select the value.
    */
   disableAutoApply?: boolean
   /**
@@ -40,9 +41,13 @@ const props = withDefaults(defineProps<{
    */
   hideNavigation?: ('calendar' | 'hours' | 'minutes' | 'month' | 'seconds' | 'time' | 'year')[]
   /**
-   * Specify highlighted dates
+   * Specify highlighted dates.
    */
   highlightConfig?: Partial<DatePickerHighlightConfig>
+  /**
+   * Set datepicker locale: to extract month and weekday names.
+   */
+  locale?: string
   /**
    * Add markers to the specified dates with (optional) tooltips. For color options, you can use any css valid color.
    */
@@ -65,6 +70,7 @@ const props = withDefaults(defineProps<{
   allowTextInput: false,
   disableAutoApply: false,
   enableTimePicker: false,
+  locale: 'nl',
   mode: 'date',
   multiple: false,
 })
@@ -90,6 +96,7 @@ const modelValue = defineModel<Date | null>({
     :multi-dates="props.multiple"
     :hide-navigation="props.hideNavigation"
     :enable-time-picker="props.enableTimePicker"
+    :locale="props.locale"
   />
 </template>
 

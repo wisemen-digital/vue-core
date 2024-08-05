@@ -1,0 +1,68 @@
+:root {
+  --dp-border-radius: 0.5rem;
+  --dp-cell-border-radius: 40rem;
+  --dp-font-size: 0.875rem;
+  --dp-preview-font-size: 0.75rem;
+  --dp-time-font-size: 0.75rem;
+  --dp-animation-duration: 0.2s;
+}
+
+.dp__theme_light {
+  --dp-background-color: rgba(var(--background));
+  --dp-text-color: rgba(var(--foreground));
+  --dp-hover-text-color: rgba(var(--foreground));
+  --dp-hover-color: rgba(var(--primary), 0.05);
+  --dp-hover-icon-color: rgba(var(--muted-foreground));
+  --dp-primary-color: rgba(var(--primary));
+  --dp-primary-disabled-color: rgba(var(--primary), 0.3);
+  --dp-secondary-color: rgba(var(--muted));
+  --dp-border-color: rgba(var(--input-border));
+  --dp-menu-border-color: transparent;
+  --dp-border-color-hover: rgba(var(--input-border));
+  --dp-border-color-focus: rgba(var(--input-border));
+  --dp-icon-color: rgba(var(--muted-foreground));
+  --dp-highlight-color: rgba(var(--primary), 0.15);
+  --dp-tooltip-color: rgba(var(--background));
+}
+
+.dark {
+  .dp__theme_light {
+    --dp-highlight-color: rgba(var(--primary), 0.4);
+    --dp-hover-color: rgba(var(--muted-foreground), 0.25);
+  }
+}
+
+.dp__theme_light .dp__button .dp__icon,
+.dp__theme_light .dp--arrow-btn-nav .dp__icon {
+  @apply stroke-transparent
+}
+
+.dp__theme_light .dp--arrow-btn-nav .dp__inner_nav:hover {
+  @apply bg-transparent
+}
+
+.dp__theme_light .dp__calendar_header_item {
+  @apply uppercase rounded-md text-xs text-primary font-normal pt-2.5 leading-[unset];
+}
+
+.dp__theme_light .dp__menu {
+  @apply rounded-xl shadow-md;
+}
+
+.dp__theme_light .dp__calendar_header_separator {
+  @apply hidden;
+}
+
+.dp__theme_light .dp__today.dp__active_date:before {
+  content: "";
+  @apply bg-background/60;
+}
+
+.dp__theme_light .dp__today:before {
+  content: "";
+  @apply rounded-full absolute top-1.5 size-1 bg-primary;
+}
+
+.dp__theme_light .dp__today {
+  @apply border-none;
+}
