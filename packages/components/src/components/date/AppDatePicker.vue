@@ -11,6 +11,14 @@ import type {
 
 const props = withDefaults(defineProps<{
   /**
+   * All dates after the given date will be disabled.
+   */
+  maxDate?: Date | string
+  /**
+   * All dates before the given date will be disabled.
+   */
+  minDate?: Date | string
+  /**
    * Add a clear icon to the input field where you can set the value to null.
    */
   hasClearButton?: boolean
@@ -27,6 +35,14 @@ const props = withDefaults(defineProps<{
    */
   disableAutoApply?: boolean
   /**
+   * If true, removes the month and year picker.
+   */
+  disableMonthYearPickers?: boolean
+  /**
+   * Disable specific dates.
+   */
+  disabledDates?: ((date: Date) => boolean) | Date[] | string[]
+  /**
    * Whether the time picker is also enabled or not.
    */
   enableTimePicker?: boolean
@@ -35,11 +51,6 @@ const props = withDefaults(defineProps<{
    * @default []
    */
   flow?: ('calendar' | 'hours' | 'minutes' | 'month' | 'seconds' | 'time' | 'year')[]
-  /**
-   * Define the selecting order. Position in the array will specify the execution step.
-   * @default []
-   */
-  hideNavigation?: ('calendar' | 'hours' | 'minutes' | 'month' | 'seconds' | 'time' | 'year')[]
   /**
    * Specify highlighted dates.
    */
@@ -69,6 +80,7 @@ const props = withDefaults(defineProps<{
   isDisabled: false,
   allowTextInput: false,
   disableAutoApply: false,
+  disableMonthYearPickers: false,
   enableTimePicker: false,
   locale: 'nl',
   mode: 'date',
@@ -83,20 +95,23 @@ const modelValue = defineModel<Date | null>({
 <template>
   <VueDatePicker
     v-model="modelValue"
-    :text-input="props.allowTextInput"
-    :flow="props.flow"
-    :clearable="props.hasClearButton"
     :auto-apply="!props.disableAutoApply"
+    :clearable="props.hasClearButton"
+    :disabled="props.isDisabled"
+    :disabled-dates="props.disabledDates"
+    :disable-month-year-select="props.disableMonthYearPickers"
+    :enable-time-picker="props.enableTimePicker"
+    :flow="props.flow"
+    :highlight="props.highlightConfig"
+    :locale="props.locale"
+    :min-date="props.minDate"
+    :markers="props.markers"
+    :max-date="props.maxDate"
+    :multi-dates="props.multiple"
     :partial-flow="!props.disableAutoApply"
     :placeholder="props.placeholder"
-    :markers="props.markers"
-    :highlight="props.highlightConfig"
     :readonly="props.readonly"
-    :disabled="props.isDisabled"
-    :multi-dates="props.multiple"
-    :hide-navigation="props.hideNavigation"
-    :enable-time-picker="props.enableTimePicker"
-    :locale="props.locale"
+    :text-input="props.allowTextInput"
   />
 </template>
 

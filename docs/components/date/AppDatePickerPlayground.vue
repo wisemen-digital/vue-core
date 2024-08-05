@@ -23,6 +23,11 @@ const controls = createControls({
     label: 'Enable time picker',
     type: 'switch',
   },
+  disableMonthYearPickers: {
+    default: false,
+    label: 'Disable moth and year pickers',
+    type: 'switch',
+  },
   multiple: {
     default: false,
     label: 'Choose multiple dates',
@@ -54,19 +59,19 @@ const controls = createControls({
     type: 'switch',
   },
 })
-const today = new Date()
+const date = new Date()
 
 const model = ref<Date | null>(new Date())
 
 const highlighted: Partial<DatePickerHighlightConfig> = {
   dates: [
-    new Date(today.setDate(today.getDate() + 1)),
+    new Date(date.setDate(date.getDate() + 1)),
   ],
 }
 
 const markers: DatePickerMarker[] = [
   {
-    date: new Date(today.setDate(today.getDate() + 3)),
+    date: new Date(date.setDate(date.getDate() + 2)),
     type: 'dot',
     color: 'lightblue',
     tooltip: [
@@ -75,6 +80,10 @@ const markers: DatePickerMarker[] = [
       },
     ],
   },
+]
+
+const disabled: Date[] = [
+  new Date(date.setDate(date.getDate() + 2)),
 ]
 </script>
 
@@ -88,6 +97,7 @@ const markers: DatePickerMarker[] = [
           v-model="model"
           :highlight-config="highlighted"
           :markers="markers"
+          :disabled-dates="disabled"
           v-bind="values"
         />
 

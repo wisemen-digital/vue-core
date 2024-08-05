@@ -15,7 +15,7 @@
   --dp-hover-icon-color: rgba(var(--muted-foreground));
   --dp-primary-color: rgba(var(--primary));
   --dp-primary-disabled-color: rgba(var(--primary), 0.3);
-  --dp-secondary-color: rgba(var(--muted));
+  --dp-secondary-color: rgba(var(--muted-foreground), 0.5);
   --dp-border-color: rgba(var(--input-border));
   --dp-menu-border-color: transparent;
   --dp-border-color-hover: rgba(var(--input-border));
