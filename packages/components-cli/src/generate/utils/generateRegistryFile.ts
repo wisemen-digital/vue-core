@@ -43,18 +43,28 @@ export function isFile(file: ComponentFile): boolean {
 export function getAllFilesWithingFolder(folder: string): ComponentFile[] {
   const files = fs.readdirSync(folder).reduce((handledFiles, file) => {
     const componentPath = path.join(folder, file)
+    const files = []
 
     if (fs.statSync(componentPath).isDirectory()) {
-      return getAllFilesWithingFolder(componentPath)
+      const directoryFiles = getAllFilesWithingFolder(componentPath)
+
+      files.push(...directoryFiles)
+
+      return [
+        ...directoryFiles,
+        ...handledFiles,
+      ]
     }
 
-    return [
+    const allFiles = [
       ...handledFiles,
       {
         type: ComponentType.COMPONENTS,
         path: componentPath,
       },
     ]
+
+    return allFiles
   }, [] as ComponentFile[])
 
   return files
