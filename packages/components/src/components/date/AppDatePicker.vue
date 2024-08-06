@@ -2,12 +2,17 @@
 import '@vuepic/vue-datepicker/dist/main.css'
 import '@/components/date/style.css'
 
+import type { DatePickerInstance } from '@vuepic/vue-datepicker'
 import VueDatePicker from '@vuepic/vue-datepicker'
+import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import type {
   DatePickerHighlightConfig,
   DatePickerMarker,
 } from '@/types/datePickerConfig.type'
+
+import DatePickerActions from './DatePickerActions.vue'
 
 const props = withDefaults(defineProps<{
   /**
@@ -103,14 +108,26 @@ const props = withDefaults(defineProps<{
   multiple: false,
 })
 
+const { t } = useI18n()
+
 const modelValue = defineModel<Date | null>({
   required: true,
 })
+const dp = ref<DatePickerInstance | null>(null)
+
+function selectDate(): void {
+  dp.value?.selectDate()
+}
+
+function closeMenu(): void {
+  dp.value?.closeMenu()
+}
 </script>
 
 <template>
   <VueDatePicker
     :id="props.id ?? undefined"
+    ref="dp"
     v-model="modelValue"
     :auto-apply="enableAutoApply"
     :clearable="props.hasClearButton"
@@ -131,7 +148,21 @@ const modelValue = defineModel<Date | null>({
     :placeholder="props.placeholder"
     :readonly="props.isReadonly"
     :text-input="props.allowTextInput"
-  />
+  >
+    <template #action-buttons>
+      <DatePickerActions
+        @cancel="closeMenu"
+        @select="selectDate"
+      >
+        <template #cancel-text>
+          {{ t('components.calendar.cancel') }}
+        </template>
+        <template #select-text>
+          {{ t('components.calendar.select') }}
+        </template>
+      </DatePickerActions>
+    </template>
+  </VueDatePicker>
 </template>
 
 <style>

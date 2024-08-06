@@ -34,6 +34,10 @@ export const i18nPlugin = createI18n({
           previous: 'Previous',
           results_might_be_hidden_because_of_active_filters: 'Results might be hidden because of {count} active filter | Results might be hidden because of {count} active filters',
         },
+        calendar: {
+          select: 'Select',
+          cancel: 'Cancel',
+        },
       },
     },
   },
