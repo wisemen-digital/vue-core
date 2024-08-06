@@ -4,7 +4,7 @@ import {
   it,
 } from 'vitest'
 
-import { CalendarDate } from '@/objects/calendarDate.object'
+import { CalendarDate } from '@/primitives/calendar-date/calendarDate.primitive'
 
 describe('calendarDate', () => {
   it('initializes with a given date', () => {
