@@ -7,7 +7,7 @@ import VueDatePicker from '@vuepic/vue-datepicker'
 import type {
   DatePickerHighlightConfig,
   DatePickerMarker,
-} from '@/types/datePickerConfig.type.ts'
+} from '@/types/datePickerConfig.type'
 
 const props = withDefaults(defineProps<{
   /**

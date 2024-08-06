@@ -5,7 +5,7 @@ import { useComponentAttrs } from '@/composables/componentAttrs.composable'
 import type {
   DatePickerHighlightConfig,
   DatePickerMarker,
-} from '@/types/datePickerConfig.type.ts'
+} from '@/types/datePickerConfig.type'
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
 const props = withDefaults(defineProps<{
