@@ -88,7 +88,6 @@ const props = withDefaults(defineProps<{
   disableMonthYearPickers: false,
   enableTimePicker: false,
   locale: 'nl',
-  mode: 'date',
   multiple: false,
 })
 

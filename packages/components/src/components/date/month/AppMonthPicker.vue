@@ -65,7 +65,6 @@ const props = withDefaults(defineProps<{
   allowTextInput: false,
   disableAutoApply: false,
   locale: 'nl',
-  mode: 'date',
 })
 
 const modelValue = defineModel<MonthPickerValue | null>({
@@ -85,7 +84,6 @@ const modelValue = defineModel<MonthPickerValue | null>({
     :locale="props.locale"
     :min-date="props.minDate"
     :max-date="props.maxDate"
-    :partial-flow="!props.disableAutoApply"
     :placeholder="props.placeholder"
     :readonly="props.isReadonly"
     :text-input="props.allowTextInput"

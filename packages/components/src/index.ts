@@ -43,6 +43,7 @@ export { default as FormTagsCombobox } from './components/combobox/FormTagsCombo
 export { default as AppDatePicker } from './components/date/AppDatePicker.vue'
 export { default as FormDatePicker } from './components/date/FormDatePicker.vue'
 export { default as AppMonthPicker } from './components/date/month/AppMonthPicker.vue'
+export { default as FormMonthPicker } from './components/date/month/FormMonthPicker.vue'
 
 // Dialog
 export { default as AppDialog } from './components/dialog/AppDialog.vue'

@@ -22,7 +22,7 @@ import FormInputPlayground from './FormInputPlayground.vue'
 | placeholder | `string \| null` | The placeholder of the input. | `null` |
 | testId | `string` | The test id of the input. |  |
 | tooltip | `string` | The tooltip of the input. |  |
-| type | `"number" \| "search" \| "text" \| "date" \| "time" \| "datetime-local" \| "email" \| "password" \| "tel" \| "url"` | The type of the input. | `"text"` |
+| type | `"number" \| "search" \| "text" \| "time" \| "date" \| "datetime-local" \| "email" \| "password" \| "tel" \| "url"` | The type of the input. | `"text"` |
 
 
 ## Slots

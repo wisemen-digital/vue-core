@@ -1,0 +1,122 @@
+<script setup lang="ts">
+import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
+import { createControls } from '@docs/playground/utils/createContols'
+import type {
+  DatePickerHighlightConfig,
+  FormFieldErrors,
+  MonthPickerValue,
+} from '@wisemen/vue-core'
+import {
+  AppText,
+  FormDatePicker,
+} from '@wisemen/vue-core'
+import { ref } from 'vue'
+
+const controls = createControls({
+  label: {
+    default: 'Date',
+    label: 'Label',
+    cols: 2,
+    type: 'text',
+  },
+  placeholder: {
+    default: 'Choose a date',
+    label: 'Placeholder',
+    cols: 2,
+    type: 'text',
+  },
+  minDate: {
+    default: null,
+    label: 'Min date',
+    type: 'date',
+  },
+  maxDate: {
+    default: null,
+    label: 'Max date',
+    type: 'date',
+  },
+  hasClearButton: {
+    default: false,
+    label: 'Has clear button',
+    type: 'switch',
+  },
+  allowTextInput: {
+    default: false,
+    label: 'Allow text input',
+    type: 'switch',
+  },
+  disableAutoApply: {
+    default: false,
+    label: 'Disable auto apply',
+    type: 'switch',
+  },
+  isDisabled: {
+    default: false,
+    label: 'Is disabled',
+    type: 'switch',
+  },
+  isRequired: {
+    default: false,
+    label: 'Is required',
+    type: 'switch',
+  },
+  isTouched: {
+    default: false,
+    label: 'Is touched',
+    type: 'switch',
+  },
+  tooltip: {
+    default: 'This is a tooltip',
+    label: 'Tooltip',
+    type: 'text',
+    cols: 2,
+  },
+})
+const date = new Date()
+
+const model = ref<MonthPickerValue | null>({
+  month: new Date().getMonth(),
+  year: new Date().getFullYear(),
+})
+
+const highlighted: Partial<DatePickerHighlightConfig> = {
+  months: [
+    {
+      month: 0,
+      year: 2024,
+    },
+  ],
+}
+
+const disabled: Date[] = [
+  new Date(date.setMonth(date.getMonth() + 2)),
+]
+
+const exampleError: FormFieldErrors = {
+  _errors: [
+    'The date has an error',
+  ],
+}
+</script>
+
+<template>
+  <ComponentPlayground
+    :controls="controls"
+  >
+    <template #default="{ values }">
+      <div class="max-w-64">
+        <FormDatePicker
+          v-model="model"
+          :errors="exampleError"
+          :highlight-config="highlighted"
+          :disabled-dates="disabled"
+          v-bind="values"
+        />
+
+        <AppText variant="caption">
+          {{ `Model value:` }}{{ model }}
+        </AppText>
+      </div>
+    </template>
+  </ComponentPlayground>
+</template>
