@@ -10,6 +10,11 @@ import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
 const props = withDefaults(defineProps<{
   /**
+   * The test id of the input.
+   * @default undefined
+   */
+  testId?: string
+  /**
    * All dates after the given date will be disabled.
    */
   maxDate?: Date | string
@@ -113,7 +118,7 @@ const { classAttr, otherAttrs } = useComponentAttrs()
 
 <template>
   <FormElement
-    v-slot="{ isInvalid }"
+    v-slot="{ isInvalid, id }"
     :tooltip="props.tooltip"
     :class="classAttr"
     :errors="props.errors"
@@ -123,6 +128,7 @@ const { classAttr, otherAttrs } = useComponentAttrs()
     :label="props.label"
   >
     <AppDatePicker
+      :id="id"
       v-model="model"
       v-bind="otherAttrs"
       :auto-apply="!props.disableAutoApply"
@@ -141,6 +147,7 @@ const { classAttr, otherAttrs } = useComponentAttrs()
       :multi-dates="props.multiple"
       :partial-flow="!props.disableAutoApply"
       :placeholder="props.placeholder"
+      :test-id="props.testId"
       :text-input="props.allowTextInput"
     />
   </FormElement>

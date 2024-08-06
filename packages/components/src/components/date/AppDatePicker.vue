@@ -11,6 +11,16 @@ import type {
 
 const props = withDefaults(defineProps<{
   /**
+   * The id of the input.
+   * @default null
+   */
+  id?: null | string
+  /**
+   * The test id of the input.
+   * @default undefined
+   */
+  testId?: string
+  /**
    * All dates after the given date will be disabled.
    */
   maxDate?: Date | string
@@ -80,6 +90,7 @@ const props = withDefaults(defineProps<{
    */
   placeholder?: string
 }>(), {
+  id: null,
   hasClearButton: false,
   isDisabled: false,
   isInvalid: false,
@@ -99,9 +110,11 @@ const modelValue = defineModel<Date | null>({
 
 <template>
   <VueDatePicker
+    :id="props.id ?? undefined"
     v-model="modelValue"
     :auto-apply="!props.disableAutoApply"
     :clearable="props.hasClearButton"
+    :data-testid="props.testId"
     :disabled="props.isDisabled"
     :disabled-dates="props.disabledDates"
     :disable-month-year-select="props.disableMonthYearPickers"

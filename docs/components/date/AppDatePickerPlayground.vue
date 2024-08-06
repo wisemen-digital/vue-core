@@ -110,10 +110,12 @@ const disabled: Date[] = [
     <template #default="{ values }">
       <div class="max-w-64">
         <AppDatePicker
+          id="date-picker-1"
           v-model="model"
           :highlight-config="highlighted"
           :markers="markers"
           :disabled-dates="disabled"
+          test-id="date-picker-1"
           v-bind="values"
         />
 
