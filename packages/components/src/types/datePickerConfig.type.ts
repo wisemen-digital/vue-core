@@ -15,3 +15,12 @@ export interface DatePickerMarker {
   tooltip?: { color?: string, text: string }[]
   type?: 'dot' | 'line'
 }
+
+export interface DatePickerRangeConfig {
+  autoRange?: number | string
+  fixedEnd?: boolean // Should not be used in combination with fixedStart
+  fixedStart?: boolean // Should not be used in combination with fixedEnd
+  maxRange?: number | string
+  minRange?: number | string
+  noDisabledRange?: boolean // Prevents range selection if the range includes disabled dates
+}

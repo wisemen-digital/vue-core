@@ -1,0 +1,91 @@
+---
+sidebar: auto
+---
+
+
+# AppDateRangePicker
+
+<!-- @include: ./app-date-range-picker-meta.md -->
+
+## Types
+::: code-group
+```ts [DatePickerRangeConfig]
+export interface DatePickerRangeConfig {
+  autoRange?: number | string
+  fixedEnd?: boolean // Should not be used in combination with fixedStart
+  fixedStart?: boolean // Should not be used in combination with fixedEnd
+  maxRange?: number | string
+  minRange?: number | string
+  noDisabledRange?: boolean // Prevents range selection if the range includes disabled dates
+}
+```
+```ts [DatePickerHighlightConfig]
+export interface DatePickerHighlightConfig {
+  dates: Date[]
+  months: { month: number, year: number }[]
+  options: { highlightDisabled: boolean }
+  quarters: { quarter: number, year: number }[]
+  weekdays: number[]
+  years: number[]
+}
+```
+```ts [DatePickerMarker]
+export interface DatePickerMarker {
+  color?: string
+  // el is a HTML element of a calendar cell
+  customPosition?: (el: HTMLElement) => Record<string, number | string>
+  date: Date | string
+  tooltip?: { color?: string, text: string }[]
+  type?: 'dot' | 'line'
+}
+```
+:::
+
+
+## Code
+
+::: code-group
+```vue [Usage]
+<script setup lang="ts">
+import type {
+  DatePickerHighlightConfig,
+  DatePickerMarker,
+  DatePickerRangeConfig,
+} from '@wisemen/vue-core'
+import { AppDateRangePicker } from '@wisemen/vue-core'
+
+const date = new Date()
+
+const model = ref<[Date, Date] | [string, string] | null>(null)
+
+const highlighted: Partial<DatePickerHighlightConfig> = {
+  dates: [
+    new Date(date.setDate(date.getDate() + 1)),
+  ],
+}
+
+const markers: DatePickerMarker[] = [
+  {
+    date: new Date(date.setDate(date.getDate() + 3)),
+    type: 'dot',
+    color: 'lightblue',
+  },
+]
+
+const config: DatePickerRangeConfig[] = {
+  maxRange: 6,
+}
+</script>
+  
+<template>
+  <AppDateRangePicker
+    v-model="model"
+    :highlight-config="highlighted"
+    :markers="markers"
+    :range-config="config"
+  />
+</template>
+```
+:::
+
+For full source code, see [Github](https://github.com/wisemen-digital/vue-core/blob/main/packages/components/src/components/date/AppDatePicker.vue).
