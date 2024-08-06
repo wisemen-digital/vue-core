@@ -2,8 +2,7 @@
 import '@vuepic/vue-datepicker/dist/main.css'
 import '@/components/date/style.css'
 
-import VueDatePicker from '@vuepic/vue-datepicker'
-
+import AppMonthPicker from '@/components/date/month/AppMonthPicker.vue'
 import FormElement from '@/components/form-element/FormElement.vue'
 import type { MonthPickerValue } from '@/types/date.type.ts'
 import type { DatePickerHighlightConfig } from '@/types/datePickerConfig.type.ts'
@@ -94,11 +93,11 @@ const modelValue = defineModel<MonthPickerValue | null>({
     :is-disabled="props.isDisabled"
     :label="props.label"
   >
-    <VueDatePicker
+    <AppMonthPicker
       v-model="modelValue"
-      :auto-apply="!props.disableAutoApply"
-      :clearable="props.hasClearButton"
-      :disabled="props.isDisabled"
+      :disable-auto-apply="props.disableAutoApply"
+      :has-clear-button="props.hasClearButton"
+      :is-disabled="props.isDisabled"
       :disabled-dates="props.disabledDates"
       :highlight="props.highlightConfig"
       :invalid="isInvalid"
@@ -107,7 +106,6 @@ const modelValue = defineModel<MonthPickerValue | null>({
       :max-date="props.maxDate"
       :placeholder="props.placeholder"
       :text-input="props.allowTextInput"
-      month-picker
     />
   </FormElement>
 </template>
