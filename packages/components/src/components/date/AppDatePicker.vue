@@ -148,6 +148,8 @@ function closeMenu(): void {
     :placeholder="props.placeholder"
     :readonly="props.isReadonly"
     :text-input="props.allowTextInput"
+    :month-change-on-arrows="false"
+    :arrow-navigation="true"
   >
     <template #action-buttons>
       <DatePickerActions
