@@ -44,6 +44,7 @@ export const components = {
   ],
   dateRange: [
     'AppDateRangePicker',
+    'FormDateRangePicker',
   ],
   dialog: [
     'AppDialog',

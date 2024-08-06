@@ -182,6 +182,10 @@ const docs = [
         link: '/components/date-range/app-date-range-picker',
         text: 'AppDateRangePicker',
       },
+      {
+        link: '/components/date-range/form-date-range-picker',
+        text: 'FormDateRangePicker',
+      },
     ],
     text: 'DateRange',
   },

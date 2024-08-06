@@ -47,6 +47,7 @@ export { default as FormMonthPicker } from './components/date/month/FormMonthPic
 
 // Date range
 export { default as AppDateRangePicker } from './components/date-range/AppDateRangePicker.vue'
+export { default as FormDateRangePicker } from './components/date-range/FormDateRangePicker.vue'
 
 // Dialog
 export { default as AppDialog } from './components/dialog/AppDialog.vue'
