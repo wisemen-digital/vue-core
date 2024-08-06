@@ -35,13 +35,14 @@ interface AddInitCommandOptions {
 
 export const DEFAULT_CONFIG = './'
 export const DEFAULT_ROOT = './src'
-export const DEFAULT_COMPONENTS = '@/components/app'
-export const DEFAULT_UTILS = '@/utils/app'
-export const DEFAULT_COMPOSABLES = '@/composables/app'
-export const DEFAULT_LIBS = '@/libs'
-export const DEFAULT_STYLES = '@/assets/styles'
-export const DEFAULT_ICONS = '@/icons'
-export const DEFAULT_TYPES = '@/types/app'
+export const DEFAULT_ROOT_ALIAS = '@'
+export const DEFAULT_COMPONENTS = 'components/core'
+export const DEFAULT_UTILS = 'utils/core'
+export const DEFAULT_COMPOSABLES = 'composables/core'
+export const DEFAULT_LIBS = 'libs'
+export const DEFAULT_STYLES = 'assets/styles'
+export const DEFAULT_ICONS = 'icons'
+export const DEFAULT_TYPES = 'types/core'
 
 function highlight(text: string) {
   return chalk.cyan(text)
@@ -70,6 +71,12 @@ async function promptForConfig(optionsCwd: any) {
       type: 'text',
     },
     {
+      name: 'rootAlias',
+      initial: DEFAULT_ROOT_ALIAS,
+      message: `What is the alias for your root?`,
+      type: 'text',
+    },
+    {
       name: 'config',
       initial: DEFAULT_CONFIG,
       message: `Where are your ${highlight('config files')}, like tailwind.config.js located?`,
@@ -78,43 +85,43 @@ async function promptForConfig(optionsCwd: any) {
     {
       name: 'styles',
       initial: DEFAULT_STYLES,
-      message: `Configure the import alias for ${highlight('styles')}:`,
+      message: `Configure the folder from your root for ${highlight('styles')}:`,
       type: 'text',
     },
     {
       name: 'libs',
       initial: DEFAULT_LIBS,
-      message: `Configure the import alias for ${highlight('libs')}:`,
+      message: `Configure the folder from your root for ${highlight('libs')}:`,
       type: 'text',
     },
     {
       name: 'components',
       initial: DEFAULT_COMPONENTS,
-      message: `Configure the import alias for ${highlight('components')}:`,
+      message: `Configure the folder from your root for ${highlight('components')}:`,
       type: 'text',
     },
     {
       name: 'types',
       initial: DEFAULT_TYPES,
-      message: `Configure the import alias for ${highlight('types')}:`,
+      message: `Configure the folder from your root for ${highlight('types')}:`,
       type: 'text',
     },
     {
       name: 'utils',
       initial: DEFAULT_UTILS,
-      message: `Configure the import alias for ${highlight('utils')}:`,
+      message: `Configure the folder from your root for ${highlight('utils')}:`,
       type: 'text',
     },
     {
       name: 'composables',
       initial: DEFAULT_COMPOSABLES,
-      message: `Configure the import alias for ${highlight('composables')}:`,
+      message: `Configure the folder from your root for ${highlight('composables')}:`,
       type: 'text',
     },
     {
       name: 'icons',
       initial: DEFAULT_ICONS,
-      message: `Configure the import alias for ${highlight('icons')}:`,
+      message: `Configure the folder from your root for ${highlight('icons')}:`,
       type: 'text',
     },
   ])
@@ -128,6 +135,7 @@ async function promptForConfig(optionsCwd: any) {
       icons: options.icons,
       libs: options.libs,
       root: options.root,
+      rootAlias: options.rootAlias,
       styles: options.styles,
       types: options.types,
       utils: options.utils,

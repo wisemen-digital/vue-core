@@ -27,12 +27,12 @@ export function addChangesCommand({ cliConfig, program }:
 
       for (const component of installedComponents) {
         if (component == null) {
-          return
+          continue
         }
         const changes = await diffComponent(component, cliConfig)
 
         if (changes.length === 0) {
-          return
+          continue
         }
 
         noChanges = false
