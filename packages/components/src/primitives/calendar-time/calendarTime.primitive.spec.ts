@@ -4,7 +4,7 @@ import {
   it,
 } from 'vitest'
 
-import { CalendarTime } from '@/primitives/time/calendarTime.primitive'
+import { CalendarTime } from '@/primitives/calendar-time/calendarTime.primitive'
 
 describe('calendarTime', () => {
   it('initializes with a given time', () => {
