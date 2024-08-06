@@ -37,14 +37,21 @@ import type {
   DatePickerHighlightConfig,
   MonthPickerValue,
 } from '@wisemen/vue-core'
-import { AppMonthPicker } from '@wisemen/vue-core'
+import { FormMonthPicker } from '@wisemen/vue-core'
+
+
+const { form } = useForm({
+  schema: z.object({
+    date: z.object({
+      month: z.number(),
+      year: z.number(),
+    })
+  })
+})
+
+const model = form.register('date')
 
 const date = new Date()
-
-const model = ref<MonthPickerValue | null>({
-  month: new Date().getMonth(),
-  year: new Date().getFullYear(),
-})
 
 const highlighted: Partial<DatePickerHighlightConfig> = {
   months: [
@@ -60,8 +67,8 @@ const disabled: Date[] = [
 </script>
   
 <template>
-  <AppMonthPicker
-    v-model="model"
+  <FormMonthPicker
+    v-bind="model"
     :highlight-config="highlighted"
     :disabled-dates="disabled"
   />
@@ -69,4 +76,4 @@ const disabled: Date[] = [
 ```
 :::
 
-For full source code, see [Github](https://github.com/wisemen-digital/vue-core/blob/main/packages/components/src/components/date/month/AppMonthPicker.vue).
+For full source code, see [Github](https://github.com/wisemen-digital/vue-core/blob/main/packages/components/src/components/date/month/FormMonthPicker.vue).

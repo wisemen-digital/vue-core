@@ -8,7 +8,7 @@ import type {
 } from '@wisemen/vue-core'
 import {
   AppText,
-  FormDatePicker,
+  FormMonthPicker,
 } from '@wisemen/vue-core'
 import { ref } from 'vue'
 
@@ -105,7 +105,7 @@ const exampleError: FormFieldErrors = {
   >
     <template #default="{ values }">
       <div class="max-w-64">
-        <FormDatePicker
+        <FormMonthPicker
           v-model="model"
           :errors="exampleError"
           :highlight-config="highlighted"
