@@ -11,6 +11,8 @@ import {
 } from '@wisemen/vue-core'
 import { ref } from 'vue'
 
+import { DateUtil } from '../../../packages/components/src/utils/date.util'
+
 const controls = createControls({
   placeholder: {
     default: 'Choose a date',
@@ -74,19 +76,18 @@ const controls = createControls({
     type: 'switch',
   },
 })
-const date = new Date()
 
 const model = ref<Date | null>(new Date())
 
 const highlighted: Partial<DatePickerHighlightConfig> = {
   dates: [
-    new Date(date.setDate(date.getDate() + 1)),
+    DateUtil.getTomorrow(),
   ],
 }
 
 const markers: DatePickerMarker[] = [
   {
-    date: new Date(date.setDate(date.getDate() + 2)),
+    date: DateUtil.getDaysFromToday(3),
     type: 'dot',
     color: 'lightblue',
     tooltip: [
@@ -98,7 +99,7 @@ const markers: DatePickerMarker[] = [
 ]
 
 const disabled: Date[] = [
-  new Date(date.setDate(date.getDate() + 2)),
+  DateUtil.getDaysFromToday(5),
 ]
 </script>
 

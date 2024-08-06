@@ -17,6 +17,7 @@ import type {
   DatePickerMarker,
 } from '@wisemen/vue-core'
 import { FormDatePicker } from '@wisemen/vue-core'
+import { DateUtil } from '../..'
 import { useForm } from 'formango'
 import { z } from 'zod'
 
@@ -28,17 +29,15 @@ const { form } = useForm({
 
 const model = form.register('date')
 
-const date = new Date()
-
 const highlighted: Partial<DatePickerHighlightConfig> = {
   dates: [
-    new Date(date.setDate(date.getDate() + 1)),
+    DateUtil.getTomorrow(),
   ],
 }
 
 const markers: DatePickerMarker[] = [
   {
-    date: new Date(date.setDate(date.getDate() + 3)),
+    date: DateUtil.getDaysFromToday(3),
     type: 'dot',
     color: 'lightblue',
   },
