@@ -105,7 +105,7 @@ const modelValue = defineModel<MonthPickerValue | null>({
       :min-date="props.minDate"
       :max-date="props.maxDate"
       :placeholder="props.placeholder"
-      :text-input="props.allowTextInput"
+      :allow-text-input="props.allowTextInput"
     />
   </FormElement>
 </template>
