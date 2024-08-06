@@ -28,6 +28,11 @@ pnpx @wisemen/vue-core-cli add button
 pnpx @wisemen/vue-core-cli add --all
 ```
 
+#### Overwrite components
+```bash
+pnpx @wisemen/vue-core-cli add --overwrite
+```
+
 #### See installed components
 ```bash
 pnpx @wisemen/vue-core-cli installed
@@ -41,4 +46,9 @@ pnpx @wisemen/vue-core-cli changes
 #### See the specific changes made to a component compared to the registry
 ```bash
 pnpx @wisemen/vue-core-cli diff
+```
+
+#### Merge the changes from the registry into your project, using merge conflicts
+```bash
+pnpx @wisemen/vue-core-cli update
 ```
