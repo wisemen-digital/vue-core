@@ -34,6 +34,10 @@ export const i18nPlugin = createI18n({
           previous: 'Previous',
           results_might_be_hidden_because_of_active_filters: 'Results might be hidden because of {count} active filter | Results might be hidden because of {count} active filters',
         },
+        calendar: {
+          select: 'Select',
+          cancel: 'Cancel',
+        },
       },
     },
   },
@@ -54,7 +58,7 @@ const theme: typeof DefaultTheme = {
       globalThis.__VUE_PROD_DEVTOOLS__ = false
     }
 
-    ctx.app.use(i18nPlugin)
+    ctx.app.use(i18nPlugin as any)
     DefaultTheme.enhanceApp(ctx)
   },
 }

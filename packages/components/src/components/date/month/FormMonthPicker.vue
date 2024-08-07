@@ -2,14 +2,18 @@
 import '@vuepic/vue-datepicker/dist/main.css'
 import '@/components/date/style.css'
 
-import VueDatePicker from '@vuepic/vue-datepicker'
-
+import AppMonthPicker from '@/components/date/month/AppMonthPicker.vue'
 import FormElement from '@/components/form-element/FormElement.vue'
-import type { MonthPickerValue } from '@/types/date.type.ts'
-import type { DatePickerHighlightConfig } from '@/types/datePickerConfig.type.ts'
+import type { MonthPickerValue } from '@/types/date.type'
+import type { DatePickerHighlightConfig } from '@/types/datePickerConfig.type'
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
 const props = withDefaults(defineProps<{
+  /**
+   * The test id of the input.
+   * @default undefined
+   */
+  testId?: string
   /**
    * All dates after the given date will be disabled.
    */
@@ -39,13 +43,13 @@ const props = withDefaults(defineProps<{
    */
   allowTextInput?: boolean
   /**
-   * If false, clicking on a date value will not automatically select the value.
-   */
-  disableAutoApply?: boolean
-  /**
    * Disable specific dates.
    */
   disabledDates?: ((date: Date) => boolean) | Date[] | string[]
+  /**
+   * If true, clicking on a date value will automatically select the value.
+   */
+  enableAutoApply?: boolean
   /**
    * The errors associated with the input.
    */
@@ -75,7 +79,7 @@ const props = withDefaults(defineProps<{
   isDisabled: false,
   isRequired: false,
   allowTextInput: false,
-  disableAutoApply: false,
+  enableAutoApply: false,
   locale: 'nl',
 })
 
@@ -86,7 +90,7 @@ const modelValue = defineModel<MonthPickerValue | null>({
 
 <template>
   <FormElement
-    v-slot="{ isInvalid }"
+    v-slot="{ isInvalid, id }"
     :tooltip="props.tooltip"
     :errors="props.errors"
     :is-required="props.isRequired"
@@ -94,20 +98,21 @@ const modelValue = defineModel<MonthPickerValue | null>({
     :is-disabled="props.isDisabled"
     :label="props.label"
   >
-    <VueDatePicker
+    <AppMonthPicker
+      :id="id"
       v-model="modelValue"
-      :auto-apply="!props.disableAutoApply"
-      :clearable="props.hasClearButton"
-      :disabled="props.isDisabled"
+      :allow-text-input="props.allowTextInput"
       :disabled-dates="props.disabledDates"
+      :enable-auto-apply="props.enableAutoApply"
+      :has-clear-button="props.hasClearButton"
       :highlight="props.highlightConfig"
-      :invalid="isInvalid"
+      :is-disabled="props.isDisabled"
+      :is-invalid="isInvalid"
       :locale="props.locale"
       :min-date="props.minDate"
       :max-date="props.maxDate"
       :placeholder="props.placeholder"
-      :text-input="props.allowTextInput"
-      month-picker
+      :test-id="props.testId"
     />
   </FormElement>
 </template>
