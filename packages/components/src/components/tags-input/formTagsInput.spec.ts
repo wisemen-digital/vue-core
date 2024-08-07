@@ -81,11 +81,9 @@ describe('formTagsInput', () => {
   it('updates input state', async () => {
     await wrapper.find('input').setValue('tag2')
     await wrapper.find('input').trigger('keydown.enter')
-    expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([
-      [
-        'tag1',
-        'tag2',
-      ],
+    expect(wrapper.props('modelValue')).toEqual([
+      'tag1',
+      'tag2',
     ])
   })
 
