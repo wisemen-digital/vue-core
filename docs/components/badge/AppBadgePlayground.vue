@@ -10,6 +10,37 @@ const controls = createControls({
     label: 'Slot',
     type: 'text',
   },
+  variant: {
+    default: 'default',
+    cols: 2,
+    label: 'Variant',
+    items: [
+      'default',
+      'destructive',
+      'primary',
+      'secondary',
+      'success',
+      'warning',
+    ],
+    type: 'select',
+  },
+  rounded: {
+    default: 'default',
+    cols: 2,
+    label: 'Rounded variant',
+    items: [
+      'default',
+      'sm',
+      'lg',
+      'full',
+    ],
+    type: 'select',
+  },
+  isUnstyled: {
+    default: false,
+    label: 'Is unstyled?',
+    type: 'switch',
+  },
 })
 </script>
 

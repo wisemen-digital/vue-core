@@ -6,6 +6,15 @@ import AppBadgePlayground from './AppBadgePlayground.vue'
 
 <AppBadgePlayground />
 
+## Props
+
+| Prop | Type | Description | Default |
+| ---- | ---- | ----------- | ------- |
+| isUnstyled | `boolean` | Set true to remove border, padding and shadow classes. | `false` |
+| rounded | `"default" \| "sm" \| "lg" \| "full"` | Badge rounded borders variant. | `"default"` |
+| variant | `"default" \| "secondary" \| "destructive" \| "primary" \| "success" \| "warning"` | Badge style variant. | `"default"` |
+
+
 ## Slots
 
 | Slot | Type | Description |

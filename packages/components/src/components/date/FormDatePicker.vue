@@ -5,10 +5,15 @@ import { useComponentAttrs } from '@/composables/componentAttrs.composable'
 import type {
   DatePickerHighlightConfig,
   DatePickerMarker,
-} from '@/types/datePickerConfig.type.ts'
+} from '@/types/datePickerConfig.type'
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
 const props = withDefaults(defineProps<{
+  /**
+   * The test id of the input.
+   * @default undefined
+   */
+  testId?: string
   /**
    * All dates after the given date will be disabled.
    */
@@ -38,10 +43,6 @@ const props = withDefaults(defineProps<{
    */
   allowTextInput?: boolean
   /**
-   * If false, clicking on a date value will not automatically select the value.
-   */
-  disableAutoApply?: boolean
-  /**
    * If true, removes the month and year picker.
    */
   disableMonthYearPickers?: boolean
@@ -49,6 +50,10 @@ const props = withDefaults(defineProps<{
    * Disable specific dates.
    */
   disabledDates?: ((date: Date) => boolean) | Date[] | string[]
+  /**
+   * If true, clicking on a date value will automatically select the value.
+   */
+  enableAutoApply?: boolean
   /**
    * Whether the time picker is also enabled or not.
    */
@@ -96,8 +101,8 @@ const props = withDefaults(defineProps<{
   isRequired: false,
   isTouched: false,
   allowTextInput: false,
-  disableAutoApply: false,
   disableMonthYearPickers: false,
+  enableAutoApply: false,
   enableTimePicker: false,
   locale: 'nl',
   mode: 'date',
@@ -113,7 +118,7 @@ const { classAttr, otherAttrs } = useComponentAttrs()
 
 <template>
   <FormElement
-    v-slot="{ isInvalid }"
+    v-slot="{ isInvalid, id }"
     :tooltip="props.tooltip"
     :class="classAttr"
     :errors="props.errors"
@@ -123,25 +128,26 @@ const { classAttr, otherAttrs } = useComponentAttrs()
     :label="props.label"
   >
     <AppDatePicker
+      :id="id"
       v-model="model"
       v-bind="otherAttrs"
-      :auto-apply="!props.disableAutoApply"
-      :clearable="props.hasClearButton"
+      :allow-text-input="props.allowTextInput"
       :disabled="props.isDisabled"
       :disabled-dates="props.disabledDates"
-      :disable-month-year-select="props.disableMonthYearPickers"
+      :disable-month-year-pickers="props.disableMonthYearPickers"
+      :enable-auto-apply="props.enableAutoApply"
       :enable-time-picker="props.enableTimePicker"
       :flow="props.flow"
-      :highlight="props.highlightConfig"
+      :has-clear-button="props.hasClearButton"
+      :highlight-config="props.highlightConfig"
       :is-invalid="isInvalid"
       :locale="props.locale"
       :min-date="props.minDate"
       :markers="props.markers"
       :max-date="props.maxDate"
-      :multi-dates="props.multiple"
-      :partial-flow="!props.disableAutoApply"
+      :multiple="props.multiple"
       :placeholder="props.placeholder"
-      :text-input="props.allowTextInput"
+      :test-id="props.testId"
     />
   </FormElement>
 </template>

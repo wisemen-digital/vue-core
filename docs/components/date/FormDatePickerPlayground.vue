@@ -54,9 +54,9 @@ const controls = createControls({
     label: 'Allow text input',
     type: 'switch',
   },
-  disableAutoApply: {
+  enableAutoApply: {
     default: false,
-    label: 'Disable auto apply',
+    label: 'Enable auto apply',
     type: 'switch',
   },
   isDisabled: {
