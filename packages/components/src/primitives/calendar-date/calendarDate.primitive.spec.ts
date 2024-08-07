@@ -101,19 +101,19 @@ describe('calendarDate', () => {
   it('gets the day of a date', () => {
     const value = new CalendarDate(2023, 1, 1)
 
-    expect(value.day).toEqual(1)
+    expect(value.getDay()).toEqual(1)
   })
 
   it('gets the month of a date', () => {
     const value = new CalendarDate(2023, 1, 1)
 
-    expect(value.month).toEqual(1)
+    expect(value.getMonth()).toEqual(1)
   })
 
   it('gets the year of a date', () => {
     const value = new CalendarDate(2023, 1, 1)
 
-    expect(value.year).toEqual(2023)
+    expect(value.getYear()).toEqual(2023)
   })
 
   it('converts a date to a Date object', () => {

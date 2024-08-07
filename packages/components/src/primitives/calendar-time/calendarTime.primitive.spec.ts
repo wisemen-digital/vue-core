@@ -77,74 +77,18 @@ describe('calendarTime', () => {
     expect(value.toFullISOString()).toEqual('11:59:59.999')
   })
 
-  it('returns true when comparing two times with the default accuracy', () => {
+  it('returns true when comparing two times that are equal', () => {
     const value = new CalendarTime(12, 0)
     const other = new CalendarTime(12, 0)
 
     expect(value.isEqualTo(other)).toBe(true)
   })
 
-  it('returns true when comparing two times with the hour accuracy', () => {
-    const value = new CalendarTime(12, 0)
-    const other = new CalendarTime(12, 1)
-
-    expect(value.isEqualTo(other, 'hours')).toBe(true)
-  })
-
-  it('returns true when comparing two times with the minute accuracy', () => {
-    const value = new CalendarTime(12, 0, 1)
-    const other = new CalendarTime(12, 0, 2)
-
-    expect(value.isEqualTo(other, 'minutes')).toBe(true)
-  })
-
-  it('returns true when comparing two times with the second accuracy', () => {
-    const value = new CalendarTime(12, 0, 0, 1)
-    const other = new CalendarTime(12, 0, 0, 2)
-
-    expect(value.isEqualTo(other, 'seconds')).toBe(true)
-  })
-
-  it('returns true when comparing two times with the millisecond accuracy', () => {
-    const value = new CalendarTime(12, 0, 0, 1)
-    const other = new CalendarTime(12, 0, 0, 1)
-
-    expect(value.isEqualTo(other, 'milliseconds')).toBe(true)
-  })
-
-  it('returns false when comparing two different times with the default accuracy', () => {
+  it('returns false when comparing times that are different', () => {
     const value = new CalendarTime(12, 0)
     const other = new CalendarTime(12, 1)
 
     expect(value.isEqualTo(other)).toBe(false)
-  })
-
-  it('returns false when comparing two different times with the hour accuracy', () => {
-    const value = new CalendarTime(12, 0)
-    const other = new CalendarTime(13, 0)
-
-    expect(value.isEqualTo(other, 'hours')).toBe(false)
-  })
-
-  it('returns false when comparing two different times with the minute accuracy', () => {
-    const value = new CalendarTime(12, 0, 0)
-    const other = new CalendarTime(12, 1, 0)
-
-    expect(value.isEqualTo(other, 'minutes')).toBe(false)
-  })
-
-  it('returns false when comparing two different times with the second accuracy', () => {
-    const value = new CalendarTime(12, 0, 0, 0)
-    const other = new CalendarTime(12, 0, 1, 0)
-
-    expect(value.isEqualTo(other, 'seconds')).toBe(false)
-  })
-
-  it('returns false when comparing two different times with the millisecond accuracy', () => {
-    const value = new CalendarTime(12, 0, 0, 1)
-    const other = new CalendarTime(12, 0, 0, 2)
-
-    expect(value.isEqualTo(other, 'milliseconds')).toBe(false)
   })
 
   it('returns the hours of the time', () => {
@@ -156,19 +100,19 @@ describe('calendarTime', () => {
   it('returns the minutes of the time', () => {
     const value = new CalendarTime(12, 0)
 
-    expect(value.minutes).toBe(0)
+    expect(value.getMinutes()).toBe(0)
   })
 
   it('returns the seconds of the time', () => {
     const value = new CalendarTime(12, 0, 0)
 
-    expect(value.seconds).toBe(0)
+    expect(value.getSeconds()).toBe(0)
   })
 
   it('returns the milliseconds of the time', () => {
     const value = new CalendarTime(12, 0, 0, 0)
 
-    expect(value.milliseconds).toBe(0)
+    expect(value.getMilliseconds()).toBe(0)
   })
 
   it('sets the hours of the time', () => {

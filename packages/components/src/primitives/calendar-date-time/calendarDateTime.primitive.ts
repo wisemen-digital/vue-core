@@ -57,6 +57,34 @@ export class CalendarDateTime {
     }
   }
 
+  getDay(): number {
+    return this.value.getDate()
+  }
+
+  getHours(): number {
+    return this.value.getHours()
+  }
+
+  getMilliseconds(): number {
+    return this.value.getMilliseconds()
+  }
+
+  getMinutes(): number {
+    return this.value.getMinutes()
+  }
+
+  getMonth(): number {
+    return this.value.getMonth()
+  }
+
+  getSeconds(): number {
+    return this.value.getSeconds()
+  }
+
+  getYear(): number {
+    return this.value.getFullYear()
+  }
+
   isAfter(other: CalendarDateTime): boolean {
     return this.value > other.toDate()
   }
