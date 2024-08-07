@@ -2,12 +2,11 @@
 import '@vuepic/vue-datepicker/dist/main.css'
 import '@/components/date/style.css'
 
-import VueDatePicker from '@vuepic/vue-datepicker'
-
+import AppMonthPicker from '@/components/date/month/AppMonthPicker.vue'
+import FormElement from '@/components/form-element/FormElement.vue'
 import type { MonthPickerValue } from '@/types/date.type.ts'
-import type {
-  DatePickerHighlightConfig,
-} from '@/types/datePickerConfig.type.ts'
+import type { DatePickerHighlightConfig } from '@/types/datePickerConfig.type.ts'
+import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
 const props = withDefaults(defineProps<{
   /**
@@ -27,13 +26,13 @@ const props = withDefaults(defineProps<{
    */
   isDisabled?: boolean
   /**
-   * Set an invalid state to the input.
+   *  Whether the input is required.
    */
-  isInvalid?: boolean
+  isRequired?: boolean
   /**
-   * Sets the input in readonly state.
+   * Whether the input is touched.
    */
-  isReadonly?: boolean
+  isTouched: boolean
   /**
    * When true, will try to parse the date from the user input.
    */
@@ -47,9 +46,17 @@ const props = withDefaults(defineProps<{
    */
   disabledDates?: ((date: Date) => boolean) | Date[] | string[]
   /**
+   * The errors associated with the input.
+   */
+  errors: FormFieldErrors
+  /**
    * Specify highlighted dates.
    */
   highlightConfig?: Partial<DatePickerHighlightConfig>
+  /**
+   * The label of the input.
+   */
+  label: string
   /**
    * Set datepicker locale: to extract month and weekday names.
    */
@@ -58,10 +65,14 @@ const props = withDefaults(defineProps<{
    * Placeholder of the input.
    */
   placeholder?: string
+  /**
+   * The tooltip of the input.
+   */
+  tooltip?: string
 }>(), {
   hasClearButton: false,
   isDisabled: false,
-  isInvalid: false,
+  isRequired: false,
   allowTextInput: false,
   disableAutoApply: false,
   locale: 'nl',
@@ -73,22 +84,30 @@ const modelValue = defineModel<MonthPickerValue | null>({
 </script>
 
 <template>
-  <VueDatePicker
-    v-model="modelValue"
-    :auto-apply="!props.disableAutoApply"
-    :clearable="props.hasClearButton"
-    :disabled="props.isDisabled"
-    :disabled-dates="props.disabledDates"
-    :highlight="props.highlightConfig"
-    :invalid="props.isInvalid"
-    :locale="props.locale"
-    :min-date="props.minDate"
-    :max-date="props.maxDate"
-    :placeholder="props.placeholder"
-    :readonly="props.isReadonly"
-    :text-input="props.allowTextInput"
-    month-picker
-  />
+  <FormElement
+    v-slot="{ isInvalid }"
+    :tooltip="props.tooltip"
+    :errors="props.errors"
+    :is-required="props.isRequired"
+    :is-touched="props.isTouched"
+    :is-disabled="props.isDisabled"
+    :label="props.label"
+  >
+    <AppMonthPicker
+      v-model="modelValue"
+      :disable-auto-apply="props.disableAutoApply"
+      :has-clear-button="props.hasClearButton"
+      :is-disabled="props.isDisabled"
+      :disabled-dates="props.disabledDates"
+      :highlight="props.highlightConfig"
+      :invalid="isInvalid"
+      :locale="props.locale"
+      :min-date="props.minDate"
+      :max-date="props.maxDate"
+      :placeholder="props.placeholder"
+      :allow-text-input="props.allowTextInput"
+    />
+  </FormElement>
 </template>
 
 <style>

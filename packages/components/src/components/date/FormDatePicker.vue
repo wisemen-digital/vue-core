@@ -99,13 +99,11 @@ const props = withDefaults(defineProps<{
   hasClearButton: false,
   isDisabled: false,
   isRequired: false,
-  isTouched: false,
   allowTextInput: false,
   disableMonthYearPickers: false,
   enableAutoApply: false,
   enableTimePicker: false,
   locale: 'nl',
-  mode: 'date',
   multiple: false,
 })
 

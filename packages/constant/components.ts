@@ -40,6 +40,7 @@ export const components = {
     'AppDatePicker',
     'FormDatePicker',
     'AppMonthPicker',
+    'FormMonthPicker',
   ],
   dialog: [
     'AppDialog',

@@ -104,7 +104,6 @@ const props = withDefaults(defineProps<{
   enableAutoApply: false,
   enableTimePicker: false,
   locale: 'nl',
-  mode: 'date',
   multiple: false,
 })
 
