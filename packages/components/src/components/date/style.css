@@ -94,3 +94,11 @@
 .dp__theme_light[invalid='false'] .dp__input:focus-visible {
   @apply duration-200 ring-2 ring-ring;
 }
+
+.dp__theme_light .dp__range_start {
+  @apply rounded-l-full;
+}
+
+.dp__theme_light .dp__range_end {
+  @apply rounded-r-full;
+}

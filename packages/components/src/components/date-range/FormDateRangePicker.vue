@@ -13,6 +13,11 @@ import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
 const props = withDefaults(defineProps<{
   /**
+   * The test id of the input.
+   * @default undefined
+   */
+  testId?: string
+  /**
    * All dates after the given date will be disabled.
    */
   maxDate?: Date | string
@@ -41,10 +46,6 @@ const props = withDefaults(defineProps<{
    */
   allowTextInput?: boolean
   /**
-   * If false, clicking on a date value will not automatically select the value.
-   */
-  disableAutoApply?: boolean
-  /**
    * If true, removes the month and year picker.
    */
   disableMonthYearPickers?: boolean
@@ -52,6 +53,10 @@ const props = withDefaults(defineProps<{
    * Disable specific dates.
    */
   disabledDates?: ((date: Date) => boolean) | Date[] | string[]
+  /**
+   * If true, clicking on a date value will automatically select the value.
+   */
+  enableAutoApply?: boolean
   /**
    * Whether the time picker is also enabled or not.
    */
@@ -111,7 +116,7 @@ const modelValue = defineModel<[Date, Date] | [string, string] | null>({
 
 <template>
   <FormElement
-    v-slot="{ isInvalid }"
+    v-slot="{ isInvalid, id }"
     :tooltip="props.tooltip"
     :errors="props.errors"
     :is-required="props.isRequired"
@@ -120,23 +125,25 @@ const modelValue = defineModel<[Date, Date] | [string, string] | null>({
     :label="props.label"
   >
     <AppDateRangePicker
+      :id="id"
       v-model="modelValue"
-      :disable-auto-apply="props.disableAutoApply"
-      :has-clear-button="props.hasClearButton"
-      :disabled="props.isDisabled"
+      :allow-text-input="props.allowTextInput"
       :disabled-dates="props.disabledDates"
       :disable-month-year-pickers="props.disableMonthYearPickers"
+      :enable-auto-apply="props.enableAutoApply"
       :enable-time-picker="props.enableTimePicker"
       :flow="props.flow"
+      :has-clear-button="props.hasClearButton"
       :highlight-config="props.highlightConfig"
+      :is-disabled="props.isDisabled"
       :invalid="isInvalid"
       :locale="props.locale"
       :min-date="props.minDate"
       :markers="props.markers"
       :max-date="props.maxDate"
       :placeholder="props.placeholder"
-      :allow-text-input="props.allowTextInput"
       :range-config="props.rangeConfig"
+      :test-id="props.testId"
     />
   </FormElement>
 </template>
