@@ -38,8 +38,7 @@ import type {
   MonthPickerValue,
 } from '@wisemen/vue-core'
 import { AppMonthPicker } from '@wisemen/vue-core'
-
-const date = new Date()
+import { DateUtil } from '../..'
 
 const model = ref<MonthPickerValue | null>({
   month: new Date().getMonth(),
@@ -55,7 +54,7 @@ const highlighted: Partial<DatePickerHighlightConfig> = {
   ],
 }
 const disabled: Date[] = [
-  new Date(date.setMonth(date.getMonth() + 2)),
+  DateUtil.getMonthsFromToday(2),
 ]
 </script>
   

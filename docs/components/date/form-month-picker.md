@@ -38,7 +38,7 @@ import type {
   MonthPickerValue,
 } from '@wisemen/vue-core'
 import { FormMonthPicker } from '@wisemen/vue-core'
-
+import { DateUtil } from '../..'
 
 const { form } = useForm({
   schema: z.object({
@@ -51,8 +51,6 @@ const { form } = useForm({
 
 const model = form.register('date')
 
-const date = new Date()
-
 const highlighted: Partial<DatePickerHighlightConfig> = {
   months: [
     {
@@ -62,7 +60,7 @@ const highlighted: Partial<DatePickerHighlightConfig> = {
   ],
 }
 const disabled: Date[] = [
-  new Date(date.setMonth(date.getMonth() + 2)),
+  DateUtil.getMonthsFromToday(2),
 ]
 </script>
   
