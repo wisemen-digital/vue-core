@@ -5,6 +5,8 @@
   --dp-preview-font-size: 0.75rem;
   --dp-time-font-size: 0.75rem;
   --dp-animation-duration: 0.2s;
+  --dp-overlay-col-padding: 0;
+  --dp-month-year-row-height: 30px
 }
 
 .dp__theme_light {
@@ -37,8 +39,10 @@
   @apply stroke-transparent;
 }
 
-.dp__theme_light .dp__month_year_wrap button {
-  @apply focus:shadow-[0_0_0_2px] focus: !shadow-primary focus:outline-none rounded-[--dp-border-radius];
+.dp__theme_light .dp__month_year_wrap button:focus-visible,
+.dp__theme_light .dp--year-mode-picker button:focus-visible,
+.dp__theme_light .dp__overlay_col:focus-visible {
+  @apply shadow-[0_0_0_2px] !shadow-primary outline-none rounded-[--dp-border-radius];
 }
 
 .dp__theme_light .dp--arrow-btn-nav .dp__inner_nav:hover {
@@ -49,8 +53,8 @@
   @apply uppercase rounded-md text-xs text-primary font-normal pt-2.5 leading-[unset];
 }
 
-.dp__theme_light .dp__calendar_item:focus {
-  @apply focus:shadow-[0_0_0_2px] focus: !shadow-primary focus:outline-none rounded-full;
+.dp__theme_light .dp__calendar_item:focus-visible {
+  @apply shadow-[0_0_0_2px] !shadow-primary outline-none rounded-full;
 }
 
 .dp__theme_light .dp__menu {
