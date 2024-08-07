@@ -11,9 +11,9 @@ import FormDateRangePickerPlayground from './FormDateRangePickerPlayground.vue'
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
 | allowTextInput | `boolean` | When true, will try to parse the date from the user input. | `false` |
-| disableAutoApply | `boolean` | If false, clicking on a date value will not automatically select the value. | `false` |
 | disabledDates | `string[] \| Date[] \| ((date: Date) => boolean)` | Disable specific dates. |  |
 | disableMonthYearPickers | `boolean` | If true, removes the month and year picker. | `false` |
+| enableAutoApply | `boolean` | If true, clicking on a date value will automatically select the value. |  |
 | enableTimePicker | `boolean` | Whether the time picker is also enabled or not. | `false` |
 | errors* | `FormFieldErrors` | The errors associated with the input. |  |
 | flow | `("calendar" \| "hours" \| "minutes" \| "month" \| "seconds" \| "time" \| "year")[]` | Define the selecting order. Position in the array will specify the execution step. |  |
@@ -30,6 +30,7 @@ import FormDateRangePickerPlayground from './FormDateRangePickerPlayground.vue'
 | modelValue* | `[string, string] \| [Date, Date] \| null` |  |  |
 | placeholder | `string` | Placeholder of the input. |  |
 | rangeConfig* | `DatePickerRangeConfig` | Options configuration for the ranged datepicker. |  |
+| testId | `string` | The test id of the input. |  |
 | tooltip | `string` | The tooltip of the input. |  |
 
 

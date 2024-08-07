@@ -53,6 +53,7 @@ import type {
   DatePickerRangeConfig,
 } from '@wisemen/vue-core'
 import { FormDateRangePicker } from '@wisemen/vue-core'
+import { DateUtil } from '../..'
 
 const { form } = useForm({
   schema: z.object({
@@ -62,17 +63,15 @@ const { form } = useForm({
 
 const model = form.register('date')
 
-const date = new Date()
-
 const highlighted: Partial<DatePickerHighlightConfig> = {
   dates: [
-    new Date(date.setDate(date.getDate() + 1)),
+    DateUtil.getTomorrow(),
   ],
 }
 
 const markers: DatePickerMarker[] = [
   {
-    date: new Date(date.setDate(date.getDate() + 3)),
+    date: DateUtil.getDaysFromToday(3),
     type: 'dot',
     color: 'lightblue',
   },

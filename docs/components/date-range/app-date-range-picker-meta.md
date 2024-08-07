@@ -11,13 +11,14 @@ import AppDateRangePickerPlayground from './AppDateRangePickerPlayground.vue'
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
 | allowTextInput | `boolean` | When true, will try to parse the date from the user input. | `false` |
-| disableAutoApply | `boolean` | If false, clicking on a date value will not automatically select the value. | `false` |
 | disabledDates | `string[] \| Date[] \| ((date: Date) => boolean)` | Disable specific dates. |  |
 | disableMonthYearPickers | `boolean` | If true, removes the month and year picker. | `false` |
+| enableAutoApply | `boolean` | If true, clicking on a date value will automatically select the value. | `false` |
 | enableTimePicker | `boolean` | Whether the time picker is also enabled or not. | `false` |
 | flow | `("calendar" \| "hours" \| "minutes" \| "month" \| "seconds" \| "time" \| "year")[]` | Define the selecting order. Position in the array will specify the execution step. |  |
 | hasClearButton | `boolean` | Add a clear icon to the input field where you can set the value to null. | `false` |
 | highlightConfig | `Partial<DatePickerHighlightConfig>` | Specify highlighted dates. |  |
+| id | `string \| null` | The id of the input. |  |
 | isDisabled | `boolean` | Disables the input. | `false` |
 | isInvalid | `boolean` | Set an invalid state to the input. | `false` |
 | isReadonly | `boolean` | Sets the input in readonly state. |  |
@@ -28,6 +29,7 @@ import AppDateRangePickerPlayground from './AppDateRangePickerPlayground.vue'
 | modelValue* | `[string, string] \| [Date, Date] \| null` |  |  |
 | placeholder | `string` | Placeholder of the input. |  |
 | rangeConfig* | `DatePickerRangeConfig` | Options configuration for the ranged datepicker. |  |
+| testId | `string` | The test id of the input. |  |
 
 
 ## Events

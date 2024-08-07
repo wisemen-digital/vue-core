@@ -53,20 +53,19 @@ import type {
   DatePickerRangeConfig,
 } from '@wisemen/vue-core'
 import { AppDateRangePicker } from '@wisemen/vue-core'
-
-const date = new Date()
+import { DateUtil } from '../..'
 
 const model = ref<[Date, Date] | [string, string] | null>(null)
 
 const highlighted: Partial<DatePickerHighlightConfig> = {
   dates: [
-    new Date(date.setDate(date.getDate() + 1)),
+    DateUtil.getTomorrow(),
   ],
 }
 
 const markers: DatePickerMarker[] = [
   {
-    date: new Date(date.setDate(date.getDate() + 3)),
+    date: DateUtil.getDaysFromToday(3),
     type: 'dot',
     color: 'lightblue',
   },
