@@ -83,14 +83,14 @@
   @apply text-muted-foreground;
 }
 
-.dp__theme_light .dp__input_readonly.dp__input[aria-disabled='true'] {
+.dp__theme_light .dp__input[aria-disabled='true'] {
   @apply cursor-not-allowed opacity-50 bg-inherit;
 }
 
-.dp__theme_light[invalid='true'] .dp__input_readonly.dp__input {
+.dp__theme_light[invalid='true'] .dp__input {
   @apply duration-200 ring-2 ring-destructive;
 }
 
-.dp__theme_light[invalid='false'] .dp__input_readonly.dp__input:focus-visible {
+.dp__theme_light[invalid='false'] .dp__input:focus-visible {
   @apply duration-200 ring-2 ring-ring;
 }

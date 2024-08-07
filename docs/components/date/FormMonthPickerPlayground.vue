@@ -12,6 +12,8 @@ import {
 } from '@wisemen/vue-core'
 import { ref } from 'vue'
 
+import { DateUtil } from '../../../packages/components/src/utils/date.util'
+
 const controls = createControls({
   label: {
     default: 'Date',
@@ -45,9 +47,9 @@ const controls = createControls({
     label: 'Allow text input',
     type: 'switch',
   },
-  disableAutoApply: {
+  enableAutoApply: {
     default: false,
-    label: 'Disable auto apply',
+    label: 'Enable auto apply',
     type: 'switch',
   },
   isDisabled: {
@@ -72,7 +74,6 @@ const controls = createControls({
     cols: 2,
   },
 })
-const date = new Date()
 
 const model = ref<MonthPickerValue | null>({
   month: new Date().getMonth(),
@@ -83,13 +84,13 @@ const highlighted: Partial<DatePickerHighlightConfig> = {
   months: [
     {
       month: 0,
-      year: 2024,
+      year: new Date().getFullYear(),
     },
   ],
 }
 
 const disabled: Date[] = [
-  new Date(date.setMonth(date.getMonth() + 2)),
+  DateUtil.getMonthsFromToday(2),
 ]
 
 const exampleError: FormFieldErrors = {
