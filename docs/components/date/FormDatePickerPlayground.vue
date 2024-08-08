@@ -2,17 +2,21 @@
 <script setup lang="ts">
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols'
-import type { CalendarDate } from '@internationalized/date'
 import type { FormFieldErrors } from '@wisemen/vue-core'
 import { AppText, FormDatePicker } from '@wisemen/vue-core'
 import { ref } from 'vue'
-import { useI18n } from 'vue-i18n'
 
 const controls = createControls({
-  id: {
-    default: 'input-id',
+  label: {
+    default: 'Date',
+    label: 'Label',
     cols: 2,
-    label: 'Id',
+    type: 'text',
+  },
+  placeholder: {
+    default: 'Choose a date',
+    label: 'Placeholder',
+    cols: 2,
     type: 'text',
   },
   minDate: {
@@ -24,6 +28,36 @@ const controls = createControls({
     default: null,
     label: 'Max date',
     type: 'date',
+  },
+  enableTimePicker: {
+    default: false,
+    label: 'Enable time picker',
+    type: 'switch',
+  },
+  disableMonthYearPickers: {
+    default: false,
+    label: 'Disable month and year pickers',
+    type: 'switch',
+  },
+  multiple: {
+    default: false,
+    label: 'Choose multiple dates',
+    type: 'switch',
+  },
+  hasClearButton: {
+    default: false,
+    label: 'Has clear button',
+    type: 'switch',
+  },
+  allowTextInput: {
+    default: false,
+    label: 'Allow text input',
+    type: 'switch',
+  },
+  enableAutoApply: {
+    default: false,
+    label: 'Enable auto apply',
+    type: 'switch',
   },
   isDisabled: {
     default: false,
@@ -48,15 +82,11 @@ const controls = createControls({
   },
 })
 
-const model = ref<CalendarDate | null>(null)
-
-const { locale } = useI18n()
-
-locale.value = 'nl'
+const model = ref<Date | null>(null)
 
 const exampleError: FormFieldErrors = {
   _errors: [
-    'The name has an error',
+    'The date has an error',
   ],
 }
 </script>
@@ -66,11 +96,10 @@ const exampleError: FormFieldErrors = {
     :controls="controls"
   >
     <template #default="{ values }">
-      <div>
+      <div class="max-w-64">
         <FormDatePicker
           v-model="model"
           :errors="exampleError"
-          label="Date"
           v-bind="values"
         />
 
