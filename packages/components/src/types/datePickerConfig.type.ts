@@ -17,10 +17,10 @@ export interface DatePickerMarker {
 }
 
 export interface DatePickerRangeConfig {
-  autoRange?: number | string
+  hasNoDisabledRange?: boolean // Prevents range selection if the range includes disabled dates
+  autoRange?: number
   fixedEnd?: boolean // Should not be used in combination with fixedStart
   fixedStart?: boolean // Should not be used in combination with fixedEnd
-  maxRange?: number | string
-  minRange?: number | string
-  noDisabledRange?: boolean // Prevents range selection if the range includes disabled dates
+  maxRange?: number
+  minRange?: number
 }

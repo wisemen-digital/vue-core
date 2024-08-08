@@ -45,6 +45,10 @@
   @apply shadow-[0_0_0_2px] !shadow-primary outline-none rounded-[--dp-border-radius];
 }
 
+.dp__theme_light .dp__overlay_cell_active {
+  @apply bg-primary;
+}
+
 .dp__theme_light .dp--arrow-btn-nav .dp__inner_nav:hover {
   @apply bg-transparent
 }
