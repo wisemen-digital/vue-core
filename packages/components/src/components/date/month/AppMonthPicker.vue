@@ -7,12 +7,9 @@ import VueDatePicker from '@vuepic/vue-datepicker'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import type {
-  DatePickerHighlightConfig,
-  DatePickerMarker,
-} from '@/types/datePickerConfig.type'
-
-import DatePickerActions from './DatePickerActions.vue'
+import DatePickerActions from '@/components/date/DatePickerActions.vue'
+import type { MonthPickerValue } from '@/types/date.type'
+import type { DatePickerHighlightConfig } from '@/types/datePickerConfig.type'
 
 const props = withDefaults(defineProps<{
   /**
@@ -54,10 +51,6 @@ const props = withDefaults(defineProps<{
    */
   allowTextInput?: boolean
   /**
-   * If true, removes the month and year picker.
-   */
-  disableMonthYearPickers?: boolean
-  /**
    * Disable specific dates.
    */
   disabledDates?: ((date: Date) => boolean) | Date[] | string[]
@@ -65,15 +58,6 @@ const props = withDefaults(defineProps<{
    * If true, clicking on a date value will automatically select the value.
    */
   enableAutoApply?: boolean
-  /**
-   * Whether the time picker is also enabled or not.
-   */
-  enableTimePicker?: boolean
-  /**
-   * Define the selecting order. Position in the array will specify the execution step.
-   * @default []
-   */
-  flow?: ('calendar' | 'hours' | 'minutes' | 'month' | 'seconds' | 'time' | 'year')[]
   /**
    * Specify highlighted dates.
    */
@@ -83,35 +67,24 @@ const props = withDefaults(defineProps<{
    */
   locale?: string
   /**
-   * Add markers to the specified dates with (optional) tooltips. For color options, you can use any css valid color.
-   */
-  markers?: DatePickerMarker[]
-  /**
-   * Allow selecting multiple single dates. When changing time, the latest selected date is affected.
-   */
-  multiple?: boolean
-  /**
    * Placeholder of the input.
    */
   placeholder?: string
 }>(), {
-  id: null,
   hasClearButton: false,
   isDisabled: false,
   isInvalid: false,
   allowTextInput: false,
-  disableMonthYearPickers: false,
   enableAutoApply: false,
-  enableTimePicker: false,
   locale: 'nl',
-  multiple: false,
 })
 
 const { t } = useI18n()
 
-const modelValue = defineModel<Date | null>({
+const modelValue = defineModel<MonthPickerValue | null>({
   required: true,
 })
+
 const dp = ref<DatePickerInstance | null>(null)
 
 function selectDate(): void {
@@ -128,27 +101,22 @@ function closeMenu(): void {
     :id="props.id ?? undefined"
     ref="dp"
     v-model="modelValue"
-    :auto-apply="enableAutoApply"
+    :auto-apply="props.enableAutoApply"
     :clearable="props.hasClearButton"
     :data-testid="props.testId"
     :disabled="props.isDisabled"
     :disabled-dates="props.disabledDates"
-    :disable-month-year-select="props.disableMonthYearPickers"
-    :enable-time-picker="props.enableTimePicker"
-    :flow="props.flow"
     :highlight="props.highlightConfig"
     :invalid="props.isInvalid"
     :locale="props.locale"
     :min-date="props.minDate"
-    :markers="props.markers"
     :max-date="props.maxDate"
-    :multi-dates="props.multiple"
-    :partial-flow="enableAutoApply"
     :placeholder="props.placeholder"
     :readonly="props.isReadonly"
     :text-input="props.allowTextInput"
     :month-change-on-arrows="false"
     :arrow-navigation="true"
+    month-picker
   >
     <template #action-buttons>
       <DatePickerActions
