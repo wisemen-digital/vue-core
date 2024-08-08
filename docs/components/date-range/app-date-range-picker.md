@@ -9,6 +9,12 @@ sidebar: auto
 
 ## Types
 ::: code-group
+```ts [DatePickerRangeValue]
+export interface DatePickerRangeValue {
+  end: Date | string
+  start: Date | string
+}
+```
 ```ts [DatePickerRangeConfig]
 export interface DatePickerRangeConfig {
   autoRange?: number | string

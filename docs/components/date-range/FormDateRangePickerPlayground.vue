@@ -4,6 +4,7 @@ import { createControls } from '@docs/playground/utils/createContols'
 import type {
   DatePickerHighlightConfig,
   DatePickerMarker,
+  DatePickerRangeValue,
   FormFieldErrors,
 } from '@wisemen/vue-core'
 import {
@@ -79,11 +80,6 @@ const controls = createControls({
     label: 'Allow text input',
     type: 'switch',
   },
-  enableAutoApply: {
-    default: false,
-    label: 'Enable auto apply',
-    type: 'switch',
-  },
   isDisabled: {
     default: false,
     label: 'Is disabled',
@@ -107,7 +103,7 @@ const controls = createControls({
   },
 })
 
-const model = ref<[Date, Date] | [string, string] | null>(null)
+const model = ref<DatePickerRangeValue | null>(null)
 
 const highlighted: Partial<DatePickerHighlightConfig> = {
   dates: [
@@ -161,7 +157,7 @@ const exampleError: FormFieldErrors = {
         />
 
         <AppText variant="caption">
-          {{ `Model value: ${model ?? "null"}` }}
+          {{ `Model value:` }}{{ model }}
         </AppText>
       </div>
     </template>

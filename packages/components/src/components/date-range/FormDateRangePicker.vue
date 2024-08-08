@@ -4,6 +4,7 @@ import '@/components/date/style.css'
 
 import AppDateRangePicker from '@/components/date-range/AppDateRangePicker.vue'
 import FormElement from '@/components/form-element/FormElement.vue'
+import type { DatePickerRangeValue } from '@/types/date.type'
 import type {
   DatePickerHighlightConfig,
   DatePickerMarker,
@@ -54,22 +55,9 @@ const props = withDefaults(defineProps<{
    */
   disabledDates?: ((date: Date) => boolean) | Date[] | string[]
   /**
-   * If true, clicking on a date value will automatically select the value.
-   */
-  enableAutoApply?: boolean
-  /**
-   * Whether the time picker is also enabled or not.
-   */
-  enableTimePicker?: boolean
-  /**
    * The errors associated with the input.
    */
   errors: FormFieldErrors
-  /**
-   * Define the selecting order. Position in the array will specify the execution step.
-   * @default []
-   */
-  flow?: ('calendar' | 'hours' | 'minutes' | 'month' | 'seconds' | 'time' | 'year')[]
   /**
    * Specify highlighted dates.
    */
@@ -105,11 +93,10 @@ const props = withDefaults(defineProps<{
   allowTextInput: false,
   disableAutoApply: false,
   disableMonthYearPickers: false,
-  enableTimePicker: false,
   locale: 'nl',
 })
 
-const modelValue = defineModel<[Date, Date] | [string, string] | null>({
+const modelValue = defineModel<DatePickerRangeValue | null>({
   required: true,
 })
 </script>
@@ -130,9 +117,6 @@ const modelValue = defineModel<[Date, Date] | [string, string] | null>({
       :allow-text-input="props.allowTextInput"
       :disabled-dates="props.disabledDates"
       :disable-month-year-pickers="props.disableMonthYearPickers"
-      :enable-auto-apply="props.enableAutoApply"
-      :enable-time-picker="props.enableTimePicker"
-      :flow="props.flow"
       :has-clear-button="props.hasClearButton"
       :highlight-config="props.highlightConfig"
       :is-disabled="props.isDisabled"

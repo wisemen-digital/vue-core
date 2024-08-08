@@ -4,10 +4,11 @@ import '@/components/date/style.css'
 
 import type { DatePickerInstance } from '@vuepic/vue-datepicker'
 import VueDatePicker from '@vuepic/vue-datepicker'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import DatePickerActions from '@/components/date/DatePickerActions.vue'
+import type { DatePickerRangeValue } from '@/types/date.type'
 import type {
   DatePickerHighlightConfig,
   DatePickerMarker,
@@ -62,19 +63,6 @@ const props = withDefaults(defineProps<{
    */
   disabledDates?: ((date: Date) => boolean) | Date[] | string[]
   /**
-   * If true, clicking on a date value will automatically select the value.
-   */
-  enableAutoApply?: boolean
-  /**
-   * Whether the time picker is also enabled or not.
-   */
-  enableTimePicker?: boolean
-  /**
-   * Define the selecting order. Position in the array will specify the execution step.
-   * @default []
-   */
-  flow?: ('calendar' | 'hours' | 'minutes' | 'month' | 'seconds' | 'time' | 'year')[]
-  /**
    * Specify highlighted dates.
    */
   highlightConfig?: Partial<DatePickerHighlightConfig>
@@ -100,16 +88,43 @@ const props = withDefaults(defineProps<{
   isInvalid: false,
   allowTextInput: false,
   disableMonthYearPickers: false,
-  enableAutoApply: false,
-  enableTimePicker: false,
   locale: 'nl',
 })
 
 const { t } = useI18n()
 
-const modelValue = defineModel<[Date, Date] | [string, string] | null>({
+const modelValue = defineModel<DatePickerRangeValue | null>({
   required: true,
 })
+
+const model = computed<[Date, Date] | [string, string] | null>({
+  get: () => {
+    if (modelValue.value !== null) {
+      const { end, start } = modelValue.value
+
+      return [
+        start,
+        end,
+      ] as [Date, Date]
+    }
+
+    return null
+  },
+  set: (value) => {
+    if (value !== null) {
+      const updatedValue = {
+        end: value[1],
+        start: value[0],
+      }
+
+      modelValue.value = updatedValue
+    }
+    else {
+      modelValue.value = null
+    }
+  },
+})
+
 const dp = ref<DatePickerInstance | null>(null)
 
 function selectDate(): void {
@@ -125,22 +140,19 @@ function closeMenu(): void {
   <VueDatePicker
     :id="props.id ?? undefined"
     ref="dp"
-    v-model="modelValue"
-    :auto-apply="props.enableAutoApply"
+    v-model="model"
+    :auto-apply="false"
     :clearable="props.hasClearButton"
     :data-testid="props.testId"
     :disabled="props.isDisabled"
     :disabled-dates="props.disabledDates"
     :disable-month-year-select="props.disableMonthYearPickers"
-    :enable-time-picker="props.enableTimePicker"
-    :flow="props.flow"
     :highlight="props.highlightConfig"
     :invalid="props.isInvalid"
     :locale="props.locale"
     :min-date="props.minDate"
     :markers="props.markers"
     :max-date="props.maxDate"
-    :partial-flow="props.enableAutoApply"
     :placeholder="props.placeholder"
     :readonly="props.isReadonly"
     :text-input="props.allowTextInput"
