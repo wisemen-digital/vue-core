@@ -7,3 +7,8 @@ export interface TimePickerValue {
   minutes: number | string
   seconds?: number | string
 }
+
+export interface DatePickerRangeValue {
+  end: Date | string
+  start: Date | string
+}

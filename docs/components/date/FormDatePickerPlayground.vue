@@ -55,7 +55,7 @@ const controls = createControls({
     type: 'switch',
   },
   enableAutoApply: {
-    default: false,
+    default: true,
     label: 'Enable auto apply',
     type: 'switch',
   },

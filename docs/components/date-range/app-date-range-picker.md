@@ -9,6 +9,12 @@ sidebar: auto
 
 ## Types
 ::: code-group
+```ts [DatePickerRangeValue]
+export interface DatePickerRangeValue {
+  end: Date | string
+  start: Date | string
+}
+```
 ```ts [DatePickerRangeConfig]
 export interface DatePickerRangeConfig {
   autoRange?: number | string
@@ -57,6 +63,11 @@ import { DateUtil } from '../..'
 
 const model = ref<[Date, Date] | [string, string] | null>(null)
 
+const fixedStartModel = ref<[Date, Date] | [string, string] | null>([
+  new Date(),
+  DateUtil.getDaysFromToday(7),
+])
+
 const highlighted: Partial<DatePickerHighlightConfig> = {
   dates: [
     DateUtil.getTomorrow(),
@@ -74,6 +85,11 @@ const markers: DatePickerMarker[] = [
 const config: DatePickerRangeConfig[] = {
   maxRange: 6,
 }
+
+const fixedStartConfig: DatePickerRangeConfig[] = {
+  maxRange: 6,
+  fixedStart: true,
+}
 </script>
   
 <template>
@@ -82,6 +98,15 @@ const config: DatePickerRangeConfig[] = {
     :highlight-config="highlighted"
     :markers="markers"
     :range-config="config"
+  />
+
+  // With fixed start (do not allow user to clear the data then)
+  <AppDateRangePicker
+    v-model="fixedStartModel"
+    :highlight-config="highlighted"
+    :markers="markers"
+    :range-config="fixedStartConfig"
+    :has-clear-button="false"
   />
 </template>
 ```

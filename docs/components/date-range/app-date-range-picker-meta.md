@@ -13,9 +13,6 @@ import AppDateRangePickerPlayground from './AppDateRangePickerPlayground.vue'
 | allowTextInput | `boolean` | When true, will try to parse the date from the user input. | `false` |
 | disabledDates | `string[] \| Date[] \| ((date: Date) => boolean)` | Disable specific dates. |  |
 | disableMonthYearPickers | `boolean` | If true, removes the month and year picker. | `false` |
-| enableAutoApply | `boolean` | If true, clicking on a date value will automatically select the value. | `false` |
-| enableTimePicker | `boolean` | Whether the time picker is also enabled or not. | `false` |
-| flow | `("calendar" \| "hours" \| "minutes" \| "month" \| "seconds" \| "time" \| "year")[]` | Define the selecting order. Position in the array will specify the execution step. |  |
 | hasClearButton | `boolean` | Add a clear icon to the input field where you can set the value to null. | `false` |
 | highlightConfig | `Partial<DatePickerHighlightConfig>` | Specify highlighted dates. |  |
 | id | `string \| null` | The id of the input. |  |
@@ -26,7 +23,7 @@ import AppDateRangePickerPlayground from './AppDateRangePickerPlayground.vue'
 | markers | `DatePickerMarker[]` | Add markers to the specified dates with (optional) tooltips. For color options, you can use any css valid color. |  |
 | maxDate | `string \| Date` | All dates after the given date will be disabled. |  |
 | minDate | `string \| Date` | All dates before the given date will be disabled. |  |
-| modelValue* | `[string, string] \| [Date, Date] \| null` |  |  |
+| modelValue* | `DatePickerRangeValue \| null` |  |  |
 | placeholder | `string` | Placeholder of the input. |  |
 | rangeConfig* | `DatePickerRangeConfig` | Options configuration for the ranged datepicker. |  |
 | testId | `string` | The test id of the input. |  |
@@ -36,5 +33,5 @@ import AppDateRangePickerPlayground from './AppDateRangePickerPlayground.vue'
 
 | Event name | Type | Description |
 | ---------- | ---- | ----------- |
-| `update:modelValue` | [modelValue: [string, string] \| [Date, Date] \| null] |  |
+| `update:modelValue` | [modelValue: DatePickerRangeValue \| null] |  |
 
