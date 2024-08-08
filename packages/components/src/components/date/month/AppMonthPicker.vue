@@ -21,11 +21,11 @@ const props = withDefaults(defineProps<{
   /**
    * All dates after the given date will be disabled.
    */
-  maxDate?: Date | string
+  maxDate?: Date
   /**
    * All dates before the given date will be disabled.
    */
-  minDate?: Date | string
+  minDate?: Date
   /**
    * Add a clear icon to the input field where you can set the value to null.
    */
@@ -45,11 +45,11 @@ const props = withDefaults(defineProps<{
   /**
    * When true, will try to parse the date from the user input.
    */
-  allowTextInput?: boolean
+  isTextInputAllowed?: boolean
   /**
    * Disable specific dates.
    */
-  disabledDates?: ((date: Date) => boolean) | Date[] | string[]
+  disabledDates?: ((date: Date) => boolean) | Date[]
   /**
    * Specify highlighted dates.
    */
@@ -66,7 +66,7 @@ const props = withDefaults(defineProps<{
   hasClearButton: false,
   isDisabled: false,
   isInvalid: false,
-  allowTextInput: false,
+  isTextInputAllowed: false,
   locale: 'nl',
 })
 
@@ -90,7 +90,7 @@ const modelValue = defineModel<MonthPickerValue | null>({
     :max-date="props.maxDate"
     :placeholder="props.placeholder"
     :readonly="props.isReadonly"
-    :text-input="props.allowTextInput"
+    :text-input="props.isTextInputAllowed"
     :arrow-navigation="true"
     :auto-apply="true"
     :month-change-on-arrows="false"

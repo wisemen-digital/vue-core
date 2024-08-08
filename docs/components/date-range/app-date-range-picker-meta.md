@@ -10,15 +10,15 @@ import AppDateRangePickerPlayground from './AppDateRangePickerPlayground.vue'
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| allowTextInput | `boolean` | When true, will try to parse the date from the user input. | `false` |
 | disabledDates | `string[] \| Date[] \| ((date: Date) => boolean)` | Disable specific dates. |  |
-| disableMonthYearPickers | `boolean` | If true, removes the month and year picker. | `false` |
 | hasClearButton | `boolean` | Add a clear icon to the input field where you can set the value to null. | `false` |
 | highlightConfig | `Partial<DatePickerHighlightConfig>` | Specify highlighted dates. |  |
 | id | `string \| null` | The id of the input. |  |
 | isDisabled | `boolean` | Disables the input. | `false` |
 | isInvalid | `boolean` | Set an invalid state to the input. | `false` |
+| isMonthYearPickersDisabled | `boolean` | If true, removes the month and year picker. | `false` |
 | isReadonly | `boolean` | Sets the input in readonly state. |  |
+| isTextInputAllowed | `boolean` | When true, will try to parse the date from the user input. | `false` |
 | locale | `string` | Set datepicker locale: to extract month and weekday names. | `"nl"` |
 | markers | `DatePickerMarker[]` | Add markers to the specified dates with (optional) tooltips. For color options, you can use any css valid color. |  |
 | maxDate | `string \| Date` | All dates after the given date will be disabled. |  |

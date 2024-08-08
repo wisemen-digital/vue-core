@@ -42,9 +42,9 @@ const controls = createControls({
     label: 'Has clear button',
     type: 'switch',
   },
-  allowTextInput: {
+  isTextInputAllowed: {
     default: false,
-    label: 'Allow text input',
+    label: 'Is text input allowed',
     type: 'switch',
   },
   isDisabled: {

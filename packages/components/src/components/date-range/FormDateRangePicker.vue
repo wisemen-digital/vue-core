@@ -35,21 +35,21 @@ const props = withDefaults(defineProps<{
    */
   isDisabled?: boolean
   /**
+   * If true, removes the month and year picker.
+   */
+  isMonthYearPickersDisabled?: boolean
+  /**
    *  Whether the input is required.
    */
   isRequired?: boolean
   /**
+   * When true, will try to parse the date from the user input.
+   */
+  isTextInputAllowed?: boolean
+  /**
    * Whether the input is touched.
    */
   isTouched: boolean
-  /**
-   * When true, will try to parse the date from the user input.
-   */
-  allowTextInput?: boolean
-  /**
-   * If true, removes the month and year picker.
-   */
-  disableMonthYearPickers?: boolean
   /**
    * Disable specific dates.
    */
@@ -89,10 +89,10 @@ const props = withDefaults(defineProps<{
 }>(), {
   hasClearButton: false,
   isDisabled: false,
+  isMonthYearPickersDisabled: false,
   isRequired: false,
-  allowTextInput: false,
+  isTextInputAllowed: false,
   disableAutoApply: false,
-  disableMonthYearPickers: false,
   locale: 'nl',
 })
 
@@ -114,12 +114,12 @@ const modelValue = defineModel<DatePickerRangeValue | null>({
     <AppDateRangePicker
       :id="id"
       v-model="modelValue"
-      :allow-text-input="props.allowTextInput"
       :disabled-dates="props.disabledDates"
-      :disable-month-year-pickers="props.disableMonthYearPickers"
       :has-clear-button="props.hasClearButton"
       :highlight-config="props.highlightConfig"
       :is-disabled="props.isDisabled"
+      :is-month-year-pickers-disabled="props.isMonthYearPickersDisabled"
+      :is-text-input-allowed="props.isTextInputAllowed"
       :invalid="isInvalid"
       :locale="props.locale"
       :min-date="props.minDate"

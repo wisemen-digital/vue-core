@@ -11,7 +11,7 @@ import FormMonthPickerPlayground from './FormMonthPickerPlayground.vue'
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
 | allowTextInput | `boolean` | When true, will try to parse the date from the user input. | `false` |
-| disabledDates | `string[] \| Date[] \| ((date: Date) => boolean)` | Disable specific dates. |  |
+| disabledDates | `Date[] \| ((date: Date) => boolean)` | Disable specific dates. |  |
 | errors* | `FormFieldErrors` | The errors associated with the input. |  |
 | hasClearButton | `boolean` | Add a clear icon to the input field where you can set the value to null. | `false` |
 | highlightConfig | `Partial<DatePickerHighlightConfig>` | Specify highlighted dates. |  |
@@ -20,8 +20,8 @@ import FormMonthPickerPlayground from './FormMonthPickerPlayground.vue'
 | isTouched* | `boolean` | Whether the input is touched. |  |
 | label* | `string` | The label of the input. |  |
 | locale | `string` | Set datepicker locale: to extract month and weekday names. | `"nl"` |
-| maxDate | `string \| Date` | All dates after the given date will be disabled. |  |
-| minDate | `string \| Date` | All dates before the given date will be disabled. |  |
+| maxDate | `Date` | All dates after the given date will be disabled. |  |
+| minDate | `Date` | All dates before the given date will be disabled. |  |
 | modelValue* | `MonthPickerValue \| null` |  |  |
 | placeholder | `string` | Placeholder of the input. |  |
 | testId | `string` | The test id of the input. |  |

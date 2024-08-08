@@ -23,11 +23,11 @@ const props = withDefaults(defineProps<{
   /**
    * All dates after the given date will be disabled.
    */
-  maxDate?: Date | string
+  maxDate?: Date
   /**
    * All dates before the given date will be disabled.
    */
-  minDate?: Date | string
+  minDate?: Date
   /**
    * Add a clear icon to the input field where you can set the value to null.
    */
@@ -41,25 +41,25 @@ const props = withDefaults(defineProps<{
    */
   isInvalid?: boolean
   /**
+   * If true, removes the month and year picker.
+   */
+  isMonthYearPickersDisabled?: boolean
+  /**
    * Sets the input in readonly state.
    */
   isReadonly?: boolean
   /**
    * When true, will try to parse the date from the user input.
    */
-  allowTextInput?: boolean
-  /**
-   * If true, removes the month and year picker.
-   */
-  disableMonthYearPickers?: boolean
-  /**
-   * Disable specific dates.
-   */
-  disabledDates?: ((date: Date) => boolean) | Date[] | string[]
+  isTextInputAllowed?: boolean
   /**
    * Whether the time picker is also enabled or not.
    */
-  enableTimePicker?: boolean
+  isTimePickerEnabled?: boolean
+  /**
+   * Disable specific dates.
+   */
+  disabledDates?: ((date: Date) => boolean) | Date[]
   /**
    * Define the selecting order. Position in the array will specify the execution step.
    * @default []
@@ -90,9 +90,9 @@ const props = withDefaults(defineProps<{
   hasClearButton: false,
   isDisabled: false,
   isInvalid: false,
-  allowTextInput: false,
-  disableMonthYearPickers: false,
-  enableTimePicker: false,
+  isMonthYearPickersDisabled: false,
+  isTextInputAllowed: false,
+  isTimePickerEnabled: false,
   locale: 'nl',
   multiple: false,
 })
@@ -110,8 +110,8 @@ const modelValue = defineModel<Date | null>({
     :data-testid="props.testId"
     :disabled="props.isDisabled"
     :disabled-dates="props.disabledDates"
-    :disable-month-year-select="props.disableMonthYearPickers"
-    :enable-time-picker="props.enableTimePicker"
+    :disable-month-year-select="props.isMonthYearPickersDisabled"
+    :enable-time-picker="props.isTimePickerEnabled"
     :flow="props.flow"
     :highlight="props.highlightConfig"
     :invalid="props.isInvalid"
@@ -122,7 +122,7 @@ const modelValue = defineModel<Date | null>({
     :multi-dates="props.multiple"
     :placeholder="props.placeholder"
     :readonly="props.isReadonly"
-    :text-input="props.allowTextInput"
+    :text-input="props.isTextInputAllowed"
     :arrow-navigation="true"
     :auto-apply="true"
     :month-change-on-arrows="false"

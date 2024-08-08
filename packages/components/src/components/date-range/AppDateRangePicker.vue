@@ -47,17 +47,17 @@ const props = withDefaults(defineProps<{
    */
   isInvalid?: boolean
   /**
+   * If true, removes the month and year picker.
+   */
+  isMonthYearPickersDisabled?: boolean
+  /**
    * Sets the input in readonly state.
    */
   isReadonly?: boolean
   /**
    * When true, will try to parse the date from the user input.
    */
-  allowTextInput?: boolean
-  /**
-   * If true, removes the month and year picker.
-   */
-  disableMonthYearPickers?: boolean
+  isTextInputAllowed?: boolean
   /**
    * Disable specific dates.
    */
@@ -86,8 +86,8 @@ const props = withDefaults(defineProps<{
   hasClearButton: false,
   isDisabled: false,
   isInvalid: false,
-  allowTextInput: false,
-  disableMonthYearPickers: false,
+  isMonthYearPickersDisabled: false,
+  isTextInputAllowed: false,
   locale: 'nl',
 })
 
@@ -146,7 +146,7 @@ function closeMenu(): void {
     :data-testid="props.testId"
     :disabled="props.isDisabled"
     :disabled-dates="props.disabledDates"
-    :disable-month-year-select="props.disableMonthYearPickers"
+    :disable-month-year-select="props.isMonthYearPickersDisabled"
     :highlight="props.highlightConfig"
     :invalid="props.isInvalid"
     :locale="props.locale"
@@ -155,7 +155,7 @@ function closeMenu(): void {
     :max-date="props.maxDate"
     :placeholder="props.placeholder"
     :readonly="props.isReadonly"
-    :text-input="props.allowTextInput"
+    :text-input="props.isTextInputAllowed"
     :range="props.rangeConfig"
     :month-change-on-arrows="false"
     :arrow-navigation="true"

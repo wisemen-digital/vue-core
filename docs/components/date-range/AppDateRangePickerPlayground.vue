@@ -53,14 +53,9 @@ const controls = createControls({
     label: 'Max date',
     type: 'date',
   },
-  enableTimePicker: {
+  isMonthYearPickersDisabled: {
     default: false,
-    label: 'Enable time picker',
-    type: 'switch',
-  },
-  disableMonthYearPickers: {
-    default: false,
-    label: 'Disable month and year pickers',
+    label: 'Is month/year pickers disabled',
     type: 'switch',
   },
   hasClearButton: {
@@ -68,9 +63,9 @@ const controls = createControls({
     label: 'Has clear button',
     type: 'switch',
   },
-  allowTextInput: {
+  isTextInputAllowed: {
     default: false,
-    label: 'Allow text input',
+    label: 'Is text input allowed',
     type: 'switch',
   },
   isDisabled: {

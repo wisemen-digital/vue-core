@@ -17,11 +17,11 @@ const props = withDefaults(defineProps<{
   /**
    * All dates after the given date will be disabled.
    */
-  maxDate?: Date | string
+  maxDate?: Date
   /**
    * All dates before the given date will be disabled.
    */
-  minDate?: Date | string
+  minDate?: Date
   /**
    * Add a clear icon to the input field where you can set the value to null.
    */
@@ -31,29 +31,29 @@ const props = withDefaults(defineProps<{
    */
   isDisabled?: boolean
   /**
+   * If true, removes the month and year picker.
+   */
+  isMonthYearPickersDisabled?: boolean
+  /**
    *  Whether the input is required.
    */
   isRequired?: boolean
+  /**
+   * When true, will try to parse the date from the user input.
+   */
+  isTextInputAllowed?: boolean
+  /**
+   * Whether the time picker is also enabled or not.
+   */
+  isTimePickerEnabled?: boolean
   /**
    * Whether the input is touched.
    */
   isTouched: boolean
   /**
-   * When true, will try to parse the date from the user input.
-   */
-  allowTextInput?: boolean
-  /**
-   * If true, removes the month and year picker.
-   */
-  disableMonthYearPickers?: boolean
-  /**
    * Disable specific dates.
    */
-  disabledDates?: ((date: Date) => boolean) | Date[] | string[]
-  /**
-   * Whether the time picker is also enabled or not.
-   */
-  enableTimePicker?: boolean
+  disabledDates?: ((date: Date) => boolean) | Date[]
   /**
    * The errors associated with the input.
    */
@@ -94,10 +94,10 @@ const props = withDefaults(defineProps<{
 }>(), {
   hasClearButton: false,
   isDisabled: false,
+  isMonthYearPickersDisabled: false,
   isRequired: false,
-  allowTextInput: false,
-  disableMonthYearPickers: false,
-  enableTimePicker: false,
+  isTextInputAllowed: false,
+  isTimePickerEnabled: false,
   locale: 'nl',
   multiple: false,
 })
@@ -124,15 +124,15 @@ const { classAttr, otherAttrs } = useComponentAttrs()
       :id="id"
       v-model="model"
       v-bind="otherAttrs"
-      :allow-text-input="props.allowTextInput"
       :disabled-dates="props.disabledDates"
-      :disable-month-year-pickers="props.disableMonthYearPickers"
-      :enable-time-picker="props.enableTimePicker"
+      :is-time-picker-enabled="props.isTimePickerEnabled"
       :flow="props.flow"
       :has-clear-button="props.hasClearButton"
       :highlight-config="props.highlightConfig"
       :is-disabled="props.isDisabled"
       :is-invalid="isInvalid"
+      :is-month-year-pickers-disabled="props.isMonthYearPickersDisabled"
+      :is-text-input-allowed="props.isTextInputAllowed"
       :locale="props.locale"
       :min-date="props.minDate"
       :markers="props.markers"

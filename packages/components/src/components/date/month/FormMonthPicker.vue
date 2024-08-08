@@ -17,11 +17,11 @@ const props = withDefaults(defineProps<{
   /**
    * All dates after the given date will be disabled.
    */
-  maxDate?: Date | string
+  maxDate?: Date
   /**
    * All dates before the given date will be disabled.
    */
-  minDate?: Date | string
+  minDate?: Date
   /**
    * Add a clear icon to the input field where you can set the value to null.
    */
@@ -35,17 +35,17 @@ const props = withDefaults(defineProps<{
    */
   isRequired?: boolean
   /**
+   * When true, will try to parse the date from the user input.
+   */
+  isTextInputAllowed?: boolean
+  /**
    * Whether the input is touched.
    */
   isTouched: boolean
   /**
-   * When true, will try to parse the date from the user input.
-   */
-  allowTextInput?: boolean
-  /**
    * Disable specific dates.
    */
-  disabledDates?: ((date: Date) => boolean) | Date[] | string[]
+  disabledDates?: ((date: Date) => boolean) | Date[]
   /**
    * The errors associated with the input.
    */
@@ -74,7 +74,7 @@ const props = withDefaults(defineProps<{
   hasClearButton: false,
   isDisabled: false,
   isRequired: false,
-  allowTextInput: false,
+  isTextInputAllowed: false,
   locale: 'nl',
 })
 
@@ -96,12 +96,12 @@ const modelValue = defineModel<MonthPickerValue | null>({
     <AppMonthPicker
       :id="id"
       v-model="modelValue"
-      :allow-text-input="props.allowTextInput"
       :disabled-dates="props.disabledDates"
       :has-clear-button="props.hasClearButton"
       :highlight="props.highlightConfig"
       :is-disabled="props.isDisabled"
       :is-invalid="isInvalid"
+      :is-text-input-allowed="props.isTextInputAllowed"
       :locale="props.locale"
       :min-date="props.minDate"
       :max-date="props.maxDate"
