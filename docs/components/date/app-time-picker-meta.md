@@ -10,9 +10,7 @@ import AppTimePickerPlayground from './AppTimePickerPlayground.vue'
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| allowTextInput | `boolean` | When true, will try to parse the date from the user input. | `false` |
 | disabledTimes | `((time: FnParam) => boolean) \| TimePickerValue[]` | Disable specific times. |  |
-| enableAutoApply | `boolean` | If true, clicking on a date value will automatically select the value. | `false` |
 | enableSeconds | `boolean` | Wether to enable seconds in the time picker. | `false` |
 | hasClearButton | `boolean` | Add a clear icon to the input field where you can set the value to null. | `false` |
 | id | `string \| null` | The id of the input. |  |
@@ -20,6 +18,7 @@ import AppTimePickerPlayground from './AppTimePickerPlayground.vue'
 | isDisabled | `boolean` | Disables the input. | `false` |
 | isInvalid | `boolean` | Set an invalid state to the input. | `false` |
 | isReadonly | `boolean` | Sets the input in readonly state. |  |
+| isTextInputAllowed | `boolean` | When true, will try to parse the date from the user input. | `false` |
 | maxTime | `TimePickerValue` | Sets the maximal available time to pick. |  |
 | minTime | `TimePickerValue` | Sets the minimal available time to pick. |  |
 | minutesIncrement | `string \| number` | The value which is used to increment minutes via arrows. |  |
