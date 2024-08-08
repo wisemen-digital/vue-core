@@ -22,7 +22,6 @@ import FormDatePickerPlayground from './FormDatePickerPlayground.vue'
 | isTimePickerEnabled | `boolean` | Whether the time picker is also enabled or not. | `false` |
 | isTouched* | `boolean` | Whether the input is touched. |  |
 | label* | `string` | The label of the input. |  |
-| locale | `string` | Set datepicker locale: to extract month and weekday names. | `"nl"` |
 | markers | `DatePickerMarker[]` | Add markers to the specified dates with (optional) tooltips. For color options, you can use any css valid color. |  |
 | maxDate | `Date` | All dates after the given date will be disabled. |  |
 | minDate | `Date` | All dates before the given date will be disabled. |  |

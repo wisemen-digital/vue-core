@@ -21,7 +21,6 @@ import AppDatePickerPlayground from './AppDatePickerPlayground.vue'
 | isReadonly | `boolean` | Sets the input in readonly state. |  |
 | isTextInputAllowed | `boolean` | When true, will try to parse the date from the user input. | `false` |
 | isTimePickerEnabled | `boolean` | Whether the time picker is also enabled or not. | `false` |
-| locale | `string` | Set datepicker locale: to extract month and weekday names. | `"nl"` |
 | markers | `DatePickerMarker[]` | Add markers to the specified dates with (optional) tooltips. For color options, you can use any css valid color. |  |
 | maxDate | `Date` | All dates after the given date will be disabled. |  |
 | minDate | `Date` | All dates before the given date will be disabled. |  |

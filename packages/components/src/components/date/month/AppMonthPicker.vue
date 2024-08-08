@@ -3,6 +3,7 @@ import '@vuepic/vue-datepicker/dist/main.css'
 import '@/components/date/style.css'
 
 import VueDatePicker from '@vuepic/vue-datepicker'
+import { useI18n } from 'vue-i18n'
 
 import type { MonthPickerValue } from '@/types/date.type'
 import type { DatePickerHighlightConfig } from '@/types/datePickerConfig.type'
@@ -55,10 +56,6 @@ const props = withDefaults(defineProps<{
    */
   highlightConfig?: Partial<DatePickerHighlightConfig>
   /**
-   * Set datepicker locale: to extract month and weekday names.
-   */
-  locale?: string
-  /**
    * Placeholder of the input.
    */
   placeholder?: string
@@ -67,8 +64,9 @@ const props = withDefaults(defineProps<{
   isDisabled: false,
   isInvalid: false,
   isTextInputAllowed: false,
-  locale: 'nl',
 })
+
+const i18n = useI18n()
 
 const modelValue = defineModel<MonthPickerValue | null>({
   required: true,
@@ -85,7 +83,7 @@ const modelValue = defineModel<MonthPickerValue | null>({
     :disabled-dates="props.disabledDates"
     :highlight="props.highlightConfig"
     :invalid="props.isInvalid"
-    :locale="props.locale"
+    :locale="i18n.locale.value"
     :min-date="props.minDate"
     :max-date="props.maxDate"
     :placeholder="props.placeholder"

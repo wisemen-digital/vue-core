@@ -10,7 +10,6 @@ import AppMonthPickerPlayground from './AppMonthPickerPlayground.vue'
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| allowTextInput | `boolean` | When true, will try to parse the date from the user input. | `false` |
 | disabledDates | `Date[] \| ((date: Date) => boolean)` | Disable specific dates. |  |
 | hasClearButton | `boolean` | Add a clear icon to the input field where you can set the value to null. | `false` |
 | highlightConfig | `Partial<DatePickerHighlightConfig>` | Specify highlighted dates. |  |
@@ -18,7 +17,7 @@ import AppMonthPickerPlayground from './AppMonthPickerPlayground.vue'
 | isDisabled | `boolean` | Disables the input. | `false` |
 | isInvalid | `boolean` | Set an invalid state to the input. | `false` |
 | isReadonly | `boolean` | Sets the input in readonly state. |  |
-| locale | `string` | Set datepicker locale: to extract month and weekday names. | `"nl"` |
+| isTextInputAllowed | `boolean` | When true, will try to parse the date from the user input. | `false` |
 | maxDate | `Date` | All dates after the given date will be disabled. |  |
 | minDate | `Date` | All dates before the given date will be disabled. |  |
 | modelValue* | `MonthPickerValue \| null` |  |  |

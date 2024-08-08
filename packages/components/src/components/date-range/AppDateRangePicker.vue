@@ -67,10 +67,6 @@ const props = withDefaults(defineProps<{
    */
   highlightConfig?: Partial<DatePickerHighlightConfig>
   /**
-   * Set datepicker locale: to extract month and weekday names.
-   */
-  locale?: string
-  /**
    * Add markers to the specified dates with (optional) tooltips. For color options, you can use any css valid color.
    */
   markers?: DatePickerMarker[]
@@ -88,10 +84,9 @@ const props = withDefaults(defineProps<{
   isInvalid: false,
   isMonthYearPickersDisabled: false,
   isTextInputAllowed: false,
-  locale: 'nl',
 })
 
-const { t } = useI18n()
+const i18n = useI18n()
 
 const modelValue = defineModel<DatePickerRangeValue | null>({
   required: true,
@@ -149,7 +144,7 @@ function closeMenu(): void {
     :disable-month-year-select="props.isMonthYearPickersDisabled"
     :highlight="props.highlightConfig"
     :invalid="props.isInvalid"
-    :locale="props.locale"
+    :locale="i18n.locale.value"
     :min-date="props.minDate"
     :markers="props.markers"
     :max-date="props.maxDate"
@@ -170,10 +165,10 @@ function closeMenu(): void {
         @select="selectDate"
       >
         <template #cancel-text>
-          {{ t('components.calendar.cancel') }}
+          {{ i18n.t('components.calendar.cancel') }}
         </template>
         <template #select-text>
-          {{ t('components.calendar.select') }}
+          {{ i18n.t('components.calendar.select') }}
         </template>
       </DatePickerActions>
     </template>

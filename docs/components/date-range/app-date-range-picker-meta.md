@@ -19,7 +19,6 @@ import AppDateRangePickerPlayground from './AppDateRangePickerPlayground.vue'
 | isMonthYearPickersDisabled | `boolean` | If true, removes the month and year picker. | `false` |
 | isReadonly | `boolean` | Sets the input in readonly state. |  |
 | isTextInputAllowed | `boolean` | When true, will try to parse the date from the user input. | `false` |
-| locale | `string` | Set datepicker locale: to extract month and weekday names. | `"nl"` |
 | markers | `DatePickerMarker[]` | Add markers to the specified dates with (optional) tooltips. For color options, you can use any css valid color. |  |
 | maxDate | `string \| Date` | All dates after the given date will be disabled. |  |
 | minDate | `string \| Date` | All dates before the given date will be disabled. |  |

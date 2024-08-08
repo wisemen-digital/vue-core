@@ -59,10 +59,6 @@ const props = withDefaults(defineProps<{
    */
   label: string
   /**
-   * Set datepicker locale: to extract month and weekday names.
-   */
-  locale?: string
-  /**
    * Placeholder of the input.
    */
   placeholder?: string
@@ -75,7 +71,6 @@ const props = withDefaults(defineProps<{
   isDisabled: false,
   isRequired: false,
   isTextInputAllowed: false,
-  locale: 'nl',
 })
 
 const modelValue = defineModel<MonthPickerValue | null>({
@@ -102,7 +97,6 @@ const modelValue = defineModel<MonthPickerValue | null>({
       :is-disabled="props.isDisabled"
       :is-invalid="isInvalid"
       :is-text-input-allowed="props.isTextInputAllowed"
-      :locale="props.locale"
       :min-date="props.minDate"
       :max-date="props.maxDate"
       :placeholder="props.placeholder"

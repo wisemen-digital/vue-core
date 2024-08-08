@@ -3,6 +3,7 @@ import '@vuepic/vue-datepicker/dist/main.css'
 import '@/components/date/style.css'
 
 import VueDatePicker from '@vuepic/vue-datepicker'
+import { useI18n } from 'vue-i18n'
 
 import type {
   DatePickerHighlightConfig,
@@ -70,10 +71,6 @@ const props = withDefaults(defineProps<{
    */
   highlightConfig?: Partial<DatePickerHighlightConfig>
   /**
-   * Set datepicker locale: to extract month and weekday names.
-   */
-  locale?: string
-  /**
    * Add markers to the specified dates with (optional) tooltips. For color options, you can use any css valid color.
    */
   markers?: DatePickerMarker[]
@@ -93,9 +90,10 @@ const props = withDefaults(defineProps<{
   isMonthYearPickersDisabled: false,
   isTextInputAllowed: false,
   isTimePickerEnabled: false,
-  locale: 'nl',
   multiple: false,
 })
+
+const i18n = useI18n()
 
 const modelValue = defineModel<Date | null>({
   required: true,
@@ -115,7 +113,7 @@ const modelValue = defineModel<Date | null>({
     :flow="props.flow"
     :highlight="props.highlightConfig"
     :invalid="props.isInvalid"
-    :locale="props.locale"
+    :locale="i18n.locale.value"
     :min-date="props.minDate"
     :markers="props.markers"
     :max-date="props.maxDate"

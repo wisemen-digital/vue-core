@@ -20,7 +20,6 @@ import FormDateRangePickerPlayground from './FormDateRangePickerPlayground.vue'
 | isTextInputAllowed | `boolean` | When true, will try to parse the date from the user input. | `false` |
 | isTouched* | `boolean` | Whether the input is touched. |  |
 | label* | `string` | The label of the input. |  |
-| locale | `string` | Set datepicker locale: to extract month and weekday names. | `"nl"` |
 | markers | `DatePickerMarker[]` | Add markers to the specified dates with (optional) tooltips. For color options, you can use any css valid color. |  |
 | maxDate | `string \| Date` | All dates after the given date will be disabled. |  |
 | minDate | `string \| Date` | All dates before the given date will be disabled. |  |

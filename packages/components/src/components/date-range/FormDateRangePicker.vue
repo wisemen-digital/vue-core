@@ -67,10 +67,6 @@ const props = withDefaults(defineProps<{
    */
   label: string
   /**
-   * Set datepicker locale: to extract month and weekday names.
-   */
-  locale?: string
-  /**
    * Add markers to the specified dates with (optional) tooltips. For color options, you can use any css valid color.
    */
   markers?: DatePickerMarker[]
@@ -93,7 +89,6 @@ const props = withDefaults(defineProps<{
   isRequired: false,
   isTextInputAllowed: false,
   disableAutoApply: false,
-  locale: 'nl',
 })
 
 const modelValue = defineModel<DatePickerRangeValue | null>({
@@ -121,7 +116,6 @@ const modelValue = defineModel<DatePickerRangeValue | null>({
       :is-month-year-pickers-disabled="props.isMonthYearPickersDisabled"
       :is-text-input-allowed="props.isTextInputAllowed"
       :invalid="isInvalid"
-      :locale="props.locale"
       :min-date="props.minDate"
       :markers="props.markers"
       :max-date="props.maxDate"
