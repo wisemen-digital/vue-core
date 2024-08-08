@@ -17,12 +17,12 @@ export interface DatePickerRangeValue {
 ```
 ```ts [DatePickerRangeConfig]
 export interface DatePickerRangeConfig {
-  autoRange?: number | string
+  hasNoDisabledRange?: boolean // Prevents range selection if the range includes disabled dates
+  autoRange?: number
   fixedEnd?: boolean // Should not be used in combination with fixedStart
   fixedStart?: boolean // Should not be used in combination with fixedEnd
-  maxRange?: number | string
-  minRange?: number | string
-  noDisabledRange?: boolean // Prevents range selection if the range includes disabled dates
+  maxRange?: number
+  minRange?: number
 }
 ```
 ```ts [DatePickerHighlightConfig]
@@ -57,16 +57,17 @@ import type {
   DatePickerHighlightConfig,
   DatePickerMarker,
   DatePickerRangeConfig,
+  DatePickerRangeValue,
 } from '@wisemen/vue-core'
 import { AppDateRangePicker } from '@wisemen/vue-core'
 import { DateUtil } from '../..'
 
-const model = ref<[Date, Date] | [string, string] | null>(null)
+const model = ref<DatePickerRangeValue | null>(null)
 
-const fixedStartModel = ref<[Date, Date] | [string, string] | null>([
-  new Date(),
-  DateUtil.getDaysFromToday(7),
-])
+const fixedStartModel = ref<DatePickerRangeValue | null>({
+  start: new Date(),
+  end: DateUtil.getDaysFromToday(7),
+})
 
 const highlighted: Partial<DatePickerHighlightConfig> = {
   dates: [

@@ -47,17 +47,17 @@ const props = withDefaults(defineProps<{
    */
   isInvalid?: boolean
   /**
+   * If true, removes the month and year picker.
+   */
+  isMonthYearPickersDisabled?: boolean
+  /**
    * Sets the input in readonly state.
    */
   isReadonly?: boolean
   /**
    * When true, will try to parse the date from the user input.
    */
-  allowTextInput?: boolean
-  /**
-   * If true, removes the month and year picker.
-   */
-  disableMonthYearPickers?: boolean
+  isTextInputAllowed?: boolean
   /**
    * Disable specific dates.
    */
@@ -66,10 +66,6 @@ const props = withDefaults(defineProps<{
    * Specify highlighted dates.
    */
   highlightConfig?: Partial<DatePickerHighlightConfig>
-  /**
-   * Set datepicker locale: to extract month and weekday names.
-   */
-  locale?: string
   /**
    * Add markers to the specified dates with (optional) tooltips. For color options, you can use any css valid color.
    */
@@ -86,12 +82,11 @@ const props = withDefaults(defineProps<{
   hasClearButton: false,
   isDisabled: false,
   isInvalid: false,
-  allowTextInput: false,
-  disableMonthYearPickers: false,
-  locale: 'nl',
+  isMonthYearPickersDisabled: false,
+  isTextInputAllowed: false,
 })
 
-const { t } = useI18n()
+const i18n = useI18n()
 
 const modelValue = defineModel<DatePickerRangeValue | null>({
   required: true,
@@ -146,19 +141,23 @@ function closeMenu(): void {
     :data-testid="props.testId"
     :disabled="props.isDisabled"
     :disabled-dates="props.disabledDates"
-    :disable-month-year-select="props.disableMonthYearPickers"
+    :disable-month-year-select="props.isMonthYearPickersDisabled"
     :highlight="props.highlightConfig"
     :invalid="props.isInvalid"
-    :locale="props.locale"
+    :locale="i18n.locale.value"
     :min-date="props.minDate"
     :markers="props.markers"
     :max-date="props.maxDate"
     :placeholder="props.placeholder"
     :readonly="props.isReadonly"
-    :text-input="props.allowTextInput"
-    :range="props.rangeConfig"
-    :month-change-on-arrows="false"
+    :text-input="props.isTextInputAllowed"
+    :range="{
+      ...props.rangeConfig,
+      noDisabledRange: props.rangeConfig.hasNoDisabledRange,
+    }"
     :arrow-navigation="true"
+    :enable-time-picker="false"
+    :month-change-on-arrows="false"
   >
     <template #action-buttons>
       <DatePickerActions
@@ -166,10 +165,10 @@ function closeMenu(): void {
         @select="selectDate"
       >
         <template #cancel-text>
-          {{ t('components.calendar.cancel') }}
+          {{ i18n.t('components.calendar.cancel') }}
         </template>
         <template #select-text>
-          {{ t('components.calendar.select') }}
+          {{ i18n.t('components.calendar.select') }}
         </template>
       </DatePickerActions>
     </template>
