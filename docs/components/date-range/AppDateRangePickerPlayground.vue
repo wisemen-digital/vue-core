@@ -126,7 +126,7 @@ const disabled: Date[] = [
             autoRange: values.autoRange,
             maxRange: values.maxRange,
             minRange: values.minRange,
-            noDisabledRange: values.noDisabledRange,
+            hasNoDisabledRange: values.noDisabledRange,
           }"
           v-bind="values"
         />

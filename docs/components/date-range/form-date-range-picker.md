@@ -17,12 +17,12 @@ export interface DatePickerRangeValue {
 ```
 ```ts [DatePickerRangeConfig]
 export interface DatePickerRangeConfig {
-  autoRange?: number | string
+  hasNoDisabledRange?: boolean // Prevents range selection if the range includes disabled dates
+  autoRange?: number
   fixedEnd?: boolean // Should not be used in combination with fixedStart
   fixedStart?: boolean // Should not be used in combination with fixedEnd
-  maxRange?: number | string
-  minRange?: number | string
-  noDisabledRange?: boolean // Prevents range selection if the range includes disabled dates
+  maxRange?: number
+  minRange?: number
 }
 ```
 ```ts [DatePickerHighlightConfig]
@@ -57,13 +57,14 @@ import type {
   DatePickerHighlightConfig,
   DatePickerMarker,
   DatePickerRangeConfig,
+  DatePickerRangeValue,
 } from '@wisemen/vue-core'
 import { FormDateRangePicker } from '@wisemen/vue-core'
 import { DateUtil } from '../..'
 
 const { form } = useForm({
   schema: z.object({
-    date: z.date().array().length(2)
+    date: DatePickerRangeValue
   })
 })
 

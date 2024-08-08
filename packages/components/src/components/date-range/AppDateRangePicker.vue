@@ -156,9 +156,13 @@ function closeMenu(): void {
     :placeholder="props.placeholder"
     :readonly="props.isReadonly"
     :text-input="props.isTextInputAllowed"
-    :range="props.rangeConfig"
-    :month-change-on-arrows="false"
+    :range="{
+      ...props.rangeConfig,
+      noDisabledRange: props.rangeConfig.hasNoDisabledRange,
+    }"
     :arrow-navigation="true"
+    :enable-time-picker="false"
+    :month-change-on-arrows="false"
   >
     <template #action-buttons>
       <DatePickerActions
