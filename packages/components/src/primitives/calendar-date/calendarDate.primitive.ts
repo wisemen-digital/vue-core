@@ -1,4 +1,5 @@
 import { CalendarDateTime } from '@/primitives/calendar-date-time/calendarDateTime.primitive'
+import { NumberUtil } from '@/utils/number.util'
 
 export class CalendarDate {
   value: CalendarDateTime = new CalendarDateTime()
@@ -83,11 +84,29 @@ export class CalendarDate {
   }
 
   /*
+  * Compares the date with another date and returns true if the date is after or equal to the other date
+  * @param date - The date to compare with
+  * @returns True if the date is after or equal to the other date, false otherwise
+  */
+  isAfterOrEqualTo(date: CalendarDate): boolean {
+    return this.value.isAfterOrEqualTo(date.value)
+  }
+
+  /*
   * Compares the date with another date and returns true if the date is before the other date
   * @param date - The date to compare with
   */
   isBefore(date: CalendarDate): boolean {
     return this.value.isBefore(date.value)
+  }
+
+  /*
+  * Compares the date with another date and returns true if the date is after or equal to the other date
+  * @param date - The date to compare with
+  * @returns True if the date is after or equal to the other date, false otherwise
+  */
+  isBeforeOrEqualTo(date: CalendarDate): boolean {
+    return this.value.isBeforeOrEqualTo(date.value)
   }
 
   /*
@@ -141,6 +160,9 @@ export class CalendarDate {
   * @returns The date as a string
   */
   toString(): string {
-    return `${this.getYear()}-${this.getMonth()}-${this.getDay()}`
+    const month = NumberUtil.pad(this.getMonth(), 2)
+    const day = NumberUtil.pad(this.getDay(), 2)
+
+    return `${this.getYear()}-${month}-${day}`
   }
 }
