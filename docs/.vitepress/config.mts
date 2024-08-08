@@ -179,6 +179,20 @@ const docs = [
     collapsed: true,
     items: [
       {
+        link: '/components/date-range/app-date-range-picker',
+        text: 'AppDateRangePicker',
+      },
+      {
+        link: '/components/date-range/form-date-range-picker',
+        text: 'FormDateRangePicker',
+      },
+    ],
+    text: 'DateRange',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
         link: '/components/dialog/app-dialog',
         text: 'AppDialog',
       },

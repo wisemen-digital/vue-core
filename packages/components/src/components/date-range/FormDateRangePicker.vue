@@ -1,11 +1,15 @@
 <script setup lang="ts">
-import AppDatePicker from '@/components/date/AppDatePicker.vue'
+import '@vuepic/vue-datepicker/dist/main.css'
+import '@/components/date/style.css'
+
+import AppDateRangePicker from '@/components/date-range/AppDateRangePicker.vue'
 import FormElement from '@/components/form-element/FormElement.vue'
-import { useComponentAttrs } from '@/composables/componentAttrs.composable'
+import type { DatePickerRangeValue } from '@/types/date.type'
 import type {
   DatePickerHighlightConfig,
   DatePickerMarker,
-} from '@/types/datePickerConfig.type'
+  DatePickerRangeConfig,
+} from '@/types/datePickerConfig.type.ts'
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
 const props = withDefaults(defineProps<{
@@ -51,22 +55,9 @@ const props = withDefaults(defineProps<{
    */
   disabledDates?: ((date: Date) => boolean) | Date[] | string[]
   /**
-   * If true, clicking on a date value will automatically select the value.
-   */
-  enableAutoApply?: boolean
-  /**
-   * Whether the time picker is also enabled or not.
-   */
-  enableTimePicker?: boolean
-  /**
    * The errors associated with the input.
    */
   errors: FormFieldErrors
-  /**
-   * Define the selecting order. Position in the array will specify the execution step.
-   * @default []
-   */
-  flow?: ('calendar' | 'hours' | 'minutes' | 'month' | 'seconds' | 'time' | 'year')[]
   /**
    * Specify highlighted dates.
    */
@@ -84,13 +75,13 @@ const props = withDefaults(defineProps<{
    */
   markers?: DatePickerMarker[]
   /**
-   * Allow selecting multiple single dates. When changing time, the latest selected date is affected.
-   */
-  multiple?: boolean
-  /**
    * Placeholder of the input.
    */
   placeholder?: string
+  /**
+   * Options configuration for the ranged datepicker.
+   */
+  rangeConfig: DatePickerRangeConfig
   /**
    * The tooltip of the input.
    */
@@ -100,52 +91,46 @@ const props = withDefaults(defineProps<{
   isDisabled: false,
   isRequired: false,
   allowTextInput: false,
+  disableAutoApply: false,
   disableMonthYearPickers: false,
-  enableAutoApply: true,
-  enableTimePicker: false,
   locale: 'nl',
-  multiple: false,
 })
 
-const model = defineModel<Date | null>({
+const modelValue = defineModel<DatePickerRangeValue | null>({
   required: true,
 })
-
-const { classAttr, otherAttrs } = useComponentAttrs()
 </script>
 
 <template>
   <FormElement
     v-slot="{ isInvalid, id }"
     :tooltip="props.tooltip"
-    :class="classAttr"
     :errors="props.errors"
     :is-required="props.isRequired"
     :is-touched="props.isTouched"
     :is-disabled="props.isDisabled"
     :label="props.label"
   >
-    <AppDatePicker
+    <AppDateRangePicker
       :id="id"
-      v-model="model"
-      v-bind="otherAttrs"
+      v-model="modelValue"
       :allow-text-input="props.allowTextInput"
       :disabled-dates="props.disabledDates"
       :disable-month-year-pickers="props.disableMonthYearPickers"
-      :enable-auto-apply="props.enableAutoApply"
-      :enable-time-picker="props.enableTimePicker"
-      :flow="props.flow"
       :has-clear-button="props.hasClearButton"
       :highlight-config="props.highlightConfig"
       :is-disabled="props.isDisabled"
-      :is-invalid="isInvalid"
+      :invalid="isInvalid"
       :locale="props.locale"
       :min-date="props.minDate"
       :markers="props.markers"
       :max-date="props.maxDate"
-      :multiple="props.multiple"
       :placeholder="props.placeholder"
+      :range-config="props.rangeConfig"
       :test-id="props.testId"
     />
   </FormElement>
 </template>
+
+<style>
+</style>

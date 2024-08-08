@@ -17,6 +17,7 @@ const model = defineModel<Date | null>({
       :label="props.label"
       :errors="{ _errors: [] }"
       :is-touched="false"
+      :has-clear-button="true"
     />
   </div>
 </template>

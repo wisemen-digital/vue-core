@@ -45,6 +45,10 @@ export { default as FormDatePicker } from './components/date/FormDatePicker.vue'
 export { default as AppMonthPicker } from './components/date/month/AppMonthPicker.vue'
 export { default as FormMonthPicker } from './components/date/month/FormMonthPicker.vue'
 
+// Date range
+export { default as AppDateRangePicker } from './components/date-range/AppDateRangePicker.vue'
+export { default as FormDateRangePicker } from './components/date-range/FormDateRangePicker.vue'
+
 // Dialog
 export { default as AppDialog } from './components/dialog/AppDialog.vue'
 export { default as AppDialogCloseButton } from './components/dialog/AppDialogCloseButton.vue'
@@ -163,8 +167,8 @@ export type { Accordion } from './types/accordionItem.type'
 export type { BreadcrumbItem } from './types/breadcrumbItem.type'
 export type { ComboboxItem } from './types/comboboxItem.type'
 export type { DataItem } from './types/dataItem.type'
-export type { MonthPickerValue } from './types/date.type'
-export type { DatePickerHighlightConfig, DatePickerMarker } from './types/datePickerConfig.type'
+export type { DatePickerRangeValue, MonthPickerValue } from './types/date.type'
+export type { DatePickerHighlightConfig, DatePickerMarker, DatePickerRangeConfig } from './types/datePickerConfig.type'
 export type { DropdownMenuItem } from './types/dropdownMenuItem.type'
 export type { FormFieldErrors } from './types/formFieldErrors.type'
 export type { KeyboardKey } from './types/keyboard.type'

@@ -4,21 +4,51 @@ import { createControls } from '@docs/playground/utils/createContols'
 import type {
   DatePickerHighlightConfig,
   DatePickerMarker,
+  DatePickerRangeValue,
+  FormFieldErrors,
 } from '@wisemen/vue-core'
 import {
-  AppDatePicker,
   AppText,
+  FormDateRangePicker,
 } from '@wisemen/vue-core'
 import { ref } from 'vue'
 
 import { DateUtil } from '../../../packages/components/src/utils/date.util'
 
 const controls = createControls({
+  label: {
+    default: 'Date',
+    label: 'Label',
+    cols: 2,
+    type: 'text',
+  },
   placeholder: {
     default: 'Choose a date',
     label: 'Placeholder',
     cols: 2,
     type: 'text',
+  },
+  autoRange: {
+    default: '',
+    cols: 2,
+    label: 'Automatic range',
+    type: 'text',
+  },
+  maxRange: {
+    default: '',
+    label: 'Max range',
+    type: 'text',
+  },
+  minRange: {
+    default: '',
+    label: 'Min range',
+    type: 'text',
+  },
+  noDisabledRange: {
+    default: false,
+    cols: 2,
+    label: 'No disabled range',
+    type: 'switch',
   },
   minDate: {
     default: null,
@@ -40,11 +70,6 @@ const controls = createControls({
     label: 'Disable month and year pickers',
     type: 'switch',
   },
-  multiple: {
-    default: false,
-    label: 'Choose multiple dates',
-    type: 'switch',
-  },
   hasClearButton: {
     default: false,
     label: 'Has clear button',
@@ -55,29 +80,30 @@ const controls = createControls({
     label: 'Allow text input',
     type: 'switch',
   },
-  enableAutoApply: {
-    default: true,
-    label: 'Enable auto apply',
-    type: 'switch',
-  },
   isDisabled: {
     default: false,
     label: 'Is disabled',
     type: 'switch',
   },
-  isInvalid: {
+  isRequired: {
     default: false,
-    label: 'Is invalid',
+    label: 'Is required',
     type: 'switch',
   },
-  isReadonly: {
+  isTouched: {
     default: false,
-    label: 'Is readonly',
+    label: 'Is touched',
     type: 'switch',
+  },
+  tooltip: {
+    default: 'This is a tooltip',
+    label: 'Tooltip',
+    type: 'text',
+    cols: 2,
   },
 })
 
-const model = ref<Date | null>(new Date())
+const model = ref<DatePickerRangeValue | null>(null)
 
 const highlighted: Partial<DatePickerHighlightConfig> = {
   dates: [
@@ -87,7 +113,7 @@ const highlighted: Partial<DatePickerHighlightConfig> = {
 
 const markers: DatePickerMarker[] = [
   {
-    date: DateUtil.getDaysFromToday(3),
+    date: DateUtil.getDaysFromToday(2),
     type: 'dot',
     color: 'lightblue',
     tooltip: [
@@ -99,8 +125,14 @@ const markers: DatePickerMarker[] = [
 ]
 
 const disabled: Date[] = [
-  DateUtil.getDaysFromToday(5),
+  DateUtil.getDaysFromToday(4),
 ]
+
+const exampleError: FormFieldErrors = {
+  _errors: [
+    'The date has an error',
+  ],
+}
 </script>
 
 <template>
@@ -108,19 +140,24 @@ const disabled: Date[] = [
     :controls="controls"
   >
     <template #default="{ values }">
-      <div class="max-w-64">
-        <AppDatePicker
-          id="date-picker-1"
+      <div class="flex max-w-64 flex-col gap-2">
+        <FormDateRangePicker
           v-model="model"
           :highlight-config="highlighted"
           :markers="markers"
           :disabled-dates="disabled"
-          test-id="date-picker-1"
+          :errors="exampleError"
+          :range-config="{
+            autoRange: values.autoRange,
+            maxRange: values.maxRange,
+            minRange: values.minRange,
+            noDisabledRange: values.noDisabledRange,
+          }"
           v-bind="values"
         />
 
         <AppText variant="caption">
-          {{ `Model value: ${model ? model?.toString() : "null"}` }}
+          {{ `Model value:` }}{{ model }}
         </AppText>
       </div>
     </template>
