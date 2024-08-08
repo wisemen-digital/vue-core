@@ -165,6 +165,10 @@ const docs = [
         text: 'AppMonthPicker',
       },
       {
+        link: '/components/date/app-time-picker',
+        text: 'AppTimePicker',
+      },
+      {
         link: '/components/date/form-date-picker',
         text: 'FormDatePicker',
       },

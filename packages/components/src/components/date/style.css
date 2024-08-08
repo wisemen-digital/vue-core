@@ -102,3 +102,7 @@
 .dp__theme_light .dp__range_end {
   @apply rounded-r-full;
 }
+
+.dp__theme_light .dp__time_display {
+  @apply text-subtext;
+}
