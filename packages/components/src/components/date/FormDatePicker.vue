@@ -101,7 +101,7 @@ const props = withDefaults(defineProps<{
   isRequired: false,
   allowTextInput: false,
   disableMonthYearPickers: false,
-  enableAutoApply: false,
+  enableAutoApply: true,
   enableTimePicker: false,
   locale: 'nl',
   multiple: false,
