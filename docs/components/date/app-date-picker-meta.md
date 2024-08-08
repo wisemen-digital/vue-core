@@ -13,7 +13,6 @@ import AppDatePickerPlayground from './AppDatePickerPlayground.vue'
 | allowTextInput | `boolean` | When true, will try to parse the date from the user input. | `false` |
 | disabledDates | `string[] \| ((date: Date) => boolean) \| Date[]` | Disable specific dates. |  |
 | disableMonthYearPickers | `boolean` | If true, removes the month and year picker. | `false` |
-| enableAutoApply | `boolean` | If true, clicking on a date value will automatically select the value. | `false` |
 | enableTimePicker | `boolean` | Whether the time picker is also enabled or not. | `false` |
 | flow | `("calendar" \| "hours" \| "minutes" \| "month" \| "seconds" \| "time" \| "year")[]` | Define the selecting order. Position in the array will specify the execution step. |  |
 | hasClearButton | `boolean` | Add a clear icon to the input field where you can set the value to null. | `false` |

@@ -51,10 +51,6 @@ const props = withDefaults(defineProps<{
    */
   disabledDates?: ((date: Date) => boolean) | Date[] | string[]
   /**
-   * If true, clicking on a date value will automatically select the value.
-   */
-  enableAutoApply?: boolean
-  /**
    * Whether the time picker is also enabled or not.
    */
   enableTimePicker?: boolean
@@ -101,7 +97,6 @@ const props = withDefaults(defineProps<{
   isRequired: false,
   allowTextInput: false,
   disableMonthYearPickers: false,
-  enableAutoApply: true,
   enableTimePicker: false,
   locale: 'nl',
   multiple: false,
@@ -132,7 +127,6 @@ const { classAttr, otherAttrs } = useComponentAttrs()
       :allow-text-input="props.allowTextInput"
       :disabled-dates="props.disabledDates"
       :disable-month-year-pickers="props.disableMonthYearPickers"
-      :enable-auto-apply="props.enableAutoApply"
       :enable-time-picker="props.enableTimePicker"
       :flow="props.flow"
       :has-clear-button="props.hasClearButton"

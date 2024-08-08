@@ -2,17 +2,12 @@
 import '@vuepic/vue-datepicker/dist/main.css'
 import '@/components/date/style.css'
 
-import type { DatePickerInstance } from '@vuepic/vue-datepicker'
 import VueDatePicker from '@vuepic/vue-datepicker'
-import { ref } from 'vue'
-import { useI18n } from 'vue-i18n'
 
 import type {
   DatePickerHighlightConfig,
   DatePickerMarker,
 } from '@/types/datePickerConfig.type'
-
-import DatePickerActions from './DatePickerActions.vue'
 
 const props = withDefaults(defineProps<{
   /**
@@ -62,10 +57,6 @@ const props = withDefaults(defineProps<{
    */
   disabledDates?: ((date: Date) => boolean) | Date[] | string[]
   /**
-   * If true, clicking on a date value will automatically select the value.
-   */
-  enableAutoApply?: boolean
-  /**
    * Whether the time picker is also enabled or not.
    */
   enableTimePicker?: boolean
@@ -101,34 +92,20 @@ const props = withDefaults(defineProps<{
   isInvalid: false,
   allowTextInput: false,
   disableMonthYearPickers: false,
-  enableAutoApply: true,
   enableTimePicker: false,
   locale: 'nl',
   multiple: false,
 })
 
-const { t } = useI18n()
-
 const modelValue = defineModel<Date | null>({
   required: true,
 })
-const dp = ref<DatePickerInstance | null>(null)
-
-function selectDate(): void {
-  dp.value?.selectDate()
-}
-
-function closeMenu(): void {
-  dp.value?.closeMenu()
-}
 </script>
 
 <template>
   <VueDatePicker
     :id="props.id ?? undefined"
-    ref="dp"
     v-model="modelValue"
-    :auto-apply="props.enableAutoApply"
     :clearable="props.hasClearButton"
     :data-testid="props.testId"
     :disabled="props.isDisabled"
@@ -143,27 +120,14 @@ function closeMenu(): void {
     :markers="props.markers"
     :max-date="props.maxDate"
     :multi-dates="props.multiple"
-    :partial-flow="props.enableAutoApply"
     :placeholder="props.placeholder"
     :readonly="props.isReadonly"
     :text-input="props.allowTextInput"
-    :month-change-on-arrows="false"
     :arrow-navigation="true"
-  >
-    <template #action-buttons>
-      <DatePickerActions
-        @cancel="closeMenu"
-        @select="selectDate"
-      >
-        <template #cancel-text>
-          {{ t('components.calendar.cancel') }}
-        </template>
-        <template #select-text>
-          {{ t('components.calendar.select') }}
-        </template>
-      </DatePickerActions>
-    </template>
-  </VueDatePicker>
+    :auto-apply="true"
+    :month-change-on-arrows="false"
+    :partial-flow="true"
+  />
 </template>
 
 <style>

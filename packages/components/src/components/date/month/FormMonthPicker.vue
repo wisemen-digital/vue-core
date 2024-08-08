@@ -47,10 +47,6 @@ const props = withDefaults(defineProps<{
    */
   disabledDates?: ((date: Date) => boolean) | Date[] | string[]
   /**
-   * If true, clicking on a date value will automatically select the value.
-   */
-  enableAutoApply?: boolean
-  /**
    * The errors associated with the input.
    */
   errors: FormFieldErrors
@@ -79,7 +75,6 @@ const props = withDefaults(defineProps<{
   isDisabled: false,
   isRequired: false,
   allowTextInput: false,
-  enableAutoApply: false,
   locale: 'nl',
 })
 
@@ -103,7 +98,6 @@ const modelValue = defineModel<MonthPickerValue | null>({
       v-model="modelValue"
       :allow-text-input="props.allowTextInput"
       :disabled-dates="props.disabledDates"
-      :enable-auto-apply="props.enableAutoApply"
       :has-clear-button="props.hasClearButton"
       :highlight="props.highlightConfig"
       :is-disabled="props.isDisabled"
