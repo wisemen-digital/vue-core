@@ -176,6 +176,10 @@ const docs = [
         link: '/components/date/form-month-picker',
         text: 'FormMonthPicker',
       },
+      {
+        link: '/components/date/form-time-picker',
+        text: 'FormTimePicker',
+      },
     ],
     text: 'Date',
   },
