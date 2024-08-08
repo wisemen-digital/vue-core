@@ -95,10 +95,6 @@ const controls = createControls({
 })
 
 const model = ref<[Date, Date] | [string, string] | null>(null)
-const fixedStartModel = ref<[Date, Date] | [string, string] | null>([
-  new Date(),
-  DateUtil.getDaysFromToday(7),
-])
 
 const highlighted: Partial<DatePickerHighlightConfig> = {
   dates: [
@@ -129,51 +125,24 @@ const disabled: Date[] = [
     :controls="controls"
   >
     <template #default="{ values }">
-      <div class="flex gap-4">
-        <div class="flex max-w-64 flex-col gap-2">
-          <AppText variant="subtext">
-            Classic range picker
-          </AppText>
-          <AppDateRangePicker
-            v-model="model"
-            :highlight-config="highlighted"
-            :markers="markers"
-            :disabled-dates="disabled"
-            :range-config="{
-              autoRange: values.autoRange,
-              maxRange: values.maxRange,
-              minRange: values.minRange,
-              noDisabledRange: values.noDisabledRange,
-            }"
-            v-bind="values"
-          />
+      <div class="flex max-w-64 flex-col gap-2">
+        <AppDateRangePicker
+          v-model="model"
+          :highlight-config="highlighted"
+          :markers="markers"
+          :disabled-dates="disabled"
+          :range-config="{
+            autoRange: values.autoRange,
+            maxRange: values.maxRange,
+            minRange: values.minRange,
+            noDisabledRange: values.noDisabledRange,
+          }"
+          v-bind="values"
+        />
 
-          <AppText variant="caption">
-            {{ `Model value: ${model ?? "null"}` }}
-          </AppText>
-        </div>
-        <div class="flex max-w-64 flex-col gap-2">
-          <AppText variant="subtext">
-            With fixed start
-          </AppText>
-          <AppDateRangePicker
-            v-model="fixedStartModel"
-            :highlight-config="highlighted"
-            :markers="markers"
-            :disabled-dates="disabled"
-            :range-config="{
-              maxRange: values.maxRange,
-              minRange: values.minRange,
-              noDisabledRange: values.noDisabledRange,
-              fixedStart: true,
-            }"
-            v-bind="values"
-          />
-
-          <AppText variant="caption">
-            {{ `Model value: ${fixedStartModel ?? "null"}` }}
-          </AppText>
-        </div>
+        <AppText variant="caption">
+          {{ `Model value: ${model ?? "null"}` }}
+        </AppText>
       </div>
     </template>
   </ComponentPlayground>
