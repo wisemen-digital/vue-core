@@ -94,7 +94,7 @@ describe('calendarTime', () => {
   it('returns the hours of the time', () => {
     const value = new CalendarTime(12, 0)
 
-    expect(value.hours).toBe(12)
+    expect(value.getHours()).toBe(12)
   })
 
   it('returns the minutes of the time', () => {

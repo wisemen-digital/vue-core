@@ -1,6 +1,13 @@
 import { CalendarDateTime } from '@/primitives/calendar-date-time/calendarDateTime.primitive'
 import { NumberUtil } from '@/utils/number.util'
 
+interface CalendarTimeValue {
+  hours?: number
+  milliseconds?: number
+  minutes?: number
+  seconds?: number
+}
+
 export class CalendarTime {
   value: CalendarDateTime = new CalendarDateTime()
 
@@ -15,9 +22,22 @@ export class CalendarTime {
   }
 
   /*
-  * Parses a time string in the format 'HH:MM:SS'
+  * Parses a time string in the format 'HH:MM'
   */
   static parse(value: string): CalendarTime {
+    const [
+      hours,
+      minutes,
+    ] = value.split(':').map(Number)
+
+    return new CalendarTime(hours, minutes)
+  }
+
+  /*
+  * Parses a time string in the format 'HH:MM:SS'
+  * @param value - The time string to parse
+  */
+  static parseISOString(value: string): CalendarTime {
     const [
       hours,
       minutes,
@@ -32,7 +52,7 @@ export class CalendarTime {
   * @param value - The value to add to the time
   * @returns The updated time
   */
-  add(value: { hours?: number, milliseconds?: number, minutes?: number, seconds?: number }): CalendarTime {
+  add(value: CalendarTimeValue): CalendarTime {
     this.value.add({
       hours: value.hours,
       milliseconds: value.milliseconds,
@@ -41,6 +61,13 @@ export class CalendarTime {
     })
 
     return this
+  }
+
+  /*
+  * Returns the hours of the time as a number from 0 to 23
+  */
+  getHours(): number {
+    return this.value.getHours()
   }
 
   /*
@@ -63,13 +90,6 @@ export class CalendarTime {
   */
   getSeconds(): number {
     return this.value.getSeconds()
-  }
-
-  /*
-  * Returns the hours of the time as a number from 0 to 23
-  */
-  get hours(): number {
-    return this.value.getHours()
   }
 
   /*
@@ -121,7 +141,7 @@ export class CalendarTime {
   * @param minutes - The minutes of the time
   * @param seconds - The seconds of the time
   */
-  set(newValue: { hours?: number, milliseconds?: number, minutes?: number, seconds?: number }): void {
+  set(newValue: CalendarTimeValue): void {
     this.value.set({
       hours: newValue.hours,
       milliseconds: newValue.milliseconds,
@@ -135,7 +155,7 @@ export class CalendarTime {
   * @param value - The value to subtract from the time
   * @returns The updated time
   */
-  subtract(value: { hours?: number, milliseconds?: number, minutes?: number, seconds?: number }): CalendarTime {
+  subtract(value: CalendarTimeValue): CalendarTime {
     this.value.subtract({
       hours: value.hours,
       milliseconds: value.milliseconds,
@@ -159,7 +179,7 @@ export class CalendarTime {
   * @returns The time as a string
   */
   toFullISOString(): string {
-    const hours = NumberUtil.pad(this.hours, 2)
+    const hours = NumberUtil.pad(this.getHours(), 2)
     const minutes = NumberUtil.pad(this.getMinutes(), 2)
     const seconds = NumberUtil.pad(this.getSeconds(), 2)
     const milliseconds = NumberUtil.pad(this.value.getMilliseconds(), 3)
@@ -172,7 +192,7 @@ export class CalendarTime {
   * @returns The time as a string
   */
   toISOString(): string {
-    const hours = NumberUtil.pad(this.hours, 2)
+    const hours = NumberUtil.pad(this.getHours(), 2)
     const minutes = NumberUtil.pad(this.getMinutes(), 2)
     const seconds = NumberUtil.pad(this.getSeconds(), 2)
 
@@ -184,7 +204,7 @@ export class CalendarTime {
   * @returns The time as a string
   */
   toString(): string {
-    const hours = NumberUtil.pad(this.hours, 2)
+    const hours = NumberUtil.pad(this.getHours(), 2)
     const minutes = NumberUtil.pad(this.getMinutes(), 2)
 
     return `${hours}:${minutes}`

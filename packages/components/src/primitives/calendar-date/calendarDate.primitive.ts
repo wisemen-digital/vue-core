@@ -14,7 +14,18 @@ export class CalendarDate {
   }
 
   /*
+  * Creates a new CalendarDate object from a Date object
+  * @param date - The Date object to create the CalendarDate from
+  * @returns The new CalendarDate object
+  */
+  static fromDate(date: Date): CalendarDate {
+    return new CalendarDate(date.getFullYear(), date.getMonth() + 1, date.getDate())
+  }
+
+  /*
   * Parses a date string in the format 'YYYY-MM-DD'
+  * @param value - The date string to parse
+  * @returns The new CalendarDate object
   */
   static parse(value: string): CalendarDate {
     const [
