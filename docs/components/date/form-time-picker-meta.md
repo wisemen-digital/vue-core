@@ -14,7 +14,6 @@ import FormTimePickerPlayground from './FormTimePickerPlayground.vue'
 | enableSeconds | `boolean` | Wether to enable seconds in the time picker. | `false` |
 | errors* | `FormFieldErrors` | The errors associated with the input. |  |
 | hasClearButton | `boolean` | Add a clear icon to the input field where you can set the value to null. | `false` |
-| is12 | `boolean` | Wether to use 12H mode. | `false` |
 | isDisabled | `boolean` | Disables the input. | `false` |
 | isRequired | `boolean` | Whether the input is required. | `false` |
 | isTextInputAllowed | `boolean` | When true, will try to parse the date from the user input. | `false` |

@@ -34,10 +34,6 @@ const props = withDefaults(defineProps<{
    */
   hasClearButton?: boolean
   /**
-   * Wether to use 12H mode.
-   */
-  is12?: boolean
-  /**
    * Disables the input.
    */
   isDisabled?: boolean
@@ -71,7 +67,6 @@ const props = withDefaults(defineProps<{
   placeholder?: string
 }>(), {
   hasClearButton: false,
-  is12: false,
   isDisabled: false,
   isInvalid: false,
   isTextInputAllowed: false,
@@ -92,7 +87,6 @@ const modelValue = defineModel<TimePickerValue | null>({
     :disabled="props.isDisabled"
     :disabled-times="props.disabledTimes"
     :enable-seconds="props.enableSeconds"
-    :is-24="!props.is12"
     :invalid="props.isInvalid"
     :max-time="props.maxTime"
     :min-time="props.minTime"
@@ -102,6 +96,7 @@ const modelValue = defineModel<TimePickerValue | null>({
     :text-input="props.isTextInputAllowed"
     :auto-apply="true"
     :arrow-navigation="true"
+    :is-24="true"
     time-picker
   />
 </template>

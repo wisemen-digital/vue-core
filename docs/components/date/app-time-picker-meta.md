@@ -14,7 +14,6 @@ import AppTimePickerPlayground from './AppTimePickerPlayground.vue'
 | enableSeconds | `boolean` | Wether to enable seconds in the time picker. | `false` |
 | hasClearButton | `boolean` | Add a clear icon to the input field where you can set the value to null. | `false` |
 | id | `string \| null` | The id of the input. |  |
-| is12 | `boolean` | Wether to use 12H mode. | `false` |
 | isDisabled | `boolean` | Disables the input. | `false` |
 | isInvalid | `boolean` | Set an invalid state to the input. | `false` |
 | isReadonly | `boolean` | Sets the input in readonly state. |  |

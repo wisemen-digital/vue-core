@@ -31,10 +31,6 @@ const props = withDefaults(defineProps<{
    */
   hasClearButton?: boolean
   /**
-   * Wether to use 12H mode.
-   */
-  is12?: boolean
-  /**
    * Disables the input.
    */
   isDisabled?: boolean
@@ -80,7 +76,6 @@ const props = withDefaults(defineProps<{
   tooltip?: string
 }>(), {
   hasClearButton: false,
-  is12: false,
   isDisabled: false,
   isRequired: false,
   isTextInputAllowed: false,
@@ -109,7 +104,6 @@ const modelValue = defineModel<TimePickerValue | null>({
       :max-time="props.maxTime"
       :min-time="props.minTime"
       :has-clear-button="props.hasClearButton"
-      :is12="props.is12"
       :is-disabled="props.isDisabled"
       :is-invalid="isInvalid"
       :is-text-input-allowed="props.isTextInputAllowed"

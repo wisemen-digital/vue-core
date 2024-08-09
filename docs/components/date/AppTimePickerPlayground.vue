@@ -48,11 +48,6 @@ const controls = createControls({
     label: 'Is disabled',
     type: 'switch',
   },
-  is12: {
-    default: false,
-    label: 'Is 12h format',
-    type: 'switch',
-  },
   isInvalid: {
     default: false,
     label: 'Is invalid',
