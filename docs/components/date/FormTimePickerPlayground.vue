@@ -13,7 +13,7 @@ import { ref } from 'vue'
 
 const controls = createControls({
   label: {
-    default: 'Date',
+    default: 'Time',
     label: 'Label',
     cols: 2,
     type: 'text',
