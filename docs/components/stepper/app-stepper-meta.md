@@ -15,6 +15,14 @@ import AppStepperPlayground from './AppStepperPlayground.vue'
 | triggerSize | `"default" \| "sm" \| "lg"` | The size of the stepper trigger, containing the icon | `"default"` |
 
 
+## Slots
+
+| Slot | Type | Description |
+| --------- | ---- | ----------- |
+| `trigger` | \{ isCompleted?: boolean; isDisabled?: boolean; isInvalid?: boolean; \} | Override the rendering of the step trigger. Ex: render something else than the step icon |
+| `validation` | \{ isCompleted?: boolean; isInvalid?: boolean; \} | Override the rendering of the validation indications |
+
+
 ## Events
 
 | Event name | Type | Description |

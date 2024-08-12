@@ -30,18 +30,30 @@ const steps: StepItem[] = [
     stepId: 1,
     description: 'Description for step 1',
     icon: 'checkmark',
+    isCompleted: true,
   },
   {
     title: 'Step 2',
     stepId: 2,
     description: 'Description for step 2',
     icon: 'search',
+    isCompleted: false,
+    isInvalid: true,
   },
   {
     title: 'Step 3',
     stepId: 3,
     description: 'Description for step 3',
     icon: 'calendar',
+    isCompleted: false,
+  },
+  {
+    title: 'Step 4',
+    stepId: 4,
+    description: 'Description for step 4',
+    icon: 'calendar',
+    isDisabled: true,
+    isCompleted: false,
   },
 ]
 

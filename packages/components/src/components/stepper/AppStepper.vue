@@ -32,6 +32,13 @@ const props = withDefaults(
   },
 )
 
+defineSlots<{
+  /** Override the rendering of the step trigger. Ex: render something else than the step icon */
+  trigger: (props: { isCompleted?: boolean, isDisabled?: boolean, isInvalid?: boolean }) => any
+  /** Override the rendering of the validation indications */
+  validation: (props: { isCompleted?: boolean, isInvalid?: boolean }) => any
+}>()
+
 const activeStepId = defineModel<number>({
   required: true,
 })
@@ -52,6 +59,7 @@ const separatorClasses = computed<string>(() => stepperStyle.separator({
 const stepTextContainerClasses = computed<string>(() => stepperStyle.stepTextContainer())
 const stepTitleClasses = computed<string>(() => stepperStyle.stepTitle())
 const stepDescriptionClasses = computed<string>(() => stepperStyle.stepDescription())
+const validationIconsClasses = computed<string>(() => stepperStyle.validationIcons())
 </script>
 
 <template>
@@ -64,14 +72,50 @@ const stepDescriptionClasses = computed<string>(() => stepperStyle.stepDescripti
       :key="item.stepId"
       :step="item.stepId"
       :class="itemClasses"
+      :disabled="item.isDisabled"
+      :completed="item.isCompleted"
     >
       <StepperTrigger :class="triggerClasses">
-        <StepperIndicator>
-          <AppIcon
-            :class="triggerIconClasses"
-            :icon="item.icon"
-          />
-        </StepperIndicator>
+        <slot
+          :is-disabled="item.isDisabled"
+          :is-completed="item.isCompleted"
+          :is-invalid="item.isInvalid"
+          name="trigger"
+        >
+          <StepperIndicator>
+            <AppIcon
+              v-if="item.icon"
+              :class="triggerIconClasses"
+              :icon="item.icon"
+            />
+            <slot
+              :is-invalid="item.isInvalid"
+              :is-completed="item.isCompleted"
+              name="validation"
+            >
+              <div
+                v-if="item.isInvalid"
+                :class="validationIconsClasses"
+              >
+                <AppIcon
+                  class="text-destructive"
+                  icon="close"
+                  size="sm"
+                />
+              </div>
+              <div
+                v-else-if="item.isCompleted"
+                :class="validationIconsClasses"
+              >
+                <AppIcon
+                  class="text-success"
+                  icon="checkmark"
+                  size="sm"
+                />
+              </div>
+            </slot>
+          </StepperIndicator>
+        </slot>
       </StepperTrigger>
 
       <StepperSeparator

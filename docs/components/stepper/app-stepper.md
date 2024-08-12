@@ -27,7 +27,10 @@ export interface StepItem {
 ```vue [Usage]
 <script setup lang="ts">
 import type { StepItem } from '@wisemen/vue-core'
-import { AppStepper } from '@wisemen/vue-core'
+import { 
+  AppStepper,
+  useStepper, 
+} from '@wisemen/vue-core'
 import { ref } from 'vue'
 
 const steps: StepItem[] = [
@@ -52,6 +55,9 @@ const steps: StepItem[] = [
 ]
 
 const activeStepId = ref<number>(steps[0].stepId)
+
+// Can use the stepper composable
+const { nextStep, prevStep } = useStepper(activeStepId, steps)
 </script>
   
 <template>
