@@ -101,6 +101,9 @@ export const components = {
     'AppSkeletonLoaderRow',
     'AppSkeletonLoaderRows',
   ],
+  stepper: [
+    'AppStepper',
+  ],
   switch: [
     'FormSwitch',
   ],

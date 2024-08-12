@@ -121,6 +121,9 @@ export { default as AppSkeletonLoaderRow } from './components/skeleton-loader/Ap
 export { default as AppSkeletonLoaderRows } from './components/skeleton-loader/AppSkeletonLoaderRows.vue'
 export { default as AppTableSkeletonLoader } from './components/table/AppTableSkeletonLoader.vue'
 
+// Stepper
+export { default as AppStepper } from './components/stepper/AppStepper.vue'
+
 // Switch
 export { default as FormSwitch } from './components/switch/FormSwitch.vue'
 
@@ -159,6 +162,7 @@ export { useDialog } from './composables/dialog.composable'
 export { useKeyboardShortcut } from './composables/keyboardShortcut.composable'
 export { useLocalPagination } from './composables/pagination/localPagination.composable'
 export { usePagination } from './composables/pagination/pagination.composable'
+export { useStepper } from './composables/stepper.composable'
 export { useToast } from './composables/toast.composable'
 
 // Types
@@ -189,6 +193,7 @@ export type { FilterValues } from './types/pagination.type'
 export type { RouteLocationTyped, Routes } from './types/routes.type'
 export type { AcceptableValue } from './types/selectItem.type'
 export type { SelectItem } from './types/selectItem.type'
+export type { StepItem } from './types/stepper.type'
 export type { RouteTabItem, TabItem } from './types/tabItem.type'
 export type { TableColumn } from './types/table.type'
 export type { TableEmptyTextProp } from './types/table.type'
