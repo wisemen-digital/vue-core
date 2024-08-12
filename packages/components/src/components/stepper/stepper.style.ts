@@ -5,12 +5,12 @@ export const useStepperStyle = tv({
   slots: {
     item: 'group relative flex w-full cursor-pointer justify-center gap-2 px-4 data-[disabled]:pointer-events-none',
     root: 'flex w-full gap-2 pb-12',
-    separator: 'absolute left-[calc(50%+30px)] right-[calc(-50%+20px)] block h-0.5 shrink-0 rounded-full bg-gray-300 group-data-[disabled]:bg-gray-300 group-data-[state=completed]:bg-primary/75',
+    separator: 'absolute left-[calc(50%+30px)] right-[calc(-50%+20px)] block h-0.5 shrink-0 rounded-full bg-gray-300 transition-colors duration-300 ease-in-out group-data-[disabled]:bg-gray-300 group-data-[state=completed]:bg-primary/75',
     stepDescription: 'hidden truncate text-caption sm:block',
-    stepTextContainer: 'absolute left-0 top-full mt-2 w-full text-center text-foreground group-data-[state=inactive]:text-muted-foreground',
+    stepTextContainer: 'absolute left-0 top-full mt-2 w-full text-center text-foreground transition-colors duration-300 ease-in-out group-data-[state=inactive]:text-muted-foreground',
     stepTitle: 'text-subtext font-medium',
-    trigger: 'inline-flex shrink-0 items-center justify-center rounded-full bg-gray-300 text-gray-400 focus:shadow-[0_0_0_2px] focus:shadow-primary focus:outline-none group-data-[state=active]:bg-primary group-data-[state=completed]:bg-primary/75 group-data-[disabled]:text-gray-400 group-data-[state=active]:text-white group-data-[state=completed]:text-white',
-    triggerIcon: '',
+    trigger: 'inline-flex shrink-0 items-center justify-center rounded-full bg-gray-300 text-gray-400 transition-all duration-300 ease-in-out focus:shadow-[0_0_0_2px] focus:shadow-primary focus:outline-none group-data-[state=active]:bg-primary group-data-[state=completed]:bg-primary/75 group-data-[disabled]:text-gray-400 group-data-[state=active]:text-white group-data-[state=completed]:text-white',
+    triggerIcon: 'transform transition-transform duration-300 ease-in-out group-data-[state=active]:scale-110 group-data-[state=completed]:scale-100',
   },
   variants: {
     triggerSize: {
