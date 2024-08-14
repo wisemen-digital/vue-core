@@ -77,24 +77,6 @@ function onInputBlur(): void {
 
   modelValue.value = null
 }
-
-const mask = {
-  mask: 'hH:mM',
-  tokens: {
-    H: {
-      pattern: /[0-3]/,
-    },
-    M: {
-      pattern: /\d/,
-    },
-    h: {
-      pattern: /[0-2]/,
-    },
-    m: {
-      pattern: /[0-5]/,
-    },
-  },
-}
 </script>
 
 <template>
@@ -108,7 +90,7 @@ const mask = {
     :placeholder="props.placeholder"
     :icon-left="props.iconLeft"
     :is-readonly="props.isReadonly"
-    v-maska="mask"
+    v-maska="'##:##'"
     @blur="onInputBlur"
   >
     <template #right>
