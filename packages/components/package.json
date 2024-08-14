@@ -57,7 +57,7 @@
     "i18n-iso-countries": "7.11.2",
     "jsdom": "24.1.0",
     "libphonenumber-js": "1.11.3",
-    "maska": "2.1.11",
+    "maska": "^3.0.0",
     "minimist": "1.2.8",
     "radix-vue": "1.8.3",
     "sass": "1.77.5",

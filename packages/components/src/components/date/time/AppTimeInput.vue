@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { vMaska } from 'maska'
+import { vMaska } from 'maska/vue'
 
 import AppInput from '@/components/input/AppInput.vue'
 import type { Icon } from '@/icons/icons.js'
@@ -77,6 +77,24 @@ function onInputBlur(): void {
 
   modelValue.value = null
 }
+
+const mask = {
+  mask: 'hH:mM',
+  tokens: {
+    H: {
+      pattern: /[0-3]/,
+    },
+    M: {
+      pattern: /\d/,
+    },
+    h: {
+      pattern: /[0-2]/,
+    },
+    m: {
+      pattern: /[0-5]/,
+    },
+  },
+}
 </script>
 
 <template>
@@ -90,8 +108,7 @@ function onInputBlur(): void {
     :placeholder="props.placeholder"
     :icon-left="props.iconLeft"
     :is-readonly="props.isReadonly"
-    v-maska
-    data-maska="##:##"
+    v-maska="mask"
     @blur="onInputBlur"
   >
     <template #right>
