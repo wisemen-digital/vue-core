@@ -1,28 +1,9 @@
 <script setup lang="ts">
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols'
-import {
-  AppButton,
-  defineButtonVariant,
-} from '@wisemen/vue-core'
+import { AppButton } from '@wisemen/vue-core'
 
 declare module '@wisemen/vue-core' {}
-
-defineButtonVariant({
-  name: 'custom',
-  compountSlots: [
-    {
-      isLoading: true,
-      class: 'bg-blue-50',
-      slots: [
-        'button',
-      ],
-    },
-  ],
-  slots: {
-    button: 'bg-blue-100 shadow-lg ring-blue-100',
-  },
-})
 
 const controls = createControls({
   slot: {
