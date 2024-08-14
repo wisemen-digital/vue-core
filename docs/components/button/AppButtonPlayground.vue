@@ -101,10 +101,7 @@ const controls = createControls({
         {{ values.slot }}
       </AppButton>
 
-      <AppButton
-        v-bind="values"
-        variant="inline"
-      >
+      <AppButton v-bind="values">
         Button
       </AppButton>
     </template>
