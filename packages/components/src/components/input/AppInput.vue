@@ -15,9 +15,9 @@ const props = withDefaults(defineProps<{
   id?: null | string
   /**
    * The test id of the input.
-   * @default undefined
+   * @default null
    */
-  testId?: string
+  testId?: null | string
   /**
    * Whether the input is disabled.
    * @default false
@@ -54,6 +54,7 @@ const props = withDefaults(defineProps<{
   type?: 'date' | 'datetime-local' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'time' | 'url'
 }>(), {
   id: null,
+  testId: null,
   isDisabled: false,
   isInvalid: false,
   isLoading: false,
