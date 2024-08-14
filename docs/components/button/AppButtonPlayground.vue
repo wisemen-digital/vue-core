@@ -3,8 +3,6 @@ import ComponentPlayground from '@docs/playground/components/ComponentPlayground
 import { createControls } from '@docs/playground/utils/createContols'
 import { AppButton } from '@wisemen/vue-core'
 
-declare module '@wisemen/vue-core' {}
-
 const controls = createControls({
   slot: {
     default: 'Test Button',
@@ -80,10 +78,6 @@ const controls = createControls({
     <template #default="{ values }">
       <AppButton v-bind="values">
         {{ values.slot }}
-      </AppButton>
-
-      <AppButton v-bind="values">
-        Button
       </AppButton>
     </template>
   </ComponentPlayground>
