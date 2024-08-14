@@ -165,8 +165,8 @@ const docs = [
         text: 'AppMonthPicker',
       },
       {
-        link: '/components/date/app-time-picker',
-        text: 'AppTimePicker',
+        link: '/components/date/app-time-input',
+        text: 'AppTimeInput',
       },
       {
         link: '/components/date/form-date-picker',
@@ -177,8 +177,8 @@ const docs = [
         text: 'FormMonthPicker',
       },
       {
-        link: '/components/date/form-time-picker',
-        text: 'FormTimePicker',
+        link: '/components/date/form-time-input',
+        text: 'FormTimeInput',
       },
     ],
     text: 'Date',

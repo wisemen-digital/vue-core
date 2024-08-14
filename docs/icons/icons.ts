@@ -16,6 +16,7 @@ export const icons = {
   chevronRight: import('@docs/icons/ChevronRightIcon.vue'),
   chevronUp: import('@docs/icons/ChevronUpIcon.vue'),
   close: import('@docs/icons/CloseIcon.vue'),
+  clock: import('@docs/icons/ClockIcon.vue'),
   eye: import('@docs/icons/EyeIcon.vue'),
   eyeSlash: import('@docs/icons/EyeSlashIcon.vue'),
   filterLines: import('@docs/icons/FilterLinesIcon.vue'),

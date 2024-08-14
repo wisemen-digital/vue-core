@@ -33,6 +33,11 @@ const props = withDefaults(defineProps<{
    */
   isLoading?: boolean
   /**
+   * Whether the input is readonly.
+   * @default false
+   */
+  isReadonly?: boolean
+  /**
    * The left icon of the input.
    * @default null
    */
@@ -58,6 +63,7 @@ const props = withDefaults(defineProps<{
   isDisabled: false,
   isInvalid: false,
   isLoading: false,
+  isReadonly: false,
   iconLeft: null,
   iconRight: null,
   placeholder: null,
@@ -113,6 +119,7 @@ const loaderClasses = computed<string>(() => inputStyle.loader())
       :id="props.id ?? undefined"
       v-model="model"
       :type="props.type"
+      :readonly="props.isReadonly"
       :data-testid="props.testId"
       :aria-invalid="props.isInvalid"
       :disabled="props.isDisabled"

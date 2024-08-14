@@ -11,6 +11,7 @@ import AppTooltipPlayground from './AppTooltipPlayground.vue'
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
 | align | `"start" \| "end" \| "center"` | The alignment of the tooltip content. | `"center"` |
+| containerElement | `HTMLElement \| null` | The element to render the tooltip in. By default this is the viewport | `null` |
 | content | `string \| null` | The content to show in the tooltip. | `null` |
 | delayDuration | `number` | The duration in milliseconds to wait before showing the tooltip. | `0` |
 | disableCloseOnTriggerClick | `boolean` | When true, clicking on trigger will not close the content. | `false` |
