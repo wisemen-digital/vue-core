@@ -70,6 +70,11 @@ const controls = createControls({
     label: 'Is readonly',
     type: 'switch',
   },
+  isInline: {
+    default: false,
+    label: 'Is inline',
+    type: 'switch',
+  },
 })
 
 const model = ref<Date | null>(new Date())

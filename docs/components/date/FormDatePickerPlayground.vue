@@ -75,6 +75,11 @@ const controls = createControls({
     type: 'text',
     cols: 2,
   },
+  isInline: {
+    default: false,
+    label: 'Is inline',
+    type: 'switch',
+  },
 })
 
 const model = ref<Date | null>(null)

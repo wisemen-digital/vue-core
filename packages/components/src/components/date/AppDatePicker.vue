@@ -38,6 +38,10 @@ const props = withDefaults(defineProps<{
    */
   isDisabled?: boolean
   /**
+   * Whether the input is inline.
+   */
+  isInline?: boolean
+  /**
    * Set an invalid state to the input.
    */
   isInvalid?: boolean
@@ -86,6 +90,7 @@ const props = withDefaults(defineProps<{
   id: null,
   hasClearButton: false,
   isDisabled: false,
+  isInline: false,
   isInvalid: false,
   isMonthYearPickersDisabled: false,
   isTextInputAllowed: false,
@@ -124,6 +129,7 @@ const modelValue = defineModel<Date | null>({
     :arrow-navigation="true"
     :auto-apply="true"
     :month-change-on-arrows="false"
+    :inline="props.isInline"
     :partial-flow="true"
   />
 </template>

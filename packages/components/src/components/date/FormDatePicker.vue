@@ -31,6 +31,10 @@ const props = withDefaults(defineProps<{
    */
   isDisabled?: boolean
   /**
+   * Whether the input is inline.
+   */
+  isInline?: boolean
+  /**
    * If true, removes the month and year picker.
    */
   isMonthYearPickersDisabled?: boolean
@@ -90,6 +94,7 @@ const props = withDefaults(defineProps<{
 }>(), {
   hasClearButton: false,
   isDisabled: false,
+  isInline: false,
   isMonthYearPickersDisabled: false,
   isRequired: false,
   isTextInputAllowed: false,
@@ -119,6 +124,7 @@ const { classAttr, otherAttrs } = useComponentAttrs()
       :id="id"
       v-model="model"
       v-bind="otherAttrs"
+      :is-inline="props.isInline"
       :disabled-dates="props.disabledDates"
       :is-time-picker-enabled="props.isTimePickerEnabled"
       :flow="props.flow"
