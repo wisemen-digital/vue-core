@@ -11,6 +11,7 @@ import FormDatePickerPlayground from './FormDatePickerPlayground.vue'
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
 | disabledDates | `Date[] \| ((date: Date) => boolean)` | Disable specific dates. |  |
+| disableTeleport | `boolean` | Disable teleporting the datepicker to the body. | `false` |
 | errors* | `FormFieldErrors` | The errors associated with the input. |  |
 | flow | `("calendar" \| "hours" \| "minutes" \| "month" \| "seconds" \| "time" \| "year")[]` | Define the selecting order. Position in the array will specify the execution step. |  |
 | hasClearButton | `boolean` | Add a clear icon to the input field where you can set the value to null. | `false` |
