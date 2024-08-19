@@ -16,13 +16,17 @@ const controls = createControls({
   placeholder: {
     default: 'Choose a time',
     label: 'Placeholder',
-    cols: 2,
     type: 'text',
   },
   iconLeft: {
     default: 'clock',
     label: 'Left icon',
     type: 'icon',
+  },
+  tooltip: {
+    default: 'This is a tooltip',
+    label: 'Tooltip',
+    type: 'text',
   },
   isDisabled: {
     default: false,
@@ -43,12 +47,6 @@ const controls = createControls({
     default: false,
     label: 'Is touched',
     type: 'switch',
-  },
-  tooltip: {
-    default: 'This is a tooltip',
-    label: 'Tooltip',
-    type: 'text',
-    cols: 2,
   },
 })
 
