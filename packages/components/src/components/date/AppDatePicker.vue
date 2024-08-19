@@ -58,6 +58,10 @@ const props = withDefaults(defineProps<{
    */
   isTimePickerEnabled?: boolean
   /**
+   * Disable teleporting the datepicker to the body.
+   */
+  disableTeleport?: boolean
+  /**
    * Disable specific dates.
    */
   disabledDates?: ((date: Date) => boolean) | Date[]
@@ -90,6 +94,7 @@ const props = withDefaults(defineProps<{
   isMonthYearPickersDisabled: false,
   isTextInputAllowed: false,
   isTimePickerEnabled: false,
+  disableTeleport: false,
   multiple: false,
 })
 
@@ -108,6 +113,7 @@ const modelValue = defineModel<Date | null>({
     :data-testid="props.testId"
     :disabled="props.isDisabled"
     :disabled-dates="props.disabledDates"
+    :teleport="!props.disableTeleport"
     :disable-month-year-select="props.isMonthYearPickersDisabled"
     :enable-time-picker="props.isTimePickerEnabled"
     :flow="props.flow"

@@ -11,6 +11,7 @@ import AppDatePickerPlayground from './AppDatePickerPlayground.vue'
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
 | disabledDates | `((date: Date) => boolean) \| Date[]` | Disable specific dates. |  |
+| disableTeleport | `boolean` | Disable teleporting the datepicker to the body. | `false` |
 | flow | `("calendar" \| "hours" \| "minutes" \| "month" \| "seconds" \| "time" \| "year")[]` | Define the selecting order. Position in the array will specify the execution step. |  |
 | hasClearButton | `boolean` | Add a clear icon to the input field where you can set the value to null. | `false` |
 | highlightConfig | `Partial<DatePickerHighlightConfig>` | Specify highlighted dates. |  |

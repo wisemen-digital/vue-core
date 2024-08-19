@@ -12,7 +12,6 @@ import FormTimeInputPlayground from './FormTimeInputPlayground.vue'
 | ---- | ---- | ----------- | ------- |
 | errors* | `FormFieldErrors` | The errors associated with the input. |  |
 | iconLeft | `keyof Icons \| null` | The left icon of the input. | `null` |
-| iconRight | `keyof Icons \| null` | The right icon of the input. | `null` |
 | isDisabled | `boolean` | Whether the input is disabled. | `false` |
 | isLoading | `boolean` | Whether the input is loading. | `false` |
 | isRequired | `boolean` | Whether the input is required. | `false` |
