@@ -46,6 +46,7 @@ export { default as AppMonthPicker } from './components/date/month/AppMonthPicke
 export { default as FormMonthPicker } from './components/date/month/FormMonthPicker.vue'
 export { default as AppTimeInput } from './components/date/time/AppTimeInput.vue'
 export { default as FormTimeInput } from './components/date/time/FormTimeInput.vue'
+export { default as AppWeekPicker } from './components/date/week/AppWeekPicker.vue'
 
 // Date range
 export { default as AppDateRangePicker } from './components/date-range/AppDateRangePicker.vue'

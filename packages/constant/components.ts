@@ -39,6 +39,7 @@ export const components = {
   date: [
     'AppDatePicker',
     'FormDatePicker',
+    'AppWeekPicker',
     'AppMonthPicker',
     'FormMonthPicker',
     'AppTimeInput',
