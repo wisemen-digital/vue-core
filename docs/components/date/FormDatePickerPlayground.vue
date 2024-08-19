@@ -75,6 +75,11 @@ const controls = createControls({
     type: 'text',
     cols: 2,
   },
+  isInline: {
+    default: false,
+    label: 'Is inline',
+    type: 'switch',
+  },
 })
 
 const model = ref<Date | null>(null)
@@ -93,6 +98,14 @@ const exampleError: FormFieldErrors = {
     <template #default="{ values }">
       <div class="max-w-64">
         <FormDatePicker
+          v-if="values.isInline"
+          v-model="model"
+          :errors="exampleError"
+          v-bind="values"
+        />
+
+        <FormDatePicker
+          v-if="!values.isInline"
           v-model="model"
           :errors="exampleError"
           v-bind="values"

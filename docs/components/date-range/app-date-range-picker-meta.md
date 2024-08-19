@@ -15,6 +15,7 @@ import AppDateRangePickerPlayground from './AppDateRangePickerPlayground.vue'
 | highlightConfig | `Partial<DatePickerHighlightConfig>` | Specify highlighted dates. |  |
 | id | `string \| null` | The id of the input. |  |
 | isDisabled | `boolean` | Disables the input. | `false` |
+| isInline | `boolean` | Whether the input is inline. | `false` |
 | isInvalid | `boolean` | Set an invalid state to the input. | `false` |
 | isMonthYearPickersDisabled | `boolean` | If true, removes the month and year picker. | `false` |
 | isReadonly | `boolean` | Sets the input in readonly state. |  |
