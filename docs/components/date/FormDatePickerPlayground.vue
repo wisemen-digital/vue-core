@@ -98,6 +98,14 @@ const exampleError: FormFieldErrors = {
     <template #default="{ values }">
       <div class="max-w-64">
         <FormDatePicker
+          v-if="values.isInline"
+          v-model="model"
+          :errors="exampleError"
+          v-bind="values"
+        />
+
+        <FormDatePicker
+          v-if="!values.isInline"
           v-model="model"
           :errors="exampleError"
           v-bind="values"
