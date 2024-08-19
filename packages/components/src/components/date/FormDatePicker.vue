@@ -55,6 +55,10 @@ const props = withDefaults(defineProps<{
    */
   isTouched: boolean
   /**
+   * Disable teleporting the datepicker to the body.
+   */
+  disableTeleport?: boolean
+  /**
    * Disable specific dates.
    */
   disabledDates?: ((date: Date) => boolean) | Date[]
@@ -99,6 +103,7 @@ const props = withDefaults(defineProps<{
   isRequired: false,
   isTextInputAllowed: false,
   isTimePickerEnabled: false,
+  disableTeleport: false,
   multiple: false,
 })
 
@@ -128,6 +133,7 @@ const { classAttr, otherAttrs } = useComponentAttrs()
       :disabled-dates="props.disabledDates"
       :is-time-picker-enabled="props.isTimePickerEnabled"
       :flow="props.flow"
+      :disable-teleport="props.disableTeleport"
       :has-clear-button="props.hasClearButton"
       :highlight-config="props.highlightConfig"
       :is-disabled="props.isDisabled"
