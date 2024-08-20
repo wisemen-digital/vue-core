@@ -1,21 +1,14 @@
 <script setup lang="ts">
-import '@vuepic/vue-datepicker/dist/main.css'
-import '@/components/date/style.css'
-
-import VueDatePicker from '@vuepic/vue-datepicker'
-import { useI18n } from 'vue-i18n'
-
+import AppWeekPicker from '@/components/date/week/AppWeekPicker.vue'
+import FormElement from '@/components/form-element/FormElement.vue'
+import { useComponentAttrs } from '@/composables/componentAttrs.composable'
 import type {
   DatePickerHighlightConfig,
   DatePickerMarker,
 } from '@/types/datePickerConfig.type'
+import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
 const props = withDefaults(defineProps<{
-  /**
-   * The id of the input.
-   * @default null
-   */
-  id?: null | string
   /**
    * The test id of the input.
    * @default undefined
@@ -38,21 +31,21 @@ const props = withDefaults(defineProps<{
    */
   isDisabled?: boolean
   /**
-   * Set an invalid state to the input.
-   */
-  isInvalid?: boolean
-  /**
    * If true, removes the month and year picker.
    */
   isMonthYearPickersDisabled?: boolean
   /**
-   * Sets the input in readonly state.
+   *  Whether the input is required.
    */
-  isReadonly?: boolean
+  isRequired?: boolean
   /**
    * When true, will try to parse the date from the user input.
    */
   isTextInputAllowed?: boolean
+  /**
+   * Whether the input is touched.
+   */
+  isTouched: boolean
   /**
    * Disable teleporting the datepicker to the body.
    */
@@ -62,6 +55,10 @@ const props = withDefaults(defineProps<{
    */
   disabledDates?: ((date: Date) => boolean) | Date[]
   /**
+   * The errors associated with the input.
+   */
+  errors: FormFieldErrors
+  /**
    * Define the selecting order. Position in the array will specify the execution step.
    * @default []
    */
@@ -70,6 +67,10 @@ const props = withDefaults(defineProps<{
    * Specify highlighted dates.
    */
   highlightConfig?: Partial<DatePickerHighlightConfig>
+  /**
+   * The label of the input.
+   */
+  label: string
   /**
    * Add markers to the specified dates with (optional) tooltips. For color options, you can use any css valid color.
    */
@@ -82,62 +83,57 @@ const props = withDefaults(defineProps<{
    * Placeholder of the input.
    */
   placeholder?: string
+  /**
+   * The tooltip of the input.
+   */
+  tooltip?: string
 }>(), {
-  id: null,
   hasClearButton: false,
   isDisabled: false,
-  isInvalid: false,
   isMonthYearPickersDisabled: false,
+  isRequired: false,
   isTextInputAllowed: false,
   disableTeleport: false,
   multiple: false,
 })
 
-const i18n = useI18n()
-
-const modelValue = defineModel<Date[] | null>({
+const model = defineModel<Date[] | null>({
   required: true,
 })
 
-function formatDateLabel(date: Date): string {
-  const day = date.getDay()
-
-  const startDate = new Date(date.setDate(date.getDate() - day + (day === 0 ? -6 : 1)))
-  const endDate = new Date(date.setDate(date.getDate() + 7 - day))
-
-  return `${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}`
-}
+const { classAttr, otherAttrs } = useComponentAttrs()
 </script>
 
 <template>
-  <VueDatePicker
-    :id="props.id ?? undefined"
-    v-model="modelValue"
-    :clearable="props.hasClearButton"
-    :data-testid="props.testId"
-    :disabled="props.isDisabled"
-    :disabled-dates="props.disabledDates"
-    :teleport="!props.disableTeleport"
-    :disable-month-year-select="props.isMonthYearPickersDisabled"
-    :flow="props.flow"
-    :highlight="props.highlightConfig"
-    :invalid="props.isInvalid"
-    :locale="i18n.locale.value"
-    :min-date="props.minDate"
-    :week-picker="true"
-    :markers="props.markers"
-    :max-date="props.maxDate"
-    :multi-dates="props.multiple"
-    :placeholder="props.placeholder"
-    :readonly="props.isReadonly"
-    :text-input="props.isTextInputAllowed"
-    :arrow-navigation="true"
-    :auto-apply="true"
-    :month-change-on-arrows="false"
-    :partial-flow="true"
-    :format="formatDateLabel"
-  />
+  <FormElement
+    v-slot="{ isInvalid, id }"
+    :tooltip="props.tooltip"
+    :class="classAttr"
+    :errors="props.errors"
+    :is-required="props.isRequired"
+    :is-touched="props.isTouched"
+    :is-disabled="props.isDisabled"
+    :label="props.label"
+  >
+    <AppWeekPicker
+      :id="id"
+      v-model="model"
+      v-bind="otherAttrs"
+      :disabled-dates="props.disabledDates"
+      :flow="props.flow"
+      :disable-teleport="props.disableTeleport"
+      :has-clear-button="props.hasClearButton"
+      :highlight-config="props.highlightConfig"
+      :is-disabled="props.isDisabled"
+      :is-invalid="isInvalid"
+      :is-month-year-pickers-disabled="props.isMonthYearPickersDisabled"
+      :is-text-input-allowed="props.isTextInputAllowed"
+      :min-date="props.minDate"
+      :markers="props.markers"
+      :max-date="props.maxDate"
+      :multiple="props.multiple"
+      :placeholder="props.placeholder"
+      :test-id="props.testId"
+    />
+  </FormElement>
 </template>
-
-<style>
-</style>
