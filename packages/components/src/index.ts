@@ -42,6 +42,8 @@ export { default as AppMonthPicker } from './components/date/month/AppMonthPicke
 export { default as FormMonthPicker } from './components/date/month/FormMonthPicker.vue'
 export { default as AppTimeInput } from './components/date/time/AppTimeInput.vue'
 export { default as FormTimeInput } from './components/date/time/FormTimeInput.vue'
+export { default as AppWeekPicker } from './components/date/week/AppWeekPicker.vue'
+export { default as FormWeekPicker } from './components/date/week/FormWeekPicker.vue'
 
 // Date range
 export { default as AppDateRangePicker } from './components/date-range/AppDateRangePicker.vue'
@@ -165,7 +167,7 @@ export type { Accordion } from './types/accordionItem.type'
 export type { BreadcrumbItem } from './types/breadcrumbItem.type'
 export type { ComboboxItem } from './types/comboboxItem.type'
 export type { DataItem } from './types/dataItem.type'
-export type { DatePickerRangeValue, MonthPickerValue } from './types/date.type'
+export type { DatePickerRangeValue, MonthPickerValue, WeekPickerValue } from './types/date.type'
 export type { DatePickerHighlightConfig, DatePickerMarker, DatePickerRangeConfig } from './types/datePickerConfig.type'
 export type { DropdownMenuItem } from './types/dropdownMenuItem.type'
 export type { FormFieldErrors } from './types/formFieldErrors.type'
