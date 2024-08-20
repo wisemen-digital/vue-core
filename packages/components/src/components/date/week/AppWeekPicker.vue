@@ -151,6 +151,7 @@ function formatDateLabel(date: Date): string {
     :invalid="props.isInvalid"
     :locale="i18n.locale.value"
     :min-date="props.minDate"
+    :enable-time-picker="false"
     :week-picker="true"
     :markers="props.markers"
     :max-date="props.maxDate"

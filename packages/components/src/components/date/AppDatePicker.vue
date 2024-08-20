@@ -114,6 +114,7 @@ const modelValue = defineModel<Date | null>({
   <VueDatePicker
     :id="props.id ?? undefined"
     v-model="modelValue"
+    :class="{ dp__inline: props.isInline }"
     :clearable="props.hasClearButton"
     :data-testid="props.testId"
     :disabled="props.isDisabled"
@@ -139,6 +140,3 @@ const modelValue = defineModel<Date | null>({
     :partial-flow="true"
   />
 </template>
-
-<style>
-</style>
