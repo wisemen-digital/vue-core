@@ -19,7 +19,10 @@ import { z } from 'zod'
 
 const { form } = useForm({
   schema: z.object({
-    date: z.date().array(),
+    date: z.object({
+      start: z.date(),
+      end: z.date()
+    }).nullable()
   })
 })
 

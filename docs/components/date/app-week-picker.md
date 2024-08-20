@@ -13,8 +13,9 @@ sidebar: auto
 ```vue [Usage]
 <script setup lang="ts">
 import { DateUtil } from '../..'
+import type { WeekPickerValue } from '@wisemen/vue-core'
 
-const model = ref<Date[] | null>([DateUtil.getStartOfWeek(), DateUtil.getEndOfWeek()])
+const model = ref<WeekPickerValue | null>(null)
 </script>
   
 <template>

@@ -3,8 +3,10 @@ import '@vuepic/vue-datepicker/dist/main.css'
 import '@/components/date/style.css'
 
 import VueDatePicker from '@vuepic/vue-datepicker'
+import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import type { WeekPickerValue } from '@/types/date.type'
 import type {
   DatePickerHighlightConfig,
   DatePickerMarker,
@@ -79,10 +81,6 @@ const props = withDefaults(defineProps<{
    */
   markers?: DatePickerMarker[]
   /**
-   * Allow selecting multiple single dates. When changing time, the latest selected date is affected.
-   */
-  multiple?: boolean
-  /**
    * Placeholder of the input.
    */
   placeholder?: string
@@ -95,13 +93,37 @@ const props = withDefaults(defineProps<{
   isMonthYearPickersDisabled: false,
   isTextInputAllowed: false,
   disableTeleport: false,
-  multiple: false,
 })
 
 const i18n = useI18n()
 
-const modelValue = defineModel<Date[] | null>({
+const modelValue = defineModel<WeekPickerValue | null>({
   required: true,
+})
+
+const computedModelValue = computed<Date[] | null>({
+  get: () => {
+    if (modelValue.value === null) {
+      return null
+    }
+
+    return [
+      new Date(modelValue.value.start),
+      new Date(modelValue.value.end),
+    ]
+  },
+  set: (value: Date[] | null) => {
+    if (value === null) {
+      modelValue.value = null
+
+      return
+    }
+
+    modelValue.value = {
+      end: value[1],
+      start: value[0],
+    }
+  },
 })
 
 function formatDateLabel(date: Date): string {
@@ -117,7 +139,7 @@ function formatDateLabel(date: Date): string {
 <template>
   <VueDatePicker
     :id="props.id ?? undefined"
-    v-model="modelValue"
+    v-model="computedModelValue"
     :clearable="props.hasClearButton"
     :data-testid="props.testId"
     :disabled="props.isDisabled"
@@ -132,7 +154,6 @@ function formatDateLabel(date: Date): string {
     :week-picker="true"
     :markers="props.markers"
     :max-date="props.maxDate"
-    :multi-dates="props.multiple"
     :placeholder="props.placeholder"
     :inline="props.isInline"
     :readonly="props.isReadonly"

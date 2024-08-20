@@ -2,7 +2,10 @@
 <script setup lang="ts">
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols'
-import type { FormFieldErrors } from '@wisemen/vue-core'
+import type {
+  FormFieldErrors,
+  WeekPickerValue,
+} from '@wisemen/vue-core'
 import { AppText, FormWeekPicker } from '@wisemen/vue-core'
 import { ref } from 'vue'
 
@@ -39,11 +42,6 @@ const controls = createControls({
     label: 'Is text input allowed',
     type: 'switch',
   },
-  multiple: {
-    default: false,
-    label: 'Choose multiple dates',
-    type: 'switch',
-  },
   hasClearButton: {
     default: false,
     label: 'Has clear button',
@@ -77,8 +75,7 @@ const controls = createControls({
   },
 })
 
-const model = ref<Date[] | null>(null)
-
+const model = ref<WeekPickerValue | null>(null)
 const exampleError: FormFieldErrors = {
   _errors: [
     'The date has an error',

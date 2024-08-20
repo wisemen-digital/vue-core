@@ -25,8 +25,7 @@ import AppWeekPickerPlayground from './AppWeekPickerPlayground.vue'
 | markers | `DatePickerMarker[]` | Add markers to the specified dates with (optional) tooltips. For color options, you can use any css valid color. |  |
 | maxDate | `Date` | All dates after the given date will be disabled. |  |
 | minDate | `Date` | All dates before the given date will be disabled. |  |
-| modelValue* | `Date[] \| null` |  |  |
-| multiple | `boolean` | Allow selecting multiple single dates. When changing time, the latest selected date is affected. | `false` |
+| modelValue* | `WeekPickerValue \| null` |  |  |
 | placeholder | `string` | Placeholder of the input. |  |
 | testId | `string` | The test id of the input. |  |
 
@@ -35,5 +34,5 @@ import AppWeekPickerPlayground from './AppWeekPickerPlayground.vue'
 
 | Event name | Type | Description |
 | ---------- | ---- | ----------- |
-| `update:modelValue` | [modelValue: Date[] \| null] |  |
+| `update:modelValue` | [modelValue: WeekPickerValue \| null] |  |
 

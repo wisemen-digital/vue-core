@@ -2,6 +2,7 @@
 import AppWeekPicker from '@/components/date/week/AppWeekPicker.vue'
 import FormElement from '@/components/form-element/FormElement.vue'
 import { useComponentAttrs } from '@/composables/componentAttrs.composable'
+import type { WeekPickerValue } from '@/types/date.type'
 import type {
   DatePickerHighlightConfig,
   DatePickerMarker,
@@ -80,10 +81,6 @@ const props = withDefaults(defineProps<{
    */
   markers?: DatePickerMarker[]
   /**
-   * Allow selecting multiple single dates. When changing time, the latest selected date is affected.
-   */
-  multiple?: boolean
-  /**
    * Placeholder of the input.
    */
   placeholder?: string
@@ -99,10 +96,9 @@ const props = withDefaults(defineProps<{
   isRequired: false,
   isTextInputAllowed: false,
   disableTeleport: false,
-  multiple: false,
 })
 
-const model = defineModel<Date[] | null>({
+const model = defineModel<WeekPickerValue | null>({
   required: true,
 })
 
@@ -137,7 +133,6 @@ const { classAttr, otherAttrs } = useComponentAttrs()
       :min-date="props.minDate"
       :markers="props.markers"
       :max-date="props.maxDate"
-      :multiple="props.multiple"
       :placeholder="props.placeholder"
       :test-id="props.testId"
     />

@@ -4,10 +4,9 @@ import { createControls } from '@docs/playground/utils/createContols'
 import {
   AppText,
   AppWeekPicker,
+  type WeekPickerValue,
 } from '@wisemen/vue-core'
 import { ref } from 'vue'
-
-import { DateUtil } from '../../../packages/components/src/utils/date.util'
 
 const controls = createControls({
   placeholder: {
@@ -34,11 +33,6 @@ const controls = createControls({
   isTextInputAllowed: {
     default: false,
     label: 'Is text input allowed',
-    type: 'switch',
-  },
-  multiple: {
-    default: false,
-    label: 'Choose multiple dates',
     type: 'switch',
   },
   hasClearButton: {
@@ -68,10 +62,7 @@ const controls = createControls({
   },
 })
 
-const model = ref<Date[] | null>([
-  DateUtil.getStartOfWeek(),
-  DateUtil.getEndOfWeek(),
-])
+const model = ref<WeekPickerValue | null>(null)
 </script>
 
 <template>
@@ -97,7 +88,7 @@ const model = ref<Date[] | null>([
         />
 
         <AppText variant="caption">
-          {{ `Model value: ${model ? model?.toString() : "null"}` }}
+          {{ `Model value: ${model ? JSON.stringify(model) : "null"}` }}
         </AppText>
       </div>
     </template>
