@@ -83,6 +83,11 @@ const controls = createControls({
     label: 'Is readonly',
     type: 'switch',
   },
+  isInline: {
+    default: false,
+    label: 'Is inline',
+    type: 'switch',
+  },
 })
 
 const model = ref<DatePickerRangeValue | null>(null)
@@ -118,6 +123,22 @@ const disabled: Date[] = [
     <template #default="{ values }">
       <div class="flex max-w-64 flex-col gap-2">
         <AppDateRangePicker
+          v-if="values.isInline"
+          v-model="model"
+          :highlight-config="highlighted"
+          :markers="markers"
+          :disabled-dates="disabled"
+          :range-config="{
+            autoRange: values.autoRange,
+            maxRange: values.maxRange,
+            minRange: values.minRange,
+            hasNoDisabledRange: values.noDisabledRange,
+          }"
+          v-bind="values"
+        />
+
+        <AppDateRangePicker
+          v-if="!values.isInline"
           v-model="model"
           :highlight-config="highlighted"
           :markers="markers"

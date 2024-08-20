@@ -96,6 +96,11 @@ const controls = createControls({
     type: 'text',
     cols: 2,
   },
+  isInline: {
+    default: false,
+    label: 'Is inline',
+    type: 'switch',
+  },
 })
 
 const model = ref<DatePickerRangeValue | null>(null)
@@ -137,6 +142,22 @@ const exampleError: FormFieldErrors = {
     <template #default="{ values }">
       <div class="flex max-w-64 flex-col gap-2">
         <FormDateRangePicker
+          v-if="values.isInline"
+          v-model="model"
+          :highlight-config="highlighted"
+          :markers="markers"
+          :disabled-dates="disabled"
+          :errors="exampleError"
+          :range-config="{
+            autoRange: values.autoRange,
+            maxRange: values.maxRange,
+            minRange: values.minRange,
+            hasNoDisabledRange: values.noDisabledRange,
+          }"
+          v-bind="values"
+        />
+        <FormDateRangePicker
+          v-if="!values.isInline"
           v-model="model"
           :highlight-config="highlighted"
           :markers="markers"
