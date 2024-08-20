@@ -26,11 +26,6 @@ const controls = createControls({
     label: 'Max date',
     type: 'date',
   },
-  isTimePickerEnabled: {
-    default: false,
-    label: 'Is time picker enabled',
-    type: 'switch',
-  },
   isMonthYearPickersDisabled: {
     default: false,
     label: 'Is month/year pickers disabled',
@@ -66,6 +61,11 @@ const controls = createControls({
     label: 'Is readonly',
     type: 'switch',
   },
+  isInline: {
+    default: false,
+    label: 'Is inline',
+    type: 'switch',
+  },
 })
 
 const model = ref<Date[] | null>([
@@ -81,6 +81,15 @@ const model = ref<Date[] | null>([
     <template #default="{ values }">
       <div class="max-w-64">
         <AppWeekPicker
+          v-if="values.isInline"
+          id="date-picker-1"
+          v-model="model"
+          test-id="date-picker-1"
+          v-bind="values"
+        />
+
+        <AppWeekPicker
+          v-if="!values.isInline"
           id="date-picker-1"
           v-model="model"
           test-id="date-picker-1"

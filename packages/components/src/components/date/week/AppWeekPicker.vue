@@ -38,6 +38,10 @@ const props = withDefaults(defineProps<{
    */
   isDisabled?: boolean
   /**
+   * Whether the input is inline.
+   */
+  isInline?: boolean
+  /**
    * Set an invalid state to the input.
    */
   isInvalid?: boolean
@@ -86,6 +90,7 @@ const props = withDefaults(defineProps<{
   id: null,
   hasClearButton: false,
   isDisabled: false,
+  isInline: false,
   isInvalid: false,
   isMonthYearPickersDisabled: false,
   isTextInputAllowed: false,
@@ -129,6 +134,7 @@ function formatDateLabel(date: Date): string {
     :max-date="props.maxDate"
     :multi-dates="props.multiple"
     :placeholder="props.placeholder"
+    :inline="props.isInline"
     :readonly="props.isReadonly"
     :text-input="props.isTextInputAllowed"
     :arrow-navigation="true"

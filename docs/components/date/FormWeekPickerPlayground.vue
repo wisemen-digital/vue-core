@@ -29,11 +29,6 @@ const controls = createControls({
     label: 'Max date',
     type: 'date',
   },
-  isTimePickerEnabled: {
-    default: false,
-    label: 'Is time picker enabled',
-    type: 'switch',
-  },
   isMonthYearPickersDisabled: {
     default: false,
     label: 'Is month/year pickers disabled',
@@ -69,6 +64,11 @@ const controls = createControls({
     label: 'Is touched',
     type: 'switch',
   },
+  isInline: {
+    default: false,
+    label: 'Is inline',
+    type: 'switch',
+  },
   tooltip: {
     default: 'This is a tooltip',
     label: 'Tooltip',
@@ -93,6 +93,14 @@ const exampleError: FormFieldErrors = {
     <template #default="{ values }">
       <div class="max-w-64">
         <FormWeekPicker
+          v-if="values.isInline"
+          v-model="model"
+          :errors="exampleError"
+          v-bind="values"
+        />
+
+        <FormWeekPicker
+          v-if="!values.isInline"
           v-model="model"
           :errors="exampleError"
           v-bind="values"

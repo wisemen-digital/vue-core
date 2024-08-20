@@ -17,6 +17,7 @@ import FormWeekPickerPlayground from './FormWeekPickerPlayground.vue'
 | hasClearButton | `boolean` | Add a clear icon to the input field where you can set the value to null. | `false` |
 | highlightConfig | `Partial<DatePickerHighlightConfig>` | Specify highlighted dates. |  |
 | isDisabled | `boolean` | Disables the input. | `false` |
+| isInline | `boolean` | Whether the input is inline. | `false` |
 | isMonthYearPickersDisabled | `boolean` | If true, removes the month and year picker. | `false` |
 | isRequired | `boolean` | Whether the input is required. | `false` |
 | isTextInputAllowed | `boolean` | When true, will try to parse the date from the user input. | `false` |
