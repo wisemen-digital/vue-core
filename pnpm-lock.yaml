@@ -103,7 +103,7 @@ importers:
         specifier: 9.0.2
         version: 9.0.2(vue@3.4.35(typescript@5.4.5))
       date-fns:
-        specifier: ^3.6.0
+        specifier: 3.6.0
         version: 3.6.0
       vue:
         specifier: 3.4.35
@@ -7841,8 +7841,6 @@ snapshots:
       putout: 35.7.1(typescript@5.4.5)
       try-catch: 3.0.1
       try-to-catch: 3.0.1
-    transitivePeerDependencies:
-      - supports-color
 
   '@putout/engine-parser@10.1.0':
     dependencies:
@@ -7863,8 +7861,6 @@ snapshots:
       picomatch: 4.0.2
       putout: 35.7.1(typescript@5.4.5)
       try-to-catch: 3.0.1
-    transitivePeerDependencies:
-      - supports-color
 
   '@putout/engine-reporter@1.0.2(putout@35.7.1(typescript@5.4.5))':
     dependencies:
@@ -7875,8 +7871,6 @@ snapshots:
       putout: 35.7.1(typescript@5.4.5)
       try-catch: 3.0.1
       try-to-catch: 3.0.1
-    transitivePeerDependencies:
-      - supports-color
 
   '@putout/engine-runner@21.0.1(putout@35.7.1(typescript@5.4.5))':
     dependencies:
