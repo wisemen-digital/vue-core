@@ -73,6 +73,10 @@ const props = withDefaults(defineProps<{
    */
   flow?: ('calendar' | 'hours' | 'minutes' | 'month' | 'seconds' | 'time' | 'year')[]
   /**
+   * Format of the input.
+   */
+  format?: string
+  /**
    * Specify highlighted dates.
    */
   highlightConfig?: Partial<DatePickerHighlightConfig>
@@ -93,6 +97,7 @@ const props = withDefaults(defineProps<{
   isMonthYearPickersDisabled: false,
   isTextInputAllowed: false,
   disableTeleport: false,
+  format: 'dd/MM/yyyy - dd/MM/yyyy',
 })
 
 const i18n = useI18n()
@@ -125,15 +130,6 @@ const computedModelValue = computed<Date[] | null>({
     }
   },
 })
-
-function formatDateLabel(date: Date): string {
-  const day = date.getDay()
-
-  const startDate = new Date(date.setDate(date.getDate() - day + (day === 0 ? -6 : 1)))
-  const endDate = new Date(date.setDate(date.getDate() + 7 - day))
-
-  return `${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}`
-}
 </script>
 
 <template>
@@ -163,7 +159,7 @@ function formatDateLabel(date: Date): string {
     :auto-apply="true"
     :month-change-on-arrows="false"
     :partial-flow="true"
-    :format="formatDateLabel"
+    :format="props.format"
   />
 </template>
 

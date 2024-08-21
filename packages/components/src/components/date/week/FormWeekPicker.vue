@@ -69,6 +69,10 @@ const props = withDefaults(defineProps<{
    */
   flow?: ('calendar' | 'hours' | 'minutes' | 'month' | 'seconds' | 'time' | 'year')[]
   /**
+   * Format of the input.
+   */
+  format?: string
+  /**
    * Specify highlighted dates.
    */
   highlightConfig?: Partial<DatePickerHighlightConfig>
@@ -122,6 +126,7 @@ const { classAttr, otherAttrs } = useComponentAttrs()
       v-bind="otherAttrs"
       :disabled-dates="props.disabledDates"
       :flow="props.flow"
+      :format="props.format"
       :is-inline="props.isInline"
       :disable-teleport="props.disableTeleport"
       :has-clear-button="props.hasClearButton"

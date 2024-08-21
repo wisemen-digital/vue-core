@@ -39,7 +39,8 @@
   },
   "dependencies": {
     "@internationalized/date": "3.5.4",
-    "@vuepic/vue-datepicker": "9.0.1"
+    "@vuepic/vue-datepicker": "9.0.2",
+    "date-fns": "3.6.0"
   },
   "devDependencies": {
     "@tsconfig/node18": "18.2.4",

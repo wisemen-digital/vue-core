@@ -3,8 +3,8 @@ import '@vuepic/vue-datepicker/dist/main.css'
 import '@/components/date/style.css'
 
 import VueDatePicker from '@vuepic/vue-datepicker'
-import { useI18n } from 'vue-i18n'
 
+import { useDatePickerLocale } from '@/components/date/datePickerLocale.composable'
 import type {
   DatePickerHighlightConfig,
   DatePickerMarker,
@@ -75,6 +75,10 @@ const props = withDefaults(defineProps<{
    */
   flow?: ('calendar' | 'hours' | 'minutes' | 'month' | 'seconds' | 'time' | 'year')[]
   /**
+   * Format of the input.
+   */
+  format?: string
+  /**
    * Specify highlighted dates.
    */
   highlightConfig?: Partial<DatePickerHighlightConfig>
@@ -100,10 +104,11 @@ const props = withDefaults(defineProps<{
   isTextInputAllowed: false,
   isTimePickerEnabled: false,
   disableTeleport: false,
+  format: 'dd/MM/yyyy',
   multiple: false,
 })
 
-const i18n = useI18n()
+const datePickerLocale = useDatePickerLocale()
 
 const modelValue = defineModel<Date | null>({
   required: true,
@@ -125,7 +130,6 @@ const modelValue = defineModel<Date | null>({
     :flow="props.flow"
     :highlight="props.highlightConfig"
     :invalid="props.isInvalid"
-    :locale="i18n.locale.value"
     :min-date="props.minDate"
     :markers="props.markers"
     :max-date="props.maxDate"
@@ -135,8 +139,10 @@ const modelValue = defineModel<Date | null>({
     :text-input="props.isTextInputAllowed"
     :arrow-navigation="true"
     :auto-apply="true"
+    :format-locale="datePickerLocale.current.value"
     :month-change-on-arrows="false"
     :inline="props.isInline"
     :partial-flow="true"
+    :format="props.format"
   />
 </template>
