@@ -1,5 +1,4 @@
 :root {
-  --dp-border-radius: var(--radius-input);
   --dp-cell-border-radius: 40rem;
   --dp-font-size: 0.875rem;
   --dp-preview-font-size: 0.75rem;
@@ -32,6 +31,11 @@
     --dp-highlight-color: rgba(var(--primary), 0.4);
     --dp-hover-color: rgba(var(--muted-foreground), 0.25);
   }
+}
+
+.dp__input {
+  border-radius: var(--radius-input);
+  height: 2.5rem;
 }
 
 .dp__button .dp__icon,
