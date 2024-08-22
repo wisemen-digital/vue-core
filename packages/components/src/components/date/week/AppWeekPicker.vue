@@ -3,8 +3,10 @@ import '@vuepic/vue-datepicker/dist/main.css'
 import '@/components/date/style.css'
 
 import VueDatePicker from '@vuepic/vue-datepicker'
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 
-import { useDatePickerLocale } from '@/components/date/datePickerLocale.composable'
+import type { WeekPickerValue } from '@/types/date.type'
 import type {
   DatePickerHighlightConfig,
   DatePickerMarker,
@@ -58,10 +60,6 @@ const props = withDefaults(defineProps<{
    */
   isTextInputAllowed?: boolean
   /**
-   * Whether the time picker is also enabled or not.
-   */
-  isTimePickerEnabled?: boolean
-  /**
    * Disable teleporting the datepicker to the body.
    */
   disableTeleport?: boolean
@@ -87,10 +85,6 @@ const props = withDefaults(defineProps<{
    */
   markers?: DatePickerMarker[]
   /**
-   * Allow selecting multiple single dates. When changing time, the latest selected date is affected.
-   */
-  multiple?: boolean
-  /**
    * Placeholder of the input.
    */
   placeholder?: string
@@ -102,47 +96,72 @@ const props = withDefaults(defineProps<{
   isInvalid: false,
   isMonthYearPickersDisabled: false,
   isTextInputAllowed: false,
-  isTimePickerEnabled: false,
   disableTeleport: false,
-  format: 'dd/MM/yyyy',
-  multiple: false,
+  format: 'dd/MM/yyyy - dd/MM/yyyy',
 })
 
-const datePickerLocale = useDatePickerLocale()
+const i18n = useI18n()
 
-const modelValue = defineModel<Date | null>({
+const modelValue = defineModel<WeekPickerValue | null>({
   required: true,
+})
+
+const computedModelValue = computed<Date[] | null>({
+  get: () => {
+    if (modelValue.value === null) {
+      return null
+    }
+
+    return [
+      new Date(modelValue.value.start),
+      new Date(modelValue.value.end),
+    ]
+  },
+  set: (value: Date[] | null) => {
+    if (value === null) {
+      modelValue.value = null
+
+      return
+    }
+
+    modelValue.value = {
+      end: value[1],
+      start: value[0],
+    }
+  },
 })
 </script>
 
 <template>
   <VueDatePicker
     :id="props.id ?? undefined"
-    v-model="modelValue"
-    :class="{ dp__inline: props.isInline }"
+    v-model="computedModelValue"
     :clearable="props.hasClearButton"
     :data-testid="props.testId"
     :disabled="props.isDisabled"
     :disabled-dates="props.disabledDates"
     :teleport="!props.disableTeleport"
     :disable-month-year-select="props.isMonthYearPickersDisabled"
-    :enable-time-picker="props.isTimePickerEnabled"
     :flow="props.flow"
     :highlight="props.highlightConfig"
     :invalid="props.isInvalid"
+    :locale="i18n.locale.value"
     :min-date="props.minDate"
+    :enable-time-picker="false"
+    :week-picker="true"
     :markers="props.markers"
     :max-date="props.maxDate"
-    :multi-dates="props.multiple"
     :placeholder="props.placeholder"
+    :inline="props.isInline"
     :readonly="props.isReadonly"
     :text-input="props.isTextInputAllowed"
     :arrow-navigation="true"
     :auto-apply="true"
-    :format-locale="datePickerLocale.current.value"
     :month-change-on-arrows="false"
-    :inline="props.isInline"
     :partial-flow="true"
     :format="props.format"
   />
 </template>
+
+<style>
+</style>

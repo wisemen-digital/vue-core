@@ -1,7 +1,7 @@
 {
   "name": "@wisemen/vue-core",
   "type": "module",
-  "version": "0.0.103",
+  "version": "0.1.1",
   "license": "MIT",
   "sideEffects": false,
   "exports": {
@@ -38,7 +38,8 @@
   },
   "dependencies": {
     "@internationalized/date": "3.5.4",
-    "@vuepic/vue-datepicker": "9.0.1"
+    "@vuepic/vue-datepicker": "9.0.2",
+    "date-fns": "3.6.0"
   },
   "devDependencies": {
     "@tsconfig/node18": "18.2.4",
@@ -57,7 +58,7 @@
     "i18n-iso-countries": "7.11.2",
     "jsdom": "24.1.0",
     "libphonenumber-js": "1.11.3",
-    "maska": "2.1.11",
+    "maska": "^3.0.0",
     "minimist": "1.2.8",
     "radix-vue": "1.9.3",
     "sass": "1.77.5",

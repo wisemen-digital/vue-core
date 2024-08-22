@@ -11,11 +11,14 @@ import FormDatePickerPlayground from './FormDatePickerPlayground.vue'
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
 | disabledDates | `Date[] \| ((date: Date) => boolean)` | Disable specific dates. |  |
+| disableTeleport | `boolean` | Disable teleporting the datepicker to the body. | `false` |
 | errors* | `FormFieldErrors` | The errors associated with the input. |  |
 | flow | `("calendar" \| "hours" \| "minutes" \| "month" \| "seconds" \| "time" \| "year")[]` | Define the selecting order. Position in the array will specify the execution step. |  |
+| format | `string` | Format of the input. |  |
 | hasClearButton | `boolean` | Add a clear icon to the input field where you can set the value to null. | `false` |
 | highlightConfig | `Partial<DatePickerHighlightConfig>` | Specify highlighted dates. |  |
 | isDisabled | `boolean` | Disables the input. | `false` |
+| isInline | `boolean` | Whether the input is inline. | `false` |
 | isMonthYearPickersDisabled | `boolean` | If true, removes the month and year picker. | `false` |
 | isRequired | `boolean` | Whether the input is required. | `false` |
 | isTextInputAllowed | `boolean` | When true, will try to parse the date from the user input. | `false` |

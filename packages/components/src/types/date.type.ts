@@ -7,3 +7,8 @@ export interface DatePickerRangeValue {
   end: Date | string
   start: Date | string
 }
+
+export interface WeekPickerValue {
+  end: Date | string
+  start: Date | string
+}
