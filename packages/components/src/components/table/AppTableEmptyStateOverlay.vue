@@ -54,7 +54,11 @@ const emptyOverlayClearButtonClasses = computed<string>(() => tableStyle.emptyOv
 </script>
 
 <template>
-  <div :class="emptyOverlayContainerClasses">
+  <!-- eslint-disable tailwindcss/no-custom-classname -->
+  <div
+    :class="emptyOverlayContainerClasses"
+    class="overlayContainer"
+  >
     <AppIcon
       :class="emptyOverlayIconClasses"
       icon="search"
@@ -98,3 +102,11 @@ const emptyOverlayClearButtonClasses = computed<string>(() => tableStyle.emptyOv
     </div>
   </div>
 </template>
+
+<style scoped>
+@-moz-document url-prefix() {
+  .overlayContainer {
+    background: rgba(var(--background))
+  }
+}
+</style>
