@@ -1,20 +1,16 @@
-<!-- eslint-disable no-alert -->
 <script setup lang="ts">
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols'
-import type { FormFieldErrors } from '@wisemen/vue-core'
-import { AppText, FormDatePicker } from '@wisemen/vue-core'
+import {
+  AppText,
+  AppWeekPicker,
+  type WeekPickerValue,
+} from '@wisemen/vue-core'
 import { ref } from 'vue'
 
 const controls = createControls({
-  label: {
-    default: 'Date',
-    label: 'Label',
-    cols: 2,
-    type: 'text',
-  },
   placeholder: {
-    default: 'Choose a date',
+    default: 'Choose a week',
     label: 'Placeholder',
     cols: 2,
     type: 'text',
@@ -29,11 +25,6 @@ const controls = createControls({
     label: 'Max date',
     type: 'date',
   },
-  isTimePickerEnabled: {
-    default: false,
-    label: 'Is time picker enabled',
-    type: 'switch',
-  },
   isMonthYearPickersDisabled: {
     default: false,
     label: 'Is month/year pickers disabled',
@@ -42,11 +33,6 @@ const controls = createControls({
   isTextInputAllowed: {
     default: false,
     label: 'Is text input allowed',
-    type: 'switch',
-  },
-  multiple: {
-    default: false,
-    label: 'Choose multiple dates',
     type: 'switch',
   },
   hasClearButton: {
@@ -59,21 +45,15 @@ const controls = createControls({
     label: 'Is disabled',
     type: 'switch',
   },
-  isRequired: {
+  isInvalid: {
     default: false,
-    label: 'Is required',
+    label: 'Is invalid',
     type: 'switch',
   },
-  isTouched: {
+  isReadonly: {
     default: false,
-    label: 'Is touched',
+    label: 'Is readonly',
     type: 'switch',
-  },
-  tooltip: {
-    default: 'This is a tooltip',
-    label: 'Tooltip',
-    type: 'text',
-    cols: 2,
   },
   isInline: {
     default: false,
@@ -82,13 +62,7 @@ const controls = createControls({
   },
 })
 
-const model = ref<Date | null>(null)
-
-const exampleError: FormFieldErrors = {
-  _errors: [
-    'The date has an error',
-  ],
-}
+const model = ref<WeekPickerValue | null>(null)
 </script>
 
 <template>
@@ -97,22 +71,24 @@ const exampleError: FormFieldErrors = {
   >
     <template #default="{ values }">
       <div class="max-w-64">
-        <FormDatePicker
+        <AppWeekPicker
           v-if="values.isInline"
+          id="date-picker-1"
           v-model="model"
-          :errors="exampleError"
+          test-id="date-picker-1"
           v-bind="values"
         />
 
-        <FormDatePicker
+        <AppWeekPicker
           v-if="!values.isInline"
+          id="date-picker-1"
           v-model="model"
-          :errors="exampleError"
+          test-id="date-picker-1"
           v-bind="values"
         />
 
         <AppText variant="caption">
-          {{ `Model value: ${model ? model.toString() : 'null'}` }}
+          {{ `Model value: ${model ? JSON.stringify(model) : "null"}` }}
         </AppText>
       </div>
     </template>

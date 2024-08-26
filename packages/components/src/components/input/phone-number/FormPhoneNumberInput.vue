@@ -83,6 +83,10 @@ const props = withDefaults(
   },
 )
 
+const emit = defineEmits<{
+  blur: []
+}>()
+
 const countries = getCountries()
 
 const countryCode = ref<CountryCode>(props.defaultCountryCode)
@@ -94,6 +98,10 @@ const asYouType = computed<AsYouType>(() => {
 const model = defineModel<null | string>({
   required: true,
 })
+
+function onBlur(): void {
+  emit('blur')
+}
 
 const countryCodeModel = computed<CountryCode>({
   get: () => {
@@ -237,6 +245,7 @@ const countryName = computed<null | string>(() => {
         :has-clear-button="false"
         class="w-16"
         select-trigger-class="rounded-r-none focus-within:z-[1] relative"
+        @blur="onBlur"
       >
         <template #left>
           <div class="flex items-center pl-3">
@@ -276,6 +285,7 @@ const countryName = computed<null | string>(() => {
         :placeholder="props.placeholder"
         class="w-full rounded-l-none border-l-0"
         type="tel"
+        @blur="onBlur"
       >
         <template #left>
           <AppText

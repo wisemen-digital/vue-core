@@ -89,20 +89,6 @@ const docs = [
     collapsed: true,
     items: [
       {
-        link: '/components/calendar/app-calendar',
-        text: 'AppCalendar',
-      },
-      {
-        link: '/components/calendar/app-range-calendar',
-        text: 'AppRangeCalendar',
-      },
-    ],
-    text: 'Calendar',
-  },
-  {
-    collapsed: true,
-    items: [
-      {
         link: '/components/checkbox/form-checkbox',
         text: 'FormCheckbox',
       },
@@ -161,6 +147,10 @@ const docs = [
         text: 'AppDatePicker',
       },
       {
+        link: '/components/date/app-week-picker',
+        text: 'AppWeekPicker',
+      },
+      {
         link: '/components/date/app-month-picker',
         text: 'AppMonthPicker',
       },
@@ -171,6 +161,10 @@ const docs = [
       {
         link: '/components/date/form-date-picker',
         text: 'FormDatePicker',
+      },
+      {
+        link: '/components/date/form-week-picker',
+        text: 'FormWeekPicker',
       },
       {
         link: '/components/date/form-month-picker',

@@ -3,8 +3,8 @@ import '@vuepic/vue-datepicker/dist/main.css'
 import '@/components/date/style.css'
 
 import VueDatePicker from '@vuepic/vue-datepicker'
-import { useI18n } from 'vue-i18n'
 
+import { useDatePickerLocale } from '@/components/date/datePickerLocale.composable'
 import type { MonthPickerValue } from '@/types/date.type'
 import type { DatePickerHighlightConfig } from '@/types/datePickerConfig.type'
 
@@ -66,7 +66,7 @@ const props = withDefaults(defineProps<{
   isTextInputAllowed: false,
 })
 
-const i18n = useI18n()
+const datePickerLocale = useDatePickerLocale()
 
 const modelValue = defineModel<MonthPickerValue | null>({
   required: true,
@@ -83,13 +83,13 @@ const modelValue = defineModel<MonthPickerValue | null>({
     :disabled-dates="props.disabledDates"
     :highlight="props.highlightConfig"
     :invalid="props.isInvalid"
-    :locale="i18n.locale.value"
     :min-date="props.minDate"
     :max-date="props.maxDate"
     :placeholder="props.placeholder"
     :readonly="props.isReadonly"
     :text-input="props.isTextInputAllowed"
     :arrow-navigation="true"
+    :format-locale="datePickerLocale.current.value"
     :auto-apply="true"
     :month-change-on-arrows="false"
     month-picker

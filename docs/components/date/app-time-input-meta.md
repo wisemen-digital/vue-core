@@ -11,7 +11,6 @@ import AppTimeInputPlayground from './AppTimeInputPlayground.vue'
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
 | iconLeft | `keyof Icons \| null` | The left icon of the input. | `"clock"` |
-| iconRight | `keyof Icons \| null` | The right icon of the input. | `null` |
 | id | `string \| null` | The id of the input. | `null` |
 | isDisabled | `boolean` | Disables the input. | `false` |
 | isInvalid | `boolean` | Set an invalid state to the input. | `false` |

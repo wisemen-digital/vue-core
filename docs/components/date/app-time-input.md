@@ -22,4 +22,4 @@ const value = ref<string | null>(null)
 ```
 :::
 
-For full source code, see [Github](https://github.com/wisemen-digital/vue-core/blob/main/packages/components/src/components/input/AppTimeInput.vue).
+For full source code, see [Github](https://github.com/wisemen-digital/vue-core/blob/main/packages/components/src/components/date/time/AppTimeInput.vue).

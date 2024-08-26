@@ -2,19 +2,22 @@
 <script setup lang="ts">
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols'
-import type { FormFieldErrors } from '@wisemen/vue-core'
-import { AppText, FormDatePicker } from '@wisemen/vue-core'
+import type {
+  FormFieldErrors,
+  WeekPickerValue,
+} from '@wisemen/vue-core'
+import { AppText, FormWeekPicker } from '@wisemen/vue-core'
 import { ref } from 'vue'
 
 const controls = createControls({
   label: {
-    default: 'Date',
+    default: 'Week',
     label: 'Label',
     cols: 2,
     type: 'text',
   },
   placeholder: {
-    default: 'Choose a date',
+    default: 'Choose a week',
     label: 'Placeholder',
     cols: 2,
     type: 'text',
@@ -29,11 +32,6 @@ const controls = createControls({
     label: 'Max date',
     type: 'date',
   },
-  isTimePickerEnabled: {
-    default: false,
-    label: 'Is time picker enabled',
-    type: 'switch',
-  },
   isMonthYearPickersDisabled: {
     default: false,
     label: 'Is month/year pickers disabled',
@@ -42,11 +40,6 @@ const controls = createControls({
   isTextInputAllowed: {
     default: false,
     label: 'Is text input allowed',
-    type: 'switch',
-  },
-  multiple: {
-    default: false,
-    label: 'Choose multiple dates',
     type: 'switch',
   },
   hasClearButton: {
@@ -69,21 +62,20 @@ const controls = createControls({
     label: 'Is touched',
     type: 'switch',
   },
+  isInline: {
+    default: false,
+    label: 'Is inline',
+    type: 'switch',
+  },
   tooltip: {
     default: 'This is a tooltip',
     label: 'Tooltip',
     type: 'text',
     cols: 2,
   },
-  isInline: {
-    default: false,
-    label: 'Is inline',
-    type: 'switch',
-  },
 })
 
-const model = ref<Date | null>(null)
-
+const model = ref<WeekPickerValue | null>(null)
 const exampleError: FormFieldErrors = {
   _errors: [
     'The date has an error',
@@ -97,14 +89,14 @@ const exampleError: FormFieldErrors = {
   >
     <template #default="{ values }">
       <div class="max-w-64">
-        <FormDatePicker
+        <FormWeekPicker
           v-if="values.isInline"
           v-model="model"
           :errors="exampleError"
           v-bind="values"
         />
 
-        <FormDatePicker
+        <FormWeekPicker
           v-if="!values.isInline"
           v-model="model"
           :errors="exampleError"
