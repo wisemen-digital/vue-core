@@ -1,3 +1,5 @@
+import type { TVCompoundSlots } from 'tailwind-variants'
+
 import type { VariantProps } from '@/libs/twVariants.lib'
 import { tv } from '@/libs/twVariants.lib'
 
@@ -112,3 +114,18 @@ export const useButtonStyle = tv({
 })
 
 export type ButtonStyleProps = VariantProps<typeof useButtonStyle>
+
+type ButtonStyle = typeof useButtonStyle
+
+export function defineButtonVariant(config: {
+  name: string
+  compountSlots: Omit<TVCompoundSlots<ButtonStyle['variants'], ButtonStyle['slots'], any>[number], 'className' | 'variant'>[]
+  slots: Partial<typeof useButtonStyle['slots']>
+}): void {
+  useButtonStyle.variants.variant[config.name as keyof ButtonStyle['variants']['variant']] = config.slots as any
+
+  useButtonStyle.compoundSlots.push(...config.compountSlots.map((compountSlot) => ({
+    ...compountSlot,
+    variant: config.name,
+  })) as any)
+}

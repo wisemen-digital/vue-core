@@ -62,7 +62,17 @@ export default {
           foreground: 'rgba(var(--destructive-foreground), <alpha-value>)',
         },
 
+        'dialog': {
+          DEFAULT: 'rgba(var(--dialog), <alpha-value>)',
+          foreground: 'rgba(var(--dialog-foreground), <alpha-value>)',
+        },
+        'dropdown-menu': {
+          DEFAULT: 'rgba(var(--dropdown-menu), <alpha-value>)',
+          foreground: 'rgba(var(--dropdown-menu-foreground), <alpha-value>)',
+        },
+
         'foreground': 'rgba(var(--foreground), <alpha-value>)',
+
         'form-label': {
           foreground: 'rgba(var(--form-label-foreground), <alpha-value>)',
         },
@@ -75,13 +85,11 @@ export default {
           placeholder: 'rgba(var(--input-placeholder), <alpha-value>)',
           ring: 'rgba(var(--input-ring), <alpha-value>)',
         },
-
         'muted': {
           DEFAULT: 'rgba(var(--muted), <alpha-value>)',
           background: 'rgba(var(--muted-background), <alpha-value>)',
           foreground: 'rgba(var(--muted-foreground), <alpha-value>)',
         },
-
         'neutral': {
           100: 'rgba(var(--neutral-100), <alpha-value>)',
           200: 'rgba(var(--neutral-200), <alpha-value>)',
@@ -106,14 +114,31 @@ export default {
           DEFAULT: 'rgba(var(--secondary), <alpha-value>)',
           foreground: 'rgba(var(--secondary-foreground), <alpha-value>)',
         },
+        'select-popover': {
+          DEFAULT: 'rgba(var(--select-popover), <alpha-value>)',
+          foreground: 'rgba(var(--select-popover-foreground), <alpha-value>)',
+        },
+
         'success': {
           DEFAULT: 'rgba(var(--success), <alpha-value>)',
           foreground: 'rgba(var(--success-foreground), <alpha-value>)',
         },
+
         'switch': {
           background: 'rgba(var(--switch-background), <alpha-value>)',
           foreground: 'rgba(var(--switch-foreground), <alpha-value>)',
         },
+
+        'toast': {
+          DEFAULT: 'rgba(var(--toast), <alpha-value>)',
+          foreground: 'rgba(var(--toast-foreground), <alpha-value>)',
+        },
+
+        'tooltip': {
+          DEFAULT: 'rgba(var(--tooltip), <alpha-value>)',
+          foreground: 'rgba(var(--tooltip-foreground), <alpha-value>)',
+        },
+
         'transparent': 'transparent',
 
         'warning': {
