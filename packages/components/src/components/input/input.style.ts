@@ -24,7 +24,6 @@ export const useInputStyle = tv({
       },
     },
     isDisabled: {
-      false: {},
       true: {
         container: 'cursor-not-allowed opacity-50',
       },

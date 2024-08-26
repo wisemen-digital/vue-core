@@ -80,7 +80,6 @@ const buttonStyle = useButtonStyle()
 
 const buttonClasses = computed<string>(() =>
   buttonStyle.button({
-    isLoading: props.isLoading,
     size: props.size,
     variant: props.variant,
   }))
@@ -89,27 +88,22 @@ const buttonIconRightClasses = computed<string>(() =>
   buttonStyle.buttonRightIcon({
     isLoading: props.isLoading,
     size: props.size,
-    variant: props.variant,
   }))
 
 const buttonIconLeftClasses = computed<string>(() =>
   buttonStyle.buttonLeftIcon({
     isLoading: props.isLoading,
     size: props.size,
-    variant: props.variant,
   }))
 
 const buttonContentClasses = computed<string>(() =>
   buttonStyle.buttonContent({
     isLoading: props.isLoading,
-    variant: props.variant,
   }))
 
 const keyboardShortcutClasses = computed<string>(() =>
   buttonStyle.keyboardShortcut({
     isLoading: props.isLoading,
-    size: props.size,
-    variant: props.variant,
   }))
 
 const buttonLoaderClasses = computed<string>(() => buttonStyle.loader())
