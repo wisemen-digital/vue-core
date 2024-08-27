@@ -16,9 +16,10 @@ import AppInputPlayground from './AppInputPlayground.vue'
 | isDisabled | `boolean` | Whether the input is disabled. | `false` |
 | isInvalid | `boolean` | Whether the input is invalid. | `false` |
 | isLoading | `boolean` | Whether the input is loading. | `false` |
+| isReadonly | `boolean` | Whether the input is readonly. | `false` |
 | modelValue* | `string \| null` |  |  |
 | placeholder | `string \| null` | The placeholder of the input. | `null` |
-| testId | `string` | The test id of the input. |  |
+| testId | `string \| null` | The test id of the input. | `null` |
 | type | `"number" \| "search" \| "text" \| "time" \| "date" \| "datetime-local" \| "email" \| "password" \| "tel" \| "url"` | The type of the input. | `"text"` |
 
 

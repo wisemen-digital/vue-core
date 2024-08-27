@@ -17,11 +17,11 @@ const props = withDefaults(defineProps<{
   /**
    * All dates after the given date will be disabled.
    */
-  maxDate?: Date | string
+  maxDate?: Date
   /**
    * All dates before the given date will be disabled.
    */
-  minDate?: Date | string
+  minDate?: Date
   /**
    * Add a clear icon to the input field where you can set the value to null.
    */
@@ -31,33 +31,37 @@ const props = withDefaults(defineProps<{
    */
   isDisabled?: boolean
   /**
+   * Whether the input is inline.
+   */
+  isInline?: boolean
+  /**
+   * If true, removes the month and year picker.
+   */
+  isMonthYearPickersDisabled?: boolean
+  /**
    *  Whether the input is required.
    */
   isRequired?: boolean
+  /**
+   * When true, will try to parse the date from the user input.
+   */
+  isTextInputAllowed?: boolean
+  /**
+   * Whether the time picker is also enabled or not.
+   */
+  isTimePickerEnabled?: boolean
   /**
    * Whether the input is touched.
    */
   isTouched: boolean
   /**
-   * When true, will try to parse the date from the user input.
+   * Disable teleporting the datepicker to the body.
    */
-  allowTextInput?: boolean
-  /**
-   * If true, removes the month and year picker.
-   */
-  disableMonthYearPickers?: boolean
+  disableTeleport?: boolean
   /**
    * Disable specific dates.
    */
-  disabledDates?: ((date: Date) => boolean) | Date[] | string[]
-  /**
-   * If true, clicking on a date value will automatically select the value.
-   */
-  enableAutoApply?: boolean
-  /**
-   * Whether the time picker is also enabled or not.
-   */
-  enableTimePicker?: boolean
+  disabledDates?: ((date: Date) => boolean) | Date[]
   /**
    * The errors associated with the input.
    */
@@ -68,6 +72,10 @@ const props = withDefaults(defineProps<{
    */
   flow?: ('calendar' | 'hours' | 'minutes' | 'month' | 'seconds' | 'time' | 'year')[]
   /**
+   * Format of the input.
+   */
+  format?: string
+  /**
    * Specify highlighted dates.
    */
   highlightConfig?: Partial<DatePickerHighlightConfig>
@@ -75,10 +83,6 @@ const props = withDefaults(defineProps<{
    * The label of the input.
    */
   label: string
-  /**
-   * Set datepicker locale: to extract month and weekday names.
-   */
-  locale?: string
   /**
    * Add markers to the specified dates with (optional) tooltips. For color options, you can use any css valid color.
    */
@@ -98,12 +102,12 @@ const props = withDefaults(defineProps<{
 }>(), {
   hasClearButton: false,
   isDisabled: false,
+  isInline: false,
+  isMonthYearPickersDisabled: false,
   isRequired: false,
-  allowTextInput: false,
-  disableMonthYearPickers: false,
-  enableAutoApply: false,
-  enableTimePicker: false,
-  locale: 'nl',
+  isTextInputAllowed: false,
+  isTimePickerEnabled: false,
+  disableTeleport: false,
   multiple: false,
 })
 
@@ -129,17 +133,18 @@ const { classAttr, otherAttrs } = useComponentAttrs()
       :id="id"
       v-model="model"
       v-bind="otherAttrs"
-      :allow-text-input="props.allowTextInput"
+      :format="props.format"
+      :is-inline="props.isInline"
       :disabled-dates="props.disabledDates"
-      :disable-month-year-pickers="props.disableMonthYearPickers"
-      :enable-auto-apply="props.enableAutoApply"
-      :enable-time-picker="props.enableTimePicker"
+      :is-time-picker-enabled="props.isTimePickerEnabled"
       :flow="props.flow"
+      :disable-teleport="props.disableTeleport"
       :has-clear-button="props.hasClearButton"
       :highlight-config="props.highlightConfig"
       :is-disabled="props.isDisabled"
       :is-invalid="isInvalid"
-      :locale="props.locale"
+      :is-month-year-pickers-disabled="props.isMonthYearPickersDisabled"
+      :is-text-input-allowed="props.isTextInputAllowed"
       :min-date="props.minDate"
       :markers="props.markers"
       :max-date="props.maxDate"

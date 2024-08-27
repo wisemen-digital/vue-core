@@ -2,17 +2,13 @@
 import '@vuepic/vue-datepicker/dist/main.css'
 import '@/components/date/style.css'
 
-import type { DatePickerInstance } from '@vuepic/vue-datepicker'
 import VueDatePicker from '@vuepic/vue-datepicker'
-import { ref } from 'vue'
-import { useI18n } from 'vue-i18n'
 
+import { useDatePickerLocale } from '@/components/date/datePickerLocale.composable'
 import type {
   DatePickerHighlightConfig,
   DatePickerMarker,
 } from '@/types/datePickerConfig.type'
-
-import DatePickerActions from './DatePickerActions.vue'
 
 const props = withDefaults(defineProps<{
   /**
@@ -28,11 +24,11 @@ const props = withDefaults(defineProps<{
   /**
    * All dates after the given date will be disabled.
    */
-  maxDate?: Date | string
+  maxDate?: Date
   /**
    * All dates before the given date will be disabled.
    */
-  minDate?: Date | string
+  minDate?: Date
   /**
    * Add a clear icon to the input field where you can set the value to null.
    */
@@ -42,9 +38,17 @@ const props = withDefaults(defineProps<{
    */
   isDisabled?: boolean
   /**
+   * Whether the input is inline.
+   */
+  isInline?: boolean
+  /**
    * Set an invalid state to the input.
    */
   isInvalid?: boolean
+  /**
+   * If true, removes the month and year picker.
+   */
+  isMonthYearPickersDisabled?: boolean
   /**
    * Sets the input in readonly state.
    */
@@ -52,36 +56,32 @@ const props = withDefaults(defineProps<{
   /**
    * When true, will try to parse the date from the user input.
    */
-  allowTextInput?: boolean
-  /**
-   * If true, removes the month and year picker.
-   */
-  disableMonthYearPickers?: boolean
-  /**
-   * Disable specific dates.
-   */
-  disabledDates?: ((date: Date) => boolean) | Date[] | string[]
-  /**
-   * If true, clicking on a date value will automatically select the value.
-   */
-  enableAutoApply?: boolean
+  isTextInputAllowed?: boolean
   /**
    * Whether the time picker is also enabled or not.
    */
-  enableTimePicker?: boolean
+  isTimePickerEnabled?: boolean
+  /**
+   * Disable teleporting the datepicker to the body.
+   */
+  disableTeleport?: boolean
+  /**
+   * Disable specific dates.
+   */
+  disabledDates?: ((date: Date) => boolean) | Date[]
   /**
    * Define the selecting order. Position in the array will specify the execution step.
    * @default []
    */
   flow?: ('calendar' | 'hours' | 'minutes' | 'month' | 'seconds' | 'time' | 'year')[]
   /**
+   * Format of the input.
+   */
+  format?: string
+  /**
    * Specify highlighted dates.
    */
   highlightConfig?: Partial<DatePickerHighlightConfig>
-  /**
-   * Set datepicker locale: to extract month and weekday names.
-   */
-  locale?: string
   /**
    * Add markers to the specified dates with (optional) tooltips. For color options, you can use any css valid color.
    */
@@ -98,73 +98,51 @@ const props = withDefaults(defineProps<{
   id: null,
   hasClearButton: false,
   isDisabled: false,
+  isInline: false,
   isInvalid: false,
-  allowTextInput: false,
-  disableMonthYearPickers: false,
-  enableAutoApply: false,
-  enableTimePicker: false,
-  locale: 'nl',
+  isMonthYearPickersDisabled: false,
+  isTextInputAllowed: false,
+  isTimePickerEnabled: false,
+  disableTeleport: false,
+  format: 'dd/MM/yyyy',
   multiple: false,
 })
 
-const { t } = useI18n()
+const datePickerLocale = useDatePickerLocale()
 
 const modelValue = defineModel<Date | null>({
   required: true,
 })
-const dp = ref<DatePickerInstance | null>(null)
-
-function selectDate(): void {
-  dp.value?.selectDate()
-}
-
-function closeMenu(): void {
-  dp.value?.closeMenu()
-}
 </script>
 
 <template>
   <VueDatePicker
     :id="props.id ?? undefined"
-    ref="dp"
     v-model="modelValue"
-    :auto-apply="enableAutoApply"
+    :class="{ dp__inline: props.isInline }"
     :clearable="props.hasClearButton"
     :data-testid="props.testId"
     :disabled="props.isDisabled"
     :disabled-dates="props.disabledDates"
-    :disable-month-year-select="props.disableMonthYearPickers"
-    :enable-time-picker="props.enableTimePicker"
+    :teleport="!props.disableTeleport"
+    :disable-month-year-select="props.isMonthYearPickersDisabled"
+    :enable-time-picker="props.isTimePickerEnabled"
     :flow="props.flow"
     :highlight="props.highlightConfig"
     :invalid="props.isInvalid"
-    :locale="props.locale"
     :min-date="props.minDate"
     :markers="props.markers"
     :max-date="props.maxDate"
     :multi-dates="props.multiple"
-    :partial-flow="enableAutoApply"
     :placeholder="props.placeholder"
     :readonly="props.isReadonly"
-    :text-input="props.allowTextInput"
-    :month-change-on-arrows="false"
+    :text-input="props.isTextInputAllowed"
     :arrow-navigation="true"
-  >
-    <template #action-buttons>
-      <DatePickerActions
-        @cancel="closeMenu"
-        @select="selectDate"
-      >
-        <template #cancel-text>
-          {{ t('components.calendar.cancel') }}
-        </template>
-        <template #select-text>
-          {{ t('components.calendar.select') }}
-        </template>
-      </DatePickerActions>
-    </template>
-  </VueDatePicker>
+    :auto-apply="true"
+    :format-locale="datePickerLocale.current.value"
+    :month-change-on-arrows="false"
+    :inline="props.isInline"
+    :partial-flow="true"
+    :format="props.format"
+  />
 </template>
-
-<style>
-</style>

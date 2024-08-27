@@ -14,6 +14,7 @@ export interface BaseIcons {
   chevronLeft: Promise<Component>
   chevronRight: Promise<Component>
   chevronUp: Promise<Component>
+  clock: Promise<Component>
   close: Promise<Component>
   eye: Promise<Component>
   eyeSlash: Promise<Component>
@@ -39,6 +40,7 @@ export const icons: BaseIcons = {
   chevronLeft: import('@/icons/ChevronLeftIcon.vue'),
   chevronRight: import('@/icons/ChevronRightIcon.vue'),
   chevronUp: import('@/icons/ChevronUpIcon.vue'),
+  clock: import('@/icons/ClockIcon.vue'),
   close: import('@/icons/CloseIcon.vue'),
   eye: import('@/icons/EyeIcon.vue'),
   eyeSlash: import('@/icons/EyeSlashIcon.vue'),

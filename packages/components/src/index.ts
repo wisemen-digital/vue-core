@@ -20,10 +20,6 @@ export { default as AppRouterLinkButton } from './components/button/AppRouterLin
 export { default as AppUnstyledButton } from './components/button/AppUnstyledButton.vue'
 export * from './components/button/button.style'
 
-// Calendar
-export { default as AppCalendar } from './components/calendar/AppCalendar.vue'
-export { default as AppRangeCalendar } from './components/calendar/AppRangeCalendar.vue'
-
 // Checkbox
 export { default as FormCheckbox } from './components/checkbox/FormCheckbox.vue'
 export { default as FormCheckboxGroup } from './components/checkbox/FormCheckboxGroup.vue'
@@ -44,6 +40,14 @@ export { default as AppDatePicker } from './components/date/AppDatePicker.vue'
 export { default as FormDatePicker } from './components/date/FormDatePicker.vue'
 export { default as AppMonthPicker } from './components/date/month/AppMonthPicker.vue'
 export { default as FormMonthPicker } from './components/date/month/FormMonthPicker.vue'
+export { default as AppTimeInput } from './components/date/time/AppTimeInput.vue'
+export { default as FormTimeInput } from './components/date/time/FormTimeInput.vue'
+export { default as AppWeekPicker } from './components/date/week/AppWeekPicker.vue'
+export { default as FormWeekPicker } from './components/date/week/FormWeekPicker.vue'
+
+// Date range
+export { default as AppDateRangePicker } from './components/date-range/AppDateRangePicker.vue'
+export { default as FormDateRangePicker } from './components/date-range/FormDateRangePicker.vue'
 
 // Dialog
 export { default as AppDialog } from './components/dialog/AppDialog.vue'
@@ -169,8 +173,8 @@ export type { Accordion } from './types/accordionItem.type'
 export type { BreadcrumbItem } from './types/breadcrumbItem.type'
 export type { ComboboxItem } from './types/comboboxItem.type'
 export type { DataItem } from './types/dataItem.type'
-export type { MonthPickerValue } from './types/date.type'
-export type { DatePickerHighlightConfig, DatePickerMarker } from './types/datePickerConfig.type'
+export type { DatePickerRangeValue, MonthPickerValue, WeekPickerValue } from './types/date.type'
+export type { DatePickerHighlightConfig, DatePickerMarker, DatePickerRangeConfig } from './types/datePickerConfig.type'
 export type { DropdownMenuItem } from './types/dropdownMenuItem.type'
 export type { FormFieldErrors } from './types/formFieldErrors.type'
 export type { KeyboardKey } from './types/keyboard.type'

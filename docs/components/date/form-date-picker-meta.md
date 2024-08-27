@@ -10,23 +10,24 @@ import FormDatePickerPlayground from './FormDatePickerPlayground.vue'
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| allowTextInput | `boolean` | When true, will try to parse the date from the user input. | `false` |
-| disabledDates | `string[] \| Date[] \| ((date: Date) => boolean)` | Disable specific dates. |  |
-| disableMonthYearPickers | `boolean` | If true, removes the month and year picker. | `false` |
-| enableAutoApply | `boolean` | If true, clicking on a date value will automatically select the value. | `false` |
-| enableTimePicker | `boolean` | Whether the time picker is also enabled or not. | `false` |
+| disabledDates | `Date[] \| ((date: Date) => boolean)` | Disable specific dates. |  |
+| disableTeleport | `boolean` | Disable teleporting the datepicker to the body. | `false` |
 | errors* | `FormFieldErrors` | The errors associated with the input. |  |
 | flow | `("calendar" \| "hours" \| "minutes" \| "month" \| "seconds" \| "time" \| "year")[]` | Define the selecting order. Position in the array will specify the execution step. |  |
+| format | `string` | Format of the input. |  |
 | hasClearButton | `boolean` | Add a clear icon to the input field where you can set the value to null. | `false` |
 | highlightConfig | `Partial<DatePickerHighlightConfig>` | Specify highlighted dates. |  |
 | isDisabled | `boolean` | Disables the input. | `false` |
+| isInline | `boolean` | Whether the input is inline. | `false` |
+| isMonthYearPickersDisabled | `boolean` | If true, removes the month and year picker. | `false` |
 | isRequired | `boolean` | Whether the input is required. | `false` |
+| isTextInputAllowed | `boolean` | When true, will try to parse the date from the user input. | `false` |
+| isTimePickerEnabled | `boolean` | Whether the time picker is also enabled or not. | `false` |
 | isTouched* | `boolean` | Whether the input is touched. |  |
 | label* | `string` | The label of the input. |  |
-| locale | `string` | Set datepicker locale: to extract month and weekday names. | `"nl"` |
 | markers | `DatePickerMarker[]` | Add markers to the specified dates with (optional) tooltips. For color options, you can use any css valid color. |  |
-| maxDate | `string \| Date` | All dates after the given date will be disabled. |  |
-| minDate | `string \| Date` | All dates before the given date will be disabled. |  |
+| maxDate | `Date` | All dates after the given date will be disabled. |  |
+| minDate | `Date` | All dates before the given date will be disabled. |  |
 | modelValue* | `Date \| null` |  |  |
 | multiple | `boolean` | Allow selecting multiple single dates. When changing time, the latest selected date is affected. | `false` |
 | placeholder | `string` | Placeholder of the input. |  |

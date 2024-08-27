@@ -30,14 +30,19 @@ const controls = createControls({
     label: 'Max date',
     type: 'date',
   },
-  enableTimePicker: {
+  isTimePickerEnabled: {
     default: false,
-    label: 'Enable time picker',
+    label: 'Is time picker enabled',
     type: 'switch',
   },
-  disableMonthYearPickers: {
+  isMonthYearPickersDisabled: {
     default: false,
-    label: 'Disable month and year pickers',
+    label: 'Is month/year pickers disabled',
+    type: 'switch',
+  },
+  isTextInputAllowed: {
+    default: false,
+    label: 'Is text input allowed',
     type: 'switch',
   },
   multiple: {
@@ -48,16 +53,6 @@ const controls = createControls({
   hasClearButton: {
     default: false,
     label: 'Has clear button',
-    type: 'switch',
-  },
-  allowTextInput: {
-    default: false,
-    label: 'Allow text input',
-    type: 'switch',
-  },
-  enableAutoApply: {
-    default: false,
-    label: 'Enable auto apply',
     type: 'switch',
   },
   isDisabled: {
@@ -73,6 +68,11 @@ const controls = createControls({
   isReadonly: {
     default: false,
     label: 'Is readonly',
+    type: 'switch',
+  },
+  isInline: {
+    default: false,
+    label: 'Is inline',
     type: 'switch',
   },
 })
@@ -110,6 +110,18 @@ const disabled: Date[] = [
     <template #default="{ values }">
       <div class="max-w-64">
         <AppDatePicker
+          v-if="values.isInline"
+          id="date-picker-1"
+          v-model="model"
+          :highlight-config="highlighted"
+          :markers="markers"
+          :disabled-dates="disabled"
+          test-id="date-picker-1"
+          v-bind="values"
+        />
+
+        <AppDatePicker
+          v-if="!values.isInline"
           id="date-picker-1"
           v-model="model"
           :highlight-config="highlighted"

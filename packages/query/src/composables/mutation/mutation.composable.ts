@@ -72,18 +72,26 @@ export function useMutation<
         queryKeyParams,
       ]) => {
         const qkp = queryKeyParams as Record<string, (params: TParams, data: TResData) => unknown>
-        const paramValues = Object.values(qkp).map((param) => param(params, responseData))
+
+        const paramsWithValues = Object.entries(qkp).reduce((acc, [
+          key,
+          value,
+        ]) => {
+          acc[key as keyof TParams] = value(params, responseData) as TParams[keyof TParams]
+
+          return acc
+        }, {} as TParams)
 
         if (isDebug) {
           // eslint-disable-next-line no-console
-          console.log(`[MUTATION] Invalidating ${queryKey}`, paramValues)
+          console.log(`[MUTATION] Invalidating ${queryKey}`, paramsWithValues)
         }
 
         await queryClient.invalidateQueries({
           exact: false,
           queryKey: [
             queryKey,
-            ...paramValues,
+            paramsWithValues,
           ],
         })
       }),
