@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import AppDatePicker from '@/components/date/AppDatePicker.vue'
+import AppWeekPicker from '@/components/date/week/AppWeekPicker.vue'
 import FormElement from '@/components/form-element/FormElement.vue'
 import { useComponentAttrs } from '@/composables/componentAttrs.composable'
+import type { WeekPickerValue } from '@/types/date.type'
 import type {
   DatePickerHighlightConfig,
   DatePickerMarker,
@@ -47,10 +48,6 @@ const props = withDefaults(defineProps<{
    */
   isTextInputAllowed?: boolean
   /**
-   * Whether the time picker is also enabled or not.
-   */
-  isTimePickerEnabled?: boolean
-  /**
    * Whether the input is touched.
    */
   isTouched: boolean
@@ -88,10 +85,6 @@ const props = withDefaults(defineProps<{
    */
   markers?: DatePickerMarker[]
   /**
-   * Allow selecting multiple single dates. When changing time, the latest selected date is affected.
-   */
-  multiple?: boolean
-  /**
    * Placeholder of the input.
    */
   placeholder?: string
@@ -106,12 +99,10 @@ const props = withDefaults(defineProps<{
   isMonthYearPickersDisabled: false,
   isRequired: false,
   isTextInputAllowed: false,
-  isTimePickerEnabled: false,
   disableTeleport: false,
-  multiple: false,
 })
 
-const model = defineModel<Date | null>({
+const model = defineModel<WeekPickerValue | null>({
   required: true,
 })
 
@@ -129,15 +120,14 @@ const { classAttr, otherAttrs } = useComponentAttrs()
     :is-disabled="props.isDisabled"
     :label="props.label"
   >
-    <AppDatePicker
+    <AppWeekPicker
       :id="id"
       v-model="model"
       v-bind="otherAttrs"
+      :disabled-dates="props.disabledDates"
+      :flow="props.flow"
       :format="props.format"
       :is-inline="props.isInline"
-      :disabled-dates="props.disabledDates"
-      :is-time-picker-enabled="props.isTimePickerEnabled"
-      :flow="props.flow"
       :disable-teleport="props.disableTeleport"
       :has-clear-button="props.hasClearButton"
       :highlight-config="props.highlightConfig"
@@ -148,7 +138,6 @@ const { classAttr, otherAttrs } = useComponentAttrs()
       :min-date="props.minDate"
       :markers="props.markers"
       :max-date="props.maxDate"
-      :multiple="props.multiple"
       :placeholder="props.placeholder"
       :test-id="props.testId"
     />

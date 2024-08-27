@@ -43,6 +43,10 @@ const props = withDefaults(defineProps<{
    */
   isDisabled?: boolean
   /**
+   * Whether the input is inline.
+   */
+  isInline?: boolean
+  /**
    * Set an invalid state to the input.
    */
   isInvalid?: boolean
@@ -81,6 +85,7 @@ const props = withDefaults(defineProps<{
 }>(), {
   hasClearButton: false,
   isDisabled: false,
+  isInline: false,
   isInvalid: false,
   isMonthYearPickersDisabled: false,
   isTextInputAllowed: false,
@@ -139,6 +144,7 @@ function closeMenu(): void {
     :auto-apply="false"
     :clearable="props.hasClearButton"
     :data-testid="props.testId"
+    :inline="props.isInline"
     :disabled="props.isDisabled"
     :disabled-dates="props.disabledDates"
     :disable-month-year-select="props.isMonthYearPickersDisabled"

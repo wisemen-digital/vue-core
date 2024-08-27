@@ -35,6 +35,10 @@ const props = withDefaults(defineProps<{
    */
   isDisabled?: boolean
   /**
+   * Whether the input is inline.
+   */
+  isInline?: boolean
+  /**
    * If true, removes the month and year picker.
    */
   isMonthYearPickersDisabled?: boolean
@@ -85,6 +89,7 @@ const props = withDefaults(defineProps<{
 }>(), {
   hasClearButton: false,
   isDisabled: false,
+  isInline: false,
   isMonthYearPickersDisabled: false,
   isRequired: false,
   isTextInputAllowed: false,
@@ -112,6 +117,7 @@ const modelValue = defineModel<DatePickerRangeValue | null>({
       :disabled-dates="props.disabledDates"
       :has-clear-button="props.hasClearButton"
       :highlight-config="props.highlightConfig"
+      :is-inline="props.isInline"
       :is-disabled="props.isDisabled"
       :is-month-year-pickers-disabled="props.isMonthYearPickersDisabled"
       :is-text-input-allowed="props.isTextInputAllowed"

@@ -70,6 +70,11 @@ const controls = createControls({
     label: 'Is readonly',
     type: 'switch',
   },
+  isInline: {
+    default: false,
+    label: 'Is inline',
+    type: 'switch',
+  },
 })
 
 const model = ref<Date | null>(new Date())
@@ -105,6 +110,18 @@ const disabled: Date[] = [
     <template #default="{ values }">
       <div class="max-w-64">
         <AppDatePicker
+          v-if="values.isInline"
+          id="date-picker-1"
+          v-model="model"
+          :highlight-config="highlighted"
+          :markers="markers"
+          :disabled-dates="disabled"
+          test-id="date-picker-1"
+          v-bind="values"
+        />
+
+        <AppDatePicker
+          v-if="!values.isInline"
           id="date-picker-1"
           v-model="model"
           :highlight-config="highlighted"
