@@ -11,6 +11,7 @@ import {
 import { computed } from 'vue'
 
 import AppIcon from '@/components/icon/AppIcon.vue'
+import type { IconStyleProps } from '@/components/icon/icon.style'
 import type { StepItem } from '@/types/stepper.type'
 
 import type { StepperStyleProps } from './stepper.style'
@@ -18,6 +19,10 @@ import { useStepperStyle } from './stepper.style'
 
 const props = withDefaults(
   defineProps<{
+    /**
+     * The direction of the stepper, horizontal or vertical
+     */
+    direction?: StepperStyleProps['direction']
     /**
      * An array of steps to display in the stepper
      */
@@ -28,6 +33,7 @@ const props = withDefaults(
     triggerSize?: StepperStyleProps['triggerSize']
   }>(),
   {
+    direction: 'horizontal',
     triggerSize: 'default',
   },
 )
@@ -45,7 +51,9 @@ const activeStepId = defineModel<number>({
 
 const stepperStyle = useStepperStyle()
 
-const rootClasses = computed<string>(() => stepperStyle.root())
+const rootClasses = computed<string>(() => stepperStyle.root({
+  direction: props.direction,
+}))
 const itemClasses = computed<string>(() => stepperStyle.item())
 const triggerClasses = computed<string>(() => stepperStyle.trigger({
   triggerSize: props.triggerSize,
@@ -54,23 +62,30 @@ const triggerIconClasses = computed<string>(() => stepperStyle.triggerIcon({
   triggerSize: props.triggerSize,
 }))
 const separatorClasses = computed<string>(() => stepperStyle.separator({
+  direction: props.direction,
   triggerSize: props.triggerSize,
 }))
-const stepTextContainerClasses = computed<string>(() => stepperStyle.stepTextContainer())
+const stepTextContainerClasses = computed<string>(() => stepperStyle.stepTextContainer({
+  direction: props.direction,
+}))
 const stepTitleClasses = computed<string>(() => stepperStyle.stepTitle())
 const stepDescriptionClasses = computed<string>(() => stepperStyle.stepDescription())
-const validationIconsClasses = computed<string>(() => stepperStyle.validationIcons())
+const completedIconClasses = computed<string>(() => stepperStyle.completedIcon())
+const invalidIconClasses = computed<string>(() => stepperStyle.invalidIcon())
+
+const validationIconSize = computed<IconStyleProps['size']>(() => props.triggerSize === 'sm' ? 'xs' : 'sm')
 </script>
 
 <template>
   <StepperRoot
     v-model="activeStepId"
+    :orientation="props.direction"
     :class="rootClasses"
   >
     <StepperItem
-      v-for="item in props.steps"
-      :key="item.stepId"
-      :step="item.stepId"
+      v-for="(item, index) in props.steps"
+      :key="item.id"
+      :step="index + 1"
       :class="itemClasses"
       :disabled="item.isDisabled"
       :completed="item.isCompleted"
@@ -95,22 +110,20 @@ const validationIconsClasses = computed<string>(() => stepperStyle.validationIco
             >
               <div
                 v-if="item.isInvalid"
-                :class="validationIconsClasses"
+                :class="invalidIconClasses"
               >
                 <AppIcon
-                  class="text-destructive"
+                  :size="validationIconSize"
                   icon="close"
-                  size="sm"
                 />
               </div>
               <div
                 v-else-if="item.isCompleted"
-                :class="validationIconsClasses"
+                :class="completedIconClasses"
               >
                 <AppIcon
-                  class="text-success"
+                  :size="validationIconSize"
                   icon="checkmark"
-                  size="sm"
                 />
               </div>
             </slot>
@@ -119,7 +132,7 @@ const validationIconsClasses = computed<string>(() => stepperStyle.validationIco
       </StepperTrigger>
 
       <StepperSeparator
-        v-if="item.stepId !== steps[steps.length - 1].stepId"
+        v-if="item.id !== steps[steps.length - 1].id"
         :class="separatorClasses"
       />
 

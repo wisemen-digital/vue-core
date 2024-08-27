@@ -14,25 +14,38 @@ interface UseStepperReturnType {
   prevStep: () => void
 }
 
-export function useStepper(activeStep: Ref<number>, steps: StepItem[]): UseStepperReturnType {
+export function useStepper(activeStepId: Ref<number>, steps: StepItem[]): UseStepperReturnType {
   function nextStep(): void {
-    if (activeStep.value < steps.length) {
-      activeStep.value++
+    const currentIndex = steps.findIndex((step) => step.id === activeStepId.value)
+
+    if (currentIndex >= 0 && currentIndex < steps.length - 1) {
+      activeStepId.value = steps[currentIndex + 1].id
     }
   }
 
   function prevStep(): void {
-    if (activeStep.value > 1) {
-      activeStep.value--
+    const currentIndex = steps.findIndex((step) => step.id === activeStepId.value)
+
+    if (currentIndex > 0) {
+      activeStepId.value = steps[currentIndex - 1].id
     }
   }
 
   function goToStep(step: number): void {
-    activeStep.value = step
+    activeStepId.value = step
   }
 
-  const isLastStep = computed<boolean>(() => activeStep.value === steps[steps.length - 1]?.stepId)
-  const isFirstStep = computed<boolean>(() => activeStep.value === steps[0]?.stepId)
+  const isLastStep = computed<boolean>(() => {
+    const currentIndex = steps.findIndex((step) => step.id === activeStepId.value)
+
+    return currentIndex === steps.length - 1
+  })
+
+  const isFirstStep = computed<boolean>(() => {
+    const currentIndex = steps.findIndex((step) => step.id === activeStepId.value)
+
+    return currentIndex === 0
+  })
 
   return {
     isFirstStep,

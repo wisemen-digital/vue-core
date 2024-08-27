@@ -10,6 +10,7 @@ import AppStepperPlayground from './AppStepperPlayground.vue'
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
+| direction | `"horizontal" \| "vertical"` | The direction of the stepper, horizontal or vertical | `"horizontal"` |
 | modelValue* | `number` |  |  |
 | steps* | `StepItem[]` | An array of steps to display in the stepper |  |
 | triggerSize | `"default" \| "sm" \| "lg"` | The size of the stepper trigger, containing the icon | `"default"` |

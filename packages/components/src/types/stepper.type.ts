@@ -1,7 +1,7 @@
 import type { Icon } from '@/icons/icons'
 
 export interface StepItem {
-  stepId: number
+  id: number
   title: string
   isCompleted?: boolean
   isDisabled?: boolean

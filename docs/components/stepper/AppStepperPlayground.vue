@@ -11,6 +11,16 @@ import {
 import { ref } from 'vue'
 
 const controls = createControls({
+  direction: {
+    default: 'horizontal',
+    cols: 2,
+    label: 'Direction',
+    items: [
+      'horizontal',
+      'vertical',
+    ],
+    type: 'select',
+  },
   triggerSize: {
     default: 'default',
     cols: 2,
@@ -27,14 +37,14 @@ const controls = createControls({
 const steps: StepItem[] = [
   {
     title: 'Step 1',
-    stepId: 1,
+    id: 1,
     description: 'Description for step 1',
-    icon: 'checkmark',
-    isCompleted: true,
+    icon: 'eye',
+    isCompleted: false,
   },
   {
     title: 'Step 2',
-    stepId: 2,
+    id: 2,
     description: 'Description for step 2',
     icon: 'search',
     isCompleted: false,
@@ -42,22 +52,22 @@ const steps: StepItem[] = [
   },
   {
     title: 'Step 3',
-    stepId: 3,
+    id: 3,
     description: 'Description for step 3',
     icon: 'calendar',
     isCompleted: false,
   },
   {
     title: 'Step 4',
-    stepId: 4,
+    id: 4,
     description: 'Description for step 4',
-    icon: 'calendar',
+    icon: 'warning',
     isDisabled: true,
     isCompleted: false,
   },
 ]
 
-const activeStepId = ref<number>(steps[0].stepId)
+const activeStepId = ref<number>(steps[0].id)
 
 const stepper = useStepper(activeStepId, steps)
 </script>
