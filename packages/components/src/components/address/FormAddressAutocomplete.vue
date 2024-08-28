@@ -22,15 +22,40 @@ interface Suggestion {
   label: string
 }
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
+  /**
+   * Whether the input is disabled.
+   */
   isDisabled?: boolean
+  /**
+   * Whether the input is required.
+   */
   isRequired?: boolean
-  isTouched?: boolean
-  errors?: FormFieldErrors
+  /**
+   * Whether the input is touched.
+   */
+  isTouched: boolean
+  /**
+   * The errors associated with the input.
+   */
+  errors: FormFieldErrors
+  /**
+   * The label of the input.
+   */
   label: string
+  /**
+   * The errors associated with the input.
+   */
   modelValue: AddressForm | null
-  placeholder?: string
-}>()
+  /**
+   * The placeholder of the input.
+   */
+  placeholder?: null | string
+}>(), {
+  isDisabled: false,
+  isRequired: false,
+  placeholder: null,
+})
 
 const emit = defineEmits<{
   'blur': []

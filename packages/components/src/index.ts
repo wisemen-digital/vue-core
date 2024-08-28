@@ -3,6 +3,9 @@ import './styles/index.scss'
 // Accordion
 export { default as AppAccordion } from './components/accordion/AppAccordion.vue'
 
+// Address
+export { default as FormAddressAutocomplete } from './components/address/FormAddressAutocomplete.vue'
+
 // Avatar
 export { default as AppAvatar } from './components/avatar/AppAvatar.vue'
 
@@ -165,6 +168,7 @@ export { useToast } from './composables/toast.composable'
 export type { Config } from './config/globalConfig'
 export type { Icon, Icons } from './icons/icons'
 export type { Accordion } from './types/accordionItem.type'
+export type { AddressCoordinates, AddressForm } from './types/address.type'
 export type { BreadcrumbItem } from './types/breadcrumbItem.type'
 export type { ComboboxItem } from './types/comboboxItem.type'
 export type { DataItem } from './types/dataItem.type'
