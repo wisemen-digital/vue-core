@@ -96,6 +96,9 @@ importers:
 
   packages/components:
     dependencies:
+      '@googlemaps/js-api-loader':
+        specifier: ^1.16.8
+        version: 1.16.8
       '@internationalized/date':
         specifier: 3.5.4
         version: 3.5.4
@@ -118,6 +121,9 @@ importers:
       '@types/dom-view-transitions':
         specifier: 1.0.4
         version: 1.0.4
+      '@types/google.maps':
+        specifier: 3.55.4
+        version: 3.55.4
       '@types/node':
         specifier: 20.14.2
         version: 20.14.2
@@ -960,6 +966,9 @@ packages:
 
   '@floating-ui/vue@1.0.6':
     resolution: {integrity: sha512-EdrOljjkpkkqZnrpqUcPoz9NvHxuTjUtSInh6GMv3+Mcy+giY2cE2pHh9rpacRcZ2eMSCxel9jWkWXTjLmY55w==}
+
+  '@googlemaps/js-api-loader@1.16.8':
+    resolution: {integrity: sha512-CROqqwfKotdO6EBjZO/gQGVTbeDps5V7Mt9+8+5Q+jTg5CRMi3Ii/L9PmV3USROrt2uWxtGzJHORmByxyo9pSQ==}
 
   '@humanwhocodes/module-importer@1.0.1':
     resolution: {integrity: sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA==}
@@ -2085,6 +2094,9 @@ packages:
 
   '@types/fs-extra@11.0.4':
     resolution: {integrity: sha512-yTbItCNreRooED33qjunPthRcSjERP1r4MqCZc7wv0u2sUkzTFp45tgUfS5+r7FrZPdmCCNflLhVSP/o+SemsQ==}
+
+  '@types/google.maps@3.55.4':
+    resolution: {integrity: sha512-Ip3IfRs3RZjeC88V8FGnWQTQXeS5gkJedPSosN6DMi9Xs8buGTpsPq6UhREoZsGH+62VoQ6jiRBUR8R77If69w==}
 
   '@types/hast@2.3.10':
     resolution: {integrity: sha512-McWspRw8xx8J9HurkVBfYj0xKoE25tOFlHGdx4MJ5xORQrMGZNqJhVQWaIbm6Oyla5kYOXtDiopzKRJzEOkwJw==}
@@ -7562,6 +7574,8 @@ snapshots:
       - '@vue/composition-api'
       - vue
 
+  '@googlemaps/js-api-loader@1.16.8': {}
+
   '@humanwhocodes/module-importer@1.0.1': {}
 
   '@humanwhocodes/retry@0.3.0': {}
@@ -7841,6 +7855,8 @@ snapshots:
       putout: 35.7.1(typescript@5.4.5)
       try-catch: 3.0.1
       try-to-catch: 3.0.1
+    transitivePeerDependencies:
+      - supports-color
 
   '@putout/engine-parser@10.1.0':
     dependencies:
@@ -7861,6 +7877,8 @@ snapshots:
       picomatch: 4.0.2
       putout: 35.7.1(typescript@5.4.5)
       try-to-catch: 3.0.1
+    transitivePeerDependencies:
+      - supports-color
 
   '@putout/engine-reporter@1.0.2(putout@35.7.1(typescript@5.4.5))':
     dependencies:
@@ -7871,6 +7889,8 @@ snapshots:
       putout: 35.7.1(typescript@5.4.5)
       try-catch: 3.0.1
       try-to-catch: 3.0.1
+    transitivePeerDependencies:
+      - supports-color
 
   '@putout/engine-runner@21.0.1(putout@35.7.1(typescript@5.4.5))':
     dependencies:
@@ -8722,6 +8742,8 @@ snapshots:
     dependencies:
       '@types/jsonfile': 6.1.4
       '@types/node': 20.14.5
+
+  '@types/google.maps@3.55.4': {}
 
   '@types/hast@2.3.10':
     dependencies:

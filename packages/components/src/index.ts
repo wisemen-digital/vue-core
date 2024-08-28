@@ -162,6 +162,7 @@ export { usePagination } from './composables/pagination/pagination.composable'
 export { useToast } from './composables/toast.composable'
 
 // Types
+export type { Config } from './config/globalConfig'
 export type { Icon, Icons } from './icons/icons'
 export type { Accordion } from './types/accordionItem.type'
 export type { BreadcrumbItem } from './types/breadcrumbItem.type'
@@ -194,6 +195,7 @@ export type { TableColumn } from './types/table.type'
 export type { TableEmptyTextProp } from './types/table.type'
 
 // Other
+export { defineConfig } from './config/globalConfig'
 export { extendIcons } from './icons/icons'
 
 // Styles Props
