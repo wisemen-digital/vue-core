@@ -17,6 +17,9 @@ export const i18nPlugin = createI18n({
   messages: {
     en: {
       components: {
+        autocomplete: {
+          no_results_found: 'No results found',
+        },
         keyboard_shortcut: {
           then: 'then',
         },
@@ -43,6 +46,12 @@ export const i18nPlugin = createI18n({
         calendar: {
           select: 'Select',
           cancel: 'Cancel',
+        },
+      },
+      error: {
+        default_error: {
+          title: 'Try again later',
+          description: 'Something went wrong.',
         },
       },
     },

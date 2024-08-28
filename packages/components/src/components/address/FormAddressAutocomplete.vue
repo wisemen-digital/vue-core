@@ -134,7 +134,7 @@ function onUpdateSearch(search: null | string): void {
   <FormCombobox
     v-model="value"
     :display-fn="(option: Suggestion) => option.label"
-    :empty-text="t('shared.no_results_found')"
+    :empty-text="t('components.autocomplete.no_results_found')"
     :errors="props.errors"
     :filter-fn="(option) => option"
     :has-clear-button="true"
