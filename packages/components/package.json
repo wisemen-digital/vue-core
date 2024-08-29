@@ -37,6 +37,7 @@
     "vue-i18n": "9.13.1"
   },
   "dependencies": {
+    "@googlemaps/js-api-loader": "1.16.8",
     "@internationalized/date": "3.5.4",
     "@vuepic/vue-datepicker": "9.0.2",
     "date-fns": "3.6.0"
@@ -44,6 +45,7 @@
   "devDependencies": {
     "@tsconfig/node18": "18.2.4",
     "@types/dom-view-transitions": "1.0.4",
+    "@types/google.maps": "3.55.4",
     "@types/node": "20.14.2",
     "@vitejs/plugin-vue": "5.0.5",
     "@vue/test-utils": "2.4.6",

@@ -2,8 +2,14 @@ import '@wisemen/vue-core/style.css'
 import './index.scss'
 import './override.css'
 
+import type { Config } from '@wisemen/vue-core'
+import { defineConfig } from '@wisemen/vue-core'
 import DefaultTheme from 'vitepress/theme'
 import { createI18n } from 'vue-i18n'
+
+const globalConfig: Config = {
+  googleMapsApiKey: 'AIzaSyATX2fY3BZwaKeURsQhwpEVLmLRr27s4vw',
+}
 
 export const i18nPlugin = createI18n({
   fallbackWarn: false,
@@ -11,6 +17,9 @@ export const i18nPlugin = createI18n({
   messages: {
     en: {
       components: {
+        autocomplete: {
+          no_results_found: 'No results found',
+        },
         keyboard_shortcut: {
           then: 'then',
         },
@@ -39,6 +48,12 @@ export const i18nPlugin = createI18n({
           cancel: 'Cancel',
         },
       },
+      error: {
+        default_error: {
+          title: 'Try again later',
+          description: 'Something went wrong.',
+        },
+      },
     },
   },
   missingWarn: false,
@@ -60,6 +75,8 @@ const theme: typeof DefaultTheme = {
 
     ctx.app.use(i18nPlugin as any)
     DefaultTheme.enhanceApp(ctx)
+
+    defineConfig(globalConfig)
   },
 }
 

@@ -2,6 +2,9 @@ export const components = {
   accordion: [
     'AppAccordion',
   ],
+  address: [
+    'FormAddressAutocomplete',
+  ],
   avatar: [
     'AppAvatar',
   ],

@@ -35,6 +35,16 @@ const docs = [
     collapsed: true,
     items: [
       {
+        link: '/components/address/form-address-autocomplete',
+        text: 'FormAddressAutocomplete',
+      },
+    ],
+    text: 'Address',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
         link: '/components/avatar/app-avatar',
         text: 'AppAvatar',
       },
