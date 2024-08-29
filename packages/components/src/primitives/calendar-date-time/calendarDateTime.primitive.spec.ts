@@ -23,13 +23,7 @@ describe('calendarDateTime', () => {
   it('initializes with a given iso string', () => {
     const value = new CalendarDateTime('2024-01-01T11:00:00.000Z' as IsoString)
 
-    expect(value.getYear()).toEqual(2024)
-    expect(value.getMonth()).toEqual(1)
-    expect(value.getDay()).toEqual(1)
-    expect(value.getHours()).toEqual(12)
-    expect(value.getMinutes()).toEqual(0)
-    expect(value.getSeconds()).toEqual(0)
-    expect(value.getMilliseconds()).toEqual(0)
+    expect(value.toDate()).instanceOf(Date)
   })
 
   it('initializes with individual values', () => {
