@@ -3,6 +3,10 @@ export class NumberUtil {
     return Math.floor(Math.random() * (max - min + 1) + min)
   }
 
+  static pad(value: number, length: number): string {
+    return value.toString().padStart(length, '0')
+  }
+
   static toLocaleNumber(value: number): string {
     return value.toLocaleString('nl-BE')
   }
