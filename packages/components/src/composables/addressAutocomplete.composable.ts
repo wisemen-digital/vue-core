@@ -2,7 +2,7 @@ import { Loader } from '@googlemaps/js-api-loader'
 import { onMounted } from 'vue'
 
 import { useToast } from '@/composables/toast.composable'
-import { globalConfig } from '@/config/globalConfig'
+import { getGlobalConfig } from '@/config/globalConfig'
 import type {
   AddressCoordinates,
   AddressForm,
@@ -70,7 +70,9 @@ export function useAddressAutoComplete(): {
   }
 
   onMounted(async () => {
-    if (globalConfig.googleMapsApiKey == null) {
+    const key = getGlobalConfig('googleMapsApiKey')
+
+    if (key === null) {
       loader = null
 
       toast.error({ title: 'Error', description: 'Google Maps API key is not defined' })
@@ -79,7 +81,7 @@ export function useAddressAutoComplete(): {
     }
 
     loader = new Loader({
-      apiKey: globalConfig.googleMapsApiKey,
+      apiKey: key,
       libraries: [
         'places',
       ],

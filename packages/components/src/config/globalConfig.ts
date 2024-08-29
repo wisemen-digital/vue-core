@@ -2,8 +2,11 @@ export interface Config {
   googleMapsApiKey?: string
 }
 
-// eslint-disable-next-line import/no-mutable-exports
-export let globalConfig: Config = {}
+let globalConfig: Config = {}
+
+export function getGlobalConfig(key: keyof Config): null | string {
+  return globalConfig[key] ?? null
+}
 
 export function defineConfig(config: Config): void {
   globalConfig = config
