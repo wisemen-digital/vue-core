@@ -62,21 +62,21 @@ declare module '@wisemen/vue-core' {
 }
 
 ```
+## Add your Google Api Key
+
+If you want to use some components such as the AddressAutocomplete, please add your Google maps Aki Key in the library configuration 
+
+```ts
+import type { Config } from '@wisemen/vue-core'
+import { defineConfig } from '@wisemen/vue-core'
+
+const config: Config = {
+  googleMapsApiKey: 'your-api-key',
+}
+
+defineConfig(config)
+```
 
 ## Documentation
 
-The docs are not yet hosted. In the meantime, follow this procedure:
-
-1. Clone the library locally
-```bash
-git clone https://github.com/wisemen-digital/vue-core.git
-```
-
-2. Install dependencies
-```bash
-pnpm i
-```
-3. Run the docs
-```bash
-pnpm run docs:dev
-```
+The docs are available at [https://wisemen-digital.github.io/vue-core/](https://wisemen-digital.github.io/vue-core/)
