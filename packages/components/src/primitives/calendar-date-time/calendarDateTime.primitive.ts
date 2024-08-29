@@ -21,12 +21,12 @@ interface DateTimeValues {
   year?: number
 }
 
-export const isoString = z
+export const isoStringSchema = z
   .string()
   .regex(/[+-]?\d{4}(-[01]\d(-[0-3]\d(T[0-2]\d:[0-5]\d:?([0-5]\d(\.\d+)?)?[+-][0-2]\d:[0-5]\dZ?)?)?)?/)
   .brand('isoString')
 
-export type IsoString = z.infer<typeof isoString>
+export type IsoString = z.infer<typeof isoStringSchema>
 
 export class CalendarDateTime {
   private value: Date = new Date()
