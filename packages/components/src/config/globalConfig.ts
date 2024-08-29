@@ -4,8 +4,8 @@ export interface Config {
 
 let globalConfig: Config = {}
 
-export function getGlobalConfig(key: keyof Config): null | string {
-  return globalConfig[key] ?? null
+export function getGlobalConfig<TKey extends keyof Config>(key: TKey): NonNullable<Config[TKey]> | null {
+  return globalConfig[key] as Config[TKey] ?? null
 }
 
 export function defineConfig(config: Config): void {
