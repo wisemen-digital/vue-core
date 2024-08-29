@@ -1,3 +1,5 @@
+import { z } from 'zod'
+
 interface DateTimeValue {
   days?: number
   hours?: number
@@ -9,25 +11,38 @@ interface DateTimeValue {
   years?: number
 }
 
+interface DateTimeValues {
+  day?: number
+  hours?: number
+  milliseconds?: number
+  minutes?: number
+  month?: number
+  seconds?: number
+  year?: number
+}
+
+export const isoString = z
+  .string()
+  .regex(/[+-]?\d{4}(-[01]\d(-[0-3]\d(T[0-2]\d:[0-5]\d:?([0-5]\d(\.\d+)?)?[+-][0-2]\d:[0-5]\dZ?)?)?)?/)
+  .brand('isoString')
+
+export type IsoString = z.infer<typeof isoString>
+
 export class CalendarDateTime {
   private value: Date = new Date()
 
-  constructor(
-    year?: number,
-    month?: number,
-    day?: number,
-    hours?: number,
-    minutes?: number,
-    seconds?: number,
-    milliseconds?: number,
-  ) {
-    this.set({ days: day,
-      hours,
-      milliseconds,
-      minutes,
-      months: month,
-      seconds,
-      years: year })
+  constructor(value?: DateTimeValues | IsoString) {
+    if (value === undefined) {
+      return
+    }
+
+    if (typeof value === 'string') {
+      this.value = new Date(value)
+
+      return
+    }
+
+    this.set(value)
   }
 
   /*
@@ -37,28 +52,44 @@ export class CalendarDateTime {
    */
   add(value: DateTimeValue): CalendarDateTime {
     if (value.years !== undefined) {
-      this.set({ years: this.value.getFullYear() + value.years })
+      this.set({
+        year: this.value.getFullYear() + value.years,
+      })
     }
     if (value.months !== undefined) {
-      this.set({ months: this.value.getMonth() + value.months + 1 })
+      this.set({
+        month: this.value.getMonth() + 1 + value.months,
+      })
     }
     if (value.days !== undefined) {
-      this.set({ days: this.value.getDate() + value.days })
+      this.set({
+        day: this.value.getDate() + value.days,
+      })
     }
     if (value.hours !== undefined) {
-      this.set({ hours: this.value.getHours() + value.hours })
+      this.set({
+        hours: this.value.getHours() + value.hours,
+      })
     }
     if (value.minutes !== undefined) {
-      this.set({ minutes: this.value.getMinutes() + value.minutes })
+      this.set({
+        minutes: this.value.getMinutes() + value.minutes,
+      })
     }
     if (value.seconds !== undefined) {
-      this.set({ seconds: this.value.getSeconds() + value.seconds })
+      this.set({
+        seconds: this.value.getSeconds() + value.seconds,
+      })
     }
     if (value.milliseconds !== undefined) {
-      this.set({ milliseconds: this.value.getMilliseconds() + value.milliseconds })
+      this.set({
+        milliseconds: this.value.getMilliseconds() + value.milliseconds,
+      })
     }
     if (value.weeks !== undefined) {
-      this.set({ days: this.value.getDate() + value.weeks * 7 })
+      this.set({
+        day: this.value.getDate() + value.weeks * 7,
+      })
     }
 
     return this
@@ -70,15 +101,15 @@ export class CalendarDateTime {
   * @returns The new CalendarDateTime object
   */
   fromDate(date: Date): CalendarDateTime {
-    return new CalendarDateTime(
-      date.getFullYear(),
-      date.getMonth() + 1,
-      date.getDate(),
-      date.getHours(),
-      date.getMinutes(),
-      date.getSeconds(),
-      date.getMilliseconds(),
-    )
+    return new CalendarDateTime({
+      day: date.getDate(),
+      hours: date.getHours(),
+      milliseconds: date.getMilliseconds(),
+      minutes: date.getMinutes(),
+      month: date.getMonth(),
+      seconds: date.getSeconds(),
+      year: date.getFullYear(),
+    })
   }
 
   /*
@@ -118,7 +149,7 @@ export class CalendarDateTime {
   * @returns The month of the date
   */
   getMonth(): number {
-    return this.value.getMonth()
+    return this.value.getMonth() + 1
   }
 
   /*
@@ -193,7 +224,15 @@ export class CalendarDateTime {
       milliseconds,
     ] = value.split(/[-T:.]/).map(Number)
 
-    return new CalendarDateTime(year, month, day, hours, minutes, seconds, milliseconds)
+    return new CalendarDateTime({
+      day,
+      hours,
+      milliseconds,
+      minutes,
+      month,
+      seconds,
+      year,
+    })
   }
 
   /*
@@ -201,15 +240,15 @@ export class CalendarDateTime {
   * @param value - The value to set the date to
   * @returns The updated date
   */
-  set(value: DateTimeValue): CalendarDateTime {
-    if (value.years !== undefined) {
-      this.value.setFullYear(value.years)
+  set(value: DateTimeValues): CalendarDateTime {
+    if (value.year !== undefined) {
+      this.value.setFullYear(value.year)
     }
-    if (value.months !== undefined) {
-      this.value.setMonth(value.months - 1)
+    if (value.month !== undefined) {
+      this.value.setMonth(value.month - 1)
     }
-    if (value.days !== undefined) {
-      this.value.setDate(value.days)
+    if (value.day !== undefined) {
+      this.value.setDate(value.day)
     }
     if (value.hours !== undefined) {
       this.value.setHours(value.hours)
@@ -233,13 +272,13 @@ export class CalendarDateTime {
   */
   subtract(value: DateTimeValue): CalendarDateTime {
     if (value.years !== undefined) {
-      this.set({ years: this.value.getFullYear() - value.years })
+      this.set({ year: this.value.getFullYear() - value.years })
     }
     if (value.months !== undefined) {
-      this.set({ months: this.value.getMonth() - value.months + 1 })
+      this.set({ month: this.value.getMonth() + 1 - value.months })
     }
     if (value.days !== undefined) {
-      this.set({ days: this.value.getDate() - value.days })
+      this.set({ day: this.value.getDate() - value.days })
     }
     if (value.hours !== undefined) {
       this.set({ hours: this.value.getHours() - value.hours })
@@ -254,7 +293,7 @@ export class CalendarDateTime {
       this.set({ milliseconds: this.value.getMilliseconds() - value.milliseconds })
     }
     if (value.weeks !== undefined) {
-      this.set({ days: this.value.getDate() - value.weeks * 7 })
+      this.set({ day: this.value.getDate() - value.weeks * 7 })
     }
 
     return this

@@ -1,6 +1,12 @@
 import { CalendarDateTime } from '@/primitives/calendar-date-time/calendarDateTime.primitive'
 import { NumberUtil } from '@/utils/number.util'
 
+interface DateValues {
+  day: number
+  month: number
+  year: number
+}
+
 export class CalendarDate {
   value: CalendarDateTime = new CalendarDateTime()
 
@@ -10,8 +16,8 @@ export class CalendarDate {
   * @param month - The month of the date (1-12)
   * @param day - The day of the date
   */
-  constructor(year?: number, month?: number, day?: number) {
-    this.set({ day, month, year })
+  constructor(value: DateValues) {
+    this.set(value)
   }
 
   /*
@@ -20,7 +26,11 @@ export class CalendarDate {
   * @returns The new CalendarDate object
   */
   static fromDate(date: Date): CalendarDate {
-    return new CalendarDate(date.getFullYear(), date.getMonth() + 1, date.getDate())
+    return new CalendarDate({
+      day: date.getDate(),
+      month: date.getMonth(),
+      year: date.getFullYear(),
+    })
   }
 
   /*
@@ -35,7 +45,7 @@ export class CalendarDate {
       day,
     ] = value.split('-').map(Number)
 
-    return new CalendarDate(year, month, day)
+    return new CalendarDate({ day, month, year })
   }
 
   /*
@@ -65,7 +75,7 @@ export class CalendarDate {
   * Returns the month of the date as a number from 1 (January) to 12 (December)
   */
   getMonth(): number {
-    return this.value.getMonth() + 1
+    return this.value.getMonth()
   }
 
   /*
@@ -122,11 +132,11 @@ export class CalendarDate {
   * @param value - The value to set the date to
   * @returns The updated date
   */
-  set(value: { day?: number, month?: number, year?: number }): CalendarDate {
+  set(value: DateValues): CalendarDate {
     this.value.set({
-      days: value.day,
-      months: value.month,
-      years: value.year,
+      day: value.day,
+      month: value.month,
+      year: value.year,
     })
 
     return this

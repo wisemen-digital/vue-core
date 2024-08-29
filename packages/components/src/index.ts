@@ -157,7 +157,8 @@ export { default as AppCollapseTransition } from './components/transitions/AppCo
 // Primitives
 
 export { CalendarDate } from './primitives/calendar-date/calendarDate.primitive'
-export { CalendarDateTime } from './primitives/calendar-date-time/calendarDateTime.primitive'
+export type { IsoString } from './primitives/calendar-date-time/calendarDateTime.primitive'
+export { CalendarDateTime, isoString } from './primitives/calendar-date-time/calendarDateTime.primitive'
 export { CalendarTime } from '@/primitives/calendar-time/calendarTime.primitive'
 
 // Composables
