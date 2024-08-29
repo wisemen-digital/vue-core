@@ -2,19 +2,19 @@ import type { Ref } from 'vue'
 import { ref } from 'vue'
 
 interface Loading {
-  isLoading: Ref<boolean>
-  setLoadingState: (value: boolean) => void
+  setState: (value: boolean) => void
+  state: Ref<boolean>
 }
 
 export function useLoading(): Loading {
-  const isLoading = ref<boolean>(false)
+  const state = ref<boolean>(false)
 
-  function setLoadingState(value: boolean): void {
-    isLoading.value = value
+  function setState(value: boolean): void {
+    state.value = value
   }
 
   return {
-    isLoading,
-    setLoadingState,
+    setState,
+    state,
   }
 }

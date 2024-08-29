@@ -10,8 +10,8 @@ import FormCombobox from '@/components/combobox/FormCombobox.vue'
 import { useAddressAutoComplete } from '@/composables/addressAutocomplete.composable'
 import { useLoading } from '@/composables/loading.composable'
 import { useToast } from '@/composables/toast.composable'
-import type { AddressForm } from '@/types/address.type'
-import { EMPTY_ADDRESS_FORM } from '@/types/address.type'
+import type { AddressForm } from '@/types/addressForm.model'
+import { EMPTY_ADDRESS_FORM } from '@/types/addressForm.model'
 import type { ComboboxItem } from '@/types/comboboxItem.type'
 import type { DataItem } from '@/types/dataItem.type'
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
@@ -104,7 +104,7 @@ const debounceSearch = useDebounceFn(async (value: string) => {
     })
   }
 
-  loadingState.setLoadingState(false)
+  loadingState.setState(false)
   isDebouncing.value = false
 }, 300)
 
@@ -139,7 +139,7 @@ function onUpdateSearch(search: null | string): void {
     :filter-fn="(option) => option"
     :has-clear-button="true"
     :is-disabled="props.isDisabled"
-    :is-loading="loadingState.isLoading.value || isDebouncing"
+    :is-loading="loadingState.state.value || isDebouncing"
     :is-required="props.isRequired"
     :is-touched="props.isTouched"
     :items="addressPredictionItems"
@@ -151,9 +151,3 @@ function onUpdateSearch(search: null | string): void {
     @update:search="onUpdateSearch"
   />
 </template>
-
-<style lang="scss" scoped>
-.PopoverContent {
-  width: var(--radix-popover-trigger-width);
-}
-</style>

@@ -6,7 +6,7 @@ import { globalConfig } from '@/config/globalConfig'
 import type {
   AddressCoordinates,
   AddressForm,
-} from '@/types/address.type'
+} from '@/types/addressForm.model'
 import type { DataItem } from '@/types/dataItem.type'
 
 export type PlaceResult = google.maps.places.PlaceResult
@@ -77,15 +77,14 @@ export function useAddressAutoComplete(): {
 
       throw new Error('Google Maps API key is not defined. Please define it in the config using the defineConfig function')
     }
-    else {
-      loader = new Loader({
-        apiKey: globalConfig.googleMapsApiKey,
-        libraries: [
-          'places',
-        ],
-      })
-      await loader.importLibrary('places')
-    }
+
+    loader = new Loader({
+      apiKey: globalConfig.googleMapsApiKey,
+      libraries: [
+        'places',
+      ],
+    })
+    await loader.importLibrary('places')
   })
 
   return {
