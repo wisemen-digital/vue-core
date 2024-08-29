@@ -34,7 +34,7 @@ declare module '@wisemen/vue-core' {
 
 Add your Google Api Key
 
-If you want to use some components such as the AddressAutocomplete, please add your Google maps Aki Key in the library configuration 
+If you want to use some components such as the AddressAutocomplete, please add your Google maps API Key in the library configuration 
 
 ```ts
 import type { Config } from '@wisemen/vue-core'
