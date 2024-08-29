@@ -27,5 +27,6 @@ import FormPhoneNumberInputPlayground from './FormPhoneNumberInputPlayground.vue
 
 | Event name | Type | Description |
 | ---------- | ---- | ----------- |
+| `blur` | [] |  |
 | `update:modelValue` | [modelValue: string \| null] |  |
 
