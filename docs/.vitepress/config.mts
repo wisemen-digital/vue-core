@@ -397,6 +397,16 @@ const docs = [
     collapsed: true,
     items: [
       {
+        link: '/components/stepper/app-stepper',
+        text: 'AppStepper',
+      },
+    ],
+    text: 'Stepper',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
         link: '/components/switch/form-switch',
         text: 'FormSwitch',
       },
