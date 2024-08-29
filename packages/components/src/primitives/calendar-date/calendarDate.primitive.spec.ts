@@ -97,95 +97,27 @@ describe('calendarDate', () => {
     expect(first.isAfter(second)).toEqual(false)
   })
 
-  // it('checks if a date is after or equal to another date', () => {
-  //   const value = new CalendarDate(firstOfJanuary2024)
-  //   const other = new CalendarDate({
-  //     day: 1,
-  //     month: 1,
-  //     year: 2023,
-  //   })
+  it('checks if a date is after or equal to another date', () => {
+    const first = new CalendarDate(firstOfJanuary2023)
+    const second = new CalendarDate(firstOfJanuary2024)
 
-  //   expect(value.isAfterOrEqualTo(other)).toEqual(true)
-  //   expect(other.isAfterOrEqualTo(value)).toEqual(false)
-  // })
+    expect(second.isAfterOrEqualTo(first)).toEqual(true)
+    expect(first.isBeforeOrEqualTo(second)).toEqual(true)
+  })
 
-  // it('checks if a date is before another date', () => {
-  //   const value = new CalendarDate({
-  //     day: 1,
-  //     month: 1,
-  //     year: 2023,
-  //   })
-  //   const other = new CalendarDate(firstOfJanuary2024)
+  it('checks if a date is before another date', () => {
+    const first = new CalendarDate(firstOfJanuary2023)
+    const second = new CalendarDate(firstOfJanuary2024)
 
-  //   expect(value.isBefore(other)).toEqual(true)
-  //   expect(other.isBefore(value)).toEqual(false)
-  // })
+    expect(first.isBefore(second)).toEqual(true)
+    expect(second.isBefore(first)).toEqual(false)
+  })
 
-  // it('checks if a date is before or equal to another date', () => {
-  //   const value = new CalendarDate({
-  //     day: 1,
-  //     month: 1,
-  //     year: 2023,
-  //   })
-  //   const other = new CalendarDate(firstOfJanuary2024)
+  it('checks if a date is before or equal to another date', () => {
+    const first = new CalendarDate(firstOfJanuary2023)
+    const second = new CalendarDate(firstOfJanuary2024)
 
-  //   expect(value.isBeforeOrEqualTo(other)).toEqual(true)
-  //   expect(other.isBeforeOrEqualTo(value)).toEqual(false)
-  // })
-
-  // it('checks if a date is equal to another date', () => {
-  //   const value = new CalendarDate(2023, 1, 1)
-  //   const other = new CalendarDate(2023, 1, 1)
-
-  //   expect(value.isEqualTo(other)).toEqual(true)
-  // })
-
-  // it('checks if a date is not equal to another date', () => {
-  //   const value = new CalendarDate(2023, 1, 1)
-  //   const other = new CalendarDate(2023, 1, 2)
-
-  //   expect(value.isEqualTo(other)).toEqual(false)
-  // })
-
-  // it('gets the day of a date', () => {
-  //   const value = new CalendarDate(2023, 1, 1)
-
-  //   expect(value.getDay()).toEqual(1)
-  // })
-
-  // it('gets the month of a date', () => {
-  //   const value = new CalendarDate(2023, 1, 1)
-
-  //   expect(value.getMonth()).toEqual(1)
-  // })
-
-  // it('gets the year of a date', () => {
-  //   const value = new CalendarDate(2023, 1, 1)
-
-  //   expect(value.getYear()).toEqual(2023)
-  // })
-
-  // it('converts a date to a Date object', () => {
-  //   const value = new CalendarDate(2023, 1, 1)
-
-  //   expect(value.toDate()).toBeInstanceOf(Date)
-  // })
-
-  // it('converts a date to a string', () => {
-  //   const value = new CalendarDate(2023, 1, 1)
-
-  //   expect(value.toString()).toEqual('2023-01-01')
-  // })
-
-  // it('parses a date from a string', () => {
-  //   const value = CalendarDate.parse('2023-1-1')
-
-  //   expect(value.toString()).toEqual('2023-01-01')
-  // })
-
-  // it('returns a new instance from a date object', () => {
-  //   const value = CalendarDate.fromDate(new Date('2023-01-01'))
-
-  //   expect(value.toString()).toEqual('2023-01-01')
-  // })
+    expect(first.isBeforeOrEqualTo(second)).toEqual(true)
+    expect(second.isBeforeOrEqualTo(first)).toEqual(false)
+  })
 })
