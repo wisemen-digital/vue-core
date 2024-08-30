@@ -425,6 +425,10 @@ const docs = [
         text: 'AppTable (local)',
       },
       {
+        link: '/components/table/app-collapsible-table',
+        text: 'AppCollapsibleTable',
+      },
+      {
         link: '/components/table/app-table-skeleton-loader',
         text: 'AppTableSkeletonLoader',
       },

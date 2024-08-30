@@ -3,6 +3,7 @@ import {
   type Component,
   computed,
   h,
+  ref,
 } from 'vue'
 import type { RouteLocationNamedRaw } from 'vue-router'
 import { RouterLink } from 'vue-router'
@@ -18,12 +19,15 @@ const props = defineProps<{
   canScrollVertically: boolean
   columns: TableColumn<TSchema>[]
   data: TSchema[]
+  expandedContent: ((row: TSchema) => Component | null | string) | null
   rowClick: ((row: TSchema) => void) | null
   rowTarget?: string
   rowTo: ((row: TSchema) => RouteLocationNamedRaw) | null
   shouldPinFirstColumn: boolean
   shouldPinLastColumn: boolean
 }>()
+
+const expandedRows = ref<number[]>([])
 
 const rowComponent = computed<Component | string | typeof RouterLink>(() => {
   if (props.rowClick !== null) {
@@ -38,12 +42,6 @@ const rowComponent = computed<Component | string | typeof RouterLink>(() => {
 
   return 'div'
 })
-
-function onRowClick(row: TSchema): void {
-  if (props.rowClick !== null) {
-    props.rowClick (row)
-  }
-}
 
 const tableStyle = useTableStyle()
 
@@ -61,6 +59,29 @@ const bodyColumnClasses = computed<string>(() => tableStyle.bodyColumn({
 const bodyContainerClasses = computed<string>(() => tableStyle.bodyContainer({
   hasLastBorder: hasLastBorder.value,
 }))
+
+function onRowClick(row: TSchema): void {
+  if (props.rowClick !== null) {
+    props.rowClick(row)
+  }
+}
+
+function toggleRow(row: TSchema, rowId: number): void {
+  if (props.expandedContent === null || props.expandedContent(row) === null) {
+    return
+  }
+  if (!expandedRows.value.includes(rowId)) {
+    expandedRows.value.push(rowId)
+
+    return
+  }
+
+  expandedRows.value = expandedRows.value.filter((id) => id !== rowId)
+}
+
+function isRowExpanded(rowId: number): boolean {
+  return expandedRows.value.includes(rowId)
+}
 </script>
 
 <template>
@@ -74,7 +95,10 @@ const bodyContainerClasses = computed<string>(() => tableStyle.bodyContainer({
       gridColumn: '1 / -1',
     }"
     :class="bodyContainerClasses"
-    @click="onRowClick(row)"
+    @click="() => {
+      onRowClick(row)
+      toggleRow(row, i)
+    }"
   >
     <div
       v-for="column of columns"
@@ -90,6 +114,23 @@ const bodyContainerClasses = computed<string>(() => tableStyle.bodyContainer({
       <AppTableTextCell v-else>
         {{ column.value(row) }}
       </AppTableTextCell>
+    </div>
+
+    <div
+      v-if="isRowExpanded(i) && props.expandedContent && props.expandedContent(row) !== null"
+      :class="bodyColumnClasses"
+      class="col-span-full"
+    >
+      <!-- Check if expandedContent is a string and render it using AppTableTextCell -->
+      <AppTableTextCell v-if="typeof props.expandedContent(row) === 'string'">
+        {{ props.expandedContent(row) }}
+      </AppTableTextCell>
+
+      <!-- Render component content only if it is defined and not null -->
+      <Component
+        :is="props.expandedContent(row)"
+        v-else-if="typeof props.expandedContent(row) === 'object' && props.expandedContent(row) !== null"
+      />
     </div>
   </Component>
 </template>
