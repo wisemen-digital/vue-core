@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import {
-  EditableRoot,
-} from 'radix-vue'
+import { EditableRoot } from 'radix-vue'
 
 import AppEditableArea from './AppEditableArea.vue'
 import AppEditableCancel from './AppEditableCancel.vue'

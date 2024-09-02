@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import {
-  EditableCancelTrigger,
-} from 'radix-vue'
+import { EditableCancelTrigger } from 'radix-vue'
 import { useI18n } from 'vue-i18n'
 
 import AppButton from '@/components/button/AppButton.vue'

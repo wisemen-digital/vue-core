@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import {
-  EditableSubmitTrigger,
-} from 'radix-vue'
+import { EditableSubmitTrigger } from 'radix-vue'
 import { useI18n } from 'vue-i18n'
 
 import AppButton from '@/components/button/AppButton.vue'
