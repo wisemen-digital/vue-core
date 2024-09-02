@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { EditableRoot } from 'radix-vue'
+import { computed } from 'vue'
 
 import AppEditableArea from './AppEditableArea.vue'
 import AppEditableCancel from './AppEditableCancel.vue'
 import AppEditableSubmit from './AppEditableSubmit.vue'
 import AppEditableTrigger from './AppEditableTrigger.vue'
+import { useEditableStyle } from './editable.style'
 
 const props = withDefaults(defineProps<{
   /**
@@ -47,6 +49,11 @@ defineSlots<{
 const model = defineModel<string>({
   required: true,
 })
+
+const edditableStyle = useEditableStyle()
+
+const rootClasses = computed<string>(() => edditableStyle.root())
+const actionsClasses = computed<string>(() => edditableStyle.actions())
 </script>
 
 <template>
@@ -58,7 +65,7 @@ const model = defineModel<string>({
       :default-value="props.default"
       :placeholder="props.placeholder"
       :disabled="props.isDisabled"
-      class="relative flex flex-col gap-4"
+      :class="rootClasses"
       submit-mode="both"
       auto-resize
     >
@@ -75,7 +82,7 @@ const model = defineModel<string>({
       </div>
       <div
         v-else
-        class="flex gap-4"
+        :class="actionsClasses"
       >
         <AppEditableSubmit>
           <slot
