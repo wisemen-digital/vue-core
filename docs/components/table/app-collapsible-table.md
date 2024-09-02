@@ -25,20 +25,32 @@ interface ExampleDataType {
   invoices: {
     amount: number,
     status: 'paid' | 'unpaid'
-  }
+  }[]
   firstName: string
   lastName: string
 }
 
 interface ExampleFilters {}
 
-const exampleData: ExampleDataType[] = [
-  { firstName: 'John', lastName: 'Doe', invoices },
-  { firstName: 'Jane', lastName: 'Doe', age: 25, hasDriversLicense: false },
-  { firstName: 'Alice', lastName: 'Smith', age: 35, hasDriversLicense: true },
-  { firstName: 'Bob', lastName: 'Brown', age: 40, hasDriversLicense: false },
-  { firstName: 'Zane', lastName: 'Black', age: 160, hasDriversLicense: false },
-]
+const exampleData: PaginatedData<ExampleDataType> = {
+  data: [
+    { firstName: 'John',
+      lastName: 'Doe',
+      invoices: [
+        { amount: 100, status: 'paid' },
+        { amount: 200, status: 'unpaid' },
+      ] },
+    { firstName: 'Jane',
+      lastName: 'Doe',
+      invoices: [
+        { amount: 50, status: 'paid' },
+      ] },
+    { firstName: 'James',
+      lastName: 'Doe',
+      invoices: [] },
+  ],
+  total: 22,
+}
 
 const exampleColumns: TableColumn<ExampleDataType>[] = [
   {
@@ -49,17 +61,15 @@ const exampleColumns: TableColumn<ExampleDataType>[] = [
     value: (row) => row.firstName,
   },
   {
-    id: 'age',
-    label: 'Age',
-    isSortable: true,
-    width: '100px',
-    value: (row) => `${row.age}`,
+    id: 'lastName',
+    label: 'Last Name',
+    width: '300px',
+    value: (row) => row.lastName,
   },
 ]
 
-const localPagination = useLocalPagination<ExampleDataType, ExampleFilters>({
+const examplePagination = usePagination<ExampleFilters>({
   id: 'example',
-  items: exampleData,
   disableRouteQuery: true,
   defaultPaginationOptions: {
     pagination: {
@@ -69,22 +79,54 @@ const localPagination = useLocalPagination<ExampleDataType, ExampleFilters>({
   },
 })
 
-function onRowClick(row: ExampleDataType): void {
-  // eslint-disable-next-line no-alert
-  alert(`Row clicked: ${row.firstName} ${row.lastName}`)
+function onExpandRow(row: ExampleDataType): Component {
+  return h(AppTableCollapsibleContent, {
+    invoices: row.invoices,
+    name: `${row.firstName} ${row.lastName}`,
+  })
 }
 </script>
 
 <template>
   <AppTable 
-      :is-loading="false" 
-      :data="localPagination.data.value" 
-      :columns="exampleColumns"
-      :filters="[]"
-      :pagination="localPagination.pagination"
-      :row-click="onRowClick"
-      title="Table"
+    :is-loading="false" 
+    :data="localPagination.data.value" 
+    :columns="exampleColumns"
+    :filters="[]"
+    :pagination="examplePagination"
+    :expanded-content="onExpandRow"
+    title="Table"
   />
+</template>
+```
+```vue [AppTableCollapsibleContent]
+<script setup lang="ts">
+import { AppText } from '@wisemen/vue-core'
+
+const props = defineProps<{
+  name: string
+  invoices: {
+    amount: number
+    status: 'paid' | 'unpaid'
+  }[]
+}>()
+</script>
+
+<template>
+  <div
+    v-if="invoices.length"
+    class="flex w-full flex-col gap-1.5"
+  >
+    <div
+      v-for="(invoice, i) in props.invoices"
+      :key="i"
+      class="w-full rounded-lg bg-gray-100 p-2"
+    >
+      <AppText variant="subtext">
+        {{ `${props.name} ${invoice.status === 'paid' ? 'has paid' : 'has not paid'} their invoice with a value of ${invoice.amount}euros` }}
+      </AppText>
+    </div>
+  </div>
 </template>
 ```
 :::

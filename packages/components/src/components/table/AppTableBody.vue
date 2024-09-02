@@ -117,11 +117,11 @@ function toggleRow(row: TSchema, rowId: number): void {
 
     <div
       v-if="expandedRows.includes(i) && props.expandedContent !== null"
-      :class="bodyColumnClasses"
       class="col-span-full"
     >
       <Component
         :is="props.expandedContent(row)"
+        :class="bodyColumnClasses"
       />
     </div>
   </Component>
