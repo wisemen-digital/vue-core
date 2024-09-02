@@ -225,6 +225,16 @@ const docs = [
     collapsed: true,
     items: [
       {
+        link: '/components/editable/app-editable',
+        text: 'AppEditable',
+      },
+    ],
+    text: 'Editable',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
         link: '/components/form-element/form-element',
         text: 'FormElement',
       },

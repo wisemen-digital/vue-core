@@ -59,6 +59,9 @@ export const components = {
   dropdownMenu: [
     'AppDropdownMenu',
   ],
+  editable: [
+    'AppEditable',
+  ],
   formElement: [
     'FormElement',
   ],

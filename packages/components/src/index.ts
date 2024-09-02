@@ -62,6 +62,13 @@ export { default as AppDialogTitle } from './components/dialog/AppDialogTitle.vu
 // Dropdown menu
 export { default as AppDropdownMenu } from './components/dropdown-menu/AppDropdownMenu.vue'
 
+// Editable
+export { default as AppEditable } from './components/editable/AppEditable.vue'
+export { default as AppEditableArea } from './components/editable/AppEditableArea.vue'
+export { default as AppEditableCancel } from './components/editable/AppEditableCancel.vue'
+export { default as AppEditableSubmit } from './components/editable/AppEditableSubmit.vue'
+export { default as AppEditableTrigger } from './components/editable/AppEditableTrigger.vue'
+
 // Form error
 export { default as FormError } from './components/form-error/FormError.vue'
 
