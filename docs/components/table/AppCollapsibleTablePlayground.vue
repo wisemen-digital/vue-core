@@ -125,11 +125,7 @@ const pagination = usePagination<ExampleFilters>({
   },
 })
 
-function onExpandRow(row: ExampleDataType): Component | null | string {
-  if (row.invoices.length === 0) {
-    return null
-  }
-
+function onExpandRow(row: ExampleDataType): Component {
   return h(AppTableCollapsibleContent, {
     invoices: row.invoices,
     name: `${row.firstName} ${row.lastName}`,

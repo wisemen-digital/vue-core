@@ -19,7 +19,7 @@ const props = defineProps<{
   canScrollVertically: boolean
   columns: TableColumn<TSchema>[]
   data: TSchema[]
-  expandedContent: ((row: TSchema) => Component | null | string) | null
+  expandedContent: ((row: TSchema) => Component) | null
   rowClick: ((row: TSchema) => void) | null
   rowTarget?: string
   rowTo: ((row: TSchema) => RouteLocationNamedRaw) | null
@@ -60,27 +60,29 @@ const bodyContainerClasses = computed<string>(() => tableStyle.bodyContainer({
   hasLastBorder: hasLastBorder.value,
 }))
 
-function onRowClick(row: TSchema): void {
+function onRowClick(row: TSchema, rowId: number): void {
   if (props.rowClick !== null) {
     props.rowClick(row)
   }
+
+  toggleRow(row, rowId)
 }
 
 function toggleRow(row: TSchema, rowId: number): void {
   if (props.expandedContent === null || props.expandedContent(row) === null) {
     return
   }
+
   if (!expandedRows.value.includes(rowId)) {
-    expandedRows.value.push(rowId)
+    expandedRows.value = [
+      ...expandedRows.value,
+      rowId,
+    ]
 
     return
   }
 
   expandedRows.value = expandedRows.value.filter((id) => id !== rowId)
-}
-
-function isRowExpanded(rowId: number): boolean {
-  return expandedRows.value.includes(rowId)
 }
 </script>
 
@@ -95,10 +97,7 @@ function isRowExpanded(rowId: number): boolean {
       gridColumn: '1 / -1',
     }"
     :class="bodyContainerClasses"
-    @click="() => {
-      onRowClick(row)
-      toggleRow(row, i)
-    }"
+    @click="onRowClick(row, i)"
   >
     <div
       v-for="column of columns"
@@ -117,19 +116,12 @@ function isRowExpanded(rowId: number): boolean {
     </div>
 
     <div
-      v-if="isRowExpanded(i) && props.expandedContent && props.expandedContent(row) !== null"
+      v-if="expandedRows.includes(i) && props.expandedContent !== null"
       :class="bodyColumnClasses"
       class="col-span-full"
     >
-      <!-- Check if expandedContent is a string and render it using AppTableTextCell -->
-      <AppTableTextCell v-if="typeof props.expandedContent(row) === 'string'">
-        {{ props.expandedContent(row) }}
-      </AppTableTextCell>
-
-      <!-- Render component content only if it is defined and not null -->
       <Component
         :is="props.expandedContent(row)"
-        v-else-if="typeof props.expandedContent(row) === 'object' && props.expandedContent(row) !== null"
       />
     </div>
   </Component>

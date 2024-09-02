@@ -11,7 +11,10 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div class="flex w-full flex-col gap-1.5">
+  <div
+    v-if="invoices.length"
+    class="flex w-full flex-col gap-1.5"
+  >
     <div
       v-for="(invoice, i) in props.invoices"
       :key="i"

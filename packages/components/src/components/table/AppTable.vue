@@ -64,7 +64,7 @@ const props = withDefaults(
     /**
      * The content to show for expanded rows.
      */
-    expandedContent?: ((row: TSchema) => Component | null | string)
+    expandedContent?: ((row: TSchema) => Component)
     /**
      * Determines how the data will be filtered.
      */
