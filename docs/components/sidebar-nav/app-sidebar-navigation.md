@@ -118,4 +118,4 @@ const navigationItems = ref<NavigationItem[]>([
 ```
 :::
 
-For full source code, see [Github](https://github.com/wisemen-digital/vue-core/blob/main/packages/components/src/components/dropdown-menu/AppDropdownMenu.vue).
+For full source code, see [Github](https://github.com/wisemen-digital/vue-core/blob/main/packages/components/src/components/sidebar-nav/AppSidebarNavigation.vue).
