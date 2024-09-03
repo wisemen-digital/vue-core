@@ -1,19 +1,14 @@
 <script setup lang="ts">
-import { CalendarDate } from '@internationalized/date'
-import {
-  DatePickerRoot,
-  useId,
-} from 'radix-vue'
-import {
-  computed,
-  ref,
-} from 'vue'
-import { useI18n } from 'vue-i18n'
+import '@vuepic/vue-datepicker/dist/main.css'
+import '@/components/date/style.css'
 
-import AppDateCalendarPickerContent from '@/components/date/AppDateCalendarPickerContent.vue'
-import AppDateMonthPickerContent from '@/components/date/AppDateMonthPickerContent.vue'
-import AppDatePickerField from '@/components/date/AppDatePickerField.vue'
-import AppDateYearPickerContent from '@/components/date/AppDateYearPickerContent.vue'
+import VueDatePicker from '@vuepic/vue-datepicker'
+
+import { useDatePickerLocale } from '@/components/date/datePickerLocale.composable'
+import type {
+  DatePickerHighlightConfig,
+  DatePickerMarker,
+} from '@/types/datePickerConfig.type'
 
 const props = withDefaults(defineProps<{
   /**
@@ -22,179 +17,132 @@ const props = withDefaults(defineProps<{
    */
   id?: null | string
   /**
-   * The max date.
-   * @default null
+   * The test id of the input.
+   * @default undefined
    */
-  maxDate?: CalendarDate | null
+  testId?: string
   /**
-   * The min date.
-   * @default null
+   * All dates after the given date will be disabled.
    */
-  minDate?: CalendarDate | null
+  maxDate?: Date
   /**
-   * Whether the input is disabled.
-   * @default false
+   * All dates before the given date will be disabled.
+   */
+  minDate?: Date
+  /**
+   * Add a clear icon to the input field where you can set the value to null.
+   */
+  hasClearButton?: boolean
+  /**
+   * Disables the input.
    */
   isDisabled?: boolean
   /**
-   * Whether the input is invalid.
-   * @default false
+   * Whether the input is inline.
+   */
+  isInline?: boolean
+  /**
+   * Set an invalid state to the input.
    */
   isInvalid?: boolean
   /**
-   * The modelValue of the date picker.
-   * @default null
+   * If true, removes the month and year picker.
    */
-  modelValue: CalendarDate | null
+  isMonthYearPickersDisabled?: boolean
+  /**
+   * Sets the input in readonly state.
+   */
+  isReadonly?: boolean
+  /**
+   * When true, will try to parse the date from the user input.
+   */
+  isTextInputAllowed?: boolean
+  /**
+   * Whether the time picker is also enabled or not.
+   */
+  isTimePickerEnabled?: boolean
+  /**
+   * Disable teleporting the datepicker to the body.
+   */
+  disableTeleport?: boolean
+  /**
+   * Disable specific dates.
+   */
+  disabledDates?: ((date: Date) => boolean) | Date[]
+  /**
+   * Define the selecting order. Position in the array will specify the execution step.
+   * @default []
+   */
+  flow?: ('calendar' | 'hours' | 'minutes' | 'month' | 'seconds' | 'time' | 'year')[]
+  /**
+   * Format of the input.
+   */
+  format?: string
+  /**
+   * Specify highlighted dates.
+   */
+  highlightConfig?: Partial<DatePickerHighlightConfig>
+  /**
+   * Add markers to the specified dates with (optional) tooltips. For color options, you can use any css valid color.
+   */
+  markers?: DatePickerMarker[]
+  /**
+   * Allow selecting multiple single dates. When changing time, the latest selected date is affected.
+   */
+  multiple?: boolean
+  /**
+   * Placeholder of the input.
+   */
+  placeholder?: string
 }>(), {
   id: null,
-  maxDate: null,
-  minDate: null,
+  hasClearButton: false,
   isDisabled: false,
+  isInline: false,
   isInvalid: false,
-  isLoading: false,
-  iconLeft: undefined,
-  iconRight: undefined,
-  placeholder: null,
-  type: 'text',
+  isMonthYearPickersDisabled: false,
+  isTextInputAllowed: false,
+  isTimePickerEnabled: false,
+  disableTeleport: false,
+  format: 'dd/MM/yyyy',
+  multiple: false,
 })
 
-const emit = defineEmits<{
-  'blur': []
-  'update:modelValue': [CalendarDate | null]
-}>()
+const datePickerLocale = useDatePickerLocale()
 
-const model = computed<CalendarDate | undefined>({
-  get: () => {
-    const value = props.modelValue
-
-    return value === null ? undefined : value
-  },
-  set: (value: CalendarDate | undefined) => {
-    if (value === undefined) {
-      return null
-    }
-
-    if (props.minDate !== null && value.compare(props.minDate) < 0) {
-      return emit('update:modelValue', props.minDate)
-    }
-
-    if (props.maxDate !== null && value.compare(props.maxDate) > 0) {
-      return emit('update:modelValue', props.maxDate)
-    }
-
-    return emit('update:modelValue', value)
-  },
+const modelValue = defineModel<Date | null>({
+  required: true,
 })
-
-const { locale } = useI18n()
-
-const id = props.id ?? useId()
-
-const minDate = computed<CalendarDate | undefined>(() => {
-  if (props.minDate === null) {
-    return undefined
-  }
-
-  return props.minDate
-})
-
-const maxDate = computed<CalendarDate | undefined>(() => {
-  if (props.maxDate === null) {
-    return undefined
-  }
-
-  return props.maxDate
-})
-
-function onBlur(): void {
-  emit('blur')
-}
-
-const isYearPickerVisible = ref<boolean>(false)
-const isMonthPickerVisible = ref<boolean>(false)
-
-function onShowYearPickerButtonClick(): void {
-  isYearPickerVisible.value = true
-  isMonthPickerVisible.value = false
-}
-
-function onShowMonthPickerButtonClick(): void {
-  isMonthPickerVisible.value = true
-  isYearPickerVisible.value = false
-}
-
-function onMonthSelect(month: number, year: number): void {
-  model.value = new CalendarDate(year ?? new Date().getFullYear(), month, model.value?.day ?? new Date().getDate())
-
-  isMonthPickerVisible.value = false
-}
-
-function onTriggerClick(): void {
-  if (props.isDisabled) {
-    return
-  }
-
-  isYearPickerVisible.value = false
-  isMonthPickerVisible.value = false
-}
-
-function onYearSelect(number: number): void {
-  if (model.value === undefined) {
-    model.value = new CalendarDate(number, new Date().getMonth() + 1, 1)
-  }
-  else {
-    model.value?.set({
-      day: model.value?.day ?? new Date().getDate(),
-      month: model.value?.month ?? new Date().getMonth(),
-      year: number,
-    })
-  }
-
-  isYearPickerVisible.value = false
-  isMonthPickerVisible.value = true
-}
 </script>
 
 <template>
-  <div class="flex w-full flex-col gap-2">
-    <DatePickerRoot
-      :id="id"
-      v-model="model"
-      :fixed-weeks="true"
-      :min-value="minDate"
-      :max-value="maxDate"
-      :locale="locale"
-      :disabled="props.isDisabled"
-    >
-      <AppDatePickerField
-        :is-invalid="props.isInvalid"
-        type="date"
-        @date-click="onTriggerClick"
-        @blur="onBlur"
-      />
-
-      <AppDateCalendarPickerContent
-        v-if="!isMonthPickerVisible && !isYearPickerVisible"
-        @month-click="onShowMonthPickerButtonClick"
-        @blur="onBlur"
-        @year-click="onShowYearPickerButtonClick"
-      />
-      <AppDateMonthPickerContent
-        v-if="isMonthPickerVisible"
-        @month-click="onMonthSelect"
-        @year-click="onShowYearPickerButtonClick"
-      />
-      <AppDateYearPickerContent
-        v-if="isYearPickerVisible"
-        @year-click="onYearSelect"
-      />
-    </DatePickerRoot>
-  </div>
+  <VueDatePicker
+    :id="props.id ?? undefined"
+    v-model="modelValue"
+    :class="{ dp__inline: props.isInline }"
+    :clearable="props.hasClearButton"
+    :data-testid="props.testId"
+    :disabled="props.isDisabled"
+    :disabled-dates="props.disabledDates"
+    :teleport="!props.disableTeleport"
+    :disable-month-year-select="props.isMonthYearPickersDisabled"
+    :enable-time-picker="props.isTimePickerEnabled"
+    :flow="props.flow"
+    :highlight="props.highlightConfig"
+    :invalid="props.isInvalid"
+    :min-date="props.minDate"
+    :markers="props.markers"
+    :max-date="props.maxDate"
+    :multi-dates="props.multiple"
+    :placeholder="props.placeholder"
+    :readonly="props.isReadonly"
+    :text-input="props.isTextInputAllowed"
+    :arrow-navigation="true"
+    :auto-apply="true"
+    :format-locale="datePickerLocale.current.value"
+    :month-change-on-arrows="false"
+    :inline="props.isInline"
+    :partial-flow="true"
+    :format="props.format"
+  />
 </template>
-
-<style>
-[data-radix-popper-content-wrapper] {
-  @apply !z-popover;
-}
-</style>

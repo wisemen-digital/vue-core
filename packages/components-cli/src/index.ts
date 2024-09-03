@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 import { Command } from 'commander'
 
+import { addUpdateCommand } from '@/commands/updateCommand'
+
 import { addAddCommand } from './commands/addCommand'
 import { addChangesCommand } from './commands/changesCommand'
 import { addDiffCommand } from './commands/diffCommand'
@@ -33,6 +35,7 @@ async function main() {
 
   addInitCommand({ cliConfig, packageManager, program, projectInfo })
   addAddCommand({ cliConfig, packageManager, program })
+  addUpdateCommand({ cliConfig, packageManager, program })
   addInstalledCommand({ program })
   addDiffCommand({ cliConfig, program })
   addChangesCommand({ cliConfig, program })

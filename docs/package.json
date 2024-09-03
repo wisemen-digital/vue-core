@@ -15,7 +15,11 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "type-check": "vue-tsc --noEmit",
-    "docs:gen": "tsc --noEmit --project tsconfig.autogen.json && tsx scripts/autogen.ts"
+    "docs:gen": "vue-tsc --noEmit --project tsconfig.autogen.json && tsx scripts/autogen.ts"
+  },
+  "peerDependencies": {
+    "vue": "3.4.35",
+    "vue-i18n": "^9.13.1"
   },
   "dependencies": {
     "@internationalized/date": "^3.5.4",

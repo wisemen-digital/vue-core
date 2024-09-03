@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.0",
   "author": "Wisemen",
-  "packageManager": "pnpm@9.0.6",
+  "packageManager": "pnpm@9.6.0",
   "license": "MIT",
   "workspaces": [
     "packages/*"
@@ -18,10 +18,10 @@
     "lint": "pnpm run -r lint",
     "dev": "turbo run dev",
     "type-check": "pnpm run -r type-check",
-    "precommit": "pnpm run -r lint && pnpm run -r type-check && pnpm run -r test"
+    "precommit": "pnpm run -r lint && pnpm run -r type-check && pnpm run -r test && pnpm run -r docs:gen"
   },
   "devDependencies": {
-    "radix-vue": "^1.8.2",
+    "radix-vue": "1.9.3",
     "rimraf": "^5.0.7",
     "turbo": "^2.0.1",
     "vitest": "^1.6.0"

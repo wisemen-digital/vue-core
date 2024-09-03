@@ -42,8 +42,8 @@ function getControlValueDefault(): Record<TControlKeys, any> {
 
 <template>
   <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
-  <div class="vp-raw my-8 flex w-full flex-col overflow-hidden rounded-lg border border-solid border-border bg-background">
-    <div class="flex w-full items-center justify-center overflow-hidden rounded-t p-4">
+  <div class="vp-raw my-8 flex w-full flex-col rounded-lg border border-solid border-border bg-background">
+    <div class="flex w-full items-center justify-center rounded-t p-4">
       <slot :values="controlValues" />
     </div>
 

@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import type { Config } from 'tailwindcss'
+
 import TailwindConfig from '../packages/components/tailwind.config'
 
 export default {
@@ -10,4 +12,4 @@ export default {
     './icons/**/*.{vue,ts}',
     './index.html',
   ],
-}
+} satisfies Config

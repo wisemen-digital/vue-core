@@ -1,14 +1,12 @@
 <script setup lang="ts">
-import type { CalendarDate } from '@internationalized/date'
-import {
-  DatePickerRoot,
-  useId,
-} from 'radix-vue'
-import { computed } from 'vue'
-import { useI18n } from 'vue-i18n'
+import '@vuepic/vue-datepicker/dist/main.css'
+import '@/components/date/style.css'
 
-import AppDateMonthPickerContent from '@/components/date/AppDateMonthPickerContent.vue'
-import AppDatePickerField from '@/components/date/AppDatePickerField.vue'
+import VueDatePicker from '@vuepic/vue-datepicker'
+
+import { useDatePickerLocale } from '@/components/date/datePickerLocale.composable'
+import type { MonthPickerValue } from '@/types/date.type'
+import type { DatePickerHighlightConfig } from '@/types/datePickerConfig.type'
 
 const props = withDefaults(defineProps<{
   /**
@@ -17,72 +15,86 @@ const props = withDefaults(defineProps<{
    */
   id?: null | string
   /**
-   * Whether the input is disabled.
-   * @default false
+   * The test id of the input.
+   * @default undefined
+   */
+  testId?: string
+  /**
+   * All dates after the given date will be disabled.
+   */
+  maxDate?: Date
+  /**
+   * All dates before the given date will be disabled.
+   */
+  minDate?: Date
+  /**
+   * Add a clear icon to the input field where you can set the value to null.
+   */
+  hasClearButton?: boolean
+  /**
+   * Disables the input.
    */
   isDisabled?: boolean
   /**
-   * Whether the input is invalid.
-   * @default false
+   * Set an invalid state to the input.
    */
   isInvalid?: boolean
   /**
-   * The modelValue of the date picker.
-   * @default null
+   * Sets the input in readonly state.
    */
-  modelValue: CalendarDate | null
+  isReadonly?: boolean
+  /**
+   * When true, will try to parse the date from the user input.
+   */
+  isTextInputAllowed?: boolean
+  /**
+   * Disable specific dates.
+   */
+  disabledDates?: ((date: Date) => boolean) | Date[]
+  /**
+   * Specify highlighted dates.
+   */
+  highlightConfig?: Partial<DatePickerHighlightConfig>
+  /**
+   * Placeholder of the input.
+   */
+  placeholder?: string
 }>(), {
-  id: null,
+  hasClearButton: false,
   isDisabled: false,
   isInvalid: false,
-  isLoading: false,
-  iconLeft: undefined,
-  iconRight: undefined,
-  placeholder: null,
-  type: 'text',
+  isTextInputAllowed: false,
 })
 
-const emit = defineEmits<{
-  'blur': []
-  'update:modelValue': [CalendarDate | null]
-}>()
+const datePickerLocale = useDatePickerLocale()
 
-const model = computed<CalendarDate | undefined>({
-  get: () => {
-    const value = props.modelValue
-
-    return value === null ? undefined : value
-  },
-  set: (value: CalendarDate | undefined) => {
-    if (value === undefined) {
-      return null
-    }
-
-    return emit('update:modelValue', value)
-  },
+const modelValue = defineModel<MonthPickerValue | null>({
+  required: true,
 })
-
-const { locale } = useI18n()
-
-const id = props.id ?? useId()
-
-function onBlur(): void {
-  emit('blur')
-}
 </script>
 
 <template>
-  <div class="flex w-full flex-col gap-2">
-    <DatePickerRoot
-      :id="id"
-      v-model="model"
-      :fixed-weeks="true"
-      :locale="locale"
-      :disabled="props.isDisabled"
-      @blur="onBlur"
-    >
-      <AppDatePickerField type="month" />
-      <AppDateMonthPickerContent hide-header />
-    </DatePickerRoot>
-  </div>
+  <VueDatePicker
+    :id="props.id ?? undefined"
+    v-model="modelValue"
+    :clearable="props.hasClearButton"
+    :data-testid="props.testId"
+    :disabled="props.isDisabled"
+    :disabled-dates="props.disabledDates"
+    :highlight="props.highlightConfig"
+    :invalid="props.isInvalid"
+    :min-date="props.minDate"
+    :max-date="props.maxDate"
+    :placeholder="props.placeholder"
+    :readonly="props.isReadonly"
+    :text-input="props.isTextInputAllowed"
+    :arrow-navigation="true"
+    :format-locale="datePickerLocale.current.value"
+    :auto-apply="true"
+    :month-change-on-arrows="false"
+    month-picker
+  />
 </template>
+
+<style>
+</style>

@@ -20,6 +20,10 @@ const props = withDefaults(
      */
     align?: 'center' | 'end' | 'start'
     /**
+     * The element to render the tooltip in. By default this is the viewport
+     */
+    containerElement?: HTMLElement | null
+    /**
      * The content to show in the tooltip.
      * @default null
      */
@@ -58,6 +62,7 @@ const props = withDefaults(
   {
     isHidden: false,
     align: 'center',
+    containerElement: null,
     content: null,
     delayDuration: 0,
     disableCloseOnTriggerClick: false,
@@ -97,6 +102,7 @@ const contentTextClasses = computed<string>(() => tooltipStyle.contentText())
         :has-arrow="!props.hideArrow"
         :offset="props.offset"
         :side="props.side"
+        :container-element="props.containerElement"
       >
         <slot name="content">
           <AppText

@@ -83,22 +83,20 @@ export function useQuery<TResData>(options: UseQueryOptions<TResData>): UseQuery
     queryKey: getQueryKey(),
   })
 
-  function getQueryKey(): string[] {
+  function getQueryKey(): unknown[] {
     const [
       queryKey,
       params,
     ] = Object.entries(options.queryKey)[0]
 
-    const paramValues = Object.values(params as Record<string, MaybeRef<unknown>>)
-
     if (isDebug) {
       // eslint-disable-next-line no-console
-      console.log(`Create query with key ${queryKey}`, paramValues)
+      console.log(`Create query with key ${queryKey}`, params)
     }
 
     return [
       queryKey,
-      ...paramValues as string[],
+      params,
     ]
   }
 

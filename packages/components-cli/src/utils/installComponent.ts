@@ -30,6 +30,7 @@ export async function installComponent({ cliConfig, options, packageManager, com
   // Write the files.
   for (const file of component.files) {
     const installationDir = getFileInstallationFolder(file.type, cliConfig)
+
     const fileDir = file.dir === '' ? `${installationDir}` : `${installationDir}/${file.dir}`
     const resolvedFile = replaceFileDirectories(file, cliConfig)
     const spinner = ora(`Creating ${fileDir}/${resolvedFile.name}...`).start()

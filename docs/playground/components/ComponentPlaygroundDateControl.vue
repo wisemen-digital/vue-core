@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import type { CalendarDate } from '@internationalized/date'
 import { FormDatePicker } from '@wisemen/vue-core'
 
 const props = defineProps<{
   label: string
 }>()
 
-const model = defineModel<CalendarDate | null>({
+const model = defineModel<Date | null>({
   required: true,
 })
 </script>
@@ -18,6 +17,7 @@ const model = defineModel<CalendarDate | null>({
       :label="props.label"
       :errors="{ _errors: [] }"
       :is-touched="false"
+      :has-clear-button="true"
     />
   </div>
 </template>

@@ -1,19 +1,23 @@
 <script setup lang="ts">
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols'
-import type { CalendarDate } from '@internationalized/date'
+import type {
+  DatePickerHighlightConfig,
+  DatePickerMarker,
+} from '@wisemen/vue-core'
 import {
   AppDatePicker,
   AppText,
 } from '@wisemen/vue-core'
 import { ref } from 'vue'
-import { useI18n } from 'vue-i18n'
+
+import { DateUtil } from '../../../packages/components/src/utils/date.util'
 
 const controls = createControls({
-  id: {
-    default: 'input-id',
+  placeholder: {
+    default: 'Choose a date',
+    label: 'Placeholder',
     cols: 2,
-    label: 'Id',
     type: 'text',
   },
   minDate: {
@@ -26,18 +30,77 @@ const controls = createControls({
     label: 'Max date',
     type: 'date',
   },
+  isTimePickerEnabled: {
+    default: false,
+    label: 'Is time picker enabled',
+    type: 'switch',
+  },
+  isMonthYearPickersDisabled: {
+    default: false,
+    label: 'Is month/year pickers disabled',
+    type: 'switch',
+  },
+  isTextInputAllowed: {
+    default: false,
+    label: 'Is text input allowed',
+    type: 'switch',
+  },
+  multiple: {
+    default: false,
+    label: 'Choose multiple dates',
+    type: 'switch',
+  },
+  hasClearButton: {
+    default: false,
+    label: 'Has clear button',
+    type: 'switch',
+  },
   isDisabled: {
     default: false,
     label: 'Is disabled',
     type: 'switch',
   },
+  isInvalid: {
+    default: false,
+    label: 'Is invalid',
+    type: 'switch',
+  },
+  isReadonly: {
+    default: false,
+    label: 'Is readonly',
+    type: 'switch',
+  },
+  isInline: {
+    default: false,
+    label: 'Is inline',
+    type: 'switch',
+  },
 })
 
-const model = ref<CalendarDate | null>(null)
+const model = ref<Date | null>(new Date())
 
-const { locale } = useI18n()
+const highlighted: Partial<DatePickerHighlightConfig> = {
+  dates: [
+    DateUtil.getTomorrow(),
+  ],
+}
 
-locale.value = 'nl'
+const markers: DatePickerMarker[] = [
+  {
+    date: DateUtil.getDaysFromToday(3),
+    type: 'dot',
+    color: 'lightblue',
+    tooltip: [
+      {
+        text: 'This is a tooltip',
+      },
+    ],
+  },
+]
+
+const disabled: Date[] = [
+  DateUtil.getDaysFromToday(5),
+]
 </script>
 
 <template>
@@ -45,14 +108,31 @@ locale.value = 'nl'
     :controls="controls"
   >
     <template #default="{ values }">
-      <div>
+      <div class="max-w-64">
         <AppDatePicker
+          v-if="values.isInline"
+          id="date-picker-1"
           v-model="model"
+          :highlight-config="highlighted"
+          :markers="markers"
+          :disabled-dates="disabled"
+          test-id="date-picker-1"
+          v-bind="values"
+        />
+
+        <AppDatePicker
+          v-if="!values.isInline"
+          id="date-picker-1"
+          v-model="model"
+          :highlight-config="highlighted"
+          :markers="markers"
+          :disabled-dates="disabled"
+          test-id="date-picker-1"
           v-bind="values"
         />
 
         <AppText variant="caption">
-          {{ `Model value: ${model?.toString()}` }}
+          {{ `Model value: ${model ? model?.toString() : "null"}` }}
         </AppText>
       </div>
     </template>

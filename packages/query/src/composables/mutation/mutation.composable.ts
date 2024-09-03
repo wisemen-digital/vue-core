@@ -73,19 +73,25 @@ export function useMutation<
       ]) => {
         const qkp = queryKeyParams as Record<string, (params: TParams, data: TResData) => unknown>
 
-        const isExact = Object.keys(qkp).length > 0
-        const paramValues = Object.values(qkp).map((param) => param(params, responseData))
+        const paramsWithValues = Object.entries(qkp).reduce((acc, [
+          key,
+          value,
+        ]) => {
+          acc[key as keyof TParams] = value(params, responseData) as TParams[keyof TParams]
+
+          return acc
+        }, {} as TParams)
 
         if (isDebug) {
           // eslint-disable-next-line no-console
-          console.log(`[MUTATION] Invalidating ${queryKey} (${isExact ? 'exact' : '*'})`, paramValues)
+          console.log(`[MUTATION] Invalidating ${queryKey}`, paramsWithValues)
         }
 
         await queryClient.invalidateQueries({
-          exact: isExact,
+          exact: false,
           queryKey: [
             queryKey,
-            ...paramValues,
+            paramsWithValues,
           ],
         })
       }),

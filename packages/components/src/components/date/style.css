@@ -1,0 +1,129 @@
+:root {
+  --dp-cell-border-radius: 40rem;
+  --dp-font-size: 0.875rem;
+  --dp-preview-font-size: 0.75rem;
+  --dp-time-font-size: 0.75rem;
+  --dp-animation-duration: 0.2s;
+  --dp-overlay-col-padding: 0;
+  --dp-month-year-row-height: 30px
+}
+
+.dp__theme_light {
+  --dp-background-color: rgba(var(--background));
+  --dp-text-color: rgba(var(--foreground));
+  --dp-hover-text-color: rgba(var(--foreground));
+  --dp-hover-color: rgba(var(--primary), 0.05);
+  --dp-hover-icon-color: rgba(var(--muted-foreground));
+  --dp-primary-color: rgba(var(--primary));
+  --dp-primary-disabled-color: rgba(var(--primary), 0.3);
+  --dp-secondary-color: rgba(var(--muted-foreground), 0.5);
+  --dp-border-color: rgba(var(--input-border));
+  --dp-menu-border-color: transparent;
+  --dp-border-color-hover: rgba(var(--input-border));
+  --dp-border-color-focus: rgba(var(--input-border));
+  --dp-icon-color: rgba(var(--muted-foreground));
+  --dp-highlight-color: rgba(var(--primary), 0.15);
+  --dp-tooltip-color: rgba(var(--background));
+}
+
+.dark {
+  .dp__theme_light {
+    --dp-highlight-color: rgba(var(--primary), 0.4);
+    --dp-hover-color: rgba(var(--muted-foreground), 0.25);
+  }
+}
+
+.dp__input {
+  border-radius: var(--radius-input);
+  height: 2.5rem;
+}
+
+.dp__button .dp__icon,
+.dp--arrow-btn-nav .dp__icon {
+  @apply stroke-transparent;
+}
+
+.dp__theme_light .dp__month_year_wrap button:focus-visible,
+.dp__theme_light .dp--year-mode-picker button:focus-visible,
+.dp__theme_light .dp__overlay_col:focus-visible,
+.dp__theme_light .dp__overlay .dp__btn.dp__overlay_action:focus-visible {
+  @apply shadow-[0_0_0_2px] !shadow-primary outline-none rounded-[--dp-border-radius];
+}
+
+.dp__overlay_cell_active {
+  @apply bg-primary;
+}
+
+.dp--arrow-btn-nav .dp__inner_nav:hover {
+  @apply bg-transparent
+}
+
+.dp__theme_light .dp__calendar_header_item {
+  @apply uppercase rounded-md text-xs text-primary font-normal pt-2.5 leading-[unset];
+}
+
+.dp__theme_light .dp__calendar_item:focus-visible,
+.dp__theme_light .dp__overlay .dp__inc_dec_button:focus-visible,
+.dp__theme_light .dp--time-overlay-btn:focus-visible {
+  @apply shadow-[0_0_0_2px] !shadow-primary outline-none rounded-full;
+}
+
+.dp__outer_menu_wrap {
+  @apply pointer-events-auto
+}
+
+.dp__menu {
+  @apply rounded-popover shadow-popover-shadow;
+}
+
+.dp__inline {
+  .dp__menu {
+    @apply shadow-none;
+  }
+}
+
+.dp__theme_light .dp__calendar_header_separator {
+  @apply hidden;
+}
+
+.dp__theme_light .dp__today.dp__active_date:before {
+  content: "";
+  @apply bg-background/60;
+}
+
+.dp__theme_light .dp__today:before {
+  content: "";
+  @apply rounded-full absolute top-1.5 size-1 bg-primary;
+}
+
+.dp__theme_light .dp__today {
+  @apply border-none;
+}
+
+.dp__theme_light .dp__overlay_cell.dp__overlay_cell_disabled {
+  @apply text-muted-foreground;
+}
+
+.dp__theme_light .dp__input[aria-disabled='true'] {
+  @apply cursor-not-allowed opacity-50 bg-inherit;
+}
+
+.dp__theme_light[invalid='true'] .dp__input {
+  @apply duration-200 ring-2 ring-destructive;
+}
+
+.dp__theme_light[invalid='false'] .dp__input:focus-visible {
+  @apply duration-200 ring-2 ring-ring;
+}
+
+.dp__theme_light .dp__range_start {
+  @apply rounded-l-full;
+}
+
+.dp__theme_light .dp__range_end {
+  @apply rounded-r-full;
+}
+
+.dp__theme_light .dp__time_display {
+  @apply text-subtext;
+}

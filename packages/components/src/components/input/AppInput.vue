@@ -15,9 +15,9 @@ const props = withDefaults(defineProps<{
   id?: null | string
   /**
    * The test id of the input.
-   * @default undefined
+   * @default null
    */
-  testId?: string
+  testId?: null | string
   /**
    * Whether the input is disabled.
    * @default false
@@ -32,6 +32,11 @@ const props = withDefaults(defineProps<{
    * Whether the input is loading.
    */
   isLoading?: boolean
+  /**
+   * Whether the input is readonly.
+   * @default false
+   */
+  isReadonly?: boolean
   /**
    * The left icon of the input.
    * @default null
@@ -54,9 +59,11 @@ const props = withDefaults(defineProps<{
   type?: 'date' | 'datetime-local' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'time' | 'url'
 }>(), {
   id: null,
+  testId: null,
   isDisabled: false,
   isInvalid: false,
   isLoading: false,
+  isReadonly: false,
   iconLeft: null,
   iconRight: null,
   placeholder: null,
@@ -112,6 +119,7 @@ const loaderClasses = computed<string>(() => inputStyle.loader())
       :id="props.id ?? undefined"
       v-model="model"
       :type="props.type"
+      :readonly="props.isReadonly"
       :data-testid="props.testId"
       :aria-invalid="props.isInvalid"
       :disabled="props.isDisabled"
