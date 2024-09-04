@@ -11,7 +11,7 @@ import { nextTick } from 'vue'
 
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppToastContainer from '@/components/toast/AppToastContainer.vue'
-import { useToast } from '@/composables/toast.composable'
+import { useToast } from '@/composables/toast/toast.composable'
 
 describe('appToast', () => {
   const actionMock = vi.fn()

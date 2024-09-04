@@ -7,9 +7,9 @@ import {
 import { useI18n } from 'vue-i18n'
 
 import FormCombobox from '@/components/combobox/FormCombobox.vue'
-import { useAddressAutoComplete } from '@/composables/addressAutocomplete.composable'
-import { useLoading } from '@/composables/loading.composable'
-import { useToast } from '@/composables/toast.composable'
+import { useAddressAutoComplete } from '@/composables/address-autocomplete/addressAutocomplete.composable'
+import { useLoading } from '@/composables/loading/loading.composable'
+import { useToast } from '@/composables/toast/toast.composable'
 import type { AddressForm } from '@/types/addressForm.model'
 import { EMPTY_ADDRESS_FORM } from '@/types/addressForm.model'
 import type { ComboboxItem } from '@/types/comboboxItem.type'

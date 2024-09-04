@@ -5,7 +5,7 @@ import FormElement from '@/components/form-element/FormElement.vue'
 import { useInputStyle } from '@/components/input/input.style'
 import AppNumberInput from '@/components/input/number/AppNumberInput.vue'
 import AppText from '@/components/text/AppText.vue'
-import { useComponentAttrs } from '@/composables/componentAttrs.composable'
+import { useComponentAttrs } from '@/composables/component-attrs/componentAttrs.composable'
 import type { Icon } from '@/icons/icons'
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
