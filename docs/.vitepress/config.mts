@@ -375,7 +375,7 @@ const docs = [
     collapsed: true,
     items: [
       {
-        link: '/components/progress-bar-bar/app-progress-bar-bar',
+        link: '/components/progress-bar/app-progress-bar',
         text: 'Progress-bar',
       },
     ],

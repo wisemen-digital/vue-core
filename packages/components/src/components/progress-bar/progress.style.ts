@@ -8,10 +8,11 @@ const progressIndicatorWarnClasses = ' bg-warning'
 
 export const useProgressBarStyle = tv({
   slots: {
-    container: 'absolute h-6 w-full overflow-hidden rounded-full bg-muted-background',
+    container: 'relative h-6 w-full overflow-hidden bg-muted-background',
+    dynamicPercentage: 'absolute inset-0 flex w-full items-center justify-center text-center text-black',
     percentageInside: 'relative z-10 flex items-center justify-center text-center',
     percentageOutside: 'ml-2',
-    progressIndicator: 'absolute left-0 top-0 size-full rounded-full transition-all',
+    progressIndicator: 'absolute left-0 top-0 transition-all',
   },
   variants: {
     color: {

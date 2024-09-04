@@ -4,24 +4,39 @@ import { createControls } from '@docs/playground/utils/createContols'
 import { AppProgressBar } from '@wisemen/vue-core'
 
 const controls = createControls({
-  value: {
-    type: 'text',
-    label: 'value',
-    default: '0',
-  },
-  showPercentage: {
+  // Switches and booleans
+  isPercentageVisible: {
     type: 'switch',
     label: 'Show Percentage',
     default: true,
   },
-  percentagePosition: {
-    type: 'select',
-    label: 'Percentage Position',
-    items: [
-      'inside',
-      'outside',
-    ],
-    default: 'inside',
+  rounded: {
+    type: 'switch',
+    label: 'Rounded',
+    default: true,
+  },
+  autoColor: {
+    type: 'switch',
+    label: 'Use Auto Color',
+    default: false,
+  },
+  hasTooltip: {
+    type: 'switch',
+    label: 'Has Tooltip',
+    default: false,
+  },
+  dynamic: {
+    type: 'switch',
+    label: 'Dynamic',
+    default: false,
+  },
+
+  // Text inputs and other settings
+  value: {
+    type: 'text',
+    label: 'Value',
+    default: '0',
+    cols: 2,
   },
   minValue: {
     type: 'text',
@@ -33,10 +48,31 @@ const controls = createControls({
     label: 'Maximum Value',
     default: '100',
   },
-  useAutoColor: {
-    type: 'switch',
-    label: 'Use Auto Color',
-    default: false,
+  slot: {
+    type: 'text',
+    label: 'Slot (tooltip content)',
+    default: 'show percentage here',
+  },
+  transitionDuration: {
+    type: 'text',
+    label: 'Transition Duration',
+    default: '300',
+  },
+  numbersAfterComma: {
+    type: 'text',
+    label: 'Numbers After Comma',
+    default: '0',
+  },
+
+  // Select inputs
+  percentagePosition: {
+    type: 'select',
+    label: 'Percentage Position',
+    items: [
+      'inside',
+      'outside',
+    ],
+    default: 'inside',
   },
   color: {
     type: 'select',
@@ -50,10 +86,14 @@ const controls = createControls({
     ],
     default: 'primary',
   },
-  transitionDuration: {
-    type: 'text',
-    label: 'Transition Duration',
-    default: '10',
+  textColor: {
+    type: 'select',
+    label: 'Text Color (dynamic only, or outside component)',
+    items: [
+      'black',
+      'white',
+    ],
+    default: 'white',
   },
 })
 </script>
@@ -63,7 +103,13 @@ const controls = createControls({
     <template #default="{ values }">
       <AppProgressBar
         v-bind="values"
-      />
+      >
+        <template #tooltip>
+          <div class="p-4 text-center">
+            {{ values.slot }}
+          </div>
+        </template>
+      </AppProgressBar>
     </template>
   </ComponentPlayground>
 </template>
