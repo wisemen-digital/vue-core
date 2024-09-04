@@ -49,19 +49,12 @@ const sidebarNavStyle = useSidebarNavStyle()
 
 const isOpen = ref<boolean>(false)
 
-const containerClasses = computed<string>(() => sidebarNavStyle.container())
 const containerClosedClasses = computed<string>(() => sidebarNavStyle.containerClosed())
 const containerOpenClasses = computed<string>(() => sidebarNavStyle.containerOpen())
 const toggleButtonClasses = computed<string>(() => sidebarNavStyle.toggleButton())
 const toggleButtonIconClasses = computed<string>(() => sidebarNavStyle.toggleButtonIcon())
 const navClasses = computed<string>(() => sidebarNavStyle.nav())
 const itemsListClasses = computed<string>(() => sidebarNavStyle.itemsList())
-
-const allContainerClasses = computed<string>(() => {
-  const stateClasses = isOpen.value ? containerOpenClasses.value : containerClosedClasses.value
-
-  return `${containerClasses.value} ${stateClasses}`
-})
 
 function toggleSidebar(): void {
   isOpen.value = !isOpen.value
@@ -70,7 +63,7 @@ function toggleSidebar(): void {
 
 <template>
   <div
-    :class="allContainerClasses"
+    :class="isOpen ? containerOpenClasses : containerClosedClasses"
   >
     <div>
       <slot
