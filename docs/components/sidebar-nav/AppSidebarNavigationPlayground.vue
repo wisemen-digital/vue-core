@@ -46,6 +46,7 @@ const navigationItems = ref<NavigationItem[]>([
     <AppSidebarNavigation
       :items="(navigationItems as NavigationItem[])"
       v-bind="values"
+      class="border border-solid border-muted"
     >
       <template #header>
         <div>
