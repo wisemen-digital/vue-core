@@ -14,7 +14,7 @@ import AppIcon from '@/components/icon/AppIcon.vue'
 import AppKeyboardShortcut from '@/components/keyboard/AppKeyboardShortcut.vue'
 import type { KeyboardStyleProps } from '@/components/keyboard/keyboardKey.style'
 import AppLoader from '@/components/loader/AppLoader.vue'
-import { useKeyboardShortcut } from '@/composables/keyboardShortcut.composable'
+import { useKeyboardShortcut } from '@/composables/keyboard-shortcut/keyboardShortcut.composable'
 import type { Icon } from '@/icons/icons'
 import type { KeyboardShortcutConfig } from '@/types/keyboardShortcut.type'
 import type {
