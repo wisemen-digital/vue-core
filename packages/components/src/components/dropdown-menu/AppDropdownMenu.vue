@@ -13,7 +13,7 @@ import {
 
 import AppDropdownMenuContent from '@/components/dropdown-menu/AppDropdownMenuContent.vue'
 import AppDropdownMenuItem from '@/components/dropdown-menu/AppDropdownMenuItem.vue'
-import { useKeyboardShortcut } from '@/composables/keyboardShortcut.composable'
+import { useKeyboardShortcut } from '@/composables/keyboard-shortcut/keyboardShortcut.composable'
 import type {
   DropdownMenuCheckboxOption,
   DropdownMenuItem,

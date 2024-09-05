@@ -2,7 +2,7 @@
 import FormElement from '@/components/form-element/FormElement.vue'
 import AppTextarea from '@/components/textarea/AppTextarea.vue'
 import type { TextareaStyleProps } from '@/components/textarea/textarea.style'
-import { useComponentAttrs } from '@/composables/componentAttrs.composable'
+import { useComponentAttrs } from '@/composables/component-attrs/componentAttrs.composable'
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
 const props = withDefaults(
