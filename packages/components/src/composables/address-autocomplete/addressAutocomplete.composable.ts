@@ -1,7 +1,7 @@
 import { Loader } from '@googlemaps/js-api-loader'
 import { onMounted } from 'vue'
 
-import { useToast } from '@/composables/toast.composable'
+import { useToast } from '@/composables/toast/toast.composable'
 import { getGlobalConfig } from '@/config/globalConfig'
 import type {
   AddressCoordinates,

@@ -385,6 +385,16 @@ const docs = [
     collapsed: true,
     items: [
       {
+        link: '/components/sidebar-nav/app-sidebar-navigation',
+        text: 'AppSidebarNavigation',
+      },
+    ],
+    text: 'Sidebar Nav',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
         link: '/components/skeleton-loader/app-page-skeleton-loader',
         text: 'AppPageSkeletonLoader',
       },

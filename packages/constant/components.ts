@@ -105,6 +105,9 @@ export const components = {
     'FormSelect',
     'FormMultiSelect',
   ],
+  sidebarNav: [
+    'AppSidebarNavigation',
+  ],
   skeletonLoader: [
     'AppPageSkeletonLoader',
     'AppSkeletonLoaderButton',

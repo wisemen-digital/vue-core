@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AppAsyncIcon from '@/components/icon/AppAsyncIcon.vue'
 import type { IconStyleProps } from '@/components/icon/icon.style'
-import { useComponentAttrs } from '@/composables/componentAttrs.composable'
+import { useComponentAttrs } from '@/composables/component-attrs/componentAttrs.composable'
 import type { Icon } from '@/icons/icons'
 
 withDefaults(

@@ -124,6 +124,9 @@ export { default as AppSelect } from './components/select/AppSelect.vue'
 export { default as FormMultiSelect } from './components/select/FormMultiSelect.vue'
 export { default as FormSelect } from './components/select/FormSelect.vue'
 
+// Sidebar navigation
+export { default as AppSidebarNavigation } from './components/sidebar-nav/AppSidebarNavigation.vue'
+
 // Skeleton loader
 export { default as AppPageSkeletonLoader } from './components/skeleton-loader/AppPageSkeletonLoader.vue'
 export { default as AppSkeletonLoaderButton } from './components/skeleton-loader/AppSkeletonLoaderButton.vue'
@@ -175,12 +178,20 @@ export { CalendarDateTime, isoStringSchema } from './primitives/calendar-date-ti
 export { CalendarTime } from '@/primitives/calendar-time/calendarTime.primitive'
 
 // Composables
-export { useDialog } from './composables/dialog.composable'
-export { useKeyboardShortcut } from './composables/keyboardShortcut.composable'
+export { useAddressAutoComplete } from './composables/address-autocomplete/addressAutocomplete.composable'
+export { useApiErrorToast } from './composables/api-error-toast/apiErrorToast.composable'
+export { useDebounceSearch } from './composables/debounce-search/debounceSearch.composable'
+export { useDialog } from './composables/dialog/dialog.composable'
+export { useDocumentTitle } from './composables/document-title/documentTitle.composable'
+export { useKeyboardShortcut } from './composables/keyboard-shortcut/keyboardShortcut.composable'
+export { useLoading } from './composables/loading/loading.composable'
 export { useLocalPagination } from './composables/pagination/localPagination.composable'
 export { usePagination } from './composables/pagination/pagination.composable'
-export { useStepper } from './composables/stepper.composable'
-export { useToast } from './composables/toast.composable'
+export { useTypedRouteParams } from './composables/router/typedRouteParams.composable'
+export { useTypedRouteQuery } from './composables/router/typedRouteQuery.composable'
+export { useTypedRouter } from './composables/router/typedRouter.composable'
+export { useStepper } from './composables/stepper/stepper.composable'
+export { useToast } from './composables/toast/toast.composable'
 
 // Types
 export type { Config } from './config/globalConfig'
@@ -196,6 +207,7 @@ export type { DropdownMenuItem } from './types/dropdownMenuItem.type'
 export type { FormFieldErrors } from './types/formFieldErrors.type'
 export type { KeyboardKey } from './types/keyboard.type'
 export type { KeyboardShortcut, KeyboardShortcutConfig } from './types/keyboardShortcut.type'
+export type { NavigationItem } from './types/navigationItem.type'
 export type {
   FilterChangeEvent,
   PageChangeEvent,
