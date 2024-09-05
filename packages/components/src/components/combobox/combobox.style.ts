@@ -2,7 +2,9 @@ import type { VariantProps } from '@/libs/twVariants.lib'
 import { tv } from '@/libs/twVariants.lib'
 
 export const useComboboxStyle = tv({
-  defaultVariants: {},
+  defaultVariants: {
+    size: 'default',
+  },
   slots: {
     content: 'custom-combobox-content custom-popover-content relative z-popover max-h-[--radix-combobox-content-available-height] w-[--radix-combobox-trigger-width] min-w-min overflow-hidden rounded-popover border border-solid border-border bg-background shadow-popover-shadow',
     divider: 'my-1 h-px bg-border',
@@ -48,6 +50,17 @@ export const useComboboxStyle = tv({
       true: {
         inputContainer: 'cursor-not-allowed opacity-50',
         trigger: 'cursor-not-allowed opacity-50',
+      },
+    },
+    size: {
+      default: {
+        groupText: 'text-subtext font-semibold',
+      },
+      lg: {
+        groupText: 'text-heading font-semibold',
+      },
+      sm: {
+        groupText: 'text-caption font-medium opacity-70',
       },
     },
   },

@@ -225,6 +225,16 @@ const docs = [
     collapsed: true,
     items: [
       {
+        link: '/components/editable/app-editable',
+        text: 'AppEditable',
+      },
+    ],
+    text: 'Editable',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
         link: '/components/form-element/form-element',
         text: 'FormElement',
       },
@@ -433,6 +443,10 @@ const docs = [
       {
         link: '/components/table/app-table-local',
         text: 'AppTable (local)',
+      },
+      {
+        link: '/components/table/app-collapsible-table',
+        text: 'AppCollapsibleTable',
       },
       {
         link: '/components/table/app-table-skeleton-loader',
