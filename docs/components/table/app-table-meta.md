@@ -13,6 +13,7 @@ import AppTablePlayground from './AppTablePlayground.vue'
 | columns* | `TableColumn<T>[]` | The different columns to be displayed. |  |
 | data* | `PaginatedData<T> \| null` | The data for the table, in paginated form. |  |
 | emptyText | `TableEmptyTextProp \| null` | Optional empty text to replace defaults | `null` |
+| expandedContent | `((row: T) => Component)` | The content to show for expanded rows. |  |
 | filters* | `PaginationFilter<T>[]` | Determines how the data will be filtered. |  |
 | hasSearch | `boolean` | Shows the search input in the table header | `false` |
 | isLoading* | `boolean` | Whether the data is loading. |  |

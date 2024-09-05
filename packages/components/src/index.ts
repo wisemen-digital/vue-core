@@ -62,6 +62,13 @@ export { default as AppDialogTitle } from './components/dialog/AppDialogTitle.vu
 // Dropdown menu
 export { default as AppDropdownMenu } from './components/dropdown-menu/AppDropdownMenu.vue'
 
+// Editable
+export { default as AppEditable } from './components/editable/AppEditable.vue'
+export { default as AppEditableArea } from './components/editable/AppEditableArea.vue'
+export { default as AppEditableCancel } from './components/editable/AppEditableCancel.vue'
+export { default as AppEditableSubmit } from './components/editable/AppEditableSubmit.vue'
+export { default as AppEditableTrigger } from './components/editable/AppEditableTrigger.vue'
+
 // Form error
 export { default as FormError } from './components/form-error/FormError.vue'
 
@@ -116,6 +123,9 @@ export { default as AppMultiSelect } from './components/select/AppMultiSelect.vu
 export { default as AppSelect } from './components/select/AppSelect.vue'
 export { default as FormMultiSelect } from './components/select/FormMultiSelect.vue'
 export { default as FormSelect } from './components/select/FormSelect.vue'
+
+// Sidebar navigation
+export { default as AppSidebarNavigation } from './components/sidebar-nav/AppSidebarNavigation.vue'
 
 // Skeleton loader
 export { default as AppPageSkeletonLoader } from './components/skeleton-loader/AppPageSkeletonLoader.vue'
@@ -197,6 +207,7 @@ export type { DropdownMenuItem } from './types/dropdownMenuItem.type'
 export type { FormFieldErrors } from './types/formFieldErrors.type'
 export type { KeyboardKey } from './types/keyboard.type'
 export type { KeyboardShortcut, KeyboardShortcutConfig } from './types/keyboardShortcut.type'
+export type { NavigationItem } from './types/navigationItem.type'
 export type {
   FilterChangeEvent,
   PageChangeEvent,
