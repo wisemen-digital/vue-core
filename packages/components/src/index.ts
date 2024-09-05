@@ -117,6 +117,9 @@ export { default as AppSelect } from './components/select/AppSelect.vue'
 export { default as FormMultiSelect } from './components/select/FormMultiSelect.vue'
 export { default as FormSelect } from './components/select/FormSelect.vue'
 
+// Sidebar navigation
+export { default as AppSidebarNavigation } from './components/sidebar-nav/AppSidebarNavigation.vue'
+
 // Skeleton loader
 export { default as AppPageSkeletonLoader } from './components/skeleton-loader/AppPageSkeletonLoader.vue'
 export { default as AppSkeletonLoaderButton } from './components/skeleton-loader/AppSkeletonLoaderButton.vue'
@@ -197,6 +200,7 @@ export type { DropdownMenuItem } from './types/dropdownMenuItem.type'
 export type { FormFieldErrors } from './types/formFieldErrors.type'
 export type { KeyboardKey } from './types/keyboard.type'
 export type { KeyboardShortcut, KeyboardShortcutConfig } from './types/keyboardShortcut.type'
+export type { NavigationItem } from './types/navigationItem.type'
 export type {
   FilterChangeEvent,
   PageChangeEvent,
