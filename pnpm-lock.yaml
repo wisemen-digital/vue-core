@@ -7911,8 +7911,6 @@ snapshots:
       putout: 35.7.1(typescript@5.4.5)
       try-catch: 3.0.1
       try-to-catch: 3.0.1
-    transitivePeerDependencies:
-      - supports-color
 
   '@putout/engine-loader@13.0.0(putout@35.7.1(typescript@5.5.4))':
     dependencies:
@@ -7943,8 +7941,6 @@ snapshots:
       picomatch: 4.0.2
       putout: 35.7.1(typescript@5.4.5)
       try-to-catch: 3.0.1
-    transitivePeerDependencies:
-      - supports-color
 
   '@putout/engine-processor@11.2.0(putout@35.7.1(typescript@5.5.4))':
     dependencies:
@@ -7963,8 +7959,6 @@ snapshots:
       putout: 35.7.1(typescript@5.4.5)
       try-catch: 3.0.1
       try-to-catch: 3.0.1
-    transitivePeerDependencies:
-      - supports-color
 
   '@putout/engine-reporter@1.0.2(putout@35.7.1(typescript@5.5.4))':
     dependencies:
@@ -10061,8 +10055,8 @@ snapshots:
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
-
   '@vueuse/core@10.11.0(vue@3.4.35(typescript@5.5.4))':
+  '@vueuse/integrations@10.11.0(axios@1.7.3)(focus-trap@7.5.4)(vue@3.4.35(typescript@5.4.5))':
     dependencies:
       '@types/web-bluetooth': 0.0.20
       '@vueuse/metadata': 10.11.0
@@ -15541,7 +15535,6 @@ snapshots:
       '@types/node': 20.14.5
       fsevents: 2.3.3
       sass: 1.77.5
-
   vitepress@1.2.3(@algolia/client-search@4.22.1)(@types/node@20.14.5)(axios@1.7.3)(postcss@8.4.38)(sass@1.77.5)(search-insights@2.13.0)(typescript@5.5.4):
     dependencies:
       '@docsearch/css': 3.6.0

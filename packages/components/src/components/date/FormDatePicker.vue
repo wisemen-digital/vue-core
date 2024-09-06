@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AppDatePicker from '@/components/date/AppDatePicker.vue'
 import FormElement from '@/components/form-element/FormElement.vue'
-import { useComponentAttrs } from '@/composables/componentAttrs.composable'
+import { useComponentAttrs } from '@/composables/component-attrs/componentAttrs.composable'
 import type {
   DatePickerHighlightConfig,
   DatePickerMarker,

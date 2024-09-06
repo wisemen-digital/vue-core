@@ -4,7 +4,7 @@ import { computed, useSlots } from 'vue'
 import AppIcon from '@/components/icon/AppIcon.vue'
 import { useInputStyle } from '@/components/input/input.style'
 import AppLoader from '@/components/loader/AppLoader.vue'
-import { useComponentAttrs } from '@/composables/componentAttrs.composable'
+import { useComponentAttrs } from '@/composables/component-attrs/componentAttrs.composable'
 import type { Icon } from '@/icons/icons'
 
 const props = withDefaults(defineProps<{

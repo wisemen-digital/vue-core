@@ -20,6 +20,11 @@ export const i18nPlugin = createI18n({
         autocomplete: {
           no_results_found: 'No results found',
         },
+        editable: {
+          edit: 'Edit',
+          submit: 'Submit',
+          cancel: 'Cancel',
+        },
         keyboard_shortcut: {
           then: 'then',
         },

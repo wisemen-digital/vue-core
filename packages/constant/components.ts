@@ -59,6 +59,9 @@ export const components = {
   dropdownMenu: [
     'AppDropdownMenu',
   ],
+  editable: [
+    'AppEditable',
+  ],
   formElement: [
     'FormElement',
   ],
@@ -104,6 +107,9 @@ export const components = {
     'AppMultiSelect',
     'FormSelect',
     'FormMultiSelect',
+  ],
+  sidebarNav: [
+    'AppSidebarNavigation',
   ],
   skeletonLoader: [
     'AppPageSkeletonLoader',
