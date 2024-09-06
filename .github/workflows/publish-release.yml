@@ -17,6 +17,6 @@ jobs:
     uses: wisemen-digital/devops-github-actions/.github/workflows/node-publish-package.yml@main
     with:
       access: public
-      packages: '@wisemen/vue-core,@wisemen/vue-core-query,@wisemen/vue-core-cli'
+      packages: ''
       tag: ${{ inputs.version || github.ref_name }}
     secrets: inherit
