@@ -98,6 +98,7 @@ export function usePagination<TFilters>({
     paginationOptions.value = {
       ...paginationOptions.value,
       filters: {
+        ...paginationOptions.value.filters,
         ...event,
       } as PaginationFilters<TFilters>,
       pagination: {
