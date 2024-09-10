@@ -46,8 +46,8 @@ const tabsStyle = useTabsStyle()
 
 const listClasses = computed<string>(() => tabsStyle.list())
 const indicatorClasses = computed<string>(() => tabsStyle.indicator())
-const routeTriggerGroup = computed<string>(() => tabsStyle.routeTriggerGroup())
-const routeTriggerTab = computed<string>(() => tabsStyle.routeTriggerTab())
+const routeTriggerGroup = computed<string>(() => tabsStyle.triggerGroup())
+const routeTriggerTab = computed<string>(() => tabsStyle.triggerTab())
 </script>
 
 <template>
@@ -63,7 +63,7 @@ const routeTriggerTab = computed<string>(() => tabsStyle.routeTriggerTab())
       >
         <div :class="routeTriggerTab">
           <AppText
-            :class="tabsStyle.routeText({
+            :class="tabsStyle.text({
               isActive: isTabActive(tab),
             })"
             as="span"

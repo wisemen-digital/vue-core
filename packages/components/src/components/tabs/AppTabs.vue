@@ -30,11 +30,16 @@ const computedModel = computed<string>({
   },
 })
 
+function isTabActive(tab: TabItem): boolean {
+  return tab.id === computedModel.value
+}
+
 const tabsStyle = useTabsStyle()
 
 const listClasses = computed<string>(() => tabsStyle.list())
 const indicatorClasses = computed<string>(() => tabsStyle.indicator())
-const triggerClasses = computed<string>(() => tabsStyle.trigger())
+const routeTriggerGroup = computed<string>(() => tabsStyle.triggerGroup())
+const routeTriggerTab = computed<string>(() => tabsStyle.triggerTab())
 </script>
 
 <template>
@@ -47,20 +52,25 @@ const triggerClasses = computed<string>(() => tabsStyle.trigger())
         :key="tab.label"
         :data-testid="tab.testId"
         :value="tab.id"
-        :class="triggerClasses"
+        :class="routeTriggerGroup"
       >
-        <AppText
-          as="span"
-          variant="subtext"
-        >
-          {{ tab.label }}
-        </AppText>
-        <AppBadge
-          v-if="tab.badge"
-          :class="tab.badge.class"
-        >
-          {{ tab.badge.label }}
-        </AppBadge>
+        <div :class="routeTriggerTab">
+          <AppText
+            :class="tabsStyle.text({
+              isActive: isTabActive(tab),
+            })"
+            as="span"
+            variant="subtext"
+          >
+            {{ tab.label }}
+          </AppText>
+          <AppBadge
+            v-if="tab.badge"
+            :class="tab.badge.class"
+          >
+            {{ tab.badge.label }}
+          </AppBadge>
+        </div>
       </TabsTrigger>
     </TabsList>
   </TabsRoot>
