@@ -9,6 +9,7 @@ import { computed } from 'vue'
 
 import AppBadge from '@/components/badge/AppBadge.vue'
 import { useTabsStyle } from '@/components/tabs/tabs.style'
+import AppText from '@/components/text/AppText.vue'
 import type { TabItem } from '@/types/tabItem.type'
 
 const props = defineProps<{
@@ -48,7 +49,12 @@ const triggerClasses = computed<string>(() => tabsStyle.trigger())
         :value="tab.id"
         :class="triggerClasses"
       >
-        {{ tab.label }}
+        <AppText
+          as="span"
+          variant="subtext"
+        >
+          {{ tab.label }}
+        </AppText>
         <AppBadge
           v-if="tab.badge"
           :class="tab.badge.class"
