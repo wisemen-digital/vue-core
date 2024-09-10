@@ -1,5 +1,6 @@
 <script setup lang="ts"  generic="TSchema, TFilters">
 import {
+  type Component,
   computed,
   onBeforeUnmount,
   onMounted,
@@ -60,6 +61,10 @@ const props = withDefaults(
      * Optional empty text to replace defaults
      */
     emptyText?: TableEmptyTextProp | null
+    /**
+     * The content to show for expanded rows.
+     */
+    expandedContent?: ((row: TSchema) => Component)
     /**
      * Determines how the data will be filtered.
      */
@@ -257,6 +262,7 @@ const tableClasses = computed<string>(() => tableStyle.table({
           :has-reached-horizontal-scroll-end="hasReachedHorizontalScrollEnd"
           :can-scroll-vertically="canScrollVertically"
           :has-active-filters="activeFilterCount > 0 && !props.isLoading"
+          :expanded-content="props.expandedContent ?? null"
           :row-click="props.rowClick"
           :row-to="props.rowTo"
           :row-target="props.rowTarget"

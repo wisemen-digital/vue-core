@@ -9,3 +9,5 @@ on:
 jobs:
   publish-docs:
     uses: wisemen-digital/devops-github-actions/.github/workflows/node-publish-docs.yml@main
+    with:
+      dist-path: docs/.vitepress/dist/

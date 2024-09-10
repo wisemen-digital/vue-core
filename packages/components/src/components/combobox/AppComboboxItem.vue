@@ -19,6 +19,8 @@ const props = defineProps<{
   <AppComboboxGroup
     v-else-if="props.item.type === 'group'"
     :label="props.item.label"
+    :size="props.item.size"
+    :icon="props.item.icon"
   >
     <AppComboboxItem
       v-for="(groupItem, i) of props.item.items"

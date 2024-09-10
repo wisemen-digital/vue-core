@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AppWeekPicker from '@/components/date/week/AppWeekPicker.vue'
 import FormElement from '@/components/form-element/FormElement.vue'
-import { useComponentAttrs } from '@/composables/componentAttrs.composable'
+import { useComponentAttrs } from '@/composables/component-attrs/componentAttrs.composable'
 import type { WeekPickerValue } from '@/types/date.type'
 import type {
   DatePickerHighlightConfig,

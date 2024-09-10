@@ -3,7 +3,7 @@ import { useSlots } from 'vue'
 
 import AppTimeInput from '@/components/date/time/AppTimeInput.vue'
 import FormElement from '@/components/form-element/FormElement.vue'
-import { useComponentAttrs } from '@/composables/componentAttrs.composable.js'
+import { useComponentAttrs } from '@/composables/component-attrs/componentAttrs.composable.js'
 import type { Icon } from '@/icons/icons.js'
 import type { FormFieldErrors } from '@/types/formFieldErrors.type.js'
 
