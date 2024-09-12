@@ -385,17 +385,11 @@ const docs = [
     collapsed: true,
     items: [
       {
-
         link: '/components/progress-bar/app-progress-bar',
         text: 'Progress-bar',
       },
     ],
     text: 'ProgressBar',
-        link: '/components/sidebar-nav/app-sidebar-navigation',
-        text: 'AppSidebarNavigation',
-      },
-    ],
-    text: 'Sidebar Nav',
   },
   {
     collapsed: true,
