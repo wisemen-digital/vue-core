@@ -98,7 +98,7 @@ defineSlots<{
   left: () => void
   /** Override the option rendering of the combobox, and have access to the dataTestId */
   option: (props: {
-    dataTestid?: string
+    dataTestId?: string
     value: TValue
   }) => any
 }>()
@@ -145,10 +145,10 @@ function onBlur(): void {
       :is-chevron-hidden="props.isChevronHidden"
       @blur="onBlur"
     >
-      <template #option="{ value, dataTestid }">
+      <template #option="{ value, dataTestId }">
         <slot
           :value="value"
-          :data-test-id="dataTestid"
+          :data-test-id="dataTestId"
           name="option"
         />
       </template>

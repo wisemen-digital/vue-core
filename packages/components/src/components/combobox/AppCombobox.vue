@@ -132,7 +132,7 @@ defineSlots<{
   left: () => void
   /** Override the option rendering of the combobox, and have access to the dataTestId */
   option: (props: {
-    dataTestid?: string
+    dataTestId?: string
     value: TValue
   }) => any
   /** Override the right content of the combobox input */
