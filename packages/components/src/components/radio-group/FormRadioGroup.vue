@@ -98,7 +98,7 @@ function removeQuotes(value: string): string {
         >
           <FormRadioGroupItem
             :id="removeQuotes(option.value)"
-            :data-testid="option.testId"
+            :data-test-id="option.testId"
             :value="option.value"
             :class="itemWrapperClasses"
           >

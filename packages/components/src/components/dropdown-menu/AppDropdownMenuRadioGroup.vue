@@ -17,7 +17,7 @@ const props = defineProps<{
     <AppDropdownMenuRadio
       v-for="(radioItem, i) of props.item.items"
       :key="i"
-      :data-testid="radioItem.testId"
+      :data-test-id="radioItem.testId"
       :item="radioItem"
     />
   </DropdownMenuRadioGroup>

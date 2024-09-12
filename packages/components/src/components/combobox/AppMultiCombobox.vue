@@ -112,7 +112,7 @@ defineSlots<{
   left: () => void
   /** Override the option rendering of the combobox, and have access to the dataTestId */
   option: (props: {
-    dataTestid?: string
+    dataTestId?: string
     value: TValue
   }) => any
   /** Override the right content of the combobox input */
@@ -230,7 +230,7 @@ function onBlur(): void {
                     <slot
                       v-if="itemValue.type === 'option'"
                       :value="itemValue.value"
-                      :data-testid="itemValue.testId"
+                      :data-test-id="itemValue.testId"
                       name="option"
                     />
                   </template>

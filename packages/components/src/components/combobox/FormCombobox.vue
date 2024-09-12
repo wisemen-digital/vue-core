@@ -105,7 +105,7 @@ defineSlots<{
   left: () => void
   /** Override the option rendering of the combobox, and have access to the dataTestId */
   option: (props: {
-    dataTestid?: string
+    dataTestId?: string
     value: TValue
   }) => any
 }>()
@@ -162,10 +162,10 @@ function onFilter(filter: string): void {
         <slot name="left" />
       </template>
 
-      <template #option="{ value, dataTestid }">
+      <template #option="{ value, dataTestId }">
         <slot
           :value="value"
-          :data-testid="dataTestid"
+          :data-test-id="dataTestId"
           name="option"
         />
       </template>
