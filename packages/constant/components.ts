@@ -96,6 +96,9 @@ export const components = {
   popover: [
     'AppPopover',
   ],
+  progressBar: [
+    'AppProgressBar',
+  ],
   radioGroup: [
     'FormRadioGroup',
   ],

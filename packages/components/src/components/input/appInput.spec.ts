@@ -58,7 +58,7 @@ describe('appInput', () => {
 
   it('applies testId correctly', async () => {
     await wrapper.setProps({ testId: 'test' })
-    expect(wrapper.find('input').attributes('data-testid')).toBe('test')
+    expect(wrapper.find('input').attributes('data-test-id')).toBe('test')
   })
 
   it('handles custom slot content', () => {

@@ -66,7 +66,7 @@ export function addUpdateCommand({
       ]
 
       logger.success(
-      `Updating ${selectedComponents.length} component(s)...`,
+        `Updating ${selectedComponents.length} component(s)...`,
       )
 
       // Add all components and their internal dependencies to the list of components to install recursively.

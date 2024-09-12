@@ -30,7 +30,7 @@ const textClasses = computed<string>(() => dropdownMenuStyle.itemText({
   <RadixDropdownMenuItem
     v-if="props.item.isHidden !== true"
     :class="containerClasses"
-    :data-testid="props.item.testId"
+    :data-test-id="props.item.testId"
     :disabled="props.item.isDisabled"
     @select="props.item.onSelect"
   >

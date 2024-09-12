@@ -21,7 +21,7 @@ export async function getMergedFileContent({
       'registeryFile',
     ])
   }
-  catch (error) {
+  catch {
 
   }
 

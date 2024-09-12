@@ -160,7 +160,7 @@ export interface ToastProps {
   unstyled?: boolean
   visibleToasts: number
 }
-
+export type ProgressPosition = 'inside' | 'outside'
 export enum SwipeStateTypes {
   NotSwiped = 'NotSwiped',
   SwipedBack = 'SwipedBack',

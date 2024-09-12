@@ -395,6 +395,16 @@ const docs = [
     collapsed: true,
     items: [
       {
+        link: '/components/progress-bar/app-progress-bar',
+        text: 'Progress-bar',
+      },
+    ],
+    text: 'ProgressBar',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
         link: '/components/skeleton-loader/app-page-skeleton-loader',
         text: 'AppPageSkeletonLoader',
       },

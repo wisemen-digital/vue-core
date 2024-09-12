@@ -58,7 +58,7 @@ export function addAddCommand({
       }
 
       logger.success(
-      `Installing ${selectedComponents.length} component(s) and dependencies...`,
+        `Installing ${selectedComponents.length} component(s) and dependencies...`,
       )
 
       // Add all components and their internal dependencies to the list of components to install recursively.

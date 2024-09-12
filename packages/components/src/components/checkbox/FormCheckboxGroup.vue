@@ -90,7 +90,7 @@ function toggleOption(value: T): void {
         <FormCheckbox
           :id="option.value"
           :is-disabled="props.isDisabled"
-          :data-testid="option.testId"
+          :data-test-id="option.testId"
           :model-value="isOptionSelected(option.value)"
           @update:model-value="toggleOption(option.value)"
         />

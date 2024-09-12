@@ -122,7 +122,7 @@ export async function getRawConfig(cwd: string): Promise<RawConfig | null> {
 
     return rawConfigSchema.parse(configResult.config)
   }
-  catch (error) {
+  catch {
     throw new Error(`Invald configuration found in ${cwd}/components.json.`)
   }
 }

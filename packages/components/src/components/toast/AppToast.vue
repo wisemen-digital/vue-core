@@ -69,7 +69,7 @@ const contentWrapperClasses = computed<string>(() => toastStyle.contentWrapper()
 
 <template>
   <div
-    :data-testid="props.testId"
+    :data-test-id="props.testId"
     :class="containerClasses"
   >
     <div :class="closeContainerClasses">

@@ -90,7 +90,7 @@ export async function mergeComponent(
         ...component.dependencies,
       ])
       spinner.succeed(
-      `Installed ${component.dependencies.length} dependencies.\n${component.dependencies.join(', ')}`,
+        `Installed ${component.dependencies.length} dependencies.\n${component.dependencies.join(', ')}`,
       )
     }
   }

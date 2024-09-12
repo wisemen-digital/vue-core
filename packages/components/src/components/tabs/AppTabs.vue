@@ -9,6 +9,7 @@ import { computed } from 'vue'
 
 import AppBadge from '@/components/badge/AppBadge.vue'
 import { useTabsStyle } from '@/components/tabs/tabs.style'
+import AppText from '@/components/text/AppText.vue'
 import type { TabItem } from '@/types/tabItem.type'
 
 const props = defineProps<{
@@ -29,11 +30,16 @@ const computedModel = computed<string>({
   },
 })
 
+function isTabActive(tab: TabItem): boolean {
+  return tab.id === computedModel.value
+}
+
 const tabsStyle = useTabsStyle()
 
 const listClasses = computed<string>(() => tabsStyle.list())
 const indicatorClasses = computed<string>(() => tabsStyle.indicator())
-const triggerClasses = computed<string>(() => tabsStyle.trigger())
+const routeTriggerGroup = computed<string>(() => tabsStyle.triggerGroup())
+const routeTriggerTab = computed<string>(() => tabsStyle.triggerTab())
 </script>
 
 <template>
@@ -44,17 +50,27 @@ const triggerClasses = computed<string>(() => tabsStyle.trigger())
       <TabsTrigger
         v-for="tab of items"
         :key="tab.label"
-        :data-testid="tab.testId"
+        :data-test-id="tab.testId"
         :value="tab.id"
-        :class="triggerClasses"
+        :class="routeTriggerGroup"
       >
-        {{ tab.label }}
-        <AppBadge
-          v-if="tab.badge"
-          :class="tab.badge.class"
-        >
-          {{ tab.badge.label }}
-        </AppBadge>
+        <div :class="routeTriggerTab">
+          <AppText
+            :class="tabsStyle.text({
+              isActive: isTabActive(tab),
+            })"
+            as="span"
+            variant="subtext"
+          >
+            {{ tab.label }}
+          </AppText>
+          <AppBadge
+            v-if="tab.badge"
+            :class="tab.badge.class"
+          >
+            {{ tab.badge.label }}
+          </AppBadge>
+        </div>
       </TabsTrigger>
     </TabsList>
   </TabsRoot>
