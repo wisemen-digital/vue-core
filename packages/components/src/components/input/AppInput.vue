@@ -120,7 +120,7 @@ const loaderClasses = computed<string>(() => inputStyle.loader())
       v-model="model"
       :type="props.type"
       :readonly="props.isReadonly"
-      :data-testid="props.testId"
+      :data-test-id="props.testId"
       :aria-invalid="props.isInvalid"
       :disabled="props.isDisabled"
       :placeholder="props.placeholder ?? undefined"

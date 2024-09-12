@@ -50,7 +50,7 @@ const routeTriggerTab = computed<string>(() => tabsStyle.triggerTab())
       <TabsTrigger
         v-for="tab of items"
         :key="tab.label"
-        :data-testid="tab.testId"
+        :data-test-id="tab.testId"
         :value="tab.id"
         :class="routeTriggerGroup"
       >

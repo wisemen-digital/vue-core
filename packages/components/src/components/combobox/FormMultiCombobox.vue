@@ -148,7 +148,7 @@ function onBlur(): void {
       <template #option="{ value, dataTestid }">
         <slot
           :value="value"
-          :data-testid="dataTestid"
+          :data-test-id="dataTestid"
           name="option"
         />
       </template>

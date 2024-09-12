@@ -230,7 +230,7 @@ function onBlur(): void {
                     <slot
                       v-if="itemValue.type === 'option'"
                       :value="itemValue.value"
-                      :data-testid="itemValue.testId"
+                      :data-test-id="itemValue.testId"
                       name="option"
                     />
                   </template>

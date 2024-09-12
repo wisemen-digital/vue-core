@@ -143,7 +143,7 @@ function closeMenu(): void {
     v-model="model"
     :auto-apply="false"
     :clearable="props.hasClearButton"
-    :data-testid="props.testId"
+    :data-test-id="props.testId"
     :inline="props.isInline"
     :disabled="props.isDisabled"
     :disabled-dates="props.disabledDates"
