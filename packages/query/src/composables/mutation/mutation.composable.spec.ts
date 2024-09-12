@@ -38,7 +38,6 @@ describe('useMutation', () => {
   })
 
   it('should invalidate a query key correctly', () => {
-    // eslint-disable-next-line ts/no-floating-promises
     withSetup(async () => {
       let queryRunCount = 0
 
@@ -68,7 +67,6 @@ describe('useMutation', () => {
   })
 
   it('should invalidate a query key with params correctly', () => {
-    // eslint-disable-next-line ts/no-floating-promises
     withSetup(async () => {
       let queryRunCount = 0
 

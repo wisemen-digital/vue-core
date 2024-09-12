@@ -45,7 +45,7 @@ export async function getAvailableComponents() {
 
     return componentsSchema.parse(components)
   }
-  catch (error) {
+  catch {
     throw new Error(
       `Failed to fetch components from ${baseUrl}/components.json.`,
     )
@@ -60,7 +60,7 @@ export async function getGlobalConfig() {
 
     return componentsSchema.parse(components)
   }
-  catch (error) {
+  catch {
     throw new Error(
       `Failed to fetch config from ${baseUrl}/globalConfig.json.`,
     )
@@ -74,7 +74,7 @@ export async function getGlobalComponents() {
 
     return componentsSchema.parse(components)
   }
-  catch (error) {
+  catch {
     throw new Error(
       `Failed to fetch components from ${baseUrl}/globalComponents.json.`,
     )

@@ -25,7 +25,7 @@ export async function getProjectInfo() {
       tsconfig,
     }
   }
-  catch (error) {
+  catch {
     return info
   }
 }
@@ -41,7 +41,7 @@ export async function getTsConfig() {
 
     return tsconfig
   }
-  catch (error) {
+  catch {
     return null
   }
 }
