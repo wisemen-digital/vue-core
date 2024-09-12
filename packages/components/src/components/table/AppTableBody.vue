@@ -102,7 +102,7 @@ function toggleRow(row: TSchema, rowId: number): void {
     <div
       v-for="column of columns"
       :key="column.id"
-      :data-testid="column.testId"
+      :data-test-id="column.testId"
       :class="bodyColumnClasses"
     >
       <Component
