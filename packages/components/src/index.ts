@@ -112,6 +112,9 @@ export { default as AppPaginationRoot } from './components/pagination/AppPaginat
 // Popover
 export { default as AppPopover } from './components/popover/AppPopover.vue'
 
+// Progress
+export { default as AppProgressBar } from '@/components/progress-bar/AppProgressBar.vue'
+
 // Radio group
 export { default as FormRadioGroup } from './components/radio-group/FormRadioGroup.vue'
 export { default as FormRadioGroupIndicator } from './components/radio-group/FormRadioGroupIndicator.vue'

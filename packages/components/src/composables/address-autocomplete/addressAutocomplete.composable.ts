@@ -44,7 +44,7 @@ export function useAddressAutoComplete(): {
 
       return response.predictions.map((prediction) => mapAutoCompletePredictionToDataItem(prediction))
     }
-    catch (error) {
+    catch {
       toast.error({ title: 'Error', description: 'Failed to fetch address predictions' })
 
       return []

@@ -9,7 +9,7 @@ export function getPackageInfo() {
 
     return fs.readJSONSync(packageJsonPath) as PackageJson
   }
-  catch (error) {
+  catch {
     throw new Error('No package.json found')
   }
 }

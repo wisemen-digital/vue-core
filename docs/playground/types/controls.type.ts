@@ -13,7 +13,7 @@ export type Control = DateControl
 export interface BaseControl {
   cols?: number
   label: string
-  type: 'date' | 'icon' | 'select' | 'switch' | 'text'
+  type: 'date' | 'icon' | 'multiselect' | 'select' | 'switch' | 'text'
 }
 
 export interface SelectControl extends BaseControl {

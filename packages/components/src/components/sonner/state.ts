@@ -1,5 +1,5 @@
 /* eslint-disable ts/explicit-function-return-type */
-/* eslint-disable ts/strict-boolean-expressions */
+
 import type { Component } from 'vue'
 
 import type {
