@@ -1,15 +1,12 @@
 import type { Component } from '@/generate/components.type'
 import { ComponentName, ComponentType } from '@/generate/components.type'
 
-export const textarea: Component = {
+export const progressBar: Component = {
   files: [
     {
       type: ComponentType.COMPONENTS,
-      path: 'textarea',
+      path: 'progress-bar',
     },
   ],
-  internalDependencies: [
-    ComponentName.FORM,
-  ],
-  component: ComponentName.TEXT_AREA,
+  component: ComponentName.PROGRESS_BAR,
 }

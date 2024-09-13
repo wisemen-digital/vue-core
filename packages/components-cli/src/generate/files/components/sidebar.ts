@@ -1,15 +1,16 @@
 import type { Component } from '@/generate/components.type'
 import { ComponentName, ComponentType } from '@/generate/components.type'
 
-export const textarea: Component = {
+export const sidebar: Component = {
   files: [
     {
       type: ComponentType.COMPONENTS,
-      path: 'textarea',
+      path: 'sidebar-nav',
+    },
+    {
+      type: ComponentType.TYPES,
+      path: 'navigationItem.type.ts',
     },
   ],
-  internalDependencies: [
-    ComponentName.FORM,
-  ],
-  component: ComponentName.TEXT_AREA,
+  component: ComponentName.SIDEBAR_NAV,
 }

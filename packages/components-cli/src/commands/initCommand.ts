@@ -37,6 +37,7 @@ export const DEFAULT_CONFIG = './'
 export const DEFAULT_ROOT = './src'
 export const DEFAULT_ROOT_ALIAS = '@'
 export const DEFAULT_COMPONENTS = 'components/core'
+export const DEFAULT_CONFIG_FOLDER = 'config'
 export const DEFAULT_UTILS = 'utils/core'
 export const DEFAULT_COMPOSABLES = 'composables/core'
 export const DEFAULT_LIBS = 'libs'
@@ -124,6 +125,12 @@ async function promptForConfig(optionsCwd: any) {
       message: `Configure the folder from your root for ${highlight('icons')}:`,
       type: 'text',
     },
+    {
+      name: 'configFolder',
+      initial: DEFAULT_CONFIG_FOLDER,
+      message: `Configure the folder from your root for ${highlight('config files')}:`,
+      type: 'text',
+    },
   ])
 
   const config = rawConfigSchema.parse({
@@ -132,6 +139,7 @@ async function promptForConfig(optionsCwd: any) {
       components: options.components,
       composables: options.composables,
       config: options.config,
+      configFolder: options.configFolder,
       icons: options.icons,
       libs: options.libs,
       root: options.root,
@@ -173,6 +181,10 @@ export function addInitCommand({
       logger.info('No config found. Setting up new config.')
 
       const configOptions = await promptForConfig(options)
+
+      if (configOptions == null) {
+        return
+      }
 
       const globalConfig = await getGlobalConfig()
       const globalComponents = await getGlobalComponents()

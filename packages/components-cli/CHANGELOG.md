@@ -1,5 +1,11 @@
 # @wisemen/vue-core-cli
 
+## 0.2.0
+
+### Minor Changes
+
+- Added new components to CLI - Added config folder to CLI
+
 ## 0.1.1
 
 ### Patch Changes

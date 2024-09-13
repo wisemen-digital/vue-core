@@ -1,5 +1,6 @@
 import { icon } from '@/generate/files/components/icon'
 import { loader } from '@/generate/files/components/loader'
+import { router } from '@/generate/files/components/router'
 import { text } from '@/generate/files/components/text'
 import { transitions } from '@/generate/files/components/transitions'
 import { composables } from '@/generate/files/config/composables'
@@ -18,4 +19,5 @@ export const globalComponents: Component[] = [
   types,
   composables,
   utils,
+  router,
 ]

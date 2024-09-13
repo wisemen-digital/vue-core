@@ -13,7 +13,7 @@ export const toast: Component = {
     },
     {
       type: ComponentType.COMPOSABLES,
-      path: 'toast.composable.ts',
+      path: 'toast/toast.composable.ts',
     },
     {
       type: ComponentType.COMPONENTS,
