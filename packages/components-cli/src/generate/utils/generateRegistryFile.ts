@@ -109,7 +109,7 @@ export function handleComponent(component: Component): ProcessedComponent {
         handledFile,
       ]
     }
-    catch (e) {
+    catch {
       console.error(`\x1B[31mError reading file ${file.path} in component \'${component.component}\'`)
 
       return handledFiles
