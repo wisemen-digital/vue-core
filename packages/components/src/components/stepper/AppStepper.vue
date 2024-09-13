@@ -132,7 +132,7 @@ const validationIconSize = computed<IconStyleProps['size']>(() => props.triggerS
       </StepperTrigger>
 
       <StepperSeparator
-        v-if="item.id !== steps[steps.length - 1].id"
+        v-if="item.id !== steps[steps.length - 1]?.id"
         :class="separatorClasses"
       />
 

@@ -73,5 +73,6 @@ export function focusFirst(candidates: HTMLElement[]): void {
  * Example: `wrapArray(['a', 'b', 'c', 'd'], 2) === ['c', 'd', 'a', 'b']`
  */
 export function wrapArray<T>(array: T[], startIndex: number): T[] {
-  return array.map((_, index) => array[(startIndex + index) % array.length])
+  // Is always T[]
+  return array.map((_, index) => array[(startIndex + index) % array.length]) as T[]
 }

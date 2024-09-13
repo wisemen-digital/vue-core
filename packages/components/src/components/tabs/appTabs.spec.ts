@@ -21,6 +21,10 @@ describe('appTabs', () => {
         label: 'Tab 2',
       },
     ]
+
+    if (tabs[0] == null) {
+      throw new Error('No tabs provided')
+    }
     const wrapper = mount(AppTabs, {
       props: {
         items: tabs,
@@ -29,8 +33,8 @@ describe('appTabs', () => {
     })
 
     expect(wrapper.exists()).toBe(true)
-    expect(wrapper.findAll('button')[0].text()).toBe('Tab 1')
-    expect(wrapper.findAll('button')[1].text()).toBe('Tab 2')
+    expect(wrapper.findAll('button')[0]?.text()).toBe('Tab 1')
+    expect(wrapper.findAll('button')[1]?.text()).toBe('Tab 2')
   })
 
   it('renders tab badge correctly', () => {
@@ -44,6 +48,11 @@ describe('appTabs', () => {
         label: 'Tab 1',
       },
     ]
+
+    if (tabs[0] == null) {
+      throw new Error('No tabs provided')
+    }
+
     const wrapper = mount(AppTabs, {
       global: {
         components: {

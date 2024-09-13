@@ -33,7 +33,7 @@ describe('appNumberInput', () => {
 
     const downControl = wrapper.findAllComponents({ name: 'AppIconButton' })[1]
 
-    expect(downControl.attributes('disabled')).toBeDefined()
+    expect(downControl?.attributes('disabled')).toBeDefined()
   })
 
   it('renders placeholder correctly', async () => {
@@ -97,7 +97,7 @@ describe('appNumberInput', () => {
       },
     })
 
-    expect(wrapper.findAllComponents({ name: 'AppIcon' })[0].exists()).toBe(true)
-    expect(wrapper.findAllComponents({ name: 'AppIcon' })[0].props('icon')).toBe(iconLeft)
+    expect(wrapper.findAllComponents({ name: 'AppIcon' })[0]?.exists()).toBe(true)
+    expect(wrapper.findAllComponents({ name: 'AppIcon' })[0]?.props('icon')).toBe(iconLeft)
   })
 })

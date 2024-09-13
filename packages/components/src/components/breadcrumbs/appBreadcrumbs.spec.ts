@@ -31,23 +31,23 @@ describe('appBreadcrumbs', () => {
     const items = wrapper.findAll('li')
 
     expect(items.length).toBe(3)
-    expect(items[0].text()).toBe('Page 1')
-    expect(items[2].text()).toBe('Page 2')
+    expect(items[0]?.text()).toBe('Page 1')
+    expect(items[2]?.text()).toBe('Page 2')
   })
 
   it('renders chevron icon correctly between items', () => {
     const items = wrapper.findAll('li')
 
-    const chevronIcon = items[1].findComponent(ChevronRightIcon)
+    const chevronIcon = items[1]?.findComponent(ChevronRightIcon)
 
-    expect(chevronIcon.exists()).toBe(true)
+    expect(chevronIcon?.exists()).toBe(true)
   })
 
   it('renders item icon correctly', () => {
     const items = wrapper.findAll('li')
 
-    const checkmarkIcon = items[0].findComponent(CheckmarkIcon)
+    const checkmarkIcon = items[0]?.findComponent(CheckmarkIcon)
 
-    expect(checkmarkIcon.exists()).toBe(true)
+    expect(checkmarkIcon?.exists()).toBe(true)
   })
 })

@@ -39,14 +39,14 @@ describe('formPhoneNumberInput', () => {
     const inputs = wrapper.findAll('input')
     const inputWithId = inputs.filter((input) => input.attributes('id')?.includes('input-'))[0]
 
-    expect(inputWithId.attributes('type')).toBe('tel')
+    expect(inputWithId?.attributes('type')).toBe('tel')
   })
 
   it('updates model with country calling code & formatting when typing', async () => {
     const inputs = wrapper.findAll('input')
     const inputWithId = inputs.filter((input) => input.attributes('id')?.includes('input-'))[0]
 
-    await inputWithId.setValue('456789000')
+    await inputWithId?.setValue('456789000')
     expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([
       '+32 456 78 90 00',
     ])

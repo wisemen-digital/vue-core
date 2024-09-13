@@ -88,8 +88,8 @@ describe('formNumberInput', () => {
     await wrapper.setProps({ tooltip: 'Tooltip' })
 
     expect(wrapper.findComponent(AppTooltip).props('content')).toBe('Tooltip')
-    expect(wrapper.findAllComponents({ name: 'AppIcon' })[0].exists()).toBe(true)
-    expect(wrapper.findAllComponents({ name: 'AppIcon' })[0].props('icon')).toBe('alertCircle')
+    expect(wrapper?.findAllComponents({ name: 'AppIcon' })[0]?.exists()).toBe(true)
+    expect(wrapper?.findAllComponents({ name: 'AppIcon' })[0]?.props('icon')).toBe('alertCircle')
   })
 
   it('disables controls if max reached', () => {
@@ -117,7 +117,7 @@ describe('formNumberInput', () => {
       },
     })
 
-    expect(wrapper.findAllComponents({ name: 'AppIcon' })[0].exists()).toBe(true)
-    expect(wrapper.findAllComponents({ name: 'AppIcon' })[0].props('icon')).toBe(iconLeft)
+    expect(wrapper.findAllComponents({ name: 'AppIcon' })[0]?.exists()).toBe(true)
+    expect(wrapper.findAllComponents({ name: 'AppIcon' })[0]?.props('icon')).toBe(iconLeft)
   })
 })

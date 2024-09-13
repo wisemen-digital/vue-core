@@ -31,7 +31,7 @@ describe('appTagsInput', () => {
 
     const tags = wrapper.findAll('[data-radix-vue-collection-item]')
 
-    expect(tags[0].html()).contains('tag1')
+    expect(tags[0]?.html()).contains('tag1')
   })
 
   it('renders with given id', async () => {
@@ -69,7 +69,7 @@ describe('appTagsInput', () => {
 
     const tags = wrapper.findAll('[data-radix-vue-collection-item]')
 
-    expect(tags[1].html()).contains('tag2')
+    expect(tags[1]?.html()).contains('tag2')
   })
 
   it('does not add tag if max is reached', async () => {
@@ -80,7 +80,7 @@ describe('appTagsInput', () => {
 
     const tags = wrapper.findAll('[data-radix-vue-collection-item]')
 
-    expect(tags[1].html()).contains('tag2')
+    expect(tags[1]?.html()).contains('tag2')
     expect(tags[2]).toBeUndefined()
   })
 })
