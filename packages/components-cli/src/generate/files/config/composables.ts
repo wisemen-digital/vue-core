@@ -5,7 +5,7 @@ export const composables: Component = {
   files: [
     {
       type: ComponentType.COMPOSABLES,
-      path: 'componentAttrs.composable.ts',
+      path: 'component-attrs/componentAttrs.composable.ts',
     },
     {
       type: ComponentType.COMPOSABLES,
@@ -13,7 +13,19 @@ export const composables: Component = {
     },
     {
       type: ComponentType.COMPOSABLES,
-      path: 'debounceSearch.composable.ts',
+      path: 'debounce-search/debounceSearch.composable.ts',
+    },
+    {
+      type: ComponentType.COMPOSABLES,
+      path: 'loading/loading.composable.ts',
+    },
+    {
+      type: ComponentType.COMPOSABLES,
+      path: 'document-title/documentTitle.composable.ts',
+    },
+    {
+      type: ComponentType.COMPOSABLES,
+      path: 'api-error-toast/apiErrorToast.composable.ts',
     },
   ],
   component: ComponentName.COMPOSABLES,

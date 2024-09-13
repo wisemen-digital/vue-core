@@ -1,16 +1,12 @@
 import type { Component } from '@/generate/components.type'
 import { ComponentName, ComponentType } from '@/generate/components.type'
 
-export const style: Component = {
+export const config: Component = {
   files: [
     {
-      type: ComponentType.STYLES,
+      type: ComponentType.CONFIG,
       path: './',
     },
-    {
-      type: ComponentType.ROOT,
-      path: './tailwind.config.ts',
-    },
   ],
-  component: ComponentName.STYLES,
+  component: ComponentName.CONFIG_GLOBAL,
 }

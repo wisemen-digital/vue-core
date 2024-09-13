@@ -1,15 +1,16 @@
 import type { Component } from '@/generate/components.type'
 import { ComponentName, ComponentType } from '@/generate/components.type'
 
-export const textarea: Component = {
+export const accordion: Component = {
   files: [
     {
       type: ComponentType.COMPONENTS,
-      path: 'textarea',
+      path: 'accordion',
+    },
+    {
+      type: ComponentType.TYPES,
+      path: 'accordionItem.type.ts',
     },
   ],
-  internalDependencies: [
-    ComponentName.FORM,
-  ],
-  component: ComponentName.TEXT_AREA,
+  component: ComponentName.ACCORDION,
 }

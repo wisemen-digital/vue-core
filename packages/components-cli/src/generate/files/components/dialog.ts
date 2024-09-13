@@ -13,7 +13,7 @@ export const dialog: Component = {
     },
     {
       type: ComponentType.COMPOSABLES,
-      path: 'dialog.composable.ts',
+      path: '/dialog/dialog.composable.ts',
     },
   ],
   internalDependencies: [

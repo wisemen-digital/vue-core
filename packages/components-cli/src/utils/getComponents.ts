@@ -14,8 +14,10 @@ export const fileTypeSchema = z.enum([
   'utils',
   'icons',
   'config',
+  'root',
   'styles',
   'libs',
+  'root',
   'types',
 ])
 

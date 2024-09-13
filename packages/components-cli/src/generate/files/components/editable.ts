@@ -1,15 +1,12 @@
 import type { Component } from '@/generate/components.type'
 import { ComponentName, ComponentType } from '@/generate/components.type'
 
-export const textarea: Component = {
+export const editable: Component = {
   files: [
     {
       type: ComponentType.COMPONENTS,
-      path: 'textarea',
+      path: 'editable',
     },
   ],
-  internalDependencies: [
-    ComponentName.FORM,
-  ],
-  component: ComponentName.TEXT_AREA,
+  component: ComponentName.EDITABLE,
 }

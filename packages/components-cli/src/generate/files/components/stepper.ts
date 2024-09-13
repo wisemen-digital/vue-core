@@ -1,24 +1,20 @@
 import type { Component } from '@/generate/components.type'
 import { ComponentName, ComponentType } from '@/generate/components.type'
 
-export const keyboard: Component = {
+export const stepper: Component = {
   files: [
     {
       type: ComponentType.COMPONENTS,
-      path: 'keyboard',
+      path: 'stepper',
     },
     {
       type: ComponentType.TYPES,
-      path: 'keyboard.type.ts',
-    },
-    {
-      type: ComponentType.TYPES,
-      path: 'keyboardShortcut.type.ts',
+      path: 'stepper.type.ts',
     },
     {
       type: ComponentType.COMPOSABLES,
-      path: '/keyboard-shortcut/keyboardShortcut.composable.ts',
+      path: 'stepper/stepper.composable.ts',
     },
   ],
-  component: ComponentName.KEYBOARD,
+  component: ComponentName.STEPPER,
 }

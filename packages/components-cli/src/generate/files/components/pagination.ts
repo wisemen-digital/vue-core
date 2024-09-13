@@ -1,15 +1,12 @@
 import type { Component } from '@/generate/components.type'
 import { ComponentName, ComponentType } from '@/generate/components.type'
 
-export const textarea: Component = {
+export const pagination: Component = {
   files: [
     {
       type: ComponentType.COMPONENTS,
-      path: 'textarea',
+      path: 'pagination',
     },
   ],
-  internalDependencies: [
-    ComponentName.FORM,
-  ],
-  component: ComponentName.TEXT_AREA,
+  component: ComponentName.PAGINATION,
 }

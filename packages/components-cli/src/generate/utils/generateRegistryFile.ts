@@ -12,8 +12,8 @@ import {
   getComponentTypeFolder,
 } from '@/generate/components.type'
 
-const BASE_COMPONENTS_PATH = '../components'
-const BASE_GENERATION_PATH = '../../docs/public/_generation'
+export const BASE_COMPONENTS_PATH = '../components'
+export const BASE_GENERATION_PATH = '../../docs/public/_generation'
 
 interface ProcessedFile {
   name: string
@@ -36,8 +36,8 @@ export const FILE_EXTENSIONS = [
   '.scss',
 ]
 
-export function isFile(file: ComponentFile): boolean {
-  return FILE_EXTENSIONS.some((extension) => file.path.endsWith(extension))
+export function isFile(path: string): boolean {
+  return FILE_EXTENSIONS.some((extension) => path.endsWith(extension))
 }
 
 export function getAllFilesWithingFolder(folder: string): ComponentFile[] {
@@ -84,7 +84,7 @@ export function handleFile(file: ComponentFile): ProcessedFile | null {
 export function handleComponent(component: Component): ProcessedComponent {
   const files = component.files?.reduce((handledFiles, file) => {
     try {
-      if (!isFile(file)) {
+      if (!isFile(file.path)) {
         const folderFiles = getAllFilesWithingFolder(path.join(process?.cwd(), `${BASE_COMPONENTS_PATH}${getComponentTypeFolder(file.type)}`, file.path))
 
         const handledFolderFiles = folderFiles.map((folderFile) => {
@@ -109,7 +109,7 @@ export function handleComponent(component: Component): ProcessedComponent {
         handledFile,
       ]
     }
-    catch {
+    catch (e) {
       console.error(`\x1B[31mError reading file ${file.path} in component \'${component.component}\'`)
 
       return handledFiles
