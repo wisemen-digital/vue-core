@@ -118,7 +118,7 @@ const computedModelValue = computed<Date[] | null>({
     ]
   },
   set: (value: Date[] | null) => {
-    if (value === null) {
+    if (value === null || value[0] == null || value[1] == null) {
       modelValue.value = null
 
       return

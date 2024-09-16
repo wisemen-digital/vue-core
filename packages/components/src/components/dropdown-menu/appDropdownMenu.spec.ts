@@ -55,8 +55,8 @@ describe('appDropdownMenu', () => {
       const menuItems = document.body.querySelectorAll('[role="menuitem"]')
 
       expect(menuItems.length).toBe(2)
-      expect(menuItems[0].textContent).toBe('Item 1')
-      expect(menuItems[1].textContent).toBe('Item 2')
+      expect(menuItems[0]?.textContent).toBe('Item 1')
+      expect(menuItems[1]?.textContent).toBe('Item 2')
     })
 
     describe('after selecting the first item', () => {

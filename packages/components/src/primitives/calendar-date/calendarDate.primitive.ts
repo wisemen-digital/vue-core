@@ -45,6 +45,10 @@ export class CalendarDate {
       day,
     ] = value.split('-').map(Number)
 
+    if (day == null || month == null || year == null) {
+      throw new Error('Invalid date string')
+    }
+
     return new CalendarDate({ day, month, year })
   }
 

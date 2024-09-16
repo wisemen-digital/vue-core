@@ -15,6 +15,10 @@ export const address: Component = {
       type: ComponentType.TYPES,
       path: 'addressForm.model.ts',
     },
+    {
+      type: ComponentType.UTILS,
+      path: 'address.util.ts',
+    },
   ],
   component: ComponentName.ADDRESS,
 }

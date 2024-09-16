@@ -77,7 +77,7 @@ describe('appToast', () => {
     const toastElement = wrapper.find('[data-sonner-toast]')
     const actionButton = toastElement.findAll('button')[1]
 
-    await actionButton.trigger('click')
+    await actionButton?.trigger('click')
 
     expect(actionMock).toHaveBeenCalled()
   })

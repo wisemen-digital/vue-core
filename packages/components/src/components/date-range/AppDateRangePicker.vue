@@ -128,11 +128,19 @@ const model = computed<[Date, Date] | [string, string] | null>({
 const dp = ref<DatePickerInstance | null>(null)
 
 function selectDate(): void {
-  dp.value?.selectDate()
+  if (dp.value?.selectDate == null) {
+    return
+  }
+
+  dp.value.selectDate()
 }
 
 function closeMenu(): void {
-  dp.value?.closeMenu()
+  if (dp.value?.closeMenu == null) {
+    return
+  }
+
+  dp.value.closeMenu()
 }
 </script>
 

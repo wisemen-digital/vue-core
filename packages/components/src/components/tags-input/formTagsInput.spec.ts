@@ -40,7 +40,7 @@ describe('formTagsInput', () => {
 
     const tags = wrapper.findAll('[data-radix-vue-collection-item]')
 
-    expect(tags[0].html()).contains('tag1')
+    expect(tags[0]?.html()).contains('tag1')
   })
 
   it('handles required field correctly', async () => {

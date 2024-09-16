@@ -15,8 +15,10 @@
     "resolveJsonModule": true,
     "types": ["node", "@types/dom-view-transitions"],
     "strict": true,
+    "noUncheckedIndexedAccess": true,
     "declaration": false,
     "outDir": "dist",
+
     "sourceMap": true,
     "esModuleInterop": true,
     "skipLibCheck": true

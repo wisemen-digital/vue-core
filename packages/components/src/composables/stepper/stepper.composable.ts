@@ -19,15 +19,22 @@ export function useStepper(activeStepId: Ref<number>, steps: StepItem[]): UseSte
     const currentIndex = steps.findIndex((step) => step.id === activeStepId.value)
 
     if (currentIndex >= 0 && currentIndex < steps.length - 1) {
-      activeStepId.value = steps[currentIndex + 1].id
+      const newStepId = steps[currentIndex + 1]?.id
+
+      if (newStepId == null) {
+        return
+      }
+
+      activeStepId.value = newStepId
     }
   }
 
   function prevStep(): void {
     const currentIndex = steps.findIndex((step) => step.id === activeStepId.value)
+    const newStepId = steps[currentIndex - 1]?.id
 
-    if (currentIndex > 0) {
-      activeStepId.value = steps[currentIndex - 1].id
+    if (currentIndex > 0 && newStepId != null) {
+      activeStepId.value = newStepId
     }
   }
 

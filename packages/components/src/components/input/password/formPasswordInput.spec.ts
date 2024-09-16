@@ -39,7 +39,7 @@ describe('formPasswordInput', () => {
     const inputs = wrapper.findAll('input')
     const inputWithId = inputs.filter((input) => input.attributes('id')?.includes('input-'))[0]
 
-    expect(inputWithId.attributes('type')).toBe('password')
+    expect(inputWithId?.attributes('type')).toBe('password')
   })
 
   it('handles required field correctly', async () => {
@@ -52,10 +52,10 @@ describe('formPasswordInput', () => {
     const inputWithId = inputs.filter((input) => input.attributes('id')?.includes('input-'))[0]
 
     await wrapper.find('button').trigger('click')
-    expect(inputWithId.attributes('type')).toBe('text')
+    expect(inputWithId?.attributes('type')).toBe('text')
 
     await wrapper.find('button').trigger('click')
-    expect(inputWithId.attributes('type')).toBe('password')
+    expect(inputWithId?.attributes('type')).toBe('password')
   })
 
   it('renders errors when isTouched is true and errors are provided', async () => {
