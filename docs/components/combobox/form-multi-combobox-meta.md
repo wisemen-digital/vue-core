@@ -34,7 +34,7 @@ import FormMultiComboboxPlayground from './FormMultiComboboxPlayground.vue'
 | Slot | Type | Description |
 | --------- | ---- | ----------- |
 | `left` | any | Override the left content of the combobox input |
-| `option` | \{ dataTestid?: string; value: AcceptableValue; \} | Override the option rendering of the combobox, and have access to the dataTestId |
+| `option` | \{ dataTestId?: string; value: AcceptableValue; \} | Override the option rendering of the combobox, and have access to the dataTestId |
 
 
 ## Events

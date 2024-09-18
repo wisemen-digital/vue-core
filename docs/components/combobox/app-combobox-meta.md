@@ -35,7 +35,7 @@ import AppComboboxPlayground from './AppComboboxPlayground.vue'
 | --------- | ---- | ----------- |
 | `empty` | any | Override the empty state of the combobox dropdown |
 | `left` | any | Override the left content of the combobox input |
-| `option` | \{ dataTestid?: string; value: AcceptableValue; \} | Override the option rendering of the combobox, and have access to the dataTestId |
+| `option` | \{ dataTestId?: string; value: AcceptableValue; \} | Override the option rendering of the combobox, and have access to the dataTestId |
 | `right` | any | Override the right content of the combobox input |
 
 
