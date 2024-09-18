@@ -38,8 +38,7 @@ const itemClasses = computed<string>(() => sidebarNavStyle.item())
 
       <template #content>
         <slot
-          :label="props.item.label"
-          :keyboard-shortcut="props.item.keyboardShortcut"
+          :navigation-item="props.item"
           name="content"
         />
       </template>

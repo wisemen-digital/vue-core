@@ -91,11 +91,10 @@ function toggleSidebar(): void {
                 name="trigger"
               />
             </template>
-            <template #content="{ label, keyboardShortcut }">
+            <template #content="{ navigationItem }">
               <slot
-                :label="label"
+                :navigation-item="navigationItem"
                 :is-open="isOpen"
-                :keyboard-shortcut="keyboardShortcut"
                 name="content"
               />
             </template>
@@ -117,11 +116,10 @@ function toggleSidebar(): void {
                   name="trigger"
                 />
               </template>
-              <template #content="{ label, keyboardShortcut }">
+              <template #content="{ navigationItem }">
                 <slot
-                  :label="label"
+                  :navigation-item="navigationItem"
                   :is-open="isOpen"
-                  :keyboard-shortcut="keyboardShortcut"
                   name="content"
                 />
               </template>
