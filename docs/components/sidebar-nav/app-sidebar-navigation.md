@@ -34,6 +34,7 @@ export type NavigationItem = NavigationItemGroup | NavigationItemOption
 ::: code-group
 ```vue [Usage]
 <script setup lang="ts">
+import type { NavigationItem } from '@wisemen/vue-core'
 import {
   AppButton,
   AppIcon,
@@ -72,40 +73,39 @@ const navigationItems = ref<NavigationItem[]>([
 <template>
   <AppSidebarNavigation
     :items="(navigationItems as NavigationItem[])"
-    v-bind="values"
   >
     <template #header>
       // Header: Company logo for example
     </template>
-    <template #trigger="{ icon, isOpen, label }">
+    <template #trigger="{ navigationItem, isOpen }">
       <AppButton
         variant="ghost"
         class="w-full"
       >
         <div class="flex gap-2">
           <AppIcon
-            :icon="icon"
+            :icon="navigationItem.icon"
           />
           <AppText
             v-if="isOpen"
             variant="subtext"
           >
-            {{ label }}
+            {{ navigationItem.label }}
           </AppText>
         </div>
       </AppButton>
     </template>
-    <template #content="{ keyboardShortcut, label }">
+    <template #content="{ navigationItem }">
       <div class="flex items-center gap-x-2 p-1.5">
         <AppText
           variant="caption"
         >
-          {{ `Go to ${label}` }}
+          {{ `Go to ${navigationItem.label}` }}
         </AppText>
 
         <AppKeyboardShortcut
-          v-if="keyboardShortcut !== undefined"
-          :keys="keyboardShortcut.keys"
+          v-if="navigationItem.keyboardShortcut !== undefined"
+          :keys="navigationItem.keyboardShortcut.keys"
           variant="bordered"
         />
       </div>

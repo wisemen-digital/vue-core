@@ -17,8 +17,8 @@ import AppSidebarNavigationPlayground from './AppSidebarNavigationPlayground.vue
 
 | Slot | Type | Description |
 | --------- | ---- | ----------- |
-| `content` | \{ isOpen: boolean; keyboardShortcut?: KeyboardShortcut; label: string; \} | Add content for navigations items' tooltip |
+| `content` | \{ isOpen: boolean; navigationItem: NavigationItemOption; \} | Add content for navigations items' tooltip |
 | `footer` | \{ isOpen: boolean; \} | Add content for the sidebar's footer |
 | `header` | \{ isOpen: boolean; \} | Add content for the sidebar header |
-| `trigger` | \{ isOpen: boolean; icon: keyof Icons; label: string; to: RouteLocationTyped<"test">; \} | Add content for navigations items' trigger |
+| `trigger` | \{ isOpen: boolean; navigationItem: NavigationItemOption; \} | Add content for navigations items' trigger |
 

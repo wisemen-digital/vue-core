@@ -12,11 +12,22 @@ import AppProgressBarPlayground from './AppProgressBarPlayground.vue'
 | ---- | ---- | ----------- | ------- |
 | autoColor | `AutoColor[]` |  |  |
 | color | `ProgressBarColor` |  | `"primary"` |
+| dynamic | `boolean` |  |  |
+| hasTooltip | `boolean` |  | `false` |
 | isPercentageVisible | `boolean` |  | `false` |
 | maxValue | `number` |  | `100` |
 | minValue | `number` |  | `0` |
+| numbersAfterComma | `number` |  | `0` |
 | percentagePosition | `ProgressPosition` |  | `"outside"` |
-| tooltip | `boolean` |  | `false` |
+| rounded | `boolean` |  | `true` |
+| textColor* | `textColor` |  |  |
 | transitionDuration | `number` |  | `10` |
 | value | `number` |  | `0` |
+
+
+## Slots
+
+| Slot | Type | Description |
+| --------- | ---- | ----------- |
+| `tooltip` | any | Content of the tooltip. Only rendered if hasTooltip is true |
 
