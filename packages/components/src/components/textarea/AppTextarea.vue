@@ -13,6 +13,10 @@ const props = withDefaults(defineProps<{
    */
   id?: null | string
   /**
+   * The testId label.
+   */
+  testId?: string
+  /**
    * Whether the input is disabled.
    * @default false
    */
@@ -84,6 +88,7 @@ const textareaClasses = computed<string>(() => textareaStyle.textarea({
     :style="{
       transitionProperty: 'border-color, background-color, box-shadow',
     }"
+    :data-test-id="props.testId"
     @blur="onBlur"
     @focus="onFocus"
   />

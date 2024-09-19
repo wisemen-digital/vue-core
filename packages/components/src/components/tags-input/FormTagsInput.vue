@@ -5,6 +5,10 @@ import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
 const props = withDefaults(defineProps<{
   /**
+   * The testId label.
+   */
+  testId?: string
+  /**
    * Whether the input is disabled.
    */
   isDisabled?: boolean
@@ -87,6 +91,7 @@ function onBlur(): void {
       :placeholder="props.placeholder"
       :is-disabled="props.isDisabled"
       :max="props.max"
+      :test-id="props.testId"
       @focus="onFocus"
       @blur="onBlur"
     >

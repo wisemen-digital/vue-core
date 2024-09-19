@@ -15,6 +15,10 @@ import AppDialogOverlay from '@/components/dialog/AppDialogOverlay.vue'
 
 const props = withDefaults(defineProps<{
   /**
+   * The testId label.
+   */
+  testId?: string
+  /**
    * The id of the element that triggers the dialog: Will be set automatically when using the `useDialog` composable
    * @default null
    */
@@ -189,6 +193,7 @@ watch(isActuallyOpen, () => {
     <DialogRoot
       v-model:open="isOpen"
       :modal="isActuallyOpen"
+      :data-test-id="props.testId"
     >
       <DialogPortal>
         <Transition

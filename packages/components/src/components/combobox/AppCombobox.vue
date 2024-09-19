@@ -33,6 +33,10 @@ const props = withDefaults(
      */
     id?: null | string
     /**
+     * The testId label.
+     */
+    testId: string
+    /**
      * Whether the combobox has a clear button.
      * @default false
      */
@@ -214,6 +218,7 @@ watch(isOpen, (isOpen) => {
       v-model:search-term="search"
       :filter-function="(props.filterFn as any)"
       :display-value="displayFn"
+      :data-test-id="props.testId"
       :disabled="props.isDisabled"
     >
       <ComboboxAnchor>

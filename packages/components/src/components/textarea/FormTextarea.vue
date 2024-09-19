@@ -8,6 +8,10 @@ import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 const props = withDefaults(
   defineProps<{
     /**
+     * The testId label.
+     */
+    testId?: string
+    /**
      * Whether the input is disabled.
      */
     isDisabled?: boolean
@@ -92,6 +96,7 @@ function onBlur(): void {
       :id="id"
       v-model="model"
       v-bind="otherAttrs"
+      :test-id="props.testId"
       :is-invalid="isInvalid"
       :placeholder="props.placeholder"
       :is-disabled="props.isDisabled"

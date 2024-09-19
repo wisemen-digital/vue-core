@@ -9,6 +9,10 @@ import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
 const props = defineProps<{
   /**
+   * The testId label.
+   */
+  testId?: string
+  /**
    * Whether the input is disabled.
    */
   isDisabled: boolean
@@ -55,6 +59,7 @@ const isInvalid = computed<boolean>(() => {
       v-if="props.label !== null"
       :for="inputId"
       :label="props.label"
+      :data-test-id="props.testId"
       :is-required="props.isRequired"
       :is-invalid="isInvalid"
       :is-disabled="props.isDisabled"

@@ -14,6 +14,10 @@ const props = withDefaults(defineProps<{
    */
   id?: null | string
   /**
+   * The testId label.
+   */
+  testId?: string
+  /**
    * Whether the input is disabled.
    */
   isDisabled?: boolean
@@ -101,6 +105,7 @@ const inputClasses = computed<string>(() => tagsInputStyle.input({
       :id="id"
       :placeholder="props.placeholder ?? undefined"
       :class="inputClasses"
+      :data-test-id="props.testId"
       @focus="onFocus"
       @blur="onBlur"
     />
