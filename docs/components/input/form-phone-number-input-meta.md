@@ -20,6 +20,7 @@ import FormPhoneNumberInputPlayground from './FormPhoneNumberInputPlayground.vue
 | locale | `string \| null` | The locale of the input. For registering locales, see: https://www.npmjs.com/package/i18n-iso-countries | `null` |
 | modelValue* | `string \| null` |  |  |
 | placeholder | `string \| null` | The placeholder of the input. | `null` |
+| testId | `string` | The testId label. |  |
 | tooltip | `string` | The tooltip of the input. |  |
 
 

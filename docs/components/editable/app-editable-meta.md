@@ -16,6 +16,7 @@ import AppEditablePlayground from './AppEditablePlayground.vue'
 | maxLength | `number` | The maximum number of characters allowed. |  |
 | modelValue* | `string` |  |  |
 | placeholder | `string` | The placeholder value of the editable field. |  |
+| testId | `string` | The testId label. |  |
 
 
 ## Slots

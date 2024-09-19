@@ -19,6 +19,7 @@ import FormTextareaPlayground from './FormTextareaPlayground.vue'
 | modelValue* | `string \| null` |  |  |
 | placeholder | `string \| null` | The placeholder of the input. | `null` |
 | resize | `"none" \| "both" \| "horizontal" \| "vertical"` | The resize property of the textarea. | `"none"` |
+| testId | `string` | The testId label. |  |
 | tooltip | `string` | The tooltip of the input. |  |
 
 

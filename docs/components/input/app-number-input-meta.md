@@ -13,13 +13,14 @@ import AppNumberInputPlayground from './AppNumberInputPlayground.vue'
 | hideControls | `boolean` | Whether to hide the increment and decrement controls. | `false` |
 | iconLeft | `keyof Icons \| null` | The left icon of the input. | `null` |
 | id | `string \| null` | The id of the input. | `null` |
-| isDisabled | `boolean` | Whether the input is disabled. | `false` |
+| isDisabled | `boolean` |  | `false` |
 | isInvalid | `boolean` | Whether the input is invalid. | `false` |
 | isLoading | `boolean` | Whether the input is loading. | `false` |
 | max | `number \| null` | The maximum value of the input. | `null` |
 | min | `number \| null` | The minimum value of the input. | `0` |
 | modelValue* | `number \| null` |  |  |
 | placeholder | `string \| null` | The placeholder of the input. | `null` |
+| testId | `string` | The testId label. |  |
 
 
 ## Slots
