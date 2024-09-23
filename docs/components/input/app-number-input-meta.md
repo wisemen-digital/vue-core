@@ -20,6 +20,7 @@ import AppNumberInputPlayground from './AppNumberInputPlayground.vue'
 | min | `number \| null` | The minimum value of the input. | `0` |
 | modelValue* | `number \| null` |  |  |
 | placeholder | `string \| null` | The placeholder of the input. | `null` |
+| testId | `string` | The testId label. |  |
 
 
 ## Slots

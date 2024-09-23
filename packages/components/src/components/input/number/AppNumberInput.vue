@@ -16,6 +16,10 @@ const props = withDefaults(defineProps<{
    * Whether the input is disabled.
    * @default false
    */
+  /**
+   * The testId label.
+   */
+  testId?: string
   isDisabled?: boolean
   /**
    * Whether the input is invalid.
@@ -153,6 +157,7 @@ const upButtonClasses = computed<string>(() => inputStyle.numberUpButton())
     :is-disabled="props.isDisabled"
     :is-invalid="props.isInvalid"
     :is-loading="props.isLoading"
+    :test-id="props.testId"
     :placeholder="props.placeholder"
     :icon-left="props.iconLeft"
     type="number"

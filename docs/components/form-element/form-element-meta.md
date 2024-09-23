@@ -15,6 +15,7 @@ import FormElementPlayground from './FormElementPlayground.vue'
 | isRequired* | `boolean` | Whether the input is required. |  |
 | isTouched* | `boolean` | Whether the input is touched. This is used to determine if the input should be marked as invalid. |  |
 | label* | `string \| null` | The label of the input. |  |
+| testId | `string` | The testId label. |  |
 | tooltip | `string` | The tooltip of the input. |  |
 
 

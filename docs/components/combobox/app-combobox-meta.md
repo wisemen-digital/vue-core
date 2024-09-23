@@ -27,6 +27,7 @@ import AppComboboxPlayground from './AppComboboxPlayground.vue'
 | placeholder | `string \| null` | The placeholder text to display when the combobox is empty. | `null` |
 | popoverProps | `{ align?: "start" \| "end" \| "center"; minWidth?: string; } \| null` | The props of the popover. | `null` |
 | search | `string \| null` |  |  |
+| testId | `string` | The testId label. |  |
 
 
 ## Slots

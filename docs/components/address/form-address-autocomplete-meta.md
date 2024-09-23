@@ -17,6 +17,7 @@ import FormAddressAutocompletePlayground from './FormAddressAutocompletePlaygrou
 | label* | `string` | The label of the input. |  |
 | modelValue* | `AddressForm \| null` | The errors associated with the input. |  |
 | placeholder | `string \| null` | The placeholder of the input. | `null` |
+| testId | `string` | The testId label. |  |
 
 
 ## Events

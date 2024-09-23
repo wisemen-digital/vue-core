@@ -27,6 +27,7 @@ import FormComboboxPlayground from './FormComboboxPlayground.vue'
 | modelValue* | `AcceptableValue \| null` |  |  |
 | placeholder | `string \| null` | The placeholder of the combobox. | `null` |
 | search | `string \| null` |  |  |
+| testId | `string` | The testId label. |  |
 | tooltip | `string` | The tooltip of the combobox. |  |
 
 

@@ -17,6 +17,7 @@ import AppTextareaPlayground from './AppTextareaPlayground.vue'
 | modelValue* | `string \| null` |  |  |
 | placeholder | `string \| null` | The placeholder of the input. | `null` |
 | resize | `"none" \| "both" \| "horizontal" \| "vertical"` | The resize property of the textarea. | `"none"` |
+| testId | `string` | The testId label. |  |
 
 
 ## Events

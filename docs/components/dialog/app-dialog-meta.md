@@ -14,6 +14,7 @@ import AppDialogPlayground from './AppDialogPlayground.vue'
 | hideCloseButton | `boolean` | Whether to hide the close button | `false` |
 | isOpen | `boolean` |  |  |
 | shouldPreventClickOutside | `boolean` | Prevent clicks outside the dialog content to close the dialog | `false` |
+| testId | `string` | The testId label. |  |
 | triggerId | `string \| null` | The id of the element that triggers the dialog: Will be set automatically when using the `useDialog` composable | `null` |
 
 

@@ -18,6 +18,7 @@ import FormTagsInputPlayground from './FormTagsInputPlayground.vue'
 | max | `number \| null` | The maximum amount of tags allowed. | `null` |
 | modelValue* | `string[]` |  |  |
 | placeholder | `string \| null` | The placeholder of the input. | `null` |
+| testId | `string` | The testId label. |  |
 | tooltip | `string` | The tooltip of the input. |  |
 
 

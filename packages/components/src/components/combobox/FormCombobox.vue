@@ -9,6 +9,10 @@ import type { AcceptableValue } from '@/types/selectItem.type'
 const props = withDefaults(
   defineProps<{
     /**
+     * The testId label.
+     */
+    testId?: string
+    /**
      * Whether the combobox has a clear button.
      * @default false
      */
@@ -153,6 +157,7 @@ function onFilter(filter: string): void {
       :placeholder="props.placeholder"
       :is-loading="props.isLoading"
       :icon-left="props.iconLeft"
+      :test-id="props.testId"
       :icon-right="props.iconRight"
       :is-chevron-hidden="props.isChevronHidden"
       @blur="onBlur"

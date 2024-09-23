@@ -14,6 +14,10 @@ const props = withDefaults(defineProps<{
    */
   id?: string
   /**
+   * The testId label.
+   */
+  testId?: string
+  /**
    * Whether the editable field is disabled or not.
    */
   isDisabled?: boolean
@@ -66,6 +70,7 @@ const actionsClasses = computed<string>(() => edditableStyle.actions())
       :placeholder="props.placeholder"
       :disabled="props.isDisabled"
       :class="rootClasses"
+      :data-test-id="props.testId"
       submit-mode="both"
       auto-resize
     >

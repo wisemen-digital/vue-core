@@ -24,6 +24,7 @@ import FormTagsComboboxPlayground from './FormTagsComboboxPlayground.vue'
 | modelValue* | `AcceptableValue[]` |  |  |
 | placeholder | `string \| null` | The placeholder of the combobox. | `null` |
 | search | `string \| null` |  |  |
+| testId | `string` | The testId label. |  |
 | tooltip | `string` | The tooltip of the input. |  |
 
 

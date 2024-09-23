@@ -8,6 +8,10 @@ import type { AcceptableValue } from '@/types/selectItem.type'
 const props = withDefaults(
   defineProps<{
     /**
+     * The testId label.
+     */
+    testId?: string
+    /**
      * Whether the combobox is disabled.
      */
     isDisabled?: boolean
@@ -131,12 +135,14 @@ function onFilter(filter: string): void {
       :placeholder="props.placeholder"
       :is-loading="props.isLoading"
       :max="props.max"
+      :test-id="props.testId"
       @blur="onBlur"
       @filter="onFilter"
     >
-      <template #option="{ value }">
+      <template #option="{ value, dataTestId }">
         <slot
           :value="value"
+          :data-test-id="dataTestId"
           name="option"
         />
       </template>

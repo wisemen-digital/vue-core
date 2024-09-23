@@ -28,6 +28,10 @@ import type { SelectItem } from '@/types/selectItem.type'
 const props = withDefaults(
   defineProps<{
     /**
+     * The testId label.
+     */
+    testId?: string
+    /**
      * Whether the input is disabled.
      */
     isDisabled?: boolean
@@ -282,6 +286,7 @@ const countryName = computed<null | string>(() => {
         :is-disabled="props.isDisabled"
         :is-loading="props.isLoading"
         :is-touched="props.isTouched"
+        :test-id="props.testId"
         :placeholder="props.placeholder"
         class="w-full rounded-l-none border-l-0"
         type="tel"

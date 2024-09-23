@@ -11,6 +11,10 @@ import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
 const props = withDefaults(defineProps<{
   /**
+   * The testId label.
+   */
+  testId?: string
+  /**
    * Whether the radio group is disabled.
    */
   isDisabled?: boolean

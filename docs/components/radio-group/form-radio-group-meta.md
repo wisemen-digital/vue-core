@@ -17,6 +17,7 @@ import FormRadioGroupPlayground from './FormRadioGroupPlayground.vue'
 | label | `string \| null` | The label of the radio group. | `null` |
 | modelValue* | `string \| boolean \| null` | The model value of the radio group. |  |
 | options* | `DataItem<string \| boolean>[]` | The options of the radio group. |  |
+| testId | `string` | The testId label. |  |
 | tooltip | `string` | The tooltip of the input. |  |
 
 

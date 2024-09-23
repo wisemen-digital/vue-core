@@ -24,6 +24,10 @@ interface Suggestion {
 
 const props = withDefaults(defineProps<{
   /**
+   * The testId label.
+   */
+  testId?: string
+  /**
    * Whether the input is disabled.
    */
   isDisabled?: boolean
@@ -145,6 +149,7 @@ function onUpdateSearch(search: null | string): void {
     :items="addressPredictionItems"
     :label="label"
     :placeholder="placeholder"
+    :test-id="props.testId"
     icon-right="search"
     @blur="onBlur"
     @update:model-value="onUpdateModelValue"
