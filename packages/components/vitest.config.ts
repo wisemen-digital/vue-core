@@ -6,7 +6,7 @@ import {
   mergeConfig,
 } from 'vitest/config'
 
-import viteConfig from './vite.config'
+import viteConfig from './vite.config.js'
 
 const META_URL = import.meta.url
 

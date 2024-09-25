@@ -6,8 +6,8 @@
     "jsx": "preserve",
     "lib": ["esnext", "dom"],
     "baseUrl": ".",
-    "module": "esnext",
-    "moduleResolution": "node",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
     "paths": {
       "@/*": ["src/*"],
       "@iconify/vue": ["../../.histoire/node_modules/@iconify/vue"]

@@ -1,15 +1,9 @@
-import '@wisemen/vue-core/style.css'
+// import '@wisemen/vue-core/style.css'
 import './index.scss'
 import './override.css'
 
-import type { Config } from '@wisemen/vue-core'
-import { defineConfig } from '@wisemen/vue-core'
 import DefaultTheme from 'vitepress/theme'
 import { createI18n } from 'vue-i18n'
-
-const globalConfig: Config = {
-  googleMapsApiKey: 'AIzaSyATX2fY3BZwaKeURsQhwpEVLmLRr27s4vw',
-}
 
 export const i18nPlugin = createI18n({
   fallbackWarn: false,
@@ -80,8 +74,6 @@ const theme: typeof DefaultTheme = {
 
     ctx.app.use(i18nPlugin as any)
     DefaultTheme.enhanceApp(ctx)
-
-    defineConfig(globalConfig)
   },
 }
 

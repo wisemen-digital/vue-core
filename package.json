@@ -11,7 +11,6 @@
   "scripts": {
     "build": "rimraf packages/vue-core/dist && pnpm run -r build",
     "docs:dev": "pnpm run -r docs:dev",
-    "postinstall": "pnpm build",
     "docs:build": "pnpm run -r cli:generate && pnpm run -r docs:build",
     "pub:release": "cd packages/components && pnpm pub:release --no-git-checks",
     "pub:release-query": "cd packages/query && pnpm pub:release --no-git-checks",
