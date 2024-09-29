@@ -94,11 +94,8 @@ export default {
       },
       height: {
         'button-height-default': 'var(--button-height-default)',
-        'icon-size-default': 'var(--icon-size-default)',
-        'icon-size-lg': 'var(--icon-size-lg)',
-        'icon-size-sm': 'var(--icon-size-sm)',
-        'icon-size-xl': 'var(--icon-size-xl)',
-        'icon-size-xs': 'var(--icon-size-xs)',
+        'button-loader-size-default': 'var(--button-loader-size-default)',
+        'icon-size': 'var(--icon-size)',
         'text-field-height-default': 'var(--text-field-height-default)',
         'text-field-icon-size-default': 'var(--text-field-icon-size-default)',
         'text-field-loader-size-default': 'var(--text-field-loader-size-default)',
@@ -141,6 +138,12 @@ export default {
       },
 
       textColor: {
+        'button-loader-color-active': 'var(--button-loader-color-active)',
+        'button-loader-color-default': 'var(--button-loader-color-default)',
+        'button-loader-color-disabled': 'var(--button-loader-color-disabled)',
+        'button-loader-color-focus': 'var(--button-loader-color-focus)',
+        'button-loader-color-hover': 'var(--button-loader-color-hover)',
+
         'button-text-active': 'var(--button-text-active)',
         'button-text-default': 'var(--button-text-default)',
         'button-text-disabled': 'var(--button-text-disabled)',
@@ -187,11 +190,8 @@ export default {
         'text-field-placeholder-hover': 'var(--text-field-placeholder-hover)',
       },
       width: {
-        'icon-size-default': 'var(--icon-size-default)',
-        'icon-size-lg': 'var(--icon-size-lg)',
-        'icon-size-sm': 'var(--icon-size-sm)',
-        'icon-size-xl': 'var(--icon-size-xl)',
-        'icon-size-xs': 'var(--icon-size-xs)',
+        'button-loader-size-default': 'var(--button-loader-size-default)',
+        'icon-size': 'var(--icon-size)',
         'text-field-icon-size-default': 'var(--text-field-icon-size-default)',
         'text-field-loader-size-default': 'var(--text-field-loader-size-default)',
       },

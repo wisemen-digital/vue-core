@@ -4,100 +4,13 @@ import { computed, ref } from 'vue'
 
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppSpinner from '@/components/spinner/AppSpinner.vue'
+import {
+  type AppTextFieldProps,
+  appTextFieldPropsDefaultValues,
+} from '@/components/text-field/textField.props.js'
 import { textFieldStyle } from '@/components/text-field/textField.style.js'
-import type { Icon } from '@/icons/icons.js'
-import type { FormFieldErrors } from '@/types/formFieldErrors.type.js'
 
-const props = withDefaults(defineProps<{
-  /**
-   * The id of the input.
-   * @default null
-   */
-  id?: null | string
-  /**
-   * The test id of the input.
-   * @default null
-   */
-  testId?: null | string
-  /**
-   * Whether the input is disabled.
-   * @default false
-   */
-  isDisabled?: boolean
-  /**
-   * Whether the input is loading.
-   * @default false
-   */
-  isLoading?: boolean
-  /**
-   * Whether the input is readonly.
-   * @default false
-   */
-  isReadonly?: boolean
-  /**
-   * Whether the input is spell check enabled.
-   * @default false
-   */
-  isSpellCheckEnabled?: boolean
-  /**
-   * Whether the input is touched. Used to determine if an error should be shown.
-   * @default false
-   */
-  isTouched?: boolean
-  /**
-   * The autocorrect property of the input.
-   * @default 'off'
-   */
-  autoComplete?: 'off' | 'on'
-  /**
-   * The errors associated with the input.
-   */
-  errors?: FormFieldErrors | null
-  /**
-   * The hint text of the input.
-   * @default null
-   */
-  hint?: null | string
-  /**
-   * The left icon of the input.
-   * @default null
-   */
-  iconLeft?: Icon | null
-  /**
-   * The right icon of the input.
-   * @default null
-   */
-  iconRight?: Icon | null
-  /**
-   * The label of the input.
-   * @default null
-   */
-  label?: null | string
-  /**
-   * The placeholder text of the input.
-   * @default null
-   */
-  placeholder?: null | string
-  /**
-   * The type of the input.
-   * @default 'text'
-   */
-  type?: 'date' | 'datetime-local' | 'email' | 'password' | 'search' | 'tel' | 'text' | 'time' | 'url'
-}>(), {
-  id: null,
-  isDisabled: false,
-  isLoading: false,
-  isReadonly: false,
-  isSpellCheckEnabled: false,
-  autoComplete: 'off',
-  autoCorrect: 'off',
-  hint: null,
-  iconLeft: null,
-  iconRight: null,
-  label: null,
-  placeholder: null,
-  type: 'text',
-})
+const props = withDefaults(defineProps<AppTextFieldProps>(), appTextFieldPropsDefaultValues)
 
 const emit = defineEmits<{
   blur: []
@@ -160,6 +73,7 @@ const inputLabelClasses = computed<string>(() => style.inputLabel({
 }))
 
 const loaderBoxClasses = computed<string>(() => style.loaderBox())
+
 const loaderClasses = computed<string>(() => style.loader({
   hasError: hasError.value,
   isDisabled: props.isDisabled,
@@ -206,7 +120,7 @@ function onBlur(): void {
         :for="inputId"
         :class="inputLabelClasses"
       >
-        {{ props.label }}
+        {{ props.label }} <template v-if="props.isRequired">*</template>
       </label>
     </slot>
 
@@ -245,6 +159,7 @@ function onBlur(): void {
         :class="inputClasses"
         :autocomplete="props.autoComplete"
         :type="props.type"
+        :required="props.isRequired"
         @focus="onFocus"
         @blur="onBlur"
       >

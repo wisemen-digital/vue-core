@@ -7,8 +7,19 @@ import {
 } from '@/components/button/button.props.js'
 import { buttonStyle } from '@/components/button/button.style'
 import AppIcon from '@/components/icon/AppIcon.vue'
+import AppSpinner from '@/components/spinner/AppSpinner.vue'
 
 const props = withDefaults(defineProps<AppButtonProps>(), appButtonPropsDefaultValues)
+
+const emit = defineEmits<{
+  click: []
+}>()
+
+defineSlots<{
+  default: () => void
+  iconLeft: () => void
+  iconRight: () => void
+}>()
 
 const style = buttonStyle()
 
@@ -23,6 +34,7 @@ const buttonClasses = computed<string>(() => style.button({
   isDisabled: props.isDisabled,
   isFocused: isFocused.value,
   isHovered: isHovered.value,
+  isLoading: props.isLoading,
 }))
 
 const iconLeftClasses = computed<string>(() => style.iconLeft({
@@ -38,6 +50,48 @@ const iconRightClasses = computed<string>(() => style.iconRight({
   isFocused: isFocused.value,
   isHovered: isHovered.value,
 }))
+
+const loaderBoxClasses = computed<string>(() => style.loaderBox({
+  isActive: isActive.value,
+  isDisabled: props.isDisabled,
+  isFocused: isFocused.value,
+  isHovered: isHovered.value,
+}))
+
+const loaderClasses = computed<string>(() => style.loader({
+  isActive: isActive.value,
+  isDisabled: props.isDisabled,
+  isFocused: isFocused.value,
+  isHovered: isHovered.value,
+}))
+
+const sizeClass = computed<null | string>(() => {
+  if (props.size === 'sm') {
+    return 'btn-sm'
+  }
+
+  return null
+})
+
+const variantClass = computed<null | string>(() => {
+  if (props.variant === 'outline') {
+    return 'btn-outline'
+  }
+
+  if (props.variant === 'ghost') {
+    return 'btn-ghost'
+  }
+
+  if (props.variant === 'muted') {
+    return 'btn-muted'
+  }
+
+  if (props.variant === 'destructive') {
+    return 'btn-destructive'
+  }
+
+  return null
+})
 
 function onFocus(): void {
   isFocused.value = true
@@ -62,34 +116,74 @@ function onMouseDown(): void {
 function onMouseUp(): void {
   isActive.value = false
 }
+
+function onKeyDown(event: KeyboardEvent): void {
+  if (event.key === ' ' || event.key === 'Enter') {
+    isActive.value = true
+  }
+}
+
+function onKeyUp(event: KeyboardEvent): void {
+  if (event.key === ' ' || event.key === 'Enter') {
+    isActive.value = false
+  }
+}
+
+function onClick(): void {
+  // According to WCAG, a button should not be disabled when loading
+  if (props.isLoading) {
+    return
+  }
+
+  emit('click')
+}
 </script>
 
 <template>
   <button
     :type="props.type"
     :disabled="props.isDisabled"
-    :class="buttonClasses"
+    :aria-busy="props.isLoading"
+    :class="[buttonClasses, sizeClass, variantClass]"
     @focus="onFocus"
     @blur="onBlur"
     @mouseenter="onMouseEnter"
     @mouseleave="onMouseLeave"
     @mousedown="onMouseDown"
     @mouseup="onMouseUp"
+    @keydown="onKeyDown"
+    @keyup="onKeyUp"
+    @click="onClick"
   >
-    <AppIcon
+    <slot
       v-if="props.iconLeft !== null"
-      :icon="props.iconLeft"
-      :class="iconLeftClasses"
-    />
+      name="iconLeft"
+    >
+      <AppIcon
+        :icon="props.iconLeft"
+        :class="iconLeftClasses"
+      />
+    </slot>
 
     <span class="whitespace-nowrap">
       <slot />
     </span>
 
-    <AppIcon
+    <div
+      v-if="props.isLoading"
+      :class="loaderBoxClasses"
+    >
+      <AppSpinner :class="loaderClasses" />
+    </div>
+
+    <slot
       v-if="props.iconRight !== null"
-      :icon="props.iconRight"
-      :class="iconRightClasses"
-    />
+      name="iconRight"
+    >
+      <AppIcon
+        :icon="props.iconRight"
+        :class="iconRightClasses"
+      />
+    </slot>
   </button>
 </template>

@@ -22,16 +22,28 @@ export interface AppButtonProps {
    */
   iconRight?: Icon | null
   /**
+   * The size of the button.
+   * @default 'default'
+   */
+  size?: 'default' | 'sm'
+  /**
    * The type of the button.
    * @default 'button'
    */
   type?: 'button' | 'reset' | 'submit'
+  /**
+   * The variant of the button.
+   * @default 'default'
+   */
+  variant?: 'default' | 'destructive' | 'ghost' | 'muted' | 'outline'
 }
 
-export const appButtonPropsDefaultValues: Partial<AppButtonProps> = {
+export const appButtonPropsDefaultValues = {
   isDisabled: false,
   isLoading: false,
   iconLeft: null,
   iconRight: null,
+  size: 'default',
   type: 'button',
-}
+  variant: 'default',
+} satisfies AppButtonProps

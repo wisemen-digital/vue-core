@@ -14,8 +14,7 @@ const props = withDefaults(
      * The size of the icon
      * @default 'default'
      */
-    // size?: IconStyleProps['size']
-    size?: 'default' | 'lg' | 'sm' | 'xl' | 'xs'
+    size?: 'default' | 'full' | 'lg' | 'sm' | 'xl' | 'xs'
   }>(),
   {
     size: 'default',
@@ -29,6 +28,7 @@ const attrs = useAttrs()
   <Suspense>
     <AppAsyncIcon
       :icon="props.icon"
+      :size="props.size"
       v-bind="attrs"
     />
   </Suspense>

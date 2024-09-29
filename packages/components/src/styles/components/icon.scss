@@ -1,8 +1,24 @@
 :root {
   --icon-color: #000000;
-  --icon-size-default: 16px;
-  --icon-size-sm: 14px;
-  --icon-size-xs: 12px;
-  --icon-size-lg: 18px;
-  --icon-size-xl: 24px;
+  --icon-size: 16px;
+}
+
+.icon-sm {
+  --icon-size: 14px;
+}
+
+.icon-xs {
+  --icon-size: 12px;
+}
+
+.icon-lg {
+  --icon-size: 18px;
+}
+
+.icon-xl {
+  --icon-size: 24px;
+}
+
+.icon-full {
+  --icon-size: 100%;
 }
