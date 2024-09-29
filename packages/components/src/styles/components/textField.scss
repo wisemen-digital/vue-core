@@ -412,6 +412,13 @@
   --text-field-loader-color-error: #FF6F91; /* Blush pink loader for errors */
   --text-field-loader-color-focus: #FF69B4; /* Keep hot pink for focus */
   --text-field-loader-color-hover: #FF69B4;
+
+  /* Hint */
+  --text-field-hint-color-default: #FF6F91;
+  --text-field-hint-color-disabled: #FF6F91;
+  --text-field-hint-color-error: #FF6F91;
+  --text-field-hint-color-focus: #FF6F91;
+  --text-field-hint-color-hover: #FF6F91;
 }
 
 .modern {

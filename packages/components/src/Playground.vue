@@ -50,6 +50,16 @@ const theme = ref<string>('default')
 
       <AppTextField
         :class="theme"
+        :is-disabled="true"
+      />
+
+      <AppTextField
+        :class="theme"
+        :is-loading="true"
+      />
+
+      <AppTextField
+        :class="theme"
         hint="Make sure to include your email address."
       />
     </div>
