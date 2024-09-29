@@ -1,5 +1,17 @@
-@import "tailwindcss";
 
-@theme {
-  --color-green-100: #ff00ff;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import './components//button.scss';
+@import './components/icon.scss';
+@import './components/textField.scss';
+
+@layer base {
+  @import 'reset';
+
+  :root {
+    
+  }
 }
+
