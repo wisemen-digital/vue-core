@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 
 import AppButton from '@/components/button/AppButton.vue'
+import AppIconButton from '@/components/button/AppIconButton.vue'
 import AppTextField from '@/components/text-field/AppTextField.vue'
 
 const themes = [
@@ -20,6 +21,21 @@ const isLoading = ref<boolean>(false)
 <template>
   <div class="p-24">
     <div class="mb-12 grid grid-cols-6 gap-8">
+      <div class="flex items-center gap-x-2">
+        <AppIconButton
+          icon="calendar"
+          label="test"
+          variant="default"
+          size="sm"
+        />
+
+        <AppIconButton
+          icon="calendar"
+          label="test"
+          variant="muted"
+        />
+      </div>
+
       <div>
         <AppButton
           :is-disabled="true"

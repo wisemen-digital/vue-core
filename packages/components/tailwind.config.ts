@@ -95,6 +95,8 @@ export default {
       height: {
         'button-height-default': 'var(--button-height-default)',
         'button-loader-size-default': 'var(--button-loader-size-default)',
+        'icon-button-icon-size-default': 'var(--icon-button-icon-size-default)',
+        'icon-button-size-default': 'var(--icon-button-size-default)',
         'icon-size': 'var(--icon-size)',
         'text-field-height-default': 'var(--text-field-height-default)',
         'text-field-icon-size-default': 'var(--text-field-icon-size-default)',
@@ -191,6 +193,8 @@ export default {
       },
       width: {
         'button-loader-size-default': 'var(--button-loader-size-default)',
+        'icon-button-icon-size-default': 'var(--icon-button-icon-size-default)',
+        'icon-button-size-default': 'var(--icon-button-size-default)',
         'icon-size': 'var(--icon-size)',
         'text-field-icon-size-default': 'var(--text-field-icon-size-default)',
         'text-field-loader-size-default': 'var(--text-field-loader-size-default)',
