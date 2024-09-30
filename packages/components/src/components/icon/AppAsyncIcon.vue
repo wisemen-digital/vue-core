@@ -37,8 +37,6 @@ watch(
   },
 )
 
-// const iconClasses = computed<string>(() => iconStyle.icon({ size: props.size }))
-
 const sizeClass = computed<null | string>(() => {
   if (props.size === 'lg') {
     return 'icon-lg'

@@ -3,10 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import './components//button.scss';
-@import './components/icon.scss';
-@import './components/textField.scss';
-
 @layer base {
   @import 'reset';
 
