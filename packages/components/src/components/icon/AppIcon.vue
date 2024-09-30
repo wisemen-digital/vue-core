@@ -33,30 +33,3 @@ const attrs = useAttrs()
     />
   </Suspense>
 </template>
-
-<style lang="scss">
-:root {
-  --icon-color: #000000;
-  --icon-size: 16px;
-}
-
-.icon-sm {
-  --icon-size: 14px;
-}
-
-.icon-xs {
-  --icon-size: 12px;
-}
-
-.icon-lg {
-  --icon-size: 18px;
-}
-
-.icon-xl {
-  --icon-size: 24px;
-}
-
-.icon-full {
-  --icon-size: 100%;
-}
-</style>

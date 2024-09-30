@@ -56,7 +56,7 @@ const loaderClasses = computed<string>(() => btnStyle.loader({
 
 const sizeClass = computed<null | string>(() => {
   if (props.size === 'sm') {
-    return 'btn-sm'
+    return 'btn-sm icon-btn-sm'
   }
 
   return null
@@ -164,15 +164,3 @@ function onClick(): void {
     </Transition>
   </button>
 </template>
-
-<style lang="scss">
-:root {
-  --icon-button-size-default: 40px;
-  --icon-button-icon-size-default: 16px;
-}
-
-.btn-sm {
-  --icon-button-size-default: 32px;
-  --icon-button-icon-size-default: 14px;
-}
-</style>
