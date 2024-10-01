@@ -3,6 +3,9 @@ import { useId } from 'radix-vue'
 import { computed, ref } from 'vue'
 
 import AppIcon from '@/components/icon/AppIcon.vue'
+import AppInputFieldError from '@/components/input-field-error/AppInputFieldError.vue'
+import AppInputFieldHint from '@/components/input-field-hint/AppInputFieldHint.vue'
+import AppInputFieldLabel from '@/components/input-field-label/AppInputFieldLabel.vue'
 import AppSpinner from '@/components/spinner/AppSpinner.vue'
 import {
   type AppTextFieldProps,
@@ -116,12 +119,12 @@ function onBlur(): void {
       :input-id="inputId"
       name="label"
     >
-      <label
+      <AppInputFieldLabel
         :for="inputId"
+        :label="props.label"
+        :is-required="props.isRequired"
         :class="inputLabelClasses"
-      >
-        {{ props.label }} <template v-if="props.isRequired">*</template>
-      </label>
+      />
     </slot>
 
     <div
@@ -196,18 +199,20 @@ function onBlur(): void {
       v-if="hasError"
       name="error"
     >
-      <span :class="errorClasses">
-        {{ props.errors?._errors[0] }}
-      </span>
+      <AppInputFieldError
+        :errors="props.errors"
+        :class="errorClasses"
+      />
     </slot>
 
     <slot
       v-else-if="props.hint !== null"
       name="hint"
     >
-      <span :class="hintClasses">
-        {{ props.hint }}
-      </span>
+      <AppInputFieldHint
+        :hint="props.hint"
+        :class="hintClasses"
+      />
     </slot>
   </div>
 </template>

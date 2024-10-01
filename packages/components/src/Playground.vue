@@ -175,11 +175,18 @@ const isLoading = ref<boolean>(false)
         :errors="{
           _errors: ['This is an error'],
         }"
+        label="This is a label"
         icon-right="calendar"
       />
 
       <AppTextField
         :class="theme"
+        hint="Make sure to include your email address."
+      />
+
+      <AppTextField
+        :class="theme"
+        class="test"
         hint="Make sure to include your email address."
       />
     </div>
@@ -593,5 +600,47 @@ body {
   --text-field-loader-color-error: #ff0202;
   --text-field-loader-color-focus: #007bff;
   --text-field-loader-color-hover: #3d4658;
+}
+
+.test {
+  // only border bottom
+  --text-field-border-bottom-color-default: #eee;
+  --text-field-border-bottom-color-focus: #007bff;
+  --text-field-border-bottom-color-hover: #007bff;
+  --text-field-border-bottom-color-disabled: #007bff;
+  --text-field-border-bottom-color-error: #007bff;
+
+  // no border top
+  --text-field-border-top-color-default: transparent;
+  --text-field-border-top-color-focus: transparent;
+  --text-field-border-top-color-hover: transparent;
+  --text-field-border-top-color-disabled: transparent;
+  --text-field-border-top-color-error: transparent;
+
+  // no border left
+  --text-field-border-left-color-default: transparent;
+  --text-field-border-left-color-focus: transparent;
+  --text-field-border-left-color-hover: transparent;
+  --text-field-border-left-color-disabled: transparent;
+  --text-field-border-left-color-error: transparent;
+
+  // no border right
+  --text-field-border-right-color-default: transparent;
+  --text-field-border-right-color-focus: transparent;
+  --text-field-border-right-color-hover: transparent;
+  --text-field-border-right-color-disabled: transparent;
+  --text-field-border-right-color-error: transparent;
+
+  --text-field-border-radius-top-left-default: 0px;
+  --text-field-border-radius-top-right-default: 0px;
+  --text-field-border-radius-bottom-left-default: 0px;
+  --text-field-border-radius-bottom-right-default: 0px;
+
+  // no ring
+  --text-field-ring-color-default: transparent;
+  --text-field-ring-color-focus: transparent;
+
+  // no padding left
+  --text-field-padding-left-default: 2px;
 }
 </style>
