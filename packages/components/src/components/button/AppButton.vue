@@ -19,6 +19,7 @@ defineSlots<{
   default: () => void
   iconLeft: () => void
   iconRight: () => void
+  loader: () => void
 }>()
 
 const style = buttonStyle()
@@ -178,7 +179,9 @@ function onClick(): void {
         v-if="props.isLoading"
         :class="loaderBoxClasses"
       >
-        <AppSpinner :class="loaderClasses" />
+        <slot name="loader">
+          <AppSpinner :class="loaderClasses" />
+        </slot>
       </div>
     </Transition>
 

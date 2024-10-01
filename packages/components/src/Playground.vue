@@ -53,7 +53,12 @@ const isLoading = ref<boolean>(false)
           :is-disabled="false"
           :is-loading="isLoading"
           icon-left="checkmarkCircle"
+          class="btn-custom"
         >
+          <template #loader>
+            Loading...
+          </template>
+
           Confirm order
         </AppButton>
       </div>
@@ -112,7 +117,7 @@ const isLoading = ref<boolean>(false)
       </div>
     </div>
 
-    <div class="mb-12 flex flex-col gap-y-4 rounded-md border border-solid border-gray-200 bg-gray-100 p-2">
+    <div class="border-solid-color border-gray-color-200 bg-color-gray-100 mb-12 flex flex-col gap-y-4 rounded-md border p-2">
       <template
         v-for="t of themes"
         :key="t"
@@ -166,6 +171,10 @@ const isLoading = ref<boolean>(false)
       <AppTextField
         :class="theme"
         :is-loading="isLoading"
+        :is-touched="true"
+        :errors="{
+          _errors: ['This is an error'],
+        }"
         icon-right="calendar"
       />
 
@@ -183,41 +192,41 @@ body {
 }
 
 .leander {
-  --text-field-border-left-default: transparent;
-  --text-field-border-left-focus: transparent;
-  --text-field-border-left-hover: transparent;
-  --text-field-border-left-disabled: transparent;
-  --text-field-border-left-error: #ff0202;
+  --text-field-border-left-color-default: transparent;
+  --text-field-border-left-color-focus: transparent;
+  --text-field-border-left-color-hover: transparent;
+  --text-field-border-left-color-disabled: transparent;
+  --text-field-border-left-color-error: #ff0202;
 
-  --text-field-border-right-default: transparent;
-  --text-field-border-right-focus: transparent;
-  --text-field-border-right-hover: transparent;
-  --text-field-border-right-disabled: transparent;
-  --text-field-border-right-error: #ff0202;
+  --text-field-border-right-color-default: transparent;
+  --text-field-border-right-color-focus: transparent;
+  --text-field-border-right-color-hover: transparent;
+  --text-field-border-right-color-disabled: transparent;
+  --text-field-border-right-color-error: #ff0202;
 
-  --text-field-border-bottom-default: transparent;
-  --text-field-border-bottom-focus: transparent;
-  --text-field-border-bottom-hover: transparent;
-  --text-field-border-bottom-disabled: transparent;
-  --text-field-border-bottom-error: #ff0202;
+  --text-field-border-bottom-color-default: transparent;
+  --text-field-border-bottom-color-focus: transparent;
+  --text-field-border-bottom-color-hover: transparent;
+  --text-field-border-bottom-color-disabled: transparent;
+  --text-field-border-bottom-color-error: #ff0202;
 
-  --text-field-border-top-default: transparent;
-  --text-field-border-top-focus: transparent;
-  --text-field-border-top-hover: transparent;
-  --text-field-border-top-disabled: transparent;
-  --text-field-border-top-error: #ff0202;
+  --text-field-border-top-color-default: transparent;
+  --text-field-border-top-color-focus: transparent;
+  --text-field-border-top-color-hover: transparent;
+  --text-field-border-top-color-disabled: transparent;
+  --text-field-border-top-color-error: #ff0202;
 
-  --text-field-focus-ring-default: transparent;
-  --text-field-focus-ring-focus: transparent;
-  --text-field-focus-ring-hover: transparent;
-  --text-field-focus-ring-disabled: transparent;
-  --text-field-focus-ring-error: #ff020270;
+  --text-field-ring-color-default: transparent;
+  --text-field-ring-color-focus: transparent;
+  --text-field-ring-color-hover: transparent;
+  --text-field-ring-color-disabled: transparent;
+  --text-field-ring-color-error: #ff020270;
 
-  --text-field-bg-default: #ffffff;
-  --text-field-bg-focus: #F2F4F7;
-  --text-field-bg-hover: #F2F4F7;
-  --text-field-bg-disabled: #fbfbfb;
-  --text-field-bg-error: #ffffff;
+  --text-field-bg-color-default: #ffffff;
+  --text-field-bg-color-focus: #F2F4F7;
+  --text-field-bg-color-hover: #F2F4F7;
+  --text-field-bg-color-disabled: #fbfbfb;
+  --text-field-bg-color-error: #ffffff;
 
   --text-field-color-default: #303030;
   --text-field-color-focus: #303030;
@@ -225,11 +234,11 @@ body {
   --text-field-color-disabled: #e9e9e9;
   --text-field-color-error: #303030;
 
-  --text-field-placeholder-default: #c6c6c6;
-  --text-field-placeholder-focus: #c6c6c6;
-  --text-field-placeholder-hover: #c6c6c6;
-  --text-field-placeholder-disabled: #dedede;
-  --text-field-placeholder-error: #c6c6c6;
+  --text-field-placeholder-color-default: #c6c6c6;
+  --text-field-placeholder-color-focus: #c6c6c6;
+  --text-field-placeholder-color-hover: #c6c6c6;
+  --text-field-placeholder-color-disabled: #dedede;
+  --text-field-placeholder-color-error: #c6c6c6;
 
   --text-field-shadow-default: 0px 0px 0px 0px #000000;
   --text-field-shadow-focus: 0px 0px 0px 0px #000000;
@@ -283,41 +292,41 @@ body {
 }
 
 .retro {
-  --text-field-border-left-default: #4CAF50; /* Bright green for a game-like theme */
-  --text-field-border-left-focus: #FFC107;  /* Yellow for focused state */
-  --text-field-border-left-hover: #FFC107;  /* Match hover with focus */
-  --text-field-border-left-disabled: #9E9E9E; /* Darker gray for disabled */
-  --text-field-border-left-error: #F44336; /* Bright red for errors */
+  --text-field-border-left-color-default: #4CAF50; /* Bright green for a game-like theme */
+  --text-field-border-left-color-focus: #FFC107;  /* Yellow for focused state */
+  --text-field-border-left-color-hover: #FFC107;  /* Match hover with focus */
+  --text-field-border-left-color-disabled: #9E9E9E; /* Darker gray for disabled */
+  --text-field-border-left-color-error: #F44336; /* Bright red for errors */
 
-  --text-field-border-right-default: #4CAF50;
-  --text-field-border-right-focus: #FFC107;
-  --text-field-border-right-hover: #FFC107;
-  --text-field-border-right-disabled: #9E9E9E;
-  --text-field-border-right-error: #F44336;
+  --text-field-border-right-color-default: #4CAF50;
+  --text-field-border-right-color-focus: #FFC107;
+  --text-field-border-right-color-hover: #FFC107;
+  --text-field-border-right-color-disabled: #9E9E9E;
+  --text-field-border-right-color-error: #F44336;
 
-  --text-field-border-bottom-default: #4CAF50;
-  --text-field-border-bottom-focus: #FFC107;
-  --text-field-border-bottom-hover: #FFC107;
-  --text-field-border-bottom-disabled: #9E9E9E;
-  --text-field-border-bottom-error: #F44336;
+  --text-field-border-bottom-color-default: #4CAF50;
+  --text-field-border-bottom-color-focus: #FFC107;
+  --text-field-border-bottom-color-hover: #FFC107;
+  --text-field-border-bottom-color-disabled: #9E9E9E;
+  --text-field-border-bottom-color-error: #F44336;
 
-  --text-field-border-top-default: #4CAF50;
-  --text-field-border-top-focus: #FFC107;
-  --text-field-border-top-hover: #FFC107;
-  --text-field-border-top-disabled: #9E9E9E;
-  --text-field-border-top-error: #F44336;
+  --text-field-border-top-color-default: #4CAF50;
+  --text-field-border-top-color-focus: #FFC107;
+  --text-field-border-top-color-hover: #FFC107;
+  --text-field-border-top-color-disabled: #9E9E9E;
+  --text-field-border-top-color-error: #F44336;
 
-  --text-field-focus-ring-default: transparent; /* No glow for default */
-  --text-field-focus-ring-focus: #FFC10770; /* Yellow glow for focus */
-  --text-field-focus-ring-hover: #FFC10770;
-  --text-field-focus-ring-disabled: transparent;
-  --text-field-focus-ring-error: #F4433670; /* Red glow for error */
+  --text-field-ring-color-default: transparent; /* No glow for default */
+  --text-field-ring-color-focus: #FFC10770; /* Yellow glow for focus */
+  --text-field-ring-color-hover: #FFC10770;
+  --text-field-ring-color-disabled: transparent;
+  --text-field-ring-color-error: #F4433670; /* Red glow for error */
 
-  --text-field-bg-default: #1C1C1C; /* Dark background for contrast */
-  --text-field-bg-focus: #333333; /* Slightly lighter for focus */
-  --text-field-bg-hover: #333333;
-  --text-field-bg-disabled: #2F2F2F; /* Dull background for disabled */
-  --text-field-bg-error: #1C1C1C;
+  --text-field-bg-color-default: #1C1C1C; /* Dark background for contrast */
+  --text-field-bg-color-focus: #333333; /* Slightly lighter for focus */
+  --text-field-bg-color-hover: #333333;
+  --text-field-bg-color-disabled: #2F2F2F; /* Dull background for disabled */
+  --text-field-bg-color-error: #1C1C1C;
 
   --text-field-color-default: #E0E0E0; /* Light text color for visibility */
   --text-field-color-focus: #FFFFFF;  /* White text on focus for better contrast */
@@ -325,11 +334,11 @@ body {
   --text-field-color-disabled: #757575; /* Gray text for disabled */
   --text-field-color-error: #FFFFFF;  /* Keep white text in error state */
 
-  --text-field-placeholder-default: #9E9E9E; /* Dull gray for placeholders */
-  --text-field-placeholder-focus: #BDBDBD;
-  --text-field-placeholder-hover: #BDBDBD;
-  --text-field-placeholder-disabled: #9E9E9E;
-  --text-field-placeholder-error: #F44336; /* Red for error placeholder */
+  --text-field-placeholder-color-default: #9E9E9E; /* Dull gray for placeholders */
+  --text-field-placeholder-color-focus: #BDBDBD;
+  --text-field-placeholder-color-hover: #BDBDBD;
+  --text-field-placeholder-color-disabled: #9E9E9E;
+  --text-field-placeholder-color-error: #F44336; /* Red for error placeholder */
 
   --text-field-shadow-default: 4px 4px 0px #2C2C2C; /* Bold shadow for blocky look */
   --text-field-shadow-focus: 4px 4px 0px #FFC107; /* Yellow shadow for focus */
@@ -382,41 +391,41 @@ body {
 }
 
 .blushy {
-  --text-field-border-left-default: #FFB6C1; /* Light pink for a soft look */
-  --text-field-border-left-focus: #FF69B4;  /* Hot pink for focused state */
-  --text-field-border-left-hover: #FF69B4;  /* Hot pink on hover */
-  --text-field-border-left-disabled: #F8D7DA; /* Pale pink for disabled state */
-  --text-field-border-left-error: #FF6F91; /* Blush red-pink for errors */
+  --text-field-border-left-color-default: #FFB6C1; /* Light pink for a soft look */
+  --text-field-border-left-color-focus: #FF69B4;  /* Hot pink for focused state */
+  --text-field-border-left-color-hover: #FF69B4;  /* Hot pink on hover */
+  --text-field-border-left-color-disabled: #F8D7DA; /* Pale pink for disabled state */
+  --text-field-border-left-color-error: #FF6F91; /* Blush red-pink for errors */
 
-  --text-field-border-right-default: #FFB6C1;
-  --text-field-border-right-focus: #FF69B4;
-  --text-field-border-right-hover: #FF69B4;
-  --text-field-border-right-disabled: #F8D7DA;
-  --text-field-border-right-error: #FF6F91;
+  --text-field-border-right-color-default: #FFB6C1;
+  --text-field-border-right-color-focus: #FF69B4;
+  --text-field-border-right-color-hover: #FF69B4;
+  --text-field-border-right-color-disabled: #F8D7DA;
+  --text-field-border-right-color-error: #FF6F91;
 
-  --text-field-border-bottom-default: #FFB6C1;
-  --text-field-border-bottom-focus: #FF69B4;
-  --text-field-border-bottom-hover: #FF69B4;
-  --text-field-border-bottom-disabled: #F8D7DA;
-  --text-field-border-bottom-error: #FF6F91;
+  --text-field-border-bottom-color-default: #FFB6C1;
+  --text-field-border-bottom-color-focus: #FF69B4;
+  --text-field-border-bottom-color-hover: #FF69B4;
+  --text-field-border-bottom-color-disabled: #F8D7DA;
+  --text-field-border-bottom-color-error: #FF6F91;
 
-  --text-field-border-top-default: #FFB6C1;
-  --text-field-border-top-focus: #FF69B4;
-  --text-field-border-top-hover: #FF69B4;
-  --text-field-border-top-disabled: #F8D7DA;
-  --text-field-border-top-error: #FF6F91;
+  --text-field-border-top-color-default: #FFB6C1;
+  --text-field-border-top-color-focus: #FF69B4;
+  --text-field-border-top-color-hover: #FF69B4;
+  --text-field-border-top-color-disabled: #F8D7DA;
+  --text-field-border-top-color-error: #FF6F91;
 
-  --text-field-focus-ring-default: transparent; /* No focus ring by default */
-  --text-field-focus-ring-focus: #FF69B470; /* Subtle pink glow on focus */
-  --text-field-focus-ring-hover: #FF69B470;
-  --text-field-focus-ring-disabled: transparent;
-  --text-field-focus-ring-error: #FF6F9170; /* Soft red-pink glow for error */
+  --text-field-ring-color-default: transparent; /* No focus ring by default */
+  --text-field-ring-color-focus: #FF69B470; /* Subtle pink glow on focus */
+  --text-field-ring-color-hover: #FF69B470;
+  --text-field-ring-color-disabled: transparent;
+  --text-field-ring-color-error: #FF6F9170; /* Soft red-pink glow for error */
 
-  --text-field-bg-default: #FFF0F5; /* Light pink background */
-  --text-field-bg-focus: #FFF5F7; /* Slightly lighter for focus */
-  --text-field-bg-hover: #FFF5F7;
-  --text-field-bg-disabled: #FDEEF0; /* Even lighter pink for disabled */
-  --text-field-bg-error: #FFF0F5;
+  --text-field-bg-color-default: #FFF0F5; /* Light pink background */
+  --text-field-bg-color-focus: #FFF5F7; /* Slightly lighter for focus */
+  --text-field-bg-color-hover: #FFF5F7;
+  --text-field-bg-color-disabled: #FDEEF0; /* Even lighter pink for disabled */
+  --text-field-bg-color-error: #FFF0F5;
 
   --text-field-color-default: #663399; /* Soft purple text */
   --text-field-color-focus: #4B0082;  /* Darker purple text on focus */
@@ -424,11 +433,11 @@ body {
   --text-field-color-disabled: #D8BFD8; /* Light purple for disabled text */
   --text-field-color-error: #FF6F91;  /* Pink-red for error text */
 
-  --text-field-placeholder-default: #DDA0DD; /* Light purple for placeholder */
-  --text-field-placeholder-focus: #DDA0DD;
-  --text-field-placeholder-hover: #DDA0DD;
-  --text-field-placeholder-disabled: #FADADD; /* Very light pink for disabled */
-  --text-field-placeholder-error: #FF6F91; /* Blush pink for error placeholder */
+  --text-field-placeholder-color-default: #DDA0DD; /* Light purple for placeholder */
+  --text-field-placeholder-color-focus: #DDA0DD;
+  --text-field-placeholder-color-hover: #DDA0DD;
+  --text-field-placeholder-color-disabled: #FADADD; /* Very light pink for disabled */
+  --text-field-placeholder-color-error: #FF6F91; /* Blush pink for error placeholder */
 
   --text-field-shadow-default: 0px 2px 8px #FFC0CB55; /* Soft shadow for blushy feel */
   --text-field-shadow-focus: 0px 2px 10px #FF69B455; /* Hot pink shadow on focus */
@@ -488,41 +497,41 @@ body {
 }
 
 .modern {
-  --text-field-border-left-default: #e0e0e0;
-  --text-field-border-left-focus: #007bff;
-  --text-field-border-left-hover: #0056b3;
-  --text-field-border-left-disabled: #d0d5dd;
-  --text-field-border-left-error: #ff0202;
+  --text-field-border-left-color-default: #e0e0e0;
+  --text-field-border-left-color-focus: #007bff;
+  --text-field-border-left-color-hover: #0056b3;
+  --text-field-border-left-color-disabled: #d0d5dd;
+  --text-field-border-left-color-error: #ff0202;
 
-  --text-field-border-right-default: #e0e0e0;
-  --text-field-border-right-focus: #007bff;
-  --text-field-border-right-hover: #0056b3;
-  --text-field-border-right-disabled: #d0d5dd;
-  --text-field-border-right-error: #ff0202;
+  --text-field-border-right-color-default: #e0e0e0;
+  --text-field-border-right-color-focus: #007bff;
+  --text-field-border-right-color-hover: #0056b3;
+  --text-field-border-right-color-disabled: #d0d5dd;
+  --text-field-border-right-color-error: #ff0202;
 
-  --text-field-border-bottom-default: #e0e0e0;
-  --text-field-border-bottom-focus: #007bff;
-  --text-field-border-bottom-hover: #0056b3;
-  --text-field-border-bottom-disabled: #d0d5dd;
-  --text-field-border-bottom-error: #ff0202;
+  --text-field-border-bottom-color-default: #e0e0e0;
+  --text-field-border-bottom-color-focus: #007bff;
+  --text-field-border-bottom-color-hover: #0056b3;
+  --text-field-border-bottom-color-disabled: #d0d5dd;
+  --text-field-border-bottom-color-error: #ff0202;
 
-  --text-field-border-top-default: #e0e0e0;
-  --text-field-border-top-focus: #007bff;
-  --text-field-border-top-hover: #0056b3;
-  --text-field-border-top-disabled: #d0d5dd;
-  --text-field-border-top-error: #ff0202;
+  --text-field-border-top-color-default: #e0e0e0;
+  --text-field-border-top-color-focus: #007bff;
+  --text-field-border-top-color-hover: #0056b3;
+  --text-field-border-top-color-disabled: #d0d5dd;
+  --text-field-border-top-color-error: #ff0202;
 
-  --text-field-focus-ring-default: transparent;
-  --text-field-focus-ring-focus: #007bff70; /* Soft blue focus ring */
-  --text-field-focus-ring-hover: transparent;
-  --text-field-focus-ring-disabled: transparent;
-  --text-field-focus-ring-error: #ff020270;
+  --text-field-ring-color-default: transparent;
+  --text-field-ring-color-focus: #007bff70; /* Soft blue focus ring */
+  --text-field-ring-color-hover: transparent;
+  --text-field-ring-color-disabled: transparent;
+  --text-field-ring-color-error: #ff020270;
 
-  --text-field-bg-default: #ffffff;
-  --text-field-bg-focus: #f7f7f7;
-  --text-field-bg-hover: #f0f0f0;
-  --text-field-bg-disabled: #fbfbfb;
-  --text-field-bg-error: #ffffff;
+  --text-field-bg-color-default: #ffffff;
+  --text-field-bg-color-focus: #f7f7f7;
+  --text-field-bg-color-hover: #f0f0f0;
+  --text-field-bg-color-disabled: #fbfbfb;
+  --text-field-bg-color-error: #ffffff;
 
   --text-field-color-default: #303030;
   --text-field-color-focus: #303030;
@@ -530,11 +539,11 @@ body {
   --text-field-color-disabled: #e9e9e9;
   --text-field-color-error: #ff0202;
 
-  --text-field-placeholder-default: #c6c6c6;
-  --text-field-placeholder-focus: #c6c6c6;
-  --text-field-placeholder-hover: #c6c6c6;
-  --text-field-placeholder-disabled: #dedede;
-  --text-field-placeholder-error: #ff0202;
+  --text-field-placeholder-color-default: #c6c6c6;
+  --text-field-placeholder-color-focus: #c6c6c6;
+  --text-field-placeholder-color-hover: #c6c6c6;
+  --text-field-placeholder-color-disabled: #dedede;
+  --text-field-placeholder-color-error: #ff0202;
 
   --text-field-shadow-default: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow */
   --text-field-shadow-focus: 0px 4px 12px rgba(0, 123, 255, 0.2); /* Blue shadow on focus */
