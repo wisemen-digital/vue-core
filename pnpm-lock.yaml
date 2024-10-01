@@ -188,8 +188,8 @@ importers:
         specifier: 1.2.8
         version: 1.2.8
       radix-vue:
-        specifier: 1.9.3
-        version: 1.9.3(vue@3.4.35)
+        specifier: 1.9.6
+        version: 1.9.6(vue@3.4.35)
       sass:
         specifier: 1.77.5
         version: 1.77.5
@@ -11587,8 +11587,8 @@ packages:
       - '@vue/composition-api'
     dev: true
 
-  /radix-vue@1.9.3(vue@3.4.35):
-    resolution: {integrity: sha512-9pewcgzghM+B+FO1h9mMsZa/csVH6hElpN1sqmG4/qoeieiDG0i4nhMjS7p2UOz11EEdVm7eLandHSPyx7hYhg==}
+  /radix-vue@1.9.6(vue@3.4.35):
+    resolution: {integrity: sha512-legrn9jHbEpbJS4QYrA0VmIafj1bmc4MSVzN55WZatGiXMJg3oFrQL5QxpiURJciS+OlATbKA2KAGkMuuLA0LA==}
     peerDependencies:
       vue: '>= 3.2.0'
     dependencies:

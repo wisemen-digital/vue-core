@@ -3,6 +3,7 @@ import { ref } from 'vue'
 
 import AppButton from '@/components/button/AppButton.vue'
 import AppIconButton from '@/components/button/AppIconButton.vue'
+import AppSelect from '@/components/select/AppSelect.vue'
 import AppTextField from '@/components/text-field/AppTextField.vue'
 
 const themes = [
@@ -38,9 +39,10 @@ const isLoading = ref<boolean>(false)
 
       <div>
         <AppButton
-          :is-disabled="true"
+          :is-disabled="false"
           :is-loading="false"
-          icon-left="checkmarkCircle"
+          icon-left="calendar"
+          icon-right="chevronRight"
         >
           Confirm order
         </AppButton>
@@ -127,8 +129,20 @@ const isLoading = ref<boolean>(false)
       </template>
     </div>
 
+    <div class="py-12">
+      <AppSelect
+        :is-loading="false"
+        icon-left="search"
+        label="Select a fruit"
+        class="w-72"
+      />
+    </div>
+
     <div class="grid grid-cols-3 items-end gap-12">
-      <AppTextField :class="theme" />
+      <AppTextField
+        :class="theme"
+        class="w-72"
+      />
 
       <AppTextField
         :class="theme"
@@ -141,6 +155,7 @@ const isLoading = ref<boolean>(false)
         :is-required="true"
         icon-right="calendar"
         label="Make a reservation"
+        class="z-50"
       />
 
       <AppTextField
@@ -150,7 +165,8 @@ const isLoading = ref<boolean>(false)
 
       <AppTextField
         :class="theme"
-        :is-loading="true"
+        :is-loading="isLoading"
+        icon-right="calendar"
       />
 
       <AppTextField

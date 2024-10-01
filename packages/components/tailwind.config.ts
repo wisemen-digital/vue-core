@@ -1,5 +1,9 @@
 import type { Config } from 'tailwindcss'
 
+import { buttonTailwindConfig } from './src/components/button/button.tailwind'
+import { iconButtonTailwindConfig } from './src/components/button/iconButton.tailwind'
+import { iconTailwindConfig } from './src/components/icon/icon.tailwind'
+
 export default {
   content: [
     './src/**/*.{vue,ts}',
@@ -8,196 +12,45 @@ export default {
   theme: {
     extend: {
       backgroundColor: {
-        'button-bg-active': 'var(--button-bg-active)',
-        'button-bg-default': 'var(--button-bg-default)',
-        'button-bg-disabled': 'var(--button-bg-disabled)',
-        'button-bg-focus': 'var(--button-bg-focus)',
-        'button-bg-hover': 'var(--button-bg-hover)',
-        'text-field-bg-default': 'var(--text-field-bg-default)',
-
-        'text-field-bg-disabled': 'var(--text-field-bg-disabled)',
-        'text-field-bg-error': 'var(--text-field-bg-error)',
-        'text-field-bg-focus': 'var(--text-field-bg-focus)',
-        'text-field-bg-hover': 'var(--text-field-bg-hover)',
+        ...buttonTailwindConfig.backgroundColor,
       },
       borderColor: {
-        'button-border-active': 'var(--button-border-active)',
-        'button-border-default': 'var(--button-border-default)',
-        'button-border-disabled': 'var(--button-border-disabled)',
-        'button-border-focus': 'var(--button-border-focus)',
-        'button-border-hover': 'var(--button-border-hover)',
-        'text-field-bg-default': 'var(--text-field-bg-default)',
-
-        'text-field-bg-disabled': 'var(--text-field-bg-disabled)',
-        'text-field-bg-error': 'var(--text-field-bg-error)',
-        'text-field-bg-focus': 'var(--text-field-bg-focus)',
-        'text-field-bg-hover': 'var(--text-field-bg-hover)',
-        'text-field-border-bottom-default': 'var(--text-field-border-bottom-default)',
-
-        'text-field-border-bottom-disabled': 'var(--text-field-border-bottom-disabled)',
-        'text-field-border-bottom-error': 'var(--text-field-border-bottom-error)',
-        'text-field-border-bottom-focus': 'var(--text-field-border-bottom-focus)',
-        'text-field-border-bottom-hover': 'var(--text-field-border-bottom-hover)',
-        'text-field-border-left-default': 'var(--text-field-border-left-default)',
-
-        'text-field-border-left-disabled': 'var(--text-field-border-left-disabled)',
-        'text-field-border-left-error': 'var(--text-field-border-left-error)',
-        'text-field-border-left-focus': 'var(--text-field-border-left-focus)',
-        'text-field-border-left-hover': 'var(--text-field-border-left-hover)',
-        'text-field-border-right-default': 'var(--text-field-border-right-default)',
-
-        'text-field-border-right-disabled': 'var(--text-field-border-right-disabled)',
-        'text-field-border-right-error': 'var(--text-field-border-right-error)',
-        'text-field-border-right-focus': 'var(--text-field-border-right-focus)',
-        'text-field-border-right-hover': 'var(--text-field-border-right-hover)',
-        'text-field-border-top-default': 'var(--text-field-border-top-default)',
-
-        'text-field-border-top-disabled': 'var(--text-field-border-top-disabled)',
-        'text-field-border-top-error': 'var(--text-field-border-top-error)',
-        'text-field-border-top-focus': 'var(--text-field-border-top-focus)',
-        'text-field-border-top-hover': 'var(--text-field-border-top-hover)',
+        ...buttonTailwindConfig.borderColor,
       },
       borderRadius: {
-        'button-border-radius-default': 'var(--button-border-radius-default)',
-        'text-field-border-radius-bottom-left-default': 'var(--text-field-border-radius-bottom-left-default)',
-        'text-field-border-radius-bottom-right-default': 'var(--text-field-border-radius-bottom-right-default)',
-        'text-field-border-radius-top-left-default': 'var(--text-field-border-radius-top-left-default)',
-
-        'text-field-border-radius-top-right-default': 'var(--text-field-border-radius-top-right-default)',
+        ...buttonTailwindConfig.borderRadius,
       },
       boxShadow: {
-        'button-shadow-active': 'var(--button-shadow-active)',
-        'button-shadow-default': 'var(--button-shadow-default)',
-        'button-shadow-disabled': 'var(--button-shadow-disabled)',
-        'button-shadow-focus': 'var(--button-shadow-focus)',
-        'button-shadow-hover': 'var(--button-shadow-hover)',
-        'text-field-shadow-default': 'var(--text-field-shadow-default)',
-
-        'text-field-shadow-disabled': 'var(--text-field-shadow-disabled)',
-        'text-field-shadow-error': 'var(--text-field-shadow-error)',
-        'text-field-shadow-focus': 'var(--text-field-shadow-focus)',
-        'text-field-shadow-hover': 'var(--text-field-shadow-hover)',
+        ...buttonTailwindConfig.boxShadow,
       },
       fontSize: {
-        'button-font-size-default': 'var(--button-font-size-default)',
-        'text-field-error-font-size-default': 'var(--text-field-error-font-size-default)',
-        'text-field-font-size-default': 'var(--text-field-font-size-default)',
-        'text-field-hint-font-size-default': 'var(--text-field-hint-font-size-default)',
-        'text-field-label-font-size-default': 'var(--text-field-label-font-size-default)',
+        ...buttonTailwindConfig.fontSize,
       },
       fontWeight: {
-        'button-font-weight-default': 'var(--button-font-weight-default)',
-        'text-field-error-font-weight-default': 'var(--text-field-error-font-weight-default)',
-        'text-field-font-weight-default': 'var(--text-field-font-weight-default)',
-        'text-field-hint-font-weight-default': 'var(--text-field-hint-font-weight-default)',
-        'text-field-label-font-weight-default': 'var(--text-field-label-font-weight-default)',
+        ...buttonTailwindConfig.fontWeight,
       },
       height: {
-        'button-height-default': 'var(--button-height-default)',
-        'button-loader-size-default': 'var(--button-loader-size-default)',
-        'icon-button-icon-size-default': 'var(--icon-button-icon-size-default)',
-        'icon-button-size-default': 'var(--icon-button-size-default)',
-        'icon-size': 'var(--icon-size)',
-        'text-field-height-default': 'var(--text-field-height-default)',
-        'text-field-icon-size-default': 'var(--text-field-icon-size-default)',
-        'text-field-loader-size-default': 'var(--text-field-loader-size-default)',
+        ...buttonTailwindConfig.height,
+        ...iconTailwindConfig.height,
+        ...iconButtonTailwindConfig.height,
       },
       margin: {
-        'button-icon-left-margin-right-default': 'var(--button-icon-left-margin-right-default)',
-        'button-icon-right-margin-left-default': 'var(--button-icon-right-margin-left-default)',
+        ...buttonTailwindConfig.margin,
       },
       padding: {
-        'button-padding-left-default': 'var(--button-padding-left-default)',
-        'button-padding-right-default': 'var(--button-padding-right-default)',
-
-        'text-field-error-padding-top-default': 'var(--text-field-error-padding-top-default)',
-        'text-field-hint-padding-top-default': 'var(--text-field-hint-padding-top-default)',
-        'text-field-icon-left-padding-left-default': 'var(--text-field-icon-left-padding-left-default)',
-        'text-field-icon-right-padding-right-default': 'var(--text-field-icon-right-padding-right-default)',
-        'text-field-label-padding-bottom-default': 'var(--text-field-label-padding-bottom-default)',
-        'text-field-padding-left-default': 'var(--text-field-padding-left-default)',
-        'text-field-padding-right-default': 'var(--text-field-padding-right-default)',
+        ...buttonTailwindConfig.padding,
       },
       ringColor: {
-        'button-ring-active': 'var(--button-ring-active)',
-        'button-ring-default': 'var(--button-ring-default)',
-        'button-ring-disabled': 'var(--button-ring-disabled)',
-        'button-ring-focus': 'var(--button-ring-focus)',
-        'button-ring-hover': 'var(--button-ring-hover)',
-        'text-field-focus-ring-default': 'var(--text-field-focus-ring-default)',
-        'text-field-focus-ring-disabled': 'var(--text-field-focus-ring-disabled)',
-
-        'text-field-focus-ring-error': 'var(--text-field-focus-ring-error)',
-        'text-field-focus-ring-focus': 'var(--text-field-focus-ring-focus)',
-        'text-field-focus-ring-hover': 'var(--text-field-focus-ring-hover)',
-        'text-field-ring-active': 'var(--text-field-focus-ring-active)',
-
-        'text-field-ring-default': 'var(--text-field-focus-ring-default)',
-        'text-field-ring-disabled': 'var(--text-field-focus-ring-disabled)',
-        'text-field-ring-error': 'var(--text-field-focus-ring-error)',
-        'text-field-ring-focus': 'var(--text-field-focus-ring-focus)',
-        'text-field-ring-hover': 'var(--text-field-focus-ring-hover)',
+        ...buttonTailwindConfig.ringColor,
       },
-
       textColor: {
-        'button-loader-color-active': 'var(--button-loader-color-active)',
-        'button-loader-color-default': 'var(--button-loader-color-default)',
-        'button-loader-color-disabled': 'var(--button-loader-color-disabled)',
-        'button-loader-color-focus': 'var(--button-loader-color-focus)',
-        'button-loader-color-hover': 'var(--button-loader-color-hover)',
-
-        'button-text-active': 'var(--button-text-active)',
-        'button-text-default': 'var(--button-text-default)',
-        'button-text-disabled': 'var(--button-text-disabled)',
-        'button-text-focus': 'var(--button-text-focus)',
-        'button-text-hover': 'var(--button-text-hover)',
-
-        'icon': 'var(--icon-color)',
-        'text-field-color-default': 'var(--text-field-color-default)',
-        'text-field-color-disabled': 'var(--text-field-color-disabled)',
-        'text-field-color-error': 'var(--text-field-color-error)',
-        'text-field-color-focus': 'var(--text-field-color-focus)',
-        'text-field-color-hover': 'var(--text-field-color-hover)',
-
-        'text-field-error-color-default': 'var(--text-field-error-color-default)',
-        'text-field-hint-color-default': 'var(--text-field-hint-color-default)',
-        'text-field-hint-color-disabled': 'var(--text-field-hint-color-disabled)',
-        'text-field-hint-color-error': 'var(--text-field-hint-color-error)',
-        'text-field-hint-color-focus': 'var(--text-field-hint-color-focus)',
-
-        'text-field-hint-color-hover': 'var(--text-field-hint-color-hover)',
-        'text-field-icon-color-default': 'var(--text-field-icon-color-default)',
-        'text-field-icon-color-disabled': 'var(--text-field-icon-color-disabled)',
-        'text-field-icon-color-error': 'var(--text-field-icon-color-error)',
-        'text-field-icon-color-focus': 'var(--text-field-icon-color-focus)',
-
-        'text-field-icon-color-hover': 'var(--text-field-icon-color-hover)',
-        'text-field-label-color-default': 'var(--text-field-label-color-default)',
-        'text-field-label-color-disabled': 'var(--text-field-label-color-disabled)',
-        'text-field-label-color-error': 'var(--text-field-label-color-error)',
-        'text-field-label-color-focus': 'var(--text-field-label-color-focus)',
-
-        'text-field-label-color-hover': 'var(--text-field-label-color-hover)',
-        'text-field-loader-color-default': 'var(--text-field-loader-color-default)',
-        'text-field-loader-color-disabled': 'var(--text-field-loader-color-disabled)',
-        'text-field-loader-color-error': 'var(--text-field-loader-color-error)',
-        'text-field-loader-color-focus': 'var(--text-field-loader-color-focus)',
-
-        'text-field-loader-color-hover': 'var(--text-field-loader-color-hover)',
-        'text-field-placeholder-default': 'var(--text-field-placeholder-default)',
-        'text-field-placeholder-disabled': 'var(--text-field-placeholder-disabled)',
-        'text-field-placeholder-error': 'var(--text-field-placeholder-error)',
-        'text-field-placeholder-focus': 'var(--text-field-placeholder-focus)',
-
-        'text-field-placeholder-hover': 'var(--text-field-placeholder-hover)',
+        ...buttonTailwindConfig.textColor,
+        ...iconTailwindConfig.textColor,
       },
       width: {
-        'button-loader-size-default': 'var(--button-loader-size-default)',
-        'icon-button-icon-size-default': 'var(--icon-button-icon-size-default)',
-        'icon-button-size-default': 'var(--icon-button-size-default)',
-        'icon-size': 'var(--icon-size)',
-        'text-field-icon-size-default': 'var(--text-field-icon-size-default)',
-        'text-field-loader-size-default': 'var(--text-field-loader-size-default)',
+        ...buttonTailwindConfig.width,
+        ...iconTailwindConfig.width,
+        ...iconButtonTailwindConfig.width,
       },
     },
   },
