@@ -35,7 +35,7 @@ export interface AppButtonProps {
    * The variant of the button.
    * @default 'default'
    */
-  variant?: 'default' | 'destructive' | 'ghost' | 'muted' | 'outline'
+  variant?: 'default' | 'destructive' | 'ghost' | 'muted' | 'outline' | string & {}
 }
 
 export const appButtonPropsDefaultValues = {

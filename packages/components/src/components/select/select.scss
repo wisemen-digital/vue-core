@@ -1,51 +1,48 @@
 :root {
-  --select-border-left-default: #d0d5dd;
-  --select-border-left-focus: #007bff;
-  --select-border-left-hover: #007bff;
-  --select-border-left-disabled: #eee;
-  --select-border-left-error: #ff0202;
+  --select-border-left-color-default: #d0d5dd;
+  --select-border-left-color-focus: #007bff;
+  --select-border-left-color-hover: #007bff;
+  --select-border-left-color-disabled: #eee;
+  --select-border-left-color-error: #ff0202;
 
-  --select-border-right-default: #d0d5dd;
-  --select-border-right-focus: #007bff;
-  --select-border-right-hover: #007bff;
-  --select-border-right-disabled: #eee;
-  --select-border-right-error: #ff0202;
+  --select-border-right-color-default: #d0d5dd;
+  --select-border-right-color-focus: #007bff;
+  --select-border-right-color-hover: #007bff;
+  --select-border-right-color-disabled: #eee;
+  --select-border-right-color-error: #ff0202;
 
-  --select-border-bottom-default: #d0d5dd;
-  --select-border-bottom-focus: #007bff;
-  --select-border-bottom-hover: #007bff;
-  --select-border-bottom-disabled: #eee;
-  --select-border-bottom-error: #ff0202;
+  --select-border-bottom-color-default: #d0d5dd;
+  --select-border-bottom-color-focus: #007bff;
+  --select-border-bottom-color-hover: #007bff;
+  --select-border-bottom-color-disabled: #eee;
+  --select-border-bottom-color-error: #ff0202;
 
-  --select-border-top-default: #d0d5dd;
-  --select-border-top-focus: #007bff;
-  --select-border-top-hover: #007bff;
-  --select-border-top-disabled: #eee;
-  --select-border-top-error: #ff0202;
+  --select-border-top-color-default: #d0d5dd;
+  --select-border-top-color-focus: #007bff;
+  --select-border-top-color-hover: #007bff;
+  --select-border-top-color-disabled: #eee;
+  --select-border-top-color-error: #ff0202;
 
-  --select-focus-ring-default: transparent;
-  --select-focus-ring-focus: #007bff70;
-  --select-focus-ring-hover: #007bff70;
-  --select-focus-ring-disabled: #007bff70; // kan niet
-  --select-focus-ring-error: #ff020270;
+  --select-ring-color-focus: #007bff70;
+  --select-ring-color-error: #ff020270;
 
-  --select-bg-default: #ffffff;
-  --select-bg-focus: #ffffff;
-  --select-bg-hover: #ffffff;
-  --select-bg-disabled: #fbfbfb;
-  --select-bg-error: #ffffff;
+  --select-bg-color-default: #ffffff;
+  --select-bg-color-focus: #ffffff;
+  --select-bg-color-hover: #ffffff;
+  --select-bg-color-disabled: #fbfbfb;
+  --select-bg-color-error: #ffffff;
 
-  --select-color-default: #303030;
-  --select-color-focus: #303030;
-  --select-color-hover: #303030;
-  --select-color-disabled: #e9e9e9;
-  --select-color-error: #303030;
+  --select-text-color-default: #303030;
+  --select-text-color-focus: #303030;
+  --select-text-color-hover: #303030;
+  --select-text-color-disabled: #e9e9e9;
+  --select-text-color-error: #303030;
 
-  --select-placeholder-default: #c6c6c6;
-  --select-placeholder-focus: #c6c6c6;
-  --select-placeholder-hover: #c6c6c6;
-  --select-placeholder-disabled: #dedede;
-  --select-placeholder-error: #c6c6c6;
+  --select-placeholder-color-default: #c6c6c6;
+  --select-placeholder-color-focus: #c6c6c6;
+  --select-placeholder-color-hover: #c6c6c6;
+  --select-placeholder-color-disabled: #dedede;
+  --select-placeholder-color-error: #c6c6c6;
 
   --select-shadow-default: 0px 0px 0px 0px #000000;
   --select-shadow-focus: 0px 0px 0px 0px #000000;
@@ -67,45 +64,62 @@
   --select-font-weight-default: 400;
 
   // Icon
-  --select-icon-size-default: 18px;
+  --select-icon-left-size-default: 18px;
 
-  --select-icon-color-default: #a5a5a5;
-  --select-icon-color-focus: #007bff;
-  --select-icon-color-hover: #909090;
-  --select-icon-color-disabled: #ccc;
-  --select-icon-color-error: #ff0202;
+  --select-icon-left-color-default: #909090;
+  --select-icon-left-color-focus: #007bff;
+  --select-icon-left-color-hover: #909090;
+  --select-icon-left-color-disabled: #ccc;
+  --select-icon-left-color-error: #ff0202;
 
-  --select-icon-left-padding-right-default: 12px;
-  --select-icon-right-padding-left-default: 12px;
+  // Spacing between icon and text. To change the spacing between icon and border, refer to `--select-padding-left-default`
+  --select-icon-left-spacing-default: 12px;
+
+  // Caret
+  --select-caret-size-default: 14px;
+
+  --select-caret-color-default: #909090;
+  --select-caret-color-focus: #007bff;
+  --select-caret-color-hover: #909090;
+  --select-caret-color-disabled: #ccc;
+  --select-caret-color-error: #ff0202;
+
+  // Spacing between caret and text. To change the spacing between icon and border, refer to `--select-padding-right-default`
+  --select-caret-spacing-default: 12px;
 
   // Label
-  --select-label-color-default: #3d4658;
-  --select-label-color-focus: #3d4658;
-  --select-label-color-hover: #3d4658;
-  --select-label-color-disabled: #3d4658;
-  --select-label-color-error: #ff0202;
+  --select-label-text-color-default: #3d4658;
+  --select-label-text-color-focus: #3d4658;
+  --select-label-text-color-hover: #3d4658;
+  --select-label-text-color-disabled: #3d4658;
+  --select-label-text-color-error: #ff0202;
 
   --select-label-font-size-default: 14px;
   --select-label-font-weight-default: 400;
-  --select-label-padding-bottom-default:4px;
+  // Spacing between label and input
+  --select-label-spacing-default: 4px;
 
   // Hint
-  --select-hint-color-default: #3d4658;
-  --select-hint-color-focus: #3d4658;
-  --select-hint-color-hover: #3d4658;
-  --select-hint-color-disabled: #3d4658;
-  --select-hint-color-error: #ff0202;
+  --select-hint-text-color-default: #3d4658;
+  --select-hint-text-color-focus: #3d4658;
+  --select-hint-text-color-hover: #3d4658;
+  --select-hint-text-color-disabled: #3d4658;
+  --select-hint-text-color-error: #ff0202;
 
   --select-hint-font-size-default: 12px;
   --select-hint-font-weight-default: 400;
-  --select-hint-padding-top-default: 6px;
+
+  // Spacing between hint and input
+  --select-hint-spacing-default: 6px;
 
   // Error
-  --select-error-color-default: #ff0202;
+  --select-error-text-color-default: #ff0202;
 
-  --select-error-font-size-default: 12px;
+  --select-error-font-size-default: 14px;
   --select-error-font-weight-default: 400;
-  --select-error-padding-top-default: 6px;
+
+  // Spacing between error and input
+  --select-error-spacing-default: 6px;
 
   // Loader
   --select-loader-size-default: 14px;
@@ -116,18 +130,51 @@
   --select-loader-color-hover: #3d4658;
 
   // Dropdown
-  --select-dropdown-bg-default: #ffffff;
+  --select-dropdown-bg-color-default: #ffffff;
+  --select-dropdown-max-width-default: auto;
   --select-dropdown-border-color-default: #f7f7f7;
   --select-dropdown-shadow-default: 0px 10px 15px -3px rgba(16, 24, 40, 0.1), 0px 4px 6px -2px rgba(16, 24, 40, 0.05);
   --select-dropdown-border-radius-default: 6px;
+  --select-dropdown-padding-x-default: 6px;
+  --select-dropdown-padding-y-default: 6px;
 
-  // Dropdown option
-  --select-dropdown-option-bg-default: #ffffff;
-  --select-dropdown-option-bg-hover: #f7f7f7;
-  --select-dropdown-option-bg-focus: #f7f7f7;
+  // Item
+  --select-item-bg-color-default: #ffffff;
+  --select-item-bg-color-hover: #f9fafb;
+  --select-item-bg-color-highlighted: #f9fafb;
+  --select-item-bg-color-selected: #f9fafb;
+  --select-item-bg-color-disabled: #ffffff;
 
-  --select-dropdown-option-text-default: #3d4658;
-  --select-dropdown-option-text-hover: #3d4658;
-  --select-dropdown-option-text-focus: #3d4658;
-  --select-dropdown-option-text-disabled: #b6b6b6;
+  --select-item-text-color-default: #3d4658;
+  --select-item-text-color-hover: #3d4658;
+  --select-item-text-color-highlighted: #3d4658;
+  --select-item-text-color-selected: #007bff;
+  --select-item-text-color-disabled: #b4b4b4;
+
+  --select-item-indicator-color-default: #007bff;
+  --select-item-indicator-size-default: 14px;
+
+  --select-item-border-radius-default: 6px;
+
+  --select-item-font-size-default: 14px;
+  --select-item-font-weight-default: 400;
+
+  --select-item-padding-x-default: 12px;
+  --select-item-padding-y-default: 8px;
+
+  // separator
+  --select-item-separator-color-default: #d0d5dd;
+  --select-item-seperator-spacing-y-default: 6px;
+
+  // Group
+  --select-group-padding-x-default: 0px;
+  --select-group-padding-y-default: 0px;
+
+  // Label
+  --select-group-label-font-size-default: 14px;
+  --select-group-label-font-weight-default: 500;
+  --select-group-label-text-color-default: #3d4658;
+  --select-group-label-spacing-top-default: 6px;
+  --select-group-label-spacing-bottom-default: 6px;
+  --select-group-label-spacing-x-default: 0px;
 }

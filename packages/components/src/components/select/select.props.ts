@@ -1,7 +1,12 @@
 import type { Icon } from '@/icons/icons'
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
+import type { PopoverAlign, PopoverSide } from '@/types/popover.type'
+import type {
+  SelectItem,
+  SelectValue,
+} from '@/types/select.type'
 
-export interface AppSelectProps {
+export interface AppSelectProps<TValue extends SelectValue> {
   /**
    * The id of the input.
    * @default null
@@ -37,6 +42,24 @@ export interface AppSelectProps {
    */
   isTouched?: boolean
   /**
+   * The display function for the selected value.
+   */
+  displayFn: (value: TValue) => string
+  /**
+   * The alignment of the dropdown.
+   * @default 'center'
+   */
+  dropdownAlign?: PopoverAlign
+  /**
+   * The side of the dropdown.
+   * @default 'bottom'
+   */
+  dropdownSide?: PopoverSide
+  /**
+   * The width of the popover.
+   */
+  dropdownWidth?: 'available-width' | 'trigger-width'
+  /**
    * The errors associated with the input.
    */
   errors?: FormFieldErrors | null
@@ -50,6 +73,10 @@ export interface AppSelectProps {
    * @default null
    */
   iconLeft?: Icon | null
+  /**
+   * The items of the select.
+   */
+  items: SelectItem<TValue>[]
   /**
    * The label of the input.
    * @default null
@@ -69,14 +96,19 @@ export interface AppSelectProps {
 
 export const appSelectPropsDefaultValues = {
   id: null,
+  testId: null,
   isDisabled: false,
   isLoading: false,
   isReadonly: false,
   isRequired: false,
+  isTouched: false,
+  dropdownAlign: 'center',
+  dropdownSide: 'bottom',
+  dropdownWidth: 'trigger-width',
   errors: null,
   hint: null,
   iconLeft: null,
   label: null,
   placeholder: null,
   type: 'text',
-} satisfies AppSelectProps
+} satisfies Partial<AppSelectProps<SelectValue>>

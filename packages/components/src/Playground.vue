@@ -5,6 +5,7 @@ import AppButton from '@/components/button/AppButton.vue'
 import AppIconButton from '@/components/button/AppIconButton.vue'
 import AppSelect from '@/components/select/AppSelect.vue'
 import AppTextField from '@/components/text-field/AppTextField.vue'
+import type { SelectItem } from '@/types/select.type.js'
 
 const themes = [
   'default',
@@ -17,6 +18,49 @@ const themes = [
 const theme = ref<string>('default')
 
 const isLoading = ref<boolean>(false)
+
+const test = ref<null | string>(null)
+
+const items: SelectItem<string>[] = [
+  {
+    type: 'option',
+    value: 'Apple',
+  },
+  {
+    type: 'separator',
+  },
+  {
+    type: 'option',
+    value: 'Banana',
+  },
+  {
+    type: 'option',
+    value: 'Blueberry',
+  },
+  {
+    type: 'option',
+    value: 'Grapes',
+  },
+  {
+    type: 'option',
+    value: 'Pineapple',
+  },
+  {
+    items: [
+      {
+        type: 'option',
+        value: 'Apple 2',
+      },
+      {
+        isDisabled: true,
+        type: 'option',
+        value: 'Banana 2',
+      },
+    ],
+    label: 'Group 1',
+    type: 'group',
+  },
+]
 </script>
 
 <template>
@@ -136,9 +180,14 @@ const isLoading = ref<boolean>(false)
 
     <div class="py-12">
       <AppSelect
+        v-model="test"
         :is-loading="false"
-        icon-left="search"
+        :is-disabled="false"
+        :display-fn="(value) => value"
+        :items="items"
+        icon-left="calendar"
         label="Select a fruit"
+        placeholder="Fruit"
         class="w-72"
       />
     </div>
@@ -185,9 +234,8 @@ const isLoading = ref<boolean>(false)
       />
 
       <AppTextField
-        :class="theme"
         class="test"
-        hint="Make sure to include your email address."
+        placeholder="Enter an email address"
       />
     </div>
   </div>
@@ -196,6 +244,10 @@ const isLoading = ref<boolean>(false)
 <style lang="scss">
 body {
   font-family: 'Inter Variable', sans-serif;
+}
+
+.test2 {
+  --button-bg-color-hover: red;
 }
 
 .leander {
@@ -335,11 +387,11 @@ body {
   --text-field-bg-color-disabled: #2F2F2F; /* Dull background for disabled */
   --text-field-bg-color-error: #1C1C1C;
 
-  --text-field-color-default: #E0E0E0; /* Light text color for visibility */
-  --text-field-color-focus: #FFFFFF;  /* White text on focus for better contrast */
-  --text-field-color-hover: #FFFFFF;
-  --text-field-color-disabled: #757575; /* Gray text for disabled */
-  --text-field-color-error: #FFFFFF;  /* Keep white text in error state */
+  --text-field-text-color-default: #E0E0E0; /* Light text text-color for visibility */
+  --text-field-text-color-focus: #FFFFFF;  /* White text on focus for better contrast */
+  --text-field-text-color-hover: #FFFFFF;
+  --text-field-text-color-disabled: #757575; /* Gray text for disabled */
+  --text-field-text-color-error: #FFFFFF;  /* Keep white text in error state */
 
   --text-field-placeholder-color-default: #9E9E9E; /* Dull gray for placeholders */
   --text-field-placeholder-color-focus: #BDBDBD;
@@ -642,5 +694,8 @@ body {
 
   // no padding left
   --text-field-padding-left-default: 2px;
+
+  // larger font size
+  --text-field-font-size-default: 16px;
 }
 </style>

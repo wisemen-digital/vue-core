@@ -1,9 +1,7 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="TValue extends SelectValueType">
 import {
   SelectContent,
-  SelectItem,
   SelectPortal,
-  SelectRoot,
   SelectTrigger,
   SelectValue,
   SelectViewport,
@@ -12,19 +10,31 @@ import {
 import { computed, ref } from 'vue'
 
 import AppIcon from '@/components/icon/AppIcon.vue'
+import AppInputFieldError from '@/components/input-field-error/AppInputFieldError.vue'
+import AppInputFieldHint from '@/components/input-field-hint/AppInputFieldHint.vue'
+import AppInputFieldLabel from '@/components/input-field-label/AppInputFieldLabel.vue'
+import AppSelectItem from '@/components/select/AppSelectItem.vue'
+import AppSelectRoot from '@/components/select/AppSelectRoot.vue'
 import {
   type AppSelectProps,
   appSelectPropsDefaultValues,
 } from '@/components/select/select.props.js'
 import { selectStyle } from '@/components/select/select.style.js'
 import AppSpinner from '@/components/spinner/AppSpinner.vue'
+import type { SelectValue as SelectValueType } from '@/types/select.type.js'
 
-const props = withDefaults(defineProps<AppSelectProps>(), appSelectPropsDefaultValues)
+const props = withDefaults(defineProps<AppSelectProps<TValue>>(), appSelectPropsDefaultValues)
 
 const emit = defineEmits<{
   blur: []
   focus: []
 }>()
+
+const model = defineModel<TValue | null>({
+  required: true,
+})
+
+const isOpen = ref<boolean>(false)
 
 const isFocused = ref<boolean>(false)
 const isMouseOver = ref<boolean>(false)
@@ -42,6 +52,9 @@ const triggerClasses = computed<string>(() => style.trigger({
   isHovered: isHovered.value,
 }))
 
+const valueClasses = computed<string>(() => style.value())
+const placeholderClasses = computed<string>(() => style.placeholder())
+
 const iconLeftClasses = computed<string>(() => style.iconLeft({
   hasError: hasError.value,
   isDisabled: props.isDisabled,
@@ -49,7 +62,7 @@ const iconLeftClasses = computed<string>(() => style.iconLeft({
   isHovered: isHovered.value,
 }))
 
-const iconRightClasses = computed<string>(() => style.iconRight({
+const caretClasses = computed<string>(() => style.caret({
   hasError: hasError.value,
   isDisabled: props.isDisabled,
   isFocused: isFocused.value,
@@ -80,7 +93,6 @@ const hintClasses = computed<string>(() => style.hint({
 }))
 
 const errorClasses = computed<string>(() => style.error())
-
 const dropdownClasses = computed<string>(() => style.dropdown())
 
 function onMouseEnter(): void {
@@ -100,16 +112,6 @@ function onBlur(): void {
   isFocused.value = false
   emit('blur')
 }
-
-const fruit = ref()
-
-const options = [
-  'Apple',
-  'Banana',
-  'Blueberry',
-  'Grapes',
-  'Pineapple',
-]
 </script>
 
 <template>
@@ -119,15 +121,18 @@ const options = [
       :input-id="inputId"
       name="label"
     >
-      <label
+      <AppInputFieldLabel
         :for="inputId"
+        :label="props.label"
+        :is-required="props.isRequired"
         :class="inputLabelClasses"
-      >
-        {{ props.label }} <template v-if="props.isRequired">*</template>
-      </label>
+      />
     </slot>
 
-    <SelectRoot v-model="fruit">
+    <AppSelectRoot
+      v-model="model"
+      v-model:is-open="isOpen"
+    >
       <SelectTrigger
         :id="inputId"
         :data-test-id="props.testId"
@@ -145,9 +150,17 @@ const options = [
         />
 
         <SelectValue
-          placeholder="Select a fruit..."
-          class="w-full text-left"
-        />
+          :class="props.placeholder !== null && model === null ? placeholderClasses : valueClasses"
+          :placeholder="props.placeholder ?? undefined"
+        >
+          <template v-if="props.placeholder && model === null">
+            {{ props.placeholder }}
+          </template>
+
+          <template v-else>
+            {{ model }}
+          </template>
+        </SelectValue>
 
         <slot
           :is-focused="isFocused"
@@ -171,46 +184,100 @@ const options = [
           name="icon-right"
         >
           <AppIcon
-            :class="iconRightClasses"
+            :class="caretClasses"
             icon="chevronDown"
           />
         </slot>
       </SelectTrigger>
 
+      <!-- TODO: MAX H EN SHIT (variables + inherit width of fixed width) -->
       <SelectPortal>
-        <SelectContent
-          :class="dropdownClasses"
-          position="popper"
+        <Transition
+          enter-active-class="duration-150"
+          enter-from-class="opacity-0"
+          enter-to-class="opacity-100"
+          leave-active-class="duration-150"
+          leave-from-class="opacity-100"
+          leave-to-class="opacity-0"
         >
-          <SelectViewport>
-            <SelectItem
-              v-for="option of options"
-              :key="option"
-              :value="option"
+          <div
+            v-if="isOpen"
+            class="relative z-popover"
+          >
+            <SelectContent
+              v-if="isOpen"
+              :force-mount="true"
+              :align="props.dropdownAlign"
+              :side="props.dropdownSide"
+              :class="[
+                dropdownClasses,
+                {
+                  'w-[--radix-select-trigger-width]': props.dropdownWidth === 'trigger-width',
+                  'w-[--radix-select-content-available-width]': props.dropdownWidth === 'available-width',
+                },
+              ]"
+              class="custom-popover-content"
+              position="popper"
             >
-              {{ option }}
-            </SelectItem>
-          </SelectViewport>
-        </SelectContent>
+              <SelectViewport class="max-h-80">
+                <AppSelectItem
+                  v-for="(item, itemIndex) of props.items"
+                  :key="itemIndex"
+                  :item="item"
+                  :display-fn="props.displayFn"
+                >
+                  <template #option-content="{ item: selectItem }">
+                    <slot
+                      v-if="selectItem.type === 'option'"
+                      :item="selectItem"
+                      name="option-content"
+                    />
+                  </template>
+
+                  <template #option-indicator="{ item: selectItem }">
+                    <slot
+                      v-if="selectItem.type === 'option'"
+                      :item="selectItem"
+                      name="option-indicator"
+                    />
+                  </template>
+
+                  <template #group-label="{ label }">
+                    <slot
+                      :label="label"
+                      name="group-label"
+                    />
+                  </template>
+
+                  <template #separator>
+                    <slot name="separator" />
+                  </template>
+                </AppSelectItem>
+              </SelectViewport>
+            </SelectContent>
+          </div>
+        </transition>
       </SelectPortal>
-    </SelectRoot>
+    </AppSelectRoot>
 
     <slot
       v-if="hasError"
       name="error"
     >
-      <span :class="errorClasses">
-        {{ props.errors?._errors[0] }}
-      </span>
+      <AppInputFieldError
+        :errors="props.errors"
+        :class="errorClasses"
+      />
     </slot>
 
     <slot
       v-else-if="props.hint !== null"
       name="hint"
     >
-      <span :class="hintClasses">
-        {{ props.hint }}
-      </span>
+      <AppInputFieldHint
+        :hint="props.hint"
+        :class="hintClasses"
+      />
     </slot>
   </div>
 </template>
