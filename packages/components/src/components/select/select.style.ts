@@ -6,7 +6,7 @@ export const selectStyle = tv({
     dropdown: 'max-w-select-dropdown-max-width-default rounded-select-dropdown-border-radius-default border border-solid border-select-dropdown-border-color-default bg-select-dropdown-bg-color-default px-select-dropdown-padding-x-default py-select-dropdown-padding-y-default shadow-select-dropdown-shadow-default',
     error: '[--input-field-error-font-size-default:var(--select-error-font-size-default)] [--input-field-error-spacing-default:var(--select-error-spacing-default)] [--input-field-error-text-color-default:var(--select-error-text-color-default)]',
     group: 'px-select-group-padding-x-default py-select-group-padding-y-default',
-    groupLabel: 'sticky top-0 bg-select-bg-color-default px-select-group-label-spacing-x-default pb-select-group-label-spacing-bottom-default pt-select-group-label-spacing-top-default text-select-group-label-font-size-default font-select-group-label-font-weight-default text-select-group-label-text-color-default',
+    groupLabel: 'sticky top-0 bg-select-dropdown-bg-color-default px-select-group-label-spacing-x-default pb-select-group-label-spacing-bottom-default pt-select-group-label-spacing-top-default text-select-group-label-font-size-default font-select-group-label-font-weight-default text-select-group-label-text-color-default',
     hint: '[--input-field-hint-font-size-default:var(--select-hint-font-size-default)] [--input-field-hint-text-color-default:var(--select-hint-text-color-default)]',
     iconLeft: 'mr-select-icon-left-spacing-default box-content shrink-0 duration-200 [--icon-color:var(--select-icon-left-color-default)] [--icon-size:var(--select-icon-left-size-default)]',
     inputLabel: '[--input-field-label-font-size-default:var(--select-label-font-size-default)] [--input-field-label-font-weight-default:var(--select-label-font-weight-default)] [--input-field-label-spacing-default:var(--select-label-spacing-default)] [--input-field-label-text-color-default:var(--select-label-text-color-default)]',
@@ -16,6 +16,7 @@ export const selectStyle = tv({
     separator: 'my-select-item-seperator-spacing-y-default h-px bg-select-item-separator-color-default',
     trigger: 'group relative flex h-select-height-default w-full items-center overflow-hidden rounded-bl-select-border-radius-bottom-left-default rounded-br-select-border-radius-bottom-right-default rounded-tl-select-border-radius-top-left-default rounded-tr-select-border-radius-top-right-default border border-solid border-b-select-border-bottom-color-default border-l-select-border-left-color-default border-r-select-border-right-color-default border-t-select-border-top-color-default bg-select-bg-color-default pl-select-padding-left-default pr-select-padding-right-default text-select-font-size-default font-select-font-weight-default text-select-text-color-default shadow-select-shadow-default outline-none duration-200',
     value: 'block w-full text-left',
+    viewport: 'max-h-select-dropdown-max-height-default',
   },
   variants: {
     isDisabled: {

@@ -67,6 +67,9 @@ export default {
         ...inputFieldErrorTailwindConfig.margin,
         ...selectTailwindConfig.margin,
       },
+      maxHeight: {
+        ...selectTailwindConfig.maxHeight,
+      },
       maxWidth: {
         ...selectTailwindConfig.maxWidth,
       },

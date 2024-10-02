@@ -95,6 +95,7 @@ const hintClasses = computed<string>(() => style.hint({
 
 const errorClasses = computed<string>(() => style.error())
 const dropdownClasses = computed<string>(() => style.dropdown())
+const viewportClasses = computed<string>(() => style.viewport())
 
 function onMouseEnter(): void {
   isMouseOver.value = true
@@ -180,15 +181,18 @@ function onBlur(): void {
           </slot>
         </div>
 
-        <slot
+        <div
           v-else
-          name="icon-right"
+          :class="caretClasses"
         >
-          <AppIcon
-            :class="caretClasses"
-            icon="chevronDown"
-          />
-        </slot>
+          <slot
+            name="caret"
+          >
+            <AppIcon
+              icon="chevronDown"
+            />
+          </slot>
+        </div>
       </SelectTrigger>
 
       <SelectPortal>
@@ -219,7 +223,7 @@ function onBlur(): void {
               class="custom-popover-content"
               position="popper"
             >
-              <SelectViewport class="max-h-80">
+              <SelectViewport :class="viewportClasses">
                 <AppSelectItem
                   v-for="(item, itemIndex) of props.items"
                   :key="itemIndex"
@@ -273,9 +277,7 @@ function onBlur(): void {
       </div>
 
       <div v-else-if="props.hint !== null">
-        <slot
-          name="hint"
-        >
+        <slot name="hint">
           <AppInputFieldHint
             :hint="props.hint"
             :class="hintClasses"

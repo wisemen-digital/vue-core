@@ -209,9 +209,7 @@ function onBlur(): void {
       </div>
 
       <div v-else-if="props.hint !== null">
-        <slot
-          name="hint"
-        >
+        <slot name="hint">
           <AppInputFieldHint
             :hint="props.hint"
             :class="hintClasses"

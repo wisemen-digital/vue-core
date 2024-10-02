@@ -195,7 +195,17 @@ const items: SelectItem<string>[] = [
         label="Select a fruit"
         placeholder="Fruit"
         class="w-72"
-      />
+      >
+        <template #caret>
+          <!-- <AppIcon icon="chevronRight" /> -->
+        </template>
+
+        <template #option-indicator>
+          <span class="text-xs font-medium">
+            Selected
+          </span>
+        </template>
+      </AppSelect>
     </div>
 
     <div class="grid grid-cols-3 items-end gap-12">
@@ -218,9 +228,18 @@ const items: SelectItem<string>[] = [
         class="z-50"
       />
 
+      <label for="test">
+        test
+      </label>
+
       <AppTextField
+        id="test"
         :class="theme"
-        :is-disabled="true"
+        :errors="{
+          _errors: ['tet'],
+        }"
+        :is-touched="true"
+        :is-disabled="false"
       />
 
       <AppTextField

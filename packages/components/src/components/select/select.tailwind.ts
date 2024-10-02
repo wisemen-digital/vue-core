@@ -99,6 +99,9 @@ export const selectTailwindConfig = {
     'select-padding-left-default': 'var(--select-padding-left-default)',
     'select-padding-right-default': 'var(--select-padding-right-default)',
   },
+  maxHeight: {
+    'select-dropdown-max-height-default': 'var(--select-dropdown-max-height-default)',
+  },
   maxWidth: {
     'select-dropdown-max-width-default': 'var(--select-dropdown-max-width-default)',
   },
