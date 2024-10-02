@@ -191,7 +191,6 @@ function onBlur(): void {
         </slot>
       </SelectTrigger>
 
-      <!-- TODO: MAX H EN SHIT (variables + inherit width of fixed width) -->
       <SelectPortal>
         <Transition
           enter-active-class="duration-150"
