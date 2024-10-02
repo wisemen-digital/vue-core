@@ -4,7 +4,7 @@ import { computed } from 'vue'
 import { inputFieldHintStyle } from '@/components/input-field-hint/inputFieldHint.style'
 
 const props = defineProps<{
-  hint: null | string
+  hint: string
 }>()
 
 const style = inputFieldHintStyle()
@@ -12,11 +12,7 @@ const hintClasses = computed<string>(() => style.hint())
 </script>
 
 <template>
-  <!-- TODO: animate -->
-  <span
-    v-if="props.hint !== null"
-    :class="hintClasses"
-  >
+  <span :class="hintClasses">
     {{ props.hint }}
   </span>
 </template>

@@ -9,6 +9,7 @@ import {
 } from 'radix-vue'
 import { computed, ref } from 'vue'
 
+import AppCollapsable from '@/components/collapsable/AppCollapsable.vue'
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppInputFieldError from '@/components/input-field-error/AppInputFieldError.vue'
 import AppInputFieldHint from '@/components/input-field-hint/AppInputFieldHint.vue'
@@ -260,24 +261,28 @@ function onBlur(): void {
       </SelectPortal>
     </AppSelectRoot>
 
-    <slot
-      v-if="hasError"
-      name="error"
-    >
-      <AppInputFieldError
-        :errors="props.errors"
-        :class="errorClasses"
-      />
-    </slot>
+    <AppCollapsable>
+      <div v-if="hasError">
+        <slot
+          name="error"
+        >
+          <AppInputFieldError
+            :errors="props.errors"
+            :class="errorClasses"
+          />
+        </slot>
+      </div>
 
-    <slot
-      v-else-if="props.hint !== null"
-      name="hint"
-    >
-      <AppInputFieldHint
-        :hint="props.hint"
-        :class="hintClasses"
-      />
-    </slot>
+      <div v-else-if="props.hint !== null">
+        <slot
+          name="hint"
+        >
+          <AppInputFieldHint
+            :hint="props.hint"
+            :class="hintClasses"
+          />
+        </slot>
+      </div>
+    </AppCollapsable>
   </div>
 </template>

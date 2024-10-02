@@ -13,11 +13,7 @@ const errorClasses = computed<string>(() => style.error())
 </script>
 
 <template>
-  <!-- TODO: animate -->
-  <span
-    v-if="props.errors !== null"
-    :class="errorClasses"
-  >
+  <span :class="errorClasses">
     {{ props.errors?._errors[0] }}
   </span>
 </template>

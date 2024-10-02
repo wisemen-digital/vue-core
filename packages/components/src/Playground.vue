@@ -18,8 +18,14 @@ const themes = [
 const theme = ref<string>('default')
 
 const isLoading = ref<boolean>(false)
+const isTouched = ref<boolean>(false)
 
 const test = ref<null | string>(null)
+const hint = ref<null | string>(null)
+
+setTimeout(() => {
+  hint.value = 'This is a hint'
+}, 1000)
 
 const items: SelectItem<string>[] = [
   {
@@ -220,12 +226,14 @@ const items: SelectItem<string>[] = [
       <AppTextField
         :class="theme"
         :is-loading="isLoading"
-        :is-touched="true"
+        :is-touched="isTouched"
         :errors="{
           _errors: ['This is an error'],
         }"
+        hint="This do be a hint"
         label="This is a label"
         icon-right="calendar"
+        @blur="isTouched = true"
       />
 
       <AppTextField

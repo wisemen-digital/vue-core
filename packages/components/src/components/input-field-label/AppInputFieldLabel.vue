@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Label } from 'radix-vue'
 import { computed } from 'vue'
 
 import { inputFieldLabelStyle } from '@/components/input-field-label/inputFieldLabel.style'
@@ -14,12 +15,11 @@ const labelClasses = computed<string>(() => style.label())
 </script>
 
 <template>
-  <!-- TODO: animate -->
-  <label
+  <Label
     v-if="props.label !== null"
     :class="labelClasses"
     :for="props.for"
   >
     {{ props.label }} <template v-if="props.isRequired">*</template>
-  </label>
+  </Label>
 </template>
