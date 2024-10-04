@@ -1,10 +1,18 @@
 import type { Icon } from '@/icons/icons'
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
-import type { PopoverAlign, PopoverSide } from '@/types/popover.type'
+import type {
+  PopoverAlign,
+  PopoverSide,
+  PopoverWidth,
+} from '@/types/popover.type'
 import type {
   SelectItem,
   SelectValue,
 } from '@/types/select.type'
+
+export type SelectDisplayFn<TValue extends SelectValue> = (
+  value: TValue extends Array<infer U> ? U : TValue
+) => string
 
 export interface AppSelectProps<TValue extends SelectValue> {
   /**
@@ -28,11 +36,6 @@ export interface AppSelectProps<TValue extends SelectValue> {
    */
   isLoading?: boolean
   /**
-   * Whether the input is readonly.
-   * @default false
-   */
-  isReadonly?: boolean
-  /**
    * Whether the input is required.
    */
   isRequired?: boolean
@@ -44,7 +47,7 @@ export interface AppSelectProps<TValue extends SelectValue> {
   /**
    * The display function for the selected value.
    */
-  displayFn: (value: TValue) => string
+  displayFn: SelectDisplayFn<TValue>
   /**
    * The alignment of the dropdown.
    * @default 'center'
@@ -58,11 +61,15 @@ export interface AppSelectProps<TValue extends SelectValue> {
   /**
    * The width of the popover.
    */
-  dropdownWidth?: 'available-width' | 'trigger-width'
+  dropdownWidth?: PopoverWidth
   /**
    * The errors associated with the input.
    */
   errors?: FormFieldErrors | null
+  /**
+   * The function to filter the options.
+   */
+  filterFn?: ((option: TValue, searchTerm: string) => boolean) | null
   /**
    * The hint text of the input.
    * @default null
@@ -76,7 +83,7 @@ export interface AppSelectProps<TValue extends SelectValue> {
   /**
    * The items of the select.
    */
-  items: SelectItem<TValue>[]
+  items: SelectItem<TValue extends Array<infer U> ? U : TValue>[]
   /**
    * The label of the input.
    * @default null
@@ -88,10 +95,11 @@ export interface AppSelectProps<TValue extends SelectValue> {
    */
   placeholder?: null | string
   /**
-   * The type of the input.
-   * @default 'text'
+   * Whether the select should remain open when the value changes.
+   * @default true - when the value is an array
+   * @default false - when the value is a single value
    */
-  type?: 'date' | 'datetime-local' | 'email' | 'password' | 'search' | 'tel' | 'text' | 'time' | 'url'
+  shouldRemainOpenOnValueChange?: boolean | null
 }
 
 export const appSelectPropsDefaultValues = {
@@ -99,16 +107,16 @@ export const appSelectPropsDefaultValues = {
   testId: null,
   isDisabled: false,
   isLoading: false,
-  isReadonly: false,
   isRequired: false,
   isTouched: false,
   dropdownAlign: 'center',
   dropdownSide: 'bottom',
-  dropdownWidth: 'trigger-width',
+  dropdownWidth: 'anchor-width',
   errors: null,
+  filterFn: null,
   hint: null,
   iconLeft: null,
   label: null,
   placeholder: null,
-  type: 'text',
+  shouldRemainOpenOnValueChange: null,
 } satisfies Partial<AppSelectProps<SelectValue>>

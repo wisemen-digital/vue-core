@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useId } from 'radix-vue'
+import { useId } from 'reka-ui'
 import { computed, ref } from 'vue'
 
 import AppCollapsable from '@/components/collapsable/AppCollapsable.vue'
@@ -31,6 +31,10 @@ defineSlots<{
   'loader': () => null
   'right': (props: { hasError: boolean, isDisabled: boolean, isFocused: boolean, isHovered: boolean }) => void
 }>()
+
+const model = defineModel<null | string>({
+  required: true,
+})
 
 const isFocused = ref<boolean>(false)
 const isMouseOver = ref<boolean>(false)
@@ -154,12 +158,12 @@ function onBlur(): void {
 
       <input
         :id="inputId"
+        v-model="model"
         :data-test-id="props.testId"
         :readonly="props.isReadonly"
         :disabled="props.isDisabled"
         :placeholder="props.placeholder ?? undefined"
         :spellcheck="props.isSpellCheckEnabled"
-        :data-error="hasError"
         :class="inputClasses"
         :autocomplete="props.autoComplete"
         :type="props.type"

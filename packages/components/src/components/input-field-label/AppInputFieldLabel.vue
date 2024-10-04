@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Label } from 'radix-vue'
+import { Label } from 'reka-ui'
 import { computed } from 'vue'
 
 import { inputFieldLabelStyle } from '@/components/input-field-label/inputFieldLabel.style'

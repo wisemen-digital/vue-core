@@ -1,7 +1,6 @@
-export type SelectValue = Record<string, any>
-  | boolean
-  | number
-  | string
+import type { AcceptableValue } from 'reka-ui'
+
+export type SelectValue = AcceptableValue | AcceptableValue[]
 
 export interface SelectSeparator {
   type: 'separator'

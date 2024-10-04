@@ -2,11 +2,12 @@
 import AppSelectGroup from '@/components/select/AppSelectGroup.vue'
 import AppSelectOption from '@/components/select/AppSelectOption.vue'
 import AppSelectSeparator from '@/components/select/AppSelectSeparator.vue'
+import type { SelectDisplayFn } from '@/components/select/select.props.js'
 import type { SelectItem, SelectValue } from '@/types/select.type'
 
 const props = defineProps<{
-  displayFn: (value: TValue) => string
-  item: SelectItem<TValue>
+  displayFn: SelectDisplayFn<TValue>
+  item: SelectItem<TValue extends Array<infer U> ? U : TValue>
 }>()
 </script>
 
@@ -55,18 +56,16 @@ const props = defineProps<{
       :item="groupItem"
       :display-fn="displayFn"
     >
-      <!-- @vue-expect-error -->
-      <template #option-content="{ item: itemValue }">
+      <template #option-content>
         <slot
-          :item="itemValue"
+          :item="groupItem"
           name="option-content"
         />
       </template>
 
-      <!-- @vue-expect-error -->
-      <template #option-indicator="{ item: itemValue }">
+      <template #option-indicator>
         <slot
-          :item="itemValue"
+          :item="groupItem"
           name="option-indicator"
         />
       </template>

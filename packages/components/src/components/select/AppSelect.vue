@@ -1,28 +1,31 @@
 <script setup lang="ts" generic="TValue extends SelectValueType">
 import {
-  SelectContent,
-  SelectPortal,
-  SelectTrigger,
-  SelectValue,
-  SelectViewport,
+  ListboxContent,
+  ListboxRoot,
   useId,
-} from 'radix-vue'
-import { computed, ref } from 'vue'
+} from 'reka-ui'
+import {
+  computed,
+  ref,
+  watch,
+} from 'vue'
 
 import AppCollapsable from '@/components/collapsable/AppCollapsable.vue'
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppInputFieldError from '@/components/input-field-error/AppInputFieldError.vue'
 import AppInputFieldHint from '@/components/input-field-hint/AppInputFieldHint.vue'
 import AppInputFieldLabel from '@/components/input-field-label/AppInputFieldLabel.vue'
+import AppPopover from '@/components/popover/AppPopover.vue'
+import AppSelectFilter from '@/components/select/AppSelectFilter.vue'
 import AppSelectItem from '@/components/select/AppSelectItem.vue'
-import AppSelectRoot from '@/components/select/AppSelectRoot.vue'
+import { useProvideSelectContext } from '@/components/select/select.context.js'
 import {
   type AppSelectProps,
   appSelectPropsDefaultValues,
-} from '@/components/select/select.props.js'
+} from '@/components/select/select.props'
 import { selectStyle } from '@/components/select/select.style.js'
 import AppSpinner from '@/components/spinner/AppSpinner.vue'
-import type { SelectValue as SelectValueType } from '@/types/select.type.js'
+import type { SelectItem, SelectValue as SelectValueType } from '@/types/select.type'
 
 const props = withDefaults(defineProps<AppSelectProps<TValue>>(), appSelectPropsDefaultValues)
 
@@ -36,6 +39,7 @@ const model = defineModel<TValue | null>({
 })
 
 const isOpen = ref<boolean>(false)
+const searchTerm = ref<string>('')
 
 const isFocused = ref<boolean>(false)
 const isMouseOver = ref<boolean>(false)
@@ -45,6 +49,8 @@ const style = selectStyle()
 const inputId = computed<string>(() => props.id ?? useId())
 const isHovered = computed<boolean>(() => isMouseOver.value && !props.isDisabled)
 const hasError = computed<boolean>(() => props.errors !== undefined && props.isTouched && props.errors !== null)
+
+const isMultiple = computed<boolean>(() => Array.isArray(model.value))
 
 const triggerClasses = computed<string>(() => style.trigger({
   hasError: hasError.value,
@@ -95,7 +101,57 @@ const hintClasses = computed<string>(() => style.hint({
 
 const errorClasses = computed<string>(() => style.error())
 const dropdownClasses = computed<string>(() => style.dropdown())
-const viewportClasses = computed<string>(() => style.viewport())
+const dropdownContentClasses = computed<string>(() => style.dropdownContent({
+  hasFilter: props.filterFn !== null,
+}))
+
+const computedModel = computed<TValue | undefined>({
+  get: () => model.value ?? undefined,
+  set: (value) => {
+    model.value = value ?? null
+  },
+})
+
+const shouldRemainOpenOnValueChange = computed<boolean>(() => {
+  if (props.shouldRemainOpenOnValueChange !== null) {
+    return props.shouldRemainOpenOnValueChange
+  }
+
+  return isMultiple.value
+})
+
+// TODO:
+const filteredItems = computed<SelectItem<TValue extends Array<infer U> ? U : TValue>[]>(() => {
+  return props.items
+})
+
+const displayValue = computed<string>(() => {
+  if (isMultiple.value) {
+    const arrayValue = model.value as TValue[]
+
+    return arrayValue.map((value) => props.displayFn(value as any)).join(', ')
+  }
+
+  if (model.value === null) {
+    return ''
+  }
+
+  return props.displayFn(model.value as any)
+})
+
+const isEmpty = computed<boolean>(() => {
+  if (isMultiple.value) {
+    return (model.value as TValue[]).length === 0
+  }
+
+  return model.value === null
+})
+
+function onTriggerKeyDown(event: KeyboardEvent): void {
+  if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+    isOpen.value = true
+  }
+}
 
 function onMouseEnter(): void {
   isMouseOver.value = true
@@ -114,6 +170,18 @@ function onBlur(): void {
   isFocused.value = false
   emit('blur')
 }
+
+watch(model, () => {
+  if (shouldRemainOpenOnValueChange.value) {
+    return
+  }
+
+  isOpen.value = false
+})
+
+useProvideSelectContext({
+  isMultiple: isMultiple.value,
+})
 </script>
 
 <template>
@@ -131,144 +199,134 @@ function onBlur(): void {
       />
     </slot>
 
-    <AppSelectRoot
-      v-model="model"
+    <AppPopover
       v-model:is-open="isOpen"
+      :is-arrow-hidden="true"
+      :offset-in-px="2"
+      :popover-width="props.dropdownWidth"
+      :align="props.dropdownAlign"
+      :side="props.dropdownSide"
+      :popover-class="dropdownClasses"
     >
-      <SelectTrigger
-        :id="inputId"
-        :data-test-id="props.testId"
-        :disabled="props.isDisabled"
-        :class="triggerClasses"
-        @focus="onFocus"
-        @blur="onBlur"
-        @mouseenter="onMouseEnter"
-        @mouseleave="onMouseLeave"
-      >
-        <AppIcon
-          v-if="props.iconLeft !== null"
-          :icon="props.iconLeft"
-          :class="iconLeftClasses"
-        />
-
-        <SelectValue
-          :class="props.placeholder !== null && model === null ? placeholderClasses : valueClasses"
-          :placeholder="props.placeholder ?? undefined"
+      <template #default>
+        <button
+          :id="inputId"
+          :class="triggerClasses"
+          :disabled="props.isDisabled"
+          :data-test-id="props.testId"
+          @keydown="onTriggerKeyDown"
+          @focus="onFocus"
+          @blur="onBlur"
+          @mouseenter="onMouseEnter"
+          @mouseleave="onMouseLeave"
         >
-          <template v-if="props.placeholder && model === null">
-            {{ props.placeholder }}
-          </template>
+          <AppIcon
+            v-if="props.iconLeft !== null"
+            :icon="props.iconLeft"
+            :class="iconLeftClasses"
+          />
 
-          <template v-else>
-            {{ model }}
-          </template>
-        </SelectValue>
-
-        <slot
-          :is-focused="isFocused"
-          :is-hovered="isHovered"
-          :is-disabled="props.isDisabled"
-          :has-error="hasError"
-          name="right"
-        />
-
-        <div
-          v-if="props.isLoading"
-          :class="loaderBoxClasses"
-        >
-          <slot name="loader">
-            <AppSpinner :class="loaderClasses" />
-          </slot>
-        </div>
-
-        <div
-          v-else
-          :class="caretClasses"
-        >
-          <slot
-            name="caret"
-          >
-            <AppIcon
-              icon="chevronDown"
-            />
-          </slot>
-        </div>
-      </SelectTrigger>
-
-      <SelectPortal>
-        <Transition
-          enter-active-class="duration-150"
-          enter-from-class="opacity-0"
-          enter-to-class="opacity-100"
-          leave-active-class="duration-150"
-          leave-from-class="opacity-100"
-          leave-to-class="opacity-0"
-        >
-          <div
-            v-if="isOpen"
-            class="relative z-popover"
-          >
-            <SelectContent
-              v-if="isOpen"
-              :force-mount="true"
-              :align="props.dropdownAlign"
-              :side="props.dropdownSide"
-              :class="[
-                dropdownClasses,
-                {
-                  'w-[--radix-select-trigger-width]': props.dropdownWidth === 'trigger-width',
-                  'w-[--radix-select-content-available-width]': props.dropdownWidth === 'available-width',
-                },
-              ]"
-              class="custom-popover-content"
-              position="popper"
+          <div :class="valueClasses">
+            <slot
+              v-if="!isEmpty"
+              :value="(model as NonNullable<TValue>)"
+              name="value"
             >
-              <SelectViewport :class="viewportClasses">
-                <AppSelectItem
-                  v-for="(item, itemIndex) of props.items"
-                  :key="itemIndex"
-                  :item="item"
-                  :display-fn="props.displayFn"
-                >
-                  <template #option-content="{ item: selectItem }">
-                    <slot
-                      v-if="selectItem.type === 'option'"
-                      :item="selectItem"
-                      name="option-content"
-                    />
-                  </template>
+              {{ displayValue }}
+            </slot>
 
-                  <template #option-indicator="{ item: selectItem }">
-                    <slot
-                      v-if="selectItem.type === 'option'"
-                      :item="selectItem"
-                      name="option-indicator"
-                    />
-                  </template>
-
-                  <template #group-label="{ label }">
-                    <slot
-                      :label="label"
-                      name="group-label"
-                    />
-                  </template>
-
-                  <template #separator>
-                    <slot name="separator" />
-                  </template>
-                </AppSelectItem>
-              </SelectViewport>
-            </SelectContent>
+            <span
+              v-else-if="props.placeholder !== null"
+              :class="placeholderClasses"
+            >
+              {{ props.placeholder }}
+            </span>
           </div>
-        </transition>
-      </SelectPortal>
-    </AppSelectRoot>
+
+          <slot
+            :is-focused="isFocused"
+            :is-hovered="isHovered"
+            :is-disabled="props.isDisabled"
+            :has-error="hasError"
+            name="right"
+          />
+
+          <div
+            v-if="props.isLoading"
+            :class="loaderBoxClasses"
+          >
+            <slot name="loader">
+              <AppSpinner :class="loaderClasses" />
+            </slot>
+          </div>
+
+          <div
+            v-else
+            :class="caretClasses"
+          >
+            <slot
+              name="caret"
+            >
+              <AppIcon
+                icon="chevronDown"
+              />
+            </slot>
+          </div>
+        </button>
+      </template>
+
+      <template #content>
+        <ListboxRoot
+          v-model="computedModel"
+          :multiple="isMultiple"
+        >
+          <AppSelectFilter
+            v-if="props.filterFn !== null"
+            v-model="searchTerm"
+          />
+
+          <ListboxContent :class="dropdownContentClasses">
+            <AppSelectItem
+              v-for="(item, itemIndex) of filteredItems"
+              :key="itemIndex"
+              :item="item"
+              :display-fn="props.displayFn"
+            >
+              <template #option-content="{ item: selectItem }">
+                <slot
+                  v-if="selectItem.type === 'option'"
+                  :item="selectItem"
+                  name="option-content"
+                />
+              </template>
+
+              <template #option-indicator="{ item: selectItem }">
+                <slot
+                  v-if="selectItem.type === 'option'"
+                  :item="selectItem"
+                  name="option-indicator"
+                />
+              </template>
+
+              <template #group-label="{ label }">
+                <slot
+                  :label="label"
+                  name="group-label"
+                />
+              </template>
+
+              <template #separator>
+                <slot name="separator" />
+              </template>
+            </AppSelectItem>
+          </ListboxContent>
+        </ListboxRoot>
+      </template>
+    </AppPopover>
 
     <AppCollapsable>
       <div v-if="hasError">
-        <slot
-          name="error"
-        >
+        <slot name="error">
           <AppInputFieldError
             :errors="props.errors"
             :class="errorClasses"

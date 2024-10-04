@@ -1,5 +1,5 @@
 <script setup lang="ts" generic="TValue extends SelectValue">
-import { SelectRoot } from 'radix-vue'
+import { SelectRoot } from 'reka-ui'
 import { computed } from 'vue'
 
 import type { SelectValue } from '@/types/select.type'

@@ -1,12 +1,13 @@
 <script setup lang="ts" generic="TValue extends SelectValue">
 import {
-  SelectItem as RadixSelectItem,
-  SelectItemIndicator,
-  SelectItemText,
-} from 'radix-vue'
+  ListboxItem as RekaListboxItem,
+  ListboxItemIndicator,
+} from 'reka-ui'
 import { computed } from 'vue'
 
 import AppIcon from '@/components/icon/AppIcon.vue'
+import { useInjectSelectContext } from '@/components/select/select.context.js'
+import type { SelectDisplayFn } from '@/components/select/select.props.js'
 import { selectItemStyle } from '@/components/select/selectItem.style'
 import type {
   SelectOption,
@@ -14,37 +15,85 @@ import type {
 } from '@/types/select.type'
 
 const props = defineProps<{
-  displayFn: (value: TValue) => string
-  item: SelectOption<TValue>
+  displayFn: SelectDisplayFn<TValue>
+  item: SelectOption<TValue extends Array<infer U> ? U : TValue>
 }>()
 
-const stringifiedValue = computed<string>(() => JSON.stringify(props.item.value))
+const { isMultiple } = useInjectSelectContext()
 
 const style = selectItemStyle()
 
 const itemClasses = computed<string>(() => style.item())
-const indicatorClasses = computed<string>(() => style.indicator())
+const singleValueIndicatorClasses = computed<string>(() => style.singleValueIndicator())
+const multipleValueIndicatorClasses = computed<string>(() => style.multipleValueIndicator())
 </script>
 
 <template>
-  <RadixSelectItem
-    :value="stringifiedValue"
+  <RekaListboxItem
+    :value="props.item.value"
     :class="itemClasses"
     :disabled="props.item.isDisabled"
   >
-    <SelectItemText>
+    <span>
       <slot name="option-content">
         {{ props.displayFn(props.item.value) }}
       </slot>
-    </SelectItemText>
+    </span>
 
-    <SelectItemIndicator>
-      <slot name="option-indicator">
-        <AppIcon
-          :class="indicatorClasses"
-          icon="checkmark"
-        />
-      </slot>
-    </SelectItemIndicator>
-  </RadixSelectItem>
+    <div
+      v-if="isMultiple"
+      :class="multipleValueIndicatorClasses"
+    >
+      <ListboxItemIndicator :as-child="true">
+        <slot name="option-indicator">
+          <AppIcon
+            icon="checkmark"
+            class="w-4/5"
+          />
+        </slot>
+      </ListboxItemIndicator>
+    </div>
+
+    <div v-else>
+      <ListboxItemIndicator>
+        <slot name="option-indicator">
+          <AppIcon
+            :class="singleValueIndicatorClasses"
+            icon="checkmark"
+          />
+        </slot>
+      </ListboxItemIndicator>
+    </div>
+
+    <div v-if="false">
+      <div
+        v-if="isMultiple"
+        :class="multipleValueIndicatorClasses"
+        class="
+          h-select-item-multiple-value-indicator-size-default
+          w-select-item-multiple-value-indicator-size-default
+          rounded-select-item-multiple-value-indicator-border-radius-default
+          border
+          border-solid
+          border-select-item-multiple-value-indicator-border-color-hover
+          duration-100
+          group-hover:border-select-item-multiple-value-indicator-border-color-hover"
+      />
+
+      <ListboxItemIndicator>
+        <slot name="option-indicator">
+          <div
+            v-if="isMultiple"
+            :class="multipleValueIndicatorClasses"
+          />
+
+          <AppIcon
+            v-else
+            :class="singleValueIndicatorClasses"
+            icon="checkmark"
+          />
+        </slot>
+      </ListboxItemIndicator>
+    </div>
+  </RekaListboxItem>
 </template>

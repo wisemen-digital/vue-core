@@ -22,17 +22,17 @@ export default defineConfig({
         'vue-i18n',
         'vue-router',
         'zod',
-        'radix-vue',
+        'reka-ui',
       ],
       output: {
         // Provide global variables to use in the UMD build
         // for externalized deps
         globals: {
-          'radix-vue': 'radixVue',
+          'reka-ui': 'RekaUI',
           'vue': 'Vue',
           'vue-i18n': 'VueI18n',
           'vue-router': 'VueRouter',
-          'zod': 'zod',
+          'zod': 'Zod',
         },
       },
     },

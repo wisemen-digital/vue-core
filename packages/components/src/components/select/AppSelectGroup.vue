@@ -1,5 +1,8 @@
 <script setup lang="ts" generic="TValue extends SelectValue">
-import { SelectGroup as RadixSelectGroup, SelectLabel } from 'radix-vue'
+import {
+  ListboxGroup as RekaListboxGroup,
+  ListboxGroupLabel,
+} from 'reka-ui'
 import { computed } from 'vue'
 
 import { selectStyle } from '@/components/select/select.style'
@@ -16,13 +19,13 @@ const groupLabelClasses = computed<string>(() => style.groupLabel())
 </script>
 
 <template>
-  <RadixSelectGroup :class="groupClasses">
-    <SelectLabel :class="groupLabelClasses">
+  <RekaListboxGroup :class="groupClasses">
+    <ListboxGroupLabel :class="groupLabelClasses">
       <slot name="group-label">
         {{ props.item.label }}
       </slot>
-    </SelectLabel>
+    </ListboxGroupLabel>
 
     <slot />
-  </RadixSelectGroup>
+  </RekaListboxGroup>
 </template>

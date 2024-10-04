@@ -3,58 +3,65 @@ import type { Config } from 'tailwindcss'
 export const selectTailwindConfig = {
   backgroundColor: {
     'select-bg-color-default': 'var(--select-bg-color-default)',
+
     'select-bg-color-disabled': 'var(--select-bg-color-disabled)',
     'select-bg-color-error': 'var(--select-bg-color-error)',
     'select-bg-color-focus': 'var(--select-bg-color-focus)',
     'select-bg-color-hover': 'var(--select-bg-color-hover)',
-
     'select-dropdown-bg-color-default': 'var(--select-dropdown-bg-color-default)',
 
     'select-item-bg-color-default': 'var(--select-item-bg-color-default)',
+
     'select-item-bg-color-disabled': 'var(--select-item-bg-color-disabled)',
     'select-item-bg-color-highlighted': 'var(--select-item-bg-color-highlighted)',
     'select-item-bg-color-hover': 'var(--select-item-bg-color-hover)',
     'select-item-bg-color-selected': 'var(--select-item-bg-color-selected)',
+    'select-item-multiple-value-indicator-bg-color-selected': 'var(--select-item-multiple-value-indicator-bg-color-selected)',
 
     'select-item-separator-color-default': 'var(--select-item-separator-color-default)',
   },
   borderColor: {
     'select-border-bottom-color-default': 'var(--select-border-bottom-color-default)',
     'select-border-bottom-color-disabled': 'var(--select-border-bottom-color-disabled)',
+
     'select-border-bottom-color-error': 'var(--select-border-bottom-color-error)',
     'select-border-bottom-color-focus': 'var(--select-border-bottom-color-focus)',
-
     'select-border-bottom-color-hover': 'var(--select-border-bottom-color-hover)',
     'select-border-left-color-default': 'var(--select-border-left-color-default)',
+
     'select-border-left-color-disabled': 'var(--select-border-left-color-disabled)',
     'select-border-left-color-error': 'var(--select-border-left-color-error)',
-
     'select-border-left-color-focus': 'var(--select-border-left-color-focus)',
     'select-border-left-color-hover': 'var(--select-border-left-color-hover)',
+
     'select-border-right-color-default': 'var(--select-border-right-color-default)',
     'select-border-right-color-disabled': 'var(--select-border-right-color-disabled)',
-
     'select-border-right-color-error': 'var(--select-border-right-color-error)',
     'select-border-right-color-focus': 'var(--select-border-right-color-focus)',
+
     'select-border-right-color-hover': 'var(--select-border-right-color-hover)',
     'select-border-top-color-default': 'var(--select-border-top-color-default)',
-
     'select-border-top-color-disabled': 'var(--select-border-top-color-disabled)',
     'select-border-top-color-error': 'var(--select-border-top-color-error)',
+
     'select-border-top-color-focus': 'var(--select-border-top-color-focus)',
     'select-border-top-color-hover': 'var(--select-border-top-color-hover)',
-
     'select-dropdown-border-color-default': 'var(--select-dropdown-border-color-default)',
+
+    'select-item-multiple-value-indicator-border-color-hover': 'var(--select-item-multiple-value-indicator-border-color-hover)',
+    'select-item-multiple-value-indicator-border-color-selected': 'var(--select-item-multiple-value-indicator-border-color-selected)',
   },
   borderRadius: {
     'select-border-radius-bottom-left-default': 'var(--select-border-radius-bottom-left-default)',
+
     'select-border-radius-bottom-right-default': 'var(--select-border-radius-bottom-right-default)',
     'select-border-radius-top-left-default': 'var(--select-border-radius-top-left-default)',
     'select-border-radius-top-right-default': 'var(--select-border-radius-top-right-default)',
-
     'select-dropdown-border-radius-default': 'var(--select-dropdown-border-radius-default)',
 
     'select-item-border-radius-default': 'var(--select-item-border-radius-default)',
+
+    'select-item-multiple-value-indicator-border-radius-default': 'var(--select-item-multiple-value-indicator-border-radius-default)',
   },
   boxShadow: {
     'select-dropdown-shadow-default': 'var(--select-dropdown-shadow-default)',
@@ -83,10 +90,12 @@ export const selectTailwindConfig = {
   },
   height: {
     'select-caret-size-default': 'var(--select-caret-size-default)',
+
     'select-height-default': 'var(--select-height-default)',
     'select-icon-left-size-default': 'var(--select-icon-left-size-default)',
-    'select-item-indicator-size-default': 'var(--select-item-indicator-size-default)',
+    'select-item-multiple-value-indicator-size-default': 'var(--select-item-multiple-value-indicator-size-default)',
     'select-item-separator-size-default': 'var(--select-item-separator-size-default)',
+    'select-item-single-value-indicator-size-default': 'var(--select-item-single-value-indicator-size-default)',
     'select-loader-size-default': 'var(--select-loader-size-default)',
   },
   margin: {
@@ -101,9 +110,6 @@ export const selectTailwindConfig = {
   },
   maxHeight: {
     'select-dropdown-max-height-default': 'var(--select-dropdown-max-height-default)',
-  },
-  maxWidth: {
-    'select-dropdown-max-width-default': 'var(--select-dropdown-max-width-default)',
   },
   padding: {
     'select-dropdown-padding-x-default': 'var(--select-dropdown-padding-x-default)',
@@ -134,14 +140,16 @@ export const selectTailwindConfig = {
     'select-error-text-color-default': 'var(--select-error-text-color-default)',
 
     'select-group-label-text-color-default': 'var(--select-group-label-text-color-default)',
+
     'select-hint-text-color-default': 'var(--select-hint-text-color-default)',
     'select-hint-text-color-disabled': 'var(--select-hint-text-color-disabled)',
     'select-hint-text-color-error': 'var(--select-hint-text-color-error)',
     'select-hint-text-color-focus': 'var(--select-hint-text-color-focus)',
-
     'select-hint-text-color-hover': 'var(--select-hint-text-color-hover)',
 
-    'select-item-indicator-color-default': 'var(--select-item-indicator-color-default)',
+    'select-item-multiple-value-selected-indicator-color-default': 'var(--select-item-multiple-value-selected-indicator-color-default)',
+
+    'select-item-single-value-indicator-color-default': 'var(--select-item-single-value-indicator-color-default)',
 
     'select-item-text-color-default': 'var(--select-item-text-color-default)',
     'select-item-text-color-disabled': 'var(--select-item-text-color-disabled)',
@@ -176,8 +184,9 @@ export const selectTailwindConfig = {
   },
   width: {
     'select-dropdown-width-default': 'var(--select-dropdown-width-default)',
-    'select-item-indicator-size-default': 'var(--select-item-indicator-size-default)',
+    'select-item-multiple-value-indicator-size-default': 'var(--select-item-multiple-value-indicator-size-default)',
     'select-item-separator-size-default': 'var(--select-item-separator-size-default)',
+    'select-item-single-value-indicator-size-default': 'var(--select-item-single-value-indicator-size-default)',
     'select-loader-size-default': 'var(--select-loader-size-default)',
   },
 } satisfies Config['theme']

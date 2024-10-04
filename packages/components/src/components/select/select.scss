@@ -131,7 +131,7 @@
 
   // Dropdown
   --select-dropdown-bg-color-default: #ffffff;
-  --select-dropdown-max-width-default: auto;
+  --select-dropdown-max-width-default: 320px;
   --select-dropdown-max-height-default: 320px;
   --select-dropdown-border-color-default: #f7f7f7;
   --select-dropdown-shadow-default: 0px 10px 15px -3px rgba(16, 24, 40, 0.1), 0px 4px 6px -2px rgba(16, 24, 40, 0.05);
@@ -141,9 +141,9 @@
 
   // Item
   --select-item-bg-color-default: #ffffff;
-  --select-item-bg-color-hover: #f9fafb;
+  --select-item-bg-color-hover: #f9fafb; // nakijken, mag weg denk ik
   --select-item-bg-color-highlighted: #f9fafb;
-  --select-item-bg-color-selected: #f9fafb;
+  --select-item-bg-color-selected: #ffffff;
   --select-item-bg-color-disabled: #ffffff;
 
   --select-item-text-color-default: #3d4658;
@@ -152,8 +152,17 @@
   --select-item-text-color-selected: #007bff;
   --select-item-text-color-disabled: #b4b4b4;
 
-  --select-item-indicator-color-default: #007bff;
-  --select-item-indicator-size-default: 14px;
+  --select-item-single-value-indicator-color-default: #007bff;
+  --select-item-single-value-indicator-size-default: 14px;
+
+  --select-item-multiple-value-indicator-border-radius-default: 3px;
+  --select-item-multiple-value-indicator-size-default: 16px;
+
+  --select-item-multiple-value-indicator-border-color-hover: #d0d5dd;
+  --select-item-multiple-value-indicator-border-color-selected: #007bff;
+
+  --select-item-multiple-value-indicator-bg-color-selected: #007bff;
+  --select-item-multiple-value-indicator-color-selected: #ffffff;
 
   --select-item-border-radius-default: 6px;
 

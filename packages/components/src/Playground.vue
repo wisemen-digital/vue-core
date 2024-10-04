@@ -2,9 +2,8 @@
 import { ref } from 'vue'
 
 import AppButton from '@/components/button/AppButton.vue'
-import AppIconButton from '@/components/button/AppIconButton.vue'
+import AppPopover from '@/components/popover/AppPopover.vue'
 import AppSelect from '@/components/select/AppSelect.vue'
-import AppTextField from '@/components/text-field/AppTextField.vue'
 import type { SelectItem } from '@/types/select.type.js'
 
 const themes = [
@@ -21,35 +20,53 @@ const isLoading = ref<boolean>(false)
 const isTouched = ref<boolean>(false)
 
 const test = ref<null | string>(null)
+const testArray = ref<string[]>([])
 const hint = ref<null | string>(null)
 
-setTimeout(() => {
-  hint.value = 'This is a hint'
-}, 1000)
+const fruits = [
+  'Apple',
+  'Banana',
+  'Blueberry',
+  'Grapes',
+  'Pineapple',
+]
+const vegetables = [
+  'Aubergine',
+  'Broccoli',
+  'Carrot',
+  'Courgette',
+  'Leek',
+]
 
 const items: SelectItem<string>[] = [
   {
-    type: 'option',
-    value: 'Apple',
-  },
-  {
-    type: 'separator',
-  },
-  {
-    type: 'option',
-    value: 'Banana',
-  },
-  {
-    type: 'option',
-    value: 'Blueberry',
-  },
-  {
-    type: 'option',
-    value: 'Grapes',
-  },
-  {
-    type: 'option',
-    value: 'Pineapple',
+    items: [
+      {
+        type: 'option',
+        value: 'Apple',
+      },
+      {
+        type: 'separator',
+      },
+      {
+        type: 'option',
+        value: 'Banana',
+      },
+      {
+        type: 'option',
+        value: 'Blueberry',
+      },
+      {
+        type: 'option',
+        value: 'Grapes',
+      },
+      {
+        type: 'option',
+        value: 'Pineapple',
+      },
+    ],
+    label: 'Group 1',
+    type: 'group',
   },
   {
     items: [
@@ -62,209 +79,102 @@ const items: SelectItem<string>[] = [
         type: 'option',
         value: 'Banana 2',
       },
+      {
+        type: 'option',
+        value: 'Cherry',
+      },
+      {
+        type: 'option',
+        value: 'Grapes',
+      },
+      {
+        type: 'option',
+        value: 'Leek',
+      },
+      {
+        type: 'option',
+        value: 'Pear',
+      },
+      {
+        type: 'option',
+        value: 'Raspberry',
+      },
+      {
+        type: 'option',
+        value: 'Strawberry',
+      },
     ],
-    label: 'Group 1',
+    label: 'Group 2',
+    type: 'group',
+  },
+  {
+    items: [
+      {
+        type: 'option',
+        value: 'Apple 3',
+      },
+      {
+        type: 'option',
+        value: 'Banana 3',
+      },
+      {
+        type: 'option',
+        value: 'Cherry 3',
+      },
+    ],
+    label: 'Group 3',
     type: 'group',
   },
 ]
 </script>
 
 <template>
-  <div class="p-24">
-    <div class="mb-12 grid grid-cols-6 gap-8">
-      <div class="flex items-center gap-x-2">
-        <AppIconButton
-          icon="calendar"
-          label="test"
-          variant="default"
-          size="sm"
-        />
-
-        <AppIconButton
-          icon="calendar"
-          label="test"
-          variant="muted"
-        />
-      </div>
-
-      <div>
-        <AppButton
-          :is-disabled="false"
-          :is-loading="false"
-          icon-left="calendar"
-          icon-right="chevronRight"
-        >
-          Confirm order
-        </AppButton>
-      </div>
-
-      <div>
-        <AppButton
-          :is-disabled="false"
-          :is-loading="isLoading"
-          icon-left="checkmarkCircle"
-          class="btn-custom"
-        >
-          <template #loader>
-            Loading...
-          </template>
-
-          Confirm order
-        </AppButton>
-      </div>
-
-      <div>
-        <AppButton
-          :is-disabled="false"
-          :is-loading="isLoading"
-          icon-left="checkmarkCircle"
-          size="sm"
-        >
-          Confirm order
-        </AppButton>
-      </div>
-
-      <div>
-        <AppButton
-          :is-disabled="false"
-          variant="muted"
-          icon-left="checkmarkCircle"
-          @click="isLoading = !isLoading"
-        >
-          Confirm order
-        </AppButton>
-      </div>
-
-      <div>
-        <AppButton
-          :is-disabled="false"
-          icon-left="checkmarkCircle"
-          variant="ghost"
-        >
-          Confirm order
-        </AppButton>
-      </div>
-
-      <div>
-        <AppButton
-          :is-disabled="false"
-          icon-left="checkmarkCircle"
-          variant="outline"
-        >
-          Confirm order
-        </AppButton>
-      </div>
-
-      <div>
-        <AppButton
-          :is-disabled="false"
-          icon-left="checkmarkCircle"
-          size="sm"
-          variant="destructive"
-        >
-          Confirm order
-        </AppButton>
-      </div>
-    </div>
-
-    <div class="border-solid-color border-gray-color-200 bg-color-gray-100 mb-12 flex flex-col gap-y-4 rounded-md border p-2">
-      <template
-        v-for="t of themes"
-        :key="t"
-      >
-        <label>
-          <input
-            v-model="theme"
-            :value="t"
-            type="radio"
-          >
-
-          {{ t }}
-        </label>
+  <div class="flex items-center gap-x-4 p-24">
+    <AppSelect
+      v-model="test"
+      :is-disabled="false"
+      :display-fn="(value) => value"
+      :items="items"
+      :filter-fn="(option, search) => option.toLowerCase().includes(search.toLowerCase())"
+      placeholder="Select a fruit"
+      class="w-72"
+    >
+      <template #value="{ value }">
+        {{ value }}
       </template>
-    </div>
+    </AppSelect>
 
-    <div class="py-12">
-      <AppSelect
-        v-model="test"
-        :is-loading="false"
-        :is-disabled="false"
-        :display-fn="(value) => value"
-        :items="items"
-        icon-left="calendar"
-        label="Select a fruit"
-        placeholder="Fruit"
-        class="w-72"
-      >
-        <template #caret>
-          <!-- <AppIcon icon="chevronRight" /> -->
-        </template>
-
-        <template #option-indicator>
-          <span class="text-xs font-medium">
-            Selected
+    <AppSelect
+      v-model="testArray"
+      :is-loading="false"
+      :is-disabled="false"
+      :display-fn="(value) => value"
+      :items="items"
+      placeholder="Select a fruit"
+      class="w-72"
+    >
+      <template #option-content="{ item }">
+        <div class="flex items-center gap-x-2">
+          <img
+            src="https://plus.unsplash.com/premium_photo-1689266188052-704d33673e69?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            class="size-5 rounded-full object-cover"
+          >
+          <span>
+            {{ item.value }}
           </span>
-        </template>
-      </AppSelect>
-    </div>
+        </div>
+      </template>
+    </AppSelect>
 
-    <div class="grid grid-cols-3 items-end gap-12">
-      <AppTextField
-        :class="theme"
-        class="w-72"
-      />
+    <AppPopover>
+      <AppButton>Button</AppButton>
 
-      <AppTextField
-        :class="theme"
-        icon-left="search"
-        placeholder="Search..."
-      />
-
-      <AppTextField
-        :class="theme"
-        :is-required="true"
-        icon-right="calendar"
-        label="Make a reservation"
-        class="z-50"
-      />
-
-      <label for="test">
-        test
-      </label>
-
-      <AppTextField
-        id="test"
-        :class="theme"
-        :errors="{
-          _errors: ['tet'],
-        }"
-        :is-touched="true"
-        :is-disabled="false"
-      />
-
-      <AppTextField
-        :class="theme"
-        :is-loading="isLoading"
-        :is-touched="isTouched"
-        :errors="{
-          _errors: ['This is an error'],
-        }"
-        hint="This do be a hint"
-        label="This is a label"
-        icon-right="calendar"
-        @blur="isTouched = true"
-      />
-
-      <AppTextField
-        :class="theme"
-        hint="Make sure to include your email address."
-      />
-
-      <AppTextField
-        class="test"
-        placeholder="Enter an email address"
-      />
-    </div>
+      <template #content>
+        <div class="p-2">
+          Content
+        </div>
+      </template>
+    </AppPopover>
   </div>
 </template>
 

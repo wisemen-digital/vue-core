@@ -6,6 +6,7 @@ import { iconTailwindConfig } from './src/components/icon/icon.tailwind'
 import { inputFieldErrorTailwindConfig } from './src/components/input-field-error/inputFieldError.tailwind'
 import { inputFieldHintTailwindConfig } from './src/components/input-field-hint/inputFieldHint.tailwind'
 import { inputFieldLabelTailwindConfig } from './src/components/input-field-label/inputFieldLabel.tailwind'
+import { popoverTailwindConfig } from './src/components/popover/popover.tailwind'
 import { selectTailwindConfig } from './src/components/select/select.tailwind'
 import { textFieldTailwindConfig } from './src/components/text-field/textField.tailwind'
 
@@ -20,21 +21,25 @@ export default {
         ...buttonTailwindConfig.backgroundColor,
         ...textFieldTailwindConfig.backgroundColor,
         ...selectTailwindConfig.backgroundColor,
+        ...popoverTailwindConfig.backgroundColor,
       },
       borderColor: {
         ...buttonTailwindConfig.borderColor,
         ...textFieldTailwindConfig.borderColor,
         ...selectTailwindConfig.borderColor,
+        ...popoverTailwindConfig.borderColor,
       },
       borderRadius: {
         ...buttonTailwindConfig.borderRadius,
         ...textFieldTailwindConfig.borderRadius,
         ...selectTailwindConfig.borderRadius,
+        ...popoverTailwindConfig.borderRadius,
       },
       boxShadow: {
         ...buttonTailwindConfig.boxShadow,
         ...textFieldTailwindConfig.boxShadow,
         ...selectTailwindConfig.boxShadow,
+        ...popoverTailwindConfig.boxShadow,
       },
       fontSize: {
         ...buttonTailwindConfig.fontSize,
@@ -71,7 +76,7 @@ export default {
         ...selectTailwindConfig.maxHeight,
       },
       maxWidth: {
-        ...selectTailwindConfig.maxWidth,
+        ...popoverTailwindConfig.maxWidth,
       },
       padding: {
         ...buttonTailwindConfig.padding,
