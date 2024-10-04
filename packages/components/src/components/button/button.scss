@@ -116,18 +116,14 @@
   --button-border-color-active: #f4f4f5;
   --button-border-color-disabled: transparent;
 
-  --button-ring-color-default: #18181b;
-  --button-ring-color-hover: #18181b;
-  --button-ring-color-focus: #18181b;
-  --button-ring-color-active: #18181b;
-  --button-ring-color-disabled: #18181b;
+  --button-ring-color-focus: #7a8495;
 
   // Icon
-  --button-icon-color-default: #18181b;
-  --button-icon-color-hover: #18181b;
-  --button-icon-color-focus: #18181b;
-  --button-icon-color-active: #18181b;
-  --button-icon-color-disabled: rgb(164, 164, 167);
+  --button-icon-color-default:  #98A2B3;
+  --button-icon-color-hover: #7a8495;
+  --button-icon-color-focus: #7a8495;
+  --button-icon-color-active: #667081;
+  --button-icon-color-disabled: #a4a4a7;
 }
 
 .btn-muted {

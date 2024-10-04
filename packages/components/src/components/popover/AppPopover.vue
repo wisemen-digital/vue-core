@@ -53,7 +53,7 @@ const arrowClasses = computed<string>(() => style.arrow())
             'w-[--reka-popover-content-available-width]': props.popoverWidth === 'available-width',
           },
           contentClasses,
-          props.popoverClass,
+          ...(props.styleClass ?? []),
         ]"
         :collision-padding="props.collisionPaddingInPx"
       >

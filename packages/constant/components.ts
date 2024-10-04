@@ -93,6 +93,10 @@ export const components = {
   loader: [
     'AppLoader',
   ],
+  textField: [
+    'AppPasswordField',
+    'AppTextField',
+  ],
   popover: [
     'AppPopover',
   ],

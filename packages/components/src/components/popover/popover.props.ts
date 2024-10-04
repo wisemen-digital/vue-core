@@ -22,12 +22,6 @@ export interface AppPopoverProps {
    */
   offsetInPx?: number
   /**
-   * The popover css classes. This is useful when you want to add custom styles to the popover
-   * because otherwise css variables are not injected since the popover is rendered in a portal.
-   * @default null
-   */
-  popoverClass?: null | string
-  /**
    * The width of the popover.
    * @default 'available-width'
    */
@@ -37,6 +31,10 @@ export interface AppPopoverProps {
    * @default 'bottom'
    */
   side?: 'bottom' | 'left' | 'right' | 'top'
+  /**
+   *
+   */
+  styleClass?: string[]
 }
 
 export const appPopoverPropsDefaultValues = {
@@ -44,7 +42,7 @@ export const appPopoverPropsDefaultValues = {
   align: 'center',
   collisionPaddingInPx: 10,
   offsetInPx: 10,
-  popoverClass: null,
   popoverWidth: null,
   side: 'bottom',
+  styleClass: undefined,
 } satisfies Partial<AppPopoverProps>

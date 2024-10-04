@@ -185,7 +185,7 @@ useProvideSelectContext({
 </script>
 
 <template>
-  <div>
+  <div :class="props.styleClass">
     <slot
       v-if="props.label !== null"
       :input-id="inputId"
@@ -202,11 +202,11 @@ useProvideSelectContext({
     <AppPopover
       v-model:is-open="isOpen"
       :is-arrow-hidden="true"
-      :offset-in-px="2"
+      :offset-in-px="0"
       :popover-width="props.dropdownWidth"
       :align="props.dropdownAlign"
       :side="props.dropdownSide"
-      :popover-class="dropdownClasses"
+      :style-class="[dropdownClasses, ...(props.styleClass ?? [])]"
     >
       <template #default>
         <button

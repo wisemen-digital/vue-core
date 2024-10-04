@@ -31,6 +31,16 @@ const docs = [
     ],
     text: 'TextField',
   },
+  {
+    collapsed: true,
+    items: [
+      {
+        link: '/components/select/app-select',
+        text: 'AppSelect',
+      },
+    ],
+    text: 'Select',
+  },
 ]
 
 // https://vitepress.dev/reference/site-config

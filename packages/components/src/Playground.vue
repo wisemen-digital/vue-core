@@ -4,6 +4,8 @@ import { ref } from 'vue'
 import AppButton from '@/components/button/AppButton.vue'
 import AppPopover from '@/components/popover/AppPopover.vue'
 import AppSelect from '@/components/select/AppSelect.vue'
+import AppPasswordField from '@/components/text-field/AppPasswordField.vue'
+import AppPhoneNumberField from '@/components/text-field/AppPhoneNumberField.vue'
 import type { SelectItem } from '@/types/select.type.js'
 
 const themes = [
@@ -15,6 +17,8 @@ const themes = [
 ]
 
 const theme = ref<string>('default')
+
+const password = ref<null | string>(null)
 
 const isLoading = ref<boolean>(false)
 const isTouched = ref<boolean>(false)
@@ -126,6 +130,8 @@ const items: SelectItem<string>[] = [
     type: 'group',
   },
 ]
+
+const phoneNumber = ref<null | string>(null)
 </script>
 
 <template>
@@ -175,6 +181,13 @@ const items: SelectItem<string>[] = [
         </div>
       </template>
     </AppPopover>
+
+    <AppPasswordField
+      v-model="password"
+      :is-loading="false"
+    />
+
+    <AppPhoneNumberField v-model="phoneNumber" />
   </div>
 </template>
 

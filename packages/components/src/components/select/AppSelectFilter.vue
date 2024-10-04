@@ -31,7 +31,6 @@ const model = defineModel<string>({
         '--text-field-border-radius-top-left-default': '0px',
         '--text-field-border-radius-top-right-default': '0px',
       }"
-      icon-right="search"
       placeholder="Search..."
     />
   </ListboxFilter>

@@ -47,53 +47,20 @@ const multipleValueIndicatorClasses = computed<string>(() => style.multipleValue
       <ListboxItemIndicator :as-child="true">
         <slot name="option-indicator">
           <AppIcon
-            icon="checkmark"
+            icon="check"
             class="w-4/5"
           />
         </slot>
       </ListboxItemIndicator>
     </div>
 
-    <div v-else>
-      <ListboxItemIndicator>
-        <slot name="option-indicator">
-          <AppIcon
-            :class="singleValueIndicatorClasses"
-            icon="checkmark"
-          />
-        </slot>
-      </ListboxItemIndicator>
-    </div>
-
-    <div v-if="false">
-      <div
-        v-if="isMultiple"
-        :class="multipleValueIndicatorClasses"
-        class="
-          h-select-item-multiple-value-indicator-size-default
-          w-select-item-multiple-value-indicator-size-default
-          rounded-select-item-multiple-value-indicator-border-radius-default
-          border
-          border-solid
-          border-select-item-multiple-value-indicator-border-color-hover
-          duration-100
-          group-hover:border-select-item-multiple-value-indicator-border-color-hover"
-      />
-
-      <ListboxItemIndicator>
-        <slot name="option-indicator">
-          <div
-            v-if="isMultiple"
-            :class="multipleValueIndicatorClasses"
-          />
-
-          <AppIcon
-            v-else
-            :class="singleValueIndicatorClasses"
-            icon="checkmark"
-          />
-        </slot>
-      </ListboxItemIndicator>
-    </div>
+    <ListboxItemIndicator v-else>
+      <slot name="option-indicator">
+        <AppIcon
+          :class="singleValueIndicatorClasses"
+          icon="check"
+        />
+      </slot>
+    </ListboxItemIndicator>
   </RekaListboxItem>
 </template>

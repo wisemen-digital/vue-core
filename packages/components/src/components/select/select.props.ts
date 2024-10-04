@@ -100,6 +100,10 @@ export interface AppSelectProps<TValue extends SelectValue> {
    * @default false - when the value is a single value
    */
   shouldRemainOpenOnValueChange?: boolean | null
+  /**
+   *
+   */
+  styleClass?: string[]
 }
 
 export const appSelectPropsDefaultValues = {
@@ -119,4 +123,5 @@ export const appSelectPropsDefaultValues = {
   label: null,
   placeholder: null,
   shouldRemainOpenOnValueChange: null,
+  styleClass: undefined,
 } satisfies Partial<AppSelectProps<SelectValue>>
