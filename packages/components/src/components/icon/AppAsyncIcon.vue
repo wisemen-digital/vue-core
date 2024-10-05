@@ -7,14 +7,17 @@ import {
 } from 'vue'
 
 import { type Icon, icons } from '@/icons/icons'
+import type { StyleConfig } from '@/types/style.type.js'
 
 const props = withDefaults(
   defineProps<{
     icon: Icon
     size?: 'default' | 'full' | 'lg' | 'sm' | 'xl' | 'xs'
+    styleConfig?: StyleConfig<'icon'> | null
   }>(),
   {
     size: 'default',
+    styleConfig: null,
   },
 )
 
@@ -69,6 +72,7 @@ await setIcon()
     :is="svgComponent"
     v-if="svgComponent !== null"
     :class="sizeClass"
+    :style="props.styleConfig"
     class="h-icon-size w-icon-size text-icon"
   />
 </template>

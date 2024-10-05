@@ -1,5 +1,6 @@
 import type { Icon } from '@/icons/icons'
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
+import type { StyleConfig } from '@/types/style.type'
 
 export interface AppTextFieldProps {
   /**
@@ -76,6 +77,10 @@ export interface AppTextFieldProps {
    */
   placeholder?: null | string
   /**
+   *
+   */
+  styleConfig?: StyleConfig<'textField'> | null
+  /**
    * The type of the input.
    * @default 'text'
    */
@@ -96,5 +101,6 @@ export const appTextFieldPropsDefaultValues = {
   iconRight: null,
   label: null,
   placeholder: null,
+  styleConfig: null,
   type: 'text',
 } satisfies AppTextFieldProps

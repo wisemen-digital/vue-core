@@ -13,6 +13,7 @@ import {
   appTextFieldPropsDefaultValues,
 } from '@/components/text-field/textField.props.js'
 import { textFieldStyle } from '@/components/text-field/textField.style.js'
+import type { StyleConfig } from '@/types/style.type.js'
 
 const props = withDefaults(defineProps<AppTextFieldProps>(), appTextFieldPropsDefaultValues)
 
@@ -96,6 +97,43 @@ const hintClasses = computed<string>(() => style.hint({
   isHovered: isHovered.value,
 }))
 
+const iconStyleConfig = computed<StyleConfig<'icon'>>(() => {
+  const defaultStyleConfig = {
+    '--icon-color': 'var(--text-field-icon-color-default)',
+    '--icon-size': 'var(--text-field-icon-size-default)',
+  }
+
+  if (props.isDisabled) {
+    return {
+      ...defaultStyleConfig,
+      '--icon-color': 'var(--text-field-icon-color-disabled)',
+    }
+  }
+
+  if (hasError.value) {
+    return {
+      ...defaultStyleConfig,
+      '--icon-color': 'var(--text-field-icon-color-error)',
+    }
+  }
+
+  if (isFocused.value) {
+    return {
+      ...defaultStyleConfig,
+      '--icon-color': 'var(--text-field-icon-color-focus)',
+    }
+  }
+
+  if (isHovered.value) {
+    return {
+      ...defaultStyleConfig,
+      '--icon-color': 'var(--text-field-icon-color-hover)',
+    }
+  }
+
+  return defaultStyleConfig
+})
+
 const errorClasses = computed<string>(() => style.error())
 
 function onMouseEnter(): void {
@@ -118,7 +156,7 @@ function onBlur(): void {
 </script>
 
 <template>
-  <div>
+  <div :style="props.styleConfig">
     <slot
       v-if="props.label !== null"
       :input-id="inputId"
@@ -145,6 +183,7 @@ function onBlur(): void {
         <AppIcon
           :icon="props.iconLeft"
           :class="iconLeftClasses"
+          :style-config="iconStyleConfig"
         />
       </slot>
 
@@ -196,6 +235,7 @@ function onBlur(): void {
         <AppIcon
           :icon="props.iconRight"
           :class="iconRightClasses"
+          :style-config="iconStyleConfig"
         />
       </slot>
     </div>

@@ -141,6 +141,7 @@ function onClick(): void {
 
 <template>
   <button
+    :style="props.styleConfig"
     :type="props.type"
     :disabled="props.isDisabled"
     :aria-busy="props.isLoading"

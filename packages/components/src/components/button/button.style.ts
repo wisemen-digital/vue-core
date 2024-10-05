@@ -6,7 +6,7 @@ export const buttonStyle = tv({
     iconLeft: 'mr-button-icon-left-spacing-default shrink-0 duration-200 [--icon-color:var(--button-icon-color-default)] [--icon-size:var(--button-icon-size-default)]',
     iconRight: 'ml-button-icon-right-spacing-default shrink-0 duration-200 [--icon-color:var(--button-icon-color-default)] [--icon-size:var(--button-icon-size-default)]',
     loader: 'h-button-loader-size-default w-button-loader-size-default text-button-loader-color-default',
-    loaderBox: 'absolute left-1/2 top-1/2 flex size-full -translate-x-1/2 -translate-y-1/2 items-center justify-center bg-button-bg-color-default',
+    loaderBox: 'absolute left-1/2 top-1/2 flex size-full -translate-x-1/2 -translate-y-1/2 items-center justify-center bg-button-bg-color-default backdrop-blur-xl',
   },
   variants: {
     isDisabled: {

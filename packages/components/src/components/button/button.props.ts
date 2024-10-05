@@ -1,4 +1,5 @@
 import type { Icon } from '@/icons/icons'
+import type { StyleConfig } from '@/types/style.type'
 
 export interface AppButtonProps {
   /**
@@ -26,11 +27,13 @@ export interface AppButtonProps {
    * @default 'default'
    */
   size?: 'default' | 'sm'
+  styleConfig?: StyleConfig<'button'> | null
   /**
    * The type of the button.
    * @default 'button'
    */
   type?: 'button' | 'reset' | 'submit'
+
   /**
    * The variant of the button.
    * @default 'default'
@@ -44,6 +47,7 @@ export const appButtonPropsDefaultValues = {
   iconLeft: null,
   iconRight: null,
   size: 'default',
+  styleConfig: null,
   type: 'button',
   variant: 'default',
 } satisfies AppButtonProps

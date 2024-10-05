@@ -100,7 +100,6 @@ const hintClasses = computed<string>(() => style.hint({
 }))
 
 const errorClasses = computed<string>(() => style.error())
-const dropdownClasses = computed<string>(() => style.dropdown())
 const dropdownContentClasses = computed<string>(() => style.dropdownContent({
   hasFilter: props.filterFn !== null,
 }))
@@ -185,7 +184,7 @@ useProvideSelectContext({
 </script>
 
 <template>
-  <div :class="props.styleClass">
+  <div :style="props.styleConfig">
     <slot
       v-if="props.label !== null"
       :input-id="inputId"
@@ -206,7 +205,14 @@ useProvideSelectContext({
       :popover-width="props.dropdownWidth"
       :align="props.dropdownAlign"
       :side="props.dropdownSide"
-      :style-class="[dropdownClasses, ...(props.styleClass ?? [])]"
+      :style-config="{
+        '--popover-bg-color-default': 'var(--select-dropdown-bg-color-default)',
+        '--popover-border-color-default': 'var(--select-dropdown-border-color-default)',
+        '--popover-border-radius-default': 'var(--select-dropdown-border-radius-default)',
+        '--popover-max-width-default': 'var(--select-dropdown-max-width-default)',
+        '--popover-shadow-default': 'var(--select-dropdown-shadow-default)',
+        ...props.styleConfig ?? {},
+      }"
     >
       <template #default>
         <button

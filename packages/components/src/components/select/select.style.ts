@@ -3,7 +3,6 @@ import { tv } from '@/libs/twVariants.lib'
 export const selectStyle = tv({
   slots: {
     caret: 'ml-select-caret-spacing-default box-content shrink-0 duration-200 [--icon-color:var(--select-caret-color-default)] [--icon-size:var(--select-caret-size-default)]',
-    dropdown: '[--popover-bg-color-default:var(--select-dropdown-bg-color-default)] [--popover-border-color-default:var(--select-dropdown-border-color-default)] [--popover-border-radius-default:var(--select-dropdown-border-radius-default)] [--popover-max-width-default:var(--select-dropdown-max-width-default)] [--popover-shadow-default:var(--select-dropdown-shadow-default)]',
     dropdownContent: 'max-h-select-dropdown-max-height-default overflow-y-auto px-select-dropdown-padding-x-default py-select-dropdown-padding-y-default outline-none',
     error: '[--input-field-error-font-size-default:var(--select-error-font-size-default)] [--input-field-error-spacing-default:var(--select-error-spacing-default)] [--input-field-error-text-color-default:var(--select-error-text-color-default)]',
     group: 'px-select-group-padding-x-default py-select-group-padding-y-default',

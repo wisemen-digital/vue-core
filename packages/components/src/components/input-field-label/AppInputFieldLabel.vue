@@ -3,12 +3,16 @@ import { Label } from 'reka-ui'
 import { computed } from 'vue'
 
 import { inputFieldLabelStyle } from '@/components/input-field-label/inputFieldLabel.style'
+import type { StyleConfig } from '@/types/style.type.js'
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   isRequired: boolean
   for: string
   label: null | string
-}>()
+  styleConfig?: StyleConfig<'inputFieldLabel'> | null
+}>(), {
+  styleConfig: null,
+})
 
 const style = inputFieldLabelStyle()
 const labelClasses = computed<string>(() => style.label())
@@ -19,6 +23,7 @@ const labelClasses = computed<string>(() => style.label())
     v-if="props.label !== null"
     :class="labelClasses"
     :for="props.for"
+    :style="props.styleConfig"
   >
     {{ props.label }} <template v-if="props.isRequired">*</template>
   </Label>

@@ -1,4 +1,5 @@
 import type { PopoverWidth } from '@/types/popover.type'
+import type { StyleConfig } from '@/types/style.type'
 
 export interface AppPopoverProps {
   /**
@@ -34,7 +35,7 @@ export interface AppPopoverProps {
   /**
    *
    */
-  styleClass?: string[]
+  styleConfig?: StyleConfig<'popover'> | null
 }
 
 export const appPopoverPropsDefaultValues = {
@@ -44,5 +45,5 @@ export const appPopoverPropsDefaultValues = {
   offsetInPx: 10,
   popoverWidth: null,
   side: 'bottom',
-  styleClass: undefined,
+  styleConfig: null,
 } satisfies Partial<AppPopoverProps>

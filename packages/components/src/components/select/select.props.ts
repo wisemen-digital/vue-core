@@ -9,6 +9,7 @@ import type {
   SelectItem,
   SelectValue,
 } from '@/types/select.type'
+import type { StyleConfig } from '@/types/style.type'
 
 export type SelectDisplayFn<TValue extends SelectValue> = (
   value: TValue extends Array<infer U> ? U : TValue
@@ -103,7 +104,7 @@ export interface AppSelectProps<TValue extends SelectValue> {
   /**
    *
    */
-  styleClass?: string[]
+  styleConfig?: StyleConfig<'select'> | null
 }
 
 export const appSelectPropsDefaultValues = {
@@ -123,5 +124,5 @@ export const appSelectPropsDefaultValues = {
   label: null,
   placeholder: null,
   shouldRemainOpenOnValueChange: null,
-  styleClass: undefined,
+  styleConfig: null,
 } satisfies Partial<AppSelectProps<SelectValue>>

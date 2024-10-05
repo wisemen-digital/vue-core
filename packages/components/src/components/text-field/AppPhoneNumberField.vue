@@ -149,7 +149,29 @@ function getCountryName(countryCode: CountryCode): null | string {
         :items="countryCodes"
         :display-fn="(value) => ''"
         :filter-fn="(option, search) => true"
-        :style-class="['phone-number-select']"
+        :style-config="{
+          '--select-dropdown-max-width-default': '200px',
+          '--select-ring-color-focus': 'transparent',
+          '--select-border-top-color-default': 'transparent',
+          '--select-border-bottom-color-default': 'transparent',
+          '--select-border-left-color-default': 'transparent',
+          '--select-border-right-color-default': 'transparent',
+          '--select-border-top-color-focus': 'transparent',
+          '--select-border-bottom-color-focus': 'transparent',
+          '--select-border-left-color-focus': 'transparent',
+          '--select-border-right-color-focus': 'transparent',
+          '--select-border-top-color-hover': 'transparent',
+          '--select-border-bottom-color-hover': 'transparent',
+          '--select-border-left-color-hover': 'transparent',
+          '--select-border-right-color-hover': 'transparent',
+          '--select-bg-color-focus': '#f8f8f8',
+          '--select-bg-color-hover': '#f8f8f8',
+          '--select-caret-color-focus': '#909090',
+          '--select-padding-right-default': '6px',
+          '--select-border-radius-top-right-default': '0px',
+          '--select-border-radius-bottom-right-default': '0px',
+          '--select-dropdown-border-color-default': 'transparent',
+        }"
         dropdown-align="start"
         dropdown-width="available-width"
         class="w-16 shrink-0"
@@ -183,31 +205,3 @@ function getCountryName(countryCode: CountryCode): null | string {
     </template>
   </AppTextField>
 </template>
-
-<style>
-.phone-number-select {
-  --select-dropdown-max-width-default: 200px;
-  --select-ring-color-focus: transparent;
-  --select-border-top-color-default: transparent;
-  --select-border-bottom-color-default: transparent;
-  --select-border-left-color-default: transparent;
-  --select-border-right-color-default: transparent;
-  --select-border-top-color-focus: transparent;
-  --select-border-bottom-color-focus: transparent;
-  --select-border-left-color-focus: transparent;
-  --select-border-right-color-focus: transparent;
-  --select-border-top-color-hover: transparent;
-  --select-border-bottom-color-hover: transparent;
-  --select-border-left-color-hover: transparent;
-  --select-border-right-color-hover: transparent;
-  --select-bg-color-focus: #f8f8f8;
-  --select-bg-color-hover: #f8f8f8;
-  --select-caret-color-focus: #909090;
-  --select-padding-right-default: 6px;
-  --select-border-radius-top-right-default: 0px;
-  --select-border-radius-bottom-right-default: 0px;
-  --select-dropdown-border-color-default: transparent;
-  --select-dropdown-border-color-focus: transparent;
-  --select-dropdown-border-color-hover: transparent;
-}
-</style>

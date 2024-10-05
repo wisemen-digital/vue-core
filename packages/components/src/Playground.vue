@@ -1,4 +1,14 @@
 <script setup lang="ts">
+import '@/components/icon/iconStyle.config'
+import '@/components/button/buttonStyle.config'
+import '@/components/input-field-hint/inputFieldHintStyle.config'
+import '@/components/input-field-error/inputFieldErrorStyle.config'
+import '@/components/input-field-label/inputFieldLabelStyle.config'
+import '@/components/popover/popoverStyle.config'
+import '@/components/button/iconButtonStyle.config'
+import '@/components/select/selectStyle.config'
+import '@/components/text-field/textFieldStyle.config'
+
 import { ref } from 'vue'
 
 import AppButton from '@/components/button/AppButton.vue'
@@ -6,6 +16,7 @@ import AppPopover from '@/components/popover/AppPopover.vue'
 import AppSelect from '@/components/select/AppSelect.vue'
 import AppPasswordField from '@/components/text-field/AppPasswordField.vue'
 import AppPhoneNumberField from '@/components/text-field/AppPhoneNumberField.vue'
+import AppTextField from '@/components/text-field/AppTextField.vue'
 import type { SelectItem } from '@/types/select.type.js'
 
 const themes = [
@@ -135,13 +146,34 @@ const phoneNumber = ref<null | string>(null)
 </script>
 
 <template>
-  <div class="flex items-center gap-x-4 p-24">
+  <div class="p-24">
+    <AppTextField
+      v-model="password"
+      class="w-72"
+      icon-left="chevronSelectorVertical"
+      icon-right="chevronSelectorVertical"
+      label="Label"
+    />
+  </div>
+
+  <div
+    class="
+      flex
+      items-center
+      gap-x-4
+      p-24"
+  >
     <AppSelect
       v-model="test"
       :is-disabled="false"
       :display-fn="(value) => value"
       :items="items"
       :filter-fn="(option, search) => option.toLowerCase().includes(search.toLowerCase())"
+      :errors="{
+        _errors: ['This is an error'],
+      }"
+      :is-touched="true"
+      label="Label"
       placeholder="Select a fruit"
       class="w-72"
     >
@@ -173,7 +205,9 @@ const phoneNumber = ref<null | string>(null)
     </AppSelect>
 
     <AppPopover>
-      <AppButton>Button</AppButton>
+      <AppButton>
+        Button
+      </AppButton>
 
       <template #content>
         <div class="p-2">
