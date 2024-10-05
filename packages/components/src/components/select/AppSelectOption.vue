@@ -1,12 +1,12 @@
 <script setup lang="ts" generic="TValue extends SelectValue">
 import {
+  injectListboxRootContext,
   ListboxItem as RekaListboxItem,
   ListboxItemIndicator,
 } from 'reka-ui'
 import { computed } from 'vue'
 
 import AppIcon from '@/components/icon/AppIcon.vue'
-import { useInjectSelectContext } from '@/components/select/select.context.js'
 import type { SelectDisplayFn } from '@/components/select/select.props.js'
 import { selectItemStyle } from '@/components/select/selectItem.style'
 import type {
@@ -19,7 +19,7 @@ const props = defineProps<{
   item: SelectOption<TValue extends Array<infer U> ? U : TValue>
 }>()
 
-const { isMultiple } = useInjectSelectContext()
+const rootContext = injectListboxRootContext()
 
 const style = selectItemStyle()
 
@@ -41,7 +41,7 @@ const multipleValueIndicatorClasses = computed<string>(() => style.multipleValue
     </span>
 
     <div
-      v-if="isMultiple"
+      v-if="rootContext.multiple.value"
       :class="multipleValueIndicatorClasses"
     >
       <ListboxItemIndicator :as-child="true">

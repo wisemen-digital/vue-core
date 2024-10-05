@@ -132,6 +132,15 @@ function getCountryName(countryCode: CountryCode): null | string {
   // TODO: locale
   return i18nCountries.getName(countryCode, 'en-US', { select: 'official' }) ?? null
 }
+
+function filterFn(option: CountryCode, search: string): boolean {
+  const countryName = getCountryName(option)
+  const countryCallingCode = `+${getCountryCallingCode(option)}`
+
+  return option.toLowerCase().includes(search.toLowerCase())
+    || countryName?.toLowerCase().includes(search.toLowerCase())
+    || countryCallingCode?.toLowerCase().includes(search.toLowerCase())
+}
 </script>
 
 <template>
@@ -148,7 +157,7 @@ function getCountryName(countryCode: CountryCode): null | string {
         v-model="countryCodeModel"
         :items="countryCodes"
         :display-fn="(value) => ''"
-        :filter-fn="(option, search) => true"
+        :filter-fn="filterFn"
         :style-config="{
           '--select-dropdown-max-width-default': '200px',
           '--select-ring-color-focus': 'transparent',

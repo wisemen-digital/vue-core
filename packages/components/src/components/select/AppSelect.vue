@@ -18,14 +18,17 @@ import AppInputFieldLabel from '@/components/input-field-label/AppInputFieldLabe
 import AppPopover from '@/components/popover/AppPopover.vue'
 import AppSelectFilter from '@/components/select/AppSelectFilter.vue'
 import AppSelectItem from '@/components/select/AppSelectItem.vue'
-import { useProvideSelectContext } from '@/components/select/select.context.js'
 import {
   type AppSelectProps,
   appSelectPropsDefaultValues,
 } from '@/components/select/select.props'
 import { selectStyle } from '@/components/select/select.style.js'
 import AppSpinner from '@/components/spinner/AppSpinner.vue'
-import type { SelectItem, SelectValue as SelectValueType } from '@/types/select.type'
+import type {
+  SelectItem,
+  SelectValue,
+  SelectValue as SelectValueType,
+} from '@/types/select.type'
 
 const props = withDefaults(defineProps<AppSelectProps<TValue>>(), appSelectPropsDefaultValues)
 
@@ -119,9 +122,45 @@ const shouldRemainOpenOnValueChange = computed<boolean>(() => {
   return isMultiple.value
 })
 
-// TODO:
 const filteredItems = computed<SelectItem<TValue extends Array<infer U> ? U : TValue>[]>(() => {
-  return props.items
+  function filterItems<TValue extends SelectValue>(
+    items: SelectItem<TValue>[],
+    filterFn: ((option: TValue, searchTerm: string) => boolean) | null,
+    searchTerm: string,
+  ): SelectItem<TValue>[] {
+    return items.reduce((acc: SelectItem<TValue>[], item: SelectItem<TValue>) => {
+      if (item.type === 'option') {
+        const isOptionValid = filterFn !== null
+          ? filterFn(item.value, searchTerm)
+          : !item.isDisabled
+
+        if (isOptionValid) {
+          acc.push(item)
+        }
+      }
+      else if (item.type === 'group') {
+        const filteredGroupItems = filterItems(item.items, filterFn, searchTerm)
+        const hasValidOptions = filteredGroupItems.some((groupItem) => groupItem.type === 'option')
+
+        if (hasValidOptions) {
+          acc.push({
+            ...item,
+            items: filteredGroupItems,
+          })
+        }
+      }
+      else if (item.type === 'separator') {
+        acc.push(item)
+      }
+
+      return acc
+    }, [])
+  }
+
+  const items = props.items as SelectItem<TValue>[]
+  const filterFn = props.filterFn
+
+  return filterItems(items, filterFn, searchTerm.value) as SelectItem<TValue extends Array<infer U> ? U : TValue>[]
 })
 
 const displayValue = computed<string>(() => {
@@ -170,16 +209,18 @@ function onBlur(): void {
   emit('blur')
 }
 
-watch(model, () => {
+function onModelValueUpdate(): void {
   if (shouldRemainOpenOnValueChange.value) {
     return
   }
 
   isOpen.value = false
-})
+}
 
-useProvideSelectContext({
-  isMultiple: isMultiple.value,
+watch(isOpen, (isOpen) => {
+  if (isOpen) {
+    searchTerm.value = ''
+  }
 })
 </script>
 
@@ -285,6 +326,8 @@ useProvideSelectContext({
         <ListboxRoot
           v-model="computedModel"
           :multiple="isMultiple"
+          :selection-behavior="isMultiple ? 'toggle' : 'replace'"
+          @update:model-value="onModelValueUpdate"
         >
           <AppSelectFilter
             v-if="props.filterFn !== null"

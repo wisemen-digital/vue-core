@@ -7,7 +7,7 @@ import type { StyleConfig } from '@/types/style.type.js'
 
 const props = withDefaults(defineProps<{
   errors: FormFieldErrors | null
-  styleConfig: StyleConfig<'inputFieldError'> | null
+  styleConfig?: StyleConfig<'inputFieldError'> | null
 }>(), {
   styleConfig: null,
 })
