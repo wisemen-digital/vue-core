@@ -3,5 +3,7 @@ import { PopoverAnchor } from 'reka-ui'
 </script>
 
 <template>
-  <PopoverAnchor :as-child="true" />
+  <PopoverAnchor :as-child="true">
+    <slot />
+  </PopoverAnchor>
 </template>

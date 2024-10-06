@@ -11,19 +11,18 @@ import '@/components/select/selectStyle.config'
 import '@/components/input-field/text-field/textFieldStyle.config'
 import '@/components/tooltip/tooltipStyle.config'
 
-import { PopoverTrigger } from 'reka-ui'
-
 import AppButton from '@/components/button/button/AppButton.vue'
 import AppPopover from '@/components/popover/AppPopover.vue'
+import AppPopoverTrigger from '@/components/popover/AppPopoverTrigger.vue'
 import AppTooltip from '@/components/tooltip/AppTooltip.vue'
 </script>
 
 <template>
   <div class="flex gap-x-24 p-24">
     <AppPopover>
-      <PopoverTrigger>
+      <AppPopoverTrigger>
         <AppButton>Button</AppButton>
-      </PopoverTrigger>
+      </AppPopoverTrigger>
 
       <template #content>
         <div class="h-40 w-80 p-2">

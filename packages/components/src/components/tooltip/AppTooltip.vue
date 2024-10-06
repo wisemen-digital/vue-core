@@ -25,12 +25,12 @@ const arrowClasses = computed<string>(() => style.arrow())
 </script>
 
 <template>
-  <TooltipProvider
-    :delay-duration="props.delayDuration"
-    :disable-closing-trigger="props.disableCloseOnTriggerClick"
-    :disable-hoverable-content="props.disableHoverableContent"
-  >
-    <TooltipRoot>
+  <TooltipProvider>
+    <TooltipRoot
+      :delay-duration="props.delayDuration"
+      :disable-closing-trigger="props.disableCloseOnTriggerClick"
+      :disable-hoverable-content="props.disableHoverableContent"
+    >
       <TooltipTrigger :as-child="true">
         <slot />
       </TooltipTrigger>
