@@ -1,6 +1,7 @@
-import type { ButtonStyleConfig } from '@/components/button/buttonStyle.config'
-import type { IconButtonStyleConfig } from '@/components/button/iconButtonStyle.config'
+import type { ButtonStyleConfig } from '@/components/button/button/buttonStyle.config'
+import type { IconButtonStyleConfig } from '@/components/button/icon-button/iconButtonStyle.config'
 import type { IconStyleConfig } from '@/components/icon/iconStyle.config'
+import type { TextFieldStyleConfig } from '@/components/input-field/text-field/textFieldStyle.config'
 import type { InputFieldErrorStyleConfig } from '@/components/input-field-error/inputFieldErrorStyle.config'
 import type {
   InputFieldHintStyleConfig,
@@ -8,7 +9,7 @@ import type {
 import type { InputFieldLabelStyleConfig } from '@/components/input-field-label/inputFieldLabelStyle.config'
 import type { PopoverStyleConfig } from '@/components/popover/popoverStyle.config'
 import type { SelectStyleConfig } from '@/components/select/selectStyle.config'
-import type { TextFieldStyleConfig } from '@/components/text-field/textFieldStyle.config'
+import type { TooltipStyleConfig } from '@/components/tooltip/tooltipStyle.config'
 
 export interface BaseStyleConfig {
   [key: `--${string}`]: string
@@ -24,6 +25,7 @@ export interface ComponentStyleConfigRegistry {
   popover: PopoverStyleConfig
   select: SelectStyleConfig
   textField: TextFieldStyleConfig
+  tooltip: TooltipStyleConfig
 }
 
 export type StyleConfig<K extends keyof ComponentStyleConfigRegistry> = Partial<ComponentStyleConfigRegistry[K]>

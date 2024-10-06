@@ -2,9 +2,9 @@
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import AppIconButton from '@/components/button/AppIconButton.vue'
-import AppTextField from '@/components/text-field/AppTextField.vue'
-import type { AppTextFieldProps } from '@/components/text-field/textField.props.js'
+import AppIconButton from '@/components/button/icon-button/AppIconButton.vue'
+import AppTextField from '@/components/input-field/text-field/AppTextField.vue'
+import type { AppTextFieldProps } from '@/components/input-field/text-field/textField.props.js'
 import AppToggle from '@/components/toggle/AppToggle.vue'
 import type { Icon } from '@/icons/icons.js'
 import type { StyleConfig } from '@/types/style.type.js'
@@ -71,7 +71,7 @@ const textFieldStyleConfig = computed<Partial<StyleConfig<'textField'>>>(() => {
         <AppIconButton
           :icon="buttonIcon"
           :label="buttonLabel"
-          :style="{
+          :style-config="{
             '--button-ring-color-focus': 'transparent',
           }"
           size="sm"

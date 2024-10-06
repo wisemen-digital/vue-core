@@ -4,15 +4,15 @@ import { computed, ref } from 'vue'
 
 import AppCollapsable from '@/components/collapsable/AppCollapsable.vue'
 import AppIcon from '@/components/icon/AppIcon.vue'
+import {
+  type AppTextFieldProps,
+  appTextFieldPropsDefaultValues,
+} from '@/components/input-field/text-field/textField.props.js'
+import { textFieldStyle } from '@/components/input-field/text-field/textField.style.js'
 import AppInputFieldError from '@/components/input-field-error/AppInputFieldError.vue'
 import AppInputFieldHint from '@/components/input-field-hint/AppInputFieldHint.vue'
 import AppInputFieldLabel from '@/components/input-field-label/AppInputFieldLabel.vue'
 import AppSpinner from '@/components/spinner/AppSpinner.vue'
-import {
-  type AppTextFieldProps,
-  appTextFieldPropsDefaultValues,
-} from '@/components/text-field/textField.props.js'
-import { textFieldStyle } from '@/components/text-field/textField.style.js'
 import type { StyleConfig } from '@/types/style.type.js'
 
 const props = withDefaults(defineProps<AppTextFieldProps>(), appTextFieldPropsDefaultValues)

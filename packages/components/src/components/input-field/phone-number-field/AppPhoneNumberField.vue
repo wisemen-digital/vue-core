@@ -14,9 +14,9 @@ import {
   ref,
 } from 'vue'
 
+import AppTextField from '@/components/input-field/text-field/AppTextField.vue'
+import type { AppTextFieldProps } from '@/components/input-field/text-field/textField.props.js'
 import AppSelect from '@/components/select/AppSelect.vue'
-import AppTextField from '@/components/text-field/AppTextField.vue'
-import type { AppTextFieldProps } from '@/components/text-field/textField.props.js'
 import type { SelectItem } from '@/types/select.type.js'
 
 const props = withDefaults(defineProps<Omit<AppTextFieldProps, 'type'>>(), {

@@ -2,6 +2,8 @@
 import {
   ListboxContent,
   ListboxRoot,
+  PopoverAnchor,
+  PopoverTrigger,
   useId,
 } from 'reka-ui'
 import {
@@ -10,6 +12,7 @@ import {
   watch,
 } from 'vue'
 
+import AppIconButton from '@/components/button/icon-button/AppIconButton.vue'
 import AppCollapsable from '@/components/collapsable/AppCollapsable.vue'
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppInputFieldError from '@/components/input-field-error/AppInputFieldError.vue'
@@ -222,6 +225,15 @@ watch(isOpen, (isOpen) => {
     searchTerm.value = ''
   }
 })
+
+/*
+TODO:
+Onduidelijkheden:
+- Indien tags, flex reverse voor tabindex maar niet met pijltjes
+- Je kan enkel rechts klikken, is dat duideljk?
+- Moeten tags wrappen of scrollen? Ik denk wrappen anders werkt dat niet goed op windows
+
+*/
 </script>
 
 <template>
@@ -256,7 +268,50 @@ watch(isOpen, (isOpen) => {
       }"
     >
       <template #default>
+        <PopoverAnchor>
+          <div
+            :class="triggerClasses"
+            class="flex-row-reverse"
+          >
+            <PopoverTrigger :as-child="true">
+              <AppIconButton
+                :style-config="{
+                  '--button-bg-color-hover': 'transparent',
+                  '--button-bg-color-active': 'transparent',
+                  '--button-bg-color-focus': 'transparent',
+                  '--button-border-color-hover': 'transparent',
+                  '--button-border-color-active': 'transparent',
+                  '--button-border-color-focus': 'transparent',
+                  '--button-ring-color-focus': 'transparent',
+                }"
+                icon="chevronDown"
+                label="test"
+                variant="ghost"
+                size="sm"
+                @keydown="onTriggerKeyDown"
+                @focus="onFocus"
+                @blur="onBlur"
+                @mouseenter="onMouseEnter"
+                @mouseleave="onMouseLeave"
+              />
+            </PopoverTrigger>
+
+            <div
+              v-if="isMultiple"
+              class="flex w-full flex-wrap items-center gap-2"
+            >
+              <button
+                v-for="value of model"
+                :key="value"
+              >
+                {{ value }}
+              </button>
+            </div>
+          </div>
+        </PopoverAnchor>
+
         <button
+          v-if="false"
           :id="inputId"
           :class="triggerClasses"
           :disabled="props.isDisabled"

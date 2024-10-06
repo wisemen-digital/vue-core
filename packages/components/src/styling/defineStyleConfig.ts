@@ -20,7 +20,6 @@ export function defineStyleConfig<
     styleSheet.insertRule(`${options.selector} { ${key}: ${value}; }`)
   })
 
-  // Add style sheet to document
   document.adoptedStyleSheets = [
     ...document.adoptedStyleSheets,
     styleSheet,

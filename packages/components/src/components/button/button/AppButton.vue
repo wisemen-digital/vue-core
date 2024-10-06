@@ -4,8 +4,8 @@ import { computed, ref } from 'vue'
 import {
   type AppButtonProps,
   appButtonPropsDefaultValues,
-} from '@/components/button/button.props.js'
-import { buttonStyle } from '@/components/button/button.style'
+} from '@/components/button/button/button.props.js'
+import { buttonStyle } from '@/components/button/button/button.style'
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppSpinner from '@/components/spinner/AppSpinner.vue'
 

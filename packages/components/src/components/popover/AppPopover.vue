@@ -4,7 +4,6 @@ import {
   PopoverContent,
   PopoverPortal,
   PopoverRoot,
-  PopoverTrigger,
 } from 'reka-ui'
 import {
   computed,
@@ -27,9 +26,9 @@ const isOpen = defineModel<boolean>('isOpen', {
 const slots = useSlots()
 const style = popoverStyle()
 
-if (slots.default === undefined) {
-  throw new Error('[POPOVER] The `trigger` slot is required.')
-}
+// if (slots.default === undefined) {
+//   throw new Error('[POPOVER] The `trigger` slot is required.')
+// }
 
 const contentClasses = computed<string>(() => style.content())
 const arrowBoxClasses = computed<string>(() => style.arrowBox())
@@ -38,9 +37,9 @@ const arrowClasses = computed<string>(() => style.arrow())
 
 <template>
   <PopoverRoot v-model:open="isOpen">
-    <PopoverTrigger :as-child="true">
-      <slot />
-    </PopoverTrigger>
+    <!-- <PopoverTrigger :as-child="true"> -->
+    <slot />
+    <!-- </PopoverTrigger> -->
 
     <PopoverPortal>
       <PopoverContent
@@ -55,6 +54,7 @@ const arrowClasses = computed<string>(() => style.arrow())
           contentClasses,
         ]"
         :style="props.styleConfig"
+        :collision-boundary="props.containerElement"
         :collision-padding="props.collisionPaddingInPx"
       >
         <!-- Without this relative div, the arrow is a bit glitchy -->

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ListboxFilter } from 'reka-ui'
 
-import AppTextField from '@/components/text-field/AppTextField.vue'
+import AppTextField from '@/components/input-field/text-field/AppTextField.vue'
 
 const model = defineModel<string>({
   required: true,
@@ -12,7 +12,7 @@ const model = defineModel<string>({
   <ListboxFilter :as-child="true">
     <AppTextField
       v-model="model"
-      :style="{
+      :style-config="{
         '--text-field-border-left-color-default': 'transparent',
         '--text-field-border-right-color-default': 'transparent',
         '--text-field-border-bottom-color-default': 'transparent',

@@ -1,6 +1,7 @@
+import type { ButtonStyleConfig } from '@/components/button/button/buttonStyle.config'
 import { defineStyleConfig } from '@/styling/defineStyleConfig'
 
-export interface IconButtonStyleConfig {
+export interface IconButtonStyleConfig extends ButtonStyleConfig {
   '--icon-button-icon-size-default': string
   '--icon-button-size-default': string
 }
