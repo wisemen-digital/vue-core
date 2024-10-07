@@ -1,3 +1,4 @@
+import { lightThemeColors } from '@/styling/defaultColors'
 import { defineStyleConfig } from '@/styling/defineStyleConfig'
 
 export interface TextFieldStyleConfig {
@@ -6,116 +7,80 @@ export interface TextFieldStyleConfig {
   '--text-field-bg-color-error': string
   '--text-field-bg-color-focus': string
   '--text-field-bg-color-hover': string
-
   '--text-field-border-bottom-color-default': string
   '--text-field-border-bottom-color-disabled': string
   '--text-field-border-bottom-color-error': string
   '--text-field-border-bottom-color-focus': string
   '--text-field-border-bottom-color-hover': string
-
   '--text-field-border-left-color-default': string
   '--text-field-border-left-color-disabled': string
   '--text-field-border-left-color-error': string
   '--text-field-border-left-color-focus': string
   '--text-field-border-left-color-hover': string
-
   '--text-field-border-radius-bottom-left-default': string
   '--text-field-border-radius-bottom-right-default': string
   '--text-field-border-radius-top-left-default': string
   '--text-field-border-radius-top-right-default': string
   '--text-field-border-right-color-default': string
-
   '--text-field-border-right-color-disabled': string
   '--text-field-border-right-color-error': string
-
   '--text-field-border-right-color-focus': string
   '--text-field-border-right-color-hover': string
   '--text-field-border-top-color-default': string
   '--text-field-border-top-color-disabled': string
   '--text-field-border-top-color-error': string
-
   '--text-field-border-top-color-focus': string
   '--text-field-border-top-color-hover': string
   '--text-field-error-font-size-default': string
   '--text-field-error-font-weight-default': string
-  // Spacing between error and input
   '--text-field-error-spacing-default': string
-
-  // Error
   '--text-field-error-text-color-default': string
   '--text-field-font-size-default': string
   '--text-field-font-weight-default': string
   '--text-field-height-default': string
   '--text-field-hint-font-size-default': string
-
   '--text-field-hint-font-weight-default': string
-  // Spacing between hint and input
   '--text-field-hint-spacing-default': string
-  // Hint
   '--text-field-hint-text-color-default': string
   '--text-field-hint-text-color-disabled': string
   '--text-field-hint-text-color-error': string
-
   '--text-field-hint-text-color-focus': string
   '--text-field-hint-text-color-hover': string
   '--text-field-icon-color-default': string
   '--text-field-icon-color-disabled': string
-
   '--text-field-icon-color-error': string
   '--text-field-icon-color-focus': string
-
   '--text-field-icon-color-hover': string
-
-  // Spacing between icon and text. To change the spacing between icon and border,
-  // refer to `'--text-field-padding-left-default'
   '--text-field-icon-left-spacing-default': string
-  // Spacing between icon and text. To change the spacing between icon and border,
-  // refer to `'--text-field-padding-right-default'
   '--text-field-icon-right-spacing-default': string
-
-  // Icon
   '--text-field-icon-size-default': string
-
   '--text-field-label-font-size-default': string
   '--text-field-label-font-weight-default': string
-  // Spacing between label and input
   '--text-field-label-spacing-default': string
-  // Label
   '--text-field-label-text-color-default': string
   '--text-field-label-text-color-disabled': string
-
   '--text-field-label-text-color-error': string
   '--text-field-label-text-color-focus': string
-
   '--text-field-label-text-color-hover': string
   '--text-field-loader-color-default': string
   '--text-field-loader-color-disabled': string
   '--text-field-loader-color-error': string
   '--text-field-loader-color-focus': string
-
   '--text-field-loader-color-hover': string
-  // Loader
   '--text-field-loader-size-default': string
   '--text-field-padding-left-default': string
-
   '--text-field-padding-right-default': string
   '--text-field-placeholder-color-default': string
   '--text-field-placeholder-color-disabled': string
   '--text-field-placeholder-color-error': string
   '--text-field-placeholder-color-focus': string
-
   '--text-field-placeholder-color-hover': string
   '--text-field-ring-color-error': string
-
   '--text-field-ring-color-focus': string
-
   '--text-field-shadow-default': string
-
   '--text-field-shadow-disabled': string
   '--text-field-shadow-error': string
-
   '--text-field-shadow-focus': string
-
   '--text-field-shadow-hover': string
   '--text-field-text-color-default': string
   '--text-field-text-color-disabled': string
@@ -126,123 +91,91 @@ export interface TextFieldStyleConfig {
 
 defineStyleConfig({
   config: {
-    '--text-field-bg-color-default': '#ffffff',
-    '--text-field-bg-color-disabled': '#fbfbfb',
-    '--text-field-bg-color-error': '#ffffff',
-    '--text-field-bg-color-focus': '#ffffff',
-    '--text-field-bg-color-hover': '#ffffff',
-
-    '--text-field-border-bottom-color-default': '#d0d5dd',
-    '--text-field-border-bottom-color-disabled': '#eee',
-    '--text-field-border-bottom-color-error': '#ff0202',
-    '--text-field-border-bottom-color-focus': '#007bff',
-    '--text-field-border-bottom-color-hover': '#007bff',
-
-    '--text-field-border-left-color-default': '#d0d5dd',
-    '--text-field-border-left-color-disabled': '#eee',
-    '--text-field-border-left-color-error': '#ff0202',
-    '--text-field-border-left-color-focus': '#007bff',
-    '--text-field-border-left-color-hover': '#007bff',
-
+    '--text-field-bg-color-default': lightThemeColors.inputFieldBgColorDefault,
+    '--text-field-bg-color-disabled': lightThemeColors.inputFieldBgColorDisabled,
+    '--text-field-bg-color-error': lightThemeColors.inputFieldBgColorDefault,
+    '--text-field-bg-color-focus': lightThemeColors.inputFieldBgColorDefault,
+    '--text-field-bg-color-hover': lightThemeColors.inputFieldBgColorDefault,
+    '--text-field-border-bottom-color-default': lightThemeColors.inputFieldBorderColorDefault,
+    '--text-field-border-bottom-color-disabled': lightThemeColors.inputFieldBorderColorDisabled,
+    '--text-field-border-bottom-color-error': lightThemeColors.error,
+    '--text-field-border-bottom-color-focus': lightThemeColors.inputFieldBorderColorFocus,
+    '--text-field-border-bottom-color-hover': lightThemeColors.inputFieldBorderColorHover,
+    '--text-field-border-left-color-default': lightThemeColors.inputFieldBorderColorDefault,
+    '--text-field-border-left-color-disabled': lightThemeColors.inputFieldBorderColorDisabled,
+    '--text-field-border-left-color-error': lightThemeColors.error,
+    '--text-field-border-left-color-focus': lightThemeColors.inputFieldBorderColorFocus,
+    '--text-field-border-left-color-hover': lightThemeColors.inputFieldBorderColorHover,
     '--text-field-border-radius-bottom-left-default': '6px',
     '--text-field-border-radius-bottom-right-default': '6px',
     '--text-field-border-radius-top-left-default': '6px',
     '--text-field-border-radius-top-right-default': '6px',
-    '--text-field-border-right-color-default': '#d0d5dd',
-
-    '--text-field-border-right-color-disabled': '#eee',
-    '--text-field-border-right-color-error': '#ff0202',
-
-    '--text-field-border-right-color-focus': '#007bff',
-    '--text-field-border-right-color-hover': '#007bff',
-    '--text-field-border-top-color-default': '#d0d5dd',
-    '--text-field-border-top-color-disabled': '#eee',
-    '--text-field-border-top-color-error': '#ff0202',
-
-    '--text-field-border-top-color-focus': '#007bff',
-    '--text-field-border-top-color-hover': '#007bff',
-    '--text-field-error-font-size-default': '12px',
-    '--text-field-error-font-weight-default': '400',
-    // Spacing between error and input
-    '--text-field-error-spacing-default': '6px',
-
-    // Error
-    '--text-field-error-text-color-default': '#ff0202',
+    '--text-field-border-right-color-default': lightThemeColors.inputFieldBorderColorDefault,
+    '--text-field-border-right-color-disabled': lightThemeColors.inputFieldBorderColorDisabled,
+    '--text-field-border-right-color-error': lightThemeColors.error,
+    '--text-field-border-right-color-focus': lightThemeColors.inputFieldBorderColorFocus,
+    '--text-field-border-right-color-hover': lightThemeColors.inputFieldBorderColorHover,
+    '--text-field-border-top-color-default': lightThemeColors.inputFieldBorderColorDefault,
+    '--text-field-border-top-color-disabled': lightThemeColors.inputFieldBorderColorDisabled,
+    '--text-field-border-top-color-error': lightThemeColors.error,
+    '--text-field-border-top-color-focus': lightThemeColors.inputFieldBorderColorFocus,
+    '--text-field-border-top-color-hover': lightThemeColors.inputFieldBorderColorHover,
+    '--text-field-error-font-size-default': 'var(--input-field-error-font-size-default)',
+    '--text-field-error-font-weight-default': 'var(--input-field-error-font-weight-default)',
+    '--text-field-error-spacing-default': 'var(--input-field-error-spacing-default)',
+    '--text-field-error-text-color-default': lightThemeColors.error,
     '--text-field-font-size-default': '14px',
     '--text-field-font-weight-default': '400',
     '--text-field-height-default': '40px',
     '--text-field-hint-font-size-default': '12px',
-
-    '--text-field-hint-font-weight-default': '400',
-    // Spacing between hint and input
-    '--text-field-hint-spacing-default': '6px',
-    // Hint
-    '--text-field-hint-text-color-default': '#3d4658',
-    '--text-field-hint-text-color-disabled': '#3d4658',
-    '--text-field-hint-text-color-error': '#ff0202',
-
-    '--text-field-hint-text-color-focus': '#3d4658',
-    '--text-field-hint-text-color-hover': '#3d4658',
+    '--text-field-hint-font-weight-default': 'var(--input-field-hint-font-weight-default)',
+    '--text-field-hint-spacing-default': 'var(--input-field-hint-spacing-default)',
+    '--text-field-hint-text-color-default': lightThemeColors.inputFieldHintTextColorDefault,
+    '--text-field-hint-text-color-disabled': lightThemeColors.inputFieldHinttextColorDisabled,
+    '--text-field-hint-text-color-error': lightThemeColors.error,
+    '--text-field-hint-text-color-focus': lightThemeColors.inputFieldHintTextColorDefault,
+    '--text-field-hint-text-color-hover': lightThemeColors.inputFieldHintTextColorDefault,
     '--text-field-icon-color-default': '#909090',
     '--text-field-icon-color-disabled': '#ccc',
-
-    '--text-field-icon-color-error': '#ff0202',
+    '--text-field-icon-color-error': lightThemeColors.error,
     '--text-field-icon-color-focus': '#007bff',
-
     '--text-field-icon-color-hover': '#909090',
-
     '--text-field-icon-left-spacing-default': '12px',
     '--text-field-icon-right-spacing-default': '12px',
-
-    // Icon
     '--text-field-icon-size-default': '18px',
-
-    '--text-field-label-font-size-default': '14px',
-    '--text-field-label-font-weight-default': '400',
-    // Spacing between label and input
-    '--text-field-label-spacing-default': '4px',
-    // Label
-    '--text-field-label-text-color-default': '#3d4658',
-    '--text-field-label-text-color-disabled': '#3d4658',
-
-    '--text-field-label-text-color-error': '#ff0202',
-    '--text-field-label-text-color-focus': '#3d4658',
-
-    '--text-field-label-text-color-hover': '#3d4658',
+    '--text-field-label-font-size-default': 'var(--input-field-label-font-size-default)',
+    '--text-field-label-font-weight-default': 'var(--input-field-label-font-weight-default)',
+    '--text-field-label-spacing-default': 'var(--input-field-label-spacing-default)',
+    '--text-field-label-text-color-default': lightThemeColors.inputFieldLabelTextColorDefault,
+    '--text-field-label-text-color-disabled': lightThemeColors.inputFieldLabelTextColorDisabled,
+    '--text-field-label-text-color-error': lightThemeColors.error,
+    '--text-field-label-text-color-focus': lightThemeColors.inputFieldLabelTextColorDefault,
+    '--text-field-label-text-color-hover': lightThemeColors.inputFieldLabelTextColorDefault,
     '--text-field-loader-color-default': '#3d4658',
     '--text-field-loader-color-disabled': '#b6b6b6',
     '--text-field-loader-color-error': '#ff0202',
     '--text-field-loader-color-focus': '#007bff',
-
     '--text-field-loader-color-hover': '#3d4658',
-    // Loader
     '--text-field-loader-size-default': '14px',
     '--text-field-padding-left-default': '12px',
-
     '--text-field-padding-right-default': '12px',
-    '--text-field-placeholder-color-default': '#c6c6c6',
-    '--text-field-placeholder-color-disabled': '#dedede',
-    '--text-field-placeholder-color-error': '#c6c6c6',
-    '--text-field-placeholder-color-focus': '#c6c6c6',
-
-    '--text-field-placeholder-color-hover': '#c6c6c6',
-    '--text-field-ring-color-error': '#ff020270',
-
-    '--text-field-ring-color-focus': '#007bff70',
-
+    '--text-field-placeholder-color-default': lightThemeColors.inputFieldPlaceholderColorDefault,
+    '--text-field-placeholder-color-disabled': lightThemeColors.inputFieldPlaceholderColorDisabled,
+    '--text-field-placeholder-color-error': lightThemeColors.inputFieldPlaceholderColorDefault,
+    '--text-field-placeholder-color-focus': lightThemeColors.inputFieldPlaceholderColorDefault,
+    '--text-field-placeholder-color-hover': lightThemeColors.inputFieldPlaceholderColorDefault,
+    '--text-field-ring-color-error': lightThemeColors.inputFieldRingColorError,
+    '--text-field-ring-color-focus': lightThemeColors.inputFieldRingColorFocus,
     '--text-field-shadow-default': '0px 0px 0px 0px #000000',
-
     '--text-field-shadow-disabled': '0px 0px 0px 0px #000000',
     '--text-field-shadow-error': '0px 0px 0px 0px #000000',
-
     '--text-field-shadow-focus': '0px 0px 0px 0px #000000',
-
     '--text-field-shadow-hover': '0px 0px 0px 0px #000000',
-    '--text-field-text-color-default': '#101828',
-    '--text-field-text-color-disabled': '#e9e9e9',
-    '--text-field-text-color-error': '#101828',
-    '--text-field-text-color-focus': '#101828',
-    '--text-field-text-color-hover': '#101828',
+    '--text-field-text-color-default': lightThemeColors.inputFieldTextColorDefault,
+    '--text-field-text-color-disabled': lightThemeColors.inputFieldTextColorDisabled,
+    '--text-field-text-color-error': lightThemeColors.inputFieldTextColorDefault,
+    '--text-field-text-color-focus': lightThemeColors.inputFieldTextColorDefault,
+    '--text-field-text-color-hover': lightThemeColors.inputFieldTextColorDefault,
   },
   selector: ':root',
   component: 'textField',

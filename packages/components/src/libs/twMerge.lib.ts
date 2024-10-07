@@ -25,6 +25,7 @@ export const extendedConfig = {
             'select-font-size-default',
             'select-item-font-size-default',
             'select-group-label-font-size-default',
+            'tabs-item-font-size-default',
           ],
         },
       ],

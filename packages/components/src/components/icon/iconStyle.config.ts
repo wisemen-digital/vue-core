@@ -8,7 +8,7 @@ export interface IconStyleConfig extends BaseStyleConfig {
 
 defineStyleConfig({
   config: {
-    '--icon-color': 'blue',
+    '--icon-color': 'inherit',
     '--icon-size': '16px',
   },
   selector: ':root',

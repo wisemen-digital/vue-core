@@ -10,6 +10,7 @@ import { inputFieldHintTailwindConfig } from './src/components/input-field-hint/
 import { inputFieldLabelTailwindConfig } from './src/components/input-field-label/inputFieldLabel.tailwind'
 import { popoverTailwindConfig } from './src/components/popover/popover.tailwind'
 import { selectTailwindConfig } from './src/components/select/select.tailwind'
+import { tabsTailwindConfig } from './src/components/tabs/tabs.tailwind'
 import { tooltipTailwindConfig } from './src/components/tooltip/tooltip.tailwind'
 
 export default {
@@ -30,9 +31,11 @@ export default {
         popoverTailwindConfig,
         selectTailwindConfig,
         tooltipTailwindConfig,
+        tabsTailwindConfig,
       ),
       zIndex: {
-        popover: '50',
+        'popover': '50',
+        'tabs-item': '1',
       },
     },
   },

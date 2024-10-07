@@ -53,6 +53,7 @@ const textFieldStyleConfig = computed<Partial<StyleConfig<'textField'>>>(() => {
   // Denk ik? Of enkel de variabelen aanpassen van # naar var()?
   return {
     '--text-field-text-color-default': '#667085',
+    '--text-field-text-color-error': '#667085',
     '--text-field-text-color-focus': '#667085',
     '--text-field-text-color-hover': '#667085',
   }

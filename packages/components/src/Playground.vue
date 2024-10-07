@@ -10,38 +10,55 @@ import '@/components/button/icon-button/iconButtonStyle.config'
 import '@/components/select/selectStyle.config'
 import '@/components/input-field/text-field/textFieldStyle.config'
 import '@/components/tooltip/tooltipStyle.config'
+import '@/components/tabs/tabsStyle.config'
 
-import AppButton from '@/components/button/button/AppButton.vue'
-import AppPopover from '@/components/popover/AppPopover.vue'
-import AppPopoverTrigger from '@/components/popover/AppPopoverTrigger.vue'
-import AppTooltip from '@/components/tooltip/AppTooltip.vue'
+import AppIcon from '@/components/icon/AppIcon.vue'
+import AppTabs from '@/components/tabs/AppTabs.vue'
+import type { TabItem } from '@/types/tabs.type.js'
+
+const tabItems: TabItem[] = [
+  {
+    id: 'Tab 1',
+    label: 'Tab 1',
+  },
+  {
+    id: 'Tab 2',
+    label: 'Tab 2',
+  },
+  {
+    id: 'Tab 3',
+    isDisabled: true,
+    label: 'Tab 3',
+  },
+  {
+    id: 'Tab 4',
+    label: 'Tab 4',
+  },
+]
 </script>
 
 <template>
   <div class="flex gap-x-24 p-24">
-    <AppPopover>
-      <AppPopoverTrigger>
-        <AppButton>Button</AppButton>
-      </AppPopoverTrigger>
-
-      <template #content>
-        <div class="h-40 w-80 p-2">
-          Content
-        </div>
+    <AppTabs :items="tabItems">
+      <template #item-right>
+        <AppIcon
+          icon="check"
+          class="ml-2 group-disabled:opacity-50"
+        />
       </template>
-    </AppPopover>
+    </AppTabs>
 
-    <AppTooltip>
-      <template #default>
-        <AppButton>Button</AppButton>
+    <AppTabs
+      :items="tabItems"
+      class="tabs-2"
+    >
+      <template #item-right="{ item }">
+        <AppIcon
+          icon="check"
+          class="ml-2 group-disabled:opacity-50"
+        />
       </template>
-
-      <template #content>
-        <div class="h-40 w-80 p-2">
-          Content
-        </div>
-      </template>
-    </AppTooltip>
+    </AppTabs>
   </div>
 </template>
 
