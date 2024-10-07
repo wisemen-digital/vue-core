@@ -95,12 +95,18 @@ export function usePagination<TFilters>({
   }
 
   function handleFilterChange(event: FilterChangeEvent<TFilters>): void {
-    paginationOptions.value = {
-      ...paginationOptions.value,
-      filters: {
+    const filtersWithoutUndefinedValues = Object.fromEntries(
+      Object.entries({
         ...paginationOptions.value.filters,
         ...event,
-      } as PaginationFilters<TFilters>,
+      }).filter(([
+        , value,
+      ]) => value !== undefined),
+    ) as PaginationFilters<TFilters>
+
+    paginationOptions.value = {
+      ...paginationOptions.value,
+      filters: filtersWithoutUndefinedValues,
       pagination: {
         ...paginationOptions.value.pagination,
         page: 0,
