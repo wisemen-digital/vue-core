@@ -35,7 +35,7 @@ const props = withDefaults(
     /**
      * The testId label.
      */
-    testId: string
+    testId?: string
     /**
      * Whether the combobox has a clear button.
      * @default false

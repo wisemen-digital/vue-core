@@ -19,7 +19,7 @@ import type {
 } from '@/types/pagination.type'
 
 const props = defineProps<{
-  title: string
+  title?: string
   hasSearch: boolean
   isLoading: boolean
   filters: PaginationFilter<TFilters>[]
@@ -79,6 +79,7 @@ function onFilterClear(): void {
 <template>
   <div :class="topContainerClasses">
     <AppText
+      v-if="props.title"
       :class="topTitleClasses"
       variant="subtitle"
     >
