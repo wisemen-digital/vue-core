@@ -13,13 +13,13 @@ const props = withDefaults(defineProps<{
    */
   id?: null | string
   /**
-   * Whether the input is disabled.
-   * @default false
-   */
-  /**
    * The testId label.
    */
   testId?: string
+  /**
+   * Whether the input is disabled.
+   * @default false
+   */
   isDisabled?: boolean
   /**
    * Whether the input is invalid.
