@@ -50,6 +50,7 @@ const arrowClasses = computed<string>(() => style.arrow())
           :side="props.side"
           :side-offset="props.offsetInPx"
           :align="props.align"
+          position="popper"
         >
           <!-- Without this relative div, the arrow is a bit glitchy -->
           <div class="relative size-full">

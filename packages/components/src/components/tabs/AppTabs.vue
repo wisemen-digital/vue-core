@@ -5,7 +5,7 @@ import {
   TabsRoot,
   TabsTrigger,
 } from 'reka-ui'
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 
 import { tabsStyle } from '@/components/tabs/tabs.style.js'
 import type { TabItem } from '@/types/tabs.type.js'
@@ -14,25 +14,33 @@ const props = defineProps<{
   items: TabItem<TMeta>[]
 }>()
 
+const model = defineModel<TabItem<TMeta>>({
+  required: true,
+})
+
+const modelAsString = computed<string>({
+  get: () => model.value.id,
+  set: (value) => {
+    model.value = props.items.find((tab) => tab.id === value)!
+  },
+})
+
 const style = tabsStyle()
 
 const containerClasses = computed<string>(() => style.container())
 const indicatorClasses = computed<string>(() => style.indicator())
 const itemClasses = computed<string>(() => style.item())
 const itemContentClasses = computed<string>(() => style.itemContent())
-
-const value = ref<string>('Tab 1')
 </script>
 
 <template>
-  <TabsRoot v-model="value">
+  <TabsRoot v-model="modelAsString">
     <TabsList :class="containerClasses">
       <div class="relative">
         <TabsIndicator
           :class="indicatorClasses"
         />
 
-        <!-- TODO: focus state -->
         <TabsTrigger
           v-for="item of props.items"
           :key="item.label"

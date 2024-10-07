@@ -3,6 +3,7 @@ import type { Config } from 'tailwindcss'
 
 import { buttonTailwindConfig } from './src/components/button/button/button.tailwind'
 import { iconButtonTailwindConfig } from './src/components/button/icon-button/iconButton.tailwind'
+import { dropdownMenuTailwindConfig } from './src/components/dropdown-menu/dropdownMenu.tailwind'
 import { iconTailwindConfig } from './src/components/icon/icon.tailwind'
 import { textFieldTailwindConfig } from './src/components/input-field/text-field/textField.tailwind'
 import { inputFieldErrorTailwindConfig } from './src/components/input-field-error/inputFieldError.tailwind'
@@ -32,6 +33,7 @@ export default {
         selectTailwindConfig,
         tooltipTailwindConfig,
         tabsTailwindConfig,
+        dropdownMenuTailwindConfig,
       ),
       zIndex: {
         'popover': '50',

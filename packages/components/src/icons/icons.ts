@@ -10,6 +10,8 @@ export interface BaseIcons {
   eye: Promise<Component>
   eyeOff: Promise<Component>
   searchLg: Promise<Component>
+  tool02: Promise<Component>
+  translate01: Promise<Component>
 }
 
 export interface Icons extends BaseIcons {}
@@ -24,6 +26,8 @@ export const icons: BaseIcons = {
   eye: import('@/icons/EyeIcon.vue'),
   eyeOff: import('@/icons/EyeOffIcon.vue'),
   searchLg: import('@/icons/SearchLgIcon.vue'),
+  tool02: import('@/icons/Tool02Icon.vue'),
+  translate01: import('@/icons/Translate01Icon.vue'),
 }
 
 export function extendIcons(customIcons: Omit<Icons, keyof BaseIcons>): void {

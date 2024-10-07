@@ -134,7 +134,6 @@ export interface SelectStyleConfig {
   '--select-item-padding-y-default': string
   // separator
   '--select-item-separator-color-default': string
-
   '--select-item-seperator-spacing-y-default': string
   '--select-item-single-value-indicator-color-default': string
   '--select-item-single-value-indicator-size-default': string
