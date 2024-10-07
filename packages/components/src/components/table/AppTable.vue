@@ -36,7 +36,7 @@ const props = withDefaults(
     /**
      * The title of the table.
      */
-    title: string
+    title?: string
     /**
      * Shows the search input in the table header
      */

@@ -24,7 +24,7 @@ import AppTablePlayground from './AppTablePlayground.vue'
 | rowTo | `((row: T) => RouteLocationNamedRaw) \| null` | Returns the row as a RouterLink. | `null` |
 | shouldPinFirstColumn | `boolean` | Whether the first column of the table is pinned. | `false` |
 | shouldPinLastColumn | `boolean` | Whether the last column of the table is pinned. | `false` |
-| title* | `string` | The title of the table. |  |
+| title | `string` | The title of the table. |  |
 | variant | `"default" \| "borderless"` | Table style variant | `"default"` |
 
 
