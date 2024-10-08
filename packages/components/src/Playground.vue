@@ -15,88 +15,34 @@ import '@/components/dropdown-menu/dropdownMenuStyle.config'
 
 import { ref } from 'vue'
 
-import AppButton from '@/components/button/button/AppButton.vue'
-import AppDropdownMenu from '@/components/dropdown-menu/AppDropdownMenu.vue'
-import AppIcon from '@/components/icon/AppIcon.vue'
-import AppPopover from '@/components/popover/AppPopover.vue'
-import AppPopoverTrigger from '@/components/popover/AppPopoverTrigger.vue'
-import AppTabs from '@/components/tabs/AppTabs.vue'
-import type { TabItem } from '@/types/tabs.type.js'
+import AppSelect from '@/components/select/AppSelect.vue'
+import type { SelectItem } from '@/types/select.type.js'
 
-const tabItems: TabItem[] = [
+const model = ref<string[]>([])
+
+const items: SelectItem<string>[] = [
   {
-    id: 'Tab 1',
-    label: 'Language',
+    isDisabled: false,
+    type: 'option',
+    value: 'Apple',
   },
   {
-    id: 'Tab 2',
-    label: 'Tools',
-  },
-  {
-    id: 'Tab 3',
-    isDisabled: true,
-    label: 'Settings',
+    isDisabled: false,
+    type: 'option',
+    value: 'Banana',
   },
 ]
-
-const tab = ref<TabItem>(tabItems[0]!)
-
-// hoe pakken we het aan als je de styling van één item wil aanpassen
-// in bv. dropdown of select?
 </script>
 
 <template>
-  <div class="flex gap-x-24 p-24">
-    <AppPopover>
-      <AppPopoverTrigger>
-        <AppButton>
-          Button
-        </AppButton>
-      </AppPopoverTrigger>
-
-      <template #content>
-        <div class="h-40 w-80" />
-      </template>
-    </AppPopover>
-
-    <AppDropdownMenu>
-      <template #top>
-        <span class="block p-1 pb-0 text-sm font-medium text-white">
-          Wouter Laermans
-        </span>
-
-        <span class="block px-1 pb-0.5 text-sm text-white/50">
-          wouter.laermans@appwi.se
-        </span>
-
-        <div class="my-[6px] h-px bg-[#344054]" />
-      </template>
-    </AppDropdownMenu>
-
-    <AppTabs
-      v-model="tab"
-      :items="tabItems"
-    >
-      <template #item-right="{ item }">
-        <AppIcon
-          :icon="item.id === 'Tab 1' ? 'translate01' : 'tool02'"
-          class="ml-2 group-disabled:opacity-50"
-        />
-      </template>
-    </AppTabs>
-
-    <AppTabs
-      v-model="tab"
-      :items="tabItems"
-      class="tabs-2"
-    >
-      <template #item-right="{ item }">
-        <AppIcon
-          :icon="item.id === 'Tab 1' ? 'translate01' : 'tool02'"
-          class="ml-2 group-disabled:opacity-50"
-        />
-      </template>
-    </AppTabs>
+  <div class="p-24">
+    <AppSelect
+      v-model="model"
+      :items="items"
+      :display-fn="(value) => value"
+      :filter-fn="(option, searchTerm) => option.includes(searchTerm)"
+      class="w-72"
+    />
   </div>
 </template>
 
