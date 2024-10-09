@@ -41,6 +41,16 @@ const docs = [
     ],
     text: 'Select',
   },
+  {
+    collapsed: true,
+    items: [
+      {
+        link: '/components/button/app-button',
+        text: 'AppButton',
+      },
+    ],
+    text: 'Button',
+  },
 ]
 
 // https://vitepress.dev/reference/site-config

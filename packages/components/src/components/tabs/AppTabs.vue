@@ -19,9 +19,9 @@ const model = defineModel<TabItem<TMeta>>({
 })
 
 const modelAsString = computed<string>({
-  get: () => model.value.id,
+  get: () => model.value.value,
   set: (value) => {
-    model.value = props.items.find((tab) => tab.id === value)!
+    model.value = props.items.find((tab) => tab.value === value)!
   },
 })
 
@@ -44,7 +44,8 @@ const itemContentClasses = computed<string>(() => style.itemContent())
         <TabsTrigger
           v-for="item of props.items"
           :key="item.label"
-          :value="item.id"
+          :value="item.value"
+          :data-test-id="item.testId"
           :class="itemClasses"
           :disabled="item.isDisabled"
         >
@@ -64,5 +65,7 @@ const itemContentClasses = computed<string>(() => style.itemContent())
         </TabsTrigger>
       </div>
     </TabsList>
+
+    <slot />
   </TabsRoot>
 </template>

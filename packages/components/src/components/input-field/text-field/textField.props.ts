@@ -84,7 +84,7 @@ export interface AppTextFieldProps {
    * The type of the input.
    * @default 'text'
    */
-  type?: 'date' | 'datetime-local' | 'email' | 'password' | 'search' | 'tel' | 'text' | 'time' | 'url'
+  type?: 'email' | 'password' | 'search' | 'tel' | 'text' | 'time' | 'url'
 }
 
 export const appTextFieldPropsDefaultValues = {

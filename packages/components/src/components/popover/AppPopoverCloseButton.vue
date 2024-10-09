@@ -1,9 +1,18 @@
 <script setup lang="ts">
 import { PopoverClose } from 'reka-ui'
+
+import AppIconButton from '@/components/button/icon-button/AppIconButton.vue'
 </script>
 
 <template>
   <PopoverClose :as-child="true">
-    <slot />
+    <slot>
+      <AppIconButton
+        icon="xClose"
+        label="Close"
+        size="sm"
+        variant="ghost"
+      />
+    </slot>
   </PopoverClose>
 </template>

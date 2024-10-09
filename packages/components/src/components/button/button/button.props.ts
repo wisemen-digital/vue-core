@@ -27,6 +27,7 @@ export interface AppButtonProps {
    * @default 'default'
    */
   size?: 'default' | 'sm'
+
   styleConfig?: StyleConfig<'button'> | null
   /**
    * The type of the button.
@@ -38,7 +39,7 @@ export interface AppButtonProps {
    * The variant of the button.
    * @default 'default'
    */
-  variant?: 'default' | 'destructive' | 'ghost' | 'muted' | 'outline' | string & {}
+  variant?: 'default' | 'destructive' | 'ghost' | 'muted' | 'outline'
 }
 
 export const appButtonPropsDefaultValues = {

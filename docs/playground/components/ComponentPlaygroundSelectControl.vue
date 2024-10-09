@@ -1,10 +1,9 @@
 <script setup lang="ts" generic="TItem extends AcceptableValue">
-import type {
-  AcceptableValue,
-  SelectItem,
-} from '@wisemen/vue-core'
-import { FormSelect } from '@wisemen/vue-core'
-import { computed } from 'vue'
+// import type {
+//   AcceptableValue,
+//   SelectItem,
+// } from '@wisemen/vue-core'
+// import { FormSelect } from '@wisemen/vue-core'
 
 interface Props<T> {
   items: T[]
@@ -17,12 +16,12 @@ const model = defineModel<TItem | null>({
   required: true,
 })
 
-const selectItems = computed<SelectItem<TItem>[]>(() => {
-  return props.items.map((item) => ({
-    type: 'option',
-    value: item,
-  }))
-})
+// const selectItems = computed<SelectItem<TItem>[]>(() => {
+//   return props.items.map((item) => ({
+//     type: 'option',
+//     value: item,
+//   }))
+// })
 
 function displayFunction(item: TItem): string {
   return item as string
@@ -31,13 +30,22 @@ function displayFunction(item: TItem): string {
 
 <template>
   <div>
-    <FormSelect
+    <!-- <FormSelect
       v-model="model"
       :items="selectItems"
       :is-touched="false"
       :display-fn="displayFunction"
       :label="props.label"
       :errors="{ _errors: [] }"
-    />
+    /> -->
+    <select v-model="model">
+      <option
+        v-for="item of props.items"
+        :key="item"
+        :value="item"
+      >
+        {{ item }}
+      </option>
+    </select>
   </div>
 </template>

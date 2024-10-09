@@ -16,6 +16,7 @@ import '@/components/dropdown-menu/dropdownMenuStyle.config'
 import { ref } from 'vue'
 
 import AppSelect from '@/components/select/AppSelect.vue'
+import AppSelectMultiBox from '@/components/select/AppSelectMultiBox.vue'
 import type { SelectItem } from '@/types/select.type.js'
 
 const model = ref<string[]>([])
@@ -31,6 +32,34 @@ const items: SelectItem<string>[] = [
     type: 'option',
     value: 'Banana',
   },
+  {
+    isDisabled: false,
+    type: 'option',
+    value: 'Cherry',
+  },
+  {
+    isDisabled: false,
+    type: 'option',
+    value: 'Grapes',
+  },
+  {
+    isDisabled: false,
+    type: 'option',
+    value: 'Leek',
+  },
+  {
+    isDisabled: false,
+    type: 'option',
+    value: 'Pear',
+  },
+  {
+    type: 'option',
+    value: 'Raspberry',
+  },
+  {
+    type: 'option',
+    value: 'Strawberry',
+  },
 ]
 </script>
 
@@ -41,8 +70,21 @@ const items: SelectItem<string>[] = [
       :items="items"
       :display-fn="(value) => value"
       :filter-fn="(option, searchTerm) => option.includes(searchTerm)"
+      placeholder="Placeholder"
       class="w-72"
-    />
+    >
+      <!-- <template #value="{ value }">
+        Toegekende SW ({{ value.length }})
+      </template> -->
+
+      <template #value>
+        <AppSelectMultiBox>
+          <template #tag>
+            Tag
+          </template>
+        </AppSelectMultiBox>
+      </template>
+    </AppSelect>
   </div>
 </template>
 

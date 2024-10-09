@@ -1,3 +1,6 @@
 import './styles/index.scss'
+import '@/components/button/button/buttonStyle.config'
 
-export { default as AppTextField } from './components/text-field/AppTextField.vue'
+// Button
+export { default as AppButton } from '@/components/button/button/AppButton.vue'
+export { defineStyleConfig } from '@/styling/defineStyleConfig'

@@ -16,10 +16,10 @@ const emit = defineEmits<{
 }>()
 
 defineSlots<{
-  default: () => void
-  iconLeft: () => void
-  iconRight: () => void
-  loader: () => void
+  'default': () => void
+  'icon-left': () => void
+  'icon-right': () => void
+  'loader': () => void
 }>()
 
 const style = buttonStyle()
@@ -158,7 +158,7 @@ function onClick(): void {
   >
     <slot
       v-if="props.iconLeft !== null"
-      name="iconLeft"
+      name="icon-left"
     >
       <AppIcon
         :icon="props.iconLeft"
@@ -188,7 +188,7 @@ function onClick(): void {
 
     <slot
       v-if="props.iconRight !== null"
-      name="iconRight"
+      name="icon-right"
     >
       <AppIcon
         :icon="props.iconRight"

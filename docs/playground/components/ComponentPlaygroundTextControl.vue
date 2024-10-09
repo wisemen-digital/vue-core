@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { FormInput } from '@wisemen/vue-core'
+// import { FormInput } from '@wisemen/vue-core'
 
 const props = defineProps<{
   label: string
@@ -12,11 +12,12 @@ const model = defineModel<null | string>({
 
 <template>
   <div>
-    <FormInput
+    <!-- <FormInput
       v-model="model"
       :label="props.label"
       :errors="{ _errors: [] }"
       :is-touched="false"
-    />
+    /> -->
+    <input v-model="model">
   </div>
 </template>

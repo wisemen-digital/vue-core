@@ -28,6 +28,7 @@ import AppSelectPlayground from './AppSelectPlayground.vue'
 | modelValue* | `SelectValue \| null` |  |  |
 | placeholder | `string \| null` | The placeholder text of the input. |  |
 | shouldRemainOpenOnValueChange | `boolean \| null` | Whether the select should remain open when the value changes. |  |
+| styleConfig | `Partial<SelectStyleConfig> \| null` |  |  |
 | testId | `string \| null` | The test id of the input. |  |
 
 

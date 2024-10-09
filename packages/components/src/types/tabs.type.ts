@@ -1,7 +1,6 @@
-export interface TabItem<TMeta = never> {
-  id: string
+export type TabItem<TMeta = undefined> = {
   testId?: string
   isDisabled?: boolean
   label: string
-  meta?: TMeta
-}
+  value: string
+} & (TMeta extends undefined ? Record<string, never> : { meta: TMeta })

@@ -15,6 +15,7 @@ import AppIconButtonPlayground from './AppIconButtonPlayground.vue'
 | isLoading | `boolean` | Whether the button is in a loading state. |  |
 | label* | `string` | The label for the button for accessibility |  |
 | size | `"default" \| "sm"` | The size of the button. |  |
+| styleConfig | `Partial<IconButtonStyleConfig> \| null` |  |  |
 | type | `"button" \| "reset" \| "submit"` | The type of the button. |  |
 | variant | `"default" \| "destructive" \| "ghost" \| "muted" \| "outline"` | The variant of the button. |  |
 

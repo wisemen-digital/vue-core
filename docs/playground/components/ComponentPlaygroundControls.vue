@@ -2,7 +2,6 @@
 import type { Controls } from '@docs/playground/types/controls.type'
 
 import ComponentPlaygroundDateControl from './ComponentPlaygroundDateControl.vue'
-import ComponentPlaygroundIconControl from './ComponentPlaygroundIconControl.vue'
 import ComponentPlaygroundSelectControl from './ComponentPlaygroundSelectControl.vue'
 import ComponentPlaygroundSwitchControl from './ComponentPlaygroundSwitchControl.vue'
 import ComponentPlaygroundTextControl from './ComponentPlaygroundTextControl.vue'
@@ -53,12 +52,12 @@ function onUpdateControlValue(control: TControlKeys, value: any): void {
           :model-value="props.controlValues[key]"
           @update:model-value="(value: any) => onUpdateControlValue(key, value)"
         />
-        <ComponentPlaygroundIconControl
+        <!-- <ComponentPlaygroundIconControl
           v-else-if="control.type === 'icon'"
           :label="control.label"
           :model-value="props.controlValues[key]"
           @update:model-value="(value: any) => onUpdateControlValue(key, value)"
-        />
+        /> -->
       </div>
     </template>
   </div>

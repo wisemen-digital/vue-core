@@ -23,6 +23,7 @@ const emit = defineEmits<{
 }>()
 
 defineSlots<{
+  'bottom': () => void
   'error': () => null
   'hint': () => null
   'icon-left': () => null
@@ -240,26 +241,26 @@ function onBlur(): void {
       </slot>
     </div>
 
-    <AppCollapsable>
-      <div v-if="hasError">
-        <slot
-          name="error"
-        >
-          <AppInputFieldError
-            :errors="props.errors"
-            :class="errorClasses"
-          />
-        </slot>
-      </div>
+    <slot name="bottom">
+      <AppCollapsable>
+        <div v-if="hasError">
+          <slot name="error">
+            <AppInputFieldError
+              :errors="props.errors"
+              :class="errorClasses"
+            />
+          </slot>
+        </div>
 
-      <div v-else-if="props.hint !== null">
-        <slot name="hint">
-          <AppInputFieldHint
-            :hint="props.hint"
-            :class="hintClasses"
-          />
-        </slot>
-      </div>
-    </AppCollapsable>
+        <div v-else-if="props.hint !== null">
+          <slot name="hint">
+            <AppInputFieldHint
+              :hint="props.hint"
+              :class="hintClasses"
+            />
+          </slot>
+        </div>
+      </AppCollapsable>
+    </slot>
   </div>
 </template>

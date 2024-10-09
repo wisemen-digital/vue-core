@@ -1,6 +1,5 @@
 <script setup lang="ts" generic="TControlKeys extends string">
 import type { Control, Controls } from '@docs/playground/types/controls.type'
-import { AppText } from '@wisemen/vue-core'
 import {
   type Ref,
   ref,
@@ -41,24 +40,22 @@ function getControlValueDefault(): Record<TControlKeys, any> {
 </script>
 
 <template>
-  <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
-  <div class="vp-raw my-8 flex w-full flex-col rounded-lg border border-solid border-border bg-background">
+  <!-- vp-raw border-border bg-background my-8 flex w-full flex-col rounded-lg border border-solid -->
+  <div class="">
     <div class="flex w-full items-center justify-center rounded-t p-4">
       <slot :values="controlValues" />
     </div>
 
-    <div class="h-px w-full bg-primary/50" />
+    <!-- <div class="bg-primary/50 h-px w-full" /> -->
     <div
       v-if="props.controls"
-      class="flex flex-col gap-4 rounded-b border-t-4 border-primary bg-neutral-800/80 p-4"
     >
-      <AppText
-        as="p"
-        class="!m-0 text-foreground"
-        variant="subtitle"
-      >
+      <!--       class="border-primary flex flex-col gap-4 rounded-b border-t-4 bg-neutral-800/80 p-4"
+ -->
+      <span variant="subtitle">
         Controls
-      </AppText>
+      </span>
+
       <ComponentPlaygroundControls
         :controls="props.controls"
         :control-values="controlValues"

@@ -1,4 +1,4 @@
-// import '@wisemen/vue-core/style.css'
+import '@wisemen/vue-core/style.css'
 import './index.scss'
 import './override.css'
 

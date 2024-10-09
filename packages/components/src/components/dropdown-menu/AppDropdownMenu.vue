@@ -108,6 +108,8 @@ const separatorClasses = computed<string>(() => style.separator())
 
         <DropdownMenuSeparator />
         <DropdownMenuArrow />
+
+        <slot name="bottom" />
       </DropdownMenuContent>
     </DropdownMenuPortal>
   </DropdownMenuRoot>

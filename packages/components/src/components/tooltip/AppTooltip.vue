@@ -32,7 +32,7 @@ const arrowClasses = computed<string>(() => style.arrow())
       :disable-hoverable-content="props.disableHoverableContent"
     >
       <TooltipTrigger :as-child="true">
-        <slot />
+        <slot name="trigger" />
       </TooltipTrigger>
 
       <TooltipPortal>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { FormDatePicker } from '@wisemen/vue-core'
+// import { FormDatePicker } from '@wisemen/vue-core'
 
 const props = defineProps<{
   label: string
@@ -12,12 +12,12 @@ const model = defineModel<Date | null>({
 
 <template>
   <div>
-    <FormDatePicker
+    <!-- <FormDatePicker
       v-model="model"
       :label="props.label"
       :errors="{ _errors: [] }"
       :is-touched="false"
       :has-clear-button="true"
-    />
+    /> -->
   </div>
 </template>

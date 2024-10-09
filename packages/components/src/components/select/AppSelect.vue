@@ -3,7 +3,6 @@ import {
   ListboxContent,
   ListboxRoot,
   PopoverAnchor,
-  PopoverTrigger,
   useId,
 } from 'reka-ui'
 import {
@@ -12,21 +11,20 @@ import {
   watch,
 } from 'vue'
 
-import AppIconButton from '@/components/button/icon-button/AppIconButton.vue'
 import AppCollapsable from '@/components/collapsable/AppCollapsable.vue'
-import AppIcon from '@/components/icon/AppIcon.vue'
 import AppInputFieldError from '@/components/input-field-error/AppInputFieldError.vue'
 import AppInputFieldHint from '@/components/input-field-hint/AppInputFieldHint.vue'
 import AppInputFieldLabel from '@/components/input-field-label/AppInputFieldLabel.vue'
 import AppPopover from '@/components/popover/AppPopover.vue'
 import AppSelectFilter from '@/components/select/AppSelectFilter.vue'
 import AppSelectItem from '@/components/select/AppSelectItem.vue'
+import AppSelectTagsBox from '@/components/select/AppSelectTagsBox.vue'
+import { provideSelectContext } from '@/components/select/select.context.js'
 import {
   type AppSelectProps,
   appSelectPropsDefaultValues,
 } from '@/components/select/select.props'
 import { selectStyle } from '@/components/select/select.style.js'
-import AppSpinner from '@/components/spinner/AppSpinner.vue'
 import type {
   SelectItem,
   SelectValue,
@@ -106,6 +104,7 @@ const hintClasses = computed<string>(() => style.hint({
 }))
 
 const errorClasses = computed<string>(() => style.error())
+
 const dropdownContentClasses = computed<string>(() => style.dropdownContent({
   hasFilter: props.filterFn !== null,
 }))
@@ -226,14 +225,20 @@ watch(isOpen, (isOpen) => {
   }
 })
 
-/*
-TODO:
-Onduidelijkheden:
-- Indien tags, flex reverse voor tabindex maar niet met pijltjes
-- Je kan enkel rechts klikken, is dat duideljk?
-- Moeten tags wrappen of scrollen? Ik denk wrappen anders werkt dat niet goed op windows
-
-*/
+provideSelectContext({
+  hasError: computed<boolean>(() => hasError.value),
+  isDisabled: computed<boolean>(() => props.isDisabled),
+  isEmpty,
+  isFocused: computed<boolean>(() => isFocused.value),
+  isHovered: computed<boolean>(() => isHovered.value),
+  placeholder: computed<null | string>(() => props.placeholder),
+  value: computed<any>(() => model.value),
+  onBlur,
+  onFocus,
+  onMouseEnter,
+  onMouseLeave,
+  onTriggerKeyDown,
+})
 </script>
 
 <template>
@@ -269,112 +274,12 @@ Onduidelijkheden:
     >
       <template #default>
         <PopoverAnchor>
-          <div
-            :class="triggerClasses"
-            class="flex-row-reverse"
-          >
-            <PopoverTrigger :as-child="true">
-              <AppIconButton
-                :style-config="{
-                  '--button-bg-color-hover': 'transparent',
-                  '--button-bg-color-active': 'transparent',
-                  '--button-bg-color-focus': 'transparent',
-                  '--button-border-color-hover': 'transparent',
-                  '--button-border-color-active': 'transparent',
-                  '--button-border-color-focus': 'transparent',
-                  '--button-ring-color-focus': 'transparent',
-                }"
-                icon="chevronDown"
-                label="test"
-                variant="ghost"
-                size="sm"
-                @keydown="onTriggerKeyDown"
-                @focus="onFocus"
-                @blur="onBlur"
-                @mouseenter="onMouseEnter"
-                @mouseleave="onMouseLeave"
-              />
-            </PopoverTrigger>
-
-            <div
-              v-if="isMultiple"
-              class="flex w-full flex-wrap items-center gap-2"
-            >
-              <button
-                v-for="value of model"
-                :key="value"
-              >
-                {{ value }}
-              </button>
-            </div>
-          </div>
+          <slot name="value">
+            <!-- TODO: id enzo juist zetten -->
+            <AppSelectTagsBox />
+            <!-- <AppSelectMultiBox /> -->
+          </slot>
         </PopoverAnchor>
-
-        <button
-          v-if="false"
-          :id="inputId"
-          :class="triggerClasses"
-          :disabled="props.isDisabled"
-          :data-test-id="props.testId"
-          @keydown="onTriggerKeyDown"
-          @focus="onFocus"
-          @blur="onBlur"
-          @mouseenter="onMouseEnter"
-          @mouseleave="onMouseLeave"
-        >
-          <AppIcon
-            v-if="props.iconLeft !== null"
-            :icon="props.iconLeft"
-            :class="iconLeftClasses"
-          />
-
-          <div :class="valueClasses">
-            <slot
-              v-if="!isEmpty"
-              :value="(model as NonNullable<TValue>)"
-              name="value"
-            >
-              {{ displayValue }}
-            </slot>
-
-            <span
-              v-else-if="props.placeholder !== null"
-              :class="placeholderClasses"
-            >
-              {{ props.placeholder }}
-            </span>
-          </div>
-
-          <slot
-            :is-focused="isFocused"
-            :is-hovered="isHovered"
-            :is-disabled="props.isDisabled"
-            :has-error="hasError"
-            name="right"
-          />
-
-          <div
-            v-if="props.isLoading"
-            :class="loaderBoxClasses"
-          >
-            <slot name="loader">
-              <AppSpinner :class="loaderClasses" />
-            </slot>
-          </div>
-
-          <div
-            v-else
-            :class="caretClasses"
-          >
-            <slot
-              name="caret"
-            >
-              <AppIcon
-                icon="chevronDown"
-              />
-            </slot>
-          </div>
-        </button>
       </template>
 
       <template #content>

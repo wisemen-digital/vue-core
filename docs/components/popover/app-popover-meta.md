@@ -10,15 +10,15 @@ import AppPopoverPlayground from './AppPopoverPlayground.vue'
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| align | `"center" \| "end" \| "start"` | The alignment of the popover content. |  |
+| align | `PopoverAlign` | The alignment of the popover content. |  |
 | collisionPaddingInPx | `number` | The padding of the popover collision. |  |
+| containerElement | `HTMLElement \| null` | The element to render the tooltip in. By default this is the viewport |  |
 | isArrowHidden | `boolean` | When true, the arrow will be hidden. |  |
 | isOpen | `boolean` |  |  |
 | offsetInPx | `number` | The offset of the popover content. |  |
-| popoverClass | `string \| null` | The popover css classes. This is useful when you want to add custom styles to the popover
-because otherwise css variables are not injected since the popover is rendered in a portal. |  |
 | popoverWidth | `PopoverWidth \| null` | The width of the popover. |  |
-| side | `"bottom" \| "left" \| "right" \| "top"` | The side of the trigger the popover should be on. |  |
+| side | `"bottom" \| "left" \| "right" \| "top"` | The side of the trigger the tooltip should be on. |  |
+| styleConfig | `Partial<PopoverStyleConfig> \| null` |  |  |
 
 
 ## Slots
@@ -27,6 +27,7 @@ because otherwise css variables are not injected since the popover is rendered i
 | --------- | ---- | ----------- |
 | `content` | None |  |
 | `default` | None |  |
+| `trigger` | None |  |
 
 
 ## Events

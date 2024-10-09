@@ -4,6 +4,7 @@ import {
   PopoverContent,
   PopoverPortal,
   PopoverRoot,
+  PopoverTrigger,
 } from 'reka-ui'
 import {
   computed,
@@ -37,9 +38,16 @@ const arrowClasses = computed<string>(() => style.arrow())
 
 <template>
   <PopoverRoot v-model:open="isOpen">
-    <!-- <PopoverTrigger :as-child="true"> -->
-    <slot />
-    <!-- </PopoverTrigger> -->
+    <!-- It's possible to use either the default slot with an own implementation of the trigger or the named slot -->
+    <!-- If the default slot is used, the trigger should be wrapped in `AppPopoverTrigger` -->
+    <!-- The reason both options are possible is because in some cases `AppPopoverAnchor`
+         is used for custom positioning
+    -->
+    <slot>
+      <PopoverTrigger :as-child="true">
+        <slot name="trigger" />
+      </PopoverTrigger>
+    </slot>
 
     <PopoverPortal>
       <PopoverContent

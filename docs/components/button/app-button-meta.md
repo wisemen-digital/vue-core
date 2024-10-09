@@ -15,6 +15,7 @@ import AppButtonPlayground from './AppButtonPlayground.vue'
 | isDisabled | `boolean` | Whether the button is disabled. |  |
 | isLoading | `boolean` | Whether the button is in a loading state. |  |
 | size | `"default" \| "sm"` | The size of the button. |  |
+| styleConfig | `Partial<ButtonStyleConfig> \| null` |  |  |
 | type | `"button" \| "reset" \| "submit"` | The type of the button. |  |
 | variant | `"default" \| "destructive" \| "ghost" \| "muted" \| "outline" \| (string & {})` | The variant of the button. |  |
 

@@ -1,6 +1,6 @@
 <script setup lang="ts" generic="TItem extends AcceptableValue">
-import type { AcceptableValue } from '@wisemen/vue-core'
-import { FormLabel, FormSwitch } from '@wisemen/vue-core'
+// import type { AcceptableValue } from '@wisemen/vue-core'
+// import { FormLabel, FormSwitch } from '@wisemen/vue-core'
 
 interface Props {
 
@@ -16,7 +16,7 @@ const model = defineModel<boolean>({
 
 <template>
   <div class="flex items-center gap-2">
-    <FormSwitch
+    <!-- <FormSwitch
       v-model="model"
       :is-touched="false"
       :label="props.label"
@@ -25,6 +25,10 @@ const model = defineModel<boolean>({
     <FormLabel
       :label="props.label"
       for=""
-    />
+    /> -->
+    <input
+      v-model="model"
+      type="checkbox"
+    >
   </div>
 </template>
