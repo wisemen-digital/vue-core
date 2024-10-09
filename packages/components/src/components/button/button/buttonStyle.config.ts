@@ -218,6 +218,12 @@ defineStyleConfig({
     '--button-loader-color-focus': 'var(--brand-primary-800)',
     '--button-loader-color-hover': 'var(--brand-primary-800)',
 
+    '--button-shadow-active': 'var(--shadow-xs)',
+    '--button-shadow-default': 'var(--shadow-xs)',
+    '--button-shadow-disabled': 'var(--shadow-xs)',
+    '--button-shadow-focus': 'var(--shadow-xs)',
+    '--button-shadow-hover': 'var(--shadow-xs)',
+
     '--button-text-color-active': 'var(--brand-primary-800)',
     '--button-text-color-default': 'var(--brand-primary-700)',
     '--button-text-color-focus': 'var(--brand-primary-800)',
@@ -464,6 +470,12 @@ defineStyleConfig({
     '--button-loader-color-hover': 'var(--error-800)',
 
     '--button-ring-color-focus': 'var(--error-500)',
+
+    '--button-shadow-active': 'var(--shadow-xs)',
+    '--button-shadow-default': 'var(--shadow-xs)',
+    '--button-shadow-disabled': 'var(--shadow-xs)',
+    '--button-shadow-focus': 'var(--shadow-xs)',
+    '--button-shadow-hover': 'var(--shadow-xs)',
 
     '--button-text-color-active': 'var(--error-800)',
     '--button-text-color-default': 'var(--error-700)',
