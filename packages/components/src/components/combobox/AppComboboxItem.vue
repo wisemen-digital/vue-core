@@ -29,7 +29,6 @@ const props = defineProps<{
       :is-multiple="props.isMultiple"
       :display-fn="props.displayFn"
     >
-      <!-- @vue-expect-error -->
       <template #default="{ item: itemValue }">
         <slot :item="itemValue" />
       </template>
