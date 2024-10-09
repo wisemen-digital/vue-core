@@ -16,7 +16,7 @@ export function useTypedRouteParams<T extends keyof Routes>(routeName: T): UseTy
   const route = useRoute()
 
   if (!route.matched.map((e) => e.name).includes(routeName)) {
-    throw new Error(`Route ${routeName} is not matched. This probably means that you passed the wrong route name to the 'useTypedRouteQuery'`)
+    throw new Error(`Route ${routeName} is not matched. This probably means that you passed the wrong route name to the 'useTypedRouteParams'`)
   }
 
   return Object.keys(route.params).reduce((acc, key) => {
