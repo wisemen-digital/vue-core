@@ -14,93 +14,268 @@ import '@/components/tabs/tabsStyle.config'
 import '@/components/dropdown-menu/dropdownMenuStyle.config'
 import '@/components/tag/tagStyle.config'
 
-import { ref } from 'vue'
-
-import AppSelect from '@/components/select/AppSelect.vue'
-import AppTag from '@/components/tag/AppTag.vue'
-import type { SelectItem } from '@/types/select.type.js'
-
-const model = ref<string[]>([])
-
-const items: SelectItem<string>[] = [
-  {
-    isDisabled: false,
-    type: 'option',
-    value: 'Apple',
-  },
-  {
-    isDisabled: false,
-    type: 'option',
-    value: 'Banana',
-  },
-  {
-    isDisabled: false,
-    type: 'option',
-    value: 'Cherry',
-  },
-  {
-    isDisabled: false,
-    type: 'option',
-    value: 'Grapes',
-  },
-  {
-    isDisabled: false,
-    type: 'option',
-    value: 'Leek',
-  },
-  {
-    isDisabled: false,
-    type: 'option',
-    value: 'Pear',
-  },
-  {
-    type: 'option',
-    value: 'Raspberry',
-  },
-  {
-    type: 'option',
-    value: 'Strawberry',
-  },
-]
+import AppButton from '@/components/button/button/AppButton.vue'
 </script>
 
 <template>
-  <div class="p-24">
+  <div
+    :style="{
+      backgroundColor: 'var(--bg-primary)',
+    }"
+    class="grid min-h-screen grid-cols-3 gap-12 p-24"
+  >
     <div>
-      <AppTag
-        :is-removable="true"
-        :is-disabled="true"
-        @remove="console.log('remove')"
+      <AppButton
+        :is-disabled="false"
+        size="sm"
+        icon-left="translate01"
       >
-        Tag 1
-      </AppTag>
+        Button CTA
+      </AppButton>
     </div>
-  </div>
 
-  <div class="p-24">
-    <AppSelect
-      v-model="model"
-      :items="items"
-      :display-fn="(value) => value"
-      :filter-fn="(option, searchTerm) => option.includes(searchTerm)"
-      :is-loading="false"
-      :is-disabled="false"
-      icon-left="searchLg"
-      placeholder="Placeholder"
-      class="w-72"
-    >
-      <!-- <template #value="{ value }">
-        Toegekende SW ({{ value.length }})
-      </template> -->
+    <div>
+      <AppButton
+        :is-disabled="true"
+        icon-left="translate01"
+      >
+        Button CTA
+      </AppButton>
+    </div>
 
-      <!-- <template #value>
-        <AppSelectMultiBox>
-          <template #tag>
-            Tag
-          </template>
-        </AppSelectMultiBox>
-      </template> -->
-    </AppSelect>
+    <div>
+      <AppButton
+        :is-loading="true"
+        size="lg"
+        icon-left="translate01"
+      >
+        Button CTA
+      </AppButton>
+    </div>
+
+    <div>
+      <AppButton
+        :is-disabled="false"
+        size="sm"
+        variant="secondary"
+        icon-left="translate01"
+      >
+        Button CTA
+      </AppButton>
+    </div>
+
+    <div>
+      <AppButton
+        :is-disabled="true"
+        variant="secondary"
+        icon-left="translate01"
+      >
+        Button CTA
+      </AppButton>
+    </div>
+
+    <div>
+      <AppButton
+        :is-loading="true"
+        size="lg"
+        variant="secondary"
+        icon-left="translate01"
+      >
+        Button CTA
+      </AppButton>
+    </div>
+
+    <div>
+      <AppButton
+        :is-disabled="false"
+        size="sm"
+        variant="secondary-color"
+        icon-left="translate01"
+      >
+        Button CTA
+      </AppButton>
+    </div>
+
+    <div>
+      <AppButton
+        :is-disabled="true"
+        variant="secondary-color"
+        icon-left="translate01"
+      >
+        Button CTA
+      </AppButton>
+    </div>
+
+    <div>
+      <AppButton
+        :is-loading="true"
+        size="lg"
+        variant="secondary-color"
+        icon-left="translate01"
+      >
+        Button CTA
+      </AppButton>
+    </div>
+
+    <div>
+      <AppButton
+        :is-disabled="false"
+        size="sm"
+        variant="tertiary"
+        icon-left="translate01"
+      >
+        Button CTA
+      </AppButton>
+    </div>
+
+    <div>
+      <AppButton
+        :is-disabled="true"
+        variant="tertiary"
+        icon-left="translate01"
+      >
+        Button CTA
+      </AppButton>
+    </div>
+
+    <div>
+      <AppButton
+        :is-loading="true"
+        size="lg"
+        variant="tertiary"
+        icon-left="translate01"
+      >
+        Button CTA
+      </AppButton>
+    </div>
+
+    <div>
+      <AppButton
+        :is-disabled="false"
+        size="sm"
+        variant="tertiary-color"
+        icon-left="translate01"
+      >
+        Button CTA
+      </AppButton>
+    </div>
+
+    <div>
+      <AppButton
+        :is-disabled="true"
+        variant="tertiary-color"
+        icon-left="translate01"
+      >
+        Button CTA
+      </AppButton>
+    </div>
+
+    <div>
+      <AppButton
+        :is-loading="true"
+        size="lg"
+        variant="tertiary-color"
+        icon-left="translate01"
+      >
+        Button CTA
+      </AppButton>
+    </div>
+
+    <div>
+      <AppButton
+        :is-disabled="false"
+        size="sm"
+        variant="destructive-primary"
+        icon-left="translate01"
+      >
+        Button CTA
+      </AppButton>
+    </div>
+
+    <div>
+      <AppButton
+        :is-disabled="true"
+        variant="destructive-primary"
+        icon-left="translate01"
+      >
+        Button CTA
+      </AppButton>
+    </div>
+
+    <div>
+      <AppButton
+        :is-loading="true"
+        size="lg"
+        variant="destructive-primary"
+        icon-left="translate01"
+      >
+        Button CTA
+      </AppButton>
+    </div>
+
+    <div>
+      <AppButton
+        :is-disabled="false"
+        size="sm"
+        variant="destructive-secondary"
+        icon-left="translate01"
+      >
+        Button CTA
+      </AppButton>
+    </div>
+
+    <div>
+      <AppButton
+        :is-disabled="true"
+        variant="destructive-secondary"
+        icon-left="translate01"
+      >
+        Button CTA
+      </AppButton>
+    </div>
+
+    <div>
+      <AppButton
+        :is-loading="true"
+        size="lg"
+        variant="destructive-secondary"
+        icon-left="translate01"
+      >
+        Button CTA
+      </AppButton>
+    </div>
+
+    <div>
+      <AppButton
+        :is-disabled="false"
+        size="sm"
+        variant="destructive-tertiary"
+        icon-left="translate01"
+      >
+        Button CTA
+      </AppButton>
+    </div>
+
+    <div>
+      <AppButton
+        :is-disabled="true"
+        variant="destructive-tertiary"
+        icon-left="translate01"
+      >
+        Button CTA
+      </AppButton>
+    </div>
+
+    <div>
+      <AppButton
+        :is-loading="true"
+        size="lg"
+        variant="destructive-tertiary"
+        icon-left="translate01"
+      >
+        Button CTA
+      </AppButton>
+    </div>
   </div>
 </template>
 

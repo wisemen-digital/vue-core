@@ -36,6 +36,11 @@ export default {
         tooltipTailwindConfig,
         tabsTailwindConfig,
         dropdownMenuTailwindConfig,
+        {
+          ringOffsetColor: {
+            DEFAULT: 'var(--bg-primary)',
+          },
+        },
       ),
       zIndex: {
         'popover': '50',
