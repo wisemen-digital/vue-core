@@ -12,11 +12,12 @@ import '@/components/input-field/text-field/textFieldStyle.config'
 import '@/components/tooltip/tooltipStyle.config'
 import '@/components/tabs/tabsStyle.config'
 import '@/components/dropdown-menu/dropdownMenuStyle.config'
+import '@/components/tag/tagStyle.config'
 
 import { ref } from 'vue'
 
 import AppSelect from '@/components/select/AppSelect.vue'
-import AppSelectMultiBox from '@/components/select/AppSelectMultiBox.vue'
+import AppTag from '@/components/tag/AppTag.vue'
 import type { SelectItem } from '@/types/select.type.js'
 
 const model = ref<string[]>([])
@@ -65,11 +66,26 @@ const items: SelectItem<string>[] = [
 
 <template>
   <div class="p-24">
+    <div>
+      <AppTag
+        :is-removable="true"
+        :is-disabled="true"
+        @remove="console.log('remove')"
+      >
+        Tag 1
+      </AppTag>
+    </div>
+  </div>
+
+  <div class="p-24">
     <AppSelect
       v-model="model"
       :items="items"
       :display-fn="(value) => value"
       :filter-fn="(option, searchTerm) => option.includes(searchTerm)"
+      :is-loading="false"
+      :is-disabled="false"
+      icon-left="searchLg"
       placeholder="Placeholder"
       class="w-72"
     >
@@ -77,13 +93,13 @@ const items: SelectItem<string>[] = [
         Toegekende SW ({{ value.length }})
       </template> -->
 
-      <template #value>
+      <!-- <template #value>
         <AppSelectMultiBox>
           <template #tag>
             Tag
           </template>
         </AppSelectMultiBox>
-      </template>
+      </template> -->
     </AppSelect>
   </div>
 </template>

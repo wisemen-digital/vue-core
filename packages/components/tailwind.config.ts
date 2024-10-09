@@ -12,6 +12,7 @@ import { inputFieldLabelTailwindConfig } from './src/components/input-field-labe
 import { popoverTailwindConfig } from './src/components/popover/popover.tailwind'
 import { selectTailwindConfig } from './src/components/select/select.tailwind'
 import { tabsTailwindConfig } from './src/components/tabs/tabs.tailwind'
+import { tagTailwindConfig } from './src/components/tag/tag.tailwind'
 import { tooltipTailwindConfig } from './src/components/tooltip/tooltip.tailwind'
 
 export default {
@@ -22,6 +23,7 @@ export default {
   theme: {
     extend: {
       ...defu(
+        tagTailwindConfig,
         buttonTailwindConfig,
         iconButtonTailwindConfig,
         iconTailwindConfig,

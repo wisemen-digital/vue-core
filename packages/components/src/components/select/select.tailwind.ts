@@ -115,23 +115,22 @@ export const selectTailwindConfig = {
   padding: {
     'select-dropdown-padding-x-default': 'var(--select-dropdown-padding-x-default)',
     'select-dropdown-padding-y-default': 'var(--select-dropdown-padding-y-default)',
+
     'select-group-label-spacing-bottom-default': 'var(--select-group-label-spacing-bottom-default)',
-
     'select-group-label-spacing-top-default': 'var(--select-group-label-spacing-top-default)',
-    'select-group-label-spacing-x-default': 'var(--select-group-label-spacing-x-default)',
 
+    'select-group-label-spacing-x-default': 'var(--select-group-label-spacing-x-default)',
     'select-group-padding-x-default': 'var(--select-group-padding-x-default)',
+
     'select-group-padding-y-default': 'var(--select-group-padding-y-default)',
 
     'select-item-padding-x-default': 'var(--select-item-padding-x-default)',
-
     'select-item-padding-y-default': 'var(--select-item-padding-y-default)',
+
     'select-padding-left-default': 'var(--select-padding-left-default)',
-
     'select-padding-right-default': 'var(--select-padding-right-default)',
-    'select-padding-x-default': 'var(--select-padding-x-default)',
 
-    'select-padding-y-default': 'var(--select-drdown-padding-y-default)',
+    'select-padding-x-default': 'var(--select-padding-x-default)',
     'select-padding-y-default': 'var(--select-padding-y-default)',
   },
   ringColor: {

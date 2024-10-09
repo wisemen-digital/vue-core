@@ -2,10 +2,11 @@
 import { PopoverTrigger } from 'reka-ui'
 import { computed } from 'vue'
 
-import AppIconButton from '@/components/button/icon-button/AppIconButton.vue'
 import AppIcon from '@/components/icon/AppIcon.vue'
 import { injectSelectContext } from '@/components/select/select.context.js'
 import { selectStyle } from '@/components/select/select.style.js'
+import AppSpinner from '@/components/spinner/AppSpinner.vue'
+import AppTag from '@/components/tag/AppTag.vue'
 
 const style = selectStyle()
 
@@ -18,9 +19,23 @@ const caretClasses = computed<string>(() => style.caret({
   isHovered: selectContext.isHovered.value,
 }))
 
-const placeholderClasses = computed<string>(() => style.placeholder())
+const placeholderClasses = computed<string>(() => style.placeholder({
+  hasError: selectContext.hasError.value,
+  isDisabled: selectContext.isDisabled.value,
+  isFocused: selectContext.isFocused.value,
+  isHovered: selectContext.isHovered.value,
+}))
 
 const triggerClasses = computed<string>(() => style.trigger({
+  hasError: selectContext.hasError.value,
+  isDisabled: selectContext.isDisabled.value,
+  isFocused: selectContext.isFocused.value,
+  isHovered: selectContext.isHovered.value,
+}))
+
+const loaderBoxClasses = computed<string>(() => style.loaderBox())
+
+const loaderClasses = computed<string>(() => style.loader({
   hasError: selectContext.hasError.value,
   isDisabled: selectContext.isDisabled.value,
   isFocused: selectContext.isFocused.value,
@@ -44,23 +59,22 @@ const triggerClasses = computed<string>(() => style.trigger({
         :key="value"
         name="tag"
       >
-        <div class="flex items-center gap-x-1 rounded-md bg-gray-100 py-1 pl-2 pr-1 text-xs">
+        <AppTag
+          :is-removable="true"
+          :is-disabled="selectContext.isDisabled.value"
+        >
           {{ value }}
-
-          <AppIconButton
-            :style-config="{
-              '--icon-button-size-default': '18px',
-              '--icon-button-icon-size-default': '14px',
-            }"
-            icon="xClose"
-            variant="ghost"
-            label="Remove"
-          />
-        </div>
+        </AppTag>
       </slot>
 
       <PopoverTrigger :as-child="true">
         <button
+          :id="selectContext.id.value"
+          :data-test-id="selectContext.testId.value"
+          :disabled="selectContext.isDisabled.value"
+          :class="{
+            'pointer-events-none': selectContext.isDisabled.value,
+          }"
           class="flex size-full min-h-5 min-w-3 flex-1 items-center justify-end bg-transparent outline-none"
           @keydown="selectContext.onTriggerKeyDown"
           @focus="selectContext.onFocus"
@@ -68,7 +82,17 @@ const triggerClasses = computed<string>(() => style.trigger({
           @mouseenter="selectContext.onMouseEnter"
           @mouseleave="selectContext.onMouseLeave"
         >
+          <div
+            v-if="selectContext.isLoading.value"
+            :class="loaderBoxClasses"
+          >
+            <slot name="loader">
+              <AppSpinner :class="loaderClasses" />
+            </slot>
+          </div>
+
           <AppIcon
+            v-else
             :class="caretClasses"
             icon="chevronDown"
           />

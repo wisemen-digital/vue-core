@@ -1,6 +1,15 @@
-export type TabItem<TMeta = undefined> = {
+import type { RouteLocationNamedRaw } from 'vue-router'
+
+type BaseTabItem<TMeta = undefined> = {
   testId?: string
-  isDisabled?: boolean
   label: string
+} & (TMeta extends undefined ? object : { meta: TMeta })
+
+export type TabItem<TMeta = undefined> = BaseTabItem<TMeta> & {
+  isDisabled?: boolean
   value: string
-} & (TMeta extends undefined ? Record<string, never> : { meta: TMeta })
+}
+
+export type RouteTabItem<TMeta = undefined> = BaseTabItem<TMeta> & {
+  to: RouteLocationNamedRaw
+}

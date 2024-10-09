@@ -1,6 +1,39 @@
 import './styles/index.scss'
 import '@/components/button/button/buttonStyle.config'
 
+export type { Icon, Icons } from '@/icons/icons'
+export { extendIcons } from '@/icons/icons'
+export { defineStyleConfig } from '@/styling/defineStyleConfig'
+
 // Button
 export { default as AppButton } from '@/components/button/button/AppButton.vue'
-export { defineStyleConfig } from '@/styling/defineStyleConfig'
+export { default as AppIconButton } from '@/components/button/icon-button/AppIconButton.vue'
+
+// Icon
+export { default as AppIcon } from '@/components/icon/AppIcon.vue'
+
+// Input field
+export { default as AppPasswordField } from '@/components/input-field/password-field/AppPasswordField.vue'
+export { default as AppTextField } from '@/components/input-field/text-field/AppTextField.vue'
+
+// Popover
+export { default as AppPopover } from '@/components/popover/AppPopover.vue'
+export { default as AppPopoverAnchor } from '@/components/popover/AppPopoverAnchor.vue'
+export { default as AppPopoverCloseButton } from '@/components/popover/AppPopoverCloseButton.vue'
+export { default as AppPopoverTrigger } from '@/components/popover/AppPopoverTrigger.vue'
+
+// Spinner
+export { default as AppSpinner } from '@/components/spinner/AppSpinner.vue'
+
+// Tabs
+export { default as AppRouteTabs } from '@/components/tabs/AppRouteTabs.vue'
+export { default as AppTabs } from '@/components/tabs/AppTabs.vue'
+
+// Tag
+export { default as AppTag } from '@/components/tag/AppTag.vue'
+
+// Toggle
+export { default as AppToggle } from '@/components/toggle/AppToggle.vue'
+
+// Tooltip
+export { default as AppTooltip } from '@/components/tooltip/AppTooltip.vue'

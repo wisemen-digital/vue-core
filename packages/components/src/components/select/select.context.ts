@@ -5,14 +5,20 @@ import {
   provide,
 } from 'vue'
 
+import type { Icon } from '@/icons/icons'
+
 interface SelectContext {
+  // TODO
+  id: ComputedRef<string>
+  testId: ComputedRef<null | string>
   hasError: ComputedRef<boolean>
   isDisabled: ComputedRef<boolean>
   isEmpty: ComputedRef<boolean>
   isFocused: ComputedRef<boolean>
   isHovered: ComputedRef<boolean>
+  isLoading: ComputedRef<boolean>
+  iconLeft: ComputedRef<Icon | null>
   placeholder: ComputedRef<null | string>
-  // TODO
   value: ComputedRef<any>
   onBlur: () => void
   onFocus: () => void

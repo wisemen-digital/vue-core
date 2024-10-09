@@ -28,6 +28,7 @@ export const extendedConfig = {
             'tabs-item-font-size-default',
             'dropdown-menu-group-label-font-size-default',
             'dropdown-menu-item-font-size-default',
+            'tag-font-size-default',
           ],
         },
       ],

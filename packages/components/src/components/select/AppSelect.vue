@@ -25,6 +25,7 @@ import {
   appSelectPropsDefaultValues,
 } from '@/components/select/select.props'
 import { selectStyle } from '@/components/select/select.style.js'
+import type { Icon } from '@/icons/icons.js'
 import type {
   SelectItem,
   SelectValue,
@@ -226,11 +227,15 @@ watch(isOpen, (isOpen) => {
 })
 
 provideSelectContext({
+  id: inputId,
+  testId: computed<null | string>(() => props.testId),
   hasError: computed<boolean>(() => hasError.value),
   isDisabled: computed<boolean>(() => props.isDisabled),
   isEmpty,
   isFocused: computed<boolean>(() => isFocused.value),
   isHovered: computed<boolean>(() => isHovered.value),
+  isLoading: computed<boolean>(() => props.isLoading),
+  iconLeft: computed<Icon | null>(() => props.iconLeft),
   placeholder: computed<null | string>(() => props.placeholder),
   value: computed<any>(() => model.value),
   onBlur,
