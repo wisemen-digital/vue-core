@@ -7,6 +7,13 @@ import {
 export const extendedConfig = {
   extend: {
     classGroups: {
+      'border-w': [
+        {
+          border: [
+            'checkbox-border-width-default',
+          ],
+        },
+      ],
       'font-size': [
         {
           text: [

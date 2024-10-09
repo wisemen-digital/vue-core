@@ -9,6 +9,7 @@ export interface BaseIcons {
   chevronUp: Promise<Component>
   eye: Promise<Component>
   eyeOff: Promise<Component>
+  minus: Promise<Component>
   searchLg: Promise<Component>
   tool02: Promise<Component>
   translate01: Promise<Component>
@@ -26,6 +27,7 @@ export const icons: BaseIcons = {
   chevronUp: import('@/icons/ChevronUpIcon.vue'),
   eye: import('@/icons/EyeIcon.vue'),
   eyeOff: import('@/icons/EyeOffIcon.vue'),
+  minus: import('@/icons/MinusIcon.vue'),
   searchLg: import('@/icons/SearchLgIcon.vue'),
   tool02: import('@/icons/Tool02Icon.vue'),
   translate01: import('@/icons/Translate01Icon.vue'),
