@@ -9,10 +9,10 @@ export interface InputFieldHintStyleConfig {
 
 defineStyleConfig({
   config: {
-    '--input-field-hint-font-size-default': '12px',
+    '--input-field-hint-font-size-default': 'var(--text-subtext)',
     '--input-field-hint-font-weight-default': '400',
-    '--input-field-hint-spacing-default': '6px',
-    '--input-field-hint-text-color-default': '#3d4658',
+    '--input-field-hint-spacing-default': 'var(--spacing-sm)',
+    '--input-field-hint-text-color-default': 'var(--text-tertiary)',
   },
   selector: ':root',
   component: 'inputFieldHint',

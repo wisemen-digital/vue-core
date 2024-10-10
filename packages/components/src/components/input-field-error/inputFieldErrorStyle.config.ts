@@ -9,10 +9,10 @@ export interface InputFieldErrorStyleConfig {
 
 defineStyleConfig({
   config: {
-    '--input-field-error-font-size-default': '14px',
+    '--input-field-error-font-size-default': 'var(--text-subtext)',
     '--input-field-error-font-weight-default': '400',
-    '--input-field-error-spacing-default': '4px',
-    '--input-field-error-text-color-default': '#ff0202',
+    '--input-field-error-spacing-default': 'var(--spacing-sm)',
+    '--input-field-error-text-color-default': 'var(--text-error-primary)',
   },
   selector: ':root',
   component: 'inputFieldError',
