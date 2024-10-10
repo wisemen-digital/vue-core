@@ -10,11 +10,11 @@ export interface PopoverStyleConfig {
 
 defineStyleConfig({
   config: {
-    '--popover-bg-color-default': '#ffffff',
-    '--popover-border-color-default': '#e7eaef',
-    '--popover-border-radius-default': '6px',
+    '--popover-bg-color-default': 'var(--bg-primary)',
+    '--popover-border-color-default': 'var(--border-secondary)',
+    '--popover-border-radius-default': 'var(--radius-lg)',
     '--popover-max-width-default': 'auto',
-    '--popover-shadow-default': '0px 10px 15px -3px rgba(16, 24, 40, 0.1), 0px 4px 6px -2px rgba(16, 24, 40, 0.05)',
+    '--popover-shadow-default': 'var(--shadow-lg)',
   },
   selector: ':root',
   component: 'popover',

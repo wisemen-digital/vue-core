@@ -16,6 +16,9 @@ import '@/components/tag/tagStyle.config'
 
 import Buttons from '@/Buttons.vue'
 import InputFields from '@/InputFields.vue'
+import Popovers from '@/Popovers.vue'
+import Tabs from '@/Tabs.vue'
+import Tooltips from '@/Tooltips.vue'
 </script>
 
 <template>
@@ -25,6 +28,9 @@ import InputFields from '@/InputFields.vue'
     }"
     class="flex min-h-screen flex-col gap-y-24 p-24"
   >
+    <Tabs />
+    <Popovers />
+    <Tooltips />
     <InputFields />
     <Buttons />
   </div>

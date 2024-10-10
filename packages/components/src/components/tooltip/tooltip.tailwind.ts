@@ -13,4 +13,7 @@ export const tooltipTailwindConfig = {
   boxShadow: {
     'tooltip-shadow-default': 'var(--tooltip-shadow-default)',
   },
+  textColor: {
+    'tooltip-text-color-default': 'var(--tooltip-text-color-default)',
+  },
 } satisfies Config['theme']

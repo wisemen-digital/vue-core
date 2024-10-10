@@ -82,7 +82,7 @@
   --fg-disabled-subtle: var(--gray-300);
   --fg-brand-primary: var(--brand-primary-600);
   --fg-brand-primary-alt: var(--brand-primary-600);
-  --fg-brand-secondary: var(--brand-secondary-500);
+  --fg-brand-secondary: var(--brand-primary-500);
   --fg-error-primary: var(--error-600);
   --fg-error-secondary: var(--error-500);
   --fg-warning-primary: var(--warning-600);
@@ -104,9 +104,9 @@
   --text-placeholder: var(--gray-500);
   --text-placeholder-subtle: var(--gray-300);
   --text-brand-primary: var(--brand-primary-900);
-  --text-brand-secondary: var(--brand-secondary-700);
-  --text-brand-tertiary: var(--brand-secondary-600);
-  --text-brand-tertiary-alt: var(--brand-secondary-600);
+  --text-brand-secondary: var(--brand-primary-700);
+  --text-brand-tertiary: var(--brand-primary-600);
+  --text-brand-tertiary-alt: var(--brand-primary-600);
   --text-error-primary: var(--error-600);
   --text-warning-primary: var(--warning-600);
   --text-success-primary: var(--success-600);
@@ -183,7 +183,7 @@
   --fg-disabled-subtle: var(--gray-600);
   --fg-brand-primary: var(--brand-primary-500);
   --fg-brand-primary-alt: var(--gray-300);
-  --fg-brand-secondary: var(--brand-secondary-500);
+  --fg-brand-secondary: var(--brand-primary-500);
   --fg-error-primary: var(--error-500);
   --fg-error-secondary: var(--error-400);
   --fg-warning-primary: var(--warning-500);
