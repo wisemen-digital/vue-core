@@ -38,6 +38,11 @@ export default {
         tabsTailwindConfig,
         dropdownMenuTailwindConfig,
         checkboxTailwindConfig,
+        {
+          ringOffsetColor: {
+            DEFAULT: 'var(--bg-primary)',
+          },
+        },
       ),
       zIndex: {
         'popover': '50',

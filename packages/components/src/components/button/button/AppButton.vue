@@ -71,24 +71,48 @@ const sizeClass = computed<null | string>(() => {
     return 'btn-sm'
   }
 
+  if (props.size === 'lg') {
+    return 'btn-lg'
+  }
+
+  if (props.size === 'xl') {
+    return 'btn-xl'
+  }
+
+  if (props.size === '2xl') {
+    return 'btn-2xl'
+  }
+
   return null
 })
 
 const variantClass = computed<null | string>(() => {
-  if (props.variant === 'outline') {
-    return 'btn-outline'
+  if (props.variant === 'secondary') {
+    return 'btn-secondary-gray'
   }
 
-  if (props.variant === 'ghost') {
-    return 'btn-ghost'
+  if (props.variant === 'secondary-color') {
+    return 'btn-secondary-color'
   }
 
-  if (props.variant === 'muted') {
-    return 'btn-muted'
+  if (props.variant === 'tertiary') {
+    return 'btn-tertiary-gray'
   }
 
-  if (props.variant === 'destructive') {
-    return 'btn-destructive'
+  if (props.variant === 'tertiary-color') {
+    return 'btn-tertiary-color'
+  }
+
+  if (props.variant === 'destructive-primary') {
+    return 'btn-destructive-primary'
+  }
+
+  if (props.variant === 'destructive-secondary') {
+    return 'btn-destructive-secondary'
+  }
+
+  if (props.variant === 'destructive-tertiary') {
+    return 'btn-destructive-tertiary'
   }
 
   return null

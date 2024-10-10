@@ -7,7 +7,6 @@ import AppTextField from '@/components/input-field/text-field/AppTextField.vue'
 import type { AppTextFieldProps } from '@/components/input-field/text-field/textField.props.js'
 import AppToggle from '@/components/toggle/AppToggle.vue'
 import type { Icon } from '@/icons/icons.js'
-import type { StyleConfig } from '@/types/style.type.js'
 
 const props = withDefaults(defineProps<Omit<AppTextFieldProps, 'iconRight' | 'type'>>(), {
   id: null,
@@ -43,21 +42,6 @@ const buttonLabel = computed<string>(() => (
     ? t('components.password_input.hide_password')
     : t('components.password_input.show_password')
 ))
-
-const textFieldStyleConfig = computed<Partial<StyleConfig<'textField'>>>(() => {
-  if (isPasswordVisible.value) {
-    return {}
-  }
-
-  // TODO: deze variabelen zouden ook in een style file moeten staan
-  // Denk ik? Of enkel de variabelen aanpassen van # naar var()?
-  return {
-    '--text-field-text-color-default': '#667085',
-    '--text-field-text-color-error': '#667085',
-    '--text-field-text-color-focus': '#667085',
-    '--text-field-text-color-hover': '#667085',
-  }
-})
 </script>
 
 <template>
@@ -65,19 +49,27 @@ const textFieldStyleConfig = computed<Partial<StyleConfig<'textField'>>>(() => {
     v-bind="props"
     v-model="model"
     :type="inputType"
-    :style-config="textFieldStyleConfig"
   >
     <template #right>
-      <AppToggle v-model="isPasswordVisible">
+      <AppToggle
+        v-model="isPasswordVisible"
+        :is-disabled="props.isDisabled"
+      >
         <AppIconButton
           :icon="buttonIcon"
           :label="buttonLabel"
           :style-config="{
+            '--icon-button-size-default': '32px',
+            '--icon-button-icon-size-default': '14px',
             '--button-ring-color-focus': 'transparent',
+            '--button-bg-color-focus': 'var(--bg-secondary-hover)',
+            '--button-bg-color-disabled': 'transparent',
+            '--button-border-color-disabled': 'transparent',
           }"
+          :is-disabled="props.isDisabled"
           size="sm"
           class="mr-[3px]"
-          variant="ghost"
+          variant="tertiary"
         />
       </AppToggle>
     </template>

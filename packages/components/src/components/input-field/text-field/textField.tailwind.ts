@@ -76,6 +76,8 @@ export const textFieldTailwindConfig = {
   padding: {
     'text-field-padding-left-default': 'var(--text-field-padding-left-default)',
     'text-field-padding-right-default': 'var(--text-field-padding-right-default)',
+    'text-field-with-icon-left-padding-left-default': 'var(--text-field-with-icon-left-padding-left-default)',
+    'text-field-with-icon-right-padding-right-default': 'var(--text-field-with-icon-right-padding-right-default)',
   },
   ringColor: {
     'text-field-ring-color-error': 'var(--text-field-ring-color-error)',

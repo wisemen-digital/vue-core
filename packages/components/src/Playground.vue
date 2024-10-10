@@ -3,6 +3,9 @@ import '@/styles/index.scss'
 
 import { ref } from 'vue'
 
+import Buttons from '@/Buttons.vue'
+import InputFields from '@/InputFields.vue'
+
 import AppCheckbox from './components/checkbox/AppCheckbox.vue'
 import type { FormFieldErrors } from './types/formFieldErrors.type'
 
@@ -52,6 +55,16 @@ const isTouched = ref<boolean>(false)
       label="Checkbox"
       hint="This is a hint"
     />
+
+    <div
+      :style="{
+        backgroundColor: 'var(--bg-primary)',
+      }"
+      class="flex min-h-screen flex-col gap-y-24 p-24"
+    >
+      <InputFields />
+      <Buttons />
+    </div>
   </div>
 </template>
 

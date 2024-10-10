@@ -9,10 +9,10 @@ export interface InputFieldLabelStyleConfig {
 
 defineStyleConfig({
   config: {
-    '--input-field-label-font-size-default': '14px',
-    '--input-field-label-font-weight-default': '400',
-    '--input-field-label-spacing-default': '4px',
-    '--input-field-label-text-color-default': '#3d4658',
+    '--input-field-label-font-size-default': 'var(--text-subtext)',
+    '--input-field-label-font-weight-default': '500',
+    '--input-field-label-spacing-default': 'var(--spacing-sm)',
+    '--input-field-label-text-color-default': 'var(--text-secondary)',
   },
   selector: ':root',
   component: 'inputFieldLabel',

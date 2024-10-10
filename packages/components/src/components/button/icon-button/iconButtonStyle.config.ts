@@ -8,7 +8,7 @@ export interface IconButtonStyleConfig extends ButtonStyleConfig {
 
 defineStyleConfig({
   config: {
-    '--icon-button-icon-size-default': '16px',
+    '--icon-button-icon-size-default': '20px',
     '--icon-button-size-default': '40px',
   },
   selector: ':root',
@@ -17,9 +17,32 @@ defineStyleConfig({
 
 defineStyleConfig({
   config: {
-    '--icon-button-icon-size-default': '14px',
-    '--icon-button-size-default': '32px',
+    '--icon-button-size-default': '36px',
   },
   selector: '.icon-btn-sm',
+  component: 'iconButton',
+})
+
+defineStyleConfig({
+  config: {
+    '--icon-button-size-default': '44px',
+  },
+  selector: '.icon-btn-lg',
+  component: 'iconButton',
+})
+
+defineStyleConfig({
+  config: {
+    '--icon-button-size-default': '48px',
+  },
+  selector: '.icon-btn-xl',
+  component: 'iconButton',
+})
+
+defineStyleConfig({
+  config: {
+    '--icon-button-size-default': '56px',
+  },
+  selector: '.icon-btn-2xl',
   component: 'iconButton',
 })

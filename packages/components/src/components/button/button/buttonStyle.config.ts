@@ -15,16 +15,18 @@ export interface ButtonStyleConfig extends BaseStyleConfig {
   '--button-border-color-hover': string
 
   '--button-border-radius-default': string
+
   '--button-font-size-default': string
   '--button-font-weight-default': string
+
   '--button-height-default': string
+
   '--button-icon-color-active': string
-
   '--button-icon-color-default': string
-
   '--button-icon-color-disabled': string
   '--button-icon-color-focus': string
   '--button-icon-color-hover': string
+
   // Spacing between icon and text. To change the spacing between icon and border,
   // refer to `--button-padding-left-default`
   '--button-icon-left-spacing-default': string
@@ -32,28 +34,26 @@ export interface ButtonStyleConfig extends BaseStyleConfig {
   // refer to `--button-padding-right-default`
   '--button-icon-right-spacing-default': string
 
-  // Icons
   '--button-icon-size-default': string
+
   '--button-loader-color-active': string
-
   '--button-loader-color-default': string
-
   '--button-loader-color-disabled': string
   '--button-loader-color-focus': string
   '--button-loader-color-hover': string
-
-  // Loader
   '--button-loader-size-default': string
+
   '--button-padding-left-default': string
   '--button-padding-right-default': string
 
   '--button-ring-color-focus': string
+
   '--button-shadow-active': string
   '--button-shadow-default': string
   '--button-shadow-disabled': string
   '--button-shadow-focus': string
-
   '--button-shadow-hover': string
+
   '--button-text-color-active': string
   '--button-text-color-default': string
   '--button-text-color-disabled': string
@@ -61,259 +61,590 @@ export interface ButtonStyleConfig extends BaseStyleConfig {
   '--button-text-color-hover': string
 }
 
+// Default
 defineStyleConfig({
   config: {
-    '--button-bg-color-active': '#0069da',
-    '--button-bg-color-default': '#007bff',
-    '--button-bg-color-disabled': '#99c2ff',
-    '--button-bg-color-focus': '#007bff',
-    '--button-bg-color-hover': '#006fe6',
+    '--button-bg-color-active': 'var(--brand-primary-800)',
+    '--button-bg-color-default': 'var(--brand-primary-600)',
+    '--button-bg-color-disabled': 'var(--bg-disabled)',
+    '--button-bg-color-focus': 'var(--brand-primary-700)',
+    '--button-bg-color-hover': 'var(--brand-primary-700)',
 
-    '--button-border-color-active': '#007bff',
-    '--button-border-color-default': '#007bff',
-    '--button-border-color-disabled': '#99c2ff',
-    '--button-border-color-focus': '#007bff',
-    '--button-border-color-hover': '#007bff',
+    '--button-border-color-active': 'var(--brand-primary-800)',
+    '--button-border-color-default': 'var(--brand-primary-600)',
+    '--button-border-color-disabled': 'var(--border-disabled-subtle)',
+    '--button-border-color-focus': 'var(--brand-primary-700)',
+    '--button-border-color-hover': 'var(--brand-primary-700)',
 
-    '--button-border-radius-default': '6px',
-    '--button-font-size-default': '14px',
+    '--button-border-radius-default': 'var(--radius-md)',
+
+    '--button-font-size-default': 'var(--text-subtext)',
     '--button-font-weight-default': '500',
+
     '--button-height-default': '40px',
-    '--button-icon-color-active': '#ffffff',
 
-    '--button-icon-color-default': '#ffffff',
+    '--button-icon-color-active': 'var(--fg-white)',
+    '--button-icon-color-default': 'var(--fg-white)',
+    '--button-icon-color-disabled': 'var(--fg-disabled)',
+    '--button-icon-color-focus': 'var(--fg-white)',
+    '--button-icon-color-hover': 'var(--fg-white)',
 
-    '--button-icon-color-disabled': '#fafafa',
-    '--button-icon-color-focus': '#ffffff',
-    '--button-icon-color-hover': '#ffffff',
-    '--button-icon-left-spacing-default': '10px',
-    '--button-icon-right-spacing-default': '10px',
+    '--button-icon-left-spacing-default': 'var(--spacing-xs)',
+    '--button-icon-right-spacing-default': 'var(--spacing-xs)',
 
-    '--button-icon-size-default': '14px',
-    '--button-loader-color-active': '#ffffff',
+    '--button-icon-size-default': '16px',
 
-    '--button-loader-color-default': '#ffffff',
-
-    '--button-loader-color-disabled': '#fafafa',
-    '--button-loader-color-focus': '#ffffff',
-    '--button-loader-color-hover': '#ffffff',
+    '--button-loader-color-active': 'var(--fg-white)',
+    '--button-loader-color-default': 'var(--fg-white)',
+    '--button-loader-color-disabled': 'var(--fg-disabled)',
+    '--button-loader-color-focus': 'var(--fg-white)',
+    '--button-loader-color-hover': 'var(--fg-white)',
 
     '--button-loader-size-default': '18px',
-    '--button-padding-left-default': '12px',
-    '--button-padding-right-default': '12px',
 
-    '--button-ring-color-focus': '#007bff',
-    '--button-shadow-active': '0px 0px 0px 0px #18181b',
-    '--button-shadow-default': '0px 0px 0px 0px #18181b',
-    '--button-shadow-disabled': '0px 0px 0px 0px #b3d4ff',
-    '--button-shadow-focus': '0px 0px 0px 0px #18181b',
+    '--button-padding-left-default': 'var(--spacing-xl)',
+    '--button-padding-right-default': 'var(--spacing-xl)',
 
-    '--button-shadow-hover': '0px 0px 0px 0px #18181b',
-    '--button-text-color-active': '#ffffff',
-    '--button-text-color-default': '#ffffff',
-    '--button-text-color-disabled': '#fafafa',
-    '--button-text-color-focus': '#ffffff',
-    '--button-text-color-hover': '#ffffff',
+    '--button-ring-color-focus': 'var(--brand-primary-500)',
+
+    '--button-shadow-active': '0 0 0 0 transparent',
+    '--button-shadow-default': '0 0 0 0 transparent',
+    '--button-shadow-disabled': 'var(--shadow-xs)',
+    '--button-shadow-focus': '0 0 0 0 transparent',
+    '--button-shadow-hover': '0 0 0 0 transparent',
+
+    '--button-text-color-active': 'var(--fg-white)',
+    '--button-text-color-default': 'var(--fg-white)',
+    '--button-text-color-disabled': 'var(--fg-disabled)',
+    '--button-text-color-focus': 'var(--fg-white)',
+    '--button-text-color-hover': 'var(--fg-white)',
   },
   selector: ':root',
   component: 'button',
 })
 
+// Secondary gray
 defineStyleConfig({
   config: {
-    '--button-bg-color-active': 'rgb(246, 246, 250)',
-    '--button-bg-color-default': 'transparent',
-    '--button-bg-color-disabled': 'transparent',
-    '--button-bg-color-focus': 'rgb(250, 250, 253)',
-    '--button-bg-color-hover': 'rgb(250, 250, 253)',
+    '--button-bg-color-active': 'var(--gray-100)',
+    '--button-bg-color-default': 'var(--bg-primary)',
+    '--button-bg-color-disabled': 'var(--bg-primary)',
+    '--button-bg-color-focus': 'var(--gray-50)',
+    '--button-bg-color-hover': 'var(--gray-50)',
 
-    '--button-border-color-active': '#0069da',
-    '--button-border-color-default': '#007bff',
-    '--button-border-color-disabled': '#99c2ff',
-    '--button-border-color-focus': '#006fe6',
-    '--button-border-color-hover': '#006fe6',
+    '--button-border-color-active': 'var(--gray-300)',
+    '--button-border-color-default': 'var(--gray-300)',
+    '--button-border-color-focus': 'var(--gray-300)',
+    '--button-border-color-hover': 'var(--gray-300)',
 
-    '--button-icon-color-active': '#0069da',
-    '--button-icon-color-default': '#007bff',
-    '--button-icon-color-disabled': '#99c2ff',
-    '--button-icon-color-focus': '#006fe6',
-    '--button-icon-color-hover': '#006fe6',
+    '--button-icon-color-active': 'var(--gray-900)',
+    '--button-icon-color-default': 'var(--gray-700)',
+    '--button-icon-color-focus': 'var(--gray-800)',
+    '--button-icon-color-hover': 'var(--gray-800)',
 
-    '--button-loader-color-active': '#007bff',
-    '--button-loader-color-default': '#007bff',
-    '--button-loader-color-disabled': '#007bff',
-    '--button-loader-color-focus': '#007bff',
-    '--button-loader-color-hover': '#007bff',
+    '--button-loader-color-active': 'var(--gray-900)',
+    '--button-loader-color-default': 'var(--gray-700)',
+    '--button-loader-color-focus': 'var(--gray-800)',
+    '--button-loader-color-hover': 'var(--gray-800)',
 
-    '--button-ring-color-active': '#007bff',
-    '--button-ring-color-default': '#007bff',
-    '--button-ring-color-disabled': '#007bff',
-    '--button-ring-color-focus': '#007bff',
-    '--button-ring-color-hover': '#007bff',
+    '--button-shadow-active': 'var(--shadow-xs)',
+    '--button-shadow-default': 'var(--shadow-xs)',
+    '--button-shadow-disabled': 'var(--shadow-xs)',
+    '--button-shadow-focus': 'var(--shadow-xs)',
+    '--button-shadow-hover': 'var(--shadow-xs)',
 
-    '--button-text-color-active': '#0069da',
-    '--button-text-color-default': '#007bff',
-    '--button-text-color-disabled': '#99c2ff',
-    '--button-text-color-focus': '#006fe6',
-    '--button-text-color-hover': '#006fe6',
+    '--button-text-color-active': 'var(--gray-900)',
+    '--button-text-color-default': 'var(--gray-700)',
+    '--button-text-color-focus': 'var(--gray-800)',
+    '--button-text-color-hover': 'var(--gray-800)',
   },
-  selector: '.btn-outline',
+  selector: '.btn-secondary-gray',
   component: 'button',
 })
 
+// Secondary gray dark
 defineStyleConfig({
   config: {
-    '--button-bg-color-active': '#e6e6e6',
-    '--button-bg-color-default': 'transparent',
-    '--button-bg-color-disabled': 'transparent',
-    '--button-bg-color-focus': '#efefef',
-    '--button-bg-color-hover': '#eeeef1',
+    '--button-bg-color-active': 'var(--gray-700)',
+    '--button-bg-color-default': 'var(--gray-900)',
+    '--button-bg-color-focus': 'var(--gray-800)',
+    '--button-bg-color-hover': 'var(--gray-800)',
 
-    '--button-border-color-active': '#f4f4f5',
-    '--button-border-color-default': 'transparent',
-    '--button-border-color-disabled': 'transparent',
-    '--button-border-color-focus': '#f4f4f5',
-    '--button-border-color-hover': '#f4f4f5',
+    '--button-border-color-active': 'var(--gray-700)',
+    '--button-border-color-default': 'var(--gray-700)',
+    '--button-border-color-focus': 'var(--gray-700)',
+    '--button-border-color-hover': 'var(--gray-700)',
 
-    '--button-icon-color-active': '#667081',
-    '--button-icon-color-default': '#98A2B3',
-    '--button-icon-color-disabled': '#a4a4a7',
-    '--button-icon-color-focus': '#7a8495',
-    '--button-icon-color-hover': '#7a8495',
+    '--button-icon-color-active': 'var(--gray-100)',
+    '--button-icon-color-default': 'var(--gray-300)',
+    '--button-icon-color-focus': 'var(--gray-200)',
+    '--button-icon-color-hover': 'var(--gray-200)',
 
-    '--button-loader-color-default': '#18181b',
+    '--button-loader-color-active': 'var(--gray-100)',
+    '--button-loader-color-default': 'var(--gray-300)',
+    '--button-loader-color-focus': 'var(--gray-200)',
+    '--button-loader-color-hover': 'var(--gray-200)',
 
-    '--button-ring-color-focus': '#7a8495',
-    '--button-text-color-active': '#18181b',
-    '--button-text-color-default': '#18181b',
-    '--button-text-color-disabled': 'rgb(164, 164, 167)',
-    '--button-text-color-focus': '#18181b',
-
-    '--button-text-color-hover': '#18181b',
+    '--button-text-color-active': 'var(--gray-100)',
+    '--button-text-color-default': 'var(--gray-300)',
+    '--button-text-color-focus': 'var(--gray-200)',
+    '--button-text-color-hover': 'var(--gray-200)',
   },
-  selector: '.btn-ghost',
+  selector: '.dark .btn-secondary-gray',
   component: 'button',
 })
 
+// Secondary color
 defineStyleConfig({
   config: {
-    '--button-bg-color-active': '#e6e6e6',
-    '--button-bg-color-default': '#f4f4f5',
-    '--button-bg-color-disabled': 'rgb(244, 244, 245)',
-    '--button-bg-color-focus': '#efefef',
-    '--button-bg-color-hover': '#eeeef1',
+    '--button-bg-color-active': 'var(--brand-primary-100)',
+    '--button-bg-color-default': 'var(--bg-primary)',
+    '--button-bg-color-disabled': 'var(--bg-primary)',
+    '--button-bg-color-focus': 'var(--brand-primary-50)',
+    '--button-bg-color-hover': 'var(--brand-primary-50)',
 
-    '--button-border-color-active': '#f4f4f5',
-    '--button-border-color-default': '#f4f4f5',
-    '--button-border-color-disabled': '#f4f4f5',
-    '--button-border-color-focus': '#f4f4f5',
-    '--button-border-color-hover': '#f4f4f5',
+    '--button-border-color-active': 'var(--brand-primary-300)',
+    '--button-border-color-default': 'var(--brand-primary-300)',
+    '--button-border-color-focus': 'var(--brand-primary-300)',
+    '--button-border-color-hover': 'var(--brand-primary-300)',
 
-    '--button-icon-color-active': '#18181b',
-    '--button-icon-color-default': '#18181b',
-    '--button-icon-color-disabled': 'rgb(164, 164, 167)',
-    '--button-icon-color-focus': '#18181b',
-    '--button-icon-color-hover': '#18181b',
+    '--button-icon-color-active': 'var(--brand-primary-900)',
+    '--button-icon-color-default': 'var(--brand-primary-700)',
+    '--button-icon-color-focus': 'var(--brand-primary-800)',
+    '--button-icon-color-hover': 'var(--brand-primary-800)',
 
-    '--button-ring-color-active': '#18181b',
-    '--button-ring-color-default': '#18181b',
-    '--button-ring-color-disabled': '#18181b',
-    '--button-ring-color-focus': '#18181b',
-    '--button-ring-color-hover': '#18181b',
+    '--button-loader-color-active': 'var(--brand-primary-900)',
+    '--button-loader-color-default': 'var(--brand-primary-700)',
+    '--button-loader-color-focus': 'var(--brand-primary-800)',
+    '--button-loader-color-hover': 'var(--brand-primary-800)',
 
-    '--button-text-color-active': '#18181b',
-    '--button-text-color-default': '#18181b',
-    '--button-text-color-disabled': 'rgb(164, 164, 167)',
-    '--button-text-color-focus': '#18181b',
-    '--button-text-color-hover': '#18181b',
+    '--button-shadow-active': 'var(--shadow-xs)',
+    '--button-shadow-default': 'var(--shadow-xs)',
+    '--button-shadow-disabled': 'var(--shadow-xs)',
+    '--button-shadow-focus': 'var(--shadow-xs)',
+    '--button-shadow-hover': 'var(--shadow-xs)',
+
+    '--button-text-color-active': 'var(--brand-primary-800)',
+    '--button-text-color-default': 'var(--brand-primary-700)',
+    '--button-text-color-focus': 'var(--brand-primary-800)',
+    '--button-text-color-hover': 'var(--brand-primary-800)',
   },
-  selector: '.btn-muted',
+  selector: '.btn-secondary-color',
   component: 'button',
 })
 
+// Secondary color dark
 defineStyleConfig({
   config: {
-    '--button-bg-color-active': '#e50000',
-    '--button-bg-color-default': '#ff0202',
-    '--button-bg-color-disabled': '#ff9898',
-    '--button-bg-color-focus': '#f30000',
-    '--button-bg-color-hover': '#f30000',
+    '--button-bg-color-active': 'var(--gray-700)',
+    '--button-bg-color-default': 'var(--gray-900)',
+    '--button-bg-color-focus': 'var(--gray-800)',
+    '--button-bg-color-hover': 'var(--gray-800)',
 
-    '--button-border-color-active': '#f30000',
-    '--button-border-color-default': '#ff0202',
-    '--button-border-color-disabled': '#ff9898',
-    '--button-border-color-focus': '#f30000',
-    '--button-border-color-hover': '#f30000',
+    '--button-border-color-active': 'var(--gray-700)',
+    '--button-border-color-default': 'var(--gray-700)',
+    '--button-border-color-focus': 'var(--gray-700)',
+    '--button-border-color-hover': 'var(--gray-700)',
 
-    '--button-icon-color-active': '#ffffff',
-    '--button-icon-color-default': '#ffffff',
-    '--button-icon-color-disabled': '#ffffff',
-    '--button-icon-color-focus': '#ffffff',
-    '--button-icon-color-hover': '#ffffff',
+    '--button-icon-color-active': 'var(--gray-100)',
+    '--button-icon-color-default': 'var(--gray-300)',
+    '--button-icon-color-focus': 'var(--gray-200)',
+    '--button-icon-color-hover': 'var(--gray-200)',
 
-    '--button-loader-color-active': '#ffffff',
-    '--button-loader-color-default': '#ffffff',
-    '--button-loader-color-disabled': '#ffffff',
-    '--button-loader-color-focus': '#ffffff',
-    '--button-loader-color-hover': '#ffffff',
+    '--button-loader-color-active': 'var(--gray-100)',
+    '--button-loader-color-default': 'var(--gray-300)',
+    '--button-loader-color-focus': 'var(--gray-200)',
+    '--button-loader-color-hover': 'var(--gray-200)',
 
-    '--button-ring-color-active': '#ff0202',
-    '--button-ring-color-default': '#ff0202',
-    '--button-ring-color-disabled': '#ff0202',
-    '--button-ring-color-focus': '#ff0202',
-    '--button-ring-color-hover': '#ff0202',
-
-    '--button-text-color-active': '#ffffff',
-    '--button-text-color-default': '#ffffff',
-    '--button-text-color-disabled': '#ffffff',
-    '--button-text-color-focus': '#ffffff',
-    '--button-text-color-hover': '#ffffff',
+    '--button-text-color-active': 'var(--gray-100)',
+    '--button-text-color-default': 'var(--gray-300)',
+    '--button-text-color-focus': 'var(--gray-200)',
+    '--button-text-color-hover': 'var(--gray-200)',
   },
-  selector: '.btn-destructive',
+  selector: '.dark .btn-secondary-color',
   component: 'button',
 })
 
+// Tertiary gray
 defineStyleConfig({
   config: {
-    '--button-font-size-default': '12px',
-    '--button-font-weight-default': '500',
-    '--button-height-default': '32px',
+    '--button-bg-color-active': 'var(--gray-100)',
+    '--button-bg-color-default': 'var(--bg-primary)',
+    '--button-bg-color-disabled': 'var(--bg-primary)',
+    '--button-bg-color-focus': 'var(--gray-50)',
+    '--button-bg-color-hover': 'var(--gray-50)',
 
-    '--button-loader-size-default': '14px',
-    '--button-padding-left-default': '8px',
+    '--button-border-color-active': 'var(--gray-50)',
+    '--button-border-color-default': 'var(--bg-primary)',
+    '--button-border-color-disabled': 'var(--bg-primary)',
+    '--button-border-color-focus': 'var(--gray-50)',
+    '--button-border-color-hover': 'var(--gray-50)',
 
-    '--button-padding-right-default': '8px',
+    '--button-icon-color-active': 'var(--gray-700)',
+    '--button-icon-color-default': 'var(--gray-600)',
+    '--button-icon-color-focus': 'var(--gray-700)',
+    '--button-icon-color-hover': 'var(--gray-700)',
+
+    '--button-loader-color-active': 'var(--gray-700)',
+    '--button-loader-color-default': 'var(--gray-600)',
+    '--button-loader-color-focus': 'var(--gray-700)',
+    '--button-loader-color-hover': 'var(--gray-700)',
+
+    '--button-shadow-disabled': '0 0 0 0 transparent',
+
+    '--button-text-color-active': 'var(--gray-700)',
+    '--button-text-color-default': 'var(--gray-600)',
+    '--button-text-color-focus': 'var(--gray-700)',
+
+    '--button-text-color-hover': 'var(--gray-700)',
+  },
+  selector: '.btn-tertiary-gray',
+  component: 'button',
+})
+
+// Tertiary gray dark
+defineStyleConfig({
+  config: {
+    '--button-bg-color-active': 'var(--gray-700)',
+    '--button-bg-color-focus': 'var(--gray-800)',
+    '--button-bg-color-hover': 'var(--gray-800)',
+
+    '--button-border-color-active': 'var(--bg-primary)',
+    '--button-border-color-default': 'var(--bg-primary)',
+    '--button-border-color-disabled': 'var(--bg-primary)',
+    '--button-border-color-focus': 'var(--bg-primary)',
+    '--button-border-color-hover': 'var(--bg-primary)',
+
+    '--button-icon-color-active': 'var(--gray-200)',
+    '--button-icon-color-default': 'var(--gray-400)',
+    '--button-icon-color-focus': 'var(--gray-300)',
+    '--button-icon-color-hover': 'var(--gray-300)',
+
+    '--button-loader-color-active': 'var(--gray-200)',
+    '--button-loader-color-default': 'var(--gray-400)',
+    '--button-loader-color-focus': 'var(--gray-300)',
+    '--button-loader-color-hover': 'var(--gray-300)',
+
+    '--button-shadow-disabled': '0 0 0 0 transparent',
+
+    '--button-text-color-active': 'var(--gray-200)',
+    '--button-text-color-default': 'var(--gray-400)',
+    '--button-text-color-focus': 'var(--gray-300)',
+    '--button-text-color-hover': 'var(--gray-300)',
+  },
+  selector: '.dark .btn-tertiary-gray',
+  component: 'button',
+})
+
+// Tertiary color
+defineStyleConfig({
+  config: {
+    '--button-bg-color-active': 'var(--brand-primary-100)',
+    '--button-bg-color-default': 'var(--bg-primary)',
+    '--button-bg-color-disabled': 'var(--bg-primary)',
+    '--button-bg-color-focus': 'var(--brand-primary-50)',
+    '--button-bg-color-hover': 'var(--brand-primary-50)',
+
+    '--button-border-color-active': 'var(--brand-primary-50)',
+    '--button-border-color-default': 'var(--bg-primary)',
+    '--button-border-color-disabled': 'var(--bg-primary)',
+    '--button-border-color-focus': 'var(--brand-primary-50)',
+    '--button-border-color-hover': 'var(--brand-primary-50)',
+
+    '--button-icon-color-active': 'var(--brand-primary-800)',
+    '--button-icon-color-default': 'var(--brand-primary-700)',
+    '--button-icon-color-focus': 'var(--brand-primary-800)',
+    '--button-icon-color-hover': 'var(--brand-primary-800)',
+
+    '--button-loader-color-active': 'var(--brand-primary-800)',
+    '--button-loader-color-default': 'var(--brand-primary-700)',
+    '--button-loader-color-focus': 'var(--brand-primary-800)',
+    '--button-loader-color-hover': 'var(--brand-primary-800)',
+
+    '--button-shadow-disabled': '0 0 0 0 transparent',
+
+    '--button-text-color-active': 'var(--brand-primary-800)',
+    '--button-text-color-default': 'var(--brand-primary-700)',
+    '--button-text-color-focus': 'var(--brand-primary-800)',
+    '--button-text-color-hover': 'var(--brand-primary-800)',
+  },
+  selector: '.btn-tertiary-color',
+  component: 'button',
+})
+
+// Tertiary color dark
+defineStyleConfig({
+  config: {
+    '--button-bg-color-active': 'var(--gray-700)',
+    '--button-bg-color-focus': 'var(--gray-800)',
+    '--button-bg-color-hover': 'var(--gray-800)',
+
+    '--button-border-color-active': 'var(--bg-primary)',
+    '--button-border-color-default': 'var(--bg-primary)',
+    '--button-border-color-disabled': 'var(--bg-primary)',
+    '--button-border-color-focus': 'var(--bg-primary)',
+    '--button-border-color-hover': 'var(--bg-primary)',
+
+    '--button-icon-color-active': 'var(--gray-200)',
+    '--button-icon-color-default': 'var(--gray-400)',
+    '--button-icon-color-focus': 'var(--gray-300)',
+    '--button-icon-color-hover': 'var(--gray-300)',
+
+    '--button-loader-color-active': 'var(--gray-200)',
+    '--button-loader-color-default': 'var(--gray-400)',
+    '--button-loader-color-focus': 'var(--gray-300)',
+    '--button-loader-color-hover': 'var(--gray-300)',
+
+    '--button-shadow-disabled': '0 0 0 0 transparent',
+
+    '--button-text-color-active': 'var(--gray-200)',
+    '--button-text-color-default': 'var(--gray-400)',
+    '--button-text-color-focus': 'var(--gray-300)',
+    '--button-text-color-hover': 'var(--gray-300)',
+  },
+  selector: '.dark .btn-tertiary-color',
+  component: 'button',
+})
+
+// Destructive primary
+defineStyleConfig({
+  config: {
+    '--button-bg-color-active': 'var(--error-800)',
+    '--button-bg-color-default': 'var(--error-600)',
+    '--button-bg-color-disabled': 'var(--bg-disabled)',
+    '--button-bg-color-focus': 'var(--error-700)',
+    '--button-bg-color-hover': 'var(--error-700)',
+
+    '--button-border-color-active': 'var(--error-800)',
+    '--button-border-color-default': 'var(--error-600)',
+    '--button-border-color-disabled': 'var(--border-disabled-subtle)',
+    '--button-border-color-focus': 'var(--error-700)',
+    '--button-border-color-hover': 'var(--error-700)',
+
+    '--button-icon-color-active': 'var(--white)',
+    '--button-icon-color-default': 'var(--white)',
+    '--button-icon-color-disabled': 'var(--fg-disabled)',
+    '--button-icon-color-focus': 'var(--white)',
+    '--button-icon-color-hover': 'var(--white)',
+
+    '--button-loader-color-active': 'var(--white)',
+    '--button-loader-color-default': 'var(--white)',
+    '--button-loader-color-disabled': 'var(--fg-disabled)',
+    '--button-loader-color-focus': 'var(--white)',
+    '--button-loader-color-hover': 'var(--white)',
+
+    '--button-ring-color-focus': 'var(--error-500)',
+
+    '--button-text-color-active': 'var(--white)',
+    '--button-text-color-default': 'var(--white)',
+    '--button-text-color-disabled': 'var(--fg-disabled)',
+    '--button-text-color-focus': 'var(--white)',
+    '--button-text-color-hover': 'var(--white)',
+  },
+  selector: '.btn-destructive-primary',
+  component: 'button',
+})
+
+// Destructive secondary
+defineStyleConfig({
+  config: {
+    '--button-bg-color-active': 'var(--error-100)',
+    '--button-bg-color-default': 'var(--bg-primary)',
+    '--button-bg-color-disabled': 'var(--bg-primary)',
+    '--button-bg-color-focus': 'var(--error-50)',
+    '--button-bg-color-hover': 'var(--error-50)',
+
+    '--button-border-color-active': 'var(--error-300)',
+    '--button-border-color-default': 'var(--error-300)',
+    '--button-border-color-focus': 'var(--error-300)',
+    '--button-border-color-hover': 'var(--error-300)',
+
+    '--button-icon-color-active': 'var(--error-800)',
+    '--button-icon-color-default': 'var(--error-700)',
+    '--button-icon-color-focus': 'var(--error-800)',
+    '--button-icon-color-hover': 'var(--error-800)',
+
+    '--button-loader-color-active': 'var(--error-800)',
+    '--button-loader-color-default': 'var(--error-700)',
+    '--button-loader-color-focus': 'var(--error-800)',
+    '--button-loader-color-hover': 'var(--error-800)',
+
+    '--button-ring-color-focus': 'var(--error-500)',
+
+    '--button-shadow-active': 'var(--shadow-xs)',
+    '--button-shadow-default': 'var(--shadow-xs)',
+    '--button-shadow-disabled': 'var(--shadow-xs)',
+    '--button-shadow-focus': 'var(--shadow-xs)',
+    '--button-shadow-hover': 'var(--shadow-xs)',
+
+    '--button-text-color-active': 'var(--error-800)',
+    '--button-text-color-default': 'var(--error-700)',
+    '--button-text-color-focus': 'var(--error-800)',
+    '--button-text-color-hover': 'var(--error-800)',
+  },
+  selector: '.btn-destructive-secondary',
+  component: 'button',
+})
+
+// Destructive secondary dark
+defineStyleConfig({
+  config: {
+    '--button-bg-color-active': 'var(--error-800)',
+    '--button-bg-color-default': 'var(--error-950)',
+    '--button-bg-color-focus': 'var(--error-900)',
+    '--button-bg-color-hover': 'var(--error-900)',
+
+    '--button-border-color-active': 'var(--error-700)',
+    '--button-border-color-default': 'var(--error-800)',
+    '--button-border-color-focus': 'var(--error-700)',
+    '--button-border-color-hover': 'var(--error-700)',
+
+    '--button-icon-color-active': 'var(--error-100)',
+    '--button-icon-color-default': 'var(--error-200)',
+    '--button-icon-color-focus': 'var(--error-100)',
+    '--button-icon-color-hover': 'var(--error-100)',
+
+    '--button-loader-color-active': 'var(--error-100)',
+    '--button-loader-color-default': 'var(--error-200)',
+    '--button-loader-color-focus': 'var(--error-100)',
+    '--button-loader-color-hover': 'var(--error-100)',
+
+    '--button-text-color-active': 'var(--error-100)',
+    '--button-text-color-default': 'var(--error-200)',
+    '--button-text-color-focus': 'var(--error-100)',
+    '--button-text-color-hover': 'var(--error-100)',
+  },
+  selector: '.dark .btn-destructive-secondary',
+  component: 'button',
+})
+
+// Destructive tertiary
+defineStyleConfig({
+  config: {
+    '--button-bg-color-active': 'var(--error-100)',
+    '--button-bg-color-default': 'var(--bg-primary)',
+    '--button-bg-color-disabled': 'var(--bg-primary)',
+    '--button-bg-color-focus': 'var(--error-50)',
+    '--button-bg-color-hover': 'var(--error-50)',
+
+    '--button-border-color-active': 'var(--error-50)',
+    '--button-border-color-default': 'var(--bg-primary)',
+    '--button-border-color-disabled': 'var(--bg-primary)',
+    '--button-border-color-focus': 'var(--error-50)',
+    '--button-border-color-hover': 'var(--error-50)',
+
+    '--button-icon-color-active': 'var(--error-800)',
+    '--button-icon-color-default': 'var(--error-700)',
+    '--button-icon-color-focus': 'var(--error-800)',
+    '--button-icon-color-hover': 'var(--error-800)',
+
+    '--button-loader-color-active': 'var(--error-800)',
+    '--button-loader-color-default': 'var(--error-700)',
+    '--button-loader-color-focus': 'var(--error-800)',
+    '--button-loader-color-hover': 'var(--error-800)',
+
+    '--button-ring-color-focus': 'var(--error-500)',
+
+    '--button-shadow-disabled': '0 0 0 0 transparent',
+
+    '--button-text-color-active': 'var(--error-800)',
+    '--button-text-color-default': 'var(--error-700)',
+    '--button-text-color-focus': 'var(--error-800)',
+    '--button-text-color-hover': 'var(--error-800)',
+  },
+  selector: '.btn-destructive-tertiary',
+  component: 'button',
+})
+
+// Destructive tertiary dark
+defineStyleConfig({
+  config: {
+    '--button-bg-color-active': 'var(--error-800)',
+    '--button-bg-color-default': 'var(--bg-primary)',
+    '--button-bg-color-disabled': 'var(--bg-primary)',
+    '--button-bg-color-focus': 'var(--error-900)',
+    '--button-bg-color-hover': 'var(--error-900)',
+
+    '--button-border-color-active': 'var(--error-800)',
+    '--button-border-color-default': 'var(--bg-primary)',
+    '--button-border-color-disabled': 'var(--bg-primary)',
+    '--button-border-color-focus': 'var(--error-900)',
+    '--button-border-color-hover': 'var(--error-900)',
+
+    '--button-icon-color-active': 'var(--error-200)',
+    '--button-icon-color-default': 'var(--error-300)',
+    '--button-icon-color-focus': 'var(--error-200)',
+    '--button-icon-color-hover': 'var(--error-200)',
+
+    '--button-loader-color-active': 'var(--error-200)',
+    '--button-loader-color-default': 'var(--error-300)',
+    '--button-loader-color-focus': 'var(--error-200)',
+    '--button-loader-color-hover': 'var(--error-200)',
+
+    '--button-ring-color-focus': 'var(--error-500)',
+
+    '--button-shadow-disabled': '0 0 0 0 transparent',
+
+    '--button-text-color-active': 'var(--error-200)',
+    '--button-text-color-default': 'var(--error-300)',
+    '--button-text-color-focus': 'var(--error-200)',
+    '--button-text-color-hover': 'var(--error-200)',
+  },
+  selector: '.dark .btn-destructive-tertiary',
+  component: 'button',
+})
+
+// Size SM
+defineStyleConfig({
+  config: {
+    '--button-height-default': '36px',
+    '--button-icon-left-spacing-default': 'var(--spacing-xs)',
+    '--button-icon-right-spacing-default': 'var(--spacing-xs)',
+    '--button-padding-left-default': 'var(--spacing-lg)',
+    '--button-padding-right-default': 'var(--spacing-lg)',
   },
   selector: '.btn-sm',
   component: 'button',
 })
 
+// Size L
 defineStyleConfig({
   config: {
-    '--button-font-size-default': '16px',
-    '--button-font-weight-default': '600',
-    '--button-height-default': '48px',
-
-    '--button-loader-size-default': '20px',
-    '--button-padding-left-default': '16px',
-
-    '--button-padding-right-default': '16px',
+    '--button-font-size-default': 'var(--text-body)',
+    '--button-height-default': '44px',
+    '--button-icon-left-spacing-default': 'var(--spacing-sm)',
+    '--button-icon-right-spacing-default': 'var(--spacing-sm)',
+    '--button-padding-left-default': 'var(--spacing-xl)',
+    '--button-padding-right-default': 'var(--spacing-xl)',
   },
   selector: '.btn-lg',
   component: 'button',
 })
 
+// Size XL
 defineStyleConfig({
   config: {
-    '--button-font-size-default': '14px',
-    '--button-font-weight-default': '500',
-    '--button-height-default': '100%',
-
-    '--button-loader-size-default': '18px',
-    '--button-padding-left-default': '12px',
-
-    '--button-padding-right-default': '12px',
+    '--button-font-size-default': 'var(--text-body)',
+    '--button-height-default': '48px',
+    '--button-icon-left-spacing-default': 'var(--spacing-sm)',
+    '--button-icon-right-spacing-default': 'var(--spacing-sm)',
+    '--button-padding-left-default': '18px',
+    '--button-padding-right-default': '18px',
   },
-  selector: '.btn-full',
+  selector: '.btn-xl',
+  component: 'button',
+})
+
+// Size 2XL
+defineStyleConfig({
+  config: {
+    '--button-font-size-default': 'var(--text-heading)',
+    '--button-height-default': '60px',
+    '--button-icon-left-spacing-default': '10px',
+    '--button-icon-right-spacing-default': '10px',
+    '--button-padding-left-default': '22px',
+    '--button-padding-right-default': '22px',
+  },
+  selector: '.btn-2xl',
   component: 'button',
 })

@@ -5,10 +5,8 @@
 
 @layer base {
   @import 'reset';
-
-  :root {
-    
-  }
+  @import 'colors';
+  @import 'variables';
 }
 
 

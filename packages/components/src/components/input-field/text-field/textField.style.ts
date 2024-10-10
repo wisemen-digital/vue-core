@@ -57,5 +57,15 @@ export const textFieldStyle = tv({
         loader: 'text-text-field-loader-color-error',
       },
     },
+    hasIconLeft: {
+      true: {
+        input: 'pl-text-field-with-icon-left-padding-left-default',
+      },
+    },
+    hasIconRight: {
+      true: {
+        input: 'pr-text-field-with-icon-right-padding-right-default',
+      },
+    },
   },
 })

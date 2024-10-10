@@ -56,6 +56,8 @@ const boxClasses = computed<string>(() => style.box({
 
 const inputClasses = computed<string>(() => style.input({
   hasError: hasError.value,
+  hasIconLeft: props.iconLeft !== null,
+  hasIconRight: props.iconRight !== null,
   isDisabled: props.isDisabled,
   isFocused: isFocused.value,
   isHovered: isHovered.value,
