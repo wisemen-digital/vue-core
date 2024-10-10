@@ -24,7 +24,8 @@ export interface AppIconButtonProps {
    * The size of the button.
    * @default 'default'
    */
-  size?: 'default' | 'sm'
+  size?: '2xl' | 'default' | 'lg' | 'sm' | 'xl'
+
   styleConfig?: StyleConfig<'iconButton'> | null
   /**
    * The type of the button.
@@ -36,7 +37,7 @@ export interface AppIconButtonProps {
    * The variant of the button.
    * @default 'default'
    */
-  variant?: 'default' | 'destructive' | 'ghost' | 'muted' | 'outline'
+  variant?: 'default' | 'destructive-primary' | 'destructive-secondary' | 'destructive-tertiary' | 'secondary' | 'secondary-color' | 'tertiary' | 'tertiary-color'
 }
 
 export const appIconButtonPropsDefaultValues = {
