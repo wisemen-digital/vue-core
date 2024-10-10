@@ -40,6 +40,7 @@ export const useTableStyle = tv({
     headerContainer: 'sticky top-0 z-20 grid min-w-full grid-cols-subgrid border-b border-solid border-border',
     headerIcon: 'duration-200',
     headerText: 'truncate',
+    searchAndFilterContainer: 'ml-auto flex items-center gap-2',
     skeletonLoaderBackground: 'absolute left-0 top-0 z-10 size-full bg-gradient-to-b from-transparent to-background',
     skeletonLoaderContainer: 'w-full',
     skeletonLoaderContentCell: 'rounded-md bg-neutral-200 p-3',
