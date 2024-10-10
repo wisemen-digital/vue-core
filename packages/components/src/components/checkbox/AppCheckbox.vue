@@ -1,18 +1,17 @@
 <script setup lang="ts">
 import {
-  CheckboxIndicator,
   CheckboxRoot,
   useId,
 } from 'reka-ui'
 import { computed, ref } from 'vue'
 
+import AppCheckboxIndicator from '@/components/checkbox/AppCheckboxIndicator.vue'
 import {
   type AppCheckboxProps,
   appCheckboxPropsDefaultValues,
 } from '@/components/checkbox/checkbox.props'
 import { checkboxStyle } from '@/components/checkbox/checkbox.style'
 import AppCollapsable from '@/components/collapsable/AppCollapsable.vue'
-import AppIcon from '@/components/icon/AppIcon.vue'
 import AppInputFieldError from '@/components/input-field-error/AppInputFieldError.vue'
 import AppInputFieldHint from '@/components/input-field-hint/AppInputFieldHint.vue'
 import AppInputFieldLabel from '@/components/input-field-label/AppInputFieldLabel.vue'
@@ -146,26 +145,18 @@ function onBlur(): void {
         @focus="onFocus"
         @blur="onBlur"
       >
-        <CheckboxIndicator>
-          <slot
-            v-if="isIndeterminate"
-            name="icon-indeterminate"
-          >
-            <AppIcon
-              :class="indicatorClasses"
-              icon="minus"
-            />
-          </slot>
-          <slot
-            v-else-if="isChecked"
-            name="icon-checked"
-          >
-            <AppIcon
-              :class="indicatorClasses"
-              icon="check"
-            />
-          </slot>
-        </CheckboxIndicator>
+        <AppCheckboxIndicator
+          :is-checked="isChecked"
+          :is-indeterminate="isIndeterminate"
+          :indicator-classes="indicatorClasses"
+        >
+          <template #icon-indeterminate>
+            <slot name="icon-indeterminate" />
+          </template>
+          <template #icon-checked>
+            <slot name="icon-checked" />
+          </template>
+        </AppCheckboxIndicator>
       </CheckboxRoot>
       <slot
         v-if="props.label !== null"
