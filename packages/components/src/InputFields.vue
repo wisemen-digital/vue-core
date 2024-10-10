@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
+import AppPasswordField from '@/components/input-field/password-field/AppPasswordField.vue'
 import AppTextField from '@/components/input-field/text-field/AppTextField.vue'
 
 const value = ref<null | string>(null)
+const password = ref<null | string>(null)
 </script>
 
 <template>
@@ -42,5 +44,7 @@ const value = ref<null | string>(null)
       label="Email"
       hint="This is a hint."
     />
+
+    <AppPasswordField v-model="password" />
   </div>
 </template>

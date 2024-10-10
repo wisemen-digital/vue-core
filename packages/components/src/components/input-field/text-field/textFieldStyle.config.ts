@@ -86,6 +86,8 @@ export interface TextFieldStyleConfig {
   '--text-field-text-color-error': string
   '--text-field-text-color-focus': string
   '--text-field-text-color-hover': string
+  '--text-field-with-icon-left-padding-left-default': string
+  '--text-field-with-icon-right-padding-right-default': string
 }
 
 // Default
@@ -157,8 +159,8 @@ defineStyleConfig({
     '--text-field-loader-color-focus': 'var(--fg-quarternary)',
     '--text-field-loader-color-hover': 'var(--fg-quarternary)',
     '--text-field-loader-size-default': '14px',
-    '--text-field-padding-left-default': 'var(--spacing-md)',
-    '--text-field-padding-right-default': 'var(--spacing-md)',
+    '--text-field-padding-left-default': 'var(--spacing-lg)',
+    '--text-field-padding-right-default': 'var(--spacing-lg)',
     '--text-field-placeholder-color-default': 'var(--text-placeholder)',
     '--text-field-placeholder-color-disabled': 'var(--text-placeholder)',
     '--text-field-placeholder-color-error': 'var(--text-placeholder)',
@@ -176,6 +178,8 @@ defineStyleConfig({
     '--text-field-text-color-error': 'var(--text-primary)',
     '--text-field-text-color-focus': 'var(--text-primary)',
     '--text-field-text-color-hover': 'var(--text-primary)',
+    '--text-field-with-icon-left-padding-left-default': 'var(--spacing-md)',
+    '--text-field-with-icon-right-padding-right-default': 'var(--spacing-md)',
   },
   selector: ':root',
   component: 'textField',
