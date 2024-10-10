@@ -2,7 +2,7 @@ import { tv } from '@/libs/twVariants.lib'
 
 export const buttonStyle = tv({
   slots: {
-    button: 'relative flex h-button-height-default items-center justify-center overflow-hidden rounded-button-border-radius-default border border-solid border-button-border-color-default bg-button-bg-color-default px-button-padding-left-default text-button-font-size-default font-button-font-weight-default text-button-text-color-default shadow-button-shadow-default outline-none ring-offset-1 duration-200 focus-visible:ring-2',
+    button: 'relative flex h-button-height-default items-center justify-center overflow-hidden rounded-button-border-radius-default border border-solid border-button-border-color-default bg-button-bg-color-default px-button-padding-left-default text-button-font-size-default font-button-font-weight-default text-button-text-color-default shadow-button-shadow-default outline-none ring-offset-1 ring-offset-button-ring-offset-color-focus duration-200 focus-visible:ring-2',
     iconLeft: 'mr-button-icon-left-spacing-default shrink-0 duration-200 [--icon-color:var(--button-icon-color-default)] [--icon-size:var(--button-icon-size-default)]',
     iconRight: 'ml-button-icon-right-spacing-default shrink-0 duration-200 [--icon-color:var(--button-icon-color-default)] [--icon-size:var(--button-icon-size-default)]',
     loader: 'h-button-loader-size-default w-button-loader-size-default text-button-loader-color-default',

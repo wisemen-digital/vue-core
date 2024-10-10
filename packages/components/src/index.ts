@@ -1,5 +1,7 @@
 import './styles/index.scss'
 import '@/components/button/button/buttonStyle.config'
+import '@/components/button/icon-button/iconButtonStyle.config'
+import '@/components/input-field/text-field/textFieldStyle.config'
 
 export type { Icon, Icons } from '@/icons/icons'
 export { extendIcons } from '@/icons/icons'

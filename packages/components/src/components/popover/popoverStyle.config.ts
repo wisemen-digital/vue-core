@@ -10,7 +10,7 @@ export interface PopoverStyleConfig {
 
 defineStyleConfig({
   config: {
-    '--popover-bg-color-default': 'var(--bg-primary)',
+    '--popover-bg-color-default': 'var(--bg-primary-alt)',
     '--popover-border-color-default': 'var(--border-secondary)',
     '--popover-border-radius-default': 'var(--radius-lg)',
     '--popover-max-width-default': 'auto',

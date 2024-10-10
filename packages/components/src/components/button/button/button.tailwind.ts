@@ -47,6 +47,9 @@ export const buttonTailwindConfig = {
   ringColor: {
     'button-ring-color-focus': 'var(--button-ring-color-focus)',
   },
+  ringOffsetColor: {
+    'button-ring-offset-color-focus': 'var(--button-ring-offset-color-focus)',
+  },
   textColor: {
     'button-loader-color-default': 'var(--button-loader-color-default)',
     'button-text-color-active': 'var(--button-text-color-active)',

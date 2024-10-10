@@ -47,6 +47,7 @@ export interface ButtonStyleConfig extends BaseStyleConfig {
   '--button-padding-right-default': string
 
   '--button-ring-color-focus': string
+  '--button-ring-offset-color-focus': string
 
   '--button-shadow-active': string
   '--button-shadow-default': string
@@ -106,6 +107,7 @@ defineStyleConfig({
     '--button-padding-right-default': 'var(--spacing-xl)',
 
     '--button-ring-color-focus': 'var(--brand-primary-500)',
+    '--button-ring-offset-color-focus': 'var(--bg-primary)',
 
     '--button-shadow-active': '0 0 0 0 transparent',
     '--button-shadow-default': '0 0 0 0 transparent',

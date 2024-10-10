@@ -56,19 +56,19 @@ const loaderClasses = computed<string>(() => btnStyle.loader({
 
 const sizeClass = computed<null | string>(() => {
   if (props.size === 'sm') {
-    return 'btn-sm'
+    return 'icon-btn-sm'
   }
 
   if (props.size === 'lg') {
-    return 'btn-lg'
+    return 'icon-btn-lg'
   }
 
   if (props.size === 'xl') {
-    return 'btn-xl'
+    return 'icon-btn-xl'
   }
 
   if (props.size === '2xl') {
-    return 'btn-2xl'
+    return 'icon-btn-2xl'
   }
 
   return null

@@ -11,7 +11,7 @@ import AppIconButton from '@/components/button/icon-button/AppIconButton.vue'
         icon="xClose"
         label="Close"
         size="sm"
-        variant="ghost"
+        variant="tertiary"
       />
     </slot>
   </PopoverClose>
