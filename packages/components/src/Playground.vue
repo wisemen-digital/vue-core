@@ -17,10 +17,11 @@ import '@/components/checkbox/checkboxStyle.config'
 
 import Buttons from '@/Buttons.vue'
 import InputFields from '@/InputFields.vue'
-import Checkboxes from './Checkboxes.vue'
 import Popovers from '@/Popovers.vue'
 import Tabs from '@/Tabs.vue'
 import Tooltips from '@/Tooltips.vue'
+
+import Checkboxes from './Checkboxes.vue'
 </script>
 
 <template>

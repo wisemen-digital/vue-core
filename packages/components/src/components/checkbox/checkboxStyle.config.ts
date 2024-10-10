@@ -103,13 +103,13 @@ defineStyleConfig({
     '--checkbox-bg-color-hover': 'var(--bg-primary)',
     '--checkbox-bg-color-indeterminate': 'var(--bg-brand-solid)',
 
-    '--checkbox-border-color-checked': 'var(--border-brand)',
+    '--checkbox-border-color-checked': 'var(--border-brand-alt)',
     '--checkbox-border-color-default': 'var(--border-primary)',
     '--checkbox-border-color-disabled': 'var(--border-disabled)',
     '--checkbox-border-color-error': 'var(--border-error-subtle)',
     '--checkbox-border-color-focus': 'var(--border-primary)',
     '--checkbox-border-color-hover': 'var(--border-primary)',
-    '--checkbox-border-color-indeterminate': 'var(--border-brand)',
+    '--checkbox-border-color-indeterminate': 'var(--border-brand-alt)',
 
     '--checkbox-border-radius-default': 'var(--spacing-sm)',
     '--checkbox-border-width-default': '1px',

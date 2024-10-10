@@ -57,7 +57,7 @@ export const checkboxStyle = tv({
         hint: '[--input-field-hint-text-color-disabled:var(--checkbox-hint-text-color-disabled)]',
         indicator: '[--icon-color:var(--checkbox-indicator-color-disabled)]',
         inputLabel: '[--input-field-label-text-color-default:var(--checkbox-label-text-color-disabled)]',
-        root: 'border-checkbox-border-color-disabled bg-checkbox-bg-color-disabled shadow-checkbox-shadow-disabled ring-checkbox-ring-color-disabled',
+        root: 'cursor-not-allowed border-checkbox-border-color-disabled bg-checkbox-bg-color-disabled shadow-checkbox-shadow-disabled ring-checkbox-ring-color-disabled',
       },
     },
   },
