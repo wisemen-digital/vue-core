@@ -65,6 +65,26 @@ const textareaValue = ref<null | string>(null)
       :is-disabled="false"
       placeholder="Write something..."
       resize="auto-vertical"
+      label="Tell us something about yourself"
+    />
+
+    <AppTextarea
+      v-model="textareaValue"
+      :is-disabled="true"
+      placeholder="Write something..."
+      resize="auto-vertical"
+      label="Tell us something about yourself"
+    />
+
+    <AppTextarea
+      v-model="textareaValue"
+      :errors="{
+        _errors: ['This is an error message.'],
+      }"
+      :is-touched="true"
+      placeholder="Write something..."
+      resize="auto-vertical"
+      label="Tell us something about yourself"
     />
   </div>
 </template>

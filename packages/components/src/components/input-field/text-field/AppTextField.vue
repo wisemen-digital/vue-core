@@ -208,8 +208,10 @@ function onBlur(): void {
         :spellcheck="props.isSpellCheckEnabled"
         :class="inputClasses"
         :autocomplete="props.autoComplete"
+        :aria-describedby="`${inputId}-error ${inputId}-hint`"
         :type="props.type"
         :required="props.isRequired"
+        :aria-invalid="props.errors !== undefined && props.errors !== null"
         @focus="onFocus"
         @blur="onBlur"
       >
@@ -250,6 +252,7 @@ function onBlur(): void {
             <AppInputFieldError
               :errors="props.errors"
               :class="errorClasses"
+              :input-id="inputId"
             />
           </slot>
         </div>
@@ -257,6 +260,7 @@ function onBlur(): void {
         <div v-else-if="props.hint !== null">
           <slot name="hint">
             <AppInputFieldHint
+              :input-id="inputId"
               :hint="props.hint"
               :class="hintClasses"
             />

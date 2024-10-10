@@ -3,11 +3,15 @@ import { useTextareaAutosize } from '@vueuse/core'
 import { useId } from 'reka-ui'
 import { computed, ref } from 'vue'
 
+import AppCollapsable from '@/components/collapsable/AppCollapsable.vue'
 import {
   type AppTextareaProps,
   appTextareaPropsDefaultValues,
 } from '@/components/input-field/text-area/textarea.props.js'
 import { textareaStyle } from '@/components/input-field/text-area/textarea.style.js'
+import AppInputFieldError from '@/components/input-field-error/AppInputFieldError.vue'
+import AppInputFieldHint from '@/components/input-field-hint/AppInputFieldHint.vue'
+import AppInputFieldLabel from '@/components/input-field-label/AppInputFieldLabel.vue'
 
 const props = withDefaults(defineProps<AppTextareaProps>(), appTextareaPropsDefaultValues)
 
@@ -36,6 +40,22 @@ const textareaClasses = computed<string>(() => style.textarea({
   isHovered: isHovered.value,
   resizeMode: props.resize,
 }))
+
+const hintClasses = computed<string>(() => style.hint({
+  hasError: hasError.value,
+  isDisabled: props.isDisabled,
+  isFocused: isFocused.value,
+  isHovered: isHovered.value,
+}))
+
+const label = computed<string>(() => style.label({
+  hasError: hasError.value,
+  isDisabled: props.isDisabled,
+  isFocused: isFocused.value,
+  isHovered: isHovered.value,
+}))
+
+const errorClasses = computed<string>(() => style.error())
 
 const { textarea } = useTextareaAutosize({
   watch: () => {
@@ -67,21 +87,61 @@ function onBlur(): void {
 </script>
 
 <template>
-  <textarea
-    :id="inputId"
-    ref="textarea"
-    v-model="model"
-    :class="textareaClasses"
-    :disabled="props.isDisabled"
-    :readonly="props.isReadonly"
-    :required="props.isRequired"
-    :spellcheck="props.isSpellCheckEnabled"
-    :placeholder="props.placeholder ?? undefined"
-    @focus="onFocus"
-    @blur="onBlur"
-    @mouseenter="onMouseEnter"
-    @mouseleave="onMouseLeave"
-  />
+  <div :style="props.styleConfig">
+    <slot
+      v-if="props.label !== null"
+      :input-id="inputId"
+      name="label"
+    >
+      <AppInputFieldLabel
+        :for="inputId"
+        :label="props.label"
+        :is-required="props.isRequired"
+        :class="label"
+      />
+    </slot>
+
+    <textarea
+      :id="inputId"
+      ref="textarea"
+      v-model="model"
+      :class="textareaClasses"
+      :disabled="props.isDisabled"
+      :readonly="props.isReadonly"
+      :required="props.isRequired"
+      :spellcheck="props.isSpellCheckEnabled"
+      :placeholder="props.placeholder ?? undefined"
+      :aria-invalid="props.errors !== undefined && props.errors !== null"
+      @focus="onFocus"
+      @blur="onBlur"
+      @mouseenter="onMouseEnter"
+      @mouseleave="onMouseLeave"
+    />
+
+    <slot name="bottom">
+      <AppCollapsable>
+        <div v-if="hasError">
+          <slot name="error">
+            <AppInputFieldError
+              :errors="props.errors"
+              :class="errorClasses"
+              :input-id="inputId"
+            />
+          </slot>
+        </div>
+
+        <div v-else-if="props.hint !== null">
+          <slot name="hint">
+            <AppInputFieldHint
+              :hint="props.hint"
+              :class="hintClasses"
+              :input-id="inputId"
+            />
+          </slot>
+        </div>
+      </AppCollapsable>
+    </slot>
+  </div>
 </template>
 
 <style>

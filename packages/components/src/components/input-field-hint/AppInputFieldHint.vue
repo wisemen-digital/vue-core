@@ -5,6 +5,7 @@ import { inputFieldHintStyle } from '@/components/input-field-hint/inputFieldHin
 import type { StyleConfig } from '@/types/style.type.js'
 
 const props = withDefaults(defineProps<{
+  inputId: string
   hint: string
   styleConfig?: StyleConfig<'inputFieldHint'> | null
 }>(), {
@@ -17,8 +18,11 @@ const hintClasses = computed<string>(() => style.hint())
 
 <template>
   <span
+    :id="`${props.inputId}-hint`"
     :class="hintClasses"
     :style="props.styleConfig"
+    aria-live="polite"
+    role="alert"
   >
     {{ props.hint }}
   </span>
