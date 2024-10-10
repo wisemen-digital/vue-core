@@ -2,7 +2,7 @@ import { tv } from 'tailwind-variants'
 
 export const iconButtonStyle = tv({
   slots: {
-    button: 'relative flex h-icon-button-size-default w-icon-button-size-default shrink-0 items-center justify-center overflow-hidden rounded-button-border-radius-default border border-solid border-button-border-color-default bg-button-bg-color-default text-button-font-size-default outline-none ring-offset-1 duration-200 focus-visible:ring-2',
+    button: 'relative flex h-icon-button-size-default w-icon-button-size-default shrink-0 items-center justify-center overflow-hidden rounded-button-border-radius-default border border-solid border-button-border-color-default bg-button-bg-color-default text-button-font-size-default outline-none ring-offset-1 ring-offset-button-ring-offset-color-focus duration-200 focus-visible:ring-2',
     icon: 'duration-200 [--icon-color:var(--button-icon-color-default)] [--icon-size:var(--icon-button-icon-size-default)]',
   },
   variants: {

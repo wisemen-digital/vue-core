@@ -17,22 +17,25 @@ import '@/components/checkbox/checkboxStyle.config'
 
 import Buttons from '@/Buttons.vue'
 import InputFields from '@/InputFields.vue'
-
 import Checkboxes from './Checkboxes.vue'
+import Popovers from '@/Popovers.vue'
+import Tabs from '@/Tabs.vue'
+import Tooltips from '@/Tooltips.vue'
 </script>
 
 <template>
-  <div class="p-40">
-    <div
-      :style="{
-        backgroundColor: 'var(--bg-primary)',
-      }"
-      class="flex min-h-screen flex-col gap-y-24 p-24"
-    >
-      <Checkboxes />
-      <InputFields />
-      <Buttons />
-    </div>
+  <div
+    :style="{
+      backgroundColor: 'var(--bg-primary)',
+    }"
+    class="flex min-h-screen flex-col gap-y-24 p-24"
+  >
+    <Checkboxes />
+    <Tabs />
+    <Popovers />
+    <Tooltips />
+    <InputFields />
+    <Buttons />
   </div>
 </template>
 

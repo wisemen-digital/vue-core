@@ -4,13 +4,17 @@ import { computed } from 'vue'
 import AppTagRemoveButton from '@/components/tag/AppTagRemoveButton.vue'
 import { provideTagContext } from '@/components/tag/tag.context.js'
 import { tagStyle } from '@/components/tag/tag.style.js'
+import type { StyleConfig } from '@/types/style.type.js'
 
 const props = withDefaults(defineProps<{
   isDisabled?: boolean
   isRemovable?: boolean
+
+  styleConfig?: StyleConfig<'tag'> | null
 }>(), {
   isDisabled: false,
   isRemovable: false,
+  styleConfig: null,
 })
 
 const emit = defineEmits<{
@@ -36,7 +40,10 @@ provideTagContext({
 </script>
 
 <template>
-  <div :class="tagBoxClasses">
+  <div
+    :class="tagBoxClasses"
+    :style="props.styleConfig"
+  >
     <slot name="left" />
 
     <span :class="tagContentClasses">
