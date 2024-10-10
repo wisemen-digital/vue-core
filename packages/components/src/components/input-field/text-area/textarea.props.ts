@@ -1,8 +1,7 @@
-import type { Icon } from '@/icons/icons'
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 import type { StyleConfig } from '@/types/style.type'
 
-export interface AppTextFieldProps {
+export interface AppTextareaProps {
   /**
    * The id of the input.
    * @default null
@@ -18,11 +17,6 @@ export interface AppTextFieldProps {
    * @default false
    */
   isDisabled?: boolean
-  /**
-   * Whether the input is loading.
-   * @default false
-   */
-  isLoading?: boolean
   /**
    * Whether the input is readonly.
    * @default false
@@ -43,11 +37,6 @@ export interface AppTextFieldProps {
    */
   isTouched?: boolean
   /**
-   * The autocorrect property of the input.
-   * @default 'off'
-   */
-  autoComplete?: 'off' | 'on'
-  /**
    * The errors associated with the input.
    */
   errors?: FormFieldErrors | null
@@ -56,16 +45,6 @@ export interface AppTextFieldProps {
    * @default null
    */
   hint?: null | string
-  /**
-   * The left icon of the input.
-   * @default null
-   */
-  iconLeft?: Icon | null
-  /**
-   * The right icon of the input.
-   * @default null
-   */
-  iconRight?: Icon | null
   /**
    * The label of the input.
    * @default null
@@ -77,32 +56,28 @@ export interface AppTextFieldProps {
    */
   placeholder?: null | string
   /**
+   * Whether the textarea can be resized.
+   * @default 'none'
+   */
+  resize?: 'auto-vertical' | 'both' | 'horizontal' | 'none' | 'vertical'
+  /**
    *
    */
-  styleConfig?: StyleConfig<'textField'> | null
-  /**
-   * The type of the input.
-   * @default 'text'
-   */
-  type?: 'email' | 'password' | 'search' | 'tel' | 'text' | 'time' | 'url'
+  styleConfig?: StyleConfig<'textarea'> | null
 }
 
-export const appTextFieldPropsDefaultValues = {
+export const appTextareaPropsDefaultValues = {
   id: null,
   testId: null,
   isDisabled: false,
-  isLoading: false,
   isReadonly: false,
   isRequired: false,
   isSpellCheckEnabled: false,
   isTouched: false,
-  autoComplete: 'off',
   errors: null,
   hint: null,
-  iconLeft: null,
-  iconRight: null,
   label: null,
   placeholder: null,
+  resize: 'none',
   styleConfig: null,
-  type: 'text',
-} satisfies AppTextFieldProps
+} satisfies AppTextareaProps

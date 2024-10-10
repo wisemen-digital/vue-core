@@ -6,6 +6,7 @@ import { iconButtonTailwindConfig } from './src/components/button/icon-button/ic
 import { checkboxTailwindConfig } from './src/components/checkbox/checkbox.tailwind'
 import { dropdownMenuTailwindConfig } from './src/components/dropdown-menu/dropdownMenu.tailwind'
 import { iconTailwindConfig } from './src/components/icon/icon.tailwind'
+import { textareaTailwindConfig } from './src/components/input-field/text-area/textarea.tailwind'
 import { textFieldTailwindConfig } from './src/components/input-field/text-field/textField.tailwind'
 import { inputFieldErrorTailwindConfig } from './src/components/input-field-error/inputFieldError.tailwind'
 import { inputFieldHintTailwindConfig } from './src/components/input-field-hint/inputFieldHint.tailwind'
@@ -39,6 +40,7 @@ export default {
         tabsTailwindConfig,
         checkboxTailwindConfig,
         dropdownMenuTailwindConfig,
+        textareaTailwindConfig,
         {
           ringOffsetColor: {
             DEFAULT: 'var(--bg-primary)',

@@ -14,6 +14,7 @@ import '@/components/tabs/tabsStyle.config'
 import '@/components/dropdown-menu/dropdownMenuStyle.config'
 import '@/components/tag/tagStyle.config'
 import '@/components/checkbox/checkboxStyle.config'
+import '@/components/input-field/text-area/textareaStyle.config'
 
 import Buttons from '@/Buttons.vue'
 import InputFields from '@/InputFields.vue'

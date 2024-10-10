@@ -3,6 +3,7 @@ import type { IconButtonStyleConfig } from '@/components/button/icon-button/icon
 import type { CheckboxStyleConfig } from '@/components/checkbox/checkboxStyle.config'
 import type { DropdownMenuStyleConfig } from '@/components/dropdown-menu/dropdownMenuStyle.config'
 import type { IconStyleConfig } from '@/components/icon/iconStyle.config'
+import type { TextareaStyleConfig } from '@/components/input-field/text-area/textareaStyle.config'
 import type { TextFieldStyleConfig } from '@/components/input-field/text-field/textFieldStyle.config'
 import type { InputFieldErrorStyleConfig } from '@/components/input-field-error/inputFieldErrorStyle.config'
 import type {
@@ -33,6 +34,7 @@ export interface ComponentStyleConfigRegistry {
   tabs: TabsStyleConfig
   tag: TagStyleConfig
   textField: TextFieldStyleConfig
+  textarea: TextareaStyleConfig
   tooltip: TooltipStyleConfig
 }
 

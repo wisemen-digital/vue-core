@@ -2,10 +2,12 @@
 import { ref } from 'vue'
 
 import AppPasswordField from '@/components/input-field/password-field/AppPasswordField.vue'
+import AppTextarea from '@/components/input-field/text-area/AppTextarea.vue'
 import AppTextField from '@/components/input-field/text-field/AppTextField.vue'
 
 const value = ref<null | string>(null)
 const password = ref<null | string>(null)
+const textareaValue = ref<null | string>(null)
 </script>
 
 <template>
@@ -56,6 +58,13 @@ const password = ref<null | string>(null)
       :is-required="true"
       :is-disabled="true"
       label="Password"
+    />
+
+    <AppTextarea
+      v-model="textareaValue"
+      :is-disabled="false"
+      placeholder="Write something..."
+      resize="auto-vertical"
     />
   </div>
 </template>
