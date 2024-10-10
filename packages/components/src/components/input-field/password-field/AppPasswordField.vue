@@ -51,7 +51,10 @@ const buttonLabel = computed<string>(() => (
     :type="inputType"
   >
     <template #right>
-      <AppToggle v-model="isPasswordVisible">
+      <AppToggle
+        v-model="isPasswordVisible"
+        :is-disabled="props.isDisabled"
+      >
         <AppIconButton
           :icon="buttonIcon"
           :label="buttonLabel"
@@ -60,7 +63,10 @@ const buttonLabel = computed<string>(() => (
             '--icon-button-icon-size-default': '14px',
             '--button-ring-color-focus': 'transparent',
             '--button-bg-color-focus': 'var(--bg-secondary-hover)',
+            '--button-bg-color-disabled': 'transparent',
+            '--button-border-color-disabled': 'transparent',
           }"
+          :is-disabled="props.isDisabled"
           size="sm"
           class="mr-[3px]"
           variant="tertiary"

@@ -45,6 +45,17 @@ const password = ref<null | string>(null)
       hint="This is a hint."
     />
 
-    <AppPasswordField v-model="password" />
+    <AppPasswordField
+      v-model="password"
+      :is-required="true"
+      label="Password"
+    />
+
+    <AppPasswordField
+      v-model="password"
+      :is-required="true"
+      :is-disabled="true"
+      label="Password"
+    />
   </div>
 </template>
