@@ -39,6 +39,7 @@ const topTitleClasses = computed<string>(() => tableStyle.topTitle())
 const topBadgeClasses = computed<string>(() => tableStyle.topBadge())
 const topSearchInputClasses = computed<string>(() => tableStyle.topSearchInput())
 const topSkeletonRowClasses = computed<string>(() => tableStyle.topSkeletonRow())
+const searchAndFilterContainerClasses = computed<string>(() => tableStyle.searchAndFilterContainer())
 
 function filterOutEmptyFilters([
   _key,
@@ -98,17 +99,17 @@ function onFilterClear(): void {
       :class="topSkeletonRowClasses"
     />
 
-    <div
-      v-if="props.hasSearch"
-      :class="topSearchInputClasses"
-    >
-      <AppTableSearchInput
-        :pagination="props.pagination"
-        :is-loading="props.isLoading"
-      />
-    </div>
+    <div :class="searchAndFilterContainerClasses">
+      <div
+        v-if="props.hasSearch"
+        :class="topSearchInputClasses"
+      >
+        <AppTableSearchInput
+          :pagination="props.pagination"
+          :is-loading="props.isLoading"
+        />
+      </div>
 
-    <div class="ml-auto">
       <AppTableFiltersPopover
         v-if="props.filters.length !== 0"
         :filters="props.filters"
