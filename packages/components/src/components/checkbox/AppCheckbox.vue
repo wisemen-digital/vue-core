@@ -139,6 +139,7 @@ function onBlur(): void {
         :id="inputId"
         v-model="computedModel"
         :disabled="props.isDisabled || props.isReadonly"
+        :aria-describedby="`${inputId}-error ${inputId}-hint`"
         :class="rootClasses"
         @mouseenter="onMouseEnter"
         @mouseleave="onMouseLeave"

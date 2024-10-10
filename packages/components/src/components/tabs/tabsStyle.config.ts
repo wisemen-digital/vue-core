@@ -58,7 +58,7 @@ defineStyleConfig({
 
     '--tabs-item-bg-color-active': 'transparent',
     '--tabs-item-bg-color-default': 'transparent',
-    '--tabs-item-bg-color-focus': 'var(--bg-primary-hover)',
+    '--tabs-item-bg-color-focus': 'var(--bg-brand-secondary)',
     '--tabs-item-bg-color-hover': 'var(--bg-primary-hover)',
     '--tabs-item-border-radius-default': 'var(--radius-md)',
     '--tabs-item-container-padding-x-default': '0px',
