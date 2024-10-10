@@ -3,6 +3,7 @@ const primaryHover = '#0056b3'
 const primaryFocus = '#0056b3'
 const primaryActive = '#0056b3'
 const primaryDisabled = '#007bff'
+const primaryForeground = '#ffffff'
 
 const error = '#dc3545'
 const success = '#28a745'
@@ -27,6 +28,7 @@ export const lightThemeColors = {
   inputFieldTextColorDefault: '#101828',
   inputFieldTextColorDisabled: '#e9e9e9',
   primary,
+  primaryForeground,
   success,
   warning,
 } as const

@@ -13,9 +13,11 @@ import '@/components/tooltip/tooltipStyle.config'
 import '@/components/tabs/tabsStyle.config'
 import '@/components/dropdown-menu/dropdownMenuStyle.config'
 import '@/components/tag/tagStyle.config'
+import '@/components/checkbox/checkboxStyle.config'
 
 import Buttons from '@/Buttons.vue'
 import InputFields from '@/InputFields.vue'
+import Checkboxes from './Checkboxes.vue'
 import Popovers from '@/Popovers.vue'
 import Tabs from '@/Tabs.vue'
 import Tooltips from '@/Tooltips.vue'
@@ -28,6 +30,7 @@ import Tooltips from '@/Tooltips.vue'
     }"
     class="flex min-h-screen flex-col gap-y-24 p-24"
   >
+    <Checkboxes />
     <Tabs />
     <Popovers />
     <Tooltips />
