@@ -24,7 +24,7 @@ const activeRouteName = computed<string>({
     const tab = props.items.find((tab) => tab.to.name === value) ?? null
 
     if (tab === null) {
-      throw new Error(`Tab with route name "${String(value)}" not found`)
+      throw new Error(`Tab with route name "${value}" not found`)
     }
 
     void router.push(tab.to)
