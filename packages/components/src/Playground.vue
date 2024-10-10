@@ -1,67 +1,35 @@
 <script setup lang="ts">
 import '@/styles/index.scss'
-
-import { ref } from 'vue'
+import '@/components/icon/iconStyle.config'
+import '@/components/button/button/buttonStyle.config'
+import '@/components/input-field-hint/inputFieldHintStyle.config'
+import '@/components/input-field-error/inputFieldErrorStyle.config'
+import '@/components/input-field-label/inputFieldLabelStyle.config'
+import '@/components/popover/popoverStyle.config'
+import '@/components/button/icon-button/iconButtonStyle.config'
+import '@/components/select/selectStyle.config'
+import '@/components/input-field/text-field/textFieldStyle.config'
+import '@/components/tooltip/tooltipStyle.config'
+import '@/components/tabs/tabsStyle.config'
+import '@/components/dropdown-menu/dropdownMenuStyle.config'
+import '@/components/tag/tagStyle.config'
+import '@/components/checkbox/checkboxStyle.config'
 
 import Buttons from '@/Buttons.vue'
 import InputFields from '@/InputFields.vue'
 
-import AppCheckbox from './components/checkbox/AppCheckbox.vue'
-import type { FormFieldErrors } from './types/formFieldErrors.type'
-
-const isChecked = ref<boolean>(false)
-const isIndeterminate = ref<boolean>(false)
-
-const errors: FormFieldErrors | null = {
-  _errors: [
-    'This is an error',
-  ],
-}
-
-const isDisabled = ref<boolean>(false)
-const isReadonly = ref<boolean>(false)
-const isRequired = ref<boolean>(false)
-const isTouched = ref<boolean>(false)
+import Checkboxes from './Checkboxes.vue'
 </script>
 
 <template>
   <div class="p-40">
-    <div class="flex gap-2">
-      <button @click="isDisabled = !isDisabled">
-        Disabled
-      </button>
-      <button @click="isReadonly = !isReadonly">
-        Readonly
-      </button>
-      <button @click="isRequired = !isRequired">
-        Required
-      </button>
-      <button @click="isTouched = !isTouched">
-        Touched
-      </button>
-      <button @click="isIndeterminate = !isIndeterminate">
-        Indeterminate
-      </button>
-    </div>
-
-    <AppCheckbox
-      v-model="isChecked"
-      :is-disabled
-      :is-readonly
-      :is-touched
-      :is-required
-      :is-indeterminate="isIndeterminate"
-      :errors="errors"
-      label="Checkbox"
-      hint="This is a hint"
-    />
-
     <div
       :style="{
         backgroundColor: 'var(--bg-primary)',
       }"
       class="flex min-h-screen flex-col gap-y-24 p-24"
     >
+      <Checkboxes />
       <InputFields />
       <Buttons />
     </div>

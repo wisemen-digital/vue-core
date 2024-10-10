@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import '@/components/checkbox/checkboxStyle.config.js'
-
 import {
   CheckboxIndicator,
   CheckboxRoot,
@@ -38,6 +36,7 @@ const style = checkboxStyle()
 const isHovered = computed<boolean>(() => isMouseOver.value && !props.isDisabled)
 const isIndeterminate = computed<boolean>(() => props.isIndeterminate)
 const isChecked = computed<boolean>(() => model.value === true && !isIndeterminate.value)
+const isDisabled = computed<boolean>(() => props.isDisabled || props.isReadonly)
 const hasError = computed<boolean>(() => props.errors !== undefined && props.isTouched && props.errors !== null)
 
 const computedModel = computed<'indeterminate' | boolean>({
@@ -60,7 +59,7 @@ const computedModel = computed<'indeterminate' | boolean>({
 const rootClasses = computed<string>(() => style.root({
   hasError: hasError.value,
   isChecked: isChecked.value,
-  isDisabled: props.isDisabled,
+  isDisabled: isDisabled.value,
   isFocused: isFocused.value,
   isHovered: isHovered.value,
   isIndeterminate: isIndeterminate.value,
@@ -69,7 +68,7 @@ const rootClasses = computed<string>(() => style.root({
 const indicatorClasses = computed<string>(() => style.indicator({
   hasError: hasError.value,
   isChecked: isChecked.value,
-  isDisabled: props.isDisabled,
+  isDisabled: isDisabled.value,
   isFocused: isFocused.value,
   isHovered: isHovered.value,
   isIndeterminate: isIndeterminate.value,
@@ -78,7 +77,7 @@ const indicatorClasses = computed<string>(() => style.indicator({
 const inputLabelClasses = computed<string>(() => style.inputLabel({
   hasError: hasError.value,
   isChecked: isChecked.value,
-  isDisabled: props.isDisabled,
+  isDisabled: isDisabled.value,
   isFocused: isFocused.value,
   isHovered: isHovered.value,
   isIndeterminate: isIndeterminate.value,
@@ -87,7 +86,7 @@ const inputLabelClasses = computed<string>(() => style.inputLabel({
 const errorClasses = computed<string>(() => style.error({
   hasError: hasError.value,
   isChecked: isChecked.value,
-  isDisabled: props.isDisabled,
+  isDisabled: isDisabled.value,
   isFocused: isFocused.value,
   isHovered: isHovered.value,
   isIndeterminate: isIndeterminate.value,
@@ -96,7 +95,7 @@ const errorClasses = computed<string>(() => style.error({
 const hintClasses = computed<string>(() => style.hint({
   hasError: hasError.value,
   isChecked: isChecked.value,
-  isDisabled: props.isDisabled,
+  isDisabled: isDisabled.value,
   isFocused: isFocused.value,
   isHovered: isHovered.value,
   isIndeterminate: isIndeterminate.value,
@@ -105,11 +104,13 @@ const hintClasses = computed<string>(() => style.hint({
 const boxClasses = computed<string>(() => style.box({
   hasError: hasError.value,
   isChecked: isChecked.value,
-  isDisabled: props.isDisabled,
+  isDisabled: isDisabled.value,
   isFocused: isFocused.value,
   isHovered: isHovered.value,
   isIndeterminate: isIndeterminate.value,
 }))
+
+const bottomClasses = computed<string>(() => style.bottom())
 
 const inputId = computed<string>(() => props.id ?? useId())
 
@@ -179,26 +180,28 @@ function onBlur(): void {
         />
       </slot>
     </div>
-    <slot name="bottom">
-      <AppCollapsable>
-        <div v-if="hasError">
-          <slot name="error">
-            <AppInputFieldError
-              :errors="props.errors"
-              :class="errorClasses"
-            />
-          </slot>
-        </div>
+    <div :class="bottomClasses">
+      <slot name="bottom">
+        <AppCollapsable>
+          <div v-if="hasError">
+            <slot name="error">
+              <AppInputFieldError
+                :errors="props.errors"
+                :class="errorClasses"
+              />
+            </slot>
+          </div>
 
-        <div v-else-if="props.hint !== null">
-          <slot name="hint">
-            <AppInputFieldHint
-              :hint="props.hint"
-              :class="hintClasses"
-            />
-          </slot>
-        </div>
-      </AppCollapsable>
-    </slot>
+          <div v-else-if="props.hint !== null">
+            <slot name="hint">
+              <AppInputFieldHint
+                :hint="props.hint"
+                :class="hintClasses"
+              />
+            </slot>
+          </div>
+        </AppCollapsable>
+      </slot>
+    </div>
   </div>
 </template>

@@ -23,6 +23,7 @@ export default {
   plugins: [],
   theme: {
     extend: {
+      // @ts-expect-error - This is not too deep stfu
       ...defu(
         tagTailwindConfig,
         buttonTailwindConfig,
@@ -36,8 +37,8 @@ export default {
         selectTailwindConfig,
         tooltipTailwindConfig,
         tabsTailwindConfig,
-        dropdownMenuTailwindConfig,
         checkboxTailwindConfig,
+        dropdownMenuTailwindConfig,
         {
           ringOffsetColor: {
             DEFAULT: 'var(--bg-primary)',
