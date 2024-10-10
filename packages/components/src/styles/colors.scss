@@ -90,13 +90,13 @@
   --fg-success-primary: var(--success-600);
   --fg-success-secondary: var(--success-500);
 
-  --text-primary: var(--white);
+  --text-primary: var(--gray-900);
   --text-primary-on-brand: var(--white);
   --text-secondary: var(--gray-700);
   --text-secondary-hover: var(--gray-800);
   --text-secondary-on-brand: var(--brand-primary-200);
-  --tertiary: var(--gray-600);
-  --teriary-on-brand: var(--brand-primary-200);
+  --text-tertiary: var(--gray-600);
+  --text-teriary-on-brand: var(--brand-primary-200);
   --text-quaternary: var(--gray-500);
   --text-quaternary-on-brand: var(--brand-primary-300);
   --text-white: var(--white);
@@ -226,6 +226,7 @@
   --bg-quaternary: var(--gray-700);
   --bg-active: var(--gray-800);
   --bg-disabled: var(--gray-800);
+  --bg-disabled-subtle: var(--gray-900);
   --bg-overlay: var(--gray-800);
   --bg-brand-primary: var(--brand-primary-500);
   --bg-brand-primary-alt: var(--bg-secondary);

@@ -15,6 +15,7 @@ import '@/components/dropdown-menu/dropdownMenuStyle.config'
 import '@/components/tag/tagStyle.config'
 
 import Buttons from '@/Buttons.vue'
+import InputFields from '@/InputFields.vue'
 </script>
 
 <template>
@@ -22,8 +23,9 @@ import Buttons from '@/Buttons.vue'
     :style="{
       backgroundColor: 'var(--bg-primary)',
     }"
-    class="grid min-h-screen p-24"
+    class="flex min-h-screen flex-col gap-y-24 p-24"
   >
+    <InputFields />
     <Buttons />
   </div>
 </template>
