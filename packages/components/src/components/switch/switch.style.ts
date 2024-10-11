@@ -48,7 +48,7 @@ export const switchStyle = tv({
         hint: '[--input-field-hint-text-color-disabled:var(--switch-hint-text-color-disabled)]',
         indicator: 'border-switch-indicator-border-color-disabled bg-switch-indicator-bg-color-disabled shadow-switch-indicator-shadow-disabled',
         inputLabel: '[--input-field-label-text-color-default:var(--switch-label-text-color-disabled)]',
-        root: 'border-switch-border-color-disabled bg-switch-bg-color-disabled shadow-switch-shadow-disabled ring-switch-ring-color-disabled',
+        root: 'cursor-not-allowed border-switch-border-color-disabled bg-switch-bg-color-disabled shadow-switch-shadow-disabled ring-switch-ring-color-disabled',
       },
     },
   },

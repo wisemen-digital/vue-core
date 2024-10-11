@@ -102,7 +102,7 @@ defineStyleConfig({
     '--switch-bg-color-disabled': 'var(--bg-disabled)',
     '--switch-bg-color-error': 'var(--bg-tertiary)',
     '--switch-bg-color-focus': 'var(--bg-tertiary)',
-    '--switch-bg-color-hover': 'var(--bg-brand-solid-hover)',
+    '--switch-bg-color-hover': 'var(--bg-tertiary)',
 
     '--switch-border-color-checked': 'var(--bg-brand-solid)',
     '--switch-border-color-default': 'var(--bg-tertiary)',

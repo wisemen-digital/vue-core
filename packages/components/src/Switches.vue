@@ -23,8 +23,8 @@ const errors = ref<FormFieldErrors | null>({
         :errors="errors"
         :is-required="true"
         size="sm"
-        label="Checkbox"
-        hint="This is a checkbox."
+        label="Switch"
+        hint="This is a switch."
       />
     </div>
     <div>
@@ -34,7 +34,7 @@ const errors = ref<FormFieldErrors | null>({
         :is-touched="true"
         :errors="errors"
         size="sm"
-        label="Checkbox"
+        label="Switch"
         hint="This is errored."
       />
     </div>
@@ -44,7 +44,7 @@ const errors = ref<FormFieldErrors | null>({
         :is-disabled="true"
         :errors="errors"
         size="sm"
-        label="Checkbox"
+        label="Switch"
         hint="This is disabled."
       />
     </div>
@@ -55,7 +55,7 @@ const errors = ref<FormFieldErrors | null>({
         :is-touched="false"
         :errors="errors"
         size="default"
-        label="Checkbox"
+        label="Switch"
         hint="This is checked."
       />
     </div>
@@ -66,8 +66,7 @@ const errors = ref<FormFieldErrors | null>({
         :is-touched="true"
         :errors="errors"
         size="default"
-        label="Checkbox"
-        hint="This is a errored."
+        label="Switch"
       />
     </div>
     <div>
@@ -76,7 +75,7 @@ const errors = ref<FormFieldErrors | null>({
         :is-disabled="true"
         :errors="errors"
         size="default"
-        label="Checkbox"
+        label="Switch"
         hint="This is disabled."
       />
     </div>
