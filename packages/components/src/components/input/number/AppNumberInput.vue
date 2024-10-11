@@ -18,7 +18,10 @@ const props = withDefaults(defineProps<{
   testId?: string
   /**
    * Whether the input is disabled.
+<<<<<<< Updated upstream
    * @default false
+=======
+>>>>>>> Stashed changes
    */
   isDisabled?: boolean
   /**
