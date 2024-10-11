@@ -12,6 +12,7 @@ import { inputFieldHintTailwindConfig } from './src/components/input-field-hint/
 import { inputFieldLabelTailwindConfig } from './src/components/input-field-label/inputFieldLabel.tailwind'
 import { popoverTailwindConfig } from './src/components/popover/popover.tailwind'
 import { selectTailwindConfig } from './src/components/select/select.tailwind'
+import { switchTailwindConfig } from './src/components/switch/switch.tailwind'
 import { tabsTailwindConfig } from './src/components/tabs/tabs.tailwind'
 import { tagTailwindConfig } from './src/components/tag/tag.tailwind'
 import { tooltipTailwindConfig } from './src/components/tooltip/tooltip.tailwind'
@@ -39,9 +40,13 @@ export default {
         tabsTailwindConfig,
         checkboxTailwindConfig,
         dropdownMenuTailwindConfig,
+        switchTailwindConfig,
         {
           ringOffsetColor: {
             DEFAULT: 'var(--bg-primary)',
+          },
+          transitionTimingFunction: {
+            switch: 'cubic-bezier(.1, .91, .48, .99)',
           },
         },
       ),

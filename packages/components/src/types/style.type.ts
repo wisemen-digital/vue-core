@@ -11,6 +11,7 @@ import type {
 import type { InputFieldLabelStyleConfig } from '@/components/input-field-label/inputFieldLabelStyle.config'
 import type { PopoverStyleConfig } from '@/components/popover/popoverStyle.config'
 import type { SelectStyleConfig } from '@/components/select/selectStyle.config'
+import type { SwitchStyleConfig } from '@/components/switch/switchStyle.config'
 import type { TabsStyleConfig } from '@/components/tabs/tabsStyle.config'
 import type { TagStyleConfig } from '@/components/tag/tagStyle.config'
 import type { TooltipStyleConfig } from '@/components/tooltip/tooltipStyle.config'
@@ -30,6 +31,7 @@ export interface ComponentStyleConfigRegistry {
   inputFieldLabel: InputFieldLabelStyleConfig
   popover: PopoverStyleConfig
   select: SelectStyleConfig
+  switch: SwitchStyleConfig
   tabs: TabsStyleConfig
   tag: TagStyleConfig
   textField: TextFieldStyleConfig
