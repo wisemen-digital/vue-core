@@ -1,13 +1,47 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
+import AppIcon from '@/components/icon/AppIcon.vue'
 import AppPasswordField from '@/components/input-field/password-field/AppPasswordField.vue'
 import AppTextarea from '@/components/input-field/text-area/AppTextarea.vue'
 import AppTextField from '@/components/input-field/text-field/AppTextField.vue'
+import AppSelect from '@/components/select/AppSelect.vue'
+import AppSelectValueTag from '@/components/select/values/AppSelectValueTag.vue'
+import AppTag from '@/components/tag/AppTag.vue'
+import type { SelectItem } from '@/types/select.type.js'
 
 const value = ref<null | string>(null)
 const password = ref<null | string>(null)
 const textareaValue = ref<null | string>(null)
+
+const selectValue = ref<null | string>(null)
+const selectArrayValue = ref<string[]>([])
+const selectItems = ref<SelectItem<string>[]>([
+  {
+    type: 'option',
+    value: 'Apple',
+  },
+  {
+    type: 'option',
+    value: 'Banana',
+  },
+  {
+    type: 'option',
+    value: 'Blueberry',
+  },
+  {
+    type: 'option',
+    value: 'Grapes',
+  },
+  {
+    type: 'option',
+    value: 'Pineapple',
+  },
+  {
+    type: 'option',
+    value: 'Strawberry',
+  },
+])
 </script>
 
 <template>
@@ -15,9 +49,9 @@ const textareaValue = ref<null | string>(null)
     <AppTextField
       v-model="value"
       icon-left="translate01"
-      label="Email"
       placeholder="email@example.com"
       hint="This is a hint."
+      label="Email"
     />
 
     <AppTextField
@@ -86,5 +120,98 @@ const textareaValue = ref<null | string>(null)
       resize="auto-vertical"
       label="Tell us something about yourself"
     />
+
+    <AppSelect
+      v-model="selectValue"
+      :items="selectItems"
+      :display-fn="(value) => value"
+      :is-loading="false"
+      :filter-fn="(option, searchTerm) => option.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())"
+      label="Select a fruit"
+      placeholder="Select a fruit"
+      icon-left="translate01"
+    >
+      <template #empty>
+        <span class="p-1.5 text-sm text-gray-700">
+          No results
+        </span>
+      </template>
+    </AppSelect>
+
+    <AppSelect
+      v-model="selectArrayValue"
+      :items="selectItems"
+      :display-fn="(value) => value"
+      :filter-fn="(option, searchTerm) => option.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())"
+      :is-loading="false"
+      icon-left="translate01"
+      label="Select a fruit"
+      placeholder="Select a fruit"
+    >
+      <template #empty>
+        <span class="p-1.5 text-sm text-gray-700">
+          No results
+        </span>
+      </template>
+
+      <template #option-content="{ item }">
+        <div class="flex items-center justify-between pr-4">
+          <div class="flex items-center gap-x-2">
+            <AppIcon icon="translate01" />
+            {{ item.value }}
+          </div>
+
+          <AppTag>
+            {{ item.value }}
+          </AppTag>
+        </div>
+      </template>
+
+      <template #value="{ value: vv }">
+        <div class="w-full items-center justify-between truncate pr-2">
+          Fruits
+
+          <AppTag>
+            <span class="text-[12px]">{{ vv.length }} selected</span>
+          </AppTag>
+        </div>
+      </template>
+    </AppSelect>
+
+    <AppSelect
+      v-model="selectArrayValue"
+      :items="selectItems"
+      :display-fn="(value) => value"
+      :filter-fn="(option, searchTerm) => option.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())"
+      :is-loading="true"
+      icon-left="translate01"
+      label="Select a fruit"
+      placeholder="Select a fruit"
+    >
+      <template #empty>
+        <span class="p-1.5 text-sm text-gray-700">
+          No results
+        </span>
+      </template>
+
+      <template #tag="{ value: vv }">
+        <AppSelectValueTag :value="vv">
+          {{ vv }}
+        </AppSelectValueTag>
+      </template>
+
+      <template #option-content="{ item }">
+        <div class="flex items-center justify-between pr-4">
+          <div class="flex items-center gap-x-2">
+            <AppIcon icon="translate01" />
+            {{ item.value }}
+          </div>
+
+          <AppTag>
+            {{ item.value }}
+          </AppTag>
+        </div>
+      </template>
+    </AppSelect>
   </div>
 </template>

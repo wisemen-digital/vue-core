@@ -1,36 +1,32 @@
-<script setup lang="ts" generic="TValue extends SelectValueType">
+<script setup lang="ts"  generic="TValue extends SelectValue">
 import {
   ListboxContent,
   ListboxRoot,
-  PopoverAnchor,
   useId,
 } from 'reka-ui'
 import {
   computed,
+  type Ref,
   ref,
+  useSlots,
   watch,
 } from 'vue'
 
-import AppCollapsable from '@/components/collapsable/AppCollapsable.vue'
-import AppInputFieldError from '@/components/input-field-error/AppInputFieldError.vue'
-import AppInputFieldHint from '@/components/input-field-hint/AppInputFieldHint.vue'
-import AppInputFieldLabel from '@/components/input-field-label/AppInputFieldLabel.vue'
 import AppPopover from '@/components/popover/AppPopover.vue'
+import AppPopoverAnchor from '@/components/popover/AppPopoverAnchor.vue'
 import AppSelectFilter from '@/components/select/AppSelectFilter.vue'
 import AppSelectItem from '@/components/select/AppSelectItem.vue'
-import AppSelectTagsBox from '@/components/select/AppSelectTagsBox.vue'
-import { provideSelectContext } from '@/components/select/select.context.js'
+import { provideSelectContext } from '@/components/select/select.context'
 import {
   type AppSelectProps,
   appSelectPropsDefaultValues,
-} from '@/components/select/select.props'
+  type SelectDisplayFn,
+} from '@/components/select/select.props.js'
 import { selectStyle } from '@/components/select/select.style.js'
+import AppSelectValueBasic from '@/components/select/values/AppSelectValueBasic.vue'
+import AppSelectValueTags from '@/components/select/values/AppSelectValueTags.vue'
 import type { Icon } from '@/icons/icons.js'
-import type {
-  SelectItem,
-  SelectValue,
-  SelectValue as SelectValueType,
-} from '@/types/select.type'
+import type { SelectItem, SelectValue } from '@/types/select.type.js'
 
 const props = withDefaults(defineProps<AppSelectProps<TValue>>(), appSelectPropsDefaultValues)
 
@@ -43,72 +39,15 @@ const model = defineModel<TValue | null>({
   required: true,
 })
 
-const isOpen = ref<boolean>(false)
 const searchTerm = ref<string>('')
-
+const isOpen = ref<boolean>(false)
 const isFocused = ref<boolean>(false)
 const isMouseOver = ref<boolean>(false)
 
 const style = selectStyle()
 
-const inputId = computed<string>(() => props.id ?? useId())
-const isHovered = computed<boolean>(() => isMouseOver.value && !props.isDisabled)
-const hasError = computed<boolean>(() => props.errors !== undefined && props.isTouched && props.errors !== null)
-
-const isMultiple = computed<boolean>(() => Array.isArray(model.value))
-
-const triggerClasses = computed<string>(() => style.trigger({
-  hasError: hasError.value,
-  isDisabled: props.isDisabled,
-  isFocused: isFocused.value,
-  isHovered: isHovered.value,
-}))
-
-const valueClasses = computed<string>(() => style.value())
-const placeholderClasses = computed<string>(() => style.placeholder())
-
-const iconLeftClasses = computed<string>(() => style.iconLeft({
-  hasError: hasError.value,
-  isDisabled: props.isDisabled,
-  isFocused: isFocused.value,
-  isHovered: isHovered.value,
-}))
-
-const caretClasses = computed<string>(() => style.caret({
-  hasError: hasError.value,
-  isDisabled: props.isDisabled,
-  isFocused: isFocused.value,
-  isHovered: isHovered.value,
-}))
-
-const inputLabelClasses = computed<string>(() => style.inputLabel({
-  hasError: hasError.value,
-  isDisabled: props.isDisabled,
-  isFocused: isFocused.value,
-  isHovered: isHovered.value,
-}))
-
-const loaderBoxClasses = computed<string>(() => style.loaderBox())
-
-const loaderClasses = computed<string>(() => style.loader({
-  hasError: hasError.value,
-  isDisabled: props.isDisabled,
-  isFocused: isFocused.value,
-  isHovered: isHovered.value,
-}))
-
-const hintClasses = computed<string>(() => style.hint({
-  hasError: hasError.value,
-  isDisabled: props.isDisabled,
-  isFocused: isFocused.value,
-  isHovered: isHovered.value,
-}))
-
-const errorClasses = computed<string>(() => style.error())
-
-const dropdownContentClasses = computed<string>(() => style.dropdownContent({
-  hasFilter: props.filterFn !== null,
-}))
+const slots = useSlots()
+const hasValueSlot = computed<boolean>(() => slots.value !== undefined)
 
 const computedModel = computed<TValue | undefined>({
   get: () => model.value ?? undefined,
@@ -116,6 +55,15 @@ const computedModel = computed<TValue | undefined>({
     model.value = value ?? null
   },
 })
+
+const inputId = computed<string>(() => props.id ?? useId())
+const isHovered = computed<boolean>(() => isMouseOver.value && !props.isDisabled)
+const hasError = computed<boolean>(() => props.errors !== undefined && props.isTouched && props.errors !== null)
+
+const dropdownContent = computed<string>(() => style.dropdownContent())
+const listboxContent = computed<string>(() => style.listboxContent())
+
+const isMultiple = computed<boolean>(() => Array.isArray(model.value))
 
 const shouldRemainOpenOnValueChange = computed<boolean>(() => {
   if (props.shouldRemainOpenOnValueChange !== null) {
@@ -163,53 +111,33 @@ const filteredItems = computed<SelectItem<TValue extends Array<infer U> ? U : TV
   const items = props.items as SelectItem<TValue>[]
   const filterFn = props.filterFn
 
-  return filterItems(items, filterFn, searchTerm.value) as SelectItem<TValue extends Array<infer U> ? U : TValue>[]
+  return filterItems(items as any, filterFn, searchTerm.value) as SelectItem<TValue extends Array<infer U>
+    ? U
+    : TValue>[]
 })
 
-const displayValue = computed<string>(() => {
-  if (isMultiple.value) {
-    const arrayValue = model.value as TValue[]
+function onTriggerMouseEnter(): void {
+  isMouseOver.value = true
+}
 
-    return arrayValue.map((value) => props.displayFn(value as any)).join(', ')
-  }
+function onTriggerMouseLeave(): void {
+  isMouseOver.value = false
+}
 
-  if (model.value === null) {
-    return ''
-  }
+function onTriggerFocus(): void {
+  isFocused.value = true
+  emit('focus')
+}
 
-  return props.displayFn(model.value as any)
-})
-
-const isEmpty = computed<boolean>(() => {
-  if (isMultiple.value) {
-    return (model.value as TValue[]).length === 0
-  }
-
-  return model.value === null
-})
+function onTriggerBlur(): void {
+  isFocused.value = false
+  emit('blur')
+}
 
 function onTriggerKeyDown(event: KeyboardEvent): void {
   if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
     isOpen.value = true
   }
-}
-
-function onMouseEnter(): void {
-  isMouseOver.value = true
-}
-
-function onMouseLeave(): void {
-  isMouseOver.value = false
-}
-
-function onFocus(): void {
-  isFocused.value = true
-  emit('focus')
-}
-
-function onBlur(): void {
-  isFocused.value = false
-  emit('blur')
 }
 
 function onModelValueUpdate(): void {
@@ -227,135 +155,140 @@ watch(isOpen, (isOpen) => {
 })
 
 provideSelectContext({
-  id: inputId,
+  inputId,
   testId: computed<null | string>(() => props.testId),
-  hasError: computed<boolean>(() => hasError.value),
+  hasError,
   isDisabled: computed<boolean>(() => props.isDisabled),
-  isEmpty,
   isFocused: computed<boolean>(() => isFocused.value),
-  isHovered: computed<boolean>(() => isHovered.value),
+  isHovered,
   isLoading: computed<boolean>(() => props.isLoading),
+  isOpen: computed<boolean>(() => isOpen.value),
+  displayFn: props.displayFn as SelectDisplayFn<SelectValue>,
   iconLeft: computed<Icon | null>(() => props.iconLeft),
+  iconRight: computed<Icon>(() => props.iconRight),
+  modelValue: model as Ref<SelectValue>,
   placeholder: computed<null | string>(() => props.placeholder),
-  value: computed<any>(() => model.value),
-  onBlur,
-  onFocus,
-  onMouseEnter,
-  onMouseLeave,
+  searchTerm,
+  onTriggerBlur,
+  onTriggerFocus,
   onTriggerKeyDown,
+  onTriggerMouseEnter,
+  onTriggerMouseLeave,
 })
 </script>
 
 <template>
   <div :style="props.styleConfig">
-    <slot
-      v-if="props.label !== null"
-      :input-id="inputId"
-      name="label"
-    >
-      <AppInputFieldLabel
-        :for="inputId"
-        :label="props.label"
-        :is-required="props.isRequired"
-        :class="inputLabelClasses"
-      />
-    </slot>
-
+    <!-- TODO: label -->
     <AppPopover
       v-model:is-open="isOpen"
-      :is-arrow-hidden="true"
-      :offset-in-px="0"
-      :popover-width="props.dropdownWidth"
-      :align="props.dropdownAlign"
-      :side="props.dropdownSide"
-      :style-config="{
-        '--popover-bg-color-default': 'var(--select-dropdown-bg-color-default)',
-        '--popover-border-color-default': 'var(--select-dropdown-border-color-default)',
-        '--popover-border-radius-default': 'var(--select-dropdown-border-radius-default)',
-        '--popover-max-width-default': 'var(--select-dropdown-max-width-default)',
-        '--popover-shadow-default': 'var(--select-dropdown-shadow-default)',
-        ...props.styleConfig ?? {},
-      }"
+      :align="props.align"
+      :is-arrow-hidden="!props.isArrowVisible"
+      :collision-padding-in-px="props.collisionPaddingInPx"
+      :container-element="props.containerElement"
+      :offset-in-px="props.offsetInPx"
+      :popover-width="props.popoverWidth"
+      :side="props.side"
     >
       <template #default>
-        <PopoverAnchor>
-          <slot name="value">
-            <!-- TODO: id enzo juist zetten -->
-            <AppSelectTagsBox />
-            <!-- <AppSelectMultiBox /> -->
-          </slot>
-        </PopoverAnchor>
+        <AppPopoverAnchor>
+          <AppSelectValueTags v-if="isMultiple && !hasValueSlot">
+            <template #tag="{ value }">
+              <slot
+                :value="(value as unknown as TValue)"
+                name="tag"
+              />
+            </template>
+
+            <template #loader>
+              <slot name="loader" />
+            </template>
+          </AppSelectValueTags>
+
+          <AppSelectValueBasic v-else>
+            <template #value="{ value }">
+              <slot
+                :value="(value as NonNullable<TValue>)"
+                name="value"
+              />
+            </template>
+          </AppSelectValueBasic>
+        </AppPopoverAnchor>
       </template>
 
       <template #content>
-        <ListboxRoot
-          v-model="computedModel"
-          :multiple="isMultiple"
-          :selection-behavior="isMultiple ? 'toggle' : 'replace'"
-          @update:model-value="onModelValueUpdate"
+        <div
+          :style="props.styleConfig"
+          :class="dropdownContent"
         >
-          <AppSelectFilter
-            v-if="props.filterFn !== null"
-            v-model="searchTerm"
-          />
+          <slot name="top" />
 
-          <ListboxContent :class="dropdownContentClasses">
-            <AppSelectItem
-              v-for="(item, itemIndex) of filteredItems"
-              :key="itemIndex"
-              :item="item"
-              :display-fn="props.displayFn"
-            >
-              <template #option-content="{ item: selectItem }">
-                <slot
-                  v-if="selectItem.type === 'option'"
-                  :item="selectItem"
-                  name="option-content"
-                />
-              </template>
+          <ListboxRoot
+            v-model="computedModel"
+            :selection-behavior="isMultiple ? 'toggle' : 'replace'"
+            :multiple="isMultiple"
+            @update:model-value="onModelValueUpdate"
+          >
+            <slot name="filter">
+              <AppSelectFilter />
+            </slot>
 
-              <template #option-indicator="{ item: selectItem }">
-                <slot
-                  v-if="selectItem.type === 'option'"
-                  :item="selectItem"
-                  name="option-indicator"
-                />
-              </template>
+            <ListboxContent :class="listboxContent">
+              <slot
+                v-if="filteredItems.length === 0"
+                name="empty"
+              />
 
-              <template #group-label="{ label }">
-                <slot
-                  :label="label"
-                  name="group-label"
-                />
-              </template>
+              <template v-else>
+                <AppSelectItem
+                  v-for="(item, itemIndex) of filteredItems"
+                  :key="itemIndex"
+                  :item="item"
+                >
+                  <template #option="{ item: selectItem }">
+                    <slot
+                      v-if="selectItem.type === 'option'"
+                      :item="selectItem"
+                      name="option"
+                    />
+                  </template>
 
-              <template #separator>
-                <slot name="separator" />
+                  <template #option-content="{ item: selectItem }">
+                    <slot
+                      v-if="selectItem.type === 'option'"
+                      :item="selectItem"
+                      name="option-content"
+                    />
+                  </template>
+
+                  <template #option-indicator="{ item: selectItem }">
+                    <slot
+                      v-if="selectItem.type === 'option'"
+                      :item="selectItem"
+                      name="option-indicator"
+                    />
+                  </template>
+
+                  <template #group-label="{ label }">
+                    <slot
+                      :label="label"
+                      name="group-label"
+                    />
+                  </template>
+
+                  <template #separator>
+                    <slot name="separator" />
+                  </template>
+                </AppSelectItem>
               </template>
-            </AppSelectItem>
-          </ListboxContent>
-        </ListboxRoot>
+            </ListboxContent>
+          </ListboxRoot>
+
+          <slot name="bottom" />
+        </div>
       </template>
     </AppPopover>
-
-    <AppCollapsable>
-      <div v-if="hasError">
-        <slot name="error">
-          <AppInputFieldError
-            :errors="props.errors"
-            :class="errorClasses"
-          />
-        </slot>
-      </div>
-
-      <div v-else-if="props.hint !== null">
-        <slot name="hint">
-          <AppInputFieldHint
-            :hint="props.hint"
-            :class="hintClasses"
-          />
-        </slot>
-      </div>
-    </AppCollapsable>
+    <!-- TODO: error -->
+    <!-- TODO: hint -->
   </div>
 </template>

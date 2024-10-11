@@ -1,12 +1,10 @@
 <script setup lang="ts" generic="TValue extends SelectValue">
-import AppSelectGroup from '@/components/select/AppSelectGroup.vue'
-import AppSelectOption from '@/components/select/AppSelectOption.vue'
-import AppSelectSeparator from '@/components/select/AppSelectSeparator.vue'
-import type { SelectDisplayFn } from '@/components/select/select.props.js'
+import AppSelectGroup from '@/components/select/items/AppSelectGroup.vue'
+import AppSelectOption from '@/components/select/items/AppSelectOption.vue'
+import AppSelectSeparator from '@/components/select/items/AppSelectSeparator.vue'
 import type { SelectItem, SelectValue } from '@/types/select.type'
 
 const props = defineProps<{
-  displayFn: SelectDisplayFn<TValue>
   item: SelectItem<TValue extends Array<infer U> ? U : TValue>
 }>()
 </script>
@@ -15,7 +13,6 @@ const props = defineProps<{
   <AppSelectOption
     v-if="props.item.type === 'option'"
     :item="props.item"
-    :display-fn="props.displayFn"
   >
     <template #option-content>
       <slot
@@ -28,6 +25,14 @@ const props = defineProps<{
       <slot
         :item="props.item"
         name="option-indicator"
+      />
+    </template>
+
+    <template #option="{ isSelected }">
+      <slot
+        :item="props.item"
+        :is-selected="isSelected"
+        name="option"
       />
     </template>
   </AppSelectOption>
@@ -54,7 +59,6 @@ const props = defineProps<{
       v-for="(groupItem, i) of props.item.items"
       :key="i"
       :item="groupItem"
-      :display-fn="displayFn"
     >
       <template #option-content>
         <slot
@@ -67,6 +71,13 @@ const props = defineProps<{
         <slot
           :item="groupItem"
           name="option-indicator"
+        />
+      </template>
+
+      <template #option>
+        <slot
+          :item="groupItem"
+          name="option"
         />
       </template>
     </AppSelectItem>

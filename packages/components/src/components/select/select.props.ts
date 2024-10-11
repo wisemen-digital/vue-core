@@ -1,9 +1,7 @@
 import type { Icon } from '@/icons/icons'
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 import type {
-  PopoverAlign,
-  PopoverSide,
-  PopoverWidth,
+  PopoverProps,
 } from '@/types/popover.type'
 import type {
   SelectItem,
@@ -15,7 +13,12 @@ export type SelectDisplayFn<TValue extends SelectValue> = (
   value: TValue extends Array<infer U> ? U : TValue
 ) => string
 
-export interface AppSelectProps<TValue extends SelectValue> {
+export type SelectFilterFn<TValue extends SelectValue> = (
+  option: TValue extends Array<infer U> ? U : TValue,
+  searchTerm: string,
+) => boolean
+
+export interface AppSelectProps<TValue extends SelectValue> extends Omit<PopoverProps, 'isArrowHidden'> {
   /**
    * The id of the input.
    * @default null
@@ -26,6 +29,11 @@ export interface AppSelectProps<TValue extends SelectValue> {
    * @default null
    */
   testId?: null | string
+  /**
+   * Whether the arrow is visible.
+   * @default false
+   */
+  isArrowVisible?: boolean
   /**
    * Whether the input is disabled.
    * @default false
@@ -50,27 +58,13 @@ export interface AppSelectProps<TValue extends SelectValue> {
    */
   displayFn: SelectDisplayFn<TValue>
   /**
-   * The alignment of the dropdown.
-   * @default 'center'
-   */
-  dropdownAlign?: PopoverAlign
-  /**
-   * The side of the dropdown.
-   * @default 'bottom'
-   */
-  dropdownSide?: PopoverSide
-  /**
-   * The width of the popover.
-   */
-  dropdownWidth?: PopoverWidth
-  /**
    * The errors associated with the input.
    */
   errors?: FormFieldErrors | null
   /**
    * The function to filter the options.
    */
-  filterFn?: ((option: TValue, searchTerm: string) => boolean) | null
+  filterFn?: SelectFilterFn<TValue> | null
   /**
    * The hint text of the input.
    * @default null
@@ -81,6 +75,11 @@ export interface AppSelectProps<TValue extends SelectValue> {
    * @default null
    */
   iconLeft?: Icon | null
+  /**
+   * The right icon of the input.
+   * @default 'chevronSelectorVertical'
+   */
+  iconRight?: Icon
   /**
    * The items of the select.
    */
@@ -110,19 +109,24 @@ export interface AppSelectProps<TValue extends SelectValue> {
 export const appSelectPropsDefaultValues = {
   id: null,
   testId: null,
+  isArrowVisible: false,
   isDisabled: false,
   isLoading: false,
   isRequired: false,
   isTouched: false,
-  dropdownAlign: 'center',
-  dropdownSide: 'bottom',
-  dropdownWidth: 'anchor-width',
+  align: 'center',
+  collisionPaddingInPx: 0,
+  containerElement: null,
   errors: null,
   filterFn: null,
   hint: null,
   iconLeft: null,
+  iconRight: 'chevronSelectorVertical',
   label: null,
+  offsetInPx: 4,
   placeholder: null,
+  popoverWidth: 'anchor-width',
   shouldRemainOpenOnValueChange: null,
+  side: 'bottom',
   styleConfig: null,
 } satisfies Partial<AppSelectProps<SelectValue>>

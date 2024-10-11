@@ -60,7 +60,7 @@ const buttonLabel = computed<string>(() => (
           :label="buttonLabel"
           :style-config="{
             '--icon-button-size-default': '32px',
-            '--icon-button-icon-size-default': '14px',
+            '--icon-button-icon-size-default': '16px',
             '--button-ring-color-focus': 'transparent',
             '--button-bg-color-focus': 'var(--bg-secondary-hover)',
             '--button-bg-color-disabled': 'transparent',

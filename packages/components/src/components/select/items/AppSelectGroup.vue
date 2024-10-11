@@ -1,12 +1,12 @@
 <script setup lang="ts" generic="TValue extends SelectValue">
 import {
-  ListboxGroup as RekaListboxGroup,
+  ListboxGroup,
   ListboxGroupLabel,
 } from 'reka-ui'
 import { computed } from 'vue'
 
-import { selectStyle } from '@/components/select/select.style'
-import type { SelectGroup, SelectValue } from '@/types/select.type'
+import { selectStyle } from '@/components/select/select.style.js'
+import type { SelectGroup, SelectValue } from '@/types/select.type.js'
 
 const props = defineProps<{
   item: SelectGroup<TValue>
@@ -14,18 +14,20 @@ const props = defineProps<{
 
 const style = selectStyle()
 
-const groupClasses = computed<string>(() => style.group())
 const groupLabelClasses = computed<string>(() => style.groupLabel())
+const groupContentClasses = computed<string>(() => style.groupContent())
 </script>
 
 <template>
-  <RekaListboxGroup :class="groupClasses">
+  <ListboxGroup>
     <ListboxGroupLabel :class="groupLabelClasses">
       <slot name="group-label">
         {{ props.item.label }}
       </slot>
     </ListboxGroupLabel>
 
-    <slot />
-  </RekaListboxGroup>
+    <div :class="groupContentClasses">
+      <slot />
+    </div>
+  </ListboxGroup>
 </template>

@@ -7,7 +7,7 @@ import '@/components/input-field-error/inputFieldErrorStyle.config'
 import '@/components/input-field-label/inputFieldLabelStyle.config'
 import '@/components/popover/popoverStyle.config'
 import '@/components/button/icon-button/iconButtonStyle.config'
-import '@/components/select/selectStyle.config'
+import '@/components/select-old/selectStyle.config'
 import '@/components/input-field/text-field/textFieldStyle.config'
 import '@/components/tooltip/tooltipStyle.config'
 import '@/components/tabs/tabsStyle.config'
@@ -16,7 +16,7 @@ import '@/components/tag/tagStyle.config'
 
 import { ref } from 'vue'
 
-import AppSelect from '@/components/select/AppSelect.vue'
+import AppSelect from '@/components/select-old/AppSelect.vue'
 import AppTag from '@/components/tag/AppTag.vue'
 import type { SelectItem } from '@/types/select.type.js'
 

@@ -30,7 +30,7 @@ export const extendedConfig = {
             'input-field-label-font-size-default',
             'input-field-error-font-size-default',
             'select-font-size-default',
-            'select-item-font-size-default',
+            'select-option-font-size-default',
             'select-group-label-font-size-default',
             'tabs-item-font-size-default',
             'dropdown-menu-group-label-font-size-default',

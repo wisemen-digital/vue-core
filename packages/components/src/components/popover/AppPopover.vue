@@ -6,10 +6,7 @@ import {
   PopoverRoot,
   PopoverTrigger,
 } from 'reka-ui'
-import {
-  computed,
-  useSlots,
-} from 'vue'
+import { computed } from 'vue'
 
 import {
   type AppPopoverProps,
@@ -24,12 +21,7 @@ const isOpen = defineModel<boolean>('isOpen', {
   required: false,
 })
 
-const slots = useSlots()
 const style = popoverStyle()
-
-// if (slots.default === undefined) {
-//   throw new Error('[POPOVER] The `trigger` slot is required.')
-// }
 
 const contentClasses = computed<string>(() => style.content())
 const arrowBoxClasses = computed<string>(() => style.arrowBox())
@@ -41,8 +33,7 @@ const arrowClasses = computed<string>(() => style.arrow())
     <!-- It's possible to use either the default slot with an own implementation of the trigger or the named slot -->
     <!-- If the default slot is used, the trigger should be wrapped in `AppPopoverTrigger` -->
     <!-- The reason both options are possible is because in some cases `AppPopoverAnchor`
-         is used for custom positioning
-    -->
+         is used for custom positioning -->
     <slot>
       <PopoverTrigger :as-child="true">
         <slot name="trigger" />
@@ -64,6 +55,7 @@ const arrowClasses = computed<string>(() => style.arrow())
         :style="props.styleConfig"
         :collision-boundary="props.containerElement"
         :collision-padding="props.collisionPaddingInPx"
+        position="popper"
       >
         <!-- Without this relative div, the arrow is a bit glitchy -->
         <div class="relative size-full">

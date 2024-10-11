@@ -3,28 +3,33 @@ import {
   inject,
   type InjectionKey,
   provide,
+  type Ref,
 } from 'vue'
 
+import type { SelectDisplayFn } from '@/components/select/select.props'
 import type { Icon } from '@/icons/icons'
+import type { SelectValue } from '@/types/select.type'
 
 interface SelectContext {
-  // TODO
-  id: ComputedRef<string>
+  inputId: ComputedRef<string>
   testId: ComputedRef<null | string>
   hasError: ComputedRef<boolean>
   isDisabled: ComputedRef<boolean>
-  isEmpty: ComputedRef<boolean>
   isFocused: ComputedRef<boolean>
   isHovered: ComputedRef<boolean>
   isLoading: ComputedRef<boolean>
+  isOpen: ComputedRef<boolean>
+  displayFn: SelectDisplayFn<SelectValue>
   iconLeft: ComputedRef<Icon | null>
+  iconRight: ComputedRef<Icon>
+  modelValue: Ref<SelectValue>
   placeholder: ComputedRef<null | string>
-  value: ComputedRef<any>
-  onBlur: () => void
-  onFocus: () => void
-  onMouseEnter: () => void
-  onMouseLeave: () => void
+  searchTerm: Ref<string>
+  onTriggerBlur: () => void
+  onTriggerFocus: () => void
   onTriggerKeyDown: (event: KeyboardEvent) => void
+  onTriggerMouseEnter: () => void
+  onTriggerMouseLeave: () => void
 }
 
 const selectContextKey: InjectionKey<SelectContext> = Symbol('selectContextKey')
