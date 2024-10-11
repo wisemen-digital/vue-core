@@ -87,6 +87,18 @@ const bottomClasses = computed<string>(() => style.bottom())
 
 const inputId = computed<string>(() => props.id ?? useId())
 
+const sizeClass = computed<null | string>(() => {
+  if (props.size === 'sm') {
+    return 'switch-sm'
+  }
+
+  if (props.size === 'default') {
+    return 'switch-md'
+  }
+
+  return null
+})
+
 function onMouseEnter(): void {
   isMouseOver.value = true
 }
@@ -107,13 +119,16 @@ function onBlur(): void {
 </script>
 
 <template>
-  <div :style="props.styleConfig">
+  <div
+    :style="props.styleConfig"
+    :class="sizeClass"
+  >
     <div :class="boxClasses">
       <SwitchRoot
         :id="inputId"
         v-model="model"
         :disabled="props.isDisabled || props.isReadonly"
-        :class="rootClasses"
+        :class="[rootClasses]"
         @mouseenter="onMouseEnter"
         @mouseleave="onMouseLeave"
         @focus="onFocus"

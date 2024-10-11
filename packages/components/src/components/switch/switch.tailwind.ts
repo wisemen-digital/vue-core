@@ -40,6 +40,13 @@ export const switchTailwindConfig = {
     'switch-indicator-border-width-default': 'var(--switch-indicator-border-width-default)',
   },
   boxShadow: {
+    'switch-indicator-shadow-checked': 'var(--switch-indicator-shadow-checked)',
+    'switch-indicator-shadow-default': 'var(--switch-indicator-shadow-default)',
+    'switch-indicator-shadow-disabled': 'var(--switch-indicator-shadow-disabled)',
+    'switch-indicator-shadow-error': 'var(--switch-indicator-shadow-error)',
+    'switch-indicator-shadow-focus': 'var(--switch-indicator-shadow-focus)',
+    'switch-indicator-shadow-hover': 'var(--switch-indicator-shadow-hover)',
+
     'switch-shadow-checked': 'var(--switch-shadow-checked)',
     'switch-shadow-default': 'var(--switch-shadow-default)',
     'switch-shadow-disabled': 'var(--switch-shadow-disabled)',

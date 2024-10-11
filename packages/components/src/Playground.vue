@@ -16,31 +16,22 @@ import '@/components/tag/tagStyle.config'
 import '@/components/checkbox/checkboxStyle.config'
 import '@/components/switch/switchStyle.config'
 
-import { ref } from 'vue'
-
 import Buttons from '@/Buttons.vue'
 import InputFields from '@/InputFields.vue'
 
 import Checkboxes from './Checkboxes.vue'
-import AppSwitch from './components/switch/AppSwitch.vue'
-
-const model = ref<boolean>(false)
+import Switches from './Switches.vue'
 </script>
 
 <template>
   <div class="p-40">
-    <AppSwitch
-      v-model="model"
-      hint="dit is een hint"
-      label="Switch"
-    />
-
     <div
       :style="{
         backgroundColor: 'var(--bg-primary)',
       }"
       class="flex min-h-screen flex-col gap-y-24 p-24"
     >
+      <Switches />
       <Checkboxes />
       <InputFields />
       <Buttons />

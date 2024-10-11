@@ -99,20 +99,19 @@ defineStyleConfig({
   config: {
     '--switch-bg-color-checked': 'var(--bg-brand-solid)',
     '--switch-bg-color-default': 'var(--bg-tertiary)',
-    '--switch-bg-color-disabled': 'var(--bg-disabled-subtle)',
+    '--switch-bg-color-disabled': 'var(--bg-disabled)',
     '--switch-bg-color-error': 'var(--bg-tertiary)',
     '--switch-bg-color-focus': 'var(--bg-tertiary)',
-    '--switch-bg-color-hover': 'var(--bg-tertiary)',
+    '--switch-bg-color-hover': 'var(--bg-brand-solid-hover)',
 
-    '--switch-border-color-checked': 'var(--border-brand)',
-    '--switch-border-color-default': 'var(--border-tertiary)',
-    '--switch-border-color-disabled': 'var(--border-disabled)',
+    '--switch-border-color-checked': 'var(--bg-brand-solid)',
+    '--switch-border-color-default': 'var(--bg-tertiary)',
+    '--switch-border-color-disabled': 'var(--bg-disabled)',
     '--switch-border-color-error': 'var(--border-error-subtle)',
-    '--switch-border-color-focus': 'var(--border-tertiary)',
-    '--switch-border-color-hover': 'var(--border-tertiary)',
-    '--switch-border-color-indeterminate': 'var(--border-brand)',
+    '--switch-border-color-focus': 'var(--bg-tertiary)',
+    '--switch-border-color-hover': 'var(--bg-tertiary)',
 
-    '--switch-border-radius-default': 'var(--spacing-xl)',
+    '--switch-border-radius-default': 'var(--radius-full)',
     '--switch-border-width-default': '1px',
 
     // Enable this to remove / define your own hint / error padding left
@@ -122,8 +121,6 @@ defineStyleConfig({
     '--switch-error-font-weight-default': 'var(--input-field-error-font-weight-default)',
     '--switch-error-spacing-default': 'var(--input-field-error-spacing-default)',
     '--switch-error-text-color-default': 'var(--input-field-error-text-color-default)',
-
-    '--switch-height-default': '24px',
 
     '--switch-hint-font-size-default': 'var(--input-field-hint-font-size-default)',
     '--switch-hint-font-weight-default': 'var(--input-field-hint-font-weight-default)',
@@ -138,26 +135,32 @@ defineStyleConfig({
 
     '--switch-indicator-bg-color-checked': 'var(--fg-white)',
     '--switch-indicator-bg-color-default': 'var(--fg-white)',
-    '--switch-indicator-bg-color-disabled': 'var(--fg-disabled-subtle)',
-    '--switch-indicator-bg-color-error': 'var(--fg-error-secondary)',
+    '--switch-indicator-bg-color-disabled': 'var(--gray-50)',
+    '--switch-indicator-bg-color-error': 'var(--fg-white)',
     '--switch-indicator-bg-color-focus': 'var(--fg-white)',
     '--switch-indicator-bg-color-hover': 'var(--fg-white)',
 
     '--switch-indicator-border-color-checked': 'var(--fg-white)',
     '--switch-indicator-border-color-default': 'var(--fg-white)',
-    '--switch-indicator-border-color-disabled': 'var(--fg-white)',
-    '--switch-indicator-border-color-error': 'var(--border-error-subtle)',
+    '--switch-indicator-border-color-disabled': 'var(--gray-50)',
+    '--switch-indicator-border-color-error': 'var(--fg-white)',
     '--switch-indicator-border-color-focus': 'var(--fg-white)',
     '--switch-indicator-border-color-hover': 'var(--fg-white)',
-    '--switch-indicator-border-color-indeterminate': 'var(--fg-white)',
 
-    '--switch-indicator-border-radius-default': 'var(--spacing-xl)',
+    '--switch-indicator-border-radius-default': 'var(--radius-full)',
     '--switch-indicator-border-width-default': '1px',
-    '--switch-indicator-size-default': '20px',
-    '--switch-label-font-size-default': 'var(--input-field-label-font-size-default)',
 
+    '--switch-indicator-shadow-checked': 'var(--shadow-sm)',
+    '--switch-indicator-shadow-default': 'var(--shadow-sm)',
+    '--switch-indicator-shadow-disabled': 'var(--shadow-sm)',
+    '--switch-indicator-shadow-error': 'var(--shadow-sm)',
+    '--switch-indicator-shadow-focus': 'var(--shadow-sm)',
+    '--switch-indicator-shadow-hover': 'var(--shadow-sm)',
+
+    '--switch-label-font-size-default': 'var(--input-field-label-font-size-default)',
     '--switch-label-font-weight-default': 'var(--input-field-label-font-weight-default)',
     '--switch-label-spacing-default': 'var(--spacing-md)',
+
     '--switch-label-text-color-checked': 'var(--input-field-label-text-color-default)',
     '--switch-label-text-color-default': 'var(--input-field-label-text-color-default)',
     '--switch-label-text-color-disabled': 'var(--input-field-label-text-color-default)',
@@ -165,30 +168,52 @@ defineStyleConfig({
     '--switch-label-text-color-focus': 'var(--input-field-label-text-color-default)',
 
     '--switch-label-text-color-hover': 'var(--input-field-label-text-color-default)',
-    '--switch-label-text-color-indeterminate': 'var(--input-field-label-text-color-default)',
 
-    '--switch-padding-x-default': '2px',
+    '--switch-padding-x-default': 'var(--spacing-xxs)',
 
     '--switch-ring-color-checked': 'var(--brand-primary-500)',
     '--switch-ring-color-default': 'var(--brand-primary-500)',
     '--switch-ring-color-disabled': 'var(--brand-primary-500)',
     '--switch-ring-color-error': 'var(--error-500)',
-
     '--switch-ring-color-focus': 'var(--brand-primary-500)',
     '--switch-ring-color-hover': 'var(--brand-primary-500)',
-    '--switch-ring-color-indeterminate': 'var(--brand-primary-500)',
-    '--switch-shadow-checked': '0px 0px 0px 0px #000000',
-    '--switch-shadow-default': '0px 0px 0px 0px #000000',
-    '--switch-shadow-disabled': '0px 0px 0px 0px #000000',
-    '--switch-shadow-error': '0px 0px 0px 0px #000000',
 
-    '--switch-shadow-focus': '0px 0px 0px 0px #000000',
-
-    '--switch-shadow-hover': '0px 0px 0px 0px #000000',
-    '--switch-shadow-indeterminate': '0px 0px 0px 0px #000000',
-
-    '--switch-width-default': '44px',
+    '--switch-shadow-checked': 'var(--shadow-none)',
+    '--switch-shadow-default': 'var(--shadow-none)',
+    '--switch-shadow-disabled': 'var(--shadow-none)',
+    '--switch-shadow-error': 'var(--shadow-none)',
+    '--switch-shadow-focus': 'var(--shadow-none)',
+    '--switch-shadow-hover': 'var(--shadow-none)',
   },
   selector: ':root',
+  component: 'switch',
+})
+
+defineStyleConfig({
+  config: {
+    '--switch-height-default': '1.5rem',
+    '--switch-indicator-size-default': '1.25rem',
+    '--switch-width-default': '2.75rem',
+  },
+  selector: '.switch-md',
+  component: 'switch',
+})
+
+defineStyleConfig({
+  config: {
+    '--switch-height-default': '1.25rem',
+    '--switch-indicator-size-default': '1.01rem',
+    '--switch-width-default': '2.25rem',
+  },
+  selector: '.switch-sm',
+  component: 'switch',
+})
+
+defineStyleConfig({
+  config: {
+    '--switch-indicator-bg-color-disabled': 'var(--gray-600)',
+    '--switch-indicator-border-color-disabled': 'var(--gray-600)',
+  },
+  selector: '.dark',
   component: 'switch',
 })

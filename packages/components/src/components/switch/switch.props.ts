@@ -47,7 +47,12 @@ export interface AppSwitchProps {
    */
   label?: null | string
   /**
-   *
+   * The size of the switch.
+   * @default 'default'
+   */
+  size?: 'default' | 'sm'
+  /**
+   * The style config of the switch.
    */
   styleConfig?: StyleConfig<'switch'> | null
 
@@ -62,5 +67,6 @@ export const appSwitchPropsDefaultValues = {
   errors: null,
   hint: null,
   label: null,
+  size: 'default',
   styleConfig: null,
 } satisfies AppSwitchProps
