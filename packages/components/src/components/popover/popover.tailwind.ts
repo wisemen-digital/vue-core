@@ -16,4 +16,7 @@ export const popoverTailwindConfig = {
   maxWidth: {
     'popover-max-width-default': 'var(--popover-max-width-default)',
   },
+  minWidth: {
+    'popover-min-width-default': 'var(--popover-min-width-default)',
+  }
 } satisfies Config['theme']

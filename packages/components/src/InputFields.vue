@@ -3,6 +3,7 @@ import { ref } from 'vue'
 
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppPasswordField from '@/components/input-field/password-field/AppPasswordField.vue'
+import AppPhoneNumberField from '@/components/input-field/phone-number-field/AppPhoneNumberField.vue'
 import AppTextarea from '@/components/input-field/text-area/AppTextarea.vue'
 import AppTextField from '@/components/input-field/text-field/AppTextField.vue'
 import AppSelect from '@/components/select/AppSelect.vue'
@@ -13,33 +14,63 @@ import type { SelectItem } from '@/types/select.type.js'
 const value = ref<null | string>(null)
 const password = ref<null | string>(null)
 const textareaValue = ref<null | string>(null)
+const phoneNumberValue = ref<null | string>(null)
 
 const selectValue = ref<null | string>(null)
 const selectArrayValue = ref<string[]>([])
 const selectItems = ref<SelectItem<string>[]>([
   {
-    type: 'option',
-    value: 'Apple',
+    items: [
+      {
+        type: 'option',
+        value: 'Apple',
+      },
+      {
+        type: 'option',
+        value: 'Banana',
+      },
+      {
+        type: 'option',
+        value: 'Blueberry',
+      },
+      {
+        isDisabled: true,
+        type: 'option',
+        value: 'Grapes',
+      },
+      {
+        isDisabled: true,
+        type: 'option',
+        value: 'Pineapple',
+      },
+      {
+        type: 'option',
+        value: 'Strawberry',
+      },
+    ],
+    label: 'Fruits',
+    type: 'group',
   },
   {
-    type: 'option',
-    value: 'Banana',
+    type: 'separator',
   },
   {
-    type: 'option',
-    value: 'Blueberry',
-  },
-  {
-    type: 'option',
-    value: 'Grapes',
-  },
-  {
-    type: 'option',
-    value: 'Pineapple',
-  },
-  {
-    type: 'option',
-    value: 'Strawberry',
+    items: [
+      {
+        type: 'option',
+        value: 'Aubergine',
+      },
+      {
+        type: 'option',
+        value: 'Broccoli',
+      },
+      {
+        type: 'option',
+        value: 'Carrot',
+      },
+    ],
+    label: 'Vegetables',
+    type: 'group',
   },
 ])
 </script>
@@ -130,11 +161,10 @@ const selectItems = ref<SelectItem<string>[]>([
       label="Select a fruit"
       placeholder="Select a fruit"
       icon-left="translate01"
+      hint="You can only select 1 fruit."
     >
-      <template #empty>
-        <span class="p-1.5 text-sm text-gray-700">
-          No results
-        </span>
+      <template #group-label="{ label }">
+        <span class="text-xs font-bold uppercase">{{ label }}</span>
       </template>
     </AppSelect>
 
@@ -142,31 +172,12 @@ const selectItems = ref<SelectItem<string>[]>([
       v-model="selectArrayValue"
       :items="selectItems"
       :display-fn="(value) => value"
-      :filter-fn="(option, searchTerm) => option.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())"
       :is-loading="false"
-      icon-left="translate01"
       label="Select a fruit"
+      icon-left="translate01"
       placeholder="Select a fruit"
+      hint="You can select multiple fruits."
     >
-      <template #empty>
-        <span class="p-1.5 text-sm text-gray-700">
-          No results
-        </span>
-      </template>
-
-      <template #option-content="{ item }">
-        <div class="flex items-center justify-between pr-4">
-          <div class="flex items-center gap-x-2">
-            <AppIcon icon="translate01" />
-            {{ item.value }}
-          </div>
-
-          <AppTag>
-            {{ item.value }}
-          </AppTag>
-        </div>
-      </template>
-
       <template #value="{ value: vv }">
         <div class="w-full items-center justify-between truncate pr-2">
           Fruits
@@ -184,16 +195,16 @@ const selectItems = ref<SelectItem<string>[]>([
       :display-fn="(value) => value"
       :filter-fn="(option, searchTerm) => option.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())"
       :is-loading="true"
+      :is-touched="false"
+      :errors="{
+        _errors: ['This is an error message.'],
+      }"
+      :is-disabled="true"
       icon-left="translate01"
       label="Select a fruit"
       placeholder="Select a fruit"
+      hint="You can select multiple fruits."
     >
-      <template #empty>
-        <span class="p-1.5 text-sm text-gray-700">
-          No results
-        </span>
-      </template>
-
       <template #tag="{ value: vv }">
         <AppSelectValueTag :value="vv">
           {{ vv }}
@@ -213,5 +224,10 @@ const selectItems = ref<SelectItem<string>[]>([
         </div>
       </template>
     </AppSelect>
+
+    <AppPhoneNumberField
+      v-model="phoneNumberValue"
+      label="Phone number"
+    />
   </div>
 </template>

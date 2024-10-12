@@ -99,6 +99,7 @@ const isEmpty = computed<boolean>(() => (selectContext.modelValue.value as Array
           :id="selectContext.inputId.value"
           :data-test-id="selectContext.testId.value"
           :disabled="selectContext.isDisabled.value"
+          :aria-describedby="`${selectContext.inputId.value}-error ${selectContext.inputId.value}-hint`"
           :class="{
             'pointer-events-none': selectContext.isDisabled.value,
           }"

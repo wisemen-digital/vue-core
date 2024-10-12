@@ -74,6 +74,7 @@ const isEmpty = computed<boolean>(() => {
       :id="selectContext.inputId.value"
       :class="selectBoxClasses"
       :disabled="selectContext.isDisabled.value"
+      :aria-describedby="`${selectContext.inputId.value}-error ${selectContext.inputId.value}-hint`"
       @focus="selectContext.onTriggerFocus"
       @blur="selectContext.onTriggerBlur"
       @mouseenter="selectContext.onTriggerMouseEnter"

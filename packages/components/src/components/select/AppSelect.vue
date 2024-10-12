@@ -11,7 +11,12 @@ import {
   useSlots,
   watch,
 } from 'vue'
+import { useI18n } from 'vue-i18n'
 
+import AppCollapsable from '@/components/collapsable/AppCollapsable.vue'
+import AppInputFieldError from '@/components/input-field-error/AppInputFieldError.vue'
+import AppInputFieldHint from '@/components/input-field-hint/AppInputFieldHint.vue'
+import AppInputFieldLabel from '@/components/input-field-label/AppInputFieldLabel.vue'
 import AppPopover from '@/components/popover/AppPopover.vue'
 import AppPopoverAnchor from '@/components/popover/AppPopoverAnchor.vue'
 import AppSelectFilter from '@/components/select/AppSelectFilter.vue'
@@ -46,6 +51,7 @@ const isMouseOver = ref<boolean>(false)
 
 const style = selectStyle()
 
+const { t } = useI18n()
 const slots = useSlots()
 const hasValueSlot = computed<boolean>(() => slots.value !== undefined)
 
@@ -62,6 +68,22 @@ const hasError = computed<boolean>(() => props.errors !== undefined && props.isT
 
 const dropdownContent = computed<string>(() => style.dropdownContent())
 const listboxContent = computed<string>(() => style.listboxContent())
+
+const labelClasses = computed<string>(() => style.label({
+  hasError: hasError.value,
+  isDisabled: props.isDisabled,
+  isFocused: isFocused.value,
+  isHovered: isHovered.value,
+}))
+
+const hintClasses = computed<string>(() => style.hint({
+  hasError: hasError.value,
+  isDisabled: props.isDisabled,
+  isFocused: isFocused.value,
+  isHovered: isHovered.value,
+}))
+
+const errorClasses = computed<string>(() => style.error())
 
 const isMultiple = computed<boolean>(() => Array.isArray(model.value))
 
@@ -116,6 +138,30 @@ const filteredItems = computed<SelectItem<TValue extends Array<infer U> ? U : TV
     : TValue>[]
 })
 
+const hasNoResults = computed<boolean>(() => {
+  function hasOptions(items: SelectItem<TValue>[]): boolean {
+    for (const item of items) {
+      if (item.type === 'option') {
+        return true
+      }
+
+      if (item.type === 'group') {
+        const groupHasOptions = hasOptions(item.items)
+
+        if (groupHasOptions) {
+          return true
+        }
+      }
+    }
+
+    return false
+  }
+
+  return !hasOptions(filteredItems.value)
+})
+
+const searchPlaceholder = computed<string>(() => props.searchPlaceholder ?? t('components.select.search_placeholder'))
+
 function onTriggerMouseEnter(): void {
   isMouseOver.value = true
 }
@@ -162,12 +208,14 @@ provideSelectContext({
   isFocused: computed<boolean>(() => isFocused.value),
   isHovered,
   isLoading: computed<boolean>(() => props.isLoading),
+  isMultiple,
   isOpen: computed<boolean>(() => isOpen.value),
   displayFn: props.displayFn as SelectDisplayFn<SelectValue>,
   iconLeft: computed<Icon | null>(() => props.iconLeft),
   iconRight: computed<Icon>(() => props.iconRight),
   modelValue: model as Ref<SelectValue>,
   placeholder: computed<null | string>(() => props.placeholder),
+  searchPlaceholder,
   searchTerm,
   onTriggerBlur,
   onTriggerFocus,
@@ -179,7 +227,19 @@ provideSelectContext({
 
 <template>
   <div :style="props.styleConfig">
-    <!-- TODO: label -->
+    <slot
+      v-if="props.label !== null"
+      :input-id="inputId"
+      name="label"
+    >
+      <AppInputFieldLabel
+        :for="inputId"
+        :label="props.label"
+        :is-required="props.isRequired"
+        :class="labelClasses"
+      />
+    </slot>
+
     <AppPopover
       v-model:is-open="isOpen"
       :align="props.align"
@@ -189,6 +249,11 @@ provideSelectContext({
       :offset-in-px="props.offsetInPx"
       :popover-width="props.popoverWidth"
       :side="props.side"
+      :style-config="{
+        '--popover-max-width-default': 'var(--select-dropdown-max-width-default)',
+        '--popover-min-width-default': 'var(--select-dropdown-min-width-default)',
+        ...props.styleConfig ?? {},
+      }"
     >
       <template #default>
         <AppPopoverAnchor>
@@ -229,15 +294,23 @@ provideSelectContext({
             :multiple="isMultiple"
             @update:model-value="onModelValueUpdate"
           >
-            <slot name="filter">
+            <slot
+              v-if="props.filterFn !== null"
+              name="filter"
+            >
               <AppSelectFilter />
             </slot>
 
             <ListboxContent :class="listboxContent">
               <slot
-                v-if="filteredItems.length === 0"
-                name="empty"
-              />
+                v-if="hasNoResults"
+                :search-term="searchTerm"
+                name="no-results"
+              >
+                <span class="block px-select-option-padding-x-default py-select-option-padding-y-default text-subtext text-tertiary">
+                  {{ t('components.select.empty_text', { searchTerm }) }}
+                </span>
+              </slot>
 
               <template v-else>
                 <AppSelectItem
@@ -288,7 +361,29 @@ provideSelectContext({
         </div>
       </template>
     </AppPopover>
-    <!-- TODO: error -->
-    <!-- TODO: hint -->
+
+    <slot name="bottom">
+      <AppCollapsable>
+        <div v-if="hasError">
+          <slot name="error">
+            <AppInputFieldError
+              :errors="props.errors"
+              :class="errorClasses"
+              :input-id="inputId"
+            />
+          </slot>
+        </div>
+
+        <div v-else-if="props.hint !== null">
+          <slot name="hint">
+            <AppInputFieldHint
+              :input-id="inputId"
+              :hint="props.hint"
+              :class="hintClasses"
+            />
+          </slot>
+        </div>
+      </AppCollapsable>
+    </slot>
   </div>
 </template>

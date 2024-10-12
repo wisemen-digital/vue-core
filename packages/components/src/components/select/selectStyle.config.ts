@@ -56,6 +56,7 @@ export interface SelectStyleConfig extends SelectOptionStyleConfig {
   '--select-dropdown-border-radius-default': string
   '--select-dropdown-max-height-default': string
   '--select-dropdown-max-width-default': string
+  '--select-dropdown-min-width-default': string
   '--select-dropdown-padding-x-default': string
   '--select-dropdown-padding-y-default': string
   '--select-dropdown-shadow-default': string
@@ -167,6 +168,7 @@ defineStyleConfig({
     '--select-dropdown-border-radius-default': 'var(--radius-md)',
     '--select-dropdown-max-height-default': '320px',
     '--select-dropdown-max-width-default': 'auto',
+    '--select-dropdown-min-width-default': 'auto',
     '--select-dropdown-padding-x-default': 'var(--spacing-sm)',
     '--select-dropdown-padding-y-default': 'var(--spacing-sm)',
     '--select-dropdown-shadow-default': 'var(--shadow-xl)',
@@ -180,7 +182,7 @@ defineStyleConfig({
     '--select-group-content-padding-y-default': 'var(--spacing-none)',
     '--select-group-label-font-size-default': 'var(--text-subtext)',
     '--select-group-label-font-weight-default': '500',
-    '--select-group-label-spacing-bottom-default': 'var(--spacing-xs)',
+    '--select-group-label-spacing-bottom-default': 'var(--spacing-md)',
     '--select-group-label-spacing-top-default': 'var(--spacing-md)',
     '--select-group-label-spacing-x-default': 'var(--spacing-md)',
     '--select-group-label-text-color-default': 'var(--text-tertiary)',
@@ -217,7 +219,7 @@ defineStyleConfig({
     '--select-loader-size-default': '14px',
     '--select-min-height-default': '40px',
     '--select-option-bg-color-default': 'var(--bg-primary)',
-    '--select-option-bg-color-disabled': 'var(--bg-disabled-subtle)',
+    '--select-option-bg-color-disabled': 'var(--bg-primary)',
     '--select-option-bg-color-highlighted': 'var(--bg-primary-hover)',
     '--select-option-bg-color-hover': 'var(--bg-primary-hover)',
     '--select-option-bg-color-selected': 'var(--bg-primary)',

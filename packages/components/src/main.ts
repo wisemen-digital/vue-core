@@ -16,6 +16,10 @@ const i18n = createI18n({
           hide_password: 'Hide password',
           show_password: 'Show password',
         },
+        select: {
+          empty_text: 'No results found for \'{searchTerm}\'.',
+          search_placeholder: 'Search...',
+        },
       },
     },
   },

@@ -36,8 +36,8 @@ const selectContext = injectSelectContext()
         '--text-field-with-icon-left-padding-left-default': 'var(--spacing-md)',
         '--text-field-icon-left-spacing-default': 'var(--spacing-md)',
       }"
+      :placeholder="selectContext.searchPlaceholder.value"
       icon-left="searchLg"
-      placeholder="Search..."
       class="pb-select-dropdown-padding-y-default"
     />
   </ListboxFilter>

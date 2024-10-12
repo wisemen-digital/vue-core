@@ -18,12 +18,14 @@ interface SelectContext {
   isFocused: ComputedRef<boolean>
   isHovered: ComputedRef<boolean>
   isLoading: ComputedRef<boolean>
+  isMultiple: ComputedRef<boolean>
   isOpen: ComputedRef<boolean>
   displayFn: SelectDisplayFn<SelectValue>
   iconLeft: ComputedRef<Icon | null>
   iconRight: ComputedRef<Icon>
   modelValue: Ref<SelectValue>
   placeholder: ComputedRef<null | string>
+  searchPlaceholder: ComputedRef<string>
   searchTerm: Ref<string>
   onTriggerBlur: () => void
   onTriggerFocus: () => void

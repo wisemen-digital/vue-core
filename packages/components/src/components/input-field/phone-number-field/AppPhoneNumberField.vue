@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import i18nCountries from 'i18n-iso-countries'
+import i18nEn from 'i18n-iso-countries/langs/en.json'
 import type { CountryCode } from 'libphonenumber-js'
 import {
   AsYouType,
@@ -14,33 +15,26 @@ import {
   ref,
 } from 'vue'
 
+import {
+  type AppPhoneNumberFieldProps,
+  appPhoneNumberFieldPropsDefaultValues,
+} from '@/components/input-field/phone-number-field/phoneNumberField.props.js'
 import AppTextField from '@/components/input-field/text-field/AppTextField.vue'
-import type { AppTextFieldProps } from '@/components/input-field/text-field/textField.props.js'
-import AppSelect from '@/components/select-old/AppSelect.vue'
+import AppSelect from '@/components/select/AppSelect.vue'
 import type { SelectItem } from '@/types/select.type.js'
 
-const props = withDefaults(defineProps<Omit<AppTextFieldProps, 'type'>>(), {
-  id: null,
-  isDisabled: false,
-  isLoading: false,
-  isReadonly: false,
-  isRequired: false,
-  isSpellCheckEnabled: false,
-  autoComplete: 'off',
-  errors: null,
-  hint: null,
-  iconLeft: null,
-  iconRight: null,
-  label: null,
-  placeholder: null,
-})
+const props = withDefaults(defineProps<AppPhoneNumberFieldProps>(), appPhoneNumberFieldPropsDefaultValues)
+
+i18nCountries.registerLocale(i18nEn)
 
 const model = defineModel<null | string>({
   required: true,
 })
 
-// TODO: default value via prop
-const countryCode = ref<CountryCode>('BE')
+const phoneNumberFieldRef = ref<InstanceType<typeof AppTextField> | null>(null)
+const phoneNumberFieldWidth = computed<number>(() => phoneNumberFieldRef.value?.$el.clientWidth ?? 0)
+
+const countryCode = ref<CountryCode>(props.defaultCountryCode)
 const countries = getCountries()
 
 const countryCodeModel = computed<CountryCode>({
@@ -129,12 +123,12 @@ function getCountryFlagUrl(countryCode: CountryCode): null | string {
 }
 
 function getCountryName(countryCode: CountryCode): null | string {
-  // TODO: locale
-  return i18nCountries.getName(countryCode, 'en-US', { select: 'official' }) ?? null
+  return i18nCountries.getName(countryCode, props.locale, { select: 'official' }) ?? null
 }
 
 function filterFn(option: CountryCode, search: string): boolean {
   const countryName = getCountryName(option)
+
   const countryCallingCode = `+${getCountryCallingCode(option)}`
 
   return option.toLowerCase().includes(search.toLowerCase())
@@ -146,6 +140,7 @@ function filterFn(option: CountryCode, search: string): boolean {
 <template>
   <AppTextField
     v-bind="props"
+    ref="phoneNumberFieldRef"
     v-model="inputModel"
     :style="{
       '--text-field-padding-left-default': '6px',
@@ -159,7 +154,7 @@ function filterFn(option: CountryCode, search: string): boolean {
         :display-fn="(value) => ''"
         :filter-fn="filterFn"
         :style-config="{
-          '--select-dropdown-max-width-default': '200px',
+          '--select-dropdown-max-width-default': `${phoneNumberFieldWidth}px`,
           '--select-ring-color-focus': 'transparent',
           '--select-border-top-color-default': 'transparent',
           '--select-border-bottom-color-default': 'transparent',
@@ -173,42 +168,53 @@ function filterFn(option: CountryCode, search: string): boolean {
           '--select-border-bottom-color-hover': 'transparent',
           '--select-border-left-color-hover': 'transparent',
           '--select-border-right-color-hover': 'transparent',
-          '--select-bg-color-focus': '#f8f8f8',
-          '--select-bg-color-hover': '#f8f8f8',
-          '--select-caret-color-focus': '#909090',
-          '--select-padding-right-default': '6px',
+          '--select-bg-color-focus': 'var(--bg-primary-hover)',
+          '--select-bg-color-hover': 'var(--bg-primary-hover)',
+          '--select-padding-right-default': 'var(--spacing-md)',
           '--select-border-radius-top-right-default': '0px',
           '--select-border-radius-bottom-right-default': '0px',
           '--select-dropdown-border-color-default': 'transparent',
+          '--select-dropdown-min-width-default': '300px',
+          '--select-shadow-default': '0 0 0 0 transparent',
+          '--select-with-icon-right-padding-right-default': '0',
         }"
-        dropdown-align="start"
-        dropdown-width="available-width"
-        class="w-16 shrink-0"
+        align="start"
+        popover-width="available-width"
+
+        class="w-[4.5rem] shrink-0"
       >
         <template #value>
           <img
             :src="getCountryFlagUrl(countryCodeModel) ?? undefined"
             :alt="getCountryName(countryCodeModel) ?? undefined"
-            class="h-3 w-5 object-contain"
+            class="h-3 w-5 shrink-0 object-contain"
           >
         </template>
 
         <template #option-content="{ item }">
-          <div class="flex items-center gap-x-2">
+          <div class="flex items-center gap-x-4 overflow-hidden">
             <img
               :src="getCountryFlagUrl(item.value) ?? undefined"
               :alt="getCountryName(item.value) ?? undefined"
               class="h-3 w-5 object-contain"
             >
 
-            <span>
-              {{ item.value }} (+{{ getCountryCallingCode(item.value) }})
-            </span>
+            <div class="flex w-full items-center overflow-hidden pr-4">
+              <span class="block truncate pr-2 leading-5">
+                {{ getCountryName(item.value) ?? item.value }}
+              </span>
+
+              <span>
+                <span class="text-xs text-secondary">
+                  (+{{ getCountryCallingCode(item.value) }})
+                </span>
+              </span>
+            </div>
           </div>
         </template>
       </AppSelect>
 
-      <span class="ml-1.5 text-text-field-font-size-default text-gray-400">
+      <span class="ml-sm text-text-field-font-size-default text-placeholder">
         {{ dialCodeDisplayValue }}
       </span>
     </template>

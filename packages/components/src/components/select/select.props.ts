@@ -95,6 +95,11 @@ export interface AppSelectProps<TValue extends SelectValue> extends Omit<Popover
    */
   placeholder?: null | string
   /**
+   * The placeholder of the search input.
+   * @default 't("components.select.search_placeholder")'
+   */
+  searchPlaceholder?: string
+  /**
    * Whether the select should remain open when the value changes.
    * @default true - when the value is an array
    * @default false - when the value is a single value
