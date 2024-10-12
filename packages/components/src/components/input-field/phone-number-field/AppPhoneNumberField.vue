@@ -177,17 +177,18 @@ function filterFn(option: CountryCode, search: string): boolean {
           '--select-dropdown-min-width-default': '300px',
           '--select-shadow-default': '0 0 0 0 transparent',
           '--select-with-icon-right-padding-right-default': '0',
+          '--select-icon-right-spacing-default': 'var(--spacing-sm)',
         }"
         align="start"
         popover-width="available-width"
 
-        class="w-[4.5rem] shrink-0"
+        class="w-16 shrink-0"
       >
         <template #value>
           <img
             :src="getCountryFlagUrl(countryCodeModel) ?? undefined"
             :alt="getCountryName(countryCodeModel) ?? undefined"
-            class="h-3 w-5 shrink-0 object-contain"
+            class="h-3 w-5 shrink-0 rounded-sm object-cover"
           >
         </template>
 
@@ -196,7 +197,7 @@ function filterFn(option: CountryCode, search: string): boolean {
             <img
               :src="getCountryFlagUrl(item.value) ?? undefined"
               :alt="getCountryName(item.value) ?? undefined"
-              class="h-3 w-5 object-contain"
+              class="h-3 w-5 rounded-sm object-cover"
             >
 
             <div class="flex w-full items-center overflow-hidden pr-4">
