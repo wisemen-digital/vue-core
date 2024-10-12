@@ -1,10 +1,8 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  @import 'reset';
   @import 'colors';
   @import 'variables';
 }

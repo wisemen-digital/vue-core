@@ -205,10 +205,8 @@ function filterFn(option: CountryCode, search: string): boolean {
                 {{ getCountryName(item.value) ?? item.value }}
               </span>
 
-              <span>
-                <span class="text-xs text-secondary">
-                  (+{{ getCountryCallingCode(item.value) }})
-                </span>
+              <span class="translate-y-px text-xs text-secondary">
+                (+{{ getCountryCallingCode(item.value) }})
               </span>
             </div>
           </div>

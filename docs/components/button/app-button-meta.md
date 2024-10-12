@@ -14,10 +14,10 @@ import AppButtonPlayground from './AppButtonPlayground.vue'
 | iconRight | `keyof Icons \| null` | The right icon of the button. |  |
 | isDisabled | `boolean` | Whether the button is disabled. |  |
 | isLoading | `boolean` | Whether the button is in a loading state. |  |
-| size | `"default" \| "sm"` | The size of the button. |  |
+| size | `"default" \| "lg" \| "sm" \| "xl" \| "2xl"` | The size of the button. |  |
 | styleConfig | `Partial<ButtonStyleConfig> \| null` |  |  |
 | type | `"button" \| "reset" \| "submit"` | The type of the button. |  |
-| variant | `"default" \| "destructive" \| "ghost" \| "muted" \| "outline" \| (string & {})` | The variant of the button. |  |
+| variant | `"default" \| "destructive-primary" \| "destructive-secondary" \| "destructive-tertiary" \| "secondary" \| "secondary-color" \| "tertiary" \| "tertiary-color"` | The variant of the button. |  |
 
 
 ## Slots
@@ -25,8 +25,8 @@ import AppButtonPlayground from './AppButtonPlayground.vue'
 | Slot | Type | Description |
 | --------- | ---- | ----------- |
 | `default` | any |  |
-| `iconLeft` | any |  |
-| `iconRight` | any |  |
+| `icon-left` | any |  |
+| `icon-right` | any |  |
 | `loader` | any |  |
 
 

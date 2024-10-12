@@ -19,8 +19,16 @@ export interface AppPhoneNumberFieldProps extends Omit<AppTextFieldProps, 'type'
   locale?: Locale
 }
 
-export const appPhoneNumberFieldPropsDefaultValues = {
+// Without this vue throws a warning
+const textFieldDefaultValues = {
   ...appTextFieldPropsDefaultValues,
+  type: undefined,
+}
+
+delete textFieldDefaultValues.type
+
+export const appPhoneNumberFieldPropsDefaultValues = {
+  ...textFieldDefaultValues,
   defaultCountryCode: 'BE',
   locale: 'en',
 } satisfies Partial<AppPhoneNumberFieldProps>

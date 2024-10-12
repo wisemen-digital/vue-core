@@ -14,10 +14,10 @@ import AppIconButtonPlayground from './AppIconButtonPlayground.vue'
 | isDisabled | `boolean` | Whether the button is disabled. |  |
 | isLoading | `boolean` | Whether the button is in a loading state. |  |
 | label* | `string` | The label for the button for accessibility |  |
-| size | `"default" \| "sm"` | The size of the button. |  |
+| size | `"default" \| "lg" \| "sm" \| "xl" \| "2xl"` | The size of the button. |  |
 | styleConfig | `Partial<IconButtonStyleConfig> \| null` |  |  |
 | type | `"button" \| "reset" \| "submit"` | The type of the button. |  |
-| variant | `"default" \| "destructive" \| "ghost" \| "muted" \| "outline"` | The variant of the button. |  |
+| variant | `"default" \| "destructive-primary" \| "destructive-secondary" \| "destructive-tertiary" \| "secondary" \| "secondary-color" \| "tertiary" \| "tertiary-color"` | The variant of the button. |  |
 
 
 ## Events

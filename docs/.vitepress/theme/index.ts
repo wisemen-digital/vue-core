@@ -1,7 +1,7 @@
 import '@wisemen/vue-core/style.css'
 import './index.scss'
-import './override.css'
 
+// import './override.css'
 import DefaultTheme from 'vitepress/theme'
 import { createI18n } from 'vue-i18n'
 

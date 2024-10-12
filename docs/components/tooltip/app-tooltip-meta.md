@@ -29,5 +29,5 @@ import AppTooltipPlayground from './AppTooltipPlayground.vue'
 | Slot | Type | Description |
 | --------- | ---- | ----------- |
 | `content` | None |  |
-| `default` | None |  |
+| `trigger` | None |  |
 

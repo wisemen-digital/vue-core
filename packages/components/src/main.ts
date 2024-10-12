@@ -21,6 +21,9 @@ const i18n = createI18n({
           search_placeholder: 'Search...',
         },
       },
+      shared: {
+        close: 'Close',
+      },
     },
   },
 })

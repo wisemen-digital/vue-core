@@ -1,6 +1,7 @@
 import type { ButtonStyleConfig } from '@/components/button/button/buttonStyle.config'
 import type { IconButtonStyleConfig } from '@/components/button/icon-button/iconButtonStyle.config'
 import type { CheckboxStyleConfig } from '@/components/checkbox/checkboxStyle.config'
+import type { DialogStyleConfig } from '@/components/dialog/dialogStyle.config'
 import type { DropdownMenuStyleConfig } from '@/components/dropdown-menu/dropdownMenuStyle.config'
 import type { IconStyleConfig } from '@/components/icon/iconStyle.config'
 import type { TextareaStyleConfig } from '@/components/input-field/text-area/textareaStyle.config'
@@ -26,6 +27,7 @@ export interface BaseStyleConfig {
 export interface ComponentStyleConfigRegistry {
   button: ButtonStyleConfig
   checkbox: CheckboxStyleConfig
+  dialog: DialogStyleConfig
   dropdownMenu: DropdownMenuStyleConfig
   icon: IconStyleConfig
   iconButton: IconButtonStyleConfig

@@ -27,13 +27,14 @@ import AppTextFieldPlayground from './AppTextFieldPlayground.vue'
 | placeholder | `string \| null` | The placeholder text of the input. |  |
 | styleConfig | `Partial<TextFieldStyleConfig> \| null` |  |  |
 | testId | `string \| null` | The test id of the input. |  |
-| type | `"search" \| "text" \| "date" \| "datetime-local" \| "email" \| "password" \| "tel" \| "time" \| "url"` | The type of the input. |  |
+| type | `"search" \| "text" \| "email" \| "password" \| "tel" \| "time" \| "url"` | The type of the input. |  |
 
 
 ## Slots
 
 | Slot | Type | Description |
 | --------- | ---- | ----------- |
+| `bottom` | any |  |
 | `error` | any |  |
 | `hint` | any |  |
 | `icon-left` | any |  |

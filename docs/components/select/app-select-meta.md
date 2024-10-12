@@ -10,15 +10,17 @@ import AppSelectPlayground from './AppSelectPlayground.vue'
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
+| align | `PopoverAlign` | The alignment of the popover content. |  |
+| collisionPaddingInPx | `number` | The padding of the popover collision. |  |
+| containerElement | `HTMLElement \| null` | The element to render the tooltip in. By default this is the viewport |  |
 | displayFn* | `SelectDisplayFn<SelectValue>` | The display function for the selected value. |  |
-| dropdownAlign | `PopoverAlign` | The alignment of the dropdown. |  |
-| dropdownSide | `PopoverSide` | The side of the dropdown. |  |
-| dropdownWidth | `PopoverWidth` | The width of the popover. |  |
 | errors | `FormFieldErrors` | The errors associated with the input. |  |
-| filterFn | `((option: SelectValue, searchTerm: string) => boolean) \| null` | The function to filter the options. |  |
+| filterFn | `SelectFilterFn<SelectValue> \| null` | The function to filter the options. |  |
 | hint | `string \| null` | The hint text of the input. |  |
 | iconLeft | `keyof Icons \| null` | The left icon of the input. |  |
+| iconRight | `keyof Icons` | The right icon of the input. |  |
 | id | `string \| null` | The id of the input. |  |
+| isArrowVisible | `boolean` | Whether the arrow is visible. |  |
 | isDisabled | `boolean` | Whether the input is disabled. |  |
 | isLoading | `boolean` | Whether the input is loading. |  |
 | isRequired | `boolean` | Whether the input is required. |  |
@@ -26,8 +28,12 @@ import AppSelectPlayground from './AppSelectPlayground.vue'
 | items* | `SelectItem<AcceptableValue>[]` | The items of the select. |  |
 | label | `string \| null` | The label of the input. |  |
 | modelValue* | `SelectValue \| null` |  |  |
+| offsetInPx | `number` | The offset of the popover content. |  |
 | placeholder | `string \| null` | The placeholder text of the input. |  |
+| popoverWidth | `PopoverWidth \| null` | The width of the popover. |  |
+| searchPlaceholder | `string` | The placeholder of the search input. |  |
 | shouldRemainOpenOnValueChange | `boolean \| null` | Whether the select should remain open when the value changes. |  |
+| side | `"bottom" \| "left" \| "right" \| "top"` | The side of the trigger the tooltip should be on. |  |
 | styleConfig | `Partial<SelectStyleConfig> \| null` |  |  |
 | testId | `string \| null` | The test id of the input. |  |
 
@@ -36,16 +42,20 @@ import AppSelectPlayground from './AppSelectPlayground.vue'
 
 | Slot | Type | Description |
 | --------- | ---- | ----------- |
-| `caret` | None |  |
+| `bottom` | None |  |
 | `error` | None |  |
+| `filter` | None |  |
 | `group-label` | \{ label: string; \} |  |
 | `hint` | None |  |
 | `label` | \{ inputId: string; \} |  |
 | `loader` | None |  |
+| `no-results` | \{ searchTerm: string; \} |  |
+| `option` | \{ item: SelectOption\<AcceptableValue\>; \} |  |
 | `option-content` | \{ item: SelectOption\<AcceptableValue\>; \} |  |
 | `option-indicator` | \{ item: SelectOption\<AcceptableValue\>; \} |  |
-| `right` | \{ isFocused: boolean; isHovered: boolean; isDisabled: boolean; hasError: boolean; \} |  |
 | `separator` | None |  |
+| `tag` | \{ value: SelectValue; \} |  |
+| `top` | None |  |
 | `value` | \{ value: NonNullable\<SelectValue\>; \} |  |
 
 
