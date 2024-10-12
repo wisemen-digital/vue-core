@@ -55,7 +55,6 @@ export interface AppSwitchProps {
    * The style config of the switch.
    */
   styleConfig?: StyleConfig<'switch'> | null
-
 }
 
 export const appSwitchPropsDefaultValues = {
