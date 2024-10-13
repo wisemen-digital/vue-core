@@ -140,7 +140,6 @@ function onRowClick(row: ExampleDataType): void {
   >
     <template #default>
       <div class="w-full space-y-4">
-        {{ localPagination.pagination }}
         <AppTableSearchInput :pagination="localPagination.pagination" />
         <AppTable
           :is-loading="false"
