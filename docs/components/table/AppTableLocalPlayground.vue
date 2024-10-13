@@ -6,6 +6,7 @@ import {
   AppTable,
   useLocalPagination,
 } from '@wisemen/vue-core'
+import { computed } from 'vue'
 
 const controls = createControls({})
 
@@ -18,7 +19,7 @@ interface ExampleDataType {
 
 interface ExampleFilters {}
 
-const exampleData: ExampleDataType[] = [
+const exampleData = computed<ExampleDataType[]>(() => [
   { firstName: 'John', lastName: 'Doe', age: 30, hasDriversLicense: true },
   { firstName: 'Jane', lastName: 'Doe', age: 25, hasDriversLicense: false },
   { firstName: 'Alice', lastName: 'Smith', age: 35, hasDriversLicense: true },
@@ -47,24 +48,24 @@ const exampleData: ExampleDataType[] = [
   { firstName: 'Xavier', lastName: 'Brown', age: 150, hasDriversLicense: false },
   { firstName: 'Yara', lastName: 'White', age: 155, hasDriversLicense: true },
   { firstName: 'Zane', lastName: 'Black', age: 160, hasDriversLicense: false },
-]
+])
 
-const exampleColumns: TableColumn<ExampleDataType>[] = [
+const exampleColumns = computed<TableColumn<ExampleDataType>[]>(() => [
   {
     id: 'firstName',
     label: 'First Name',
     isSortable: true,
     width: 'auto',
-    value: (row) => row.firstName,
+    value: (row): string => row.firstName,
   },
   {
     id: 'age',
     label: 'Age',
     isSortable: true,
     width: '100px',
-    value: (row) => `${row.age}`,
+    value: (row): string => `${row.age}`,
   },
-]
+])
 
 const localPagination = useLocalPagination<ExampleDataType, ExampleFilters>({
   id: 'example',

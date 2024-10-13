@@ -130,9 +130,8 @@ export interface UsePaginationReturnType<TFilters> {
 }
 
 // Local pagination composable types
-
 export interface UseLocalPaginationOptions<TSchema, TFilters> extends UsePaginationOptions<TFilters> {
-  items: MaybeRefOrGetter<TSchema[]>
+  items: ComputedRef<TSchema[]>
 }
 
 export interface UseLocalPaginationReturnType<TSchema, TFilters> {

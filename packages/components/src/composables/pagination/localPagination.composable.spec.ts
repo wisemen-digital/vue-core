@@ -3,6 +3,7 @@ import {
   expect,
   it,
 } from 'vitest'
+import { computed } from 'vue'
 
 import { useLocalPagination } from '@/composables/pagination/localPagination.composable'
 
@@ -11,7 +12,7 @@ describe('localPagination', () => {
     const localPagination = useLocalPagination({
       id: 'test',
       disableRouteQuery: true,
-      items: [],
+      items: computed<string[]>(() => []),
     })
 
     const expectedResult = {
@@ -29,10 +30,10 @@ describe('localPagination', () => {
   })
 
   it('should sort items', () => {
-    const items = [
+    const items = computed<{ name: string, age: number }[]>(() => [
       { name: 'b', age: 2 },
       { name: 'a', age: 1 },
-    ]
+    ])
 
     const localPagination = useLocalPagination({
       id: 'test',
@@ -52,10 +53,10 @@ describe('localPagination', () => {
   })
 
   it('should filter items using search', () => {
-    const items = [
+    const items = computed<{ name: string, age: number }[]>(() => [
       { name: 'John', age: 2 },
       { name: 'Eric', age: 1 },
-    ]
+    ])
 
     const localPagination = useLocalPagination({
       id: 'test',
@@ -71,11 +72,11 @@ describe('localPagination', () => {
   })
 
   it('should filters items with an exact match', () => {
-    const items = [
+    const items = computed<{ name: string, age: number }[]>(() => [
       { name: 'John', age: 2 },
       { name: 'Stacey', age: 3 },
       { name: 'Eric', age: 1 },
-    ]
+    ])
 
     const localPagination = useLocalPagination({
       id: 'test',
@@ -91,11 +92,11 @@ describe('localPagination', () => {
   })
 
   it('should filter items using multiple filters', () => {
-    const items = [
+    const items = computed<{ name: string, age: number, birthday: string }[]>(() => [
       { name: 'John', age: 2, birthday: '2000-01-01' },
       { name: 'Stacey', age: 2, birthday: '2000-05-05' },
       { name: 'Eric', age: 1, birthday: '2000-12-12' },
-    ]
+    ])
 
     const localPagination = useLocalPagination({
       id: 'test',
@@ -112,7 +113,7 @@ describe('localPagination', () => {
   })
 
   it('should filter items that are an array', () => {
-    const items = [
+    const items = computed<{ name: string, age: number, hobbies: string[] }[]>(() => [
       { name: 'John', age: 2, hobbies: [
         'reading',
         'running',
@@ -125,7 +126,7 @@ describe('localPagination', () => {
         'reading',
         'running',
       ] },
-    ]
+    ])
 
     const localPagination = useLocalPagination({
       id: 'test',
