@@ -1,0 +1,42 @@
+import {
+  type ComputedRef,
+  inject,
+  type InjectionKey,
+  provide,
+  type VNode,
+} from 'vue'
+
+import type { PaginatedData, Pagination } from '@/types/pagination.type'
+import type { TableColumn } from '@/types/table.type'
+
+export type TableRowComponent = ((data: unknown) => VNode | null) | null
+
+interface TableContext {
+  hasReachedHorizontalScrollEnd: ComputedRef<boolean>
+  isFirstColumnSticky: ComputedRef<boolean>
+  isLastColumnSticky: ComputedRef<boolean>
+  isLoading: ComputedRef<boolean>
+  isScrolledToRight: ComputedRef<boolean>
+  canScrollVertically: ComputedRef<boolean>
+  columns: ComputedRef<TableColumn<unknown>[]>
+  data: ComputedRef<PaginatedData<unknown> | null>
+  gridColsStyle: ComputedRef<string>
+  pagination: ComputedRef<Pagination<unknown>>
+  rowClass: ComputedRef<((row: unknown) => string) | null>
+}
+
+const tableContextKey: InjectionKey<TableContext> = Symbol('tableContext')
+
+export function provideTableContext(context: TableContext): void {
+  provide(tableContextKey, context)
+}
+
+export function injectTableContext(): TableContext {
+  const context = inject(tableContextKey)
+
+  if (context === undefined) {
+    throw new Error('Table context is not provided. Please use `provideTableContext` to provide the context.')
+  }
+
+  return context
+}

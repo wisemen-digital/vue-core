@@ -16,11 +16,13 @@ import '@/components/tag/tagStyle.config'
 import '@/components/checkbox/checkboxStyle.config'
 import '@/components/input-field/text-area/textareaStyle.config'
 import '@/components/dialog/dialogStyle.config'
+import '@/components/table/tableStyle.config'
 
 import Buttons from '@/Buttons.vue'
 import Dialogs from '@/Dialogs.vue'
 import InputFields from '@/InputFields.vue'
 import Popovers from '@/Popovers.vue'
+import TablePlayground from '@/TablePlayground.vue'
 import Tabs from '@/Tabs.vue'
 import Tooltips from '@/Tooltips.vue'
 
@@ -28,7 +30,10 @@ import Checkboxes from './Checkboxes.vue'
 </script>
 
 <template>
+  <TablePlayground />
+
   <div
+    v-if="false"
     :style="{
       backgroundColor: 'var(--bg-primary)',
     }"

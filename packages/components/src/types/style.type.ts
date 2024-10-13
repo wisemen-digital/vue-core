@@ -16,6 +16,7 @@ import type {
   SelectOptionStyleConfig,
   SelectStyleConfig,
 } from '@/components/select/selectStyle.config'
+import type { TableStyleConfig } from '@/components/table/tableStyle.config'
 import type { TabsStyleConfig } from '@/components/tabs/tabsStyle.config'
 import type { TagStyleConfig } from '@/components/tag/tagStyle.config'
 import type { TooltipStyleConfig } from '@/components/tooltip/tooltipStyle.config'
@@ -37,6 +38,7 @@ export interface ComponentStyleConfigRegistry {
   popover: PopoverStyleConfig
   select: SelectStyleConfig
   selectOption: SelectOptionStyleConfig
+  table: TableStyleConfig
   tabs: TabsStyleConfig
   tag: TagStyleConfig
   textField: TextFieldStyleConfig

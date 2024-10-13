@@ -24,7 +24,7 @@ defineStyleConfig({
     '--tag-font-size-default': 'var(--text-subtext)',
     '--tag-font-weight-default': '500',
     '--tag-padding-x-default': 'var(--spacing-sm)',
-    '--tag-padding-y-default': 'var(--spacing-xs)',
+    '--tag-padding-y-default': 'var(--spacing-none)',
     '--tag-text-color-default': 'var(--text-primary)',
     '--tag-text-color-disabled': 'var(--text-disabled)',
   },

@@ -20,9 +20,20 @@ const i18n = createI18n({
           empty_text: 'No results found for \'{searchTerm}\'.',
           search_placeholder: 'Search...',
         },
+        table: {
+          page_count: '{startIndex} - {endIndex} of {totalItems}',
+        },
       },
       shared: {
         close: 'Close',
+      },
+    },
+  },
+  numberFormats: {
+    en: {
+      default: {
+        minimumFractionDigits: 0,
+        style: 'decimal',
       },
     },
   },

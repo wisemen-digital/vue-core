@@ -18,5 +18,5 @@ export const popoverTailwindConfig = {
   },
   minWidth: {
     'popover-min-width-default': 'var(--popover-min-width-default)',
-  }
+  },
 } satisfies Config['theme']

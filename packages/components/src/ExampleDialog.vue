@@ -7,7 +7,7 @@ import AppDialogTitle from '@/components/dialog/AppDialogTitle.vue'
 
 <template>
   <AppDialog>
-    <div class="h-52 w-96">
+    <div class="h-[500px] w-[700px]">
       <AppDialogTitle>
         <h1>Title</h1>
       </AppDialogTitle>

@@ -37,6 +37,7 @@ export const extendedConfig = {
             'dropdown-menu-item-font-size-default',
             'tag-font-size-default',
             'textarea-font-size-default',
+            'table-header-label-font-size-default',
           ],
         },
       ],

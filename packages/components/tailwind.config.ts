@@ -14,6 +14,7 @@ import { inputFieldHintTailwindConfig } from './src/components/input-field-hint/
 import { inputFieldLabelTailwindConfig } from './src/components/input-field-label/inputFieldLabel.tailwind'
 import { popoverTailwindConfig } from './src/components/popover/popover.tailwind'
 import { selectTailwindConfig } from './src/components/select/select.tailwind'
+import { tableTailwindConfig } from './src/components/table/table.tailwind'
 import { tabsTailwindConfig } from './src/components/tabs/tabs.tailwind'
 import { tagTailwindConfig } from './src/components/tag/tag.tailwind'
 import { tooltipTailwindConfig } from './src/components/tooltip/tooltip.tailwind'
@@ -22,6 +23,7 @@ export default {
   content: [
     './src/**/*.{vue,ts}',
   ],
+  darkMode: 'class',
   plugins: [],
   theme: {
     extend: {
@@ -43,7 +45,11 @@ export default {
         dropdownMenuTailwindConfig,
         textareaTailwindConfig,
         dialogTailwindConfig,
+        tableTailwindConfig,
         {
+          animation: {
+            shimmer: 'shimmer 2s ease-in-out infinite',
+          },
           backgroundColor: {
             'active': 'var(--bg-active)',
             'brand-primary': 'var(--bg-brand-primary)',
@@ -77,6 +83,9 @@ export default {
             'warning-secondary': 'var(--bg-warning-secondary)',
             'warning-solid': 'var(--bg-warning-solid)',
           },
+          // backgroundImage: {
+          //   shimmer: 'linear-gradient(-90deg, var(--bg-secondary) 0%, var(--bg-quaternary) 50%, var(--bg-secondary) 100%)',
+          // },
           borderColor: {
             'brand': 'var(--border-brand)',
             'brand-alt': 'var(--border-brand-alt)',
@@ -87,6 +96,10 @@ export default {
             'primary': 'var(--border-primary)',
             'secondary': 'var(--border-secondary)',
             'tertiary': 'var(--border-tertiary)',
+          },
+          boxShadow: {
+            'table-sticky-left-column': '2px 0px 3px -2px rgba(0,0,0,0.1)',
+            'table-sticky-right-column': '-2px 0px 3px -2px rgba(0,0,0,0.1)',
           },
           colors: {
             'brand-primary-25': 'var(--brand-primary-25)',
@@ -183,7 +196,6 @@ export default {
             subtext: 'var(--text-subtext)',
             subtitle: 'var(--text-subtitle)',
           },
-
           gap: {
             '2xl': '20px',
             '3xl': '24px',
@@ -202,6 +214,28 @@ export default {
             'xl': '16px',
             'xs': '4px',
             'xxs': '2px',
+          },
+          // keyframes: {
+          //   shimmer: {
+          //     '0%': {
+          //       'background-position': '0% 0%',
+          //       'background-size': '400% 400%',
+          //     },
+          //     '100%': {
+          //       'background-position': '-133% 0%',
+          //       'background-size': '400% 400%',
+          //     },
+          //   },
+          // },
+          keyframes: {
+            shimmer: {
+              '0%': {
+                transform: 'translateX(-100%)',
+              },
+              '100%': {
+                transform: 'translateX(100%)',
+              },
+            },
           },
           margin: {
             '2xl': '20px',
@@ -267,18 +301,19 @@ export default {
             'warning-primary': 'var(--text-warning-primary)',
             'white': 'var(--text-white)',
           },
+          transitionTimingFunction: {
+            'dialog': 'cubic-bezier(0.22, 0.68, 0, 1.51)',
+            'dialog-overlay': 'cubic-bezier(0.17, 0.67, 0.16, 0.99)',
+          },
+          zIndex: {
+            'dialog': '40',
+            'dialog-overlay': '39',
+            'popover': '50',
+            'tabs-item': '1',
+          },
         },
       ),
-      transitionTimingFunction: {
-        'dialog': 'cubic-bezier(0.22, 0.68, 0, 1.51)',
-        'dialog-overlay': 'cubic-bezier(0.17, 0.67, 0.16, 0.99)',
-      },
-      zIndex: {
-        'dialog': '40',
-        'dialog-overlay': '39',
-        'popover': '50',
-        'tabs-item': '1',
-      },
     },
   },
+// @ts-expect-error - Infinitely deep
 } satisfies Config
