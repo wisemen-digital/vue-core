@@ -59,7 +59,7 @@ export function useLocalPagination<TSchema, TFilters>({
       const dataToSearch = data[key as keyof TSchema]
 
       if (typeof value === 'string') {
-        return dataToSearch?.toString().includes(value.toLowerCase())
+        return dataToSearch?.toString().toLowerCase().includes(value.toLowerCase())
       }
 
       if (Array.isArray(value)) {

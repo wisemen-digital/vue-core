@@ -71,7 +71,7 @@ describe('localPagination', () => {
     ])
   })
 
-  it('should filters items with an exact match', () => {
+  it('should filters items with an exact match on a number', () => {
     const items = computed<{ name: string, age: number }[]>(() => [
       { name: 'John', age: 2 },
       { name: 'Stacey', age: 3 },
@@ -85,6 +85,26 @@ describe('localPagination', () => {
     })
 
     localPagination.pagination.handleFilterChange({ age: 2 })
+
+    expect(localPagination.data.value.data).toStrictEqual([
+      { name: 'John', age: 2 },
+    ])
+  })
+
+  it('should filters items with an exact match with a string', () => {
+    const items = computed<{ name: string, age: number }[]>(() => [
+      { name: 'John', age: 2 },
+      { name: 'Stacey', age: 3 },
+      { name: 'Eric', age: 1 },
+    ])
+
+    const localPagination = useLocalPagination({
+      id: 'test',
+      disableRouteQuery: true,
+      items,
+    })
+
+    localPagination.pagination.handleFilterChange({ name: 'John' })
 
     expect(localPagination.data.value.data).toStrictEqual([
       { name: 'John', age: 2 },

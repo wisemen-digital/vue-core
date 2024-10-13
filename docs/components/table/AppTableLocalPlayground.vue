@@ -1,9 +1,13 @@
 <script setup lang="ts">
 import ComponentPlayground from '@docs/playground/components/ComponentPlayground.vue'
 import { createControls } from '@docs/playground/utils/createContols'
-import type { TableColumn } from '@wisemen/vue-core'
+import type {
+  PaginationFilter,
+  TableColumn,
+} from '@wisemen/vue-core'
 import {
   AppTable,
+  AppTableSearchInput,
   useLocalPagination,
 } from '@wisemen/vue-core'
 import { computed } from 'vue'
@@ -17,7 +21,12 @@ interface ExampleDataType {
   lastName: string
 }
 
-interface ExampleFilters {}
+interface ExampleFilters {
+  hasDriversLicense: boolean
+  age: number
+  firstName: string
+  lastName: string
+}
 
 const exampleData = computed<ExampleDataType[]>(() => [
   { firstName: 'John', lastName: 'Doe', age: 30, hasDriversLicense: true },
@@ -59,6 +68,20 @@ const exampleColumns = computed<TableColumn<ExampleDataType>[]>(() => [
     value: (row): string => row.firstName,
   },
   {
+    id: 'lastName',
+    label: 'Last Name',
+    isSortable: true,
+    width: 'auto',
+    value: (row): string => row.lastName,
+  },
+  {
+    id: 'hasDriversLicense',
+    label: 'Has Drivers License',
+    isSortable: true,
+    width: 'auto',
+    value: (row): string => (row.hasDriversLicense ? 'Yes' : 'No'),
+  },
+  {
     id: 'age',
     label: 'Age',
     isSortable: true,
@@ -67,16 +90,42 @@ const exampleColumns = computed<TableColumn<ExampleDataType>[]>(() => [
   },
 ])
 
+const filters = computed<PaginationFilter<ExampleFilters>[]>(() => [
+  {
+    id: 'hasDriversLicense',
+    type: 'select',
+    label: 'Has Drivers License',
+    placeholder: 'All',
+    displayFn: (value): string => (value ? 'Yes' : 'No'),
+    options: [
+      { type: 'option', value: true },
+      { type: 'option', value: false },
+    ],
+  },
+  {
+    id: 'age',
+    type: 'number',
+    label: 'Age',
+    placeholder: 'Age',
+  },
+  {
+    id: 'firstName',
+    label: 'First Name',
+    type: 'text',
+    placeholder: 'First Name',
+  },
+  {
+    placeholder: 'Last Name',
+    type: 'text',
+    label: 'Last Name',
+    id: 'lastName',
+  },
+])
+
 const localPagination = useLocalPagination<ExampleDataType, ExampleFilters>({
   id: 'example',
   items: exampleData,
   disableRouteQuery: true,
-  defaultPaginationOptions: {
-    pagination: {
-      page: 0,
-      perPage: 10,
-    },
-  },
 })
 
 function onRowClick(row: ExampleDataType): void {
@@ -90,15 +139,19 @@ function onRowClick(row: ExampleDataType): void {
     :controls="controls"
   >
     <template #default>
-      <AppTable
-        :is-loading="false"
-        :data="localPagination.data.value"
-        :columns="exampleColumns"
-        :filters="[]"
-        :pagination="localPagination.pagination"
-        :row-click="onRowClick"
-        title="Table"
-      />
+      <div class="w-full space-y-4">
+        {{ localPagination.pagination }}
+        <AppTableSearchInput :pagination="localPagination.pagination" />
+        <AppTable
+          :is-loading="false"
+          :data="localPagination.data.value"
+          :columns="exampleColumns"
+          :filters="filters"
+          :pagination="localPagination.pagination"
+          :row-click="onRowClick"
+          title="Table"
+        />
+      </div>
     </template>
   </ComponentPlayground>
 </template>
