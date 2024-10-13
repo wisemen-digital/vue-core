@@ -1,16 +1,21 @@
 <script setup lang="ts">
 import { h, ref } from 'vue'
 
+import AppIconButton from '@/components/button/icon-button/AppIconButton.vue'
+import AppCheckbox from '@/components/checkbox/AppCheckbox.vue'
 import AppTable from '@/components/table/AppTable.vue'
 import AppTableCell from '@/components/table/AppTableCell.vue'
 import AppTableHeaderCell from '@/components/table/AppTableHeaderCell.vue'
+import AppTableRowExpandToggle from '@/components/table/AppTableRowExpandToggle.vue'
 import { usePagination } from '@/composables/pagination.composable.js'
+import TablePlaygroundCheckboxCell from '@/TablePlaygroundCheckboxCell.vue'
 import type { TableColumn } from '@/types/table.type.js'
 
 interface ExampleDataType {
   isMarried: boolean
   isWorking: boolean
   age: number
+  canFly: boolean
   firstName: string
   lastName: string
 }
@@ -18,11 +23,17 @@ interface ExampleDataType {
 const columns: TableColumn<ExampleDataType>[] = [
   {
     isSortable: true,
-    cell: (row) => h(AppTableCell, () => row.firstName),
+    cell: (row) => h(TablePlaygroundCheckboxCell, {
+      label: row.firstName,
+    }),
+    frozen: 'left',
     header: (column) => h(AppTableHeaderCell, {
       column,
     }, {
       label: () => 'First name',
+      left: () => h(AppCheckbox, {
+        modelValue: false,
+      }),
     }),
     key: 'firstName',
     width: '200px',
@@ -36,6 +47,7 @@ const columns: TableColumn<ExampleDataType>[] = [
   },
   {
     cell: (row) => h(AppTableCell, () => `${row.age} years old`),
+    frozen: 'left',
     headerLabel: 'Age',
     key: 'age',
     width: '150px',
@@ -51,6 +63,25 @@ const columns: TableColumn<ExampleDataType>[] = [
     headerLabel: 'Working',
     key: 'isWorking',
   },
+  {
+    cell: (row) => h(AppTableCell, () => row.canFly ? 'Can fly' : 'Cannot fly'),
+    headerLabel: 'Can fly',
+    key: 'canFly',
+    width: '250px',
+  },
+  {
+    cell: () => h(AppTableCell, () => h(AppTableRowExpandToggle, () => h(AppIconButton, {
+      icon: 'chevronSelectorVertical',
+      label: '',
+      size: 'sm',
+      styleConfig: {
+        '--icon-button-icon-size-default': '14px',
+        '--icon-button-size-default': '24px',
+      },
+      variant: 'secondary',
+    }))),
+    key: 'expand',
+  },
 ]
 
 const data: ExampleDataType[] = [
@@ -58,6 +89,7 @@ const data: ExampleDataType[] = [
     isMarried: index % 2 === 0,
     isWorking: index % 2 === 0,
     age: index,
+    canFly: index % 2 === 0,
     firstName: 'John',
     lastName: 'Doe',
   })),
@@ -82,11 +114,14 @@ setTimeout(() => {
       :is-loading="isLoading"
       :pagination="pagination"
       :is-first-column-sticky="true"
-      :is-last-column-sticky="true"
+      :is-last-column-sticky="false"
       :data=" {
         total: 92,
         data,
       }"
+      :expanded-row-content="(row) => h('div', {
+        class: 'p-2',
+      }, `Custom content ${row.age}`)"
       :row-class="(row) => row.age > 40 ? 'bg-disabled-subtle cursor-not-allowed' : ''"
       class="table-borderless"
     />

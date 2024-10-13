@@ -13,10 +13,7 @@ const tableContext = injectTableContext()
 
 <template>
   <div
-    :style="{
-      gridColumn: '1 / -1',
-    }"
-    class="sticky top-0 z-20 grid h-11 grid-cols-subgrid border-b border-solid border-secondary"
+    class="sticky top-0 z-20 col-span-full grid h-11 grid-cols-subgrid border-b border-solid border-secondary"
     role="row"
   >
     <div

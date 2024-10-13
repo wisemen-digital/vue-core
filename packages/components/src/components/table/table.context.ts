@@ -20,6 +20,7 @@ interface TableContext {
   canScrollVertically: ComputedRef<boolean>
   columns: ComputedRef<TableColumn<unknown>[]>
   data: ComputedRef<PaginatedData<unknown> | null>
+  expandedRowContent: ComputedRef<((row: unknown) => VNode) | null>
   gridColsStyle: ComputedRef<string>
   pagination: ComputedRef<Pagination<unknown>>
   rowClass: ComputedRef<((row: unknown) => string) | null>

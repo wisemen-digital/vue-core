@@ -73,6 +73,8 @@ const selectItems = ref<SelectItem<string>[]>([
     type: 'group',
   },
 ])
+
+const isTouched = ref<boolean>(false)
 </script>
 
 <template>
@@ -103,13 +105,13 @@ const selectItems = ref<SelectItem<string>[]>([
 
     <AppTextField
       v-model="value"
-      :errors="{
+      :errors="value === 'wouter' ? null : {
         _errors: ['This is an error message.'],
       }"
-      :is-touched="true"
+      :is-touched="isTouched"
       icon-left="translate01"
       label="Email"
-      hint="This is a hint."
+      @blur="isTouched = true"
     />
 
     <AppPasswordField

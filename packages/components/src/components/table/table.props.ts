@@ -1,3 +1,5 @@
+import type { VNode } from 'vue'
+
 import type { PaginatedData, Pagination } from '@/types/pagination.type'
 import type { TableColumn } from '@/types/table.type'
 
@@ -24,6 +26,11 @@ export interface AppTableProps<TSchema, TFilters> {
    * The data of the table
    */
   data: PaginatedData<TSchema> | null
+  /**
+   * The content to show when a row is expanded
+   * @default null
+   */
+  expandedRowContent?: ((row: TSchema) => VNode) | null
   /**
    * The pagination of the table
    */

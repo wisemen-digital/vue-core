@@ -75,7 +75,8 @@ function leave(element: Element): void {
 .expand-leave-active {
   transition:
     height v-bind(durationString) cubic-bezier(0.645, 0.045, 0.355, 1),
-    opacity v-bind(durationString);
+    opacity v-bind(durationString),
+    transform v-bind(durationString);
   overflow: hidden;
 }
 
@@ -83,6 +84,7 @@ function leave(element: Element): void {
 .expand-leave-to {
   opacity: 0;
   height: 0;
+  transform: scale(0.98);
 }
 
 * {

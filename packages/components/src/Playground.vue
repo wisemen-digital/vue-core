@@ -33,7 +33,6 @@ import Checkboxes from './Checkboxes.vue'
   <TablePlayground />
 
   <div
-    v-if="false"
     :style="{
       backgroundColor: 'var(--bg-primary)',
     }"

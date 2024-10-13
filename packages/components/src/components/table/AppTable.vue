@@ -5,6 +5,7 @@ import {
   onMounted,
   ref,
   useSlots,
+  type VNode,
 } from 'vue'
 
 import AppTableBody from '@/components/table/AppTableBody.vue'
@@ -107,6 +108,8 @@ provideTableContext({
   canScrollVertically: computed<boolean>(() => canScrollVertically.value),
   columns: computed<TableColumn<unknown>[]>(() => props.columns as TableColumn<unknown>[]),
   data: computed<PaginatedData<unknown> | null>(() => props.data),
+  expandedRowContent: computed<((row: unknown) => VNode) | null>(
+    () => props.expandedRowContent as ((row: unknown) => VNode) | null),
   gridColsStyle,
   pagination: computed<Pagination<unknown>>(() => props.pagination),
   rowClass: computed<((row: unknown) => string) | null>(() => props.rowClass as ((row: unknown) => string) | null),
