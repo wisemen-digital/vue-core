@@ -39,9 +39,35 @@ export function useLocalPagination<TSchema, TFilters>({
     return firstItem[sortKey] < secondItem[sortKey] ? 1 : -1
   }
 
-  function filterItem(_data: TSchema): boolean {
-    // TODO: Implement filtering
-    return true
+  function searchItem(data: TSchema): boolean {
+    const search = pagination.paginationOptions.value.search?.toLowerCase()
+
+    if (search === undefined) {
+      return true
+    }
+
+    return Object.values(data ?? {}).some((value) => value?.toString().toLowerCase().includes(search))
+  }
+
+  function filterItem(data: TSchema): boolean {
+    const filters = Object.entries(pagination.paginationOptions.value.filters ?? {})
+
+    return filters.every(([
+      key,
+      value,
+    ]) => {
+      const dataToSearch = data[key as keyof TSchema]
+
+      if (typeof value === 'string') {
+        return dataToSearch?.toString().includes(value.toLowerCase())
+      }
+
+      if (Array.isArray(value)) {
+        return value.includes(dataToSearch)
+      }
+
+      return dataToSearch === value
+    })
   }
 
   return {
@@ -54,6 +80,7 @@ export function useLocalPagination<TSchema, TFilters>({
       const end = start + paginationValue.perPage
 
       const result = rawItems.filter((item) => filterItem(item))
+        .filter((item) => searchItem(item))
         .sort((a, b) => sortItem(a, b))
         .slice(start, end)
 
