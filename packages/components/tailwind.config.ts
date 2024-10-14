@@ -45,9 +45,6 @@ export default {
           ringOffsetColor: {
             DEFAULT: 'var(--bg-primary)',
           },
-          transitionTimingFunction: {
-            switch: 'cubic-bezier(.1, .91, .48, .99)',
-          },
         },
       ),
       zIndex: {

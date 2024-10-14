@@ -42,8 +42,12 @@ export interface SwitchStyleConfig extends BaseStyleConfig {
   '--switch-hint-text-color-focus': string
 
   '--switch-hint-text-color-hover': string
+  '--switch-icon-color-checked': string
+  '--switch-icon-color-unchecked': string
+  '--switch-icon-size-default': string
   '--switch-indicator-border-color-checked': string
   '--switch-indicator-border-color-default': string
+
   '--switch-indicator-border-color-disabled': string
   '--switch-indicator-border-color-error': string
   '--switch-indicator-border-color-focus': string
@@ -52,10 +56,10 @@ export interface SwitchStyleConfig extends BaseStyleConfig {
   '--switch-indicator-border-radius-default': string
   // Indicator
   '--switch-indicator-color-checked': string
-
   '--switch-indicator-color-default': string
   '--switch-indicator-color-disabled': string
   '--switch-indicator-color-error': string
+
   '--switch-indicator-color-focus': string
   '--switch-indicator-color-hover': string
   '--switch-indicator-size-default': string
@@ -133,26 +137,30 @@ defineStyleConfig({
     '--switch-hint-text-color-focus': 'var(--input-field-hint-text-color-default)',
     '--switch-hint-text-color-hover': 'var(--input-field-hint-text-color-default)',
 
+    '--switch-icon-color-checked': 'var(--fg-tertiary)',
+    '--switch-icon-color-unchecked': 'var(--fg-tertiary)',
+    '--switch-icon-size-default': '14px',
     '--switch-indicator-bg-color-checked': 'var(--fg-white)',
     '--switch-indicator-bg-color-default': 'var(--fg-white)',
     '--switch-indicator-bg-color-disabled': 'var(--gray-50)',
+
     '--switch-indicator-bg-color-error': 'var(--fg-white)',
     '--switch-indicator-bg-color-focus': 'var(--fg-white)',
     '--switch-indicator-bg-color-hover': 'var(--fg-white)',
-
     '--switch-indicator-border-color-checked': 'var(--fg-white)',
     '--switch-indicator-border-color-default': 'var(--fg-white)',
     '--switch-indicator-border-color-disabled': 'var(--gray-50)',
+
     '--switch-indicator-border-color-error': 'var(--fg-white)',
     '--switch-indicator-border-color-focus': 'var(--fg-white)',
-    '--switch-indicator-border-color-hover': 'var(--fg-white)',
 
+    '--switch-indicator-border-color-hover': 'var(--fg-white)',
     '--switch-indicator-border-radius-default': 'var(--radius-full)',
     '--switch-indicator-border-width-default': '1px',
-
     '--switch-indicator-shadow-checked': 'var(--shadow-sm)',
     '--switch-indicator-shadow-default': 'var(--shadow-sm)',
     '--switch-indicator-shadow-disabled': 'var(--shadow-sm)',
+
     '--switch-indicator-shadow-error': 'var(--shadow-sm)',
     '--switch-indicator-shadow-focus': 'var(--shadow-sm)',
     '--switch-indicator-shadow-hover': 'var(--shadow-sm)',
@@ -160,27 +168,27 @@ defineStyleConfig({
     '--switch-label-font-size-default': 'var(--input-field-label-font-size-default)',
     '--switch-label-font-weight-default': 'var(--input-field-label-font-weight-default)',
     '--switch-label-spacing-default': 'var(--spacing-md)',
-
     '--switch-label-text-color-checked': 'var(--input-field-label-text-color-default)',
     '--switch-label-text-color-default': 'var(--input-field-label-text-color-default)',
+
     '--switch-label-text-color-disabled': 'var(--input-field-label-text-color-default)',
+
     '--switch-label-text-color-error': 'var(--input-field-label-text-color-default)',
+
     '--switch-label-text-color-focus': 'var(--input-field-label-text-color-default)',
-
     '--switch-label-text-color-hover': 'var(--input-field-label-text-color-default)',
-
     '--switch-padding-x-default': 'var(--spacing-xxs)',
-
     '--switch-ring-color-checked': 'var(--brand-primary-500)',
     '--switch-ring-color-default': 'var(--brand-primary-500)',
     '--switch-ring-color-disabled': 'var(--brand-primary-500)',
+
     '--switch-ring-color-error': 'var(--error-500)',
     '--switch-ring-color-focus': 'var(--brand-primary-500)',
     '--switch-ring-color-hover': 'var(--brand-primary-500)',
-
     '--switch-shadow-checked': 'var(--shadow-none)',
     '--switch-shadow-default': 'var(--shadow-none)',
     '--switch-shadow-disabled': 'var(--shadow-none)',
+
     '--switch-shadow-error': 'var(--shadow-none)',
     '--switch-shadow-focus': 'var(--shadow-none)',
     '--switch-shadow-hover': 'var(--shadow-none)',

@@ -1,3 +1,4 @@
+import type { Icon } from '@/icons/icons'
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 import type { StyleConfig } from '@/types/style.type'
 
@@ -42,6 +43,16 @@ export interface AppSwitchProps {
    */
   hint?: null | string
   /**
+   * The icon to display in the indicator when the switch is checked.
+   * @default null
+   */
+  iconChecked?: Icon | null
+  /**
+   * The icon to display in the indicator when the switch is not checked.
+   * @default null
+   */
+  iconUnchecked?: Icon | null
+  /**
    *  The label of the checkbox
    * @default null
    */
@@ -65,6 +76,8 @@ export const appSwitchPropsDefaultValues = {
   isTouched: false,
   errors: null,
   hint: null,
+  iconChecked: null,
+  iconUnchecked: null,
   label: null,
   size: 'default',
   styleConfig: null,

@@ -88,6 +88,9 @@ export const switchTailwindConfig = {
     'switch-label-text-color-focus': 'var(--switch-label-text-color-focus)',
     'switch-label-text-color-hover': 'var(--switch-label-color-hover)',
   },
+  transitionTimingFunction: {
+    switch: 'cubic-bezier(.1, .91, .48, .99)',
+  },
   width: {
     'switch-width-default': 'var(--switch-width-default)',
   },

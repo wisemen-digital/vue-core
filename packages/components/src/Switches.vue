@@ -25,6 +25,8 @@ const errors = ref<FormFieldErrors | null>({
         size="sm"
         label="Switch"
         hint="This is a switch."
+        icon-checked="check"
+        icon-unchecked="xClose"
       />
     </div>
     <div>
@@ -57,6 +59,8 @@ const errors = ref<FormFieldErrors | null>({
         size="default"
         label="Switch"
         hint="This is checked."
+        icon-unchecked="xClose"
+        icon-checked="check"
       />
     </div>
     <div>
@@ -67,6 +71,7 @@ const errors = ref<FormFieldErrors | null>({
         :errors="errors"
         size="default"
         label="Switch"
+        icon-checked="check"
       />
     </div>
     <div>

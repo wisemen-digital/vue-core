@@ -129,6 +129,7 @@ function onBlur(): void {
         v-model="model"
         :disabled="props.isDisabled || props.isReadonly"
         :class="[rootClasses]"
+        :data-test-id="props.testId"
         @mouseenter="onMouseEnter"
         @mouseleave="onMouseLeave"
         @focus="onFocus"
@@ -137,8 +138,11 @@ function onBlur(): void {
         <AppSwitchIndicator
           :is-checked="isChecked"
           :indicator-classes="indicatorClasses"
+          :icon-checked="props.iconChecked"
+          :icon-unchecked="props.iconUnchecked"
         />
       </SwitchRoot>
+
       <slot
         v-if="props.label !== null"
         :input-id="inputId"
@@ -152,6 +156,7 @@ function onBlur(): void {
         />
       </slot>
     </div>
+
     <div :class="bottomClasses">
       <slot name="bottom">
         <AppCollapsable>
