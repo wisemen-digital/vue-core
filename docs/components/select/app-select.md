@@ -23,10 +23,7 @@ The most basic usage of the select component is to display a list of options for
 </template>
 ```
 
-<script setup>
-import SelectExampleBasic from './examples/SelectExampleBasic.vue'
-</script>
 
-<SelectExampleBasic />
+<ComponentPreview name="test" />
 
 <!-- @include: ./app-select-meta.md -->

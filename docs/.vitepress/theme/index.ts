@@ -1,6 +1,7 @@
 import '@wisemen/vue-core/style.css'
 import './index.scss'
 
+import ComponentPreview from '@docs/.vitepress/components/ComponentPreview.vue'
 // import './override.css'
 import DefaultTheme from 'vitepress/theme'
 import { createI18n } from 'vue-i18n'
@@ -73,6 +74,7 @@ const theme: typeof DefaultTheme = {
     }
 
     ctx.app.use(i18nPlugin as any)
+    ctx.app.component('ComponentPreview', ComponentPreview)
     DefaultTheme.enhanceApp(ctx)
   },
 }

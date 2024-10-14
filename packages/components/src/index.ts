@@ -13,6 +13,7 @@ import '@/components/tabs/tabsStyle.config'
 import '@/components/dropdown-menu/dropdownMenuStyle.config'
 import '@/components/icon/iconStyle.config'
 import '@/components/tag/tagStyle.config'
+import '@/components/switch/switchStyle.config'
 
 export type { Icon, Icons } from '@/icons/icons'
 export { extendIcons } from '@/icons/icons'
@@ -27,6 +28,7 @@ export type {
   SelectSeparator,
   SelectValue,
 } from '@/types/select.type'
+export type { RouteTabItem, TabItem } from '@/types/tabs.type'
 
 // Button
 export { default as AppButton } from '@/components/button/button/AppButton.vue'
@@ -44,6 +46,9 @@ export { default as AppPopover } from '@/components/popover/AppPopover.vue'
 export { default as AppPopoverAnchor } from '@/components/popover/AppPopoverAnchor.vue'
 export { default as AppPopoverCloseButton } from '@/components/popover/AppPopoverCloseButton.vue'
 export { default as AppPopoverTrigger } from '@/components/popover/AppPopoverTrigger.vue'
+
+// Switch
+export { default as AppSwitch } from '@/components/switch/AppSwitch.vue'
 
 // Select
 export { default as AppSelect } from '@/components/select/AppSelect.vue'
@@ -64,3 +69,6 @@ export { default as AppToggle } from '@/components/toggle/AppToggle.vue'
 
 // Tooltip
 export { default as AppTooltip } from '@/components/tooltip/AppTooltip.vue'
+
+// Collapse
+export { default as AppCollapsable } from '@/components/collapsable/AppCollapsable.vue'

@@ -2,6 +2,8 @@ import { resolve } from 'node:path'
 
 import { defineConfig } from 'vitepress'
 
+import ComponentPreviewPlugin from './plugins/ComponentPreview'
+
 const guide = [
   {
     link: '/guide/getting-started',
@@ -83,6 +85,11 @@ export default defineConfig({
         text: 'Components',
       },
     ],
+  },
+  markdown: {
+    preConfig(md) {
+      md.use(ComponentPreviewPlugin)
+    },
   },
   title: 'Vue Core',
   vite: {

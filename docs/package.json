@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@internationalized/date": "3.5.4",
+    "@vueuse/core": "10.11.0",
     "@wisemen/vue-core": "workspace:*",
     "i18n-iso-countries": "7.11.2",
     "vue-router": "4.3.3"
