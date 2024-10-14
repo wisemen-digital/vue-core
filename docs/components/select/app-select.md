@@ -50,7 +50,7 @@ If the provided value is an array, the select component will automatically switc
 <ComponentPreview name="app-select-multiple" />
 
 ### With other interactable elements inside the dropdown
-You can add other interactable elements to the dropdown by using the `top` and `bottom` slots.
+You can add other interactable elements to the dropdown by using the `content-top` and `content-bottom` slots.
 
 <ComponentPreview name="app-select-clear-button" />
 

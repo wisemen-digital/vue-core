@@ -288,7 +288,7 @@ provideSelectContext({
           :style="props.styleConfig"
           :class="dropdownContent"
         >
-          <slot name="top" />
+          <slot name="content-top" />
 
           <ListboxRoot
             v-model="computedModel"
@@ -395,7 +395,7 @@ provideSelectContext({
             </ListboxContent>
           </ListboxRoot>
 
-          <slot name="bottom" />
+          <slot name="content-bottom" />
         </div>
       </template>
     </AppPopover>

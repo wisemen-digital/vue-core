@@ -9,7 +9,13 @@ export const i18nPlugin = createI18n({
   fallbackWarn: false,
   legacy: false,
   messages: {
-    en: {},
+    en: {
+      components: {
+        table: {
+          page_count: '{startIndex} - {endIndex} of {totalItems}',
+        },
+      },
+    },
   },
   missingWarn: false,
 })

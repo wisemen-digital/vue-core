@@ -31,11 +31,19 @@ const docs = [
     collapsed: true,
     items: [
       {
-        link: '/components/text-field/app-text-field',
+        link: '/components/input-field/app-text-field',
         text: 'AppTextField',
       },
+      {
+        link: '/components/input-field/app-password-field',
+        text: 'AppPasswordField',
+      },
+      {
+        link: '/components/input-field/textarea',
+        text: 'AppTextarea',
+      },
     ],
-    text: 'TextField',
+    text: 'Input Field',
   },
   {
     collapsed: true,
@@ -56,6 +64,16 @@ const docs = [
       },
     ],
     text: 'Button',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
+        link: '/components/table/app-table',
+        text: 'AppTable',
+      },
+    ],
+    text: 'Table',
   },
 ]
 

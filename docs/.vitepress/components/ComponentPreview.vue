@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { TabItem } from '@wisemen/vue-core'
 import {
-  AppCollapsable,
+  AppCollapsable2,
   AppSwitch,
   AppTabs,
 } from '@wisemen/vue-core'
@@ -16,7 +16,22 @@ const showCode = ref<boolean>(false)
 const parsedFiles = computed<string[]>(() => JSON.parse(decodeURIComponent(props.files ?? '')))
 
 const tabItems = computed<TabItem[]>(() => {
-  return parsedFiles.value.map((fileName) => ({
+  // Sort parsedFiles by first 'Demo.vue' and then by the file name
+  const parsedFilesSorted = [
+    ...parsedFiles.value,
+  ].sort((a, b) => {
+    if (a === 'Demo.vue') {
+      return -1
+    }
+
+    if (b === 'Demo.vue') {
+      return 1
+    }
+
+    return a.localeCompare(b)
+  })
+
+  return parsedFilesSorted.map((fileName) => ({
     label: fileName,
     value: fileName,
   }))
@@ -40,7 +55,7 @@ const selectedTab = ref<TabItem | null>(tabItems.value?.[0] ?? null)
     </div>
 
     <div>
-      <AppCollapsable>
+      <AppCollapsable2>
         <div v-if="!showCode">
           <div class="vp-raw flex items-center justify-center rounded-lg border border-solid border-gray-100 p-16 dark:border-black dark:bg-gray-950">
             <slot />
@@ -69,7 +84,7 @@ const selectedTab = ref<TabItem | null>(tabItems.value?.[0] ?? null)
             </template>
           </AppTabs>
         </div>
-      </AppCollapsable>
+      </AppCollapsable2>
     </div>
   </div>
 </template>

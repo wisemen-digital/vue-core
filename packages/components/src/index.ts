@@ -14,13 +14,16 @@ import '@/components/dropdown-menu/dropdownMenuStyle.config'
 import '@/components/icon/iconStyle.config'
 import '@/components/tag/tagStyle.config'
 import '@/components/switch/switchStyle.config'
+import '@/components/table/tableStyle.config'
 
+export { usePagination } from '@/composables/pagination.composable'
 export type { Icon, Icons } from '@/icons/icons'
 export { extendIcons } from '@/icons/icons'
 export { defineStyleConfig } from '@/styling/defineStyleConfig'
 export type {
   AcceptableValue,
 } from '@/types/acceptableValue.type'
+export type { PaginatedData, Pagination } from '@/types/pagination.type'
 export type {
   SelectGroup,
   SelectItem,
@@ -28,6 +31,7 @@ export type {
   SelectSeparator,
   SelectValue,
 } from '@/types/select.type'
+export type { TableColumn } from '@/types/table.type'
 export type { RouteTabItem, TabItem } from '@/types/tabs.type'
 
 // Button
@@ -72,3 +76,19 @@ export { default as AppTooltip } from '@/components/tooltip/AppTooltip.vue'
 
 // Collapse
 export { default as AppCollapsable } from '@/components/collapsable/AppCollapsable.vue'
+export { default as AppCollapsable2 } from '@/components/collapsable/AppCollapsable2.vue'
+
+// Table
+export { default as AppTable } from '@/components/table/AppTable.vue'
+export { default as AppTableCell } from '@/components/table/AppTableCell.vue'
+export { default as AppTableHeaderCell } from '@/components/table/AppTableHeaderCell.vue'
+export { default as AppTablePageCount } from '@/components/table/AppTablePageCount.vue'
+export { default as AppTablePagination } from '@/components/table/pagination/AppTablePagination.vue'
+export { default as AppTablePaginationFirstPage } from '@/components/table/pagination/AppTablePaginationFirstPage.vue'
+export { default as AppTablePaginationLastPage } from '@/components/table/pagination/AppTablePaginationLastPage.vue'
+export { default as AppTablePaginationNextPage } from '@/components/table/pagination/AppTablePaginationNextPage.vue'
+export { default as AppTablePaginationPages } from '@/components/table/pagination/AppTablePaginationPages.vue'
+export { default as AppTablePaginationPrevPage } from '@/components/table/pagination/AppTablePaginationPrevPage.vue'
+
+// Checkbox
+export { default as AppCheckbox } from '@/components/checkbox/AppCheckbox.vue'

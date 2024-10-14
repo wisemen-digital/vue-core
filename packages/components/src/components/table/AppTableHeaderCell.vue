@@ -111,6 +111,9 @@ function handleSortChange(): void {
           '--button-border-radius-default': 'var(--radius-sm)',
           '--button-bg-color-default': 'transparent',
           '--button-border-color-default': 'transparent',
+          '--button-border-color-hover': 'transparent',
+          '--button-border-color-focus': 'transparent',
+          '--button-border-color-active': 'transparent',
         }"
         size="sm"
         variant="tertiary"
