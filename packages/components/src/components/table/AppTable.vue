@@ -6,6 +6,7 @@ import {
   ref,
   useSlots,
   type VNode,
+  watch,
 } from 'vue'
 
 import AppTableBody from '@/components/table/AppTableBody.vue'
@@ -82,6 +83,16 @@ function handleTableResize(tableContainerEl: HTMLElement): void {
 function onScroll(): void {
   handleTableResize(tableContainerRef.value!)
 }
+
+watch(() => props.data, () => {
+  if (tableContainerRef.value === null) {
+    return
+  }
+
+  handleTableResize(tableContainerRef.value)
+}, {
+  flush: 'post',
+})
 
 onMounted(() => {
   const tableContainerEl = tableContainerRef.value

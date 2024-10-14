@@ -11,6 +11,8 @@ export const extendedConfig = {
         {
           border: [
             'checkbox-border-width-default',
+            'switch-border-width-default',
+            'switch-indicator-border-width-default',
           ],
         },
       ],

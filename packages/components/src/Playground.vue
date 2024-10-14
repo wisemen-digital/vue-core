@@ -17,6 +17,7 @@ import '@/components/checkbox/checkboxStyle.config'
 import '@/components/input-field/text-area/textareaStyle.config'
 import '@/components/dialog/dialogStyle.config'
 import '@/components/table/tableStyle.config'
+import '@/components/switch/switchStyle.config'
 
 import Buttons from '@/Buttons.vue'
 import Dialogs from '@/Dialogs.vue'
@@ -27,6 +28,7 @@ import Tabs from '@/Tabs.vue'
 import Tooltips from '@/Tooltips.vue'
 
 import Checkboxes from './Checkboxes.vue'
+import Switches from './Switches.vue'
 </script>
 
 <template>
@@ -41,6 +43,7 @@ import Checkboxes from './Checkboxes.vue'
       class="flex min-h-screen flex-col gap-y-24 p-24"
     >
       <Dialogs />
+      <Switches />
       <Checkboxes />
       <Tabs />
       <Popovers />

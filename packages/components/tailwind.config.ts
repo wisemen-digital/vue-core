@@ -14,6 +14,7 @@ import { inputFieldHintTailwindConfig } from './src/components/input-field-hint/
 import { inputFieldLabelTailwindConfig } from './src/components/input-field-label/inputFieldLabel.tailwind'
 import { popoverTailwindConfig } from './src/components/popover/popover.tailwind'
 import { selectTailwindConfig } from './src/components/select/select.tailwind'
+import { switchTailwindConfig } from './src/components/switch/switch.tailwind'
 import { tableTailwindConfig } from './src/components/table/table.tailwind'
 import { tabsTailwindConfig } from './src/components/tabs/tabs.tailwind'
 import { tagTailwindConfig } from './src/components/tag/tag.tailwind'
@@ -46,6 +47,7 @@ export default {
         textareaTailwindConfig,
         dialogTailwindConfig,
         tableTailwindConfig,
+        switchTailwindConfig,
         {
           animation: {
             shimmer: 'shimmer 2s ease-in-out infinite',
@@ -83,9 +85,6 @@ export default {
             'warning-secondary': 'var(--bg-warning-secondary)',
             'warning-solid': 'var(--bg-warning-solid)',
           },
-          // backgroundImage: {
-          //   shimmer: 'linear-gradient(-90deg, var(--bg-secondary) 0%, var(--bg-quaternary) 50%, var(--bg-secondary) 100%)',
-          // },
           borderColor: {
             'brand': 'var(--border-brand)',
             'brand-alt': 'var(--border-brand-alt)',
@@ -215,18 +214,6 @@ export default {
             'xs': '4px',
             'xxs': '2px',
           },
-          // keyframes: {
-          //   shimmer: {
-          //     '0%': {
-          //       'background-position': '0% 0%',
-          //       'background-size': '400% 400%',
-          //     },
-          //     '100%': {
-          //       'background-position': '-133% 0%',
-          //       'background-size': '400% 400%',
-          //     },
-          //   },
-          // },
           keyframes: {
             shimmer: {
               '0%': {
