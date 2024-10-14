@@ -1,4 +1,6 @@
 <script setup lang="ts" generic="TItem extends AcceptableValue">
+import type { AcceptableValue } from '@wisemen/vue-core'
+
 // import type {
 //   AcceptableValue,
 //   SelectItem,
@@ -23,9 +25,9 @@ const model = defineModel<TItem | null>({
 //   }))
 // })
 
-function displayFunction(item: TItem): string {
-  return item as string
-}
+// function displayFunction(item: TItem): string {
+//   return item as string
+// }
 </script>
 
 <template>
@@ -41,7 +43,7 @@ function displayFunction(item: TItem): string {
     <select v-model="model">
       <option
         v-for="item of props.items"
-        :key="item"
+        :key="item.toString()"
         :value="item"
       >
         {{ item }}

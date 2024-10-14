@@ -163,6 +163,7 @@ function onBlur(): void {
           <div v-if="hasError">
             <slot name="error">
               <AppInputFieldError
+                :input-id="inputId"
                 :errors="props.errors"
                 :class="errorClasses"
               />
@@ -172,6 +173,7 @@ function onBlur(): void {
           <div v-else-if="props.hint !== null">
             <slot name="hint">
               <AppInputFieldHint
+                :input-id="inputId"
                 :hint="props.hint"
                 :class="hintClasses"
               />

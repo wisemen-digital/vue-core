@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // import { FormInput } from '@wisemen/vue-core'
 
-const props = defineProps<{
+const _props = defineProps<{
   label: string
 }>()
 

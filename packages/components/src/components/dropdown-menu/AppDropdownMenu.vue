@@ -23,8 +23,9 @@ import { dropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style
 const style = dropdownMenuStyle()
 
 const dropdownClasses = computed<string>(() => style.dropdown())
-const groupClasses = computed<string>(() => style.group())
-const groupLabelClasses = computed<string>(() => style.groupLabel())
+// TODO use group classes
+const _groupClasses = computed<string>(() => style.group())
+const _groupLabelClasses = computed<string>(() => style.groupLabel())
 const itemClasses = computed<string>(() => style.item())
 const separatorClasses = computed<string>(() => style.separator())
 </script>

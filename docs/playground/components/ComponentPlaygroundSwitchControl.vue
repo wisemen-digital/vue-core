@@ -1,4 +1,6 @@
 <script setup lang="ts" generic="TItem extends AcceptableValue">
+import type { AcceptableValue } from '@wisemen/vue-core'
+
 // import type { AcceptableValue } from '@wisemen/vue-core'
 // import { FormLabel, FormSwitch } from '@wisemen/vue-core'
 
@@ -7,7 +9,7 @@ interface Props {
   label: string
 }
 
-const props = defineProps<Props>()
+const _props = defineProps<Props>()
 
 const model = defineModel<boolean>({
   required: true,

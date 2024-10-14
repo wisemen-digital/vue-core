@@ -1,11 +1,11 @@
 <script setup lang="ts">
 // import { FormDatePicker } from '@wisemen/vue-core'
 
-const props = defineProps<{
+const _props = defineProps<{
   label: string
 }>()
 
-const model = defineModel<Date | null>({
+const _model = defineModel<Date | null>({
   required: true,
 })
 </script>

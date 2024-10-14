@@ -106,7 +106,7 @@ setTimeout(() => {
         class: 'p-2',
       }, `Custom content ${row.age}`)"
       :row-class="(row) => row.age > 40 ? 'bg-disabled cursor-not-allowed' : ''"
-      class="table-borderless"
+      class="table-variant-borderless"
     />
   </div>
 </template>

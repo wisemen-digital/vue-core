@@ -1,4 +1,4 @@
-import type { AcceptableValue } from 'reka-ui'
+import type { AcceptableValue } from './acceptableValue.type'
 
 export type SelectValue = AcceptableValue | AcceptableValue[]
 

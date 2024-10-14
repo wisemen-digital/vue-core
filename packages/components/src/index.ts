@@ -18,6 +18,9 @@ export type { Icon, Icons } from '@/icons/icons'
 export { extendIcons } from '@/icons/icons'
 export { defineStyleConfig } from '@/styling/defineStyleConfig'
 export type {
+  AcceptableValue,
+} from '@/types/acceptableValue.type'
+export type {
   SelectGroup,
   SelectItem,
   SelectOption,
