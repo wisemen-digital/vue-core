@@ -193,7 +193,6 @@ watch(isActuallyOpen, () => {
     <DialogRoot
       v-model:open="isOpen"
       :modal="isActuallyOpen"
-      :data-test-id="props.testId"
     >
       <DialogPortal>
         <Transition
@@ -214,6 +213,7 @@ watch(isActuallyOpen, () => {
         >
           <AppDialogContent
             v-if="isActuallyOpen"
+            :data-test-id="props.testId"
             :hide-close-button="props.hideCloseButton"
             :should-prevent-click-outside="props.shouldPreventClickOutside"
           >
