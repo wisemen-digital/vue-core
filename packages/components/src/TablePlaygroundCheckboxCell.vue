@@ -8,7 +8,10 @@ const props = defineProps<{
 </script>
 
 <template>
-  <AppTableCell class="flex items-center gap-x-1">
+  <AppTableCell
+    :is-primary-cell="true"
+    class="flex items-center gap-x-1"
+  >
     <AppCheckbox :model-value="false" />
     {{ props.label }}
   </AppTableCell>

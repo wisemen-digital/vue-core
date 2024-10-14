@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Toggle } from 'radix-vue'
+import { Toggle } from 'reka-ui'
 
 const props = withDefaults(defineProps<{
   /**

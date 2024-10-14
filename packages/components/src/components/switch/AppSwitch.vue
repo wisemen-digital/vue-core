@@ -130,6 +130,7 @@ function onBlur(): void {
         :disabled="props.isDisabled || props.isReadonly"
         :class="[rootClasses]"
         :data-test-id="props.testId"
+        :aria-describedby="`${inputId}-error ${inputId}-hint`"
         @mouseenter="onMouseEnter"
         @mouseleave="onMouseLeave"
         @focus="onFocus"
@@ -165,6 +166,7 @@ function onBlur(): void {
               <AppInputFieldError
                 :errors="props.errors"
                 :class="errorClasses"
+                :input-id="inputId"
               />
             </slot>
           </div>
@@ -174,6 +176,7 @@ function onBlur(): void {
               <AppInputFieldHint
                 :hint="props.hint"
                 :class="hintClasses"
+                :input-id="inputId"
               />
             </slot>
           </div>

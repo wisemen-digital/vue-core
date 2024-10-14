@@ -38,7 +38,7 @@ const tableContext = injectTableContext()
             :style="{
               width: `${NumberUtil.generateRandomNumber(80, 100)}%`,
             }"
-            class="h-4 rounded-md"
+            class="my-1 h-4 rounded-md"
           />
         </AppTableCell>
       </div>

@@ -46,9 +46,9 @@ const canScrollVertically = ref<boolean>(false)
 
 const hasTopSlot = computed<boolean>(() => slots.top !== undefined)
 
-const gridColsStyle = computed<string>(() => {
-  return `${props.columns.map((col) => `minmax(${col.width ?? 'min-content'},${col.maxWidth ?? 'auto'})`).join(' ')}`
-})
+const gridColsStyle = computed<string>(() => (
+  `${props.columns.map((col) => `minmax(${col.width ?? 'min-content'},${col.maxWidth ?? 'auto'})`).join(' ')}`
+))
 
 const isEmpty = computed<boolean>(() => (
   props.data !== null && props.data.total === 0 && !props.isLoading
@@ -123,7 +123,8 @@ provideTableContext({
     () => props.expandedRowContent as ((row: unknown) => VNode) | null),
   gridColsStyle,
   pagination: computed<Pagination<unknown>>(() => props.pagination),
-  rowClass: computed<((row: unknown) => string) | null>(() => props.rowClass as ((row: unknown) => string) | null),
+  rowClass: computed<((row: unknown, rowIndex: number) => string) | null>(
+    () => props.rowClass as ((row: unknown, rowIndex: number) => string) | null),
 })
 </script>
 

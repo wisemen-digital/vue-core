@@ -39,7 +39,7 @@ export interface AppTableProps<TSchema, TFilters> {
    * The class to apply to the row
    * @default null
    */
-  rowClass?: ((row: TSchema) => string) | null
+  rowClass?: ((row: TSchema, rowIndex: number) => string) | null
 }
 
 export const appTablePropsDefaultValues = {

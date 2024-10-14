@@ -10,6 +10,8 @@ const tagContext = injectTagContext()
     :style-config="{
       '--icon-button-size-default': '18px',
       '--icon-button-icon-size-default': '14px',
+      '--button-bg-color-disabled': 'transparent',
+      '--button-border-color-disabled': 'transparent',
     }"
     :is-disabled="tagContext.isDisabled.value"
     icon="xClose"

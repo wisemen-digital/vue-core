@@ -109,6 +109,14 @@ export interface AppSelectProps<TValue extends SelectValue> extends Omit<Popover
    *
    */
   styleConfig?: StyleConfig<'select'> | null
+  /**
+   * Whether the select should use a virtual list.
+   * When enabled, items must be restricted to the option type
+   * @default null
+   */
+  virtualList?: {
+    optionHeight: number
+  } | null
 }
 
 export const appSelectPropsDefaultValues = {
@@ -134,4 +142,5 @@ export const appSelectPropsDefaultValues = {
   shouldRemainOpenOnValueChange: null,
   side: 'bottom',
   styleConfig: null,
+  virtualList: null,
 } satisfies Partial<AppSelectProps<SelectValue>>

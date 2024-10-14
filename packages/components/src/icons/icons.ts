@@ -16,7 +16,10 @@ export interface BaseIcons {
   eye: Promise<Component>
   eyeOff: Promise<Component>
   minus: Promise<Component>
+  moonStar: Promise<Component>
+  plus: Promise<Component>
   searchLg: Promise<Component>
+  sun: Promise<Component>
   switchVertical: Promise<Component>
   tool02: Promise<Component>
   translate01: Promise<Component>
@@ -41,7 +44,10 @@ export const icons: BaseIcons = {
   eye: import('@/icons/EyeIcon.vue'),
   eyeOff: import('@/icons/EyeOffIcon.vue'),
   minus: import('@/icons/MinusIcon.vue'),
+  moonStar: import('@/icons/MoonStarIcon.vue'),
+  plus: import('@/icons/PlusIcon.vue'),
   searchLg: import('@/icons/SearchLgIcon.vue'),
+  sun: import('@/icons/SunIcon.vue'),
   switchVertical: import('@/icons/SwitchVerticalIcon.vue'),
   tool02: import('@/icons/Tool02Icon.vue'),
   translate01: import('@/icons/Translate01Icon.vue'),

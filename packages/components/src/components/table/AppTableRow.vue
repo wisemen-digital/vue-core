@@ -41,7 +41,7 @@ provideTableRowContext({
         :key="column.key"
         :data-test-id="column.testId"
         :class="[
-          tableContext.rowClass.value?.(props.row) ?? null,
+          tableContext.rowClass.value?.(props.row, props.rowIndex) ?? null,
           {
             'first:sticky first:left-0 first:z-10 first:border-r first:border-solid': tableContext.isFirstColumnSticky.value,
             'last:sticky last:right-0 last:z-10 last:border-l last:border-solid': tableContext.isLastColumnSticky.value,
