@@ -101,7 +101,7 @@ export function usePagination<TFilters>({
         ...event,
       }).filter(([
         , value,
-      ]) => value !== undefined),
+      ]) => value !== undefined && value !== null && value !== ''),
     ) as PaginationFilters<TFilters>
 
     paginationOptions.value = {
