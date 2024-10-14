@@ -3,7 +3,7 @@ import type { SelectItem } from '@wisemen/vue-core'
 import { AppSelect } from '@wisemen/vue-core'
 import { ref } from 'vue'
 
-const value = ref<string[]>([])
+const value = ref<null | string>(null)
 
 const items: SelectItem<string>[] = [
   {
@@ -50,9 +50,12 @@ const items: SelectItem<string>[] = [
     v-model="value"
     :items="items"
     :display-fn="(value) => value"
+    :errors="{
+      _errors: ['This is an error message.'],
+    }"
+    :is-touched="true"
     label="Select a fruit"
     placeholder="Select a fruit"
-    hint="Tip: You can select multiple fruits."
     class="w-72"
   />
 </template>

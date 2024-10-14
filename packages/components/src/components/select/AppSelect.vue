@@ -184,6 +184,7 @@ function onTriggerBlur(): void {
 function onTriggerKeyDown(event: KeyboardEvent): void {
   if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
     isOpen.value = true
+    event.preventDefault()
   }
 }
 

@@ -3,8 +3,6 @@ import type { SelectItem } from '@wisemen/vue-core'
 import { AppSelect, AppTag } from '@wisemen/vue-core'
 import { ref } from 'vue'
 
-const value = ref<null | string>(null)
-
 const items: SelectItem<string>[] = [
   {
     type: 'option',
@@ -43,6 +41,8 @@ const items: SelectItem<string>[] = [
     value: 'Cherry',
   },
 ]
+
+const value = ref<null | string>('Apple')
 
 function displayFn(value: string): string {
   return value

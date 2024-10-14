@@ -207,7 +207,7 @@ const isTouched = ref<boolean>(false)
       :display-fn="(value) => value"
       :filter-fn="(option, searchTerm) => option.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())"
       :is-loading="true"
-      :is-touched="false"
+      :is-touched="true"
       :errors="{
         _errors: ['This is an error message.'],
       }"

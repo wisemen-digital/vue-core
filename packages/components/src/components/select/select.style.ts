@@ -63,7 +63,7 @@ export const selectStyle = tv({
         label: '[--input-field-label-text-color-default:var(--select-label-text-color-error)]',
         loader: 'text-select-loader-color-error',
         placeholder: 'text-select-placeholder-color-error',
-        selectBox: 'border-b-select-border-bottom-color-error border-l-select-border-left-color-error border-r-select-border-right-color-error border-t-select-border-top-color-error bg-select-bg-color-error text-select-text-color-error shadow-select-shadow-error ring-2 ring-select-ring-color-error',
+        selectBox: 'border-b-select-border-bottom-color-error border-l-select-border-left-color-error border-r-select-border-right-color-error border-t-select-border-top-color-error bg-select-bg-color-error text-select-text-color-error shadow-select-shadow-error ring-select-ring-color-error',
       },
     },
     hasIconLeft: {

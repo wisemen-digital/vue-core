@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { SelectItem } from '@wisemen/vue-core'
-import { AppSelect } from '@wisemen/vue-core'
+import { AppButton, AppSelect } from '@wisemen/vue-core'
 import { ref } from 'vue'
 
 const value = ref<string[]>([])
@@ -43,6 +43,10 @@ const items: SelectItem<string>[] = [
     value: 'Cherry',
   },
 ]
+
+function onClearAll(): void {
+  value.value = []
+}
 </script>
 
 <template>
@@ -54,5 +58,21 @@ const items: SelectItem<string>[] = [
     placeholder="Select a fruit"
     hint="Tip: You can select multiple fruits."
     class="w-72"
-  />
+  >
+    <template #top>
+      <div class="mb-1 flex items-center justify-between">
+        <span class="pl-select-dropdown-padding-x-default text-sm font-medium">
+          Fruits
+        </span>
+
+        <AppButton
+          size="sm"
+          variant="tertiary"
+          @click="onClearAll"
+        >
+          Clear all
+        </AppButton>
+      </div>
+    </template>
+  </AppSelect>
 </template>
