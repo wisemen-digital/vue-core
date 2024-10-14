@@ -50,30 +50,28 @@ function displayFn(value: string): string {
 </script>
 
 <template>
-  <div class="vp-raw py-6">
-    <AppSelect
-      v-model="value"
-      :items="items"
-      :display-fn="displayFn"
-      label="Select a fruit"
-      placeholder="Select a fruit"
-      class="w-72"
-    >
-      <template #value="{ value: selectedValue }">
-        <div class="flex w-full items-center justify-between">
-          <span>
-            {{ displayFn(selectedValue) }}
-          </span>
+  <AppSelect
+    v-model="value"
+    :items="items"
+    :display-fn="displayFn"
+    label="Select a fruit"
+    placeholder="Select a fruit"
+    class="w-72"
+  >
+    <template #value="{ value: selectedValue }">
+      <div class="flex w-full items-center justify-between">
+        <span>
+          {{ displayFn(selectedValue) }}
+        </span>
 
-          <AppTag
-            :style-config="{
-              '--tag-font-size-default': '12px',
-            }"
-          >
-            Fruit
-          </AppTag>
-        </div>
-      </template>
-    </AppSelect>
-  </div>
+        <AppTag
+          :style-config="{
+            '--tag-font-size-default': '12px',
+          }"
+        >
+          Fruit
+        </AppTag>
+      </div>
+    </template>
+  </AppSelect>
 </template>

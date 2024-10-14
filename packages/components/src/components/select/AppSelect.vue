@@ -106,7 +106,7 @@ const filteredItems = computed<SelectItem<TValue extends Array<infer U> ? U : TV
       if (item.type === 'option') {
         const isOptionValid = filterFn !== null
           ? filterFn(item.value, searchTerm)
-          : !item.isDisabled
+          : true
 
         if (isOptionValid) {
           acc.push(item)

@@ -12,5 +12,6 @@ export default {
     './demos/**/*.{vue,ts}',
     './icons/**/*.{vue,ts}',
     './index.html',
+    './.vitepress/**/*.{vue,ts}',
   ],
 } satisfies Config

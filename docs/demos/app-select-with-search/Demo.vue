@@ -50,16 +50,14 @@ function filterFn(option: string, searchTerm: string): boolean {
 </script>
 
 <template>
-  <div class="vp-raw py-6">
-    <AppSelect
-      v-model="value"
-      :items="items"
-      :display-fn="(value) => value"
-      :filter-fn="filterFn"
-      label="Select a fruit"
-      placeholder="Select a fruit"
-      search-placeholder="Search a fruit"
-      class="w-72"
-    />
-  </div>
+  <AppSelect
+    v-model="value"
+    :items="items"
+    :display-fn="(value) => value"
+    :filter-fn="filterFn"
+    label="Select a fruit"
+    placeholder="Select a fruit"
+    search-placeholder="Search a fruit"
+    class="w-72"
+  />
 </template>

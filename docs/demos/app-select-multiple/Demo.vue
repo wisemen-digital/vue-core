@@ -46,14 +46,12 @@ const items: SelectItem<string>[] = [
 </script>
 
 <template>
-  <div class="vp-raw py-6">
-    <AppSelect
-      v-model="value"
-      :items="items"
-      :display-fn="(value) => value"
-      label="Select a fruit"
-      placeholder="Select a fruit"
-      class="w-72"
-    />
-  </div>
+  <AppSelect
+    v-model="value"
+    :items="items"
+    :display-fn="(value) => value"
+    label="Select a fruit"
+    placeholder="Select a fruit"
+    class="w-72"
+  />
 </template>

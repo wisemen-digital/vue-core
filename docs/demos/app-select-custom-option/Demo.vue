@@ -54,41 +54,39 @@ function displayFn(value: string): string {
 </script>
 
 <template>
-  <div class="vp-raw py-6">
-    <AppSelect
-      v-model="value"
-      :items="items"
-      :display-fn="displayFn"
-      label="Select a fruit"
-      placeholder="Select a fruit"
-      class="w-72"
-    >
-      <template #option-content="{ item }">
-        <div class="flex items-center justify-between pr-2">
-          {{ displayFn(item.value) }}
+  <AppSelect
+    v-model="value"
+    :items="items"
+    :display-fn="displayFn"
+    label="Select a fruit"
+    placeholder="Select a fruit"
+    class="w-72"
+  >
+    <template #option-content="{ item }">
+      <div class="flex items-center justify-between pr-2">
+        {{ displayFn(item.value) }}
 
-          <AppTag
-            v-if="item.value === 'Apple'"
-            :style-config="{
-              '--tag-font-size-default': '12px',
-            }"
-          >
-            Good stuff
-          </AppTag>
+        <AppTag
+          v-if="item.value === 'Apple'"
+          :style-config="{
+            '--tag-font-size-default': '12px',
+          }"
+        >
+          Good stuff
+        </AppTag>
 
-          <span
-            v-else-if="item.value === 'Banana'"
-            class="text-xs"
-          >
-            Mmm...
-          </span>
+        <span
+          v-else-if="item.value === 'Banana'"
+          class="text-xs"
+        >
+          Mmm...
+        </span>
 
-          <AppIcon
-            v-else-if="item.value === 'Blueberry'"
-            icon="translate01"
-          />
-        </div>
-      </template>
-    </AppSelect>
-  </div>
+        <AppIcon
+          v-else-if="item.value === 'Blueberry'"
+          icon="translate01"
+        />
+      </div>
+    </template>
+  </AppSelect>
 </template>
