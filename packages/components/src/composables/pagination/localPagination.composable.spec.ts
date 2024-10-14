@@ -41,10 +41,10 @@ describe('localPagination', () => {
       items,
     })
 
-    localPagination.pagination.paginationOptions.value.sort = {
+    localPagination.pagination.handleSortChange({
       direction: 'asc',
       key: 'name',
-    }
+    })
 
     expect(localPagination.data.value.data).toStrictEqual([
       { name: 'a', age: 1 },
