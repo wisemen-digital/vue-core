@@ -30,21 +30,24 @@ import Checkboxes from './Checkboxes.vue'
 </script>
 
 <template>
-  <TablePlayground />
-
   <div
     :style="{
       backgroundColor: 'var(--bg-primary)',
     }"
-    class="flex min-h-screen flex-col gap-y-24 p-24"
   >
-    <Dialogs />
-    <Checkboxes />
-    <Tabs />
-    <Popovers />
-    <Tooltips />
-    <InputFields />
-    <Buttons />
+    <TablePlayground />
+
+    <div
+      class="flex min-h-screen flex-col gap-y-24 p-24"
+    >
+      <Dialogs />
+      <Checkboxes />
+      <Tabs />
+      <Popovers />
+      <Tooltips />
+      <InputFields />
+      <Buttons />
+    </div>
   </div>
 </template>
 

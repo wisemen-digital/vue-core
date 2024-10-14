@@ -5,7 +5,6 @@ import {
   ref,
 } from 'vue'
 
-import AppCollapsable from '@/components/collapsable/AppCollapsable.vue'
 import { injectTableContext } from '@/components/table/table.context.js'
 import { provideTableRowContext } from '@/components/table/tableRow.context.js'
 
@@ -48,6 +47,7 @@ provideTableRowContext({
             'last:sticky last:right-0 last:z-10 last:border-l last:border-solid': tableContext.isLastColumnSticky.value,
             'first:border-r-secondary first:shadow-table-sticky-left-column': tableContext.isScrolledToRight.value && tableContext.isFirstColumnSticky.value,
             'last:border-l-secondary last:shadow-table-sticky-right-column': !tableContext.hasReachedHorizontalScrollEnd.value && tableContext.isLastColumnSticky.value,
+            'border-b-secondary': props.rowIndex !== tableContext.data.value!.data.length - 1,
           },
         ]"
         role="cell"
@@ -57,18 +57,18 @@ provideTableRowContext({
       </div>
     </div>
 
-    <div
+    <!-- TODO: this is not finished yet! -->
+    <!-- <div
       :class="{
         'border-b-secondary': props.rowIndex !== tableContext.data.value!.data.length - 1,
       }"
       class="col-span-full border-b border-solid border-secondary"
     >
-      <!-- TODO: this is not finished yet! -->
       <AppCollapsable>
         <div v-if="expandableComponent !== null && isExpanded">
           <Component :is="expandableComponent" />
         </div>
       </AppCollapsable>
-    </div>
+    </div> -->
   </div>
 </template>
