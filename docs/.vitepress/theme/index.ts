@@ -1,7 +1,6 @@
 import '@wisemen/vue-core/style.css'
 import './index.scss'
 
-// import './override.css'
 import DefaultTheme from 'vitepress/theme'
 import { createI18n } from 'vue-i18n'
 
@@ -9,51 +8,7 @@ export const i18nPlugin = createI18n({
   fallbackWarn: false,
   legacy: false,
   messages: {
-    en: {
-      components: {
-        autocomplete: {
-          no_results_found: 'No results found',
-        },
-        editable: {
-          edit: 'Edit',
-          submit: 'Submit',
-          cancel: 'Cancel',
-        },
-        keyboard_shortcut: {
-          then: 'then',
-        },
-        table: {
-          clear_filter_filters: 'Clear filter | Clear {count} filters',
-          clear_filters: 'Clear filters',
-          empty_state: {
-            no_data: {
-              message: 'There is no data to display at this moment.',
-              title: 'No items found',
-            },
-            no_results: {
-              message: 'Your query did not match any results. Try changing your filters or clearing them.',
-              title: 'No results found',
-            },
-          },
-          items: 'items',
-          next: 'Next',
-          of: 'of',
-          page: 'Page',
-          previous: 'Previous',
-          results_might_be_hidden_because_of_active_filters: 'Results might be hidden because of {count} active filter | Results might be hidden because of {count} active filters',
-        },
-        calendar: {
-          select: 'Select',
-          cancel: 'Cancel',
-        },
-      },
-      error: {
-        default_error: {
-          title: 'Try again later',
-          description: 'Something went wrong.',
-        },
-      },
-    },
+    en: {},
   },
   missingWarn: false,
 })

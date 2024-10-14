@@ -21,6 +21,8 @@ function onRemoveValue(value: SelectValue): void {
     :is-disabled="selectContext.isDisabled.value"
     @remove="onRemoveValue(props.value)"
   >
-    <slot />
+    <slot>
+      {{ selectContext.displayFn(props.value) }}
+    </slot>
   </AppTag>
 </template>

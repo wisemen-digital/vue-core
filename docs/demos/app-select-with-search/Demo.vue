@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import '@wisemen/vue-core/style.css'
-
 import type { SelectItem } from '@wisemen/vue-core'
 import { AppSelect } from '@wisemen/vue-core'
 import { ref } from 'vue'
 
 const value = ref<null | string>(null)
+
 const items: SelectItem<string>[] = [
   {
     type: 'option',
@@ -20,24 +19,47 @@ const items: SelectItem<string>[] = [
     value: 'Blueberry',
   },
   {
-    isDisabled: true,
     type: 'option',
     value: 'Grapes',
   },
   {
-    isDisabled: true,
     type: 'option',
-    value: 'Pineapple',
+    value: 'Leek',
+  },
+  {
+    type: 'option',
+    value: 'Pear',
+  },
+  {
+    type: 'option',
+    value: 'Raspberry',
+  },
+  {
+    type: 'option',
+    value: 'Strawberry',
+  },
+  {
+    type: 'option',
+    value: 'Cherry',
   },
 ]
+
+function filterFn(option: string, searchTerm: string): boolean {
+  return option.toLowerCase().includes(searchTerm.toLowerCase())
+}
 </script>
 
 <template>
-  <div class="vp-raw">
+  <div class="vp-raw py-6">
     <AppSelect
       v-model="value"
       :items="items"
       :display-fn="(value) => value"
+      :filter-fn="filterFn"
+      label="Select a fruit"
+      placeholder="Select a fruit"
+      search-placeholder="Search a fruit"
+      class="w-72"
     />
   </div>
 </template>

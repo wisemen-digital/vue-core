@@ -53,9 +53,3 @@ import Switches from './Switches.vue'
     </div>
   </ConfigProvider>
 </template>
-
-<style>
-body {
-  font-family: 'Inter Variable', sans-serif;
-}
-</style>

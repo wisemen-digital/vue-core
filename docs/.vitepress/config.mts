@@ -11,6 +11,10 @@ const guide = [
     link: '/guide/cli',
     text: 'CLI',
   },
+  {
+    link: '/guide/styling',
+    text: 'Styling',
+  },
 ]
 
 const query = [

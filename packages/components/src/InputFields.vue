@@ -8,7 +8,6 @@ import AppPhoneNumberField from '@/components/input-field/phone-number-field/App
 import AppTextarea from '@/components/input-field/text-area/AppTextarea.vue'
 import AppTextField from '@/components/input-field/text-field/AppTextField.vue'
 import AppSelect from '@/components/select/AppSelect.vue'
-import AppSelectValueTag from '@/components/select/values/AppSelectValueTag.vue'
 import AppTag from '@/components/tag/AppTag.vue'
 import type { SelectItem } from '@/types/select.type.js'
 
@@ -218,11 +217,11 @@ const isTouched = ref<boolean>(false)
       placeholder="Select a fruit"
       hint="You can select multiple fruits."
     >
-      <template #tag="{ value: vv }">
+      <!-- <template #tag="{ value: vv }">
         <AppSelectValueTag :value="vv">
           {{ vv }}
         </AppSelectValueTag>
-      </template>
+      </template> -->
 
       <template #option-content="{ item }">
         <div class="flex items-center justify-between pr-4">

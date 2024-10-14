@@ -75,8 +75,13 @@ const isEmpty = computed<boolean>(() => (selectContext.modelValue.value as Array
 
     <span
       v-if="isEmpty && selectContext.placeholder.value !== null"
-      :class="placeholderClasses"
-      class="absolute ml-[calc(var(--select-padding-left-default)+var(--select-icon-left-size-default))]"
+      :class="[
+        placeholderClasses,
+        {
+          'ml-[calc(var(--select-padding-left-default)+var(--select-icon-left-size-default))]': selectContext.iconLeft.value !== null,
+        },
+      ]"
+      class="absolute"
     >
       {{ selectContext.placeholder.value }}
     </span>
