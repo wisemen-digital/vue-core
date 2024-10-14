@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 
 import AppIcon from '@/components/icon/AppIcon.vue'
+import AppNumberField from '@/components/input-field/number-field/AppNumberField.vue'
 import AppPasswordField from '@/components/input-field/password-field/AppPasswordField.vue'
 import AppPhoneNumberField from '@/components/input-field/phone-number-field/AppPhoneNumberField.vue'
 import AppTextarea from '@/components/input-field/text-area/AppTextarea.vue'
@@ -15,6 +16,7 @@ const value = ref<null | string>(null)
 const password = ref<null | string>(null)
 const textareaValue = ref<null | string>(null)
 const phoneNumberValue = ref<null | string>(null)
+const numberValue = ref<null | number>(null)
 
 const selectValue = ref<null | string>(null)
 const selectArrayValue = ref<string[]>([])
@@ -125,6 +127,15 @@ const isTouched = ref<boolean>(false)
       :is-required="true"
       :is-disabled="true"
       label="Password"
+    />
+
+    <AppNumberField
+      v-model="numberValue"
+      :min="0"
+      :max="99"
+      :is-disabled="false"
+      label="Enter your age"
+      class="w-48"
     />
 
     <AppTextarea

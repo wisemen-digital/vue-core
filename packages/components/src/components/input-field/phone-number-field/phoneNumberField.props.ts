@@ -1,5 +1,4 @@
 import type { CountryCode } from 'libphonenumber-js'
-import type { Locale } from 'vue-i18n'
 
 import {
   type AppTextFieldProps,
@@ -12,11 +11,6 @@ export interface AppPhoneNumberFieldProps extends Omit<AppTextFieldProps, 'type'
    * @default 'BE'
    */
   defaultCountryCode?: CountryCode
-  /**
-   * The locale of the input. For registering locales, see: https://www.npmjs.com/package/i18n-iso-countries
-   * @default 'en'
-   */
-  locale?: Locale
 }
 
 // Without this vue throws a warning
@@ -30,5 +24,4 @@ delete textFieldDefaultValues.type
 export const appPhoneNumberFieldPropsDefaultValues = {
   ...textFieldDefaultValues,
   defaultCountryCode: 'BE',
-  locale: 'en',
 } satisfies Partial<AppPhoneNumberFieldProps>

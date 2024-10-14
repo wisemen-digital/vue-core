@@ -20,6 +20,8 @@ import '@/components/table/tableStyle.config'
 import '@/components/switch/switchStyle.config'
 
 import Buttons from '@/Buttons.vue'
+import ConfigProvider from '@/components/config-provider/ConfigProvider.vue'
+import AppDarkModeToggle from '@/components/dark-mode-toggle/AppDarkModeToggle.vue'
 import Dialogs from '@/Dialogs.vue'
 import InputFields from '@/InputFields.vue'
 import Popovers from '@/Popovers.vue'
@@ -32,16 +34,14 @@ import Switches from './Switches.vue'
 </script>
 
 <template>
-  <div
-    :style="{
-      backgroundColor: 'var(--bg-primary)',
-    }"
-  >
+  <ConfigProvider locale="en">
+    <div class="flex justify-end p-8">
+      <AppDarkModeToggle />
+    </div>
+
     <TablePlayground />
 
-    <div
-      class="flex min-h-screen flex-col gap-y-24 p-24"
-    >
+    <div class="flex min-h-screen flex-col gap-y-24 p-24">
       <Dialogs />
       <Switches />
       <Checkboxes />
@@ -51,7 +51,7 @@ import Switches from './Switches.vue'
       <InputFields />
       <Buttons />
     </div>
-  </div>
+  </ConfigProvider>
 </template>
 
 <style>

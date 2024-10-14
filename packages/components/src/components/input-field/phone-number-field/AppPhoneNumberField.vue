@@ -15,6 +15,7 @@ import {
   ref,
 } from 'vue'
 
+import { injectConfigContext } from '@/components/config-provider/config.context.js'
 import {
   type AppPhoneNumberFieldProps,
   appPhoneNumberFieldPropsDefaultValues,
@@ -30,6 +31,8 @@ i18nCountries.registerLocale(i18nEn)
 const model = defineModel<null | string>({
   required: true,
 })
+
+const globalConfigContext = injectConfigContext()
 
 const phoneNumberFieldRef = ref<InstanceType<typeof AppTextField> | null>(null)
 const phoneNumberFieldWidth = computed<number>(() => phoneNumberFieldRef.value?.$el.clientWidth ?? 0)
@@ -58,9 +61,7 @@ const countryCodeModel = computed<CountryCode>({
   },
 })
 
-const asYouType = computed<AsYouType>(() => {
-  return new AsYouType(countryCode.value)
-})
+const asYouType = computed<AsYouType>(() => new AsYouType(countryCode.value))
 
 const inputModel = computed<null | string>({
   get: () => {
@@ -114,16 +115,14 @@ const countryCodes = computed<SelectItem<CountryCode>[]>(() => countries.map((co
   value: country,
 })))
 
-const dialCodeDisplayValue = computed<string>(() => {
-  return `+${getCountryCallingCode(countryCodeModel.value)}`
-})
+const dialCodeDisplayValue = computed<string>(() => `+${getCountryCallingCode(countryCodeModel.value)}`)
 
 function getCountryFlagUrl(countryCode: CountryCode): null | string {
   return `https://purecatamphetamine.github.io/country-flag-icons/3x2/${countryCode}.svg`
 }
 
 function getCountryName(countryCode: CountryCode): null | string {
-  return i18nCountries.getName(countryCode, props.locale, { select: 'official' }) ?? null
+  return i18nCountries.getName(countryCode, globalConfigContext.locale.value, { select: 'official' }) ?? null
 }
 
 function filterFn(option: CountryCode, search: string): boolean {
@@ -181,7 +180,6 @@ function filterFn(option: CountryCode, search: string): boolean {
         }"
         align="start"
         popover-width="available-width"
-
         class="w-16 shrink-0"
       >
         <template #value>

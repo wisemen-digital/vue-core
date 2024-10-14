@@ -2,6 +2,7 @@
 import {
   ListboxContent,
   ListboxRoot,
+  ListboxVirtualizer,
   useId,
 } from 'reka-ui'
 import {
@@ -311,6 +312,42 @@ provideSelectContext({
                   {{ t('components.select.empty_text', { searchTerm }) }}
                 </span>
               </slot>
+
+              <template v-else-if="props.virtualList !== null">
+                <ListboxVirtualizer
+                  :options="filteredItems"
+                  :overscan="10"
+                  :estimate-size="props.virtualList.optionHeight"
+                >
+                  <template #default="{ option }">
+                    <AppSelectItem :item="option">
+                      <template #option="{ item: selectItem }">
+                        <slot
+                          v-if="selectItem.type === 'option'"
+                          :item="selectItem"
+                          name="option"
+                        />
+                      </template>
+
+                      <template #option-content="{ item: selectItem }">
+                        <slot
+                          v-if="selectItem.type === 'option'"
+                          :item="selectItem"
+                          name="option-content"
+                        />
+                      </template>
+
+                      <template #option-indicator="{ item: selectItem }">
+                        <slot
+                          v-if="selectItem.type === 'option'"
+                          :item="selectItem"
+                          name="option-indicator"
+                        />
+                      </template>
+                    </AppSelectItem>
+                  </template>
+                </ListboxVirtualizer>
+              </template>
 
               <template v-else>
                 <AppSelectItem

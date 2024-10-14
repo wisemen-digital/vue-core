@@ -22,18 +22,18 @@ const iconUncheckedClasses = computed<string>(() => style.iconUnchecked())
 
 const enterFromClass = computed<string>(() => {
   if (props.isChecked) {
-    return 'opacity-0 -translate-x-1/4'
+    return 'opacity-0 -translate-x-1/4 scale-85'
   }
 
-  return 'opacity-0 translate-x-1/4'
+  return 'opacity-0 translate-x-1/4 scale-85'
 })
 
 const leaveToClass = computed<string>(() => {
   if (props.isChecked) {
-    return 'opacity-0 translate-x-1/4'
+    return 'opacity-0 translate-x-1/4 scale-85'
   }
 
-  return 'opacity-0 -translate-x-1/4'
+  return 'opacity-0 -translate-x-1/4 scale-85'
 })
 </script>
 

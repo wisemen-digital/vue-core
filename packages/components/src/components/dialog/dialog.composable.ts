@@ -1,4 +1,4 @@
-import { useId } from 'radix-vue'
+import { useId } from 'reka-ui'
 import type {
   Component,
   Ref,

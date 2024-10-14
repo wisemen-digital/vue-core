@@ -5,6 +5,10 @@
 @layer base {
   @import 'colors';
   @import 'variables';
+
+  body {
+    @apply bg-primary;
+  }
 }
 
 

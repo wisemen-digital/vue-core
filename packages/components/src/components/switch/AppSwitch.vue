@@ -130,6 +130,7 @@ function onBlur(): void {
         :disabled="props.isDisabled || props.isReadonly"
         :class="[rootClasses]"
         :data-test-id="props.testId"
+        :aria-describedby="`${inputId}-error ${inputId}-hint`"
         @mouseenter="onMouseEnter"
         @mouseleave="onMouseLeave"
         @focus="onFocus"

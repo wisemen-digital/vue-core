@@ -23,7 +23,7 @@ interface TableContext {
   expandedRowContent: ComputedRef<((row: unknown) => VNode) | null>
   gridColsStyle: ComputedRef<string>
   pagination: ComputedRef<Pagination<unknown>>
-  rowClass: ComputedRef<((row: unknown) => string) | null>
+  rowClass: ComputedRef<((row: unknown, rowIndex: number) => string) | null>
 }
 
 const tableContextKey: InjectionKey<TableContext> = Symbol('tableContext')

@@ -28,9 +28,9 @@ defineSlots<{
   'icon-left': () => null
   'icon-right': () => null
   'label': (props: { inputId: string }) => void
-  'left': (props: { hasError: boolean, isDisabled: boolean, isFocused: boolean, isHovered: boolean }) => void
+  'left': () => null
   'loader': () => null
-  'right': (props: { hasError: boolean, isDisabled: boolean, isFocused: boolean, isHovered: boolean }) => void
+  'right': () => null
 }>()
 
 const model = defineModel<null | string>({
@@ -151,13 +151,7 @@ function onBlur(): void {
         />
       </slot>
 
-      <slot
-        :is-focused="isFocused"
-        :is-hovered="isHovered"
-        :is-disabled="props.isDisabled"
-        :has-error="hasError"
-        name="left"
-      />
+      <slot name="left" />
 
       <input
         :id="inputId"
@@ -177,13 +171,7 @@ function onBlur(): void {
         @blur="onBlur"
       >
 
-      <slot
-        :is-focused="isFocused"
-        :is-hovered="isHovered"
-        :is-disabled="props.isDisabled"
-        :has-error="hasError"
-        name="right"
-      />
+      <slot name="right" />
 
       <div
         v-if="props.isLoading"
