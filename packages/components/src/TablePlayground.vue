@@ -105,7 +105,7 @@ setTimeout(() => {
       :expanded-row-content="(row) => h('div', {
         class: 'p-2',
       }, `Custom content ${row.age}`)"
-      class="table-borderless"
+      class="table-variant-borderless"
     />
   </div>
 </template>

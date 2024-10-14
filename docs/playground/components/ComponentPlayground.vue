@@ -41,7 +41,7 @@ function getControlValueDefault(): Record<TControlKeys, any> {
 
 <template>
   <!-- vp-raw border-border bg-background my-8 flex w-full flex-col rounded-lg border border-solid -->
-  <div class="">
+  <div class="vp-raw">
     <div class="flex w-full items-center justify-center rounded-t p-4">
       <slot :values="controlValues" />
     </div>

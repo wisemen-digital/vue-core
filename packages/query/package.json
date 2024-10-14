@@ -27,8 +27,6 @@
     "gen:web-types": "vue-docgen-web-types",
     "test:unit": "vitest --run",
     "test": "vitest --run",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
     "dev": "vite build --watch"
   },
   "dependencies": {

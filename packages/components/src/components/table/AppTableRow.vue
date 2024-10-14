@@ -17,7 +17,8 @@ const tableContext = injectTableContext()
 
 const isExpanded = ref<boolean>(false)
 
-const expandableComponent = computed<Component | null>(() => {
+// TODO this is not finished yet!
+const _expandableComponent = computed<Component | null>(() => {
   if (tableContext.expandedRowContent.value === null) {
     return null
   }

@@ -1,8 +1,9 @@
 const primary = '#007bff'
 const primaryHover = '#0056b3'
 const primaryFocus = '#0056b3'
-const primaryActive = '#0056b3'
-const primaryDisabled = '#007bff'
+// TODO: this is not used yet!
+const _primaryActive = '#0056b3'
+const _primaryDisabled = '#007bff'
 const primaryForeground = '#ffffff'
 
 const error = '#dc3545'

@@ -28,6 +28,6 @@ defineStyleConfig({
     '--table-border-radius-default': '0',
     '--table-header-bg-color-default': 'var(--bg-primary)',
   },
-  selector: '.table-borderless',
+  selector: '.table-variant-borderless',
   component: 'table',
 })

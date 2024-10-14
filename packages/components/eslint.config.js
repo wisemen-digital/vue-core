@@ -1,5 +1,10 @@
 import eslintVueConfig from '@wisemen/eslint-config-vue'
 
+export const allowedComponentClasses = [
+  'button',
+  'table',
+  'select',
+]
 export default [
   ...(await eslintVueConfig),
   {
@@ -12,5 +17,18 @@ export default [
     ignores: [
       '**/src/components/sonner/Toaster.vue',
     ],
+  },
+  {
+    rules: {
+      'tailwindcss/no-custom-classname': [
+        'error',
+        {
+          whitelist: [
+            '^custom-.*',
+            ...allowedComponentClasses.map((className) => `^${className}-variant-.*`),
+          ],
+        },
+      ],
+    },
   },
 ]
