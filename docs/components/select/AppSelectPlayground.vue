@@ -33,7 +33,7 @@ const items: SelectItem<string>[] = [
 </script>
 
 <template>
-  <div class="">
+  <div class="vp-raw">
     <AppSelect
       v-model="value"
       :items="items"
