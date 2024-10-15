@@ -13,11 +13,11 @@ Displays data in a tabular format, intended for use with API-driven datasets. Fe
 ### Basic usage
 The most basic usage of the table component.
 
-<ComponentPreview name="app-table-basic" />
+<ComponentPreview name="app-table/basic" />
 
 ### Advanced usage
 More advanced usage of the table component.
 
-<ComponentPreview name="app-table-advanced" />
+<ComponentPreview name="app-table/advanced" />
 
 <!-- @include: ./app-table-meta.md -->
