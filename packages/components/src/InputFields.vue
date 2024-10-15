@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 
 import AppIcon from '@/components/icon/AppIcon.vue'
+import AppDateField from '@/components/input-field/date-field/AppDateField.vue'
 import AppNumberField from '@/components/input-field/number-field/AppNumberField.vue'
 import AppPasswordField from '@/components/input-field/password-field/AppPasswordField.vue'
 import AppPhoneNumberField from '@/components/input-field/phone-number-field/AppPhoneNumberField.vue'
@@ -16,6 +17,7 @@ const password = ref<null | string>(null)
 const textareaValue = ref<null | string>(null)
 const phoneNumberValue = ref<null | string>(null)
 const numberValue = ref<null | number>(null)
+const dateValue = ref<Date | null>(null)
 
 const selectValue = ref<null | string>(null)
 const selectArrayValue = ref<string[]>([])
@@ -241,5 +243,9 @@ const isTouched = ref<boolean>(false)
       v-model="phoneNumberValue"
       label="Phone number"
     />
+
+    <div>
+      <AppDateField v-model="dateValue" />
+    </div>
   </div>
 </template>

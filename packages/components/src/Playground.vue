@@ -34,7 +34,7 @@ import Switches from './Switches.vue'
 </script>
 
 <template>
-  <ConfigProvider locale="en">
+  <ConfigProvider locale="nl">
     <div class="flex justify-end p-8">
       <AppDarkModeToggle />
     </div>
