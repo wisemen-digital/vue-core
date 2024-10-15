@@ -67,8 +67,8 @@ const inputId = computed<string>(() => props.id ?? useId())
 const isHovered = computed<boolean>(() => isMouseOver.value && !props.isDisabled)
 const hasError = computed<boolean>(() => props.errors !== undefined && props.isTouched && props.errors !== null)
 
-const dropdownContent = computed<string>(() => style.dropdownContent())
-const listboxContent = computed<string>(() => style.listboxContent())
+const dropdownContentClasses = computed<string>(() => style.dropdownContent())
+const listboxContentClasses = computed<string>(() => style.listboxContent())
 
 const labelClasses = computed<string>(() => style.label({
   hasError: hasError.value,
@@ -286,7 +286,7 @@ provideSelectContext({
       <template #content>
         <div
           :style="props.styleConfig"
-          :class="dropdownContent"
+          :class="dropdownContentClasses"
         >
           <slot name="content-top" />
 
@@ -303,7 +303,7 @@ provideSelectContext({
               <AppSelectFilter />
             </slot>
 
-            <ListboxContent :class="listboxContent">
+            <ListboxContent :class="listboxContentClasses">
               <slot
                 v-if="hasNoResults"
                 :search-term="searchTerm"

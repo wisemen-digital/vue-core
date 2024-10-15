@@ -226,7 +226,7 @@ defineStyleConfig({
     '--select-option-border-radius-default': 'var(--radius-md)',
     '--select-option-font-size-default': 'var(--text-subtext)',
     '--select-option-font-weight-default': 'var(--text-subtext)',
-    '--select-option-indicator-color-default': 'var(--fg-brand-secondary)',
+    '--select-option-indicator-color-default': 'var(--fg-tertiary)',
     '--select-option-indicator-size-default': '16px',
     '--select-option-min-height-default': '36px',
     '--select-option-padding-x-default': 'var(--spacing-md)',

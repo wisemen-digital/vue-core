@@ -1,15 +1,4 @@
-// import type { AcceptableValue } from 'reka-ui'
-// import type { Ref } from 'vue'
-
 import type { Icon } from '@/icons/icons'
-
-// export interface DropdownMenuRadioGroup {
-//   items: AcceptableValue[]
-//   type: 'radioGroup'
-//   value: Ref<AcceptableValue>
-// }
-
-// export type DropdownMenuItem = DropdownMenuRadioGroup
 
 export interface DropdownMenuOption {
   isDestructive?: boolean
@@ -27,4 +16,17 @@ export interface DropdownMenuSubMenu {
   type: 'subMenu'
 }
 
-export type DropdownMenuItem = DropdownMenuOption | DropdownMenuSubMenu
+export interface DropdownMenuGroup {
+  items: DropdownMenuItem[]
+  label?: string
+  type: 'group'
+}
+
+export interface DropdownMenuSeparator {
+  type: 'separator'
+}
+
+export type DropdownMenuItem = DropdownMenuGroup
+  | DropdownMenuOption
+  | DropdownMenuSeparator
+  | DropdownMenuSubMenu

@@ -23,7 +23,7 @@ const globalConfigContext = injectConfigContext()
         <DateFieldInput
           v-if="item.part === 'literal'"
           :part="item.part"
-          class="text-secondary"
+          class="text-placeholder"
         >
           {{ item.value }}
         </DateFieldInput>
@@ -31,7 +31,7 @@ const globalConfigContext = injectConfigContext()
         <DateFieldInput
           v-else
           :part="item.part"
-          class="rounded px-1 text-secondary outline-none ring-brand-primary-500 duration-200 focus:ring-2"
+          class="rounded px-1 text-secondary outline-none ring-brand-primary-500 duration-200 focus:ring-2 data-[placeholder]:text-placeholder"
         >
           {{ item.value }}
         </DateFieldInput>

@@ -15,14 +15,18 @@ export interface BaseIcons {
   chevronUp: Promise<Component>
   eye: Promise<Component>
   eyeOff: Promise<Component>
+  linkExternal01: Promise<Component>
   minus: Promise<Component>
   moonStar: Promise<Component>
   plus: Promise<Component>
   searchLg: Promise<Component>
+  settings01: Promise<Component>
+  stars02: Promise<Component>
   sun: Promise<Component>
   switchVertical: Promise<Component>
   tool02: Promise<Component>
   translate01: Promise<Component>
+  trash01: Promise<Component>
   xClose: Promise<Component>
 }
 
@@ -43,14 +47,18 @@ export const icons: BaseIcons = {
   chevronUp: import('@/icons/ChevronUpIcon.vue'),
   eye: import('@/icons/EyeIcon.vue'),
   eyeOff: import('@/icons/EyeOffIcon.vue'),
+  linkExternal01: import('@/icons/LinkExternal01Icon.vue'),
   minus: import('@/icons/MinusIcon.vue'),
   moonStar: import('@/icons/MoonStarIcon.vue'),
   plus: import('@/icons/PlusIcon.vue'),
   searchLg: import('@/icons/SearchLgIcon.vue'),
+  settings01: import('@/icons/Settings01Icon.vue'),
+  stars02: import('@/icons/Stars02Icon.vue'),
   sun: import('@/icons/SunIcon.vue'),
   switchVertical: import('@/icons/SwitchVerticalIcon.vue'),
   tool02: import('@/icons/Tool02Icon.vue'),
   translate01: import('@/icons/Translate01Icon.vue'),
+  trash01: import('@/icons/Trash01Icon.vue'),
   xClose: import('@/icons/XCloseIcon.vue'),
 }
 

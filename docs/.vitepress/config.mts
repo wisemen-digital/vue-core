@@ -75,6 +75,16 @@ const docs = [
     ],
     text: 'Table',
   },
+  {
+    collapsed: true,
+    items: [
+      {
+        link: '/components/dropdown-menu/app-dropdown-menu',
+        text: 'AppDropdownMenu',
+      },
+    ],
+    text: 'Dropdown Menu',
+  },
 ]
 
 // https://vitepress.dev/reference/site-config

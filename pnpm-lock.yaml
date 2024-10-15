@@ -8,9 +8,6 @@ importers:
 
   .:
     devDependencies:
-      radix-vue:
-        specifier: 1.9.3
-        version: 1.9.3(vue@3.4.29)
       rimraf:
         specifier: ^5.0.7
         version: 5.0.7
@@ -1782,13 +1779,7 @@ packages:
     resolution: {integrity: sha512-PcF++MykgmTj3CIyOQbKA/hDzOAiqI3mhuoN44WRCopIs1sgoDoU4oty4Jtqaj/y3oDU6fnVSm4QG0a3t5i0+g==}
     dependencies:
       '@floating-ui/utils': 0.2.8
-
-  /@floating-ui/dom@1.6.10:
-    resolution: {integrity: sha512-fskgCFv8J8OamCmyun8MfjB1Olfn+uZKjOKZ0vhYF3gRmEUXcGOjxWL8bBr7i4kIuPZ2KD2S3EUIOxnjC8kl2A==}
-    dependencies:
-      '@floating-ui/core': 1.6.0
-      '@floating-ui/utils': 0.2.7
-    dev: true
+    dev: false
 
   /@floating-ui/dom@1.6.11:
     resolution: {integrity: sha512-qkMCxSR24v2vGkhYDo/UzxfJN3D4syqSjyuTFz6C7XcpU1pASPRieNI0Kj5VP3/503mOfYiGY891ugBX1GlABQ==}
@@ -1797,23 +1788,9 @@ packages:
       '@floating-ui/utils': 0.2.8
     dev: false
 
-  /@floating-ui/utils@0.2.7:
-    resolution: {integrity: sha512-X8R8Oj771YRl/w+c1HqAC1szL8zWQRwFvgDwT129k9ACdBoud/+/rX9V0qiMl6LWUdP9voC2nDVZYPMQQsb6eA==}
-    dev: true
-
   /@floating-ui/utils@0.2.8:
     resolution: {integrity: sha512-kym7SodPp8/wloecOpcmSnWJsK7M0E5Wg8UcFA+uO4B9s5d0ywXOEro/8HM9x0rW+TljRzul/14UYz3TleT3ig==}
-
-  /@floating-ui/vue@1.1.4(vue@3.4.29):
-    resolution: {integrity: sha512-ammH7T3vyCx7pmm9OF19Wc42zrGnUw0QvLoidgypWsCLJMtGXEwY7paYIHO+K+oLC3mbWpzIHzeTVienYenlNg==}
-    dependencies:
-      '@floating-ui/dom': 1.6.10
-      '@floating-ui/utils': 0.2.7
-      vue-demi: 0.14.10(vue@3.4.29)
-    transitivePeerDependencies:
-      - '@vue/composition-api'
-      - vue
-    dev: true
+    dev: false
 
   /@floating-ui/vue@1.1.5(vue@3.4.35):
     resolution: {integrity: sha512-ynL1p5Z+woPVSwgMGqeDrx6HrJfGIDzFyESFkyqJKilGW1+h/8yVY29Khn0LaU6wHBRwZ13ntG6reiHWK6jyzw==}
@@ -1848,18 +1825,13 @@ packages:
     resolution: {integrity: sha512-qoVJVro+O0rBaw+8HPjUB1iH8Ihf8oziEnqMnvhJUSuVIrHOuZ6eNLHNvzXJKUvAtaDiqMnRlg8Z2mgh09BlUw==}
     dependencies:
       '@swc/helpers': 0.5.6
+    dev: false
 
   /@internationalized/date@3.5.6:
     resolution: {integrity: sha512-jLxQjefH9VI5P9UQuqB6qNKnvFt1Ky1TPIzHGsIlCi7sZZoMR8SdYbBGRvM0y+Jtb+ez4ieBzmiAUcpmPYpyOw==}
     dependencies:
       '@swc/helpers': 0.5.6
     dev: false
-
-  /@internationalized/number@3.5.3:
-    resolution: {integrity: sha512-rd1wA3ebzlp0Mehj5YTuTI50AQEx80gWFyHcQu+u91/5NgdwBecO8BH6ipPfE+lmQ9d63vpB3H9SHoIUiupllw==}
-    dependencies:
-      '@swc/helpers': 0.5.6
-    dev: true
 
   /@internationalized/number@3.5.4:
     resolution: {integrity: sha512-h9huwWjNqYyE2FXZZewWqmCdkw1HeFds5q4Siuoms3hUQC5iPJK3aBmkFZoDSLN4UD0Bl8G22L/NdHpeOr+/7A==}
@@ -4041,6 +4013,7 @@ packages:
     resolution: {integrity: sha512-aYX01Ke9hunpoCexYAgQucEpARGQ5w/cqHFrIR+e9gdKb1QWTsVJuTJ2ozQzIAxLyRQe/m+2RqzkyOOGiMKRQA==}
     dependencies:
       tslib: 2.7.0
+    dev: false
 
   /@tailwindcss/node@4.0.0-alpha.25:
     resolution: {integrity: sha512-vrJFQRDB4KJ+hGYIPz01i4yDUANyqRq7VwPouq/jKBqkDYdHZ03MhNn4NcLwkml3jZTh0iCWkLkiD+F2DZ3v+A==}
@@ -4178,10 +4151,6 @@ packages:
     resolution: {integrity: sha512-RVfIZQmFUTdjhSAAblvueimfngYyfN6HlwaJUPK71PKd7yi43Vs1S/rdimmZedPWX/WGppcq/U1HOj7O7FwYxw==}
     dev: false
 
-  /@tanstack/virtual-core@3.10.6:
-    resolution: {integrity: sha512-1giLc4dzgEKLMx5pgKjL6HlG5fjZMgCjzlKAlpr7yoUtetVPELgER1NtephAI910nMwfPTHNyWKSFmJdHkz2Cw==}
-    dev: true
-
   /@tanstack/virtual-core@3.10.8:
     resolution: {integrity: sha512-PBu00mtt95jbKFi6Llk9aik8bnR3tR/oQP1o3TSi+iG//+Q2RTIzCEgKkHG8BB86kxMNW6O8wku+Lmi+QFR6jA==}
     dev: false
@@ -4201,15 +4170,6 @@ packages:
       vue: 3.4.29(typescript@5.4.5)
       vue-demi: 0.14.10(vue@3.4.29)
     dev: false
-
-  /@tanstack/vue-virtual@3.10.6(vue@3.4.29):
-    resolution: {integrity: sha512-uVyUAV7rugRxgrw/f3J6FX6TGhxWAjXdT0PAbVNcIFNrj1Ftu/NT9bFLxKVQTkd8hnM6y8ijAlJ1xtBDGmo4gQ==}
-    peerDependencies:
-      vue: ^2.7.0 || ^3.0.0
-    dependencies:
-      '@tanstack/virtual-core': 3.10.6
-      vue: 3.4.29(typescript@5.4.5)
-    dev: true
 
   /@tanstack/vue-virtual@3.10.8(vue@3.4.35):
     resolution: {integrity: sha512-DB5QA8c/LfqOqIUCpSs3RdOTVroRRdqeHMqBkYrcashSZtOzIv8xbiqHgg7RYxDfkH5F3Y+e0MkuuyGNDVB0BQ==}
@@ -6035,6 +5995,7 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       tslib: 2.7.0
+    dev: false
 
   /arr-diff@2.0.0:
     resolution: {integrity: sha512-dtXTVMkh6VkEEA7OhXnN1Ecb8aAGFdZ1LFxtOCoqj4qkyOJMt7+qs6Ahdy6p/NQCPYsRSXXivhSB/J5E9jmYKA==}
@@ -7044,6 +7005,7 @@ packages:
 
   /defu@6.1.4:
     resolution: {integrity: sha512-mEQCMmwJu317oSz8CwdIOdwf3xMif1ttiM8LTufzc3g6kR+9Pe236twL8j3IYT1F7GfRgGcW6MWxzZjLIkuHIg==}
+    dev: false
 
   /delayed-stream@1.0.0:
     resolution: {integrity: sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==}
@@ -11192,6 +11154,7 @@ packages:
     resolution: {integrity: sha512-oLxFY2gd2IqnjcYyOXD8XGCftpGtZP2AbHbOkthDkvRywH5ayNtPVy9YlOPcHckXzbLTCHpkb7FB+yuxKV13pQ==}
     engines: {node: ^18 || >=20}
     hasBin: true
+    dev: false
 
   /nanomatch@1.2.13:
     resolution: {integrity: sha512-fpoe2T0RbHwBTBUOftAfBPaDEi06ufaUai0mE6Yn1kacc3SnTErfb/h+X94VXzI64rKFHYImXSvdwGGCmwOqCA==}
@@ -12208,27 +12171,6 @@ packages:
   /quick-lru@4.0.1:
     resolution: {integrity: sha512-ARhCpm70fzdcvNQfPoy49IaanKkTlRWF2JMzqhcJbhSFRZv7nPTvZJdcY7301IPmvW+/p0RgIWnQDLJxifsQ7g==}
     engines: {node: '>=8'}
-    dev: true
-
-  /radix-vue@1.9.3(vue@3.4.29):
-    resolution: {integrity: sha512-9pewcgzghM+B+FO1h9mMsZa/csVH6hElpN1sqmG4/qoeieiDG0i4nhMjS7p2UOz11EEdVm7eLandHSPyx7hYhg==}
-    peerDependencies:
-      vue: '>= 3.2.0'
-    dependencies:
-      '@floating-ui/dom': 1.6.10
-      '@floating-ui/vue': 1.1.4(vue@3.4.29)
-      '@internationalized/date': 3.5.4
-      '@internationalized/number': 3.5.3
-      '@tanstack/vue-virtual': 3.10.6(vue@3.4.29)
-      '@vueuse/core': 10.11.0(vue@3.4.29)
-      '@vueuse/shared': 10.11.0(vue@3.4.29)
-      aria-hidden: 1.2.4
-      defu: 6.1.4
-      fast-deep-equal: 3.1.3
-      nanoid: 5.0.7
-      vue: 3.4.29(typescript@5.4.5)
-    transitivePeerDependencies:
-      - '@vue/composition-api'
     dev: true
 
   /randomatic@3.1.1:

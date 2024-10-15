@@ -2,7 +2,7 @@ import { tv } from '@/libs/twVariants.lib'
 
 export const selectStyle = tv({
   slots: {
-    dropdownContent: 'px-select-dropdown-padding-x-default py-select-dropdown-padding-y-default outline-none',
+    dropdownContent: 'py-select-dropdown-padding-y-default outline-none',
     error: '[--input-field-error-font-size-default:var(--select-error-font-size-default)] [--input-field-error-spacing-default:var(--select-error-spacing-default)] [--input-field-error-text-color-default:var(--select-error-text-color-default)]',
     groupContent: 'px-select-group-content-padding-x-default py-select-group-content-padding-y-default',
     groupLabel: 'px-select-group-label-spacing-x-default pb-select-group-label-spacing-bottom-default pt-select-group-label-spacing-top-default text-select-group-label-font-size-default font-select-group-label-font-weight-default text-select-group-label-text-color-default',
@@ -10,7 +10,7 @@ export const selectStyle = tv({
     iconLeft: 'ml-select-icon-left-spacing-default box-content shrink-0 duration-200 [--icon-color:var(--select-icon-color-default)] [--icon-size:var(--select-icon-left-size-default)]',
     iconRight: 'mr-select-icon-right-spacing-default box-content shrink-0 duration-200 [--icon-color:var(--select-icon-color-default)] [--icon-size:var(--select-icon-right-size-default)]',
     label: '[--input-field-label-font-size-default:var(--select-label-font-size-default)] [--input-field-label-font-weight-default:var(--select-label-font-weight-default)] [--input-field-label-spacing-default:var(--select-label-spacing-default)] [--input-field-label-text-color-default:var(--select-label-text-color-default)]',
-    listboxContent: 'max-h-select-dropdown-max-height-default overflow-y-auto',
+    listboxContent: 'max-h-select-dropdown-max-height-default overflow-y-auto px-select-dropdown-padding-x-default',
     loader: 'h-select-loader-size-default w-select-loader-size-default text-select-loader-color-default',
     loaderBox: 'mr-select-icon-right-spacing-default',
     option: 'group flex min-h-select-option-min-height-default cursor-default items-center justify-between rounded-select-option-border-radius-default bg-select-option-bg-color-default px-select-option-padding-x-default py-select-option-padding-y-default text-select-option-font-size-default font-select-option-font-weight-default text-select-option-text-color-default outline-none duration-200 hover:bg-select-option-bg-color-hover hover:text-select-option-text-color-hover data-[disabled]:cursor-not-allowed data-[disabled]:bg-select-option-bg-color-disabled data-[highlighted]:bg-select-option-bg-color-highlighted data-[state=checked]:bg-select-option-bg-color-selected data-[state=checked]:data-[highlighted]:bg-select-option-bg-color-highlighted data-[disabled]:text-select-option-text-color-disabled data-[state=checked]:text-select-option-text-color-selected data-[disabled]:hover:bg-select-option-bg-color-disabled data-[highlighted]:hover:bg-select-option-bg-color-hover data-[state=checked]:hover:bg-select-option-bg-color-hover hover:data-[disabled]:bg-select-option-bg-color-disabled',

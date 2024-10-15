@@ -23,6 +23,7 @@ export { defineStyleConfig } from '@/styling/defineStyleConfig'
 export type {
   AcceptableValue,
 } from '@/types/acceptableValue.type'
+export type { DropdownMenuItem } from '@/types/dropdownMenu.type'
 export type { PaginatedData, Pagination } from '@/types/pagination.type'
 export type {
   SelectGroup,
@@ -92,3 +93,6 @@ export { default as AppTablePaginationPrevPage } from '@/components/table/pagina
 
 // Checkbox
 export { default as AppCheckbox } from '@/components/checkbox/AppCheckbox.vue'
+
+// Dropdown menu
+export { default as AppDropdownMenu } from '@/components/dropdown-menu/AppDropdownMenu.vue'

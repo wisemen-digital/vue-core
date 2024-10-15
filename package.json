@@ -20,7 +20,6 @@
     "precommit": "pnpm run -r lint && pnpm run -r type-check && pnpm run -r test && pnpm run -r docs:gen"
   },
   "devDependencies": {
-    "radix-vue": "1.9.3",
     "rimraf": "^5.0.7",
     "turbo": "^2.0.1",
     "vitest": "^1.6.0"

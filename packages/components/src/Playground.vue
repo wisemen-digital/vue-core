@@ -23,6 +23,7 @@ import Buttons from '@/Buttons.vue'
 import ConfigProvider from '@/components/config-provider/ConfigProvider.vue'
 import AppDarkModeToggle from '@/components/dark-mode-toggle/AppDarkModeToggle.vue'
 import Dialogs from '@/Dialogs.vue'
+import DropdownMenus from '@/DropdownMenus.vue'
 import InputFields from '@/InputFields.vue'
 import Popovers from '@/Popovers.vue'
 import TablePlayground from '@/TablePlayground.vue'
@@ -34,7 +35,7 @@ import Switches from './Switches.vue'
 </script>
 
 <template>
-  <ConfigProvider locale="nl">
+  <ConfigProvider locale="en">
     <div class="flex justify-end p-8">
       <AppDarkModeToggle />
     </div>
@@ -42,6 +43,7 @@ import Switches from './Switches.vue'
     <TablePlayground />
 
     <div class="flex min-h-screen flex-col gap-y-24 p-24">
+      <DropdownMenus />
       <Dialogs />
       <Switches />
       <Checkboxes />
