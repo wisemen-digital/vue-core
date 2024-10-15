@@ -27,7 +27,7 @@ function rawPathToToken(rawPath: string) {
 }
 
 function kebabCaseToCamelCase(str: string): string {
-  return str.replace(/-([a-z])/g, (g) => g[1].toUpperCase())
+  return str.replace(/-([a-z])/g, (g) => g[1].toUpperCase()).replaceAll('/', '_')
 }
 
 export default function (md: MarkdownRenderer): void {
@@ -54,8 +54,9 @@ export default function (md: MarkdownRenderer): void {
     // Iterate through the Markdown content and replace the pattern
     state.src = state.src.replace(regex, (match, componentName) => {
       const pathName = `../../demos/${componentName}`
+      const convertedName = kebabCaseToCamelCase(componentName)
 
-      insertComponentImport(`import ${kebabCaseToCamelCase(componentName)} from '${pathName}/Demo.vue'`)
+      insertComponentImport(`import ${convertedName} from '${pathName}/Demo.vue'`)
 
       const index = state.tokens.findIndex((i) => i.content.match(regex))
 
@@ -76,7 +77,7 @@ export default function (md: MarkdownRenderer): void {
         return prev
       }, [] as string[])
 
-      state.tokens[index].content = `<ComponentPreview name="${componentName}" files="${encodeURIComponent(JSON.stringify(groupedFiles))}" ><${componentName} />`
+      state.tokens[index].content = `<ComponentPreview name="${convertedName}" files="${encodeURIComponent(JSON.stringify(groupedFiles))}" ><${convertedName} />`
 
       const _dummyToken = new state.Token('', '', 0)
       const tokenArray: Array<typeof _dummyToken> = []
