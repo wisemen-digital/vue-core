@@ -27,7 +27,7 @@ export function useDialogContainer(): UseDialogContainerReturnType {
   }
 }
 
-export function useDialog<TComponent extends Record<string, unknown>>({
+export function useDialog<TComponent extends Component>({
   animateFromTrigger = false,
   component,
 }: UseDialogOptions<TComponent>): UseDialogReturnType<TComponent> {

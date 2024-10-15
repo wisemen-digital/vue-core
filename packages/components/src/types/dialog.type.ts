@@ -36,7 +36,7 @@ export type Attrs<TComponent> = Omit<
   'isOpen'
 >
 
-export interface UseDialogOptions<TComponent extends Record<string, unknown>> {
+export interface UseDialogOptions<TComponent extends Component> {
   /**
    * Whether the dialog should animate from the trigger
    * @default false
@@ -48,7 +48,7 @@ export interface UseDialogOptions<TComponent extends Record<string, unknown>> {
   component: () => Promise<{ default: Constructor<TComponent> }>
 }
 
-export interface UseDialogReturnType<TComponent extends Record<string, unknown>> {
+export interface UseDialogReturnType<TComponent extends Component> {
   /**
    * The dialog id. Should be bound to the trigger
    */
