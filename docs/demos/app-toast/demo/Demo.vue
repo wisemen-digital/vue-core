@@ -35,7 +35,10 @@ function showErrorToast(): void {
 <template>
   <div>
     <div class="grid grid-cols-3 gap-x-2">
-      <AppButton @click="showInfoToast">
+      <AppButton
+        variant="secondary-color"
+        @click="showInfoToast"
+      >
         Info
       </AppButton>
 
@@ -47,7 +50,7 @@ function showErrorToast(): void {
       </AppButton>
 
       <AppButton
-        variant="destructive-primary"
+        variant="destructive-secondary"
         @click="showErrorToast"
       >
         Error

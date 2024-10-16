@@ -19,7 +19,9 @@ defineSlots<{
   'default': () => void
   'icon-left': () => void
   'icon-right': () => void
+  'left': () => void
   'loader': () => void
+  'right': () => void
 }>()
 
 const style = buttonStyle()
@@ -180,6 +182,8 @@ function onClick(): void {
     @keyup="onKeyUp"
     @click="onClick"
   >
+    <slot name="left" />
+
     <slot
       v-if="props.iconLeft !== null"
       name="icon-left"
@@ -219,5 +223,7 @@ function onClick(): void {
         :class="iconRightClasses"
       />
     </slot>
+
+    <slot name="right" />
   </button>
 </template>

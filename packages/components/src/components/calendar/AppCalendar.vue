@@ -25,9 +25,12 @@ import AppIconButton from '@/components/button/icon-button/AppIconButton.vue'
 import AppCollapsable2 from '@/components/collapsable/AppCollapsable2.vue'
 import { injectConfigContext } from '@/components/config-provider/config.context.js'
 
+const model = defineModel<Date | null>({
+  required: true,
+})
+
 const globalConfigContext = injectConfigContext()
 
-const model = ref<Date | null>(null)
 const placeholder = ref<DateValue>(today(getLocalTimeZone()))
 
 const activeView = ref<'day' | 'month' | 'year'>('day')

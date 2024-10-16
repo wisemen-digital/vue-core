@@ -21,12 +21,11 @@ import '@/components/switch/switchStyle.config'
 
 import Buttons from '@/Buttons.vue'
 import AppButton from '@/components/button/button/AppButton.vue'
-import AppCalendar from '@/components/calendar/AppCalendar.vue'
 import ConfigProvider from '@/components/config-provider/ConfigProvider.vue'
 import AppDarkModeToggle from '@/components/dark-mode-toggle/AppDarkModeToggle.vue'
-import AppPopover from '@/components/popover/AppPopover.vue'
+import AppDateField from '@/components/input-field/date-field/AppDateField.vue'
+import AppKeyboardKey from '@/components/keyboard/AppKeyboardKey.vue'
 import AppToastContainer from '@/components/toast/AppToastContainer.vue'
-import { useToast } from '@/composables/toast.composable.js'
 import Dialogs from '@/Dialogs.vue'
 import DropdownMenus from '@/DropdownMenus.vue'
 import InputFields from '@/InputFields.vue'
@@ -37,20 +36,6 @@ import Tooltips from '@/Tooltips.vue'
 
 import Checkboxes from './Checkboxes.vue'
 import Switches from './Switches.vue'
-
-const toast = useToast()
-
-setTimeout(() => {
-  toast.error({
-    message: 'This is an error toast message. You can do something about it.',
-  })
-}, 1000)
-
-setTimeout(() => {
-  toast.success({
-    message: 'This is an success toast message. Enjoy!',
-  })
-}, 1200)
 </script>
 
 <template>
@@ -60,19 +45,34 @@ setTimeout(() => {
     </div>
 
     <div class="p-24">
-      <AppPopover
-        side="right"
-        align="start"
-      >
-        <template #trigger>
-          <AppButton>
-            Trigger
-          </AppButton>
-        </template>
-        <template #content>
-          <AppCalendar />
-        </template>
-      </AppPopover>
+      <div class="flex gap-x-1">
+        <AppKeyboardKey keyboard-key="shift" />
+        <AppKeyboardKey keyboard-key="ctrl" />
+        <AppKeyboardKey keyboard-key="f" />
+        <AppKeyboardKey keyboard-key="meta" />
+      </div>
+
+      <div class="p-12">
+        <AppButton>
+          Button
+
+          <template #right>
+            <div class="flex items-center gap-x-1">
+              <AppKeyboardKey
+                keyboard-key="meta"
+                class="ml-2"
+              />
+
+              <AppKeyboardKey keyboard-key="enter" />
+            </div>
+          </template>
+        </AppButton>
+      </div>
+
+      <AppDateField
+        v-if="false"
+        class="w-72"
+      />
     </div>
 
     <TablePlayground v-if="false" />
