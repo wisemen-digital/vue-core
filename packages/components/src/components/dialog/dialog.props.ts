@@ -25,10 +25,3 @@ export interface AppDialogProps {
    */
   styleConfig?: StyleConfig<'dialog'> | null
 }
-
-export const appDialogPropsDefaultValues = {
-  triggerId: null,
-  animateFromTrigger: false,
-  shouldPreventClickOutside: false,
-  styleConfig: null,
-} satisfies Partial<AppDialogProps>

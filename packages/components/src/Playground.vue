@@ -21,7 +21,7 @@ import '@/components/switch/switchStyle.config'
 
 import Buttons from '@/Buttons.vue'
 import AppButton from '@/components/button/button/AppButton.vue'
-import ConfigProvider from '@/components/config-provider/ConfigProvider.vue'
+import ConfigProvider from '@/components/config-provider/AppConfigProvider.vue'
 import AppDarkModeToggle from '@/components/dark-mode-toggle/AppDarkModeToggle.vue'
 import AppDateField from '@/components/input-field/date-field/AppDateField.vue'
 import AppKeyboardKey from '@/components/keyboard/AppKeyboardKey.vue'
@@ -39,12 +39,26 @@ import Switches from './Switches.vue'
 </script>
 
 <template>
-  <ConfigProvider locale="nl-BE">
+  <ConfigProvider locale="en">
     <div class="flex justify-end p-8">
       <AppDarkModeToggle />
     </div>
 
     <div class="p-24">
+      <AppDateField class="w-72" />
+    </div>
+
+    <div class="p-24">
+      <div class="p-24">
+        <AppButton icon-left="translate01">
+          test
+        </AppButton>
+
+        <AppButton variant="secondary">
+          test
+        </AppButton>
+      </div>
+
       <div class="flex gap-x-1">
         <AppKeyboardKey keyboard-key="shift" />
         <AppKeyboardKey keyboard-key="ctrl" />
@@ -75,10 +89,9 @@ import Switches from './Switches.vue'
       />
     </div>
 
-    <TablePlayground v-if="false" />
+    <TablePlayground />
 
     <div
-      v-if="false"
       class="flex min-h-screen flex-col gap-y-24 p-24"
     >
       <DropdownMenus />

@@ -9,13 +9,18 @@ import {
 import { computed } from 'vue'
 
 import AppDropdownMenuItem from '@/components/dropdown-menu/AppDropdownMenuItem.vue'
-import {
-  type AppDropdownMenuProps,
-  appDropdownMenuPropsDefaultValues,
-} from '@/components/dropdown-menu/dropdownMenu.props.js'
+import type { AppDropdownMenuProps } from '@/components/dropdown-menu/dropdownMenu.props.js'
 import { dropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style.js'
 
-const props = withDefaults(defineProps<AppDropdownMenuProps>(), appDropdownMenuPropsDefaultValues)
+const props = withDefaults(defineProps<AppDropdownMenuProps>(), {
+  isArrowHidden: false,
+  align: 'center',
+  collisionPaddingInPx: 10,
+  containerElement: null,
+  offsetInPx: 4,
+  popoverWidth: 'available-width',
+  side: 'bottom',
+})
 
 const style = dropdownMenuStyle()
 

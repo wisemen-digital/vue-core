@@ -57,16 +57,3 @@ export interface AppCheckboxProps {
   styleConfig?: StyleConfig<'checkbox'> | null
 
 }
-
-export const appCheckboxPropsDefaultValues = {
-  id: null,
-  isDisabled: false,
-  isIndeterminate: false,
-  isReadonly: false,
-  isRequired: false,
-  isTouched: false,
-  errors: null,
-  hint: null,
-  label: null,
-  styleConfig: null,
-} satisfies AppCheckboxProps

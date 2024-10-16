@@ -41,8 +41,3 @@ export interface AppTableProps<TSchema, TFilters> {
    */
   rowClass?: ((row: TSchema, rowIndex: number) => string) | null
 }
-
-export const appTablePropsDefaultValues = {
-  isFirstColumnSticky: false,
-  isLastColumnSticky: false,
-} satisfies Partial<AppTableProps<unknown, unknown>>

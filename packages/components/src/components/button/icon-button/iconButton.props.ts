@@ -25,26 +25,19 @@ export interface AppIconButtonProps {
    * @default 'default'
    */
   size?: '2xl' | 'default' | 'lg' | 'sm' | 'xl'
-
+  /**
+   * The style config of the button.
+   * @default null
+   */
   styleConfig?: StyleConfig<'iconButton'> | null
   /**
    * The type of the button.
    * @default 'button'
    */
   type?: 'button' | 'reset' | 'submit'
-
   /**
    * The variant of the button.
    * @default 'default'
    */
   variant?: 'default' | 'destructive-primary' | 'destructive-secondary' | 'destructive-tertiary' | 'secondary' | 'secondary-color' | 'tertiary' | 'tertiary-color'
 }
-
-export const appIconButtonPropsDefaultValues = {
-  isDisabled: false,
-  isLoading: false,
-  size: 'default',
-  styleConfig: null,
-  type: 'button',
-  variant: 'default',
-} satisfies Partial<AppIconButtonProps>

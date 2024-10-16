@@ -17,14 +17,16 @@ import AppTableLoadingState from '@/components/table/AppTableLoadingState.vue'
 import AppTablePageCount from '@/components/table/AppTablePageCount.vue'
 import AppTablePagination from '@/components/table/pagination/AppTablePagination.vue'
 import { provideTableContext } from '@/components/table/table.context'
-import {
-  type AppTableProps,
-  appTablePropsDefaultValues,
-} from '@/components/table/table.props'
+import type { AppTableProps } from '@/components/table/table.props'
 import type { PaginatedData, Pagination } from '@/types/pagination.type.js'
 import type { TableColumn } from '@/types/table.type.js'
 
-const props = withDefaults(defineProps<AppTableProps<Tschema, TFilters>>(), appTablePropsDefaultValues)
+const props = withDefaults(defineProps<AppTableProps<Tschema, TFilters>>(), {
+  isFirstColumnSticky: false,
+  isLastColumnSticky: false,
+  expandedRowContent: null,
+  rowClass: null,
+})
 
 const slots = useSlots()
 

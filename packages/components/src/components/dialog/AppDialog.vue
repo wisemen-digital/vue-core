@@ -12,12 +12,14 @@ import {
 
 import AppDialogContent from '@/components/dialog/AppDialogContent.vue'
 import AppDialogOverlay from '@/components/dialog/AppDialogOverlay.vue'
-import {
-  type AppDialogProps,
-  appDialogPropsDefaultValues,
-} from '@/components/dialog/dialog.props.js'
+import type { AppDialogProps } from '@/components/dialog/dialog.props.js'
 
-const props = withDefaults(defineProps<AppDialogProps>(), appDialogPropsDefaultValues)
+const props = withDefaults(defineProps<AppDialogProps>(), {
+  triggerId: null,
+  animateFromTrigger: false,
+  shouldPreventClickOutside: false,
+  styleConfig: null,
+})
 
 const emit = defineEmits<{
   close: []

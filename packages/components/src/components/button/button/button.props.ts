@@ -27,7 +27,10 @@ export interface AppButtonProps {
    * @default 'default'
    */
   size?: '2xl' | 'default' | 'lg' | 'sm' | 'xl'
-
+  /**
+   * The style config of the button.
+   * @default null
+   */
   styleConfig?: StyleConfig<'button'> | null
   /**
    * The type of the button.
@@ -41,14 +44,3 @@ export interface AppButtonProps {
    */
   variant?: 'default' | 'destructive-primary' | 'destructive-secondary' | 'destructive-tertiary' | 'secondary' | 'secondary-color' | 'tertiary' | 'tertiary-color'
 }
-
-export const appButtonPropsDefaultValues = {
-  isDisabled: false,
-  isLoading: false,
-  iconLeft: null,
-  iconRight: null,
-  size: 'default',
-  styleConfig: null,
-  type: 'button',
-  variant: 'default',
-} satisfies AppButtonProps

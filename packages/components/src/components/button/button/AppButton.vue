@@ -1,15 +1,21 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 
-import {
-  type AppButtonProps,
-  appButtonPropsDefaultValues,
-} from '@/components/button/button/button.props.js'
+import type { AppButtonProps } from '@/components/button/button/button.props.js'
 import { buttonStyle } from '@/components/button/button/button.style'
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppSpinner from '@/components/spinner/AppSpinner.vue'
 
-const props = withDefaults(defineProps<AppButtonProps>(), appButtonPropsDefaultValues)
+const props = withDefaults(defineProps<AppButtonProps>(), {
+  isDisabled: false,
+  isLoading: false,
+  iconLeft: null,
+  iconRight: null,
+  size: 'default',
+  styleConfig: null,
+  type: 'button',
+  variant: 'default',
+})
 
 const emit = defineEmits<{
   click: []

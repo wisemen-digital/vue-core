@@ -118,29 +118,3 @@ export interface AppSelectProps<TValue extends SelectValue> extends Omit<Popover
     optionHeight: number
   } | null
 }
-
-export const appSelectPropsDefaultValues = {
-  id: null,
-  testId: null,
-  isArrowVisible: false,
-  isDisabled: false,
-  isLoading: false,
-  isRequired: false,
-  isTouched: false,
-  align: 'center',
-  collisionPaddingInPx: 0,
-  containerElement: null,
-  errors: null,
-  filterFn: null,
-  hint: null,
-  iconLeft: null,
-  iconRight: 'chevronSelectorVertical',
-  label: null,
-  offsetInPx: 4,
-  placeholder: null,
-  popoverWidth: 'anchor-width',
-  shouldRemainOpenOnValueChange: null,
-  side: 'bottom',
-  styleConfig: null,
-  virtualList: null,
-} satisfies Partial<AppSelectProps<SelectValue>>
