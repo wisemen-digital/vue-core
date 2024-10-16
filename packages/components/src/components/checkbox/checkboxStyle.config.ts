@@ -119,13 +119,13 @@ defineStyleConfig({
 
     '--checkbox-error-font-size-default': 'var(--input-field-error-font-size-default)',
     '--checkbox-error-font-weight-default': 'var(--input-field-error-font-weight-default)',
-    '--checkbox-error-spacing-default': 'var(--input-field-error-spacing-default)',
+    '--checkbox-error-spacing-default': '0px',
 
     '--checkbox-error-text-color-default': 'var(--input-field-error-text-color-default)',
     '--checkbox-hint-font-size-default': 'var(--input-field-hint-font-size-default)',
     '--checkbox-hint-font-weight-default': 'var(--input-field-hint-font-weight-default)',
 
-    '--checkbox-hint-spacing-default': 'var(--input-field-hint-spacing-default)',
+    '--checkbox-hint-spacing-default': '0px',
     '--checkbox-hint-text-color-checked': 'var(--input-field-hint-text-color-default)',
     '--checkbox-hint-text-color-default': 'var(--input-field-hint-text-color-default)',
     '--checkbox-hint-text-color-disabled': 'var(--input-field-hint-text-color-default)',

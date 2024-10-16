@@ -18,6 +18,7 @@ import '@/components/input-field/text-area/textareaStyle.config'
 import '@/components/dialog/dialogStyle.config'
 import '@/components/table/tableStyle.config'
 import '@/components/switch/switchStyle.config'
+import '@/components/radio-group/radioGroupStyle.config'
 
 import Buttons from '@/Buttons.vue'
 import ConfigProvider from '@/components/config-provider/ConfigProvider.vue'
@@ -30,6 +31,7 @@ import Tabs from '@/Tabs.vue'
 import Tooltips from '@/Tooltips.vue'
 
 import Checkboxes from './Checkboxes.vue'
+import RadioGroups from './RadioGroups.vue'
 import Switches from './Switches.vue'
 </script>
 
@@ -39,9 +41,8 @@ import Switches from './Switches.vue'
       <AppDarkModeToggle />
     </div>
 
-    <TablePlayground />
-
     <div class="flex min-h-screen flex-col gap-y-24 p-24">
+      <RadioGroups />
       <Dialogs />
       <Switches />
       <Checkboxes />
@@ -51,5 +52,6 @@ import Switches from './Switches.vue'
       <InputFields />
       <Buttons />
     </div>
+    <TablePlayground />
   </ConfigProvider>
 </template>
