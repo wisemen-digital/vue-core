@@ -1,6 +1,7 @@
 import type { Component } from 'vue'
 
 export interface BaseIcons {
+  alertCircle: Promise<Component>
   arrowDown: Promise<Component>
   arrowLeft: Promise<Component>
   arrowRight: Promise<Component>
@@ -15,6 +16,7 @@ export interface BaseIcons {
   chevronUp: Promise<Component>
   eye: Promise<Component>
   eyeOff: Promise<Component>
+  infoCircle: Promise<Component>
   linkExternal01: Promise<Component>
   minus: Promise<Component>
   moonStar: Promise<Component>
@@ -33,6 +35,7 @@ export interface BaseIcons {
 export interface Icons extends BaseIcons {}
 
 export const icons: BaseIcons = {
+  alertCircle: import('@/icons/AlertCircleIcon.vue'),
   arrowDown: import('@/icons/ArrowDownIcon.vue'),
   arrowLeft: import('@/icons/ArrowLeftIcon.vue'),
   arrowRight: import('@/icons/ArrowRightIcon.vue'),
@@ -47,6 +50,7 @@ export const icons: BaseIcons = {
   chevronUp: import('@/icons/ChevronUpIcon.vue'),
   eye: import('@/icons/EyeIcon.vue'),
   eyeOff: import('@/icons/EyeOffIcon.vue'),
+  infoCircle: import('@/icons/InfoCircleIcon.vue'),
   linkExternal01: import('@/icons/LinkExternal01Icon.vue'),
   minus: import('@/icons/MinusIcon.vue'),
   moonStar: import('@/icons/MoonStarIcon.vue'),

@@ -18,6 +18,7 @@ import { switchTailwindConfig } from './src/components/switch/switch.tailwind'
 import { tableTailwindConfig } from './src/components/table/table.tailwind'
 import { tabsTailwindConfig } from './src/components/tabs/tabs.tailwind'
 import { tagTailwindConfig } from './src/components/tag/tag.tailwind'
+import { toastTailwindConfig } from './src/components/toast/toast.tailwind'
 import { tooltipTailwindConfig } from './src/components/tooltip/tooltip.tailwind'
 
 export default {
@@ -48,6 +49,7 @@ export default {
         dialogTailwindConfig,
         tableTailwindConfig,
         switchTailwindConfig,
+        toastTailwindConfig,
         {
           animation: {
             shimmer: 'shimmer 2s ease-in-out infinite',

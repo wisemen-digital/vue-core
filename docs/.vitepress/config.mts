@@ -85,6 +85,16 @@ const docs = [
     ],
     text: 'Dropdown Menu',
   },
+  {
+    collapsed: true,
+    items: [
+      {
+        link: '/components/toast/app-toast',
+        text: 'AppToast',
+      },
+    ],
+    text: 'Toast',
+  },
 ]
 
 // https://vitepress.dev/reference/site-config

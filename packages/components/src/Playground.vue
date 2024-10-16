@@ -25,6 +25,8 @@ import AppCalendar from '@/components/calendar/AppCalendar.vue'
 import ConfigProvider from '@/components/config-provider/ConfigProvider.vue'
 import AppDarkModeToggle from '@/components/dark-mode-toggle/AppDarkModeToggle.vue'
 import AppPopover from '@/components/popover/AppPopover.vue'
+import AppToastContainer from '@/components/toast/AppToastContainer.vue'
+import { useToast } from '@/composables/toast.composable.js'
 import Dialogs from '@/Dialogs.vue'
 import DropdownMenus from '@/DropdownMenus.vue'
 import InputFields from '@/InputFields.vue'
@@ -35,6 +37,20 @@ import Tooltips from '@/Tooltips.vue'
 
 import Checkboxes from './Checkboxes.vue'
 import Switches from './Switches.vue'
+
+const toast = useToast()
+
+setTimeout(() => {
+  toast.error({
+    message: 'This is an error toast message. You can do something about it.',
+  })
+}, 1000)
+
+setTimeout(() => {
+  toast.success({
+    message: 'This is an success toast message. Enjoy!',
+  })
+}, 1200)
 </script>
 
 <template>
@@ -76,4 +92,6 @@ import Switches from './Switches.vue'
       <Buttons />
     </div>
   </ConfigProvider>
+
+  <AppToastContainer />
 </template>
