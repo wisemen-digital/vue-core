@@ -175,6 +175,8 @@ const isTouched = ref<boolean>(false)
       label="Select a fruit"
       placeholder="Select a fruit"
       icon-left="translate01"
+      side="right"
+      align="start"
       hint="You can only select 1 fruit."
     >
       <template #group-label="{ label }">
@@ -245,7 +247,7 @@ const isTouched = ref<boolean>(false)
     />
 
     <div>
-      <AppDateField v-model="dateValue" />
+      <AppDateField />
     </div>
   </div>
 </template>

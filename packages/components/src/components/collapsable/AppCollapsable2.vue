@@ -35,6 +35,10 @@ function onEnter(el: Element): void {
 
   getContainerRef().style.height = `${element.clientHeight}px`
 }
+
+function onAfterEnter(): void {
+  getContainerRef().style.height = ''
+}
 </script>
 
 <template>
@@ -55,6 +59,7 @@ function onEnter(el: Element): void {
       leave-to-class="opacity-0 scale-[0.98]"
       @before-leave="onBeforeLeave"
       @enter="onEnter"
+      @after-enter="onAfterEnter"
     >
       <slot />
     </Transition>

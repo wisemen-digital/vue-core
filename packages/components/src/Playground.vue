@@ -20,8 +20,11 @@ import '@/components/table/tableStyle.config'
 import '@/components/switch/switchStyle.config'
 
 import Buttons from '@/Buttons.vue'
+import AppButton from '@/components/button/button/AppButton.vue'
+import AppCalendar from '@/components/calendar/AppCalendar.vue'
 import ConfigProvider from '@/components/config-provider/ConfigProvider.vue'
 import AppDarkModeToggle from '@/components/dark-mode-toggle/AppDarkModeToggle.vue'
+import AppPopover from '@/components/popover/AppPopover.vue'
 import Dialogs from '@/Dialogs.vue'
 import DropdownMenus from '@/DropdownMenus.vue'
 import InputFields from '@/InputFields.vue'
@@ -35,14 +38,33 @@ import Switches from './Switches.vue'
 </script>
 
 <template>
-  <ConfigProvider locale="en">
+  <ConfigProvider locale="nl-BE">
     <div class="flex justify-end p-8">
       <AppDarkModeToggle />
     </div>
 
-    <TablePlayground />
+    <div class="p-24">
+      <AppPopover
+        side="right"
+        align="start"
+      >
+        <template #trigger>
+          <AppButton>
+            Trigger
+          </AppButton>
+        </template>
+        <template #content>
+          <AppCalendar />
+        </template>
+      </AppPopover>
+    </div>
 
-    <div class="flex min-h-screen flex-col gap-y-24 p-24">
+    <TablePlayground v-if="false" />
+
+    <div
+      v-if="false"
+      class="flex min-h-screen flex-col gap-y-24 p-24"
+    >
       <DropdownMenus />
       <Dialogs />
       <Switches />
