@@ -39,7 +39,7 @@ watch(
 
 watch(
   () => filterModel.value,
-  (value) => {
+  (value: null | string) => {
     emit('change', { key: props.filter.id, value })
   },
 )
