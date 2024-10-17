@@ -1,21 +1,8 @@
 <script setup lang="ts">
-import { useLocalStorage } from '@vueuse/core'
-import { watch } from 'vue'
-
 import AppSwitch from '@/components/switch/AppSwitch.vue'
+import { useDarkMode } from '@/composables/index.js'
 
-const isDarkMode = useLocalStorage<boolean>('isDarkMode', false)
-
-watch(isDarkMode, (isDarkMode) => {
-  if (isDarkMode) {
-    document.documentElement.classList.add('dark')
-  }
-  else {
-    document.documentElement.classList.remove('dark')
-  }
-}, {
-  immediate: true,
-})
+const { isDarkMode } = useDarkMode()
 </script>
 
 <template>

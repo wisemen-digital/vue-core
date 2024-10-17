@@ -8,13 +8,24 @@ import AppInputFieldHint from '@/components/input-field-hint/AppInputFieldHint.v
 import AppInputFieldLabel from '@/components/input-field-label/AppInputFieldLabel.vue'
 import AppSwitchIndicator from '@/components/switch/AppSwitchIndicator.vue'
 
-import {
-  type AppSwitchProps,
-  appSwitchPropsDefaultValues,
-} from './switch.props'
+import type { AppSwitchProps } from './switch.props'
 import { switchStyle } from './switch.style'
 
-const props = withDefaults(defineProps<AppSwitchProps>(), appSwitchPropsDefaultValues)
+const props = withDefaults(defineProps<AppSwitchProps>(), {
+  id: null,
+  testId: null,
+  isDisabled: false,
+  isReadonly: false,
+  isRequired: false,
+  isTouched: false,
+  errors: null,
+  hint: null,
+  iconChecked: null,
+  iconUnchecked: null,
+  label: null,
+  size: 'default',
+  styleConfig: null,
+})
 
 const emit = defineEmits<{
   blur: []

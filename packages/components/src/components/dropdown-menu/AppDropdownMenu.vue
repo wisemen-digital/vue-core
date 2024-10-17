@@ -1,116 +1,98 @@
 <script setup lang="ts">
 import {
   DropdownMenuArrow,
-  DropdownMenuCheckboxItem,
   DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuItemIndicator,
   DropdownMenuPortal,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
   DropdownMenuRoot,
-  DropdownMenuSeparator,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
   DropdownMenuTrigger,
 } from 'reka-ui'
 import { computed } from 'vue'
 
 import AppDropdownMenuItem from '@/components/dropdown-menu/AppDropdownMenuItem.vue'
-import AppDropdownMenuSubTrigger from '@/components/dropdown-menu/AppDropdownMenuSubTrigger.vue'
+import type { AppDropdownMenuProps } from '@/components/dropdown-menu/dropdownMenu.props.js'
 import { dropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style.js'
+
+const props = withDefaults(defineProps<AppDropdownMenuProps>(), {
+  isArrowHidden: false,
+  align: 'center',
+  collisionPaddingInPx: 10,
+  containerElement: null,
+  offsetInPx: 4,
+  popoverWidth: 'available-width',
+  side: 'bottom',
+})
 
 const style = dropdownMenuStyle()
 
 const dropdownClasses = computed<string>(() => style.dropdown())
-// TODO use group classes
-const _groupClasses = computed<string>(() => style.group())
-const _groupLabelClasses = computed<string>(() => style.groupLabel())
-const itemClasses = computed<string>(() => style.item())
-const separatorClasses = computed<string>(() => style.separator())
+const dropdownContentClasses = computed<string>(() => style.dropdownContent())
+
+const arrowClasses = computed<string>(() => style.arrow())
+const arrowBoxClasses = computed<string>(() => style.arrowBox())
 </script>
 
 <template>
   <DropdownMenuRoot>
-    <DropdownMenuTrigger>Trigger</DropdownMenuTrigger>
+    <DropdownMenuTrigger :as-child="true">
+      <slot name="trigger" />
+    </DropdownMenuTrigger>
 
     <DropdownMenuPortal>
       <DropdownMenuContent
         :class="dropdownClasses"
+        :side-offset="props.offsetInPx"
+        :side="props.side"
+        :align="props.align"
+        :collision-padding-in-px="props.collisionPaddingInPx"
+        :container-element="props.containerElement"
+        :offset-in-px="props.offsetInPx"
         position="popper"
       >
-        <slot name="top" />
+        <!-- Without this relative div, the arrow is a bit glitchy -->
+        <div class="relative size-full">
+          <!-- Since we can't apply `overflow-hidden` on the parent div, we need another wrapper -->
+          <div :class="dropdownContentClasses">
+            <slot name="content-top" />
 
-        <AppDropdownMenuItem
-          :item="{
-            label: 'Unit system',
-            type: 'option',
-            icon: 'tool02',
-            onSelect: () => {},
-          }"
-        />
-
-        <DropdownMenuSeparator :class="separatorClasses" />
-
-        <!-- <DropdownMenuGroup :class="groupClasses">
-          <DropdownMenuLabel :class="groupLabelClasses">
-            Group
-          </DropdownMenuLabel>
-
-          <AppDropdownMenuItem />
-          <AppDropdownMenuItem />
-        </DropdownMenuGroup> -->
-
-        <DropdownMenuCheckboxItem v-if="false">
-          Checkbox
-          <DropdownMenuItemIndicator>X</DropdownMenuItemIndicator>
-        </DropdownMenuCheckboxItem>
-
-        <DropdownMenuRadioGroup v-if="false">
-          <DropdownMenuRadioItem>
-            Radio
-            <DropdownMenuItemIndicator>O</DropdownMenuItemIndicator>
-          </DropdownMenuRadioItem>
-        </DropdownMenuRadioGroup>
-
-        <DropdownMenuSub>
-          <AppDropdownMenuSubTrigger
-            :item="{
-              label: 'Language',
-              icon: 'translate01',
-              items: [],
-              type: 'subMenu',
-            }"
-          />
-
-          <DropdownMenuPortal>
-            <DropdownMenuSubContent
-              :class="dropdownClasses"
-              :side-offset="10"
+            <AppDropdownMenuItem
+              v-for="(item, itemIndex) of props.items"
+              :key="itemIndex"
+              :item="item"
             >
-              <DropdownMenuItem :class="itemClasses">
-                Nederlands
-              </DropdownMenuItem>
+              <template #option-content="{ item: selectItem }">
+                <slot
+                  :item="selectItem"
+                  name="option-content"
+                />
+              </template>
 
-              <DropdownMenuItem :class="itemClasses">
-                English
-              </DropdownMenuItem>
+              <template #group-label="{ label }">
+                <slot
+                  :label="label"
+                  name="group-label"
+                />
+              </template>
 
-              <DropdownMenuItem :class="itemClasses">
-                Français
-              </DropdownMenuItem>
+              <template #sub-menu-trigger-content="{ label }">
+                <slot
+                  :label="label"
+                  name="sub-menu-trigger-content"
+                />
+              </template>
+            </AppDropdownMenuItem>
 
-              <DropdownMenuItem :class="itemClasses">
-                Deutsch
-              </DropdownMenuItem>
-            </DropdownMenuSubContent>
-          </DropdownMenuPortal>
-        </DropdownMenuSub>
+            <slot name="content-bottom" />
+          </div>
 
-        <DropdownMenuSeparator />
-        <DropdownMenuArrow />
-
-        <slot name="bottom" />
+          <DropdownMenuArrow
+            v-if="!props.isArrowHidden"
+            :as-child="true"
+          >
+            <div :class="arrowBoxClasses">
+              <div :class="arrowClasses" />
+            </div>
+          </DropdownMenuArrow>
+        </div>
       </DropdownMenuContent>
     </DropdownMenuPortal>
   </DropdownMenuRoot>

@@ -59,7 +59,7 @@ function onClearAll(): void {
     hint="Tip: You can select multiple fruits."
     class="w-72"
   >
-    <template #top>
+    <template #content-top>
       <div class="mb-1 flex items-center justify-between">
         <span class="pl-select-dropdown-padding-x-default text-sm font-medium">
           Fruits

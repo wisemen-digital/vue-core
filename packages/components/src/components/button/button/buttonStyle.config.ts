@@ -505,6 +505,21 @@ defineStyleConfig({
   component: 'button',
 })
 
+// Size XS
+defineStyleConfig({
+  config: {
+    '--button-font-size-default': 'var(--text-caption)',
+    '--button-height-default': '32px',
+    '--button-icon-left-spacing-default': 'var(--spacing-xs)',
+    '--button-icon-right-spacing-default': 'var(--spacing-xs)',
+    '--button-icon-size-default': '16px',
+    '--button-padding-left-default': 'var(--spacing-md)',
+    '--button-padding-right-default': 'var(--spacing-md)',
+  },
+  selector: '.btn-xs',
+  component: 'button',
+})
+
 // Size SM
 defineStyleConfig({
   config: {

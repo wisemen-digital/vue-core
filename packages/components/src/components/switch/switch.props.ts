@@ -67,18 +67,3 @@ export interface AppSwitchProps {
    */
   styleConfig?: StyleConfig<'switch'> | null
 }
-
-export const appSwitchPropsDefaultValues = {
-  id: null,
-  isDisabled: false,
-  isReadonly: false,
-  isRequired: false,
-  isTouched: false,
-  errors: null,
-  hint: null,
-  iconChecked: null,
-  iconUnchecked: null,
-  label: null,
-  size: 'default',
-  styleConfig: null,
-} satisfies AppSwitchProps

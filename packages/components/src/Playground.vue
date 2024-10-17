@@ -21,18 +21,41 @@ import '@/components/switch/switchStyle.config'
 import '@/components/radio-group/radioGroupStyle.config'
 
 import Buttons from '@/Buttons.vue'
-import ConfigProvider from '@/components/config-provider/ConfigProvider.vue'
+import AppBreadcrumbs from '@/components/breadcrumbs/AppBreadcrumbs.vue'
+import AppButton from '@/components/button/button/AppButton.vue'
+import ConfigProvider from '@/components/config-provider/AppConfigProvider.vue'
 import AppDarkModeToggle from '@/components/dark-mode-toggle/AppDarkModeToggle.vue'
+import AppDateField from '@/components/input-field/date-field/AppDateField.vue'
+import AppKeyboardKey from '@/components/keyboard/AppKeyboardKey.vue'
+import AppToastContainer from '@/components/toast/AppToastContainer.vue'
 import Dialogs from '@/Dialogs.vue'
+import DropdownMenus from '@/DropdownMenus.vue'
 import InputFields from '@/InputFields.vue'
 import Popovers from '@/Popovers.vue'
 import TablePlayground from '@/TablePlayground.vue'
 import Tabs from '@/Tabs.vue'
 import Tooltips from '@/Tooltips.vue'
+import type { BreadcrumbItem } from '@/types/breadcrumb.type.js'
 
 import Checkboxes from './Checkboxes.vue'
 import RadioGroups from './RadioGroups.vue'
 import Switches from './Switches.vue'
+
+const breadcrumbs: BreadcrumbItem[] = [
+  {
+    icon: 'translate01',
+    label: 'Page 1',
+    type: 'page',
+  },
+  {
+    label: 'Page 2',
+    type: 'page',
+  },
+  {
+    items: [],
+    type: 'ellipsis',
+  },
+]
 </script>
 
 <template>
@@ -41,8 +64,60 @@ import Switches from './Switches.vue'
       <AppDarkModeToggle />
     </div>
 
-    <div class="flex min-h-screen flex-col gap-y-24 p-24">
+    <div class="p-24">
+      <AppDateField class="w-72" />
+    </div>
+
+    <div class="p-24">
       <RadioGroups />
+
+      <AppBreadcrumbs :items="breadcrumbs" />
+      <div class="p-24">
+        <AppButton icon-left="translate01">
+          test
+        </AppButton>
+
+        <AppButton variant="secondary">
+          test
+        </AppButton>
+      </div>
+
+      <div class="flex gap-x-1">
+        <AppKeyboardKey keyboard-key="shift" />
+        <AppKeyboardKey keyboard-key="ctrl" />
+        <AppKeyboardKey keyboard-key="f" />
+        <AppKeyboardKey keyboard-key="meta" />
+      </div>
+
+      <div class="p-12">
+        <AppButton>
+          Button
+
+          <template #right>
+            <div class="flex items-center gap-x-1">
+              <AppKeyboardKey
+                keyboard-key="meta"
+                class="ml-2"
+              />
+
+              <AppKeyboardKey keyboard-key="enter" />
+            </div>
+          </template>
+        </AppButton>
+      </div>
+
+      <AppDateField
+        v-if="false"
+        class="w-72"
+      />
+    </div>
+
+    <TablePlayground />
+
+    <div
+      class="flex min-h-screen flex-col gap-y-24 p-24"
+    >
+      <DropdownMenus />
       <Dialogs />
       <Switches />
       <Checkboxes />
@@ -54,4 +129,6 @@ import Switches from './Switches.vue'
     </div>
     <TablePlayground />
   </ConfigProvider>
+
+  <AppToastContainer />
 </template>

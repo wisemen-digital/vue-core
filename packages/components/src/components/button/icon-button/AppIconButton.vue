@@ -2,15 +2,19 @@
 import { computed, ref } from 'vue'
 
 import { buttonStyle } from '@/components/button/button/button.style'
-import {
-  type AppIconButtonProps,
-  appIconButtonPropsDefaultValues,
-} from '@/components/button/icon-button/iconButton.props.js'
+import type { AppIconButtonProps } from '@/components/button/icon-button/iconButton.props.js'
 import { iconButtonStyle } from '@/components/button/icon-button/iconButton.style.js'
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppSpinner from '@/components/spinner/AppSpinner.vue'
 
-const props = withDefaults(defineProps<AppIconButtonProps>(), appIconButtonPropsDefaultValues)
+const props = withDefaults(defineProps<AppIconButtonProps>(), {
+  isDisabled: false,
+  isLoading: false,
+  size: 'default',
+  styleConfig: null,
+  type: 'button',
+  variant: 'default',
+})
 
 const emit = defineEmits<{
   click: []

@@ -6,17 +6,26 @@ import {
 import { computed, ref } from 'vue'
 
 import AppCheckboxIndicator from '@/components/checkbox/AppCheckboxIndicator.vue'
-import {
-  type AppCheckboxProps,
-  appCheckboxPropsDefaultValues,
-} from '@/components/checkbox/checkbox.props'
+import type { AppCheckboxProps } from '@/components/checkbox/checkbox.props'
 import { checkboxStyle } from '@/components/checkbox/checkbox.style'
 import AppCollapsable from '@/components/collapsable/AppCollapsable.vue'
 import AppInputFieldError from '@/components/input-field-error/AppInputFieldError.vue'
 import AppInputFieldHint from '@/components/input-field-hint/AppInputFieldHint.vue'
 import AppInputFieldLabel from '@/components/input-field-label/AppInputFieldLabel.vue'
 
-const props = withDefaults(defineProps<AppCheckboxProps>(), appCheckboxPropsDefaultValues)
+const props = withDefaults(defineProps<AppCheckboxProps>(), {
+  id: null,
+  testId: null,
+  isDisabled: false,
+  isIndeterminate: false,
+  isReadonly: false,
+  isRequired: false,
+  isTouched: false,
+  errors: null,
+  hint: null,
+  label: null,
+  styleConfig: null,
+})
 
 const emit = defineEmits<{
   blur: []

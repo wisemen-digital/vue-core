@@ -23,10 +23,9 @@ import AppPopoverAnchor from '@/components/popover/AppPopoverAnchor.vue'
 import AppSelectFilter from '@/components/select/AppSelectFilter.vue'
 import AppSelectItem from '@/components/select/AppSelectItem.vue'
 import { provideSelectContext } from '@/components/select/select.context'
-import {
-  type AppSelectProps,
-  appSelectPropsDefaultValues,
-  type SelectDisplayFn,
+import type {
+  AppSelectProps,
+  SelectDisplayFn,
 } from '@/components/select/select.props.js'
 import { selectStyle } from '@/components/select/select.style.js'
 import AppSelectValueBasic from '@/components/select/values/AppSelectValueBasic.vue'
@@ -34,7 +33,31 @@ import AppSelectValueTags from '@/components/select/values/AppSelectValueTags.vu
 import type { Icon } from '@/icons/icons.js'
 import type { SelectItem, SelectValue } from '@/types/select.type.js'
 
-const props = withDefaults(defineProps<AppSelectProps<TValue>>(), appSelectPropsDefaultValues)
+const props = withDefaults(defineProps<AppSelectProps<TValue>>(), {
+  id: null,
+  testId: null,
+  isArrowVisible: false,
+  isDisabled: false,
+  isLoading: false,
+  isRequired: false,
+  isTouched: false,
+  align: 'center',
+  collisionPaddingInPx: 0,
+  containerElement: null,
+  errors: null,
+  filterFn: null,
+  hint: null,
+  iconLeft: null,
+  iconRight: 'chevronSelectorVertical',
+  label: null,
+  offsetInPx: 4,
+  placeholder: null,
+  popoverWidth: 'anchor-width',
+  shouldRemainOpenOnValueChange: null,
+  side: 'bottom',
+  styleConfig: null,
+  virtualList: null,
+})
 
 const emit = defineEmits<{
   blur: []
@@ -67,8 +90,8 @@ const inputId = computed<string>(() => props.id ?? useId())
 const isHovered = computed<boolean>(() => isMouseOver.value && !props.isDisabled)
 const hasError = computed<boolean>(() => props.errors !== undefined && props.isTouched && props.errors !== null)
 
-const dropdownContent = computed<string>(() => style.dropdownContent())
-const listboxContent = computed<string>(() => style.listboxContent())
+const dropdownContentClasses = computed<string>(() => style.dropdownContent())
+const listboxContentClasses = computed<string>(() => style.listboxContent())
 
 const labelClasses = computed<string>(() => style.label({
   hasError: hasError.value,
@@ -286,7 +309,7 @@ provideSelectContext({
       <template #content>
         <div
           :style="props.styleConfig"
-          :class="dropdownContent"
+          :class="dropdownContentClasses"
         >
           <slot name="content-top" />
 
@@ -303,7 +326,7 @@ provideSelectContext({
               <AppSelectFilter />
             </slot>
 
-            <ListboxContent :class="listboxContent">
+            <ListboxContent :class="listboxContentClasses">
               <slot
                 v-if="hasNoResults"
                 :search-term="searchTerm"

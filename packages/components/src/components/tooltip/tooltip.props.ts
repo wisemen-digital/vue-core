@@ -27,18 +27,3 @@ export interface AppTooltipProps extends PopoverProps {
    */
   styleConfig?: StyleConfig<'tooltip'> | null
 }
-
-export const appTooltipPropsDefaultValues = {
-  isArrowHidden: false,
-  isHidden: false,
-  align: 'center',
-  collisionPaddingInPx: 10,
-  containerElement: null,
-  delayDuration: 0,
-  disableCloseOnTriggerClick: false,
-  disableHoverableContent: false,
-  offsetInPx: 10,
-  popoverWidth: null,
-  side: 'bottom',
-  styleConfig: null,
-} satisfies Partial<AppTooltipProps>

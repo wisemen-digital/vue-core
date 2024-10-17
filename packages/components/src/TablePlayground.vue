@@ -5,7 +5,7 @@ import AppCheckbox from '@/components/checkbox/AppCheckbox.vue'
 import AppTable from '@/components/table/AppTable.vue'
 import AppTableCell from '@/components/table/AppTableCell.vue'
 import AppTableHeaderCell from '@/components/table/AppTableHeaderCell.vue'
-import { usePagination } from '@/composables/pagination.composable.js'
+import { usePagination } from '@/composables/pagination/pagination.composable.js'
 import TablePlaygroundCheckboxCell from '@/TablePlaygroundCheckboxCell.vue'
 import type { TableColumn } from '@/types/table.type.js'
 

@@ -40,6 +40,8 @@ When enabled, items must be restricted to the option type |  |
 | Slot | Type | Description |
 | --------- | ---- | ----------- |
 | `bottom` | None |  |
+| `content-bottom` | None |  |
+| `content-top` | None |  |
 | `error` | None |  |
 | `filter` | None |  |
 | `group-label` | \{ label: string; \} |  |
@@ -52,7 +54,6 @@ When enabled, items must be restricted to the option type |  |
 | `option-indicator` | \{ item: SelectOption\<AcceptableValue\>; \} |  |
 | `separator` | None |  |
 | `tag` | \{ value: SelectValue; \} |  |
-| `top` | None |  |
 | `value` | \{ value: NonNullable\<SelectValue\>; \} |  |
 
 

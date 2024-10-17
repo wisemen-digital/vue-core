@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AppButton from '@/components/button/button/AppButton.vue'
 import AppDialogContainer from '@/components/dialog/AppDialogContainer.vue'
-import { useDialog } from '@/components/dialog/dialog.composable.js'
+import { useDialog } from '@/composables/dialog/dialog.composable.js'
 
 const exampleDialog = useDialog({
   animateFromTrigger: false,

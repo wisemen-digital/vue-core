@@ -8,13 +8,19 @@ import {
 } from 'reka-ui'
 import { computed } from 'vue'
 
-import {
-  type AppPopoverProps,
-  appPopoverPropsDefaultValues,
-} from '@/components/popover/popover.props'
+import type { AppPopoverProps } from '@/components/popover/popover.props'
 import { popoverStyle } from '@/components/popover/popover.style.js'
 
-const props = withDefaults(defineProps<AppPopoverProps>(), appPopoverPropsDefaultValues)
+const props = withDefaults(defineProps<AppPopoverProps>(), {
+  isArrowHidden: false,
+  align: 'center',
+  collisionPaddingInPx: 10,
+  containerElement: null,
+  offsetInPx: 10,
+  popoverWidth: null,
+  side: 'bottom',
+  styleConfig: null,
+})
 
 const isOpen = defineModel<boolean>('isOpen', {
   default: false,

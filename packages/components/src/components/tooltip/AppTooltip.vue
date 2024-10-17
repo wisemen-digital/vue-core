@@ -9,13 +9,23 @@ import {
 } from 'reka-ui'
 import { computed } from 'vue'
 
-import {
-  type AppTooltipProps,
-  appTooltipPropsDefaultValues,
-} from '@/components/tooltip/tooltip.props.js'
+import type { AppTooltipProps } from '@/components/tooltip/tooltip.props.js'
 import { tooltipStyle } from '@/components/tooltip/tooltip.style.js'
 
-const props = withDefaults(defineProps<AppTooltipProps>(), appTooltipPropsDefaultValues)
+const props = withDefaults(defineProps<AppTooltipProps>(), {
+  isArrowHidden: false,
+  isHidden: false,
+  align: 'center',
+  collisionPaddingInPx: 10,
+  containerElement: null,
+  delayDuration: 0,
+  disableCloseOnTriggerClick: false,
+  disableHoverableContent: false,
+  offsetInPx: 10,
+  popoverWidth: null,
+  side: 'bottom',
+  styleConfig: null,
+})
 
 const style = tooltipStyle()
 
@@ -37,6 +47,7 @@ const arrowClasses = computed<string>(() => style.arrow())
 
       <TooltipPortal>
         <TooltipContent
+          v-if="!props.isHidden"
           :class="[
             {
               'w-[--reka-tooltip-trigger-width]': props.popoverWidth === 'anchor-width',
