@@ -29,7 +29,7 @@ export default {
   plugins: [],
   theme: {
     extend: {
-      // @ts-expect-error - This is not too deep stfu
+      // @ts-expect-error - Infinitely deep
       ...defu(
         tagTailwindConfig,
         buttonTailwindConfig,

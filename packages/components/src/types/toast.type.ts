@@ -2,7 +2,7 @@ import type { Icon } from '@/icons/icons'
 
 interface ToastAction {
   label: string
-  onClick: () => void
+  onClick: (onClose: () => void) => void
 }
 
 export interface Toast {

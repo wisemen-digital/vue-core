@@ -47,6 +47,7 @@ const arrowClasses = computed<string>(() => style.arrow())
 
       <TooltipPortal>
         <TooltipContent
+          v-if="!props.isHidden"
           :class="[
             {
               'w-[--reka-tooltip-trigger-width]': props.popoverWidth === 'anchor-width',

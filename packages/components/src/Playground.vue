@@ -20,6 +20,7 @@ import '@/components/table/tableStyle.config'
 import '@/components/switch/switchStyle.config'
 
 import Buttons from '@/Buttons.vue'
+import AppBreadcrumbs from '@/components/breadcrumbs/AppBreadcrumbs.vue'
 import AppButton from '@/components/button/button/AppButton.vue'
 import ConfigProvider from '@/components/config-provider/AppConfigProvider.vue'
 import AppDarkModeToggle from '@/components/dark-mode-toggle/AppDarkModeToggle.vue'
@@ -33,9 +34,26 @@ import Popovers from '@/Popovers.vue'
 import TablePlayground from '@/TablePlayground.vue'
 import Tabs from '@/Tabs.vue'
 import Tooltips from '@/Tooltips.vue'
+import type { BreadcrumbItem } from '@/types/breadcrumb.type.js'
 
 import Checkboxes from './Checkboxes.vue'
 import Switches from './Switches.vue'
+
+const breadcrumbs: BreadcrumbItem[] = [
+  {
+    icon: 'translate01',
+    label: 'Page 1',
+    type: 'page',
+  },
+  {
+    label: 'Page 2',
+    type: 'page',
+  },
+  {
+    items: [],
+    type: 'ellipsis',
+  },
+]
 </script>
 
 <template>
@@ -49,6 +67,7 @@ import Switches from './Switches.vue'
     </div>
 
     <div class="p-24">
+      <AppBreadcrumbs :items="breadcrumbs" />
       <div class="p-24">
         <AppButton icon-left="translate01">
           test

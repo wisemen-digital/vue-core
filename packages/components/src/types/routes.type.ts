@@ -1,8 +1,6 @@
 import type { RouteLocationNamedRaw } from 'vue-router'
 
-export interface Routes {
-  test: void
-}
+export interface Routes {}
 
 export type RouteLocationTyped<T extends keyof Routes> = RouteLocationNamedRaw &
   (Routes[T] extends { params: infer P }

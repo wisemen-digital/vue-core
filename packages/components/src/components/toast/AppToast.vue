@@ -73,7 +73,7 @@ function onClose(): void {
         v-if="props.toast.action !== undefined"
         :class="actionClasses"
         type="button"
-        @click="props.toast.action.onClick"
+        @click="props.toast.action.onClick(onClose)"
       >
         {{ props.toast.action.label }}
       </button>

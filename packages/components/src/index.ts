@@ -19,3 +19,7 @@ import '@/components/tooltip/tooltipStyle.config'
 export * from '@/components'
 export * from '@/composables'
 export * from '@/types'
+
+// Icons
+export type { Icon, Icons } from '@/icons/icons'
+export { extendIcons } from '@/icons/icons'

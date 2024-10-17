@@ -24,7 +24,7 @@ export function useTypedRouter(): UseTypedRouterReturnType {
 
   return {
     ...router,
-    push,
-    replace,
+    push: push as any,
+    replace: replace as any,
   }
 }

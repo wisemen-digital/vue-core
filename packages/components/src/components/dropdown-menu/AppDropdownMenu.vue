@@ -33,7 +33,7 @@ const arrowBoxClasses = computed<string>(() => style.arrowBox())
 
 <template>
   <DropdownMenuRoot>
-    <DropdownMenuTrigger>
+    <DropdownMenuTrigger :as-child="true">
       <slot name="trigger" />
     </DropdownMenuTrigger>
 
