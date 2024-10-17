@@ -58,7 +58,7 @@ export interface AppRadioGroupProps<TValue extends AcceptableValue> {
   /**
    *
    */
-  styleConfig?: StyleConfig<'button'> | null
+  styleConfig?: StyleConfig<'radioGroup'> | null
 
 }
 
