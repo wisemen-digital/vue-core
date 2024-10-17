@@ -5,12 +5,12 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| animateFromTrigger | `boolean` | Whether to animate the dialog with the View Transitions API |  |
+| animateFromTrigger | `boolean` | Whether to animate the dialog with the View Transitions API | `false` |
 | isOpen | `boolean` |  |  |
-| shouldPreventClickOutside | `boolean` | Prevent clicks outside the dialog content to close the dialog |  |
-| styleConfig | `Partial<DialogStyleConfig> \| null` |  |  |
+| shouldPreventClickOutside | `boolean` | Prevent clicks outside the dialog content to close the dialog | `false` |
+| styleConfig | `Partial<DialogStyleConfig> \| null` |  | `null` |
 | testId | `string` | The test id of the dialog. |  |
-| triggerId | `string \| null` | The id of the element that triggers the dialog: Will be set automatically when using the `useDialog` composable |  |
+| triggerId | `string \| null` | The id of the element that triggers the dialog: Will be set automatically when using the `useDialog` composable | `null` |
 
 
 ## Slots

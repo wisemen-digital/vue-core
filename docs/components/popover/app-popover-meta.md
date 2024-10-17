@@ -5,15 +5,15 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| align | `PopoverAlign` | The alignment of the popover content. |  |
-| collisionPaddingInPx | `number` | The padding of the popover collision. |  |
-| containerElement | `HTMLElement \| null` | The element to render the tooltip in. By default this is the viewport |  |
-| isArrowHidden | `boolean` | When true, the arrow will be hidden. |  |
+| align | `PopoverAlign` | The alignment of the popover content. | `"center"` |
+| collisionPaddingInPx | `number` | The padding of the popover collision. | `10` |
+| containerElement | `HTMLElement \| null` | The element to render the tooltip in. By default this is the viewport | `null` |
+| isArrowHidden | `boolean` | When true, the arrow will be hidden. | `false` |
 | isOpen | `boolean` |  |  |
-| offsetInPx | `number` | The offset of the popover content. |  |
-| popoverWidth | `PopoverWidth \| null` | The width of the popover. |  |
-| side | `"bottom" \| "left" \| "right" \| "top"` | The side of the trigger the tooltip should be on. |  |
-| styleConfig | `Partial<PopoverStyleConfig> \| null` |  |  |
+| offsetInPx | `number` | The offset of the popover content. | `10` |
+| popoverWidth | `PopoverWidth \| null` | The width of the popover. | `null` |
+| side | `"left" \| "right" \| "bottom" \| "top"` | The side of the trigger the tooltip should be on. | `"bottom"` |
+| styleConfig | `Partial<PopoverStyleConfig> \| null` |  | `null` |
 
 
 ## Slots

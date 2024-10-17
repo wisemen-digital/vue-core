@@ -7,11 +7,10 @@
 | ---- | ---- | ----------- | ------- |
 | iconLeft | `keyof Icons \| null` | The left icon of the button. | `null` |
 | iconRight | `keyof Icons \| null` | The right icon of the button. | `null` |
-| isDisabled | `boolean` | Whether the button is disabled. | `false` |
 | isLoading | `boolean` | Whether the button is in a loading state. | `false` |
 | size | `"default" \| "sm" \| "lg" \| "xl" \| "2xl"` | The size of the button. | `"default"` |
 | styleConfig | `Partial<ButtonStyleConfig> \| null` | The style config of the button. | `null` |
-| type | `"button" \| "reset" \| "submit"` | The type of the button. | `"button"` |
+| to* | `RouteLocationNamedRaw & { params: T; } & { name: never; }` | The route to link to. |  |
 | variant | `"default" \| "destructive-primary" \| "destructive-secondary" \| "destructive-tertiary" \| "secondary" \| "secondary-color" \| "tertiary" \| "tertiary-color"` | The variant of the button. | `"default"` |
 
 

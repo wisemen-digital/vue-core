@@ -6,6 +6,6 @@
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
 | icon* | `keyof Icons` | The icon to be displayed |  |
-| size | `"default" \| "full" \| "lg" \| "sm" \| "xl" \| "xs"` | The size of the icon | `"default"` |
+| size | `"default" \| "sm" \| "lg" \| "xl" \| "full" \| "xs"` | The size of the icon | `"default"` |
 | styleConfig | `Partial<IconStyleConfig> \| null` |  | `null` |
 
