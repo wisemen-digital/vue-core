@@ -65,6 +65,11 @@ export { default as AppInputFieldHint } from '@/components/input-field-hint/AppI
 // Input field label
 export { default as AppInputFieldLabel } from '@/components/input-field-label/AppInputFieldLabel.vue'
 
+// Keyboard
+export { default as AppKeyboardKey } from '@/components/keyboard/AppKeyboardKey.vue'
+export { default as AppKeyboardShortcut } from '@/components/keyboard/AppKeyboardShortcut.vue'
+export { default as AppKeyboardShortcutProvider } from '@/components/keyboard/AppKeyboardShortcutProvider.vue'
+
 // Popover
 export { default as AppPopover } from '@/components/popover/AppPopover.vue'
 export { default as AppPopoverAnchor } from '@/components/popover/AppPopoverAnchor.vue'

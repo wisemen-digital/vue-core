@@ -1,7 +1,11 @@
+import type {
+  MaybeRef,
+} from 'vue'
+
 import type { Icon } from '@/icons/icons'
 
 interface ToastAction {
-  label: string
+  label: MaybeRef<string>
   onClick: (onClose: () => void) => void
 }
 

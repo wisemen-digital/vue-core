@@ -1,9 +1,11 @@
 import type { Icon } from '@/icons/icons'
+import type { KeyboardKey } from '@/types/keyboard.type'
 
 export interface DropdownMenuOption {
   isDestructive?: boolean
   isDisabled?: boolean
   icon?: Icon
+  keyboardKeys?: KeyboardKey[]
   label: string
   type: 'option'
   onSelect: () => void

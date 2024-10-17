@@ -26,6 +26,7 @@ const props = withDefaults(defineProps<AppTableProps<Tschema, TFilters>>(), {
   isLastColumnSticky: false,
   expandedRowContent: null,
   rowClass: null,
+  styleConfig: null,
 })
 
 const slots = useSlots()
@@ -131,7 +132,10 @@ provideTableContext({
 </script>
 
 <template>
-  <div class="relative flex h-full flex-1 flex-col overflow-hidden rounded-table-border-radius-default border border-solid border-table-border-color-default bg-primary">
+  <div
+    :style="props.styleConfig"
+    class="relative flex h-full flex-1 flex-col overflow-hidden rounded-table-border-radius-default border border-solid border-table-border-color-default bg-primary"
+  >
     <div
       v-if="hasTopSlot"
       class="border-b border-solid border-secondary"

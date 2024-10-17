@@ -18,7 +18,11 @@ import {
   CalendarPrev,
   CalendarRoot,
 } from 'reka-ui'
-import { computed, ref } from 'vue'
+import {
+  computed,
+  ref,
+  watch,
+} from 'vue'
 
 import AppButton from '@/components/button/button/AppButton.vue'
 import AppIconButton from '@/components/button/icon-button/AppIconButton.vue'
@@ -33,7 +37,9 @@ const globalConfigContext = injectConfigContext()
 
 const placeholder = ref<DateValue>(today(getLocalTimeZone()))
 
+const yearScrollContainerRef = ref<HTMLElement | null>(null)
 const activeView = ref<'day' | 'month' | 'year'>('day')
+const now = new Date()
 
 const placeholderYear = computed<number>({
   get: () => placeholder.value.year,
@@ -50,11 +56,11 @@ const placeholderMonth = computed<number>({
 })
 
 const years = computed<number[]>(() => {
-  const currentYear = placeholderYear.value
+  const currentYear = now.getFullYear()
 
   return [
-    ...Array.from({ length: 5 }, (_, i) => currentYear - i),
-    ...Array.from({ length: 5 }, (_, i) => currentYear + (i + 1)),
+    ...Array.from({ length: 100 }, (_, i) => currentYear - i),
+    ...Array.from({ length: 100 }, (_, i) => currentYear + (i + 1)),
   ].sort((a, b) => a - b) // Sort in ascending order
 })
 
@@ -105,6 +111,25 @@ function pagingFunc(date: DateValue, sign: -1 | 1): DateValue {
 
   return date.add({ years: 1 })
 }
+
+watch(placeholderYear, () => {
+  if (activeView.value !== 'year') {
+    return
+  }
+
+  if (yearScrollContainerRef.value === null) {
+    return
+  }
+
+  const yearScrollContainer = yearScrollContainerRef.value
+  const currentYear = placeholderYear.value
+
+  const yearElement = yearScrollContainer.querySelector(`#year-${currentYear}`) as HTMLElement
+
+  yearScrollContainer.scrollTo({
+    top: yearElement.offsetTop - yearScrollContainer.clientHeight / 2,
+  })
+})
 </script>
 
 <template>
@@ -271,7 +296,8 @@ function pagingFunc(date: DateValue, sign: -1 | 1): DateValue {
 
       <div
         v-else-if="activeView === 'year'"
-        class="grid grid-cols-2 p-5"
+        ref="yearScrollContainerRef"
+        class="grid max-h-60 grid-cols-2 overflow-y-auto p-5"
       >
         <div
           v-for="year of years"

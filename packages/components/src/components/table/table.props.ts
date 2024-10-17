@@ -1,6 +1,7 @@
 import type { VNode } from 'vue'
 
 import type { PaginatedData, Pagination } from '@/types/pagination.type'
+import type { StyleConfig } from '@/types/style.type'
 import type { TableColumn } from '@/types/table.type'
 
 export interface AppTableProps<TSchema, TFilters> {
@@ -40,4 +41,9 @@ export interface AppTableProps<TSchema, TFilters> {
    * @default null
    */
   rowClass?: ((row: TSchema, rowIndex: number) => string) | null
+  /**
+   * The style config of the table.
+   * @default null
+   */
+  styleConfig?: StyleConfig<'table'> | null
 }

@@ -18,16 +18,14 @@ const props = withDefaults(defineProps<AppButtonProps>(), {
 })
 
 const emit = defineEmits<{
-  click: []
+  click: [event: Event]
 }>()
 
 defineSlots<{
   'default': () => void
   'icon-left': () => void
   'icon-right': () => void
-  'left': () => void
   'loader': () => void
-  'right': () => void
 }>()
 
 const style = buttonStyle()
@@ -162,12 +160,12 @@ function onKeyUp(event: KeyboardEvent): void {
   }
 }
 
-function onClick(): void {
+function onClick(event: Event): void {
   if (props.isLoading) {
     return
   }
 
-  emit('click')
+  emit('click', event)
 }
 </script>
 
@@ -188,8 +186,6 @@ function onClick(): void {
     @keyup="onKeyUp"
     @click="onClick"
   >
-    <slot name="left" />
-
     <slot
       v-if="props.iconLeft !== null"
       name="icon-left"
@@ -229,7 +225,5 @@ function onClick(): void {
         :class="iconRightClasses"
       />
     </slot>
-
-    <slot name="right" />
   </button>
 </template>

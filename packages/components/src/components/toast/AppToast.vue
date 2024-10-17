@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, toValue } from 'vue'
 
 import AppIcon from '@/components/icon/AppIcon.vue'
 import { toastStyle } from '@/components/toast/toast.style.js'
@@ -75,7 +75,7 @@ function onClose(): void {
         type="button"
         @click="props.toast.action.onClick(onClose)"
       >
-        {{ props.toast.action.label }}
+        {{ toValue(props.toast.action.label) }}
       </button>
 
       <button
