@@ -9,7 +9,13 @@ const toast = useToast()
 
 function showInfoToast(): void {
   toast.info({
-    message: 'Please wait while we process your order.',
+    message: 'New version available! Reload to receive the latest functionality. A little more content.',
+    action: {
+      label: 'Reload',
+      onClick: (): void => {
+        //
+      },
+    },
   })
 }
 
