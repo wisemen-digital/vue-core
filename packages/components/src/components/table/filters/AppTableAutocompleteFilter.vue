@@ -2,12 +2,12 @@
 import FormCombobox from '@/components/combobox/FormCombobox.vue'
 import type {
   Pagination,
-  PaginationFilterWithCombobox,
+  PaginationFilterWithAutocomplete,
   TableFilterEvent,
 } from '@/types/pagination.type'
 
 const props = defineProps<{
-  filter: PaginationFilterWithCombobox<TFilters, TValue>
+  filter: PaginationFilterWithAutocomplete<TFilters, TValue>
   pagination: Pagination<TFilters>
 }>()
 

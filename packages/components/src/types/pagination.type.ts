@@ -57,14 +57,14 @@ export type FilterValues = boolean
   | string[]
 export type Filters = Record<string, FilterValues | undefined>
 
-export interface PaginationFilterWithCombobox<TFilters, TValue> extends PaginationFilterBase<TFilters> {
+export interface PaginationFilterWithAutocomplete<TFilters, TValue> extends PaginationFilterBase<TFilters> {
   displayFn: (value: { uuid: TValue, label: string } | null) => string
   filterFn: (options: { uuid: TValue, label: string }[], searchTerm: string) => { uuid: TValue, label: string }[]
   items: ComboboxItem<{ uuid: TValue, label: string }>[]
   label: string
   modelValue: { uuid: TValue, label: string } | null
   placeholder: string
-  type: 'combobox'
+  type: 'autocomplete'
   onSearch: (search: string) => Promise<void>
 }
 
@@ -102,7 +102,7 @@ export type PaginationFilter<TFilters, TValue = void> =
   | PaginationFilterBoolean<TFilters>
   | PaginationFilterNumber<TFilters>
   | PaginationFilterText<TFilters>
-  | PaginationFilterWithCombobox<TFilters, TValue>
+  | PaginationFilterWithAutocomplete<TFilters, TValue>
   | PaginationFilterWithMultipleOptions<TFilters>
   | PaginationFilterWithSingleOption<TFilters>
 

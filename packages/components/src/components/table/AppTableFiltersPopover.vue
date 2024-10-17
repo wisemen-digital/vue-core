@@ -6,8 +6,8 @@ import AppButton from '@/components/button/AppButton.vue'
 import AppIconButton from '@/components/button/AppIconButton.vue'
 import AppPopover from '@/components/popover/AppPopover.vue'
 import AppSelectDivider from '@/components/select/AppSelectDivider.vue'
+import AppTableAutocompleteFilter from '@/components/table/filters/AppTableAutocompleteFilter.vue'
 import AppTableBooleanFilter from '@/components/table/filters/AppTableBooleanFilter.vue'
-import AppTableComboboxFilter from '@/components/table/filters/AppTableComboboxFilter.vue'
 import AppTableMultiSelectFilter from '@/components/table/filters/AppTableMultiSelectFilter.vue'
 import AppTableNumberFilter from '@/components/table/filters/AppTableNumberFilter.vue'
 import AppTableSelectFilter from '@/components/table/filters/AppTableSelectFilter.vue'
@@ -125,8 +125,8 @@ const filterPopoverFiltersContainerClasses = computed<string>(() => tableStyle.f
           <div
             :class="filterPopoverFiltersContainerClasses"
           >
-            <AppTableComboboxFilter
-              v-if="filter.type === 'combobox'"
+            <AppTableAutocompleteFilter
+              v-if="filter.type === 'autocomplete'"
               :filter="filter"
               :pagination="props.pagination"
               @change="onFilterUpdate"
