@@ -13,6 +13,7 @@ const items: RadioGroupItem<string>[] = [
     value: 'Apple',
   },
   {
+    isDisabled: true,
     label: 'Banana',
     type: 'option',
     value: 'Banana',
@@ -49,7 +50,7 @@ const selected = ref<null | string>('Apple')
         :is-disabled="false"
         :is-required="true"
         :items="items"
-        label="RadioGroup"
+        label="Radio Group"
         hint="This is a radio group."
       />
     </div>
@@ -63,7 +64,7 @@ const selected = ref<null | string>('Apple')
         :is-required="true"
         :items="items"
         :is-touched="true"
-        label="Checkbox"
+        label="Radio Group"
         hint="This is has errors."
       />
     </div>
@@ -76,7 +77,7 @@ const selected = ref<null | string>('Apple')
         :is-disabled="true"
         :is-required="true"
         :items="items"
-        label="Checkbox"
+        label="Radio Group"
         hint="This is disabled."
       />
     </div>
@@ -92,17 +93,17 @@ const selected = ref<null | string>('Apple')
         :is-required="true"
         :items="items"
         :is-touched="true"
-        label="Checkbox"
+        label="Radio Group"
         hint="This is a checkbox."
       >
         <template #items="{ items: radioItems }">
-          <div class="flex w-full flex-row gap-4">
+          <div class="grid grid-cols-3 gap-2">
             <AppRadioGroupItem
               v-for="item of radioItems"
               :key="item.label"
               v-slot="{ isChecked, isDisabled, isHovered, hasError, isFocused }"
               :item="item"
-              class="relative w-full basis-1/3 rounded border border-brand-primary-500 p-12"
+              class="relative w-full rounded border border-brand-primary-500 p-12"
             >
               <div>
                 <AppRadioGroupIndicator

@@ -46,7 +46,7 @@ const inputLabelClasses = computed<string>(() => style.inputLabel({
   isHovered: isHovered.value,
 }))
 
-const hintClasses = computed<string>(() => style.hint({
+const hintClasses = computed<string>(() => style.itemHint({
   hasError: hasError.value,
   isChecked: isChecked.value,
   isDisabled: isDisabled.value,
