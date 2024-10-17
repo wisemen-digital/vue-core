@@ -1,4 +1,4 @@
-<script setup lang="ts" generic="TFilters">
+<script setup lang="ts" generic="TFilters, TValue">
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -7,6 +7,7 @@ import AppIconButton from '@/components/button/AppIconButton.vue'
 import AppPopover from '@/components/popover/AppPopover.vue'
 import AppSelectDivider from '@/components/select/AppSelectDivider.vue'
 import AppTableBooleanFilter from '@/components/table/filters/AppTableBooleanFilter.vue'
+import AppTableComboboxFilter from '@/components/table/filters/AppTableComboboxFilter.vue'
 import AppTableMultiSelectFilter from '@/components/table/filters/AppTableMultiSelectFilter.vue'
 import AppTableNumberFilter from '@/components/table/filters/AppTableNumberFilter.vue'
 import AppTableSelectFilter from '@/components/table/filters/AppTableSelectFilter.vue'
@@ -23,7 +24,7 @@ const props = defineProps<{
   /**
    * The filters to be shown
    */
-  filters: PaginationFilter<TFilters>[]
+  filters: PaginationFilter<TFilters, TValue>[]
   /**
    * Your pagination informations
    */
@@ -124,6 +125,12 @@ const filterPopoverFiltersContainerClasses = computed<string>(() => tableStyle.f
           <div
             :class="filterPopoverFiltersContainerClasses"
           >
+            <AppTableComboboxFilter
+              v-if="filter.type === 'combobox'"
+              :filter="filter"
+              :pagination="props.pagination"
+              @change="onFilterUpdate"
+            />
             <AppTableMultiSelectFilter
               v-if="filter.type === 'multiselect'"
               :filter="filter"
