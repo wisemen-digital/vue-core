@@ -15,8 +15,13 @@ const emit = defineEmits<{
   change: [event: TableFilterEvent<TFilters>]
 }>()
 
-function onUpdateModelValue(value: { uuid: TValue, label: string }): void {
-  emit('change', { key: props.filter.id, value: value.uuid })
+function onUpdateModelValue(value: { uuid: TValue, label: string } | null): void {
+  if (value === null) {
+    emit('change', { key: props.filter.id, value: null })
+  }
+  else {
+    emit('change', { key: props.filter.id, value: value.uuid })
+  }
 }
 </script>
 

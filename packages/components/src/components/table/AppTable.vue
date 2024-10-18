@@ -1,4 +1,4 @@
-<script setup lang="ts"  generic="TSchema, TFilters">
+<script setup lang="ts"  generic="TSchema, TFilters, TValue extends string">
 import {
   type Component,
   computed,
@@ -68,7 +68,7 @@ const props = withDefaults(
     /**
      * Determines how the data will be filtered.
      */
-    filters: PaginationFilter<TFilters>[]
+    filters: PaginationFilter<TFilters, TValue>[]
     /**
      * The pagination options.
      */

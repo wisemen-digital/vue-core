@@ -91,6 +91,7 @@ defineSlots<{
   empty: () => void
   /** Override the option rendering of the combobox */
   option: (props: {
+    dataTestId?: string
     value: TValue
   }) => any
   /** Override the tag rendering */
@@ -243,6 +244,7 @@ function onBlur(): void {
                   <template #default="{ item: itemValue }">
                     <slot
                       v-if="itemValue.type === 'option'"
+                      :data-test-id="itemValue.testId"
                       :value="itemValue.value"
                       name="option"
                     />

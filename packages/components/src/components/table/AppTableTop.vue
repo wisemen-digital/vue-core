@@ -1,4 +1,4 @@
-<script setup lang="ts" generic="TFilters">
+<script setup lang="ts" generic="TFilters, TValue extends string">
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -22,7 +22,7 @@ const props = defineProps<{
   title?: string
   hasSearch: boolean
   isLoading: boolean
-  filters: PaginationFilter<TFilters>[]
+  filters: PaginationFilter<TFilters, TValue>[]
   pagination: Pagination<TFilters>
   total: null | number
   variant: TableStyleProps['variant']

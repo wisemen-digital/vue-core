@@ -139,10 +139,9 @@ function onFilter(filter: string): void {
       @blur="onBlur"
       @filter="onFilter"
     >
-      <template #option="{ value, dataTestId }">
+      <template #option="{ value }">
         <slot
           :value="value"
-          :data-test-id="dataTestId"
           name="option"
         />
       </template>
