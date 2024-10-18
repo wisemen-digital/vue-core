@@ -5,14 +5,14 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| iconLeft | `keyof Icons \| null` | The left icon of the button. |  |
-| iconRight | `keyof Icons \| null` | The right icon of the button. |  |
-| isDisabled | `boolean` | Whether the button is disabled. |  |
-| isLoading | `boolean` | Whether the button is in a loading state. |  |
-| size | `"default" \| "lg" \| "sm" \| "xl" \| "2xl"` | The size of the button. |  |
-| styleConfig | `Partial<ButtonStyleConfig> \| null` |  |  |
-| type | `"button" \| "reset" \| "submit"` | The type of the button. |  |
-| variant | `"default" \| "destructive-primary" \| "destructive-secondary" \| "destructive-tertiary" \| "secondary" \| "secondary-color" \| "tertiary" \| "tertiary-color"` | The variant of the button. |  |
+| iconLeft | `keyof Icons \| null` | The left icon of the button. | `null` |
+| iconRight | `keyof Icons \| null` | The right icon of the button. | `null` |
+| isDisabled | `boolean` | Whether the button is disabled. | `false` |
+| isLoading | `boolean` | Whether the button is in a loading state. | `false` |
+| size | `"default" \| "lg" \| "sm" \| "xl" \| "2xl"` | The size of the button. | `"default"` |
+| styleConfig | `Partial<ButtonStyleConfig> \| null` | The style config of the button. | `null` |
+| type | `"button" \| "reset" \| "submit"` | The type of the button. | `"button"` |
+| variant | `"default" \| "destructive-primary" \| "destructive-secondary" \| "destructive-tertiary" \| "secondary" \| "secondary-color" \| "tertiary" \| "tertiary-color"` | The variant of the button. | `"default"` |
 
 
 ## Slots
@@ -29,5 +29,5 @@
 
 | Event name | Type | Description |
 | ---------- | ---- | ----------- |
-| `click` | [] |  |
+| `click` | [event: Event] |  |
 

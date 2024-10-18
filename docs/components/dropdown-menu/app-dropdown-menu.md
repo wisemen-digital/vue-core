@@ -15,4 +15,4 @@ A basic example of the dropdown menu component.
 
 <ComponentPreview name="app-dropdown-menu/simple" />
 
-<!-- @include: ./app-dropdown-menu/simple-meta.md -->
+<!-- @include: ./app-dropdown-menu-meta.md -->

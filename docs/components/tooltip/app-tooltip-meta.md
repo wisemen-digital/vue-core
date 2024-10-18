@@ -5,18 +5,18 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| align | `PopoverAlign` | The alignment of the popover content. |  |
-| collisionPaddingInPx | `number` | The padding of the popover collision. |  |
-| containerElement | `HTMLElement \| null` | The element to render the tooltip in. By default this is the viewport |  |
-| delayDuration | `number` | The duration in milliseconds to wait before showing the tooltip. |  |
-| disableCloseOnTriggerClick | `boolean` | When true, clicking on trigger will not close the content. |  |
-| disableHoverableContent | `boolean` | When true, trying to hover the content will result in the tooltip closing as the pointer leaves the trigger. |  |
-| isArrowHidden | `boolean` | When true, the arrow will be hidden. |  |
-| isHidden | `boolean` | When true, the tooltip will be hidden. |  |
-| offsetInPx | `number` | The offset of the popover content. |  |
-| popoverWidth | `PopoverWidth \| null` | The width of the popover. |  |
-| side | `"bottom" \| "left" \| "right" \| "top"` | The side of the trigger the tooltip should be on. |  |
-| styleConfig | `Partial<TooltipStyleConfig> \| null` |  |  |
+| align | `PopoverAlign` | The alignment of the popover content. | `"center"` |
+| collisionPaddingInPx | `number` | The padding of the popover collision. | `10` |
+| containerElement | `HTMLElement \| null` | The element to render the tooltip in. By default this is the viewport | `null` |
+| delayDuration | `number` | The duration in milliseconds to wait before showing the tooltip. | `0` |
+| disableCloseOnTriggerClick | `boolean` | When true, clicking on trigger will not close the content. | `false` |
+| disableHoverableContent | `boolean` | When true, trying to hover the content will result in the tooltip closing as the pointer leaves the trigger. | `false` |
+| isArrowHidden | `boolean` | When true, the arrow will be hidden. | `false` |
+| isHidden | `boolean` | When true, the tooltip will be hidden. | `false` |
+| offsetInPx | `number` | The offset of the popover content. | `10` |
+| popoverWidth | `PopoverWidth \| null` | The width of the popover. | `null` |
+| side | `"bottom" \| "left" \| "right" \| "top"` | The side of the trigger the tooltip should be on. | `"bottom"` |
+| styleConfig | `Partial<TooltipStyleConfig> \| null` |  | `null` |
 
 
 ## Slots

@@ -5,14 +5,25 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| icon* | `keyof Icons` | The icon of the button. |  |
-| isDisabled | `boolean` | Whether the button is disabled. | `false` |
+| iconLeft | `keyof Icons \| null` | The left icon of the button. | `null` |
+| iconRight | `keyof Icons \| null` | The right icon of the button. | `null` |
 | isLoading | `boolean` | Whether the button is in a loading state. | `false` |
-| label* | `string` | The label for the button for accessibility |  |
 | size | `"default" \| "lg" \| "sm" \| "xl" \| "2xl"` | The size of the button. | `"default"` |
-| styleConfig | `Partial<IconButtonStyleConfig> \| null` | The style config of the button. | `null` |
-| type | `"button" \| "reset" \| "submit"` | The type of the button. | `"button"` |
+| styleConfig | `Partial<ButtonStyleConfig> \| null` | The style config of the button. | `null` |
+| to* | `RouteLocationNamedRaw & { params: T; } & { name: never; }` | The route to link to. |  |
 | variant | `"default" \| "destructive-primary" \| "destructive-secondary" \| "destructive-tertiary" \| "secondary" \| "secondary-color" \| "tertiary" \| "tertiary-color"` | The variant of the button. | `"default"` |
+
+
+## Slots
+
+| Slot | Type | Description |
+| --------- | ---- | ----------- |
+| `default` | any |  |
+| `icon-left` | any |  |
+| `icon-right` | any |  |
+| `left` | any |  |
+| `loader` | any |  |
+| `right` | any |  |
 
 
 ## Events
