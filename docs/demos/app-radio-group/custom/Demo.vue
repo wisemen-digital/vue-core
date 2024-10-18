@@ -51,7 +51,7 @@ const items: RadioGroupItem<string>[] = [
             :key="item.label"
             v-slot="{ isChecked, isDisabled, isHovered, hasError, isFocused }"
             :item="item"
-            class="relative w-full rounded border border-brand-primary-500 p-8 py-12"
+            class="relative w-full rounded border border-brand-primary-500 p-8 py-12 outline-none ring-offset-1 duration-200 hover:ring-radio-group-item-ring-color-focus focus:ring-radio-group-item-ring-color-focus focus-visible:ring-2"
           >
             <div>
               <AppRadioGroupIndicator
