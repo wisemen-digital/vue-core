@@ -25,8 +25,7 @@ export const components = {
     'AppRangeCalendar',
   ],
   checkbox: [
-    'FormCheckbox',
-    'FormCheckboxGroup',
+    'AppCheckbox',
   ],
   combobox: [
     'AppCombobox',
@@ -104,7 +103,7 @@ export const components = {
     'AppProgressBar',
   ],
   radioGroup: [
-    'FormRadioGroup',
+    'AppRadioGroup',
   ],
   select: [
     'AppSelect',
@@ -125,7 +124,7 @@ export const components = {
     'AppStepper',
   ],
   switch: [
-    'FormSwitch',
+    'AppSwitch',
   ],
   table: [
     'AppTable',
