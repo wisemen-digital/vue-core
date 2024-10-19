@@ -14,6 +14,6 @@ defineStyleConfig({
     '--input-field-error-spacing-default': 'var(--spacing-sm)',
     '--input-field-error-text-color-default': 'var(--text-error-primary)',
   },
-  selector: ':root',
+  selector: '.input-field-error-variant-default',
   component: 'inputFieldError',
 })

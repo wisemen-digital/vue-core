@@ -9,6 +9,7 @@ import {
 } from 'reka-ui'
 import { computed } from 'vue'
 
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import type { AppTooltipProps } from '@/components/tooltip/tooltip.props.js'
 import { tooltipStyle } from '@/components/tooltip/tooltip.style.js'
 
@@ -26,6 +27,8 @@ const props = withDefaults(defineProps<AppTooltipProps>(), {
   side: 'bottom',
   styleConfig: null,
 })
+
+const themeProviderContext = injectThemeProviderContext()
 
 const style = tooltipStyle()
 
@@ -54,6 +57,7 @@ const arrowClasses = computed<string>(() => style.arrow())
               'w-[--reka-tooltip-content-available-width]': props.popoverWidth === 'available-width',
             },
             contentClasses,
+            themeProviderContext.theme.value,
           ]"
           :style="props.styleConfig"
           :collision-boundary="props.containerElement"
@@ -61,6 +65,7 @@ const arrowClasses = computed<string>(() => style.arrow())
           :side="props.side"
           :side-offset="props.offsetInPx"
           :align="props.align"
+          class="tooltip-variant-default"
           position="popper"
         >
           <!-- Without this relative div, the arrow is a bit glitchy -->

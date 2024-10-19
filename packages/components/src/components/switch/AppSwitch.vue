@@ -7,6 +7,7 @@ import AppInputFieldError from '@/components/input-field-error/AppInputFieldErro
 import AppInputFieldHint from '@/components/input-field-hint/AppInputFieldHint.vue'
 import AppInputFieldLabel from '@/components/input-field-label/AppInputFieldLabel.vue'
 import AppSwitchIndicator from '@/components/switch/AppSwitchIndicator.vue'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 
 import type { AppSwitchProps } from './switch.props'
 import { switchStyle } from './switch.style'
@@ -35,6 +36,8 @@ const emit = defineEmits<{
 const model = defineModel<boolean>({
   required: true,
 })
+
+const themeProviderContext = injectThemeProviderContext()
 
 const isFocused = ref<boolean>(false)
 const isMouseOver = ref<boolean>(false)
@@ -132,7 +135,8 @@ function onBlur(): void {
 <template>
   <div
     :style="props.styleConfig"
-    :class="sizeClass"
+    :class="[sizeClass, themeProviderContext.theme.value]"
+    class="switch-variant-default"
   >
     <div :class="boxClasses">
       <SwitchRoot

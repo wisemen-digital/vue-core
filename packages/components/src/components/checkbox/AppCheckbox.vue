@@ -12,6 +12,7 @@ import AppCollapsable from '@/components/collapsable/AppCollapsable.vue'
 import AppInputFieldError from '@/components/input-field-error/AppInputFieldError.vue'
 import AppInputFieldHint from '@/components/input-field-hint/AppInputFieldHint.vue'
 import AppInputFieldLabel from '@/components/input-field-label/AppInputFieldLabel.vue'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 
 const props = withDefaults(defineProps<AppCheckboxProps>(), {
   id: null,
@@ -35,6 +36,8 @@ const emit = defineEmits<{
 const model = defineModel<boolean>({
   required: true,
 })
+
+const themeProviderContext = injectThemeProviderContext()
 
 const isFocused = ref<boolean>(false)
 const isMouseOver = ref<boolean>(false)
@@ -142,7 +145,10 @@ function onBlur(): void {
 </script>
 
 <template>
-  <div :style="props.styleConfig">
+  <div
+    :style="props.styleConfig"
+    :class="themeProviderContext.theme.value"
+  >
     <div :class="boxClasses">
       <CheckboxRoot
         :id="inputId"

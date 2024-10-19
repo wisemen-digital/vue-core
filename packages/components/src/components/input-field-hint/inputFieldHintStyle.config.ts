@@ -14,6 +14,6 @@ defineStyleConfig({
     '--input-field-hint-spacing-default': 'var(--spacing-sm)',
     '--input-field-hint-text-color-default': 'var(--text-tertiary)',
   },
-  selector: ':root',
+  selector: '.input-field-hint-variant-default',
   component: 'inputFieldHint',
 })

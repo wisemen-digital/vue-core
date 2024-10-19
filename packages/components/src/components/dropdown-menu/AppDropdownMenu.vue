@@ -17,6 +17,7 @@ import {
 import AppDropdownMenuItem from '@/components/dropdown-menu/AppDropdownMenuItem.vue'
 import type { AppDropdownMenuProps } from '@/components/dropdown-menu/dropdownMenu.props.js'
 import { dropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style.js'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { useKeyboardShortcut } from '@/composables/index.js'
 import type {
   DropdownMenuItem,
@@ -33,6 +34,8 @@ const props = withDefaults(defineProps<AppDropdownMenuProps>(), {
   popoverWidth: 'available-width',
   side: 'bottom',
 })
+
+const themeContext = injectThemeProviderContext()
 
 const dropdownMenuTriggerRef = ref<InstanceType<typeof DropdownMenuTrigger> | null>(null)
 const isOpen = ref<boolean>(false)
@@ -140,7 +143,7 @@ onBeforeUnmount(() => {
 
     <DropdownMenuPortal>
       <DropdownMenuContent
-        :class="dropdownClasses"
+        :class="[dropdownClasses, themeContext.theme.value]"
         :side-offset="props.offsetInPx"
         :side="props.side"
         :align="props.align"
@@ -148,6 +151,7 @@ onBeforeUnmount(() => {
         :container-element="props.containerElement"
         :offset-in-px="props.offsetInPx"
         position="popper"
+        class="dropdown-menu-variant-default"
       >
         <!-- Without this relative div, the arrow is a bit glitchy -->
         <div class="relative size-full">

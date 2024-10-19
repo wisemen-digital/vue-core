@@ -136,8 +136,8 @@ export default {
             'fg-error-primary': 'var(--fg-error-primary)',
             'fg-error-secondary': 'var(--fg-error-secondary)',
             'fg-primary': 'var(--fg-primary)',
-            'fg-quarternary': 'var(--fg-quarternary)',
-            'fg-quarternary-hover': 'var(--fg-quarternary-hover)',
+            'fg-quaternary': 'var(--fg-quaternary)',
+            'fg-quaternary-hover': 'var(--fg-quaternary-hover)',
 
             'fg-quinary': 'var(--fg-quinary)',
             'fg-quinary-hover': 'var(--fg-quinary-hover)',

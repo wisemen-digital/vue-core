@@ -5,6 +5,6 @@ interface UseFiltersOptions<TValue extends SelectValue> {
   items: Filter<TValue>[]
 }
 
-export function useFilters<TValue extends SelectValue>(options: UseFiltersOptions<TValue>): void {
-  //
+export function useFilters<TValue extends SelectValue>(options: UseFiltersOptions<TValue>): Filter<TValue>[] {
+  return options.items
 }

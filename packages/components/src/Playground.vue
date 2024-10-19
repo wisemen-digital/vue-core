@@ -20,12 +20,16 @@ import '@/components/table/tableStyle.config'
 import '@/components/switch/switchStyle.config'
 
 import Buttons from '@/Buttons.vue'
-import AppBreadcrumbs from '@/components/breadcrumbs/AppBreadcrumbs.vue'
 import AppButton from '@/components/button/button/AppButton.vue'
 import ConfigProvider from '@/components/config-provider/AppConfigProvider.vue'
 import AppDarkModeToggle from '@/components/dark-mode-toggle/AppDarkModeToggle.vue'
+import AppDropdownMenu from '@/components/dropdown-menu/AppDropdownMenu.vue'
+import AppFilters from '@/components/filters/AppFilters.vue'
 import AppDateField from '@/components/input-field/date-field/AppDateField.vue'
+import AppTextField from '@/components/input-field/text-field/AppTextField.vue'
 import AppKeyboardKey from '@/components/keyboard/AppKeyboardKey.vue'
+import AppPopover from '@/components/popover/AppPopover.vue'
+import AppThemeProvider from '@/components/theme-provider/AppThemeProvider.vue'
 import AppToastContainer from '@/components/toast/AppToastContainer.vue'
 import Dialogs from '@/Dialogs.vue'
 import DropdownMenus from '@/DropdownMenus.vue'
@@ -57,73 +61,116 @@ const breadcrumbs: BreadcrumbItem[] = [
 </script>
 
 <template>
-  <ConfigProvider locale="en">
-    <div class="flex justify-end p-8">
-      <AppDarkModeToggle />
-    </div>
+  <AppThemeProvider theme="dark">
+    <div class="p-48">
+      <AppFilters />
 
-    <div class="p-24">
-      <AppDateField class="w-72" />
-    </div>
+      <div class="">
+        <AppTextField :model-value="null" />
 
-    <div class="p-24">
-      <AppBreadcrumbs :items="breadcrumbs" />
-      <div class="p-24">
-        <AppButton icon-left="translate01">
-          test
-        </AppButton>
+        <div class="size-4 bg-primary" />
 
-        <AppButton variant="secondary">
-          test
-        </AppButton>
-      </div>
-
-      <div class="flex gap-x-1">
-        <AppKeyboardKey keyboard-key="shift" />
-        <AppKeyboardKey keyboard-key="ctrl" />
-        <AppKeyboardKey keyboard-key="f" />
-        <AppKeyboardKey keyboard-key="meta" />
-      </div>
-
-      <div class="p-12">
-        <AppButton>
-          Button
-
-          <template #right>
-            <div class="flex items-center gap-x-1">
-              <AppKeyboardKey
-                keyboard-key="meta"
-                class="ml-2"
-              />
-
-              <AppKeyboardKey keyboard-key="enter" />
-            </div>
+        <AppPopover>
+          <template #trigger>
+            <AppButton variant="secondary">
+              btn
+            </AppButton>
           </template>
-        </AppButton>
+
+          <template #content>
+            <div class="h-40 w-80" />
+          </template>
+        </AppPopover>
+
+        <AppDropdownMenu
+          :items="[
+            {
+              type: 'option',
+              label: 'Option 1',
+              onSelect: (): void => {
+                //
+              },
+            },
+          ]"
+        >
+          <template #trigger>
+            <AppButton>
+              btn
+            </AppButton>
+          </template>
+        </AppDropdownMenu>
+      </div>
+    </div>
+
+    <ConfigProvider
+      locale="en"
+    >
+      <div class="flex justify-end p-8">
+        <AppDarkModeToggle />
       </div>
 
-      <AppDateField
-        v-if="false"
-        class="w-72"
-      />
-    </div>
+      <div class="p-24">
+        <AppDateField class="w-72" />
+      </div>
 
-    <TablePlayground />
+      <div class="p-24">
+        <div class="p-24">
+          <AppButton icon-left="translate01">
+            test
+          </AppButton>
 
-    <div
-      class="flex min-h-screen flex-col gap-y-24 p-24"
-    >
-      <DropdownMenus />
-      <Dialogs />
-      <Switches />
-      <Checkboxes />
-      <Tabs />
-      <Popovers />
-      <Tooltips />
-      <InputFields />
-      <Buttons />
-    </div>
-  </ConfigProvider>
+          <AppButton variant="secondary">
+            test
+          </AppButton>
+        </div>
 
-  <AppToastContainer />
+        <div class="flex gap-x-1">
+          <AppKeyboardKey keyboard-key="shift" />
+          <AppKeyboardKey keyboard-key="ctrl" />
+          <AppKeyboardKey keyboard-key="f" />
+          <AppKeyboardKey keyboard-key="meta" />
+        </div>
+
+        <div class="p-12">
+          <AppButton>
+            Button
+
+            <template #right>
+              <div class="flex items-center gap-x-1">
+                <AppKeyboardKey
+                  keyboard-key="meta"
+                  class="ml-2"
+                />
+
+                <AppKeyboardKey keyboard-key="enter" />
+              </div>
+            </template>
+          </AppButton>
+        </div>
+
+        <AppDateField
+          v-if="false"
+          class="w-72"
+        />
+      </div>
+
+      <TablePlayground />
+
+      <div
+        class="flex min-h-screen flex-col gap-y-24 p-24"
+      >
+        <DropdownMenus />
+        <Dialogs />
+        <Switches />
+        <Checkboxes />
+        <Tabs />
+        <Popovers />
+        <Tooltips />
+        <InputFields />
+        <Buttons />
+      </div>
+    </ConfigProvider>
+
+    <AppToastContainer />
+  </AppThemeProvider>
 </template>

@@ -1,9 +1,10 @@
 import type { ComputedRef, Ref } from 'vue'
 
-import type { SelectItem, SelectValue } from '@/types/select.type'
+import type { SelectValue } from '@/types/select.type'
 
 export interface MultiSelectFilter<TValue extends SelectValue> {
-  items: ComputedRef<SelectItem<TValue>[]>
+  items: ComputedRef<TValue[]>
+  label: string
   type: 'multiselect'
   value: Ref<TValue[]>
 }

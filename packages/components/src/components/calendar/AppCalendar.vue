@@ -28,11 +28,13 @@ import AppButton from '@/components/button/button/AppButton.vue'
 import AppIconButton from '@/components/button/icon-button/AppIconButton.vue'
 import AppCollapsable2 from '@/components/collapsable/AppCollapsable2.vue'
 import { injectConfigContext } from '@/components/config-provider/config.context.js'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 
 const model = defineModel<Date | null>({
   required: true,
 })
 
+const themeProviderContext = injectThemeProviderContext()
 const globalConfigContext = injectConfigContext()
 
 const placeholder = ref<DateValue>(today(getLocalTimeZone()))
@@ -138,6 +140,7 @@ watch(placeholderYear, () => {
     v-model="model"
     v-model:placeholder="placeholder"
     :week-starts-on="1"
+    :class="themeProviderContext.theme.value"
     class="w-[350px]"
   >
     <AppCollapsable2>

@@ -30,6 +30,7 @@ import type {
 import { selectStyle } from '@/components/select/select.style.js'
 import AppSelectValueBasic from '@/components/select/values/AppSelectValueBasic.vue'
 import AppSelectValueTags from '@/components/select/values/AppSelectValueTags.vue'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import type { Icon } from '@/icons/icons.js'
 import type { SelectItem, SelectValue } from '@/types/select.type.js'
 
@@ -67,6 +68,8 @@ const emit = defineEmits<{
 const model = defineModel<TValue | null>({
   required: true,
 })
+
+const themeProviderContext = injectThemeProviderContext()
 
 const searchTerm = ref<string>('')
 const isOpen = ref<boolean>(false)
@@ -251,7 +254,11 @@ provideSelectContext({
 </script>
 
 <template>
-  <div :style="props.styleConfig">
+  <div
+    :style="props.styleConfig"
+    :class="themeProviderContext.theme.value"
+    class="select-variant-default"
+  >
     <slot
       v-if="props.label !== null"
       :input-id="inputId"
@@ -310,6 +317,7 @@ provideSelectContext({
         <div
           :style="props.styleConfig"
           :class="dropdownContentClasses"
+          class="select-variant-default"
         >
           <slot name="content-top" />
 

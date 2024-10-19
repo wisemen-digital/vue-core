@@ -9,11 +9,14 @@ import { computed } from 'vue'
 
 import { dropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style.js'
 import AppIcon from '@/components/icon/AppIcon.vue'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import type { DropdownMenuSubMenu } from '@/types/dropdownMenu.type.js'
 
 const props = defineProps<{
   item: DropdownMenuSubMenu
 }>()
+
+const themeProviderContext = injectThemeProviderContext()
 
 const style = dropdownMenuStyle()
 
@@ -44,8 +47,9 @@ const dropdownContentClasses = computed<string>(() => style.dropdownContent())
 
     <DropdownMenuPortal>
       <DropdownMenuSubContent
-        :class="[dropdownClasses, dropdownContentClasses]"
+        :class="[dropdownClasses, dropdownContentClasses, themeProviderContext.theme.value]"
         :side-offset="10"
+        class="dropdown-menu-variant-default"
       >
         <slot />
       </DropdownMenuSubContent>

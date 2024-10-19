@@ -16,6 +16,7 @@ export interface BaseIcons {
   chevronUp: Promise<Component>
   eye: Promise<Component>
   eyeOff: Promise<Component>
+  filterLines: Promise<Component>
   infoCircle: Promise<Component>
   linkExternal01: Promise<Component>
   minus: Promise<Component>
@@ -50,6 +51,7 @@ export const icons: BaseIcons = {
   chevronUp: import('@/icons/ChevronUpIcon.vue'),
   eye: import('@/icons/EyeIcon.vue'),
   eyeOff: import('@/icons/EyeOffIcon.vue'),
+  filterLines: import('@/icons/FilterLinesIcon.vue'),
   infoCircle: import('@/icons/InfoCircleIcon.vue'),
   linkExternal01: import('@/icons/LinkExternal01Icon.vue'),
   minus: import('@/icons/MinusIcon.vue'),

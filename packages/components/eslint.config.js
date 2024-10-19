@@ -1,9 +1,28 @@
 import eslintVueConfig from '@wisemen/eslint-config-vue'
 
 export const allowedComponentClasses = [
+  'breadcrumbs',
   'button',
-  'table',
+  'calendar',
+  'checkbox',
+  'dialog',
+  'dropdown-menu',
+  'dropdown-menu',
+  'icon-button',
+  'input-field-error',
+  'input-field-hint',
+  'input-field-label',
+  'popover',
+  'popover',
   'select',
+  'switch',
+  'table',
+  'tabs',
+  'tag',
+  'text-field',
+  'textarea',
+  'toast',
+  'tooltip',
 ]
 export default [
   ...(await eslintVueConfig),

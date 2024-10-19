@@ -21,6 +21,9 @@ export * from '@/components'
 export * from '@/composables'
 export * from '@/types'
 
+// Styling
+export { defineStyleConfig } from '@/styling/defineStyleConfig'
+
 // Icons
 export type { Icon, Icons } from '@/icons/icons'
 export { extendIcons } from '@/icons/icons'

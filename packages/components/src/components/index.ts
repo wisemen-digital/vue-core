@@ -117,6 +117,9 @@ export { default as AppTabs } from '@/components/tabs/AppTabs.vue'
 export { default as AppTag } from '@/components/tag/AppTag.vue'
 export { default as AppTagRemoveButton } from '@/components/tag/AppTagRemoveButton.vue'
 
+// Theme Provider
+export { default as AppThemeProvider } from '@/components/theme-provider/AppThemeProvider.vue'
+
 // Toast
 export { default as AppToastContainer } from '@/components/toast/AppToastContainer.vue'
 

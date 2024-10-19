@@ -13,6 +13,7 @@ import AppInputFieldError from '@/components/input-field-error/AppInputFieldErro
 import AppInputFieldHint from '@/components/input-field-hint/AppInputFieldHint.vue'
 import AppInputFieldLabel from '@/components/input-field-label/AppInputFieldLabel.vue'
 import AppSpinner from '@/components/spinner/AppSpinner.vue'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 
 const props = withDefaults(defineProps<AppTextFieldProps>(), appTextFieldPropsDefaultValues)
 
@@ -36,6 +37,8 @@ defineSlots<{
 const model = defineModel<null | string>({
   required: true,
 })
+
+const themeContext = injectThemeProviderContext()
 
 const isFocused = ref<boolean>(false)
 const isMouseOver = ref<boolean>(false)
@@ -121,7 +124,11 @@ function onBlur(): void {
 </script>
 
 <template>
-  <div :style="props.styleConfig">
+  <div
+    :style="props.styleConfig"
+    :class="themeContext.theme.value"
+    class="text-field-variant-default"
+  >
     <slot
       v-if="props.label !== null"
       :input-id="inputId"

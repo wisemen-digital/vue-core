@@ -10,6 +10,7 @@ import { computed } from 'vue'
 
 import type { AppPopoverProps } from '@/components/popover/popover.props'
 import { popoverStyle } from '@/components/popover/popover.style.js'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 
 const props = withDefaults(defineProps<AppPopoverProps>(), {
   isArrowHidden: false,
@@ -26,6 +27,8 @@ const isOpen = defineModel<boolean>('isOpen', {
   default: false,
   required: false,
 })
+
+const themeContext = injectThemeProviderContext()
 
 const style = popoverStyle()
 
@@ -57,16 +60,18 @@ const arrowClasses = computed<string>(() => style.arrow())
             'w-[--reka-popover-content-available-width]': props.popoverWidth === 'available-width',
           },
           contentClasses,
+          themeContext.theme.value,
         ]"
         :style="props.styleConfig"
         :collision-boundary="props.containerElement"
         :collision-padding="props.collisionPaddingInPx"
         position="popper"
+        class="popover-variant-default"
       >
         <!-- Without this relative div, the arrow is a bit glitchy -->
         <div class="relative size-full">
           <!-- Since we can't apply `overflow-hidden` on the parent div, we need another wrapper -->
-          <div class="relative size-full overflow-hidden">
+          <div class="relative size-full overflow-hidden rounded-popover-border-radius-default">
             <slot name="content" />
           </div>
 

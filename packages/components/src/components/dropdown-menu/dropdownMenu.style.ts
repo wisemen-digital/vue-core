@@ -2,7 +2,7 @@ import { tv } from '@/libs/twVariants.lib'
 
 export const dropdownMenuStyle = tv({
   slots: {
-    arrow: 'absolute left-1/2 size-4 -translate-x-1/2 -translate-y-3 rotate-45 rounded-sm border border-solid border-popover-border-color-default bg-popover-bg-color-default shadow-popover-shadow-default',
+    arrow: 'absolute left-1/2 size-4 -translate-x-1/2 -translate-y-3 rotate-45 rounded-sm border border-solid border-dropdown-menu-border-color-default bg-dropdown-menu-bg-color-default shadow-dropdown-menu-shadow-default',
     arrowBox: 'relative z-50 -mb-4 h-4 w-10 overflow-hidden',
     dropdown: 'custom-popover-content z-popover min-w-dropdown-menu-min-width-default max-w-dropdown-menu-max-width-default rounded-dropdown-menu-border-radius-default border border-solid border-dropdown-menu-border-color-default bg-dropdown-menu-bg-color-default shadow-dropdown-menu-shadow-default',
     dropdownContent: 'relative size-full overflow-hidden px-dropdown-menu-padding-x-default py-dropdown-menu-padding-y-default',

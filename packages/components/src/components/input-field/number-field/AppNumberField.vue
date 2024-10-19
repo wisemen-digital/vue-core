@@ -21,6 +21,7 @@ import AppInputFieldError from '@/components/input-field-error/AppInputFieldErro
 import AppInputFieldHint from '@/components/input-field-hint/AppInputFieldHint.vue'
 import AppInputFieldLabel from '@/components/input-field-label/AppInputFieldLabel.vue'
 import AppSpinner from '@/components/spinner/AppSpinner.vue'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 
 const props = withDefaults(defineProps<AppNumberFieldProps>(), appNumberFieldPropsDefaultValues)
 
@@ -45,6 +46,7 @@ const model = defineModel<null | number>({
   required: true,
 })
 
+const themeProviderContext = injectThemeProviderContext()
 const globalConfigContext = injectConfigContext()
 
 const isFocused = ref<boolean>(false)
@@ -131,7 +133,11 @@ function onBlur(): void {
 </script>
 
 <template>
-  <div :style="props.styleConfig">
+  <div
+    :style="props.styleConfig"
+    :class="themeProviderContext.theme.value"
+    class="text-field-variant-default"
+  >
     <slot
       v-if="props.label !== null"
       :input-id="inputId"

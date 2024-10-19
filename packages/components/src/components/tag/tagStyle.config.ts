@@ -28,6 +28,6 @@ defineStyleConfig({
     '--tag-text-color-default': 'var(--text-primary)',
     '--tag-text-color-disabled': 'var(--text-disabled)',
   },
-  selector: ':root',
+  selector: '.tag-variant-default',
   component: 'tag',
 })

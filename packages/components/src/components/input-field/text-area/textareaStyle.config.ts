@@ -155,6 +155,6 @@ defineStyleConfig({
     '--textarea-text-color-focus': 'var(--text-primary)',
     '--textarea-text-color-hover': 'var(--text-primary)',
   },
-  selector: ':root',
+  selector: '.text-field-variant-default',
   component: 'textarea',
 })

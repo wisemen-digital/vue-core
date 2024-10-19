@@ -18,6 +18,7 @@ import AppTablePageCount from '@/components/table/AppTablePageCount.vue'
 import AppTablePagination from '@/components/table/pagination/AppTablePagination.vue'
 import { provideTableContext } from '@/components/table/table.context'
 import type { AppTableProps } from '@/components/table/table.props'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import type { PaginatedData, Pagination } from '@/types/pagination.type.js'
 import type { TableColumn } from '@/types/table.type.js'
 
@@ -28,6 +29,8 @@ const props = withDefaults(defineProps<AppTableProps<Tschema, TFilters>>(), {
   rowClass: null,
   styleConfig: null,
 })
+
+const themeProviderContext = injectThemeProviderContext()
 
 const slots = useSlots()
 
@@ -134,7 +137,8 @@ provideTableContext({
 <template>
   <div
     :style="props.styleConfig"
-    class="relative flex h-full flex-1 flex-col overflow-hidden rounded-table-border-radius-default border border-solid border-table-border-color-default bg-primary"
+    :class="themeProviderContext.theme.value"
+    class="table-variant-default relative flex h-full flex-1 flex-col overflow-hidden rounded-table-border-radius-default border border-solid border-table-border-color-default bg-primary"
   >
     <div
       v-if="hasTopSlot"

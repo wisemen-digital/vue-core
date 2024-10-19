@@ -4,6 +4,7 @@ import { computed } from 'vue'
 import AppBreadcrumbItem from '@/components/breadcrumbs/AppBreadcrumbItem.vue'
 import AppBreadcrumbSeparator from '@/components/breadcrumbs/AppBreadcrumbSeparator.vue'
 import { useBreadcrumbsStyle } from '@/components/breadcrumbs/breadcrumbs.style'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import type { BreadcrumbItem } from '@/types/breadcrumb.type.js'
 
 const props = defineProps<{
@@ -13,12 +14,17 @@ const props = defineProps<{
   items: BreadcrumbItem[]
 }>()
 
+const themeProviderContext = injectThemeProviderContext()
+
 const breadcrumbsVariants = useBreadcrumbsStyle()
 const breadcrumbsContainerClasses = computed<string>(() => breadcrumbsVariants.container())
 </script>
 
 <template>
-  <nav aria-label="breadcrumb">
+  <nav
+    :class="themeProviderContext.theme.value"
+    aria-label="breadcrumb"
+  >
     <ol :class="breadcrumbsContainerClasses">
       <template
         v-for="(item, i) of props.items"

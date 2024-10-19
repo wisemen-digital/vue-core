@@ -57,9 +57,7 @@ function onAfterEnter(): void {
         transitionDuration: `${props.durationInMs}ms`,
       }"
       leave-active-class="absolute w-full h-full"
-      enter-from-class="opacity-0 scale-[0.98]"
-      enter-active-class="z-10 delay-[150ms]"
-      leave-to-class="opacity-0 scale-[0.98]"
+      enter-active-class="relative z-10"
       @before-leave="onBeforeLeave"
       @enter="onEnter"
       @after-enter="onAfterEnter"

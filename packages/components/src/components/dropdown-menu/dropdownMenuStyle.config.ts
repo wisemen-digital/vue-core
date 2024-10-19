@@ -108,6 +108,6 @@ defineStyleConfig({
     '--dropdown-menu-padding-y-default': 'var(--spacing-sm)',
     '--dropdown-menu-shadow-default': 'var(--shadow-lg)',
   },
-  selector: ':root',
+  selector: '.dropdown-menu-variant-default',
   component: 'dropdownMenu',
 })

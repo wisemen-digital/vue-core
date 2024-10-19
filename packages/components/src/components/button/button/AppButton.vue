@@ -5,6 +5,7 @@ import type { AppButtonProps } from '@/components/button/button/button.props.js'
 import { buttonStyle } from '@/components/button/button/button.style'
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppSpinner from '@/components/spinner/AppSpinner.vue'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 
 const props = withDefaults(defineProps<AppButtonProps>(), {
   isDisabled: false,
@@ -27,6 +28,8 @@ defineSlots<{
   'icon-right': () => void
   'loader': () => void
 }>()
+
+const themeContext = injectThemeProviderContext()
 
 const style = buttonStyle()
 
@@ -175,7 +178,8 @@ function onClick(event: Event): void {
     :type="props.type"
     :disabled="props.isDisabled"
     :aria-busy="props.isLoading"
-    :class="[buttonClasses, sizeClass, variantClass]"
+    :class="[buttonClasses, sizeClass, variantClass, themeContext.theme.value]"
+    class="button-variant-default"
     @focus="onFocus"
     @blur="onBlur"
     @mouseenter="onMouseEnter"

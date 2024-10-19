@@ -96,7 +96,7 @@ defineStyleConfig({
     '--button-text-color-focus': 'var(--fg-white)',
     '--button-text-color-hover': 'var(--fg-white)',
   },
-  selector: ':root',
+  selector: '.button-variant-default',
   component: 'button',
 })
 
@@ -158,7 +158,7 @@ defineStyleConfig({
     '--button-text-color-focus': 'var(--gray-200)',
     '--button-text-color-hover': 'var(--gray-200)',
   },
-  selector: '.dark .btn-secondary-gray',
+  selector: '.dark.btn-secondary-gray',
   component: 'button',
 })
 
@@ -220,7 +220,7 @@ defineStyleConfig({
     '--button-text-color-focus': 'var(--gray-200)',
     '--button-text-color-hover': 'var(--gray-200)',
   },
-  selector: '.dark .btn-secondary-color',
+  selector: '.dark.btn-secondary-color',
   component: 'button',
 })
 
@@ -280,7 +280,7 @@ defineStyleConfig({
     '--button-text-color-focus': 'var(--gray-300)',
     '--button-text-color-hover': 'var(--gray-300)',
   },
-  selector: '.dark .btn-tertiary-gray',
+  selector: '.dark.btn-tertiary-gray',
   component: 'button',
 })
 
