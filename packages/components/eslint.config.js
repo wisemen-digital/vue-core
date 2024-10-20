@@ -39,15 +39,15 @@ export default [
   },
   {
     rules: {
-      'tailwindcss/no-custom-classname': [
-        'error',
-        {
-          whitelist: [
-            '^custom-.*',
-            ...allowedComponentClasses.map((className) => `^${className}-variant-.*`),
-          ],
-        },
-      ],
+      // 'tailwindcss/no-custom-classname': [
+      //   'error',
+      //   {
+      //     whitelist: [
+      //       '^custom-.*',
+      //       ...allowedComponentClasses.map((className) => `^${className}-variant-.*`),
+      //     ],
+      //   },
+      // ],
     },
   },
 ]

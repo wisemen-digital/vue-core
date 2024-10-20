@@ -19,6 +19,9 @@ const props = withDefaults(defineProps<AppButtonProps>(), {
 })
 
 const emit = defineEmits<{
+  /**
+   * Emitted when the button is clicked
+   */
   click: [event: Event]
 }>()
 

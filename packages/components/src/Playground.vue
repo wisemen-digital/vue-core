@@ -154,13 +154,9 @@ const breadcrumbs: BreadcrumbItem[] = [
         />
       </div>
 
-     <AppThemeProvider theme="dark">
       <TablePlayground />
-     </AppThemeProvider>
 
-      <div
-        class="flex min-h-screen flex-col gap-y-24 p-24"
-      >
+      <div class="flex min-h-screen flex-col gap-y-24 p-24">
         <DropdownMenus />
         <Dialogs />
         <Switches />

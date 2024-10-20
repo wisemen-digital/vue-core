@@ -2,6 +2,7 @@
 import type { TabItem } from '@wisemen/vue-core'
 import {
   AppCollapsable2,
+  AppConfigProvider,
   AppSwitch,
   AppTabs,
 } from '@wisemen/vue-core'
@@ -58,7 +59,9 @@ const selectedTab = ref<TabItem | null>(tabItems.value?.[0] ?? null)
       <AppCollapsable2>
         <div v-if="!showCode">
           <div class="vp-raw flex items-center justify-center rounded-lg border border-solid border-gray-100 p-16 dark:border-black dark:bg-gray-950">
-            <slot />
+            <AppConfigProvider locale="en">
+              <slot />
+            </AppConfigProvider>
           </div>
         </div>
 

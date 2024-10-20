@@ -35,11 +35,15 @@ const docs = [
         text: 'AppTextField',
       },
       {
+        link: '/components/input-field/app-number-field',
+        text: 'AppNumberField',
+      },
+      {
         link: '/components/input-field/app-password-field',
         text: 'AppPasswordField',
       },
       {
-        link: '/components/input-field/textarea',
+        link: '/components/input-field/app-textarea',
         text: 'AppTextarea',
       },
     ],
