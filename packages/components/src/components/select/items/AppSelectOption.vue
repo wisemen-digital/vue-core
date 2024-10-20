@@ -3,7 +3,7 @@ import {
   injectListboxRootContext,
   ListboxItem,
 } from 'reka-ui'
-import { computed } from 'vue'
+import { computed, useAttrs } from 'vue'
 
 import AppSelectOptionIndicator from '@/components/select/items/AppSelectOptionIndicator.vue'
 import { injectSelectContext } from '@/components/select/select.context.js'
@@ -18,6 +18,8 @@ const props = withDefaults(defineProps<{
 }>(), {
   styleConfig: null,
 })
+
+const attrs = useAttrs()
 
 const style = selectStyle()
 
@@ -49,6 +51,7 @@ provideSelectOptionContext({
     name="option"
   >
     <ListboxItem
+      v-bind="attrs"
       :class="optionClasses"
       :value="props.item.value"
       :disabled="props.item.isDisabled"

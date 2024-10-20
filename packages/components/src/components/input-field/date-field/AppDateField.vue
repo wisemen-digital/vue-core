@@ -31,8 +31,10 @@ const placeholder = ref<DateValue>(today(getLocalTimeZone()))
       :offset-in-px="4"
       :style-config="{
         '--popover-min-width-default': '350px',
+        '--popover-max-width-default': '350px',
       }"
-      popover-width="anchor-width"
+      popover-width="available-width"
+      align="start"
     >
       <AppPopoverAnchor>
         <DateFieldRoot

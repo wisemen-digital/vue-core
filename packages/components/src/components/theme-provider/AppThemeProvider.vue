@@ -8,7 +8,10 @@ const props = defineProps<{
 }>()
 
 provideThemeProviderContext({
-  theme: computed<string>(() => props.theme),
+  theme: computed<string>(() => props.theme === 'light' 
+    ? '' 
+    : props.theme
+  ),
 })
 </script>
 

@@ -61,7 +61,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 </script>
 
 <template>
-  <AppThemeProvider theme="dark">
+  <AppThemeProvider theme="light">
     <div class="p-48">
       <AppFilters />
 
@@ -154,7 +154,9 @@ const breadcrumbs: BreadcrumbItem[] = [
         />
       </div>
 
+     <AppThemeProvider theme="dark">
       <TablePlayground />
+     </AppThemeProvider>
 
       <div
         class="flex min-h-screen flex-col gap-y-24 p-24"
