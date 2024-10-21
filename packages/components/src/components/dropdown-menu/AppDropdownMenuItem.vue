@@ -2,6 +2,7 @@
 import AppDropdownMenuItem from '@/components/dropdown-menu/AppDropdownMenuItem.vue'
 import AppDropdownMenuGroup from '@/components/dropdown-menu/items/AppDropdownMenuGroup.vue'
 import AppDropdownMenuOption from '@/components/dropdown-menu/items/AppDropdownMenuOption.vue'
+import AppDropdownMenuRoute from '@/components/dropdown-menu/items/AppDropdownMenuRoute.vue'
 import AppDropdownMenuSeparator from '@/components/dropdown-menu/items/AppDropdownMenuSeparator.vue'
 import AppDropdownMenuSubTrigger from '@/components/dropdown-menu/items/AppDropdownMenuSubTrigger.vue'
 import type { DropdownMenuItem } from '@/types/dropdownMenu.type.js'
@@ -23,6 +24,18 @@ const props = defineProps<{
       />
     </template>
   </AppDropdownMenuOption>
+
+  <AppDropdownMenuRoute
+    v-if="props.item.type === 'route'"
+    :item="props.item"
+  >
+    <template #option-content>
+      <slot
+        :item="props.item"
+        name="option-content"
+      />
+    </template>
+  </AppDropdownMenuRoute>
 
   <AppDropdownMenuSeparator
     v-else-if="props.item.type === 'separator'"
