@@ -72,6 +72,7 @@ const isEmpty = computed<boolean>(() => {
   <AppPopoverTrigger>
     <button
       :id="selectContext.inputId.value"
+      :data-test-id="selectContext.testId.value"
       :class="selectBoxClasses"
       :disabled="selectContext.isDisabled.value"
       :aria-describedby="`${selectContext.inputId.value}-error ${selectContext.inputId.value}-hint`"

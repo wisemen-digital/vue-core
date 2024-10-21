@@ -4,17 +4,28 @@ import { useId } from 'reka-ui'
 import { computed, ref } from 'vue'
 
 import AppCollapsable from '@/components/collapsable/AppCollapsable.vue'
-import {
-  type AppTextareaProps,
-  appTextareaPropsDefaultValues,
-} from '@/components/input-field/text-area/textarea.props.js'
+import type { AppTextareaProps } from '@/components/input-field/text-area/textarea.props.js'
 import { textareaStyle } from '@/components/input-field/text-area/textarea.style.js'
 import AppInputFieldError from '@/components/input-field-error/AppInputFieldError.vue'
 import AppInputFieldHint from '@/components/input-field-hint/AppInputFieldHint.vue'
 import AppInputFieldLabel from '@/components/input-field-label/AppInputFieldLabel.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 
-const props = withDefaults(defineProps<AppTextareaProps>(), appTextareaPropsDefaultValues)
+const props = withDefaults(defineProps<AppTextareaProps>(), {
+  id: null,
+  testId: null,
+  isDisabled: false,
+  isReadonly: false,
+  isRequired: false,
+  isSpellCheckEnabled: false,
+  isTouched: false,
+  errors: null,
+  hint: null,
+  label: null,
+  placeholder: null,
+  resize: 'none',
+  styleConfig: null,
+})
 
 const emit = defineEmits<{
   blur: []
@@ -112,6 +123,7 @@ function onBlur(): void {
       :id="inputId"
       ref="textarea"
       v-model="model"
+      :data-test-id="props.testId"
       :class="textareaClasses"
       :disabled="props.isDisabled"
       :readonly="props.isReadonly"

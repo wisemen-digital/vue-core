@@ -2,6 +2,11 @@ import type { AppTextFieldProps } from '@/components/input-field/text-field/text
 
 export interface AppNumberFieldProps extends Omit<AppTextFieldProps, 'type'> {
   /**
+   * The test id of the input.
+   * @default null
+   */
+  testId?: null | string
+  /**
    * Whether the controls are visible.
    * @default false
    */

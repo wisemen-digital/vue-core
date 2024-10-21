@@ -13,6 +13,7 @@ import { popoverStyle } from '@/components/popover/popover.style.js'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 
 const props = withDefaults(defineProps<AppPopoverProps>(), {
+  testId: null,
   isArrowHidden: false,
   align: 'center',
   collisionPaddingInPx: 10,
@@ -53,6 +54,7 @@ const arrowClasses = computed<string>(() => style.arrow())
       <PopoverContent
         :align="props.align"
         :side="props.side"
+        :data-test-id="props.testId"
         :side-offset="props.offsetInPx"
         :class="[
           {

@@ -65,19 +65,3 @@ export interface AppTextareaProps {
    */
   styleConfig?: StyleConfig<'textarea'> | null
 }
-
-export const appTextareaPropsDefaultValues = {
-  id: null,
-  testId: null,
-  isDisabled: false,
-  isReadonly: false,
-  isRequired: false,
-  isSpellCheckEnabled: false,
-  isTouched: false,
-  errors: null,
-  hint: null,
-  label: null,
-  placeholder: null,
-  resize: 'none',
-  styleConfig: null,
-} satisfies AppTextareaProps

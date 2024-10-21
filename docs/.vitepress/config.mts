@@ -46,6 +46,10 @@ const docs = [
         link: '/components/input-field/app-textarea',
         text: 'AppTextarea',
       },
+      {
+        link: '/components/input-field/app-phone-number-field',
+        text: 'AppPhoneNumberField',
+      },
     ],
     text: 'Input Field',
   },

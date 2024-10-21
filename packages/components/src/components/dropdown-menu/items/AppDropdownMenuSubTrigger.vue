@@ -28,7 +28,10 @@ const dropdownContentClasses = computed<string>(() => style.dropdownContent())
 
 <template>
   <DropdownMenuSub>
-    <DropdownMenuSubTrigger :class="itemClasses">
+    <DropdownMenuSubTrigger
+      :class="itemClasses"
+      :data-test-id="props.item.testId"
+    >
       <AppIcon
         v-if="props.item.icon !== undefined"
         :icon="props.item.icon"

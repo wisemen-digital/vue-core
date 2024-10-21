@@ -153,6 +153,7 @@ function onBlur(): void {
       <CheckboxRoot
         :id="inputId"
         v-model="computedModel"
+        :data-test-id="props.testId"
         :disabled="props.isDisabled || props.isReadonly"
         :aria-describedby="`${inputId}-error ${inputId}-hint`"
         :class="rootClasses"

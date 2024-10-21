@@ -2,6 +2,7 @@ import type { Icon } from '@/icons/icons'
 import type { KeyboardKey } from '@/types/keyboard.type'
 
 export interface DropdownMenuOption {
+  testId?: string
   isDestructive?: boolean
   isDisabled?: boolean
   icon?: Icon
@@ -12,6 +13,7 @@ export interface DropdownMenuOption {
 }
 
 export interface DropdownMenuSubMenu {
+  testId?: string
   icon?: Icon
   items: DropdownMenuItem[]
   label: string

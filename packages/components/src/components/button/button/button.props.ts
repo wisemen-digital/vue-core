@@ -3,6 +3,11 @@ import type { StyleConfig } from '@/types/style.type'
 
 export interface AppButtonProps {
   /**
+   * The test id of the button.
+   * @default null
+   */
+  testId?: null | string
+  /**
    * Whether the button is disabled.
    * @default false
    */
@@ -37,7 +42,6 @@ export interface AppButtonProps {
    * @default 'button'
    */
   type?: 'button' | 'reset' | 'submit'
-
   /**
    * The variant of the button.
    * @default 'default'

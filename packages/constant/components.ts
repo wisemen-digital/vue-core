@@ -83,7 +83,6 @@ export const components = {
     'FormInput',
     'FormNumberInput',
     'FormPasswordInput',
-    'FormPhoneNumberInput',
   ],
   keyboard: [
     'AppKeyboardKey',
@@ -96,6 +95,7 @@ export const components = {
   textField: [
     'AppPasswordField',
     'AppTextField',
+    'AppPhoneNumberField',
   ],
   popover: [
     'AppPopover',

@@ -56,6 +56,7 @@ provideSelectOptionContext({
       :value="props.item.value"
       :disabled="props.item.isDisabled"
       :style="props.styleConfig"
+      :data-test-id="props.item.testId"
     >
       <span class="w-full">
         <slot name="option-content">

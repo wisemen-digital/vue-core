@@ -9,6 +9,7 @@ import AppSpinner from '@/components/spinner/AppSpinner.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 
 const props = withDefaults(defineProps<AppIconButtonProps>(), {
+  testId: null,
   isDisabled: false,
   isLoading: false,
   size: 'default',
@@ -160,6 +161,7 @@ function onClick(): void {
 
 <template>
   <button
+    :data-test-id="props.testId"
     :style="props.styleConfig"
     :type="props.type"
     :disabled="props.isDisabled"

@@ -8,6 +8,7 @@ import AppSpinner from '@/components/spinner/AppSpinner.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 
 const props = withDefaults(defineProps<AppButtonProps>(), {
+  testId: null,
   isDisabled: false,
   isLoading: false,
   iconLeft: null,
@@ -182,6 +183,7 @@ function onClick(event: Event): void {
     :disabled="props.isDisabled"
     :aria-busy="props.isLoading"
     :class="[buttonClasses, sizeClass, variantClass, themeContext.theme.value]"
+    :data-test-id="props.testId"
     class="button-variant-default"
     @focus="onFocus"
     @blur="onBlur"

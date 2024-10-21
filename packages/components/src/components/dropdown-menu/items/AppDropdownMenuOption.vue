@@ -26,6 +26,7 @@ const itemIconClasses = computed<string>(() => style.itemIcon({
   <RekaDropdownMenuItem
     :class="itemClasses"
     :disabled="props.item.isDisabled"
+    :data-test-id="props.item.testId"
     @select="props.item.onSelect"
   >
     <div class="flex items-center truncate">
