@@ -1,4 +1,4 @@
-<script setup lang="ts" generic="TFilters, TValue">
+<script setup lang="ts" generic="TFilters, TValue extends (string | void)">
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -38,7 +38,7 @@ const emit = defineEmits<{
 
 const { t } = useI18n()
 
-const filteredFilters = computed<PaginationFilter<TFilters>[]>(() => {
+const filteredFilters = computed<PaginationFilter<TFilters, TValue>[]>(() => {
   return props.filters.filter((filter) => isFilterVisible(filter))
 })
 
@@ -54,7 +54,7 @@ function onClearAllButtonClick(): void {
   emit('clear')
 }
 
-function isFilterVisible(filter: PaginationFilter<TFilters>): boolean {
+function isFilterVisible(filter: PaginationFilter<TFilters, TValue>): boolean {
   return filter.isVisible === undefined || filter.isVisible
 }
 

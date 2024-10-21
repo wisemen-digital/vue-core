@@ -1,6 +1,7 @@
-<script setup lang="ts" generic="TFilters, TValue extends string">
+<script setup lang="ts" generic="TFilters, TValue extends (string | void)">
 import FormCombobox from '@/components/combobox/FormCombobox.vue'
 import type {
+  FilterValues,
   Pagination,
   PaginationFilterWithAutocomplete,
   TableFilterEvent,
@@ -16,7 +17,7 @@ const emit = defineEmits<{
 }>()
 
 function onUpdateModelValue(value: { uuid: TValue, label: string }): void {
-  emit('change', { key: props.filter.id, value: value.uuid })
+  emit('change', { key: props.filter.id, value: value.uuid as FilterValues })
 }
 </script>
 
