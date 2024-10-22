@@ -2,7 +2,6 @@
   "name": "@wisemen/zod-http-client",
   "type": "module",
   "version": "0.0.4",
-  "packageManager": "pnpm@8.7.6",
   "description": "A simple http client based on axios and zod to validate the response",
   "author": "Wouter Laermans <wouter.laermans@wisemen.digital>",
   "license": "MIT",
