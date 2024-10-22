@@ -29,6 +29,7 @@
     "build": "unbuild",
     "dev": "unbuild --stub",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "prepublishOnly": "nr build",
     "release": "bumpp && npm publish",
     "start": "esno src/index.ts",
@@ -41,8 +42,8 @@
   },
   "devDependencies": {
     "@types/node": "^20.6.3",
+    "@wisemen/eslint-config-vue": "0.2.0",
     "bumpp": "^9.2.0",
-    "@wisemen/eslint-config-vue": "0.1.5",
     "eslint": "9.10.0",
     "esno": "^0.17.0",
     "pnpm": "^8.7.6",

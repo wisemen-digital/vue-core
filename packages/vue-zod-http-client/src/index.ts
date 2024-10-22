@@ -1,10 +1,14 @@
-import type { Axios, AxiosInstance, AxiosRequestConfig } from 'axios'
+import type {
+  Axios,
+  AxiosInstance,
+  AxiosRequestConfig,
+} from 'axios'
 import { z } from 'zod'
 
 interface CustomizedError {
-  url: string
-  method: 'get' | 'post' | 'put' | 'delete' | 'patch'
   error: z.ZodError
+  method: 'delete' | 'get' | 'patch' | 'post' | 'put'
+  url: string
 }
 
 interface CreateHttpZodClientOptions {
@@ -13,52 +17,56 @@ interface CreateHttpZodClientOptions {
 }
 
 interface CreateHttpZodClientReturnType {
-  get: <T extends z.ZodType>(options: GetOptions<T>) => Promise<z.infer<T>>
-  post: <T extends z.ZodType>(options: PostOptions<T>) => Promise<z.infer<T>>
-  patch: <T extends z.ZodType>(options: PatchOptions<T>) => Promise<z.infer<T>>
-  put: <T extends z.ZodType>(options: PutOptions<T>) => Promise<z.infer<T>>
   delete: <T extends z.ZodType>(options: DeleteOptions<T>) => Promise<z.infer<T>>
+  get: <T extends z.ZodType>(options: GetOptions<T>) => Promise<z.infer<T>>
+  patch: <T extends z.ZodType>(options: PatchOptions<T>) => Promise<z.infer<T>>
+  post: <T extends z.ZodType>(options: PostOptions<T>) => Promise<z.infer<T>>
+  put: <T extends z.ZodType>(options: PutOptions<T>) => Promise<z.infer<T>>
 }
 
 interface GetOptions<T extends z.ZodType> {
-  url: string
-  responseSchema: T
   config?: AxiosRequestConfig<any>
+  responseSchema: T
+  url: string
 }
 
 interface PostOptions<T extends z.ZodType> {
-  url: string
   body: any
-  responseSchema: T
   config?: AxiosRequestConfig<any>
+  responseSchema: T
+  url: string
 }
 
 interface PatchOptions<T extends z.ZodType> {
-  url: string
   body: any
-  responseSchema: T
   config?: AxiosRequestConfig<any>
+  responseSchema: T
+  url: string
 }
 
 interface PutOptions<T extends z.ZodType> {
-  url: string
   body: any
-  responseSchema: T
   config?: AxiosRequestConfig<any>
+  responseSchema: T
+  url: string
 }
 
 interface DeleteOptions<T extends z.ZodType> {
-  url: string
   body?: any
-  responseSchema?: T
   config?: AxiosRequestConfig<any>
+  responseSchema?: T
+  url: string
 }
 
 export function createHttpZodClient(
   { axios, onZodError }: CreateHttpZodClientOptions,
 ): CreateHttpZodClientReturnType {
-  const get = async <T extends z.ZodType>(options: GetOptions<T>): Promise<z.infer<T>> => {
-    const { config, url, responseSchema } = options
+  async function get<T extends z.ZodType>(options: GetOptions<T>): Promise<z.infer<T>> {
+    const {
+      config,
+      responseSchema,
+      url,
+    } = options
 
     const { data } = await axios.get(url, config)
 
@@ -68,9 +76,9 @@ export function createHttpZodClient(
     catch (error) {
       if (error instanceof z.ZodError) {
         onZodError({
+          error,
           method: 'get',
           url,
-          error,
         })
 
         return data
@@ -80,12 +88,12 @@ export function createHttpZodClient(
     }
   }
 
-  const patch = async <T extends z.ZodType>(options: PatchOptions<T>) => {
+  async function patch<T extends z.ZodType>(options: PatchOptions<T>): Promise<z.infer<T>> {
     const {
-      url,
       body,
       config,
       responseSchema,
+      url,
     } = options
 
     const { data } = await axios.patch(url, body, config)
@@ -96,9 +104,9 @@ export function createHttpZodClient(
     catch (error) {
       if (error instanceof z.ZodError) {
         onZodError({
+          error,
           method: 'patch',
           url,
-          error,
         })
 
         return data
@@ -108,12 +116,12 @@ export function createHttpZodClient(
     }
   }
 
-  const post = async <T extends z.ZodType>(options: PostOptions<T>) => {
+  async function post<T extends z.ZodType>(options: PostOptions<T>): Promise<z.infer<T>> {
     const {
-      url,
       body,
       config,
       responseSchema,
+      url,
     } = options
 
     const { data } = await axios.post(url, body, config)
@@ -124,9 +132,9 @@ export function createHttpZodClient(
     catch (error) {
       if (error instanceof z.ZodError) {
         onZodError({
+          error,
           method: 'post',
           url,
-          error,
         })
 
         return data
@@ -136,12 +144,12 @@ export function createHttpZodClient(
     }
   }
 
-  const put = async <T extends z.ZodType>(options: PutOptions<T>) => {
+  async function put<T extends z.ZodType>(options: PutOptions<T>): Promise<z.infer<T>> {
     const {
-      url,
       body,
       config,
       responseSchema,
+      url,
     } = options
 
     const { data } = await axios.put(url, body, config)
@@ -152,9 +160,9 @@ export function createHttpZodClient(
     catch (error) {
       if (error instanceof z.ZodError) {
         onZodError({
+          error,
           method: 'put',
           url,
-          error,
         })
 
         return data
@@ -164,12 +172,12 @@ export function createHttpZodClient(
     }
   }
 
-  const del = async <T extends z.ZodType>(options: DeleteOptions<T>) => {
+  async function del<T extends z.ZodType>(options: DeleteOptions<T>): Promise<z.infer<T> | undefined> {
     const {
-      url,
-      config,
       body,
+      config,
       responseSchema,
+      url,
     } = options
 
     const { data } = await axios.delete(url, {
@@ -177,8 +185,9 @@ export function createHttpZodClient(
       data: body,
     })
 
-    if (!responseSchema)
+    if (responseSchema === undefined) {
       return
+    }
 
     try {
       return responseSchema.parse(data)
@@ -186,9 +195,9 @@ export function createHttpZodClient(
     catch (error) {
       if (error instanceof z.ZodError) {
         onZodError({
+          error,
           method: 'delete',
           url,
-          error,
         })
 
         return data
@@ -199,10 +208,10 @@ export function createHttpZodClient(
   }
 
   return {
+    delete: del,
     get,
+    patch,
     post,
     put,
-    delete: del,
-    patch,
   }
 }
