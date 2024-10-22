@@ -1,5 +1,4 @@
 import {
-  computed,
   type ComputedRef,
   inject,
   type InjectionKey,
@@ -17,9 +16,11 @@ export function provideThemeProviderContext(context: ThemeProviderContext): void
 }
 
 export function injectThemeProviderContext(): ThemeProviderContext {
-  const context = inject(themeProviderContextKey, {
-    theme: computed<string>(() => 'light'),
-  })
+  const context = inject(themeProviderContextKey)
+
+  if (context === undefined) {
+    throw new Error('ThemeProviderContext is not provided. Make sure to wrap your app with `<AppThemeProvider />`.')
+  }
 
   return context
 }

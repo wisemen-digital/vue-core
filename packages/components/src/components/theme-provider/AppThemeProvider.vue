@@ -8,13 +8,12 @@ const props = defineProps<{
 }>()
 
 provideThemeProviderContext({
-  theme: computed<string>(() => props.theme === 'light' 
-    ? '' 
-    : props.theme
-  ),
+  theme: computed<string>(() => props.theme),
 })
 </script>
 
 <template>
-  <slot />
+  <div :class="props.theme">
+    <slot />
+  </div>
 </template>

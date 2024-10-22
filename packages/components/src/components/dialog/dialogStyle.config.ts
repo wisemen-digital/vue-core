@@ -14,6 +14,6 @@ defineStyleConfig({
     '--dialog-border-radius-default': 'var(--radius-lg)',
     '--dialog-shadow-default': 'var(--shadow-lg)',
   },
-  selector: ':root',
+  selector: '.dialog-variant-default',
   component: 'dialog',
 })

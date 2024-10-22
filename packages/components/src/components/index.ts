@@ -38,6 +38,7 @@ export type { AppDialogProps } from '@/components/dialog/dialog.props'
 
 // Dropdown Menu
 export { default as AppDropdownMenu } from '@/components/dropdown-menu/AppDropdownMenu.vue'
+export { default as AppDropdownMenuTrigger } from '@/components/dropdown-menu/AppDropdownMenuTrigger.vue'
 export type { AppDropdownMenuProps } from '@/components/dropdown-menu/dropdownMenu.props'
 export { default as AppDropdownMenuGroup } from '@/components/dropdown-menu/items/AppDropdownMenuGroup.vue'
 export { default as AppDropdownMenuOption } from '@/components/dropdown-menu/items/AppDropdownMenuOption.vue'

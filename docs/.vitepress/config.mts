@@ -17,6 +17,10 @@ const guide = [
     link: '/guide/styling',
     text: 'Styling',
   },
+  {
+    link: '/guide/theme-provider',
+    text: 'Theme Provider',
+  },
 ]
 
 const query = [

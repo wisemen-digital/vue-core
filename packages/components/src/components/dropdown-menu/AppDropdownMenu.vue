@@ -134,12 +134,14 @@ onBeforeUnmount(() => {
 
 <template>
   <DropdownMenuRoot v-model:open="isOpen">
-    <DropdownMenuTrigger
-      ref="dropdownMenuTriggerRef"
-      :as-child="true"
-    >
-      <slot name="trigger" />
-    </DropdownMenuTrigger>
+    <slot>
+      <DropdownMenuTrigger
+        ref="dropdownMenuTriggerRef"
+        :as-child="true"
+      >
+        <slot name="trigger" />
+      </DropdownMenuTrigger>
+    </slot>
 
     <DropdownMenuPortal>
       <DropdownMenuContent

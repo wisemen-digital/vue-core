@@ -97,122 +97,124 @@ function onSearch(searchTerm: string): void {
 
 <template>
   <AppThemeProvider theme="light">
-    <div class="p-48">
-      <AppFilters />
+    <div class="bg-primary">
+      <div class="p-48">
+        <AppFilters />
 
-      <div class="">
-        <AppTextField :model-value="null" />
+        <div class="">
+          <AppTextField :model-value="null" />
 
-        <div class="size-4 bg-primary" />
+          <div class="size-4 bg-primary" />
 
-        <AppPopover>
-          <template #trigger>
-            <AppButton variant="secondary">
-              btn
-            </AppButton>
-          </template>
+          <AppPopover>
+            <template #trigger>
+              <AppButton variant="secondary">
+                btn
+              </AppButton>
+            </template>
 
-          <template #content>
-            <div class="h-40 w-80" />
-          </template>
-        </AppPopover>
+            <template #content>
+              <div class="h-40 w-80" />
+            </template>
+          </AppPopover>
 
-        <AppDropdownMenu
-          :items="[
-            {
-              type: 'option',
-              label: 'Option 1',
-              onSelect: (): void => {
+          <AppDropdownMenu
+            :items="[
+              {
+                type: 'option',
+                label: 'Option 1',
+                onSelect: (): void => {
                 //
+                },
               },
-            },
-          ]"
-        >
-          <template #trigger>
-            <AppButton>
-              btn
-            </AppButton>
-          </template>
-        </AppDropdownMenu>
+            ]"
+          >
+            <template #trigger>
+              <AppButton>
+                btn
+              </AppButton>
+            </template>
+          </AppDropdownMenu>
+        </div>
       </div>
-    </div>
 
-    <div class="p-48">
+      <div class="p-48">
       <!-- <AppAutocomplete
         :display-fn="(value) => value"
         :items="fakeAsyncOptions"
         :model-value="null"
         @search="onSearch"
       /> -->
-    </div>
-
-    <ConfigProvider
-      locale="en"
-    >
-      <div class="flex justify-end p-8">
-        <AppDarkModeToggle />
       </div>
 
-      <div class="p-24">
-        <AppDateField class="w-72" />
-      </div>
+      <ConfigProvider
+        locale="en"
+      >
+        <div class="flex justify-end p-8">
+          <AppDarkModeToggle />
+        </div>
 
-      <div class="p-24">
         <div class="p-24">
-          <AppButton icon-left="translate01">
-            test
-          </AppButton>
-
-          <AppButton variant="secondary">
-            test
-          </AppButton>
+          <AppDateField class="w-72" />
         </div>
 
-        <div class="flex gap-x-1">
-          <AppKeyboardKey keyboard-key="shift" />
-          <AppKeyboardKey keyboard-key="ctrl" />
-          <AppKeyboardKey keyboard-key="f" />
-          <AppKeyboardKey keyboard-key="meta" />
+        <div class="p-24">
+          <div class="p-24">
+            <AppButton icon-left="translate01">
+              test
+            </AppButton>
+
+            <AppButton variant="secondary">
+              test
+            </AppButton>
+          </div>
+
+          <div class="flex gap-x-1">
+            <AppKeyboardKey keyboard-key="shift" />
+            <AppKeyboardKey keyboard-key="ctrl" />
+            <AppKeyboardKey keyboard-key="f" />
+            <AppKeyboardKey keyboard-key="meta" />
+          </div>
+
+          <div class="p-12">
+            <AppButton>
+              Button
+
+              <template #right>
+                <div class="flex items-center gap-x-1">
+                  <AppKeyboardKey
+                    keyboard-key="meta"
+                    class="ml-2"
+                  />
+
+                  <AppKeyboardKey keyboard-key="enter" />
+                </div>
+              </template>
+            </AppButton>
+          </div>
+
+          <AppDateField
+            v-if="false"
+            class="w-72"
+          />
         </div>
 
-        <div class="p-12">
-          <AppButton>
-            Button
+        <TablePlayground />
 
-            <template #right>
-              <div class="flex items-center gap-x-1">
-                <AppKeyboardKey
-                  keyboard-key="meta"
-                  class="ml-2"
-                />
-
-                <AppKeyboardKey keyboard-key="enter" />
-              </div>
-            </template>
-          </AppButton>
+        <div class="flex min-h-screen flex-col gap-y-24 p-24">
+          <DropdownMenus />
+          <Dialogs />
+          <Switches />
+          <Checkboxes />
+          <Tabs />
+          <Popovers />
+          <Tooltips />
+          <InputFields />
+          <Buttons />
         </div>
+      </ConfigProvider>
 
-        <AppDateField
-          v-if="false"
-          class="w-72"
-        />
-      </div>
-
-      <TablePlayground />
-
-      <div class="flex min-h-screen flex-col gap-y-24 p-24">
-        <DropdownMenus />
-        <Dialogs />
-        <Switches />
-        <Checkboxes />
-        <Tabs />
-        <Popovers />
-        <Tooltips />
-        <InputFields />
-        <Buttons />
-      </div>
-    </ConfigProvider>
-
-    <AppToastContainer />
+      <AppToastContainer />
+    </div>
   </AppThemeProvider>
 </template>
