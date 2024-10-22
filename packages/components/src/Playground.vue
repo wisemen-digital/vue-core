@@ -22,7 +22,6 @@ import '@/components/switch/switchStyle.config'
 import { ref } from 'vue'
 
 import Buttons from '@/Buttons.vue'
-import AppAutocomplete from '@/components/autocomplete/AppAutocomplete.vue'
 import AppButton from '@/components/button/button/AppButton.vue'
 import ConfigProvider from '@/components/config-provider/AppConfigProvider.vue'
 import AppDarkModeToggle from '@/components/dark-mode-toggle/AppDarkModeToggle.vue'
@@ -139,12 +138,12 @@ function onSearch(searchTerm: string): void {
     </div>
 
     <div class="p-48">
-      <AppAutocomplete
+      <!-- <AppAutocomplete
         :display-fn="(value) => value"
         :items="fakeAsyncOptions"
         :model-value="null"
         @search="onSearch"
-      />
+      /> -->
     </div>
 
     <ConfigProvider

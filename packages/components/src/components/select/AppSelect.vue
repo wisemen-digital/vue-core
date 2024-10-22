@@ -157,7 +157,7 @@ const filteredItems = computed<SelectItem<TValue extends Array<infer U> ? U : TV
   }
 
   const items = props.items as SelectItem<TValue>[]
-  const filterFn = props.filterFn
+  const filterFn = props.filterFn ?? ((): boolean => true)
 
   return filterItems(items as any, filterFn, searchTerm.value) as SelectItem<TValue extends Array<infer U>
     ? U

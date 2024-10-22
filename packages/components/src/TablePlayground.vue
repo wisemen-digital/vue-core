@@ -20,6 +20,7 @@ interface ExampleDataType {
 
 const columns: TableColumn<ExampleDataType>[] = [
   {
+    testId: 'ksjdqksjmsjlkdsmjqsmldsqslqkjdlsjqmd',
     isSortable: true,
     cell: (row) => h(TablePlaygroundCheckboxCell, {
       label: row.firstName,
