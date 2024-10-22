@@ -19,7 +19,10 @@ import '@/components/dialog/dialogStyle.config'
 import '@/components/table/tableStyle.config'
 import '@/components/switch/switchStyle.config'
 
+import { ref } from 'vue'
+
 import Buttons from '@/Buttons.vue'
+import AppAutocomplete from '@/components/autocomplete/AppAutocomplete.vue'
 import AppButton from '@/components/button/button/AppButton.vue'
 import ConfigProvider from '@/components/config-provider/AppConfigProvider.vue'
 import AppDarkModeToggle from '@/components/dark-mode-toggle/AppDarkModeToggle.vue'
@@ -39,6 +42,7 @@ import TablePlayground from '@/TablePlayground.vue'
 import Tabs from '@/Tabs.vue'
 import Tooltips from '@/Tooltips.vue'
 import type { BreadcrumbItem } from '@/types/breadcrumb.type.js'
+import type { SelectOption } from '@/types/select.type'
 
 import Checkboxes from './Checkboxes.vue'
 import Switches from './Switches.vue'
@@ -58,6 +62,38 @@ const breadcrumbs: BreadcrumbItem[] = [
     type: 'ellipsis',
   },
 ]
+
+const search = ref<string>('')
+
+let timeout: ReturnType<typeof setTimeout> | null = null
+
+const allOptions = [
+  {
+    type: 'option',
+    value: 'Apple',
+  },
+  {
+    type: 'option',
+    value: 'Banana',
+  },
+  {
+    type: 'option',
+    value: 'Blueberry',
+  },
+] as SelectOption<string>[]
+
+const fakeAsyncOptions = ref<SelectOption<string>[]>([])
+
+function onSearch(searchTerm: string): void {
+  if (timeout !== null) {
+    clearTimeout(timeout)
+  }
+
+  timeout = setTimeout(() => {
+    fakeAsyncOptions.value = allOptions.filter((option) => option.value.toLowerCase().includes(searchTerm.toLowerCase()))
+    console.log(fakeAsyncOptions.value)
+  }, 500)
+}
 </script>
 
 <template>
@@ -100,6 +136,15 @@ const breadcrumbs: BreadcrumbItem[] = [
           </template>
         </AppDropdownMenu>
       </div>
+    </div>
+
+    <div class="p-48">
+      <AppAutocomplete
+        :display-fn="(value) => value"
+        :items="fakeAsyncOptions"
+        :model-value="null"
+        @search="onSearch"
+      />
     </div>
 
     <ConfigProvider

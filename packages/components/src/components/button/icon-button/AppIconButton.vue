@@ -19,7 +19,7 @@ const props = withDefaults(defineProps<AppIconButtonProps>(), {
 })
 
 const emit = defineEmits<{
-  click: []
+  click: [event: Event]
 }>()
 
 const themeProviderContext = injectThemeProviderContext()
@@ -150,12 +150,12 @@ function onKeyUp(event: KeyboardEvent): void {
   }
 }
 
-function onClick(): void {
+function onClick(event: Event): void {
   if (props.isLoading) {
     return
   }
 
-  emit('click')
+  emit('click', event)
 }
 </script>
 

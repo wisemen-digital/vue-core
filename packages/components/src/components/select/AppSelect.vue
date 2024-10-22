@@ -46,7 +46,6 @@ const props = withDefaults(defineProps<AppSelectProps<TValue>>(), {
   collisionPaddingInPx: 0,
   containerElement: null,
   errors: null,
-  filterFn: null,
   hint: null,
   iconLeft: null,
   iconRight: 'chevronSelectorVertical',

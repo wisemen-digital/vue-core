@@ -52,18 +52,18 @@ const columns: TableColumn<ExampleDataType>[] = [
     cell: (row) => h(AppTableCell, () => row.isMarried ? 'Married' : 'Single'),
     headerLabel: 'Married',
     key: 'isMarried',
-    width: '150px',
+    width: '500px',
   },
   {
     cell: (row) => h(AppTableCell, () => row.isWorking ? 'Working' : 'Not working'),
     headerLabel: 'Working',
     key: 'isWorking',
+    width: '500px',
   },
   {
     cell: (row) => h(AppTableCell, () => row.canFly ? 'Can fly' : 'Cannot fly'),
     headerLabel: 'Can fly',
     key: 'canFly',
-    width: '100px',
   },
 ]
 
