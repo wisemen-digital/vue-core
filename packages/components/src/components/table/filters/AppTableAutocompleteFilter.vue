@@ -1,4 +1,4 @@
-<script setup lang="ts" generic="TFilters, TValue extends (string | void)">
+<script setup lang="ts" generic="TFilters, TValue extends string = string">
 import FormCombobox from '@/components/combobox/FormCombobox.vue'
 import type {
   FilterValues,
