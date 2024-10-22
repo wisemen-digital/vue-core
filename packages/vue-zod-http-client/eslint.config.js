@@ -1,6 +1,15 @@
-import { defineFlatConfig } from 'eslint-define-config'
-import antfu from '@antfu/eslint-config'
+import eslintVueConfig from '@wisemen/eslint-config-vue'
 
-export default defineFlatConfig([
-  ...antfu,
-])
+export default [
+  ...(await eslintVueConfig),
+  {
+    rules: {
+      'import/extensions': 'off',
+    },
+  },
+  {
+    ignores: [
+      '**/src/components/sonner/Toaster.vue',
+    ],
+  },
+]
