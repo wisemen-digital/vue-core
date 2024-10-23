@@ -48,7 +48,6 @@ const numberOfActiveFilters = computed<number>(() => {
 })
 
 function onFilterUpdate(event: TableFilterEvent<TFilters>): void {
-  console.log('onFilterUpdate CORE: ', event)
   emit('filter', event)
 }
 
