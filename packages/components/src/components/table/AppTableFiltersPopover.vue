@@ -1,4 +1,4 @@
-<script setup lang="ts" generic="TFilters, TValue">
+<script setup lang="ts" generic="TFilters, TValue extends string = string">
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -8,6 +8,7 @@ import AppPopover from '@/components/popover/AppPopover.vue'
 import AppSelectDivider from '@/components/select/AppSelectDivider.vue'
 import AppTableAutocompleteFilter from '@/components/table/filters/AppTableAutocompleteFilter.vue'
 import AppTableBooleanFilter from '@/components/table/filters/AppTableBooleanFilter.vue'
+import AppTableMultiAutocompleteFilter from '@/components/table/filters/AppTableMultiAutocompleteFilter.vue'
 import AppTableMultiSelectFilter from '@/components/table/filters/AppTableMultiSelectFilter.vue'
 import AppTableNumberFilter from '@/components/table/filters/AppTableNumberFilter.vue'
 import AppTableSelectFilter from '@/components/table/filters/AppTableSelectFilter.vue'
@@ -38,7 +39,7 @@ const emit = defineEmits<{
 
 const { t } = useI18n()
 
-const filteredFilters = computed<PaginationFilter<TFilters>[]>(() => {
+const filteredFilters = computed<PaginationFilter<TFilters, TValue>[]>(() => {
   return props.filters.filter((filter) => isFilterVisible(filter))
 })
 
@@ -54,7 +55,7 @@ function onClearAllButtonClick(): void {
   emit('clear')
 }
 
-function isFilterVisible(filter: PaginationFilter<TFilters>): boolean {
+function isFilterVisible(filter: PaginationFilter<TFilters, TValue>): boolean {
   return filter.isVisible === undefined || filter.isVisible
 }
 
@@ -125,6 +126,12 @@ const filterPopoverFiltersContainerClasses = computed<string>(() => tableStyle.f
           <div
             :class="filterPopoverFiltersContainerClasses"
           >
+            <AppTableMultiAutocompleteFilter
+              v-if="filter.type === 'multi-autocomplete'"
+              :filter="filter"
+              :pagination="props.pagination"
+              @change="onFilterUpdate"
+            />
             <AppTableAutocompleteFilter
               v-if="filter.type === 'autocomplete'"
               :filter="filter"
