@@ -1,4 +1,4 @@
-<script setup lang="ts" generic="TFilters, TValue extends string">
+<script setup lang="ts" generic="TFilters, TValue extends string = string">
 import FormCombobox from '@/components/combobox/FormCombobox.vue'
 import type {
   Pagination,

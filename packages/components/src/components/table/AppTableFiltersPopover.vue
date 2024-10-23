@@ -8,6 +8,7 @@ import AppPopover from '@/components/popover/AppPopover.vue'
 import AppSelectDivider from '@/components/select/AppSelectDivider.vue'
 import AppTableAutocompleteFilter from '@/components/table/filters/AppTableAutocompleteFilter.vue'
 import AppTableBooleanFilter from '@/components/table/filters/AppTableBooleanFilter.vue'
+import AppTableMultiAutocompleteFilter from '@/components/table/filters/AppTableMultiAutocompleteFilter.vue'
 import AppTableMultiSelectFilter from '@/components/table/filters/AppTableMultiSelectFilter.vue'
 import AppTableNumberFilter from '@/components/table/filters/AppTableNumberFilter.vue'
 import AppTableSelectFilter from '@/components/table/filters/AppTableSelectFilter.vue'
@@ -47,6 +48,7 @@ const numberOfActiveFilters = computed<number>(() => {
 })
 
 function onFilterUpdate(event: TableFilterEvent<TFilters>): void {
+  console.log('onFilterUpdate CORE: ', event)
   emit('filter', event)
 }
 
@@ -125,6 +127,12 @@ const filterPopoverFiltersContainerClasses = computed<string>(() => tableStyle.f
           <div
             :class="filterPopoverFiltersContainerClasses"
           >
+            <AppTableMultiAutocompleteFilter
+              v-if="filter.type === 'multi-autocomplete'"
+              :filter="filter"
+              :pagination="props.pagination"
+              @change="onFilterUpdate"
+            />
             <AppTableAutocompleteFilter
               v-if="filter.type === 'autocomplete'"
               :filter="filter"

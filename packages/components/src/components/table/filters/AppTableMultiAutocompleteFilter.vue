@@ -2,12 +2,12 @@
 import FormMultiCombobox from '@/components/combobox/FormMultiCombobox.vue'
 import type {
   Pagination,
-  PaginationFilterWithAutocomplete,
+  PaginationFilterWithMultiAutocomplete,
   TableFilterEvent,
 } from '@/types/pagination.type'
 
 const props = defineProps<{
-  filter: PaginationFilterWithAutocomplete<TFilters, TValue>
+  filter: PaginationFilterWithMultiAutocomplete<TFilters, TValue>
   pagination: Pagination<TFilters>
 }>()
 
@@ -15,8 +15,10 @@ const emit = defineEmits<{
   change: [event: TableFilterEvent<TFilters>]
 }>()
 
-function onUpdateModelValue(value: { uuid: TValue, label: string }): void {
-  emit('change', { key: props.filter.id, value: value.uuid })
+function onUpdateModelValue(value: { uuid: TValue, label: string }[]): void {
+  const uuids = value.map((v) => v.uuid)
+
+  emit('change', { key: props.filter.id, value: uuids.length > 0 ? uuids : null })
 }
 </script>
 
