@@ -10,8 +10,10 @@ import FormCombobox from '@/components/combobox/FormCombobox.vue'
 import { useAddressAutoComplete } from '@/composables/address-autocomplete/addressAutocomplete.composable'
 import { useLoading } from '@/composables/loading/loading.composable'
 import { useToast } from '@/composables/toast/toast.composable'
-import type { AddressForm } from '@/types/addressForm.model'
-import { EMPTY_ADDRESS_FORM } from '@/types/addressForm.model'
+import {
+  type AddressForm,
+  EMPTY_ADDRESS_FORM,
+} from '@/types/addressForm.model'
 import type { ComboboxItem } from '@/types/comboboxItem.type'
 import type { DataItem } from '@/types/dataItem.type'
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
@@ -118,14 +120,24 @@ function onBlur(): void {
 
 async function onUpdateModelValue(suggestion: Suggestion | null): Promise<void> {
   if (suggestion === null) {
+    addressModelValue.value = null
+    value.value = null
+
     return
   }
 
-  addressModelValue.value = await addressAutoComplete.getAddressFormByPlaceId(suggestion.placeId)
+  const addressForm = await addressAutoComplete.getAddressFormByPlaceId(suggestion.placeId)
+
+  addressModelValue.value = addressForm
+
+  value.value = {
+    placeId: suggestion.placeId,
+    label: AddressUtil.formatAddressForm(addressForm),
+  }
 }
 
 function onUpdateSearch(search: null | string): void {
-  if (search === null) {
+  if (search === null || search === '' || search === value.value?.label) {
     return
   }
 
