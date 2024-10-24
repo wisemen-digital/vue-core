@@ -10,11 +10,11 @@ import {
   watch,
 } from 'vue'
 
-import AppDialogContent from '@/components/dialog/AppDialogContent.vue'
-import AppDialogOverlay from '@/components/dialog/AppDialogOverlay.vue'
-import type { AppDialogProps } from '@/components/dialog/dialog.props.js'
+import AppDrawerContent from '@/components/drawer/AppDrawerContent.vue'
+import AppDrawerOverlay from '@/components/drawer/AppDrawerOverlay.vue'
+import type { AppDrawerProps } from '@/components/drawer/drawer.props.js'
 
-const props = withDefaults(defineProps<AppDialogProps>(), {
+const props = withDefaults(defineProps<AppDrawerProps>(), {
   triggerId: null,
   animateFromTrigger: false,
   shouldPreventClickOutside: false,
@@ -34,7 +34,7 @@ const isActuallyOpen = ref<boolean>(false)
 const hasSupportForViewTransitionsApi = document.startViewTransition !== undefined
 
 if (props.animateFromTrigger && props.triggerId === null) {
-  throw new Error('[AppDialog] The `triggerId` prop is required when using the `animateFromTrigger` prop')
+  throw new Error('[AppDrawer] The `triggerId` prop is required when using the `animateFromTrigger` prop')
 }
 
 function getTriggerElement(): HTMLElement | null {
@@ -43,24 +43,24 @@ function getTriggerElement(): HTMLElement | null {
   return triggerEl as HTMLElement ?? null
 }
 
-function getDialogElement(): HTMLElement {
-  const dialogEl = document.querySelector('[role="dialog"]')
+function getDrawerElement(): HTMLElement {
+  const drawerEl = document.querySelector('[role="drawer"]')
 
-  if (dialogEl === null) {
-    throw new Error('[AppDialog] No dialog element found')
+  if (drawerEl === null) {
+    throw new Error('[AppDrawer] No drawer element found')
   }
 
-  return dialogEl as HTMLElement
+  return drawerEl as HTMLElement
 }
 
 function animateInWithViewTransitionsApi(): void {
   const trigger = getTriggerElement()
 
   if (trigger === null) {
-    throw new Error('[AppDialog] No trigger element found')
+    throw new Error('[AppDrawer] No trigger element found')
   }
 
-  trigger.style.viewTransitionName = 'dialog'
+  trigger.style.viewTransitionName = 'drawer'
 
   const transition = document.startViewTransition(async () => {
     isActuallyOpen.value = true
@@ -70,15 +70,15 @@ function animateInWithViewTransitionsApi(): void {
     trigger.style.viewTransitionName = ''
     trigger.style.opacity = '0'
 
-    const dialog = getDialogElement()
+    const drawer = getDrawerElement()
 
-    dialog.style.viewTransitionName = 'dialog'
+    drawer.style.viewTransitionName = 'drawer'
   })
 
   void transition.finished.finally(() => {
-    const dialog = getDialogElement()
+    const drawer = getDrawerElement()
 
-    dialog.style.viewTransitionName = ''
+    drawer.style.viewTransitionName = ''
   })
 }
 
@@ -86,17 +86,17 @@ function animateOutWithViewTransitionsApi(): void {
   const trigger = getTriggerElement()
 
   if (trigger === null) {
-    throw new Error('[AppDialog] No trigger element found')
+    throw new Error('[AppDrawer] No trigger element found')
   }
 
-  const dialog = getDialogElement()
+  const drawer = getDrawerElement()
 
-  dialog.style.viewTransitionName = 'dialog-leave'
+  drawer.style.viewTransitionName = 'drawer-leave'
 
   const transition = document.startViewTransition(() => {
-    dialog.style.viewTransitionName = ''
+    drawer.style.viewTransitionName = ''
 
-    trigger.style.viewTransitionName = 'dialog-leave'
+    trigger.style.viewTransitionName = 'drawer-leave'
     trigger.style.opacity = '1'
 
     isActuallyOpen.value = false
@@ -107,7 +107,7 @@ function animateOutWithViewTransitionsApi(): void {
   })
 }
 
-function showDialog(): void {
+function showDrawer(): void {
   if (hasSupportForViewTransitionsApi && props.animateFromTrigger) {
     animateInWithViewTransitionsApi()
   }
@@ -130,7 +130,7 @@ function focusTriggerElement(): void {
   }
 }
 
-function hideDialog(): void {
+function hideDrawer(): void {
   if (hasSupportForViewTransitionsApi && props.animateFromTrigger) {
     animateOutWithViewTransitionsApi()
   }
@@ -140,15 +140,15 @@ function hideDialog(): void {
 
   setTimeout(() => {
     focusTriggerElement()
-  }, props.animateFromTrigger ? 200 : 0)
+  }, props.animateFromTrigger ? 300 : 0)
 }
 
 watch(isOpen, (isOpen) => {
   if (isOpen) {
-    showDialog()
+    showDrawer()
   }
   else {
-    hideDialog()
+    hideDrawer()
   }
 })
 
@@ -167,29 +167,29 @@ watch(isActuallyOpen, () => {
     >
       <DialogPortal>
         <Transition
-          enter-active-class="duration-200"
+          enter-active-class="duration-300"
           enter-from-class="opacity-0"
-          leave-active-class="duration-200"
+          leave-active-class="duration-300"
           leave-to-class="opacity-0"
         >
-          <AppDialogOverlay />
+          <AppDrawerOverlay />
         </Transition>
 
         <Component
           :is="animateFromTrigger ? 'div' : Transition"
-          enter-active-class="duration-300 ease-dialog"
-          enter-from-class="opacity-0 scale-110"
-          leave-active-class="duration-300 ease-dialog"
-          leave-to-class="opacity-0 scale-110"
+          enter-active-class="duration-300"
+          enter-from-class="opacity-0 translate-x-full"
+          leave-active-class="duration-300"
+          leave-to-class="opacity-0 translate-x-full"
         >
-          <AppDialogContent
+          <AppDrawerContent
             v-if="isActuallyOpen"
             :data-test-id="props.testId"
             :should-prevent-click-outside="props.shouldPreventClickOutside"
             :style="props.styleConfig"
           >
             <slot />
-          </AppDialogContent>
+          </AppDrawerContent>
         </Component>
       </DialogPortal>
     </DialogRoot>
@@ -197,84 +197,30 @@ watch(isActuallyOpen, () => {
 </template>
 
 <style lang="scss">
-@keyframes dialog-overlay-animate-in {
-  from {
-    opacity: 0;
-  }
+::view-transition-old(drawer) {
+  animation-duration: 100ms;
 }
 
-@keyframes dialog-overlay-animate-out {
-  to {
-    opacity: 0;
-  }
+::view-transition-new(drawer) {
+  animation-duration: 150ms;
 }
 
-.custom-dialog-overlay {
-  &[data-state='open'] {
-    animation: dialog-overlay-animate-in 0.5s cubic-bezier(0.17, 0.67, 0.16, 0.99);
-  }
-
-  &[data-state='closed'] {
-    animation: dialog-overlay-animate-out 0.5s cubic-bezier(0.17, 0.67, 0.16, 0.99);
-  }
-}
-
-@keyframes dialog-fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes dialog-fade-out {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-::view-transition-old(*),
-::view-transition-new(*) {
-  height: 100%;
-  width: 100%;
-  object-fit: fill;
-  animation: none;
-}
-
-/* Open animation */
-::view-transition-group(dialog) {
+::view-transition-group(drawer) {
   animation-duration: 250ms;
   animation-timing-function: cubic-bezier(0.49, 0.5, 0, 1.07);
 }
 
-/* Button */
-::view-transition-old(dialog) {
-  animation: dialog-fade-out 100ms forwards;
-}
-
-/* Dialog */
-::view-transition-new(dialog) {
-  animation: dialog-fade-in 200ms forwards;
-}
-
-/* Close animation */
-::view-transition-group(dialog-leave) {
+::view-transition-old(drawer-leave) {
   animation-duration: 250ms;
-  animation-timing-function: cubic-bezier(0.49, 0.5, 0, 1);
+  animation-timing-function: ease;
 }
 
-/* Button */
-::view-transition-new(dialog-leave) {
-  opacity: 0;
-  animation: dialog-fade-in 150ms 100ms forwards;
+::view-transition-new(drawer-leave) {
+  animation-duration: 250ms;
 }
 
-/* Dialog */
-::view-transition-old(dialog-leave) {
-  animation: dialog-fade-out 200ms 50ms forwards;
+::view-transition-group(drawer-leave) {
+  animation-duration: 250ms;
+  animation-timing-function: ease;
 }
 </style>

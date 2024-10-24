@@ -8,12 +8,12 @@ import { injectTableContext } from '@/components/table/table.context.js'
 const tableContext = injectTableContext()
 
 const totalPages = computed<number>(() => (
-  Math.ceil((tableContext.data.value?.total ?? 0)
-    / tableContext.pagination.value.paginationOptions.value.pagination.perPage)
+  Math.ceil((tableContext.data.value?.meta.total ?? 0)
+    / tableContext.pagination.value.paginationOptions.value.pagination.limit)
 ))
 
 const isLastPage = computed<boolean>(() => (
-  tableContext.pagination.value.paginationOptions.value.pagination.page
+  tableContext.pagination.value.paginationOptions.value.pagination.offset
   === totalPages.value - 1
 ))
 </script>

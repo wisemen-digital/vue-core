@@ -13,23 +13,23 @@ import { injectTableContext } from '@/components/table/table.context.js'
 
 const tableContext = injectTableContext()
 
-const perPage = computed<number>(() => tableContext.pagination.value.paginationOptions.value.pagination.perPage)
+const limit = computed<number>(() => tableContext.pagination.value.paginationOptions.value.pagination.limit)
 
 function onPageChange(page: number): void {
   tableContext.pagination.value.handlePageChange({
-    page: page - 1,
-    perPage: perPage.value,
+    limit: limit.value,
+    offset: page - 1,
   })
 }
 </script>
 
 <template>
   <PaginationRoot
-    :page="tableContext.pagination.value.paginationOptions.value.pagination.page + 1"
-    :total="tableContext.data.value?.total ?? 0"
+    :page="tableContext.pagination.value.paginationOptions.value.pagination.offset + 1"
+    :total="tableContext.data.value?.meta.total ?? 0"
     :sibling-count="2"
-    :items-per-page="perPage"
-    :default-page="tableContext.pagination.value.paginationOptions.value.pagination.page + 1"
+    :items-per-page="limit"
+    :default-page="tableContext.pagination.value.paginationOptions.value.pagination.offset + 1"
     :show-edges="true"
     @update:page="onPageChange"
   >

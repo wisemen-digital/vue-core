@@ -57,7 +57,7 @@ const gridColsStyle = computed<string>(() => (
 ))
 
 const isEmpty = computed<boolean>(() => (
-  props.data !== null && props.data.total === 0 && !props.isLoading
+  props.data !== null && props.data.meta.total === 0 && !props.isLoading
 ))
 
 function getIsScrolledtoRight(element: HTMLElement): boolean {
@@ -138,11 +138,11 @@ provideTableContext({
   <div
     :style="props.styleConfig"
     :class="themeProviderContext.theme.value"
-    class="table-variant-default relative flex h-full flex-1 flex-col overflow-hidden rounded-table-border-radius-default border border-solid border-table-border-color-default bg-primary"
+    class="table-variant-default rounded-table-border-radius-default border-table-border-color-default bg-primary relative flex h-full flex-1 flex-col overflow-hidden border border-solid"
   >
     <div
       v-if="hasTopSlot"
-      class="border-b border-solid border-secondary"
+      class="border-secondary border-b border-solid"
     >
       <slot name="top" />
     </div>
@@ -154,7 +154,7 @@ provideTableContext({
       <div
         v-else
         ref="tableContainerRef"
-        :aria-rowcount="data!.total"
+        :aria-rowcount="data!.meta.total"
         class="h-full flex-1 overflow-y-auto"
         role="table"
         @scroll="onScroll"

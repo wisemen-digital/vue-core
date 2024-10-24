@@ -1,6 +1,9 @@
+// Autocomplete
+export { default as AppAutocomplete } from '@/components/autocomplete/AppAutocomplete.vue'
+export type { AppAutocompleteProps } from '@/components/autocomplete/autocomplete.props'
+
 // Breadcrumbs
 export { default as AppBreadcrumbs } from '@/components/breadcrumbs/AppBreadcrumbs.vue'
-export type { BreadcrumbItem } from '@/types/breadcrumb.type'
 
 // Button
 export { default as AppButton } from '@/components/button/button/AppButton.vue'
@@ -35,6 +38,14 @@ export { default as AppDialogContainer } from '@/components/dialog/AppDialogCont
 export { default as AppDialogDescription } from '@/components/dialog/AppDialogDescription.vue'
 export { default as AppDialogTitle } from '@/components/dialog/AppDialogTitle.vue'
 export type { AppDialogProps } from '@/components/dialog/dialog.props'
+
+// Drawer
+export { default as AppDrawer } from '@/components/drawer/AppDrawer.vue'
+export { default as AppDrawerCloseButton } from '@/components/drawer/AppDrawerCloseButton.vue'
+export { default as AppDrawerContainer } from '@/components/drawer/AppDrawerContainer.vue'
+export { default as AppDrawerDescription } from '@/components/drawer/AppDrawerDescription.vue'
+export { default as AppDrawerTitle } from '@/components/drawer/AppDrawerTitle.vue'
+export type { AppDrawerProps } from '@/components/drawer/drawer.props'
 
 // Dropdown Menu
 export { default as AppDropdownMenu } from '@/components/dropdown-menu/AppDropdownMenu.vue'

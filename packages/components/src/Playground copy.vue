@@ -201,7 +201,7 @@ function onSearch(searchTerm: string): void {
 
         <TablePlayground />
 
-        <div class="flex min-h-screen flex-col gap-y-24 bg-red-400 p-24">
+        <div class="flex min-h-screen flex-col gap-y-24 p-24">
           <DropdownMenus />
           <Dialogs />
           <Switches />

@@ -5,6 +5,7 @@ import { buttonTailwindConfig } from './src/components/button/button/button.tail
 import { iconButtonTailwindConfig } from './src/components/button/icon-button/iconButton.tailwind'
 import { checkboxTailwindConfig } from './src/components/checkbox/checkbox.tailwind'
 import { dialogTailwindConfig } from './src/components/dialog/dialog.tailwind'
+import { drawerTailwindConfig } from './src/components/drawer/drawer.tailwind'
 import { dropdownMenuTailwindConfig } from './src/components/dropdown-menu/dropdownMenu.tailwind'
 import { iconTailwindConfig } from './src/components/icon/icon.tailwind'
 import { textareaTailwindConfig } from './src/components/input-field/text-area/textarea.tailwind'
@@ -50,6 +51,7 @@ export default {
         tableTailwindConfig,
         switchTailwindConfig,
         toastTailwindConfig,
+        drawerTailwindConfig,
         {
           animation: {
             shimmer: 'shimmer 2s ease-in-out infinite',
@@ -289,10 +291,6 @@ export default {
             'tertiary-on-brand': 'var(--text-tertiary-on-brand)',
             'warning-primary': 'var(--text-warning-primary)',
             'white': 'var(--text-white)',
-          },
-          transitionTimingFunction: {
-            'dialog': 'cubic-bezier(0.22, 0.68, 0, 1.51)',
-            'dialog-overlay': 'cubic-bezier(0.17, 0.67, 0.16, 0.99)',
           },
           zIndex: {
             'dialog': '40',

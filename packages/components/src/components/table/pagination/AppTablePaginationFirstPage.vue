@@ -8,7 +8,7 @@ import { injectTableContext } from '@/components/table/table.context.js'
 const tableContext = injectTableContext()
 
 const isFirstPage = computed<boolean>(() => (
-  tableContext.pagination.value.paginationOptions.value.pagination.page === 0
+  tableContext.pagination.value.paginationOptions.value.pagination.offset === 0
 ))
 </script>
 

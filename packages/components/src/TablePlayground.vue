@@ -80,8 +80,7 @@ const data: ExampleDataType[] = [
 ]
 
 const pagination = usePagination({
-  id: 'example',
-  disableRouteQuery: true,
+  enableRouteQuery: false,
 })
 
 const isLoading = ref<boolean>(true)
@@ -100,7 +99,11 @@ setTimeout(() => {
       :is-first-column-sticky="true"
       :is-last-column-sticky="true"
       :data=" {
-        total: 200,
+        meta: {
+          total: 200,
+          limit: 20,
+          offset: 0,
+        },
         data,
       }"
       :expanded-row-content="(row) => h('div', {
