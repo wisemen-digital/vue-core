@@ -27,10 +27,7 @@ const dropdownMenuItems: DropdownMenuItem[] = [
 </script>
 
 <template>
-  <AppDropdownMenu
-    :items="dropdownMenuItems"
-    :has-arrow="true"
-  >
+  <AppDropdownMenu :items="dropdownMenuItems">
     <AppButton
       variant="tertiary"
       size="sm"

@@ -122,12 +122,12 @@ defineStyleConfig({
 
     '--switch-error-font-size-default': 'var(--input-field-error-font-size-default)',
     '--switch-error-font-weight-default': 'var(--input-field-error-font-weight-default)',
-    '--switch-error-spacing-default': 'var(--input-field-error-spacing-default)',
+    '--switch-error-spacing-default': '0px',
     '--switch-error-text-color-default': 'var(--input-field-error-text-color-default)',
 
     '--switch-hint-font-size-default': 'var(--input-field-hint-font-size-default)',
     '--switch-hint-font-weight-default': 'var(--input-field-hint-font-weight-default)',
-    '--switch-hint-spacing-default': 'var(--input-field-hint-spacing-default)',
+    '--switch-hint-spacing-default': '0px',
 
     '--switch-hint-text-color-checked': 'var(--input-field-hint-text-color-default)',
     '--switch-hint-text-color-default': 'var(--input-field-hint-text-color-default)',

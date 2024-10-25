@@ -13,6 +13,8 @@ export const extendedConfig = {
             'checkbox-border-width-default',
             'switch-border-width-default',
             'switch-indicator-border-width-default',
+            'radio-group-item-indicator-border-width-default',
+            'radio-group-item-border-width-default',
           ],
         },
       ],

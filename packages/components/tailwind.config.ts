@@ -14,6 +14,7 @@ import { inputFieldErrorTailwindConfig } from './src/components/input-field-erro
 import { inputFieldHintTailwindConfig } from './src/components/input-field-hint/inputFieldHint.tailwind'
 import { inputFieldLabelTailwindConfig } from './src/components/input-field-label/inputFieldLabel.tailwind'
 import { popoverTailwindConfig } from './src/components/popover/popover.tailwind'
+import { radioGroupTailwindConfig } from './src/components/radio-group/radioGroup.tailwind'
 import { selectTailwindConfig } from './src/components/select/select.tailwind'
 import { switchTailwindConfig } from './src/components/switch/switch.tailwind'
 import { tableTailwindConfig } from './src/components/table/table.tailwind'
@@ -50,6 +51,7 @@ export default {
         dialogTailwindConfig,
         tableTailwindConfig,
         switchTailwindConfig,
+        radioGroupTailwindConfig,
         toastTailwindConfig,
         drawerTailwindConfig,
         {

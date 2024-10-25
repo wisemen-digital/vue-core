@@ -18,6 +18,7 @@ import '@/components/input-field/text-area/textareaStyle.config'
 import '@/components/dialog/dialogStyle.config'
 import '@/components/table/tableStyle.config'
 import '@/components/switch/switchStyle.config'
+import '@/components/radio-group/radioGroupStyle.config'
 
 import { ref } from 'vue'
 
@@ -44,6 +45,7 @@ import type { BreadcrumbItem } from '@/types/breadcrumb.type.js'
 import type { SelectOption } from '@/types/select.type'
 
 import Checkboxes from './Checkboxes.vue'
+import RadioGroups from './RadioGroups.vue'
 import Switches from './Switches.vue'
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -104,6 +106,14 @@ function onSearch(searchTerm: string): void {
         <div class="">
           <AppTextField :model-value="null" />
 
+    <div class="p-24">
+      <RadioGroups />
+
+      <AppBreadcrumbs :items="breadcrumbs" />
+      <div class="p-24">
+        <AppButton icon-left="translate01">
+          test
+        </AppButton>
           <div class="size-4 bg-primary" />
 
           <AppPopover>
@@ -154,6 +164,23 @@ function onSearch(searchTerm: string): void {
           <AppDarkModeToggle />
         </div>
 
+    <TablePlayground />
+
+    <div
+      class="flex min-h-screen flex-col gap-y-24 p-24"
+    >
+      <DropdownMenus />
+      <Dialogs />
+      <Switches />
+      <Checkboxes />
+      <Tabs />
+      <Popovers />
+      <Tooltips />
+      <InputFields />
+      <Buttons />
+    </div>
+    <TablePlayground />
+  </ConfigProvider>
         <div class="p-24">
           <AppDateField class="w-72" />
         </div>
