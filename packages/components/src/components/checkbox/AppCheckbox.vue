@@ -148,7 +148,7 @@ function onBlur(): void {
   <div
     :style="props.styleConfig"
     :class="themeProviderContext.theme.value"
-    class="checkbox-variant-default"
+    class="checkbox-variant-default input-field-label-variant-default input-field-error-variant-default input-field-hint-variant-default icon-variant-default"
   >
     <div :class="boxClasses">
       <CheckboxRoot

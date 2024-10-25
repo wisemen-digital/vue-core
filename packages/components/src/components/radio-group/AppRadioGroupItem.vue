@@ -4,9 +4,14 @@ import {
   RadioGroupItem as RekaRadioGroupItem,
   useId,
 } from 'reka-ui'
-import { computed, ref } from 'vue'
+import {
+  computed,
+  ref,
+  useAttrs,
+} from 'vue'
 
 import { injectRadioGroupContext } from '@/components/radio-group/radioGroup.context'
+import { radioGroupStyle } from '@/components/radio-group/radioGroup.style'
 import { provideRadioGroupItemContext } from '@/components/radio-group/radioGroupItem.context'
 import type { RadioGroupItem } from '@/types/radioGroup.type'
 
@@ -20,15 +25,28 @@ const emit = defineEmits<{
   focus: []
 }>()
 
+const context = injectRadioGroupContext()
+
+const attrs = useAttrs()
+
 const isFocused = ref<boolean>(false)
 const isMouseOver = ref<boolean>(false)
 
-const context = injectRadioGroupContext()
+const style = radioGroupStyle()
 
 const isDisabled = computed<boolean>(() => context.isDisabled.value || (props.item.isDisabled ?? false))
 const isHovered = computed<boolean>(() => isMouseOver.value && !isDisabled.value)
-const isChecked = computed<boolean>(() => context.isItemChecked(props.item))
 const hasError = computed<boolean>(() => context.hasError.value)
+const isChecked = computed<boolean>(() => context.isItemChecked(props.item))
+
+const itemClasses = computed<string>(() => style.item({
+  hasError: hasError.value,
+  isChecked: isChecked.value,
+  isDisabled: isDisabled.value,
+  isFocused: isFocused.value,
+  isHovered: isHovered.value,
+  class: attrs.class as string,
+}))
 
 const stringValue = computed<string>(() => JSON.stringify(props.item.value))
 
@@ -65,17 +83,12 @@ provideRadioGroupItemContext({
     :id="inputId"
     :value="stringValue"
     :disabled="isDisabled"
+    :class="itemClasses"
     @mouseenter="onMouseEnter"
     @mouseleave="onMouseLeave"
     @focus="onFocus"
     @blur="onBlur"
   >
-    <slot
-      :is-checked="isChecked"
-      :is-disabled="isDisabled"
-      :is-hovered="isHovered"
-      :has-error="hasError"
-      :is-focused="isFocused"
-    />
+    <slot />
   </RekaRadioGroupItem>
 </template>

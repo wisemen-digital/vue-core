@@ -186,7 +186,10 @@ if (model.value !== null) {
 </script>
 
 <template>
-  <div :style="props.styleConfig">
+  <div
+    :style="props.styleConfig"
+    class="select-variant-default input-field-label-variant-default input-field-error-variant-default input-field-hint-variant-default icon-variant-default"
+  >
     <slot
       v-if="props.label !== null"
       :input-id="inputId"
@@ -203,7 +206,6 @@ if (model.value !== null) {
     <ListboxRoot
       v-model="computedModel"
       selection-behavior="replace"
-      class="select-variant-default"
       @update:model-value="onUpdateModelValue"
     >
       <AppPopover

@@ -10,7 +10,7 @@
 | containerElement | `HTMLElement \| null` | The element to render the tooltip in. By default this is the viewport | `null` |
 | displayFn* | `SelectDisplayFn<SelectValue>` | The display function for the selected value. |  |
 | errors | `FormFieldErrors` | The errors associated with the input. | `null` |
-| filterFn | `SelectFilterFn<SelectValue> \| null` | The function to filter the options. | `null` |
+| filterFn | `SelectFilterFn<SelectValue> \| null` | The function to filter the options. |  |
 | hint | `string \| null` | The hint text of the input. | `null` |
 | iconLeft | `keyof Icons \| null` | The left icon of the input. | `null` |
 | iconRight | `keyof Icons` | The right icon of the input. | `"chevronSelectorVertical"` |
@@ -28,7 +28,7 @@
 | popoverWidth | `PopoverWidth \| null` | The width of the popover. | `"anchor-width"` |
 | searchPlaceholder | `string` | The placeholder of the search input. |  |
 | shouldRemainOpenOnValueChange | `boolean \| null` | Whether the select should remain open when the value changes. | `null` |
-| side | `"bottom" \| "left" \| "right" \| "top"` | The side of the trigger the tooltip should be on. | `"bottom"` |
+| side | `"left" \| "right" \| "bottom" \| "top"` | The side of the trigger the tooltip should be on. | `"bottom"` |
 | styleConfig | `Partial<SelectStyleConfig> \| null` |  | `null` |
 | testId | `string \| null` | The test id of the input. | `null` |
 | virtualList | `{ optionHeight: number; } \| null` | Whether the select should use a virtual list.

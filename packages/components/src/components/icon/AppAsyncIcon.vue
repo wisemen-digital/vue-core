@@ -75,6 +75,6 @@ await setIcon()
     v-if="svgComponent !== null"
     :class="[sizeClass, themeProviderContext.theme.value]"
     :style="props.styleConfig"
-    class="h-icon-size w-icon-size text-icon"
+    class="icon-variant-default h-icon-size w-icon-size text-icon "
   />
 </template>

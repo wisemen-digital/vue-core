@@ -11,6 +11,7 @@
 | isLoading | `boolean` | Whether the button is in a loading state. | `false` |
 | size | `"default" \| "sm" \| "lg" \| "xl" \| "2xl"` | The size of the button. | `"default"` |
 | styleConfig | `Partial<ButtonStyleConfig> \| null` | The style config of the button. | `null` |
+| testId | `string \| null` | The test id of the button. | `null` |
 | type | `"button" \| "reset" \| "submit"` | The type of the button. | `"button"` |
 | variant | `"default" \| "destructive-primary" \| "destructive-secondary" \| "destructive-tertiary" \| "secondary" \| "secondary-color" \| "tertiary" \| "tertiary-color"` | The variant of the button. | `"default"` |
 
@@ -22,9 +23,7 @@
 | `default` | any |  |
 | `icon-left` | any |  |
 | `icon-right` | any |  |
-| `left` | any |  |
 | `loader` | any |  |
-| `right` | any |  |
 
 
 ## Events

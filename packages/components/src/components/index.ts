@@ -114,12 +114,6 @@ export { default as AppRadioGroupIndicator } from '@/components/radio-group/AppR
 export { default as AppRadioGroupItem } from '@/components/radio-group/AppRadioGroupItem.vue'
 export { default as AppRadioGroupItemDefault } from '@/components/radio-group/AppRadioGroupItemDefault.vue'
 export { default as AppRadioGroupRoot } from '@/components/radio-group/AppRadioGroupRoot.vue'
-export {
-  type RadioGroupInjectContext,
-  type RadioGroupProvideContext,
-  useProvideRadioGroupContext,
-  useRadioGroupContext,
-} from '@/components/radio-group/radioGroup.context'
 export type { AppRadioGroupProps } from '@/components/radio-group/radioGroup.props'
 
 // Table

@@ -5,6 +5,7 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
+| dataTestId | `string \| null` | The test id of the button. | `null` |
 | iconLeft | `keyof Icons \| null` | The left icon of the button. | `null` |
 | iconRight | `keyof Icons \| null` | The right icon of the button. | `null` |
 | isLoading | `boolean` | Whether the button is in a loading state. | `false` |

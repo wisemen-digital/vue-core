@@ -35,40 +35,26 @@ const items: RadioGroupItem<string>[] = [
   <div>
     <AppRadioGroup
       v-model="selectedItem"
-      :errors="{
-        _errors: ['This is an error message.'],
+      :style-config="{
+        '--radio-group-item-border-radius-default': 'var(--radius-lg)',
       }"
-      :is-disabled="false"
-      :is-required="true"
       :items="items"
       label="Radio Group"
-      hint="This is a checkbox."
+      hint="This is a radio group."
     >
       <template #items="{ items: radioItems }">
-        <div class="grid grid-cols-1 gap-2 lg:grid-cols-3">
+        <div class="grid w-96 grid-cols-1 gap-2 lg:grid-cols-3">
           <AppRadioGroupItem
             v-for="item of radioItems"
             :key="item.label"
-            v-slot="{ isChecked, isDisabled, isHovered, hasError, isFocused }"
             :item="item"
-            class="relative w-full rounded border border-brand-primary-500 p-8 py-12 outline-none ring-offset-1 duration-200 hover:ring-radio-group-item-ring-color-focus focus:ring-radio-group-item-ring-color-focus focus-visible:ring-2"
+            class="group flex items-center justify-between border border-solid border-primary p-2 disabled:cursor-not-allowed disabled:bg-disabled-subtle"
           >
-            <div>
-              <AppRadioGroupIndicator
-                :is-checked="isChecked"
-                :is-disabled="isDisabled"
-                :is-focused="isFocused"
-                :is-hovered="isHovered"
-                :has-error="hasError"
-                class="absolute right-4 top-4"
-              />
-              <div>
-                {{ item.label }}
-              </div>
-              <div class="text-xs text-gray-500">
-                {{ item.hint }}
-              </div>
-            </div>
+            <p class="text-subtext text-primary group-disabled:text-disabled">
+              {{ item.label }}
+            </p>
+
+            <AppRadioGroupIndicator />
           </AppRadioGroupItem>
         </div>
       </template>

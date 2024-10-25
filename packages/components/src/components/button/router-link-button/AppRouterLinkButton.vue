@@ -176,7 +176,7 @@ function onClick(): void {
     :data-test-id="props.dataTestId"
     :aria-busy="props.isLoading"
     :class="[buttonClasses, sizeClass, variantClass, themeProviderContext.theme.value]"
-    class="button-variant-default"
+    class="button-variant-default icon-variant-default"
     @focus="onFocus"
     @blur="onBlur"
     @mouseenter="onMouseEnter"

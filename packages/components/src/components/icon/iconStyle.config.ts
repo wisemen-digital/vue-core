@@ -11,7 +11,7 @@ defineStyleConfig({
     '--icon-color': 'inherit',
     '--icon-size': '16px',
   },
-  selector: ':root',
+  selector: '.icon-variant-default',
   component: 'icon',
 })
 

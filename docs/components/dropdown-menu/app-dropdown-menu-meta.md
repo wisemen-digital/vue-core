@@ -22,6 +22,7 @@
 | --------- | ---- | ----------- |
 | `content-bottom` | None |  |
 | `content-top` | None |  |
+| `default` | None |  |
 | `group-label` | \{ label: any; \} |  |
 | `option-content` | \{ item: DropdownMenuItem; \} |  |
 | `sub-menu-trigger-content` | \{ label: string; \} |  |

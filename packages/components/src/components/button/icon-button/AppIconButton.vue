@@ -168,7 +168,7 @@ function onClick(event: Event): void {
     :aria-busy="props.isLoading"
     :aria-label="props.label"
     :class="[buttonClasses, sizeClass, variantClass, themeProviderContext.theme.value]"
-    class="button-variant-default icon-button-variant-default"
+    class="button-variant-default icon-button-variant-default icon-variant-default"
     @focus="onFocus"
     @blur="onBlur"
     @mouseenter="onMouseEnter"

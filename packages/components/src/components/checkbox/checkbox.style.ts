@@ -8,7 +8,7 @@ export const checkboxStyle = tv({
     error: '[--input-field-error-font-size-default:var(--checkbox-error-font-size-default)] [--input-field-error-spacing-default:var(--checkbox-error-spacing-default)] [--input-field-error-text-color-default:var(--checkbox-error-text-color-default)]',
     hint: '[--input-field-hint-font-size-default:var(--checkbox-hint-font-size-default)] [--input-field-hint-font-weight-default:var(--checkbox-hint-font-weight-default)]  [--input-field-hint-spacing-default:var(--checkbox-hint-spacing-default)] [--input-field-hint-text-color-default:var(--checkbox-hint-text-color-default)]',
     indicator: 'flex-none [--icon-size:var(--checkbox-indicator-size-default)]',
-    inputLabel: '[--input-field-label-font-size-default:var(--checkbox-label-font-size-default)] [--input-field-label-font-weight-default:var(--checkbox-label-font-weight-default)] [--input-field-label-text-color-default:var(--checkbox-label-text-color-default)]',
+    inputLabel: '[--input-field-label-font-size-default:var(--checkbox-label-font-size-default)] [--input-field-label-font-weight-default:var(--checkbox-label-font-weight-default)] [--input-field-label-spacing-default:0px] [--input-field-label-text-color-default:var(--checkbox-label-text-color-default)]',
     root: 'flex size-checkbox-size-default flex-none items-center justify-center rounded-checkbox-border-radius-default border-checkbox-border-width-default border-solid border-checkbox-border-color-default bg-checkbox-bg-color-default shadow-checkbox-shadow-default outline-none ring-offset-1 duration-200 focus-visible:ring-2',
   },
   variants: {

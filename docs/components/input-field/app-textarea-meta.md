@@ -5,20 +5,20 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| errors | `{ _errors: string[]; } \| null` | The errors associated with the input. |  |
-| hint | `string \| null` | The hint text of the input. |  |
-| id | `string \| null` | The id of the input. |  |
-| isDisabled | `boolean` | Whether the input is disabled. |  |
-| isReadonly | `boolean` | Whether the input is readonly. |  |
-| isRequired | `boolean` | Whether the input is required. |  |
-| isSpellCheckEnabled | `boolean` | Whether the input is spell check enabled. |  |
-| isTouched | `boolean` | Whether the input is touched. Used to determine if an error should be shown. |  |
-| label | `string \| null` | The label of the input. |  |
+| errors | `{ _errors: string[]; } \| null` | The errors associated with the input. | `null` |
+| hint | `string \| null` | The hint text of the input. | `null` |
+| id | `string \| null` | The id of the input. | `null` |
+| isDisabled | `boolean` | Whether the input is disabled. | `false` |
+| isReadonly | `boolean` | Whether the input is readonly. | `false` |
+| isRequired | `boolean` | Whether the input is required. | `false` |
+| isSpellCheckEnabled | `boolean` | Whether the input is spell check enabled. | `false` |
+| isTouched | `boolean` | Whether the input is touched. Used to determine if an error should be shown. | `false` |
+| label | `string \| null` | The label of the input. | `null` |
 | modelValue* | `string \| null` |  |  |
-| placeholder | `string \| null` | The placeholder text of the input. |  |
-| resize | `"none" \| "both" \| "auto-vertical" \| "horizontal" \| "vertical"` | Whether the textarea can be resized. |  |
-| styleConfig | `Partial<TextareaStyleConfig> \| null` |  |  |
-| testId | `string \| null` | The test id of the input. |  |
+| placeholder | `string \| null` | The placeholder text of the input. | `null` |
+| resize | `"none" \| "both" \| "auto-vertical" \| "horizontal" \| "vertical"` | Whether the textarea can be resized. | `"none"` |
+| styleConfig | `Partial<TextareaStyleConfig> \| null` |  | `null` |
+| testId | `string \| null` | The test id of the input. | `null` |
 
 
 ## Slots

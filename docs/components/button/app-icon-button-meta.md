@@ -11,6 +11,7 @@
 | label* | `string` | The label for the button for accessibility |  |
 | size | `"default" \| "sm" \| "lg" \| "xl" \| "2xl"` | The size of the button. | `"default"` |
 | styleConfig | `Partial<IconButtonStyleConfig> \| null` | The style config of the button. | `null` |
+| testId | `string \| null` | The test id of the button. | `null` |
 | type | `"button" \| "reset" \| "submit"` | The type of the button. | `"button"` |
 | variant | `"default" \| "destructive-primary" \| "destructive-secondary" \| "destructive-tertiary" \| "secondary" \| "secondary-color" \| "tertiary" \| "tertiary-color"` | The variant of the button. | `"default"` |
 
@@ -19,5 +20,5 @@
 
 | Event name | Type | Description |
 | ---------- | ---- | ----------- |
-| `click` | [] |  |
+| `click` | [event: Event] |  |
 

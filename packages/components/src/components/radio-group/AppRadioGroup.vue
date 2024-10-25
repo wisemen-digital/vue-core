@@ -65,7 +65,10 @@ provideRadioGroupContext({
 </script>
 
 <template>
-  <div :style="props.styleConfig">
+  <div
+    :style="props.styleConfig"
+    class="radio-group-variant-default input-field-label-variant-default input-field-error-variant-default input-field-hint-variant-default icon-variant-default"
+  >
     <slot
       v-if="props.label !== null"
       :input-id="inputId"

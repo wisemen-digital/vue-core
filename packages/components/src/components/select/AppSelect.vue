@@ -46,6 +46,7 @@ const props = withDefaults(defineProps<AppSelectProps<TValue>>(), {
   collisionPaddingInPx: 0,
   containerElement: null,
   errors: null,
+  filterFn: null,
   hint: null,
   iconLeft: null,
   iconRight: 'chevronSelectorVertical',
@@ -256,7 +257,7 @@ provideSelectContext({
   <div
     :style="props.styleConfig"
     :class="themeProviderContext.theme.value"
-    class="select-variant-default"
+    class="select-variant-default input-field-label-variant-default input-field-error-variant-default input-field-hint-variant-default icon-variant-default"
   >
     <slot
       v-if="props.label !== null"

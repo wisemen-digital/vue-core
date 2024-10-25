@@ -3,13 +3,13 @@ import { tv } from '@/libs/twVariants.lib'
 export const switchStyle = tv({
   slots: {
     bottom: 'ml-[--switch-bottom-spacing-left-calculated] [--switch-bottom-spacing-left-calculated:var(--switch-bottom-spacing-left-default,calc(var(--switch-label-spacing-default)+var(--switch-width-default)))]',
-    box: 'flex flex-row items-center [--input-field-label-spacing-default:0px]',
+    box: 'flex flex-row items-center',
     error: '[--input-field-error-font-size-default:var(--switch-error-font-size-default)] [--input-field-error-spacing-default:var(--switch-error-spacing-default)] [--input-field-error-text-color-default:var(--switch-error-text-color-default)]',
     hint: '[--input-field-hint-font-size-default:var(--switch-hint-font-size-default)] [--input-field-hint-font-weight-default:var(--switch-hint-font-weight-default)]  [--input-field-hint-spacing-default:var(--switch-hint-spacing-default)] [--input-field-hint-text-color-default:var(--switch-hint-text-color-default)]',
     iconChecked: '[--icon-color:var(--switch-icon-color-checked)] [--icon-size:var(--switch-icon-size-default)]',
     iconUnchecked: '[--icon-color:var(--switch-icon-color-unchecked)] [--icon-size:var(--switch-icon-size-default)]',
     indicator: 'relative flex size-switch-indicator-size-default flex-none items-center justify-center overflow-hidden rounded-switch-indicator-border-radius-default border-switch-indicator-border-width-default border-solid border-switch-indicator-border-color-default bg-switch-indicator-bg-color-default shadow-switch-indicator-shadow-default duration-300 ease-switch data-[state=checked]:translate-x-[calc(var(--switch-width-default)-(var(--switch-padding-x-default)*2)-var(--switch-indicator-size-default)-(var(--switch-indicator-border-width-default)*2))]',
-    inputLabel: 'ml-switch-label-spacing-default [--input-field-label-font-size-default:var(--switch-label-font-size-default)] [--input-field-label-font-weight-default:var(--switch-label-font-weight-default)] [--input-field-label-text-color-default:var(--switch-label-text-color-default)]',
+    inputLabel: 'ml-switch-label-spacing-default [--input-field-label-font-size-default:var(--switch-label-font-size-default)] [--input-field-label-font-weight-default:var(--switch-label-font-weight-default)] [--input-field-label-spacing-default:var(--spacing-none)] [--input-field-label-text-color-default:var(--switch-label-text-color-default)]',
     root: 'flex h-switch-height-default w-switch-width-default flex-none items-center rounded-switch-border-radius-default  border-switch-border-width-default border-solid border-switch-border-color-default bg-switch-bg-color-default px-switch-padding-x-default shadow-switch-shadow-default outline-none ring-offset-1 duration-200 focus-visible:ring-2',
   },
   variants: {

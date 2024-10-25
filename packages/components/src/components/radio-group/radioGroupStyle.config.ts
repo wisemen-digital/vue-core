@@ -192,6 +192,6 @@ defineStyleConfig({
     '--radio-group-label-text-color-focus': 'var(--input-field-label-text-color-default)',
     '--radio-group-label-text-color-hover': 'var(--input-field-label-text-color-default)',
   },
-  selector: ':root',
+  selector: '.radio-group-variant-default',
   component: 'radioGroup',
 })

@@ -2,9 +2,11 @@ import type { ComponentStyleConfigRegistry } from '@/types/style.type'
 
 interface DefineStyleConfigOptions<TComponent extends keyof ComponentStyleConfigRegistry> {
   config: Partial<ComponentStyleConfigRegistry[TComponent]>
+  layer?: string
   selector: string
   component: TComponent
 }
+
 export function defineStyleConfig<
   TComponent extends keyof ComponentStyleConfigRegistry,
 >(
@@ -14,12 +16,18 @@ export function defineStyleConfig<
 
   style.type = 'text/css'
 
-  Object.entries(options.config).forEach(([
-    key,
-    value,
-  ]) => {
-    style.appendChild(document.createTextNode(`${options.selector} { ${key}: ${value}; }`))
-  })
+  const layer = options.layer ?? 'component'
+
+  const layerStyles = Object.entries(options.config)
+    .map(([
+      key,
+      value,
+    ]) => `${key}: ${value};`)
+    .join(' ')
+
+  style.appendChild(
+    document.createTextNode(`@layer ${layer} { ${options.selector} { ${layerStyles} } }`),
+  )
 
   document.head.appendChild(style)
 }

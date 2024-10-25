@@ -24,14 +24,17 @@ import { ref } from 'vue'
 
 import Buttons from '@/Buttons.vue'
 import AppButton from '@/components/button/button/AppButton.vue'
+import AppCheckbox from '@/components/checkbox/AppCheckbox.vue'
 import ConfigProvider from '@/components/config-provider/AppConfigProvider.vue'
 import AppDarkModeToggle from '@/components/dark-mode-toggle/AppDarkModeToggle.vue'
 import AppDropdownMenu from '@/components/dropdown-menu/AppDropdownMenu.vue'
 import AppFilters from '@/components/filters/AppFilters.vue'
 import AppDateField from '@/components/input-field/date-field/AppDateField.vue'
 import AppTextField from '@/components/input-field/text-field/AppTextField.vue'
+import AppInputFieldLabel from '@/components/input-field-label/AppInputFieldLabel.vue'
 import AppKeyboardKey from '@/components/keyboard/AppKeyboardKey.vue'
 import AppPopover from '@/components/popover/AppPopover.vue'
+import AppRadioGroup from '@/components/radio-group/AppRadioGroup.vue'
 import AppThemeProvider from '@/components/theme-provider/AppThemeProvider.vue'
 import AppToastContainer from '@/components/toast/AppToastContainer.vue'
 import Dialogs from '@/Dialogs.vue'
@@ -45,7 +48,6 @@ import type { BreadcrumbItem } from '@/types/breadcrumb.type.js'
 import type { SelectOption } from '@/types/select.type'
 
 import Checkboxes from './Checkboxes.vue'
-import RadioGroups from './RadioGroups.vue'
 import Switches from './Switches.vue'
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -99,21 +101,52 @@ function onSearch(searchTerm: string): void {
 
 <template>
   <AppThemeProvider theme="light">
-    <div class="bg-primary">
+    <div class="p-24">
+      <AppRadioGroup
+        :model-value="null"
+        :items="[
+          {
+            label: 'Label',
+            type: 'option',
+            value: 'Apple',
+          },
+        ]"
+      />
+
+      <AppInputFieldLabel
+        :is-required="false"
+        :style-config="{
+          // '--input-field-label-font-size-default': '20px',
+        }"
+        label="Label"
+        for="test"
+      />
+
+      <AppTextField
+        :model-value="null"
+        :style-config="{
+          // '--text-field-label-font-size-default': '20px',
+        }"
+        label="test"
+      />
+
+      <AppCheckbox
+        :model-value="false"
+        :style-config="{}"
+        label="Label"
+      />
+    </div>
+
+    <div
+      v-if="true"
+      class="bg-primary"
+    >
       <div class="p-48">
         <AppFilters />
 
         <div class="">
           <AppTextField :model-value="null" />
 
-    <div class="p-24">
-      <RadioGroups />
-
-      <AppBreadcrumbs :items="breadcrumbs" />
-      <div class="p-24">
-        <AppButton icon-left="translate01">
-          test
-        </AppButton>
           <div class="size-4 bg-primary" />
 
           <AppPopover>
@@ -164,23 +197,6 @@ function onSearch(searchTerm: string): void {
           <AppDarkModeToggle />
         </div>
 
-    <TablePlayground />
-
-    <div
-      class="flex min-h-screen flex-col gap-y-24 p-24"
-    >
-      <DropdownMenus />
-      <Dialogs />
-      <Switches />
-      <Checkboxes />
-      <Tabs />
-      <Popovers />
-      <Tooltips />
-      <InputFields />
-      <Buttons />
-    </div>
-    <TablePlayground />
-  </ConfigProvider>
         <div class="p-24">
           <AppDateField class="w-72" />
         </div>
@@ -228,7 +244,7 @@ function onSearch(searchTerm: string): void {
 
         <TablePlayground />
 
-        <div class="flex min-h-screen flex-col gap-y-24 bg-red-400 p-24">
+        <div class="flex min-h-screen flex-col gap-y-24 p-24">
           <DropdownMenus />
           <Dialogs />
           <Switches />
