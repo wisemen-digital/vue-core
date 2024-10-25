@@ -3,8 +3,8 @@ import { SwitchThumb } from 'reka-ui'
 import { computed } from 'vue'
 
 import AppIcon from '@/components/icon/AppIcon.vue'
-import { switchStyle } from '@/components/switch/switch.style.js'
-import type { Icon } from '@/icons/icons.js'
+import { switchStyle } from '@/components/switch/switch.style'
+import type { Icon } from '@/icons/icons'
 
 interface Props {
   isChecked: boolean

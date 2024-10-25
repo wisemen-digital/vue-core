@@ -7,9 +7,9 @@ import {
 } from 'reka-ui'
 import { computed } from 'vue'
 
-import { tabsStyle } from '@/components/tabs/tabs.style.js'
+import { tabsStyle } from '@/components/tabs/tabs.style'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
-import type { TabItem } from '@/types/tabs.type.js'
+import type { TabItem } from '@/types/tabs.type'
 
 const props = defineProps<{
   items: TabItem<TMeta>[]

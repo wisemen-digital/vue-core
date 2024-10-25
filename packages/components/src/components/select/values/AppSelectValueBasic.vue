@@ -3,8 +3,8 @@ import { computed } from 'vue'
 
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppPopoverTrigger from '@/components/popover/AppPopoverTrigger.vue'
-import { injectSelectContext } from '@/components/select/select.context.js'
-import { selectStyle } from '@/components/select/select.style.js'
+import { injectSelectContext } from '@/components/select/select.context'
+import { selectStyle } from '@/components/select/select.style'
 import AppSpinner from '@/components/spinner/AppSpinner.vue'
 
 const selectContext = injectSelectContext()

@@ -2,7 +2,7 @@
 import { DropdownMenuSeparator } from 'reka-ui'
 import { computed } from 'vue'
 
-import { dropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style.js'
+import { dropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style'
 
 const style = dropdownMenuStyle()
 

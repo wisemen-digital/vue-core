@@ -2,10 +2,10 @@
 import { DropdownMenuItem as RekaDropdownMenuItem } from 'reka-ui'
 import { computed } from 'vue'
 
-import { dropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style.js'
+import { dropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style'
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppKeyboardShortcut from '@/components/keyboard/AppKeyboardShortcut.vue'
-import type { DropdownMenuOption } from '@/types/dropdownMenu.type.js'
+import type { DropdownMenuOption } from '@/types/dropdownMenu.type'
 
 const props = defineProps<{
   item: DropdownMenuOption

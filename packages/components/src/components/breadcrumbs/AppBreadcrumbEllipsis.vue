@@ -3,8 +3,8 @@ import { useRouter } from 'vue-router'
 
 import AppButton from '@/components/button/button/AppButton.vue'
 import AppDropdownMenu from '@/components/dropdown-menu/AppDropdownMenu.vue'
-import type { BreadcrumbEllipsis } from '@/types/breadcrumb.type.js'
-import type { DropdownMenuItem } from '@/types/dropdownMenu.type.js'
+import type { BreadcrumbEllipsis } from '@/types/breadcrumb.type'
+import type { DropdownMenuItem } from '@/types/dropdownMenu.type'
 
 const props = defineProps<{
   item: BreadcrumbEllipsis

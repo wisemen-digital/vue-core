@@ -15,14 +15,14 @@ import {
 } from 'vue'
 
 import AppDropdownMenuItem from '@/components/dropdown-menu/AppDropdownMenuItem.vue'
-import type { AppDropdownMenuProps } from '@/components/dropdown-menu/dropdownMenu.props.js'
-import { dropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style.js'
+import type { AppDropdownMenuProps } from '@/components/dropdown-menu/dropdownMenu.props'
+import { dropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
-import { useKeyboardShortcut } from '@/composables/index.js'
+import { useKeyboardShortcut } from '@/composables/index'
 import type {
   DropdownMenuItem,
   DropdownMenuOption,
-} from '@/types/dropdownMenu.type.js'
+} from '@/types/dropdownMenu.type'
 
 const props = withDefaults(defineProps<AppDropdownMenuProps>(), {
   isArrowHidden: false,

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import { selectStyle } from '@/components/select/select.style.js'
+import { selectStyle } from '@/components/select/select.style'
 
 const style = selectStyle()
 

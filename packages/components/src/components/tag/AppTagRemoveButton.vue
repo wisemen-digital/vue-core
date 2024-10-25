@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import AppIconButton from '@/components/button/icon-button/AppIconButton.vue'
-import { injectTagContext } from '@/components/tag/tag.context.js'
+import { injectTagContext } from '@/components/tag/tag.context'
 
 const tagContext = injectTagContext()
 </script>

@@ -9,7 +9,7 @@ import AppSkeletonItem from '@/components/skeleton/AppSkeletonItem.vue'
 import AppTablePaginationNextPage from '@/components/table/pagination/AppTablePaginationNextPage.vue'
 import AppTablePaginationPages from '@/components/table/pagination/AppTablePaginationPages.vue'
 import AppTablePaginationPrevPage from '@/components/table/pagination/AppTablePaginationPrevPage.vue'
-import { injectTableContext } from '@/components/table/table.context.js'
+import { injectTableContext } from '@/components/table/table.context'
 
 const tableContext = injectTableContext()
 

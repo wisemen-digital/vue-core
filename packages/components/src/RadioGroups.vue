@@ -91,13 +91,9 @@ const items: RadioGroupItem<string>[] = [
             <AppRadioGroupItem
               v-for="item of radioItems"
               :key="item.label"
-              v-slot="{ isDisabled }"
               :item="item"
             >
               <div
-                :class="{
-                  'cursor-not-allowed': isDisabled,
-                }"
                 class="relative w-full rounded border border-brand-primary-500 p-12"
               >
                 <div>

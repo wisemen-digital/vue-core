@@ -2,8 +2,8 @@
 import { computed, ref } from 'vue'
 
 import { buttonStyle } from '@/components/button/button/button.style'
-import type { AppIconButtonProps } from '@/components/button/icon-button/iconButton.props.js'
-import { iconButtonStyle } from '@/components/button/icon-button/iconButton.style.js'
+import type { AppIconButtonProps } from '@/components/button/icon-button/iconButton.props'
+import { iconButtonStyle } from '@/components/button/icon-button/iconButton.style'
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppSpinner from '@/components/spinner/AppSpinner.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'

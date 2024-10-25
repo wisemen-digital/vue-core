@@ -27,7 +27,7 @@ import {
 import AppButton from '@/components/button/button/AppButton.vue'
 import AppIconButton from '@/components/button/icon-button/AppIconButton.vue'
 import AppCollapsable2 from '@/components/collapsable/AppCollapsable2.vue'
-import { injectConfigContext } from '@/components/config-provider/config.context.js'
+import { injectConfigContext } from '@/components/config-provider/config.context'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 
 const model = defineModel<Date | null>({

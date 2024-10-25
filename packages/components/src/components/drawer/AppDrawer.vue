@@ -12,7 +12,7 @@ import {
 
 import AppDrawerContent from '@/components/drawer/AppDrawerContent.vue'
 import AppDrawerOverlay from '@/components/drawer/AppDrawerOverlay.vue'
-import type { AppDrawerProps } from '@/components/drawer/drawer.props.js'
+import type { AppDrawerProps } from '@/components/drawer/drawer.props'
 
 const props = withDefaults(defineProps<AppDrawerProps>(), {
   triggerId: null,

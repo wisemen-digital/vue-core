@@ -6,11 +6,11 @@ import {
 import { computed, useAttrs } from 'vue'
 
 import AppSelectOptionIndicator from '@/components/select/items/AppSelectOptionIndicator.vue'
-import { injectSelectContext } from '@/components/select/select.context.js'
-import { selectStyle } from '@/components/select/select.style.js'
-import { provideSelectOptionContext } from '@/components/select/selectOption.context.js'
-import type { SelectOption, SelectValue } from '@/types/select.type.js'
-import type { StyleConfig } from '@/types/style.type.js'
+import { injectSelectContext } from '@/components/select/select.context'
+import { selectStyle } from '@/components/select/select.style'
+import { provideSelectOptionContext } from '@/components/select/selectOption.context'
+import type { SelectOption, SelectValue } from '@/types/select.type'
+import type { StyleConfig } from '@/types/style.type'
 
 const props = withDefaults(defineProps<{
   item: SelectOption<TValue extends Array<infer U> ? U : TValue>

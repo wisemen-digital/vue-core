@@ -2,9 +2,9 @@
 import { computed, toValue } from 'vue'
 
 import AppIcon from '@/components/icon/AppIcon.vue'
-import { toastStyle } from '@/components/toast/toast.style.js'
-import type { Icon } from '@/icons/icons.js'
-import type { Toast } from '@/types/toast.type.js'
+import { toastStyle } from '@/components/toast/toast.style'
+import type { Icon } from '@/icons/icons'
+import type { Toast } from '@/types/toast.type'
 
 const props = defineProps<{
   toast: Toast

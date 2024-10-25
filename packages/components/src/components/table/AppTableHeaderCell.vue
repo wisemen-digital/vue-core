@@ -2,14 +2,14 @@
 import { computed } from 'vue'
 
 import AppIconButton from '@/components/button/icon-button/AppIconButton.vue'
-import { injectTableContext } from '@/components/table/table.context.js'
-import type { Icon } from '@/icons/icons.js'
+import { injectTableContext } from '@/components/table/table.context'
+import type { Icon } from '@/icons/icons'
 import type {
   PaginationOptions,
   SortChangeEvent,
   SortDirection,
-} from '@/types/pagination.type.js'
-import type { TableColumn } from '@/types/table.type.js'
+} from '@/types/pagination.type'
+import type { TableColumn } from '@/types/table.type'
 
 const props = defineProps<{
   column: TableColumn<any>

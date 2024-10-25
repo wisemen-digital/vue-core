@@ -3,7 +3,7 @@ import { computed, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 
 import { buttonStyle } from '@/components/button/button/button.style'
-import type { AppRouterLinkButtonProps } from '@/components/button/router-link-button/routerLinkButton.props.js'
+import type { AppRouterLinkButtonProps } from '@/components/button/router-link-button/routerLinkButton.props'
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppSpinner from '@/components/spinner/AppSpinner.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'

@@ -44,7 +44,7 @@ import Popovers from '@/Popovers.vue'
 import TablePlayground from '@/TablePlayground.vue'
 import Tabs from '@/Tabs.vue'
 import Tooltips from '@/Tooltips.vue'
-import type { BreadcrumbItem } from '@/types/breadcrumb.type.js'
+import type { BreadcrumbItem } from '@/types/breadcrumb.type'
 import type { SelectOption } from '@/types/select.type'
 
 import Checkboxes from './Checkboxes.vue'

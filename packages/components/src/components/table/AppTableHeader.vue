@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import AppTableHeaderCell from '@/components/table/AppTableHeaderCell.vue'
-import { injectTableContext } from '@/components/table/table.context.js'
+import { injectTableContext } from '@/components/table/table.context'
 
 const props = withDefaults(defineProps<{
   areStickyColumnsDisabled?: boolean

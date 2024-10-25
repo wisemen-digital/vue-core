@@ -3,7 +3,7 @@ import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import AppSkeletonItem from '@/components/skeleton/AppSkeletonItem.vue'
-import { injectTableContext } from '@/components/table/table.context.js'
+import { injectTableContext } from '@/components/table/table.context'
 
 const tableContext = injectTableContext()
 

@@ -10,7 +10,7 @@ import AppTextarea from '@/components/input-field/text-area/AppTextarea.vue'
 import AppTextField from '@/components/input-field/text-field/AppTextField.vue'
 import AppSelect from '@/components/select/AppSelect.vue'
 import AppTag from '@/components/tag/AppTag.vue'
-import type { SelectItem } from '@/types/select.type.js'
+import type { SelectItem } from '@/types/select.type'
 
 const value = ref<null | string>(null)
 const password = ref<null | string>(null)
@@ -108,6 +108,7 @@ const isTouched = ref<boolean>(false)
 
     <AppTextField
       v-model="value"
+      :type="('date' as any)"
       :errors="value === 'wouter' ? null : {
         _errors: ['This is an error message.'],
       }"

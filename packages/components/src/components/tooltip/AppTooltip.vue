@@ -10,8 +10,8 @@ import {
 import { computed } from 'vue'
 
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
-import type { AppTooltipProps } from '@/components/tooltip/tooltip.props.js'
-import { tooltipStyle } from '@/components/tooltip/tooltip.style.js'
+import type { AppTooltipProps } from '@/components/tooltip/tooltip.props'
+import { tooltipStyle } from '@/components/tooltip/tooltip.style'
 
 const props = withDefaults(defineProps<AppTooltipProps>(), {
   isArrowHidden: false,

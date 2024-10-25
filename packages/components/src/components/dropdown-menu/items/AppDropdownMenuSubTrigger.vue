@@ -7,10 +7,10 @@ import {
 } from 'reka-ui'
 import { computed } from 'vue'
 
-import { dropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style.js'
+import { dropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style'
 import AppIcon from '@/components/icon/AppIcon.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
-import type { DropdownMenuSubMenu } from '@/types/dropdownMenu.type.js'
+import type { DropdownMenuSubMenu } from '@/types/dropdownMenu.type'
 
 const props = defineProps<{
   item: DropdownMenuSubMenu

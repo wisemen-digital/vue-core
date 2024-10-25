@@ -3,7 +3,7 @@ import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import AppKeyboardKey from '@/components/keyboard/AppKeyboardKey.vue'
-import type { KeyboardKey } from '@/types/keyboard.type.js'
+import type { KeyboardKey } from '@/types/keyboard.type'
 
 const props = withDefaults(defineProps<{
   /**

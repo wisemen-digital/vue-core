@@ -5,8 +5,8 @@ import {
 } from 'reka-ui'
 import { computed } from 'vue'
 
-import { dropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style.js'
-import type { DropdownMenuGroup } from '@/types/dropdownMenu.type.js'
+import { dropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style'
+import type { DropdownMenuGroup } from '@/types/dropdownMenu.type'
 
 const props = defineProps<{
   item: DropdownMenuGroup

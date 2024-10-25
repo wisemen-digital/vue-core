@@ -3,9 +3,9 @@ import { ListboxItemIndicator } from 'reka-ui'
 import { computed } from 'vue'
 
 import AppIcon from '@/components/icon/AppIcon.vue'
-import { injectSelectContext } from '@/components/select/select.context.js'
-import { selectStyle } from '@/components/select/select.style.js'
-import { injectSelectOptionContext } from '@/components/select/selectOption.context.js'
+import { injectSelectContext } from '@/components/select/select.context'
+import { selectStyle } from '@/components/select/select.style'
+import { injectSelectOptionContext } from '@/components/select/selectOption.context'
 
 const selectContext = injectSelectContext()
 const selectOptionContext = injectSelectOptionContext()

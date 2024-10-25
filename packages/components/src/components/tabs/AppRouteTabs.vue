@@ -8,9 +8,9 @@ import {
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
-import { tabsStyle } from '@/components/tabs/tabs.style.js'
+import { tabsStyle } from '@/components/tabs/tabs.style'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
-import type { RouteTabItem } from '@/types/tabs.type.js'
+import type { RouteTabItem } from '@/types/tabs.type'
 
 const props = defineProps<{
   items: RouteTabItem<TMeta>[]

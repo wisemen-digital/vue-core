@@ -5,8 +5,8 @@ import {
   ref,
 } from 'vue'
 
-import { injectTableContext } from '@/components/table/table.context.js'
-import { provideTableRowContext } from '@/components/table/tableRow.context.js'
+import { injectTableContext } from '@/components/table/table.context'
+import { provideTableRowContext } from '@/components/table/tableRow.context'
 
 const props = defineProps<{
   row: unknown

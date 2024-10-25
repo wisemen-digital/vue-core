@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import AppTableRow from '@/components/table/AppTableRow.vue'
-import { injectTableContext } from '@/components/table/table.context.js'
+import { injectTableContext } from '@/components/table/table.context'
 
 const tableContext = injectTableContext()
 </script>

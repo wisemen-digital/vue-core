@@ -5,7 +5,7 @@ import AppDropdownMenuOption from '@/components/dropdown-menu/items/AppDropdownM
 import AppDropdownMenuRoute from '@/components/dropdown-menu/items/AppDropdownMenuRoute.vue'
 import AppDropdownMenuSeparator from '@/components/dropdown-menu/items/AppDropdownMenuSeparator.vue'
 import AppDropdownMenuSubTrigger from '@/components/dropdown-menu/items/AppDropdownMenuSubTrigger.vue'
-import type { DropdownMenuItem } from '@/types/dropdownMenu.type.js'
+import type { DropdownMenuItem } from '@/types/dropdownMenu.type'
 
 const props = defineProps<{
   item: DropdownMenuItem

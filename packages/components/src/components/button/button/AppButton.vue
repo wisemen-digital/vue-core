@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 
-import type { AppButtonProps } from '@/components/button/button/button.props.js'
+import type { AppButtonProps } from '@/components/button/button/button.props'
 import { buttonStyle } from '@/components/button/button/button.style'
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppSpinner from '@/components/spinner/AppSpinner.vue'

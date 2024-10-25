@@ -5,7 +5,7 @@ import AppBreadcrumbItem from '@/components/breadcrumbs/AppBreadcrumbItem.vue'
 import AppBreadcrumbSeparator from '@/components/breadcrumbs/AppBreadcrumbSeparator.vue'
 import { useBreadcrumbsStyle } from '@/components/breadcrumbs/breadcrumbs.style'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
-import type { BreadcrumbItem } from '@/types/breadcrumb.type.js'
+import type { BreadcrumbItem } from '@/types/breadcrumb.type'
 
 const props = defineProps<{
   /**

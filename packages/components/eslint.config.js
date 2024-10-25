@@ -1,18 +1,17 @@
 import eslintVueConfig from '@wisemen/eslint-config-vue'
 
 export const allowedComponentClasses = [
+  'icon',
   'breadcrumbs',
   'button',
   'calendar',
   'checkbox',
   'dialog',
   'dropdown-menu',
-  'dropdown-menu',
   'icon-button',
   'input-field-error',
   'input-field-hint',
   'input-field-label',
-  'popover',
   'popover',
   'select',
   'switch',
@@ -39,15 +38,15 @@ export default [
   },
   {
     rules: {
-      // 'tailwindcss/no-custom-classname': [
-      //   'error',
-      //   {
-      //     whitelist: [
-      //       '^custom-.*',
-      //       ...allowedComponentClasses.map((className) => `^${className}-variant-.*`),
-      //     ],
-      //   },
-      // ],
+      'tailwindcss/no-custom-classname': [
+        'error',
+        {
+          whitelist: [
+            '^custom-.*',
+            ...allowedComponentClasses.map((className) => `^${className}-variant-.*`),
+          ],
+        },
+      ],
     },
   },
 ]

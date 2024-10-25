@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import { keyboardStyle } from '@/components/keyboard/keyboard.style.js'
+import { keyboardStyle } from '@/components/keyboard/keyboard.style'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
-import type { KeyboardKey } from '@/types/keyboard.type.js'
+import type { KeyboardKey } from '@/types/keyboard.type'
 
 const props = defineProps<{
   keyboardKey: KeyboardKey

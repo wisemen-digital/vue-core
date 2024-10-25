@@ -3,8 +3,8 @@ import { computed } from 'vue'
 
 import { inputFieldErrorStyle } from '@/components/input-field-error/inputFieldError.style'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
-import type { FormFieldErrors } from '@/types/formFieldErrors.type.js'
-import type { StyleConfig } from '@/types/style.type.js'
+import type { FormFieldErrors } from '@/types/formFieldErrors.type'
+import type { StyleConfig } from '@/types/style.type'
 
 const props = withDefaults(defineProps<{
   inputId: string

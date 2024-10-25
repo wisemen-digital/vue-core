@@ -12,7 +12,7 @@ import { ref } from 'vue'
 
 import AppButton from '@/components/button/button/AppButton.vue'
 import AppCalendar from '@/components/calendar/AppCalendar.vue'
-import { injectConfigContext } from '@/components/config-provider/config.context.js'
+import { injectConfigContext } from '@/components/config-provider/config.context'
 import AppPopover from '@/components/popover/AppPopover.vue'
 import AppPopoverAnchor from '@/components/popover/AppPopoverAnchor.vue'
 import AppPopoverTrigger from '@/components/popover/AppPopoverTrigger.vue'

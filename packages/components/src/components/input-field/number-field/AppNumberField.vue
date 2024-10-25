@@ -13,10 +13,10 @@ import {
 
 import AppIconButton from '@/components/button/icon-button/AppIconButton.vue'
 import AppCollapsable from '@/components/collapsable/AppCollapsable.vue'
-import { injectConfigContext } from '@/components/config-provider/config.context.js'
+import { injectConfigContext } from '@/components/config-provider/config.context'
 import AppIcon from '@/components/icon/AppIcon.vue'
-import type { AppNumberFieldProps } from '@/components/input-field/number-field/numberField.props.js'
-import { textFieldStyle } from '@/components/input-field/text-field/textField.style.js'
+import type { AppNumberFieldProps } from '@/components/input-field/number-field/numberField.props'
+import { textFieldStyle } from '@/components/input-field/text-field/textField.style'
 import AppInputFieldError from '@/components/input-field-error/AppInputFieldError.vue'
 import AppInputFieldHint from '@/components/input-field-hint/AppInputFieldHint.vue'
 import AppInputFieldLabel from '@/components/input-field-label/AppInputFieldLabel.vue'

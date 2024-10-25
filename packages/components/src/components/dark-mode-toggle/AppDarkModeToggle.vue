@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import AppSwitch from '@/components/switch/AppSwitch.vue'
-import { useDarkMode } from '@/composables/index.js'
+import { useDarkMode } from '@/composables/index'
 
 const { isDarkMode } = useDarkMode()
 </script>

@@ -9,7 +9,7 @@ import {
 import { computed } from 'vue'
 
 import type { AppPopoverProps } from '@/components/popover/popover.props'
-import { popoverStyle } from '@/components/popover/popover.style.js'
+import { popoverStyle } from '@/components/popover/popover.style'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 
 const props = withDefaults(defineProps<AppPopoverProps>(), {

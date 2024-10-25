@@ -2,7 +2,7 @@
 import { DialogContent } from 'reka-ui'
 import { computed } from 'vue'
 
-import { dialogStyle } from '@/components/dialog/dialog.style.js'
+import { dialogStyle } from '@/components/dialog/dialog.style'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 
 const props = defineProps<{

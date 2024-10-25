@@ -4,9 +4,9 @@ import { useI18n } from 'vue-i18n'
 
 import AppIconButton from '@/components/button/icon-button/AppIconButton.vue'
 import AppTextField from '@/components/input-field/text-field/AppTextField.vue'
-import type { AppTextFieldProps } from '@/components/input-field/text-field/textField.props.js'
+import type { AppTextFieldProps } from '@/components/input-field/text-field/textField.props'
 import AppToggle from '@/components/toggle/AppToggle.vue'
-import type { Icon } from '@/icons/icons.js'
+import type { Icon } from '@/icons/icons'
 
 const props = withDefaults(defineProps<Omit<AppTextFieldProps, 'iconRight' | 'type'>>(), {
   id: null,

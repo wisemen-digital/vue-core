@@ -15,14 +15,14 @@ import {
   ref,
 } from 'vue'
 
-import { injectConfigContext } from '@/components/config-provider/config.context.js'
+import { injectConfigContext } from '@/components/config-provider/config.context'
 import {
   type AppPhoneNumberFieldProps,
   appPhoneNumberFieldPropsDefaultValues,
-} from '@/components/input-field/phone-number-field/phoneNumberField.props.js'
+} from '@/components/input-field/phone-number-field/phoneNumberField.props'
 import AppTextField from '@/components/input-field/text-field/AppTextField.vue'
 import AppSelect from '@/components/select/AppSelect.vue'
-import type { SelectItem } from '@/types/select.type.js'
+import type { SelectItem } from '@/types/select.type'
 
 const props = withDefaults(defineProps<AppPhoneNumberFieldProps>(), appPhoneNumberFieldPropsDefaultValues)
 

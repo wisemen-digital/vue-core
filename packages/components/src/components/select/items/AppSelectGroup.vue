@@ -5,8 +5,8 @@ import {
 } from 'reka-ui'
 import { computed } from 'vue'
 
-import { selectStyle } from '@/components/select/select.style.js'
-import type { SelectGroup, SelectValue } from '@/types/select.type.js'
+import { selectStyle } from '@/components/select/select.style'
+import type { SelectGroup, SelectValue } from '@/types/select.type'
 
 const props = defineProps<{
   item: SelectGroup<TValue>

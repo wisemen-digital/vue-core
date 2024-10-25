@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { injectSelectContext } from '@/components/select/select.context.js'
+import { injectSelectContext } from '@/components/select/select.context'
 import AppTag from '@/components/tag/AppTag.vue'
-import type { SelectValue } from '@/types/select.type.js'
+import type { SelectValue } from '@/types/select.type'
 
 const props = defineProps<{
   value: SelectValue

@@ -7,8 +7,8 @@ import AppIcon from '@/components/icon/AppIcon.vue'
 import {
   type AppTextFieldProps,
   appTextFieldPropsDefaultValues,
-} from '@/components/input-field/text-field/textField.props.js'
-import { textFieldStyle } from '@/components/input-field/text-field/textField.style.js'
+} from '@/components/input-field/text-field/textField.props'
+import { textFieldStyle } from '@/components/input-field/text-field/textField.style'
 import AppInputFieldError from '@/components/input-field-error/AppInputFieldError.vue'
 import AppInputFieldHint from '@/components/input-field-hint/AppInputFieldHint.vue'
 import AppInputFieldLabel from '@/components/input-field-label/AppInputFieldLabel.vue'

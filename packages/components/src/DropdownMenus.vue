@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AppButton from '@/components/button/button/AppButton.vue'
 import AppDropdownMenu from '@/components/dropdown-menu/AppDropdownMenu.vue'
-import type { DropdownMenuItem } from '@/types/dropdownMenu.type.js'
+import type { DropdownMenuItem } from '@/types/dropdownMenu.type'
 
 const items: DropdownMenuItem[] = [
   {

@@ -3,7 +3,7 @@ import { PaginationPrev } from 'reka-ui'
 import { computed } from 'vue'
 
 import AppIconButton from '@/components/button/icon-button/AppIconButton.vue'
-import { injectTableContext } from '@/components/table/table.context.js'
+import { injectTableContext } from '@/components/table/table.context'
 
 const tableContext = injectTableContext()
 

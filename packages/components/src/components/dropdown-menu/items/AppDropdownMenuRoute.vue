@@ -3,12 +3,12 @@ import { DropdownMenuItem as RekaDropdownMenuItem } from 'reka-ui'
 import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
 
-import { dropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style.js'
+import { dropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style'
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppKeyboardShortcut from '@/components/keyboard/AppKeyboardShortcut.vue'
 import type {
   DropdownMenuRoute,
-} from '@/types/dropdownMenu.type.js'
+} from '@/types/dropdownMenu.type'
 
 const props = defineProps<{
   item: DropdownMenuRoute

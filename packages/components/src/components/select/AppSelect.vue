@@ -26,13 +26,13 @@ import { provideSelectContext } from '@/components/select/select.context'
 import type {
   AppSelectProps,
   SelectDisplayFn,
-} from '@/components/select/select.props.js'
-import { selectStyle } from '@/components/select/select.style.js'
+} from '@/components/select/select.props'
+import { selectStyle } from '@/components/select/select.style'
 import AppSelectValueBasic from '@/components/select/values/AppSelectValueBasic.vue'
 import AppSelectValueTags from '@/components/select/values/AppSelectValueTags.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
-import type { Icon } from '@/icons/icons.js'
-import type { SelectItem, SelectValue } from '@/types/select.type.js'
+import type { Icon } from '@/icons/icons'
+import type { SelectItem, SelectValue } from '@/types/select.type'
 
 const props = withDefaults(defineProps<AppSelectProps<TValue>>(), {
   id: null,
@@ -257,7 +257,7 @@ provideSelectContext({
   <div
     :style="props.styleConfig"
     :class="themeProviderContext.theme.value"
-    class="select-variant-default input-field-label-variant-default input-field-error-variant-default input-field-hint-variant-default icon-variant-default"
+    class="select-variant-default"
   >
     <slot
       v-if="props.label !== null"

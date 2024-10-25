@@ -19,8 +19,8 @@ import AppTablePagination from '@/components/table/pagination/AppTablePagination
 import { provideTableContext } from '@/components/table/table.context'
 import type { AppTableProps } from '@/components/table/table.props'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
-import type { PaginatedData, Pagination } from '@/types/pagination.type.js'
-import type { TableColumn } from '@/types/table.type.js'
+import type { PaginatedData, Pagination } from '@/types/pagination.type'
+import type { TableColumn } from '@/types/table.type'
 
 const props = withDefaults(defineProps<AppTableProps<Tschema, TFilters>>(), {
   isFirstColumnSticky: false,

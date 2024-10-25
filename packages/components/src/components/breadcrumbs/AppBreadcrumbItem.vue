@@ -5,7 +5,7 @@ import { RouterLink } from 'vue-router'
 import AppBreadcrumbEllipsis from '@/components/breadcrumbs/AppBreadcrumbEllipsis.vue'
 import { useBreadcrumbsStyle } from '@/components/breadcrumbs/breadcrumbs.style'
 import AppIcon from '@/components/icon/AppIcon.vue'
-import type { BreadcrumbItem } from '@/types/breadcrumb.type.js'
+import type { BreadcrumbItem } from '@/types/breadcrumb.type'
 
 const props = defineProps<{
   item: BreadcrumbItem

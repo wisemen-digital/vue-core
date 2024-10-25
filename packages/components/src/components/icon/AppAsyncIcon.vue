@@ -8,7 +8,7 @@ import {
 
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { type Icon, icons } from '@/icons/icons'
-import type { StyleConfig } from '@/types/style.type.js'
+import type { StyleConfig } from '@/types/style.type'
 
 const props = withDefaults(
   defineProps<{

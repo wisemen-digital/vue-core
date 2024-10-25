@@ -2,7 +2,7 @@
 import { DialogContent } from 'reka-ui'
 import { computed } from 'vue'
 
-import { drawerStyle } from '@/components/drawer/drawer.style.js'
+import { drawerStyle } from '@/components/drawer/drawer.style'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 
 const props = defineProps<{

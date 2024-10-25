@@ -3,7 +3,7 @@ import { computed } from 'vue'
 
 import { inputFieldHintStyle } from '@/components/input-field-hint/inputFieldHint.style'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
-import type { StyleConfig } from '@/types/style.type.js'
+import type { StyleConfig } from '@/types/style.type'
 
 const props = withDefaults(defineProps<{
   inputId: string

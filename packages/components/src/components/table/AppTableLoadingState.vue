@@ -2,8 +2,8 @@
 import AppSkeletonItem from '@/components/skeleton/AppSkeletonItem.vue'
 import AppTableCell from '@/components/table/AppTableCell.vue'
 import AppTableHeader from '@/components/table/AppTableHeader.vue'
-import { injectTableContext } from '@/components/table/table.context.js'
-import { NumberUtil } from '@/utils/number.util.js'
+import { injectTableContext } from '@/components/table/table.context'
+import { NumberUtil } from '@/utils/number.util'
 
 const tableContext = injectTableContext()
 </script>

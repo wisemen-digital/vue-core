@@ -3,7 +3,7 @@ import { useAttrs } from 'vue'
 
 import AppAsyncIcon from '@/components/icon/AppAsyncIcon.vue'
 import type { Icon } from '@/icons/icons'
-import type { StyleConfig } from '@/types/style.type.js'
+import type { StyleConfig } from '@/types/style.type'
 
 const props = withDefaults(
   defineProps<{

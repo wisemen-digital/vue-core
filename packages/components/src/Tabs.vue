@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppTabs from '@/components/tabs/AppTabs.vue'
-import type { TabItem } from '@/types/tabs.type.js'
+import type { TabItem } from '@/types/tabs.type'
 
-const tabs: TabItem[] = [
+const tabs = computed<TabItem[]>(() => [
   {
     label: 'Tab 1',
     value: '1',
@@ -18,8 +18,9 @@ const tabs: TabItem[] = [
     label: 'Tab 3',
     value: '3',
   },
-]
-const selectedTab = ref<TabItem>(tabs[0]!)
+])
+
+const selectedTab = ref<TabItem>(tabs.value[0]!)
 </script>
 
 <template>
