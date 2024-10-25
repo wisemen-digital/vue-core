@@ -14,6 +14,9 @@ export const i18nPlugin = createI18n({
         table: {
           page_count: '{startIndex} - {endIndex} of {totalItems}',
         },
+        select: {
+          search_placeholder: 'Search',
+        },
       },
     },
   },

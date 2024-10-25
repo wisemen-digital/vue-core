@@ -35,7 +35,7 @@ provideTableRowContext({
   <div class="col-span-full grid grid-cols-subgrid">
     <div
       role="row"
-      class="col-span-full grid grid-cols-subgrid"
+      class="group col-span-full grid grid-cols-subgrid"
     >
       <div
         v-for="column of tableContext.columns.value"

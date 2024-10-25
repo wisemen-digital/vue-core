@@ -2,26 +2,24 @@ import type { ComponentStyleConfigRegistry } from '@/types/style.type'
 
 interface DefineStyleConfigOptions<TComponent extends keyof ComponentStyleConfigRegistry> {
   config: Partial<ComponentStyleConfigRegistry[TComponent]>
-  selector: ':root' | string & {}
+  selector: string
   component: TComponent
 }
-
 export function defineStyleConfig<
   TComponent extends keyof ComponentStyleConfigRegistry,
 >(
   options: DefineStyleConfigOptions<TComponent>,
 ): void {
-  const styleSheet = new CSSStyleSheet()
+  const style = document.createElement('style')
+
+  style.type = 'text/css'
 
   Object.entries(options.config).forEach(([
     key,
     value,
   ]) => {
-    styleSheet.insertRule(`${options.selector} { ${key}: ${value}; }`)
+    style.appendChild(document.createTextNode(`${options.selector} { ${key}: ${value}; }`))
   })
 
-  document.adoptedStyleSheets = [
-    ...document.adoptedStyleSheets,
-    styleSheet,
-  ]
+  document.head.appendChild(style)
 }

@@ -96,7 +96,6 @@ export interface SwitchStyleConfig extends BaseStyleConfig {
   '--switch-shadow-hover': string
   // Size
   '--switch-size-default': string
-
 }
 
 defineStyleConfig({
@@ -193,7 +192,7 @@ defineStyleConfig({
     '--switch-shadow-focus': 'var(--shadow-none)',
     '--switch-shadow-hover': 'var(--shadow-none)',
   },
-  selector: ':root',
+  selector: '.switch-variant-default',
   component: 'switch',
 })
 

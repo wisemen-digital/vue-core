@@ -28,7 +28,7 @@
 | popoverWidth | `PopoverWidth \| null` | The width of the popover. | `"anchor-width"` |
 | searchPlaceholder | `string` | The placeholder of the search input. |  |
 | shouldRemainOpenOnValueChange | `boolean \| null` | Whether the select should remain open when the value changes. | `null` |
-| side | `"left" \| "right" \| "bottom" \| "top"` | The side of the trigger the tooltip should be on. | `"bottom"` |
+| side | `"bottom" \| "left" \| "right" \| "top"` | The side of the trigger the tooltip should be on. | `"bottom"` |
 | styleConfig | `Partial<SelectStyleConfig> \| null` |  | `null` |
 | testId | `string \| null` | The test id of the input. | `null` |
 | virtualList | `{ optionHeight: number; } \| null` | Whether the select should use a virtual list.

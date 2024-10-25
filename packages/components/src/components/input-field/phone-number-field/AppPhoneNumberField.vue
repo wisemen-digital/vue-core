@@ -150,8 +150,11 @@ function filterFn(option: CountryCode, search: string): boolean {
       <AppSelect
         v-model="countryCodeModel"
         :items="countryCodes"
-        :display-fn="(value) => ''"
+        :display-fn="() => ''"
         :filter-fn="filterFn"
+        :virtual-list="{
+          optionHeight: 36,
+        }"
         :style-config="{
           '--select-dropdown-max-width-default': `${phoneNumberFieldWidth}px`,
           '--select-ring-color-focus': 'transparent',

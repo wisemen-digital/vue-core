@@ -14,6 +14,6 @@ defineStyleConfig({
     '--input-field-label-spacing-default': 'var(--spacing-sm)',
     '--input-field-label-text-color-default': 'var(--text-secondary)',
   },
-  selector: ':root',
+  selector: '.input-field-label-variant-default',
   component: 'inputFieldLabel',
 })

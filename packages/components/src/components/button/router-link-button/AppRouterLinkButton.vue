@@ -6,8 +6,10 @@ import { buttonStyle } from '@/components/button/button/button.style'
 import type { AppRouterLinkButtonProps } from '@/components/button/router-link-button/routerLinkButton.props.js'
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppSpinner from '@/components/spinner/AppSpinner.vue'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 
 const props = withDefaults(defineProps<AppRouterLinkButtonProps>(), {
+  dataTestId: null,
   isLoading: false,
   iconLeft: null,
   iconRight: null,
@@ -28,6 +30,8 @@ defineSlots<{
   'loader': () => void
   'right': () => void
 }>()
+
+const themeProviderContext = injectThemeProviderContext()
 
 const style = buttonStyle()
 
@@ -169,8 +173,10 @@ function onClick(): void {
   <RouterLink
     :to="props.to"
     :style="props.styleConfig"
+    :data-test-id="props.dataTestId"
     :aria-busy="props.isLoading"
-    :class="[buttonClasses, sizeClass, variantClass]"
+    :class="[buttonClasses, sizeClass, variantClass, themeProviderContext.theme.value]"
+    class="button-variant-default"
     @focus="onFocus"
     @blur="onBlur"
     @mouseenter="onMouseEnter"

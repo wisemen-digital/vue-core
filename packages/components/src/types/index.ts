@@ -1,4 +1,5 @@
 export type { AcceptableValue } from './acceptableValue.type'
+export type { BreadcrumbItem } from './breadcrumb.type'
 export type {
   DropdownMenuGroup,
   DropdownMenuItem,
@@ -16,6 +17,7 @@ export type {
   PaginatedData,
   Pagination,
   PaginationFilter,
+  PaginationOptions,
   UsePaginationOptions,
   UsePaginationReturnType,
 } from './pagination.type'

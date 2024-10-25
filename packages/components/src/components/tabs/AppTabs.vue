@@ -8,6 +8,7 @@ import {
 import { computed } from 'vue'
 
 import { tabsStyle } from '@/components/tabs/tabs.style.js'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import type { TabItem } from '@/types/tabs.type.js'
 
 const props = defineProps<{
@@ -17,6 +18,8 @@ const props = defineProps<{
 const model = defineModel<TabItem<TMeta>>({
   required: true,
 })
+
+const themeProviderContext = injectThemeProviderContext()
 
 const modelAsString = computed<string>({
   get: () => model.value.value,
@@ -34,7 +37,11 @@ const itemContentClasses = computed<string>(() => style.itemContent())
 </script>
 
 <template>
-  <TabsRoot v-model="modelAsString">
+  <TabsRoot
+    v-model="modelAsString"
+    :class="themeProviderContext.theme.value"
+    class="tabs-variant-default"
+  >
     <TabsList :class="containerClasses">
       <div class="relative flex">
         <TabsIndicator

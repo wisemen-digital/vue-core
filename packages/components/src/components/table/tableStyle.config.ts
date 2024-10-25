@@ -18,7 +18,7 @@ defineStyleConfig({
     '--table-header-label-font-weight-default': '500',
     '--table-header-label-text-color-default': 'var(--text-tertiary)',
   },
-  selector: ':root',
+  selector: '.table-variant-default',
   component: 'table',
 })
 

@@ -6,23 +6,47 @@ import {
   NumberFieldRoot,
   useId,
 } from 'reka-ui'
-import { computed, ref } from 'vue'
+import {
+  computed,
+  ref,
+} from 'vue'
 
 import AppIconButton from '@/components/button/icon-button/AppIconButton.vue'
 import AppCollapsable from '@/components/collapsable/AppCollapsable.vue'
 import { injectConfigContext } from '@/components/config-provider/config.context.js'
 import AppIcon from '@/components/icon/AppIcon.vue'
-import {
-  type AppNumberFieldProps,
-  appNumberFieldPropsDefaultValues,
-} from '@/components/input-field/number-field/numberField.props.js'
+import type { AppNumberFieldProps } from '@/components/input-field/number-field/numberField.props.js'
 import { textFieldStyle } from '@/components/input-field/text-field/textField.style.js'
 import AppInputFieldError from '@/components/input-field-error/AppInputFieldError.vue'
 import AppInputFieldHint from '@/components/input-field-hint/AppInputFieldHint.vue'
 import AppInputFieldLabel from '@/components/input-field-label/AppInputFieldLabel.vue'
 import AppSpinner from '@/components/spinner/AppSpinner.vue'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
+import { useElementAttributeObserver } from '@/composables/element-attribute-observer/elementAttributeObserver.composable'
 
-const props = withDefaults(defineProps<AppNumberFieldProps>(), appNumberFieldPropsDefaultValues)
+const props = withDefaults(defineProps<AppNumberFieldProps>(), {
+  id: null,
+  testId: null,
+  isDisabled: false,
+  isLoading: false,
+  isReadonly: false,
+  isRequired: false,
+  isSpellCheckEnabled: false,
+  isTouched: false,
+  areControlsHidden: false,
+  autoComplete: 'off',
+  errors: null,
+  formatOptions: null,
+  hint: null,
+  iconLeft: null,
+  iconRight: null,
+  label: null,
+  max: null,
+  min: null,
+  placeholder: null,
+  step: 1,
+  styleConfig: null,
+})
 
 const emit = defineEmits<{
   blur: []
@@ -45,12 +69,37 @@ const model = defineModel<null | number>({
   required: true,
 })
 
+const themeProviderContext = injectThemeProviderContext()
 const globalConfigContext = injectConfigContext()
+
+const decrementButtonRef = ref<InstanceType<typeof AppIconButton> | null>(null)
+const incrementButtonRef = ref<InstanceType<typeof AppIconButton> | null>(null)
+
+const isDecrementButtonDisabled = ref<boolean>(false)
+const isIncrementButtonDisabled = ref<boolean>(false)
 
 const isFocused = ref<boolean>(false)
 const isMouseOver = ref<boolean>(false)
 
 const style = textFieldStyle()
+
+if (!props.areControlsHidden) {
+  useElementAttributeObserver({
+    attribute: 'disabled',
+    element: computed<HTMLElement | null>(() => decrementButtonRef.value?.$el ?? null),
+    onChange: (value) => {
+      isDecrementButtonDisabled.value = value !== null
+    },
+  })
+
+  useElementAttributeObserver({
+    attribute: 'disabled',
+    element: computed<HTMLElement | null>(() => incrementButtonRef.value?.$el ?? null),
+    onChange: (value) => {
+      isIncrementButtonDisabled.value = value !== null
+    },
+  })
+}
 
 const inputId = computed<string>(() => props.id ?? useId())
 const isHovered = computed<boolean>(() => isMouseOver.value && !props.isDisabled)
@@ -131,7 +180,11 @@ function onBlur(): void {
 </script>
 
 <template>
-  <div :style="props.styleConfig">
+  <div
+    :style="props.styleConfig"
+    :class="themeProviderContext.theme.value"
+    class="text-field-variant-default"
+  >
     <slot
       v-if="props.label !== null"
       :input-id="inputId"
@@ -154,6 +207,7 @@ function onBlur(): void {
       :min="props.min ?? undefined"
       :max="props.max ?? undefined"
       :step="props.step"
+      :format-options="props.formatOptions ?? undefined"
     >
       <div
         :class="boxClasses"
@@ -178,6 +232,7 @@ function onBlur(): void {
           :as-child="true"
         >
           <AppIconButton
+            ref="decrementButtonRef"
             :style-config="{
               '--icon-button-size-default': '32px',
               '--icon-button-icon-size-default': '16px',
@@ -186,7 +241,7 @@ function onBlur(): void {
               '--button-bg-color-disabled': 'transparent',
               '--button-border-color-disabled': 'transparent',
             }"
-            :is-disabled="props.isDisabled"
+            :is-disabled="props.isDisabled || isDecrementButtonDisabled"
             class="ml-[3px]"
             label="Decrement"
             icon="minus"
@@ -222,6 +277,7 @@ function onBlur(): void {
           :as-child="true"
         >
           <AppIconButton
+            ref="incrementButtonRef"
             :style-config="{
               '--icon-button-size-default': '32px',
               '--icon-button-icon-size-default': '16px',
@@ -230,7 +286,7 @@ function onBlur(): void {
               '--button-bg-color-disabled': 'transparent',
               '--button-border-color-disabled': 'transparent',
             }"
-            :is-disabled="props.isDisabled"
+            :is-disabled="props.isDisabled || isIncrementButtonDisabled"
             label="Increment"
             icon="plus"
             size="sm"

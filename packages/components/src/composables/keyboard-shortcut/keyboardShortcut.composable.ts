@@ -1,4 +1,7 @@
-import { onBeforeUnmount } from 'vue'
+import {
+  getCurrentInstance,
+  onBeforeUnmount,
+} from 'vue'
 
 import type {
   KeyboardKey,
@@ -25,6 +28,8 @@ const keyMap = new Map<string, KeyboardKey>([
 export function useKeyboardShortcut(
   options: UseKeyboardShortcutOptions,
 ): UseKeyboardShortcutReturnType {
+  const currentInstance = getCurrentInstance()
+
   const previouslyPressedKeys: KeyboardKey[] = []
 
   const {
@@ -125,9 +130,11 @@ export function useKeyboardShortcut(
 
   element.addEventListener('keydown', handleKeyDown)
 
-  onBeforeUnmount(() => {
-    unbind()
-  })
+  if (currentInstance !== null) {
+    onBeforeUnmount(() => {
+      unbind()
+    })
+  }
 
   return {
     unbind,

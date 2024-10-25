@@ -6,6 +6,7 @@ import {
   watch,
 } from 'vue'
 
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { type Icon, icons } from '@/icons/icons'
 import type { StyleConfig } from '@/types/style.type.js'
 
@@ -21,6 +22,7 @@ const props = withDefaults(
   },
 )
 
+const themeProviderContext = injectThemeProviderContext()
 const svgComponent = shallowRef<Component | null>(null)
 
 async function setIcon(): Promise<void> {
@@ -71,7 +73,7 @@ await setIcon()
   <Component
     :is="svgComponent"
     v-if="svgComponent !== null"
-    :class="sizeClass"
+    :class="[sizeClass, themeProviderContext.theme.value]"
     :style="props.styleConfig"
     class="h-icon-size w-icon-size text-icon"
   />

@@ -13,6 +13,7 @@
 | isLoading* | `boolean` | Whether the table is loading |  |
 | pagination* | `Pagination<T>` | The pagination of the table |  |
 | rowClass | `((row: T, rowIndex: number) => string) \| null` | The class to apply to the row | `null` |
+| styleConfig | `Partial<TableStyleConfig> \| null` | The style config of the table. | `null` |
 
 
 ## Slots

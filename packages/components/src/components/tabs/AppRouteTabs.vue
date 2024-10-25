@@ -9,11 +9,14 @@ import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
 import { tabsStyle } from '@/components/tabs/tabs.style.js'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import type { RouteTabItem } from '@/types/tabs.type.js'
 
 const props = defineProps<{
   items: RouteTabItem<TMeta>[]
 }>()
+
+const themeProviderContext = injectThemeProviderContext()
 
 const route = useRoute()
 const router = useRouter()
@@ -40,7 +43,11 @@ const itemContentClasses = computed<string>(() => style.itemContent())
 </script>
 
 <template>
-  <TabsRoot v-model="activeRouteName">
+  <TabsRoot
+    v-model="activeRouteName"
+    :class="themeProviderContext.theme.value"
+    class="tabs-variant-default"
+  >
     <TabsList :class="containerClasses">
       <div class="relative">
         <TabsIndicator :class="indicatorClasses" />

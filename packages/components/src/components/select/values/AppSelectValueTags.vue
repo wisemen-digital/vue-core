@@ -130,8 +130,8 @@ const isEmpty = computed<boolean>(() => (selectContext.modelValue.value as Array
           <AppIcon
             v-else
             :class="iconRightClasses"
+            :icon="selectContext.iconRight.value"
             class="!mr-0"
-            icon="chevronSelectorVertical"
           />
         </button>
       </AppPopoverTrigger>

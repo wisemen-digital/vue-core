@@ -87,7 +87,7 @@ defineStyleConfig({
     '--dropdown-menu-item-bg-color-hover': 'var(--bg-primary-hover)',
     '--dropdown-menu-item-border-radius-default': 'var(--radius-md)',
     '--dropdown-menu-item-font-size-default': 'var(--text-subtext)',
-    '--dropdown-menu-item-font-weight-default': '500',
+    '--dropdown-menu-item-font-weight-default': '400',
     '--dropdown-menu-item-icon-color-default': 'var(--fg-tertiary)',
     '--dropdown-menu-item-icon-color-disabled': 'var(--text-disabled)',
     '--dropdown-menu-item-icon-color-highlighted': 'var(--fg-tertiary)',
@@ -108,6 +108,6 @@ defineStyleConfig({
     '--dropdown-menu-padding-y-default': 'var(--spacing-sm)',
     '--dropdown-menu-shadow-default': 'var(--shadow-lg)',
   },
-  selector: ':root',
+  selector: '.dropdown-menu-variant-default',
   component: 'dropdownMenu',
 })

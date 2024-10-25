@@ -2,34 +2,30 @@
 import { RadioGroupIndicator } from 'reka-ui'
 import { computed } from 'vue'
 
+import { injectRadioGroupContext } from '@/components/radio-group/radioGroup.context'
+import { injectRadioGroupItemContext } from '@/components/radio-group/radioGroupItem.context'
+
 import { radioGroupStyle } from './radioGroup.style'
 
-interface Props {
-  hasError: boolean
-  isChecked: boolean
-  isDisabled: boolean
-  isFocused: boolean
-  isHovered: boolean
-}
-
-const props = defineProps<Props>()
+const radioGroupContext = injectRadioGroupContext()
+const radioGroupItemContext = injectRadioGroupItemContext()
 
 const style = radioGroupStyle()
 
 const indicatorClasses = computed <string>(() => style.indicator({
-  hasError: props.hasError,
-  isChecked: props.isChecked,
-  isDisabled: props.isDisabled,
-  isFocused: props.isFocused,
-  isHovered: props.isHovered,
+  hasError: radioGroupContext.hasError.value,
+  isChecked: radioGroupItemContext.isChecked.value,
+  isDisabled: radioGroupItemContext.isDisabled.value,
+  isFocused: radioGroupItemContext.isFocused.value,
+  isHovered: radioGroupItemContext.isHovered.value,
 }))
 
 const indicatorRootClasses = computed <string>(() => style.indicatorRoot({
-  hasError: props.hasError,
-  isChecked: props.isChecked,
-  isDisabled: props.isDisabled,
-  isFocused: props.isFocused,
-  isHovered: props.isHovered,
+  hasError: radioGroupContext.hasError.value,
+  isChecked: radioGroupItemContext.isChecked.value,
+  isDisabled: radioGroupItemContext.isDisabled.value,
+  isFocused: radioGroupItemContext.isFocused.value,
+  isHovered: radioGroupItemContext.isHovered.value,
 }))
 </script>
 

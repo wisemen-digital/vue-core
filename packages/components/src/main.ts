@@ -12,6 +12,9 @@ const i18n = createI18n({
   messages: {
     en: {
       components: {
+        keyboard_shortcut: {
+          then: 'then',
+        },
         password_input: {
           hide_password: 'Hide password',
           show_password: 'Show password',

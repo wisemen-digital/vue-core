@@ -8,6 +8,7 @@
 | align | `PopoverAlign` | The alignment of the popover content. | `"center"` |
 | collisionPaddingInPx | `number` | The padding of the popover collision. | `10` |
 | containerElement | `HTMLElement \| null` | The element to render the tooltip in. By default this is the viewport | `null` |
+| enableGlobalKeyboardShortcuts | `boolean` |  | `false` |
 | isArrowHidden | `boolean` | When true, the arrow will be hidden. | `false` |
 | items* | `DropdownMenuItem[]` |  |  |
 | offsetInPx | `number` | The offset of the popover content. | `4` |

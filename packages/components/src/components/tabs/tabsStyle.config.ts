@@ -74,6 +74,6 @@ defineStyleConfig({
     '--tabs-item-text-color-focus': 'var(--text-brand-secondary)',
     '--tabs-item-text-color-hover': 'var(--text-brand-secondary)',
   },
-  selector: ':root',
+  selector: '.tabs-variant-default',
   component: 'tabs',
 })

@@ -16,6 +16,6 @@ defineStyleConfig({
     '--tooltip-shadow-default': 'var(--shadow-lg)',
     '--tooltip-text-color-default': 'var(--white)',
   },
-  selector: ':root',
+  selector: '.tooltip-variant-default',
   component: 'tooltip',
 })

@@ -31,5 +31,5 @@
 
 | Event name | Type | Description |
 | ---------- | ---- | ----------- |
-| `click` | [] |  |
+| `click` | [event: Event] |  |
 

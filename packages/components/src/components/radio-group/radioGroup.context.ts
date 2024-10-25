@@ -1,51 +1,35 @@
-import { createInjectionState } from '@vueuse/core'
 import type { AcceptableValue } from 'reka-ui'
-import type { Ref } from 'vue'
+import {
+  type ComputedRef,
+  inject,
+  type InjectionKey,
+  provide,
+} from 'vue'
 
 import type { RadioGroupItem } from '@/types/radioGroup.type'
 
-export interface RadioGroupProvideContext<TValue extends AcceptableValue> {
-  hasError: Ref<boolean>
-  isDisabled: Ref<boolean>
-  isRequired: Ref<boolean>
-  isTouched: Ref<boolean>
-  items: Ref<RadioGroupItem<TValue>[]>
-  model: Ref<TValue | null>
-}
-
-export interface RadioGroupInjectContext<TValue extends AcceptableValue> {
-  hasError: Ref<boolean>
-  isDisabled: Ref<boolean>
+export interface RadioGroupContext<TValue extends AcceptableValue> {
+  hasError: ComputedRef<boolean>
+  isDisabled: ComputedRef<boolean>
   isItemChecked: (item: RadioGroupItem<TValue>) => boolean
-  isRequired: Ref<boolean>
-  isTouched: Ref<boolean>
-  items: Ref<RadioGroupItem<TValue>[]>
-  model: Ref<TValue | null>
+  isRequired: ComputedRef<boolean>
+  isTouched: ComputedRef<boolean>
+  items: ComputedRef<RadioGroupItem<TValue>[]>
+  model: ComputedRef<TValue | null>
 }
 
-const [
-  useProvideRadioGroupContext,
-  useInjectRadioGroupContext,
-] = createInjectionState(<TValue extends AcceptableValue>(context: RadioGroupProvideContext<TValue>):
-RadioGroupInjectContext<TValue> => {
-  function isItemChecked(item: RadioGroupItem<TValue>): boolean {
-    return JSON.stringify(item.value) === JSON.stringify(context.model.value)
-  }
+const radioGroupContextKey: InjectionKey<RadioGroupContext<any>> = Symbol('radioGroupContextKey')
 
-  return {
-    isItemChecked,
-    ...context,
-  }
-})
-
-function useRadioGroupContext<TValue extends AcceptableValue>(): RadioGroupInjectContext<TValue> {
-  const radioGroupContext = useInjectRadioGroupContext()
-
-  if (radioGroupContext == null) {
-    throw new Error('Please call `useProvideCounterStore` on the appropriate parent component')
-  }
-
-  return radioGroupContext as RadioGroupInjectContext<TValue>
+export function provideRadioGroupContext<TValue extends AcceptableValue>(context: RadioGroupContext<TValue>): void {
+  provide(radioGroupContextKey, context)
 }
 
-export { useProvideRadioGroupContext, useRadioGroupContext }
+export function injectRadioGroupContext<TValue extends AcceptableValue>(): RadioGroupContext<TValue> {
+  const context = inject(radioGroupContextKey) as RadioGroupContext<TValue>
+
+  if (context === undefined) {
+    throw new Error('RadioGroup context is not provided. Please use `provideRadioGroupContext` to provide the context.')
+  }
+
+  return context as RadioGroupContext<TValue>
+}

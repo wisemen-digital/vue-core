@@ -13,6 +13,7 @@ export interface SelectGroup<TValue extends SelectValue> {
 }
 
 export interface SelectOption<TValue extends SelectValue> {
+  testId?: string
   isDisabled?: boolean
   type: 'option'
   value: TValue

@@ -45,7 +45,10 @@ function onAfterEnter(): void {
   <div
     id="container"
     ref="containerRef"
-    class="overflow-hidden duration-500"
+    :style="{
+      transitionDuration: `${props.durationInMs}ms`,
+    }"
+    class="overflow-hidden"
   >
     <Transition
       v-if="isMounted"
