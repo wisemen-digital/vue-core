@@ -35,6 +35,36 @@ const docs = [
     collapsed: true,
     items: [
       {
+        link: '/components/button/app-button',
+        text: 'AppButton',
+      },
+    ],
+    text: 'Button',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
+        link: '/components/checkbox/app-checkbox',
+        text: 'AppCheckbox',
+      },
+    ],
+    text: 'Checkbox',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
+        link: '/components/dropdown-menu/app-dropdown-menu',
+        text: 'AppDropdownMenu',
+      },
+    ],
+    text: 'Dropdown Menu',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
         link: '/components/input-field/app-text-field',
         text: 'AppTextField',
       },
@@ -67,15 +97,26 @@ const docs = [
     ],
     text: 'Select',
   },
+
   {
     collapsed: true,
     items: [
       {
-        link: '/components/button/app-button',
-        text: 'AppButton',
+        link: '/components/switch/app-switch',
+        text: 'AppSwitch',
       },
     ],
-    text: 'Button',
+    text: 'Switch',
+  },
+  {
+    collapsed: true,
+    items: [
+      {
+        link: '/components/radio-group/app-radio-group',
+        text: 'AppRadioGroup',
+      },
+    ],
+    text: 'Radio Group',
   },
   {
     collapsed: true,
@@ -86,16 +127,6 @@ const docs = [
       },
     ],
     text: 'Table',
-  },
-  {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/dropdown-menu/app-dropdown-menu',
-        text: 'AppDropdownMenu',
-      },
-    ],
-    text: 'Dropdown Menu',
   },
   {
     collapsed: true,

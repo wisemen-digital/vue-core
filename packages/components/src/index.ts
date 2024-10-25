@@ -16,6 +16,7 @@ import '@/components/table/tableStyle.config'
 import '@/components/tabs/tabsStyle.config'
 import '@/components/tag/tagStyle.config'
 import '@/components/tooltip/tooltipStyle.config'
+import '@/components/radio-group/radioGroupStyle.config'
 import '@/styles/index.scss'
 
 export * from '@/components'

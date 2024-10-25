@@ -9,7 +9,7 @@
 | isDisabled | `boolean` | Whether the button is disabled. | `false` |
 | isLoading | `boolean` | Whether the button is in a loading state. | `false` |
 | label* | `string` | The label for the button for accessibility |  |
-| size | `"default" \| "lg" \| "sm" \| "xl" \| "2xl"` | The size of the button. | `"default"` |
+| size | `"default" \| "sm" \| "lg" \| "xl" \| "2xl"` | The size of the button. | `"default"` |
 | styleConfig | `Partial<IconButtonStyleConfig> \| null` | The style config of the button. | `null` |
 | type | `"button" \| "reset" \| "submit"` | The type of the button. | `"button"` |
 | variant | `"default" \| "destructive-primary" \| "destructive-secondary" \| "destructive-tertiary" \| "secondary" \| "secondary-color" \| "tertiary" \| "tertiary-color"` | The variant of the button. | `"default"` |

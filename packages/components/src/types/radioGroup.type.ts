@@ -1,8 +1,6 @@
 import type { AcceptableValue } from './acceptableValue.type'
 
-export type SelectValue = AcceptableValue
-
-export interface RadioGroupOption<TValue extends SelectValue> {
+export interface RadioGroupOption<TValue extends AcceptableValue> {
   testId?: string
   isDisabled?: boolean
   hint?: string
@@ -11,4 +9,4 @@ export interface RadioGroupOption<TValue extends SelectValue> {
   value: TValue
 }
 
-export type RadioGroupItem<TValue extends SelectValue> = RadioGroupOption<TValue>
+export type RadioGroupItem<TValue extends AcceptableValue> = RadioGroupOption<TValue>

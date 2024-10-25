@@ -122,7 +122,7 @@ defineStyleConfig({
     '--radio-group-item-bg-color-disabled': 'var(--bg-disabled-subtle)',
     '--radio-group-item-bg-color-error': 'var(--bg-primary)',
     '--radio-group-item-bg-color-focus': 'var(--bg-primary)',
-    '--radio-group-item-bg-color-hover': 'var(--brand-primary-100)',
+    '--radio-group-item-bg-color-hover': 'var(--bg-primary-hover)',
     // Item border
     '--radio-group-item-border-color-checked': 'var(--border-brand-alt)',
     '--radio-group-item-border-color-default': 'var(--border-primary)',

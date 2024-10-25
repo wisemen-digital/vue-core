@@ -6,6 +6,8 @@ import AppRadioGroupIndicator from './components/radio-group/AppRadioGroupIndica
 import AppRadioGroupItem from './components/radio-group/AppRadioGroupItem.vue'
 import type { RadioGroupItem } from './types/radioGroup.type'
 
+const selectedItem = ref<null | string>('Apple')
+
 const items: RadioGroupItem<string>[] = [
   {
     label: 'Apple',
@@ -24,26 +26,14 @@ const items: RadioGroupItem<string>[] = [
     type: 'option',
     value: 'Blueberry',
   },
-  {
-    label: 'Grapes',
-    type: 'option',
-    value: 'Grapes',
-  },
-  {
-    label: 'Leek',
-    type: 'option',
-    value: 'Leek',
-  },
 ]
-
-const selected = ref<null | string>('Apple')
 </script>
 
 <template>
   <div class="grid grid-cols-3 gap-12">
     <div>
       <AppRadioGroup
-        v-model="selected"
+        v-model="selectedItem"
         :errors="{
           _errors: ['This is an error message.'],
         }"
@@ -56,7 +46,7 @@ const selected = ref<null | string>('Apple')
     </div>
     <div>
       <AppRadioGroup
-        v-model="selected"
+        v-model="selectedItem"
         :errors="{
           _errors: ['This is an error message.'],
         }"
@@ -70,7 +60,7 @@ const selected = ref<null | string>('Apple')
     </div>
     <div>
       <AppRadioGroup
-        v-model="selected"
+        v-model="selectedItem"
         :errors="{
           _errors: ['This is an error message.'],
         }"
@@ -85,7 +75,7 @@ const selected = ref<null | string>('Apple')
   <div>
     <div>
       <AppRadioGroup
-        v-model="selected"
+        v-model="selectedItem"
         :errors="{
           _errors: ['This is an error message.'],
         }"
@@ -115,6 +105,9 @@ const selected = ref<null | string>('Apple')
                   <div>
                     {{ item.label }}
                   </div>
+                </div>
+                <div>
+                  {{ item.hint }}
                 </div>
               </div>
             </AppRadioGroupItem>

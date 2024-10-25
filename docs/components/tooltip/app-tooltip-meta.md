@@ -15,7 +15,7 @@
 | isHidden | `boolean` | When true, the tooltip will be hidden. | `false` |
 | offsetInPx | `number` | The offset of the popover content. | `10` |
 | popoverWidth | `PopoverWidth \| null` | The width of the popover. | `null` |
-| side | `"bottom" \| "left" \| "right" \| "top"` | The side of the trigger the tooltip should be on. | `"bottom"` |
+| side | `"left" \| "right" \| "bottom" \| "top"` | The side of the trigger the tooltip should be on. | `"bottom"` |
 | styleConfig | `Partial<TooltipStyleConfig> \| null` |  | `null` |
 
 
