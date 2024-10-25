@@ -63,7 +63,6 @@ provideRadioGroupItemContext({
 <template>
   <RekaRadioGroupItem
     :id="inputId"
-    :aria-describedby="`${inputId}-hint ${inputId}-error`"
     :value="stringValue"
     :disabled="isDisabled"
     @mouseenter="onMouseEnter"
