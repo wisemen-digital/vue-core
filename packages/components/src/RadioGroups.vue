@@ -101,21 +101,20 @@ const selected = ref<null | string>('Apple')
             <AppRadioGroupItem
               v-for="item of radioItems"
               :key="item.label"
-              v-slot="{ isChecked, isDisabled, isHovered, hasError, isFocused }"
+              v-slot="{ isDisabled }"
               :item="item"
-              class="relative w-full rounded border border-brand-primary-500 p-12"
             >
-              <div>
-                <AppRadioGroupIndicator
-                  :is-checked="isChecked"
-                  :is-disabled="isDisabled"
-                  :is-focused="isFocused"
-                  :is-hovered="isHovered"
-                  :has-error="hasError"
-                  class="absolute right-4 top-4"
-                />
+              <div
+                :class="{
+                  'cursor-not-allowed': isDisabled,
+                }"
+                class="relative w-full rounded border border-brand-primary-500 p-12"
+              >
                 <div>
-                  {{ item.label }}
+                  <AppRadioGroupIndicator class="absolute right-4 top-4" />
+                  <div>
+                    {{ item.label }}
+                  </div>
                 </div>
               </div>
             </AppRadioGroupItem>

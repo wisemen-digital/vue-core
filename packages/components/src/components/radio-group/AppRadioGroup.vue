@@ -9,11 +9,11 @@ import AppCollapsable from '@/components/collapsable/AppCollapsable.vue'
 import AppInputFieldError from '@/components/input-field-error/AppInputFieldError.vue'
 import AppInputFieldHint from '@/components/input-field-hint/AppInputFieldHint.vue'
 import AppInputFieldLabel from '@/components/input-field-label/AppInputFieldLabel.vue'
+import { provideRadioGroupContext } from '@/components/radio-group/radioGroup.context'
 import type { RadioGroupItem } from '@/types/radioGroup.type'
 
 import AppRadioGroupItemDefault from './AppRadioGroupItemDefault.vue'
 import AppRadioGroupRoot from './AppRadioGroupRoot.vue'
-import { useProvideRadioGroupContext } from './radioGroup.context'
 import {
   type AppRadioGroupProps,
   appRadioGroupPropsDefaultValues,
@@ -49,13 +49,18 @@ const hintClasses = computed<string>(() => style.hint({
   isDisabled: props.isDisabled,
 }))
 
-useProvideRadioGroupContext({
-  hasError,
+function isItemChecked(item: RadioGroupItem<TValue>): boolean {
+  return JSON.stringify(item.value) === JSON.stringify(model.value)
+}
+
+provideRadioGroupContext({
+  hasError: computed<boolean>(() => hasError.value),
   isDisabled: computed<boolean>(() => props.isDisabled),
+  isItemChecked,
   isRequired: computed<boolean>(() => props.isRequired),
   isTouched: computed<boolean>(() => props.isTouched),
   items: computed<RadioGroupItem<TValue>[]>(() => props.items),
-  model,
+  model: computed<TValue | null>(() => model.value),
 })
 </script>
 
@@ -73,6 +78,7 @@ useProvideRadioGroupContext({
         :class="inputLabelClasses"
       />
     </slot>
+
     <AppRadioGroupRoot
       v-model="computedModel"
       :is-disabled="props.isDisabled"
@@ -85,12 +91,11 @@ useProvideRadioGroupContext({
           v-for="item of props.items"
           :key="item.label"
         >
-          <AppRadioGroupItemDefault
-            :item="item"
-          />
+          <AppRadioGroupItemDefault :item="item" />
         </div>
       </slot>
     </AppRadioGroupRoot>
+
     <slot name="bottom">
       <AppCollapsable>
         <div v-if="hasError">

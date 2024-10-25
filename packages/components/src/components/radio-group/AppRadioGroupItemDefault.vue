@@ -1,7 +1,6 @@
 <script setup lang="ts" generic="TValue extends AcceptableValue">
 import {
   type AcceptableValue,
-  RadioGroupItem as RekaRadioGroupItem,
   useId,
 } from 'reka-ui'
 import { computed, ref } from 'vue'
@@ -9,10 +8,11 @@ import { computed, ref } from 'vue'
 import AppCollapsable from '@/components/collapsable/AppCollapsable.vue'
 import AppInputFieldHint from '@/components/input-field-hint/AppInputFieldHint.vue'
 import AppInputFieldLabel from '@/components/input-field-label/AppInputFieldLabel.vue'
+import AppRadioGroupItem from '@/components/radio-group/AppRadioGroupItem.vue'
+import { injectRadioGroupContext } from '@/components/radio-group/radioGroup.context'
 import type { RadioGroupItem } from '@/types/radioGroup.type'
 
 import AppRadioGroupIndicator from './AppRadioGroupIndicator.vue'
-import { useRadioGroupContext } from './radioGroup.context'
 import { radioGroupStyle } from './radioGroup.style'
 
 const props = defineProps<{
@@ -29,14 +29,12 @@ const isFocused = ref<boolean>(false)
 const isMouseOver = ref<boolean>(false)
 
 const style = radioGroupStyle()
-const context = useRadioGroupContext<TValue>()
+const context = injectRadioGroupContext()
 
 const isDisabled = computed<boolean>(() => context.isDisabled.value || (props.item.isDisabled ?? false))
 const isHovered = computed<boolean>(() => isMouseOver.value && !isDisabled.value)
 const isChecked = computed<boolean>(() => context.isItemChecked(props.item))
 const hasError = computed<boolean>(() => context.hasError.value)
-
-const stringValue = computed<string>(() => JSON.stringify(props.item.value))
 
 const inputLabelClasses = computed<string>(() => style.inputLabel({
   hasError: hasError.value,
@@ -62,16 +60,7 @@ const boxClasses = computed<string>(() => style.box({
   isHovered: isHovered.value,
 }))
 
-const itemClasses = computed<string>(() => style.item({
-  hasError: hasError.value,
-  isChecked: isChecked.value,
-  isDisabled: isDisabled.value,
-  isFocused: isFocused.value,
-  isHovered: isHovered.value,
-}))
-
 const bottomClasses = computed<string>(() => style.bottom())
-
 const inputId = computed<string>(() => props.id ?? useId())
 
 function onMouseEnter(): void {
@@ -95,25 +84,17 @@ function onBlur(): void {
 
 <template>
   <div :class="boxClasses">
-    <RekaRadioGroupItem
+    <AppRadioGroupItem
       :id="inputId"
-      :value="stringValue"
-      :disabled="isDisabled"
-      :aria-describedby="`${inputId}-hint`"
-      :class="itemClasses"
+      :item="props.item"
       @mouseenter="onMouseEnter"
       @mouseleave="onMouseLeave"
       @focus="onFocus"
       @blur="onBlur"
     >
-      <AppRadioGroupIndicator
-        :is-checked="isChecked"
-        :has-error="hasError"
-        :is-disabled="isDisabled"
-        :is-focused="isFocused"
-        :is-hovered="isHovered"
-      />
-    </RekaRadioGroupItem>
+      <AppRadioGroupIndicator />
+    </AppRadioGroupItem>
+
     <slot
       v-if="props.item.label != null"
       :input-id="inputId"
@@ -127,6 +108,7 @@ function onBlur(): void {
       />
     </slot>
   </div>
+
   <div :class="bottomClasses">
     <slot name="bottom">
       <AppCollapsable>
