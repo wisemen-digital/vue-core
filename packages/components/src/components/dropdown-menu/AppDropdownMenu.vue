@@ -6,21 +6,39 @@ import {
   DropdownMenuRoot,
   DropdownMenuTrigger,
 } from 'reka-ui'
-import { computed } from 'vue'
+import {
+  computed,
+  onBeforeUnmount,
+  onMounted,
+  ref,
+  watch,
+} from 'vue'
 
 import AppDropdownMenuItem from '@/components/dropdown-menu/AppDropdownMenuItem.vue'
 import type { AppDropdownMenuProps } from '@/components/dropdown-menu/dropdownMenu.props.js'
 import { dropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style.js'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
+import { useKeyboardShortcut } from '@/composables/index.js'
+import type {
+  DropdownMenuItem,
+  DropdownMenuOption,
+} from '@/types/dropdownMenu.type.js'
 
 const props = withDefaults(defineProps<AppDropdownMenuProps>(), {
   isArrowHidden: false,
   align: 'center',
   collisionPaddingInPx: 10,
   containerElement: null,
+  enableGlobalKeyboardShortcuts: false,
   offsetInPx: 4,
   popoverWidth: 'available-width',
   side: 'bottom',
 })
+
+const themeContext = injectThemeProviderContext()
+
+const dropdownMenuTriggerRef = ref<InstanceType<typeof DropdownMenuTrigger> | null>(null)
+const isOpen = ref<boolean>(false)
 
 const style = dropdownMenuStyle()
 
@@ -29,17 +47,105 @@ const dropdownContentClasses = computed<string>(() => style.dropdownContent())
 
 const arrowClasses = computed<string>(() => style.arrow())
 const arrowBoxClasses = computed<string>(() => style.arrowBox())
+
+function getAllItems(items: DropdownMenuItem[]): DropdownMenuItem[] {
+  const allItems: DropdownMenuItem[] = []
+
+  items.forEach((item) => {
+    allItems.push(item)
+
+    if (item.type === 'group' || item.type === 'subMenu') {
+      allItems.push(...getAllItems(item.items))
+    }
+  })
+
+  return allItems
+}
+
+const itemsWithKeyboardShortcuts = computed<DropdownMenuOption[]>(() => {
+  return getAllItems(props.items)
+    .filter((item) => {
+      return item.type === 'option'
+    }) as DropdownMenuOption[]
+})
+
+let keyboardShortcutsUnbindFns: (() => void)[] = []
+
+onMounted(() => {
+  watch(
+    () => props.items,
+    () => {
+      keyboardShortcutsUnbindFns.forEach((unbind) => {
+        unbind()
+      })
+
+      keyboardShortcutsUnbindFns = []
+
+      itemsWithKeyboardShortcuts.value.forEach((item) => {
+        const { keyboardKeys } = item
+
+        if (item.type !== 'option') {
+          return
+        }
+
+        if (keyboardKeys === undefined) {
+          return
+        }
+
+        // Shortcut for when the dropdown trigger is focused.
+        const shortcut = useKeyboardShortcut({
+          isDisabled: computed<boolean>(() => props.enableGlobalKeyboardShortcuts),
+          element: dropdownMenuTriggerRef.value?.$el,
+          keys: keyboardKeys,
+          onTrigger: item.onSelect,
+        })
+
+        // Shortcut for when the dropdown is open.
+        const globalShortcut = useKeyboardShortcut({
+          isDisabled: computed<boolean>(() => {
+            if (props.enableGlobalKeyboardShortcuts) {
+              return false
+            }
+
+            return !isOpen.value
+          }),
+          keys: keyboardKeys,
+          onTrigger: () => {
+            item.onSelect()
+            isOpen.value = false
+          },
+        })
+
+        keyboardShortcutsUnbindFns.push(shortcut.unbind, globalShortcut.unbind)
+      })
+    },
+    {
+      immediate: true,
+    },
+  )
+})
+
+onBeforeUnmount(() => {
+  keyboardShortcutsUnbindFns.forEach((unbind) => {
+    unbind()
+  })
+})
 </script>
 
 <template>
-  <DropdownMenuRoot>
-    <DropdownMenuTrigger :as-child="true">
-      <slot name="trigger" />
-    </DropdownMenuTrigger>
+  <DropdownMenuRoot v-model:open="isOpen">
+    <slot>
+      <DropdownMenuTrigger
+        ref="dropdownMenuTriggerRef"
+        :as-child="true"
+      >
+        <slot name="trigger" />
+      </DropdownMenuTrigger>
+    </slot>
 
     <DropdownMenuPortal>
       <DropdownMenuContent
-        :class="dropdownClasses"
+        :class="[dropdownClasses, themeContext.theme.value]"
         :side-offset="props.offsetInPx"
         :side="props.side"
         :align="props.align"
@@ -47,6 +153,7 @@ const arrowBoxClasses = computed<string>(() => style.arrowBox())
         :container-element="props.containerElement"
         :offset-in-px="props.offsetInPx"
         position="popper"
+        class="dropdown-menu-variant-default"
       >
         <!-- Without this relative div, the arrow is a bit glitchy -->
         <div class="relative size-full">

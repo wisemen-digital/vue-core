@@ -18,6 +18,6 @@ defineStyleConfig({
     '--popover-min-width-default': 'auto',
     '--popover-shadow-default': 'var(--shadow-lg)',
   },
-  selector: ':root',
+  selector: '.popover-variant-default',
   component: 'popover',
 })

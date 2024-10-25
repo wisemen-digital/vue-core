@@ -6,8 +6,10 @@ import type { AppIconButtonProps } from '@/components/button/icon-button/iconBut
 import { iconButtonStyle } from '@/components/button/icon-button/iconButton.style.js'
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppSpinner from '@/components/spinner/AppSpinner.vue'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 
 const props = withDefaults(defineProps<AppIconButtonProps>(), {
+  testId: null,
   isDisabled: false,
   isLoading: false,
   size: 'default',
@@ -17,8 +19,10 @@ const props = withDefaults(defineProps<AppIconButtonProps>(), {
 })
 
 const emit = defineEmits<{
-  click: []
+  click: [event: Event]
 }>()
+
+const themeProviderContext = injectThemeProviderContext()
 
 const btnStyle = buttonStyle()
 const iconBtnStyle = iconButtonStyle()
@@ -146,23 +150,25 @@ function onKeyUp(event: KeyboardEvent): void {
   }
 }
 
-function onClick(): void {
+function onClick(event: Event): void {
   if (props.isLoading) {
     return
   }
 
-  emit('click')
+  emit('click', event)
 }
 </script>
 
 <template>
   <button
+    :data-test-id="props.testId"
     :style="props.styleConfig"
     :type="props.type"
     :disabled="props.isDisabled"
     :aria-busy="props.isLoading"
     :aria-label="props.label"
-    :class="[buttonClasses, sizeClass, variantClass]"
+    :class="[buttonClasses, sizeClass, variantClass, themeProviderContext.theme.value]"
+    class="button-variant-default icon-button-variant-default"
     @focus="onFocus"
     @blur="onBlur"
     @mouseenter="onMouseEnter"

@@ -27,10 +27,9 @@ export function useDialogContainer(): UseDialogContainerReturnType {
   }
 }
 
-export function useDialog<TComponent extends Component>({
-  animateFromTrigger = false,
-  component,
-}: UseDialogOptions<TComponent>): UseDialogReturnType<TComponent> {
+export function useDialog<TComponent extends Component>(
+  options: UseDialogOptions<TComponent>,
+): UseDialogReturnType<TComponent> {
   const triggerId = useId()
 
   function removeDialogFromContainer(): void {
@@ -66,7 +65,7 @@ export function useDialog<TComponent extends Component>({
       throw new Error(`Dialog with triggerId ${triggerId} already exists`)
     }
 
-    const c = await component()
+    const c = await options.component()
 
     const dialogComponent = computed<Component>(() => {
       return h(
@@ -74,7 +73,7 @@ export function useDialog<TComponent extends Component>({
         reactive<Attrs<TComponent>>({
           ...attrs,
           triggerId,
-          animateFromTrigger,
+          animateFromTrigger: options.animateFromTrigger ?? false,
           onClose: () => {
             closeDialog()
           },

@@ -3,10 +3,13 @@ import { DialogContent } from 'reka-ui'
 import { computed } from 'vue'
 
 import { dialogStyle } from '@/components/dialog/dialog.style.js'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 
 const props = defineProps<{
   shouldPreventClickOutside: boolean
 }>()
+
+const themeProviderContext = injectThemeProviderContext()
 
 const style = dialogStyle()
 const contentClasses = computed<string>(() => style.content())
@@ -34,8 +37,9 @@ function onOpenAutoFocus(e: Event): void {
 <template>
   <DialogContent
     :force-mount="true"
-    :class="contentClasses"
+    :class="[contentClasses, themeProviderContext.theme.value]"
     :disable-outside-pointer-events="false"
+    class="dialog-variant-default"
     @interact-outside="onInteractOutside"
     @open-auto-focus="onOpenAutoFocus"
   >

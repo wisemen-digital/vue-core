@@ -18,7 +18,7 @@ const tableContext = injectTableContext()
     <AppTableHeader :are-sticky-columns-disabled="true" />
 
     <div
-      v-for="rowIndex in tableContext.pagination.value.paginationOptions.value.pagination.perPage"
+      v-for="rowIndex in tableContext.pagination.value.paginationOptions.value.pagination.limit"
       :key="rowIndex"
     >
       <div

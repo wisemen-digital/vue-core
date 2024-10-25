@@ -5,34 +5,34 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| align | `PopoverAlign` | The alignment of the popover content. |  |
-| collisionPaddingInPx | `number` | The padding of the popover collision. |  |
-| containerElement | `HTMLElement \| null` | The element to render the tooltip in. By default this is the viewport |  |
+| align | `PopoverAlign` | The alignment of the popover content. | `"center"` |
+| collisionPaddingInPx | `number` | The padding of the popover collision. | `0` |
+| containerElement | `HTMLElement \| null` | The element to render the tooltip in. By default this is the viewport | `null` |
 | displayFn* | `SelectDisplayFn<SelectValue>` | The display function for the selected value. |  |
-| errors | `FormFieldErrors` | The errors associated with the input. |  |
-| filterFn | `SelectFilterFn<SelectValue> \| null` | The function to filter the options. |  |
-| hint | `string \| null` | The hint text of the input. |  |
-| iconLeft | `keyof Icons \| null` | The left icon of the input. |  |
-| iconRight | `keyof Icons` | The right icon of the input. |  |
-| id | `string \| null` | The id of the input. |  |
-| isArrowVisible | `boolean` | Whether the arrow is visible. |  |
-| isDisabled | `boolean` | Whether the input is disabled. |  |
-| isLoading | `boolean` | Whether the input is loading. |  |
-| isRequired | `boolean` | Whether the input is required. |  |
-| isTouched | `boolean` | Whether the input is touched. Used to determine if an error should be shown. |  |
+| errors | `FormFieldErrors` | The errors associated with the input. | `null` |
+| filterFn | `SelectFilterFn<SelectValue> \| null` | The function to filter the options. | `null` |
+| hint | `string \| null` | The hint text of the input. | `null` |
+| iconLeft | `keyof Icons \| null` | The left icon of the input. | `null` |
+| iconRight | `keyof Icons` | The right icon of the input. | `"chevronSelectorVertical"` |
+| id | `string \| null` | The id of the input. | `null` |
+| isArrowVisible | `boolean` | Whether the arrow is visible. | `false` |
+| isDisabled | `boolean` | Whether the input is disabled. | `false` |
+| isLoading | `boolean` | Whether the input is loading. | `false` |
+| isRequired | `boolean` | Whether the input is required. | `false` |
+| isTouched | `boolean` | Whether the input is touched. Used to determine if an error should be shown. | `false` |
 | items* | `SelectItem<AcceptableValue>[]` | The items of the select. |  |
-| label | `string \| null` | The label of the input. |  |
+| label | `string \| null` | The label of the input. | `null` |
 | modelValue* | `SelectValue \| null` |  |  |
-| offsetInPx | `number` | The offset of the popover content. |  |
-| placeholder | `string \| null` | The placeholder text of the input. |  |
-| popoverWidth | `PopoverWidth \| null` | The width of the popover. |  |
+| offsetInPx | `number` | The offset of the popover content. | `4` |
+| placeholder | `string \| null` | The placeholder text of the input. | `null` |
+| popoverWidth | `PopoverWidth \| null` | The width of the popover. | `"anchor-width"` |
 | searchPlaceholder | `string` | The placeholder of the search input. |  |
-| shouldRemainOpenOnValueChange | `boolean \| null` | Whether the select should remain open when the value changes. |  |
-| side | `"bottom" \| "left" \| "right" \| "top"` | The side of the trigger the tooltip should be on. |  |
-| styleConfig | `Partial<SelectStyleConfig> \| null` |  |  |
-| testId | `string \| null` | The test id of the input. |  |
+| shouldRemainOpenOnValueChange | `boolean \| null` | Whether the select should remain open when the value changes. | `null` |
+| side | `"bottom" \| "left" \| "right" \| "top"` | The side of the trigger the tooltip should be on. | `"bottom"` |
+| styleConfig | `Partial<SelectStyleConfig> \| null` |  | `null` |
+| testId | `string \| null` | The test id of the input. | `null` |
 | virtualList | `{ optionHeight: number; } \| null` | Whether the select should use a virtual list.
-When enabled, items must be restricted to the option type |  |
+When enabled, items must be restricted to the option type | `null` |
 
 
 ## Slots

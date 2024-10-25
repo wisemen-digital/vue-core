@@ -69,8 +69,11 @@ function parseMeta(meta: any) {
       return ({
         name,
         description: descriptionString.replace(/^[ \t]+/gm, ''),
-        type: type === "{}" ? "None" : type.replace(/\s*\|\s*undefined/g, '').replace('unknown', 'T').replace(/\</g, '\\<').replace(/\>/g, '\\>'),
-        // type: 'TODO'
+        type: type === "{}" ? "None" : `${type
+          .replace(/\s*\|\s*undefined/g, '')
+          .replace('unknown', 'T')
+          .replace(/\</g, '\\<')
+          .replace(/\>/g, '\\>')}`,
       })
     })
     .sort((a: { name: string }, b: { name: string }) => a.name.localeCompare(b.name))

@@ -17,6 +17,10 @@ const guide = [
     link: '/guide/styling',
     text: 'Styling',
   },
+  {
+    link: '/guide/theme-provider',
+    text: 'Theme Provider',
+  },
 ]
 
 const query = [
@@ -35,12 +39,20 @@ const docs = [
         text: 'AppTextField',
       },
       {
+        link: '/components/input-field/app-number-field',
+        text: 'AppNumberField',
+      },
+      {
         link: '/components/input-field/app-password-field',
         text: 'AppPasswordField',
       },
       {
-        link: '/components/input-field/textarea',
+        link: '/components/input-field/app-textarea',
         text: 'AppTextarea',
+      },
+      {
+        link: '/components/input-field/app-phone-number-field',
+        text: 'AppPhoneNumberField',
       },
     ],
     text: 'Input Field',

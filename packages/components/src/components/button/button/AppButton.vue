@@ -5,8 +5,10 @@ import type { AppButtonProps } from '@/components/button/button/button.props.js'
 import { buttonStyle } from '@/components/button/button/button.style'
 import AppIcon from '@/components/icon/AppIcon.vue'
 import AppSpinner from '@/components/spinner/AppSpinner.vue'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 
 const props = withDefaults(defineProps<AppButtonProps>(), {
+  testId: null,
   isDisabled: false,
   isLoading: false,
   iconLeft: null,
@@ -18,17 +20,20 @@ const props = withDefaults(defineProps<AppButtonProps>(), {
 })
 
 const emit = defineEmits<{
-  click: []
+  /**
+   * Emitted when the button is clicked
+   */
+  click: [event: Event]
 }>()
 
 defineSlots<{
   'default': () => void
   'icon-left': () => void
   'icon-right': () => void
-  'left': () => void
   'loader': () => void
-  'right': () => void
 }>()
+
+const themeContext = injectThemeProviderContext()
 
 const style = buttonStyle()
 
@@ -162,12 +167,12 @@ function onKeyUp(event: KeyboardEvent): void {
   }
 }
 
-function onClick(): void {
+function onClick(event: Event): void {
   if (props.isLoading) {
     return
   }
 
-  emit('click')
+  emit('click', event)
 }
 </script>
 
@@ -177,7 +182,9 @@ function onClick(): void {
     :type="props.type"
     :disabled="props.isDisabled"
     :aria-busy="props.isLoading"
-    :class="[buttonClasses, sizeClass, variantClass]"
+    :class="[buttonClasses, sizeClass, variantClass, themeContext.theme.value]"
+    :data-test-id="props.testId"
+    class="button-variant-default"
     @focus="onFocus"
     @blur="onBlur"
     @mouseenter="onMouseEnter"
@@ -188,8 +195,6 @@ function onClick(): void {
     @keyup="onKeyUp"
     @click="onClick"
   >
-    <slot name="left" />
-
     <slot
       v-if="props.iconLeft !== null"
       name="icon-left"
@@ -229,7 +234,5 @@ function onClick(): void {
         :class="iconRightClasses"
       />
     </slot>
-
-    <slot name="right" />
   </button>
 </template>

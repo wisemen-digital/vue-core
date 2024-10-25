@@ -6,13 +6,13 @@
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
 | icon* | `keyof Icons` | The icon of the button. |  |
-| isDisabled | `boolean` | Whether the button is disabled. |  |
-| isLoading | `boolean` | Whether the button is in a loading state. |  |
+| isDisabled | `boolean` | Whether the button is disabled. | `false` |
+| isLoading | `boolean` | Whether the button is in a loading state. | `false` |
 | label* | `string` | The label for the button for accessibility |  |
-| size | `"default" \| "lg" \| "sm" \| "xl" \| "2xl"` | The size of the button. |  |
-| styleConfig | `Partial<IconButtonStyleConfig> \| null` |  |  |
-| type | `"button" \| "reset" \| "submit"` | The type of the button. |  |
-| variant | `"default" \| "destructive-primary" \| "destructive-secondary" \| "destructive-tertiary" \| "secondary" \| "secondary-color" \| "tertiary" \| "tertiary-color"` | The variant of the button. |  |
+| size | `"default" \| "lg" \| "sm" \| "xl" \| "2xl"` | The size of the button. | `"default"` |
+| styleConfig | `Partial<IconButtonStyleConfig> \| null` | The style config of the button. | `null` |
+| type | `"button" \| "reset" \| "submit"` | The type of the button. | `"button"` |
+| variant | `"default" \| "destructive-primary" \| "destructive-secondary" \| "destructive-tertiary" \| "secondary" \| "secondary-color" \| "tertiary" \| "tertiary-color"` | The variant of the button. | `"default"` |
 
 
 ## Events

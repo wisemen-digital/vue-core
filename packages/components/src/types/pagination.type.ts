@@ -17,8 +17,8 @@ export type PaginationFilters<TFilters> = {
 }
 
 export interface PageChangeEvent {
-  page: number
-  perPage: number
+  limit: number
+  offset: number
 }
 
 export type FilterChangeEvent<TFilters> = PaginationFilters<TFilters>
@@ -36,8 +36,8 @@ export interface SortChangeEvent {
 export interface PaginationOptions<TFilters> {
   filters?: PaginationFilters<TFilters>
   pagination: {
-    page: number
-    perPage: number
+    limit: number
+    offset: number
   }
   search?: string
   sort?: PaginationSort | undefined
@@ -97,26 +97,25 @@ export type Pagination<TFilters> = UsePaginationReturnType<TFilters>
 
 export interface PaginatedData<TSchema> {
   data: TSchema[]
-  total: number
+  meta: {
+    limit: number
+    offset: number
+    total: number
+  }
 }
 
 // Pagination composable types
 
 export interface UsePaginationOptions<TFilters> {
   /**
-   * Identifier used to store pagination options in a route query.
-   */
-  id: string
-  /**
-   * Default pagination options. If not provided, the default options will be used.
+   * If not provided, the default options will be used.
    * @default null
    */
   defaultPaginationOptions?: MaybeRefOrGetter<DeepPartial<PaginationOptions<TFilters>>> | null
   /**
-   * If true, the route query will be disabled.
-   * @default false
+   * When enabled, the pagination state will be stored in the route query.
    */
-  disableRouteQuery?: boolean
+  enableRouteQuery: boolean
 }
 
 export interface UsePaginationReturnType<TFilters> {

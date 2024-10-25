@@ -13,4 +13,8 @@ export const dialogTailwindConfig = {
   boxShadow: {
     'dialog-shadow-default': 'var(--dialog-shadow-default)',
   },
+  transitionTimingFunction: {
+    'dialog': 'cubic-bezier(0.22, 0.68, 0, 1.51)',
+    'dialog-overlay': 'cubic-bezier(0.17, 0.67, 0.16, 0.99)',
+  },
 } satisfies Config['theme']

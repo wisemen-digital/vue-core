@@ -20,13 +20,19 @@ import '@/components/table/tableStyle.config'
 import '@/components/switch/switchStyle.config'
 import '@/components/radio-group/radioGroupStyle.config'
 
+import { ref } from 'vue'
+
 import Buttons from '@/Buttons.vue'
-import AppBreadcrumbs from '@/components/breadcrumbs/AppBreadcrumbs.vue'
 import AppButton from '@/components/button/button/AppButton.vue'
 import ConfigProvider from '@/components/config-provider/AppConfigProvider.vue'
 import AppDarkModeToggle from '@/components/dark-mode-toggle/AppDarkModeToggle.vue'
+import AppDropdownMenu from '@/components/dropdown-menu/AppDropdownMenu.vue'
+import AppFilters from '@/components/filters/AppFilters.vue'
 import AppDateField from '@/components/input-field/date-field/AppDateField.vue'
+import AppTextField from '@/components/input-field/text-field/AppTextField.vue'
 import AppKeyboardKey from '@/components/keyboard/AppKeyboardKey.vue'
+import AppPopover from '@/components/popover/AppPopover.vue'
+import AppThemeProvider from '@/components/theme-provider/AppThemeProvider.vue'
 import AppToastContainer from '@/components/toast/AppToastContainer.vue'
 import Dialogs from '@/Dialogs.vue'
 import DropdownMenus from '@/DropdownMenus.vue'
@@ -36,6 +42,7 @@ import TablePlayground from '@/TablePlayground.vue'
 import Tabs from '@/Tabs.vue'
 import Tooltips from '@/Tooltips.vue'
 import type { BreadcrumbItem } from '@/types/breadcrumb.type.js'
+import type { SelectOption } from '@/types/select.type'
 
 import Checkboxes from './Checkboxes.vue'
 import RadioGroups from './RadioGroups.vue'
@@ -56,17 +63,48 @@ const breadcrumbs: BreadcrumbItem[] = [
     type: 'ellipsis',
   },
 ]
+
+const search = ref<string>('')
+
+let timeout: ReturnType<typeof setTimeout> | null = null
+
+const allOptions = [
+  {
+    type: 'option',
+    value: 'Apple',
+  },
+  {
+    type: 'option',
+    value: 'Banana',
+  },
+  {
+    type: 'option',
+    value: 'Blueberry',
+  },
+] as SelectOption<string>[]
+
+const fakeAsyncOptions = ref<SelectOption<string>[]>([])
+
+function onSearch(searchTerm: string): void {
+  if (timeout !== null) {
+    clearTimeout(timeout)
+  }
+
+  timeout = setTimeout(() => {
+    fakeAsyncOptions.value = allOptions.filter((option) => option.value.toLowerCase().includes(searchTerm.toLowerCase()))
+    console.log(fakeAsyncOptions.value)
+  }, 500)
+}
 </script>
 
 <template>
-  <ConfigProvider locale="en">
-    <div class="flex justify-end p-8">
-      <AppDarkModeToggle />
-    </div>
+  <AppThemeProvider theme="light">
+    <div class="bg-primary">
+      <div class="p-48">
+        <AppFilters />
 
-    <div class="p-24">
-      <AppDateField class="w-72" />
-    </div>
+        <div class="">
+          <AppTextField :model-value="null" />
 
     <div class="p-24">
       <RadioGroups />
@@ -76,41 +114,55 @@ const breadcrumbs: BreadcrumbItem[] = [
         <AppButton icon-left="translate01">
           test
         </AppButton>
+          <div class="size-4 bg-primary" />
 
-        <AppButton variant="secondary">
-          test
-        </AppButton>
+          <AppPopover>
+            <template #trigger>
+              <AppButton variant="secondary">
+                btn
+              </AppButton>
+            </template>
+
+            <template #content>
+              <div class="h-40 w-80" />
+            </template>
+          </AppPopover>
+
+          <AppDropdownMenu
+            :items="[
+              {
+                type: 'option',
+                label: 'Option 1',
+                onSelect: (): void => {
+                //
+                },
+              },
+            ]"
+          >
+            <template #trigger>
+              <AppButton>
+                btn
+              </AppButton>
+            </template>
+          </AppDropdownMenu>
+        </div>
       </div>
 
-      <div class="flex gap-x-1">
-        <AppKeyboardKey keyboard-key="shift" />
-        <AppKeyboardKey keyboard-key="ctrl" />
-        <AppKeyboardKey keyboard-key="f" />
-        <AppKeyboardKey keyboard-key="meta" />
+      <div class="p-48">
+      <!-- <AppAutocomplete
+        :display-fn="(value) => value"
+        :items="fakeAsyncOptions"
+        :model-value="null"
+        @search="onSearch"
+      /> -->
       </div>
 
-      <div class="p-12">
-        <AppButton>
-          Button
-
-          <template #right>
-            <div class="flex items-center gap-x-1">
-              <AppKeyboardKey
-                keyboard-key="meta"
-                class="ml-2"
-              />
-
-              <AppKeyboardKey keyboard-key="enter" />
-            </div>
-          </template>
-        </AppButton>
-      </div>
-
-      <AppDateField
-        v-if="false"
-        class="w-72"
-      />
-    </div>
+      <ConfigProvider
+        locale="en"
+      >
+        <div class="flex justify-end p-8">
+          <AppDarkModeToggle />
+        </div>
 
     <TablePlayground />
 
@@ -129,6 +181,67 @@ const breadcrumbs: BreadcrumbItem[] = [
     </div>
     <TablePlayground />
   </ConfigProvider>
+        <div class="p-24">
+          <AppDateField class="w-72" />
+        </div>
 
-  <AppToastContainer />
+        <div class="p-24">
+          <div class="p-24">
+            <AppButton icon-left="translate01">
+              test
+            </AppButton>
+
+            <AppButton variant="secondary">
+              test
+            </AppButton>
+          </div>
+
+          <div class="flex gap-x-1">
+            <AppKeyboardKey keyboard-key="shift" />
+            <AppKeyboardKey keyboard-key="ctrl" />
+            <AppKeyboardKey keyboard-key="f" />
+            <AppKeyboardKey keyboard-key="meta" />
+          </div>
+
+          <div class="p-12">
+            <AppButton>
+              Button
+
+              <template #right>
+                <div class="flex items-center gap-x-1">
+                  <AppKeyboardKey
+                    keyboard-key="meta"
+                    class="ml-2"
+                  />
+
+                  <AppKeyboardKey keyboard-key="enter" />
+                </div>
+              </template>
+            </AppButton>
+          </div>
+
+          <AppDateField
+            v-if="false"
+            class="w-72"
+          />
+        </div>
+
+        <TablePlayground />
+
+        <div class="flex min-h-screen flex-col gap-y-24 bg-red-400 p-24">
+          <DropdownMenus />
+          <Dialogs />
+          <Switches />
+          <Checkboxes />
+          <Tabs />
+          <Popovers />
+          <Tooltips />
+          <InputFields />
+          <Buttons />
+        </div>
+      </ConfigProvider>
+
+      <AppToastContainer />
+    </div>
+  </AppThemeProvider>
 </template>

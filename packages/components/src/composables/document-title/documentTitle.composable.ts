@@ -6,8 +6,8 @@ import {
 } from 'vue'
 
 interface UseDocumentTitleReturnType {
-  documentTitle: Readonly<Ref<string>>
-  setDocumentTitle: (title: string) => void
+  title: Readonly<Ref<string>>
+  set: (title: string) => void
   setTemplate: (newTemplate: string) => void
 }
 
@@ -39,8 +39,8 @@ export function useDocumentTitle(): UseDocumentTitleReturnType {
   )
 
   return {
-    documentTitle: readonly(documentTitle),
-    setDocumentTitle,
+    title: readonly(documentTitle),
+    set: setDocumentTitle,
     setTemplate,
   }
 }

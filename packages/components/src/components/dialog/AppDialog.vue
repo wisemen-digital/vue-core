@@ -219,30 +219,62 @@ watch(isActuallyOpen, () => {
   }
 }
 
-::view-transition-old(dialog) {
-  animation-duration: 100ms;
+@keyframes dialog-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-::view-transition-new(dialog) {
-  animation-duration: 150ms;
+@keyframes dialog-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
+::view-transition-old(*),
+::view-transition-new(*) {
+  height: 100%;
+  width: 100%;
+  object-fit: fill;
+  animation: none;
+}
+
+/* Open animation */
 ::view-transition-group(dialog) {
   animation-duration: 250ms;
   animation-timing-function: cubic-bezier(0.49, 0.5, 0, 1.07);
 }
 
-::view-transition-old(dialog-leave) {
-  animation-duration: 250ms;
-  animation-timing-function: ease;
+/* Button */
+::view-transition-old(dialog) {
+  animation: dialog-fade-out 100ms forwards;
 }
 
-::view-transition-new(dialog-leave) {
-  animation-duration: 250ms;
+/* Dialog */
+::view-transition-new(dialog) {
+  animation: dialog-fade-in 200ms forwards;
 }
 
+/* Close animation */
 ::view-transition-group(dialog-leave) {
   animation-duration: 250ms;
-  animation-timing-function: ease;
+  animation-timing-function: cubic-bezier(0.49, 0.5, 0, 1);
+}
+
+/* Button */
+::view-transition-new(dialog-leave) {
+  opacity: 0;
+  animation: dialog-fade-in 150ms 100ms forwards;
+}
+
+/* Dialog */
+::view-transition-old(dialog-leave) {
+  animation: dialog-fade-out 200ms 50ms forwards;
 }
 </style>

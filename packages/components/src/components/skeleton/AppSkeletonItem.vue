@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
+
 const props = withDefaults(defineProps<{
   /**
    * The animation delay in milliseconds
@@ -14,11 +16,14 @@ const props = withDefaults(defineProps<{
   animationDelayInMs: 0,
   shouldShimmer: false,
 })
+
+const themeProviderContext = injectThemeProviderContext()
 </script>
 
 <template>
   <div
     :aria-busy="true"
+    :class="themeProviderContext.theme.value"
     class="relative overflow-hidden rounded bg-tertiary"
     role="status"
     aria-live="polite"

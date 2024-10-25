@@ -11,7 +11,7 @@ defineStyleConfig({
     '--icon-button-icon-size-default': '20px',
     '--icon-button-size-default': '40px',
   },
-  selector: ':root',
+  selector: '.icon-button-variant-default',
   component: 'iconButton',
 })
 

@@ -4,6 +4,7 @@ import { computed } from 'vue'
 
 import { dropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style.js'
 import AppIcon from '@/components/icon/AppIcon.vue'
+import AppKeyboardShortcut from '@/components/keyboard/AppKeyboardShortcut.vue'
 import type { DropdownMenuOption } from '@/types/dropdownMenu.type.js'
 
 const props = defineProps<{
@@ -25,16 +26,26 @@ const itemIconClasses = computed<string>(() => style.itemIcon({
   <RekaDropdownMenuItem
     :class="itemClasses"
     :disabled="props.item.isDisabled"
+    :data-test-id="props.item.testId"
     @select="props.item.onSelect"
   >
-    <AppIcon
-      v-if="props.item.icon !== undefined"
-      :class="itemIconClasses"
-      :icon="props.item.icon"
-    />
+    <div class="flex items-center truncate">
+      <AppIcon
+        v-if="props.item.icon !== undefined"
+        :class="itemIconClasses"
+        :icon="props.item.icon"
+      />
 
-    <slot name="option-content">
-      {{ props.item.label }}
-    </slot>
+      <slot name="option-content">
+        {{ props.item.label }}
+      </slot>
+    </div>
+
+    <AppKeyboardShortcut
+      v-if="props.item.keyboardKeys !== undefined"
+      :keyboard-keys="props.item.keyboardKeys"
+      :keyboard-classes="props.item.isDestructive ? 'border-error-50 bg-error-50' : 'border-transparent bg-secondary'"
+      class="ml-4"
+    />
   </RekaDropdownMenuItem>
 </template>

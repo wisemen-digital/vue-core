@@ -1,4 +1,4 @@
-:root {
+.light {
   --brand-primary-25: #FCFAFF;
   --brand-primary-50: #F9F5FF;
   --brand-primary-100: #F4EBFF;
@@ -72,8 +72,8 @@
   --fg-secondary-hover: var(--gray-800);
   --fg-tertiary: var(--gray-600);
   --fg-tertiary-hover: var(--gray-700);
-  --fg-quarternary: var(--gray-500);
-  --fg-quarternary-hover: var(--gray-600);
+  --fg-quaternary: var(--gray-500);
+  --fg-quaternary-hover: var(--gray-600);
   --fg-quinary: var(--gray-400);
   --fg-quinary-hover: var(--gray-500);
   --fg-senary: var(--gray-300);
@@ -155,6 +155,58 @@
 }
 
 .dark {
+    --brand-primary-25: #FCFAFF;
+  --brand-primary-50: #F9F5FF;
+  --brand-primary-100: #F4EBFF;
+  --brand-primary-200: #E9D7FE;
+  --brand-primary-300: #D6BBFB;
+  --brand-primary-400: #B692F6;
+  --brand-primary-500: #9E77ED;
+  --brand-primary-600: #7F56D9;
+  --brand-primary-700: #6941C6;
+  --brand-primary-800: #53389E;
+  --brand-primary-900: #42307D;
+  --brand-primary-950: #2C1C5F;
+
+  --error-25: #FFFBFA;
+  --error-50: #FEF3F2;
+  --error-100: #FEE4E2;
+  --error-200: #FECDCA;
+  --error-300: #FDA29B;
+  --error-400: #F97066;
+  --error-500: #F04438;
+  --error-600: #D92D20;
+  --error-700: #B42318;
+  --error-800: #912018;
+  --error-900: #7A271A;
+  --error-950: #55160C;
+
+  --warning-25: #FFFCF5;
+  --warning-50: #FFFAEB;
+  --warning-100: #FEF0C7;
+  --warning-200: #FEDF89;
+  --warning-300: #FEC84B;
+  --warning-400: #FDB022;
+  --warning-500: #F79009;
+  --warning-600: #DC6803;
+  --warning-700: #B54708;
+  --warning-800: #93370D;
+  --warning-900: #7A2E0E;
+  --warning-950: #4E1D09;
+
+  --success-25: #F6FEF9;
+  --success-50: #ECFDF3;
+  --success-100: #DCFAE6;
+  --success-200: #ABEFC6;
+  --success-300: #75E0A7;   
+  --success-400: #47CD89;
+  --success-500: #17B26A;
+  --success-600: #079455;
+  --success-700: #067647;
+  --success-800: #085D3A;
+  --success-900: #074D31;
+  --success-950: #053321;
+
   --gray-25: #FAFAFA;
   --gray-50: #F5F5F6;
   --gray-100: #F0F1F1;
@@ -168,13 +220,16 @@
   --gray-900: #161B26;
   --gray-950: #0C111D;
 
+  --black: #000000;
+  --white: #ffffff;
+
   --fg-primary: var(--white);
   --fg-secondary: var(--gray-300);
   --fg-secondary-hover: var(--gray-200);
   --fg-tertiary: var(--gray-400);
   --fg-tertiary-hover: var(--gray-300);
-  --fg-quarternary: var(--gray-400);
-  --fg-quarternary-hover: var(--gray-300);
+  --fg-quaternary: var(--gray-400);
+  --fg-quaternary-hover: var(--gray-300);
   --fg-quinary: var(--gray-500);
   --fg-quinary-hover: var(--gray-400);
   --fg-senary: var(--gray-600);

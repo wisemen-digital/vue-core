@@ -2,10 +2,20 @@ import type { AppTextFieldProps } from '@/components/input-field/text-field/text
 
 export interface AppNumberFieldProps extends Omit<AppTextFieldProps, 'type'> {
   /**
+   * The test id of the input.
+   * @default null
+   */
+  testId?: null | string
+  /**
    * Whether the controls are visible.
    * @default false
    */
   areControlsHidden?: boolean
+  /**
+   * The format options of the number input.
+   * @default null
+   */
+  formatOptions?: Intl.NumberFormatOptions | null
   /**
    * The maximum value of the number input.
    * @default null
@@ -22,26 +32,3 @@ export interface AppNumberFieldProps extends Omit<AppTextFieldProps, 'type'> {
    */
   step?: number
 }
-
-export const appNumberFieldPropsDefaultValues = {
-  id: null,
-  testId: null,
-  isDisabled: false,
-  isLoading: false,
-  isReadonly: false,
-  isRequired: false,
-  isSpellCheckEnabled: false,
-  isTouched: false,
-  areControlsHidden: false,
-  autoComplete: 'off',
-  errors: null,
-  hint: null,
-  iconLeft: null,
-  iconRight: null,
-  label: null,
-  max: null,
-  min: null,
-  placeholder: null,
-  step: 1,
-  styleConfig: null,
-} satisfies AppNumberFieldProps

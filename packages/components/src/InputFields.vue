@@ -135,6 +135,14 @@ const isTouched = ref<boolean>(false)
       :min="0"
       :max="99"
       :is-disabled="false"
+      :format-options="{
+        // style: 'currency',
+        // currency: 'EUR',
+        // currencyDisplay: 'code',
+        // currencySign: 'accounting',
+        style: 'unit',
+        unit: 'kilometer-per-hour',
+      }"
       label="Enter your age"
       class="w-48"
     />
@@ -175,8 +183,6 @@ const isTouched = ref<boolean>(false)
       label="Select a fruit"
       placeholder="Select a fruit"
       icon-left="translate01"
-      side="right"
-      align="start"
       hint="You can only select 1 fruit."
     >
       <template #group-label="{ label }">

@@ -1,7 +1,7 @@
 {
   "name": "@wisemen/vue-core",
   "type": "module",
-  "version": "0.1.6",
+  "version": "1.0.0-alpha.2",
   "license": "MIT",
   "sideEffects": false,
   "exports": {
@@ -20,6 +20,7 @@
     "./dist"
   ],
   "scripts": {
+    "prerelease": "pnpm version prerelease --preid=alpha",
     "playground": "vite --config vite.playground.config.ts dev",
     "dev": "vite build --watch",
     "build": "pnpm type-check && pnpm build-only && npm pack && cpx web-types.json dist/web-types.json",

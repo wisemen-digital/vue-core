@@ -20,8 +20,8 @@ import { base64Decode, base64Encode } from '@/utils/base64.util'
 const DEFAULT_PAGINATION_OPTIONS: PaginationOptions<unknown> = {
   filters: {} as PaginationFilters<unknown>,
   pagination: {
-    page: 0,
-    perPage: 20,
+    limit: 20,
+    offset: 0,
   },
   search: undefined,
   sort: undefined,
@@ -29,11 +29,12 @@ const DEFAULT_PAGINATION_OPTIONS: PaginationOptions<unknown> = {
 } as const
 
 export function usePagination<TFilters>({
-  id,
   defaultPaginationOptions = null,
-  disableRouteQuery = false,
+  enableRouteQuery,
 }: UsePaginationOptions<TFilters>): UsePaginationReturnType<TFilters> {
-  const routeQuery = disableRouteQuery ? null : useRouteQuery(id)
+  const QUERY_KEY = 'q'
+
+  const routeQuery = enableRouteQuery ? useRouteQuery(QUERY_KEY) : null
   const paginationOptions = shallowRef<PaginationOptions<TFilters>>(getDefaultPaginationOptions())
 
   function mergePaginationOptions(
@@ -61,7 +62,7 @@ export function usePagination<TFilters>({
 
   function getRouteQueryPaginationOptions(): PaginationOptions<TFilters> | null {
     const searchParams = new URLSearchParams(window.location.search)
-    const paginationOptionsQuery = searchParams.get(id)
+    const paginationOptionsQuery = searchParams.get(QUERY_KEY)
 
     if (paginationOptionsQuery === null) {
       return null
@@ -109,7 +110,7 @@ export function usePagination<TFilters>({
       filters: filtersWithoutUndefinedValues,
       pagination: {
         ...paginationOptions.value.pagination,
-        page: 0,
+        offset: 0,
       },
     }
   }
@@ -119,7 +120,7 @@ export function usePagination<TFilters>({
       ...paginationOptions.value,
       pagination: {
         ...paginationOptions.value.pagination,
-        page: 0,
+        offset: 0,
       },
       search: value.trim().length > 0 ? value : undefined,
     }
@@ -138,13 +139,13 @@ export function usePagination<TFilters>({
       filters: {} as PaginationFilters<TFilters>,
       pagination: {
         ...paginationOptions.value.pagination,
-        page: 0,
+        offset: 0,
       },
     }
   }
 
   watch(paginationOptions, (newPaginationOptions) => {
-    if (disableRouteQuery) {
+    if (!enableRouteQuery) {
       return
     }
 

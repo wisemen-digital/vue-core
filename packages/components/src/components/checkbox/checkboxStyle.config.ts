@@ -175,6 +175,6 @@ defineStyleConfig({
 
     '--checkbox-size-default': '20px',
   },
-  selector: ':root',
+  selector: '.checkbox-variant-default',
   component: 'checkbox',
 })

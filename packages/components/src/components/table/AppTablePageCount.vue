@@ -9,19 +9,19 @@ const tableContext = injectTableContext()
 
 const { n, t } = useI18n()
 
-const page = computed<number>(() => tableContext.pagination.value.paginationOptions.value.pagination.page)
-const perPage = computed<number>(() => tableContext.pagination.value.paginationOptions.value.pagination.perPage)
+const offset = computed<number>(() => tableContext.pagination.value.paginationOptions.value.pagination.offset)
+const limit = computed<number>(() => tableContext.pagination.value.paginationOptions.value.pagination.limit)
 
 const totalItems = computed<number>(() => (
-  tableContext.data.value?.total ?? 0
+  tableContext.data.value?.meta.total ?? 0
 ))
 
-const startIndex = computed<number>(() => (page.value * perPage.value) + 1)
+const startIndex = computed<number>(() => (offset.value * limit.value) + 1)
 
 const endIndex = computed<number>(() => (
   Math.min(
-    (page.value * perPage.value) + perPage.value,
-    tableContext.data.value?.total ?? 0,
+    (offset.value * limit.value) + limit.value,
+    tableContext.data.value?.meta.total ?? 0,
   )
 ))
 </script>

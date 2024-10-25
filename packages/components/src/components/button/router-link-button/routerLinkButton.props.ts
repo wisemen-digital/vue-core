@@ -7,6 +7,10 @@ import type { StyleConfig } from '@/types/style.type'
 
 export interface AppRouterLinkButtonProps {
   /**
+   * The test id of the button.
+   */
+  dataTestId?: null | string
+  /**
    * Whether the button is in a loading state.
    * @default false
    */

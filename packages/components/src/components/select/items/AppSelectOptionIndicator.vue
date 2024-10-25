@@ -19,7 +19,7 @@ const optionIndicatorClasses = computed<string>(() => style.optionIndicator())
   <template v-if="selectContext.isMultiple.value">
     <div
       v-if="!selectOptionContext.isSelected.value"
-      class="rounded border border-solid border-primary "
+      class="rounded border border-solid border-primary"
     >
       <slot>
         <AppIcon
@@ -36,7 +36,7 @@ const optionIndicatorClasses = computed<string>(() => style.optionIndicator())
           <AppIcon
             :class="optionIndicatorClasses"
             icon="check"
-            class="text-primary-on-brand"
+            class="scale-90 text-primary-on-brand"
           />
         </slot>
       </div>

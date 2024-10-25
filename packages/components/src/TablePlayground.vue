@@ -20,6 +20,7 @@ interface ExampleDataType {
 
 const columns: TableColumn<ExampleDataType>[] = [
   {
+    testId: 'ksjdqksjmsjlkdsmjqsmldsqslqkjdlsjqmd',
     isSortable: true,
     cell: (row) => h(TablePlaygroundCheckboxCell, {
       label: row.firstName,
@@ -52,18 +53,18 @@ const columns: TableColumn<ExampleDataType>[] = [
     cell: (row) => h(AppTableCell, () => row.isMarried ? 'Married' : 'Single'),
     headerLabel: 'Married',
     key: 'isMarried',
-    width: '150px',
+    width: '500px',
   },
   {
     cell: (row) => h(AppTableCell, () => row.isWorking ? 'Working' : 'Not working'),
     headerLabel: 'Working',
     key: 'isWorking',
+    width: '500px',
   },
   {
     cell: (row) => h(AppTableCell, () => row.canFly ? 'Can fly' : 'Cannot fly'),
     headerLabel: 'Can fly',
     key: 'canFly',
-    width: '100px',
   },
 ]
 
@@ -79,8 +80,7 @@ const data: ExampleDataType[] = [
 ]
 
 const pagination = usePagination({
-  id: 'example',
-  disableRouteQuery: true,
+  enableRouteQuery: false,
 })
 
 const isLoading = ref<boolean>(true)
@@ -99,7 +99,11 @@ setTimeout(() => {
       :is-first-column-sticky="true"
       :is-last-column-sticky="true"
       :data=" {
-        total: 200,
+        meta: {
+          total: 200,
+          limit: 20,
+          offset: 0,
+        },
         data,
       }"
       :expanded-row-content="(row) => h('div', {

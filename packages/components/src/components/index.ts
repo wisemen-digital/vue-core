@@ -1,6 +1,9 @@
+// Autocomplete
+export { default as AppAutocomplete } from '@/components/autocomplete/AppAutocomplete.vue'
+export type { AppAutocompleteProps } from '@/components/autocomplete/autocomplete.props'
+
 // Breadcrumbs
 export { default as AppBreadcrumbs } from '@/components/breadcrumbs/AppBreadcrumbs.vue'
-export type { BreadcrumbItem } from '@/types/breadcrumb.type'
 
 // Button
 export { default as AppButton } from '@/components/button/button/AppButton.vue'
@@ -36,8 +39,17 @@ export { default as AppDialogDescription } from '@/components/dialog/AppDialogDe
 export { default as AppDialogTitle } from '@/components/dialog/AppDialogTitle.vue'
 export type { AppDialogProps } from '@/components/dialog/dialog.props'
 
+// Drawer
+export { default as AppDrawer } from '@/components/drawer/AppDrawer.vue'
+export { default as AppDrawerCloseButton } from '@/components/drawer/AppDrawerCloseButton.vue'
+export { default as AppDrawerContainer } from '@/components/drawer/AppDrawerContainer.vue'
+export { default as AppDrawerDescription } from '@/components/drawer/AppDrawerDescription.vue'
+export { default as AppDrawerTitle } from '@/components/drawer/AppDrawerTitle.vue'
+export type { AppDrawerProps } from '@/components/drawer/drawer.props'
+
 // Dropdown Menu
 export { default as AppDropdownMenu } from '@/components/dropdown-menu/AppDropdownMenu.vue'
+export { default as AppDropdownMenuTrigger } from '@/components/dropdown-menu/AppDropdownMenuTrigger.vue'
 export type { AppDropdownMenuProps } from '@/components/dropdown-menu/dropdownMenu.props'
 export { default as AppDropdownMenuGroup } from '@/components/dropdown-menu/items/AppDropdownMenuGroup.vue'
 export { default as AppDropdownMenuOption } from '@/components/dropdown-menu/items/AppDropdownMenuOption.vue'
@@ -64,6 +76,11 @@ export { default as AppInputFieldHint } from '@/components/input-field-hint/AppI
 
 // Input field label
 export { default as AppInputFieldLabel } from '@/components/input-field-label/AppInputFieldLabel.vue'
+
+// Keyboard
+export { default as AppKeyboardKey } from '@/components/keyboard/AppKeyboardKey.vue'
+export { default as AppKeyboardShortcut } from '@/components/keyboard/AppKeyboardShortcut.vue'
+export { default as AppKeyboardShortcutProvider } from '@/components/keyboard/AppKeyboardShortcutProvider.vue'
 
 // Popover
 export { default as AppPopover } from '@/components/popover/AppPopover.vue'
@@ -111,6 +128,9 @@ export { default as AppTabs } from '@/components/tabs/AppTabs.vue'
 // Tag
 export { default as AppTag } from '@/components/tag/AppTag.vue'
 export { default as AppTagRemoveButton } from '@/components/tag/AppTagRemoveButton.vue'
+
+// Theme Provider
+export { default as AppThemeProvider } from '@/components/theme-provider/AppThemeProvider.vue'
 
 // Toast
 export { default as AppToastContainer } from '@/components/toast/AppToastContainer.vue'

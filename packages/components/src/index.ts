@@ -7,6 +7,7 @@ import '@/components/icon/iconStyle.config'
 import '@/components/input-field-error/inputFieldErrorStyle.config'
 import '@/components/input-field-hint/inputFieldHintStyle.config'
 import '@/components/input-field-label/inputFieldLabelStyle.config'
+import '@/components/input-field/text-area/textareaStyle.config'
 import '@/components/input-field/text-field/textFieldStyle.config'
 import '@/components/popover/popoverStyle.config'
 import '@/components/select/selectStyle.config'
@@ -20,6 +21,9 @@ import '@/styles/index.scss'
 export * from '@/components'
 export * from '@/composables'
 export * from '@/types'
+
+// Styling
+export { defineStyleConfig } from '@/styling/defineStyleConfig'
 
 // Icons
 export type { Icon, Icons } from '@/icons/icons'
