@@ -65,6 +65,8 @@ const arrowClasses = computed<string>(() => style.arrow())
           :side="props.side"
           :side-offset="props.offsetInPx"
           :align="props.align"
+          :hide-when-detached="true"
+          sticky="always"
           class="tooltip-variant-default"
           position="popper"
         >

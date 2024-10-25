@@ -56,6 +56,7 @@ const arrowClasses = computed<string>(() => style.arrow())
         :side="props.side"
         :data-test-id="props.testId"
         :side-offset="props.offsetInPx"
+        :hide-when-detached="true"
         :class="[
           {
             'w-[--reka-popover-trigger-width]': props.popoverWidth === 'anchor-width',
@@ -67,6 +68,7 @@ const arrowClasses = computed<string>(() => style.arrow())
         :style="props.styleConfig"
         :collision-boundary="props.containerElement"
         :collision-padding="props.collisionPaddingInPx"
+        sticky="always"
         position="popper"
         class="popover-variant-default"
       >
