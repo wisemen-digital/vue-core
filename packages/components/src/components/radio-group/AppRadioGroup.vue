@@ -87,11 +87,13 @@ provideRadioGroupContext({
         :items="items"
         name="items"
       >
-        <div
-          v-for="item of props.items"
-          :key="item.label"
-        >
-          <AppRadioGroupItemDefault :item="item" />
+        <div class="flex flex-col gap-y-1">
+          <div
+            v-for="item of props.items"
+            :key="item.label"
+          >
+            <AppRadioGroupItemDefault :item="item" />
+          </div>
         </div>
       </slot>
     </AppRadioGroupRoot>
