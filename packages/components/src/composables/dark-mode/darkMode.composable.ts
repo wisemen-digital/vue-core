@@ -1,73 +1,66 @@
 import { useLocalStorage } from '@vueuse/core'
 import {
   computed,
+  type ComputedRef,
   onMounted,
-  type Ref,
+  onUnmounted,
+  watch,
 } from 'vue'
 
 interface UseDarkModeReturnType {
-  isEnabled: Ref<boolean>
-  disableDarkMode: () => void
-  enableDarkMode: () => void
-}
-
-let observer: MutationObserver | null = null
-
-function documentHasDarkModeClass(): boolean {
-  return document.documentElement.classList.contains('dark')
+  isEnabled: ComputedRef<boolean>
+  disable: () => void
+  enable: () => void
 }
 
 export function useDarkMode(): UseDarkModeReturnType {
-  const darkModeValue = useLocalStorage<boolean>('darkMode', false)
+  const isDarkMode = useLocalStorage('isDarkMode', false)
 
-  if (observer === null) {
-    observer = createObserver()
-
-    observer.observe(document.documentElement, {
-      attributeFilter: [
-        'class',
-      ],
-      attributes: true,
-    })
-  }
-
-  function createObserver(): MutationObserver {
-    return new MutationObserver(updateDarkMode)
-  }
-
-  function updateDarkMode(): void {
-    const isDarkMode = documentHasDarkModeClass()
-
-    darkModeValue.value = isDarkMode
+  function updateDarkModeState(): void {
+    isDarkMode.value = document.documentElement.classList.contains('dark')
   }
 
   function enableDarkMode(): void {
-    if (documentHasDarkModeClass()) {
-      return
-    }
-
     document.documentElement.classList.add('dark')
-    darkModeValue.value = true
+    isDarkMode.value = true
   }
 
   function disableDarkMode(): void {
-    if (!documentHasDarkModeClass()) {
-      return
-    }
-
     document.documentElement.classList.remove('dark')
-    darkModeValue.value = false
+    isDarkMode.value = false
   }
 
+  const observer = new MutationObserver(updateDarkModeState)
+
   onMounted(() => {
-    if (darkModeValue.value) {
-      document.documentElement.classList.add('dark')
+    if (isDarkMode.value) {
+      enableDarkMode()
+    }
+    else {
+      disableDarkMode()
+    }
+
+    observer.observe(document.documentElement, { attributeFilter: [
+      'class',
+    ], attributes: true })
+  })
+
+  onUnmounted(() => {
+    observer.disconnect()
+  })
+
+  watch(isDarkMode, (newVal) => {
+    if (newVal) {
+      enableDarkMode()
+    }
+    else {
+      disableDarkMode()
     }
   })
 
   return {
-    isEnabled: computed<boolean>(() => darkModeValue.value),
-    disableDarkMode,
-    enableDarkMode,
+    isEnabled: computed<boolean>(() => isDarkMode.value),
+    disable: disableDarkMode,
+    enable: enableDarkMode,
   }
 }
