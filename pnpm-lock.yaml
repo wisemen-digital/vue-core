@@ -9,7 +9,7 @@ importers:
   .:
     devDependencies:
       rimraf:
-        specifier: ^5.0.7
+        specifier: 5.0.7
         version: 5.0.7
       turbo:
         specifier: ^2.0.1
