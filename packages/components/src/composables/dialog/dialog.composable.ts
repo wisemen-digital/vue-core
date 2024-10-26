@@ -73,7 +73,7 @@ export function useDialog<TComponent extends Component>(
         reactive<Attrs<TComponent>>({
           ...attrs,
           triggerId,
-          animateFromTrigger: options.animateFromTrigger ?? false,
+          shouldAnimateFromTrigger: options.shouldAnimateFromTrigger ?? false,
           onClose: () => {
             closeDialog()
           },

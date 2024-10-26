@@ -41,7 +41,7 @@ export interface UseDialogOptions<TComponent extends Component> {
    * Whether the dialog should animate from the trigger
    * @default false
    */
-  animateFromTrigger?: boolean
+  shouldAnimateFromTrigger?: boolean
   /**
    * The component to render. Must be a component of which the root is `AppDialog`
    */

@@ -5,8 +5,7 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| animateFromTrigger | `boolean` | Whether to animate the dialog with the View Transitions API | `false` |
-| isOpen | `boolean` |  |  |
+| shouldAnimateFromTrigger | `boolean` | Whether to animate the dialog with the View Transitions API | `false` |
 | shouldPreventClickOutside | `boolean` | Prevent clicks outside the dialog content to close the dialog | `false` |
 | styleConfig | `Partial<DialogStyleConfig> \| null` |  | `null` |
 | testId | `string` | The test id of the dialog. |  |

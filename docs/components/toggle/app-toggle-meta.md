@@ -6,7 +6,6 @@
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
 | isDisabled | `boolean` | Whether the toggle is disabled. | `false` |
-| modelValue* | `boolean` |  |  |
 
 
 ## Slots

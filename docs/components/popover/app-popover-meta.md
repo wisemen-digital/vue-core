@@ -9,7 +9,6 @@
 | collisionPaddingInPx | `number` | The padding of the popover collision. | `10` |
 | containerElement | `HTMLElement \| null` | The element to render the tooltip in. By default this is the viewport | `null` |
 | isArrowHidden | `boolean` | When true, the arrow will be hidden. | `false` |
-| isOpen | `boolean` |  |  |
 | offsetInPx | `number` | The offset of the popover content. | `10` |
 | popoverWidth | `PopoverWidth \| null` | The width of the popover. | `null` |
 | side | `"left" \| "right" \| "bottom" \| "top"` | The side of the trigger the tooltip should be on. | `"bottom"` |

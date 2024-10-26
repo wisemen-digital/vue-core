@@ -1,28 +1,73 @@
 import { useLocalStorage } from '@vueuse/core'
 import {
+  computed,
+  onMounted,
   type Ref,
-  watch,
 } from 'vue'
 
 interface UseDarkModeReturnType {
-  isDarkMode: Ref<boolean>
+  isEnabled: Ref<boolean>
+  disableDarkMode: () => void
+  enableDarkMode: () => void
+}
+
+let observer: MutationObserver | null = null
+
+function documentHasDarkModeClass(): boolean {
+  return document.documentElement.classList.contains('dark')
 }
 
 export function useDarkMode(): UseDarkModeReturnType {
-  const isDarkMode = useLocalStorage<boolean>('isDarkMode', false)
+  const darkModeValue = useLocalStorage<boolean>('darkMode', false)
 
-  watch(isDarkMode, (isDarkMode) => {
-    if (isDarkMode) {
+  if (observer === null) {
+    observer = createObserver()
+
+    observer.observe(document.documentElement, {
+      attributeFilter: [
+        'class',
+      ],
+      attributes: true,
+    })
+  }
+
+  function createObserver(): MutationObserver {
+    return new MutationObserver(updateDarkMode)
+  }
+
+  function updateDarkMode(): void {
+    const isDarkMode = documentHasDarkModeClass()
+
+    darkModeValue.value = isDarkMode
+  }
+
+  function enableDarkMode(): void {
+    if (documentHasDarkModeClass()) {
+      return
+    }
+
+    document.documentElement.classList.add('dark')
+    darkModeValue.value = true
+  }
+
+  function disableDarkMode(): void {
+    if (!documentHasDarkModeClass()) {
+      return
+    }
+
+    document.documentElement.classList.remove('dark')
+    darkModeValue.value = false
+  }
+
+  onMounted(() => {
+    if (darkModeValue.value) {
       document.documentElement.classList.add('dark')
     }
-    else {
-      document.documentElement.classList.remove('dark')
-    }
-  }, {
-    immediate: true,
   })
 
   return {
-    isDarkMode,
+    isEnabled: computed<boolean>(() => darkModeValue.value),
+    disableDarkMode,
+    enableDarkMode,
   }
 }

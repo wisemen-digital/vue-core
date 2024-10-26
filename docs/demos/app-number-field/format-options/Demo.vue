@@ -2,8 +2,8 @@
 import { AppNumberField } from '@wisemen/vue-core'
 import { ref } from 'vue'
 
-const currencyValue = ref<null | number>(null)
-const percentValue = ref<null | number>(null)
+const currencyValue = ref<null | number>(0)
+const percentValue = ref<null | number>(0)
 </script>
 
 <template>

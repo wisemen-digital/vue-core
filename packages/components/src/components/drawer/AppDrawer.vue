@@ -16,8 +16,8 @@ import type { AppDrawerProps } from '@/components/drawer/drawer.props'
 
 const props = withDefaults(defineProps<AppDrawerProps>(), {
   triggerId: null,
-  animateFromTrigger: false,
   shouldPreventClickOutside: false,
+  shouldShouldAnimateFromTrigger: false,
   styleConfig: null,
 })
 
@@ -33,8 +33,8 @@ const isActuallyOpen = ref<boolean>(false)
 
 const hasSupportForViewTransitionsApi = document.startViewTransition !== undefined
 
-if (props.animateFromTrigger && props.triggerId === null) {
-  throw new Error('[AppDrawer] The `triggerId` prop is required when using the `animateFromTrigger` prop')
+if (props.shouldAnimateFromTrigger && props.triggerId === null) {
+  throw new Error('[AppDrawer] The `triggerId` prop is required when using the `shouldAnimateFromTrigger` prop')
 }
 
 function getTriggerElement(): HTMLElement | null {
@@ -44,7 +44,7 @@ function getTriggerElement(): HTMLElement | null {
 }
 
 function getDrawerElement(): HTMLElement {
-  const drawerEl = document.querySelector('[role="drawer"]')
+  const drawerEl = document.querySelector('[role="dialog"]')
 
   if (drawerEl === null) {
     throw new Error('[AppDrawer] No drawer element found')
@@ -108,7 +108,7 @@ function animateOutWithViewTransitionsApi(): void {
 }
 
 function showDrawer(): void {
-  if (hasSupportForViewTransitionsApi && props.animateFromTrigger) {
+  if (hasSupportForViewTransitionsApi && props.shouldAnimateFromTrigger) {
     animateInWithViewTransitionsApi()
   }
   else {
@@ -131,7 +131,7 @@ function focusTriggerElement(): void {
 }
 
 function hideDrawer(): void {
-  if (hasSupportForViewTransitionsApi && props.animateFromTrigger) {
+  if (hasSupportForViewTransitionsApi && props.shouldAnimateFromTrigger) {
     animateOutWithViewTransitionsApi()
   }
   else {
@@ -140,7 +140,7 @@ function hideDrawer(): void {
 
   setTimeout(() => {
     focusTriggerElement()
-  }, props.animateFromTrigger ? 300 : 0)
+  }, props.shouldAnimateFromTrigger ? 300 : 0)
 }
 
 watch(isOpen, (isOpen) => {
@@ -176,7 +176,7 @@ watch(isActuallyOpen, () => {
         </Transition>
 
         <Component
-          :is="animateFromTrigger ? 'div' : Transition"
+          :is="shouldAnimateFromTrigger ? 'div' : Transition"
           enter-active-class="duration-300"
           enter-from-class="opacity-0 translate-x-full"
           leave-active-class="duration-300"
@@ -197,30 +197,87 @@ watch(isActuallyOpen, () => {
 </template>
 
 <style lang="scss">
-::view-transition-old(drawer) {
-  animation-duration: 100ms;
+@keyframes drawer-overlay-animate-in {
+  from {
+    opacity: 0;
+  }
 }
 
-::view-transition-new(drawer) {
-  animation-duration: 150ms;
+@keyframes drawer-overlay-animate-out {
+  to {
+    opacity: 0;
+  }
 }
 
+.custom-drawer-overlay {
+  &[data-state='open'] {
+    animation: drawer-overlay-animate-in 0.5s cubic-bezier(0.17, 0.67, 0.16, 0.99);
+  }
+
+  &[data-state='closed'] {
+    animation: drawer-overlay-animate-out 0.5s cubic-bezier(0.17, 0.67, 0.16, 0.99);
+  }
+}
+
+@keyframes drawer-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes drawer-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+::view-transition-old(drawer),
+::view-transition-new(drawer)
+::view-transition-old(drawer-leave),
+::view-transition-new(drawer-leave)
+{
+  height: 100%;
+  width: 100%;
+  object-fit: fill;
+  animation: none;
+}
+
+/* Open animation */
 ::view-transition-group(drawer) {
   animation-duration: 250ms;
   animation-timing-function: cubic-bezier(0.49, 0.5, 0, 1.07);
 }
 
-::view-transition-old(drawer-leave) {
-  animation-duration: 250ms;
-  animation-timing-function: ease;
+/* Button */
+::view-transition-old(drawer) {
+  animation: drawer-fade-out 100ms forwards;
 }
 
-::view-transition-new(drawer-leave) {
-  animation-duration: 250ms;
+/* Drawer */
+::view-transition-new(drawer) {
+  animation: drawer-fade-in 200ms forwards;
 }
 
+/* Close animation */
 ::view-transition-group(drawer-leave) {
   animation-duration: 250ms;
-  animation-timing-function: ease;
+  animation-timing-function: cubic-bezier(0.49, 0.5, 0, 1);
+}
+
+/* Button */
+::view-transition-new(drawer-leave) {
+  opacity: 0;
+  animation: drawer-fade-in 150ms 100ms forwards;
+}
+
+/* Drawer */
+::view-transition-old(drawer-leave) {
+  animation: drawer-fade-out 200ms 50ms forwards;
 }
 </style>

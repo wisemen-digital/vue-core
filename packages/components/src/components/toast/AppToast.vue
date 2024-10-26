@@ -2,6 +2,7 @@
 import { computed, toValue } from 'vue'
 
 import AppIcon from '@/components/icon/AppIcon.vue'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { toastStyle } from '@/components/toast/toast.style'
 import type { Icon } from '@/icons/icons'
 import type { Toast } from '@/types/toast.type'
@@ -15,6 +16,7 @@ const emit = defineEmits<{
   closeToast: []
 }>()
 
+const themeProviderContext = injectThemeProviderContext()
 const style = toastStyle()
 
 const containerClasses = computed<string>(() => style.container({
@@ -54,7 +56,7 @@ function onClose(): void {
 
 <template>
   <div
-    :class="containerClasses"
+    :class="[themeProviderContext.theme.value, containerClasses]"
     :data-test-id="props.toast.testId"
   >
     <div class="flex items-center gap-x-2 overflow-hidden">

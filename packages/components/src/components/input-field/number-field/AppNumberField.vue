@@ -69,6 +69,13 @@ const model = defineModel<null | number>({
   required: true,
 })
 
+const computedModel = computed<number | undefined>({
+  get: () => model.value ?? undefined,
+  set: (value: number | undefined) => {
+    model.value = value ?? null
+  },
+})
+
 const themeProviderContext = injectThemeProviderContext()
 const globalConfigContext = injectConfigContext()
 
@@ -199,8 +206,8 @@ function onBlur(): void {
     </slot>
 
     <NumberFieldRoot
-      v-model="model"
-      :default-value="model"
+      v-model="computedModel"
+      :default-value="computedModel"
       :locale="globalConfigContext.locale.value"
       :as-child="true"
       :disabled="props.isDisabled"

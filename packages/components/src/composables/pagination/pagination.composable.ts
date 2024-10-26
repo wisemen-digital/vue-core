@@ -29,12 +29,12 @@ const DEFAULT_PAGINATION_OPTIONS: PaginationOptions<unknown> = {
 } as const
 
 export function usePagination<TFilters>({
+  isRouteQueryEnabled,
   defaultPaginationOptions = null,
-  enableRouteQuery,
 }: UsePaginationOptions<TFilters>): UsePaginationReturnType<TFilters> {
   const QUERY_KEY = 'q'
 
-  const routeQuery = enableRouteQuery ? useRouteQuery(QUERY_KEY) : null
+  const routeQuery = isRouteQueryEnabled ? useRouteQuery(QUERY_KEY) : null
   const paginationOptions = shallowRef<PaginationOptions<TFilters>>(getDefaultPaginationOptions())
 
   function mergePaginationOptions(
@@ -145,7 +145,7 @@ export function usePagination<TFilters>({
   }
 
   watch(paginationOptions, (newPaginationOptions) => {
-    if (!enableRouteQuery) {
+    if (!isRouteQueryEnabled) {
       return
     }
 

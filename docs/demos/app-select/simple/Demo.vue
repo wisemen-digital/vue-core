@@ -51,9 +51,6 @@ const items: SelectItem<string>[] = [
     v-model="value"
     :items="items"
     :display-fn="(value) => value"
-    :style-config="{
-      '--select-label-font-size-default': '20px',
-    }"
     label="Select a fruit"
     placeholder="Select a fruit"
     class="w-72"

@@ -32,111 +32,68 @@ const query = [
 
 const docs = [
   {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/button/app-button',
-        text: 'AppButton',
-      },
-    ],
-    text: 'Button',
+    link: '/components/button/app-button',
+    text: 'AppButton',
   },
   {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/checkbox/app-checkbox',
-        text: 'AppCheckbox',
-      },
-    ],
-    text: 'Checkbox',
+    link: '/components/checkbox/app-checkbox',
+    text: 'AppCheckbox',
   },
   {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/dropdown-menu/app-dropdown-menu',
-        text: 'AppDropdownMenu',
-      },
-    ],
-    text: 'Dropdown Menu',
+    link: '/components/dialog/app-dialog',
+    text: 'AppDialog',
   },
   {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/input-field/app-text-field',
-        text: 'AppTextField',
-      },
-      {
-        link: '/components/input-field/app-number-field',
-        text: 'AppNumberField',
-      },
-      {
-        link: '/components/input-field/app-password-field',
-        text: 'AppPasswordField',
-      },
-      {
-        link: '/components/input-field/app-textarea',
-        text: 'AppTextarea',
-      },
-      {
-        link: '/components/input-field/app-phone-number-field',
-        text: 'AppPhoneNumberField',
-      },
-    ],
-    text: 'Input Field',
+    link: '/components/drawer/app-drawer',
+    text: 'AppDrawer',
   },
   {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/select/app-select',
-        text: 'AppSelect',
-      },
-    ],
-    text: 'Select',
-  },
-
-  {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/switch/app-switch',
-        text: 'AppSwitch',
-      },
-    ],
-    text: 'Switch',
+    link: '/components/dropdown-menu/app-dropdown-menu',
+    text: 'AppDropdownMenu',
   },
   {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/radio-group/app-radio-group',
-        text: 'AppRadioGroup',
-      },
-    ],
-    text: 'Radio Group',
+    link: '/components/input-field/app-text-field',
+    text: 'AppTextField',
   },
   {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/table/app-table',
-        text: 'AppTable',
-      },
-    ],
-    text: 'Table',
+    link: '/components/input-field/app-number-field',
+    text: 'AppNumberField',
   },
   {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/toast/app-toast',
-        text: 'AppToast',
-      },
-    ],
-    text: 'Toast',
+    link: '/components/input-field/app-password-field',
+    text: 'AppPasswordField',
+  },
+  {
+    link: '/components/input-field/app-textarea',
+    text: 'AppTextarea',
+  },
+  {
+    link: '/components/input-field/app-phone-number-field',
+    text: 'AppPhoneNumberField',
+  },
+  {
+    link: '/components/select/app-select',
+    text: 'AppSelect',
+  },
+  {
+    link: '/components/switch/app-switch',
+    text: 'AppSwitch',
+  },
+  {
+    link: '/components/radio-group/app-radio-group',
+    text: 'AppRadioGroup',
+  },
+  {
+    link: '/components/table/app-table',
+    text: 'AppTable',
+  },
+  {
+    link: '/components/tabs/app-tabs',
+    text: 'AppTabs',
+  },
+  {
+    link: '/components/toast/app-toast',
+    text: 'AppToast',
   },
 ]
 

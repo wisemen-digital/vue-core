@@ -6,7 +6,7 @@
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
 | autoComplete | `"off" \| "on"` | The autocorrect property of the input. | `"off"` |
-| errors | `{ _errors: string[]; } \| null` | The errors associated with the input. | `null` |
+| errors | `FormFieldErrors` | The errors associated with the input. | `null` |
 | hint | `string \| null` | The hint text of the input. | `null` |
 | iconLeft | `keyof Icons \| null` | The left icon of the input. | `null` |
 | id | `string \| null` | The id of the input. | `null` |
@@ -17,7 +17,6 @@
 | isSpellCheckEnabled | `boolean` | Whether the input is spell check enabled. | `false` |
 | isTouched | `boolean` | Whether the input is touched. Used to determine if an error should be shown. |  |
 | label | `string \| null` | The label of the input. | `null` |
-| modelValue* | `string \| null` |  |  |
 | placeholder | `string \| null` | The placeholder text of the input. | `null` |
 | styleConfig | `Partial<TextFieldStyleConfig> \| null` |  |  |
 | testId | `string \| null` | The test id of the input. |  |

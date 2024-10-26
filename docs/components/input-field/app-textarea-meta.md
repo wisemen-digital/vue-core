@@ -5,7 +5,7 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| errors | `{ _errors: string[]; } \| null` | The errors associated with the input. | `null` |
+| errors | `FormFieldErrors` | The errors associated with the input. | `null` |
 | hint | `string \| null` | The hint text of the input. | `null` |
 | id | `string \| null` | The id of the input. | `null` |
 | isDisabled | `boolean` | Whether the input is disabled. | `false` |
@@ -14,7 +14,6 @@
 | isSpellCheckEnabled | `boolean` | Whether the input is spell check enabled. | `false` |
 | isTouched | `boolean` | Whether the input is touched. Used to determine if an error should be shown. | `false` |
 | label | `string \| null` | The label of the input. | `null` |
-| modelValue* | `string \| null` |  |  |
 | placeholder | `string \| null` | The placeholder text of the input. | `null` |
 | resize | `"none" \| "both" \| "auto-vertical" \| "horizontal" \| "vertical"` | Whether the textarea can be resized. | `"none"` |
 | styleConfig | `Partial<TextareaStyleConfig> \| null` |  | `null` |

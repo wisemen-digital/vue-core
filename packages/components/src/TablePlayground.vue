@@ -80,7 +80,7 @@ const data: ExampleDataType[] = [
 ]
 
 const pagination = usePagination({
-  enableRouteQuery: false,
+  isRouteQueryEnabled: false,
 })
 
 const isLoading = ref<boolean>(true)

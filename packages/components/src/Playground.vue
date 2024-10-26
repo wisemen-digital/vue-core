@@ -26,7 +26,6 @@ import Buttons from '@/Buttons.vue'
 import AppButton from '@/components/button/button/AppButton.vue'
 import AppCheckbox from '@/components/checkbox/AppCheckbox.vue'
 import ConfigProvider from '@/components/config-provider/AppConfigProvider.vue'
-import AppDarkModeToggle from '@/components/dark-mode-toggle/AppDarkModeToggle.vue'
 import AppDropdownMenu from '@/components/dropdown-menu/AppDropdownMenu.vue'
 import AppFilters from '@/components/filters/AppFilters.vue'
 import AppDateField from '@/components/input-field/date-field/AppDateField.vue'
@@ -37,6 +36,7 @@ import AppPopover from '@/components/popover/AppPopover.vue'
 import AppRadioGroup from '@/components/radio-group/AppRadioGroup.vue'
 import AppThemeProvider from '@/components/theme-provider/AppThemeProvider.vue'
 import AppToastContainer from '@/components/toast/AppToastContainer.vue'
+import { useDarkMode } from '@/composables/index'
 import Dialogs from '@/Dialogs.vue'
 import DropdownMenus from '@/DropdownMenus.vue'
 import InputFields from '@/InputFields.vue'
@@ -97,10 +97,20 @@ function onSearch(searchTerm: string): void {
     console.log(fakeAsyncOptions.value)
   }, 500)
 }
+
+const darkMode = useDarkMode()
 </script>
 
 <template>
   <AppThemeProvider theme="light">
+    <AppButton @click="darkMode.enableDarkMode">
+      dark
+    </AppButton>
+
+    <AppButton @click="darkMode.disableDarkMode">
+      light
+    </AppButton>
+
     <div class="p-24">
       <AppRadioGroup
         :model-value="null"
@@ -193,10 +203,6 @@ function onSearch(searchTerm: string): void {
       <ConfigProvider
         locale="en"
       >
-        <div class="flex justify-end p-8">
-          <AppDarkModeToggle />
-        </div>
-
         <div class="p-24">
           <AppDateField class="w-72" />
         </div>

@@ -1,8 +1,10 @@
+/* eslint-disable simple-import-sort/imports */
+import DefaultTheme from 'vitepress/theme'
 import '@wisemen/vue-core/style.css'
 import './index.scss'
+import './override.css'
 
 import ComponentPreview from '@docs/.vitepress/components/ComponentPreview.vue'
-import DefaultTheme from 'vitepress/theme'
 import { createI18n } from 'vue-i18n'
 
 export const i18nPlugin = createI18n({

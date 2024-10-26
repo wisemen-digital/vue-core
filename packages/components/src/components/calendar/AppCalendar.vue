@@ -106,7 +106,7 @@ function onSelectYear(): void {
   }, 0)
 }
 
-function pagingFunc(date: DateValue, sign: -1 | 1): DateValue {
+function pagingFunc(date: any, sign: -1 | 1): any {
   if (sign === -1) {
     return date.subtract({ years: 1 })
   }
@@ -152,7 +152,7 @@ watch(placeholderYear, () => {
           <div class="flex gap-x-1.5">
             <CalendarPrev
               :as-child="true"
-              :prev-page="(date: DateValue) => pagingFunc(date, -1)"
+              :prev-page="(date) => pagingFunc(date, -1)"
             >
               <AppIconButton
                 variant="secondary"
@@ -214,7 +214,7 @@ watch(placeholderYear, () => {
 
             <CalendarNext
               :as-child="true"
-              :next-page="(date: DateValue) => pagingFunc(date, 1)"
+              :next-page="(date) => pagingFunc(date, 1)"
             >
               <AppIconButton
                 variant="secondary"

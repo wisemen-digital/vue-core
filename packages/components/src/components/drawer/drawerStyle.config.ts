@@ -13,7 +13,7 @@ defineStyleConfig({
     '--drawer-bg-color-default': 'var(--bg-primary)',
     '--drawer-border-color-default': 'var(--border-secondary)',
     '--drawer-border-radius-default': 'var(--radius-lg)',
-    '--drawer-padding-default': 'var(--spacing-lg)',
+    '--drawer-padding-default': 'var(--spacing-md)',
     '--drawer-shadow-default': 'var(--shadow-lg)',
   },
   selector: '.drawer-variant-default',

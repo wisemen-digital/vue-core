@@ -14,7 +14,7 @@ export interface AppDrawerProps {
    * Whether to animate the drawer with the View Transitions API
    * @default false
    */
-  animateFromTrigger?: boolean
+  shouldAnimateFromTrigger?: boolean
   /**
    * Prevent clicks outside the drawer content to close the drawer
    * @default false

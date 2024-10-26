@@ -5,7 +5,7 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| errors | `{ _errors: string[]; } \| null` | The errors associated with the checkbox. | `null` |
+| errors | `FormFieldErrors` | The errors associated with the checkbox. | `null` |
 | hint | `string \| null` | The hint text of the checkbox. | `null` |
 | iconChecked | `keyof Icons \| null` | The icon to display in the indicator when the switch is checked. | `null` |
 | iconUnchecked | `keyof Icons \| null` | The icon to display in the indicator when the switch is not checked. | `null` |
@@ -15,7 +15,6 @@
 | isRequired | `boolean` | Whether the checkbox is required. | `false` |
 | isTouched | `boolean` | Whether the input is touched. Used to determine if an error should be shown. | `false` |
 | label | `string \| null` | The label of the checkbox | `null` |
-| modelValue* | `boolean` |  |  |
 | size | `"default" \| "sm"` | The size of the switch. | `"default"` |
 | styleConfig | `Partial<SwitchStyleConfig> \| null` | The style config of the switch. | `null` |
 | testId | `string \| null` | The test id of the input. | `null` |

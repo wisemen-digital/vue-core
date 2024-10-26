@@ -37,6 +37,7 @@ const placeholder = ref<DateValue>(today(getLocalTimeZone()))
       align="start"
     >
       <AppPopoverAnchor>
+        <!-- @vue-expect-error TODO: fix this -->
         <DateFieldRoot
           v-slot="{ segments }"
           v-model:placeholder="placeholder"

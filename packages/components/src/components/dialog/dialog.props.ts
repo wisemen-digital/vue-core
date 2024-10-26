@@ -14,7 +14,7 @@ export interface AppDialogProps {
    * Whether to animate the dialog with the View Transitions API
    * @default false
    */
-  animateFromTrigger?: boolean
+  shouldAnimateFromTrigger?: boolean
   /**
    * Prevent clicks outside the dialog content to close the dialog
    * @default false

@@ -108,14 +108,14 @@ export interface PaginatedData<TSchema> {
 
 export interface UsePaginationOptions<TFilters> {
   /**
+   * When enabled, the pagination state will be stored in the route query.
+   */
+  isRouteQueryEnabled: boolean
+  /**
    * If not provided, the default options will be used.
    * @default null
    */
   defaultPaginationOptions?: MaybeRefOrGetter<DeepPartial<PaginationOptions<TFilters>>> | null
-  /**
-   * When enabled, the pagination state will be stored in the route query.
-   */
-  enableRouteQuery: boolean
 }
 
 export interface UsePaginationReturnType<TFilters> {

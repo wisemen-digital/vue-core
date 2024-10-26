@@ -4,12 +4,12 @@ import AppDialogContainer from '@/components/dialog/AppDialogContainer.vue'
 import { useDialog } from '@/composables/dialog/dialog.composable'
 
 const exampleDialog = useDialog({
-  animateFromTrigger: false,
+  shouldAnimateFromTrigger: false,
   component: () => import('@/ExampleDialog.vue'),
 })
 
 const exampleDialog2 = useDialog({
-  animateFromTrigger: true,
+  shouldAnimateFromTrigger: true,
   component: () => import('@/ExampleDialog.vue'),
 })
 </script>

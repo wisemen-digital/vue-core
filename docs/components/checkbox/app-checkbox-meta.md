@@ -5,7 +5,7 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| errors | `{ _errors: string[]; } \| null` | The errors associated with the checkbox. | `null` |
+| errors | `FormFieldErrors` | The errors associated with the checkbox. | `null` |
 | hint | `string \| null` | The hint text of the checkbox. | `null` |
 | id | `string \| null` | The id of the checkbox. | `null` |
 | isDisabled | `boolean` | Whether the checkbox is disabled. | `false` |
@@ -14,7 +14,6 @@
 | isRequired | `boolean` | Whether the checkbox is required. | `false` |
 | isTouched | `boolean` | Whether the input is touched. Used to determine if an error should be shown. | `false` |
 | label | `string \| null` | The label of the checkbox | `null` |
-| modelValue* | `boolean` |  |  |
 | styleConfig | `Partial<CheckboxStyleConfig> \| null` |  | `null` |
 | testId | `string \| null` | The test id of the input. | `null` |
 

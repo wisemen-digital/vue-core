@@ -64,11 +64,10 @@ const columns: TableColumn<ExampleData>[] = [
 ]
 
 const pagination = usePagination({
-  id: 'example',
-  disableRouteQuery: true,
+  isRouteQueryEnabled: false,
   defaultPaginationOptions: {
     pagination: {
-      perPage: 10,
+      limit: 10,
     },
   },
 })
@@ -162,9 +161,9 @@ const exampleData: ExampleData[] = [
 ]
 
 const currentPageData = computed<ExampleData[]>(() => {
-  const { page, perPage } = pagination.paginationOptions.value.pagination
+  const { offset, limit } = pagination.paginationOptions.value.pagination
 
-  return exampleData.slice(page * perPage, (page + 1) * perPage)
+  return exampleData.slice(offset * limit, (offset + 1) * limit)
 })
 </script>
 
@@ -173,7 +172,11 @@ const currentPageData = computed<ExampleData[]>(() => {
     :columns="columns"
     :data="{
       data: currentPageData,
-      total: exampleData.length,
+      meta: {
+        total: exampleData.length,
+        limit: 10,
+        offset: 0,
+      },
     }"
     :is-loading="isLoading"
     :pagination="pagination"

@@ -1,16 +1,4 @@
 export const components = {
-  accordion: [
-    'AppAccordion',
-  ],
-  address: [
-    'FormAddressAutocomplete',
-  ],
-  avatar: [
-    'AppAvatar',
-  ],
-  badge: [
-    'AppBadge',
-  ],
   breadcrumbs: [
     'AppBreadcrumbs',
   ],
@@ -18,133 +6,44 @@ export const components = {
     'AppButton',
     'AppIconButton',
     'AppRouterLinkButton',
-    'AppUnstyledButton',
-  ],
-  calendar: [
-    'AppCalendar',
-    'AppRangeCalendar',
   ],
   checkbox: [
     'AppCheckbox',
   ],
-  combobox: [
-    'AppCombobox',
-    'AppMultiCombobox',
-    'AppTagsCombobox',
-    'FormCombobox',
-    'FormMultiCombobox',
-    'FormTagsCombobox',
-  ],
-  container: [
-    'AppContainer',
-  ],
-  date: [
-    'AppDatePicker',
-    'FormDatePicker',
-    'AppWeekPicker',
-    'FormWeekPicker',
-    'AppMonthPicker',
-    'FormMonthPicker',
-    'AppTimeInput',
-    'FormTimeInput',
-  ],
-  dateRange: [
-    'AppDateRangePicker',
-    'FormDateRangePicker',
-  ],
   dialog: [
     'AppDialog',
+  ],
+  drawer: [
+    'AppDrawer',
   ],
   dropdownMenu: [
     'AppDropdownMenu',
   ],
-  editable: [
-    'AppEditable',
-  ],
-  formElement: [
-    'FormElement',
-  ],
-  formError: [
-    'FormError',
-  ],
-  formGroup: [
-    'FormGroup',
-  ],
-  formLabel: [
-    'FormLabel',
-  ],
-  icon: [
-    'AppIcon',
-  ],
-  input: [
-    'AppInput',
-    'AppNumberInput',
-    'FormInput',
-    'FormNumberInput',
-    'FormPasswordInput',
-  ],
-  keyboard: [
-    'AppKeyboardKey',
-    'AppKeyboardShortcut',
-    'AppKeyboardShortcutProvider',
-  ],
-  loader: [
-    'AppLoader',
-  ],
   textField: [
     'AppPasswordField',
     'AppTextField',
+    'AppTextarea',
+    'AppNumberField',
     'AppPhoneNumberField',
   ],
   popover: [
     'AppPopover',
-  ],
-  progressBar: [
-    'AppProgressBar',
   ],
   radioGroup: [
     'AppRadioGroup',
   ],
   select: [
     'AppSelect',
-    'AppMultiSelect',
-    'FormSelect',
-    'FormMultiSelect',
-  ],
-  sidebarNav: [
-    'AppSidebarNavigation',
-  ],
-  skeletonLoader: [
-    'AppPageSkeletonLoader',
-    'AppSkeletonLoaderButton',
-    'AppSkeletonLoaderRow',
-    'AppSkeletonLoaderRows',
-  ],
-  stepper: [
-    'AppStepper',
   ],
   switch: [
     'AppSwitch',
   ],
   table: [
     'AppTable',
-    'AppTableSkeletonLoader',
-    'AppTableFiltersPopover',
   ],
   tabs: [
     'AppTabs',
     'AppRouteTabs',
-  ],
-  tagsInput: [
-    'AppTagsInput',
-    'FormTagsInput',
-  ],
-  text: [
-    'AppText',
-  ],
-  textarea: [
-    'AppTextarea',
-    'FormTextarea',
   ],
   toast: [
     'AppToast',
@@ -154,8 +53,5 @@ export const components = {
   ],
   tooltip: [
     'AppTooltip',
-  ],
-  transitions: [
-    'AppCollapseTransition',
   ],
 }

@@ -16,7 +16,7 @@ import type { AppDialogProps } from '@/components/dialog/dialog.props'
 
 const props = withDefaults(defineProps<AppDialogProps>(), {
   triggerId: null,
-  animateFromTrigger: false,
+  shouldAnimateFromTrigger: false,
   shouldPreventClickOutside: false,
   styleConfig: null,
 })
@@ -33,7 +33,7 @@ const isActuallyOpen = ref<boolean>(false)
 
 const hasSupportForViewTransitionsApi = document.startViewTransition !== undefined
 
-if (props.animateFromTrigger && props.triggerId === null) {
+if (props.shouldAnimateFromTrigger && props.triggerId === null) {
   throw new Error('[AppDialog] The `triggerId` prop is required when using the `animateFromTrigger` prop')
 }
 
@@ -108,7 +108,7 @@ function animateOutWithViewTransitionsApi(): void {
 }
 
 function showDialog(): void {
-  if (hasSupportForViewTransitionsApi && props.animateFromTrigger) {
+  if (hasSupportForViewTransitionsApi && props.shouldAnimateFromTrigger) {
     animateInWithViewTransitionsApi()
   }
   else {
@@ -131,7 +131,7 @@ function focusTriggerElement(): void {
 }
 
 function hideDialog(): void {
-  if (hasSupportForViewTransitionsApi && props.animateFromTrigger) {
+  if (hasSupportForViewTransitionsApi && props.shouldAnimateFromTrigger) {
     animateOutWithViewTransitionsApi()
   }
   else {
@@ -140,7 +140,7 @@ function hideDialog(): void {
 
   setTimeout(() => {
     focusTriggerElement()
-  }, props.animateFromTrigger ? 200 : 0)
+  }, props.shouldAnimateFromTrigger ? 200 : 0)
 }
 
 watch(isOpen, (isOpen) => {
@@ -176,7 +176,7 @@ watch(isActuallyOpen, () => {
         </Transition>
 
         <Component
-          :is="animateFromTrigger ? 'div' : Transition"
+          :is="props.shouldAnimateFromTrigger ? 'div' : Transition"
           enter-active-class="duration-300 ease-dialog"
           enter-from-class="opacity-0 scale-110"
           leave-active-class="duration-300 ease-dialog"
@@ -237,8 +237,11 @@ watch(isActuallyOpen, () => {
   }
 }
 
-::view-transition-old(*),
-::view-transition-new(*) {
+::view-transition-old(dialog),
+::view-transition-new(dialog)
+::view-transition-old(dialog-leave),
+::view-transition-new(dialog-leave)
+{
   height: 100%;
   width: 100%;
   object-fit: fill;

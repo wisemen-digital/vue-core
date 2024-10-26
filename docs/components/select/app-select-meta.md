@@ -10,7 +10,7 @@
 | containerElement | `HTMLElement \| null` | The element to render the tooltip in. By default this is the viewport | `null` |
 | displayFn* | `SelectDisplayFn<SelectValue>` | The display function for the selected value. |  |
 | errors | `FormFieldErrors` | The errors associated with the input. | `null` |
-| filterFn | `SelectFilterFn<SelectValue> \| null` | The function to filter the options. |  |
+| filterFn | `SelectFilterFn<SelectValue> \| null` | The function to filter the options. | `null` |
 | hint | `string \| null` | The hint text of the input. | `null` |
 | iconLeft | `keyof Icons \| null` | The left icon of the input. | `null` |
 | iconRight | `keyof Icons` | The right icon of the input. | `"chevronSelectorVertical"` |

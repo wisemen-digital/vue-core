@@ -2,7 +2,7 @@
 import { AppNumberField } from '@wisemen/vue-core'
 import { ref } from 'vue'
 
-const value = ref<null | number>(null)
+const value = ref<null | number>(0)
 </script>
 
 <template>

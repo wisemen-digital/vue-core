@@ -22,6 +22,6 @@
 | --------- | ---- | ----------- |
 | `bottom` | None |  |
 | `page-count` | None |  |
-| `pagination` | \{ items: any; \} |  |
+| `pagination` | \{ items: (\{ type: "ellipsis"; \} | \{ type: "page"; value: number; \})[]; \} |  |
 | `top` | None |  |
 

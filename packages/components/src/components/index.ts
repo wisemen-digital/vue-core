@@ -28,9 +28,6 @@ export { default as AppCollapsable2 } from '@/components/collapsable/AppCollapsa
 // Config Provider
 export { default as AppConfigProvider } from '@/components/config-provider/AppConfigProvider.vue'
 
-// Dark Mode Toggle
-export { default as AppDarkModeToggle } from '@/components/dark-mode-toggle/AppDarkModeToggle.vue'
-
 // Dialog
 export { default as AppDialog } from '@/components/dialog/AppDialog.vue'
 export { default as AppDialogCloseButton } from '@/components/dialog/AppDialogCloseButton.vue'
@@ -132,6 +129,7 @@ export type { AppTableProps } from '@/components/table/table.props'
 // Tabs
 export { default as AppRouteTabs } from '@/components/tabs/AppRouteTabs.vue'
 export { default as AppTabs } from '@/components/tabs/AppTabs.vue'
+export { default as AppTabsContent } from '@/components/tabs/AppTabsContent.vue'
 
 // Tag
 export { default as AppTag } from '@/components/tag/AppTag.vue'

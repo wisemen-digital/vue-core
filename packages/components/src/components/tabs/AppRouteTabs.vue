@@ -55,7 +55,7 @@ const itemContentClasses = computed<string>(() => style.itemContent())
         <TabsTrigger
           v-for="item of props.items"
           :key="item.label"
-          :value="item.to.name"
+          :value="(item.to.name as string)"
           :data-test-id="item.testId"
           :class="itemClasses"
         >

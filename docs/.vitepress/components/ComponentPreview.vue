@@ -6,6 +6,7 @@ import {
   AppSwitch,
   AppTabs,
   AppThemeProvider,
+  useDarkMode,
 } from '@wisemen/vue-core'
 import { computed, ref } from 'vue'
 
@@ -13,6 +14,8 @@ const props = defineProps<{
   name: string
   files?: string
 }>()
+
+const darkMode = useDarkMode()
 
 const showCode = ref<boolean>(false)
 const parsedFiles = computed<string[]>(() => JSON.parse(decodeURIComponent(props.files ?? '')))
@@ -43,7 +46,7 @@ const selectedTab = ref<TabItem | null>(tabItems.value?.[0] ?? null)
 </script>
 
 <template>
-  <AppThemeProvider theme="light">
+  <AppThemeProvider :theme="darkMode.isEnabled.value ? 'dark' : 'light'">
     <div class="flex flex-col gap-2">
       <div class="vp-raw">
         <div class="flex justify-end">

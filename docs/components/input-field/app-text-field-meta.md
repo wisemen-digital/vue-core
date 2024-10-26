@@ -6,7 +6,7 @@
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
 | autoComplete | `"off" \| "on"` | The autocorrect property of the input. |  |
-| errors | `{ _errors: string[]; } \| null` | The errors associated with the input. |  |
+| errors | `FormFieldErrors` | The errors associated with the input. |  |
 | hint | `string \| null` | The hint text of the input. |  |
 | iconLeft | `keyof Icons \| null` | The left icon of the input. |  |
 | iconRight | `keyof Icons \| null` | The right icon of the input. |  |
@@ -18,11 +18,10 @@
 | isSpellCheckEnabled | `boolean` | Whether the input is spell check enabled. |  |
 | isTouched | `boolean` | Whether the input is touched. Used to determine if an error should be shown. |  |
 | label | `string \| null` | The label of the input. |  |
-| modelValue* | `string \| null` |  |  |
 | placeholder | `string \| null` | The placeholder text of the input. |  |
 | styleConfig | `Partial<TextFieldStyleConfig> \| null` |  |  |
 | testId | `string \| null` | The test id of the input. |  |
-| type | `"search" \| "text" \| "email" \| "password" \| "tel" \| "time" \| "url"` | The type of the input. |  |
+| type | `"search" \| "text" \| "date" \| "email" \| "password" \| "tel" \| "time" \| "url"` | The type of the input. |  |
 
 
 ## Slots
