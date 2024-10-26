@@ -129,6 +129,7 @@ watch(placeholderYear, () => {
   const yearElement = yearScrollContainer.querySelector(`#year-${currentYear}`) as HTMLElement
 
   yearScrollContainer.scrollTo({
+    behavior: 'smooth',
     top: yearElement.offsetTop - yearScrollContainer.clientHeight / 2,
   })
 })

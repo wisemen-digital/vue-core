@@ -53,7 +53,7 @@ const placeholder = ref<DateValue>(today(getLocalTimeZone()))
               <DateFieldInput
                 v-if="item.part === 'literal'"
                 :part="item.part"
-                class="text-placeholder"
+                class="text-tertiary"
               >
                 {{ item.value }}
               </DateFieldInput>
@@ -61,7 +61,7 @@ const placeholder = ref<DateValue>(today(getLocalTimeZone()))
               <DateFieldInput
                 v-else
                 :part="item.part"
-                class="rounded px-1 text-secondary outline-none ring-brand-primary-500 duration-200 focus:ring-2 data-[placeholder]:text-placeholder"
+                class="rounded px-0.5 text-primary outline-none duration-200 focus:bg-quaternary data-[placeholder]:text-placeholder"
               >
                 {{ item.value }}
               </DateFieldInput>
