@@ -31,10 +31,13 @@ const DEFAULT_PAGINATION_OPTIONS: PaginationOptions<unknown> = {
 export function usePagination<TFilters>({
   isRouteQueryEnabled,
   defaultPaginationOptions = null,
+  key: routeQueryKey,
 }: UsePaginationOptions<TFilters>): UsePaginationReturnType<TFilters> {
-  const QUERY_KEY = 'q'
+  if (isRouteQueryEnabled && routeQueryKey === undefined) {
+    throw new Error('The `key` prop is required when using the `isRouteQueryEnabled` prop')
+  }
 
-  const routeQuery = isRouteQueryEnabled ? useRouteQuery(QUERY_KEY) : null
+  const routeQuery = isRouteQueryEnabled ? useRouteQuery(routeQueryKey as string) : null
   const paginationOptions = shallowRef<PaginationOptions<TFilters>>(getDefaultPaginationOptions())
 
   function mergePaginationOptions(
@@ -62,7 +65,7 @@ export function usePagination<TFilters>({
 
   function getRouteQueryPaginationOptions(): PaginationOptions<TFilters> | null {
     const searchParams = new URLSearchParams(window.location.search)
-    const paginationOptionsQuery = searchParams.get(QUERY_KEY)
+    const paginationOptionsQuery = searchParams.get(routeQueryKey as string)
 
     if (paginationOptionsQuery === null) {
       return null

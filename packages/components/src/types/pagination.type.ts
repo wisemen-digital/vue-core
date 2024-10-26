@@ -116,6 +116,10 @@ export interface UsePaginationOptions<TFilters> {
    * @default null
    */
   defaultPaginationOptions?: MaybeRefOrGetter<DeepPartial<PaginationOptions<TFilters>>> | null
+  /**
+   * The key to store pagination options in the route query.
+   */
+  key?: string
 }
 
 export interface UsePaginationReturnType<TFilters> {
