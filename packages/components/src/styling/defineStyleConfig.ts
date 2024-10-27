@@ -12,9 +12,13 @@ export function defineStyleConfig<
 >(
   options: DefineStyleConfigOptions<TComponent>,
 ): void {
-  const style = document.createElement('style')
+  const inBrowser = typeof window !== 'undefined'
 
-  style.type = 'text/css'
+  if (!inBrowser) {
+    return
+  }
+
+  const style = document.createElement('style')
 
   const layer = options.layer ?? 'component'
 
