@@ -14,7 +14,7 @@ const tagContext = injectTagContext()
       '--button-border-color-disabled': 'transparent',
     }"
     :is-disabled="tagContext.isDisabled.value"
-    icon="xClose"
+    icon="close"
     variant="tertiary"
     label="Remove"
     class="-mr-1 ml-1.5"

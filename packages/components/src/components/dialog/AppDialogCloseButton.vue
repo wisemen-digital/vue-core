@@ -12,7 +12,7 @@ const { t } = useI18n()
     <slot>
       <AppIconButton
         :label="t('shared.close')"
-        icon="xClose"
+        icon="close"
         variant="tertiary"
         size="sm"
       />

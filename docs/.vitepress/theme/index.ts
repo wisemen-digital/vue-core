@@ -1,6 +1,6 @@
 /* eslint-disable simple-import-sort/imports */
 import DefaultTheme from 'vitepress/theme'
-// import '@wisemen/vue-core/style.css'
+import '@wisemen/vue-core/style.css'
 import './index.scss'
 import './override.css'
 

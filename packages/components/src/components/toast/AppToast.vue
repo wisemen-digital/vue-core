@@ -86,7 +86,7 @@ function onClose(): void {
         aria-label="close"
         @click="onClose"
       >
-        <AppIcon icon="xClose" />
+        <AppIcon icon="close" />
       </button>
     </div>
   </div>

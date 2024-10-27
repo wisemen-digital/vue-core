@@ -12,7 +12,7 @@ const model = ref<boolean>(true)
       size="default"
       label="Switch"
       hint="This is a switch."
-      icon-unchecked="xClose"
+      icon-unchecked="close"
       icon-checked="check"
     />
   </div>

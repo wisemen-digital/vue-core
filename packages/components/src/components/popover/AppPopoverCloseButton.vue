@@ -8,7 +8,7 @@ import AppIconButton from '@/components/button/icon-button/AppIconButton.vue'
   <PopoverClose :as-child="true">
     <slot>
       <AppIconButton
-        icon="xClose"
+        icon="close"
         label="Close"
         size="sm"
         variant="tertiary"
