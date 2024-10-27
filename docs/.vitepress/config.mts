@@ -10,25 +10,21 @@ const guide = [
     text: 'Getting started',
   },
   {
-    link: '/guide/cli',
-    text: 'CLI',
+    link: '/guide/extending-icons',
+    text: 'Extending icons',
   },
   {
     link: '/guide/styling',
-    text: 'Styling',
-  },
-  {
-    link: '/guide/theme-provider',
-    text: 'Theme Provider',
+    text: 'Styling API',
   },
 ]
 
-const query = [
-  {
-    link: '/query/getting-started',
-    text: 'Getting started',
-  },
-]
+// const query = [
+//   {
+//     link: '/query/getting-started',
+//     text: 'Getting started',
+//   },
+// ]
 
 const docs = [
   {
@@ -92,6 +88,10 @@ const docs = [
     text: 'AppTabs',
   },
   {
+    link: '/components/theme-provider/app-theme-provider',
+    text: 'AppThemeProvider',
+  },
+  {
     link: '/components/toast/app-toast',
     text: 'AppToast',
   },
@@ -112,14 +112,12 @@ export default defineConfig({
       provider: 'local',
     },
 
+    darkModeSwitchLabel: undefined,
+
     sidebar: [
       {
         items: guide,
         text: 'Guide',
-      },
-      {
-        items: query,
-        text: 'Query',
       },
       {
         collapsed: false,

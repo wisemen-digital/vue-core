@@ -12,25 +12,22 @@ export interface BaseIcons {
   chevronLeftDouble: Promise<Component>
   chevronRight: Promise<Component>
   chevronRightDouble: Promise<Component>
-  chevronSelectorVertical: Promise<Component>
   chevronUp: Promise<Component>
+  close: Promise<Component>
   eye: Promise<Component>
   eyeOff: Promise<Component>
-  filterLines: Promise<Component>
+  filter: Promise<Component>
   infoCircle: Promise<Component>
-  linkExternal01: Promise<Component>
   minus: Promise<Component>
-  moonStar: Promise<Component>
+  passwordFieldEye: Promise<Component>
+  passwordFieldEyeOff: Promise<Component>
   plus: Promise<Component>
-  searchLg: Promise<Component>
-  settings01: Promise<Component>
-  stars02: Promise<Component>
-  sun: Promise<Component>
+  search: Promise<Component>
+  selectIconRight: Promise<Component>
+  settings: Promise<Component>
   switchVertical: Promise<Component>
-  tool02: Promise<Component>
-  translate01: Promise<Component>
-  trash01: Promise<Component>
-  xClose: Promise<Component>
+  translate: Promise<Component>
+  trash: Promise<Component>
 }
 
 export interface Icons extends BaseIcons {}
@@ -47,25 +44,22 @@ export const icons: BaseIcons = {
   chevronLeftDouble: import('@/icons/ChevronLeftDoubleIcon.vue'),
   chevronRight: import('@/icons/ChevronRightIcon.vue'),
   chevronRightDouble: import('@/icons/ChevronRightDoubleIcon.vue'),
-  chevronSelectorVertical: import('@/icons/ChevronSelectorVerticalIcon.vue'),
   chevronUp: import('@/icons/ChevronUpIcon.vue'),
+  close: import('@/icons/CloseIcon.vue'),
   eye: import('@/icons/EyeIcon.vue'),
   eyeOff: import('@/icons/EyeOffIcon.vue'),
-  filterLines: import('@/icons/FilterLinesIcon.vue'),
+  filter: import('@/icons/FilterIcon.vue'),
   infoCircle: import('@/icons/InfoCircleIcon.vue'),
-  linkExternal01: import('@/icons/LinkExternal01Icon.vue'),
   minus: import('@/icons/MinusIcon.vue'),
-  moonStar: import('@/icons/MoonStarIcon.vue'),
+  passwordFieldEye: import('@/icons/functional/PasswordFieldEye.vue'),
+  passwordFieldEyeOff: import('@/icons/functional/PasswordFieldEyeOff.vue'),
   plus: import('@/icons/PlusIcon.vue'),
-  searchLg: import('@/icons/SearchLgIcon.vue'),
-  settings01: import('@/icons/Settings01Icon.vue'),
-  stars02: import('@/icons/Stars02Icon.vue'),
-  sun: import('@/icons/SunIcon.vue'),
+  search: import('@/icons/SearchIcon.vue'),
+  selectIconRight: import('@/icons/functional/SelectIconRight.vue'),
+  settings: import('@/icons/SettingsIcon.vue'),
   switchVertical: import('@/icons/SwitchVerticalIcon.vue'),
-  tool02: import('@/icons/Tool02Icon.vue'),
-  translate01: import('@/icons/Translate01Icon.vue'),
-  trash01: import('@/icons/Trash01Icon.vue'),
-  xClose: import('@/icons/XCloseIcon.vue'),
+  translate: import('@/icons/TranslateIcon.vue'),
+  trash: import('@/icons/TrashIcon.vue'),
 }
 
 export function extendIcons(customIcons: Omit<Icons, keyof BaseIcons>): void {

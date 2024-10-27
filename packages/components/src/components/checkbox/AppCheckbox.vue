@@ -176,6 +176,7 @@ function onBlur(): void {
           </template>
         </AppCheckboxIndicator>
       </CheckboxRoot>
+
       <slot
         v-if="props.label !== null"
         :input-id="inputId"

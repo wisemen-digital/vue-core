@@ -23,6 +23,7 @@ defineProps<Props>()
         icon="minus"
       />
     </slot>
+
     <slot
       v-else-if="isChecked"
       name="icon-checked"

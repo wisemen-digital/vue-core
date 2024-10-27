@@ -3,15 +3,14 @@
 layout: home
 
 hero:
-  name: "@wisemen/vue-core"
-  text: "Vue core library"
-  tagline: A core library for Vue
+  name: "Wisemen Vue Core"
+  tagline: The core library for web applications.
   actions:
     - theme: brand
       text: Getting started
       link: /guide/getting-started
     - theme: alt
-      text: Docs
-      link: /api-examples
+      text: Explore components
+      link: /components/button/app-button
 ---
 

@@ -13,6 +13,7 @@ import {
   ref,
   watch,
 } from 'vue'
+import { useRouter } from 'vue-router'
 
 import AppDropdownMenuItem from '@/components/dropdown-menu/AppDropdownMenuItem.vue'
 import type { AppDropdownMenuProps } from '@/components/dropdown-menu/dropdownMenu.props'
@@ -22,6 +23,7 @@ import { useKeyboardShortcut } from '@/composables/index'
 import type {
   DropdownMenuItem,
   DropdownMenuOption,
+  DropdownMenuRoute,
 } from '@/types/dropdownMenu.type'
 
 const props = withDefaults(defineProps<AppDropdownMenuProps>(), {
@@ -36,6 +38,8 @@ const props = withDefaults(defineProps<AppDropdownMenuProps>(), {
 })
 
 const themeContext = injectThemeProviderContext()
+
+const router = useRouter()
 
 const dropdownMenuTriggerRef = ref<InstanceType<typeof DropdownMenuTrigger> | null>(null)
 const isOpen = ref<boolean>(false)
@@ -62,10 +66,10 @@ function getAllItems(items: DropdownMenuItem[]): DropdownMenuItem[] {
   return allItems
 }
 
-const itemsWithKeyboardShortcuts = computed<DropdownMenuOption[]>(() => {
+const itemsWithKeyboardShortcuts = computed<(DropdownMenuOption | DropdownMenuRoute)[]>(() => {
   return getAllItems(props.items)
     .filter((item) => {
-      return item.type === 'option'
+      return item.type === 'option' || item.type === 'route'
     }) as DropdownMenuOption[]
 })
 
@@ -84,10 +88,6 @@ onMounted(() => {
       itemsWithKeyboardShortcuts.value.forEach((item) => {
         const { keyboardKeys } = item
 
-        if (item.type !== 'option') {
-          return
-        }
-
         if (keyboardKeys === undefined) {
           return
         }
@@ -97,7 +97,14 @@ onMounted(() => {
           isDisabled: computed<boolean>(() => props.enableGlobalKeyboardShortcuts),
           element: dropdownMenuTriggerRef.value?.$el,
           keys: keyboardKeys,
-          onTrigger: item.onSelect,
+          onTrigger: () => {
+            if (item.type === 'option') {
+              item.onSelect()
+            }
+            else if (item.type === 'route') {
+              router.push(item.to)
+            }
+          },
         })
 
         // Shortcut for when the dropdown is open.
@@ -111,8 +118,14 @@ onMounted(() => {
           }),
           keys: keyboardKeys,
           onTrigger: () => {
-            item.onSelect()
             isOpen.value = false
+
+            if (item.type === 'option') {
+              item.onSelect()
+            }
+            else if (item.type === 'route') {
+              router.push(item.to)
+            }
           },
         })
 

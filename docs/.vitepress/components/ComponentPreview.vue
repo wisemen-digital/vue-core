@@ -20,6 +20,13 @@ const darkMode = useDarkMode()
 const showCode = ref<boolean>(false)
 const parsedFiles = computed<string[]>(() => JSON.parse(decodeURIComponent(props.files ?? '')))
 
+const isDark = computed<boolean>({
+  get: () => darkMode.value.value === 'dark',
+  set: (value) => {
+    darkMode.value.value = value ? 'dark' : 'light'
+  },
+})
+
 const tabItems = computed<TabItem[]>(() => {
   // Sort parsedFiles by first 'Demo.vue' and then by the file name
   const parsedFilesSorted = [
@@ -49,7 +56,13 @@ const selectedTab = ref<TabItem | null>(tabItems.value?.[0] ?? null)
   <AppThemeProvider :theme="darkMode.isEnabled.value ? 'dark' : 'light'">
     <div class="flex flex-col gap-2">
       <div class="vp-raw">
-        <div class="flex justify-end">
+        <div class="flex justify-end gap-x-4">
+          <AppSwitch
+            v-model="isDark"
+            label="Dark mode"
+            value="dark"
+          />
+
           <AppSwitch
             v-model="showCode"
             :style-config="{

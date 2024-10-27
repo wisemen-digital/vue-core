@@ -5,7 +5,6 @@ export interface RadioGroupOption<TValue extends AcceptableValue> {
   isDisabled?: boolean
   hint?: string
   label: string
-  type: 'option'
   value: TValue
 }
 

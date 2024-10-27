@@ -4,7 +4,7 @@ This API provides a method for defining and applying component-level style confi
 
 ## `defineStyleConfig` Function
 
-The `defineStyleConfig` function allows you to define and apply custom styles for components using CSS variables. It dynamically creates and injects a `CSSStyleSheet` into the document, setting CSS properties based on the provided configuration for each component.
+The `defineStyleConfig` function allows you to define and apply custom styles for components using CSS variables. It dynamically creates and injects styles into the document, setting CSS properties based on the provided configuration for each component.
 
 ### Usage
 
@@ -15,9 +15,7 @@ defineStyleConfig({
   // the component to style
   component: 'button',
   // CSS selector where styles will be applied
-  // :root means the styles will be applied to every component. 
-  // If you want to apply styles to a specific component, you can use css selector.
-  selector: ':root', // or e.g. '.button-custom' or '.dark'
+  selector: '.custom-button',
   config: {
     '--button-bg-color-default': 'var(--bg-primary)',
     '--button-border-radius-default': 'var(--radius-md)',

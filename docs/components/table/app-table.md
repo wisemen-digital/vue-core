@@ -21,3 +21,9 @@ More advanced usage of the table component.
 <ComponentPreview name="app-table/advanced" />
 
 <!-- @include: ./app-table-meta.md -->
+
+### i18n keys
+
+| Key                  | Description                                   |
+| -------------------- | --------------------------------------------- |
+| `component.table.page_count` | The text to display for the page count. It uses the following variables: `startIndex`, `endIndex`, `totalItems` |

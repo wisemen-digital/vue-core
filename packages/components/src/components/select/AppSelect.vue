@@ -49,7 +49,7 @@ const props = withDefaults(defineProps<AppSelectProps<TValue>>(), {
   filterFn: null,
   hint: null,
   iconLeft: null,
-  iconRight: 'chevronSelectorVertical',
+  iconRight: 'selectIconRight',
   label: null,
   offsetInPx: 4,
   placeholder: null,

@@ -58,7 +58,13 @@ You can add other interactable elements to the dropdown by using the `content-to
 
 ### i18n keys
 
-| Key                  | Default                                  | Description                                   |
-| -------------------- | ---------------------------------------- | --------------------------------------------- |
-| `search_placeholder` | "Search..."                              | The placeholder text for the search input     |
-| `empty_text`         | "No results found for \'{searchTerm}\'." | The text to display when there are no options |
+| Key                  | Description                                   |
+| -------------------- | --------------------------------------------- |
+| `component.select.search_placeholder` | The placeholder text for the search input     |
+| `component.select.empty_text`         | The text to display when there are no options |
+
+### Icons
+
+| Key                  | Description                                        |
+| -------------------- |----------------------------------------------------|
+| `icon_right`         | The icon to display on the right side of the select|
