@@ -30,6 +30,15 @@ export function useDarkMode(): UseDarkModeReturnType {
     isDarkMode.value = false
   }
 
+  // function syncWithSystem(): void {
+  //   if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  //     enableDarkMode()
+  //   }
+  //   else {
+  //     disableDarkMode()
+  //   }
+  // }
+
   const observer = new MutationObserver(updateDarkModeState)
 
   onMounted(() => {

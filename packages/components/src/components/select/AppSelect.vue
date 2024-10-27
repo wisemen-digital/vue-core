@@ -187,7 +187,7 @@ const hasNoResults = computed<boolean>(() => {
   return !hasOptions(filteredItems.value)
 })
 
-const searchPlaceholder = computed<string>(() => props.searchPlaceholder ?? t('components.select.search_placeholder'))
+const searchPlaceholder = computed<string>(() => props.searchPlaceholder ?? t('component.select.search_placeholder'))
 
 function onTriggerMouseEnter(): void {
   isMouseOver.value = true
@@ -341,7 +341,7 @@ provideSelectContext({
                 name="no-results"
               >
                 <span class="block px-select-option-padding-x-default py-select-option-padding-y-default text-subtext text-tertiary">
-                  {{ t('components.select.empty_text', { searchTerm }) }}
+                  {{ t('component.select.empty_text', { searchTerm }) }}
                 </span>
               </slot>
 

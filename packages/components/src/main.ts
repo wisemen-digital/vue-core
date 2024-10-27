@@ -11,7 +11,10 @@ const i18n = createI18n({
   locale: 'en',
   messages: {
     en: {
-      components: {
+      shared: {
+        close: 'Close',
+      },
+      component: {
         keyboard_shortcut: {
           then: 'then',
         },
@@ -26,9 +29,6 @@ const i18n = createI18n({
         table: {
           page_count: '{startIndex} - {endIndex} of {totalItems}',
         },
-      },
-      shared: {
-        close: 'Close',
       },
     },
   },

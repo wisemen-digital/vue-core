@@ -23,7 +23,7 @@ export type {
 } from './pagination.type'
 export type { PopoverProps } from './popover.type'
 export type { RadioGroupItem } from './radioGroup.type'
-export type { RouteLocationTyped, Routes } from './routes.type'
+export type { Routes } from './routes.type'
 export type {
   SelectGroup,
   SelectItem,

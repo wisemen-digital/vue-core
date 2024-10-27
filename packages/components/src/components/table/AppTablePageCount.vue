@@ -38,7 +38,7 @@ const endIndex = computed<number>(() => (
     class="text-sm text-tertiary"
   >
     {{
-      t('components.table.page_count', {
+      t('component.table.page_count', {
         startIndex: n(startIndex),
         endIndex: n(endIndex),
         totalItems: n(totalItems),

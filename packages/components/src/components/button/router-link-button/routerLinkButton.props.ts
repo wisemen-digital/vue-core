@@ -1,8 +1,5 @@
 import type { Icon } from '@/icons/icons'
-import type {
-  RouteLocationTyped,
-  Routes,
-} from '@/types/routes.type'
+import type { Routes } from '@/types'
 import type { StyleConfig } from '@/types/style.type'
 
 export interface AppRouterLinkButtonProps {
@@ -38,7 +35,8 @@ export interface AppRouterLinkButtonProps {
   /**
    * The route to link to.
    */
-  to: RouteLocationTyped<keyof Routes>
+  // @ts-expect-error no matching signature
+  to: Routes[number]
   /**
    * The variant of the button.
    * @default 'default'

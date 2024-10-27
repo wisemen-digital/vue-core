@@ -1,9 +1,6 @@
 import type { Icon } from '@/icons/icons'
 import type { KeyboardKey } from '@/types/keyboard.type'
-import type {
-  RouteLocationTyped,
-  Routes,
-} from '@/types/routes.type'
+import type { Routes } from '@/types/routes.type'
 
 interface DropdownMenuBaseOption {
   testId?: string
@@ -20,7 +17,8 @@ export interface DropdownMenuOption extends DropdownMenuBaseOption {
 }
 
 export interface DropdownMenuRoute extends DropdownMenuBaseOption {
-  to: RouteLocationTyped<keyof Routes>
+  // @ts-expect-error no matching signature
+  to: Routes[number]
   type: 'route'
 }
 

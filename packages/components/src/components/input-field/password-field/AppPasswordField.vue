@@ -39,8 +39,8 @@ const buttonIcon = computed<Icon>(() => isPasswordVisible.value ? 'eyeOff' : 'ey
 
 const buttonLabel = computed<string>(() => (
   isPasswordVisible.value
-    ? t('components.password_input.hide_password')
-    : t('components.password_input.show_password')
+    ? t('component.password_input.hide_password')
+    : t('component.password_input.show_password')
 ))
 </script>
 
