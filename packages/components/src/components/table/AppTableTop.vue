@@ -1,8 +1,6 @@
 <script setup lang="ts" generic="TFilters">
 import { computed } from 'vue'
-import { useI18n } from 'vue-i18n'
 
-import AppBadge from '@/components/badge/AppBadge.vue'
 import AppSkeletonLoaderRow from '@/components/skeleton-loader/AppSkeletonLoaderRow.vue'
 import AppTableFiltersPopover from '@/components/table/AppTableFiltersPopover.vue'
 import AppTableSearchInput from '@/components/table/AppTableSearchInput.vue'
@@ -24,11 +22,8 @@ const props = defineProps<{
   isLoading: boolean
   filters: PaginationFilter<TFilters>[]
   pagination: Pagination<TFilters>
-  total: null | number
   variant: TableStyleProps['variant']
 }>()
-
-const { t } = useI18n()
 
 const tableStyle = useTableStyle()
 
@@ -36,7 +31,6 @@ const topContainerClasses = computed<string>(() => tableStyle.topContainer({
   variant: props.variant,
 }))
 const topTitleClasses = computed<string>(() => tableStyle.topTitle())
-const topBadgeClasses = computed<string>(() => tableStyle.topBadge())
 const topSearchInputClasses = computed<string>(() => tableStyle.topSearchInput())
 const topSkeletonRowClasses = computed<string>(() => tableStyle.topSkeletonRow())
 const searchAndFilterContainerClasses = computed<string>(() => tableStyle.searchAndFilterContainer())
@@ -86,13 +80,6 @@ function onFilterClear(): void {
     >
       {{ props.title }}
     </AppText>
-
-    <AppBadge
-      v-if="props.total !== null"
-      :class="topBadgeClasses"
-    >
-      {{ t('components.table.items', { count: props.total }) }}
-    </AppBadge>
 
     <AppSkeletonLoaderRow
       v-else-if="props.isLoading"
