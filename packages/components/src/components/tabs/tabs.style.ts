@@ -7,9 +7,19 @@ export const useTabsStyle = tv({
     list: 'relative flex border-b border-solid border-border',
     text: 'duration-200',
     triggerGroup: 'group py-2 outline-none',
-    triggerTab: 'flex flex-row items-center gap-2 rounded-button px-3 py-2 duration-200 group-hover:bg-muted-background group-focus-visible:bg-muted-background',
+    triggerTab: 'flex flex-row items-center gap-2 text-nowrap rounded-button px-3 py-2 duration-200 group-hover:bg-muted-background group-focus-visible:bg-muted-background',
   },
   variants: {
+    isFullWidth: {
+      false: {
+        list: 'justify-start',
+      },
+      true: {
+        list: 'justify-between',
+        triggerGroup: 'flex-1',
+        triggerTab: 'justify-center',
+      },
+    },
     isActive: {
       false: {
         text: 'text-muted-foreground',
