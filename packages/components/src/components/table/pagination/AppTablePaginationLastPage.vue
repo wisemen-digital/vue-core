@@ -20,12 +20,14 @@ const isLastPage = computed<boolean>(() => (
 
 <template>
   <PaginationLast :as-child="true">
-    <AppIconButton
-      :is-disabled="isLastPage"
-      variant="secondary"
-      size="sm"
-      icon="chevronRightDouble"
-      label="Last page"
-    />
+    <slot :is-last-page="isLastPage">
+      <AppIconButton
+        :is-disabled="isLastPage"
+        variant="secondary"
+        size="sm"
+        icon="chevronRightDouble"
+        label="Last page"
+      />
+    </slot>
   </PaginationLast>
 </template>

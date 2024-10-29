@@ -4,7 +4,7 @@ export const toastStyle = tv({
   slots: {
     action: 'whitespace-nowrap rounded-lg px-md py-xs font-semibold underline underline-offset-2 outline-none duration-200 focus-visible:ring-2',
     closeButton: 'flex size-8 items-center justify-center rounded-lg outline-none duration-200 focus-visible:ring-2',
-    container: 'z-toast flex w-toast-width-default items-center justify-between gap-x-8 overflow-hidden rounded-xl border border-solid p-md text-sm shadow-lg',
+    container: 'pointer-events-auto z-toast flex w-toast-width-default items-center justify-between gap-x-8 overflow-hidden rounded-xl border border-solid p-md text-sm shadow-lg',
     iconContainer: 'flex size-8 flex-shrink-0 items-center justify-center rounded-md',
     message: 'truncate pr-2',
   },

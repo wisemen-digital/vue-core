@@ -39,6 +39,10 @@ export function useDialog<TComponent extends Component>(
   async function openDialog(attrs: Attrs<TComponent>): Promise<void> {
     const dialog = await createDialog(attrs)
 
+    if (dialog === null) {
+      return
+    }
+
     dialogs.value.push(dialog.value)
 
     setTimeout(() => {
@@ -58,11 +62,11 @@ export function useDialog<TComponent extends Component>(
     setTimeout(removeDialogFromContainer, 500)
   }
 
-  async function createDialog(attrs: Attrs<TComponent>): Promise<Ref<Dialog>> {
+  async function createDialog(attrs: Attrs<TComponent>): Promise<Ref<Dialog> | null> {
     const dialogWithSameTriggerId = dialogs.value.find((dialog) => dialog.id === triggerId) ?? null
 
     if (dialogWithSameTriggerId !== null) {
-      throw new Error(`Dialog with triggerId ${triggerId} already exists`)
+      return null
     }
 
     const c = await options.component()

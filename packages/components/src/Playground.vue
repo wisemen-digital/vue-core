@@ -22,6 +22,8 @@ import '@/components/switch/switchStyle.config'
 import AppConfigProvider from '@/components/config-provider/AppConfigProvider.vue'
 import AppDateField from '@/components/input-field/date-field/AppDateField.vue'
 import AppThemeProvider from '@/components/theme-provider/AppThemeProvider.vue'
+
+import Dialogs from './Dialogs.vue'
 </script>
 
 <template>
@@ -30,6 +32,8 @@ import AppThemeProvider from '@/components/theme-provider/AppThemeProvider.vue'
       <div class="p-24">
         <AppDateField class="w-72" />
       </div>
+
+      <Dialogs />
     </AppThemeProvider>
   </AppConfigProvider>
 </template>

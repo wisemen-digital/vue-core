@@ -14,12 +14,14 @@ const isFirstPage = computed<boolean>(() => (
 
 <template>
   <PaginationFirst :as-child="true">
-    <AppIconButton
-      :is-disabled="isFirstPage"
-      variant="secondary"
-      size="sm"
-      icon="chevronLeftDouble"
-      label="First page"
-    />
+    <slot :is-first-page="isFirstPage">
+      <AppIconButton
+        :is-disabled="isFirstPage"
+        variant="secondary"
+        size="sm"
+        icon="chevronLeftDouble"
+        label="First page"
+      />
+    </slot>
   </PaginationFirst>
 </template>

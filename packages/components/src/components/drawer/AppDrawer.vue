@@ -262,6 +262,10 @@ watch(isActuallyOpen, () => {
 /* Drawer */
 ::view-transition-new(drawer) {
   animation: drawer-fade-in 200ms forwards;
+  mix-blend-mode: normal;
+  height: 100%;
+  width: 100%;
+  transform-origin: center;
 }
 
 /* Close animation */
@@ -279,5 +283,9 @@ watch(isActuallyOpen, () => {
 /* Drawer */
 ::view-transition-old(drawer-leave) {
   animation: drawer-fade-out 200ms 50ms forwards;
+  mix-blend-mode: normal;
+  height: 100%;
+  width: 100%;
+  transform-origin: center;
 }
 </style>

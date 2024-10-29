@@ -8,7 +8,12 @@ import { useI18n } from 'vue-i18n'
 import AppButton from '@/components/button/button/AppButton.vue'
 
 const props = defineProps<{
-  items: any[]
+  items: ({
+    type: 'ellipsis'
+  } | {
+    type: 'page'
+    value: number
+  })[]
 }>()
 
 const { n } = useI18n()
@@ -23,13 +28,18 @@ const { n } = useI18n()
       :value="page.value"
       class="data-[selected]:bg-primary-hover"
     >
-      <AppButton
-        variant="tertiary"
-        size="sm"
-        class="min-w-9"
+      <slot
+        :page="n(page.value)"
+        name="item"
       >
-        {{ n(page.value) }}
-      </AppButton>
+        <AppButton
+          variant="tertiary"
+          size="sm"
+          class="min-w-9"
+        >
+          {{ n(page.value) }}
+        </AppButton>
+      </slot>
     </PaginationListItem>
 
     <PaginationEllipsis

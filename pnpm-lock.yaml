@@ -1789,7 +1789,7 @@ packages:
     dependencies:
       '@putout/cli-choose': 2.0.0
       find-up: 7.0.0
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/cli-choose@2.0.0:
@@ -1870,7 +1870,7 @@ packages:
       diff-match-patch: 1.0.5
       nano-memoize: 3.0.16
       once: 1.4.0
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
       try-catch: 3.0.1
       try-to-catch: 3.0.1
     dev: true
@@ -1899,7 +1899,7 @@ packages:
       '@putout/engine-loader': 14.0.0(putout@36.10.0)
       once: 1.4.0
       picomatch: 4.0.2
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
       try-to-catch: 3.0.1
     dev: true
 
@@ -1913,7 +1913,7 @@ packages:
       '@putout/cli-keypress': 2.0.0
       '@putout/engine-loader': 14.0.0(putout@36.10.0)
       fullstore: 3.0.0
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
       try-catch: 3.0.1
       try-to-catch: 3.0.1
     dev: true
@@ -1937,7 +1937,7 @@ packages:
       jessy: 3.1.1
       nessy: 4.0.0
       once: 1.4.0
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
       try-catch: 3.0.1
       wraptile: 3.0.0
     transitivePeerDependencies:
@@ -1997,7 +1997,7 @@ packages:
       '@putout/babel': 2.8.0
       '@putout/formatter-json': 2.0.0(putout@36.10.0)
       chalk: 5.3.0
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
       table: 6.8.2
     dev: true
 
@@ -2009,7 +2009,7 @@ packages:
     dependencies:
       '@putout/formatter-json': 2.0.0(putout@36.10.0)
       chalk: 5.3.0
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
       table: 6.8.2
     dev: true
 
@@ -2020,7 +2020,7 @@ packages:
       putout: '>=35'
     dependencies:
       '@putout/formatter-codeframe': 7.0.0(putout@36.10.0)
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/formatter-json-lines@3.0.0(putout@36.10.0):
@@ -2029,7 +2029,7 @@ packages:
     peerDependencies:
       putout: '>=25'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/formatter-json@2.0.0(putout@36.10.0):
@@ -2038,7 +2038,7 @@ packages:
     peerDependencies:
       putout: '>=22.5'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/formatter-memory@4.0.1(putout@36.10.0):
@@ -2053,7 +2053,7 @@ packages:
       format-io: 2.0.0
       montag: 1.2.1
       once: 1.4.0
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/formatter-progress-bar@4.0.1(putout@36.10.0):
@@ -2066,7 +2066,7 @@ packages:
       chalk: 5.3.0
       cli-progress: 3.12.0
       once: 1.4.0
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/formatter-progress@5.0.0(putout@36.10.0):
@@ -2076,7 +2076,7 @@ packages:
       putout: '>=35'
     dependencies:
       '@putout/formatter-dump': 5.0.0(putout@36.10.0)
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/formatter-stream@5.0.0(putout@36.10.0):
@@ -2086,7 +2086,7 @@ packages:
       putout: '>=35'
     dependencies:
       chalk: 5.3.0
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
       table: 6.8.2
     dev: true
 
@@ -2102,7 +2102,7 @@ packages:
       format-io: 2.0.0
       montag: 1.2.1
       once: 1.4.0
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
       timer-node: 5.0.7
     dev: true
 
@@ -2127,7 +2127,7 @@ packages:
       '@putout/babel': 2.8.0
       '@putout/compare': 14.7.2
       '@putout/engine-parser': 10.8.0
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -2142,7 +2142,7 @@ packages:
       '@putout/compare': 14.7.2
       '@putout/engine-parser': 10.8.0
       '@putout/operate': 12.13.0
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -2156,7 +2156,7 @@ packages:
       '@putout/babel': 2.8.0
       '@putout/operate': 12.13.0
       fullstore: 3.0.0
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
       try-catch: 3.0.1
     dev: true
 
@@ -2185,7 +2185,7 @@ packages:
       '@putout/engine-parser': 10.8.0
       '@putout/operator-filesystem': 4.1.0(putout@36.10.0)
       '@putout/operator-json': 2.2.0
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/operator-regexp@1.0.0(putout@36.10.0):
@@ -2194,7 +2194,7 @@ packages:
     peerDependencies:
       putout: '>=20'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
       regexp-tree: 0.1.27
     dev: true
 
@@ -2205,7 +2205,7 @@ packages:
       putout: '>=35'
     dependencies:
       '@putout/operator-filesystem': 4.1.0(putout@36.10.0)
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-apply-at@2.0.0(putout@36.10.0):
@@ -2214,7 +2214,7 @@ packages:
     peerDependencies:
       putout: '>=32'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-apply-destructuring@7.1.0(putout@36.10.0):
@@ -2223,7 +2223,7 @@ packages:
     peerDependencies:
       putout: '>=29'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-apply-dot-notation@2.0.0(putout@36.10.0):
@@ -2232,7 +2232,7 @@ packages:
     peerDependencies:
       putout: '>=35'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-apply-early-return@3.0.0(putout@36.10.0):
@@ -2241,7 +2241,7 @@ packages:
     peerDependencies:
       putout: '>=29'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-apply-flat-map@2.0.0(putout@36.10.0):
@@ -2250,7 +2250,7 @@ packages:
     peerDependencies:
       putout: '>=28'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-apply-optional-chaining@6.0.0(putout@36.10.0):
@@ -2259,7 +2259,7 @@ packages:
     peerDependencies:
       putout: '>=35'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-apply-overrides@2.1.0(putout@36.10.0):
@@ -2268,7 +2268,7 @@ packages:
     peerDependencies:
       putout: '>=36'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-apply-starts-with@1.1.0(putout@36.10.0):
@@ -2277,7 +2277,7 @@ packages:
     peerDependencies:
       putout: '>=30'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-apply-template-literals@3.0.0(putout@36.10.0):
@@ -2286,7 +2286,7 @@ packages:
     peerDependencies:
       putout: '>=35'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-browserlist@2.0.0(putout@36.10.0):
@@ -2295,7 +2295,7 @@ packages:
     peerDependencies:
       putout: '>=33'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-conditions@5.0.0(putout@36.10.0):
@@ -2304,7 +2304,7 @@ packages:
     peerDependencies:
       putout: '>=36'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-convert-apply-to-spread@4.0.0(putout@36.10.0):
@@ -2313,7 +2313,7 @@ packages:
     peerDependencies:
       putout: '>=29'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-convert-arguments-to-rest@3.1.0(putout@36.10.0):
@@ -2322,7 +2322,7 @@ packages:
     peerDependencies:
       putout: '>=36'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-convert-array-copy-to-slice@3.0.0(putout@36.10.0):
@@ -2331,7 +2331,7 @@ packages:
     peerDependencies:
       putout: '>=29'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-convert-assignment-to-arrow-function@1.2.0(putout@36.10.0):
@@ -2340,7 +2340,7 @@ packages:
     peerDependencies:
       putout: '>=15'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-convert-assignment-to-comparison@2.0.0(putout@36.10.0):
@@ -2349,7 +2349,7 @@ packages:
     peerDependencies:
       putout: '>=29'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-convert-assignment-to-declaration@1.0.1(putout@36.10.0):
@@ -2358,7 +2358,7 @@ packages:
     peerDependencies:
       putout: '>=35'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-convert-concat-to-flat@1.0.0(putout@36.10.0):
@@ -2367,7 +2367,7 @@ packages:
     peerDependencies:
       putout: '>=16'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-convert-const-to-let@3.0.0(putout@36.10.0):
@@ -2376,7 +2376,7 @@ packages:
     peerDependencies:
       putout: '>=36'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-convert-index-of-to-includes@2.0.1(putout@36.10.0):
@@ -2385,7 +2385,7 @@ packages:
     peerDependencies:
       putout: '>=29'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-convert-object-assign-to-merge-spread@6.0.0(putout@36.10.0):
@@ -2394,7 +2394,7 @@ packages:
     peerDependencies:
       putout: '>=25'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-convert-object-entries-to-array-entries@3.0.1(putout@36.10.0):
@@ -2403,7 +2403,7 @@ packages:
     peerDependencies:
       putout: '>=31'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-convert-optional-to-logical@4.0.0(putout@36.10.0):
@@ -2412,7 +2412,7 @@ packages:
     peerDependencies:
       putout: '>=36'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-convert-quotes-to-backticks@3.0.0(putout@36.10.0):
@@ -2421,7 +2421,7 @@ packages:
     peerDependencies:
       putout: '>=33'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-convert-template-to-string@2.0.0(putout@36.10.0):
@@ -2430,7 +2430,7 @@ packages:
     peerDependencies:
       putout: '>=35'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-convert-to-arrow-function@4.0.0(putout@36.10.0):
@@ -2439,7 +2439,7 @@ packages:
     peerDependencies:
       putout: '>=29'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-coverage@1.0.0(putout@36.10.0):
@@ -2448,7 +2448,7 @@ packages:
     peerDependencies:
       putout: '>=35'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-declare-before-reference@4.0.0(putout@36.10.0):
@@ -2457,7 +2457,7 @@ packages:
     peerDependencies:
       putout: '>=35'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-declare-imports-first@2.1.0(putout@36.10.0):
@@ -2466,7 +2466,7 @@ packages:
     peerDependencies:
       putout: '>=27'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-declare@4.0.0(putout@36.10.0):
@@ -2475,7 +2475,7 @@ packages:
     peerDependencies:
       putout: '>=35'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-eslint@9.1.0(putout@36.10.0):
@@ -2484,7 +2484,7 @@ packages:
     peerDependencies:
       putout: '>=36'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-extract-object-properties@9.0.0(putout@36.10.0):
@@ -2493,7 +2493,7 @@ packages:
     peerDependencies:
       putout: '>=29'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-extract-sequence-expressions@3.5.0(putout@36.10.0):
@@ -2502,7 +2502,7 @@ packages:
     peerDependencies:
       putout: '>=25'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-filesystem@5.3.0(putout@36.10.0):
@@ -2515,7 +2515,7 @@ packages:
       '@putout/operate': 12.13.0
       '@putout/operator-filesystem': 4.1.0(putout@36.10.0)
       '@putout/operator-json': 2.2.0
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-for-of@6.1.1(putout@36.10.0):
@@ -2524,7 +2524,7 @@ packages:
     peerDependencies:
       putout: '>=35'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-generators@1.0.0(putout@36.10.0):
@@ -2534,7 +2534,7 @@ packages:
       putout: '>=35'
     dependencies:
       fullstore: 3.0.0
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-github@13.0.0(putout@36.10.0):
@@ -2543,7 +2543,7 @@ packages:
     peerDependencies:
       putout: '>=36'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-gitignore@6.0.0(putout@36.10.0):
@@ -2552,7 +2552,7 @@ packages:
     peerDependencies:
       putout: '>=35'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-group-imports-by-source@2.0.0(putout@36.10.0):
@@ -2561,7 +2561,7 @@ packages:
     peerDependencies:
       putout: '>=36'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-labels@1.0.0(putout@36.10.0):
@@ -2571,7 +2571,7 @@ packages:
       putout: '>=36'
     dependencies:
       fullstore: 3.0.0
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-logical-expressions@6.0.0(putout@36.10.0):
@@ -2580,7 +2580,7 @@ packages:
     peerDependencies:
       putout: '>=35'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-madrun@19.0.0(putout@36.10.0):
@@ -2589,7 +2589,7 @@ packages:
     peerDependencies:
       putout: '>=36'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-math@2.1.0(putout@36.10.0):
@@ -2598,7 +2598,7 @@ packages:
     peerDependencies:
       putout: '>=29'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-maybe@2.0.1(putout@36.10.0):
@@ -2607,7 +2607,7 @@ packages:
     peerDependencies:
       putout: '>=32'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-merge-destructuring-properties@9.0.0(putout@36.10.0):
@@ -2616,7 +2616,7 @@ packages:
     peerDependencies:
       putout: '>=35'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-merge-duplicate-functions@2.0.0(putout@36.10.0):
@@ -2625,7 +2625,7 @@ packages:
     peerDependencies:
       putout: '>=32'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-merge-duplicate-imports@11.0.0(putout@36.10.0):
@@ -2634,7 +2634,7 @@ packages:
     peerDependencies:
       putout: '>=34'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-montag@2.0.0(putout@36.10.0):
@@ -2643,7 +2643,7 @@ packages:
     peerDependencies:
       putout: '>=29'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-new@3.0.1(putout@36.10.0):
@@ -2652,7 +2652,7 @@ packages:
     peerDependencies:
       putout: '>=33'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-nodejs@12.0.1(putout@36.10.0):
@@ -2662,7 +2662,7 @@ packages:
       putout: '>=36'
     dependencies:
       just-camel-case: 6.2.0
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-npmignore@5.0.0(putout@36.10.0):
@@ -2671,7 +2671,7 @@ packages:
     peerDependencies:
       putout: '>=35'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-package-json@8.3.0(putout@36.10.0):
@@ -2680,7 +2680,7 @@ packages:
     peerDependencies:
       putout: '>=36'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-promises@15.2.0(putout@36.10.0):
@@ -2690,7 +2690,7 @@ packages:
       putout: '>=35'
     dependencies:
       fullstore: 3.0.0
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-putout-config@6.9.3(putout@36.10.0):
@@ -2699,7 +2699,7 @@ packages:
     peerDependencies:
       putout: '>=36'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-putout@21.4.0(putout@36.10.0):
@@ -2711,7 +2711,7 @@ packages:
       fullstore: 3.0.0
       just-camel-case: 6.2.0
       parse-import-specifiers: 1.0.3
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
       try-catch: 3.0.1
     dev: true
 
@@ -2721,7 +2721,7 @@ packages:
     peerDependencies:
       putout: '>=35'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
       regexp-tree: 0.1.27
       try-catch: 3.0.1
     dev: true
@@ -2732,7 +2732,7 @@ packages:
     peerDependencies:
       putout: '>=29'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-remove-constant-conditions@4.0.2(putout@36.10.0):
@@ -2741,7 +2741,7 @@ packages:
     peerDependencies:
       putout: '>=25'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-remove-debugger@7.0.0(putout@36.10.0):
@@ -2750,7 +2750,7 @@ packages:
     peerDependencies:
       putout: '>=35'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-remove-duplicate-case@3.0.0(putout@36.10.0):
@@ -2759,7 +2759,7 @@ packages:
     peerDependencies:
       putout: '>=30'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-remove-duplicate-keys@5.1.0(putout@36.10.0):
@@ -2769,7 +2769,7 @@ packages:
       putout: '>=35'
     dependencies:
       fullstore: 3.0.0
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-remove-empty@12.1.0(putout@36.10.0):
@@ -2778,7 +2778,7 @@ packages:
     peerDependencies:
       putout: '>=35'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-remove-iife@4.1.0(putout@36.10.0):
@@ -2787,7 +2787,7 @@ packages:
     peerDependencies:
       putout: '>=29'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-remove-nested-blocks@6.3.0(putout@36.10.0):
@@ -2796,7 +2796,7 @@ packages:
     peerDependencies:
       putout: '>=25'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-remove-quotes-from-import-assertions@1.0.0(putout@36.10.0):
@@ -2805,7 +2805,7 @@ packages:
     peerDependencies:
       putout: '>=29'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-remove-unreachable-code@1.2.0(putout@36.10.0):
@@ -2814,7 +2814,7 @@ packages:
     peerDependencies:
       putout: '>=4.31'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-remove-unreferenced-variables@4.0.0(putout@36.10.0):
@@ -2823,7 +2823,7 @@ packages:
     peerDependencies:
       putout: '>=35'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-remove-unused-expressions@9.0.0(putout@36.10.0):
@@ -2832,7 +2832,7 @@ packages:
     peerDependencies:
       putout: '>=35'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-remove-unused-for-of-variables@3.0.1(putout@36.10.0):
@@ -2841,7 +2841,7 @@ packages:
     peerDependencies:
       putout: '>=25'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-remove-unused-labels@1.0.2(putout@36.10.0):
@@ -2850,7 +2850,7 @@ packages:
     peerDependencies:
       putout: '>=36'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-remove-unused-private-fields@2.1.0(putout@36.10.0):
@@ -2859,7 +2859,7 @@ packages:
     peerDependencies:
       putout: '>=25'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-remove-unused-variables@9.2.0(putout@36.10.0):
@@ -2868,7 +2868,7 @@ packages:
     peerDependencies:
       putout: '>=35'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-remove-useless-arguments@9.0.0(putout@36.10.0):
@@ -2877,7 +2877,7 @@ packages:
     peerDependencies:
       putout: '>=36'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-remove-useless-array-constructor@2.0.0(putout@36.10.0):
@@ -2886,7 +2886,7 @@ packages:
     peerDependencies:
       putout: '>=30'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-remove-useless-array-entries@1.0.0(putout@36.10.0):
@@ -2895,7 +2895,7 @@ packages:
     peerDependencies:
       putout: '>=23'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-remove-useless-array@1.1.0(putout@36.10.0):
@@ -2904,7 +2904,7 @@ packages:
     peerDependencies:
       putout: '>=35'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-remove-useless-assign@1.1.0(putout@36.10.0):
@@ -2913,7 +2913,7 @@ packages:
     peerDependencies:
       putout: '>=26'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-remove-useless-constructor@2.0.0(putout@36.10.0):
@@ -2922,7 +2922,7 @@ packages:
     peerDependencies:
       putout: '>=36'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-remove-useless-continue@2.0.0(putout@36.10.0):
@@ -2931,7 +2931,7 @@ packages:
     peerDependencies:
       putout: '>=28'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-remove-useless-delete@1.0.4(putout@36.10.0):
@@ -2940,7 +2940,7 @@ packages:
     peerDependencies:
       putout: '>=36'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-remove-useless-escape@6.0.0(putout@36.10.0):
@@ -2950,7 +2950,7 @@ packages:
       putout: '>=35'
     dependencies:
       emoji-regex: 10.4.0
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-remove-useless-functions@3.0.0(putout@36.10.0):
@@ -2959,7 +2959,7 @@ packages:
     peerDependencies:
       putout: '>=30'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-remove-useless-map@1.1.0(putout@36.10.0):
@@ -2968,7 +2968,7 @@ packages:
     peerDependencies:
       putout: '>=18'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-remove-useless-operand@2.1.0(putout@36.10.0):
@@ -2977,7 +2977,7 @@ packages:
     peerDependencies:
       putout: '>=25'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-remove-useless-push@1.0.3(putout@36.10.0):
@@ -2986,7 +2986,7 @@ packages:
     peerDependencies:
       putout: '>=36'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-remove-useless-replace@1.0.4(putout@36.10.0):
@@ -2995,7 +2995,7 @@ packages:
     peerDependencies:
       putout: '>=26'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-remove-useless-return@7.0.0(putout@36.10.0):
@@ -3004,7 +3004,7 @@ packages:
     peerDependencies:
       putout: '>=35'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-remove-useless-spread@11.1.0(putout@36.10.0):
@@ -3013,7 +3013,7 @@ packages:
     peerDependencies:
       putout: '>=35'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-remove-useless-template-expressions@2.0.0(putout@36.10.0):
@@ -3022,7 +3022,7 @@ packages:
     peerDependencies:
       putout: '>=29'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-remove-useless-variables@12.5.0(putout@36.10.0):
@@ -3031,7 +3031,7 @@ packages:
     peerDependencies:
       putout: '>=36'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-reuse-duplicate-init@5.0.0(putout@36.10.0):
@@ -3040,7 +3040,7 @@ packages:
     peerDependencies:
       putout: '>=29'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-simplify-assignment@3.1.0(putout@36.10.0):
@@ -3049,7 +3049,7 @@ packages:
     peerDependencies:
       putout: '>=29'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-simplify-boolean-return@2.0.0(putout@36.10.0):
@@ -3058,7 +3058,7 @@ packages:
     peerDependencies:
       putout: '>=35'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-simplify-ternary@7.0.0(putout@36.10.0):
@@ -3067,7 +3067,7 @@ packages:
     peerDependencies:
       putout: '>=34'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-sort-imports-by-specifiers@1.1.0(putout@36.10.0):
@@ -3077,7 +3077,7 @@ packages:
       putout: '>=35'
     dependencies:
       parse-import-specifiers: 1.0.3
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-split-assignment-expressions@1.2.0(putout@36.10.0):
@@ -3086,7 +3086,7 @@ packages:
     peerDependencies:
       putout: '>=35'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-split-nested-destructuring@3.0.0(putout@36.10.0):
@@ -3095,7 +3095,7 @@ packages:
     peerDependencies:
       putout: '>=29'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-split-variable-declarations@3.0.0(putout@36.10.0):
@@ -3104,7 +3104,7 @@ packages:
     peerDependencies:
       putout: '>=29'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-tape@15.1.0(putout@36.10.0):
@@ -3113,7 +3113,7 @@ packages:
     peerDependencies:
       putout: '>=36'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-try-catch@4.0.0(putout@36.10.0):
@@ -3122,7 +3122,7 @@ packages:
     peerDependencies:
       putout: '>=36'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-types@5.1.0(putout@36.10.0):
@@ -3131,7 +3131,7 @@ packages:
     peerDependencies:
       putout: '>=36'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-typescript@8.2.1(putout@36.10.0):
@@ -3140,7 +3140,7 @@ packages:
     peerDependencies:
       putout: '>=36'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/plugin-webpack@3.0.0(putout@36.10.0):
@@ -3149,7 +3149,7 @@ packages:
     peerDependencies:
       putout: '>=29'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/printer@9.19.0:
@@ -3178,7 +3178,7 @@ packages:
       cosmiconfig: 9.0.0(typescript@5.6.3)
       deepmerge: 4.3.1
       prettier: 3.3.3
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
       stylelint: 16.10.0(typescript@5.6.3)
       stylelint-config-standard: 36.0.1(stylelint@16.10.0)
       stylelint-prettier: 5.0.2(prettier@3.3.3)(stylelint@16.10.0)
@@ -3211,7 +3211,7 @@ packages:
     peerDependencies:
       putout: '>=29'
     dependencies:
-      putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
+      putout: 36.10.0(eslint@9.4.0)(typescript@5.6.3)
     dev: true
 
   /@putout/processor-json@9.0.0:

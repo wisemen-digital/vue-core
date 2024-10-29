@@ -262,6 +262,10 @@ watch(isActuallyOpen, () => {
 /* Dialog */
 ::view-transition-new(dialog) {
   animation: dialog-fade-in 200ms forwards;
+  mix-blend-mode: normal;
+  height: 100%;
+  width: 100%;
+  transform-origin: center;
 }
 
 /* Close animation */
@@ -279,5 +283,9 @@ watch(isActuallyOpen, () => {
 /* Dialog */
 ::view-transition-old(dialog-leave) {
   animation: dialog-fade-out 200ms 50ms forwards;
+  mix-blend-mode: normal;
+  height: 100%;
+  width: 100%;
+  transform-origin: center;
 }
 </style>
