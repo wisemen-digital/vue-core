@@ -9,10 +9,6 @@ import type {
 } from '@/types/select.type'
 import type { StyleConfig } from '@/types/style.type'
 
-export type SelectDisplayFn<TValue extends SelectValue> = (
-  value: TValue extends Array<infer U> ? U : TValue
-) => string
-
 export type SelectFilterFn<TValue extends SelectValue> = (
   option: TValue extends Array<infer U> ? U : TValue,
   searchTerm: string,
@@ -53,10 +49,6 @@ export interface AppSelectProps<TValue extends SelectValue> extends Omit<Popover
    * @default false
    */
   isTouched?: boolean
-  /**
-   * The display function for the selected value.
-   */
-  displayFn: SelectDisplayFn<TValue>
   /**
    * The errors associated with the input.
    */

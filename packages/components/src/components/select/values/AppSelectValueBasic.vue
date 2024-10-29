@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="TValue extends SelectValue">
 import { computed } from 'vue'
 
 import AppIcon from '@/components/icon/AppIcon.vue'
@@ -6,6 +6,7 @@ import AppPopoverTrigger from '@/components/popover/AppPopoverTrigger.vue'
 import { injectSelectContext } from '@/components/select/select.context'
 import { selectStyle } from '@/components/select/select.style'
 import AppSpinner from '@/components/spinner/AppSpinner.vue'
+import type { SelectOption, SelectValue } from '@/types'
 
 const selectContext = injectSelectContext()
 
@@ -66,6 +67,18 @@ const isEmpty = computed<boolean>(() => {
 
   return value === null
 })
+
+const label = computed<string>(() => {
+  const find = selectContext.items.value.find((item) => {
+    if (item.type === 'option') {
+      return item.value === selectContext.modelValue.value
+    }
+
+    return false
+  }) as SelectOption<TValue> | undefined
+
+  return find?.label ?? 'Item not found'
+})
 </script>
 
 <template>
@@ -107,7 +120,7 @@ const isEmpty = computed<boolean>(() => {
           :value="selectContext.modelValue.value"
           name="value"
         >
-          {{ selectContext.displayFn(selectContext.modelValue.value) }}
+          {{ label }}
         </slot>
       </span>
 

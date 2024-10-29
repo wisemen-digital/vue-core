@@ -6,9 +6,8 @@ import {
   type Ref,
 } from 'vue'
 
-import type { SelectDisplayFn } from '@/components/select/select.props'
 import type { Icon } from '@/icons/icons'
-import type { SelectValue } from '@/types/select.type'
+import type { SelectItem, SelectValue } from '@/types/select.type'
 
 interface SelectContext {
   inputId: ComputedRef<string>
@@ -20,9 +19,9 @@ interface SelectContext {
   isLoading: ComputedRef<boolean>
   isMultiple: ComputedRef<boolean>
   isOpen: ComputedRef<boolean>
-  displayFn: SelectDisplayFn<SelectValue>
   iconLeft: ComputedRef<Icon | null>
   iconRight: ComputedRef<Icon>
+  items: ComputedRef<SelectItem<SelectValue>[]>
   modelValue: Ref<SelectValue>
   placeholder: ComputedRef<null | string>
   searchPlaceholder: ComputedRef<string>

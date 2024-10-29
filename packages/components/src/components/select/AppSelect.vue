@@ -25,7 +25,6 @@ import AppSelectItem from '@/components/select/AppSelectItem.vue'
 import { provideSelectContext } from '@/components/select/select.context'
 import type {
   AppSelectProps,
-  SelectDisplayFn,
 } from '@/components/select/select.props'
 import { selectStyle } from '@/components/select/select.style'
 import AppSelectValueBasic from '@/components/select/values/AppSelectValueBasic.vue'
@@ -238,9 +237,9 @@ provideSelectContext({
   isLoading: computed<boolean>(() => props.isLoading),
   isMultiple,
   isOpen: computed<boolean>(() => isOpen.value),
-  displayFn: props.displayFn as SelectDisplayFn<SelectValue>,
   iconLeft: computed<Icon | null>(() => props.iconLeft),
   iconRight: computed<Icon>(() => props.iconRight),
+  items: computed<SelectItem<TValue>[]>(() => props.items as SelectItem<TValue>[]),
   modelValue: model as Ref<SelectValue>,
   placeholder: computed<null | string>(() => props.placeholder),
   searchPlaceholder,

@@ -6,7 +6,6 @@ import {
 import { computed, useAttrs } from 'vue'
 
 import AppSelectOptionIndicator from '@/components/select/items/AppSelectOptionIndicator.vue'
-import { injectSelectContext } from '@/components/select/select.context'
 import { selectStyle } from '@/components/select/select.style'
 import { provideSelectOptionContext } from '@/components/select/selectOption.context'
 import type { SelectOption, SelectValue } from '@/types/select.type'
@@ -23,7 +22,6 @@ const attrs = useAttrs()
 
 const style = selectStyle()
 
-const selectContext = injectSelectContext()
 const listboxRootContext = injectListboxRootContext()
 
 const optionClasses = computed<string>(() => style.option())
@@ -37,8 +35,6 @@ const isSelected = computed<boolean>(() => {
 
   return JSON.stringify(listboxRootContext.modelValue.value) === JSON.stringify(props.item.value)
 })
-
-const displayValue = computed<string>(() => selectContext.displayFn(props.item.value))
 
 provideSelectOptionContext({
   isSelected,
@@ -60,7 +56,7 @@ provideSelectOptionContext({
     >
       <span class="w-full">
         <slot name="option-content">
-          {{ displayValue }}
+          {{ props.item.label }}
         </slot>
       </span>
 

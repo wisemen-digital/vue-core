@@ -13,58 +13,62 @@ const items: SelectItem<string>[] = [
   {
     type: 'option',
     value: 'Apple',
+    label: 'Apple',
   },
   {
     type: 'option',
     value: 'Banana',
+    label: 'Banana',
   },
   {
     type: 'option',
     value: 'Blueberry',
+    label: 'Blueberry',
   },
   {
     type: 'option',
     value: 'Grapes',
+    label: 'Grapes',
   },
   {
     type: 'option',
     value: 'Leek',
+    label: 'Leek',
   },
   {
     type: 'option',
+    label: 'Pear',
     value: 'Pear',
   },
   {
     type: 'option',
+    label: 'Raspberry',
     value: 'Raspberry',
   },
   {
     type: 'option',
+    label: 'Strawberry',
     value: 'Strawberry',
   },
   {
     type: 'option',
+    label: 'Cherry',
     value: 'Cherry',
   },
 ]
-
-function displayFn(value: string): string {
-  return value
-}
 </script>
 
 <template>
   <AppSelect
     v-model="value"
     :items="items"
-    :display-fn="displayFn"
     label="Select a fruit"
     placeholder="Select a fruit"
     class="w-72"
   >
     <template #option-content="{ item }">
       <div class="flex items-center justify-between pr-2">
-        {{ displayFn(item.value) }}
+        {{ item.label }}
 
         <AppTag
           v-if="item.value === 'Apple'"
@@ -84,7 +88,7 @@ function displayFn(value: string): string {
 
         <AppIcon
           v-else-if="item.value === 'Blueberry'"
-          icon="translate01"
+          icon="translate"
         />
       </div>
     </template>

@@ -9,38 +9,47 @@ const items: SelectItem<string>[] = [
   {
     type: 'option',
     value: 'Apple',
+    label: 'Apple',
   },
   {
     type: 'option',
+    label: 'Banana',
     value: 'Banana',
   },
   {
     type: 'option',
     value: 'Blueberry',
+    label: 'Blueberry',
   },
   {
     type: 'option',
     value: 'Grapes',
+    label: 'Grapes',
   },
   {
     type: 'option',
     value: 'Leek',
+    label: 'Leek',
   },
   {
     type: 'option',
     value: 'Pear',
+    label: 'Pear',
     isDisabled: true,
   },
   {
     type: 'option',
     value: 'Raspberry',
+    label: 'Raspberry',
   },
   {
     type: 'option',
+    label: 'Strawberry',
     value: 'Strawberry',
   },
   {
     type: 'option',
+    label: 'Cherry',
     value: 'Cherry',
   },
 ]
@@ -50,7 +59,6 @@ const items: SelectItem<string>[] = [
   <AppSelect
     v-model="value"
     :items="items"
-    :display-fn="(value) => value"
     label="Select a fruit"
     placeholder="Select a fruit"
     class="w-72"
