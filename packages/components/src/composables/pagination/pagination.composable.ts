@@ -28,8 +28,8 @@ export function usePagination<TFilters>({
   const DEFAULT_PAGINATION_OPTIONS: PaginationOptions<unknown> = {
     filters: {} as PaginationFilters<unknown>,
     pagination: {
-      limit: globalConfigContext.table.pagination.limit,
-      offset: globalConfigContext.table.pagination.offset,
+      limit: globalConfigContext.table?.defaultLimit ?? 20,
+      offset: 0,
     },
     search: undefined,
     sort: undefined,

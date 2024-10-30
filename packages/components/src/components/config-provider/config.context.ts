@@ -8,10 +8,7 @@ import {
 interface ConfigContext {
   locale: ComputedRef<string>
   table: {
-    pagination: {
-      limit: number
-      offset: number
-    }
+    defaultLimit: number
   }
 }
 
