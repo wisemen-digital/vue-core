@@ -27,7 +27,10 @@ import Dialogs from './Dialogs.vue'
 </script>
 
 <template>
-  <AppConfigProvider locale="nl">
+  <AppConfigProvider
+    :table="{ defaultLimit: 30 }"
+    locale="nl"
+  >
     <AppThemeProvider theme="light">
       <div class="p-24">
         <AppDateField class="w-72" />
