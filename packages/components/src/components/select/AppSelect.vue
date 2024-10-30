@@ -239,6 +239,7 @@ provideSelectContext({
   isMultiple,
   isOpen: computed<boolean>(() => isOpen.value),
   displayFn: props.displayFn as SelectDisplayFn<SelectValue>,
+  hint: computed<null | string>(() => props.hint),
   iconLeft: computed<Icon | null>(() => props.iconLeft),
   iconRight: computed<Icon>(() => props.iconRight),
   modelValue: model as Ref<SelectValue>,

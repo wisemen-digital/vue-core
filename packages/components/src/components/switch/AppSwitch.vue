@@ -8,6 +8,7 @@ import AppInputFieldHint from '@/components/input-field-hint/AppInputFieldHint.v
 import AppInputFieldLabel from '@/components/input-field-label/AppInputFieldLabel.vue'
 import AppSwitchIndicator from '@/components/switch/AppSwitchIndicator.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
+import { useAriaDescribedBy } from '@/composables/aria-described-by/ariaDescribedBy.composable'
 
 import type { AppSwitchProps } from './switch.props'
 import { switchStyle } from './switch.style'
@@ -42,12 +43,20 @@ const themeProviderContext = injectThemeProviderContext()
 const isFocused = ref<boolean>(false)
 const isMouseOver = ref<boolean>(false)
 
+const inputId = computed<string>(() => props.id ?? useId())
+
 const style = switchStyle()
 
 const isHovered = computed<boolean>(() => isMouseOver.value && !props.isDisabled)
 const isChecked = computed<boolean>(() => model.value)
 const isDisabled = computed<boolean>(() => props.isDisabled || props.isReadonly)
 const hasError = computed<boolean>(() => props.errors !== undefined && props.isTouched && props.errors !== null)
+
+const ariaDescribedBy = useAriaDescribedBy({
+  id: inputId,
+  hasErrors: hasError,
+  hasHint: computed<boolean>(() => props.hint !== null),
+})
 
 const rootClasses = computed<string>(() => style.root({
   hasError: hasError.value,
@@ -99,8 +108,6 @@ const boxClasses = computed<string>(() => style.box({
 
 const bottomClasses = computed<string>(() => style.bottom())
 
-const inputId = computed<string>(() => props.id ?? useId())
-
 const sizeClass = computed<null | string>(() => {
   if (props.size === 'sm') {
     return 'switch-sm'
@@ -145,7 +152,7 @@ function onBlur(): void {
         :disabled="props.isDisabled || props.isReadonly"
         :class="[rootClasses]"
         :data-test-id="props.testId"
-        :aria-describedby="`${inputId}-error ${inputId}-hint`"
+        :aria-describedby="ariaDescribedBy"
         @mouseenter="onMouseEnter"
         @mouseleave="onMouseLeave"
         @focus="onFocus"

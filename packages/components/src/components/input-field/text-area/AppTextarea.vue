@@ -10,6 +10,7 @@ import AppInputFieldError from '@/components/input-field-error/AppInputFieldErro
 import AppInputFieldHint from '@/components/input-field-hint/AppInputFieldHint.vue'
 import AppInputFieldLabel from '@/components/input-field-label/AppInputFieldLabel.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
+import { useAriaDescribedBy } from '@/composables/aria-described-by/ariaDescribedBy.composable'
 
 const props = withDefaults(defineProps<AppTextareaProps>(), {
   id: null,
@@ -46,6 +47,12 @@ const style = textareaStyle()
 const inputId = computed<string>(() => props.id ?? useId())
 const isHovered = computed<boolean>(() => isMouseOver.value && !props.isDisabled)
 const hasError = computed<boolean>(() => props.errors !== undefined && props.isTouched && props.errors !== null)
+
+const ariaDescribedBy = useAriaDescribedBy({
+  id: inputId,
+  hasErrors: hasError,
+  hasHint: computed<boolean>(() => props.hint !== null),
+})
 
 const textareaClasses = computed<string>(() => style.textarea({
   hasError: hasError.value,
@@ -124,6 +131,7 @@ function onBlur(): void {
       ref="textarea"
       v-model="model"
       :data-test-id="props.testId"
+      :aria-describedby="ariaDescribedBy"
       :class="textareaClasses"
       :disabled="props.isDisabled"
       :readonly="props.isReadonly"

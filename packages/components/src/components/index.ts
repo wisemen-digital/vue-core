@@ -17,6 +17,9 @@ export type { AppIconButtonProps } from '@/components/button/icon-button/iconBut
 export { default as AppRouterLinkButton } from '@/components/button/router-link-button/AppRouterLinkButton.vue'
 export type { AppRouterLinkButtonProps } from '@/components/button/router-link-button/routerLinkButton.props'
 
+// Calendar
+export { default as AppCalendar } from '@/components/calendar/AppCalendar.vue'
+
 // Checkbox
 export { default as AppCheckbox } from '@/components/checkbox/AppCheckbox.vue'
 export type { AppCheckboxProps } from '@/components/checkbox/checkbox.props'

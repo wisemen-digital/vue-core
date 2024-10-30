@@ -7,10 +7,17 @@ import { injectSelectContext } from '@/components/select/select.context'
 import { selectStyle } from '@/components/select/select.style'
 import AppSelectValueTag from '@/components/select/values/AppSelectValueTag.vue'
 import AppSpinner from '@/components/spinner/AppSpinner.vue'
+import { useAriaDescribedBy } from '@/composables/aria-described-by/ariaDescribedBy.composable'
 
 const selectContext = injectSelectContext()
 
 const style = selectStyle()
+
+const ariaDescribedBy = useAriaDescribedBy({
+  id: selectContext.inputId,
+  hasErrors: selectContext.hasError,
+  hasHint: computed<boolean>(() => selectContext.hint.value !== null),
+})
 
 const selectBoxClasses = computed<string>(() => style.selectBox({
   hasError: selectContext.hasError.value,
@@ -104,7 +111,7 @@ const isEmpty = computed<boolean>(() => (selectContext.modelValue.value as Array
           :id="selectContext.inputId.value"
           :data-test-id="selectContext.testId.value"
           :disabled="selectContext.isDisabled.value"
-          :aria-describedby="`${selectContext.inputId.value}-error ${selectContext.inputId.value}-hint`"
+          :aria-describedby="ariaDescribedBy"
           :class="{
             'pointer-events-none': selectContext.isDisabled.value,
           }"

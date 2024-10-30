@@ -14,6 +14,7 @@ import {
 import type {
   Attrs,
   Dialog,
+  DialogTriggerProps,
   UseDialogContainerReturnType,
   UseDialogOptions,
   UseDialogReturnType,
@@ -92,9 +93,20 @@ export function useDialog<TComponent extends Component>(
     })
   }
 
+  const triggerProps = computed<DialogTriggerProps>(() => {
+    const isOpen = dialogs.value.some((dialog) => dialog.id === triggerId)
+
+    return {
+      'id': triggerId,
+      'aria-expanded': isOpen,
+      'aria-haspopup': 'dialog',
+      'data-state': isOpen,
+    }
+  })
+
   return {
-    triggerId,
     close: closeDialog,
     open: openDialog as UseDialogReturnType<TComponent>['open'],
+    triggerProps,
   }
 }

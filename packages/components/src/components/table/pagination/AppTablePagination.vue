@@ -31,6 +31,7 @@ function onPageChange(page: number): void {
     :items-per-page="limit"
     :default-page="tableContext.pagination.value.paginationOptions.value.pagination.offset + 1"
     :show-edges="true"
+    aria-label="Pagination"
     @update:page="onPageChange"
   >
     <AppSkeletonItem

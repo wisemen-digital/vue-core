@@ -6,10 +6,17 @@ import AppPopoverTrigger from '@/components/popover/AppPopoverTrigger.vue'
 import { injectSelectContext } from '@/components/select/select.context'
 import { selectStyle } from '@/components/select/select.style'
 import AppSpinner from '@/components/spinner/AppSpinner.vue'
+import { useAriaDescribedBy } from '@/composables/aria-described-by/ariaDescribedBy.composable'
 
 const selectContext = injectSelectContext()
 
 const style = selectStyle()
+
+const ariaDescribedBy = useAriaDescribedBy({
+  id: selectContext.inputId,
+  hasErrors: selectContext.hasError,
+  hasHint: computed<boolean>(() => selectContext.hint.value !== null),
+})
 
 const selectBoxClasses = computed<string>(() => style.selectBox({
   hasError: selectContext.hasError.value,
@@ -75,7 +82,7 @@ const isEmpty = computed<boolean>(() => {
       :data-test-id="selectContext.testId.value"
       :class="selectBoxClasses"
       :disabled="selectContext.isDisabled.value"
-      :aria-describedby="`${selectContext.inputId.value}-error ${selectContext.inputId.value}-hint`"
+      :aria-describedby="ariaDescribedBy"
       @focus="selectContext.onTriggerFocus"
       @blur="selectContext.onTriggerBlur"
       @mouseenter="selectContext.onTriggerMouseEnter"

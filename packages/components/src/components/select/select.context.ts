@@ -21,6 +21,7 @@ interface SelectContext {
   isMultiple: ComputedRef<boolean>
   isOpen: ComputedRef<boolean>
   displayFn: SelectDisplayFn<SelectValue>
+  hint: ComputedRef<null | string>
   iconLeft: ComputedRef<Icon | null>
   iconRight: ComputedRef<Icon>
   modelValue: Ref<SelectValue>

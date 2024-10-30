@@ -1,4 +1,15 @@
-import type { Component, Ref } from 'vue'
+import type {
+  Component,
+  ComputedRef,
+  Ref,
+} from 'vue'
+
+export interface DialogTriggerProps {
+  'id': string
+  'aria-expanded': boolean
+  'aria-haspopup': 'dialog'
+  'data-state': boolean
+}
 
 export type IgnoredKeys =
   | '__v_isVNode'
@@ -50,10 +61,6 @@ export interface UseDialogOptions<TComponent extends Component> {
 
 export interface UseDialogReturnType<TComponent extends Component> {
   /**
-   * The dialog id. Should be bound to the trigger
-   */
-  triggerId: string
-  /**
    * Close the dialog
    */
   close: () => void
@@ -70,6 +77,10 @@ export interface UseDialogReturnType<TComponent extends Component> {
         (attrs?: Omit<Attrs<TComponent>, IgnoredKeys>) => Promise<void>
       : // If there are required attributes, then the parameter is required
         (attrs: Omit<Attrs<TComponent>, IgnoredKeys>) => Promise<void>
+  /**
+   * The props to pass to the trigger
+   */
+  triggerProps: ComputedRef<DialogTriggerProps>
 }
 
 export interface Dialog {
