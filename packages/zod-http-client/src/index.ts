@@ -172,7 +172,7 @@ export function createHttpZodClient(
     }
   }
 
-  async function del<T extends z.ZodType>(options: DeleteOptions<T>): Promise<undefined | z.infer<T>> {
+  async function del<T extends z.ZodType>(options: DeleteOptions<T>): Promise<z.infer<T> | undefined> {
     const {
       body,
       config,
