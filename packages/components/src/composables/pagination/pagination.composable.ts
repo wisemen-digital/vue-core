@@ -6,6 +6,7 @@ import {
   watch,
 } from 'vue'
 
+import { injectConfigContext } from '@/components/config-provider/config.context'
 import type {
   FilterChangeEvent,
   PageChangeEvent,
@@ -17,22 +18,24 @@ import type {
 } from '@/types/pagination.type'
 import { base64Decode, base64Encode } from '@/utils/base64.util'
 
-const DEFAULT_PAGINATION_OPTIONS: PaginationOptions<unknown> = {
-  filters: {} as PaginationFilters<unknown>,
-  pagination: {
-    limit: 20,
-    offset: 0,
-  },
-  search: undefined,
-  sort: undefined,
-  staticFilters: {} as PaginationFilters<unknown>,
-} as const
-
 export function usePagination<TFilters>({
   isRouteQueryEnabled,
   defaultPaginationOptions = null,
   key: routeQueryKey,
 }: UsePaginationOptions<TFilters>): UsePaginationReturnType<TFilters> {
+  const globalConfigContext = injectConfigContext()
+
+  const DEFAULT_PAGINATION_OPTIONS: PaginationOptions<unknown> = {
+    filters: {} as PaginationFilters<unknown>,
+    pagination: {
+      limit: globalConfigContext.pagination?.limit ?? 20,
+      offset: 0,
+    },
+    search: undefined,
+    sort: undefined,
+    staticFilters: {} as PaginationFilters<unknown>,
+  } as const
+
   if (isRouteQueryEnabled && routeQueryKey === undefined) {
     throw new Error('The `key` prop is required when using the `isRouteQueryEnabled` prop')
   }

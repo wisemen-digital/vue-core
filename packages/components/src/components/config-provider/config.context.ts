@@ -7,6 +7,9 @@ import {
 
 interface ConfigContext {
   locale: ComputedRef<string>
+  pagination?: {
+    limit?: number
+  }
 }
 
 const configContextKey: InjectionKey<ConfigContext> = Symbol('configContextKey')

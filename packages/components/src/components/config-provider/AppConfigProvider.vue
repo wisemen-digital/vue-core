@@ -5,10 +5,16 @@ import { provideConfigContext } from '@/components/config-provider/config.contex
 
 const props = defineProps<{
   locale: string
+  pagination?: {
+    limit?: number
+  }
 }>()
 
 provideConfigContext({
   locale: computed<string>(() => props.locale),
+  pagination: {
+    limit: props.pagination?.limit,
+  },
 })
 </script>
 
