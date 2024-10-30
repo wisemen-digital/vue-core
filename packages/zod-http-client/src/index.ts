@@ -11,12 +11,12 @@ interface CustomizedError {
   url: string
 }
 
-interface CreateHttpZodClientOptions {
+export interface CreateHttpZodClientOptions {
   axios: Axios | AxiosInstance
   onZodError: (error: CustomizedError) => void
 }
 
-interface CreateHttpZodClientReturnType {
+export interface CreateHttpZodClientReturnType {
   delete: <T extends z.ZodType>(options: DeleteOptions<T>) => Promise<z.infer<T>>
   get: <T extends z.ZodType>(options: GetOptions<T>) => Promise<z.infer<T>>
   patch: <T extends z.ZodType>(options: PatchOptions<T>) => Promise<z.infer<T>>
@@ -172,7 +172,7 @@ export function createHttpZodClient(
     }
   }
 
-  async function del<T extends z.ZodType>(options: DeleteOptions<T>): Promise<z.infer<T> | undefined> {
+  async function del<T extends z.ZodType>(options: DeleteOptions<T>): Promise<undefined | z.infer<T>> {
     const {
       body,
       config,
