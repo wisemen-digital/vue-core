@@ -7,8 +7,8 @@ import {
 
 interface ConfigContext {
   locale: ComputedRef<string>
-  table: {
-    defaultLimit: number
+  table?: {
+    defaultLimit?: number
   }
 }
 

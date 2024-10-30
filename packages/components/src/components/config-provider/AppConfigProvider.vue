@@ -6,7 +6,7 @@ import { provideConfigContext } from '@/components/config-provider/config.contex
 const props = defineProps<{
   locale: string
   table?: {
-    defaultLimit: number
+    defaultLimit?: number
   }
 }>()
 
