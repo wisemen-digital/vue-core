@@ -1,9 +1,5 @@
 <script setup lang="ts">
 import {
-  useResizeObserver,
-  useScroll,
-} from '@vueuse/core'
-import {
   TabsIndicator,
   TabsList,
   TabsRoot,
@@ -11,7 +7,6 @@ import {
 } from 'radix-vue'
 import {
   computed,
-  onMounted,
   ref,
   watch,
 } from 'vue'
@@ -21,6 +16,7 @@ import AppUnstyledButton from '@/components/button/AppUnstyledButton.vue'
 import AppIcon from '@/components/icon/AppIcon.vue'
 import { useTabsStyle } from '@/components/tabs/tabs.style'
 import AppText from '@/components/text/AppText.vue'
+import { useTabs } from '@/composables/tabs/tabs.composable'
 import type { TabItem } from '@/types/tabItem.type'
 
 const props = withDefaults(
@@ -43,17 +39,14 @@ const activeTabModel = defineModel<TabItem>('tab', {
   required: true,
 })
 
-const isTabScrollable = ref<boolean>(false)
 const tabItemRef = ref<InstanceType<any>[]>([])
-const hasScrolledToTheLeft = ref<boolean>(true)
-const hasScrolledToTheRight = ref<boolean>(false)
 const tabsRootRef = ref<InstanceType<any> | null>(null)
 const scrollContainerRef = ref<InstanceType<any> | null>(null)
 
-const scroll = useScroll(computed<InstanceType<any>>(() => scrollContainerRef.value?.$el), {
-  behavior: 'smooth',
-  offset: { left: 20, right: 20 },
-})
+const tabsComposable = useTabs(
+  tabsRootRef,
+  scrollContainerRef,
+)
 
 const computedModel = computed<string>({
   get: () => activeTabModel.value.id,
@@ -61,6 +54,8 @@ const computedModel = computed<string>({
     activeTabModel.value = props.items.find((tab) => tab.id === value)!
   },
 })
+
+const tabsStyle = useTabsStyle()
 
 const indicatorClasses = computed<string>(() => tabsStyle.indicator())
 const leftGradientClasses = computed<string>(() => tabsStyle.gradient({ direction: 'to-right' }))
@@ -72,30 +67,6 @@ function isTabActive(tab: TabItem): boolean {
   return tab.id === computedModel.value
 }
 
-const tabsStyle = useTabsStyle()
-
-function onScrollToTheRight(): void {
-  scroll.x.value += tabItemRef.value[0]?.$el.clientWidth ?? 100
-}
-
-function onScrollToTheLeft(): void {
-  scroll.x.value -= tabItemRef.value[0]?.$el.clientWidth ?? 100
-}
-
-watch(() => scroll.arrivedState.right, (newValue) => {
-  if (newValue && !hasScrolledToTheRight.value) {
-    hasScrolledToTheRight.value = true
-    hasScrolledToTheLeft.value = false
-  }
-})
-
-watch(() => scroll.arrivedState.left, (newValue) => {
-  if (newValue && !hasScrolledToTheLeft.value) {
-    hasScrolledToTheLeft.value = true
-    hasScrolledToTheRight.value = false
-  }
-})
-
 watch(computedModel, (value) => {
   const tabIndex = props.items.findIndex((tab) => tab.id === value)
   const tabItem = tabItemRef.value[tabIndex]
@@ -106,21 +77,6 @@ watch(computedModel, (value) => {
     inline: 'center',
   })
 })
-
-useResizeObserver(tabsRootRef, () => {
-  hasScrolledToTheRight.value = false
-  hasScrolledToTheLeft.value = true
-
-  if (scrollContainerRef.value?.$el.scrollWidth && tabsRootRef.value?.$el.clientWidth) {
-    isTabScrollable.value = scrollContainerRef.value.$el.scrollWidth > tabsRootRef.value?.$el.clientWidth
-  }
-})
-
-onMounted(() => {
-  if (scrollContainerRef.value?.$el.scrollWidth && tabsRootRef.value?.$el.clientWidth) {
-    isTabScrollable.value = scrollContainerRef.value.$el.scrollWidth > tabsRootRef.value.$el.clientWidth
-  }
-})
 </script>
 
 <template>
@@ -130,17 +86,17 @@ onMounted(() => {
     class="relative"
   >
     <div
-      v-if="isTabScrollable && !scroll.arrivedState.right"
+      v-if="tabsComposable.isTabScrollable.value && !tabsComposable.isArrivedStateRight.value"
       :class="rightGradientClasses"
     />
     <div
-      v-if="isTabScrollable && !scroll.arrivedState.left"
+      v-if="tabsComposable.isTabScrollable.value && !tabsComposable.hasScrolledToTheLeft.value"
       :class="leftGradientClasses"
     />
     <AppUnstyledButton
-      v-if="isTabScrollable && hasScrolledToTheLeft"
+      v-if="tabsComposable.isTabScrollable.value && tabsComposable.hasScrolledToTheLeft.value"
       :class="rightScrollButtonClasses"
-      @click="onScrollToTheRight"
+      @click="tabsComposable.onScrollToTheRight"
     >
       <AppIcon
         size="sm"
@@ -149,9 +105,9 @@ onMounted(() => {
     </AppUnstyledButton>
 
     <AppUnstyledButton
-      v-if="isTabScrollable && hasScrolledToTheRight"
+      v-if="tabsComposable.isTabScrollable.value && tabsComposable.hasScrolledToTheRight.value"
       :class="leftScrollButtonClasses"
-      @click="onScrollToTheLeft"
+      @click="tabsComposable.onScrollToTheLeft"
     >
       <AppIcon
         size="sm"
