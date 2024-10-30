@@ -28,7 +28,7 @@ export function usePagination<TFilters>({
   const DEFAULT_PAGINATION_OPTIONS: PaginationOptions<unknown> = {
     filters: {} as PaginationFilters<unknown>,
     pagination: {
-      limit: globalConfigContext.table?.defaultLimit ?? 20,
+      limit: globalConfigContext.pagination?.limit ?? 20,
       offset: 0,
     },
     search: undefined,

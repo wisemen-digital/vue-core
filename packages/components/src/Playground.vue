@@ -28,7 +28,7 @@ import Dialogs from './Dialogs.vue'
 
 <template>
   <AppConfigProvider
-    :table="{ defaultLimit: 30 }"
+    :pagination="{ limit: 30 }"
     locale="nl"
   >
     <AppThemeProvider theme="light">
