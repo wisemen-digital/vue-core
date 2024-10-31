@@ -10,5 +10,6 @@ import AppRouteTabsPlayground from './AppRouteTabsPlayground.vue'
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
+| isFullWidth | `boolean` | Whether the tabs should take up the full width of the container. | `false` |
 | tabs* | `RouteTabItem[]` | All the tabs to be rendered. |  |
 
