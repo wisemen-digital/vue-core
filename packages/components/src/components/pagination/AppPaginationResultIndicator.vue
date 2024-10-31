@@ -18,15 +18,38 @@ const currentPage = computed<number>(() => {
     return 0
   }
 
-  return paginationContext.page.value + 1
+  return paginationContext.page.value
+})
+
+const minPageItems = computed<number>(() => {
+  if (totalPages.value === 0) {
+    return 0
+  }
+
+  const min = (currentPage.value * paginationContext.perPage.value) + 1
+
+  return Math.min(min, paginationContext.total.value)
+})
+
+const maxPageItems = computed<number>(() => {
+  return Math.min((currentPage.value + 1) * paginationContext.perPage.value, paginationContext.total.value)
+})
+
+const maxItems = computed<number>(() => {
+  return paginationContext.total.value
+})
+
+const label = computed<string>(() => {
+  const min = NumberUtil.toLocaleNumber(minPageItems.value)
+  const max = NumberUtil.toLocaleNumber(maxPageItems.value)
+  const total = NumberUtil.toLocaleNumber(maxItems.value)
+
+  return `${min} - ${max} ${t('components.table.of')} ${total}`
 })
 </script>
 
 <template>
   <AppText variant="subtext">
-    {{ t('components.table.page') }}
-    {{ NumberUtil.toLocaleNumber(currentPage) }}
-    {{ t('components.table.of') }}
-    {{ NumberUtil.toLocaleNumber(totalPages) }}
+    {{ label }}
   </AppText>
 </template>

@@ -224,7 +224,6 @@ const tableClasses = computed<string>(() => tableStyle.table({
       v-if="!isTopHidden"
       :is-loading="props.isLoading"
       :title="props.title"
-      :total="props.data?.total ?? null"
       :filters="props.filters"
       :variant="props.variant"
       :pagination="props.pagination"

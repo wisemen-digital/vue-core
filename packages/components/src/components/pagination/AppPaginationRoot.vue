@@ -29,6 +29,7 @@ providePaginationContext({
   hasMoreThanOnePage,
   page: computed<number>(() => props.pagination.paginationOptions.value.pagination.page),
   perPage: computed<number>(() => props.pagination.paginationOptions.value.pagination.perPage),
+  total: computed<number>(() => props.total),
   totalPages: computed<number>(() => {
     return Math.ceil(props.total / props.pagination.paginationOptions.value.pagination.perPage)
   }),
