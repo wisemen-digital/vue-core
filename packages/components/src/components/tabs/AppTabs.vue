@@ -115,6 +115,7 @@ watch(computedModel, (value) => {
       />
     </AppUnstyledButton>
     <TabsList
+      ref="scrollContainerRef"
       :class="tabsStyle.list({
         isFullWidth: props.isFullWidth,
       })"
@@ -123,6 +124,7 @@ watch(computedModel, (value) => {
 
       <TabsTrigger
         v-for="tab of items"
+        ref="tabItemRef"
         :key="tab.label"
         :data-test-id="tab.testId"
         :value="tab.id"
