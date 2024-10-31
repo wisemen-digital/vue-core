@@ -51,7 +51,6 @@ export const useTableStyle = tv({
     skeletonLoaderHeaderGrid: 'grid grid-cols-table-skeleton gap-x-8 px-8',
     skeletonLoaderHeaderRow: 'mt-4 rounded-md bg-neutral-100 p-3',
     table: 'relative flex h-full flex-1 flex-col overflow-hidden bg-background',
-    topBadge: 'mt-0.5',
     topContainer: 'flex items-center gap-x-2 px-6 py-4',
     topSearchInput: 'ml-auto w-28 md:w-72',
     topSkeletonRow: 'mt-1 w-20',
