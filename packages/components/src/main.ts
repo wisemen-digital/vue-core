@@ -15,6 +15,9 @@ const i18n = createI18n({
         close: 'Close',
       },
       component: {
+        address_autocomplete: {
+          failed_to_fetch: 'Failed to fetch predictions.',
+        },
         keyboard_shortcut: {
           then: 'then',
         },

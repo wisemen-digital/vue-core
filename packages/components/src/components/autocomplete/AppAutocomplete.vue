@@ -113,13 +113,13 @@ const isActuallyOpen = computed<boolean>({
     }
 
     // When there is only 1 item, and that item is already selected, don't show the dropdown
-    if (props.items.length === 1) {
-      const isFirstItemSelected = props.items[0]?.value === model.value
+    // if (props.items.length === 1 && props.items[0] !== null) {
+    //   const isFirstItemSelected = props.items[0]?.value === model.value
 
-      if (isFirstItemSelected) {
-        return false
-      }
-    }
+    //   if (isFirstItemSelected && !doesSearchTermMatchFirstItem) {
+    //     return false
+    //   }
+    // }
 
     return isOpen.value
   },
@@ -136,10 +136,6 @@ const computedModel = computed<TValue | undefined>({
 })
 
 function onFocus(): void {
-  setTimeout(() => {
-    isOpen.value = true
-  })
-
   isFocused.value = true
 }
 
@@ -157,7 +153,11 @@ function onInput(): void {
 
 function onBlur(): void {
   isFocused.value = false
-  updateSearchTermWithValue(model.value as any)
+
+  if (model.value !== null && !isActuallyOpen.value) {
+    updateSearchTermWithValue(model.value)
+    isActuallyOpen.value = false
+  }
 }
 
 function onMouseEnter(): void {
@@ -174,6 +174,12 @@ watch(model, (model) => {
   }
 
   updateSearchTermWithValue(model)
+})
+
+watch(isOpen, (isOpen) => {
+  if (!isOpen && !isFocused.value && model.value !== null) {
+    updateSearchTermWithValue(model.value)
+  }
 })
 
 watch(searchTerm, (searchTerm) => {
@@ -228,6 +234,7 @@ if (model.value !== null) {
             :id="inputId"
             v-model="searchTerm"
             :class="[selectBoxClasses, selectValueClasses]"
+            autocomplete="off"
             @focus="onFocus"
             @input="onInput"
             @blur="onBlur"

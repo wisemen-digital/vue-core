@@ -19,11 +19,25 @@ import '@/components/dialog/dialogStyle.config'
 import '@/components/table/tableStyle.config'
 import '@/components/switch/switchStyle.config'
 
-import AppConfigProvider from '@/components/config-provider/AppConfigProvider.vue'
-import AppDateField from '@/components/input-field/date-field/AppDateField.vue'
-import AppThemeProvider from '@/components/theme-provider/AppThemeProvider.vue'
+import { ref } from 'vue'
 
-import Dialogs from './Dialogs.vue'
+import AppAddressAutocomplete from '@/components/autocomplete/AppAddressAutocomplete.vue'
+import AppConfigProvider from '@/components/config-provider/AppConfigProvider.vue'
+import AppThemeProvider from '@/components/theme-provider/AppThemeProvider.vue'
+import type { Address } from '@/types/addressAutoComplete'
+
+const value = ref<Address | null>({
+  bus: '',
+  city: 'Diepenbeek',
+  coordinates: {
+    lat: 50.9105115,
+    lng: 5.413977,
+  },
+  country: 'BE',
+  postalCode: '3590',
+  street: 'Kapelstraat',
+  streetNumber: '63a',
+})
 </script>
 
 <template>
@@ -33,10 +47,8 @@ import Dialogs from './Dialogs.vue'
   >
     <AppThemeProvider theme="light">
       <div class="p-24">
-        <AppDateField class="w-72" />
+        <AppAddressAutocomplete v-model="value" />
       </div>
-
-      <Dialogs />
     </AppThemeProvider>
   </AppConfigProvider>
 </template>

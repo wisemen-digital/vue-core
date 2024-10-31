@@ -1,4 +1,5 @@
 // Autocomplete
+export { default as AppAddressAutocomplete } from '@/components/autocomplete/AppAddressAutocomplete.vue'
 export { default as AppAutocomplete } from '@/components/autocomplete/AppAutocomplete.vue'
 export type { AppAutocompleteProps } from '@/components/autocomplete/autocomplete.props'
 
