@@ -37,12 +37,16 @@ const props = withDefaults(defineProps<{
   areYearArrowsHidden: false,
 })
 
-const model = defineModel<Date>({
+const model = defineModel<Date | null>({
   required: true,
 })
 
-const computedModel = computed<CalendarDate>({
+const computedModel = computed<CalendarDate | null>({
   get: () => {
+    if (model.value === null) {
+      return null
+    }
+
     const modelDay = model.value.getDate()
     const modelMonth = model.value.getMonth()
     const modelYear = model.value.getFullYear()
@@ -50,6 +54,12 @@ const computedModel = computed<CalendarDate>({
     return new CalendarDate(modelYear, modelMonth + 1, modelDay)
   },
   set: (value) => {
+    if (value === null) {
+      model.value = null
+
+      return
+    }
+
     model.value = value.toDate(getLocalTimeZone())
   },
 })
@@ -66,6 +76,10 @@ const now = new Date()
 const placeholderYear = computed<number>({
   get: () => placeholder.value.year,
   set: (value) => {
+    if (computedModel.value === null) {
+      return
+    }
+
     computedModel.value = computedModel.value.set({ year: value })
   },
 })
@@ -73,6 +87,10 @@ const placeholderYear = computed<number>({
 const placeholderMonth = computed<number>({
   get: () => placeholder.value.month,
   set: (value) => {
+    if (computedModel.value === null) {
+      return
+    }
+
     computedModel.value = computedModel.value.set({ month: value })
   },
 })

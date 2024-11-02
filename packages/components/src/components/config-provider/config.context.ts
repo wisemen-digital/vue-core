@@ -6,6 +6,7 @@ import {
 } from 'vue'
 
 interface ConfigContext {
+  googleMapsApiKey: null | string
   locale: ComputedRef<string>
   pagination?: {
     limit?: number

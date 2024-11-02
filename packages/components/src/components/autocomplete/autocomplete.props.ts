@@ -67,6 +67,11 @@ export interface AppAutocompleteProps<TValue extends SelectValue> extends Omit<P
    */
   iconLeft?: Icon | null
   /**
+   * The right icon of the input.
+   * @default null
+   */
+  iconRight?: Icon | null
+  /**
    * The items of the select.
    */
   items: SelectOption<TValue extends Array<infer U> ? U : TValue>[]

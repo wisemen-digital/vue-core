@@ -47,7 +47,11 @@ const value = ref<Address | null>({
   >
     <AppThemeProvider theme="light">
       <div class="p-24">
-        <AppAddressAutocomplete v-model="value" />
+        <AppAddressAutocomplete
+          v-model="value"
+          icon-left="search"
+          class="w-72"
+        />
       </div>
     </AppThemeProvider>
   </AppConfigProvider>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Loader } from '@googlemaps/js-api-loader'
+import { useDebounceFn } from '@vueuse/core'
 import {
   computed,
   onMounted,
@@ -8,6 +9,8 @@ import {
 import { useI18n } from 'vue-i18n'
 
 import AppAutocomplete from '@/components/autocomplete/AppAutocomplete.vue'
+import type { AppAutocompleteProps } from '@/components/autocomplete/autocomplete.props'
+import { injectConfigContext } from '@/components/config-provider/config.context'
 import { useToast } from '@/composables/index'
 import type { Address } from '@/types/addressAutoComplete'
 import type { SelectOption } from '@/types/select.type'
@@ -27,9 +30,7 @@ interface Place {
   label: string
 }
 
-const props = withDefaults(defineProps<{
-  isRequired?: boolean
-  label?: null | string
+const props = withDefaults(defineProps<Omit<AppAutocompleteProps<Address>, 'displayFn' | 'isLoading' | 'items'> & {
   modelValue: Address | null
 }>(), {
   isRequired: false,
@@ -60,8 +61,12 @@ const model = computed<Address | null>({
   },
 })
 
+const globalConfigContext = injectConfigContext()
+
 const { t } = useI18n()
 const toast = useToast()
+
+const isLoading = ref<boolean>(false)
 
 const selectedPlace = ref<Place | null>(getDefaultPlace())
 const predictions = ref<AutocompletePrediction[]>([])
@@ -78,6 +83,19 @@ const autocompleteOptions = computed<SelectOption<Place>[]>(() => (
 
 let autocompleteService: google.maps.places.AutocompleteService | null = null
 let loader: Loader | null
+
+const debounceSearch = useDebounceFn(async (value: string) => {
+  try {
+    predictions.value = await fetchPredictions(value)
+  }
+  catch {
+    toast.error({
+      message: t('component.address_autocomplete.failed_to_fetch'),
+    })
+  }
+
+  isLoading.value = false
+}, 300)
 
 async function fetchPredictions(searchTerm: string): Promise<AutocompletePrediction[]> {
   if (searchTerm === null || searchTerm.length < 5 || autocompleteService === null) {
@@ -107,8 +125,15 @@ async function fetchPredictions(searchTerm: string): Promise<AutocompletePredict
   return []
 }
 
-async function onSearch(searchTerm: string): Promise<void> {
-  predictions.value = await fetchPredictions(searchTerm)
+function onSearch(searchTerm: string): void {
+  if (searchTerm === null || searchTerm.length < 5) {
+    predictions.value = []
+
+    return
+  }
+
+  isLoading.value = true
+  debounceSearch(searchTerm)
 }
 
 function getDefaultPlace(): Place | null {
@@ -191,16 +216,16 @@ function findAddressComponent(place: PlaceResult, type: AddressComponentType): G
 }
 
 onMounted(async () => {
-  const key = 'AIzaSyATX2fY3BZwaKeURsQhwpEVLmLRr27s4vw'
+  const { googleMapsApiKey } = globalConfigContext
 
-  if (key === null) {
+  if (googleMapsApiKey === null) {
     loader = null
 
-    throw new Error('Google Maps API key is not defined. Please define it in the config using the defineConfig function')
+    throw new Error('Google Maps API key is not defined. Provide it in the config using the `<AppConfigProvider />` component.')
   }
 
   loader = new Loader({
-    apiKey: key,
+    apiKey: googleMapsApiKey,
     libraries: [
       'places',
     ],
@@ -213,11 +238,30 @@ onMounted(async () => {
 
 <template>
   <AppAutocomplete
+    :id="props.id"
     v-model="selectedPlace"
     :items="autocompleteOptions"
     :display-fn="displayFn"
     :label="props.label"
     :is-required="props.isRequired"
+    :icon-left="props.iconLeft"
+    :icon-right="props.iconRight"
+    :is-arrow-visible="props.isArrowVisible"
+    :is-disabled="props.isDisabled"
+    :collision-padding-in-px="props.collisionPaddingInPx"
+    :container-element="props.containerElement"
+    :style-config="props.styleConfig"
+    :side="props.side"
+    :align="props.align"
+    :is-loading="isLoading"
+    :errors="props.errors"
+    :hint="props.hint"
+    :is-touched="props.isTouched"
+    :test-id="props.testId"
+    :offset-in-px="props.offsetInPx"
+    :placeholder="props.placeholder"
+    :popover-width="props.popoverWidth"
+    :should-remain-open-on-value-change="props.shouldRemainOpenOnValueChange"
     autocomplete="off"
     @search="onSearch"
     @update:model-value="onUpdateModelValue"
