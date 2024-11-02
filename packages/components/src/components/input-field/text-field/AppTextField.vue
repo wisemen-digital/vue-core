@@ -14,6 +14,7 @@ import AppInputFieldHint from '@/components/input-field-hint/AppInputFieldHint.v
 import AppInputFieldLabel from '@/components/input-field-label/AppInputFieldLabel.vue'
 import AppSpinner from '@/components/spinner/AppSpinner.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
+import { useAriaDescribedBy } from '@/composables/aria-described-by/ariaDescribedBy.composable'
 
 const props = withDefaults(defineProps<AppTextFieldProps>(), appTextFieldPropsDefaultValues)
 
@@ -48,6 +49,12 @@ const style = textFieldStyle()
 const inputId = computed<string>(() => props.id ?? useId())
 const isHovered = computed<boolean>(() => isMouseOver.value && !props.isDisabled)
 const hasError = computed<boolean>(() => props.errors !== undefined && props.isTouched && props.errors !== null)
+
+const ariaDescribedBy = useAriaDescribedBy({
+  id: inputId,
+  hasErrors: hasError,
+  hasHint: computed<boolean>(() => props.hint !== null),
+})
 
 const boxClasses = computed<string>(() => style.box({
   hasError: hasError.value,
@@ -170,7 +177,7 @@ function onBlur(): void {
         :spellcheck="props.isSpellCheckEnabled"
         :class="inputClasses"
         :autocomplete="props.autoComplete"
-        :aria-describedby="`${inputId}-error ${inputId}-hint`"
+        :aria-describedby="ariaDescribedBy"
         :type="props.type"
         :required="props.isRequired"
         :aria-invalid="props.errors !== undefined && props.errors !== null"

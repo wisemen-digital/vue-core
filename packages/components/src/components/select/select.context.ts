@@ -19,7 +19,7 @@ interface SelectContext {
   isLoading: ComputedRef<boolean>
   isMultiple: ComputedRef<boolean>
   isOpen: ComputedRef<boolean>
-  getLabelByValue: (value: SelectValue) => string
+  hint: ComputedRef<null | string>
   iconLeft: ComputedRef<Icon | null>
   iconRight: ComputedRef<Icon>
   items: ComputedRef<SelectItem<SelectValue>[]>

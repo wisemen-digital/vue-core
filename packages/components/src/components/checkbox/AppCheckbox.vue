@@ -13,6 +13,7 @@ import AppInputFieldError from '@/components/input-field-error/AppInputFieldErro
 import AppInputFieldHint from '@/components/input-field-hint/AppInputFieldHint.vue'
 import AppInputFieldLabel from '@/components/input-field-label/AppInputFieldLabel.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
+import { useAriaDescribedBy } from '@/composables/aria-described-by/ariaDescribedBy.composable'
 
 const props = withDefaults(defineProps<AppCheckboxProps>(), {
   id: null,
@@ -44,11 +45,19 @@ const isMouseOver = ref<boolean>(false)
 
 const style = checkboxStyle()
 
+const inputId = computed<string>(() => props.id ?? useId())
+
 const isHovered = computed<boolean>(() => isMouseOver.value && !props.isDisabled)
 const isIndeterminate = computed<boolean>(() => props.isIndeterminate)
 const isChecked = computed<boolean>(() => model.value === true && !isIndeterminate.value)
 const isDisabled = computed<boolean>(() => props.isDisabled || props.isReadonly)
 const hasError = computed<boolean>(() => props.errors !== undefined && props.isTouched && props.errors !== null)
+
+const ariaDescribedBy = useAriaDescribedBy({
+  id: inputId,
+  hasErrors: hasError,
+  hasHint: computed<boolean>(() => props.hint !== null),
+})
 
 const computedModel = computed<'indeterminate' | boolean>({
   get() {
@@ -123,8 +132,6 @@ const boxClasses = computed<string>(() => style.box({
 
 const bottomClasses = computed<string>(() => style.bottom())
 
-const inputId = computed<string>(() => props.id ?? useId())
-
 function onMouseEnter(): void {
   isMouseOver.value = true
 }
@@ -156,7 +163,7 @@ function onBlur(): void {
         v-model="computedModel"
         :data-test-id="props.testId"
         :disabled="props.isDisabled || props.isReadonly"
-        :aria-describedby="`${inputId}-error ${inputId}-hint`"
+        :aria-describedby="ariaDescribedBy"
         :class="rootClasses"
         @mouseenter="onMouseEnter"
         @mouseleave="onMouseLeave"

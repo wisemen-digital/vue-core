@@ -4,11 +4,19 @@ import { computed } from 'vue'
 import { provideConfigContext } from '@/components/config-provider/config.context'
 
 const props = defineProps<{
+  googleMapsApiKey?: string
   locale: string
+  pagination?: {
+    limit?: number
+  }
 }>()
 
 provideConfigContext({
+  googleMapsApiKey: props.googleMapsApiKey ?? null,
   locale: computed<string>(() => props.locale),
+  pagination: {
+    limit: props.pagination?.limit,
+  },
 })
 </script>
 

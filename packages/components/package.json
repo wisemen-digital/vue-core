@@ -1,7 +1,7 @@
 {
   "name": "@wisemen/vue-core",
   "type": "module",
-  "version": "1.0.0-alpha.4",
+  "version": "1.0.0-alpha.5",
   "license": "MIT",
   "sideEffects": false,
   "exports": {
@@ -79,7 +79,7 @@
     "vite-plugin-dts": "4.3.0",
     "vitest": "2.1.4",
     "vue-router": "4.4.5",
-    "vue-tsc": "2.1.8",
+    "vue-tsc": "2.1.10",
     "zod": "3.23.8"
   }
 }

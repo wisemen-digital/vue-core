@@ -138,11 +138,11 @@ provideTableContext({
   <div
     :style="props.styleConfig"
     :class="themeProviderContext.theme.value"
-    class="table-variant-default rounded-table-border-radius-default border-table-border-color-default bg-primary relative flex h-full flex-1 flex-col overflow-hidden border border-solid"
+    class="table-variant-default relative flex h-full flex-1 flex-col overflow-hidden rounded-table-border-radius-default border border-solid border-table-border-color-default bg-primary"
   >
     <div
       v-if="hasTopSlot"
-      class="border-secondary border-b border-solid"
+      class="border-b border-solid border-secondary"
     >
       <slot name="top" />
     </div>
@@ -156,6 +156,7 @@ provideTableContext({
         ref="tableContainerRef"
         :aria-rowcount="data!.meta.total"
         class="h-full flex-1 overflow-y-auto"
+        tabindex="0"
         role="table"
         @scroll="onScroll"
       >

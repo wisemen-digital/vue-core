@@ -11,7 +11,7 @@ type NonOptionalKeys<T> = {
   [K in keyof T]-?: T[K]
 }
 
-interface UseQueryOptions<TResData> {
+export interface UseQueryOptions<TResData> {
   /**
    * The time in milliseconds after which the query will be considered stale
    * After this time, the query will be refetched automatically in the background when it is rendered or accessed

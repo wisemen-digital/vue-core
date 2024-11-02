@@ -25,7 +25,6 @@ const tableContext = injectTableContext()
         'first:border-r-secondary first:shadow-table-sticky-left-column': tableContext.isScrolledToRight.value && tableContext.isFirstColumnSticky.value,
         'last:border-l-secondary last:shadow-table-sticky-right-column': !tableContext.hasReachedHorizontalScrollEnd.value && tableContext.isLastColumnSticky.value,
       }"
-      role="rowgroup"
       class="overflow-hidden bg-table-header-bg-color-default duration-200"
     >
       <Component

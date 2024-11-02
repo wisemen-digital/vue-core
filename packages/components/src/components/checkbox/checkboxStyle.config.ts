@@ -143,7 +143,7 @@ defineStyleConfig({
 
     '--checkbox-indicator-color-indeterminate': 'var(--fg-white)',
 
-    '--checkbox-indicator-size-default': '14px',
+    '--checkbox-indicator-size-default': '0.875rem',
     '--checkbox-label-font-size-default': 'var(--input-field-label-font-size-default)',
     '--checkbox-label-font-weight-default': 'var(--input-field-label-font-weight-default)',
 
@@ -173,7 +173,7 @@ defineStyleConfig({
 
     '--checkbox-shadow-indeterminate': '0px 0px 0px 0px #000000',
 
-    '--checkbox-size-default': '20px',
+    '--checkbox-size-default': '1.25rem',
   },
   selector: '.checkbox-variant-default',
   component: 'checkbox',

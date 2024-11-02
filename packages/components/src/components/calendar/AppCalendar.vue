@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import {
+  CalendarDate,
   type DateValue,
   getLocalTimeZone,
   today,
@@ -30,8 +31,37 @@ import AppCollapsable2 from '@/components/collapsable/AppCollapsable2.vue'
 import { injectConfigContext } from '@/components/config-provider/config.context'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 
+const props = withDefaults(defineProps<{
+  areYearArrowsHidden?: boolean
+}>(), {
+  areYearArrowsHidden: false,
+})
+
 const model = defineModel<Date | null>({
   required: true,
+})
+
+const computedModel = computed<CalendarDate | null>({
+  get: () => {
+    if (model.value === null) {
+      return null
+    }
+
+    const modelDay = model.value.getDate()
+    const modelMonth = model.value.getMonth()
+    const modelYear = model.value.getFullYear()
+
+    return new CalendarDate(modelYear, modelMonth + 1, modelDay)
+  },
+  set: (value) => {
+    if (value === null) {
+      model.value = null
+
+      return
+    }
+
+    model.value = value.toDate(getLocalTimeZone())
+  },
 })
 
 const themeProviderContext = injectThemeProviderContext()
@@ -46,14 +76,22 @@ const now = new Date()
 const placeholderYear = computed<number>({
   get: () => placeholder.value.year,
   set: (value) => {
-    placeholder.value = placeholder.value.set({ year: value })
+    if (computedModel.value === null) {
+      return
+    }
+
+    computedModel.value = computedModel.value.set({ year: value })
   },
 })
 
 const placeholderMonth = computed<number>({
   get: () => placeholder.value.month,
   set: (value) => {
-    placeholder.value = placeholder.value.set({ month: value })
+    if (computedModel.value === null) {
+      return
+    }
+
+    computedModel.value = computedModel.value.set({ month: value })
   },
 })
 
@@ -138,11 +176,11 @@ watch(placeholderYear, () => {
 <template>
   <CalendarRoot
     v-slot="{ weekDays, grid, date }"
-    v-model="model"
+    v-model="computedModel"
     v-model:placeholder="placeholder"
     :week-starts-on="1"
+    :prevent-deselect="true"
     :class="themeProviderContext.theme.value"
-    class="w-[350px]"
   >
     <AppCollapsable2>
       <div
@@ -152,11 +190,12 @@ watch(placeholderYear, () => {
         <CalendarHeader class="flex items-center justify-between">
           <div class="flex gap-x-1.5">
             <CalendarPrev
+              v-if="!props.areYearArrowsHidden"
               :as-child="true"
               :prev-page="(date) => pagingFunc(date, -1)"
             >
               <AppIconButton
-                variant="secondary"
+                variant="tertiary"
                 icon="chevronLeftDouble"
                 size="sm"
                 label="Previous year"
@@ -165,7 +204,7 @@ watch(placeholderYear, () => {
 
             <CalendarPrev :as-child="true">
               <AppIconButton
-                variant="secondary"
+                variant="tertiary"
                 icon="chevronLeft"
                 size="sm"
                 label="Previous month"
@@ -206,7 +245,7 @@ watch(placeholderYear, () => {
           <div class="flex gap-x-1.5">
             <CalendarNext :as-child="true">
               <AppIconButton
-                variant="secondary"
+                variant="tertiary"
                 icon="chevronRight"
                 size="sm"
                 label="Next month"
@@ -214,11 +253,12 @@ watch(placeholderYear, () => {
             </CalendarNext>
 
             <CalendarNext
+              v-if="!props.areYearArrowsHidden"
               :as-child="true"
               :next-page="(date) => pagingFunc(date, 1)"
             >
               <AppIconButton
-                variant="secondary"
+                variant="tertiary"
                 icon="chevronRightDouble"
                 size="sm"
                 label="Next year"
@@ -259,7 +299,16 @@ watch(placeholderYear, () => {
                 <CalendarCellTrigger
                   :day="weekDate"
                   :month="month.value"
-                  class="flex size-8 items-center justify-center rounded-lg text-center text-sm text-tertiary outline-none focus:bg-brand-secondary focus:text-brand-primary data-[selected]:bg-brand-solid data-[today]:bg-secondary-hover data-[selected]:text-primary-on-brand data-[today]:text-primary data-[today]:focus:bg-brand-secondary data-[today]:focus:text-brand-primary"
+                  class="
+                  flex size-8 items-center justify-center rounded-lg text-center text-sm text-tertiary outline-none
+                  duration-100 focus:bg-brand-secondary
+                  focus:text-brand-primary
+                  data-[selected]:!bg-brand-solid
+                  data-[today]:bg-secondary-hover
+                  data-[selected]:!text-primary-on-brand
+                  data-[today]:text-primary
+                  data-[today]:focus:bg-brand-secondary
+                  data-[today]:focus:text-brand-primary"
                 />
               </CalendarCell>
             </CalendarGridRow>

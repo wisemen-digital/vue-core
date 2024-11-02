@@ -92,7 +92,7 @@ const sizeClass = computed<null | string>(() => {
   return null
 })
 
-const variantClass = computed<null | string>(() => {
+const variantClass = computed<string>(() => {
   if (props.variant === 'secondary') {
     return 'btn-secondary-gray'
   }
@@ -121,7 +121,7 @@ const variantClass = computed<null | string>(() => {
     return 'btn-destructive-tertiary'
   }
 
-  return null
+  return 'btn-primary'
 })
 
 function onFocus(): void {

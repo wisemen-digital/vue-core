@@ -1,4 +1,5 @@
 // Autocomplete
+export { default as AppAddressAutocomplete } from '@/components/autocomplete/AppAddressAutocomplete.vue'
 export { default as AppAutocomplete } from '@/components/autocomplete/AppAutocomplete.vue'
 export type { AppAutocompleteProps } from '@/components/autocomplete/autocomplete.props'
 
@@ -16,6 +17,9 @@ export type { AppIconButtonProps } from '@/components/button/icon-button/iconBut
 // Router Link Button
 export { default as AppRouterLinkButton } from '@/components/button/router-link-button/AppRouterLinkButton.vue'
 export type { AppRouterLinkButtonProps } from '@/components/button/router-link-button/routerLinkButton.props'
+
+// Calendar
+export { default as AppCalendar } from '@/components/calendar/AppCalendar.vue'
 
 // Checkbox
 export { default as AppCheckbox } from '@/components/checkbox/AppCheckbox.vue'

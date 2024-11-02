@@ -1,5 +1,6 @@
 export type { AcceptableValue } from './acceptableValue.type'
 export type { BreadcrumbItem } from './breadcrumb.type'
+export type { DialogTriggerProps } from './dialog.type'
 export type {
   DropdownMenuGroup,
   DropdownMenuItem,

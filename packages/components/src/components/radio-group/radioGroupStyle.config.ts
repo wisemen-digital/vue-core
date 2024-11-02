@@ -150,7 +150,7 @@ defineStyleConfig({
     '--radio-group-item-indicator-bg-color-focus': 'var(--fg-white)',
     '--radio-group-item-indicator-bg-color-hover': 'var(--fg-white)',
     '--radio-group-item-indicator-border-radius-default': 'var(--radius-full)',
-    '--radio-group-item-indicator-size-checked': '6px',
+    '--radio-group-item-indicator-size-checked': '0.375rem',
     '--radio-group-item-indicator-size-default': '0px',
     '--radio-group-item-indicator-size-disabled': '0px',
     '--radio-group-item-indicator-size-error': '0px',
@@ -180,7 +180,7 @@ defineStyleConfig({
     '--radio-group-item-shadow-error': '0px 0px 0px 0px #000000',
     '--radio-group-item-shadow-focus': '0px 0px 0px 0px #000000',
     '--radio-group-item-shadow-hover': '0px 0px 0px 0px #000000',
-    '--radio-group-item-size-default': '16px',
+    '--radio-group-item-size-default': '1rem',
     // Label
     '--radio-group-label-font-size-default': 'var(--input-field-label-font-size-default)',
     '--radio-group-label-font-weight-default': 'var(--input-field-label-font-weight-default)',
