@@ -259,7 +259,6 @@ provideSelectContext({
   isLoading: computed<boolean>(() => props.isLoading),
   isMultiple,
   isOpen: computed<boolean>(() => isOpen.value),
-  displayFn: props.displayFn as SelectDisplayFn<SelectValue>,
   getLabelByValue,
   hint: computed<null | string>(() => props.hint),
   iconLeft: computed<Icon | null>(() => props.iconLeft),
