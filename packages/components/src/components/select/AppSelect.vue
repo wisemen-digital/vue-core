@@ -221,6 +221,28 @@ function onModelValueUpdate(): void {
   isOpen.value = false
 }
 
+function getLabelByValue(value: SelectValue): string {
+  function getLabel(items: SelectItem<SelectValue>[]): string {
+    for (const item of items) {
+      if (item.type === 'option' && item.value === value) {
+        return item.label
+      }
+
+      if (item.type === 'group') {
+        const groupLabel = getLabel(item.items)
+
+        if (groupLabel !== undefined) {
+          return groupLabel
+        }
+      }
+    }
+
+    return ''
+  }
+
+  return getLabel(props.items)
+}
+
 watch(isOpen, (isOpen) => {
   if (isOpen) {
     searchTerm.value = ''
@@ -237,6 +259,7 @@ provideSelectContext({
   isLoading: computed<boolean>(() => props.isLoading),
   isMultiple,
   isOpen: computed<boolean>(() => isOpen.value),
+  getLabelByValue,
   iconLeft: computed<Icon | null>(() => props.iconLeft),
   iconRight: computed<Icon>(() => props.iconRight),
   items: computed<SelectItem<TValue>[]>(() => props.items as SelectItem<TValue>[]),

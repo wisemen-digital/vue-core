@@ -6,7 +6,7 @@ import AppPopoverTrigger from '@/components/popover/AppPopoverTrigger.vue'
 import { injectSelectContext } from '@/components/select/select.context'
 import { selectStyle } from '@/components/select/select.style'
 import AppSpinner from '@/components/spinner/AppSpinner.vue'
-import type { SelectOption, SelectValue } from '@/types'
+import type { SelectValue } from '@/types'
 
 const selectContext = injectSelectContext()
 
@@ -68,17 +68,7 @@ const isEmpty = computed<boolean>(() => {
   return value === null
 })
 
-const label = computed<string>(() => {
-  const find = selectContext.items.value.find((item) => {
-    if (item.type === 'option') {
-      return item.value === selectContext.modelValue.value
-    }
-
-    return false
-  }) as SelectOption<TValue> | undefined
-
-  return find?.label ?? 'Item not found'
-})
+const label = computed<string>(() => selectContext.getLabelByValue(selectContext.modelValue.value))
 </script>
 
 <template>
