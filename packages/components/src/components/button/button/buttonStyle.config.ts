@@ -66,7 +66,7 @@ defineStyleConfig({
     '--button-border-radius-default': 'var(--radius-md)',
     '--button-font-size-default': 'var(--text-subtext)',
     '--button-font-weight-default': '500',
-    '--button-height-default': '40px',
+    '--button-height-default': '2.5rem',
     '--button-icon-color-active': 'var(--fg-white)',
     '--button-icon-color-default': 'var(--fg-white)',
     '--button-icon-color-disabled': 'var(--fg-disabled)',
@@ -74,13 +74,13 @@ defineStyleConfig({
     '--button-icon-color-hover': 'var(--fg-white)',
     '--button-icon-left-spacing-default': 'var(--spacing-xs)',
     '--button-icon-right-spacing-default': 'var(--spacing-xs)',
-    '--button-icon-size-default': '16px',
+    '--button-icon-size-default': 'var(--text-body)',
     '--button-loader-color-active': 'var(--fg-white)',
     '--button-loader-color-default': 'var(--fg-white)',
     '--button-loader-color-disabled': 'var(--fg-disabled)',
     '--button-loader-color-focus': 'var(--fg-white)',
     '--button-loader-color-hover': 'var(--fg-white)',
-    '--button-loader-size-default': '18px',
+    '--button-loader-size-default': '1.125rem',
     '--button-padding-left-default': 'var(--spacing-xl)',
     '--button-padding-right-default': 'var(--spacing-xl)',
     '--button-ring-color-focus': 'var(--brand-primary-500)',
@@ -514,10 +514,10 @@ defineStyleConfig({
 defineStyleConfig({
   config: {
     '--button-font-size-default': 'var(--text-caption)',
-    '--button-height-default': '32px',
+    '--button-height-default': '2rem',
     '--button-icon-left-spacing-default': 'var(--spacing-xs)',
     '--button-icon-right-spacing-default': 'var(--spacing-xs)',
-    '--button-icon-size-default': '16px',
+    '--button-icon-size-default': '1rem',
     '--button-padding-left-default': 'var(--spacing-md)',
     '--button-padding-right-default': 'var(--spacing-md)',
   },
@@ -528,7 +528,7 @@ defineStyleConfig({
 // Size SM
 defineStyleConfig({
   config: {
-    '--button-height-default': '36px',
+    '--button-height-default': '2.25rem',
     '--button-icon-left-spacing-default': 'var(--spacing-xs)',
     '--button-icon-right-spacing-default': 'var(--spacing-xs)',
     '--button-padding-left-default': 'var(--spacing-lg)',
@@ -542,7 +542,7 @@ defineStyleConfig({
 defineStyleConfig({
   config: {
     '--button-font-size-default': 'var(--text-body)',
-    '--button-height-default': '44px',
+    '--button-height-default': '2.75rem',
     '--button-icon-left-spacing-default': 'var(--spacing-sm)',
     '--button-icon-right-spacing-default': 'var(--spacing-sm)',
     '--button-padding-left-default': 'var(--spacing-xl)',
@@ -556,11 +556,11 @@ defineStyleConfig({
 defineStyleConfig({
   config: {
     '--button-font-size-default': 'var(--text-body)',
-    '--button-height-default': '48px',
+    '--button-height-default': '3rem',
     '--button-icon-left-spacing-default': 'var(--spacing-sm)',
     '--button-icon-right-spacing-default': 'var(--spacing-sm)',
-    '--button-padding-left-default': '18px',
-    '--button-padding-right-default': '18px',
+    '--button-padding-left-default': '1.125rem',
+    '--button-padding-right-default': '1.125rem',
   },
   selector: '.btn-xl',
   component: 'button',
@@ -570,11 +570,11 @@ defineStyleConfig({
 defineStyleConfig({
   config: {
     '--button-font-size-default': 'var(--text-heading)',
-    '--button-height-default': '60px',
-    '--button-icon-left-spacing-default': '10px',
-    '--button-icon-right-spacing-default': '10px',
-    '--button-padding-left-default': '22px',
-    '--button-padding-right-default': '22px',
+    '--button-height-default': '3.75rem',
+    '--button-icon-left-spacing-default': '0.625rem',
+    '--button-icon-right-spacing-default': '0.625rem',
+    '--button-padding-left-default': '1.375rem',
+    '--button-padding-right-default': '1.375rem',
   },
   selector: '.btn-2xl',
   component: 'button',

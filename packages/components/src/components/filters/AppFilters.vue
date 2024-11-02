@@ -48,19 +48,19 @@ type DisplayItem = DisplayItemFilter | DisplayItemValue
 
 const filters: Filter<string>[] = [
   {
-    icon: 'filterLines',
+    icon: 'alertCircle',
     label: 'Status',
     options: [
       {
-        icon: 'trash01',
+        icon: 'alertCircle',
         value: 'Active',
       },
       {
-        icon: 'settings01',
+        icon: 'alertCircle',
         value: 'Inactive',
       },
       {
-        icon: 'tool02',
+        icon: 'alertCircle',
         value: 'On hold',
       },
     ],
@@ -190,7 +190,7 @@ const displayItems = computed<DisplayItem[]>(() => {
           label: option.value,
           type: 'value',
           onSelect: (): void => {
-            onSelectValue(option)
+            onSelectValue()
           },
         })
       }
@@ -205,7 +205,7 @@ function onSelectFilter(filter: Filter<any>): void {
   search.value = ''
 }
 
-function onSelectValue(value: any): void {
+function onSelectValue(): void {
   isOpen.value = false
 }
 
@@ -229,7 +229,7 @@ watch(isOpen, (isOpen) => {
     <template #trigger>
       <AppIconButton
         label="Filter"
-        icon="filterLines"
+        icon="alertCircle"
         variant="secondary"
         size="sm"
       />

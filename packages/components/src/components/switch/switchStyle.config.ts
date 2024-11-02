@@ -138,7 +138,7 @@ defineStyleConfig({
 
     '--switch-icon-color-checked': 'var(--fg-tertiary)',
     '--switch-icon-color-unchecked': 'var(--fg-tertiary)',
-    '--switch-icon-size-default': '14px',
+    '--switch-icon-size-default': '0.875rem',
     '--switch-indicator-bg-color-checked': 'var(--fg-white)',
     '--switch-indicator-bg-color-default': 'var(--fg-white)',
     '--switch-indicator-bg-color-disabled': 'var(--gray-50)',

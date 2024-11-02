@@ -9,7 +9,7 @@ export interface IconStyleConfig extends BaseStyleConfig {
 defineStyleConfig({
   config: {
     '--icon-color': 'inherit',
-    '--icon-size': '16px',
+    '--icon-size': '1rem',
   },
   selector: '.icon-variant-default',
   component: 'icon',
@@ -17,7 +17,7 @@ defineStyleConfig({
 
 defineStyleConfig({
   config: {
-    '--icon-size': '14px',
+    '--icon-size': '0.875rem',
   },
   selector: '.icon-sm',
   component: 'icon',
@@ -25,7 +25,7 @@ defineStyleConfig({
 
 defineStyleConfig({
   config: {
-    '--icon-size': '12px',
+    '--icon-size': '0.75rem',
   },
   selector: '.icon-xs',
   component: 'icon',
@@ -33,7 +33,7 @@ defineStyleConfig({
 
 defineStyleConfig({
   config: {
-    '--icon-size': '18px',
+    '--icon-size': '1.125rem',
   },
   selector: '.icon-lg',
   component: 'icon',
@@ -41,7 +41,7 @@ defineStyleConfig({
 
 defineStyleConfig({
   config: {
-    '--icon-size': '24px',
+    '--icon-size': '1.5rem',
   },
   selector: '.icon-lg',
   component: 'icon',
