@@ -7,6 +7,7 @@ import {
   nextTick,
   ref,
   Transition,
+  useAttrs,
   watch,
 } from 'vue'
 
@@ -28,6 +29,8 @@ const emit = defineEmits<{
 const isOpen = defineModel<boolean>('isOpen', {
   default: false,
 })
+
+const attrs = useAttrs()
 
 const isActuallyOpen = ref<boolean>(false)
 
@@ -184,6 +187,7 @@ watch(isActuallyOpen, () => {
         >
           <AppDrawerContent
             v-if="isActuallyOpen"
+            v-bind="attrs"
             :data-test-id="props.testId"
             :should-prevent-click-outside="props.shouldPreventClickOutside"
             :style="props.styleConfig"

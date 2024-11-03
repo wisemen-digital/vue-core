@@ -72,7 +72,7 @@ const buttonLabel = computed<string>(() => (
           }"
           :is-disabled="props.isDisabled"
           size="sm"
-          class="mr-[3px]"
+          class="mr-[0.1875rem]"
           variant="tertiary"
         />
       </AppToggle>

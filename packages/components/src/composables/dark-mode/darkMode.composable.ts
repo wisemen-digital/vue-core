@@ -50,6 +50,8 @@ export function useDarkMode(): UseDarkModeReturnType {
       isSystemDarkMode.value = systemHasDarkMode()
       updateDarkModeState()
     })
+
+    updateDarkModeState()
   })
 
   onBeforeUnmount(() => {

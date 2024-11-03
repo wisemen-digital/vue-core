@@ -204,7 +204,10 @@ function onTriggerFocus(): void {
 
 function onTriggerBlur(): void {
   isFocused.value = false
-  emit('blur')
+
+  if (!isOpen.value) {
+    emit('blur')
+  }
 }
 
 function onTriggerKeyDown(event: KeyboardEvent): void {
@@ -225,6 +228,9 @@ function onModelValueUpdate(): void {
 watch(isOpen, (isOpen) => {
   if (isOpen) {
     searchTerm.value = ''
+  }
+  else if (!isFocused.value) {
+    emit('blur')
   }
 })
 

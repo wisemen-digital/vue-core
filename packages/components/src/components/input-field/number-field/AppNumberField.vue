@@ -257,7 +257,7 @@ function onBlur(): void {
               '--button-border-color-disabled': 'transparent',
             }"
             :is-disabled="props.isDisabled || isDecrementButtonDisabled"
-            class="ml-[3px]"
+            class="ml-[0.1875rem]"
             label="Decrement"
             icon="minus"
             size="sm"
@@ -306,7 +306,7 @@ function onBlur(): void {
             icon="plus"
             size="sm"
             variant="tertiary"
-            class="mr-[3px]"
+            class="mr-[0.1875rem]"
           />
         </NumberFieldIncrement>
 

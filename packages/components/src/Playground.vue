@@ -21,23 +21,26 @@ import '@/components/switch/switchStyle.config'
 
 import { ref } from 'vue'
 
-import AppAddressAutocomplete from '@/components/autocomplete/AppAddressAutocomplete.vue'
 import AppConfigProvider from '@/components/config-provider/AppConfigProvider.vue'
+import AppSelect from '@/components/select/AppSelect.vue'
 import AppThemeProvider from '@/components/theme-provider/AppThemeProvider.vue'
-import type { Address } from '@/types/addressAutoComplete'
+import type { SelectOption } from '@/types/select.type'
 
-const value = ref<Address | null>({
-  bus: '',
-  city: 'Diepenbeek',
-  coordinates: {
-    lat: 50.9105115,
-    lng: 5.413977,
+const value = ref<null | string>(null)
+const selectItems = ref<SelectOption<string>[]>([
+  {
+    type: 'option',
+    value: 'Apple',
   },
-  country: 'BE',
-  postalCode: '3590',
-  street: 'Kapelstraat',
-  streetNumber: '63a',
-})
+  {
+    type: 'option',
+    value: 'Banana',
+  },
+  {
+    type: 'option',
+    value: 'Blueberry',
+  },
+])
 </script>
 
 <template>
@@ -47,9 +50,12 @@ const value = ref<Address | null>({
   >
     <AppThemeProvider theme="light">
       <div class="p-24">
-        <AppAddressAutocomplete
+        <AppSelect
           v-model="value"
-          icon-left="search"
+          :items="selectItems"
+          :display-fn="(value) => value"
+          label="Select a fruit"
+          placeholder="Select a fruit"
           class="w-72"
         />
       </div>
