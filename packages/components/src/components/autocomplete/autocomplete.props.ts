@@ -49,10 +49,6 @@ export interface AppAutocompleteProps<TValue extends SelectValue> extends Omit<P
    */
   isTouched?: boolean
   /**
-   * The display function for the selected value.
-   */
-  displayFn: AutocompleteDisplayFn<TValue>
-  /**
    * The errors associated with the input.
    */
   errors?: FormFieldErrors | null

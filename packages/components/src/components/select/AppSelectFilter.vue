@@ -33,7 +33,7 @@ const selectContext = injectSelectContext()
           '--text-field-bg-color-default': 'var(--bg-secondary)',
           '--text-field-bg-color-focus': 'var(--bg-secondary)',
           '--text-field-bg-color-hover': 'var(--bg-secondary)',
-          '--text-field-height-default': '32px',
+          '--text-field-height-default': '2rem',
           '--text-field-with-icon-left-padding-left-default': 'var(--spacing-md)',
           '--text-field-icon-left-spacing-default': 'var(--spacing-md)',
         }"

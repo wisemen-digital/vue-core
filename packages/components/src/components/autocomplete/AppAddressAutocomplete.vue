@@ -73,6 +73,7 @@ const predictions = ref<AutocompletePrediction[]>([])
 
 const autocompleteOptions = computed<SelectOption<Place>[]>(() => (
   predictions.value.map((prediction) => ({
+    label: prediction.description,
     type: 'option',
     value: {
       id: prediction.place_id,

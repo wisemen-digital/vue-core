@@ -249,8 +249,8 @@ function onBlur(): void {
           <AppIconButton
             ref="decrementButtonRef"
             :style-config="{
-              '--icon-button-size-default': '32px',
-              '--icon-button-icon-size-default': '16px',
+              '--icon-button-size-default': '2rem',
+              '--icon-button-icon-size-default': '1rem',
               '--button-ring-color-focus': 'transparent',
               '--button-bg-color-focus': 'var(--bg-secondary-hover)',
               '--button-bg-color-disabled': 'transparent',
@@ -294,8 +294,8 @@ function onBlur(): void {
           <AppIconButton
             ref="incrementButtonRef"
             :style-config="{
-              '--icon-button-size-default': '32px',
-              '--icon-button-icon-size-default': '16px',
+              '--icon-button-size-default': '2rem',
+              '--icon-button-icon-size-default': '1rem',
               '--button-ring-color-focus': 'transparent',
               '--button-bg-color-focus': 'var(--bg-secondary-hover)',
               '--button-bg-color-disabled': 'transparent',

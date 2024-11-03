@@ -44,6 +44,7 @@ const value = ref<Address | null>({
   <AppConfigProvider
     :pagination="{ limit: 30 }"
     locale="nl"
+    google-maps-api-key="AIzaSyATX2fY3BZwaKeURsQhwpEVLmLRr27s4vw"
   >
     <AppThemeProvider theme="light">
       <div class="p-24">

@@ -218,7 +218,7 @@ watch(placeholderYear, () => {
                 '--button-font-weight-default': '600',
                 '--button-padding-left-default': 'var(--spacing-sm)',
                 '--button-padding-right-default': 'var(--spacing-sm)',
-                '--button-height-default': '32px',
+                '--button-height-default': '2rem',
               }"
               variant="tertiary"
               size="sm"
@@ -232,7 +232,7 @@ watch(placeholderYear, () => {
                 '--button-font-weight-default': '600',
                 '--button-padding-left-default': 'var(--spacing-sm)',
                 '--button-padding-right-default': 'var(--spacing-sm)',
-                '--button-height-default': '32px',
+                '--button-height-default': '2rem',
               }"
               variant="tertiary"
               size="sm"

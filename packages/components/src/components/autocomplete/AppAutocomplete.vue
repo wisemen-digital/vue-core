@@ -170,7 +170,7 @@ function onFocus(): void {
 }
 
 function updateSearchTermWithValue(value: TValue): void {
-  searchTerm.value = props.displayFn(value as any)
+  searchTerm.value = props.items.find((item) => item.value === value)?.label ?? ''
 }
 
 function onUpdateModelValue(): void {
@@ -321,7 +321,7 @@ if (model.value !== null) {
                 :value="item.value"
                 :class="optionClasses"
               >
-                {{ props.displayFn(item.value) }}
+                {{ item.label }}
 
                 <ListboxItemIndicator>
                   <div>
