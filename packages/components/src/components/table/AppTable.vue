@@ -86,6 +86,11 @@ const props = withDefaults(
      */
     rowTo?: ((row: TSchema) => RouteLocationNamedRaw) | null
     /**
+     * The position of the search input in the table header
+     * @default 'right'
+     */
+    searchPosition?: 'left' | 'right'
+    /**
      * Whether the first column of the table is pinned.
      */
     shouldPinFirstColumn?: boolean
@@ -104,6 +109,7 @@ const props = withDefaults(
     emptyText: null,
     rowClick: null,
     rowTo: null,
+    searchPosition: 'right',
     shouldPinFirstColumn: false,
     shouldPinLastColumn: false,
     variant: 'default',
@@ -224,11 +230,11 @@ const tableClasses = computed<string>(() => tableStyle.table({
       v-if="!isTopHidden"
       :is-loading="props.isLoading"
       :title="props.title"
-      :total="props.data?.total ?? null"
       :filters="props.filters"
       :variant="props.variant"
       :pagination="props.pagination"
       :has-search="props.hasSearch"
+      :search-position="props.searchPosition"
     />
 
     <div

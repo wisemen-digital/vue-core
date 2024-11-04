@@ -8,6 +8,7 @@ interface PaginationContext {
   hasMoreThanOnePage: ComputedRef<boolean>
   page: ComputedRef<number>
   perPage: ComputedRef<number>
+  total: ComputedRef<number>
   totalPages: ComputedRef<number>
   onPageChange: (value: number) => void
 }

@@ -10,7 +10,7 @@ import AppTableFiltersPopoverPlayground from './AppTableFiltersPopoverPlayground
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| filters* | `PaginationFilter<T>[]` | The filters to be shown |  |
+| filters* | `PaginationFilter<T, string>[]` | The filters to be shown |  |
 | pagination* | `Pagination<T>` | Your pagination informations |  |
 
 
