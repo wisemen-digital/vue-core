@@ -114,6 +114,10 @@ export default {
           background: 'rgba(var(--switch-background), <alpha-value>)',
           foreground: 'rgba(var(--switch-foreground), <alpha-value>)',
         },
+        'tooltip': {
+          background: 'rgba(var(--tooltip-background), <alpha-value>)',
+          foreground: 'rgba(var(--tooltip-foreground), <alpha-value>)',
+        },
         'transparent': 'transparent',
 
         'warning': {
