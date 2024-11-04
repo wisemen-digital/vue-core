@@ -22,6 +22,7 @@ const props = defineProps<{
   isLoading: boolean
   filters: PaginationFilter<TFilters>[]
   pagination: Pagination<TFilters>
+  searchPosition: 'left' | 'right'
   variant: TableStyleProps['variant']
 }>()
 
@@ -86,9 +87,19 @@ function onFilterClear(): void {
       :class="topSkeletonRowClasses"
     />
 
+    <div
+      v-if="props.hasSearch && props.searchPosition === 'left'"
+      :class="topSearchInputClasses"
+    >
+      <AppTableSearchInput
+        :pagination="props.pagination"
+        :is-loading="props.isLoading"
+      />
+    </div>
+
     <div :class="searchAndFilterContainerClasses">
       <div
-        v-if="props.hasSearch"
+        v-if="props.hasSearch && props.searchPosition === 'right'"
         :class="topSearchInputClasses"
       >
         <AppTableSearchInput

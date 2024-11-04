@@ -49,6 +49,15 @@ const controls = createControls({
     default: false,
     label: 'Has search',
   },
+  searchPosition: {
+    default: 'right',
+    items: [
+      'left',
+      'right',
+    ],
+    label: 'Search position',
+    type: 'select',
+  },
   variant: {
     default: 'default',
     items: [

@@ -22,6 +22,7 @@ import AppTablePlayground from './AppTablePlayground.vue'
 | rowClick | `((row: T) => void) \| null` | Returns the row as a button. | `null` |
 | rowTarget | `string` | Adds a target to the RouterLink when using row-to. |  |
 | rowTo | `((row: T) => RouteLocationNamedRaw) \| null` | Returns the row as a RouterLink. | `null` |
+| searchPosition | `"left" \| "right"` | The position of the search input in the table header | `"right"` |
 | shouldPinFirstColumn | `boolean` | Whether the first column of the table is pinned. | `false` |
 | shouldPinLastColumn | `boolean` | Whether the last column of the table is pinned. | `false` |
 | title | `string` | The title of the table. |  |
