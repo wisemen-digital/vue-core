@@ -38,6 +38,7 @@ const props = withDefaults(defineProps<Omit<AppAutocompleteProps<Address>, 'disp
 })
 
 const emit = defineEmits<{
+  'blur': []
   'update:modelValue': [value: Address]
 }>()
 
@@ -264,6 +265,7 @@ onMounted(async () => {
     :should-remain-open-on-value-change="props.shouldRemainOpenOnValueChange"
     autocomplete="off"
     @search="onSearch"
+    @blur="emit('blur')"
     @update:model-value="onUpdateModelValue"
   />
 </template>
