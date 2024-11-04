@@ -5,23 +5,48 @@ import {
   TabsRoot,
   TabsTrigger,
 } from 'radix-vue'
-import { computed } from 'vue'
+import {
+  computed,
+  ref,
+  watch,
+} from 'vue'
 
 import AppBadge from '@/components/badge/AppBadge.vue'
+import AppUnstyledButton from '@/components/button/AppUnstyledButton.vue'
+import AppIcon from '@/components/icon/AppIcon.vue'
 import { useTabsStyle } from '@/components/tabs/tabs.style'
 import AppText from '@/components/text/AppText.vue'
+import { useTabs } from '@/composables/tabs/tabs.composable'
 import type { TabItem } from '@/types/tabItem.type'
 
-const props = defineProps<{
+const props = withDefaults(
+  defineProps<{
   /**
-   * All the tabs to be rendered.
+   * Whether the tabs should take up the full width of the container.
    */
-  items: TabItem[]
-}>()
+    isFullWidth?: boolean
+    /**
+     * All the tabs to be rendered.
+     */
+    items: TabItem[]
+  }>(),
+  {
+    isFullWidth: false,
+  },
+)
 
 const activeTabModel = defineModel<TabItem>('tab', {
   required: true,
 })
+
+const tabItemRef = ref<InstanceType<any>[]>([])
+const tabsRootRef = ref<InstanceType<any> | null>(null)
+const scrollContainerRef = ref<InstanceType<any> | null>(null)
+
+const tabsComposable = useTabs(
+  tabsRootRef,
+  scrollContainerRef,
+)
 
 const computedModel = computed<string>({
   get: () => activeTabModel.value.id,
@@ -30,31 +55,88 @@ const computedModel = computed<string>({
   },
 })
 
+const tabsStyle = useTabsStyle()
+
+const indicatorClasses = computed<string>(() => tabsStyle.indicator())
+const leftGradientClasses = computed<string>(() => tabsStyle.gradient({ direction: 'to-right' }))
+const rightGradientClasses = computed<string>(() => tabsStyle.gradient({ direction: 'to-left' }))
+const leftScrollButtonClasses = computed<string>(() => tabsStyle.scrollButton({ direction: 'to-left' }))
+const rightScrollButtonClasses = computed<string>(() => tabsStyle.scrollButton({ direction: 'to-right' }))
+
 function isTabActive(tab: TabItem): boolean {
   return tab.id === computedModel.value
 }
 
-const tabsStyle = useTabsStyle()
+watch(computedModel, (value) => {
+  const tabIndex = props.items.findIndex((tab) => tab.id === value)
+  const tabItem = tabItemRef.value[tabIndex]
 
-const listClasses = computed<string>(() => tabsStyle.list())
-const indicatorClasses = computed<string>(() => tabsStyle.indicator())
-const routeTriggerGroup = computed<string>(() => tabsStyle.triggerGroup())
-const routeTriggerTab = computed<string>(() => tabsStyle.triggerTab())
+  tabItem.$el.scrollIntoView({
+    behavior: 'smooth',
+    block: 'nearest',
+    inline: 'center',
+  })
+})
 </script>
 
 <template>
-  <TabsRoot v-model="computedModel">
-    <TabsList :class="listClasses">
+  <TabsRoot
+    ref="tabsRootRef"
+    v-model="computedModel"
+    class="relative"
+  >
+    <div
+      v-if="tabsComposable.isTabScrollable.value && !tabsComposable.isArrivedStateRight.value && !props.isFullWidth"
+      :class="rightGradientClasses"
+    />
+    <div
+      v-if="tabsComposable.isTabScrollable.value && !tabsComposable.hasScrolledToTheLeft.value && !props.isFullWidth"
+      :class="leftGradientClasses"
+    />
+    <AppUnstyledButton
+      v-if="tabsComposable.isTabScrollable.value && tabsComposable.hasScrolledToTheLeft.value && !props.isFullWidth"
+      :class="rightScrollButtonClasses"
+      @click="tabsComposable.onScrollToTheRight"
+    >
+      <AppIcon
+        size="sm"
+        icon="chevronRight"
+      />
+    </AppUnstyledButton>
+
+    <AppUnstyledButton
+      v-if="tabsComposable.isTabScrollable.value && tabsComposable.hasScrolledToTheRight.value && !props.isFullWidth"
+      :class="leftScrollButtonClasses"
+      @click="tabsComposable.onScrollToTheLeft"
+    >
+      <AppIcon
+        size="sm"
+        icon="chevronLeft"
+      />
+    </AppUnstyledButton>
+    <TabsList
+      ref="scrollContainerRef"
+      :class="tabsStyle.list({
+        isFullWidth: props.isFullWidth,
+      })"
+    >
       <TabsIndicator :class="indicatorClasses" />
 
       <TabsTrigger
         v-for="tab of items"
+        ref="tabItemRef"
         :key="tab.label"
         :data-test-id="tab.testId"
         :value="tab.id"
-        :class="routeTriggerGroup"
+        :class="tabsStyle.triggerGroup({
+          isFullWidth: props.isFullWidth,
+        })"
       >
-        <div :class="routeTriggerTab">
+        <div
+          :class="tabsStyle.triggerTab({
+            isFullWidth: props.isFullWidth,
+          })"
+        >
           <AppText
             :class="tabsStyle.text({
               isActive: isTabActive(tab),
@@ -75,3 +157,16 @@ const routeTriggerTab = computed<string>(() => tabsStyle.triggerTab())
     </TabsList>
   </TabsRoot>
 </template>
+
+<style scoped>
+/* Hide scrollbar for Chrome, Safari and Opera */
+.hide-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hide-scroll {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+</style>
