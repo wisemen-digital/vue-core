@@ -86,15 +86,15 @@ watch(computedModel, (value) => {
     class="relative"
   >
     <div
-      v-if="tabsComposable.isTabScrollable.value && !tabsComposable.isArrivedStateRight.value"
+      v-if="tabsComposable.isTabScrollable.value && !tabsComposable.isArrivedStateRight.value && !props.isFullWidth"
       :class="rightGradientClasses"
     />
     <div
-      v-if="tabsComposable.isTabScrollable.value && !tabsComposable.hasScrolledToTheLeft.value"
+      v-if="tabsComposable.isTabScrollable.value && !tabsComposable.hasScrolledToTheLeft.value && !props.isFullWidth"
       :class="leftGradientClasses"
     />
     <AppUnstyledButton
-      v-if="tabsComposable.isTabScrollable.value && tabsComposable.hasScrolledToTheLeft.value"
+      v-if="tabsComposable.isTabScrollable.value && tabsComposable.hasScrolledToTheLeft.value && !props.isFullWidth"
       :class="rightScrollButtonClasses"
       @click="tabsComposable.onScrollToTheRight"
     >
@@ -105,7 +105,7 @@ watch(computedModel, (value) => {
     </AppUnstyledButton>
 
     <AppUnstyledButton
-      v-if="tabsComposable.isTabScrollable.value && tabsComposable.hasScrolledToTheRight.value"
+      v-if="tabsComposable.isTabScrollable.value && tabsComposable.hasScrolledToTheRight.value && !props.isFullWidth"
       :class="leftScrollButtonClasses"
       @click="tabsComposable.onScrollToTheLeft"
     >
