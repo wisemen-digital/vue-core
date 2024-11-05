@@ -10,6 +10,7 @@ import AppTabsPlayground from './AppTabsPlayground.vue'
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
+| isFullWidth | `boolean` | Whether the tabs should take up the full width of the container. | `false` |
 | items* | `TabItem[]` | All the tabs to be rendered. |  |
 | tab* | `TabItem` |  |  |
 
