@@ -20,8 +20,8 @@ import { base64Decode, base64Encode } from '@/utils/base64.util'
 
 export function usePagination<TFilters>({
   isRouteQueryEnabled,
-  defaultPaginationOptions = null,
   key: routeQueryKey,
+  options = null,
 }: UsePaginationOptions<TFilters>): UsePaginationReturnType<TFilters> {
   const globalConfigContext = injectConfigContext()
 
@@ -84,9 +84,9 @@ export function usePagination<TFilters>({
       return routeQueryPaginationOptions
     }
 
-    if (defaultPaginationOptions !== null) {
+    if (options !== null) {
       return mergePaginationOptions(
-        toValue(defaultPaginationOptions as PaginationOptions<TFilters>),
+        toValue(options as PaginationOptions<TFilters>),
         DEFAULT_PAGINATION_OPTIONS as PaginationOptions<TFilters>,
       )
     }
@@ -150,12 +150,25 @@ export function usePagination<TFilters>({
     }
   }
 
+  watch(() => toValue(options), (newOptions) => {
+    if (newOptions === null) {
+      return
+    }
+
+    paginationOptions.value = mergePaginationOptions(
+      toValue(newOptions as PaginationOptions<TFilters>),
+      paginationOptions.value,
+    )
+  })
+
   watch(paginationOptions, (newPaginationOptions) => {
     if (!isRouteQueryEnabled) {
       return
     }
 
-    routeQuery!.value = base64Encode(JSON.stringify(newPaginationOptions))
+    if (routeQuery !== null) {
+      routeQuery.value = base64Encode(JSON.stringify(newPaginationOptions))
+    }
   })
 
   return {
