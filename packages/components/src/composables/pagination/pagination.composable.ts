@@ -55,8 +55,8 @@ export function usePagination<TFilters>({
     return {
       filters: mergedFilters,
       pagination: {
-        ...toValue(currentOptions.pagination),
-        ...toValue(userOptions.pagination),
+        ...currentOptions.pagination,
+        ...userOptions.pagination,
       },
       sort: currentOptions.sort ?? userOptions.sort ?? undefined,
       staticFilters: {
@@ -107,7 +107,7 @@ export function usePagination<TFilters>({
   function handleFilterChange(event: FilterChangeEvent<TFilters>): void {
     const filtersWithoutUndefinedValues = Object.fromEntries(
       Object.entries({
-        ...toValue(paginationOptions.value.filters),
+        ...paginationOptions.value.filters,
         ...event,
       }).filter(([
         , value,
@@ -147,7 +147,7 @@ export function usePagination<TFilters>({
       ...paginationOptions.value,
       filters: {} as PaginationFilters<TFilters>,
       pagination: {
-        ...toValue(paginationOptions.value.pagination),
+        ...paginationOptions.value.pagination,
         offset: 0,
       },
     }
