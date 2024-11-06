@@ -23,11 +23,6 @@ export interface PageChangeEvent {
 
 export type FilterChangeEvent<TFilters> = PaginationFilters<TFilters>
 
-export interface TableFilterEvent<TFilters> {
-  key: keyof TFilters
-  value: FilterValues | null
-}
-
 export interface SortChangeEvent {
   direction: SortDirection
   key: string
@@ -53,8 +48,6 @@ interface PaginationFilterBase<TFilters> {
 export type FilterValues = number
   | string
   | string[]
-
-export type Filters = Record<string, FilterValues | undefined>
 
 export interface PaginationFilterWithMultipleOptions<TFilters> extends PaginationFilterBase<TFilters> {
   displayFn: (value: string) => string

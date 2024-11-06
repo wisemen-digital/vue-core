@@ -55,8 +55,8 @@ export function usePagination<TFilters>({
     return {
       filters: mergedFilters,
       pagination: {
-        ...currentOptions.pagination,
-        ...userOptions.pagination,
+        ...toValue(currentOptions.pagination),
+        ...toValue(userOptions.pagination),
       },
       sort: currentOptions.sort ?? userOptions.sort ?? undefined,
       staticFilters: {
@@ -67,14 +67,17 @@ export function usePagination<TFilters>({
   }
 
   function getRouteQueryPaginationOptions(): PaginationOptions<TFilters> | null {
-    const searchParams = new URLSearchParams(window.location.search)
-    const paginationOptionsQuery = searchParams.get(routeQueryKey as string)
-
-    if (paginationOptionsQuery === null) {
+    if (routeQuery === null) {
       return null
     }
 
-    return JSON.parse(base64Decode(paginationOptionsQuery))
+    const queryValue = routeQuery.value
+
+    if (queryValue === null || queryValue === undefined) {
+      return null
+    }
+
+    return JSON.parse(base64Decode(queryValue.toString()))
   }
 
   function getDefaultPaginationOptions(): PaginationOptions<TFilters> {
@@ -104,7 +107,7 @@ export function usePagination<TFilters>({
   function handleFilterChange(event: FilterChangeEvent<TFilters>): void {
     const filtersWithoutUndefinedValues = Object.fromEntries(
       Object.entries({
-        ...paginationOptions.value.filters,
+        ...toValue(paginationOptions.value.filters),
         ...event,
       }).filter(([
         , value,
@@ -144,7 +147,7 @@ export function usePagination<TFilters>({
       ...paginationOptions.value,
       filters: {} as PaginationFilters<TFilters>,
       pagination: {
-        ...paginationOptions.value.pagination,
+        ...toValue(paginationOptions.value.pagination),
         offset: 0,
       },
     }
