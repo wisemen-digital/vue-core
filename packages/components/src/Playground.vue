@@ -23,7 +23,9 @@ import { ref } from 'vue'
 
 import AppConfigProvider from '@/components/config-provider/AppConfigProvider.vue'
 import AppSelect from '@/components/select/AppSelect.vue'
+import AppTable from '@/components/table/AppTable.vue'
 import AppThemeProvider from '@/components/theme-provider/AppThemeProvider.vue'
+import { useDarkMode } from '@/composables/index'
 import type { SelectOption } from '@/types/select.type'
 
 const value = ref<null | string>(null)
@@ -41,6 +43,8 @@ const selectItems = ref<SelectOption<string>[]>([
     value: 'Blueberry',
   },
 ])
+
+useDarkMode().value.value = 'dark'
 </script>
 
 <template>
@@ -48,9 +52,52 @@ const selectItems = ref<SelectOption<string>[]>([
     :pagination="{ limit: 30 }"
     locale="nl"
   >
-    <AppThemeProvider theme="light">
-      <div class="p-24">
+    <AppThemeProvider theme="dark">
+      <div class="flex h-full flex-col p-24">
+        <AppTable
+          :is-loading="false"
+          :pagination="{
+            paginationOptions: {
+              value: {
+                pagination: {
+                  limit: 0,
+                  offset: 0,
+                },
+                // filters: {
+                //   test: 'hehe',
+                // },
+              },
+            },
+          }"
+          :columns="[
+            {
+              key: 'name',
+              headerLabel: 'Name',
+              width: '500px',
+            },
+            {
+              key: 'email',
+              headerLabel: 'Email',
+              width: '500px',
+            },
+            {
+              key: 'age',
+              headerLabel: 'Age',
+              width: '1000px',
+            },
+          ]"
+          :data="{
+            data: [],
+            meta: {
+              total: 0,
+              limit: 0,
+              offset: 0,
+            },
+          }"
+        />
+
         <AppSelect
+          v-if="false"
           v-model="value"
           :items="selectItems"
           :display-fn="(value) => value"

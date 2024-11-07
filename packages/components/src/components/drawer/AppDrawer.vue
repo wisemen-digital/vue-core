@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import {
-  DialogPortal,
-  DialogRoot,
-} from 'reka-ui'
+import { DialogRoot } from 'reka-ui'
 import {
   nextTick,
   ref,
@@ -20,6 +17,7 @@ const props = withDefaults(defineProps<AppDrawerProps>(), {
   shouldPreventClickOutside: false,
   shouldShouldAnimateFromTrigger: false,
   styleConfig: null,
+  transitionClasses: null,
 })
 
 const emit = defineEmits<{
@@ -168,34 +166,32 @@ watch(isActuallyOpen, () => {
       v-model:open="isOpen"
       :modal="isActuallyOpen"
     >
-      <DialogPortal>
-        <Transition
-          enter-active-class="duration-300"
-          enter-from-class="opacity-0"
-          leave-active-class="duration-300"
-          leave-to-class="opacity-0"
-        >
-          <AppDrawerOverlay />
-        </Transition>
+      <Transition
+        enter-active-class="duration-300"
+        enter-from-class="opacity-0"
+        leave-active-class="duration-300"
+        leave-to-class="opacity-0"
+      >
+        <AppDrawerOverlay />
+      </Transition>
 
-        <Component
-          :is="shouldAnimateFromTrigger ? 'div' : Transition"
-          enter-active-class="duration-300"
-          enter-from-class="opacity-0 translate-x-full"
-          leave-active-class="duration-300"
-          leave-to-class="opacity-0 translate-x-full"
+      <Component
+        :is="shouldAnimateFromTrigger ? 'div' : Transition"
+        :enter-active-class="props.transitionClasses?.enterActive ?? 'duration-300'"
+        :enter-from-class="props.transitionClasses?.enterFrom ?? 'opacity-0 translate-x-full'"
+        :leave-active-class="props.transitionClasses?.leaveActive ?? 'duration-300'"
+        :leave-to-class="props.transitionClasses?.leaveTo ?? 'opacity-0 translate-x-full'"
+      >
+        <AppDrawerContent
+          v-if="isActuallyOpen"
+          v-bind="attrs"
+          :data-test-id="props.testId"
+          :should-prevent-click-outside="props.shouldPreventClickOutside"
+          :style="props.styleConfig"
         >
-          <AppDrawerContent
-            v-if="isActuallyOpen"
-            v-bind="attrs"
-            :data-test-id="props.testId"
-            :should-prevent-click-outside="props.shouldPreventClickOutside"
-            :style="props.styleConfig"
-          >
-            <slot />
-          </AppDrawerContent>
-        </Component>
-      </DialogPortal>
+          <slot />
+        </AppDrawerContent>
+      </Component>
     </DialogRoot>
   </div>
 </template>

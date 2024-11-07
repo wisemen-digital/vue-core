@@ -24,4 +24,15 @@ export interface AppDrawerProps {
    *
    */
   styleConfig?: StyleConfig<'drawer'> | null
+  /**
+   * The transition classes to apply to the drawer
+   */
+  transitionClasses?: {
+    enterActive?: string
+    enterFrom?: string
+    enterTo?: string
+    leaveActive?: string
+    leaveFrom?: string
+    leaveTo?: string
+  } | null
 }

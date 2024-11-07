@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import {
-  DialogPortal,
-  DialogRoot,
-} from 'reka-ui'
+import { DialogRoot } from 'reka-ui'
 import {
   nextTick,
   ref,
@@ -168,34 +165,32 @@ watch(isActuallyOpen, () => {
       v-model:open="isOpen"
       :modal="isActuallyOpen"
     >
-      <DialogPortal>
-        <Transition
-          enter-active-class="duration-200"
-          enter-from-class="opacity-0"
-          leave-active-class="duration-200"
-          leave-to-class="opacity-0"
-        >
-          <AppDialogOverlay />
-        </Transition>
+      <Transition
+        enter-active-class="duration-200"
+        enter-from-class="opacity-0"
+        leave-active-class="duration-200"
+        leave-to-class="opacity-0"
+      >
+        <AppDialogOverlay />
+      </Transition>
 
-        <Component
-          :is="props.shouldAnimateFromTrigger ? 'div' : Transition"
-          enter-active-class="duration-300 ease-dialog"
-          enter-from-class="opacity-0 scale-110"
-          leave-active-class="duration-300 ease-dialog"
-          leave-to-class="opacity-0 scale-110"
+      <Component
+        :is="props.shouldAnimateFromTrigger ? 'div' : Transition"
+        enter-active-class="duration-300 ease-dialog"
+        enter-from-class="opacity-0 scale-110"
+        leave-active-class="duration-300 ease-dialog"
+        leave-to-class="opacity-0 scale-110"
+      >
+        <AppDialogContent
+          v-if="isActuallyOpen"
+          v-bind="attrs"
+          :data-test-id="props.testId"
+          :should-prevent-click-outside="props.shouldPreventClickOutside"
+          :style="props.styleConfig"
         >
-          <AppDialogContent
-            v-if="isActuallyOpen"
-            v-bind="attrs"
-            :data-test-id="props.testId"
-            :should-prevent-click-outside="props.shouldPreventClickOutside"
-            :style="props.styleConfig"
-          >
-            <slot />
-          </AppDialogContent>
-        </Component>
-      </DialogPortal>
+          <slot />
+        </AppDialogContent>
+      </Component>
     </DialogRoot>
   </div>
 </template>

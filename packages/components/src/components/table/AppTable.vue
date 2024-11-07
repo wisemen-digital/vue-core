@@ -56,6 +56,11 @@ const gridColsStyle = computed<string>(() => (
   `${props.columns.map((col) => `minmax(${col.width ?? 'min-content'},${col.maxWidth ?? 'auto'})`).join(' ')}`
 ))
 
+const hasActiveFilters = computed<boolean>(
+  () => props.pagination.paginationOptions.value.filters !== undefined
+    && Object.keys(props.pagination.paginationOptions.value.filters).length > 0,
+)
+
 const isEmpty = computed<boolean>(() => (
   props.data !== null && props.data.meta.total === 0 && !props.isLoading
 ))
@@ -149,7 +154,11 @@ provideTableContext({
 
     <div class="relative flex h-full flex-1 flex-col overflow-hidden">
       <AppTableLoadingState v-if="isLoading" />
-      <AppTableEmptyState v-else-if="isEmpty" />
+
+      <AppTableEmptyState
+        v-else-if="isEmpty"
+        :has-active-filters="hasActiveFilters"
+      />
 
       <div
         v-else
