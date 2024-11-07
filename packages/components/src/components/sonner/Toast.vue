@@ -16,7 +16,8 @@ import type {
   ToastProps,
   ToastT,
 } from '@/components/sonner/types'
-import CloseIcon from '@/icons/CloseIcon.vue';
+
+import AppIcon from "@/components/icon/AppIcon.vue";
 
 const props = defineProps<ToastProps>()
 
@@ -351,7 +352,7 @@ onUnmounted(() => {
         data-close-button
         @click="handleCloseToast"
       >
-        <CloseIcon />
+        <AppIcon icon="close" />
       </button>
     </template>
 

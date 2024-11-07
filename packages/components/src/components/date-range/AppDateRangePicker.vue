@@ -13,7 +13,7 @@ import type {
   DatePickerHighlightConfig,
   DatePickerMarker,
   DatePickerRangeConfig,
-} from '@/types/datePickerConfig.type.ts'
+} from '@/types/datePickerConfig.type'
 
 const props = withDefaults(defineProps<{
   /**

@@ -1,4 +1,4 @@
-<script setup lang="ts" generic="TFilters">
+<script setup lang="ts" generic="TFilters, TFiltersValue extends string = string">
 import { computed } from 'vue'
 
 import AppSkeletonLoaderRow from '@/components/skeleton-loader/AppSkeletonLoaderRow.vue'
@@ -20,7 +20,7 @@ const props = defineProps<{
   title?: string
   hasSearch: boolean
   isLoading: boolean
-  filters: PaginationFilter<TFilters>[]
+  filters: PaginationFilter<TFilters, TFiltersValue>[]
   pagination: Pagination<TFilters>
   searchPosition: 'left' | 'right'
   variant: TableStyleProps['variant']

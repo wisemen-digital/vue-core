@@ -14,7 +14,8 @@ import type {
 } from '@/types/selectItem.type'
 
 const props = defineProps<{
-  displayFn: (value: TValue) => null | string
+  testId?: string
+  displayFn: (value: TValue) => string | null
   item: SelectItemOption<TValue>
 }>()
 
@@ -37,7 +38,7 @@ const optionWrapperClasses = computed<string>(() => selectStyle.optionWrapper())
     <div :class="optionWrapperClasses">
       <slot>
         <AppText variant="subtext">
-          {{ displayFn((item as SelectItemOption<TValue>).value) }}
+          {{ props.displayFn((item).value) }}
         </AppText>
       </slot>
 

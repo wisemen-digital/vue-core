@@ -76,7 +76,7 @@ export interface PaginationFilterWithAutocomplete<TFilters, TValue> extends Pagi
   modelValue: { uuid: TValue, label: string } | null
   placeholder: string
   type: 'autocomplete'
-  onSearch: (search: string) => Promise<void>
+  onSearch: (search: string | null) => Promise<void>
 }
 
 export interface PaginationFilterWithMultipleOptions<TFilters> extends PaginationFilterBase<TFilters> {

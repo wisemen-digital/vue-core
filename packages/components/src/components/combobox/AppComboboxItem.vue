@@ -4,9 +4,12 @@ import AppComboboxGroup from '@/components/combobox/AppComboboxGroup.vue'
 import AppComboboxOption from '@/components/combobox/AppComboboxOption.vue'
 import AppMultiComboboxOption from '@/components/combobox/AppMultiComboboxOption.vue'
 import type { ComboboxItem } from '@/types/comboboxItem.type'
-import type { AcceptableValue } from '@/types/selectItem.type'
+import type {
+  AcceptableValue,
+} from '@/types/selectItem.type'
 
 const props = defineProps<{
+  testId?: string
   isMultiple: boolean
   displayFn: (value: TValue) => string
   item: ComboboxItem<TValue>
@@ -29,9 +32,7 @@ const props = defineProps<{
       :is-multiple="props.isMultiple"
       :display-fn="props.displayFn"
     >
-      <template #default="{ item: itemValue }">
-        <slot :item="itemValue" />
-      </template>
+      <slot :item="groupItem" />
     </AppComboboxItem>
   </AppComboboxGroup>
 

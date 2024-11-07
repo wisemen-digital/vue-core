@@ -11,7 +11,7 @@ dist
 
 **/.vitepress/dist
 **/.vitepress/cache
-
+**/*/.mjs
 .turbo
 
 # Editor directories and files

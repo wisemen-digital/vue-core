@@ -9,7 +9,7 @@ import type {
   DatePickerHighlightConfig,
   DatePickerMarker,
   DatePickerRangeConfig,
-} from '@/types/datePickerConfig.type.ts'
+} from '@/types/datePickerConfig.type'
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
 const props = withDefaults(defineProps<{

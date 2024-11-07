@@ -3,8 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-  @import 'reset';
-
   :root {
     --black: 0, 0, 0;
     --white: 255, 255, 255;

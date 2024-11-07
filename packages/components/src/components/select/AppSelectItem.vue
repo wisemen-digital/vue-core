@@ -11,7 +11,7 @@ const props = defineProps<{
   /**
    * display function for the selected value
    */
-  displayFn: (value: TValue) => null | string
+  displayFn: (value: TValue) => string | null
   item: SelectItem<TValue>
 }>()
 </script>
@@ -29,17 +29,14 @@ const props = defineProps<{
       :item="groupItem"
       :display-fn="displayFn"
     >
-      <!-- @vue-expect-error -->
-      <template #default="{ item: itemValue }">
-        <slot :item="itemValue" />
-      </template>
+      <slot :item="groupItem" />
     </AppSelectItem>
   </AppSelectGroup>
 
   <AppSelectOption
     v-else-if="props.item.type === 'option'"
     :item="props.item"
-    :data-test-id="props.item.testId"
+    :test-id="props.item.testId"
     :display-fn="displayFn"
   >
     <slot :item="props.item" />
