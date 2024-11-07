@@ -6,8 +6,7 @@ const tableContext = injectTableContext()
 </script>
 
 <template>
-  <div    class="col-span-full grid grid-cols-subgrid"
-  >
+  <div class="col-span-full grid grid-cols-subgrid">
     <AppTableRow
       v-for="(row, rowIndex) of tableContext.data.value!.data"
       :key="rowIndex"

@@ -15,6 +15,7 @@ export type {
   KeyboardShortcutConfig,
 } from './keyboard.type'
 export type {
+  DeepPartial,
   PaginatedData,
   Pagination,
   PaginationFilter,
