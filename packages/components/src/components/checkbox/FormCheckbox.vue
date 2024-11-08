@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<{
    * The id of the checkbox.
    * @default null
    */
-  id?: null | string
+  id?: string | null
   /**
    * Whether the checkbox is disabled.
    * @default false
@@ -35,7 +35,7 @@ const props = withDefaults(defineProps<{
    *  The label of the checkbox
    * @default null
    */
-  label?: null | string
+  label?: string | null
 }>(), {
   id: null,
   isDisabled: false,
@@ -61,7 +61,7 @@ const checkboxIndicatorClasses = computed<string>(() => checkboxStyle.indicator(
 
 const id = props.id ?? useId()
 
-const computedModel = computed<'indeterminate' | boolean>({
+const computedModel = computed<boolean | 'indeterminate'>({
   get() {
     if (model.value) {
       return true

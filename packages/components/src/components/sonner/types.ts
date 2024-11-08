@@ -15,11 +15,11 @@ export type PromiseT<Data = any> = (() => Promise<Data>) | Promise<Data>
 export type PromiseExternalToast = Omit<ExternalToast, 'description'>
 
 export type PromiseData<ToastData = any> = ExternalToast & {
-  description?: ((data: any) => Component | string) | Component | string
-  error?: (data: ToastData) => Component | string
+  description?: ((data: any) => string | Component) | string | Component
+  error?: (data: ToastData) => string | Component
   finally?: () => Promise<void> | void
-  loading?: Component | string
-  success?: (data: ToastData) => Component | string
+  loading?: string | Component
+  success?: (data: ToastData) => string | Component
 }
 
 export interface ToastClasses {
@@ -50,14 +50,14 @@ export interface ToastIcons {
 
 export interface ToastT<T extends Component = Component> {
   id: number | string
-  title?: Component | string
+  title?: string | Component
   action?: {
-    label: Component | string
+    label: string | Component
     onClick: (event: MouseEvent) => void
   }
   actionButtonStyle?: CSSProperties
   cancel?: {
-    label: Component | string
+    label: string | Component
     onClick?: () => void
   }
   cancelButtonStyle?: CSSProperties
@@ -66,7 +66,7 @@ export interface ToastT<T extends Component = Component> {
   closeButton?: boolean
   componentProps?: any
   delete?: boolean
-  description?: Component | string
+  description?: string | Component
   descriptionClass?: string
   dismissible?: boolean
   duration?: number

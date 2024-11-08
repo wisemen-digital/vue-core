@@ -31,7 +31,7 @@ const props = defineProps<{
   /**
    * The label of the input.
    */
-  label: null | string
+  label: string | null
   /**
    * The tooltip of the input.
    */

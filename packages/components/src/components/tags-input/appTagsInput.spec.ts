@@ -26,7 +26,7 @@ describe('appTagsInput', () => {
   })
 
   it('renders correctly with default props', () => {
-    expect(wrapper.exists()).toBe(true)
+    expect(wrapper.exists()).toBeTruthy()
     expect(wrapper.find('input').attributes('type')).toBe('text')
 
     const tags = wrapper.findAll('[data-radix-vue-collection-item]')
@@ -41,7 +41,7 @@ describe('appTagsInput', () => {
 
   it('renders invalid state correctly', async () => {
     await wrapper.setProps({ isInvalid: true })
-    expect(wrapper.classes().includes('border-destructive')).toBe(true)
+    expect(wrapper.classes()).toContain('border-destructive')
   })
 
   it('renders disabled state correctly', async () => {

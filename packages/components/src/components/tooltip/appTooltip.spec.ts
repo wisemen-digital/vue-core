@@ -76,6 +76,6 @@ describe('appTooltip', () => {
 
     const arrow = wrapper.findComponent(AppTooltipArrow)
 
-    expect(arrow.exists()).toBe(false)
+    expect(arrow.exists()).toBeFalsy()
   })
 })

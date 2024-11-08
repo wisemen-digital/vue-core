@@ -55,7 +55,7 @@ const props = withDefaults(
      * The placeholder of the select.
      * @default null
      */
-    placeholder?: null | string
+    placeholder?: string | null
     /**
      * The tooltip of the input.
      */

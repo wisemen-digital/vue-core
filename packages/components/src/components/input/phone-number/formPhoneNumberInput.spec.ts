@@ -30,11 +30,11 @@ describe('formPhoneNumberInput', () => {
   })
 
   it('renders correctly with default props', () => {
-    expect(wrapper.exists()).toBe(true)
-    expect(wrapper.findComponent({ name: 'AppSelect' }).exists()).toBe(true)
-    expect(wrapper.findComponent({ name: 'AppInput' }).exists()).toBe(true)
+    expect(wrapper.exists()).toBeTruthy()
+    expect(wrapper.findComponent({ name: 'AppSelect' }).exists()).toBeTruthy()
+    expect(wrapper.findComponent({ name: 'AppInput' }).exists()).toBeTruthy()
     expect(wrapper.find('label').text()).toBe('Label')
-    expect(wrapper.find('.error').exists()).toBe(false)
+    expect(wrapper.find('.error').exists()).toBeFalsy()
 
     const inputs = wrapper.findAll('input')
     const inputWithId = inputs.filter((input) => input.attributes('id')?.includes('input-'))[0]
@@ -54,7 +54,7 @@ describe('formPhoneNumberInput', () => {
 
   it('handles required field correctly', async () => {
     await wrapper.setProps({ isRequired: true })
-    expect(wrapper.findComponent(FormElement).props('isRequired')).toBe(true)
+    expect(wrapper.findComponent(FormElement).props('isRequired')).toBeTruthy()
   })
 
   it('renders errors when isTouched is true and errors are provided', async () => {
@@ -79,23 +79,23 @@ describe('formPhoneNumberInput', () => {
 
     await wrapper.setProps({ errors })
     expect(wrapper.findComponent(FormElement).props('errors')).toEqual(errors)
-    expect(wrapper.find('.p.text-destructive').exists()).toBe(false)
+    expect(wrapper.find('.p.text-destructive').exists()).toBeFalsy()
   })
 
   it('handles disabled state correctly', async () => {
     await wrapper.setProps({ isDisabled: true })
-    expect(wrapper.findComponent(FormElement).props('isDisabled')).toBe(true)
+    expect(wrapper.findComponent(FormElement).props('isDisabled')).toBeTruthy()
   })
 
   it('handles loading state correctly', async () => {
     await wrapper.setProps({ isLoading: true })
-    expect(wrapper.findComponent(AppLoader).exists()).toBe(true)
+    expect(wrapper.findComponent(AppLoader).exists()).toBeTruthy()
   })
 
   it('renders given tooltip content and icon', async () => {
     await wrapper.setProps({ tooltip: 'Tooltip' })
 
     expect(wrapper.findComponent(AppTooltip).props('content')).toBe('Tooltip')
-    expect(wrapper.findComponent(AppIcon).exists()).toBe(true)
+    expect(wrapper.findComponent(AppIcon).exists()).toBeTruthy()
   })
 })

@@ -9,12 +9,12 @@ const props = withDefaults(defineProps<{
    * The id of the input.
    * @default null
    */
-  id?: null | string
+  id?: string | null
   /**
    * The test id of the input.
    * @default null
    */
-  testId?: null | string
+  testId?: string | null
   /**
    * Disables the input.
    */
@@ -41,7 +41,7 @@ const props = withDefaults(defineProps<{
    * Placeholder of the input.
    * @default null
    */
-  placeholder?: null | string
+  placeholder?: string | null
 }>(), {
   id: null,
   testId: null,
@@ -53,7 +53,7 @@ const props = withDefaults(defineProps<{
   placeholder: null,
 })
 
-const modelValue = defineModel<null | string>({
+const modelValue = defineModel<string | null>({
   required: true,
 })
 

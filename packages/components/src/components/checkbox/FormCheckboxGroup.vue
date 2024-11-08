@@ -30,7 +30,7 @@ const props = withDefaults(defineProps<{
    * The label of the checkbox group.
    * @default null
    */
-  label?: null | string
+  label?: string | null
   /**
    * The options of the checkbox group.
    */

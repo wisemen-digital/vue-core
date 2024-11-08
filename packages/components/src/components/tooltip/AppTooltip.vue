@@ -27,7 +27,7 @@ const props = withDefaults(
      * The content to show in the tooltip.
      * @default null
      */
-    content?: null | string
+    content?: string | null
     /**
      * The duration in milliseconds to wait before showing the tooltip.
      * @default 0

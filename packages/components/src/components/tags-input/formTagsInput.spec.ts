@@ -33,10 +33,10 @@ describe('formTagsInput', () => {
   })
 
   it('renders correctly with default props', () => {
-    expect(wrapper.exists()).toBe(true)
-    expect(wrapper.findComponent(AppTagsInput).exists()).toBe(true)
+    expect(wrapper.exists()).toBeTruthy()
+    expect(wrapper.findComponent(AppTagsInput).exists()).toBeTruthy()
     expect(wrapper.find('label').text()).toBe('Label')
-    expect(wrapper.find('.text-destructive').exists()).toBe(false)
+    expect(wrapper.find('.text-destructive').exists()).toBeFalsy()
 
     const tags = wrapper.findAll('[data-radix-vue-collection-item]')
 
@@ -45,12 +45,12 @@ describe('formTagsInput', () => {
 
   it('handles required field correctly', async () => {
     await wrapper.setProps({ isRequired: true })
-    expect(wrapper.findComponent(FormElement).props('isRequired')).toBe(true)
+    expect(wrapper.findComponent(FormElement).props('isRequired')).toBeTruthy()
   })
 
   it('handles disabled state correctly', async () => {
     await wrapper.setProps({ isDisabled: true })
-    expect(wrapper.findComponent(FormElement).props('isDisabled')).toBe(true)
+    expect(wrapper.findComponent(FormElement).props('isDisabled')).toBeTruthy()
   })
 
   it('renders errors when isTouched is true and errors are provided', async () => {
@@ -75,7 +75,7 @@ describe('formTagsInput', () => {
 
     await wrapper.setProps({ errors })
     expect(wrapper.findComponent(FormElement).props('errors')).toEqual(errors)
-    expect(wrapper.find('.p.text-destructive').exists()).toBe(false)
+    expect(wrapper.find('.p.text-destructive').exists()).toBeFalsy()
   })
 
   it('updates input state', async () => {
@@ -91,6 +91,6 @@ describe('formTagsInput', () => {
     await wrapper.setProps({ tooltip: 'Tooltip' })
 
     expect(wrapper.findComponent(AppTooltip).props('content')).toBe('Tooltip')
-    expect(wrapper.findComponent(AppIcon).exists()).toBe(true)
+    expect(wrapper.findComponent(AppIcon).exists()).toBeTruthy()
   })
 })

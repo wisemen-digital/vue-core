@@ -5,7 +5,7 @@ import { useI18n } from 'vue-i18n'
 import AppText from '@/components/text/AppText.vue'
 
 const props = defineProps<{
-  emptyText: null | string
+  emptyText: string | null
 }>()
 
 const { t } = useI18n()

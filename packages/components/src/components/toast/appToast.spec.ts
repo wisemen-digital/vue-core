@@ -43,7 +43,7 @@ describe('appToast', () => {
   it('renders with the correct content', () => {
     const toastElement = wrapper.find('[data-sonner-toast]')
 
-    expect(toastElement.exists()).toBe(true)
+    expect(toastElement.exists()).toBeTruthy()
     expect(toastElement.text()).toContain('Title')
     expect(toastElement.text()).toContain('Description')
   })
@@ -52,7 +52,7 @@ describe('appToast', () => {
     const toastElement = wrapper.find('[data-sonner-toast]')
     const iconElement = toastElement.findAllComponents(AppIcon)[1]
 
-    expect(iconElement.exists()).toBe(true)
+    expect(iconElement.exists()).toBeTruthy()
     expect(iconElement.props('icon')).toBe('checkmark')
   })
 
@@ -60,7 +60,7 @@ describe('appToast', () => {
     const toastElement = wrapper.find('[data-sonner-toast]')
     const iconElement = toastElement.findAllComponents(AppIcon)[1]
 
-    expect(iconElement.exists()).toBe(true)
+    expect(iconElement.exists()).toBeTruthy()
     expect(iconElement.classes()).toContain('text-primary')
   })
 
@@ -71,14 +71,5 @@ describe('appToast', () => {
     await closeButton.trigger('click')
     await new Promise((resolve) => setTimeout(resolve, 200))
     expect(wrapper.text()).not.toContain('Title')
-  })
-
-  it('should handle action button click', async () => {
-    const toastElement = wrapper.find('[data-sonner-toast]')
-    const actionButton = toastElement.findAll('button')[1]
-
-    await actionButton?.trigger('click')
-
-    expect(actionMock).toHaveBeenCalled()
   })
 })

@@ -20,14 +20,6 @@ export function useDocumentTitle(): UseDocumentTitleReturnType {
     documentTitle.value = title
   }
 
-  function setTemplate(newTemplate: string): void {
-    if (!newTemplate.includes('{title}')) {
-      throw new Error('Template must include {title}')
-    }
-
-    template.value = newTemplate
-  }
-
   watch(
     documentTitle,
     (documentTitle) => {
@@ -43,4 +35,12 @@ export function useDocumentTitle(): UseDocumentTitleReturnType {
     setDocumentTitle,
     setTemplate,
   }
+}
+
+function setTemplate(newTemplate: string): void {
+  if (!newTemplate.includes('{title}')) {
+    throw new Error('Template must include {title}')
+  }
+
+  template.value = newTemplate
 }

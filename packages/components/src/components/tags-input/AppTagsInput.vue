@@ -12,7 +12,7 @@ const props = withDefaults(defineProps<{
   /**
    * The id of the input.
    */
-  id?: null | string
+  id?: string | null
   /**
    * The testId label.
    */
@@ -28,11 +28,11 @@ const props = withDefaults(defineProps<{
   /**
    * The maximum amount of tags allowed.
    */
-  max?: null | number
+  max?: number | null
   /**
    * The placeholder of the input.
    */
-  placeholder?: null | string
+  placeholder?: string | null
 }>(), {
   id: null,
   isDisabled: false,

@@ -173,13 +173,6 @@ export { default as AppTooltip } from './components/tooltip/AppTooltip.vue'
 // TRansition
 export { default as AppCollapseTransition } from './components/transitions/AppCollapseTransition.vue'
 
-// Primitives
-
-export { CalendarDate } from './primitives/calendar-date/calendarDate.primitive'
-export type { IsoString } from './primitives/calendar-date-time/calendarDateTime.primitive'
-export { CalendarDateTime, isoStringSchema } from './primitives/calendar-date-time/calendarDateTime.primitive'
-export { CalendarTime } from '@/primitives/calendar-time/calendarTime.primitive'
-
 // Composables
 export { useAddressAutoComplete } from './composables/address-autocomplete/addressAutocomplete.composable'
 export { useApiErrorToast } from './composables/api-error-toast/apiErrorToast.composable'

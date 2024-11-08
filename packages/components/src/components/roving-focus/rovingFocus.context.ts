@@ -4,7 +4,7 @@ import type { Ref } from 'vue'
 import type { Direction, Orientation } from '@/components/roving-focus/rovingFocus.util'
 
 interface RovingContext {
-  currentTabStopId: Ref<null | string | undefined>
+  currentTabStopId: Ref<string | null | undefined>
   dir: Ref<Direction>
   loop: Ref<boolean>
   orientation: Ref<Orientation | undefined>

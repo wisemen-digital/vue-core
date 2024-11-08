@@ -23,8 +23,8 @@ describe('formSwitch', () => {
   })
 
   it('renders correctly with default props', () => {
-    expect(wrapper.exists()).toBe(true)
-    expect(wrapper.find('button').exists()).toBe(true)
+    expect(wrapper.exists()).toBeTruthy()
+    expect(wrapper.find('button').exists()).toBeTruthy()
     expect(wrapper.find('button').attributes('aria-checked')).toBe('true')
   })
 

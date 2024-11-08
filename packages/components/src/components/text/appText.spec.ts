@@ -15,7 +15,7 @@ describe('appText', () => {
       },
     })
 
-    expect(wrapper.exists()).toBe(true)
+    expect(wrapper.exists()).toBeTruthy()
     expect(wrapper.element.tagName).toBe('P')
     expect(wrapper.classes()).toContain('text-body')
   })
@@ -28,7 +28,7 @@ describe('appText', () => {
       },
     })
 
-    expect(wrapper.exists()).toBe(true)
+    expect(wrapper.exists()).toBeTruthy()
     expect(wrapper.element.tagName).toBe('H1')
     expect(wrapper.classes()).toContain('text-heading')
   })
@@ -44,7 +44,7 @@ describe('appText', () => {
       },
     })
 
-    expect(wrapper.exists()).toBe(true)
+    expect(wrapper.exists()).toBeTruthy()
     expect(wrapper.classes()).toContain('text-body')
     expect(wrapper.classes()).toContain(customClass)
   })
@@ -59,7 +59,7 @@ describe('appText', () => {
       },
     })
 
-    expect(wrapper.exists()).toBe(true)
+    expect(wrapper.exists()).toBeTruthy()
     expect(wrapper.element.tagName).toBe('P')
     expect(wrapper.text()).toContain('Test content')
   })

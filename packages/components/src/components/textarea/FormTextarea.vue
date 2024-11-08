@@ -31,7 +31,7 @@ const props = withDefaults(
      * The height class of the textarea.
      * @default null
      */
-    heightClass?: null | string
+    heightClass?: string | null
     /**
      * The label of the input.
      */
@@ -40,7 +40,7 @@ const props = withDefaults(
      * The placeholder of the input.
      * @default null
      */
-    placeholder?: null | string
+    placeholder?: string | null
     /**
      * The resize property of the textarea.
      * @default 'none'
@@ -66,7 +66,7 @@ const emit = defineEmits<{
   focus: []
 }>()
 
-const model = defineModel<null | string>({
+const model = defineModel<string | null>({
   required: true,
 })
 

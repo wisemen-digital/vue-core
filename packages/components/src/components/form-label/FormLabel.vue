@@ -30,7 +30,7 @@ const props = withDefaults(defineProps<{
   /**
    * The tooltip of the label.
    */
-  tooltip?: null | string
+  tooltip?: string | null
 }>(), {
   isDisabled: false,
   isInvalid: false,

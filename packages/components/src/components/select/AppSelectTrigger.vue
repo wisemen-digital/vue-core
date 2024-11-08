@@ -5,7 +5,7 @@ import { computed } from 'vue'
 import { useSelectStyle } from '@/components/select/select.style'
 
 const props = withDefaults(defineProps<{
-  id?: null | string
+  id?: string | null
   isDisabled?: boolean
   isInvalid?: boolean
 }>(), {

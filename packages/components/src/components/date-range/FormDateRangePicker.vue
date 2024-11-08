@@ -21,11 +21,11 @@ const props = withDefaults(defineProps<{
   /**
    * All dates after the given date will be disabled.
    */
-  maxDate?: Date | string
+  maxDate?: string | Date
   /**
    * All dates before the given date will be disabled.
    */
-  minDate?: Date | string
+  minDate?: string | Date
   /**
    * Add a clear icon to the input field where you can set the value to null.
    */

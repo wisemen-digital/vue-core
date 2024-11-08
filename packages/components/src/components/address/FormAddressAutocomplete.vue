@@ -56,7 +56,7 @@ const props = withDefaults(defineProps<{
   /**
    * The placeholder of the input.
    */
-  placeholder?: null | string
+  placeholder?: string | null
 }>(), {
   isDisabled: false,
   isRequired: false,
@@ -136,7 +136,7 @@ async function onUpdateModelValue(suggestion: Suggestion | null): Promise<void> 
   }
 }
 
-function onUpdateSearch(search: null | string): void {
+function onUpdateSearch(search: string | null): void {
   if (search === null || search === '' || search === value.value?.label) {
     return
   }
