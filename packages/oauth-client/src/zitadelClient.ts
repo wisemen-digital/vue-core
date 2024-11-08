@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
-import type {
-  InternalAxiosRequestConfig,
-} from 'axios'
+
+import type { AxiosInstance } from 'axios'
 import pkceChallenge from 'pkce-challenge'
 
 import { ApiClient } from './apiClient'
@@ -27,6 +26,32 @@ export class ZitadelClient {
     )
   }
 
+  private async addAuthorizationHeader(): Promise<void> {
+    const client = this.getClient()
+
+    if (client === null) {
+      return
+    }
+
+    if (this.offline) {
+      return
+    }
+
+    try {
+      const token = await client.getAccessToken()
+
+      this.options.axios.defaults.headers.Authorization = `Bearer ${token}`
+    }
+    catch (error) {
+      console.log('Failed to get access token, logging out', error)
+      this.options.axios.defaults.headers.Authorization = null
+
+      this.client?.clearTokens()
+
+      throw new Error('Failed to get access token')
+    }
+  }
+
   private getDefaultScopes(): string[] {
     return [
       'openid',
@@ -37,32 +62,8 @@ export class ZitadelClient {
     ]
   }
 
-  async addAuthorizationHeader(
-    config: InternalAxiosRequestConfig<unknown>,
-  ): Promise<InternalAxiosRequestConfig<unknown>> {
-    const client = this.getClient()
-
-    if (client === null) {
-      return config
-    }
-
-    if (this.offline) {
-      return config
-    }
-
-    try {
-      const token = await client.getAccessToken()
-
-      config.headers.Authorization = `Bearer ${token}`
-    }
-    catch (error) {
-      console.log('Failed to get access token, logging out', error)
-      this.client?.clearTokens()
-
-      throw new Error('Failed to get access token')
-    }
-
-    return config
+  public getAxios(): AxiosInstance {
+    return this.options.axios
   }
 
   public getClient(): ApiClient {
@@ -158,6 +159,8 @@ export class ZitadelClient {
     }
 
     await this.getClient().loginWithCode(code)
+
+    await this.addAuthorizationHeader()
   }
 
   public logout(): void {

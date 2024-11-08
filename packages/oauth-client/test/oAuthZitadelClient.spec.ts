@@ -1,7 +1,6 @@
 import { Buffer } from 'node:buffer'
 
-import type { InternalAxiosRequestConfig } from 'axios'
-import axios, { AxiosHeaders } from 'axios'
+import axios from 'axios'
 import AxiosMockAdapter from 'axios-mock-adapter'
 import {
   afterEach,
@@ -102,50 +101,6 @@ describe('oAuth2ZitadelClient', () => {
     })
   })
 
-  describe('addAuthorizationHeader', () => {
-    it('should add the Authorization header with the access token', async () => {
-      localStorage.setItem('tokens', JSON.stringify(mockTokens))
-
-      const config: InternalAxiosRequestConfig = {
-        headers: AxiosHeaders.from(),
-      }
-
-      const result = await client.addAuthorizationHeader(config)
-
-      expect(result.headers.Authorization).toBe(`Bearer ${mockAccessToken}`)
-    })
-
-    it('should refresh the access token if expired', async () => {
-      const expiredTokens = {
-        ...mockTokens,
-        expires_at: mockExpiresAt * 1000,
-      }
-
-      localStorage.setItem('tokens', JSON.stringify(expiredTokens))
-
-      mockAxios.onPost('/oauth/v2/token').reply(200, mockTokens)
-
-      const config: InternalAxiosRequestConfig = {
-        headers: AxiosHeaders.from(),
-      }
-
-      const result = await client.addAuthorizationHeader(config)
-
-      expect(result.headers.Authorization).toBe(`Bearer ${mockAccessToken}`)
-
-      const expectedTokens = {
-        expires_at: mockExpiresAt * 1000,
-        access_token: mockAccessToken,
-        id_token: 'id_token_value',
-        refresh_token: 'refresh_token_value',
-        scope: 'openid',
-        token_type: 'Bearer',
-      }
-
-      expect(localStorage.getItem('tokens')).toContain(JSON.stringify(expectedTokens))
-    })
-  })
-
   describe('getUserInfo', () => {
     it('should fetch user info from the userInfo endpoint', async () => {
       localStorage.setItem('tokens', JSON.stringify(mockTokens))
@@ -177,7 +132,7 @@ describe('oAuth2ZitadelClient', () => {
     })
   })
 
-  describe('loginAuthorization', () => {
+  describe('loginWithCode', () => {
     it('should perform login using authorization code', async () => {
       localStorage.setItem('code_verifier', 'code_verifier_value')
 
@@ -187,7 +142,10 @@ describe('oAuth2ZitadelClient', () => {
 
       const storedTokens = JSON.parse(localStorage.getItem('tokens') as string)
 
+      const axiosInstance = client.getAxios()
+
       expect(storedTokens.access_token).toBe(mockAccessToken)
+      expect(axiosInstance.defaults.headers.Authorization).toBe(`Bearer ${mockAccessToken}`)
     })
   })
 
