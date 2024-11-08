@@ -147,7 +147,7 @@ importers:
         version: 11.2.0(vue-router@4.4.5(vue@3.4.35(typescript@5.6.3)))(vue@3.4.35(typescript@5.6.3))
       '@wisemen/eslint-config-vue':
         specifier: 0.2.0
-        version: 0.2.0(@typescript-eslint/eslint-plugin@8.12.2(eslint@9.14.0(jiti@2.3.3))(typescript@5.6.3))(@typescript-eslint/utils@8.12.2(eslint@9.14.0(jiti@2.3.3))(typescript@5.6.3))(@vue/compiler-sfc@3.5.12)(eslint@9.14.0(jiti@2.3.3))(putout@36.10.0(eslint@9.14.0(jiti@2.3.3))(typescript@5.6.3))(tailwindcss@3.4.14(ts-node@10.9.2(@types/node@22.9.0)(typescript@5.6.3)))(typescript@5.6.3)(vitest@2.1.4(@types/node@22.9.0)(jsdom@25.0.1)(sass@1.80.6))(vue-eslint-parser@9.4.3(eslint@9.14.0(jiti@2.3.3)))
+        version: 0.2.0(@typescript-eslint/eslint-plugin@8.12.2(@typescript-eslint/parser@8.4.0(eslint@9.14.0(jiti@2.3.3))(typescript@5.6.3))(eslint@9.14.0(jiti@2.3.3))(typescript@5.6.3))(@typescript-eslint/utils@8.12.2(eslint@9.14.0(jiti@2.3.3))(typescript@5.6.3))(@vue/compiler-sfc@3.5.12)(eslint@9.14.0(jiti@2.3.3))(putout@36.10.0(eslint@9.14.0(jiti@2.3.3))(typescript@5.6.3))(tailwindcss@3.4.14(ts-node@10.9.2(@types/node@22.9.0)(typescript@5.6.3)))(typescript@5.6.3)(vitest@2.1.4(@types/node@22.9.0)(jsdom@25.0.1)(sass@1.80.6))(vue-eslint-parser@9.4.3(eslint@9.14.0(jiti@2.3.3)))
       autoprefixer:
         specifier: 10.4.20
         version: 10.4.20(postcss@8.4.38)
@@ -378,7 +378,7 @@ importers:
         version: 0.5.1
       '@wisemen/eslint-config-vue':
         specifier: 0.2.0
-        version: 0.2.0(@typescript-eslint/eslint-plugin@8.12.2(@typescript-eslint/parser@8.4.0(eslint@9.14.0(jiti@2.3.3))(typescript@5.6.3))(eslint@9.14.0(jiti@2.3.3))(typescript@5.6.3))(@typescript-eslint/utils@8.12.2(eslint@9.14.0(jiti@2.3.3))(typescript@5.6.3))(@vue/compiler-sfc@3.5.12)(eslint@9.14.0(jiti@2.3.3))(putout@36.10.0(eslint@9.14.0(jiti@2.3.3))(typescript@5.6.3))(tailwindcss@3.4.14(ts-node@10.9.2(@types/node@22.9.0)(typescript@5.6.3)))(typescript@5.6.3)(vitest@2.1.4(@types/node@22.9.0)(jsdom@25.0.1)(sass@1.80.6))(vue-eslint-parser@9.4.3(eslint@9.14.0(jiti@2.3.3)))
+        version: 0.2.0(@typescript-eslint/eslint-plugin@8.12.2(eslint@9.14.0(jiti@2.3.3))(typescript@5.6.3))(@typescript-eslint/utils@8.12.2(eslint@9.14.0(jiti@2.3.3))(typescript@5.6.3))(@vue/compiler-sfc@3.5.12)(eslint@9.14.0(jiti@2.3.3))(putout@36.10.0(eslint@9.14.0(jiti@2.3.3))(typescript@5.6.3))(tailwindcss@3.4.14(ts-node@10.9.2(@types/node@22.9.0)(typescript@5.6.3)))(typescript@5.6.3)(vitest@2.1.4(@types/node@22.9.0)(jsdom@25.0.1)(sass@1.80.6))(vue-eslint-parser@9.4.3(eslint@9.14.0(jiti@2.3.3)))
       eslint:
         specifier: 9.14.0
         version: 9.14.0(jiti@2.3.3)
@@ -10229,6 +10229,8 @@ snapshots:
       putout: 36.10.0(eslint@9.10.0(jiti@2.3.3))(typescript@5.4.5)
       try-catch: 3.0.1
       try-to-catch: 3.0.1
+    transitivePeerDependencies:
+      - supports-color
 
   '@putout/engine-loader@14.0.0(putout@36.10.0(eslint@9.10.0(jiti@2.3.3))(typescript@5.6.3))':
     dependencies:
@@ -10239,6 +10241,8 @@ snapshots:
       putout: 36.10.0(eslint@9.10.0(jiti@2.3.3))(typescript@5.6.3)
       try-catch: 3.0.1
       try-to-catch: 3.0.1
+    transitivePeerDependencies:
+      - supports-color
 
   '@putout/engine-loader@14.0.0(putout@36.10.0(eslint@9.13.0(jiti@2.3.3))(typescript@5.6.3))':
     dependencies:
@@ -10249,6 +10253,8 @@ snapshots:
       putout: 36.10.0(eslint@9.13.0(jiti@2.3.3))(typescript@5.6.3)
       try-catch: 3.0.1
       try-to-catch: 3.0.1
+    transitivePeerDependencies:
+      - supports-color
 
   '@putout/engine-loader@14.0.0(putout@36.10.0(eslint@9.14.0(jiti@2.3.3))(typescript@5.6.3))':
     dependencies:
@@ -10259,6 +10265,8 @@ snapshots:
       putout: 36.10.0(eslint@9.14.0(jiti@2.3.3))(typescript@5.6.3)
       try-catch: 3.0.1
       try-to-catch: 3.0.1
+    transitivePeerDependencies:
+      - supports-color
 
   '@putout/engine-parser@10.8.0':
     dependencies:
@@ -10279,6 +10287,8 @@ snapshots:
       picomatch: 4.0.2
       putout: 36.10.0(eslint@9.10.0(jiti@2.3.3))(typescript@5.4.5)
       try-to-catch: 3.0.1
+    transitivePeerDependencies:
+      - supports-color
 
   '@putout/engine-processor@12.0.0(putout@36.10.0(eslint@9.10.0(jiti@2.3.3))(typescript@5.6.3))':
     dependencies:
@@ -10287,6 +10297,8 @@ snapshots:
       picomatch: 4.0.2
       putout: 36.10.0(eslint@9.10.0(jiti@2.3.3))(typescript@5.6.3)
       try-to-catch: 3.0.1
+    transitivePeerDependencies:
+      - supports-color
 
   '@putout/engine-processor@12.0.0(putout@36.10.0(eslint@9.13.0(jiti@2.3.3))(typescript@5.6.3))':
     dependencies:
@@ -10295,6 +10307,8 @@ snapshots:
       picomatch: 4.0.2
       putout: 36.10.0(eslint@9.13.0(jiti@2.3.3))(typescript@5.6.3)
       try-to-catch: 3.0.1
+    transitivePeerDependencies:
+      - supports-color
 
   '@putout/engine-processor@12.0.0(putout@36.10.0(eslint@9.14.0(jiti@2.3.3))(typescript@5.6.3))':
     dependencies:
@@ -10303,6 +10317,8 @@ snapshots:
       picomatch: 4.0.2
       putout: 36.10.0(eslint@9.14.0(jiti@2.3.3))(typescript@5.6.3)
       try-to-catch: 3.0.1
+    transitivePeerDependencies:
+      - supports-color
 
   '@putout/engine-reporter@2.0.0(putout@36.10.0(eslint@9.10.0(jiti@2.3.3))(typescript@5.4.5))':
     dependencies:
@@ -10313,6 +10329,8 @@ snapshots:
       putout: 36.10.0(eslint@9.10.0(jiti@2.3.3))(typescript@5.4.5)
       try-catch: 3.0.1
       try-to-catch: 3.0.1
+    transitivePeerDependencies:
+      - supports-color
 
   '@putout/engine-reporter@2.0.0(putout@36.10.0(eslint@9.10.0(jiti@2.3.3))(typescript@5.6.3))':
     dependencies:
@@ -10323,6 +10341,8 @@ snapshots:
       putout: 36.10.0(eslint@9.10.0(jiti@2.3.3))(typescript@5.6.3)
       try-catch: 3.0.1
       try-to-catch: 3.0.1
+    transitivePeerDependencies:
+      - supports-color
 
   '@putout/engine-reporter@2.0.0(putout@36.10.0(eslint@9.13.0(jiti@2.3.3))(typescript@5.6.3))':
     dependencies:
@@ -10333,6 +10353,8 @@ snapshots:
       putout: 36.10.0(eslint@9.13.0(jiti@2.3.3))(typescript@5.6.3)
       try-catch: 3.0.1
       try-to-catch: 3.0.1
+    transitivePeerDependencies:
+      - supports-color
 
   '@putout/engine-reporter@2.0.0(putout@36.10.0(eslint@9.14.0(jiti@2.3.3))(typescript@5.6.3))':
     dependencies:
@@ -10343,6 +10365,8 @@ snapshots:
       putout: 36.10.0(eslint@9.14.0(jiti@2.3.3))(typescript@5.6.3)
       try-catch: 3.0.1
       try-to-catch: 3.0.1
+    transitivePeerDependencies:
+      - supports-color
 
   '@putout/engine-runner@21.2.0(putout@36.10.0(eslint@9.10.0(jiti@2.3.3))(typescript@5.4.5))':
     dependencies:
@@ -10866,6 +10890,8 @@ snapshots:
       '@putout/operator-filesystem': 4.1.0(putout@36.10.0(eslint@9.10.0(jiti@2.3.3))(typescript@5.4.5))
       '@putout/operator-json': 2.2.0
       putout: 36.10.0(eslint@9.10.0(jiti@2.3.3))(typescript@5.4.5)
+    transitivePeerDependencies:
+      - supports-color
 
   '@putout/operator-match-files@3.5.0(putout@36.10.0(eslint@9.10.0(jiti@2.3.3))(typescript@5.6.3))':
     dependencies:
@@ -10874,6 +10900,8 @@ snapshots:
       '@putout/operator-filesystem': 4.1.0(putout@36.10.0(eslint@9.10.0(jiti@2.3.3))(typescript@5.6.3))
       '@putout/operator-json': 2.2.0
       putout: 36.10.0(eslint@9.10.0(jiti@2.3.3))(typescript@5.6.3)
+    transitivePeerDependencies:
+      - supports-color
 
   '@putout/operator-match-files@3.5.0(putout@36.10.0(eslint@9.13.0(jiti@2.3.3))(typescript@5.6.3))':
     dependencies:
@@ -10882,6 +10910,8 @@ snapshots:
       '@putout/operator-filesystem': 4.1.0(putout@36.10.0(eslint@9.13.0(jiti@2.3.3))(typescript@5.6.3))
       '@putout/operator-json': 2.2.0
       putout: 36.10.0(eslint@9.13.0(jiti@2.3.3))(typescript@5.6.3)
+    transitivePeerDependencies:
+      - supports-color
 
   '@putout/operator-match-files@3.5.0(putout@36.10.0(eslint@9.14.0(jiti@2.3.3))(typescript@5.6.3))':
     dependencies:
@@ -10890,6 +10920,8 @@ snapshots:
       '@putout/operator-filesystem': 4.1.0(putout@36.10.0(eslint@9.14.0(jiti@2.3.3))(typescript@5.6.3))
       '@putout/operator-json': 2.2.0
       putout: 36.10.0(eslint@9.14.0(jiti@2.3.3))(typescript@5.6.3)
+    transitivePeerDependencies:
+      - supports-color
 
   '@putout/operator-regexp@1.0.0(putout@36.10.0(eslint@9.10.0(jiti@2.3.3))(typescript@5.4.5))':
     dependencies:

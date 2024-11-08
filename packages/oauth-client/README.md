@@ -1,38 +1,36 @@
-# pkg-placeholder
+# Wisemen vue-core OAuth Client
 
-[![npm version][npm-version-src]][npm-version-href]
-[![npm downloads][npm-downloads-src]][npm-downloads-href]
-[![bundle][bundle-src]][bundle-href]
-[![JSDocs][jsdocs-src]][jsdocs-href]
-[![License][license-src]][license-href]
+This package provides a simple way to authenticate with an OAuth2 server.
 
-_description_
+## Installation
 
-> **Note**:
-> Replace `pkg-placeholder`, `_description_` and `antfu` globally to use this template.
+```bash
+pnpm add @wisemen/vue-core-oauth-client
+```
 
-## Sponsors
+## Usage
 
-<p align="center">
-  <a href="https://cdn.jsdelivr.net/gh/antfu/static/sponsors.svg">
-    <img src='https://cdn.jsdelivr.net/gh/antfu/static/sponsors.svg'/>
-  </a>
-</p>
+Create a new file `oAuth.lib.ts` and add the following code:
 
-## License
+```typescript
+import { OAuth2VueClient } from '@wisemen/oauth2-vue-client'
+import axios from 'axios'
 
-[MIT](./LICENSE) License © 2023-PRESENT [Anthony Fu](https://github.com/antfu)
+import {
+  API_AUTH_URL,
+  API_CLIENT_ID,
+  API_CLIENT_SECRET,
+} from '@/constants/environment.constant.ts'
 
+export const oAuthClient = new OAuth2VueClient({
+  clientId: API_CLIENT_ID,
+  axios,
+  clientSecret: API_CLIENT_SECRET,
+  tokenEndpoint: `${API_AUTH_URL}/token`,
+})
+```
 
-<!-- Badges -->
-
-[npm-version-src]: https://img.shields.io/npm/v/pkg-placeholder?style=flat&colorA=080f12&colorB=1fa669
-[npm-version-href]: https://npmjs.com/package/pkg-placeholder
-[npm-downloads-src]: https://img.shields.io/npm/dm/pkg-placeholder?style=flat&colorA=080f12&colorB=1fa669
-[npm-downloads-href]: https://npmjs.com/package/pkg-placeholder
-[bundle-src]: https://img.shields.io/bundlephobia/minzip/pkg-placeholder?style=flat&colorA=080f12&colorB=1fa669&label=minzip
-[bundle-href]: https://bundlephobia.com/result?p=pkg-placeholder
-[license-src]: https://img.shields.io/github/license/antfu/pkg-placeholder.svg?style=flat&colorA=080f12&colorB=1fa669
-[license-href]: https://github.com/antfu/pkg-placeholder/blob/main/LICENSE
-[jsdocs-src]: https://img.shields.io/badge/jsdocs-reference-080f12?style=flat&colorA=080f12&colorB=1fa669
-[jsdocs-href]: https://www.jsdocs.io/package/pkg-placeholder
+Add the authorization header to the axios request
+```typescript
+axios.interceptors.request.use((config) => addAuthorizationHeader(oAuthClient, config))
+```
