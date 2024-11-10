@@ -22,10 +22,9 @@ import '@/components/switch/switchStyle.config'
 import { ref } from 'vue'
 
 import AppConfigProvider from '@/components/config-provider/AppConfigProvider.vue'
+import AppTimeField from '@/components/input-field/time-field/AppTimeField.vue'
 import AppSelect from '@/components/select/AppSelect.vue'
-import AppTable from '@/components/table/AppTable.vue'
 import AppThemeProvider from '@/components/theme-provider/AppThemeProvider.vue'
-import { useDarkMode } from '@/composables/index'
 import type { SelectOption } from '@/types/select.type'
 
 const value = ref<null | string>(null)
@@ -44,7 +43,7 @@ const selectItems = ref<SelectOption<string>[]>([
   },
 ])
 
-useDarkMode().value.value = 'dark'
+const time = ref<null | string>(null)
 </script>
 
 <template>
@@ -52,48 +51,12 @@ useDarkMode().value.value = 'dark'
     :pagination="{ limit: 30 }"
     locale="nl"
   >
-    <AppThemeProvider theme="dark">
+    <AppThemeProvider theme="light">
       <div class="flex h-full flex-col p-24">
-        <AppTable
-          :is-loading="false"
-          :pagination="{
-            paginationOptions: {
-              value: {
-                pagination: {
-                  limit: 0,
-                  offset: 0,
-                },
-                // filters: {
-                //   test: 'hehe',
-                // },
-              },
-            },
-          }"
-          :columns="[
-            {
-              key: 'name',
-              headerLabel: 'Name',
-              width: '500px',
-            },
-            {
-              key: 'email',
-              headerLabel: 'Email',
-              width: '500px',
-            },
-            {
-              key: 'age',
-              headerLabel: 'Age',
-              width: '1000px',
-            },
-          ]"
-          :data="{
-            data: [],
-            meta: {
-              total: 0,
-              limit: 0,
-              offset: 0,
-            },
-          }"
+        value: {{ time }}
+        <AppTimeField
+          v-model="time"
+          icon-left="search"
         />
 
         <AppSelect

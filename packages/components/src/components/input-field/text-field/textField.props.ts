@@ -86,23 +86,3 @@ export interface AppTextFieldProps {
    */
   type?: 'date' | 'email' | 'password' | 'search' | 'tel' | 'text' | 'time' | 'url'
 }
-
-export const appTextFieldPropsDefaultValues = {
-  id: null,
-  testId: null,
-  isDisabled: false,
-  isLoading: false,
-  isReadonly: false,
-  isRequired: false,
-  isSpellCheckEnabled: false,
-  isTouched: false,
-  autoComplete: 'off',
-  errors: null,
-  hint: null,
-  iconLeft: null,
-  iconRight: null,
-  label: null,
-  placeholder: null,
-  styleConfig: null,
-  type: 'text',
-} satisfies AppTextFieldProps

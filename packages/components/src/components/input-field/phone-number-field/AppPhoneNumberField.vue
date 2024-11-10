@@ -16,15 +16,30 @@ import {
 } from 'vue'
 
 import { injectConfigContext } from '@/components/config-provider/config.context'
-import {
-  type AppPhoneNumberFieldProps,
-  appPhoneNumberFieldPropsDefaultValues,
-} from '@/components/input-field/phone-number-field/phoneNumberField.props'
+import type { AppPhoneNumberFieldProps } from '@/components/input-field/phone-number-field/phoneNumberField.props'
 import AppTextField from '@/components/input-field/text-field/AppTextField.vue'
 import AppSelect from '@/components/select/AppSelect.vue'
 import type { SelectItem } from '@/types/select.type'
 
-const props = withDefaults(defineProps<AppPhoneNumberFieldProps>(), appPhoneNumberFieldPropsDefaultValues)
+const props = withDefaults(defineProps<AppPhoneNumberFieldProps>(), {
+  id: null,
+  testId: null,
+  isDisabled: false,
+  isLoading: false,
+  isReadonly: false,
+  isRequired: false,
+  isSpellCheckEnabled: false,
+  isTouched: false,
+  autoComplete: 'off',
+  defaultCountryCode: 'BE',
+  errors: null,
+  hint: null,
+  iconLeft: null,
+  iconRight: null,
+  label: null,
+  placeholder: null,
+  styleConfig: null,
+})
 
 i18nCountries.registerLocale(i18nEn)
 
@@ -34,7 +49,7 @@ const model = defineModel<null | string>({
 
 const globalConfigContext = injectConfigContext()
 
-const phoneNumberFieldRef = ref<InstanceType<typeof AppTextField> | null>(null)
+const phoneNumberFieldRef = ref<InstanceType<any> | null>(null)
 const phoneNumberFieldWidth = computed<number>(() => phoneNumberFieldRef.value?.$el.clientWidth ?? 0)
 
 const countryCode = ref<CountryCode>(props.defaultCountryCode)

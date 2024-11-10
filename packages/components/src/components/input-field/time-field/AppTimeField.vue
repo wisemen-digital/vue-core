@@ -1,8 +1,14 @@
 <script setup lang="ts" generic="TValue extends string">
-import { useId } from 'reka-ui'
+import { Time } from '@internationalized/date'
+import {
+  TimeFieldInput,
+  TimeFieldRoot,
+  useId,
+} from 'reka-ui'
 import { computed, ref } from 'vue'
 
 import AppCollapsable from '@/components/collapsable/AppCollapsable.vue'
+import { injectConfigContext } from '@/components/config-provider/config.context'
 import AppIcon from '@/components/icon/AppIcon.vue'
 import type { AppTextFieldProps } from '@/components/input-field/text-field/textField.props'
 import { textFieldStyle } from '@/components/input-field/text-field/textField.style'
@@ -13,7 +19,7 @@ import AppSpinner from '@/components/spinner/AppSpinner.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { useAriaDescribedBy } from '@/composables/aria-described-by/ariaDescribedBy.composable'
 
-const props = withDefaults(defineProps<AppTextFieldProps>(), {
+const props = withDefaults(defineProps<Omit<AppTextFieldProps, 'autocomplete' | 'placeholder' | 'type'>>(), {
   id: null,
   testId: null,
   isDisabled: false,
@@ -22,15 +28,12 @@ const props = withDefaults(defineProps<AppTextFieldProps>(), {
   isRequired: false,
   isSpellCheckEnabled: false,
   isTouched: false,
-  autoComplete: 'off',
   errors: null,
   hint: null,
   iconLeft: null,
   iconRight: null,
   label: null,
-  placeholder: null,
   styleConfig: null,
-  type: 'text',
 })
 
 const emit = defineEmits<{
@@ -54,6 +57,38 @@ const model = defineModel<TValue | null>({
   required: true,
 })
 
+const computedModel = computed<Time | undefined>({
+  get: () => {
+    console.log('get')
+
+    if (model.value === null) {
+      return undefined
+    }
+
+    const [
+      hours,
+      minutes,
+    ] = model.value.split(':') ?? [
+      '00',
+      '00',
+    ]
+
+    return new Time(Number(hours), Number(minutes))
+  },
+  set: (value) => {
+    console.log(value)
+
+    if (value === undefined) {
+      model.value = null
+
+      return
+    }
+
+    model.value = `${value.hour}:${value.minute}` as TValue
+  },
+})
+
+const globalConfigContext = injectConfigContext()
 const themeContext = injectThemeProviderContext()
 
 const isFocused = ref<boolean>(false)
@@ -182,23 +217,43 @@ function onBlur(): void {
 
       <slot name="left" />
 
-      <input
+      <TimeFieldRoot
         :id="inputId"
-        v-model="model"
+        v-slot="{ segments }"
+        v-model="(computedModel as any)"
+        :locale="globalConfigContext.locale.value"
+        :aria-describedby="ariaDescribedBy"
         :data-test-id="props.testId"
         :readonly="props.isReadonly"
         :disabled="props.isDisabled"
-        :placeholder="props.placeholder ?? undefined"
-        :spellcheck="props.isSpellCheckEnabled"
-        :class="inputClasses"
-        :autocomplete="props.autoComplete"
-        :aria-describedby="ariaDescribedBy"
-        :type="props.type"
-        :required="props.isRequired"
         :aria-invalid="props.errors !== undefined && props.errors !== null"
-        @focus="onFocus"
-        @blur="onBlur"
+        :required="props.isRequired"
+        :class="inputClasses"
+        class="flex w-full items-center"
       >
+        <template
+          v-for="item in segments"
+          :key="item.part"
+        >
+          <TimeFieldInput
+            v-if="item.part === 'literal'"
+            :part="item.part"
+            class="text-tertiary"
+          >
+            {{ item.value }}
+          </TimeFieldInput>
+
+          <TimeFieldInput
+            v-else
+            :part="item.part"
+            class="rounded px-0.5 text-primary outline-none duration-200 focus:bg-quaternary data-[placeholder]:text-placeholder"
+            @focus="onFocus"
+            @blur="onBlur"
+          >
+            {{ item.value }}
+          </TimeFieldInput>
+        </template>
+      </TimeFieldRoot>
 
       <slot name="right" />
 

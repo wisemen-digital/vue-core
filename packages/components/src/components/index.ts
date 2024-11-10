@@ -150,4 +150,5 @@ export { default as AppToggle } from '@/components/toggle/AppToggle.vue'
 
 // Tooltip
 export { default as AppTooltip } from '@/components/tooltip/AppTooltip.vue'
+export { default as AppTooltipTrigger } from '@/components/tooltip/AppTooltipTrigger.vue'
 export type { AppTooltipProps } from '@/components/tooltip/tooltip.props'

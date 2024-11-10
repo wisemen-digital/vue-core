@@ -196,9 +196,9 @@ export default {
             'warning-950': 'var(--warning-950)',
           },
           fontSize: {
-            body: 'var(--text-body)',
-            caption: 'var(--text-caption)',
-            subtext: 'var(--text-subtext)',
+            body: 'var(--text-md)',
+            caption: 'var(--text-xs)',
+            subtext: 'var(--text-sm)',
             subtitle: 'var(--text-subtitle)',
           },
           gap: {

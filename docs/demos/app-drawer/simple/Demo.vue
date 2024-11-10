@@ -13,11 +13,13 @@ const drawer = useDrawer({
 <template>
   <!-- Make sure to bind the trigger id to the button for correct focus management -->
   <AppButton
-    :id="drawer.triggerId"
+    v-bind="drawer.triggerProps.value"
     @click="drawer.open()"
   >
     Open drawer
   </AppButton>
 
-  <AppDrawerContainer />
+  <Teleport to="body">
+    <AppDrawerContainer />
+  </Teleport>
 </template>

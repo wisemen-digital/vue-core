@@ -50,7 +50,7 @@ const items: RadioGroupItem<string>[] = [
             :item="item"
             class="group flex items-center justify-between border border-solid border-primary p-2 disabled:cursor-not-allowed disabled:bg-disabled-subtle"
           >
-            <p class="text-subtext text-primary group-disabled:text-disabled">
+            <p class="text-sm text-primary group-disabled:text-disabled">
               {{ item.label }}
             </p>
 

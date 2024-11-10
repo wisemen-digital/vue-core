@@ -21,7 +21,7 @@ defineStyleConfig({
     '--tag-border-color-default': 'var(--border-primary)',
     '--tag-border-color-disabled': 'var(--border-disabled)',
     '--tag-border-radius-default': 'var(--radius-md)',
-    '--tag-font-size-default': 'var(--text-subtext)',
+    '--tag-font-size-default': 'var(--text-sm)',
     '--tag-font-weight-default': '500',
     '--tag-padding-x-default': 'var(--spacing-sm)',
     '--tag-padding-y-default': 'var(--spacing-none)',

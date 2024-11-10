@@ -1,4 +1,7 @@
 export const components = {
+  autocomplete: [
+    'AppAddressAutocomplete',
+  ],
   breadcrumbs: [
     'AppBreadcrumbs',
   ],

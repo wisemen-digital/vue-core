@@ -12,7 +12,7 @@ const dialog = useDialog({
 
 <template>
   <AppButton
-    :id="dialog.triggerId"
+    v-bind="dialog.triggerProps.value"
     @click="dialog.open()"
   >
     Open dialog

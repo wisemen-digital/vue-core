@@ -13,11 +13,13 @@ const dialog = useDialog({
 <template>
   <!-- Make sure to bind the trigger id to the button for correct focus management -->
   <AppButton
-    :id="dialog.triggerId"
+    v-bind="dialog.triggerProps.value"
     @click="dialog.open()"
   >
     Open dialog
   </AppButton>
 
-  <AppDialogContainer />
+  <Teleport to="body">
+    <AppDialogContainer />
+  </Teleport>
 </template>

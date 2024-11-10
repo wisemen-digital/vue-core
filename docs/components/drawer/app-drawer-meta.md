@@ -9,6 +9,7 @@
 | shouldPreventClickOutside | `boolean` | Prevent clicks outside the drawer content to close the drawer | `false` |
 | styleConfig | `Partial<DrawerStyleConfig> \| null` |  | `null` |
 | testId | `string` | The test id of the drawer. |  |
+| transitionClasses | `{ enterActive?: string; enterFrom?: string; enterTo?: string; leaveActive?: string; leaveFrom?: string; leaveTo?: string; } \| null` | The transition classes to apply to the drawer | `null` |
 | triggerId | `string \| null` | The id of the element that triggers the drawer: Will be set automatically when using the `useDrawer` composable | `null` |
 
 

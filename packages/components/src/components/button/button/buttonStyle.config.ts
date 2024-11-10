@@ -64,7 +64,7 @@ defineStyleConfig({
     '--button-border-color-focus': 'var(--brand-primary-600)',
     '--button-border-color-hover': 'var(--brand-primary-700)',
     '--button-border-radius-default': 'var(--radius-md)',
-    '--button-font-size-default': 'var(--text-subtext)',
+    '--button-font-size-default': 'var(--text-sm)',
     '--button-font-weight-default': '500',
     '--button-height-default': '2.5rem',
     '--button-icon-color-active': 'var(--fg-white)',
@@ -74,7 +74,7 @@ defineStyleConfig({
     '--button-icon-color-hover': 'var(--fg-white)',
     '--button-icon-left-spacing-default': 'var(--spacing-xs)',
     '--button-icon-right-spacing-default': 'var(--spacing-xs)',
-    '--button-icon-size-default': 'var(--text-body)',
+    '--button-icon-size-default': 'var(--text-md)',
     '--button-loader-color-active': 'var(--fg-white)',
     '--button-loader-color-default': 'var(--fg-white)',
     '--button-loader-color-disabled': 'var(--fg-disabled)',
@@ -513,7 +513,7 @@ defineStyleConfig({
 // Size XS
 defineStyleConfig({
   config: {
-    '--button-font-size-default': 'var(--text-caption)',
+    '--button-font-size-default': 'var(--text-xs)',
     '--button-height-default': '2rem',
     '--button-icon-left-spacing-default': 'var(--spacing-xs)',
     '--button-icon-right-spacing-default': 'var(--spacing-xs)',
@@ -541,7 +541,7 @@ defineStyleConfig({
 // Size L
 defineStyleConfig({
   config: {
-    '--button-font-size-default': 'var(--text-body)',
+    '--button-font-size-default': 'var(--text-md)',
     '--button-height-default': '2.75rem',
     '--button-icon-left-spacing-default': 'var(--spacing-sm)',
     '--button-icon-right-spacing-default': 'var(--spacing-sm)',
@@ -555,7 +555,7 @@ defineStyleConfig({
 // Size XL
 defineStyleConfig({
   config: {
-    '--button-font-size-default': 'var(--text-body)',
+    '--button-font-size-default': 'var(--text-md)',
     '--button-height-default': '3rem',
     '--button-icon-left-spacing-default': 'var(--spacing-sm)',
     '--button-icon-right-spacing-default': 'var(--spacing-sm)',
@@ -569,7 +569,7 @@ defineStyleConfig({
 // Size 2XL
 defineStyleConfig({
   config: {
-    '--button-font-size-default': 'var(--text-heading)',
+    '--button-font-size-default': 'var(--text-lg)',
     '--button-height-default': '3.75rem',
     '--button-icon-left-spacing-default': '0.625rem',
     '--button-icon-right-spacing-default': '0.625rem',

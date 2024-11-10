@@ -37,7 +37,7 @@ const { t } = useI18n()
         {{ t('component.table.no_results.title') }}
       </h3>
 
-      <p class="mx-auto max-w-md text-subtext text-tertiary">
+      <p class="mx-auto max-w-md text-sm text-tertiary">
         {{ t('component.table.no_results.description') }}
       </p>
     </div>
@@ -61,23 +61,15 @@ const { t } = useI18n()
         {{ t('component.table.no_data.title') }}
       </h3>
 
-      <p class="mx-auto max-w-xs text-subtext text-tertiary">
+      <p class="mx-auto max-w-xs text-sm text-tertiary">
         {{ t('component.table.no_data.description') }}
       </p>
     </div>
 
-    <div
-      v-for="column of tableContext.columns.value"
-      :key="column.key"
-      class="border-b border-solid border-secondary bg-tertiary"
-    >
-      <AppTableCell>
-        <AppSkeletonItem class="h-3 w-1/5 min-w-4 rounded-full !bg-quaternary" />
-      </AppTableCell>
-    </div>
+    <AppTableHeader />
 
     <div
-      v-for="i in 7"
+      v-for="i in 40"
       :key="i"
       class="col-span-full grid grid-cols-subgrid odd:bg-secondary"
     >

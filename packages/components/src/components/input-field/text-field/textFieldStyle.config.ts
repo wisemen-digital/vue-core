@@ -126,7 +126,7 @@ defineStyleConfig({
     '--text-field-error-font-weight-default': 'var(--input-field-error-font-weight-default)',
     '--text-field-error-spacing-default': 'var(--input-field-error-spacing-default)',
     '--text-field-error-text-color-default': 'var(--input-field-error-text-color-default)',
-    '--text-field-font-size-default': 'var(--text-subtext)',
+    '--text-field-font-size-default': 'var(--text-sm)',
     '--text-field-font-weight-default': '400',
     '--text-field-height-default': '2.5rem',
     '--text-field-hint-font-size-default': 'var(--input-field-hint-font-size-default)',

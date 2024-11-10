@@ -13,7 +13,7 @@
 | filterFn | `SelectFilterFn<SelectValue> \| null` | The function to filter the options. | `null` |
 | hint | `string \| null` | The hint text of the input. | `null` |
 | iconLeft | `keyof Icons \| null` | The left icon of the input. | `null` |
-| iconRight | `keyof Icons` | The right icon of the input. | `"chevronSelectorVertical"` |
+| iconRight | `keyof Icons` | The right icon of the input. | `"selectIconRight"` |
 | id | `string \| null` | The id of the input. | `null` |
 | isArrowVisible | `boolean` | Whether the arrow is visible. | `false` |
 | isDisabled | `boolean` | Whether the input is disabled. | `false` |
@@ -28,7 +28,7 @@
 | popoverWidth | `PopoverWidth \| null` | The width of the popover. | `"anchor-width"` |
 | searchPlaceholder | `string` | The placeholder of the search input. |  |
 | shouldRemainOpenOnValueChange | `boolean \| null` | Whether the select should remain open when the value changes. | `null` |
-| side | `"left" \| "right" \| "bottom" \| "top"` | The side of the trigger the tooltip should be on. | `"bottom"` |
+| side | `"bottom" \| "left" \| "right" \| "top"` | The side of the trigger the tooltip should be on. | `"bottom"` |
 | styleConfig | `Partial<SelectStyleConfig> \| null` |  | `null` |
 | testId | `string \| null` | The test id of the input. | `null` |
 | virtualList | `{ optionHeight: number; } \| null` | Whether the select should use a virtual list.

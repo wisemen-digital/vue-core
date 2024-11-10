@@ -1,9 +1,6 @@
 import type { CountryCode } from 'libphonenumber-js'
 
-import {
-  type AppTextFieldProps,
-  appTextFieldPropsDefaultValues,
-} from '@/components/input-field/text-field/textField.props'
+import type { AppTextFieldProps } from '@/components/input-field/text-field/textField.props'
 
 export interface AppPhoneNumberFieldProps extends Omit<AppTextFieldProps, 'type'> {
   /**
@@ -12,16 +9,3 @@ export interface AppPhoneNumberFieldProps extends Omit<AppTextFieldProps, 'type'
    */
   defaultCountryCode?: CountryCode
 }
-
-// Without this vue throws a warning
-const textFieldDefaultValues = {
-  ...appTextFieldPropsDefaultValues,
-  type: undefined,
-}
-
-delete textFieldDefaultValues.type
-
-export const appPhoneNumberFieldPropsDefaultValues = {
-  ...textFieldDefaultValues,
-  defaultCountryCode: 'BE',
-} satisfies Partial<AppPhoneNumberFieldProps>

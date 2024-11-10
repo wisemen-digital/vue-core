@@ -77,7 +77,10 @@ const selectedTab = ref<TabItem | null>(tabItems.value?.[0] ?? null)
         <AppCollapsable2>
           <div v-if="!showCode">
             <div class="vp-raw flex items-center justify-center rounded-lg border border-solid border-gray-100 p-16 dark:border-black dark:bg-gray-950">
-              <AppConfigProvider locale="en">
+              <AppConfigProvider
+                locale="en"
+                google-maps-api-key="AIzaSyATX2fY3BZwaKeURsQhwpEVLmLRr27s4vw"
+              >
                 <slot />
               </AppConfigProvider>
             </div>

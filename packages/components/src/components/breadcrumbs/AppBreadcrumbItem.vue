@@ -38,7 +38,7 @@ const breadcrumbPageTextClasses = computed<string>(() => breadcrumbItemVariants.
       <span
         v-if="props.item.label !== undefined"
         :class="breadcrumbRouteTextClasses"
-        class="text-subtext text-primary"
+        class="text-sm text-primary"
       >
         {{ props.item.label }}
       </span>
@@ -62,7 +62,7 @@ const breadcrumbPageTextClasses = computed<string>(() => breadcrumbItemVariants.
       <span
         v-if="props.item.label !== undefined"
         :class="breadcrumbPageTextClasses"
-        class="text-subtext text-primary"
+        class="text-sm text-primary"
       >
         {{ props.item.label }}
       </span>

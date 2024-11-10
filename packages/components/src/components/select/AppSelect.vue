@@ -347,7 +347,7 @@ provideSelectContext({
                 :search-term="searchTerm"
                 name="no-results"
               >
-                <span class="block px-select-option-padding-x-default py-select-option-padding-y-default text-subtext text-tertiary">
+                <span class="block px-select-option-padding-x-default py-select-option-padding-y-default text-sm text-tertiary">
                   {{ t('component.select.empty_text', { searchTerm }) }}
                 </span>
               </slot>

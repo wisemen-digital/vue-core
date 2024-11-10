@@ -12,7 +12,7 @@ const drawer = useDrawer({
 
 <template>
   <AppButton
-    :id="drawer.triggerId"
+    v-bind="drawer.triggerProps.value"
     @click="drawer.open()"
   >
     Open drawer

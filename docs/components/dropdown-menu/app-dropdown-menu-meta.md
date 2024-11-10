@@ -13,7 +13,7 @@
 | items* | `DropdownMenuItem[]` |  |  |
 | offsetInPx | `number` | The offset of the popover content. | `4` |
 | popoverWidth | `PopoverWidth \| null` | The width of the popover. | `"available-width"` |
-| side | `"left" \| "right" \| "bottom" \| "top"` | The side of the trigger the tooltip should be on. | `"bottom"` |
+| side | `"bottom" \| "left" \| "right" \| "top"` | The side of the trigger the tooltip should be on. | `"bottom"` |
 
 
 ## Slots

@@ -9,7 +9,7 @@ export interface InputFieldHintStyleConfig {
 
 defineStyleConfig({
   config: {
-    '--input-field-hint-font-size-default': 'var(--text-subtext)',
+    '--input-field-hint-font-size-default': 'var(--text-sm)',
     '--input-field-hint-font-weight-default': '400',
     '--input-field-hint-spacing-default': 'var(--spacing-sm)',
     '--input-field-hint-text-color-default': 'var(--text-tertiary)',

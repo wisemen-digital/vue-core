@@ -263,7 +263,6 @@ onMounted(async () => {
     :placeholder="props.placeholder"
     :popover-width="props.popoverWidth"
     :should-remain-open-on-value-change="props.shouldRemainOpenOnValueChange"
-    autocomplete="off"
     @search="onSearch"
     @blur="emit('blur')"
     @update:model-value="onUpdateModelValue"

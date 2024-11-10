@@ -277,6 +277,7 @@ if (model.value !== null) {
               :id="inputId"
               v-model="searchTerm"
               :class="[inputClasses]"
+              :placeholder="props.placeholder"
               autocomplete="off"
               @focus="onFocus"
               @input="onInput"

@@ -14,7 +14,7 @@ defineStyleConfig({
     '--table-border-color-default': 'var(--border-secondary)',
     '--table-border-radius-default': 'var(--radius-lg)',
     '--table-header-bg-color-default': 'var(--bg-secondary)',
-    '--table-header-label-font-size-default': 'var(--text-subtext)',
+    '--table-header-label-font-size-default': 'var(--text-sm)',
     '--table-header-label-font-weight-default': '500',
     '--table-header-label-text-color-default': 'var(--text-tertiary)',
   },

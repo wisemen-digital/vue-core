@@ -113,7 +113,7 @@ defineStyleConfig({
     '--textarea-error-font-weight-default': 'var(--input-field-error-font-weight-default)',
     '--textarea-error-spacing-default': 'var(--input-field-error-spacing-default)',
     '--textarea-error-text-color-default': 'var(--input-field-error-text-color-default)',
-    '--textarea-font-size-default': 'var(--text-subtext)',
+    '--textarea-font-size-default': 'var(--text-sm)',
     '--textarea-font-weight-default': '400',
     '--textarea-hint-font-size-default': 'var(--input-field-hint-font-size-default)',
     '--textarea-hint-font-weight-default': 'var(--input-field-hint-font-weight-default)',

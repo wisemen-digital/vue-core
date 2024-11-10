@@ -12,7 +12,7 @@ const value = ref<null | string>(null)
     placeholder="email@example.com"
     type="email"
     class="w-72"
-    icon-left="translate01"
-    icon-right="tool02"
+    icon-left="search"
+    icon-right="arrowRight"
   />
 </template>

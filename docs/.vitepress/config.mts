@@ -28,6 +28,10 @@ const guide = [
 
 const docs = [
   {
+    link: '/components/autocomplete/app-address-autocomplete',
+    text: 'AppAddressAutocomplete',
+  },
+  {
     link: '/components/button/app-button',
     text: 'AppButton',
   },

@@ -63,7 +63,7 @@ defineStyleConfig({
     '--tabs-item-border-radius-default': 'var(--radius-md)',
     '--tabs-item-container-padding-x-default': '0px',
     '--tabs-item-container-padding-y-default': 'var(--spacing-md)',
-    '--tabs-item-font-size-default': 'var(--text-subtext)',
+    '--tabs-item-font-size-default': 'var(--text-sm)',
     '--tabs-item-font-weight-default': '500',
     '--tabs-item-padding-x-default': 'var(--spacing-xl)',
     '--tabs-item-padding-y-default': 'var(--spacing-md)',

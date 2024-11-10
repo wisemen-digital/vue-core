@@ -5,11 +5,11 @@ import {
   TooltipPortal,
   TooltipProvider,
   TooltipRoot,
-  TooltipTrigger,
 } from 'reka-ui'
 import { computed } from 'vue'
 
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
+import AppTooltipTrigger from '@/components/tooltip/AppTooltipTrigger.vue'
 import type { AppTooltipProps } from '@/components/tooltip/tooltip.props'
 import { tooltipStyle } from '@/components/tooltip/tooltip.style'
 
@@ -44,9 +44,11 @@ const arrowClasses = computed<string>(() => style.arrow())
       :disable-closing-trigger="props.disableCloseOnTriggerClick"
       :disable-hoverable-content="props.disableHoverableContent"
     >
-      <TooltipTrigger :as-child="true">
-        <slot name="trigger" />
-      </TooltipTrigger>
+      <slot>
+        <AppTooltipTrigger>
+          <slot name="trigger" />
+        </AppTooltipTrigger>
+      </slot>
 
       <TooltipPortal>
         <TooltipContent
