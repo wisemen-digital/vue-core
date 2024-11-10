@@ -50,7 +50,7 @@ export function useTabs(
     hasScrolledToTheRight.value = false
     hasScrolledToTheLeft.value = true
 
-    if ((Boolean((scrollContainerRef.value?.$el.scrollWidth))) && (Boolean((tabsRootRef.value?.$el.clientWidth)))) {
+    if (Boolean(scrollContainerRef.value?.$el.scrollWidth) && Boolean(tabsRootRef.value?.$el.clientWidth)) {
       isTabScrollable.value = scrollContainerRef.value.$el.scrollWidth > tabsRootRef.value?.$el.clientWidth
     }
   })
@@ -70,7 +70,7 @@ export function useTabs(
   })
 
   onMounted(() => {
-    if ((Boolean((scrollContainerRef.value?.$el.scrollWidth))) && (Boolean((tabsRootRef.value?.$el.clientWidth)))) {
+    if (Boolean(scrollContainerRef.value?.$el.scrollWidth) && Boolean(tabsRootRef.value?.$el.clientWidth)) {
       isTabScrollable.value = scrollContainerRef.value.$el.scrollWidth > tabsRootRef.value.$el.clientWidth
     }
   })
