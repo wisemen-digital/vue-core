@@ -10,10 +10,12 @@ pnpm add @wisemen/vue-core-oauth-client
 
 ## Usage
 
-Create a new file `oAuth.lib.ts` and add the following code:
+
+### OAuth2VueClient
+Create a new file `auth.lib.ts` and add the following code:
 
 ```typescript
-import { OAuth2VueClient } from '@wisemen/oauth2-vue-client'
+import { OAuth2VueClient } from '@wisemen/vue-core-auth'
 import axios from 'axios'
 
 import {
@@ -30,7 +32,30 @@ export const oAuthClient = new OAuth2VueClient({
 })
 ```
 
-Add the authorization header to the axios request
+
+
+### ZitadelClient
+
+Create a new file `auth.lib.ts` and add the following code:
+
 ```typescript
-axios.interceptors.request.use((config) => addAuthorizationHeader(oAuthClient, config))
+import { ZitadelClient } from '@wisemen/vue-core-auth'
+import axios from 'axios'
+
+import {
+  AUTH_BASE_URL,
+  AUTH_CLIENT_ID,
+  AUTH_ORGANIZATION_ID,
+  CURRENT_ENVIRONMENT,
+} from '@/constants/environment.constant.ts'
+
+export const oAuthClient = new ZitadelClient({
+  clientId: AUTH_CLIENT_ID,
+  organizationId: AUTH_ORGANIZATION_ID,
+  axios,
+  baseUrl: AUTH_BASE_URL,
+  loginRedirectUri: `${window.location.origin}/auth/callback`,
+  offline: CURRENT_ENVIRONMENT === 'e2e',
+  postLogoutRedirectUri: `${window.location.origin}/auth/logout`,
+})
 ```
