@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 import type { AxiosInstance } from 'axios'
 import pkceChallenge from 'pkce-challenge'
 
@@ -43,10 +41,9 @@ export class ZitadelClient {
       this.options.axios.defaults.headers.Authorization = `Bearer ${token}`
     }
     catch (error) {
-      console.log('Failed to get access token, logging out', error)
-      this.options.axios.defaults.headers.Authorization = null
+      console.error('Failed to get access token, logging out', error)
 
-      this.client?.clearTokens()
+      this.logout()
 
       throw new Error('Failed to get access token')
     }
@@ -60,6 +57,10 @@ export class ZitadelClient {
       'offline_access',
       `urn:zitadel:iam:org:id:${this.options.organizationId}`,
     ]
+  }
+
+  private removeAuthorizationHeader(): void {
+    this.options.axios.defaults.headers.Authorization = null
   }
 
   public getAxios(): AxiosInstance {
@@ -158,13 +159,21 @@ export class ZitadelClient {
       return
     }
 
-    await this.getClient().loginWithCode(code)
+    try {
+      await this.getClient().loginWithCode(code)
 
-    await this.addAuthorizationHeader()
+      await this.addAuthorizationHeader()
+    }
+    catch (error) {
+      this.logout()
+
+      throw error
+    }
   }
 
   public logout(): void {
     this.client?.clearTokens()
     this.client = null
+    this.removeAuthorizationHeader()
   }
 }

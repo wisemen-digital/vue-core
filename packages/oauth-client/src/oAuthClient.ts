@@ -1,7 +1,6 @@
 import type {
   AxiosInstance,
   AxiosStatic,
-  InternalAxiosRequestConfig,
 } from 'axios'
 
 interface OAuth2ClientOptions {
@@ -77,26 +76,8 @@ export class OAuth2VueClient {
     }
   }
 
-  static async addAuthorizationHeader(
-    oAuthClient: OAuth2VueClient,
-    config: InternalAxiosRequestConfig<unknown>,
-  ): Promise<InternalAxiosRequestConfig<unknown>> {
-    const client = oAuthClient.getClient()
-
-    if (client === null) {
-      return config
-    }
-
-    try {
-      const token = await client.getAccessToken()
-
-      config.headers.Authorization = `Bearer ${token}`
-    }
-    catch {
-      console.warn('Failed to get access token, logging out')
-    }
-
-    return config
+  private addAuthorizationHeader(token: string): void {
+    this.options.axios.defaults.headers.Authorization = `Bearer ${token}`
   }
 
   private createClient(tokens: OAuth2ClientTokensWithExpiration): TokenStore {
@@ -127,6 +108,10 @@ export class OAuth2VueClient {
     }
 
     return JSON.parse(tokens) as OAuth2ClientTokensWithExpiration
+  }
+
+  private removeAuthorizationHeader(): void {
+    this.options.axios.defaults.headers.Authorization = null
   }
 
   private removeClient(): void {
@@ -172,6 +157,8 @@ export class OAuth2VueClient {
 
     this.saveTokensToLocalStorage(tokens)
     this.client = this.createClient(tokens)
+
+    this.addAuthorizationHeader(tokens.access_token)
   }
 
   public async loginPassword(username: string, password: string): Promise<void> {
@@ -192,6 +179,7 @@ export class OAuth2VueClient {
   public logout(): void {
     this.saveTokensToLocalStorage(null)
     this.removeClient()
+    this.removeAuthorizationHeader()
   }
 }
 

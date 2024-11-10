@@ -1,4 +1,4 @@
-import axios, { AxiosHeaders } from 'axios'
+import axios from 'axios'
 import {
   describe,
   expect,
@@ -56,27 +56,6 @@ describe('oAuth2VueClient', () => {
     }
 
     expect(actualTokens).toStrictEqual(expectedTokens)
-  })
-
-  it('adds an authorization header to the axios config', async () => {
-    const oAuthClient = new OAuth2VueClient({
-      clientId: CLIENT_ID,
-      axios,
-      clientSecret: CLIENT_SECRET,
-      tokenEndpoint: TOKEN_ENDPOINT,
-    })
-
-    vi.spyOn(axios, 'post').mockResolvedValue({ data: MOCK_TOKENS })
-
-    await oAuthClient.loginPassword('username', 'password')
-
-    const config = {
-      headers: new AxiosHeaders(),
-    }
-
-    await OAuth2VueClient.addAuthorizationHeader(oAuthClient, config)
-
-    expect(config.headers.Authorization).toBe(`Bearer ${MOCK_TOKENS.access_token}`)
   })
 
   it('adds tokens to localStorage on login', async () => {
