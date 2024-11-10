@@ -1,5 +1,5 @@
 {
-  "name": "@wisemen/vue-core-oauth-client",
+  "name": "@wisemen/vue-core-auth",
   "type": "module",
   "version": "0.0.1",
   "license": "MIT",

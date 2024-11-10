@@ -17,6 +17,7 @@
     "pub:release-query": "cd packages/query && pnpm pub:release --no-git-checks",
     "lint": "pnpm run -r lint",
     "dev": "turbo run dev",
+    "test": "pnpm run -r test",
     "type-check": "pnpm run -r type-check",
     "precommit": "pnpm run -r lint --fix && pnpm run -r type-check && pnpm run -r test && pnpm run -r docs:gen"
   },
