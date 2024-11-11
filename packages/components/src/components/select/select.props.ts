@@ -1,5 +1,5 @@
 import type { Icon } from '@/icons/icons'
-import type { FormFieldErrors } from '@/types/formFieldErrors.type'
+import type { FormElementProps } from '@/types/formElement.type'
 import type { PopperProps } from '@/types/popper'
 import type {
   SelectItem,
@@ -16,58 +16,25 @@ export type SelectFilterFn<TValue extends SelectValue> = (
   searchTerm: string,
 ) => boolean
 
-export interface SelectProps<TValue extends SelectValue> extends Omit<PopperProps, 'isArrowHidden'>, Stylable<'select'> {
-  /**
-   * The id of the input.
-   * @default null
-   */
-  id?: null | string
-  /**
-   * The test id of the input.
-   * @default null
-   */
-  testId?: null | string
+export interface SelectProps<TValue extends SelectValue> extends FormElementProps, Omit<PopperProps, 'isArrowHidden'>, Stylable<'select'> {
   /**
    * Whether the arrow is visible.
    * @default false
    */
   isArrowVisible?: boolean
   /**
-   * Whether the input is disabled.
-   * @default false
-   */
-  isDisabled?: boolean
-  /**
    * Whether the input is loading.
    * @default false
    */
   isLoading?: boolean
   /**
-   * Whether the input is required.
-   */
-  isRequired?: boolean
-  /**
-   * Whether the input is touched. Used to determine if an error should be shown.
-   * @default false
-   */
-  isTouched?: boolean
-  /**
    * The display function for the selected value.
    */
   displayFn: SelectDisplayFn<TValue>
   /**
-   * The errors associated with the input.
-   */
-  errors?: FormFieldErrors | null
-  /**
    * The function to filter the options.
    */
   filterFn?: SelectFilterFn<TValue> | null
-  /**
-   * The hint text of the input.
-   * @default null
-   */
-  hint?: null | string
   /**
    * The left icon of the input.
    * @default null
@@ -83,11 +50,6 @@ export interface SelectProps<TValue extends SelectValue> extends Omit<PopperProp
    */
   items: SelectItem<TValue extends Array<infer U> ? U : TValue>[]
   /**
-   * The label of the input.
-   * @default null
-   */
-  label?: null | string
-  /**
    * The placeholder text of the input.
    * @default null
    */
@@ -96,7 +58,7 @@ export interface SelectProps<TValue extends SelectValue> extends Omit<PopperProp
    * The placeholder of the search input.
    * @default 't("component.select.search_placeholder")'
    */
-  searchPlaceholder?: string
+  searchPlaceholder?: null | string
   /**
    * Whether the select should remain open when the value changes.
    * @default true - when the value is an array

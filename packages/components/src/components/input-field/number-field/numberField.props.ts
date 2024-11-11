@@ -2,11 +2,6 @@ import type { TextFieldProps } from '@/components/input-field/text-field/textFie
 
 export interface NumberFieldProps extends Omit<TextFieldProps, 'type'> {
   /**
-   * The test id of the input.
-   * @default null
-   */
-  testId?: null | string
-  /**
    * Whether the controls are visible.
    * @default false
    */

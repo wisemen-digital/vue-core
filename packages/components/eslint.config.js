@@ -21,6 +21,7 @@ export const allowedComponentClasses = [
   'text-field',
   'textarea',
   'toast',
+  'radio-group',
   'tooltip',
 ]
 export default [
