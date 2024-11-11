@@ -1,4 +1,5 @@
-import { useQuery as useTanstackQuery } from '@tanstack/vue-query'
+import type { EntryKey } from '@pinia/colada'
+import { useQuery as usePiniaQuery } from '@pinia/colada'
 import {
   computed,
   type ComputedRef,
@@ -75,15 +76,7 @@ export interface UseQueryReturnType<TResData> {
 export function useQuery<TResData>(options: UseQueryOptions<TResData>): UseQueryReturnType<TResData> {
   const isDebug = options.isDebug ?? false
 
-  const query = useTanstackQuery({
-    staleTime: options.staleTime,
-    enabled: options.isEnabled,
-    placeholderData: (data) => data,
-    queryFn: options.queryFn,
-    queryKey: getQueryKey(),
-  })
-
-  function getQueryKey(): unknown[] {
+  const queryKey = computed<EntryKey>(() => {
     const [
       queryKey,
       params,
@@ -97,18 +90,26 @@ export function useQuery<TResData>(options: UseQueryOptions<TResData>): UseQuery
     return [
       queryKey,
       params,
-    ]
-  }
+    ] as EntryKey
+  })
+
+  const query = usePiniaQuery({
+    staleTime: options.staleTime,
+    enabled: options.isEnabled,
+    key: queryKey,
+    placeholderData: () => null,
+    query: options.queryFn,
+  })
 
   async function refetch(): Promise<void> {
     await query.refetch()
   }
 
   return {
-    isError: computed<boolean>(() => query.isError.value),
-    isFetching: computed<boolean>(() => query.isFetching.value),
-    isLoading: computed<boolean>(() => query.isLoading.value),
-    isSuccess: computed<boolean>(() => query.isSuccess.value),
+    isError: computed<boolean>(() => query.error.value !== null),
+    isFetching: computed<boolean>(() => query.isLoading.value),
+    isLoading: computed<boolean>(() => query.isPending.value),
+    isSuccess: computed<boolean>(() => query.status.value === 'success'),
     data: computed<TResData | null>(() => query.data.value ?? null),
     error: computed<unknown>(() => query.error.value),
     refetch,
