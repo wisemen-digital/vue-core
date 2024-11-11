@@ -21,17 +21,18 @@ import '@/components/switch/switchStyle.config'
 
 import { ref } from 'vue'
 
-import AppConfigProvider from '@/components/config-provider/AppConfigProvider.vue'
-import AppTimeField from '@/components/input-field/time-field/AppTimeField.vue'
-import AppSelect from '@/components/select/AppSelect.vue'
-import AppThemeProvider from '@/components/theme-provider/AppThemeProvider.vue'
+import Button from '@/components/button/button/Button.vue'
+import ConfigProvider from '@/components/config-provider/ConfigProvider.vue'
+import TimeField from '@/components/input-field/time-field/TimeField.vue'
+import Select from '@/components/select/Select.vue'
+import ThemeProvider from '@/components/theme-provider/ThemeProvider.vue'
 import type { SelectOption } from '@/types/select.type'
 
 const value = ref<null | string>(null)
 const selectItems = ref<SelectOption<string>[]>([
   {
     type: 'option',
-    value: 'Apple',
+    value: 'le',
   },
   {
     type: 'option',
@@ -47,19 +48,19 @@ const time = ref<null | string>(null)
 </script>
 
 <template>
-  <AppConfigProvider
+  <ConfigProvider
     :pagination="{ limit: 30 }"
     locale="nl"
   >
-    <AppThemeProvider theme="light">
+    <ThemeProvider theme="light">
       <div class="flex h-full flex-col p-24">
         value: {{ time }}
-        <AppTimeField
+        <TimeField
           v-model="time"
           icon-left="search"
         />
 
-        <AppSelect
+        <Select
           v-if="false"
           v-model="value"
           :items="selectItems"
@@ -68,7 +69,13 @@ const time = ref<null | string>(null)
           placeholder="Select a fruit"
           class="w-72"
         />
+
+        <div>
+          <Button>
+            This is a button
+          </Button>
+        </div>
       </div>
-    </AppThemeProvider>
-  </AppConfigProvider>
+    </ThemeProvider>
+  </ConfigProvider>
 </template>

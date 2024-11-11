@@ -1,6 +1,6 @@
-import type { AppTextFieldProps } from '@/components/input-field/text-field/textField.props'
+import type { TextFieldProps } from '@/components/input-field/text-field/textField.props'
 
-export interface AppNumberFieldProps extends Omit<AppTextFieldProps, 'type'> {
+export interface NumberFieldProps extends Omit<TextFieldProps, 'type'> {
   /**
    * The test id of the input.
    * @default null

@@ -1,13 +1,13 @@
 import { h } from 'vue'
 
-import AppToast from '@/components/toast/AppToast.vue'
 import { toast as toastState } from '@/components/toast/core/state'
-import type { Toast } from '@/types/toast.type'
+import Toast from '@/components/toast/Toast.vue'
+import type { Toast as ToastType } from '@/types/toast.type'
 
 const DEFAULT_TOAST_DURATION = 10_000
 const DEFAULT_ERROR_TOAST_DURATION = Infinity
 
-interface ToastWithOptions extends Toast {
+interface ToastWithOptions extends ToastType {
   /**
    * The duration of the toast in milliseconds
    */
@@ -22,7 +22,7 @@ interface UseToastReturnType {
 
 export function useToast(): UseToastReturnType {
   function showErrorToast(toast: ToastWithOptions): void {
-    toastState.custom(h(AppToast, {
+    toastState.custom(h(Toast, {
       toast,
       type: 'error',
     }), {
@@ -31,7 +31,7 @@ export function useToast(): UseToastReturnType {
   }
 
   function showInfoToast(toast: ToastWithOptions): void {
-    toastState.custom(h(AppToast, {
+    toastState.custom(h(Toast, {
       toast,
       type: 'info',
     }), {
@@ -40,7 +40,7 @@ export function useToast(): UseToastReturnType {
   }
 
   function showSuccessToast(toast: ToastWithOptions): void {
-    toastState.custom(h(AppToast, {
+    toastState.custom(h(Toast, {
       toast,
       type: 'success',
     }), {

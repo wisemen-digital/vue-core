@@ -1,7 +1,7 @@
 import type { Icon } from '@/icons/icons'
 import type { StyleConfig } from '@/types/style.type'
 
-export interface AppIconButtonProps {
+export interface IconButtonProps {
   /**
    * The test id of the button.
    */

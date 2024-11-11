@@ -1,7 +1,7 @@
+import type { PopperProps } from '@/types'
 import type { DropdownMenuItem } from '@/types/dropdownMenu.type'
-import type { PopoverProps } from '@/types/popover.type'
 
-export interface AppDropdownMenuProps extends PopoverProps {
+export interface DropdownMenuProps extends PopperProps {
   enableGlobalKeyboardShortcuts?: boolean
   items: DropdownMenuItem[]
 }

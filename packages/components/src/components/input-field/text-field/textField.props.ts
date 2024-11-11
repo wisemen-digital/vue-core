@@ -2,7 +2,7 @@ import type { Icon } from '@/icons/icons'
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 import type { StyleConfig } from '@/types/style.type'
 
-export interface AppTextFieldProps {
+export interface TextFieldProps {
   /**
    * The id of the input.
    * @default null

@@ -1,60 +1,60 @@
 export const components = {
   autocomplete: [
-    'AppAddressAutocomplete',
+    'AddressAutocomplete',
   ],
   breadcrumbs: [
-    'AppBreadcrumbs',
+    'Breadcrumbs',
   ],
   button: [
-    'AppButton',
-    'AppIconButton',
-    'AppRouterLinkButton',
+    'Button',
+    'IconButton',
+    'RouterLinkButton',
   ],
   checkbox: [
-    'AppCheckbox',
+    'Checkbox',
   ],
   dialog: [
-    'AppDialog',
+    'Dialog',
   ],
   drawer: [
-    'AppDrawer',
+    'Drawer',
   ],
   dropdownMenu: [
-    'AppDropdownMenu',
+    'DropdownMenu',
   ],
   textField: [
-    'AppPasswordField',
-    'AppTextField',
-    'AppTextarea',
-    'AppNumberField',
-    'AppPhoneNumberField',
+    'PasswordField',
+    'TextField',
+    'Textarea',
+    'NumberField',
+    'PhoneNumberField',
   ],
   popover: [
-    'AppPopover',
+    'Popover',
   ],
   radioGroup: [
-    'AppRadioGroup',
+    'RadioGroup',
   ],
   select: [
-    'AppSelect',
+    'Select',
   ],
   switch: [
-    'AppSwitch',
+    'Switch',
   ],
   table: [
-    'AppTable',
+    'Table',
   ],
   tabs: [
-    'AppTabs',
-    'AppRouteTabs',
+    'Tabs',
+    'RouteTabs',
   ],
   toast: [
-    'AppToast',
+    'Toast',
   ],
   toggle: [
-    'AppToggle',
+    'Toggle',
   ],
   tooltip: [
-    'AppTooltip',
+    'Tooltip',
   ],
 }

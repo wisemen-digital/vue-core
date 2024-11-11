@@ -1,7 +1,7 @@
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 import type { StyleConfig } from '@/types/style.type'
 
-export interface AppCheckboxProps {
+export interface CheckboxProps {
   /**
    * The id of the checkbox.
    * @default null

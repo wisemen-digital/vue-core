@@ -31,7 +31,7 @@ You can also customize a component by providing a `style-config` prop directly t
 
 ```vue
 <template>
-  <AppButton 
+  <Button 
     :style-config="{
       '--button-bg-color-default': 'var(--bg-primary)',
       '--button-border-radius-default': 'var(--radius-md)',

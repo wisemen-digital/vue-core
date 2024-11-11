@@ -1,7 +1,7 @@
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 import type { StyleConfig } from '@/types/style.type'
 
-export interface AppTextareaProps {
+export interface TextareaProps {
   /**
    * The id of the input.
    * @default null

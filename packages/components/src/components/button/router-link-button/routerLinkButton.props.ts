@@ -2,7 +2,7 @@ import type { Icon } from '@/icons/icons'
 import type { Routes } from '@/types'
 import type { StyleConfig } from '@/types/style.type'
 
-export interface AppRouterLinkButtonProps {
+export interface RouterLinkButtonProps {
   /**
    * The test id of the button.
    */

@@ -1,8 +1,6 @@
 import type { Icon } from '@/icons/icons'
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
-import type {
-  PopoverProps,
-} from '@/types/popover.type'
+import type { PopperProps } from '@/types/popper'
 import type {
   SelectItem,
   SelectValue,
@@ -18,7 +16,7 @@ export type SelectFilterFn<TValue extends SelectValue> = (
   searchTerm: string,
 ) => boolean
 
-export interface AppSelectProps<TValue extends SelectValue> extends Omit<PopoverProps, 'isArrowHidden'> {
+export interface SelectProps<TValue extends SelectValue> extends Omit<PopperProps, 'isArrowHidden'> {
   /**
    * The id of the input.
    * @default null

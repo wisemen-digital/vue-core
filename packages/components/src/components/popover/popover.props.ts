@@ -1,7 +1,7 @@
-import type { PopoverProps } from '@/types/popover.type'
+import type { PopperProps } from '@/types/popper'
 import type { StyleConfig } from '@/types/style.type'
 
-export interface AppPopoverProps extends PopoverProps {
+export interface PopoverProps extends PopperProps {
   /**
    * The test id of the popover.
    * @default null

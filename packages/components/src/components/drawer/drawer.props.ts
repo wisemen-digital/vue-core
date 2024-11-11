@@ -1,6 +1,6 @@
 import type { StyleConfig } from '@/types/style.type'
 
-export interface AppDrawerProps {
+export interface DrawerProps {
   /**
    * The test id of the drawer.
    */

@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import type { TabItem } from '@wisemen/vue-core'
 import {
-  AppCollapsable2,
-  AppConfigProvider,
-  AppSwitch,
-  AppTabs,
-  AppThemeProvider,
   useDarkMode,
+  VcCollapsable2,
+  VcConfigProvider,
+  VcSwitch,
+  VcTabs,
+  VcThemeProvider,
 } from '@wisemen/vue-core'
 import { computed, ref } from 'vue'
 
@@ -53,17 +53,17 @@ const selectedTab = ref<TabItem | null>(tabItems.value?.[0] ?? null)
 </script>
 
 <template>
-  <AppThemeProvider :theme="darkMode.isEnabled.value ? 'dark' : 'light'">
+  <VcThemeProvider :theme="darkMode.isEnabled.value ? 'dark' : 'light'">
     <div class="flex flex-col gap-2">
       <div class="vp-raw">
         <div class="flex justify-end gap-x-4">
-          <AppSwitch
+          <VcSwitch
             v-model="isDark"
             label="Dark mode"
             value="dark"
           />
 
-          <AppSwitch
+          <VcSwitch
             v-model="showCode"
             :style-config="{
               '--switch-label-font-size-default': '12px',
@@ -74,20 +74,20 @@ const selectedTab = ref<TabItem | null>(tabItems.value?.[0] ?? null)
       </div>
 
       <div>
-        <AppCollapsable2>
+        <VcCollapsable2>
           <div v-if="!showCode">
             <div class="vp-raw flex items-center justify-center rounded-lg border border-solid border-gray-100 p-16 dark:border-black dark:bg-gray-950">
-              <AppConfigProvider
+              <VcConfigProvider
                 locale="en"
                 google-maps-api-key="AIzaSyATX2fY3BZwaKeURsQhwpEVLmLRr27s4vw"
               >
                 <slot />
-              </AppConfigProvider>
+              </VcConfigProvider>
             </div>
           </div>
 
           <div v-else>
-            <AppTabs
+            <VcTabs
               v-if="selectedTab"
               v-model="selectedTab"
               :items="tabItems"
@@ -106,10 +106,10 @@ const selectedTab = ref<TabItem | null>(tabItems.value?.[0] ?? null)
                   <slot :name="index" />
                 </div>
               </template>
-            </AppTabs>
+            </VcTabs>
           </div>
-        </AppCollapsable2>
+        </VcCollapsable2>
       </div>
     </div>
-  </AppThemeProvider>
+  </VcThemeProvider>
 </template>

@@ -33,7 +33,7 @@ import { AppButton } from '@wisemen/vue-core'
 </script>
   
 <template>
-  <AppButton>
+  <Button>
     Button Text      
   </AppButton>
 </template>

@@ -1,7 +1,7 @@
-import type { PopoverProps } from '@/types/popover.type'
+import type { PopperProps } from '@/types/popper'
 import type { StyleConfig } from '@/types/style.type'
 
-export interface AppTooltipProps extends PopoverProps {
+export interface TooltipProps extends PopperProps {
   /**
    * When true, the tooltip will be hidden.
    * @default false

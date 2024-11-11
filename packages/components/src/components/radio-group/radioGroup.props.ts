@@ -6,7 +6,7 @@ import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 import type { RadioGroupItem } from '@/types/radioGroup.type'
 import type { StyleConfig } from '@/types/style.type'
 
-export interface AppRadioGroupProps<TValue extends AcceptableValue> {
+export interface RadioGroupProps<TValue extends AcceptableValue> {
   /**
    * The id of the radioGroup.
    * @default null
@@ -61,15 +61,3 @@ export interface AppRadioGroupProps<TValue extends AcceptableValue> {
   styleConfig?: StyleConfig<'radioGroup'> | null
 
 }
-
-export const appRadioGroupPropsDefaultValues = {
-  id: null,
-  isDisabled: false,
-  isReadonly: false,
-  isRequired: false,
-  isTouched: false,
-  errors: null,
-  hint: null,
-  label: null,
-  styleConfig: null,
-} satisfies Partial<AppRadioGroupProps<AcceptableValue>>

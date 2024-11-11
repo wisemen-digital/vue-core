@@ -1,8 +1,6 @@
 import type { Icon } from '@/icons/icons'
+import type { PopperProps } from '@/types'
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
-import type {
-  PopoverProps,
-} from '@/types/popover.type'
 import type {
   SelectOption,
   SelectValue,
@@ -13,7 +11,7 @@ export type AutocompleteDisplayFn<TValue extends SelectValue> = (
   value: TValue extends Array<infer U> ? U : TValue
 ) => string
 
-export interface AppAutocompleteProps<TValue extends SelectValue> extends Omit<PopoverProps, 'isArrowHidden'> {
+export interface AutocompleteProps<TValue extends SelectValue> extends Omit<PopperProps, 'isArrowHidden'> {
   /**
    * The id of the input.
    * @default null

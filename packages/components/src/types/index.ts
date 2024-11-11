@@ -23,7 +23,7 @@ export type {
   UsePaginationOptions,
   UsePaginationReturnType,
 } from './pagination.type'
-export type { PopoverProps } from './popover.type'
+export type { PopperProps } from './popper'
 export type { RadioGroupItem } from './radioGroup.type'
 export type { Routes } from './routes.type'
 export type {

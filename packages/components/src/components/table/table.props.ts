@@ -4,7 +4,7 @@ import type { PaginatedData, Pagination } from '@/types/pagination.type'
 import type { StyleConfig } from '@/types/style.type'
 import type { TableColumn } from '@/types/table.type'
 
-export interface AppTableProps<TSchema, TFilters> {
+export interface TableProps<TSchema, TFilters> {
   /**
    * Whether the first column is sticky
    * @default false

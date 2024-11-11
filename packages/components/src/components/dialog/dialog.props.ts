@@ -1,6 +1,6 @@
 import type { StyleConfig } from '@/types/style.type'
 
-export interface AppDialogProps {
+export interface DialogProps {
   /**
    * The test id of the dialog.
    */

@@ -2,7 +2,7 @@ import type { Icon } from '@/icons/icons'
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 import type { StyleConfig } from '@/types/style.type'
 
-export interface AppSwitchProps {
+export interface SwitchProps {
   /**
    * The id of the checkbox.
    * @default null

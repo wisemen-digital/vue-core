@@ -1,154 +1,154 @@
 // Autocomplete
-export { default as AppAddressAutocomplete } from '@/components/autocomplete/AppAddressAutocomplete.vue'
-export { default as AppAutocomplete } from '@/components/autocomplete/AppAutocomplete.vue'
-export type { AppAutocompleteProps } from '@/components/autocomplete/autocomplete.props'
+export { default as VcAddressAutocomplete } from '@/components/autocomplete/AddressAutocomplete.vue'
+export type { AutocompleteProps as VcAutocompleteProps } from '@/components/autocomplete/autocomplete.props'
+export { default as VcAutocomplete } from '@/components/autocomplete/Autocomplete.vue'
 
 // Breadcrumbs
-export { default as AppBreadcrumbs } from '@/components/breadcrumbs/AppBreadcrumbs.vue'
+export { default as VcBreadcrumbs } from '@/components/breadcrumbs/Breadcrumbs.vue'
 
 // Button
-export { default as AppButton } from '@/components/button/button/AppButton.vue'
-export type { AppButtonProps } from '@/components/button/button/button.props'
+export type { ButtonProps as VcButtonProps } from '@/components/button/button/button.props'
+export { default as VcButton } from '@/components/button/button/Button.vue'
 
 // Icon Button
-export { default as AppIconButton } from '@/components/button/icon-button/AppIconButton.vue'
-export type { AppIconButtonProps } from '@/components/button/icon-button/iconButton.props'
+export type { IconButtonProps as VcIconButtonProps } from '@/components/button/icon-button/iconButton.props'
+export { default as VcIconButton } from '@/components/button/icon-button/IconButton.vue'
 
 // Router Link Button
-export { default as AppRouterLinkButton } from '@/components/button/router-link-button/AppRouterLinkButton.vue'
-export type { AppRouterLinkButtonProps } from '@/components/button/router-link-button/routerLinkButton.props'
+export type { RouterLinkButtonProps as VcRouterLinkButtonProps } from '@/components/button/router-link-button/routerLinkButton.props'
+export { default as VcRouterLinkButton } from '@/components/button/router-link-button/RouterLinkButton.vue'
 
 // Calendar
-export { default as AppCalendar } from '@/components/calendar/AppCalendar.vue'
+export { default as VcCalendar } from '@/components/calendar/Calendar.vue'
 
 // Checkbox
-export { default as AppCheckbox } from '@/components/checkbox/AppCheckbox.vue'
-export type { AppCheckboxProps } from '@/components/checkbox/checkbox.props'
+export type { CheckboxProps as VcCheckboxProps } from '@/components/checkbox/checkbox.props'
+export { default as VcCheckbox } from '@/components/checkbox/Checkbox.vue'
 
 // Collapsable
-export { default as AppCollapsable } from '@/components/collapsable/AppCollapsable.vue'
-export { default as AppCollapsable2 } from '@/components/collapsable/AppCollapsable2.vue'
+export { default as VcCollapsable } from '@/components/collapsable/Collapsable.vue'
+export { default as VcCollapsable2 } from '@/components/collapsable/Collapsable2.vue'
 
 // Config Provider
-export { default as AppConfigProvider } from '@/components/config-provider/AppConfigProvider.vue'
+export { default as VcConfigProvider } from '@/components/config-provider/ConfigProvider.vue'
 
 // Dialog
-export { default as AppDialog } from '@/components/dialog/AppDialog.vue'
-export { default as AppDialogCloseButton } from '@/components/dialog/AppDialogCloseButton.vue'
-export { default as AppDialogContainer } from '@/components/dialog/AppDialogContainer.vue'
-export { default as AppDialogDescription } from '@/components/dialog/AppDialogDescription.vue'
-export { default as AppDialogTitle } from '@/components/dialog/AppDialogTitle.vue'
-export type { AppDialogProps } from '@/components/dialog/dialog.props'
+export type { DialogProps as VcDialogProps } from '@/components/dialog/dialog.props'
+export { default as VcDialog } from '@/components/dialog/Dialog.vue'
+export { default as VcDialogCloseButton } from '@/components/dialog/DialogCloseButton.vue'
+export { default as VcDialogContainer } from '@/components/dialog/DialogContainer.vue'
+export { default as VcDialogDescription } from '@/components/dialog/DialogDescription.vue'
+export { default as VcDialogTitle } from '@/components/dialog/DialogTitle.vue'
 
 // Drawer
-export { default as AppDrawer } from '@/components/drawer/AppDrawer.vue'
-export { default as AppDrawerCloseButton } from '@/components/drawer/AppDrawerCloseButton.vue'
-export { default as AppDrawerContainer } from '@/components/drawer/AppDrawerContainer.vue'
-export { default as AppDrawerDescription } from '@/components/drawer/AppDrawerDescription.vue'
-export { default as AppDrawerTitle } from '@/components/drawer/AppDrawerTitle.vue'
-export type { AppDrawerProps } from '@/components/drawer/drawer.props'
+export type { DrawerProps as VcDrawerProps } from '@/components/drawer/drawer.props'
+export { default as VcDrawer } from '@/components/drawer/Drawer.vue'
+export { default as VcDrawerCloseButton } from '@/components/drawer/DrawerCloseButton.vue'
+export { default as VcDrawerContainer } from '@/components/drawer/DrawerContainer.vue'
+export { default as VcDrawerDescription } from '@/components/drawer/DrawerDescription.vue'
+export { default as VcDrawerTitle } from '@/components/drawer/DrawerTitle.vue'
 
 // Dropdown Menu
-export { default as AppDropdownMenu } from '@/components/dropdown-menu/AppDropdownMenu.vue'
-export { default as AppDropdownMenuTrigger } from '@/components/dropdown-menu/AppDropdownMenuTrigger.vue'
-export type { AppDropdownMenuProps } from '@/components/dropdown-menu/dropdownMenu.props'
-export { default as AppDropdownMenuGroup } from '@/components/dropdown-menu/items/AppDropdownMenuGroup.vue'
-export { default as AppDropdownMenuOption } from '@/components/dropdown-menu/items/AppDropdownMenuOption.vue'
-export { default as AppDropdownMenuSeparator } from '@/components/dropdown-menu/items/AppDropdownMenuSeparator.vue'
-export { default as AppDropdownMenuSub } from '@/components/dropdown-menu/items/AppDropdownMenuSubTrigger.vue'
+export type { DropdownMenuProps as VcDropdownMenuProps } from '@/components/dropdown-menu/dropdownMenu.props'
+export { default as VcDropdownMenu } from '@/components/dropdown-menu/DropdownMenu.vue'
+export { default as VcDropdownMenuTrigger } from '@/components/dropdown-menu/DropdownMenuTrigger.vue'
+export { default as VcDropdownMenuGroup } from '@/components/dropdown-menu/items/DropdownMenuGroup.vue'
+export { default as VcDropdownMenuOption } from '@/components/dropdown-menu/items/DropdownMenuOption.vue'
+export { default as VcDropdownMenuSeparator } from '@/components/dropdown-menu/items/DropdownMenuSeparator.vue'
+export { default as VcDropdownMenuSub } from '@/components/dropdown-menu/items/DropdownMenuSubTrigger.vue'
 
 // Icon
-export { default as AppAsyncIcon } from '@/components/icon/AppAsyncIcon.vue'
-export { default as AppIcon } from '@/components/icon/AppIcon.vue'
+export { default as VcAsyncIcon } from '@/components/icon/AsyncIcon.vue'
+export { default as VcIcon } from '@/components/icon/Icon.vue'
 
 // Input Fields
-export { default as AppNumberField } from '@/components/input-field/number-field/AppNumberField.vue'
-export { default as AppPasswordField } from '@/components/input-field/password-field/AppPasswordField.vue'
-export { default as AppPhoneNumberField } from '@/components/input-field/phone-number-field/AppPhoneNumberField.vue'
-export { default as AppTextarea } from '@/components/input-field/text-area/AppTextarea.vue'
-export { default as AppTextField } from '@/components/input-field/text-field/AppTextField.vue'
-export type { AppTextFieldProps } from '@/components/input-field/text-field/textField.props'
+export { default as VcNumberField } from '@/components/input-field/number-field/NumberField.vue'
+export { default as VcPasswordField } from '@/components/input-field/password-field/PasswordField.vue'
+export { default as VcPhoneNumberField } from '@/components/input-field/phone-number-field/PhoneNumberField.vue'
+export { default as VcTextarea } from '@/components/input-field/text-area/Textarea.vue'
+export type { TextFieldProps as VcTextFieldProps } from '@/components/input-field/text-field/textField.props'
+export { default as VcTextField } from '@/components/input-field/text-field/TextField.vue'
 
 // Input field error
-export { default as AppInputFieldError } from '@/components/input-field-error/AppInputFieldError.vue'
+export { default as VcInputFieldError } from '@/components/input-field-error/InputFieldError.vue'
 
 // Input field hint
-export { default as AppInputFieldHint } from '@/components/input-field-hint/AppInputFieldHint.vue'
+export { default as VcInputFieldHint } from '@/components/input-field-hint/InputFieldHint.vue'
 
 // Input field label
-export { default as AppInputFieldLabel } from '@/components/input-field-label/AppInputFieldLabel.vue'
+export { default as VcInputFieldLabel } from '@/components/input-field-label/InputFieldLabel.vue'
 
 // Keyboard
-export { default as AppKeyboardKey } from '@/components/keyboard/AppKeyboardKey.vue'
-export { default as AppKeyboardShortcut } from '@/components/keyboard/AppKeyboardShortcut.vue'
-export { default as AppKeyboardShortcutProvider } from '@/components/keyboard/AppKeyboardShortcutProvider.vue'
+export { default as VcKeyboardKey } from '@/components/keyboard/KeyboardKey.vue'
+export { default as VcKeyboardShortcut } from '@/components/keyboard/KeyboardShortcut.vue'
+export { default as VcKeyboardShortcutProvider } from '@/components/keyboard/KeyboardShortcutProvider.vue'
 
 // Popover
-export { default as AppPopover } from '@/components/popover/AppPopover.vue'
-export { default as AppPopoverAnchor } from '@/components/popover/AppPopoverAnchor.vue'
-export { default as AppPopoverCloseButton } from '@/components/popover/AppPopoverCloseButton.vue'
-export { default as AppPopoverTrigger } from '@/components/popover/AppPopoverTrigger.vue'
-export type { AppPopoverProps } from '@/components/popover/popover.props'
+export type { PopoverProps as VcPopoverProps } from '@/components/popover/popover.props'
+export { default as VcPopover } from '@/components/popover/Popover.vue'
+export { default as VcPopoverAnchor } from '@/components/popover/PopoverAnchor.vue'
+export { default as VcPopoverCloseButton } from '@/components/popover/PopoverCloseButton.vue'
+export { default as VcPopoverTrigger } from '@/components/popover/PopoverTrigger.vue'
 
 // Select
-export { default as AppSelect } from '@/components/select/AppSelect.vue'
-export { default as AppSelectFilter } from '@/components/select/AppSelectFilter.vue'
-export { default as AppSelectGroup } from '@/components/select/items/AppSelectGroup.vue'
-export { default as AppSelectOption } from '@/components/select/items/AppSelectOption.vue'
-export { default as AppSelectOptionIndicator } from '@/components/select/items/AppSelectOptionIndicator.vue'
-export { default as AppSelectSeparator } from '@/components/select/items/AppSelectSeparator.vue'
-export type { AppSelectProps } from '@/components/select/select.props'
+export { default as VcSelectGroup } from '@/components/select/items/SelectGroup.vue'
+export { default as VcSelectOption } from '@/components/select/items/SelectOption.vue'
+export { default as VcSelectOptionIndicator } from '@/components/select/items/SelectOptionIndicator.vue'
+export { default as VcSelectSeparator } from '@/components/select/items/SelectSeparator.vue'
+export type { SelectProps as VcSelectProps } from '@/components/select/select.props'
+export { default as VcSelect } from '@/components/select/Select.vue'
+export { default as VcSelectFilter } from '@/components/select/SelectFilter.vue'
 
 // Skeleton
-export { default as AppSkeletonItem } from '@/components/skeleton/AppSkeletonItem.vue'
+export { default as VcSkeletonItem } from '@/components/skeleton/SkeletonItem.vue'
 
 // Spinner
-export { default as AppSpinner } from '@/components/spinner/AppSpinner.vue'
+export { default as VcSpinner } from '@/components/spinner/Spinner.vue'
 
 // Switch
-export { default as AppSwitch } from '@/components/switch/AppSwitch.vue'
-export type { AppSwitchProps } from '@/components/switch/switch.props'
+export type { SwitchProps as VcSwitchProps } from '@/components/switch/switch.props'
+export { default as VcSwitch } from '@/components/switch/Switch.vue'
 
 // RadioGroup
-export { default as AppRadioGroup } from '@/components/radio-group/AppRadioGroup.vue'
-export { default as AppRadioGroupIndicator } from '@/components/radio-group/AppRadioGroupIndicator.vue'
-export { default as AppRadioGroupItem } from '@/components/radio-group/AppRadioGroupItem.vue'
-export { default as AppRadioGroupItemDefault } from '@/components/radio-group/AppRadioGroupItemDefault.vue'
-export { default as AppRadioGroupRoot } from '@/components/radio-group/AppRadioGroupRoot.vue'
-export type { AppRadioGroupProps } from '@/components/radio-group/radioGroup.props'
+export type { RadioGroupProps as VcRadioGroupProps } from '@/components/radio-group/radioGroup.props'
+export { default as VcRadioGroup } from '@/components/radio-group/RadioGroup.vue'
+export { default as VcRadioGroupIndicator } from '@/components/radio-group/RadioGroupIndicator.vue'
+export { default as VcRadioGroupItem } from '@/components/radio-group/RadioGroupItem.vue'
+export { default as VcRadioGroupItemDefault } from '@/components/radio-group/RadioGroupItemDefault.vue'
+export { default as VcRadioGroupRoot } from '@/components/radio-group/RadioGroupRoot.vue'
 
 // Table
-export { default as AppTable } from '@/components/table/AppTable.vue'
-export { default as AppTableCell } from '@/components/table/AppTableCell.vue'
-export { default as AppTableHeaderCell } from '@/components/table/AppTableHeaderCell.vue'
-export { default as AppTablePageCount } from '@/components/table/AppTablePageCount.vue'
-export { default as AppTablePagination } from '@/components/table/pagination/AppTablePagination.vue'
-export { default as AppTablePaginationFirstPage } from '@/components/table/pagination/AppTablePaginationFirstPage.vue'
-export { default as AppTablePaginationLastPage } from '@/components/table/pagination/AppTablePaginationLastPage.vue'
-export { default as AppTablePaginationNextPage } from '@/components/table/pagination/AppTablePaginationNextPage.vue'
-export { default as AppTablePaginationPages } from '@/components/table/pagination/AppTablePaginationPages.vue'
-export { default as AppTablePaginationPrevPage } from '@/components/table/pagination/AppTablePaginationPrevPage.vue'
-export type { AppTableProps } from '@/components/table/table.props'
+export { default as VcTablePagination } from '@/components/table/pagination/TablePagination.vue'
+export { default as VcTablePaginationFirstPage } from '@/components/table/pagination/TablePaginationFirstPage.vue'
+export { default as VcTablePaginationLastPage } from '@/components/table/pagination/TablePaginationLastPage.vue'
+export { default as VcTablePaginationNextPage } from '@/components/table/pagination/TablePaginationNextPage.vue'
+export { default as VcTablePaginationPages } from '@/components/table/pagination/TablePaginationPages.vue'
+export { default as VcTablePaginationPrevPage } from '@/components/table/pagination/TablePaginationPrevPage.vue'
+export type { TableProps as VcTableProps } from '@/components/table/table.props'
+export { default as VcTable } from '@/components/table/Table.vue'
+export { default as VcTableCell } from '@/components/table/TableCell.vue'
+export { default as VcTableHeaderCell } from '@/components/table/TableHeaderCell.vue'
+export { default as VcTablePageCount } from '@/components/table/TablePageCount.vue'
 
 // Tabs
-export { default as AppRouteTabs } from '@/components/tabs/AppRouteTabs.vue'
-export { default as AppTabs } from '@/components/tabs/AppTabs.vue'
-export { default as AppTabsContent } from '@/components/tabs/AppTabsContent.vue'
+export { default as VcRouteTabs } from '@/components/tabs/RouteTabs.vue'
+export { default as VcTabs } from '@/components/tabs/Tabs.vue'
+export { default as VcTabsContent } from '@/components/tabs/TabsContent.vue'
 
 // Tag
-export { default as AppTag } from '@/components/tag/AppTag.vue'
-export { default as AppTagRemoveButton } from '@/components/tag/AppTagRemoveButton.vue'
+export { default as VcTag } from '@/components/tag/Tag.vue'
+export { default as VcTagRemoveButton } from '@/components/tag/TagRemoveButton.vue'
 
 // Theme Provider
-export { default as AppThemeProvider } from '@/components/theme-provider/AppThemeProvider.vue'
+export { default as VcThemeProvider } from '@/components/theme-provider/ThemeProvider.vue'
 
 // Toast
-export { default as AppToastContainer } from '@/components/toast/AppToastContainer.vue'
+export { default as VcToastContainer } from '@/components/toast/ToastContainer.vue'
 
 // Toggle
-export { default as AppToggle } from '@/components/toggle/AppToggle.vue'
+export { default as VcToggle } from '@/components/toggle/Toggle.vue'
 
 // Tooltip
-export { default as AppTooltip } from '@/components/tooltip/AppTooltip.vue'
-export { default as AppTooltipTrigger } from '@/components/tooltip/AppTooltipTrigger.vue'
-export type { AppTooltipProps } from '@/components/tooltip/tooltip.props'
+export type { TooltipProps as VcTooltipProps } from '@/components/tooltip/tooltip.props'
+export { default as VcTooltip } from '@/components/tooltip/Tooltip.vue'
+export { default as VcTooltipTrigger } from '@/components/tooltip/TooltipTrigger.vue'
