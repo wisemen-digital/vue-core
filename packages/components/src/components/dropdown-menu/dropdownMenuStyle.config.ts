@@ -56,6 +56,7 @@ export interface DropdownMenuStyleConfig {
 }
 
 defineStyleConfig({
+  colorScheme: '*',
   config: {
     '--dropdown-menu-bg-color-default': 'var(--bg-primary)',
     '--dropdown-menu-border-color-default': 'var(--border-secondary)',
@@ -108,6 +109,7 @@ defineStyleConfig({
     '--dropdown-menu-padding-y-default': 'var(--spacing-sm)',
     '--dropdown-menu-shadow-default': 'var(--shadow-lg)',
   },
-  selector: '.dropdown-menu-variant-default',
+  theme: '*',
+  variant: 'default',
   component: 'dropdownMenu',
 })

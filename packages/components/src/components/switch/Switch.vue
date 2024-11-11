@@ -143,7 +143,7 @@ function onBlur(): void {
   <div
     :style="props.styleConfig"
     :class="[sizeClass, themeProviderContext.theme.value]"
-    class="input-field-label-variant-default input-field-error-variant-default input-field-hint-variant-default icon-variant-default switch-variant-default"
+    class="input-field-label-default input-field-error-default input-field-hint-default icon-default switch-default"
   >
     <div :class="boxClasses">
       <SwitchRoot

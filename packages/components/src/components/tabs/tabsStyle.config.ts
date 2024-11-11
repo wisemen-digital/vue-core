@@ -37,6 +37,7 @@ export interface TabsStyleConfig {
 }
 
 defineStyleConfig({
+  colorScheme: '*',
   config: {
     '--tabs-container-bg-color-default': 'transparent',
     '--tabs-container-border-bottom-color-default': 'var(--border-primary)',
@@ -74,6 +75,7 @@ defineStyleConfig({
     '--tabs-item-text-color-focus': 'var(--text-brand-secondary)',
     '--tabs-item-text-color-hover': 'var(--text-brand-secondary)',
   },
-  selector: '.tabs-variant-default',
+  theme: '*',
+  variant: 'default',
   component: 'tabs',
 })

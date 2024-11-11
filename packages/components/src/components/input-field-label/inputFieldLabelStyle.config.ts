@@ -8,12 +8,14 @@ export interface InputFieldLabelStyleConfig {
 }
 
 defineStyleConfig({
+  colorScheme: '*',
   config: {
     '--input-field-label-font-size-default': 'var(--text-sm)',
     '--input-field-label-font-weight-default': '500',
     '--input-field-label-spacing-default': 'var(--spacing-sm)',
     '--input-field-label-text-color-default': 'var(--text-secondary)',
   },
-  selector: '.input-field-label-variant-default',
+  theme: '*',
+  variant: 'default',
   component: 'inputFieldLabel',
 })

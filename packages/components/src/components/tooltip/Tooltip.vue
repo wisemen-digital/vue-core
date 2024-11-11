@@ -69,7 +69,7 @@ const arrowClasses = computed<string>(() => style.arrow())
           :align="props.popoverAlign"
           :hide-when-detached="true"
           sticky="always"
-          class="tooltip-variant-default"
+          class="tooltip-default"
           position="popper"
         >
           <!-- Without this relative div, the arrow is a bit glitchy -->

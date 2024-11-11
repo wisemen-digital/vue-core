@@ -64,19 +64,19 @@ const loaderClasses = computed<string>(() => btnStyle.loader({
 
 const sizeClass = computed<null | string>(() => {
   if (props.size === 'sm') {
-    return 'icon-btn-sm'
+    return 'icon-button-sm'
   }
 
   if (props.size === 'lg') {
-    return 'icon-btn-lg'
+    return 'icon-button-lg'
   }
 
   if (props.size === 'xl') {
-    return 'icon-btn-xl'
+    return 'icon-button-xl'
   }
 
   if (props.size === '2xl') {
-    return 'icon-btn-2xl'
+    return 'icon-button-2xl'
   }
 
   return null
@@ -84,34 +84,34 @@ const sizeClass = computed<null | string>(() => {
 
 const variantClass = computed<string>(() => {
   if (props.variant === 'secondary') {
-    return 'btn-secondary-gray'
+    return 'button-secondary-gray'
   }
 
   if (props.variant === 'secondary-color') {
-    return 'btn-secondary-color'
+    return 'button-secondary-color'
   }
 
   if (props.variant === 'tertiary') {
-    return 'btn-tertiary-gray'
+    return 'button-tertiary-gray'
   }
 
   if (props.variant === 'tertiary-color') {
-    return 'btn-tertiary-color'
+    return 'button-tertiary-color'
   }
 
   if (props.variant === 'destructive-primary') {
-    return 'btn-destructive-primary'
+    return 'button-destructive-primary'
   }
 
   if (props.variant === 'destructive-secondary') {
-    return 'btn-destructive-secondary'
+    return 'button-destructive-secondary'
   }
 
   if (props.variant === 'destructive-tertiary') {
-    return 'btn-destructive-tertiary'
+    return 'button-destructive-tertiary'
   }
 
-  return 'btn-primary'
+  return 'button-primary'
 })
 
 function onFocus(): void {
@@ -168,7 +168,7 @@ function onClick(event: Event): void {
     :aria-busy="props.isLoading"
     :aria-label="props.label"
     :class="[buttonClasses, sizeClass, variantClass, themeProviderContext.theme.value]"
-    class="button-variant-default icon-button-variant-default icon-variant-default"
+    class="button-default icon-button-default"
     @focus="onFocus"
     @blur="onBlur"
     @mouseenter="onMouseEnter"
@@ -181,7 +181,11 @@ function onClick(event: Event): void {
   >
     <Icon
       :icon="props.icon"
-      :class="iconClasses"
+      :class="[
+        iconClasses, {
+          'opacity-0': props.isLoading,
+        },
+      ]"
     />
 
     <Transition

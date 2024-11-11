@@ -44,7 +44,7 @@ export default [
         {
           whitelist: [
             '^custom-.*',
-            ...allowedComponentClasses.map((className) => `^${className}-variant-.*`),
+            ...allowedComponentClasses.map((className) => `^${className}-default`),
           ],
         },
       ],

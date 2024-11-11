@@ -10,6 +10,7 @@ export interface PopoverStyleConfig {
 }
 
 defineStyleConfig({
+  colorScheme: '*',
   config: {
     '--popover-bg-color-default': 'var(--bg-primary)',
     '--popover-border-color-default': 'var(--border-secondary)',
@@ -18,6 +19,7 @@ defineStyleConfig({
     '--popover-min-width-default': 'auto',
     '--popover-shadow-default': 'var(--shadow-lg)',
   },
-  selector: '.popover-variant-default',
+  theme: '*',
+  variant: 'default',
   component: 'popover',
 })

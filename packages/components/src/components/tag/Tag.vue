@@ -44,7 +44,7 @@ provideTagContext({
   <div
     :class="[tagBoxClasses, themeProviderContext.theme.value]"
     :style="props.styleConfig"
-    class="tag-variant-default"
+    class="tag-default"
   >
     <slot name="left" />
 

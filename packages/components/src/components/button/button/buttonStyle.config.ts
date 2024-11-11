@@ -52,6 +52,7 @@ export interface ButtonStyleConfig extends BaseStyleConfig {
 
 // Default
 defineStyleConfig({
+  colorScheme: '*',
   config: {
     '--button-bg-color-active': 'var(--brand-primary-800)',
     '--button-bg-color-default': 'var(--brand-primary-600)',
@@ -96,19 +97,23 @@ defineStyleConfig({
     '--button-text-color-focus': 'var(--fg-white)',
     '--button-text-color-hover': 'var(--fg-white)',
   },
-  selector: '.button-variant-default',
+  theme: '*',
+  variant: 'default',
   component: 'button',
 })
 
 // Primary
 defineStyleConfig({
+  colorScheme: '*',
   config: {},
-  selector: '.btn-primary',
+  theme: '*',
+  variant: 'primary',
   component: 'button',
 })
 
 // Secondary gray
 defineStyleConfig({
+  colorScheme: 'light',
   config: {
     '--button-bg-color-active': 'var(--gray-100)',
     '--button-bg-color-default': 'var(--bg-primary)',
@@ -137,16 +142,18 @@ defineStyleConfig({
     '--button-text-color-focus': 'var(--gray-700)',
     '--button-text-color-hover': 'var(--gray-800)',
   },
-  selector: '.btn-secondary-gray',
+  theme: '*',
+  variant: 'secondary-gray',
   component: 'button',
 })
 
 // Secondary gray dark
 defineStyleConfig({
+  colorScheme: 'dark',
   config: {
     '--button-bg-color-active': 'var(--gray-700)',
     '--button-bg-color-default': 'var(--gray-900)',
-    '--button-bg-color-focus': 'var(--gray-700)',
+    '--button-bg-color-focus': 'var(--gray-900)',
     '--button-bg-color-hover': 'var(--gray-800)',
     '--button-border-color-active': 'var(--gray-700)',
     '--button-border-color-default': 'var(--gray-700)',
@@ -165,12 +172,14 @@ defineStyleConfig({
     '--button-text-color-focus': 'var(--gray-300)',
     '--button-text-color-hover': 'var(--gray-200)',
   },
-  selector: '.dark.btn-secondary-gray',
+  theme: '*',
+  variant: 'secondary-gray',
   component: 'button',
 })
 
 // Secondary color
 defineStyleConfig({
+  colorScheme: 'light',
   config: {
     '--button-bg-color-active': 'var(--brand-primary-100)',
     '--button-bg-color-default': 'var(--bg-primary)',
@@ -199,12 +208,14 @@ defineStyleConfig({
     '--button-text-color-focus': 'var(--brand-primary-700)',
     '--button-text-color-hover': 'var(--brand-primary-800)',
   },
-  selector: '.btn-secondary-color',
+  theme: '*',
+  variant: 'secondary-color',
   component: 'button',
 })
 
 // Secondary color dark
 defineStyleConfig({
+  colorScheme: 'dark',
   config: {
     '--button-bg-color-active': 'var(--gray-700)',
     '--button-bg-color-default': 'var(--gray-900)',
@@ -227,22 +238,24 @@ defineStyleConfig({
     '--button-text-color-focus': 'var(--gray-300)',
     '--button-text-color-hover': 'var(--gray-200)',
   },
-  selector: '.dark.btn-secondary-color',
+  theme: '*',
+  variant: 'secondary-color',
   component: 'button',
 })
 
 // Tertiary gray
 defineStyleConfig({
+  colorScheme: 'light',
   config: {
     '--button-bg-color-active': 'var(--gray-100)',
-    '--button-bg-color-default': 'var(--bg-primary)',
-    '--button-bg-color-disabled': 'var(--bg-primary)',
-    '--button-bg-color-focus': 'var(--bg-primary)',
+    '--button-bg-color-default': 'transparent',
+    '--button-bg-color-disabled': 'transparent',
+    '--button-bg-color-focus': 'transparent',
     '--button-bg-color-hover': 'var(--gray-50)',
     '--button-border-color-active': 'var(--gray-50)',
-    '--button-border-color-default': 'var(--bg-primary)',
-    '--button-border-color-disabled': 'var(--bg-primary)',
-    '--button-border-color-focus': 'var(--bg-primary)',
+    '--button-border-color-default': 'transparent',
+    '--button-border-color-disabled': 'transparent',
+    '--button-border-color-focus': 'transparent',
     '--button-border-color-hover': 'var(--gray-50)',
     '--button-icon-color-active': 'var(--gray-700)',
     '--button-icon-color-default': 'var(--gray-600)',
@@ -258,14 +271,18 @@ defineStyleConfig({
     '--button-text-color-focus': 'var(--gray-600)',
     '--button-text-color-hover': 'var(--gray-700)',
   },
-  selector: '.btn-tertiary-gray',
+  theme: '*',
+  variant: 'tertiary-gray',
   component: 'button',
 })
 
 // Tertiary gray dark
 defineStyleConfig({
+  colorScheme: 'dark',
   config: {
     '--button-bg-color-active': 'var(--gray-700)',
+    '--button-bg-color-default': 'transparent',
+    '--button-bg-color-focus': 'transparent',
     '--button-bg-color-hover': 'var(--gray-800)',
     '--button-border-color-active': 'var(--bg-primary)',
     '--button-border-color-default': 'var(--bg-primary)',
@@ -286,22 +303,24 @@ defineStyleConfig({
     '--button-text-color-focus': 'var(--gray-400)',
     '--button-text-color-hover': 'var(--gray-300)',
   },
-  selector: '.dark.btn-tertiary-gray',
+  theme: '*',
+  variant: 'tertiary-gray',
   component: 'button',
 })
 
 // Tertiary color
 defineStyleConfig({
+  colorScheme: 'light',
   config: {
     '--button-bg-color-active': 'var(--brand-primary-100)',
-    '--button-bg-color-default': 'var(--bg-primary)',
+    '--button-bg-color-default': 'transparent',
     '--button-bg-color-disabled': 'var(--bg-primary)',
-    '--button-bg-color-focus': 'var(--bg-primary)',
+    '--button-bg-color-focus': 'transparent',
     '--button-bg-color-hover': 'var(--brand-primary-50)',
     '--button-border-color-active': 'var(--brand-primary-50)',
-    '--button-border-color-default': 'var(--bg-primary)',
-    '--button-border-color-disabled': 'var(--bg-primary)',
-    '--button-border-color-focus': 'var(--bg-primary)',
+    '--button-border-color-default': 'transparent',
+    '--button-border-color-disabled': 'transparent',
+    '--button-border-color-focus': 'transparent',
     '--button-border-color-hover': 'var(--brand-primary-50)',
     '--button-icon-color-active': 'var(--brand-primary-800)',
     '--button-icon-color-default': 'var(--brand-primary-700)',
@@ -317,20 +336,24 @@ defineStyleConfig({
     '--button-text-color-focus': 'var(--brand-primary-700)',
     '--button-text-color-hover': 'var(--brand-primary-800)',
   },
-  selector: '.btn-tertiary-color',
+  theme: '*',
+  variant: 'tertiary-color',
   component: 'button',
 })
 
 // Tertiary color dark
 defineStyleConfig({
+  colorScheme: 'dark',
   config: {
     '--button-bg-color-active': 'var(--gray-700)',
+    '--button-bg-color-default': 'transparent',
+    '--button-bg-color-focus': 'transparent',
     '--button-bg-color-hover': 'var(--gray-800)',
-    '--button-border-color-active': 'var(--bg-primary)',
-    '--button-border-color-default': 'var(--bg-primary)',
-    '--button-border-color-disabled': 'var(--bg-primary)',
-    '--button-border-color-focus': 'var(--bg-primary)',
-    '--button-border-color-hover': 'var(--bg-primary)',
+    '--button-border-color-active': 'transparent',
+    '--button-border-color-default': 'transparent',
+    '--button-border-color-disabled': 'transparent',
+    '--button-border-color-focus': 'transparent',
+    '--button-border-color-hover': 'transparent',
     '--button-icon-color-active': 'var(--gray-200)',
     '--button-icon-color-default': 'var(--gray-400)',
     '--button-icon-color-focus': 'var(--gray-400)',
@@ -345,12 +368,14 @@ defineStyleConfig({
     '--button-text-color-focus': 'var(--gray-400)',
     '--button-text-color-hover': 'var(--gray-300)',
   },
-  selector: '.dark .btn-tertiary-color',
+  theme: '*',
+  variant: 'tertiary-color',
   component: 'button',
 })
 
 // Destructive primary
 defineStyleConfig({
+  colorScheme: '*',
   config: {
     '--button-bg-color-active': 'var(--error-800)',
     '--button-bg-color-default': 'var(--error-600)',
@@ -379,17 +404,19 @@ defineStyleConfig({
     '--button-text-color-focus': 'var(--white)',
     '--button-text-color-hover': 'var(--white)',
   },
-  selector: '.btn-destructive-primary',
+  theme: '*',
+  variant: 'destructive-primary',
   component: 'button',
 })
 
 // Destructive secondary
 defineStyleConfig({
+  colorScheme: 'light',
   config: {
     '--button-bg-color-active': 'var(--error-100)',
-    '--button-bg-color-default': 'var(--bg-primary)',
-    '--button-bg-color-disabled': 'var(--bg-primary)',
-    '--button-bg-color-focus': 'var(--bg-primary)',
+    '--button-bg-color-default': 'transparent',
+    '--button-bg-color-disabled': 'transparent',
+    '--button-bg-color-focus': 'transparent',
     '--button-bg-color-hover': 'var(--error-50)',
     '--button-border-color-active': 'var(--error-300)',
     '--button-border-color-default': 'var(--error-300)',
@@ -414,12 +441,14 @@ defineStyleConfig({
     '--button-text-color-focus': 'var(--error-700)',
     '--button-text-color-hover': 'var(--error-800)',
   },
-  selector: '.btn-destructive-secondary',
+  theme: '*',
+  variant: 'destructive-secondary',
   component: 'button',
 })
 
 // Destructive secondary dark
 defineStyleConfig({
+  colorScheme: 'dark',
   config: {
     '--button-bg-color-active': 'var(--error-800)',
     '--button-bg-color-default': 'var(--error-950)',
@@ -442,12 +471,14 @@ defineStyleConfig({
     '--button-text-color-focus': 'var(--error-200)',
     '--button-text-color-hover': 'var(--error-100)',
   },
-  selector: '.dark .btn-destructive-secondary',
+  theme: '*',
+  variant: 'destructive-secondary',
   component: 'button',
 })
 
 // Destructive tertiary
 defineStyleConfig({
+  colorScheme: 'light',
   config: {
     '--button-bg-color-active': 'var(--error-100)',
     '--button-bg-color-default': 'var(--bg-primary)',
@@ -474,12 +505,14 @@ defineStyleConfig({
     '--button-text-color-focus': 'var(--error-700)',
     '--button-text-color-hover': 'var(--error-800)',
   },
-  selector: '.btn-destructive-tertiary',
+  theme: '*',
+  variant: 'destructive-tertiary',
   component: 'button',
 })
 
 // Destructive tertiary dark
 defineStyleConfig({
+  colorScheme: 'dark',
   config: {
     '--button-bg-color-active': 'var(--error-800)',
     '--button-bg-color-default': 'var(--bg-primary)',
@@ -506,12 +539,14 @@ defineStyleConfig({
     '--button-text-color-focus': 'var(--error-300)',
     '--button-text-color-hover': 'var(--error-200)',
   },
-  selector: '.dark .btn-destructive-tertiary',
+  theme: '*',
+  variant: 'destructive-tertiary',
   component: 'button',
 })
 
 // Size XS
 defineStyleConfig({
+  colorScheme: '*',
   config: {
     '--button-font-size-default': 'var(--text-xs)',
     '--button-height-default': '2rem',
@@ -521,12 +556,14 @@ defineStyleConfig({
     '--button-padding-left-default': 'var(--spacing-md)',
     '--button-padding-right-default': 'var(--spacing-md)',
   },
-  selector: '.btn-xs',
+  theme: '*',
+  variant: 'xs',
   component: 'button',
 })
 
 // Size SM
 defineStyleConfig({
+  colorScheme: '*',
   config: {
     '--button-height-default': '2.25rem',
     '--button-icon-left-spacing-default': 'var(--spacing-xs)',
@@ -534,12 +571,14 @@ defineStyleConfig({
     '--button-padding-left-default': 'var(--spacing-lg)',
     '--button-padding-right-default': 'var(--spacing-lg)',
   },
-  selector: '.btn-sm',
+  theme: '*',
+  variant: 'sm',
   component: 'button',
 })
 
 // Size L
 defineStyleConfig({
+  colorScheme: '*',
   config: {
     '--button-font-size-default': 'var(--text-md)',
     '--button-height-default': '2.75rem',
@@ -548,12 +587,14 @@ defineStyleConfig({
     '--button-padding-left-default': 'var(--spacing-xl)',
     '--button-padding-right-default': 'var(--spacing-xl)',
   },
-  selector: '.btn-lg',
+  theme: '*',
+  variant: 'lg',
   component: 'button',
 })
 
 // Size XL
 defineStyleConfig({
+  colorScheme: '*',
   config: {
     '--button-font-size-default': 'var(--text-md)',
     '--button-height-default': '3rem',
@@ -562,12 +603,14 @@ defineStyleConfig({
     '--button-padding-left-default': '1.125rem',
     '--button-padding-right-default': '1.125rem',
   },
-  selector: '.btn-xl',
+  theme: '*',
+  variant: 'xl',
   component: 'button',
 })
 
 // Size 2XL
 defineStyleConfig({
+  colorScheme: '*',
   config: {
     '--button-font-size-default': 'var(--text-lg)',
     '--button-height-default': '3.75rem',
@@ -576,6 +619,7 @@ defineStyleConfig({
     '--button-padding-left-default': '1.375rem',
     '--button-padding-right-default': '1.375rem',
   },
-  selector: '.btn-2xl',
+  theme: '*',
+  variant: '2xl',
   component: 'button',
 })

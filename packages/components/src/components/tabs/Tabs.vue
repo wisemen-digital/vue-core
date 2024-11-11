@@ -41,7 +41,7 @@ const itemContentClasses = computed<string>(() => style.itemContent())
   <TabsRoot
     v-model="modelAsString"
     :class="themeProviderContext.theme.value"
-    class="tabs-variant-default"
+    class="tabs-default"
   >
     <TabsList :class="containerClasses">
       <div class="relative flex">

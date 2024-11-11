@@ -92,6 +92,7 @@ export interface TextFieldStyleConfig {
 
 // Default
 defineStyleConfig({
+  colorScheme: '*',
   config: {
     '--text-field-bg-color-default': 'var(--bg-primary)',
     '--text-field-bg-color-disabled': 'var(--bg-disabled-subtle)',
@@ -181,6 +182,7 @@ defineStyleConfig({
     '--text-field-with-icon-left-padding-left-default': 'var(--spacing-md)',
     '--text-field-with-icon-right-padding-right-default': 'var(--spacing-md)',
   },
-  selector: '.text-field-variant-default',
+  theme: '*',
+  variant: 'default',
   component: 'textField',
 })

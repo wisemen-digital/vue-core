@@ -182,6 +182,7 @@ const currentPageData = computed<ExampleData[]>(() => {
     :is-loading="isLoading"
     :pagination="pagination"
     class="max-h-[500px]"
+    variant="borderless"
   >
     <template #top>
       <div class="px-3xl py-xl">

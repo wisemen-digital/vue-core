@@ -41,4 +41,9 @@ export interface TableProps<TSchema, TFilters> extends Stylable<'table'> {
    * @default null
    */
   rowClass?: ((row: TSchema, rowIndex: number) => string) | null
+  /**
+   * The variant of the table
+   * @default 'default'
+   */
+  variant?: 'borderless' | 'default'
 }

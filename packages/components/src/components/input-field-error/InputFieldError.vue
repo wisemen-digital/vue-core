@@ -27,7 +27,7 @@ const errorClasses = computed<string>(() => style.error())
     :style="props.styleConfig"
     aria-live="assertive"
     role="alert"
-    class="input-field-error-variant-default"
+    class="input-field-error-default"
   >
     {{ props.errors?._errors[0] }}
   </span>

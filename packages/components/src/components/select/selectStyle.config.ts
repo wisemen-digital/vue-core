@@ -133,6 +133,7 @@ export interface SelectStyleConfig extends SelectOptionStyleConfig {
 
 // Default
 defineStyleConfig({
+  colorScheme: '*',
   config: {
     '--select-bg-color-default': 'var(--bg-primary)',
     '--select-bg-color-disabled': 'var(--bg-disabled-subtle)',
@@ -260,6 +261,7 @@ defineStyleConfig({
     '--select-with-icon-left-padding-left-default': 'var(--spacing-md)',
     '--select-with-icon-right-padding-right-default': 'var(--spacing-md)',
   },
-  selector: '.select-variant-default',
+  theme: '*',
+  variant: 'default',
   component: 'select',
 })

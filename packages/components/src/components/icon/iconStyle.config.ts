@@ -7,50 +7,62 @@ export interface IconStyleConfig extends BaseStyleConfig {
 }
 
 defineStyleConfig({
+  colorScheme: '*',
   config: {
     '--icon-color': 'inherit',
     '--icon-size': '1rem',
   },
-  selector: '.icon-variant-default',
+  theme: '*',
+  variant: 'default',
   component: 'icon',
 })
 
 defineStyleConfig({
+  colorScheme: '*',
   config: {
     '--icon-size': '0.875rem',
   },
-  selector: '.icon-sm',
+  theme: '*',
+  variant: 'sm',
   component: 'icon',
 })
 
 defineStyleConfig({
+  colorScheme: '*',
   config: {
     '--icon-size': '0.75rem',
   },
-  selector: '.icon-xs',
+  theme: '*',
+  variant: 'xs',
   component: 'icon',
 })
 
 defineStyleConfig({
+  colorScheme: '*',
   config: {
     '--icon-size': '1.125rem',
   },
-  selector: '.icon-lg',
+  theme: '*',
+  variant: 'lg',
   component: 'icon',
 })
 
 defineStyleConfig({
+  colorScheme: '*',
   config: {
     '--icon-size': '1.5rem',
   },
-  selector: '.icon-lg',
+  theme: '*',
+  variant: 'xl',
   component: 'icon',
 })
 
 defineStyleConfig({
+  colorScheme: '*',
   config: {
     '--icon-size': '100%',
   },
-  selector: '.icon-full',
+  theme: '*',
+  variant: 'full',
   component: 'icon',
 })

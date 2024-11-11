@@ -40,7 +40,7 @@ function onOpenAutoFocus(e: Event): void {
     :force-mount="true"
     :class="[wrapperClasses, themeProviderContext.theme.value]"
     :disable-outside-pointer-events="false"
-    class="drawer-variant-default"
+    class="drawer-default"
     @interact-outside="onInteractOutside"
     @open-auto-focus="onOpenAutoFocus"
   >

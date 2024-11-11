@@ -28,6 +28,7 @@ const props = withDefaults(defineProps<TableProps<Tschema, TFilters>>(), {
   expandedRowContent: null,
   rowClass: null,
   styleConfig: null,
+  variant: 'default',
 })
 
 const themeProviderContext = injectThemeProviderContext()
@@ -64,6 +65,14 @@ const hasActiveFilters = computed<boolean>(
 const isEmpty = computed<boolean>(() => (
   props.data !== null && props.data.meta.total === 0 && !props.isLoading
 ))
+
+const variantClass = computed<string>(() => {
+  if (props.variant === 'borderless') {
+    return 'table-borderless'
+  }
+
+  return 'table-default'
+})
 
 function getIsScrolledtoRight(element: HTMLElement): boolean {
   return element.scrollLeft > 0
@@ -142,8 +151,8 @@ provideTableContext({
 <template>
   <div
     :style="props.styleConfig"
-    :class="themeProviderContext.theme.value"
-    class="table-variant-default relative flex h-full flex-1 flex-col overflow-hidden rounded-table-border-radius-default border border-solid border-table-border-color-default bg-primary"
+    :class="[variantClass, themeProviderContext.theme.value]"
+    class="relative flex h-full flex-1 flex-col overflow-hidden rounded-table-border-radius-default border border-solid border-table-border-color-default bg-primary"
   >
     <div
       v-if="hasTopSlot"

@@ -238,7 +238,7 @@ watch(isOpen, (isOpen) => {
     <template #content>
       <ListboxRoot
         :multiple="true"
-        class="select-variant-default"
+        class="select-default"
       >
         <div class="flex flex-col border-b border-solid border-primary">
           <div

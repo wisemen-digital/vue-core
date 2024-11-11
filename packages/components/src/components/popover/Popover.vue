@@ -70,7 +70,7 @@ const arrowClasses = computed<string>(() => style.arrow())
         :collision-padding="props.popoverCollisionPaddingInPx"
         sticky="always"
         position="popper"
-        class="popover-variant-default"
+        class="popover-default"
       >
         <!-- Without this relative div, the arrow is a bit glitchy -->
         <div class="relative size-full">

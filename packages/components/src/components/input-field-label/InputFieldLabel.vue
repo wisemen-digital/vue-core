@@ -27,7 +27,7 @@ const labelClasses = computed<string>(() => style.label())
     :class="[labelClasses, themeProviderContext.theme.value]"
     :for="props.for"
     :style="props.styleConfig"
-    class="input-field-label-variant-default"
+    class="input-field-label-default"
   >
     {{ props.label }} <template v-if="props.isRequired">*</template>
   </Label>

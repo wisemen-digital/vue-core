@@ -79,6 +79,7 @@ export interface TextareaStyleConfig {
 
 // Default
 defineStyleConfig({
+  colorScheme: '*',
   config: {
     '--textarea-bg-color-default': 'var(--bg-primary)',
     '--textarea-bg-color-disabled': 'var(--bg-disabled-subtle)',
@@ -155,6 +156,7 @@ defineStyleConfig({
     '--textarea-text-color-focus': 'var(--text-primary)',
     '--textarea-text-color-hover': 'var(--text-primary)',
   },
-  selector: '.text-field-variant-default',
+  theme: '*',
+  variant: 'default',
   component: 'textarea',
 })

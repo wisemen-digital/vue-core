@@ -26,7 +26,7 @@ const hintClasses = computed<string>(() => style.hint())
     :style="props.styleConfig"
     aria-live="polite"
     role="alert"
-    class="input-field-hint-variant-default"
+    class="input-field-hint-default"
   >
     {{ props.hint }}
   </span>

@@ -10,6 +10,7 @@ export interface TableStyleConfig {
 }
 
 defineStyleConfig({
+  colorScheme: '*',
   config: {
     '--table-border-color-default': 'var(--border-secondary)',
     '--table-border-radius-default': 'var(--radius-lg)',
@@ -18,16 +19,19 @@ defineStyleConfig({
     '--table-header-label-font-weight-default': '500',
     '--table-header-label-text-color-default': 'var(--text-tertiary)',
   },
-  selector: '.table-variant-default',
+  theme: '*',
+  variant: 'default',
   component: 'table',
 })
 
 defineStyleConfig({
+  colorScheme: '*',
   config: {
     '--table-border-color-default': 'transparent',
     '--table-border-radius-default': '0',
     '--table-header-bg-color-default': 'var(--bg-primary)',
   },
-  selector: '.table-variant-borderless',
+  theme: '*',
+  variant: 'borderless',
   component: 'table',
 })

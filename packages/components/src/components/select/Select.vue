@@ -266,7 +266,7 @@ provideSelectContext({
   <div
     :style="props.styleConfig"
     :class="themeProviderContext.theme.value"
-    class="select-variant-default input-field-label-variant-default input-field-error-variant-default input-field-hint-variant-default icon-variant-default"
+    class="select-default input-field-label-default input-field-error-default input-field-hint-default icon-default"
   >
     <slot
       v-if="props.label !== null"
@@ -323,10 +323,11 @@ provideSelectContext({
       </template>
 
       <template #content>
+        <!-- TODO: I'm not sure why I have to to provide the theme again, since it should be provided in the popover -->
         <div
           :style="props.styleConfig"
-          :class="dropdownContentClasses"
-          class="select-variant-default"
+          :class="[dropdownContentClasses, themeProviderContext.theme.value]"
+          class="select-default"
         >
           <slot name="content-top" />
 

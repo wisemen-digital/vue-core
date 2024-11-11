@@ -8,12 +8,14 @@ export interface InputFieldErrorStyleConfig {
 }
 
 defineStyleConfig({
+  colorScheme: '*',
   config: {
     '--input-field-error-font-size-default': 'var(--text-sm)',
     '--input-field-error-font-weight-default': '400',
     '--input-field-error-spacing-default': 'var(--spacing-sm)',
     '--input-field-error-text-color-default': 'var(--text-error-primary)',
   },
-  selector: '.input-field-error-variant-default',
+  theme: '*',
+  variant: 'default',
   component: 'inputFieldError',
 })

@@ -99,6 +99,7 @@ export interface SwitchStyleConfig extends BaseStyleConfig {
 }
 
 defineStyleConfig({
+  colorScheme: '*',
   config: {
     '--switch-bg-color-checked': 'var(--bg-brand-solid)',
     '--switch-bg-color-default': 'var(--bg-tertiary)',
@@ -192,35 +193,42 @@ defineStyleConfig({
     '--switch-shadow-focus': 'var(--shadow-none)',
     '--switch-shadow-hover': 'var(--shadow-none)',
   },
-  selector: '.switch-variant-default',
+  theme: '*',
+  variant: 'default',
   component: 'switch',
 })
 
 defineStyleConfig({
+  colorScheme: '*',
+  config: {
+    '--switch-indicator-bg-color-disabled': 'var(--gray-600)',
+    '--switch-indicator-border-color-disabled': 'var(--gray-600)',
+  },
+  theme: 'dark',
+  variant: 'default',
+  component: 'switch',
+})
+
+defineStyleConfig({
+  colorScheme: '*',
   config: {
     '--switch-height-default': '1.5rem',
     '--switch-indicator-size-default': '1.25rem',
     '--switch-width-default': '2.75rem',
   },
-  selector: '.switch-md',
+  theme: '*',
+  variant: 'md',
   component: 'switch',
 })
 
 defineStyleConfig({
+  colorScheme: '*',
   config: {
     '--switch-height-default': '1.25rem',
     '--switch-indicator-size-default': '1.01rem',
     '--switch-width-default': '2.25rem',
   },
-  selector: '.switch-sm',
-  component: 'switch',
-})
-
-defineStyleConfig({
-  config: {
-    '--switch-indicator-bg-color-disabled': 'var(--gray-600)',
-    '--switch-indicator-border-color-disabled': 'var(--gray-600)',
-  },
-  selector: '.dark',
+  theme: '*',
+  variant: 'sm',
   component: 'switch',
 })

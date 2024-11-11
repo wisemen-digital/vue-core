@@ -9,6 +9,7 @@ export interface TooltipStyleConfig {
 }
 
 defineStyleConfig({
+  colorScheme: '*',
   config: {
     '--tooltip-bg-color-default': 'var(--bg-primary-solid)',
     '--tooltip-border-color-default': 'var(--bg-primary-solid)',
@@ -16,6 +17,7 @@ defineStyleConfig({
     '--tooltip-shadow-default': 'var(--shadow-lg)',
     '--tooltip-text-color-default': 'var(--white)',
   },
-  selector: '.tooltip-variant-default',
+  theme: '*',
+  variant: 'default',
   component: 'tooltip',
 })

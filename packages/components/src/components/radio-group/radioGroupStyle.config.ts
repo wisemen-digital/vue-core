@@ -98,6 +98,7 @@ export interface RadioGroupStyleConfig extends BaseStyleConfig {
 }
 
 defineStyleConfig({
+  colorScheme: '*',
   config: {
     // Error
     '--radio-group-error-font-size-default': 'var(--input-field-error-font-size-default)',
@@ -192,6 +193,7 @@ defineStyleConfig({
     '--radio-group-label-text-color-focus': 'var(--input-field-label-text-color-default)',
     '--radio-group-label-text-color-hover': 'var(--input-field-label-text-color-default)',
   },
-  selector: '.radio-group-variant-default',
+  theme: '*',
+  variant: 'default',
   component: 'radioGroup',
 })

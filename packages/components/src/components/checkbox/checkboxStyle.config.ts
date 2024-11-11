@@ -94,6 +94,7 @@ export interface CheckboxStyleConfig extends BaseStyleConfig {
 }
 
 defineStyleConfig({
+  colorScheme: '*',
   config: {
     '--checkbox-bg-color-checked': 'var(--bg-brand-solid)',
     '--checkbox-bg-color-default': 'var(--bg-primary)',
@@ -175,6 +176,7 @@ defineStyleConfig({
 
     '--checkbox-size-default': '1.25rem',
   },
-  selector: '.checkbox-variant-default',
+  theme: '*',
+  variant: 'default',
   component: 'checkbox',
 })

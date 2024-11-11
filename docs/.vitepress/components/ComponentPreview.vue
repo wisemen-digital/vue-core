@@ -53,7 +53,10 @@ const selectedTab = ref<TabItem | null>(tabItems.value?.[0] ?? null)
 </script>
 
 <template>
-  <VcThemeProvider :theme="darkMode.isEnabled.value ? 'dark' : 'light'">
+  <VcThemeProvider
+    :is-dark-mode-enabled="darkMode.isEnabled.value"
+    theme="default"
+  >
     <div class="flex flex-col gap-2">
       <div class="vp-raw">
         <div class="flex justify-end gap-x-4">

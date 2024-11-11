@@ -3,17 +3,35 @@ import { computed } from 'vue'
 
 import { provideThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 
-const props = defineProps<{
-  theme: 'dark' | 'light' | string & {}
-}>()
+const props = withDefaults(defineProps<{
+  isDarkModeEnabled?: boolean
+  theme: 'default' | string & {}
+}>(), {
+  isDarkModeEnabled: false,
+})
+
+const theme = computed<string>(() => {
+  const themeClasses = [
+    props.theme,
+  ]
+
+  if (props.isDarkModeEnabled) {
+    themeClasses.push('dark')
+  }
+  else {
+    themeClasses.push('light')
+  }
+
+  return themeClasses.join(' ')
+})
 
 provideThemeProviderContext({
-  theme: computed<string>(() => props.theme),
+  theme,
 })
 </script>
 
 <template>
-  <div :class="props.theme">
+  <div :class="theme">
     <slot />
   </div>
 </template>

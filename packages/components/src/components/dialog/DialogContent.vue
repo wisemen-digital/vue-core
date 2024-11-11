@@ -39,7 +39,7 @@ function onOpenAutoFocus(e: Event): void {
     :force-mount="true"
     :class="[contentClasses, themeProviderContext.theme.value]"
     :disable-outside-pointer-events="false"
-    class="dialog-variant-default"
+    class="dialog-default"
     @interact-outside="onInteractOutside"
     @open-auto-focus="onOpenAutoFocus"
   >

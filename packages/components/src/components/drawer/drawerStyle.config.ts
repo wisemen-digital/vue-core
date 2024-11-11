@@ -9,6 +9,7 @@ export interface DrawerStyleConfig {
 }
 
 defineStyleConfig({
+  colorScheme: '*',
   config: {
     '--drawer-bg-color-default': 'var(--bg-primary)',
     '--drawer-border-color-default': 'var(--border-secondary)',
@@ -16,6 +17,7 @@ defineStyleConfig({
     '--drawer-padding-default': 'var(--spacing-md)',
     '--drawer-shadow-default': 'var(--shadow-lg)',
   },
-  selector: '.drawer-variant-default',
+  theme: '*',
+  variant: 'default',
   component: 'drawer',
 })

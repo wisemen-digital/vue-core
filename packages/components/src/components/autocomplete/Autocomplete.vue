@@ -224,7 +224,7 @@ if (model.value !== null) {
 <template>
   <div
     :style="props.styleConfig"
-    class="select-variant-default text-field-variant-default input-field-label-variant-default input-field-error-variant-default input-field-hint-variant-default icon-variant-default"
+    class="select-default text-field-default input-field-label-default input-field-error-default input-field-hint-default icon-default"
   >
     <slot
       v-if="props.label !== null"
@@ -313,7 +313,7 @@ if (model.value !== null) {
           <div
             :class="dropdownContentClasses"
             :style="props.styleConfig"
-            class="select-variant-default"
+            class="select-default"
           >
             <ListboxContent :class="listboxContentClasses">
               <ListboxItem

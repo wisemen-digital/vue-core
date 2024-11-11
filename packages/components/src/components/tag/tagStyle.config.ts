@@ -15,6 +15,7 @@ export interface TagStyleConfig {
 }
 
 defineStyleConfig({
+  colorScheme: '*',
   config: {
     '--tag-bg-color-default': 'var(--bg-primary)',
     '--tag-bg-color-disabled': 'var(--bg-disabled-subtle)',
@@ -28,6 +29,7 @@ defineStyleConfig({
     '--tag-text-color-default': 'var(--text-primary)',
     '--tag-text-color-disabled': 'var(--text-disabled)',
   },
-  selector: '.tag-variant-default',
+  theme: '*',
+  variant: 'default',
   component: 'tag',
 })

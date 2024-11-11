@@ -8,12 +8,14 @@ export interface DialogStyleConfig {
 }
 
 defineStyleConfig({
+  colorScheme: '*',
   config: {
     '--dialog-bg-color-default': 'var(--bg-primary)',
     '--dialog-border-color-default': 'var(--border-secondary)',
     '--dialog-border-radius-default': 'var(--radius-lg)',
     '--dialog-shadow-default': 'var(--shadow-lg)',
   },
-  selector: '.dialog-variant-default',
+  theme: '*',
+  variant: 'default',
   component: 'dialog',
 })

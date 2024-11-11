@@ -52,7 +52,7 @@ const dropdownContentClasses = computed<string>(() => style.dropdownContent())
       <DropdownMenuSubContent
         :class="[dropdownClasses, dropdownContentClasses, themeProviderContext.theme.value]"
         :side-offset="10"
-        class="dropdown-menu-variant-default"
+        class="dropdown-menu-default"
       >
         <slot />
       </DropdownMenuSubContent>

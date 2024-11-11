@@ -167,7 +167,7 @@ onBeforeUnmount(() => {
         :container-element="props.popoverContainerElement"
         :offset-in-px="props.popoverOffsetInPx"
         position="popper"
-        class="dropdown-menu-variant-default"
+        class="dropdown-menu-default"
       >
         <!-- Without this relative div, the arrow is a bit glitchy -->
         <div class="relative size-full">

@@ -81,19 +81,19 @@ const loaderClasses = computed<string>(() => style.loader({
 
 const sizeClass = computed<null | string>(() => {
   if (props.size === 'sm') {
-    return 'btn-sm'
+    return 'button-sm'
   }
 
   if (props.size === 'lg') {
-    return 'btn-lg'
+    return 'button-lg'
   }
 
   if (props.size === 'xl') {
-    return 'btn-xl'
+    return 'button-xl'
   }
 
   if (props.size === '2xl') {
-    return 'btn-2xl'
+    return 'button-2xl'
   }
 
   return null
@@ -101,34 +101,34 @@ const sizeClass = computed<null | string>(() => {
 
 const variantClass = computed<string>(() => {
   if (props.variant === 'secondary') {
-    return 'btn-secondary-gray'
+    return 'button-secondary-gray'
   }
 
   if (props.variant === 'secondary-color') {
-    return 'btn-secondary-color'
+    return 'button-secondary-color'
   }
 
   if (props.variant === 'tertiary') {
-    return 'btn-tertiary-gray'
+    return 'button-tertiary-gray'
   }
 
   if (props.variant === 'tertiary-color') {
-    return 'btn-tertiary-color'
+    return 'button-tertiary-color'
   }
 
   if (props.variant === 'destructive-primary') {
-    return 'btn-destructive-primary'
+    return 'button-destructive-primary'
   }
 
   if (props.variant === 'destructive-secondary') {
-    return 'btn-destructive-secondary'
+    return 'button-destructive-secondary'
   }
 
   if (props.variant === 'destructive-tertiary') {
-    return 'btn-destructive-tertiary'
+    return 'button-destructive-tertiary'
   }
 
-  return 'btn-primary'
+  return 'button-primary'
 })
 
 function onFocus(): void {
@@ -184,7 +184,7 @@ function onClick(event: Event): void {
     :aria-busy="props.isLoading"
     :class="[buttonClasses, sizeClass, variantClass, themeContext.theme.value]"
     :data-test-id="props.testId"
-    class="button-variant-default icon-variant-default"
+    class="button-default"
     @focus="onFocus"
     @blur="onBlur"
     @mouseenter="onMouseEnter"
@@ -195,17 +195,28 @@ function onClick(event: Event): void {
     @keyup="onKeyUp"
     @click="onClick"
   >
-    <slot
-      v-if="props.iconLeft !== null"
-      name="icon-left"
+    <div
+      :class="{
+        'opacity-0': props.isLoading,
+      }"
     >
-      <Icon
-        :icon="props.iconLeft"
-        :class="iconLeftClasses"
-      />
-    </slot>
+      <slot
+        v-if="props.iconLeft !== null"
+        name="icon-left"
+      >
+        <Icon
+          :icon="props.iconLeft"
+          :class="iconLeftClasses"
+        />
+      </slot>
+    </div>
 
-    <span class="whitespace-nowrap">
+    <span
+      :class="{
+        'opacity-0': props.isLoading,
+      }"
+      class="whitespace-nowrap"
+    >
       <slot />
     </span>
 
@@ -225,14 +236,20 @@ function onClick(event: Event): void {
       </div>
     </Transition>
 
-    <slot
-      v-if="props.iconRight !== null"
-      name="icon-right"
+    <div
+      :class="{
+        'opacity-0': props.isLoading,
+      }"
     >
-      <Icon
-        :icon="props.iconRight"
-        :class="iconRightClasses"
-      />
-    </slot>
+      <slot
+        v-if="props.iconRight !== null"
+        name="icon-right"
+      >
+        <Icon
+          :icon="props.iconRight"
+          :class="iconRightClasses"
+        />
+      </slot>
+    </div>
   </button>
 </template>
