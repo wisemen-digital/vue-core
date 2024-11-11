@@ -1,7 +1,7 @@
 import type { PopperProps } from '@/types/popper'
-import type { StyleConfig } from '@/types/style.type'
+import type { Stylable } from '@/types/stylable.type'
 
-export interface TooltipProps extends PopperProps {
+export interface TooltipProps extends PopperProps, Stylable<'tooltip'> {
   /**
    * When true, the tooltip will be hidden.
    * @default false
@@ -22,8 +22,4 @@ export interface TooltipProps extends PopperProps {
    * @default false
    */
   disableHoverableContent?: boolean
-  /**
-   *
-   */
-  styleConfig?: StyleConfig<'tooltip'> | null
 }

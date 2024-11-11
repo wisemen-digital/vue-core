@@ -21,7 +21,6 @@ import '@/components/switch/switchStyle.config'
 
 import { ref } from 'vue'
 
-import Button from '@/components/button/button/Button.vue'
 import ConfigProvider from '@/components/config-provider/ConfigProvider.vue'
 import TimeField from '@/components/input-field/time-field/TimeField.vue'
 import Select from '@/components/select/Select.vue'
@@ -69,12 +68,6 @@ const time = ref<null | string>(null)
           placeholder="Select a fruit"
           class="w-72"
         />
-
-        <div>
-          <Button>
-            This is a button
-          </Button>
-        </div>
       </div>
     </ThemeProvider>
   </ConfigProvider>

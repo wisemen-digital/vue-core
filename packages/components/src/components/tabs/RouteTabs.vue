@@ -10,11 +10,12 @@ import { useRoute, useRouter } from 'vue-router'
 
 import { tabsStyle } from '@/components/tabs/tabs.style'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
+import type { Stylable } from '@/types/stylable.type'
 import type { RouteTabItem } from '@/types/tabs.type'
 
 const props = defineProps<{
   items: RouteTabItem<TMeta>[]
-}>()
+} & Stylable<'tabs'>>()
 
 const themeProviderContext = injectThemeProviderContext()
 

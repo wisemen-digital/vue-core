@@ -1,8 +1,8 @@
 import type { Icon } from '@/icons/icons'
 import type { Routes } from '@/types'
-import type { StyleConfig } from '@/types/style.type'
+import type { Stylable } from '@/types/stylable.type'
 
-export interface RouterLinkButtonProps {
+export interface RouterLinkButtonProps extends Stylable<'button'> {
   /**
    * The test id of the button.
    */
@@ -27,11 +27,6 @@ export interface RouterLinkButtonProps {
    * @default 'default'
    */
   size?: '2xl' | 'default' | 'lg' | 'sm' | 'xl'
-  /**
-   * The style config of the button.
-   * @default null
-   */
-  styleConfig?: StyleConfig<'button'> | null
   /**
    * The route to link to.
    */

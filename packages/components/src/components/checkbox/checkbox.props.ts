@@ -1,7 +1,7 @@
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
-import type { StyleConfig } from '@/types/style.type'
+import type { Stylable } from '@/types/stylable.type'
 
-export interface CheckboxProps {
+export interface CheckboxProps extends Stylable<'checkbox'> {
   /**
    * The id of the checkbox.
    * @default null
@@ -51,9 +51,4 @@ export interface CheckboxProps {
    * @default null
    */
   label?: null | string
-  /**
-   *
-   */
-  styleConfig?: StyleConfig<'checkbox'> | null
-
 }

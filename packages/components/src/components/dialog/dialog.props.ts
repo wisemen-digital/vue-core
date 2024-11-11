@@ -1,6 +1,6 @@
-import type { StyleConfig } from '@/types/style.type'
+import type { Stylable } from '@/types/stylable.type'
 
-export interface DialogProps {
+export interface DialogProps extends Stylable<'dialog'> {
   /**
    * The test id of the dialog.
    */
@@ -20,8 +20,4 @@ export interface DialogProps {
    * @default false
    */
   shouldPreventClickOutside?: boolean
-  /**
-   *
-   */
-  styleConfig?: StyleConfig<'dialog'> | null
 }

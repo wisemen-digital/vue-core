@@ -1,6 +1,6 @@
-import type { StyleConfig } from '@/types/style.type'
+import type { Stylable } from '@/types/stylable.type'
 
-export interface DrawerProps {
+export interface DrawerProps extends Stylable<'drawer'> {
   /**
    * The test id of the drawer.
    */
@@ -20,10 +20,6 @@ export interface DrawerProps {
    * @default false
    */
   shouldPreventClickOutside?: boolean
-  /**
-   *
-   */
-  styleConfig?: StyleConfig<'drawer'> | null
   /**
    * The transition classes to apply to the drawer
    */

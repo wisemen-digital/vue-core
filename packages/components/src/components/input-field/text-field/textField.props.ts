@@ -1,8 +1,8 @@
 import type { Icon } from '@/icons/icons'
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
-import type { StyleConfig } from '@/types/style.type'
+import type { Stylable } from '@/types/stylable.type'
 
-export interface TextFieldProps {
+export interface TextFieldProps extends Stylable<'textField'> {
   /**
    * The id of the input.
    * @default null
@@ -76,10 +76,6 @@ export interface TextFieldProps {
    * @default null
    */
   placeholder?: null | string
-  /**
-   *
-   */
-  styleConfig?: StyleConfig<'textField'> | null
   /**
    * The type of the input.
    * @default 'text'

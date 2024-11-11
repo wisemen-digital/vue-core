@@ -35,6 +35,7 @@ const props = withDefaults(defineProps<DropdownMenuProps>(), {
   popoverOffsetInPx: 4,
   popoverSide: 'bottom',
   popoverWidth: 'available-width',
+  styleConfig: null,
 })
 
 const themeContext = injectThemeProviderContext()

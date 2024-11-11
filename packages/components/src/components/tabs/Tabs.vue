@@ -9,11 +9,12 @@ import { computed } from 'vue'
 
 import { tabsStyle } from '@/components/tabs/tabs.style'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
+import type { Stylable } from '@/types/stylable.type'
 import type { TabItem } from '@/types/tabs.type'
 
 const props = defineProps<{
   items: TabItem<TMeta>[]
-}>()
+} & Stylable<'tabs'>>()
 
 const model = defineModel<TabItem<TMeta>>({
   required: true,

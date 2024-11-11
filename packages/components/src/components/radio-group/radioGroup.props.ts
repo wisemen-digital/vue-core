@@ -4,9 +4,9 @@ import type {
 
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 import type { RadioGroupItem } from '@/types/radioGroup.type'
-import type { StyleConfig } from '@/types/style.type'
+import type { Stylable } from '@/types/stylable.type'
 
-export interface RadioGroupProps<TValue extends AcceptableValue> {
+export interface RadioGroupProps<TValue extends AcceptableValue> extends Stylable<'radioGroup'> {
   /**
    * The id of the radioGroup.
    * @default null
@@ -55,9 +55,4 @@ export interface RadioGroupProps<TValue extends AcceptableValue> {
    * @default null
    */
   label?: null | string
-  /**
-   *
-   */
-  styleConfig?: StyleConfig<'radioGroup'> | null
-
 }

@@ -1,8 +1,8 @@
 import type { Icon } from '@/icons/icons'
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
-import type { StyleConfig } from '@/types/style.type'
+import type { Stylable } from '@/types/stylable.type'
 
-export interface SwitchProps {
+export interface SwitchProps extends Stylable<'switch'> {
   /**
    * The id of the checkbox.
    * @default null
@@ -62,8 +62,4 @@ export interface SwitchProps {
    * @default 'default'
    */
   size?: 'default' | 'sm'
-  /**
-   * The style config of the switch.
-   */
-  styleConfig?: StyleConfig<'switch'> | null
 }

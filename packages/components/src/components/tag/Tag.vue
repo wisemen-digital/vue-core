@@ -5,13 +5,12 @@ import { provideTagContext } from '@/components/tag/tag.context'
 import { tagStyle } from '@/components/tag/tag.style'
 import TagRemoveButton from '@/components/tag/TagRemoveButton.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
-import type { StyleConfig } from '@/types/style.type'
+import type { Stylable } from '@/types/stylable.type'
 
 const props = withDefaults(defineProps<{
   isDisabled?: boolean
   isRemovable?: boolean
-  styleConfig?: StyleConfig<'tag'> | null
-}>(), {
+} & Stylable<'tag'>>(), {
   isDisabled: false,
   isRemovable: false,
   styleConfig: null,
