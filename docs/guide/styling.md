@@ -12,14 +12,19 @@ The `defineStyleConfig` function allows you to define and apply custom styles fo
 import { defineStyleConfig } from '@wisemen/vue-core'
 
 defineStyleConfig({
-  // the component to style
+  // The component to style
   component: 'button',
-  // CSS selector where styles will be applied
-  selector: '.custom-button',
+  // Variant to apply the classes to. Can be an existing variant or a new one.
+  variant: 'primary',
+  // The configuration for the styles
   config: {
     '--button-bg-color-default': 'var(--bg-primary)',
     '--button-border-radius-default': 'var(--radius-md)',
   },
+  // Color scheme to apply the classes to. Can be either `light`, `dark` or `*`.
+  colorScheme: '*',
+  // Theme to apply the classes to. Can be either `default`, `*` or a custom theme.
+  theme: '*',
 })
 ```
 

@@ -8,8 +8,8 @@ const props = defineProps<{
 
 <template>
   <TabsContent
-    :as-child="true"
     :value="props.value"
+    class="rounded-md outline-none ring-brand-primary-500 ring-offset-1 duration-200 focus-visible:ring-2"
   >
     <slot />
   </TabsContent>
