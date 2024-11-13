@@ -14,21 +14,6 @@ interface UseComboboxReturnType {
 }
 
 export function useCombobox(params: UseComboboxParams): UseComboboxReturnType {
-  // eslint-disable-next-line unicorn/consistent-function-scoping
-  function hasOptions(items: ComboboxItem<AcceptableValue>[]): boolean {
-    for (const item of items) {
-      if (item.type === 'option') {
-        return true
-      }
-
-      if (item.type === 'group' && hasOptions(item.items)) {
-        return true
-      }
-    }
-
-    return false
-  }
-
   const canOpenDropdown = computed<boolean>(() => {
     // If there are options, the dropdown can be opened
     if (hasOptions(params.items.value)) {
@@ -47,4 +32,18 @@ export function useCombobox(params: UseComboboxParams): UseComboboxReturnType {
   return {
     canOpenDropdown,
   }
+}
+
+function hasOptions(items: ComboboxItem<AcceptableValue>[]): boolean {
+  for (const item of items) {
+    if (item.type === 'option') {
+      return true
+    }
+
+    if (item.type === 'group' && hasOptions(item.items)) {
+      return true
+    }
+  }
+
+  return false
 }

@@ -21,60 +21,59 @@ interface UseToastReturnType {
   success: (toast: NamedToast) => void
 }
 
+const DEFAULT_TOAST_DURATION = 10000
+
 export function useToast(): UseToastReturnType {
-  const DEFAULT_TOAST_DURATION = 10000
-
-  function showErrorToast(toast: NamedToast): void {
-    vueSonnerToast.custom(h(AppToast, {
-      testId: toast.testId,
-      title: toast.title,
-      description: toast.description ?? null,
-      icon: 'alertCircle',
-      type: 'error',
-    }), {
-      duration: DEFAULT_TOAST_DURATION,
-    })
-  }
-
-  function showSuccessToast(toast: NamedToast): void {
-    vueSonnerToast.custom(h(AppToast, {
-      testId: toast.testId,
-      title: toast.title,
-      description: toast.description ?? null,
-      icon: 'checkmarkCircle',
-      type: 'success',
-    }), {
-      duration: DEFAULT_TOAST_DURATION,
-    })
-  }
-
-  function showToast(toast: Toast): void {
-    vueSonnerToast.custom(h(AppToast, {
-      testId: toast.testId,
-      title: toast.title,
-      action: toast.action,
-      description: toast.description ?? null,
-      icon: toast.icon,
-      type: toast.type,
-    }), {
-      duration: toast.duration ?? DEFAULT_TOAST_DURATION,
-    })
-  }
-
-  // eslint-disable-next-line unicorn/consistent-function-scoping
-  function customToast(toast: {
-    duration?: number
-    h: () => VNode
-  }): void {
-    vueSonnerToast.custom(toast.h(), {
-      duration: toast.duration,
-    })
-  }
-
   return {
     custom: customToast,
     error: showErrorToast,
     show: showToast,
     success: showSuccessToast,
   }
+}
+
+function showErrorToast(toast: NamedToast): void {
+  vueSonnerToast.custom(h(AppToast, {
+    testId: toast.testId,
+    title: toast.title,
+    description: toast.description ?? null,
+    icon: 'alertCircle',
+    type: 'error',
+  }), {
+    duration: DEFAULT_TOAST_DURATION,
+  })
+}
+
+function showSuccessToast(toast: NamedToast): void {
+  vueSonnerToast.custom(h(AppToast, {
+    testId: toast.testId,
+    title: toast.title,
+    description: toast.description ?? null,
+    icon: 'checkmarkCircle',
+    type: 'success',
+  }), {
+    duration: DEFAULT_TOAST_DURATION,
+  })
+}
+
+function showToast(toast: Toast): void {
+  vueSonnerToast.custom(h(AppToast, {
+    testId: toast.testId,
+    title: toast.title,
+    action: toast.action,
+    description: toast.description ?? null,
+    icon: toast.icon,
+    type: toast.type,
+  }), {
+    duration: toast.duration ?? DEFAULT_TOAST_DURATION,
+  })
+}
+
+function customToast(toast: {
+  duration?: number
+  h: () => VNode
+}): void {
+  vueSonnerToast.custom(toast.h(), {
+    duration: toast.duration,
+  })
 }

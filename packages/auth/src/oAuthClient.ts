@@ -6,7 +6,7 @@ import type {
 interface OAuth2ClientOptions {
   clientId: string
   isMock?: boolean
-  axios: AxiosInstance
+  axios: AxiosInstance | AxiosStatic
   clientSecret: string
   scopes?: string[]
   tokenEndpoint: string
@@ -174,6 +174,8 @@ export class OAuth2VueClient {
 
     this.saveTokensToLocalStorage(tokens)
     this.client = this.createClient(tokens)
+
+    this.addAuthorizationHeader(tokens.access_token)
   }
 
   public logout(): void {
