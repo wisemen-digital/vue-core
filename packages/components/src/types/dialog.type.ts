@@ -1,6 +1,5 @@
 import type {
   Component,
-  ComputedRef,
   Ref,
 } from 'vue'
 
@@ -63,24 +62,25 @@ export interface UseDialogReturnType<TComponent extends Component> {
   /**
    * Close the dialog
    */
-  close: () => void
+  close: (id?: string) => void
+  /**
+   * The props to pass to the trigger
+   * @param id The id of the dialog
+   */
+  getTriggerProps: (id?: string) => DialogTriggerProps
   /**
    * Open the dialog
    * @param attrs The props to pass to the dialog - optional
    */
   open: Omit<Attrs<TComponent>, 'Symbol'> extends Record<string, never>
     ? // No params because there are no attributes
-      () => Promise<void>
+      (attrs?: { id?: string }) => Promise<void>
     : // Check if there are only optional attributes
     RequiredKeys<Omit<Attrs<TComponent>, 'Symbol'>> extends Record<string, never>
       ? // If there are only optional attributes, then the parameter is optional
-        (attrs?: Omit<Attrs<TComponent>, IgnoredKeys>) => Promise<void>
+        (attrs?: Omit<Attrs<TComponent>, IgnoredKeys> & { id?: string }) => Promise<void>
       : // If there are required attributes, then the parameter is required
-        (attrs: Omit<Attrs<TComponent>, IgnoredKeys>) => Promise<void>
-  /**
-   * The props to pass to the trigger
-   */
-  triggerProps: ComputedRef<DialogTriggerProps>
+        (attrs: Omit<Attrs<TComponent>, IgnoredKeys> & { id?: string }) => Promise<void>
 }
 
 export interface Dialog {

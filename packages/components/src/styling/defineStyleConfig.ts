@@ -4,7 +4,7 @@ interface DefineStyleConfigOptions<TComponent extends keyof ComponentStyleConfig
   colorScheme: '*' | 'dark' | 'light'
   config: Partial<ComponentStyleConfigRegistry[TComponent]['config']>
   theme: TTheme
-  variant: ComponentStyleConfigRegistry[TComponent]['variants'][number]
+  variant: ComponentStyleConfigRegistry[TComponent]['variants'][number] | string & {}
   component: TComponent
 }
 

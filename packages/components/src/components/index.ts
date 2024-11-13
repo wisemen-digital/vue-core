@@ -1,28 +1,60 @@
+import type { AutocompleteProps } from '@/components/autocomplete/autocomplete.props'
+import type { ButtonProps } from '@/components/button/button/button.props'
+import type { IconButtonProps } from '@/components/button/icon-button/iconButton.props'
+import type { RouterLinkButtonProps } from '@/components/button/router-link-button/routerLinkButton.props'
+import type { CheckboxProps } from '@/components/checkbox/checkbox.props'
+import type { DialogProps } from '@/components/dialog/dialog.props'
+import type { DrawerProps } from '@/components/drawer/drawer.props'
+import type { DropdownMenuProps } from '@/components/dropdown-menu/dropdownMenu.props'
+import type { TextFieldProps } from '@/components/input-field/text-field/textField.props'
+import type { PopoverProps } from '@/components/popover/popover.props'
+import type { RadioGroupProps } from '@/components/radio-group/radioGroup.props'
+import type { SelectProps } from '@/components/select/select.props'
+import type { SwitchProps } from '@/components/switch/switch.props'
+import type { TableProps } from '@/components/table/table.props'
+import type { TooltipProps } from '@/components/tooltip/tooltip.props'
+import type {
+  AcceptableValue,
+  SelectValue,
+} from '@/types'
+
+// Throw an error when using `export { XXXProps as VcXXXProps }` for some reason
+export type VcAutocompleteProps<TValue extends SelectValue> = AutocompleteProps<TValue>
+export type VcButtonProps = ButtonProps
+export type VcCheckboxProps = CheckboxProps
+export type VcDialogProps = DialogProps
+export type VcDrawerProps = DrawerProps
+export type VcDropdownMenuProps = DropdownMenuProps
+export type VcIconButtonProps = IconButtonProps
+export type VcPopoverProps = PopoverProps
+export type VcRadioGroupProps<TValue extends AcceptableValue> = RadioGroupProps<TValue>
+export type VcRouterLinkButtonProps = RouterLinkButtonProps
+export type VcSelectProps<TValue extends SelectValue> = SelectProps<TValue>
+export type VcSwitchProps = SwitchProps
+export type VcTableProps<TSchema, TFilters> = TableProps<TSchema, TFilters>
+export type VcTextFieldProps = TextFieldProps
+export type VcTooltipProps = TooltipProps
+
 // Autocomplete
 export { default as VcAddressAutocomplete } from '@/components/autocomplete/AddressAutocomplete.vue'
-export type { AutocompleteProps as VcAutocompleteProps } from '@/components/autocomplete/autocomplete.props'
 export { default as VcAutocomplete } from '@/components/autocomplete/Autocomplete.vue'
 
 // Breadcrumbs
 export { default as VcBreadcrumbs } from '@/components/breadcrumbs/Breadcrumbs.vue'
 
 // Button
-export type { ButtonProps as VcButtonProps } from '@/components/button/button/button.props'
 export { default as VcButton } from '@/components/button/button/Button.vue'
 
 // Icon Button
-export type { IconButtonProps as VcIconButtonProps } from '@/components/button/icon-button/iconButton.props'
 export { default as VcIconButton } from '@/components/button/icon-button/IconButton.vue'
 
 // Router Link Button
-export type { RouterLinkButtonProps as VcRouterLinkButtonProps } from '@/components/button/router-link-button/routerLinkButton.props'
 export { default as VcRouterLinkButton } from '@/components/button/router-link-button/RouterLinkButton.vue'
 
 // Calendar
 export { default as VcCalendar } from '@/components/calendar/Calendar.vue'
 
 // Checkbox
-export type { CheckboxProps as VcCheckboxProps } from '@/components/checkbox/checkbox.props'
 export { default as VcCheckbox } from '@/components/checkbox/Checkbox.vue'
 
 // Collapsable
@@ -33,7 +65,6 @@ export { default as VcCollapsable2 } from '@/components/collapsable/Collapsable2
 export { default as VcConfigProvider } from '@/components/config-provider/ConfigProvider.vue'
 
 // Dialog
-export type { DialogProps as VcDialogProps } from '@/components/dialog/dialog.props'
 export { default as VcDialog } from '@/components/dialog/Dialog.vue'
 export { default as VcDialogCloseButton } from '@/components/dialog/DialogCloseButton.vue'
 export { default as VcDialogContainer } from '@/components/dialog/DialogContainer.vue'
@@ -41,7 +72,6 @@ export { default as VcDialogDescription } from '@/components/dialog/DialogDescri
 export { default as VcDialogTitle } from '@/components/dialog/DialogTitle.vue'
 
 // Drawer
-export type { DrawerProps as VcDrawerProps } from '@/components/drawer/drawer.props'
 export { default as VcDrawer } from '@/components/drawer/Drawer.vue'
 export { default as VcDrawerCloseButton } from '@/components/drawer/DrawerCloseButton.vue'
 export { default as VcDrawerContainer } from '@/components/drawer/DrawerContainer.vue'
@@ -49,7 +79,6 @@ export { default as VcDrawerDescription } from '@/components/drawer/DrawerDescri
 export { default as VcDrawerTitle } from '@/components/drawer/DrawerTitle.vue'
 
 // Dropdown Menu
-export type { DropdownMenuProps as VcDropdownMenuProps } from '@/components/dropdown-menu/dropdownMenu.props'
 export { default as VcDropdownMenu } from '@/components/dropdown-menu/DropdownMenu.vue'
 export { default as VcDropdownMenuTrigger } from '@/components/dropdown-menu/DropdownMenuTrigger.vue'
 export { default as VcDropdownMenuGroup } from '@/components/dropdown-menu/items/DropdownMenuGroup.vue'
@@ -66,7 +95,6 @@ export { default as VcNumberField } from '@/components/input-field/number-field/
 export { default as VcPasswordField } from '@/components/input-field/password-field/PasswordField.vue'
 export { default as VcPhoneNumberField } from '@/components/input-field/phone-number-field/PhoneNumberField.vue'
 export { default as VcTextarea } from '@/components/input-field/text-area/Textarea.vue'
-export type { TextFieldProps as VcTextFieldProps } from '@/components/input-field/text-field/textField.props'
 export { default as VcTextField } from '@/components/input-field/text-field/TextField.vue'
 
 // Input field error
@@ -84,7 +112,6 @@ export { default as VcKeyboardShortcut } from '@/components/keyboard/KeyboardSho
 export { default as VcKeyboardShortcutProvider } from '@/components/keyboard/KeyboardShortcutProvider.vue'
 
 // Popover
-export type { PopoverProps as VcPopoverProps } from '@/components/popover/popover.props'
 export { default as VcPopover } from '@/components/popover/Popover.vue'
 export { default as VcPopoverAnchor } from '@/components/popover/PopoverAnchor.vue'
 export { default as VcPopoverCloseButton } from '@/components/popover/PopoverCloseButton.vue'
@@ -95,7 +122,6 @@ export { default as VcSelectGroup } from '@/components/select/items/SelectGroup.
 export { default as VcSelectOption } from '@/components/select/items/SelectOption.vue'
 export { default as VcSelectOptionIndicator } from '@/components/select/items/SelectOptionIndicator.vue'
 export { default as VcSelectSeparator } from '@/components/select/items/SelectSeparator.vue'
-export type { SelectProps as VcSelectProps } from '@/components/select/select.props'
 export { default as VcSelect } from '@/components/select/Select.vue'
 export { default as VcSelectFilter } from '@/components/select/SelectFilter.vue'
 
@@ -106,11 +132,9 @@ export { default as VcSkeletonItem } from '@/components/skeleton/SkeletonItem.vu
 export { default as VcSpinner } from '@/components/spinner/Spinner.vue'
 
 // Switch
-export type { SwitchProps as VcSwitchProps } from '@/components/switch/switch.props'
 export { default as VcSwitch } from '@/components/switch/Switch.vue'
 
 // RadioGroup
-export type { RadioGroupProps as VcRadioGroupProps } from '@/components/radio-group/radioGroup.props'
 export { default as VcRadioGroup } from '@/components/radio-group/RadioGroup.vue'
 export { default as VcRadioGroupIndicator } from '@/components/radio-group/RadioGroupIndicator.vue'
 export { default as VcRadioGroupItem } from '@/components/radio-group/RadioGroupItem.vue'
@@ -124,7 +148,6 @@ export { default as VcTablePaginationLastPage } from '@/components/table/paginat
 export { default as VcTablePaginationNextPage } from '@/components/table/pagination/TablePaginationNextPage.vue'
 export { default as VcTablePaginationPages } from '@/components/table/pagination/TablePaginationPages.vue'
 export { default as VcTablePaginationPrevPage } from '@/components/table/pagination/TablePaginationPrevPage.vue'
-export type { TableProps as VcTableProps } from '@/components/table/table.props'
 export { default as VcTable } from '@/components/table/Table.vue'
 export { default as VcTableCell } from '@/components/table/TableCell.vue'
 export { default as VcTableHeaderCell } from '@/components/table/TableHeaderCell.vue'
@@ -149,6 +172,5 @@ export { default as VcToastContainer } from '@/components/toast/ToastContainer.v
 export { default as VcToggle } from '@/components/toggle/Toggle.vue'
 
 // Tooltip
-export type { TooltipProps as VcTooltipProps } from '@/components/tooltip/tooltip.props'
 export { default as VcTooltip } from '@/components/tooltip/Tooltip.vue'
 export { default as VcTooltipTrigger } from '@/components/tooltip/TooltipTrigger.vue'

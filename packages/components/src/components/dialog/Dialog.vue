@@ -13,7 +13,7 @@ import DialogContent from '@/components/dialog/DialogContent.vue'
 import DialogOverlay from '@/components/dialog/DialogOverlay.vue'
 
 const props = withDefaults(defineProps<DialogProps>(), {
-  triggerId: null,
+  id: null,
   shouldAnimateFromTrigger: false,
   shouldPreventClickOutside: false,
   styleConfig: null,
@@ -33,12 +33,12 @@ const isActuallyOpen = ref<boolean>(false)
 
 const hasSupportForViewTransitionsApi = document.startViewTransition !== undefined
 
-if (props.shouldAnimateFromTrigger && props.triggerId === null) {
-  throw new Error('[Dialog] The `triggerId` prop is required when using the `animateFromTrigger` prop')
+if (props.shouldAnimateFromTrigger && props.id === null) {
+  throw new Error('[Dialog] The `id` prop is required when using the `animateFromTrigger` prop')
 }
 
 function getTriggerElement(): HTMLElement | null {
-  const triggerEl = document.querySelector(`#${props.triggerId}`)
+  const triggerEl = document.querySelector(`#dialog-${props.id}`)
 
   return triggerEl as HTMLElement ?? null
 }
@@ -108,7 +108,7 @@ function animateOutWithViewTransitionsApi(): void {
 }
 
 function showDialog(): void {
-  if (hasSupportForViewTransitionsApi && props.shouldAnimateFromTrigger) {
+  if (hasSupportForViewTransitionsApi && props.shouldAnimateFromTrigger && getTriggerElement() !== null) {
     animateInWithViewTransitionsApi()
   }
   else {
@@ -117,7 +117,7 @@ function showDialog(): void {
 }
 
 function focusTriggerElement(): void {
-  if (props.triggerId === null) {
+  if (props.id === null) {
     return
   }
 
@@ -131,7 +131,7 @@ function focusTriggerElement(): void {
 }
 
 function hideDialog(): void {
-  if (hasSupportForViewTransitionsApi && props.shouldAnimateFromTrigger) {
+  if (hasSupportForViewTransitionsApi && props.shouldAnimateFromTrigger && getTriggerElement() !== null) {
     animateOutWithViewTransitionsApi()
   }
   else {

@@ -19,6 +19,7 @@ export type {
   PaginatedData,
   Pagination,
   PaginationFilter,
+  PaginationFilters,
   PaginationOptions,
   UsePaginationOptions,
   UsePaginationReturnType,

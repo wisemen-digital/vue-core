@@ -21,15 +21,11 @@ import '@/components/switch/switchStyle.config'
 
 import { ref } from 'vue'
 
-import AddressAutocomplete from '@/components/autocomplete/AddressAutocomplete.vue'
 import Button from '@/components/button/button/Button.vue'
-import IconButton from '@/components/button/icon-button/IconButton.vue'
 import ConfigProvider from '@/components/config-provider/ConfigProvider.vue'
-import TextField from '@/components/input-field/text-field/TextField.vue'
-import TimeField from '@/components/input-field/time-field/TimeField.vue'
-import Select from '@/components/select/Select.vue'
+import DialogContainer from '@/components/dialog/DialogContainer.vue'
 import ThemeProvider from '@/components/theme-provider/ThemeProvider.vue'
-import { useDarkMode } from '@/composables/index'
+import { useDialog } from '@/composables/index'
 import type { SelectOption } from '@/types/select.type'
 
 const value = ref<null | string>(null)
@@ -69,7 +65,10 @@ const variants = [
   'destructive-tertiary',
 ] as const
 
-const darkMode = useDarkMode()
+const dialog = useDialog({
+  shouldAnimateFromTrigger: true,
+  component: () => import('./ExampleDialog.vue'),
+})
 </script>
 
 <template>
@@ -79,76 +78,34 @@ const darkMode = useDarkMode()
     locale="nl"
   >
     <ThemeProvider
-      :is-dark-mode-enabled="darkMode.isEnabled.value"
+      :is-dark-mode-enabled="false"
       theme="default"
     >
-      <div class="grid grid-cols-3 gap-24 bg-primary p-24">
-        <div
-          v-for="variant of variants"
-          :key="variant"
-        >
+      <div class="grid grid-cols-2 p-8">
+        <div>
           <Button
-            :variant="variant"
-            :is-loading="false"
-            icon-left="translate"
+            v-bind="dialog.getTriggerProps('test1')"
+            @click="dialog.open({
+              id: 'test1',
+            })"
           >
-            A Button
+            Trigger A
           </Button>
         </div>
 
-        <AddressAutocomplete :model-value="null" />
-
-        <Select
-          :display-fn="(value) => value"
-          :items="[
-            {
-              type: 'option',
-              value: '1',
-            },
-          ]"
-          model-value="1"
-        />
-
-        <div
-          v-for="variant of variants"
-          :key="variant"
-        >
-          <IconButton
-            :variant="variant"
-            :is-loading="false"
-            label="label"
-            icon="translate"
-          />
+        <div>
+          <Button
+            v-bind="dialog.getTriggerProps('test2')"
+            @click="dialog.open({
+              id: 'test2',
+            })"
+          >
+            Trigger B
+          </Button>
         </div>
-
-        <TextField
-          v-if="false"
-          v-model="value"
-          class="w-72"
-          label="Email address"
-        />
       </div>
 
-      <div
-        v-if="false"
-        class="flex h-full flex-col p-24"
-      >
-        value: {{ time }}
-        <TimeField
-          v-model="time"
-          icon-left="search"
-        />
-
-        <Select
-          v-if="false"
-          v-model="value"
-          :items="selectItems"
-          :display-fn="(value) => value"
-          label="Select a fruit"
-          placeholder="Select a fruit"
-          class="w-72"
-        />
-      </div>
+      <DialogContainer />
     </ThemeProvider>
   </ConfigProvider>
 </template>

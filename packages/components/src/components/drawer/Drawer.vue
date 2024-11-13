@@ -13,7 +13,7 @@ import DrawerContent from '@/components/drawer/DrawerContent.vue'
 import DrawerOverlay from '@/components/drawer/DrawerOverlay.vue'
 
 const props = withDefaults(defineProps<DrawerProps>(), {
-  triggerId: null,
+  id: null,
   shouldPreventClickOutside: false,
   shouldShouldAnimateFromTrigger: false,
   styleConfig: null,
@@ -34,12 +34,12 @@ const isActuallyOpen = ref<boolean>(false)
 
 const hasSupportForViewTransitionsApi = document.startViewTransition !== undefined
 
-if (props.shouldAnimateFromTrigger && props.triggerId === null) {
-  throw new Error('[Drawer] The `triggerId` prop is required when using the `shouldAnimateFromTrigger` prop')
+if (props.shouldAnimateFromTrigger && props.id === null) {
+  throw new Error('[Drawer] The `id` prop is required when using the `shouldAnimateFromTrigger` prop')
 }
 
 function getTriggerElement(): HTMLElement | null {
-  const triggerEl = document.querySelector(`#${props.triggerId}`)
+  const triggerEl = document.querySelector(`#dialog-${props.id}`)
 
   return triggerEl as HTMLElement ?? null
 }
@@ -109,7 +109,7 @@ function animateOutWithViewTransitionsApi(): void {
 }
 
 function showDrawer(): void {
-  if (hasSupportForViewTransitionsApi && props.shouldAnimateFromTrigger) {
+  if (hasSupportForViewTransitionsApi && props.shouldAnimateFromTrigger && getTriggerElement() !== null) {
     animateInWithViewTransitionsApi()
   }
   else {
@@ -118,7 +118,7 @@ function showDrawer(): void {
 }
 
 function focusTriggerElement(): void {
-  if (props.triggerId === null) {
+  if (props.id === null) {
     return
   }
 
@@ -132,7 +132,7 @@ function focusTriggerElement(): void {
 }
 
 function hideDrawer(): void {
-  if (hasSupportForViewTransitionsApi && props.shouldAnimateFromTrigger) {
+  if (hasSupportForViewTransitionsApi && props.shouldAnimateFromTrigger && getTriggerElement() !== null) {
     animateOutWithViewTransitionsApi()
   }
   else {
@@ -277,6 +277,10 @@ watch(isActuallyOpen, () => {
 /* Button */
 ::view-transition-new(drawer-leave) {
   opacity: 0;
+  mix-blend-mode: normal;
+  height: 100%;
+  width: 100%;
+  transform-origin: center;
   animation: drawer-fade-in 150ms 100ms forwards;
 }
 

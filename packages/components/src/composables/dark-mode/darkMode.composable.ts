@@ -27,7 +27,7 @@ interface UseDarkModeReturnType {
 }
 
 export function useDarkMode(): UseDarkModeReturnType {
-  const darkModeValue = useLocalStorage<'dark' | 'light' | 'system'>('theme', 'light')
+  const darkModeValue = useLocalStorage<'dark' | 'light' | 'system'>('theme', 'system')
   const isSystemDarkMode = ref<boolean>(systemHasDarkMode())
 
   function systemHasDarkMode(): boolean {
