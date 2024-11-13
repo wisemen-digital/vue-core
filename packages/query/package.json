@@ -31,8 +31,7 @@
     "dev": "vite build --watch"
   },
   "dependencies": {
-    "@pinia/colada": "^0.12.1",
-    "@tanstack/vue-query": "5.45.0"
+    "@pinia/colada": "0.12.1"
   },
   "devDependencies": {
     "@tsconfig/node18": "18.2.4",

@@ -1,5 +1,5 @@
-import type { QueryClient } from '@tanstack/vue-query'
-import { useQueryClient, VueQueryPlugin } from '@tanstack/vue-query'
+import { PiniaColada, useQueryCache } from '@pinia/colada'
+import { createPinia } from 'pinia'
 import {
   describe,
   expect,
@@ -10,20 +10,22 @@ import { type App, createApp } from 'vue'
 import { useMutation } from '@/composables/mutation/mutation.composable'
 import { useQuery } from '@/composables/query/query.composable'
 
-export function withSetup<T>(composable: (queryClient: QueryClient) => T): [T | null, App] {
+export function withSetup<T>(composable: (queryCache: ReturnType<typeof useQueryCache>) => T): [T | null, App] {
   let result: T | null = null
   const app = createApp({
     setup() {
-      const queryClient = useQueryClient()
+      const queryCache = useQueryCache()
 
-      result = composable(queryClient)
+      result = composable(queryCache)
 
       return (): Record<string, unknown> => ({})
     },
   })
 
-  app.use(VueQueryPlugin)
+  const pinia = createPinia()
 
+  app.use(pinia)
+  app.use(PiniaColada)
   app.mount(document.createElement('div'))
 
   return [
@@ -126,7 +128,7 @@ describe('useMutation', () => {
       await mutation3.execute()
 
       // Query also runs once on mount
-      expect(queryRunCount).toBe(3)
+      expect(queryRunCount).toBe(2)
     })
   })
 })

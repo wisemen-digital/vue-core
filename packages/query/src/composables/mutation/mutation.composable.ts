@@ -1,4 +1,5 @@
-import { useMutation as useTanstackQueryMutation, useQueryClient } from '@tanstack/vue-query'
+import type { EntryNodeKey } from '@pinia/colada'
+import { useMutation as usePiniaMutation, useQueryCache } from '@pinia/colada'
 import {
   computed,
   type ComputedRef,
@@ -46,7 +47,7 @@ export interface UseMutationReturnType<TReqData, TResData, TParams = void> {
   /**
    * Response data from the mutation
    */
-  data: ComputedRef<TResData extends unknown[] ? TResData[] : TResData | null>
+  data: ComputedRef<TResData | null>
   /**
    * Function to execute the mutation
    * @param data - Parameters and body for the mutation
@@ -63,7 +64,7 @@ export function useMutation<
   options: UseMutationOptions<TParams, TReqData, TResData>,
 ): UseMutationReturnType<TReqData, TResData, TParams> {
   const isDebug = options.isDebug ?? false
-  const queryClient = useQueryClient()
+  const queryCache = useQueryCache()
 
   async function onSuccess(responseData: TResData, params: TParams): Promise<void> {
     await Promise.all(
@@ -80,16 +81,16 @@ export function useMutation<
           acc[key as keyof TParams] = value(params, responseData) as TParams[keyof TParams]
 
           return acc
-        }, {} as TParams)
+        }, {} as TParams) as EntryNodeKey
 
         if (isDebug) {
           // eslint-disable-next-line no-console
           console.log(`[MUTATION] Invalidating ${queryKey}`, paramsWithValues)
         }
 
-        await queryClient.invalidateQueries({
+        await queryCache.invalidateQueries({
           exact: false,
-          queryKey: [
+          key: [
             queryKey,
             paramsWithValues,
           ],
@@ -98,12 +99,10 @@ export function useMutation<
     )
   }
 
-  const mutation = useTanstackQueryMutation<TResData, unknown, RequestParams<TReqData, TParams>>({
-    mutationFn: options.queryFn,
+  const mutation = usePiniaMutation<TResData, RequestParams<TReqData, TParams>>({
+    mutation: options.queryFn,
     onSuccess: async (data, variables) => {
-      const hasParams = variables !== undefined && 'params' in variables
-
-      if (hasParams) {
+      if (variables != null && 'params' in variables) {
         await onSuccess(data, variables.params)
 
         return
@@ -118,8 +117,8 @@ export function useMutation<
   }
 
   return {
-    isLoading: computed<boolean>(() => mutation.isPending.value),
-    data: computed<TResData extends unknown[] ? TResData[] : TResData | null>(() => mutation.data.value),
+    isLoading: computed<boolean>(() => mutation.isLoading.value),
+    data: computed<TResData | null>(() => mutation.data.value ?? null),
     execute,
   }
 }

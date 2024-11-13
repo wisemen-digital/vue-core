@@ -4,6 +4,7 @@ import {
   computed,
   type ComputedRef,
   type MaybeRef,
+  toValue,
 } from 'vue'
 
 import type { QueryKeys } from '@/types/queryKeys.type'
@@ -95,9 +96,9 @@ export function useQuery<TResData>(options: UseQueryOptions<TResData>): UseQuery
 
   const query = usePiniaQuery({
     staleTime: options.staleTime,
-    enabled: options.isEnabled,
-    key: queryKey,
-    placeholderData: () => null,
+    enabled: () => toValue(options.isEnabled) ?? true,
+    key: () => queryKey.value,
+    placeholderData: (previousData) => previousData,
     query: options.queryFn,
   })
 
