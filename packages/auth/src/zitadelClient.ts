@@ -13,6 +13,7 @@ export class ZitadelClient {
 
   constructor(private readonly options: OAuth2VueClientOptions) {
     this.offline = options.offline ?? false
+
     this.client = new ApiClient(
       {
         clientId: this.options.clientId,
@@ -22,6 +23,12 @@ export class ZitadelClient {
         scopes: this.options.scopes ?? this.getDefaultScopes(),
       },
     )
+
+    const tokens = this.getClient().getTokens()
+
+    if (tokens !== null) {
+      this.options.axios.defaults.headers.Authorization = `Bearer ${tokens.access_token}`
+    }
   }
 
   private async addAuthorizationHeader(): Promise<void> {

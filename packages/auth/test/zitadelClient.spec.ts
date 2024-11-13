@@ -61,13 +61,10 @@ const clientOptions: OAuth2VueClientOptions = {
 }
 
 describe('oAuth2ZitadelClient', () => {
-  let client: ZitadelClient
-
   beforeEach(() => {
     // eslint-disable-next-line ts/ban-ts-comment
     // @ts-ignore MockAdapter is not typed correctly https://github.com/ctimmerm/axios-mock-adapter/issues/400
     mockAxios = new AxiosMockAdapter(axiosInstance)
-    client = new ZitadelClient(clientOptions)
   })
 
   afterEach(() => {
@@ -76,14 +73,38 @@ describe('oAuth2ZitadelClient', () => {
 
   describe('constructor', () => {
     it('should initialize a new TokenStore with the correct clientId and tokenEndpoint', () => {
+      const client = new ZitadelClient(clientOptions)
+
       const tokenStore = client.getClient()
 
       expect(tokenStore).not.toBeNull()
+    })
+
+    it('should not set the Authorization header if tokens do not exist', () => {
+      localStorage.removeItem('tokens')
+
+      const client = new ZitadelClient(clientOptions)
+
+      const actualAuthorizationHeader = client.getAxios().defaults.headers.Authorization
+
+      expect(actualAuthorizationHeader).toBeUndefined()
+    })
+
+    it('should set the Authorization header if tokens exist', () => {
+      localStorage.setItem('tokens', JSON.stringify(mockTokens))
+
+      const client = new ZitadelClient(clientOptions)
+
+      const actualAuthorizationHeader = client.getAxios().defaults.headers.Authorization
+
+      expect(actualAuthorizationHeader).toBe(`Bearer ${mockAccessToken}`)
     })
   })
 
   describe('getLoginUrl', () => {
     it('should generate the login URL with PKCE challenge', async () => {
+      const client = new ZitadelClient(clientOptions)
+
       const pkceSpy = vi.spyOn(client, 'getLoginUrl').mockResolvedValueOnce('code_challenge_value')
       const url = await client.getLoginUrl()
 
@@ -95,6 +116,8 @@ describe('oAuth2ZitadelClient', () => {
 
   describe('getLogoutUrl', () => {
     it('should generate the logout URL', () => {
+      const client = new ZitadelClient(clientOptions)
+
       const url = client.getLogoutUrl()
 
       expect(url).toContain('http://auth.base.url/oidc/v1/end_session?client_id=client_id_value&post_logout_redirect_uri=%2Fpost-logout')
@@ -104,6 +127,8 @@ describe('oAuth2ZitadelClient', () => {
   describe('getUserInfo', () => {
     it('should fetch user info from the userInfo endpoint', async () => {
       localStorage.setItem('tokens', JSON.stringify(mockTokens))
+
+      const client = new ZitadelClient(clientOptions)
 
       const user: ZitadelUser = {
         updated_at: 0,
@@ -126,6 +151,9 @@ describe('oAuth2ZitadelClient', () => {
 
     it('should throw an error if client is not logged in', async () => {
       localStorage.removeItem('tokens')
+
+      const client = new ZitadelClient(clientOptions)
+
       client.logout()
 
       await expect(client.getUserInfo()).rejects.toThrow('Client is not initialized')
@@ -135,6 +163,8 @@ describe('oAuth2ZitadelClient', () => {
   describe('loginWithCode', () => {
     it('should perform login using authorization code', async () => {
       localStorage.setItem('code_verifier', 'code_verifier_value')
+
+      const client = new ZitadelClient(clientOptions)
 
       mockAxios.onPost('/oauth/v2/token').reply(200, mockTokens)
 
@@ -151,7 +181,11 @@ describe('oAuth2ZitadelClient', () => {
 
   describe('logout', () => {
     it('should clear tokens on logout', () => {
+      const client = new ZitadelClient(clientOptions)
+
       localStorage.setItem('tokens', JSON.stringify(mockTokens))
+
+      expect(client.getClient().getTokens()).toStrictEqual(mockTokens)
 
       client.logout()
 
@@ -163,11 +197,15 @@ describe('oAuth2ZitadelClient', () => {
     it('should return true if tokens exist', () => {
       localStorage.setItem('tokens', JSON.stringify(mockTokens))
 
+      const client = new ZitadelClient(clientOptions)
+
       expect(client.isLoggedIn()).toBeTruthy()
     })
 
     it('should return false if tokens do not exist', () => {
       localStorage.removeItem('tokens')
+
+      const client = new ZitadelClient(clientOptions)
 
       expect(client.isLoggedIn()).toBeFalsy()
     })
