@@ -37,7 +37,7 @@ describe('oAuth2VueClient', () => {
       expect(oAuthClient).toBeDefined()
     })
 
-    it('should not add the authorization header to axios in the constructor if they do not exist', async () => {
+    it('should not add the authorization header to axios in the constructor if they do not exist', () => {
       localStorage.removeItem('tokens')
 
       const oAuthClient = new OAuth2VueClient({
@@ -52,7 +52,7 @@ describe('oAuth2VueClient', () => {
       expect(actualHeaders).toBeUndefined()
     })
 
-    it('should add the authorization header to axios in the constructor if they exist', async () => {
+    it('should add the authorization header to axios in the constructor if they exist', () => {
       localStorage.setItem('tokens', JSON.stringify(MOCK_TOKENS))
 
       const oAuthClient = new OAuth2VueClient({
