@@ -48,7 +48,13 @@ export class ApiClient {
   constructor(private readonly options: ApiClientOptions) {}
 
   private accessTokenExpired(): boolean {
-    return Date.now() >= this.getTokens().expires_at
+    const tokens = this.getTokens()
+
+    if (tokens === null) {
+      return true
+    }
+
+    return Date.now() >= tokens.expires_at
   }
 
   private async getNewAccessToken(refreshToken: string): Promise<OAuth2Tokens> {
@@ -121,15 +127,33 @@ export class ApiClient {
       await this.refreshToken()
     }
 
-    return this.getTokens().access_token
+    const tokens = this.getTokens()
+
+    if (tokens === null) {
+      throw new Error('No tokens found')
+    }
+
+    return tokens.access_token
   }
 
   public getRefreshToken(): string {
-    return this.getTokens().refresh_token
+    const tokens = this.getTokens()
+
+    if (tokens === null) {
+      throw new Error('No tokens found')
+    }
+
+    return tokens.refresh_token
   }
 
-  public getTokens(): OAuth2Tokens {
-    return JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) as string) as OAuth2Tokens
+  public getTokens(): OAuth2Tokens | null {
+    const tokens = localStorage.getItem(LOCAL_STORAGE_KEY)
+
+    if (tokens === null) {
+      return null
+    }
+
+    return JSON.parse(tokens as string) as OAuth2Tokens
   }
 
   async getUserInfo(): Promise<ZitadelUser> {

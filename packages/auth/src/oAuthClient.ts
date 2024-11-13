@@ -73,6 +73,7 @@ export class OAuth2VueClient {
 
     if (tokens !== null) {
       this.client = this.createClient(tokens)
+      this.addAuthorizationHeader(tokens.access_token)
     }
   }
 

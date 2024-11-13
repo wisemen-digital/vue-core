@@ -80,6 +80,26 @@ describe('oAuth2ZitadelClient', () => {
 
       expect(tokenStore).not.toBeNull()
     })
+
+    it('should set the Authorization header if tokens exist', () => {
+      localStorage.setItem('tokens', JSON.stringify(mockTokens))
+
+      const zitadelClient = new ZitadelClient(clientOptions)
+
+      const authorizationHeader = zitadelClient.getAxios().defaults.headers.Authorization
+
+      expect(authorizationHeader).toBe(`Bearer ${mockAccessToken}`)
+    })
+
+    it('should not set the Authorization header if tokens do not exist', () => {
+      localStorage.removeItem('tokens')
+
+      const zitadelClient = new ZitadelClient(clientOptions)
+
+      const authorizationHeader = zitadelClient.getAxios().defaults.headers.Authorization
+
+      expect(authorizationHeader).toBeUndefined()
+    })
   })
 
   describe('getLoginUrl', () => {
@@ -151,9 +171,13 @@ describe('oAuth2ZitadelClient', () => {
 
   describe('logout', () => {
     it('should clear tokens on logout', () => {
+      const zitadelClient = new ZitadelClient(clientOptions)
+
       localStorage.setItem('tokens', JSON.stringify(mockTokens))
 
-      client.logout()
+      expect(zitadelClient.getClient().getTokens()).toStrictEqual(mockTokens)
+
+      zitadelClient.logout()
 
       expect(localStorage.getItem('tokens')).toBeNull()
     })
