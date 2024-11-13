@@ -18,12 +18,12 @@ describe('appIcon', () => {
 
     await flushPromises()
 
-    expect(wrapper.exists()).toBe(true)
+    expect(wrapper.exists()).toBeTruthy()
     expect(wrapper.element.tagName).toBe('svg')
 
     const checkmark = wrapper.findComponent(CheckmarkIcon)
 
-    expect(checkmark.exists()).toBe(true)
+    expect(checkmark.exists()).toBeTruthy()
   })
 
   it('renders the specified size', async () => {

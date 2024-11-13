@@ -18,7 +18,7 @@ describe('formGroup', () => {
       },
     })
 
-    expect(wrapper.find('button').exists()).toBe(true)
+    expect(wrapper.find('button').exists()).toBeTruthy()
     expect(wrapper.find('button').text()).toBe('content')
   })
 })

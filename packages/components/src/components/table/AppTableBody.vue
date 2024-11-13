@@ -29,7 +29,7 @@ const props = defineProps<{
 
 const expandedRows = ref<number[]>([])
 
-const rowComponent = computed<Component | string | typeof RouterLink>(() => {
+const rowComponent = computed<string | Component | typeof RouterLink>(() => {
   if (props.rowClick !== null) {
     return h('button', {
       type: 'button',

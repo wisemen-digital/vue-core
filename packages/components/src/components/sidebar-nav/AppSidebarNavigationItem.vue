@@ -3,7 +3,7 @@ import { computed } from 'vue'
 
 import AppKeyboardShortcutProvider from '@/components/keyboard/AppKeyboardShortcutProvider.vue'
 import AppTooltip from '@/components/tooltip/AppTooltip.vue'
-import type { NavigationItemOption } from '@/types/navigationItem.type.ts'
+import type { NavigationItemOption } from '@/types/navigationItem.type'
 
 import { useSidebarNavStyle } from './sidebarNav.style'
 

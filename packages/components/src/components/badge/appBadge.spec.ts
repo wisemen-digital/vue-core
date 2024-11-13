@@ -11,7 +11,7 @@ describe('appBadge', () => {
   it('shows no text when given no text', () => {
     const wrapper = mount(AppBadge, {})
 
-    expect(wrapper.text()).toEqual('')
+    expect(wrapper.text()).toBe('')
   })
 
   it('shows text when passing text to the slot', () => {
@@ -21,6 +21,6 @@ describe('appBadge', () => {
       },
     })
 
-    expect(wrapper.text()).toEqual('example')
+    expect(wrapper.text()).toBe('example')
   })
 })

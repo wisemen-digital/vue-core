@@ -22,17 +22,14 @@ describe('appTabs', () => {
       },
     ]
 
-    if (tabs[0] == null) {
-      throw new Error('No tabs provided')
-    }
     const wrapper = mount(AppTabs, {
       props: {
         items: tabs,
-        tab: tabs[0],
+        tab: tabs[0]!,
       },
     })
 
-    expect(wrapper.exists()).toBe(true)
+    expect(wrapper.exists()).toBeTruthy()
     expect(wrapper.findAll('button')[0]?.text()).toBe('Tab 1')
     expect(wrapper.findAll('button')[1]?.text()).toBe('Tab 2')
   })
@@ -49,10 +46,6 @@ describe('appTabs', () => {
       },
     ]
 
-    if (tabs[0] == null) {
-      throw new Error('No tabs provided')
-    }
-
     const wrapper = mount(AppTabs, {
       global: {
         components: {
@@ -61,12 +54,12 @@ describe('appTabs', () => {
       },
       props: {
         items: tabs,
-        tab: tabs[0],
+        tab: tabs[0]!,
       },
     })
 
-    expect(wrapper.exists()).toBe(true)
+    expect(wrapper.exists()).toBeTruthy()
     expect(wrapper.findComponent(AppBadge).text()).toBe('badge')
-    expect(wrapper.findComponent(AppBadge).attributes('class')?.includes('bg-red-500')).toBe(true)
+    expect(wrapper.findComponent(AppBadge).attributes('class')?.includes('bg-red-500')).toBeTruthy()
   })
 })

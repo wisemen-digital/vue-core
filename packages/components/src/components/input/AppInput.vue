@@ -12,12 +12,12 @@ const props = withDefaults(defineProps<{
    * The id of the input.
    * @default null
    */
-  id?: null | string
+  id?: string | null
   /**
    * The test id of the input.
    * @default null
    */
-  testId?: null | string
+  testId?: string | null
   /**
    * Whether the input is disabled.
    * @default false
@@ -51,7 +51,7 @@ const props = withDefaults(defineProps<{
    * The placeholder of the input.
    * @default null
    */
-  placeholder?: null | string
+  placeholder?: string | null
   /**
    * The type of the input.
    * @default 'text'
@@ -77,7 +77,7 @@ defineSlots<{
   right: () => void
 }>()
 
-const model = defineModel<null | string>({
+const model = defineModel<string | null>({
   required: true,
 })
 

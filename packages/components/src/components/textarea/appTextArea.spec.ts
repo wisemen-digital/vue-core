@@ -23,7 +23,7 @@ describe('appText', () => {
   })
 
   it('renders correctly with default props', () => {
-    expect(wrapper.exists()).toBe(true)
+    expect(wrapper.exists()).toBeTruthy()
     expect(wrapper.element.tagName).toBe('TEXTAREA')
   })
 

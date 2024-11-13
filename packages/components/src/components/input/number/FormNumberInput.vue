@@ -50,22 +50,22 @@ const props = withDefaults(
      * The maximum value of the input.
      * @default null
      */
-    max?: null | number
+    max?: number | null
     /**
      * The minimum value of the input.
      * @default 0
      */
-    min?: null | number
+    min?: number | null
     /**
      * The placeholder of the input.
      * @default null
      */
-    placeholder?: null | string
+    placeholder?: string | null
     /**
      * A suffix for the input. Overrides the right slot.
      * @default null
      */
-    suffix?: null | string
+    suffix?: string | null
     /**
      * The tooltip of the input.
      */
@@ -97,7 +97,7 @@ defineSlots<{
   right: () => void
 }>()
 
-const model = defineModel<null | number>({
+const model = defineModel<number | null>({
   required: true,
 })
 

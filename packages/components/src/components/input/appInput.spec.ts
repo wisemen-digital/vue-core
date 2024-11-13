@@ -27,8 +27,8 @@ describe('appInput', () => {
   })
 
   it('renders correctly with default props', () => {
-    expect(wrapper.exists()).toBe(true)
-    expect(wrapper.find('input').exists()).toBe(true)
+    expect(wrapper.exists()).toBeTruthy()
+    expect(wrapper.find('input').exists()).toBeTruthy()
   })
 
   it('renders placeholder correctly', async () => {
@@ -43,7 +43,7 @@ describe('appInput', () => {
 
   it('shows loading state correctly', async () => {
     await wrapper.setProps({ isLoading: true })
-    expect(wrapper.findComponent({ name: 'AppLoader' }).exists()).toBe(true)
+    expect(wrapper.findComponent({ name: 'AppLoader' }).exists()).toBeTruthy()
   })
 
   it('applies invalid state correctly', async () => {
@@ -62,7 +62,7 @@ describe('appInput', () => {
   })
 
   it('handles custom slot content', () => {
-    expect(wrapper.find('.custom-right-slot').exists()).toBe(true)
+    expect(wrapper.find('.custom-right-slot').exists()).toBeTruthy()
   })
 
   it('updates input state', async () => {
@@ -81,7 +81,7 @@ describe('appInput', () => {
       },
     })
 
-    expect(wrapper.findComponent({ name: 'AppIcon' }).exists()).toBe(true)
+    expect(wrapper.findComponent({ name: 'AppIcon' }).exists()).toBeTruthy()
     expect(wrapper.findComponent({ name: 'AppIcon' }).props('icon')).toBe(iconLeft)
   })
 })

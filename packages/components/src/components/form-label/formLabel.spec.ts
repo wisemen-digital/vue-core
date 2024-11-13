@@ -21,7 +21,7 @@ describe('formLabel', () => {
       },
     })
 
-    expect(wrapper.exists()).toBe(true)
+    expect(wrapper.exists()).toBeTruthy()
     expect(wrapper.find('span').text()).toBe('Label')
     expect(wrapper.attributes('for')).toBe('id')
   })
@@ -35,7 +35,7 @@ describe('formLabel', () => {
       },
     })
 
-    expect(wrapper.find('span').text().includes('*')).toBe(true)
+    expect(wrapper.find('span').text()).toContain('*')
   })
 
   it('renders given tooltip content and icon', async () => {
@@ -56,7 +56,7 @@ describe('formLabel', () => {
     await flushPromises()
 
     expect(wrapper.findComponent(AppTooltip).props().content).toBe('Tooltip')
-    expect(wrapper.findComponent(AppIcon).exists()).toBe(true)
+    expect(wrapper.findComponent(AppIcon).exists()).toBeTruthy()
   })
 
   it('applies correct classes if invalid', () => {

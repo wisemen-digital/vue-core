@@ -13,14 +13,14 @@ import type {
   DatePickerHighlightConfig,
   DatePickerMarker,
   DatePickerRangeConfig,
-} from '@/types/datePickerConfig.type.ts'
+} from '@/types/datePickerConfig.type'
 
 const props = withDefaults(defineProps<{
   /**
    * The id of the input.
    * @default null
    */
-  id?: null | string
+  id?: string | null
   /**
    * The test id of the input.
    * @default undefined
@@ -29,11 +29,11 @@ const props = withDefaults(defineProps<{
   /**
    * All dates after the given date will be disabled.
    */
-  maxDate?: Date | string
+  maxDate?: string | Date
   /**
    * All dates before the given date will be disabled.
    */
-  minDate?: Date | string
+  minDate?: string | Date
   /**
    * Add a clear icon to the input field where you can set the value to null.
    */

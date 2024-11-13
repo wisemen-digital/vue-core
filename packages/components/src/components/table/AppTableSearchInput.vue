@@ -14,7 +14,7 @@ const props = defineProps<{
    * The id of the input.
    * @default null
    */
-  id?: null | string
+  id?: string | null
   /**
    * Whether the input is loading.
    * @default false
@@ -47,7 +47,7 @@ const debounceSearch = useDebounceFn((value: string) => {
   props.pagination.handleSearchChange(value)
 }, 300)
 
-async function onSearchInputUpdate(value: null | string): Promise<void> {
+async function onSearchInputUpdate(value: string | null): Promise<void> {
   if (value === null) {
     return
   }

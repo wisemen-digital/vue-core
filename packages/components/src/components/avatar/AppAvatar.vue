@@ -31,11 +31,11 @@ export interface Props {
   /**
    * Source of the image for the avatar
    */
-  src: null | string
+  src: string | null
   /**
    * Defines multiple sizes of the same image, allowing the browser to select the appropriate image source.
    */
-  srcset?: null | string
+  srcset?: string | null
   /**
    * The variant of the fallback.
    */

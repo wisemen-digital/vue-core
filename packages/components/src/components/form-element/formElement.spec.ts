@@ -22,7 +22,7 @@ describe('formElement', () => {
       },
     })
 
-    expect(wrapper.exists()).toBe(true)
+    expect(wrapper.exists()).toBeTruthy()
     expect(wrapper.find('span').text()).toBe('Label')
   })
 
@@ -42,7 +42,7 @@ describe('formElement', () => {
       },
     })
 
-    expect(wrapper.find('button').exists()).toBe(true)
+    expect(wrapper.find('button').exists()).toBeTruthy()
     expect(wrapper.find('button').text()).toBe('content')
   })
 
@@ -75,7 +75,7 @@ describe('formElement', () => {
       },
     })
 
-    expect(wrapper.find('p').exists()).toBe(false)
+    expect(wrapper.find('p').exists()).toBeFalsy()
   })
 
   it('adapts the label correctly if required', () => {
@@ -89,7 +89,7 @@ describe('formElement', () => {
       },
     })
 
-    expect(wrapper.find('span').text().includes('*')).toBe(true)
+    expect(wrapper.find('span').text()).toContain('*')
   })
 
   it('renders given tooltip content and icon', async () => {
@@ -113,6 +113,6 @@ describe('formElement', () => {
     await flushPromises()
 
     expect(wrapper.findComponent(AppTooltip).props().content).toBe('Tooltip')
-    expect(wrapper.findComponent(AppIcon).exists()).toBe(true)
+    expect(wrapper.findComponent(AppIcon).exists()).toBeTruthy()
   })
 })

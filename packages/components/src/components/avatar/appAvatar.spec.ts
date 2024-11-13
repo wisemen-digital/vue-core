@@ -35,18 +35,18 @@ describe('appAvatar.vue', () => {
   })
 
   it('renders correctly with default props', () => {
-    expect(wrapper.exists()).toBe(true)
+    expect(wrapper.exists()).toBeTruthy()
     expect(wrapper.find('img').attributes('role')).toBe('img')
   })
 
   it('renders with tooltip when hasTooltip prop is true', async () => {
     await wrapper.setProps({ hasTooltip: true })
-    expect(wrapper.findComponent({ name: 'AppTooltip' }).exists()).toBe(true)
+    expect(wrapper.findComponent({ name: 'AppTooltip' }).exists()).toBeTruthy()
   })
 
   it('does not render with tooltip when hasTooltip prop is false', async () => {
     await wrapper.setProps({ hasTooltip: false })
-    expect(wrapper.findComponent({ name: 'AppTooltip' }).exists()).toBe(false)
+    expect(wrapper.findComponent({ name: 'AppTooltip' }).exists()).toBeFalsy()
   })
 
   it('renders with correct fallback text', async () => {

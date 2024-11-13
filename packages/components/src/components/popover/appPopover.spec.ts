@@ -63,7 +63,7 @@ describe('appPopover', () => {
 
     const closeButton = wrapper.findComponent(AppPopoverCloseButton)
 
-    expect(closeButton.exists()).toBe(false)
+    expect(closeButton.exists()).toBeFalsy()
   })
 
   it('does not render arrow if hideArrow is true', async () => {

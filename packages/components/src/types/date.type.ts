@@ -4,11 +4,11 @@ export interface MonthPickerValue {
 }
 
 export interface DatePickerRangeValue {
-  end: Date | string
-  start: Date | string
+  end: string | Date
+  start: string | Date
 }
 
 export interface WeekPickerValue {
-  end: Date | string
-  start: Date | string
+  end: string | Date
+  start: string | Date
 }

@@ -8,7 +8,7 @@ const props = withDefaults(defineProps<{
   /**
    * The ID of the item.
    */
-  id?: null | string
+  id?: string | null
   /**
    * Whether the switch is disabled or not.
    */

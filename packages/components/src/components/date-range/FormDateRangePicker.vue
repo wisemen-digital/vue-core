@@ -9,7 +9,7 @@ import type {
   DatePickerHighlightConfig,
   DatePickerMarker,
   DatePickerRangeConfig,
-} from '@/types/datePickerConfig.type.ts'
+} from '@/types/datePickerConfig.type'
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
 const props = withDefaults(defineProps<{
@@ -21,11 +21,11 @@ const props = withDefaults(defineProps<{
   /**
    * All dates after the given date will be disabled.
    */
-  maxDate?: Date | string
+  maxDate?: string | Date
   /**
    * All dates before the given date will be disabled.
    */
-  minDate?: Date | string
+  minDate?: string | Date
   /**
    * Add a clear icon to the input field where you can set the value to null.
    */

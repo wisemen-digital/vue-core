@@ -22,7 +22,7 @@ const props = withDefaults(defineProps<{
    * The id of the element that triggers the dialog: Will be set automatically when using the `useDialog` composable
    * @default null
    */
-  triggerId?: null | string
+  triggerId?: string | null
   /**
    * Whether to animate the dialog with the View Transitions API
    * @default false

@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 
 import AppText from '@/components/text/AppText.vue'
-import type { NavigationItemGroup } from '@/types/navigationItem.type.ts'
+import type { NavigationItemGroup } from '@/types/navigationItem.type'
 
 import { useSidebarNavStyle } from './sidebarNav.style'
 

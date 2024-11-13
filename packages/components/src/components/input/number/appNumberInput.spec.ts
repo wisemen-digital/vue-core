@@ -27,8 +27,8 @@ describe('appNumberInput', () => {
   })
 
   it('renders correctly with default props', () => {
-    expect(wrapper.exists()).toBe(true)
-    expect(wrapper.find('input').exists()).toBe(true)
+    expect(wrapper.exists()).toBeTruthy()
+    expect(wrapper.find('input').exists()).toBeTruthy()
     expect(wrapper.find('input').attributes('type')).toBe('number')
 
     const downControl = wrapper.findAllComponents({ name: 'AppIconButton' })[1]
@@ -48,7 +48,7 @@ describe('appNumberInput', () => {
 
   it('shows loading state correctly', async () => {
     await wrapper.setProps({ isLoading: true })
-    expect(wrapper.findComponent({ name: 'AppLoader' }).exists()).toBe(true)
+    expect(wrapper.findComponent({ name: 'AppLoader' }).exists()).toBeTruthy()
   })
 
   it('applies invalid state correctly', async () => {
@@ -57,7 +57,7 @@ describe('appNumberInput', () => {
   })
 
   it('handles custom slot content', () => {
-    expect(wrapper.find('.custom-left-slot').exists()).toBe(true)
+    expect(wrapper.find('.custom-left-slot').exists()).toBeTruthy()
   })
 
   it('updates input state', async () => {
@@ -97,7 +97,7 @@ describe('appNumberInput', () => {
       },
     })
 
-    expect(wrapper.findAllComponents({ name: 'AppIcon' })[0]?.exists()).toBe(true)
+    expect(wrapper.findAllComponents({ name: 'AppIcon' })[0]?.exists()).toBeTruthy()
     expect(wrapper.findAllComponents({ name: 'AppIcon' })[0]?.props('icon')).toBe(iconLeft)
   })
 })

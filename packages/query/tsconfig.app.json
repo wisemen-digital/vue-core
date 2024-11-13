@@ -9,11 +9,11 @@
     "module": "esnext",
     "moduleResolution": "node",
     "paths": {
-      "@/*": ["src/*"],
-      "@iconify/vue": ["../../.histoire/node_modules/@iconify/vue"]
+      "@/*": ["src/*"]
     },
     "resolveJsonModule": true,
     "types": ["node", "@types/dom-view-transitions"],
+    "allowJs": true,
     "strict": true,
     "declaration": false,
     "outDir": "dist",

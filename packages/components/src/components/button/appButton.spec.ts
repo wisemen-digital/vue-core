@@ -20,7 +20,7 @@ describe('appButton', () => {
       },
     })
 
-    expect(wrapper.exists()).toBe(true)
+    expect(wrapper.exists()).toBeTruthy()
     expect(wrapper.element.tagName).toBe('BUTTON')
     expect(wrapper.text()).toContain('Test content')
   })
@@ -85,7 +85,7 @@ describe('appButton', () => {
 
     const loaderComponent = wrapper.findComponent(AppLoader)
 
-    expect(loaderComponent.exists()).toBe(true)
+    expect(loaderComponent.exists()).toBeTruthy()
   })
 
   it('doesn\'t show loader if isLoading is false', () => {
@@ -105,7 +105,7 @@ describe('appButton', () => {
 
     const loaderComponent = wrapper.findComponent(AppLoader)
 
-    expect(loaderComponent.exists()).toBe(false)
+    expect(loaderComponent.exists()).toBeFalsy()
   })
 
   it('disabled attribute exists if isDisabled is true', () => {
@@ -131,6 +131,6 @@ describe('appButton', () => {
       },
     })
 
-    expect(wrapper.attributes('disabled')).toBe(undefined)
+    expect(wrapper.attributes('disabled')).toBeUndefined()
   })
 })

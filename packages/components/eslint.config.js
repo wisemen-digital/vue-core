@@ -10,6 +10,7 @@ export default [
   {
     ignores: [
       '**/src/components/sonner/Toaster.vue',
+      '**/src/components/sonner/state.ts',
     ],
   },
 ]

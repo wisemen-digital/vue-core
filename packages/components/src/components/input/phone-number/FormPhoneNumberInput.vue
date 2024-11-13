@@ -70,7 +70,7 @@ const props = withDefaults(
      * The placeholder of the input.
      * @default null
      */
-    placeholder?: null | string
+    placeholder?: string | null
     /**
      * The tooltip of the input.
      */
@@ -99,7 +99,7 @@ const asYouType = computed<AsYouType>(() => {
   return new AsYouType(countryCode.value)
 })
 
-const model = defineModel<null | string>({
+const model = defineModel<string | null>({
   required: true,
 })
 
@@ -128,7 +128,7 @@ const countryCodeModel = computed<CountryCode>({
   },
 })
 
-const inputModel = computed<null | string>({
+const inputModel = computed<string | null>({
   get: () => {
     if (model.value === null) {
       return null
@@ -207,7 +207,7 @@ watch(model, (value) => {
   immediate: true,
 })
 
-function getCountryName(countryCode: CountryCode): null | string {
+function getCountryName(countryCode: CountryCode): string | null {
   if (props.locale === null) {
     return null
   }
@@ -215,7 +215,7 @@ function getCountryName(countryCode: CountryCode): null | string {
   return i18nCountries.getName(countryCode, props.locale, { select: 'official' }) ?? null
 }
 
-const countryName = computed<null | string>(() => {
+const countryName = computed<string | null>(() => {
   const countryCode = asYouType.value.getCountry() ?? null
 
   if (countryCode === null) {

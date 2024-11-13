@@ -15,8 +15,8 @@ describe('checkboxComponent', () => {
       },
     })
 
-    expect(wrapper.exists()).toBe(true)
-    expect(wrapper.find('button').exists()).toBe(true)
+    expect(wrapper.exists()).toBeTruthy()
+    expect(wrapper.find('button').exists()).toBeTruthy()
   })
 
   it('renders with provided label', () => {

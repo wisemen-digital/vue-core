@@ -61,6 +61,7 @@ export function useToast(): UseToastReturnType {
     })
   }
 
+  // eslint-disable-next-line unicorn/consistent-function-scoping
   function customToast(toast: {
     duration?: number
     h: () => VNode

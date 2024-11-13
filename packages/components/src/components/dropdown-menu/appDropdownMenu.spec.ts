@@ -54,7 +54,7 @@ describe('appDropdownMenu', () => {
     it('renders the options', () => {
       const menuItems = document.body.querySelectorAll('[role="menuitem"]')
 
-      expect(menuItems.length).toBe(2)
+      expect(menuItems).toHaveLength(2)
       expect(menuItems[0]?.textContent).toBe('Item 1')
       expect(menuItems[1]?.textContent).toBe('Item 2')
     })

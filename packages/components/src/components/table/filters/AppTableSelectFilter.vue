@@ -18,9 +18,9 @@ const emit = defineEmits<{
   change: [event: TableFilterEvent<TFilters>]
 }>()
 
-const filterModel = ref<null | string>(getValue(props.pagination.paginationOptions.value))
+const filterModel = ref<string | null>(getValue(props.pagination.paginationOptions.value))
 
-function getValue(value: PaginationOptions<TFilters>): null | string {
+function getValue(value: PaginationOptions<TFilters>): string | null {
   const data = value.filters?.[props.filter.id] ?? null
 
   if (data === null) {
@@ -39,7 +39,7 @@ watch(
 
 watch(
   () => filterModel.value,
-  (value: null | string) => {
+  (value: string | null) => {
     emit('change', { key: props.filter.id, value })
   },
 )

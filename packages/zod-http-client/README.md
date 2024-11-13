@@ -1,38 +1,57 @@
-# pkg-placeholder
+# Zod http client
 
-[![npm version][npm-version-src]][npm-version-href]
-[![npm downloads][npm-downloads-src]][npm-downloads-href]
-[![bundle][bundle-src]][bundle-href]
-[![JSDocs][jsdocs-src]][jsdocs-href]
-[![License][license-src]][license-href]
+This package allows you to validate http requests and responses using Zod schemas.
 
-_description_
+## Installation
 
-> **Note**:
-> Replace `pkg-placeholder`, `_description_` and `antfu` globally to use this template.
+```bash
+pnpm add @wisemen/vue-core-zod-http-client
+```
 
-## Sponsors
+## Usage
 
-<p align="center">
-  <a href="https://cdn.jsdelivr.net/gh/antfu/static/sponsors.svg">
-    <img src='https://cdn.jsdelivr.net/gh/antfu/static/sponsors.svg'/>
-  </a>
-</p>
+Create a new file `httplib.ts` and add the following code:
 
-## License
+```typescript
+import { createHttpZodClient } from '@appwise/zod-http-client'
+import { useClipboard } from '@vueuse/core'
+import { useToast } from '@wisemen/vue-core'
+import { computed } from 'vue'
 
-[MIT](./LICENSE) License © 2023-PRESENT [Anthony Fu](https://github.com/antfu)
+import { CURRENT_ENVIRONMENT } from '@/constants/environment.constant.ts'
+import { axios } from '@/libs/axios.lib'
 
+interface ZodError {
+  error: unknown
+  method: string
+  url: string
+}
 
-<!-- Badges -->
+function onZodError({ error, method, url }: ZodError): void {
+  const toast = useToast()
+  const clipboard = useClipboard({
+    copiedDuring: 2000,
+  })
 
-[npm-version-src]: https://img.shields.io/npm/v/pkg-placeholder?style=flat&colorA=080f12&colorB=1fa669
-[npm-version-href]: https://npmjs.com/package/pkg-placeholder
-[npm-downloads-src]: https://img.shields.io/npm/dm/pkg-placeholder?style=flat&colorA=080f12&colorB=1fa669
-[npm-downloads-href]: https://npmjs.com/package/pkg-placeholder
-[bundle-src]: https://img.shields.io/bundlephobia/minzip/pkg-placeholder?style=flat&colorA=080f12&colorB=1fa669&label=minzip
-[bundle-href]: https://bundlephobia.com/result?p=pkg-placeholder
-[license-src]: https://img.shields.io/github/license/antfu/pkg-placeholder.svg?style=flat&colorA=080f12&colorB=1fa669
-[license-href]: https://github.com/antfu/pkg-placeholder/blob/main/LICENSE
-[jsdocs-src]: https://img.shields.io/badge/jsdocs-reference-080f12?style=flat&colorA=080f12&colorB=1fa669
-[jsdocs-href]: https://www.jsdocs.io/package/pkg-placeholder
+  if (CURRENT_ENVIRONMENT !== 'production') {
+    toast.error({
+      action: {
+        label: computed<string>(() => clipboard.copied.value ? 'Copied!' : 'Copy error'),
+        onClick: () => {
+          void clipboard.copy(`${method.toUpperCase()} ${url} returned a malformed response.\n\n${JSON.stringify(error, null, 2)}`)
+        },
+      },
+      durationInMs: 20000,
+      icon: 'alertCircle',
+      message: `${method.toUpperCase()} ${url} returned a malformed response.`,
+    })
+  }
+
+  console.error(`${method.toUpperCase()} ${url} returned a malformed response\n\n`, JSON.stringify(error, null, 2))
+}
+
+export const httpClient = createHttpZodClient({
+  axios,
+  onZodError,
+})
+```

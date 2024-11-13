@@ -18,7 +18,7 @@ describe('formError', () => {
       },
     })
 
-    expect(wrapper.exists()).toBe(true)
+    expect(wrapper.exists()).toBeTruthy()
     expect(wrapper.text()).toBe('error')
   })
 

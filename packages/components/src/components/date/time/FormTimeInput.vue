@@ -48,7 +48,7 @@ const props = withDefaults(
      * The placeholder of the input.
      * @default null
      */
-    placeholder?: null | string
+    placeholder?: string | null
     /**
      * The tooltip of the input.
      */
@@ -70,7 +70,7 @@ defineSlots<{
   right: () => void
 }>()
 
-const model = defineModel<null | string>({
+const model = defineModel<string | null>({
   required: true,
 })
 

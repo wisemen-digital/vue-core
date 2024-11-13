@@ -25,7 +25,7 @@ const props = withDefaults(defineProps<{
   /**
    * Optional description text added under the title.
    */
-  description?: null | string
+  description?: string | null
   /**
    * The icon of the toast.
    */

@@ -1,9 +1,9 @@
 export interface AddressCoordinates {
-  latitude: null | number
-  longitude: null | number
+  latitude: number | null
+  longitude: number | null
 }
 export interface AddressForm {
-  bus: null | string
+  bus: string | null
   city: string
   coordinates: AddressCoordinates
   country: string

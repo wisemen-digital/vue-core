@@ -32,12 +32,12 @@ const props = withDefaults(defineProps<{
    * The maximum amount of tags allowed.
    * @default null
    */
-  max?: null | number
+  max?: number | null
   /**
    * The placeholder of the input.
    * @default null
    */
-  placeholder?: null | string
+  placeholder?: string | null
   /**
    * The tooltip of the input.
    */

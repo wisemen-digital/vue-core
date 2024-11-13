@@ -14,7 +14,7 @@ import type {
 const props = defineProps<{
   isLoading: boolean
   pagination: Pagination<unknown>
-  total: null | number
+  total: number | null
 }>()
 
 const tableStyle = useTableStyle()

@@ -38,7 +38,7 @@ describe('useMutation', () => {
   })
 
   it('should invalidate a query key correctly', () => {
-    withSetup(async () => {
+    void withSetup(async () => {
       let queryRunCount = 0
 
       useQuery({
@@ -67,7 +67,7 @@ describe('useMutation', () => {
   })
 
   it('should invalidate a query key with params correctly', () => {
-    withSetup(async () => {
+    void withSetup(async () => {
       let queryRunCount = 0
 
       useQuery({

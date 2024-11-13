@@ -16,10 +16,12 @@ export type AutoCompletePrediction = google.maps.places.AutocompletePrediction
 
 type AddressComponentType = 'country' | 'locality' | 'postal_code' | 'route' | 'street_number'
 
-export function useAddressAutoComplete(): {
+interface AddressAutocompleteReturnType {
   getAddressFormByPlaceId: (placeId: string) => Promise<AddressForm>
   fetchPredictions: (searchString: string) => Promise<DataItem<string>[]>
-} {
+}
+
+export function useAddressAutoComplete(): AddressAutocompleteReturnType {
   const toast = useToast()
 
   let loader: Loader | null
@@ -49,24 +51,6 @@ export function useAddressAutoComplete(): {
 
       return []
     }
-  }
-
-  async function getAddressFormByPlaceId(placeId: string): Promise<AddressForm> {
-    const placesService = new google.maps.places.PlacesService(document.createElement('div'))
-
-    const result = await new Promise((resolve: (value: PlaceResult) => void) => {
-      placesService.getDetails({ placeId }, (place: PlaceResult | null, status: PlacesServiceStatus) => {
-        if (place === null) {
-          throw new Error('Place not found')
-        }
-
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-          resolve(place)
-        }
-      })
-    })
-
-    return mapPlaceResultToAddress(result)
   }
 
   onMounted(async () => {
@@ -118,6 +102,24 @@ function mapAutoCompletePredictionToDataItem(prediction: AutoCompletePrediction)
 
 function findAddressComponent(place: PlaceResult, type: AddressComponentType): GeocoderAddressComponent | null {
   return place?.address_components?.find((component) => component.types[0] === type) ?? null
+}
+
+async function getAddressFormByPlaceId(placeId: string): Promise<AddressForm> {
+  const placesService = new google.maps.places.PlacesService(document.createElement('div'))
+
+  const result = await new Promise((resolve: (value: PlaceResult) => void) => {
+    placesService.getDetails({ placeId }, (place: PlaceResult | null, status: PlacesServiceStatus) => {
+      if (place === null) {
+        throw new Error('Place not found')
+      }
+
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        resolve(place)
+      }
+    })
+  })
+
+  return mapPlaceResultToAddress(result)
 }
 
 function mapPlaceResultToAddress(place: PlaceResult): AddressForm {

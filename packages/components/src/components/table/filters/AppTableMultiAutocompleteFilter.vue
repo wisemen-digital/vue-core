@@ -20,6 +20,14 @@ function onUpdateModelValue(value: { uuid: TValue, label: string }[]): void {
 
   emit('change', { key: props.filter.id, value: uuids.length > 0 ? uuids : null })
 }
+
+function onSearch(value: string | null): void {
+  if (value === null) {
+    return
+  }
+
+  void props.filter.onSearch(value)
+}
 </script>
 
 <template>
@@ -34,7 +42,7 @@ function onUpdateModelValue(value: { uuid: TValue, label: string }[]): void {
       :label="props.filter.label"
       :model-value="props.filter.modelValue"
       @update:model-value="onUpdateModelValue"
-      @update:search="props.filter.onSearch"
+      @update:search="onSearch"
     />
   </div>
 </template>

@@ -11,7 +11,7 @@ export interface DatePickerMarker {
   color?: string
   // el is a HTML element of a calendar cell
   customPosition?: (el: HTMLElement) => Record<string, number | string>
-  date: Date | string
+  date: string | Date
   tooltip?: { color?: string, text: string }[]
   type?: 'dot' | 'line'
 }
