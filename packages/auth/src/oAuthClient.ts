@@ -129,6 +129,10 @@ export class OAuth2VueClient {
     localStorage.setItem('tokens', JSON.stringify(tokens))
   }
 
+  public getAxios(): AxiosInstance | AxiosStatic {
+    return this.options.axios
+  }
+
   public getClient(): TokenStore | null {
     return this.client
   }
@@ -289,7 +293,7 @@ class TokenStore {
   }
 }
 
-export class OAuth2Client {
+class OAuth2Client {
   constructor(private readonly options: OAuth2ClientOptions) {}
 
   private async login(clientOptions: ClientOptions): Promise<TokenStore> {

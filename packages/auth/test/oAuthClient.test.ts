@@ -23,17 +23,49 @@ describe('oAuth2VueClient', () => {
     token_type: 'token_type',
   }
 
-  it('creates a new client using the constructor', () => {
-    expect(1).toBe(1)
+  describe('constructor', () => {
+    it('creates a new client using the constructor', () => {
+      expect(1).toBe(1)
 
-    const oAuthClient = new OAuth2VueClient({
-      clientId: CLIENT_ID,
-      axios,
-      clientSecret: CLIENT_SECRET,
-      tokenEndpoint: TOKEN_ENDPOINT,
+      const oAuthClient = new OAuth2VueClient({
+        clientId: CLIENT_ID,
+        axios,
+        clientSecret: CLIENT_SECRET,
+        tokenEndpoint: TOKEN_ENDPOINT,
+      })
+
+      expect(oAuthClient).toBeDefined()
     })
 
-    expect(oAuthClient).toBeDefined()
+    it('should not add the authorization header to axios in the constructor if they do not exist', async () => {
+      localStorage.removeItem('tokens')
+
+      const oAuthClient = new OAuth2VueClient({
+        clientId: CLIENT_ID,
+        axios,
+        clientSecret: CLIENT_SECRET,
+        tokenEndpoint: TOKEN_ENDPOINT,
+      })
+
+      const actualHeaders = oAuthClient.getAxios().defaults.headers.Authorization
+
+      expect(actualHeaders).toBeUndefined()
+    })
+
+    it('should add the authorization header to axios in the constructor if they exist', async () => {
+      localStorage.setItem('tokens', JSON.stringify(MOCK_TOKENS))
+
+      const oAuthClient = new OAuth2VueClient({
+        clientId: CLIENT_ID,
+        axios,
+        clientSecret: CLIENT_SECRET,
+        tokenEndpoint: TOKEN_ENDPOINT,
+      })
+
+      const actualHeaders = oAuthClient.getAxios().defaults.headers.Authorization
+
+      expect(actualHeaders).toBe('Bearer access_token')
+    })
   })
 
   it('authenticates using a password', async () => {
