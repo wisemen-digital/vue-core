@@ -76,6 +76,8 @@ const computedModel = computed<Time | undefined>({
     return new Time(Number(hours), Number(minutes))
   },
   set: (value) => {
+    console.log(value)
+
     if (value === undefined) {
       model.value = null
 

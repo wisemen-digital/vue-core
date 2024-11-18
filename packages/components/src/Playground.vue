@@ -24,6 +24,7 @@ import { ref } from 'vue'
 import Button from '@/components/button/button/Button.vue'
 import ConfigProvider from '@/components/config-provider/ConfigProvider.vue'
 import DialogContainer from '@/components/dialog/DialogContainer.vue'
+import TimeField from '@/components/input-field/time-field/TimeField.vue'
 import ThemeProvider from '@/components/theme-provider/ThemeProvider.vue'
 import { useDialog } from '@/composables/index'
 import type { SelectOption } from '@/types/select.type'
@@ -69,6 +70,8 @@ const dialog = useDialog({
   shouldAnimateFromTrigger: true,
   component: () => import('./ExampleDialog.vue'),
 })
+
+const test = ref<null | string>(null)
 </script>
 
 <template>
@@ -81,7 +84,11 @@ const dialog = useDialog({
       :is-dark-mode-enabled="false"
       theme="default"
     >
-      <div class="grid grid-cols-2 p-8">
+      <div
+        class="grid grid-cols-2 p-8"
+      >
+        test: {{ test }}
+        <TimeField v-model="test" />
         <div>
           <Button
             v-bind="dialog.getTriggerProps('test1')"

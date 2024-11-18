@@ -40,6 +40,8 @@ const { t } = useI18n()
       <p class="mx-auto max-w-md text-sm text-tertiary">
         {{ t('component.table.no_results.description') }}
       </p>
+
+      <slot name="empty-state-no-results-actions" />
     </div>
   </div>
 
@@ -64,6 +66,8 @@ const { t } = useI18n()
       <p class="mx-auto max-w-xs text-sm text-tertiary">
         {{ t('component.table.no_data.description') }}
       </p>
+
+      <slot name="empty-state-no-data-actions" />
     </div>
 
     <TableHeader />

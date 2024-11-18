@@ -167,7 +167,15 @@ provideTableContext({
       <TableEmptyState
         v-else-if="isEmpty"
         :has-active-filters="hasActiveFilters"
-      />
+      >
+        <template #empty-state-no-data-actions>
+          <slot name="empty-state-no-data-actions" />
+        </template>
+
+        <template #empty-state-no-results-actions>
+          <slot name="empty-state-no-results-actions" />
+        </template>
+      </TableEmptyState>
 
       <div
         v-else
