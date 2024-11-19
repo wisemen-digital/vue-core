@@ -57,9 +57,16 @@ export class ApiClient {
     return Date.now() >= tokens.expires_at
   }
 
+  /*
+  * @returns base url without trailing slash
+  */
+  private getBaseUrl(): string {
+    return this.options.baseUrl.replace(/\/$/, '')
+  }
+
   private async getNewAccessToken(refreshToken: string): Promise<OAuth2Tokens> {
     const response = await this.options.axios.post<OAuth2Tokens>(
-      `${this.options.baseUrl}/oauth/v2/token`,
+      `${this.getBaseUrl()}/oauth/v2/token`,
       {
         client_id: this.options.clientId,
         grant_type: 'refresh_token',
@@ -159,7 +166,7 @@ export class ApiClient {
   async getUserInfo(): Promise<ZitadelUser> {
     const accessToken = await this.getAccessToken()
 
-    const response = await this.options.axios.get(`${this.options.baseUrl}/oidc/v1/userinfo`, {
+    const response = await this.options.axios.get(`${this.getBaseUrl()}/oidc/v1/userinfo`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -171,7 +178,7 @@ export class ApiClient {
   public async loginWithCode(code: string): Promise<void> {
     const codeVerifier = localStorage.getItem(CODE_VERIFIER_KEY)
 
-    const response = await this.options.axios.post<OAuth2Tokens>(`${this.options.baseUrl}/oauth/v2/token`, {
+    const response = await this.options.axios.post<OAuth2Tokens>(`${this.getBaseUrl()}/oauth/v2/token`, {
       client_id: this.options.clientId,
       code,
       code_verifier: codeVerifier,
@@ -186,6 +193,22 @@ export class ApiClient {
     this.setTokens(response.data)
 
     localStorage.removeItem(CODE_VERIFIER_KEY)
+  }
+
+  public async loginWithPassword(username: string, password: string): Promise<void> {
+    const response = await this.options.axios.post<OAuth2Tokens>(`${this.getBaseUrl()}/oauth/v2/token`, {
+      client_id: this.options.clientId,
+      grant_type: 'password',
+      password,
+      scope: this.options.scopes?.join(' '),
+      username,
+    }, {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    })
+
+    this.setTokens(response.data)
   }
 
   public setMockTokens(): void {

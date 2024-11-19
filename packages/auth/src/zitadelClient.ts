@@ -27,25 +27,21 @@ export class ZitadelClient {
     const tokens = this.getClient().getTokens()
 
     if (tokens !== null) {
-      this.options.axios.defaults.headers.Authorization = `Bearer ${tokens.access_token}`
+      this.addAuthorizationHeaderToAxios(tokens.access_token)
     }
   }
 
   private async addAuthorizationHeader(): Promise<void> {
     const client = this.getClient()
 
-    if (client === null) {
-      return
-    }
-
-    if (this.offline) {
+    if (client === null || this.offline) {
       return
     }
 
     try {
       const token = await client.getAccessToken()
 
-      this.options.axios.defaults.headers.Authorization = `Bearer ${token}`
+      this.addAuthorizationHeaderToAxios(token)
     }
     catch (error) {
       console.error('Failed to get access token, logging out', error)
@@ -54,6 +50,10 @@ export class ZitadelClient {
 
       throw new Error('Failed to get access token')
     }
+  }
+
+  private addAuthorizationHeaderToAxios(token: string): void {
+    this.options.axios.defaults.headers.Authorization = `Bearer ${token}`
   }
 
   private getDefaultScopes(): string[] {
@@ -168,6 +168,25 @@ export class ZitadelClient {
 
     try {
       await this.getClient().loginWithCode(code)
+
+      await this.addAuthorizationHeader()
+    }
+    catch (error) {
+      this.logout()
+
+      throw error
+    }
+  }
+
+  public async loginWithPassword(username: string, password: string): Promise<void> {
+    if (this.options.offline === true) {
+      this.loginOffline()
+
+      return
+    }
+
+    try {
+      await this.getClient().loginWithPassword(username, password)
 
       await this.addAuthorizationHeader()
     }
