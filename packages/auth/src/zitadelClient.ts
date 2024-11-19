@@ -178,25 +178,6 @@ export class ZitadelClient {
     }
   }
 
-  public async loginWithPassword(username: string, password: string): Promise<void> {
-    if (this.options.offline === true) {
-      this.loginOffline()
-
-      return
-    }
-
-    try {
-      await this.getClient().loginWithPassword(username, password)
-
-      await this.addAuthorizationHeader()
-    }
-    catch (error) {
-      this.logout()
-
-      throw error
-    }
-  }
-
   public logout(): void {
     this.client?.clearTokens()
     this.client = null

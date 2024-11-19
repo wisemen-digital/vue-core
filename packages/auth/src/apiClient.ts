@@ -195,22 +195,6 @@ export class ApiClient {
     localStorage.removeItem(CODE_VERIFIER_KEY)
   }
 
-  public async loginWithPassword(username: string, password: string): Promise<void> {
-    const response = await this.options.axios.post<OAuth2Tokens>(`${this.getBaseUrl()}/oauth/v2/token`, {
-      client_id: this.options.clientId,
-      grant_type: 'password',
-      password,
-      scope: this.options.scopes?.join(' '),
-      username,
-    }, {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-    })
-
-    this.setTokens(response.data)
-  }
-
   public setMockTokens(): void {
     this.setTokens({
       expires_at: 0,
