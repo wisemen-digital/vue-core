@@ -47,16 +47,6 @@ export class ApiClient {
 
   constructor(private readonly options: ApiClientOptions) {}
 
-  private accessTokenExpired(): boolean {
-    const tokens = this.getTokens()
-
-    if (tokens === null) {
-      return true
-    }
-
-    return Date.now() >= tokens.expires_at
-  }
-
   /*
   * @returns base url without trailing slash
   */
@@ -130,7 +120,7 @@ export class ApiClient {
   }
 
   public async getAccessToken(): Promise<string> {
-    if (this.accessTokenExpired()) {
+    if (this.isAccessTokenExpired()) {
       await this.refreshToken()
     }
 
@@ -173,6 +163,16 @@ export class ApiClient {
     })
 
     return response.data
+  }
+
+  public isAccessTokenExpired(): boolean {
+    const tokens = this.getTokens()
+
+    if (tokens === null) {
+      return true
+    }
+
+    return Date.now() >= tokens.expires_at
   }
 
   public async loginWithCode(code: string): Promise<void> {
