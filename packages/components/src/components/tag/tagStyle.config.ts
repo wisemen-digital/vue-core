@@ -14,22 +14,24 @@ export interface TagStyleConfig {
   '--tag-text-color-disabled': string
 }
 
-defineStyleConfig({
-  colorScheme: '*',
-  config: {
-    '--tag-bg-color-default': 'var(--bg-primary)',
-    '--tag-bg-color-disabled': 'var(--bg-disabled-subtle)',
-    '--tag-border-color-default': 'var(--border-primary)',
-    '--tag-border-color-disabled': 'var(--border-disabled)',
-    '--tag-border-radius-default': 'var(--radius-md)',
-    '--tag-font-size-default': 'var(--text-sm)',
-    '--tag-font-weight-default': '500',
-    '--tag-padding-x-default': 'var(--spacing-sm)',
-    '--tag-padding-y-default': 'var(--spacing-none)',
-    '--tag-text-color-default': 'var(--text-primary)',
-    '--tag-text-color-disabled': 'var(--text-disabled)',
-  },
-  theme: '*',
-  variant: 'default',
-  component: 'tag',
-})
+export function setupDefaultTagStyles(): void {
+  defineStyleConfig({
+    colorScheme: '*',
+    config: {
+      '--tag-bg-color-default': 'var(--bg-primary)',
+      '--tag-bg-color-disabled': 'var(--bg-disabled-subtle)',
+      '--tag-border-color-default': 'var(--border-primary)',
+      '--tag-border-color-disabled': 'var(--border-disabled)',
+      '--tag-border-radius-default': 'var(--radius-md)',
+      '--tag-font-size-default': 'var(--text-sm)',
+      '--tag-font-weight-default': '500',
+      '--tag-padding-x-default': 'var(--spacing-sm)',
+      '--tag-padding-y-default': 'var(--spacing-none)',
+      '--tag-text-color-default': 'var(--text-primary)',
+      '--tag-text-color-disabled': 'var(--text-disabled)',
+    },
+    theme: '*',
+    variant: 'default',
+    component: 'tag',
+  })
+}
