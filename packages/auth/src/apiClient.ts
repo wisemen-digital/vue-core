@@ -47,19 +47,16 @@ export class ApiClient {
 
   constructor(private readonly options: ApiClientOptions) {}
 
-  private accessTokenExpired(): boolean {
-    const tokens = this.getTokens()
-
-    if (tokens === null) {
-      return true
-    }
-
-    return Date.now() >= tokens.expires_at
+  /*
+  * @returns base url without trailing slash
+  */
+  private getBaseUrl(): string {
+    return this.options.baseUrl.replace(/\/$/, '')
   }
 
   private async getNewAccessToken(refreshToken: string): Promise<OAuth2Tokens> {
     const response = await this.options.axios.post<OAuth2Tokens>(
-      `${this.options.baseUrl}/oauth/v2/token`,
+      `${this.getBaseUrl()}/oauth/v2/token`,
       {
         client_id: this.options.clientId,
         grant_type: 'refresh_token',
@@ -123,7 +120,7 @@ export class ApiClient {
   }
 
   public async getAccessToken(): Promise<string> {
-    if (this.accessTokenExpired()) {
+    if (this.isAccessTokenExpired()) {
       await this.refreshToken()
     }
 
@@ -159,7 +156,7 @@ export class ApiClient {
   async getUserInfo(): Promise<ZitadelUser> {
     const accessToken = await this.getAccessToken()
 
-    const response = await this.options.axios.get(`${this.options.baseUrl}/oidc/v1/userinfo`, {
+    const response = await this.options.axios.get(`${this.getBaseUrl()}/oidc/v1/userinfo`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -168,10 +165,20 @@ export class ApiClient {
     return response.data
   }
 
+  public isAccessTokenExpired(): boolean {
+    const tokens = this.getTokens()
+
+    if (tokens === null) {
+      return true
+    }
+
+    return Date.now() >= tokens.expires_at
+  }
+
   public async loginWithCode(code: string): Promise<void> {
     const codeVerifier = localStorage.getItem(CODE_VERIFIER_KEY)
 
-    const response = await this.options.axios.post<OAuth2Tokens>(`${this.options.baseUrl}/oauth/v2/token`, {
+    const response = await this.options.axios.post<OAuth2Tokens>(`${this.getBaseUrl()}/oauth/v2/token`, {
       client_id: this.options.clientId,
       code,
       code_verifier: codeVerifier,

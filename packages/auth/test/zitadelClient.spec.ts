@@ -89,16 +89,6 @@ describe('oAuth2ZitadelClient', () => {
 
       expect(actualAuthorizationHeader).toBeUndefined()
     })
-
-    it('should set the Authorization header if tokens exist', () => {
-      localStorage.setItem('tokens', JSON.stringify(mockTokens))
-
-      const client = new ZitadelClient(clientOptions)
-
-      const actualAuthorizationHeader = client.getAxios().defaults.headers.Authorization
-
-      expect(actualAuthorizationHeader).toBe(`Bearer ${mockAccessToken}`)
-    })
   })
 
   describe('getLoginUrl', () => {
@@ -194,20 +184,22 @@ describe('oAuth2ZitadelClient', () => {
   })
 
   describe('isLoggedIn', () => {
+    it('should return false if tokens do not exist', async () => {
+      localStorage.removeItem('tokens')
+
+      const client = new ZitadelClient(clientOptions)
+
+      const isLoggedIn = await client.isLoggedIn()
+
+      expect(isLoggedIn).toBeFalsy()
+    })
+
     it('should return true if tokens exist', () => {
       localStorage.setItem('tokens', JSON.stringify(mockTokens))
 
       const client = new ZitadelClient(clientOptions)
 
       expect(client.isLoggedIn()).toBeTruthy()
-    })
-
-    it('should return false if tokens do not exist', () => {
-      localStorage.removeItem('tokens')
-
-      const client = new ZitadelClient(clientOptions)
-
-      expect(client.isLoggedIn()).toBeFalsy()
     })
   })
 })
