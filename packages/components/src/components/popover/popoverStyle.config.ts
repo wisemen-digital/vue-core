@@ -9,17 +9,19 @@ export interface PopoverStyleConfig {
   '--popover-shadow-default': string
 }
 
-defineStyleConfig({
-  colorScheme: '*',
-  config: {
-    '--popover-bg-color-default': 'var(--bg-primary)',
-    '--popover-border-color-default': 'var(--border-secondary)',
-    '--popover-border-radius-default': 'var(--radius-lg)',
-    '--popover-max-width-default': 'auto',
-    '--popover-min-width-default': 'auto',
-    '--popover-shadow-default': 'var(--shadow-lg)',
-  },
-  theme: '*',
-  variant: 'default',
-  component: 'popover',
-})
+export function setupDefaultPopoverStyles(): void {
+  defineStyleConfig({
+    colorScheme: '*',
+    config: {
+      '--popover-bg-color-default': 'var(--bg-primary)',
+      '--popover-border-color-default': 'var(--border-secondary)',
+      '--popover-border-radius-default': 'var(--radius-lg)',
+      '--popover-max-width-default': 'auto',
+      '--popover-min-width-default': 'auto',
+      '--popover-shadow-default': 'var(--shadow-lg)',
+    },
+    theme: '*',
+    variant: 'default',
+    component: 'popover',
+  })
+}

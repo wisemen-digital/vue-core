@@ -6,53 +6,55 @@ export interface IconButtonStyleConfig extends ButtonStyleConfig {
   '--icon-button-size-default': string
 }
 
-defineStyleConfig({
-  colorScheme: '*',
-  config: {
-    '--icon-button-icon-size-default': '1.25rem',
-    '--icon-button-size-default': '2.5rem',
-  },
-  theme: '*',
-  variant: 'default',
-  component: 'iconButton',
-})
+export function setupDefaultIconButtonStyles(): void {
+  defineStyleConfig({
+    colorScheme: '*',
+    config: {
+      '--icon-button-icon-size-default': '1.25rem',
+      '--icon-button-size-default': '2.5rem',
+    },
+    theme: '*',
+    variant: 'default',
+    component: 'iconButton',
+  })
 
-defineStyleConfig({
-  colorScheme: '*',
-  config: {
-    '--icon-button-size-default': '2.25rem',
-  },
-  theme: '*',
-  variant: 'sm',
-  component: 'iconButton',
-})
+  defineStyleConfig({
+    colorScheme: '*',
+    config: {
+      '--icon-button-size-default': '2.25rem',
+    },
+    theme: '*',
+    variant: 'sm',
+    component: 'iconButton',
+  })
 
-defineStyleConfig({
-  colorScheme: '*',
-  config: {
-    '--icon-button-size-default': '2.75rem',
-  },
-  theme: '*',
-  variant: 'lg',
-  component: 'iconButton',
-})
+  defineStyleConfig({
+    colorScheme: '*',
+    config: {
+      '--icon-button-size-default': '2.75rem',
+    },
+    theme: '*',
+    variant: 'lg',
+    component: 'iconButton',
+  })
 
-defineStyleConfig({
-  colorScheme: '*',
-  config: {
-    '--icon-button-size-default': '3rem',
-  },
-  theme: '*',
-  variant: 'xl',
-  component: 'iconButton',
-})
+  defineStyleConfig({
+    colorScheme: '*',
+    config: {
+      '--icon-button-size-default': '3rem',
+    },
+    theme: '*',
+    variant: 'xl',
+    component: 'iconButton',
+  })
 
-defineStyleConfig({
-  colorScheme: '*',
-  config: {
-    '--icon-button-size-default': '3.5rem',
-  },
-  theme: '*',
-  variant: '2xl',
-  component: 'iconButton',
-})
+  defineStyleConfig({
+    colorScheme: '*',
+    config: {
+      '--icon-button-size-default': '3.5rem',
+    },
+    theme: '*',
+    variant: '2xl',
+    component: 'iconButton',
+  })
+}

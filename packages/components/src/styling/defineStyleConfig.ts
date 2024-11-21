@@ -8,8 +8,33 @@ interface DefineStyleConfigOptions<TComponent extends keyof ComponentStyleConfig
   component: TComponent
 }
 
+let onSsrCb: ((styleNode: string) => void) | null = null
+
+export function setStyleConfigSsrCallback(callback: (styleNode: string) => void): void {
+  onSsrCb = callback
+}
+
 function camelCaseToKebabCase(str: string): string {
   return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
+}
+
+function getSelector(
+  componentName: string,
+  variant: string,
+  colorScheme: string,
+  theme: string,
+): string {
+  let selector = `.${componentName}-${variant}`
+
+  if (colorScheme !== '*') {
+    selector = `${selector}.${colorScheme === 'dark' ? 'dark' : 'light'}`
+  }
+
+  if (theme !== '*') {
+    selector = `${selector}.${theme}`
+  }
+
+  return selector
 }
 
 export function defineStyleConfig<
@@ -19,13 +44,6 @@ export function defineStyleConfig<
   options: DefineStyleConfigOptions<TComponent, TTheme>,
 ): void {
   const inBrowser = typeof window !== 'undefined'
-
-  if (!inBrowser) {
-    return
-  }
-
-  const style = document.createElement('style')
-
   const layer = 'component'
 
   const layerStyles = Object.entries(options.config)
@@ -35,25 +53,6 @@ export function defineStyleConfig<
     ]) => `${key}: ${value};`)
     .join(' ')
 
-  function getSelector(
-    componentName: string,
-    variant: string,
-    colorScheme: string,
-    theme: string,
-  ): string {
-    let selector = `.${componentName}-${variant}`
-
-    if (colorScheme !== '*') {
-      selector = `${selector}.${colorScheme === 'dark' ? 'dark' : 'light'}`
-    }
-
-    if (theme !== '*') {
-      selector = `${selector}.${theme}`
-    }
-
-    return selector
-  }
-
   const selector = getSelector(
     camelCaseToKebabCase(options.component),
     options.variant,
@@ -61,8 +60,18 @@ export function defineStyleConfig<
     options.theme,
   )
 
+  const styleNode = `@layer ${layer} { ${selector} { ${layerStyles} } }`
+
+  if (!inBrowser) {
+    onSsrCb?.(styleNode)
+
+    return
+  }
+
+  const style = document.createElement('style')
+
   style.appendChild(
-    document.createTextNode(`@layer ${layer} { ${selector} { ${layerStyles} } }`),
+    document.createTextNode(styleNode),
   )
 
   document.head.appendChild(style)

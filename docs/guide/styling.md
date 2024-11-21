@@ -6,6 +6,16 @@ This API provides a method for defining and applying component-level style confi
 
 The `defineStyleConfig` function allows you to define and apply custom styles for components using CSS variables. It dynamically creates and injects styles into the document, setting CSS properties based on the provided configuration for each component.
 
+## Default Styles
+
+The `setupDefaultStyles` function is provided to apply default styles to all components. This function can be called once at the beginning of your application to ensure consistent styling across your application.
+
+```ts
+import { setupDefaultStyles } from '@wisemen/vue-core'
+
+setupDefaultStyles()
+```
+
 ### Usage
 
 ```ts
