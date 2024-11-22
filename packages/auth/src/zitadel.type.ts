@@ -1,5 +1,7 @@
 import type { AxiosInstance } from 'axios'
 
+import type { TokensStrategy } from './tokensStrategy.type'
+
 export interface ZitadelUser {
   updated_at: number
   name: string
@@ -7,7 +9,7 @@ export interface ZitadelUser {
   email_verified: boolean
   family_name: string
   given_name: string
-  locale: string | null
+  locale: null | string
   preferred_username: string
   sub: string
 }
@@ -46,4 +48,11 @@ export interface OAuth2VueClientOptions {
   * Default: ['openid', 'profile', 'email', 'offline_access', `urn:zitadel:iam:org:id:${organizationId}`]
   */
   scopes?: string[]
+
+  /*
+  * The tokens strategy to use
+  * Default: localStorageStrategy
+  */
+  tokensStrategy?: TokensStrategy
+
 }

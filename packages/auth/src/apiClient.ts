@@ -1,6 +1,8 @@
 /* eslint-disable no-console */
 import type { AxiosInstance } from 'axios'
 
+import { localStorageStrategy } from './localStorageStrategy'
+import type { TokensStrategy } from './tokensStrategy.type'
 import type {
   ZitadelUser,
 } from './zitadel.type'
@@ -20,14 +22,12 @@ interface ApiClientOptions {
   baseUrl: string
   redirectUri: string
   scopes?: string[]
+  tokensStrategy?: TokensStrategy
 }
 
 interface Token {
   exp: number
 }
-
-export const CODE_VERIFIER_KEY = 'code_verifier'
-const LOCAL_STORAGE_KEY = 'tokens'
 
 function decodeToken(token: string): Token {
   const base64Url = token.split('.')[1]
@@ -82,6 +82,10 @@ export class ApiClient {
     }
   }
 
+  private getTokensStrategy(): TokensStrategy {
+    return this.options.tokensStrategy ?? localStorageStrategy
+  }
+
   private async refreshToken(): Promise<void> {
     if (this._promise != null) {
       return this._promise
@@ -116,7 +120,7 @@ export class ApiClient {
   }
 
   public clearTokens(): void {
-    localStorage.removeItem(LOCAL_STORAGE_KEY)
+    this.getTokensStrategy().removeTokens()
   }
 
   public async getAccessToken(): Promise<string> {
@@ -144,13 +148,7 @@ export class ApiClient {
   }
 
   public getTokens(): OAuth2Tokens | null {
-    const tokens = localStorage.getItem(LOCAL_STORAGE_KEY)
-
-    if (tokens === null) {
-      return null
-    }
-
-    return JSON.parse(tokens as string) as OAuth2Tokens
+    return this.getTokensStrategy().getTokens()
   }
 
   async getUserInfo(): Promise<ZitadelUser> {
@@ -176,7 +174,7 @@ export class ApiClient {
   }
 
   public async loginWithCode(code: string): Promise<void> {
-    const codeVerifier = localStorage.getItem(CODE_VERIFIER_KEY)
+    const codeVerifier = this.getTokensStrategy().getCodeVerifier()
 
     const response = await this.options.axios.post<OAuth2Tokens>(`${this.getBaseUrl()}/oauth/v2/token`, {
       client_id: this.options.clientId,
@@ -192,7 +190,7 @@ export class ApiClient {
 
     this.setTokens(response.data)
 
-    localStorage.removeItem(CODE_VERIFIER_KEY)
+    this.getTokensStrategy().removeCodeVerifier()
   }
 
   public setMockTokens(): void {
@@ -211,6 +209,6 @@ export class ApiClient {
       return
     }
 
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(tokens))
+    this.getTokensStrategy().setTokens(tokens)
   }
 }

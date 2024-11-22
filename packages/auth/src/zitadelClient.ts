@@ -2,6 +2,8 @@ import type { AxiosInstance } from 'axios'
 import pkceChallenge from 'pkce-challenge'
 
 import { ApiClient } from './apiClient'
+import { localStorageStrategy } from './localStorageStrategy'
+import type { TokensStrategy } from './tokensStrategy.type'
 import type {
   OAuth2VueClientOptions,
   ZitadelUser,
@@ -21,6 +23,7 @@ export class ZitadelClient {
         baseUrl: this.options.baseUrl,
         redirectUri: this.options.loginRedirectUri,
         scopes: this.options.scopes ?? this.getDefaultScopes(),
+        tokensStrategy: this.options.tokensStrategy ?? localStorageStrategy,
       },
     )
   }
@@ -58,6 +61,10 @@ export class ZitadelClient {
       'offline_access',
       `urn:zitadel:iam:org:id:${this.options.organizationId}`,
     ]
+  }
+
+  private getTokensStrategy(): TokensStrategy {
+    return this.options.tokensStrategy ?? localStorageStrategy
   }
 
   private removeAuthorizationHeader(): void {
@@ -107,7 +114,7 @@ export class ZitadelClient {
 
     scopes.push(`urn:zitadel:iam:org:idp:id:${idpId}`)
 
-    localStorage.setItem('code_verifier', codes.code_verifier)
+    this.getTokensStrategy().setCodeVerifier(codes.code_verifier)
 
     searchParams.append('client_id', this.options.clientId)
     searchParams.append('redirect_uri', this.options.loginRedirectUri)
@@ -126,7 +133,7 @@ export class ZitadelClient {
 
     const scopes = this.options.scopes ?? this.getDefaultScopes()
 
-    localStorage.setItem('code_verifier', codes.code_verifier)
+    this.getTokensStrategy().setCodeVerifier(codes.code_verifier)
 
     searchParams.append('client_id', this.options.clientId)
     searchParams.append('redirect_uri', this.options.loginRedirectUri)
