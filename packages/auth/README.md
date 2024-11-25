@@ -39,7 +39,7 @@ export const oAuthClient = new OAuth2VueClient({
 Create a new file `auth.lib.ts` and add the following code:
 
 ```typescript
-import { ZitadelClient } from '@wisemen/vue-core-auth'
+import { ZitadelClient, useAxiosFetchStrategy, localStorageTokensStrategy } from '@wisemen/vue-core-auth'
 import axios from 'axios'
 
 import {
@@ -52,7 +52,8 @@ import {
 export const oAuthClient = new ZitadelClient({
   clientId: AUTH_CLIENT_ID,
   organizationId: AUTH_ORGANIZATION_ID,
-  axios,
+  fetchStrategy: useAxiosFetchStrategy(axios),
+  tokensStrategy: localStorageTokensStrategy, // Optional, defaults to localStorageTokensStrategy
   baseUrl: AUTH_BASE_URL,
   loginRedirectUri: `${window.location.origin}/auth/callback`,
   offline: CURRENT_ENVIRONMENT === 'e2e',
