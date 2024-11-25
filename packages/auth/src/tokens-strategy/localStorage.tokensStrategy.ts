@@ -1,4 +1,4 @@
-import type { OAuth2Tokens } from './apiClient'
+import type { OAuth2Tokens } from '../apiClient'
 import type {
   TokensStrategy,
   TokensStrategySetCodeVerifierOptions,
@@ -38,7 +38,7 @@ function getCodeVerifier(key: string): string | null {
   return localStorage.getItem(key)
 }
 
-export const localStorageStrategy: TokensStrategy = {
+export const localStorageTokensStrategy: TokensStrategy = {
   getCodeVerifier: () => getCodeVerifier(CODE_VERIFIER_KEY),
   getTokens: () => getTokens(LOCAL_STORAGE_KEY),
   removeCodeVerifier: () => removeCodeVerifier(CODE_VERIFIER_KEY),

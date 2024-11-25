@@ -1,29 +1,28 @@
-import type { AxiosInstance } from 'axios'
 import pkceChallenge from 'pkce-challenge'
 
 import { ApiClient } from './apiClient'
-import { localStorageStrategy } from './localStorageStrategy'
-import type { TokensStrategy } from './tokensStrategy.type'
+import { localStorageTokensStrategy } from './tokens-strategy/localStorage.tokensStrategy'
+import type { TokensStrategy } from './tokens-strategy/tokensStrategy.type'
 import type {
   OAuth2VueClientOptions,
   ZitadelUser,
 } from './zitadel.type'
 
-export class ZitadelClient {
-  private client: ApiClient | null = null
+export class ZitadelClient<TFetchInstance> {
+  private client: ApiClient<TFetchInstance> | null = null
   private readonly offline: boolean
 
-  constructor(private readonly options: OAuth2VueClientOptions) {
+  constructor(private readonly options: OAuth2VueClientOptions<TFetchInstance>) {
     this.offline = options.offline ?? false
 
-    this.client = new ApiClient(
+    this.client = new ApiClient<TFetchInstance>(
       {
         clientId: this.options.clientId,
-        axios: this.options.axios,
         baseUrl: this.options.baseUrl,
+        fetchStrategy: this.options.fetchStrategy,
         redirectUri: this.options.loginRedirectUri,
         scopes: this.options.scopes ?? this.getDefaultScopes(),
-        tokensStrategy: this.options.tokensStrategy ?? localStorageStrategy,
+        tokensStrategy: this.options.tokensStrategy ?? localStorageTokensStrategy,
       },
     )
   }
@@ -38,7 +37,7 @@ export class ZitadelClient {
     try {
       const token = await client.getAccessToken()
 
-      this.addAuthorizationHeaderToAxios(token)
+      this.options.fetchStrategy.setAuthorizationHeader(token)
     }
     catch (error) {
       console.error('Failed to get access token, logging out', error)
@@ -47,10 +46,6 @@ export class ZitadelClient {
 
       throw new Error('Failed to get access token')
     }
-  }
-
-  private addAuthorizationHeaderToAxios(token: string): void {
-    this.options.axios.defaults.headers.Authorization = `Bearer ${token}`
   }
 
   private getDefaultScopes(): string[] {
@@ -64,11 +59,11 @@ export class ZitadelClient {
   }
 
   private getTokensStrategy(): TokensStrategy {
-    return this.options.tokensStrategy ?? localStorageStrategy
+    return this.options.tokensStrategy ?? localStorageTokensStrategy
   }
 
   private removeAuthorizationHeader(): void {
-    this.options.axios.defaults.headers.Authorization = null
+    this.options.fetchStrategy.removeAuthorizationHeader()
   }
 
   /*
@@ -86,23 +81,23 @@ export class ZitadelClient {
   }
 
   /*
-  * Get the axios instance
-  * This will return the axios instance that is used to make requests to the identity provider
-  */
-  public getAxios(): AxiosInstance {
-    return this.options.axios
-  }
-
-  /*
   * Get the client
   * This will return the client that is used to make requests to the identity provider
   */
-  public getClient(): ApiClient {
+  public getClient(): ApiClient<TFetchInstance> {
     if (this.client === null) {
       throw new Error('Client is not initialized')
     }
 
     return this.client
+  }
+
+  /*
+  * Get the fetch instance
+  * This will return the fetch instance that is used to make requests to the identity provider
+  */
+  public getFetchInstance(): TFetchInstance {
+    return this.options.fetchStrategy.getFetchInstance()
   }
 
   public async getIdentityProviderLoginUrl(idpId: string): Promise<string> {
@@ -176,7 +171,7 @@ export class ZitadelClient {
 
   /*
   * Check if the user is logged in
-  * If the access token is expired, it will try to refresh it and add it to the axios headers
+  * If the access token is expired, it will try to refresh it and add it to the fetch instance headers
   * If it fails, it will log the user out
   */
   public async isLoggedIn(): Promise<boolean> {
@@ -195,7 +190,7 @@ export class ZitadelClient {
     try {
       const token = await this.client.getAccessToken()
 
-      this.addAuthorizationHeaderToAxios(token)
+      this.options.fetchStrategy.setAuthorizationHeader(token)
 
       return true
     }
@@ -221,7 +216,7 @@ export class ZitadelClient {
 
   /*
   * Login the user with the code from the identity provider
-  * It will get the access token and add it to the axios headers
+  * It will get the access token and add it to the fetch instance headers
   */
   public async loginWithCode(code: string): Promise<void> {
     if (this.options.offline === true) {

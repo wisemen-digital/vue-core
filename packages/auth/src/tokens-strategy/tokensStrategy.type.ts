@@ -1,4 +1,4 @@
-import type { OAuth2Tokens } from './apiClient'
+import type { OAuth2Tokens } from '../apiClient'
 
 export interface TokensStrategySetTokensOptions {
   key: string
@@ -10,7 +10,7 @@ export interface TokensStrategySetCodeVerifierOptions {
   key: string
 }
 export interface TokensStrategy {
-  getCodeVerifier: () => null | string
+  getCodeVerifier: () => string | null
   getTokens: () => OAuth2Tokens | null
   removeCodeVerifier: () => void
   removeTokens: () => void

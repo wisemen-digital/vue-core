@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
-import type { AxiosInstance } from 'axios'
 
-import { localStorageStrategy } from './localStorageStrategy'
-import type { TokensStrategy } from './tokensStrategy.type'
+import type { FetchStrategy } from './fetch-strategy/fetchStrategy.type'
+import { localStorageTokensStrategy } from './tokens-strategy/localStorage.tokensStrategy'
+import type { TokensStrategy } from './tokens-strategy/tokensStrategy.type'
 import type {
   ZitadelUser,
 } from './zitadel.type'
@@ -16,36 +16,19 @@ export interface OAuth2Tokens {
   token_type: string
 }
 
-interface ApiClientOptions {
+interface ApiClientOptions<TFetchInstance> {
   clientId: string
-  axios: AxiosInstance
   baseUrl: string
+  fetchStrategy: FetchStrategy<TFetchInstance>
   redirectUri: string
   scopes?: string[]
   tokensStrategy?: TokensStrategy
 }
 
-interface Token {
-  exp: number
-}
-
-function decodeToken(token: string): Token {
-  const base64Url = token.split('.')[1]
-  const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
-  const jsonPayload = decodeURIComponent(
-    atob(base64)
-      .split('')
-      .map((c) => `%${(`00${c.charCodeAt(0).toString(16)}`).slice(-2)}`)
-      .join(''),
-  )
-
-  return JSON.parse(jsonPayload)
-}
-
-export class ApiClient {
+export class ApiClient<TFetchInstance> {
   private _promise: Promise<void> | null = null
 
-  constructor(private readonly options: ApiClientOptions) {}
+  constructor(private readonly options: ApiClientOptions<TFetchInstance>) {}
 
   /*
   * @returns base url without trailing slash
@@ -55,35 +38,16 @@ export class ApiClient {
   }
 
   private async getNewAccessToken(refreshToken: string): Promise<OAuth2Tokens> {
-    const response = await this.options.axios.post<OAuth2Tokens>(
-      `${this.getBaseUrl()}/oauth/v2/token`,
-      {
-        client_id: this.options.clientId,
-        grant_type: 'refresh_token',
-        refresh_token: refreshToken,
-        scope: this.options.scopes?.join(' '),
-      },
-      {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-      },
-    )
-
-    const decodedToken = decodeToken(response.data.access_token)
-
-    return {
-      expires_at: decodedToken.exp * 1000,
-      access_token: response.data.access_token,
-      id_token: response.data.id_token,
-      refresh_token: response.data.refresh_token,
-      scope: response.data.scope,
-      token_type: response.data.token_type,
-    }
+    return await this.options.fetchStrategy.getNewAccessToken({
+      clientId: this.options.clientId,
+      refreshToken,
+      scope: this.options.scopes?.join(' '),
+      url: `${this.getBaseUrl()}/oauth/v2/token`,
+    })
   }
 
   private getTokensStrategy(): TokensStrategy {
-    return this.options.tokensStrategy ?? localStorageStrategy
+    return this.options.tokensStrategy ?? localStorageTokensStrategy
   }
 
   private async refreshToken(): Promise<void> {
@@ -154,13 +118,12 @@ export class ApiClient {
   async getUserInfo(): Promise<ZitadelUser> {
     const accessToken = await this.getAccessToken()
 
-    const response = await this.options.axios.get(`${this.getBaseUrl()}/oidc/v1/userinfo`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
+    const response = await this.options.fetchStrategy.getUserInfo({
+      accessToken,
+      url: `${this.getBaseUrl()}/oidc/v1/userinfo`,
     })
 
-    return response.data
+    return response
   }
 
   public isAccessTokenExpired(): boolean {
@@ -176,19 +139,19 @@ export class ApiClient {
   public async loginWithCode(code: string): Promise<void> {
     const codeVerifier = this.getTokensStrategy().getCodeVerifier()
 
-    const response = await this.options.axios.post<OAuth2Tokens>(`${this.getBaseUrl()}/oauth/v2/token`, {
-      client_id: this.options.clientId,
+    if (codeVerifier === null) {
+      throw new Error('Code verifier is not set')
+    }
+
+    const response = await this.options.fetchStrategy.loginWithCode({
+      clientId: this.options.clientId,
       code,
-      code_verifier: codeVerifier,
-      grant_type: 'authorization_code',
-      redirect_uri: this.options.redirectUri,
-    }, {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
+      codeVerifier,
+      redirectUri: this.options.redirectUri,
+      url: `${this.getBaseUrl()}/oauth/v2/token`,
     })
 
-    this.setTokens(response.data)
+    this.setTokens(response)
 
     this.getTokensStrategy().removeCodeVerifier()
   }

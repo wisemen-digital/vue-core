@@ -1,6 +1,5 @@
-import type { AxiosInstance } from 'axios'
-
-import type { TokensStrategy } from './tokensStrategy.type'
+import type { FetchStrategy } from './fetch-strategy/fetchStrategy.type'
+import type { TokensStrategy } from './tokens-strategy/tokensStrategy.type'
 
 export interface ZitadelUser {
   updated_at: number
@@ -9,12 +8,12 @@ export interface ZitadelUser {
   email_verified: boolean
   family_name: string
   given_name: string
-  locale: null | string
+  locale: string | null
   preferred_username: string
   sub: string
 }
 
-export interface OAuth2VueClientOptions {
+export interface OAuth2VueClientOptions<TFetchInstance> {
   /*
   * The client ID
   */
@@ -24,13 +23,10 @@ export interface OAuth2VueClientOptions {
   */
   organizationId: string
   /*
-  * The Axios instance to use for requests
-  */
-  axios: AxiosInstance
-  /*
   * The base URL of the OAuth2 server
   */
   baseUrl: string
+  fetchStrategy: FetchStrategy<TFetchInstance>
   /*
   * The URL to redirect to after login
   */
@@ -43,6 +39,7 @@ export interface OAuth2VueClientOptions {
   * The URL to redirect to after logout
   */
   postLogoutRedirectUri: string
+
   /*
   * The scopes to request from the OAuth2 server
   * Default: ['openid', 'profile', 'email', 'offline_access', `urn:zitadel:iam:org:id:${organizationId}`]
