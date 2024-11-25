@@ -66,8 +66,6 @@ const clientOptions: OAuth2VueClientOptions<AxiosInstance> = {
 
 describe('oAuth2ZitadelClient', () => {
   beforeEach(() => {
-    // eslint-disable-next-line ts/ban-ts-comment
-    // @ts-ignore MockAdapter is not typed correctly https://github.com/ctimmerm/axios-mock-adapter/issues/400
     mockAxios = new AxiosMockAdapter(axiosInstance)
   })
 
