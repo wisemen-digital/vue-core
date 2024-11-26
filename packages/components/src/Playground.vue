@@ -1,33 +1,19 @@
 <script setup lang="ts">
 import '@/styles/index.scss'
-import '@/components/icon/iconStyle.config'
-import '@/components/button/button/buttonStyle.config'
-import '@/components/input-field-hint/inputFieldHintStyle.config'
-import '@/components/input-field-error/inputFieldErrorStyle.config'
-import '@/components/input-field-label/inputFieldLabelStyle.config'
-import '@/components/popover/popoverStyle.config'
-import '@/components/button/icon-button/iconButtonStyle.config'
-import '@/components/select/selectStyle.config'
-import '@/components/input-field/text-field/textFieldStyle.config'
-import '@/components/tooltip/tooltipStyle.config'
-import '@/components/tabs/tabsStyle.config'
-import '@/components/dropdown-menu/dropdownMenuStyle.config'
-import '@/components/tag/tagStyle.config'
-import '@/components/checkbox/checkboxStyle.config'
-import '@/components/input-field/text-area/textareaStyle.config'
-import '@/components/dialog/dialogStyle.config'
-import '@/components/table/tableStyle.config'
-import '@/components/switch/switchStyle.config'
 
 import { ref } from 'vue'
 
 import Button from '@/components/button/button/Button.vue'
+import IconButton from '@/components/button/icon-button/IconButton.vue'
 import ConfigProvider from '@/components/config-provider/ConfigProvider.vue'
 import DialogContainer from '@/components/dialog/DialogContainer.vue'
 import TimeField from '@/components/input-field/time-field/TimeField.vue'
 import ThemeProvider from '@/components/theme-provider/ThemeProvider.vue'
 import { useDialog } from '@/composables/index'
+import { setupDefaultStyles } from '@/styling/setupDefaultStyles'
 import type { SelectOption } from '@/types/select.type'
+
+setupDefaultStyles()
 
 const value = ref<null | string>(null)
 const selectItems = ref<SelectOption<string>[]>([
@@ -81,12 +67,22 @@ const test = ref<null | string>(null)
     locale="nl"
   >
     <ThemeProvider
-      :is-dark-mode-enabled="false"
+      :is-dark-mode-enabled="true"
       theme="default"
+      class="bg-primary"
     >
       <div
         class="grid grid-cols-2 p-8"
       >
+        <IconButton
+          :style-config="{
+            '--button-icon-color-default': '#ff00ff',
+          }"
+          label="test"
+          icon="translate"
+          variant="tertiary"
+        />
+
         test: {{ test }}
         <TimeField v-model="test" />
         <div>

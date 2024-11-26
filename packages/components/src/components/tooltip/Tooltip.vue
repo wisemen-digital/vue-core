@@ -43,6 +43,7 @@ const arrowClasses = computed<string>(() => style.arrow())
       :delay-duration="props.delayDuration"
       :disable-closing-trigger="props.disableCloseOnTriggerClick"
       :disable-hoverable-content="props.disableHoverableContent"
+      :ignore-non-keyboard-focus="true"
     >
       <slot>
         <TooltipTrigger>
@@ -74,7 +75,7 @@ const arrowClasses = computed<string>(() => style.arrow())
         >
           <!-- Without this relative div, the arrow is a bit glitchy -->
           <div class="relative size-full">
-            <!-- Since we can't ly `overflow-hidden` on the parent div, we need another wrer -->
+            <!-- Since we can't apply `overflow-hidden` on the parent div, we need another wrapper -->
             <div class="relative size-full overflow-hidden">
               <slot name="content" />
             </div>

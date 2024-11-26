@@ -37,6 +37,10 @@ if (props.shouldAnimateFromTrigger && props.id === null) {
   throw new Error('[Dialog] The `id` prop is required when using the `animateFromTrigger` prop')
 }
 
+function isReduceMotion(): boolean {
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches
+}
+
 function getTriggerElement(): HTMLElement | null {
   const triggerEl = document.querySelector(`#dialog-${props.id}`)
 
@@ -108,7 +112,12 @@ function animateOutWithViewTransitionsApi(): void {
 }
 
 function showDialog(): void {
-  if (hasSupportForViewTransitionsApi && props.shouldAnimateFromTrigger && getTriggerElement() !== null) {
+  if (
+    hasSupportForViewTransitionsApi
+    && props.shouldAnimateFromTrigger
+    && !isReduceMotion()
+    && getTriggerElement() !== null
+  ) {
     animateInWithViewTransitionsApi()
   }
   else {
@@ -131,7 +140,12 @@ function focusTriggerElement(): void {
 }
 
 function hideDialog(): void {
-  if (hasSupportForViewTransitionsApi && props.shouldAnimateFromTrigger && getTriggerElement() !== null) {
+  if (
+    hasSupportForViewTransitionsApi
+    && props.shouldAnimateFromTrigger
+    && !isReduceMotion()
+    && getTriggerElement() !== null
+  ) {
     animateOutWithViewTransitionsApi()
   }
   else {
@@ -177,9 +191,9 @@ watch(isActuallyOpen, () => {
       <Component
         :is="props.shouldAnimateFromTrigger ? 'div' : Transition"
         enter-active-class="duration-300 ease-dialog"
-        enter-from-class="opacity-0 scale-110"
+        enter-from-class="opacity-0 not-motion-reduce:scale-110"
         leave-active-class="duration-300 ease-dialog"
-        leave-to-class="opacity-0 scale-110"
+        leave-to-class="opacity-0 not-motion-reduce:scale-110"
       >
         <DialogContent
           v-if="isActuallyOpen"

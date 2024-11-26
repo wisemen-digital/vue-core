@@ -44,7 +44,7 @@ export function defineStyleConfig<
   options: DefineStyleConfigOptions<TComponent, TTheme>,
 ): void {
   const inBrowser = typeof window !== 'undefined'
-  const layer = 'component'
+  const layer = 'base'
 
   const layerStyles = Object.entries(options.config)
     .map(([

@@ -38,6 +38,10 @@ if (props.shouldAnimateFromTrigger && props.id === null) {
   throw new Error('[Drawer] The `id` prop is required when using the `shouldAnimateFromTrigger` prop')
 }
 
+function isReduceMotion(): boolean {
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches
+}
+
 function getTriggerElement(): HTMLElement | null {
   const triggerEl = document.querySelector(`#dialog-${props.id}`)
 
@@ -109,7 +113,12 @@ function animateOutWithViewTransitionsApi(): void {
 }
 
 function showDrawer(): void {
-  if (hasSupportForViewTransitionsApi && props.shouldAnimateFromTrigger && getTriggerElement() !== null) {
+  if (
+    hasSupportForViewTransitionsApi
+    && props.shouldAnimateFromTrigger
+    && !isReduceMotion()
+    && getTriggerElement() !== null
+  ) {
     animateInWithViewTransitionsApi()
   }
   else {
@@ -132,7 +141,12 @@ function focusTriggerElement(): void {
 }
 
 function hideDrawer(): void {
-  if (hasSupportForViewTransitionsApi && props.shouldAnimateFromTrigger && getTriggerElement() !== null) {
+  if (
+    hasSupportForViewTransitionsApi
+    && props.shouldAnimateFromTrigger
+    && !isReduceMotion()
+    && getTriggerElement() !== null
+  ) {
     animateOutWithViewTransitionsApi()
   }
   else {
@@ -178,9 +192,9 @@ watch(isActuallyOpen, () => {
       <Component
         :is="shouldAnimateFromTrigger ? 'div' : Transition"
         :enter-active-class="props.transitionClasses?.enterActive ?? 'duration-300'"
-        :enter-from-class="props.transitionClasses?.enterFrom ?? 'opacity-0 translate-x-full'"
+        :enter-from-class="props.transitionClasses?.enterFrom ?? 'opacity-0 not-motion-reduce:translate-x-full '"
         :leave-active-class="props.transitionClasses?.leaveActive ?? 'duration-300'"
-        :leave-to-class="props.transitionClasses?.leaveTo ?? 'opacity-0 translate-x-full'"
+        :leave-to-class="props.transitionClasses?.leaveTo ?? 'opacity-0 not-motion-reduce:translate-x-full'"
       >
         <DrawerContent
           v-if="isActuallyOpen"

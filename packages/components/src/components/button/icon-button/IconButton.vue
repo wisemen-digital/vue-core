@@ -182,7 +182,8 @@ function onClick(event: Event): void {
     <Icon
       :icon="props.icon"
       :class="[
-        iconClasses, {
+        iconClasses,
+        {
           'opacity-0': props.isLoading,
         },
       ]"

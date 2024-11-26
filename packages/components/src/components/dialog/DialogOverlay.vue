@@ -12,5 +12,8 @@ const overlayClasses = computed<string>(() => style.overlay())
   <DialogOverlay
     :force-mount="true"
     :class="overlayClasses"
+    :style="{
+      viewTransitionName: 'dialog-overlay',
+    }"
   />
 </template>

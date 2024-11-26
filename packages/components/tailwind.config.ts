@@ -28,7 +28,11 @@ export default {
     './src/**/*.{vue,ts}',
   ],
   darkMode: 'class',
-  plugins: [],
+  plugins: [
+    function ({ addVariant }): void {
+      addVariant('motion-reduce', '.reduce-motion &')
+    },
+  ],
   theme: {
     extend: {
       // @ts-expect-error - Infinitely deep
@@ -304,5 +308,5 @@ export default {
       ),
     },
   },
-// @ts-expect-error - Infinitely deep
+// @ts-expect-error - Infinitely de
 } satisfies Config
