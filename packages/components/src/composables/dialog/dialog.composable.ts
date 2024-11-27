@@ -20,7 +20,7 @@ import type {
   UseDialogReturnType,
 } from '@/types/dialog.type'
 
-const dialogs = ref<Dialog[]>([])
+export const dialogs = ref<Dialog[]>([]) as Ref<Dialog[]>
 
 export function useDialogContainer(): UseDialogContainerReturnType {
   return {
@@ -31,14 +31,14 @@ export function useDialogContainer(): UseDialogContainerReturnType {
 export function useDialog<TComponent extends Component>(
   options: UseDialogOptions<TComponent>,
 ): UseDialogReturnType<TComponent> {
-  const triggerId = useId()
+  const dialogId = useId()
 
-  function removeDialogFromContainer(): void {
-    dialogs.value = dialogs.value.filter((dialog) => dialog.id !== triggerId)
+  function removeDialogFromContainer(id: string): void {
+    dialogs.value = dialogs.value.filter((dialog) => dialog.id !== id)
   }
 
-  async function openDialog(attrs: Attrs<TComponent>): Promise<void> {
-    const dialog = await createDialog(attrs)
+  async function openDialog(attrs: Attrs<TComponent> & { id?: string }): Promise<void> {
+    const dialog = await createDialog(attrs, attrs.id ?? dialogId)
 
     if (dialog === null) {
       return
@@ -51,8 +51,10 @@ export function useDialog<TComponent extends Component>(
     })
   }
 
-  function closeDialog(): void {
-    const dialog = dialogs.value.find((dialog) => dialog.id === triggerId) ?? null
+  function closeDialog(id?: string): void {
+    const idToUse = id ?? dialogId
+
+    const dialog = dialogs.value.find((dialog) => dialog.id === idToUse) ?? null
 
     if (dialog === null) {
       return
@@ -60,13 +62,17 @@ export function useDialog<TComponent extends Component>(
 
     dialog.isOpen = false
 
-    setTimeout(removeDialogFromContainer, 500)
+    setTimeout(() => {
+      removeDialogFromContainer(idToUse)
+    }, 500)
   }
 
-  async function createDialog(attrs: Attrs<TComponent>): Promise<Ref<Dialog> | null> {
-    const dialogWithSameTriggerId = dialogs.value.find((dialog) => dialog.id === triggerId) ?? null
+  async function createDialog(attrs: Attrs<TComponent>, id: string): Promise<Ref<Dialog> | null> {
+    const dialogWithSameId = dialogs.value.find((dialog) => dialog.id === id) ?? null
 
-    if (dialogWithSameTriggerId !== null) {
+    if (dialogWithSameId !== null) {
+      console.warn(`A dialog with the id ${id} already exists. Make sure to use a unique id.`)
+
       return null
     }
 
@@ -77,36 +83,37 @@ export function useDialog<TComponent extends Component>(
         c.default as Component,
         reactive<Attrs<TComponent>>({
           ...attrs,
-          triggerId,
+          id,
           shouldAnimateFromTrigger: options.shouldAnimateFromTrigger ?? false,
           onClose: () => {
-            closeDialog()
+            closeDialog(id)
           },
         }),
       )
     })
 
     return ref<Dialog>({
-      id: triggerId,
+      id,
       isOpen: false,
       component: markRaw(dialogComponent),
     })
   }
 
-  const triggerProps = computed<DialogTriggerProps>(() => {
-    const isOpen = dialogs.value.some((dialog) => dialog.id === triggerId)
+  function getTriggerProps(id?: string): DialogTriggerProps {
+    const idToUse = id ?? dialogId
+    const isOpen = dialogs.value.some((dialog) => dialog.id === idToUse)
 
     return {
-      'id': triggerId,
+      'id': `dialog-${idToUse}`,
       'aria-expanded': isOpen,
       'aria-haspopup': 'dialog',
       'data-state': isOpen,
     }
-  })
+  }
 
   return {
     close: closeDialog,
+    getTriggerProps,
     open: openDialog as UseDialogReturnType<TComponent>['open'],
-    triggerProps,
   }
 }

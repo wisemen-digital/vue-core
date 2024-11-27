@@ -30,6 +30,14 @@ const i18n = createI18n({
           search_placeholder: 'Search...',
         },
         table: {
+          no_data: {
+            title: 'No data',
+            description: 'There is currently no data to display.',
+          },
+          no_results: {
+            title: 'No results',
+            description: 'There are no results matching your search criteria.',
+          },
           page_count: '{startIndex} - {endIndex} of {totalItems}',
         },
       },

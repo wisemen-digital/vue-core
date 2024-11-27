@@ -8,14 +8,18 @@ export interface TooltipStyleConfig {
   '--tooltip-text-color-default': string
 }
 
-defineStyleConfig({
-  config: {
-    '--tooltip-bg-color-default': 'var(--bg-primary-solid)',
-    '--tooltip-border-color-default': 'var(--bg-primary-solid)',
-    '--tooltip-border-radius-default': 'var(--radius-lg)',
-    '--tooltip-shadow-default': 'var(--shadow-lg)',
-    '--tooltip-text-color-default': 'var(--white)',
-  },
-  selector: '.tooltip-variant-default',
-  component: 'tooltip',
-})
+export function setupDefaultTooltipStyles(): void {
+  defineStyleConfig({
+    colorScheme: '*',
+    config: {
+      '--tooltip-bg-color-default': 'var(--bg-primary-solid)',
+      '--tooltip-border-color-default': 'var(--bg-primary-solid)',
+      '--tooltip-border-radius-default': 'var(--radius-lg)',
+      '--tooltip-shadow-default': 'var(--shadow-lg)',
+      '--tooltip-text-color-default': 'var(--white)',
+    },
+    theme: '*',
+    variant: 'default',
+    component: 'tooltip',
+  })
+}

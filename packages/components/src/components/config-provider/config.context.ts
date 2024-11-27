@@ -23,7 +23,7 @@ export function injectConfigContext(): ConfigContext {
   const context = inject(configContextKey)
 
   if (context === undefined) {
-    throw new Error('Global context is not provided. Make sure to wrap your app with `<AppConfigProvider />`.')
+    throw new Error('Global context is not provided. Make sure to wrap your app with `<ConfigProvider />`.')
   }
 
   return context

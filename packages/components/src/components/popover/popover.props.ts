@@ -1,11 +1,10 @@
-import type { PopoverProps } from '@/types/popover.type'
-import type { StyleConfig } from '@/types/style.type'
+import type { PopperProps } from '@/types/popper'
+import type { Stylable } from '@/types/stylable.type'
 
-export interface AppPopoverProps extends PopoverProps {
+export interface PopoverProps extends PopperProps, Stylable<'popover'> {
   /**
    * The test id of the popover.
    * @default null
    */
   testId?: null | string
-  styleConfig?: StyleConfig<'popover'> | null
 }

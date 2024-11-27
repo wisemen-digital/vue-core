@@ -28,72 +28,76 @@ const guide = [
 
 const docs = [
   {
-    link: '/components/button/app-button',
-    text: 'AppButton',
+    link: '/components/autocomplete/address-autocomplete',
+    text: 'AddressAutocomplete',
   },
   {
-    link: '/components/checkbox/app-checkbox',
-    text: 'AppCheckbox',
+    link: '/components/button/button',
+    text: 'Button',
   },
   {
-    link: '/components/dialog/app-dialog',
-    text: 'AppDialog',
+    link: '/components/checkbox/checkbox',
+    text: 'Checkbox',
   },
   {
-    link: '/components/drawer/app-drawer',
-    text: 'AppDrawer',
+    link: '/components/dialog/dialog',
+    text: 'Dialog',
   },
   {
-    link: '/components/dropdown-menu/app-dropdown-menu',
-    text: 'AppDropdownMenu',
+    link: '/components/drawer/drawer',
+    text: 'Drawer',
   },
   {
-    link: '/components/input-field/app-text-field',
-    text: 'AppTextField',
+    link: '/components/dropdown-menu/dropdown-menu',
+    text: 'DropdownMenu',
   },
   {
-    link: '/components/input-field/app-number-field',
-    text: 'AppNumberField',
+    link: '/components/input-field/text-field',
+    text: 'TextField',
   },
   {
-    link: '/components/input-field/app-password-field',
-    text: 'AppPasswordField',
+    link: '/components/input-field/number-field',
+    text: 'NumberField',
   },
   {
-    link: '/components/input-field/app-textarea',
-    text: 'AppTextarea',
+    link: '/components/input-field/password-field',
+    text: 'PasswordField',
   },
   {
-    link: '/components/input-field/app-phone-number-field',
-    text: 'AppPhoneNumberField',
+    link: '/components/input-field/textarea',
+    text: 'Textarea',
   },
   {
-    link: '/components/select/app-select',
-    text: 'AppSelect',
+    link: '/components/input-field/phone-number-field',
+    text: 'PhoneNumberField',
   },
   {
-    link: '/components/switch/app-switch',
-    text: 'AppSwitch',
+    link: '/components/select/select',
+    text: 'Select',
   },
   {
-    link: '/components/radio-group/app-radio-group',
-    text: 'AppRadioGroup',
+    link: '/components/switch/switch',
+    text: 'Switch',
   },
   {
-    link: '/components/table/app-table',
-    text: 'AppTable',
+    link: '/components/radio-group/radio-group',
+    text: 'RadioGroup',
   },
   {
-    link: '/components/tabs/app-tabs',
-    text: 'AppTabs',
+    link: '/components/table/table',
+    text: 'Table',
   },
   {
-    link: '/components/theme-provider/app-theme-provider',
-    text: 'AppThemeProvider',
+    link: '/components/tabs/tabs',
+    text: 'Tabs',
   },
   {
-    link: '/components/toast/app-toast',
-    text: 'AppToast',
+    link: '/components/theme-provider/theme-provider',
+    text: 'ThemeProvider',
+  },
+  {
+    link: '/components/toast/toast',
+    text: 'Toast',
   },
 ]
 

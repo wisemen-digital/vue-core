@@ -26,6 +26,7 @@ export interface BaseIcons {
   selectIconRight: Promise<Component>
   settings: Promise<Component>
   switchVertical: Promise<Component>
+  tableNoData: Promise<Component>
   translate: Promise<Component>
   trash: Promise<Component>
 }
@@ -58,6 +59,7 @@ export const icons: BaseIcons = {
   selectIconRight: import('@/icons/functional/SelectIconRight.vue'),
   settings: import('@/icons/SettingsIcon.vue'),
   switchVertical: import('@/icons/SwitchVerticalIcon.vue'),
+  tableNoData: import('@/icons/functional/TableNoData.vue'),
   translate: import('@/icons/TranslateIcon.vue'),
   trash: import('@/icons/TrashIcon.vue'),
 }

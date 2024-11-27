@@ -8,14 +8,18 @@ export interface DrawerStyleConfig {
   '--drawer-shadow-default': string
 }
 
-defineStyleConfig({
-  config: {
-    '--drawer-bg-color-default': 'var(--bg-primary)',
-    '--drawer-border-color-default': 'var(--border-secondary)',
-    '--drawer-border-radius-default': 'var(--radius-lg)',
-    '--drawer-padding-default': 'var(--spacing-md)',
-    '--drawer-shadow-default': 'var(--shadow-lg)',
-  },
-  selector: '.drawer-variant-default',
-  component: 'drawer',
-})
+export function setupDefaultDrawerStyles(): void {
+  defineStyleConfig({
+    colorScheme: '*',
+    config: {
+      '--drawer-bg-color-default': 'var(--bg-primary)',
+      '--drawer-border-color-default': 'var(--border-secondary)',
+      '--drawer-border-radius-default': 'var(--radius-lg)',
+      '--drawer-padding-default': 'var(--spacing-md)',
+      '--drawer-shadow-default': 'var(--shadow-lg)',
+    },
+    theme: '*',
+    variant: 'default',
+    component: 'drawer',
+  })
+}

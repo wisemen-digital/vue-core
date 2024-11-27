@@ -29,27 +29,123 @@ export interface BaseStyleConfig {
 }
 
 export interface ComponentStyleConfigRegistry {
-  button: ButtonStyleConfig
-  checkbox: CheckboxStyleConfig
-  dialog: DialogStyleConfig
-  drawer: DrawerStyleConfig
-  dropdownMenu: DropdownMenuStyleConfig
-  icon: IconStyleConfig
-  iconButton: IconButtonStyleConfig
-  inputFieldError: InputFieldErrorStyleConfig
-  inputFieldHint: InputFieldHintStyleConfig
-  inputFieldLabel: InputFieldLabelStyleConfig
-  popover: PopoverStyleConfig
-  radioGroup: RadioGroupStyleConfig
-  select: SelectStyleConfig
-  selectOption: SelectOptionStyleConfig
-  switch: SwitchStyleConfig
-  table: TableStyleConfig
-  tabs: TabsStyleConfig
-  tag: TagStyleConfig
-  textField: TextFieldStyleConfig
-  textarea: TextareaStyleConfig
-  tooltip: TooltipStyleConfig
+  button: {
+    config: ButtonStyleConfig
+    variants: [
+      'default',
+      'primary',
+      'secondary-color',
+      'secondary-gray',
+      'tertiary-color',
+      'tertiary-gray',
+      'destructive-primary',
+      'destructive-secondary',
+      'destructive-tertiary',
+      'xs',
+      'sm',
+      'lg',
+      'xl',
+      '2xl',
+    ]
+  }
+  checkbox: {
+    config: CheckboxStyleConfig
+    variants: ['default']
+  }
+  dialog: {
+    config: DialogStyleConfig
+    variants: ['default']
+  }
+  drawer: {
+    config: DrawerStyleConfig
+    variants: ['default']
+  }
+  dropdownMenu: {
+    config: DropdownMenuStyleConfig
+    variants: ['default']
+  }
+  icon: {
+    config: IconStyleConfig
+    variants: [
+      'default',
+      'xs',
+      'lg',
+      'sm',
+      'xl',
+      'full',
+    ]
+  }
+  iconButton: {
+    config: IconButtonStyleConfig
+    variants: [
+      'default',
+      'sm',
+      'lg',
+      'xl',
+      '2xl',
+    ]
+  }
+  inputFieldError: {
+    config: InputFieldErrorStyleConfig
+    variants: ['default']
+  }
+  inputFieldHint: {
+    config: InputFieldHintStyleConfig
+    variants: ['default']
+  }
+  inputFieldLabel: {
+    config: InputFieldLabelStyleConfig
+    variants: ['default']
+  }
+  popover: {
+    config: PopoverStyleConfig
+    variants: ['default']
+  }
+  radioGroup: {
+    config: RadioGroupStyleConfig
+    variants: ['default']
+  }
+  select: {
+    config: SelectStyleConfig
+    variants: ['default']
+  }
+  selectOption: {
+    config: SelectOptionStyleConfig
+    variants: ['default']
+  }
+  switch: {
+    config: SwitchStyleConfig
+    variants: [
+      'default',
+      'sm',
+      'md',
+      'lg',
+    ]
+  }
+  table: {
+    config: TableStyleConfig
+    variants: ['default', 'borderless']
+  }
+  tabs: {
+    config: TabsStyleConfig
+    variants: ['default']
+  }
+  tag: {
+    config: TagStyleConfig
+    variants: ['default']
+  }
+  textField: {
+    config: TextFieldStyleConfig
+    variants: ['default']
+  }
+  textarea: {
+    config: TextareaStyleConfig
+    variants: ['default']
+  }
+  tooltip: {
+    config: TooltipStyleConfig
+    variants: ['default']
+  }
 }
 
 export type StyleConfig<K extends keyof ComponentStyleConfigRegistry> = Partial<ComponentStyleConfigRegistry[K]>

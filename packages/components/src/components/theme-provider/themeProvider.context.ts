@@ -19,7 +19,7 @@ export function injectThemeProviderContext(): ThemeProviderContext {
   const context = inject(themeProviderContextKey)
 
   if (context === undefined) {
-    throw new Error('ThemeProviderContext is not provided. Make sure to wrap your app with `<AppThemeProvider />`.')
+    throw new Error('ThemeProviderContext is not provided. Make sure to wrap your app with `<ThemeProvider />`.')
   }
 
   return context

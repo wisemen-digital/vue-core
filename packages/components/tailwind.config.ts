@@ -28,7 +28,11 @@ export default {
     './src/**/*.{vue,ts}',
   ],
   darkMode: 'class',
-  plugins: [],
+  plugins: [
+    function ({ addVariant }): void {
+      addVariant('motion-reduce', '.reduce-motion &')
+    },
+  ],
   theme: {
     extend: {
       // @ts-expect-error - Infinitely deep
@@ -196,9 +200,9 @@ export default {
             'warning-950': 'var(--warning-950)',
           },
           fontSize: {
-            body: 'var(--text-body)',
-            caption: 'var(--text-caption)',
-            subtext: 'var(--text-subtext)',
+            body: 'var(--text-md)',
+            caption: 'var(--text-xs)',
+            subtext: 'var(--text-sm)',
             subtitle: 'var(--text-subtitle)',
           },
           gap: {
@@ -304,5 +308,5 @@ export default {
       ),
     },
   },
-// @ts-expect-error - Infinitely deep
+// @ts-expect-error - Infinitely de
 } satisfies Config

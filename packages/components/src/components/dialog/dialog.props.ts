@@ -1,15 +1,15 @@
-import type { StyleConfig } from '@/types/style.type'
+import type { Stylable } from '@/types/stylable.type'
 
-export interface AppDialogProps {
+export interface DialogProps extends Stylable<'dialog'> {
+  /**
+   * The id of the element that triggers the dialog. Must be set for accessibility purposes.
+   * @default null
+   */
+  id?: null | string
   /**
    * The test id of the dialog.
    */
   testId?: string
-  /**
-   * The id of the element that triggers the dialog: Will be set automatically when using the `useDialog` composable
-   * @default null
-   */
-  triggerId?: null | string
   /**
    * Whether to animate the dialog with the View Transitions API
    * @default false
@@ -20,8 +20,4 @@ export interface AppDialogProps {
    * @default false
    */
   shouldPreventClickOutside?: boolean
-  /**
-   *
-   */
-  styleConfig?: StyleConfig<'dialog'> | null
 }

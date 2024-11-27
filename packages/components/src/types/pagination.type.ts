@@ -23,11 +23,6 @@ export interface PageChangeEvent {
 
 export type FilterChangeEvent<TFilters> = PaginationFilters<TFilters>
 
-export interface TableFilterEvent<TFilters> {
-  key: keyof TFilters
-  value: FilterValues | null
-}
-
 export interface SortChangeEvent {
   direction: SortDirection
   key: string
@@ -53,8 +48,6 @@ interface PaginationFilterBase<TFilters> {
 export type FilterValues = number
   | string
   | string[]
-
-export type Filters = Record<string, FilterValues | undefined>
 
 export interface PaginationFilterWithMultipleOptions<TFilters> extends PaginationFilterBase<TFilters> {
   displayFn: (value: string) => string
@@ -112,14 +105,15 @@ export interface UsePaginationOptions<TFilters> {
    */
   isRouteQueryEnabled: boolean
   /**
-   * If not provided, the default options will be used.
-   * @default null
-   */
-  defaultPaginationOptions?: MaybeRefOrGetter<DeepPartial<PaginationOptions<TFilters>>> | null
-  /**
    * The key to store pagination options in the route query.
    */
   key?: string
+  /**
+   * The initial pagination options to use. If not provided, the default options will be used.
+   * These options can be reactive and will update the pagination state when changed.
+   * @default null
+   */
+  options?: MaybeRefOrGetter<DeepPartial<PaginationOptions<TFilters>>> | null
 }
 
 export interface UsePaginationReturnType<TFilters> {

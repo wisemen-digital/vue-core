@@ -1,7 +1,7 @@
 {
   "name": "@wisemen/vue-core",
   "type": "module",
-  "version": "1.0.0-alpha.6",
+  "version": "1.0.0-alpha.13",
   "license": "MIT",
   "sideEffects": false,
   "exports": {
@@ -21,8 +21,7 @@
   ],
   "scripts": {
     "prerelease": "pnpm version prerelease --preid=alpha",
-    "playground": "vite --config vite.playground.config.ts dev",
-    "dev": "vite build --watch",
+    "dev": "vite --config vite.playground.config.ts dev",
     "build": "pnpm type-check && pnpm build-only && npm pack && cpx web-types.json dist/web-types.json",
     "precommit": "pnpm type-check && test:unit && pnpm build-only",
     "build-only": "vite build",
@@ -47,7 +46,7 @@
     "date-fns": "4.1.0",
     "defu": "6.1.4",
     "postcss": "8.4.47",
-    "reka-ui": "1.0.0-alpha.1",
+    "reka-ui": "1.0.0-alpha.5",
     "tailwindcss": "3.4.14"
   },
   "devDependencies": {

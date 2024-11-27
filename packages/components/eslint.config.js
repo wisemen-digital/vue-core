@@ -21,6 +21,7 @@ export const allowedComponentClasses = [
   'text-field',
   'textarea',
   'toast',
+  'radio-group',
   'tooltip',
 ]
 export default [
@@ -43,7 +44,7 @@ export default [
         {
           whitelist: [
             '^custom-.*',
-            ...allowedComponentClasses.map((className) => `^${className}-variant-.*`),
+            ...allowedComponentClasses.map((className) => `^${className}-default`),
           ],
         },
       ],

@@ -9,25 +9,31 @@ export interface TableStyleConfig {
   '--table-header-label-text-color-default': string
 }
 
-defineStyleConfig({
-  config: {
-    '--table-border-color-default': 'var(--border-secondary)',
-    '--table-border-radius-default': 'var(--radius-lg)',
-    '--table-header-bg-color-default': 'var(--bg-secondary)',
-    '--table-header-label-font-size-default': 'var(--text-subtext)',
-    '--table-header-label-font-weight-default': '500',
-    '--table-header-label-text-color-default': 'var(--text-tertiary)',
-  },
-  selector: '.table-variant-default',
-  component: 'table',
-})
+export function setupDefaultTableStyles(): void {
+  defineStyleConfig({
+    colorScheme: '*',
+    config: {
+      '--table-border-color-default': 'var(--border-secondary)',
+      '--table-border-radius-default': 'var(--radius-lg)',
+      '--table-header-bg-color-default': 'var(--bg-secondary)',
+      '--table-header-label-font-size-default': 'var(--text-sm)',
+      '--table-header-label-font-weight-default': '500',
+      '--table-header-label-text-color-default': 'var(--text-tertiary)',
+    },
+    theme: '*',
+    variant: 'default',
+    component: 'table',
+  })
 
-defineStyleConfig({
-  config: {
-    '--table-border-color-default': 'transparent',
-    '--table-border-radius-default': '0',
-    '--table-header-bg-color-default': 'var(--bg-primary)',
-  },
-  selector: '.table-variant-borderless',
-  component: 'table',
-})
+  defineStyleConfig({
+    colorScheme: '*',
+    config: {
+      '--table-border-color-default': 'transparent',
+      '--table-border-radius-default': '0',
+      '--table-header-bg-color-default': 'var(--bg-primary)',
+    },
+    theme: '*',
+    variant: 'borderless',
+    component: 'table',
+  })
+}

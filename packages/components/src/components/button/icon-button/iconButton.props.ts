@@ -1,7 +1,7 @@
 import type { Icon } from '@/icons/icons'
-import type { StyleConfig } from '@/types/style.type'
+import type { Stylable } from '@/types/stylable.type'
 
-export interface AppIconButtonProps {
+export interface IconButtonProps extends Stylable<'iconButton'> {
   /**
    * The test id of the button.
    */
@@ -29,11 +29,6 @@ export interface AppIconButtonProps {
    * @default 'default'
    */
   size?: '2xl' | 'default' | 'lg' | 'sm' | 'xl'
-  /**
-   * The style config of the button.
-   * @default null
-   */
-  styleConfig?: StyleConfig<'iconButton'> | null
   /**
    * The type of the button.
    * @default 'button'

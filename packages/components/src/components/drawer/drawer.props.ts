@@ -1,15 +1,15 @@
-import type { StyleConfig } from '@/types/style.type'
+import type { Stylable } from '@/types/stylable.type'
 
-export interface AppDrawerProps {
+export interface DrawerProps extends Stylable<'drawer'> {
+  /**
+   * The id of the element that triggers the drawer. Must be set for accessibility purposes.
+   * @default null
+   */
+  id?: null | string
   /**
    * The test id of the drawer.
    */
   testId?: string
-  /**
-   * The id of the element that triggers the drawer: Will be set automatically when using the `useDrawer` composable
-   * @default null
-   */
-  triggerId?: null | string
   /**
    * Whether to animate the drawer with the View Transitions API
    * @default false
@@ -21,7 +21,14 @@ export interface AppDrawerProps {
    */
   shouldPreventClickOutside?: boolean
   /**
-   *
+   * The transition classes to apply to the drawer
    */
-  styleConfig?: StyleConfig<'drawer'> | null
+  transitionClasses?: {
+    enterActive?: string
+    enterFrom?: string
+    enterTo?: string
+    leaveActive?: string
+    leaveFrom?: string
+    leaveTo?: string
+  } | null
 }

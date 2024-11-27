@@ -1,10 +1,10 @@
 import type { VNode } from 'vue'
 
 import type { PaginatedData, Pagination } from '@/types/pagination.type'
-import type { StyleConfig } from '@/types/style.type'
+import type { Stylable } from '@/types/stylable.type'
 import type { TableColumn } from '@/types/table.type'
 
-export interface AppTableProps<TSchema, TFilters> {
+export interface TableProps<TSchema, TFilters> extends Stylable<'table'> {
   /**
    * Whether the first column is sticky
    * @default false
@@ -42,8 +42,8 @@ export interface AppTableProps<TSchema, TFilters> {
    */
   rowClass?: ((row: TSchema, rowIndex: number) => string) | null
   /**
-   * The style config of the table.
-   * @default null
+   * The variant of the table
+   * @default 'default'
    */
-  styleConfig?: StyleConfig<'table'> | null
+  variant?: 'borderless' | 'default'
 }

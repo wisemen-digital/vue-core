@@ -12,7 +12,7 @@ export const i18nPlugin = createI18n({
   legacy: false,
   messages: {
     en: {
-      components: {
+      component: {
         table: {
           page_count: '{startIndex} - {endIndex} of {totalItems}',
         },

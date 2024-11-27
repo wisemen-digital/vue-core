@@ -1,40 +1,23 @@
 import type { Icon } from '@/icons/icons'
-import type { FormFieldErrors } from '@/types/formFieldErrors.type'
-import type {
-  PopoverProps,
-} from '@/types/popover.type'
+import type { FormElementProps } from '@/types/formElement.type'
+import type { PopperProps } from '@/types/popper'
 import type {
   SelectItem,
   SelectValue,
 } from '@/types/select.type'
-import type { StyleConfig } from '@/types/style.type'
+import type { Stylable } from '@/types/stylable.type'
 
 export type SelectFilterFn<TValue extends SelectValue> = (
   option: TValue extends Array<infer U> ? U : TValue,
   searchTerm: string,
 ) => boolean
 
-export interface AppSelectProps<TValue extends SelectValue> extends Omit<PopoverProps, 'isArrowHidden'> {
-  /**
-   * The id of the input.
-   * @default null
-   */
-  id?: null | string
-  /**
-   * The test id of the input.
-   * @default null
-   */
-  testId?: null | string
+export interface SelectProps<TValue extends SelectValue> extends FormElementProps, Omit<PopperProps, 'isArrowHidden'>, Stylable<'select'> {
   /**
    * Whether the arrow is visible.
    * @default false
    */
   isArrowVisible?: boolean
-  /**
-   * Whether the input is disabled.
-   * @default false
-   */
-  isDisabled?: boolean
   /**
    * Whether the input is loading.
    * @default false
@@ -58,11 +41,6 @@ export interface AppSelectProps<TValue extends SelectValue> extends Omit<Popover
    */
   filterFn?: SelectFilterFn<TValue> | null
   /**
-   * The hint text of the input.
-   * @default null
-   */
-  hint?: null | string
-  /**
    * The left icon of the input.
    * @default null
    */
@@ -77,11 +55,6 @@ export interface AppSelectProps<TValue extends SelectValue> extends Omit<Popover
    */
   items: SelectItem<TValue extends Array<infer U> ? U : TValue>[]
   /**
-   * The label of the input.
-   * @default null
-   */
-  label?: null | string
-  /**
    * The placeholder text of the input.
    * @default null
    */
@@ -90,17 +63,13 @@ export interface AppSelectProps<TValue extends SelectValue> extends Omit<Popover
    * The placeholder of the search input.
    * @default 't("component.select.search_placeholder")'
    */
-  searchPlaceholder?: string
+  searchPlaceholder?: null | string
   /**
    * Whether the select should remain open when the value changes.
    * @default true - when the value is an array
    * @default false - when the value is a single value
    */
   shouldRemainOpenOnValueChange?: boolean | null
-  /**
-   *
-   */
-  styleConfig?: StyleConfig<'select'> | null
   /**
    * Whether the select should use a virtual list.
    * When enabled, items must be restricted to the option type

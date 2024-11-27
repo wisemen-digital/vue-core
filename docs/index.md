@@ -11,6 +11,6 @@ hero:
       link: /guide/getting-started
     - theme: alt
       text: Explore components
-      link: /components/button/app-button
+      link: /components/autocomplete/address-autocomplete
 ---
 

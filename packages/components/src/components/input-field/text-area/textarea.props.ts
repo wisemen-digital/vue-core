@@ -1,7 +1,7 @@
 import type { FormFieldErrors } from '@/types/formFieldErrors.type'
-import type { StyleConfig } from '@/types/style.type'
+import type { Stylable } from '@/types/stylable.type'
 
-export interface AppTextareaProps {
+export interface TextareaProps extends Stylable<'textarea'> {
   /**
    * The id of the input.
    * @default null
@@ -60,8 +60,4 @@ export interface AppTextareaProps {
    * @default 'none'
    */
   resize?: 'auto-vertical' | 'both' | 'horizontal' | 'none' | 'vertical'
-  /**
-   *
-   */
-  styleConfig?: StyleConfig<'textarea'> | null
 }
