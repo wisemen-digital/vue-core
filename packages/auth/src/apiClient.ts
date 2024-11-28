@@ -200,10 +200,10 @@ export class ApiClient {
   }
 
   public setTokens(tokens: OAuth2Tokens): void {
-    const decodedToken = decodeToken(tokens.id_token)
+    const expirationInSecondsSinceUnixEpoch = decodeToken(tokens.id_token).exp
 
     const tokensWithExpiration = {
-      expires_at: decodedToken.exp * 1000,
+      expires_at: expirationInSecondsSinceUnixEpoch * 1000,
       access_token: tokens.access_token,
       id_token: tokens.id_token,
       refresh_token: tokens.refresh_token,
