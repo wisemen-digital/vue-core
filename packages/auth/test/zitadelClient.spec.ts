@@ -33,12 +33,13 @@ function encodeJwt(token: Token): string {
 }
 
 const mockAccessToken = encodeJwt({ exp: Date.now() })
+const mockIdToken = encodeJwt({ exp: Date.now() })
 const mockExpiresAt = Date.now() + 1000
 
 const mockTokens: OAuth2Tokens = {
   expires_at: mockExpiresAt,
   access_token: mockAccessToken,
-  id_token: 'id_token_value',
+  id_token: mockIdToken,
   refresh_token: 'refresh_token_value',
   scope: 'openid',
   token_type: 'Bearer',
