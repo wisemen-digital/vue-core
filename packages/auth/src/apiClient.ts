@@ -70,16 +70,7 @@ export class ApiClient {
       },
     )
 
-    const decodedToken = decodeToken(response.data.access_token)
-
-    return {
-      expires_at: decodedToken.exp * 1000,
-      access_token: response.data.access_token,
-      id_token: response.data.id_token,
-      refresh_token: response.data.refresh_token,
-      scope: response.data.scope,
-      token_type: response.data.token_type,
-    }
+    return response.data
   }
 
   private async refreshToken(): Promise<void> {
@@ -190,27 +181,36 @@ export class ApiClient {
       },
     })
 
-    this.setTokens(response.data)
-
     localStorage.removeItem(CODE_VERIFIER_KEY)
+
+    this.setTokens(response.data)
   }
 
   public setMockTokens(): void {
-    this.setTokens({
+    const mockTokens = {
       expires_at: 0,
       access_token: '',
       id_token: '',
       refresh_token: '',
       scope: '',
       token_type: '',
-    })
-  }
-
-  public setTokens(tokens?: OAuth2Tokens): void {
-    if (tokens === undefined) {
-      return
     }
 
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(tokens))
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(mockTokens))
+  }
+
+  public setTokens(tokens: OAuth2Tokens): void {
+    const expirationInSecondsSinceUnixEpoch = decodeToken(tokens.id_token).exp
+
+    const tokensWithExpiration = {
+      expires_at: expirationInSecondsSinceUnixEpoch * 1000,
+      access_token: tokens.access_token,
+      id_token: tokens.id_token,
+      refresh_token: tokens.refresh_token,
+      scope: tokens.scope,
+      token_type: tokens.token_type,
+    }
+
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(tokensWithExpiration))
   }
 }
