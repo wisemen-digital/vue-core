@@ -199,11 +199,7 @@ export class ApiClient {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(mockTokens))
   }
 
-  public setTokens(tokens?: OAuth2Tokens): void {
-    if (tokens === undefined) {
-      return
-    }
-
+  public setTokens(tokens: OAuth2Tokens): void {
     const decodedToken = decodeToken(tokens.id_token)
 
     const tokensWithExpiration = {
