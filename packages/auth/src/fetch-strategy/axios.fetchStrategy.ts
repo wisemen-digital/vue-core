@@ -9,28 +9,18 @@ import type {
   FetchStrategyLoginWithCodeOptions,
 } from './fetchStrategy.type'
 
-interface Token {
-  exp: number
-}
+export class AxiosFetchStrategy implements FetchStrategy<AxiosInstance> {
+  private axios: AxiosInstance
+  constructor(axiosInstance: AxiosInstance) {
+    this.axios = axiosInstance
+  }
 
-function decodeToken(token: string): Token {
-  const base64Url = token.split('.')[1]
-  const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
-  const jsonPayload = decodeURIComponent(
-    atob(base64)
-      .split('')
-      .map((c) => `%${(`00${c.charCodeAt(0).toString(16)}`).slice(-2)}`)
-      .join(''),
-  )
+  public getFetchInstance(): AxiosInstance {
+    return this.axios
+  }
 
-  return JSON.parse(jsonPayload)
-}
-
-export function useAxiosFetchStrategy(axiosInstance: AxiosInstance): FetchStrategy<AxiosInstance> {
-  const axios = axiosInstance
-
-  async function getNewAccessToken(options: FetchStrategyGetNewAccessTokenOptions): Promise<OAuth2Tokens> {
-    const response = await axios.post<OAuth2Tokens>(
+  public async getNewAccessToken(options: FetchStrategyGetNewAccessTokenOptions): Promise<OAuth2Tokens> {
+    const response = await this.axios.post<OAuth2Tokens>(
       options.url,
       {
         client_id: options.clientId,
@@ -45,20 +35,11 @@ export function useAxiosFetchStrategy(axiosInstance: AxiosInstance): FetchStrate
       },
     )
 
-    const decodedToken = decodeToken(response.data.access_token)
-
-    return {
-      expires_at: decodedToken.exp * 1000,
-      access_token: response.data.access_token,
-      id_token: response.data.id_token,
-      refresh_token: response.data.refresh_token,
-      scope: response.data.scope,
-      token_type: response.data.token_type,
-    }
+    return response.data
   }
 
-  async function getUserInfo(options: FetchStrategyGetUserInfoOptions): Promise<ZitadelUser> {
-    const response = await axios.get(options.url, {
+  public async getUserInfo(options: FetchStrategyGetUserInfoOptions): Promise<ZitadelUser> {
+    const response = await this.axios.get(options.url, {
       headers: {
         Authorization: `Bearer ${options.accessToken}`,
       },
@@ -67,12 +48,8 @@ export function useAxiosFetchStrategy(axiosInstance: AxiosInstance): FetchStrate
     return response.data
   }
 
-  function setAuthorizationHeader(accessToken: string): void {
-    axios.defaults.headers.Authorization = `Bearer ${accessToken}`
-  }
-
-  async function loginWithCode(options: FetchStrategyLoginWithCodeOptions): Promise<OAuth2Tokens> {
-    const response = await axios.post<OAuth2Tokens>(options.url, {
+  public async loginWithCode(options: FetchStrategyLoginWithCodeOptions): Promise<OAuth2Tokens> {
+    const response = await this.axios.post<OAuth2Tokens>(options.url, {
       client_id: options.clientId,
       code: options.code,
       code_verifier: options.codeVerifier,
@@ -87,20 +64,11 @@ export function useAxiosFetchStrategy(axiosInstance: AxiosInstance): FetchStrate
     return response.data
   }
 
-  function removeAuthorizationHeader(): void {
-    axios.defaults.headers.Authorization = null
+  public removeAuthorizationHeader(): void {
+    this.axios.defaults.headers.Authorization = null
   }
 
-  function getFetchInstance(): AxiosInstance {
-    return axios
-  }
-
-  return {
-    getFetchInstance,
-    getNewAccessToken,
-    getUserInfo,
-    loginWithCode,
-    removeAuthorizationHeader,
-    setAuthorizationHeader,
+  public setAuthorizationHeader(accessToken: string): void {
+    this.axios.defaults.headers.Authorization = `Bearer ${accessToken}`
   }
 }

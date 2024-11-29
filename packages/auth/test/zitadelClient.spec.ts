@@ -16,11 +16,9 @@ import type {
   OAuth2VueClientOptions,
   ZitadelUser,
 } from '../src'
-import {
-  useAxiosFetchStrategy,
-  ZitadelClient,
-} from '../src'
+import { ZitadelClient } from '../src'
 import type { OAuth2Tokens } from '../src/apiClient'
+import { AxiosFetchStrategy } from '../src/fetch-strategy/axios.fetchStrategy'
 
 let mockAxios: AxiosMockAdapter
 
@@ -37,12 +35,13 @@ function encodeJwt(token: Token): string {
 }
 
 const mockAccessToken = encodeJwt({ exp: Date.now() })
+const mockIdToken = encodeJwt({ exp: Date.now() })
 const mockExpiresAt = Date.now() + 1000
 
 const mockTokens: OAuth2Tokens = {
   expires_at: mockExpiresAt,
   access_token: mockAccessToken,
-  id_token: 'id_token_value',
+  id_token: mockIdToken,
   refresh_token: 'refresh_token_value',
   scope: 'openid',
   token_type: 'Bearer',
@@ -58,13 +57,13 @@ const clientOptions: OAuth2VueClientOptions<AxiosInstance> = {
   clientId: 'client_id_value',
   organizationId: 'organization_id_value',
   baseUrl: BASE_URL,
-  fetchStrategy: useAxiosFetchStrategy(axiosInstance),
+  fetchStrategy: new AxiosFetchStrategy(axiosInstance),
   loginRedirectUri: '/login',
   offline: false,
   postLogoutRedirectUri: '/post-logout',
 }
 
-describe('oAuth2ZitadelClient', () => {
+describe('zitadelClient', () => {
   beforeEach(() => {
     mockAxios = new AxiosMockAdapter(axiosInstance)
   })

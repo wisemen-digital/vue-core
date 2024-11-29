@@ -1,7 +1,7 @@
 import pkceChallenge from 'pkce-challenge'
 
 import { ApiClient } from './apiClient'
-import { localStorageTokensStrategy } from './tokens-strategy/localStorage.tokensStrategy'
+import { LocalStorageTokensStrategy } from './tokens-strategy/localStorage.tokensStrategy'
 import type { TokensStrategy } from './tokens-strategy/tokensStrategy.type'
 import type {
   OAuth2VueClientOptions,
@@ -11,10 +11,12 @@ import type {
 export class ZitadelClient<TFetchInstance> {
   private client: ApiClient<TFetchInstance> | null = null
   private readonly offline: boolean
+  private tokensStrategy: TokensStrategy
 
   constructor(private readonly options: OAuth2VueClientOptions<TFetchInstance>) {
     this.offline = options.offline ?? false
 
+    this.tokensStrategy = this.options.tokensStrategy ?? new LocalStorageTokensStrategy()
     this.client = new ApiClient<TFetchInstance>(
       {
         clientId: this.options.clientId,
@@ -22,7 +24,7 @@ export class ZitadelClient<TFetchInstance> {
         fetchStrategy: this.options.fetchStrategy,
         redirectUri: this.options.loginRedirectUri,
         scopes: this.options.scopes ?? this.getDefaultScopes(),
-        tokensStrategy: this.options.tokensStrategy ?? localStorageTokensStrategy,
+        tokensStrategy: this.tokensStrategy,
       },
     )
   }
@@ -59,7 +61,7 @@ export class ZitadelClient<TFetchInstance> {
   }
 
   private getTokensStrategy(): TokensStrategy {
-    return this.options.tokensStrategy ?? localStorageTokensStrategy
+    return this.tokensStrategy
   }
 
   private removeAuthorizationHeader(): void {

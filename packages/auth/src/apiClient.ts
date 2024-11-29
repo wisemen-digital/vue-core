@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 
 import type { FetchStrategy } from './fetch-strategy/fetchStrategy.type'
-import { localStorageTokensStrategy } from './tokens-strategy/localStorage.tokensStrategy'
 import type { TokensStrategy } from './tokens-strategy/tokensStrategy.type'
 import type {
   ZitadelUser,
@@ -22,7 +21,24 @@ interface ApiClientOptions<TFetchInstance> {
   fetchStrategy: FetchStrategy<TFetchInstance>
   redirectUri: string
   scopes?: string[]
-  tokensStrategy?: TokensStrategy
+  tokensStrategy: TokensStrategy
+}
+
+interface Token {
+  exp: number
+}
+
+function decodeToken(token: string): Token {
+  const base64Url = token.split('.')[1]
+  const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
+  const jsonPayload = decodeURIComponent(
+    atob(base64)
+      .split('')
+      .map((c) => `%${(`00${c.charCodeAt(0).toString(16)}`).slice(-2)}`)
+      .join(''),
+  )
+
+  return JSON.parse(jsonPayload)
 }
 
 export class ApiClient<TFetchInstance> {
@@ -47,7 +63,7 @@ export class ApiClient<TFetchInstance> {
   }
 
   private getTokensStrategy(): TokensStrategy {
-    return this.options.tokensStrategy ?? localStorageTokensStrategy
+    return this.options.tokensStrategy
   }
 
   private async refreshToken(): Promise<void> {
@@ -151,27 +167,35 @@ export class ApiClient<TFetchInstance> {
       url: `${this.getBaseUrl()}/oauth/v2/token`,
     })
 
-    this.setTokens(response)
-
     this.getTokensStrategy().removeCodeVerifier()
+    this.setTokens(response)
   }
 
   public setMockTokens(): void {
-    this.setTokens({
+    const mockTokens = {
       expires_at: 0,
       access_token: '',
       id_token: '',
       refresh_token: '',
       scope: '',
       token_type: '',
-    })
-  }
-
-  public setTokens(tokens?: OAuth2Tokens): void {
-    if (tokens === undefined) {
-      return
     }
 
-    this.getTokensStrategy().setTokens(tokens)
+    this.getTokensStrategy().setTokens(mockTokens)
+  }
+
+  public setTokens(tokens: OAuth2Tokens): void {
+    const expirationInSecondsSinceUnixEpoch = decodeToken(tokens.id_token).exp
+
+    const tokensWithExpiration = {
+      expires_at: expirationInSecondsSinceUnixEpoch * 1000,
+      access_token: tokens.access_token,
+      id_token: tokens.id_token,
+      refresh_token: tokens.refresh_token,
+      scope: tokens.scope,
+      token_type: tokens.token_type,
+    }
+
+    this.getTokensStrategy().setTokens(tokensWithExpiration)
   }
 }

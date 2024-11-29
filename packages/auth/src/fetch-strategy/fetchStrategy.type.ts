@@ -21,7 +21,6 @@ export interface FetchStrategyLoginWithCodeOptions {
   url: string
 }
 export interface FetchStrategy<TFetchInstance> {
-
   getFetchInstance: () => TFetchInstance
   getNewAccessToken: (options: FetchStrategyGetNewAccessTokenOptions) => Promise<OAuth2Tokens>
   getUserInfo: (options: FetchStrategyGetUserInfoOptions) => Promise<ZitadelUser>

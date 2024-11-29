@@ -1,48 +1,40 @@
 import type { OAuth2Tokens } from '../apiClient'
 import type {
   TokensStrategy,
-  TokensStrategySetCodeVerifierOptions,
-  TokensStrategySetTokensOptions,
 } from './tokensStrategy.type'
 
-export const CODE_VERIFIER_KEY = 'code_verifier'
-export const LOCAL_STORAGE_KEY = 'tokens'
+export class LocalStorageTokensStrategy implements TokensStrategy {
+  private CODE_VERIFIER_KEY = 'code_verifier'
+  private TOKENS_KEY = 'tokens'
 
-function getTokens(key: string): OAuth2Tokens | null {
-  const tokens = localStorage.getItem(key)
-
-  if (tokens === null) {
-    return null
+  constructor() {}
+  public getCodeVerifier(): string | null {
+    return localStorage.getItem(this.CODE_VERIFIER_KEY)
   }
 
-  return JSON.parse(tokens as string) as OAuth2Tokens
-}
+  public getTokens(): OAuth2Tokens | null {
+    const tokens = localStorage.getItem(this.TOKENS_KEY)
 
-function removeTokens(key: string): void {
-  localStorage.removeItem(key)
-}
+    if (tokens === null) {
+      return null
+    }
 
-function setTokens({ key, tokens }: TokensStrategySetTokensOptions): void {
-  localStorage.setItem(key, JSON.stringify(tokens))
-}
+    return JSON.parse(tokens as string) as OAuth2Tokens
+  }
 
-function setCodeVerifier({ codeVerifier, key }: TokensStrategySetCodeVerifierOptions): void {
-  localStorage.setItem(key, codeVerifier)
-}
+  public removeCodeVerifier(): void {
+    localStorage.removeItem(this.CODE_VERIFIER_KEY)
+  }
 
-function removeCodeVerifier(key: string): void {
-  localStorage.removeItem(key)
-}
+  public removeTokens(): void {
+    localStorage.removeItem(this.TOKENS_KEY)
+  }
 
-function getCodeVerifier(key: string): string | null {
-  return localStorage.getItem(key)
-}
+  public setCodeVerifier(codeVerifier: string): void {
+    localStorage.setItem(this.CODE_VERIFIER_KEY, codeVerifier)
+  }
 
-export const localStorageTokensStrategy: TokensStrategy = {
-  getCodeVerifier: () => getCodeVerifier(CODE_VERIFIER_KEY),
-  getTokens: () => getTokens(LOCAL_STORAGE_KEY),
-  removeCodeVerifier: () => removeCodeVerifier(CODE_VERIFIER_KEY),
-  removeTokens: () => removeTokens(LOCAL_STORAGE_KEY),
-  setCodeVerifier: (codeVerifier: string) => setCodeVerifier({ codeVerifier, key: CODE_VERIFIER_KEY }),
-  setTokens: (tokens: OAuth2Tokens) => setTokens({ key: LOCAL_STORAGE_KEY, tokens }),
+  public setTokens(tokens: OAuth2Tokens): void {
+    localStorage.setItem(this.TOKENS_KEY, JSON.stringify(tokens))
+  }
 }
