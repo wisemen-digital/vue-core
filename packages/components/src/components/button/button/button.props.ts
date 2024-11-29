@@ -6,7 +6,7 @@ export interface ButtonProps extends Stylable<'button'> {
    * The test id of the button.
    * @default null
    */
-  testId?: null | string
+  testId?: string | null
   /**
    * Whether the button is disabled.
    * @default false

@@ -4,14 +4,14 @@ import { computed } from 'vue'
 import Icon from '@/components/icon/Icon.vue'
 import PopoverTrigger from '@/components/popover/PopoverTrigger.vue'
 import { injectSelectContext } from '@/components/select/select.context'
-import { selectStyle } from '@/components/select/select.style'
+import { useSelectStyle } from '@/components/select/select.style'
 import SelectValueTag from '@/components/select/values/SelectValueTag.vue'
 import Spinner from '@/components/spinner/Spinner.vue'
 import { useAriaDescribedBy } from '@/composables/aria-described-by/ariaDescribedBy.composable'
 
 const selectContext = injectSelectContext()
 
-const style = selectStyle()
+const selectStyle = useSelectStyle()
 
 const ariaDescribedBy = useAriaDescribedBy({
   id: selectContext.inputId,
@@ -19,7 +19,7 @@ const ariaDescribedBy = useAriaDescribedBy({
   hasHint: computed<boolean>(() => selectContext.hint.value !== null),
 })
 
-const selectBoxClasses = computed<string>(() => style.selectBox({
+const selectBoxClasses = computed<string>(() => selectStyle.selectBox({
   hasError: selectContext.hasError.value,
   hasIconLeft: selectContext.iconLeft.value !== null,
   hasIconRight: selectContext.iconRight.value !== null,
@@ -28,7 +28,7 @@ const selectBoxClasses = computed<string>(() => style.selectBox({
   isHovered: selectContext.isHovered.value,
 }))
 
-const placeholderClasses = computed<string>(() => style.placeholder({
+const placeholderClasses = computed<string>(() => selectStyle.placeholder({
   hasError: selectContext.hasError.value,
   hasIconLeft: selectContext.iconLeft.value !== null,
   hasIconRight: selectContext.iconRight.value !== null,
@@ -37,21 +37,21 @@ const placeholderClasses = computed<string>(() => style.placeholder({
   isHovered: selectContext.isHovered.value,
 }))
 
-const iconLeftClasses = computed<string>(() => style.iconLeft({
+const iconLeftClasses = computed<string>(() => selectStyle.iconLeft({
   hasError: selectContext.hasError.value,
   isDisabled: selectContext.isDisabled.value,
   isFocused: selectContext.isFocused.value || selectContext.isOpen.value,
   isHovered: selectContext.isHovered.value,
 }))
 
-const iconRightClasses = computed<string>(() => style.iconRight({
+const iconRightClasses = computed<string>(() => selectStyle.iconRight({
   hasError: selectContext.hasError.value,
   isDisabled: selectContext.isDisabled.value,
   isFocused: selectContext.isFocused.value || selectContext.isOpen.value,
   isHovered: selectContext.isHovered.value,
 }))
 
-const tagsClasses = computed<string>(() => style.tags({
+const tagsClasses = computed<string>(() => selectStyle.tags({
   hasError: selectContext.hasError.value,
   hasIconLeft: selectContext.iconLeft.value !== null,
   hasIconRight: selectContext.iconRight.value !== null,
@@ -60,9 +60,9 @@ const tagsClasses = computed<string>(() => style.tags({
   isHovered: selectContext.isHovered.value,
 }))
 
-const loaderBoxClasses = computed<string>(() => style.loaderBox())
+const loaderBoxClasses = computed<string>(() => selectStyle.loaderBox())
 
-const loaderClasses = computed<string>(() => style.loader({
+const loaderClasses = computed<string>(() => selectStyle.loader({
   hasError: selectContext.hasError.value,
   isDisabled: selectContext.isDisabled.value,
   isFocused: selectContext.isFocused.value || selectContext.isOpen.value,

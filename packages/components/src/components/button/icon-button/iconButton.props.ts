@@ -1,3 +1,4 @@
+import type { ButtonProps } from '@/components/button/button/button.props'
 import type { Icon } from '@/icons/icons'
 import type { Stylable } from '@/types/stylable.type'
 
@@ -5,7 +6,7 @@ export interface IconButtonProps extends Stylable<'iconButton'> {
   /**
    * The test id of the button.
    */
-  testId?: null | string
+  testId?: string | null
   /**
    * Whether the button is disabled.
    * @default false
@@ -16,6 +17,11 @@ export interface IconButtonProps extends Stylable<'iconButton'> {
    * @default false
    */
   isLoading?: boolean
+  /**
+   * Whether the tooltip is hidden.
+   * @default false
+   */
+  isTooltipHidden?: boolean
   /**
    * The icon of the button.
    */
@@ -28,15 +34,15 @@ export interface IconButtonProps extends Stylable<'iconButton'> {
    * The size of the button.
    * @default 'default'
    */
-  size?: '2xl' | 'default' | 'lg' | 'sm' | 'xl'
+  size?: ButtonProps['size']
   /**
    * The type of the button.
    * @default 'button'
    */
-  type?: 'button' | 'reset' | 'submit'
+  type?: ButtonProps['type']
   /**
    * The variant of the button.
    * @default 'default'
    */
-  variant?: 'default' | 'destructive-primary' | 'destructive-secondary' | 'destructive-tertiary' | 'secondary' | 'secondary-color' | 'tertiary' | 'tertiary-color'
+  variant?: ButtonProps['variant']
 }

@@ -1,6 +1,7 @@
 import { defineStyleConfig } from '@/styling/defineStyleConfig'
 
 export interface TableStyleConfig {
+  '--table-bg-color-default': string
   '--table-border-color-default': string
   '--table-border-radius-default': string
   '--table-header-bg-color-default': string
@@ -13,6 +14,7 @@ export function setupDefaultTableStyles(): void {
   defineStyleConfig({
     colorScheme: '*',
     config: {
+      '--table-bg-color-default': 'var(--bg-primary)',
       '--table-border-color-default': 'var(--border-secondary)',
       '--table-border-radius-default': 'var(--radius-lg)',
       '--table-header-bg-color-default': 'var(--bg-secondary)',

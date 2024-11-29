@@ -5,17 +5,17 @@ import {
 } from 'reka-ui'
 import { computed } from 'vue'
 
-import { selectStyle } from '@/components/select/select.style'
+import { useSelectStyle } from '@/components/select/select.style'
 import type { SelectGroup, SelectValue } from '@/types/select.type'
 
 const props = defineProps<{
   item: SelectGroup<TValue>
 }>()
 
-const style = selectStyle()
+const selectStyle = useSelectStyle()
 
-const groupLabelClasses = computed<string>(() => style.groupLabel())
-const groupContentClasses = computed<string>(() => style.groupContent())
+const groupLabelClasses = computed<string>(() => selectStyle.groupLabel())
+const groupContentClasses = computed<string>(() => selectStyle.groupContent())
 </script>
 
 <template>

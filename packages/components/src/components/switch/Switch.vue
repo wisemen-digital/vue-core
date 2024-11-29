@@ -1,17 +1,20 @@
 <script setup lang="ts">
-import { SwitchRoot, useId } from 'reka-ui'
+import {
+  SwitchRoot,
+  SwitchThumb,
+  useId,
+} from 'reka-ui'
 import { computed, ref } from 'vue'
 
 import Collapsable from '@/components/collapsable/Collapsable.vue'
+import Icon from '@/components/icon/Icon.vue'
 import InputFieldError from '@/components/input-field-error/InputFieldError.vue'
 import InputFieldHint from '@/components/input-field-hint/InputFieldHint.vue'
 import InputFieldLabel from '@/components/input-field-label/InputFieldLabel.vue'
-import SwitchIndicator from '@/components/switch/SwitchIndicator.vue'
+import type { SwitchProps } from '@/components/switch/switch.props'
+import { useSwitchStyle } from '@/components/switch/switch.style'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { useAriaDescribedBy } from '@/composables/aria-described-by/ariaDescribedBy.composable'
-
-import type { SwitchProps } from './switch.props'
-import { switchStyle } from './switch.style'
 
 const props = withDefaults(defineProps<SwitchProps>(), {
   id: null,
@@ -30,8 +33,8 @@ const props = withDefaults(defineProps<SwitchProps>(), {
 })
 
 const emit = defineEmits<{
-  blur: []
-  focus: []
+  blur: [event: Event]
+  focus: [event: Event]
 }>()
 
 const model = defineModel<boolean>({
@@ -40,12 +43,12 @@ const model = defineModel<boolean>({
 
 const themeProviderContext = injectThemeProviderContext()
 
+const switchStyle = useSwitchStyle()
+
 const isFocused = ref<boolean>(false)
 const isMouseOver = ref<boolean>(false)
 
 const inputId = computed<string>(() => props.id ?? useId())
-
-const style = switchStyle()
 
 const isHovered = computed<boolean>(() => isMouseOver.value && !props.isDisabled)
 const isChecked = computed<boolean>(() => model.value)
@@ -58,7 +61,7 @@ const ariaDescribedBy = useAriaDescribedBy({
   hasHint: computed<boolean>(() => props.hint !== null),
 })
 
-const rootClasses = computed<string>(() => style.root({
+const baseClasses = computed<string>(() => switchStyle.base({
   hasError: hasError.value,
   isChecked: isChecked.value,
   isDisabled: isDisabled.value,
@@ -66,7 +69,7 @@ const rootClasses = computed<string>(() => style.root({
   isHovered: isHovered.value,
 }))
 
-const indicatorClasses = computed<string>(() => style.indicator({
+const thumbClasses = computed<string>(() => switchStyle.thumb({
   hasError: hasError.value,
   isChecked: isChecked.value,
   isDisabled: isDisabled.value,
@@ -74,7 +77,7 @@ const indicatorClasses = computed<string>(() => style.indicator({
   isHovered: isHovered.value,
 }))
 
-const inputLabelClasses = computed<string>(() => style.inputLabel({
+const labelClasses = computed<string>(() => switchStyle.label({
   hasError: hasError.value,
   isChecked: isChecked.value,
   isDisabled: isDisabled.value,
@@ -82,7 +85,7 @@ const inputLabelClasses = computed<string>(() => style.inputLabel({
   isHovered: isHovered.value,
 }))
 
-const errorClasses = computed<string>(() => style.error({
+const hintClasses = computed<string>(() => switchStyle.hint({
   hasError: hasError.value,
   isChecked: isChecked.value,
   isDisabled: isDisabled.value,
@@ -90,7 +93,9 @@ const errorClasses = computed<string>(() => style.error({
   isHovered: isHovered.value,
 }))
 
-const hintClasses = computed<string>(() => style.hint({
+const errorClasses = computed<string>(() => switchStyle.error())
+
+const iconClasses = computed<string>(() => switchStyle.icon({
   hasError: hasError.value,
   isChecked: isChecked.value,
   isDisabled: isDisabled.value,
@@ -98,26 +103,20 @@ const hintClasses = computed<string>(() => style.hint({
   isHovered: isHovered.value,
 }))
 
-const boxClasses = computed<string>(() => style.box({
-  hasError: hasError.value,
-  isChecked: isChecked.value,
-  isDisabled: isDisabled.value,
-  isFocused: isFocused.value,
-  isHovered: isHovered.value,
-}))
-
-const bottomClasses = computed<string>(() => style.bottom())
-
-const sizeClass = computed<null | string>(() => {
-  if (props.size === 'sm') {
-    return 'switch-sm'
+const enterFromClass = computed<string>(() => {
+  if (model.value) {
+    return 'opacity-0 -translate-x-1/4 scale-85'
   }
 
-  if (props.size === 'default') {
-    return 'switch-md'
+  return 'opacity-0 translate-x-1/4 scale-85'
+})
+
+const leaveToClass = computed<string>(() => {
+  if (model.value) {
+    return 'opacity-0 translate-x-1/4 scale-85'
   }
 
-  return null
+  return 'opacity-0 -translate-x-1/4 scale-85'
 })
 
 function onMouseEnter(): void {
@@ -128,67 +127,78 @@ function onMouseLeave(): void {
   isMouseOver.value = false
 }
 
-function onFocus(): void {
+function onFocus(e: Event): void {
   isFocused.value = true
-  emit('focus')
+  emit('focus', e)
 }
 
-function onBlur(): void {
+function onBlur(e: Event): void {
   isFocused.value = false
-  emit('blur')
+  emit('blur', e)
 }
 </script>
 
 <template>
   <div
     :style="props.styleConfig"
-    :class="[sizeClass, themeProviderContext.theme.value]"
-    class="input-field-label-default input-field-error-default input-field-hint-default icon-default switch-default"
+    :class="themeProviderContext.theme.value"
+    class="switch-default input-field-label-default input-field-hint-default input-field-error-default"
   >
-    <div :class="boxClasses">
+    <div class="grid grid-cols-[min-content_auto] items-center">
       <SwitchRoot
         :id="inputId"
         v-model="model"
         :disabled="props.isDisabled || props.isReadonly"
-        :class="[rootClasses]"
         :data-test-id="props.testId"
         :aria-describedby="ariaDescribedBy"
+        :class="baseClasses"
         @mouseenter="onMouseEnter"
         @mouseleave="onMouseLeave"
         @focus="onFocus"
         @blur="onBlur"
       >
-        <SwitchIndicator
-          :is-checked="isChecked"
-          :indicator-classes="indicatorClasses"
-          :icon-checked="props.iconChecked"
-          :icon-unchecked="props.iconUnchecked"
-        />
+        <SwitchThumb :class="thumbClasses">
+          <Transition
+            :enter-from-class="enterFromClass"
+            :leave-to-class="leaveToClass"
+          >
+            <div
+              v-if="props.iconChecked !== null || props.iconUnchecked !== null"
+              :key="+model"
+              :class="iconClasses"
+            >
+              <Icon
+                v-if="model && props.iconChecked !== null"
+                :icon="props.iconChecked"
+              />
+
+              <Icon
+                v-else-if="!model && props.iconUnchecked !== null"
+                :icon="props.iconUnchecked"
+              />
+            </div>
+          </Transition>
+        </SwitchThumb>
       </SwitchRoot>
 
-      <slot
-        v-if="props.label !== null"
-        :input-id="inputId"
-        name="label"
-      >
-        <InputFieldLabel
-          :for="inputId"
-          :label="props.label"
-          :is-required="props.isRequired"
-          :class="inputLabelClasses"
-        />
-      </slot>
-    </div>
+      <!-- <label :class="labelClasses">label</label> -->
+      <InputFieldLabel
+        :class="labelClasses"
+        :is-required="props.isRequired"
+        :for="inputId"
+        label="Label"
+      />
 
-    <div :class="bottomClasses">
+      <span />
+
       <slot name="bottom">
         <Collapsable>
           <div v-if="hasError">
             <slot name="error">
               <InputFieldError
-                :input-id="inputId"
                 :errors="props.errors"
                 :class="errorClasses"
+                :input-id="inputId"
               />
             </slot>
           </div>

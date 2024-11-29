@@ -13,7 +13,7 @@ const tableContext = injectTableContext()
 
 <template>
   <div
-    class="sticky top-0 z-20 col-span-full grid h-11 grid-cols-subgrid border-b border-solid border-secondary"
+    class="sticky top-0 z-20 col-span-full grid h-11 grid-cols-subgrid border-b border-solid border-(--table-border-color-default)"
     role="row"
   >
     <div
@@ -25,7 +25,7 @@ const tableContext = injectTableContext()
         'first:border-r-secondary first:shadow-table-sticky-left-column': tableContext.isScrolledToRight.value && tableContext.isFirstColumnSticky.value,
         'last:border-l-secondary last:shadow-table-sticky-right-column': !tableContext.hasReachedHorizontalScrollEnd.value && tableContext.isLastColumnSticky.value,
       }"
-      class="overflow-hidden bg-table-header-bg-color-default duration-200"
+      class="overflow-hidden bg-(--table-header-bg-color-default) duration-200"
     >
       <Component
         :is="column.header(column)"

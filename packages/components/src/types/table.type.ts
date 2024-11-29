@@ -31,7 +31,7 @@ export interface TableColumn<TSchema> {
    * The maximum width of the column
    * @default 'auto
    */
-  maxWidth?: string
+  // maxWidth?: string
   /**
    * The skeleton render function of the column
    */

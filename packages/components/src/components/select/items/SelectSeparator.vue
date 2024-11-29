@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import { selectStyle } from '@/components/select/select.style'
+import { useSelectStyle } from '@/components/select/select.style'
 
-const style = selectStyle()
+const selectStyle = useSelectStyle()
 
-const separatorClasses = computed<string>(() => style.separator())
+const separatorClasses = computed<string>(() => selectStyle.separator())
 </script>
 
 <template>

@@ -16,13 +16,13 @@ import {
 import type { AutocompleteProps } from '@/components/autocomplete/autocomplete.props'
 import Collapsable from '@/components/collapsable/Collapsable.vue'
 import Icon from '@/components/icon/Icon.vue'
-import { textFieldStyle } from '@/components/input-field/text-field/textField.style'
+import { useTextFieldStyle } from '@/components/input-field/text-field/textField.style'
 import InputFieldError from '@/components/input-field-error/InputFieldError.vue'
 import InputFieldHint from '@/components/input-field-hint/InputFieldHint.vue'
 import InputFieldLabel from '@/components/input-field-label/InputFieldLabel.vue'
 import Popover from '@/components/popover/Popover.vue'
 import PopoverAnchor from '@/components/popover/PopoverAnchor.vue'
-import { selectStyle } from '@/components/select/select.style'
+import { useSelectStyle } from '@/components/select/select.style'
 import Spinner from '@/components/spinner/Spinner.vue'
 import type { SelectValue } from '@/types/select.type'
 
@@ -58,8 +58,8 @@ const model = defineModel<TValue | null>({
   required: true,
 })
 
-const styleA = selectStyle()
-const styleB = textFieldStyle()
+const selectStyle = useSelectStyle()
+const textFieldStyle = useTextFieldStyle()
 
 const searchTerm = ref<string>('')
 const isOpen = ref<boolean>(false)
@@ -70,7 +70,7 @@ const inputId = computed<string>(() => props.id ?? useId())
 const isHovered = computed<boolean>(() => isMouseOver.value && !props.isDisabled)
 const hasError = computed<boolean>(() => props.errors !== undefined && props.isTouched && props.errors !== null)
 
-const boxClasses = computed<string>(() => styleB.box({
+const boxClasses = computed<string>(() => textFieldStyle.box({
   hasError: hasError.value,
   hasIconLeft: props.iconLeft !== null,
   hasIconRight: props.iconRight !== null,
@@ -79,7 +79,7 @@ const boxClasses = computed<string>(() => styleB.box({
   isHovered: isHovered.value,
 }))
 
-const inputClasses = computed<string>(() => styleB.input({
+const inputClasses = computed<string>(() => textFieldStyle.input({
   hasError: hasError.value,
   hasIconLeft: props.iconLeft !== null,
   hasIconRight: props.iconRight !== null,
@@ -88,49 +88,49 @@ const inputClasses = computed<string>(() => styleB.input({
   isHovered: isHovered.value,
 }))
 
-const optionClasses = computed<string>(() => styleA.option())
-const optionIndicatorClasses = computed<string>(() => styleA.optionIndicator())
-const dropdownContentClasses = computed<string>(() => styleA.dropdownContent())
-const listboxContentClasses = computed<string>(() => styleA.listboxContent())
+const optionClasses = computed<string>(() => selectStyle.option())
+const optionIndicatorClasses = computed<string>(() => selectStyle.optionIndicator())
+const dropdownContentClasses = computed<string>(() => selectStyle.dropdownContent())
+const listboxContentClasses = computed<string>(() => selectStyle.listboxContent())
 
-const labelClasses = computed<string>(() => styleA.label({
+const labelClasses = computed<string>(() => selectStyle.label({
   hasError: hasError.value,
   isDisabled: props.isDisabled,
   isFocused: isFocused.value,
   isHovered: isHovered.value,
 }))
 
-const hintClasses = computed<string>(() => styleA.hint({
+const hintClasses = computed<string>(() => selectStyle.hint({
   hasError: hasError.value,
   isDisabled: props.isDisabled,
   isFocused: isFocused.value,
   isHovered: isHovered.value,
 }))
 
-const iconLeftClasses = computed<string>(() => styleA.iconLeft({
+const iconLeftClasses = computed<string>(() => selectStyle.iconLeft({
   hasError: hasError.value,
   isDisabled: props.isDisabled,
   isFocused: isFocused.value,
   isHovered: isHovered.value,
 }))
 
-const iconRightClasses = computed<string>(() => styleA.iconRight({
+const iconRightClasses = computed<string>(() => selectStyle.iconRight({
   hasError: hasError.value,
   isDisabled: props.isDisabled,
   isFocused: isFocused.value,
   isHovered: isHovered.value,
 }))
 
-const loaderBoxClasses = computed<string>(() => styleA.loaderBox())
+const loaderBoxClasses = computed<string>(() => selectStyle.loaderBox())
 
-const loaderClasses = computed<string>(() => styleA.loader({
+const loaderClasses = computed<string>(() => selectStyle.loader({
   hasError: hasError.value,
   isDisabled: props.isDisabled,
   isFocused: isFocused.value,
   isHovered: isHovered.value,
 }))
 
-const errorClasses = computed<string>(() => styleA.error())
+const errorClasses = computed<string>(() => selectStyle.error())
 
 const isActuallyOpen = computed<boolean>({
   get: () => {

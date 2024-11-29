@@ -2,7 +2,7 @@
 import { DialogContent } from 'reka-ui'
 import { computed } from 'vue'
 
-import { drawerStyle } from '@/components/drawer/drawer.style'
+import { useDrawerStyle } from '@/components/drawer/drawer.style'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 
 const props = defineProps<{
@@ -11,9 +11,9 @@ const props = defineProps<{
 
 const themeProviderContext = injectThemeProviderContext()
 
-const style = drawerStyle()
-const wrapperClasses = computed<string>(() => style.wrapper())
-const contentClasses = computed<string>(() => style.content())
+const drawerStyle = useDrawerStyle()
+const wrapperClasses = computed<string>(() => drawerStyle.wrapper())
+const contentClasses = computed<string>(() => drawerStyle.content())
 
 function onInteractOutside(e: CustomEvent): void {
   if (props.shouldPreventClickOutside) {

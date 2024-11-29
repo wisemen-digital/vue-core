@@ -7,7 +7,7 @@ import {
 interface UseElementAttributeObserverOptions {
   attribute: string
   element: ComputedRef<HTMLElement | null>
-  onChange: (value: null | string) => void
+  onChange: (value: string | null) => void
 }
 
 export function useElementAttributeObserver(options: UseElementAttributeObserverOptions): void {

@@ -2,6 +2,6 @@ import { tv } from '@/libs/twVariants.lib'
 
 export const inputFieldLabelStyle = tv({
   slots: {
-    label: 'mb-input-field-label-spacing-default block text-input-field-label-font-size-default font-input-field-label-font-weight-default text-input-field-label-text-color-default duration-200',
+    label: 'block duration-200 mb-(--input-field-label-spacing-default) text-(size:--input-field-label-font-size-default) font-(--input-field-label-font-weight-default) text-(color:--input-field-label-text-color-default)',
   },
 })

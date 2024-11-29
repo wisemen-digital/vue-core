@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { Component } from 'vue'
 import {
-  computed,
   shallowRef,
   watch,
 } from 'vue'
@@ -13,7 +12,6 @@ import type { StyleConfig } from '@/types/style.type'
 const props = withDefaults(
   defineProps<{
     icon: Icon
-    size?: 'default' | 'full' | 'lg' | 'sm' | 'xl' | 'xs'
     styleConfig?: StyleConfig<'icon'> | null
   }>(),
   {
@@ -42,30 +40,6 @@ watch(
   },
 )
 
-const sizeClass = computed<null | string>(() => {
-  if (props.size === 'lg') {
-    return 'icon-lg'
-  }
-
-  if (props.size === 'xl') {
-    return 'icon-xl'
-  }
-
-  if (props.size === 'sm') {
-    return 'icon-sm'
-  }
-
-  if (props.size === 'xs') {
-    return 'icon-xs'
-  }
-
-  if (props.size === 'full') {
-    return 'icon-full'
-  }
-
-  return null
-})
-
 await setIcon()
 </script>
 
@@ -73,8 +47,8 @@ await setIcon()
   <Component
     :is="svgComponent"
     v-if="svgComponent !== null"
-    :class="[sizeClass, themeProviderContext.theme.value]"
+    :class="[themeProviderContext.theme.value]"
     :style="props.styleConfig"
-    class="icon-default h-icon-size w-icon-size text-icon"
+    class="icon-default text-icon"
   />
 </template>

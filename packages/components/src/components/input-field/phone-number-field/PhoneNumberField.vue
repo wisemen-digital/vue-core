@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useElementSize } from '@vueuse/core'
 import i18nCountries from 'i18n-iso-countries'
 import i18nEn from 'i18n-iso-countries/langs/en.json'
 import type { CountryCode } from 'libphonenumber-js'
@@ -13,6 +14,7 @@ import {
   computed,
   nextTick,
   ref,
+  watch,
 } from 'vue'
 
 import { injectConfigContext } from '@/components/config-provider/config.context'
@@ -43,14 +45,16 @@ const props = withDefaults(defineProps<PhoneNumberFieldProps>(), {
 
 i18nCountries.registerLocale(i18nEn)
 
-const model = defineModel<null | string>({
+const model = defineModel<string | null>({
   required: true,
 })
 
 const globalConfigContext = injectConfigContext()
 
 const phoneNumberFieldRef = ref<InstanceType<any> | null>(null)
-const phoneNumberFieldWidth = computed<number>(() => phoneNumberFieldRef.value?.$el.clientWidth ?? 0)
+const phoneNumberFieldSize = useElementSize(
+  computed<HTMLElement | null>(() => phoneNumberFieldRef.value?.$el ?? null),
+)
 
 const countryCode = ref<CountryCode>(props.defaultCountryCode)
 const countries = getCountries()
@@ -78,7 +82,7 @@ const countryCodeModel = computed<CountryCode>({
 
 const asYouType = computed<AsYouType>(() => new AsYouType(countryCode.value))
 
-const inputModel = computed<null | string>({
+const inputModel = computed<string | null>({
   get: () => {
     if (model.value === null) {
       return null
@@ -132,11 +136,11 @@ const countryCodes = computed<SelectItem<CountryCode>[]>(() => countries.map((co
 
 const dialCodeDisplayValue = computed<string>(() => `+${getCountryCallingCode(countryCodeModel.value)}`)
 
-function getCountryFlagUrl(countryCode: CountryCode): null | string {
+function getCountryFlagUrl(countryCode: CountryCode): string | null {
   return `https://purecatamphetamine.github.io/country-flag-icons/3x2/${countryCode}.svg`
 }
 
-function getCountryName(countryCode: CountryCode): null | string {
+function getCountryName(countryCode: CountryCode): string | null {
   return i18nCountries.getName(countryCode, globalConfigContext.locale.value, { select: 'official' }) ?? null
 }
 
@@ -149,6 +153,17 @@ function filterFn(option: CountryCode, search: string): boolean {
     || countryName?.toLowerCase().includes(search.toLowerCase())
     || countryCallingCode?.toLowerCase().includes(search.toLowerCase())
 }
+
+// Focus the input when a country code is selected
+watch(countryCodeModel, () => {
+  if (countryCodeModel.value === null) {
+    return
+  }
+
+  const input = phoneNumberFieldRef.value.$el.querySelector('input') as HTMLInputElement
+
+  input.focus()
+})
 </script>
 
 <template>
@@ -171,7 +186,7 @@ function filterFn(option: CountryCode, search: string): boolean {
           optionHeight: 36,
         }"
         :style-config="{
-          '--select-dropdown-max-width-default': `${phoneNumberFieldWidth}px`,
+          '--select-dropdown-max-width-default': `${phoneNumberFieldSize.width.value}px`,
           '--select-ring-color-focus': 'transparent',
           '--select-border-top-color-default': 'transparent',
           '--select-border-bottom-color-default': 'transparent',
@@ -204,7 +219,7 @@ function filterFn(option: CountryCode, search: string): boolean {
           <img
             :src="getCountryFlagUrl(countryCodeModel) ?? undefined"
             :alt="getCountryName(countryCodeModel) ?? undefined"
-            class="h-3 w-5 shrink-0 rounded-sm object-cover"
+            class="h-3 w-5 shrink-0 rounded-xxs object-cover"
           >
         </template>
 
@@ -213,7 +228,7 @@ function filterFn(option: CountryCode, search: string): boolean {
             <img
               :src="getCountryFlagUrl(item.value) ?? undefined"
               :alt="getCountryName(item.value) ?? undefined"
-              class="h-3 w-5 rounded-sm object-cover"
+              class="h-3 w-5 rounded-xxs object-cover"
             >
 
             <div class="flex w-full items-center overflow-hidden pr-4">
@@ -229,7 +244,7 @@ function filterFn(option: CountryCode, search: string): boolean {
         </template>
       </Select>
 
-      <span class="ml-sm text-text-field-font-size-default text-placeholder">
+      <span class="ml-sm text-(size:--text-field-font-size-default) text-placeholder">
         {{ dialCodeDisplayValue }}
       </span>
     </template>

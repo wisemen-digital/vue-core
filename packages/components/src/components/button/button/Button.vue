@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 
+import { useButton } from '@/components/button/button/button.composable'
 import type { ButtonProps } from '@/components/button/button/button.props'
-import { buttonStyle } from '@/components/button/button/button.style'
 import Icon from '@/components/icon/Icon.vue'
 import Spinner from '@/components/spinner/Spinner.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
@@ -21,7 +21,7 @@ const props = withDefaults(defineProps<ButtonProps>(), {
 
 const emit = defineEmits<{
   /**
-   * Emitted when the button is clicked
+   * Event handler for the click event
    */
   click: [event: Event]
 }>()
@@ -35,145 +35,30 @@ defineSlots<{
 
 const themeContext = injectThemeProviderContext()
 
-const style = buttonStyle()
-
-const isFocused = ref<boolean>(false)
-const isMouseOver = ref<boolean>(false)
-const isActive = ref<boolean>(false)
-
-const isHovered = computed<boolean>(() => isMouseOver.value && !props.isDisabled)
-
-const buttonClasses = computed<string>(() => style.button({
-  isActive: isActive.value,
-  isDisabled: props.isDisabled,
-  isFocused: isFocused.value,
-  isHovered: isHovered.value,
-  isLoading: props.isLoading,
-}))
-
-const iconLeftClasses = computed<string>(() => style.iconLeft({
-  isActive: isActive.value,
-  isDisabled: props.isDisabled,
-  isFocused: isFocused.value,
-  isHovered: isHovered.value,
-}))
-
-const iconRightClasses = computed<string>(() => style.iconRight({
-  isActive: isActive.value,
-  isDisabled: props.isDisabled,
-  isFocused: isFocused.value,
-  isHovered: isHovered.value,
-}))
-
-const loaderBoxClasses = computed<string>(() => style.loaderBox({
-  isActive: isActive.value,
-  isDisabled: props.isDisabled,
-  isFocused: isFocused.value,
-  isHovered: isHovered.value,
-}))
-
-const loaderClasses = computed<string>(() => style.loader({
-  isActive: isActive.value,
-  isDisabled: props.isDisabled,
-  isFocused: isFocused.value,
-  isHovered: isHovered.value,
-}))
-
-const sizeClass = computed<null | string>(() => {
-  if (props.size === 'sm') {
-    return 'button-sm'
-  }
-
-  if (props.size === 'lg') {
-    return 'button-lg'
-  }
-
-  if (props.size === 'xl') {
-    return 'button-xl'
-  }
-
-  if (props.size === '2xl') {
-    return 'button-2xl'
-  }
-
-  return null
+const {
+  baseClasses,
+  iconLeftClasses,
+  iconRightClasses,
+  loaderBoxClasses,
+  loaderClasses,
+  onBlur,
+  onClick,
+  onFocus,
+  onKeyDown,
+  onKeyUp,
+  onMouseDown,
+  onMouseEnter,
+  onMouseLeave,
+  onMouseUp,
+} = useButton({
+  isDisabled: computed<boolean>(() => props.isDisabled),
+  isLoading: computed<boolean>(() => props.isLoading),
+  size: computed<ButtonProps['size']>(() => props.size),
+  variant: computed<ButtonProps['variant']>(() => props.variant),
+  onClick: (event: Event) => {
+    emit('click', event)
+  },
 })
-
-const variantClass = computed<string>(() => {
-  if (props.variant === 'secondary') {
-    return 'button-secondary-gray'
-  }
-
-  if (props.variant === 'secondary-color') {
-    return 'button-secondary-color'
-  }
-
-  if (props.variant === 'tertiary') {
-    return 'button-tertiary-gray'
-  }
-
-  if (props.variant === 'tertiary-color') {
-    return 'button-tertiary-color'
-  }
-
-  if (props.variant === 'destructive-primary') {
-    return 'button-destructive-primary'
-  }
-
-  if (props.variant === 'destructive-secondary') {
-    return 'button-destructive-secondary'
-  }
-
-  if (props.variant === 'destructive-tertiary') {
-    return 'button-destructive-tertiary'
-  }
-
-  return 'button-primary'
-})
-
-function onFocus(): void {
-  isFocused.value = true
-}
-
-function onBlur(): void {
-  isFocused.value = false
-}
-
-function onMouseEnter(): void {
-  isMouseOver.value = true
-}
-
-function onMouseLeave(): void {
-  isMouseOver.value = false
-}
-
-function onMouseDown(): void {
-  isActive.value = true
-}
-
-function onMouseUp(): void {
-  isActive.value = false
-}
-
-function onKeyDown(event: KeyboardEvent): void {
-  if (event.key === ' ' || event.key === 'Enter') {
-    isActive.value = true
-  }
-}
-
-function onKeyUp(event: KeyboardEvent): void {
-  if (event.key === ' ' || event.key === 'Enter') {
-    isActive.value = false
-  }
-}
-
-function onClick(event: Event): void {
-  if (props.isLoading) {
-    return
-  }
-
-  emit('click', event)
-}
 </script>
 
 <template>
@@ -182,8 +67,8 @@ function onClick(event: Event): void {
     :type="props.type"
     :disabled="props.isDisabled"
     :aria-busy="props.isLoading"
-    :class="[buttonClasses, sizeClass, variantClass, themeContext.theme.value]"
     :data-test-id="props.testId"
+    :class="[baseClasses, themeContext.theme.value]"
     class="button-default"
     @focus="onFocus"
     @blur="onBlur"

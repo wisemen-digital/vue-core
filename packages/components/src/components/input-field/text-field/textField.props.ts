@@ -37,7 +37,7 @@ export interface TextFieldProps extends FormElementProps, Stylable<'textField'> 
    * The placeholder text of the input.
    * @default null
    */
-  placeholder?: null | string
+  placeholder?: string | null
   /**
    * The type of the input.
    * @default 'text'

@@ -96,7 +96,7 @@ function handleSortChange(): void {
     <slot name="left" />
 
     <label class="flex items-center gap-x-2">
-      <span class="select-none whitespace-nowrap text-table-header-label-font-size-default font-table-header-label-font-weight-default text-table-header-label-text-color-default">
+      <span class="select-none whitespace-nowrap text-(size:--table-header-label-font-size-default) font-(--table-header-label-font-weight-default) text-(color:--table-header-label-text-color-default)">
         <slot name="label">
           {{ props.column.headerLabel }}
         </slot>
@@ -108,12 +108,12 @@ function handleSortChange(): void {
         :style-config="{
           '--icon-button-size-default': '20px',
           '--icon-button-icon-size-default': '14px',
-          '--button-border-radius-default': 'var(--radius-sm)',
-          '--button-bg-color-default': 'transparent',
-          '--button-border-color-default': 'transparent',
-          '--button-border-color-hover': 'transparent',
-          '--button-border-color-focus': 'transparent',
-          '--button-border-color-active': 'transparent',
+          '--icon-button-border-radius-default': 'var(--radius-sm)',
+          '--icon-button-bg-color-default': 'transparent',
+          '--icon-button-border-color-default': 'transparent',
+          '--icon-button-border-color-hover': 'transparent',
+          '--icon-button-border-color-focus': 'transparent',
+          '--icon-button-border-color-active': 'transparent',
         }"
         size="sm"
         variant="tertiary"

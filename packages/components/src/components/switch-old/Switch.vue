@@ -1,31 +1,31 @@
 <script setup lang="ts">
-import {
-  CheckboxRoot,
-  useId,
-} from 'reka-ui'
+import { SwitchRoot, useId } from 'reka-ui'
 import { computed, ref } from 'vue'
 
-import type { CheckboxProps } from '@/components/checkbox/checkbox.props'
-import { checkboxStyle } from '@/components/checkbox/checkbox.style'
-import CheckboxIndicator from '@/components/checkbox/CheckboxIndicator.vue'
 import Collapsable from '@/components/collapsable/Collapsable.vue'
 import InputFieldError from '@/components/input-field-error/InputFieldError.vue'
 import InputFieldHint from '@/components/input-field-hint/InputFieldHint.vue'
 import InputFieldLabel from '@/components/input-field-label/InputFieldLabel.vue'
+import SwitchIndicator from '@/components/switch/SwitchIndicator.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { useAriaDescribedBy } from '@/composables/aria-described-by/ariaDescribedBy.composable'
 
-const props = withDefaults(defineProps<CheckboxProps>(), {
+import type { SwitchProps } from './switch.props'
+import { switchStyle } from './switch.style'
+
+const props = withDefaults(defineProps<SwitchProps>(), {
   id: null,
   testId: null,
   isDisabled: false,
-  isIndeterminate: false,
   isReadonly: false,
   isRequired: false,
   isTouched: false,
   errors: null,
   hint: null,
+  iconChecked: null,
+  iconUnchecked: null,
   label: null,
+  size: 'default',
   styleConfig: null,
 })
 
@@ -43,13 +43,12 @@ const themeProviderContext = injectThemeProviderContext()
 const isFocused = ref<boolean>(false)
 const isMouseOver = ref<boolean>(false)
 
-const style = checkboxStyle()
-
 const inputId = computed<string>(() => props.id ?? useId())
 
+const style = switchStyle()
+
 const isHovered = computed<boolean>(() => isMouseOver.value && !props.isDisabled)
-const isIndeterminate = computed<boolean>(() => props.isIndeterminate)
-const isChecked = computed<boolean>(() => model.value === true && !isIndeterminate.value)
+const isChecked = computed<boolean>(() => model.value)
 const isDisabled = computed<boolean>(() => props.isDisabled || props.isReadonly)
 const hasError = computed<boolean>(() => props.errors !== undefined && props.isTouched && props.errors !== null)
 
@@ -59,30 +58,12 @@ const ariaDescribedBy = useAriaDescribedBy({
   hasHint: computed<boolean>(() => props.hint !== null),
 })
 
-const computedModel = computed<boolean | 'indeterminate'>({
-  get() {
-    if (model.value) {
-      return true
-    }
-
-    if (props.isIndeterminate) {
-      return 'indeterminate'
-    }
-
-    return false
-  },
-  set(value) {
-    model.value = value === 'indeterminate' ? false : value
-  },
-})
-
 const rootClasses = computed<string>(() => style.root({
   hasError: hasError.value,
   isChecked: isChecked.value,
   isDisabled: isDisabled.value,
   isFocused: isFocused.value,
   isHovered: isHovered.value,
-  isIndeterminate: isIndeterminate.value,
 }))
 
 const indicatorClasses = computed<string>(() => style.indicator({
@@ -91,7 +72,6 @@ const indicatorClasses = computed<string>(() => style.indicator({
   isDisabled: isDisabled.value,
   isFocused: isFocused.value,
   isHovered: isHovered.value,
-  isIndeterminate: isIndeterminate.value,
 }))
 
 const inputLabelClasses = computed<string>(() => style.inputLabel({
@@ -100,7 +80,6 @@ const inputLabelClasses = computed<string>(() => style.inputLabel({
   isDisabled: isDisabled.value,
   isFocused: isFocused.value,
   isHovered: isHovered.value,
-  isIndeterminate: isIndeterminate.value,
 }))
 
 const errorClasses = computed<string>(() => style.error({
@@ -109,7 +88,6 @@ const errorClasses = computed<string>(() => style.error({
   isDisabled: isDisabled.value,
   isFocused: isFocused.value,
   isHovered: isHovered.value,
-  isIndeterminate: isIndeterminate.value,
 }))
 
 const hintClasses = computed<string>(() => style.hint({
@@ -118,7 +96,6 @@ const hintClasses = computed<string>(() => style.hint({
   isDisabled: isDisabled.value,
   isFocused: isFocused.value,
   isHovered: isHovered.value,
-  isIndeterminate: isIndeterminate.value,
 }))
 
 const boxClasses = computed<string>(() => style.box({
@@ -127,10 +104,21 @@ const boxClasses = computed<string>(() => style.box({
   isDisabled: isDisabled.value,
   isFocused: isFocused.value,
   isHovered: isHovered.value,
-  isIndeterminate: isIndeterminate.value,
 }))
 
 const bottomClasses = computed<string>(() => style.bottom())
+
+const sizeClass = computed<string | null>(() => {
+  if (props.size === 'sm') {
+    return 'switch-sm'
+  }
+
+  if (props.size === 'default') {
+    return 'switch-md'
+  }
+
+  return null
+})
 
 function onMouseEnter(): void {
   isMouseOver.value = true
@@ -154,35 +142,29 @@ function onBlur(): void {
 <template>
   <div
     :style="props.styleConfig"
-    :class="themeProviderContext.theme.value"
-    class="checkbox-default input-field-label-default input-field-error-default input-field-hint-default icon-default"
+    :class="[sizeClass, themeProviderContext.theme.value]"
+    class="input-field-label-default input-field-error-default input-field-hint-default icon-default switch-default"
   >
     <div :class="boxClasses">
-      <CheckboxRoot
+      <SwitchRoot
         :id="inputId"
-        v-model="computedModel"
-        :data-test-id="props.testId"
+        v-model="model"
         :disabled="props.isDisabled || props.isReadonly"
+        :class="[rootClasses]"
+        :data-test-id="props.testId"
         :aria-describedby="ariaDescribedBy"
-        :class="rootClasses"
         @mouseenter="onMouseEnter"
         @mouseleave="onMouseLeave"
         @focus="onFocus"
         @blur="onBlur"
       >
-        <CheckboxIndicator
+        <SwitchIndicator
           :is-checked="isChecked"
-          :is-indeterminate="isIndeterminate"
           :indicator-classes="indicatorClasses"
-        >
-          <template #icon-indeterminate>
-            <slot name="icon-indeterminate" />
-          </template>
-          <template #icon-checked>
-            <slot name="icon-checked" />
-          </template>
-        </CheckboxIndicator>
-      </CheckboxRoot>
+          :icon-checked="props.iconChecked"
+          :icon-unchecked="props.iconUnchecked"
+        />
+      </SwitchRoot>
 
       <slot
         v-if="props.label !== null"
@@ -197,6 +179,7 @@ function onBlur(): void {
         />
       </slot>
     </div>
+
     <div :class="bottomClasses">
       <slot name="bottom">
         <Collapsable>

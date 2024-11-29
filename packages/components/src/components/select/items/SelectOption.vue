@@ -7,7 +7,7 @@ import { computed, useAttrs } from 'vue'
 
 import SelectOptionIndicator from '@/components/select/items/SelectOptionIndicator.vue'
 import { injectSelectContext } from '@/components/select/select.context'
-import { selectStyle } from '@/components/select/select.style'
+import { useSelectStyle } from '@/components/select/select.style'
 import { provideSelectOptionContext } from '@/components/select/selectOption.context'
 import type { SelectOption, SelectValue } from '@/types/select.type'
 import type { StyleConfig } from '@/types/style.type'
@@ -21,12 +21,12 @@ const props = withDefaults(defineProps<{
 
 const attrs = useAttrs()
 
-const style = selectStyle()
+const selectStyle = useSelectStyle()
 
 const selectContext = injectSelectContext()
 const listboxRootContext = injectListboxRootContext()
 
-const optionClasses = computed<string>(() => style.option())
+const optionClasses = computed<string>(() => selectStyle.option())
 
 const isSelected = computed<boolean>(() => {
   if (listboxRootContext.multiple.value) {

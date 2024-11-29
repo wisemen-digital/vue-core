@@ -43,12 +43,12 @@ function onPageChange(page: number): void {
     <PaginationList
       v-else
       v-slot="{ items }"
-      class="flex items-center"
+      class="flex items-center gap-x-0.5"
     >
       <slot :items="items">
-        <TablePaginationPrevPage class="mr-2" />
+        <TablePaginationPrevPage class="mr-1" />
         <TablePaginationPages :items="items" />
-        <TablePaginationNextPage class="ml-2" />
+        <TablePaginationNextPage class="ml-1" />
       </slot>
     </PaginationList>
   </PaginationRoot>

@@ -3,7 +3,7 @@ import { SwitchThumb } from 'reka-ui'
 import { computed } from 'vue'
 
 import Icon from '@/components/icon/Icon.vue'
-import { switchStyle } from '@/components/switch/switch.style'
+import { switchStyle } from '@/components/switch-old/switch.style'
 import type { Icon as IconType } from '@/icons/icons'
 
 interface Props {

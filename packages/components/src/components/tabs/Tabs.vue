@@ -7,7 +7,7 @@ import {
 } from 'reka-ui'
 import { computed } from 'vue'
 
-import { tabsStyle } from '@/components/tabs/tabs.style'
+import { useTabsStyle } from '@/components/tabs/tabs.style'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import type { Stylable } from '@/types/stylable.type'
 import type { TabItem } from '@/types/tabs.type'
@@ -29,12 +29,12 @@ const modelAsString = computed<string>({
   },
 })
 
-const style = tabsStyle()
+const tabsStyle = useTabsStyle()
 
-const containerClasses = computed<string>(() => style.container())
-const indicatorClasses = computed<string>(() => style.indicator())
-const itemClasses = computed<string>(() => style.item())
-const itemContentClasses = computed<string>(() => style.itemContent())
+const containerClasses = computed<string>(() => tabsStyle.container())
+const indicatorClasses = computed<string>(() => tabsStyle.indicator())
+const itemClasses = computed<string>(() => tabsStyle.item())
+const itemContentClasses = computed<string>(() => tabsStyle.itemContent())
 </script>
 
 <template>

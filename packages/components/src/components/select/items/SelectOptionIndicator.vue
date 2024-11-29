@@ -4,15 +4,15 @@ import { computed } from 'vue'
 
 import Icon from '@/components/icon/Icon.vue'
 import { injectSelectContext } from '@/components/select/select.context'
-import { selectStyle } from '@/components/select/select.style'
+import { useSelectStyle } from '@/components/select/select.style'
 import { injectSelectOptionContext } from '@/components/select/selectOption.context'
 
 const selectContext = injectSelectContext()
 const selectOptionContext = injectSelectOptionContext()
 
-const style = selectStyle()
+const selectStyle = useSelectStyle()
 
-const optionIndicatorClasses = computed<string>(() => style.optionIndicator())
+const optionIndicatorClasses = computed<string>(() => selectStyle.optionIndicator())
 </script>
 
 <template>

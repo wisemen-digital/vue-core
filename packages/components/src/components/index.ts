@@ -10,7 +10,7 @@ import type { TextFieldProps } from '@/components/input-field/text-field/textFie
 import type { PopoverProps } from '@/components/popover/popover.props'
 import type { RadioGroupProps } from '@/components/radio-group/radioGroup.props'
 import type { SelectProps } from '@/components/select/select.props'
-import type { SwitchProps } from '@/components/switch/switch.props'
+import type { SwitchProps } from '@/components/switch-old/switch.props'
 import type { TableProps } from '@/components/table/table.props'
 import type { TooltipProps } from '@/components/tooltip/tooltip.props'
 import type {
@@ -132,7 +132,7 @@ export { default as VcSkeletonItem } from '@/components/skeleton/SkeletonItem.vu
 export { default as VcSpinner } from '@/components/spinner/Spinner.vue'
 
 // Switch
-export { default as VcSwitch } from '@/components/switch/Switch.vue'
+export { default as VcSwitch } from '@/components/switch-old/Switch.vue'
 
 // RadioGroup
 export { default as VcRadioGroup } from '@/components/radio-group/RadioGroup.vue'

@@ -9,7 +9,7 @@ import type { Stylable } from '@/types/stylable.type'
 const props = withDefaults(defineProps<{
   isRequired: boolean
   for: string
-  label: null | string
+  label: string | null
 } & Stylable<'inputFieldLabel'>>(), {
   styleConfig: null,
 })

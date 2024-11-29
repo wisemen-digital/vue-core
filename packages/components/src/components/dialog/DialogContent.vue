@@ -2,7 +2,7 @@
 import { DialogContent } from 'reka-ui'
 import { computed } from 'vue'
 
-import { dialogStyle } from '@/components/dialog/dialog.style'
+import { useDialogStyle } from '@/components/dialog/dialog.style'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 
 const props = defineProps<{
@@ -11,8 +11,8 @@ const props = defineProps<{
 
 const themeProviderContext = injectThemeProviderContext()
 
-const style = dialogStyle()
-const contentClasses = computed<string>(() => style.content())
+const dialogStyle = useDialogStyle()
+const contentClasses = computed<string>(() => dialogStyle.content())
 
 function onInteractOutside(e: CustomEvent): void {
   if (props.shouldPreventClickOutside) {

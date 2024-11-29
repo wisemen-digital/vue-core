@@ -1,15 +1,34 @@
 import { tv } from '@/libs/twVariants.lib'
+import { StyleBuilder } from '@/utils/style.util'
 
-export const tagStyle = tv({
+export const useTagStyle = tv({
   slots: {
-    tagBox: 'inline-flex items-center rounded-tag-border-radius-default border border-solid border-tag-border-color-default bg-tag-bg-color-default px-tag-padding-x-default py-tag-padding-y-default duration-200',
-    tagContent: 'text-tag-font-size-default text-tag-text-color-default duration-200',
+    tagBox: new StyleBuilder()
+      .withClasses('inline-flex items-center duration-200')
+      .withBorderRadius('rounded-(--tag-border-radius-default)')
+      .withBorder('border border-solid border-(--tag-border-color-default)')
+      .withBackgroundColor('bg-(--tag-bg-color-default)')
+      .withPadding('px-(--tag-padding-x-default) py-(--tag-padding-y-default)')
+      .build(),
+    tagContent: new StyleBuilder()
+      .withClasses('duration-200')
+      .withFontSize('text-(size:--tag-font-size-default)')
+      .withColor('text-(color:--tag-text-color-default)')
+      .withFontWeight('font-(--tag-font-weight-default)')
+      .build(),
   },
   variants: {
     isDisabled: {
       true: {
-        tagBox: 'cursor-not-allowed border-tag-border-color-disabled bg-tag-bg-color-disabled text-tag-text-color-disabled',
-        tagContent: 'text-tag-text-color-disabled',
+        tagBox: new StyleBuilder()
+          .withColor('cursor-not-allowed')
+          .withBorder('border-(--tag-border-color-disabled)')
+          .withBackgroundColor('bg-(--tag-bg-color-disabled)')
+          .withColor('text-(color:--tag-text-color-disabled)')
+          .build(),
+        tagContent: new StyleBuilder()
+          .withColor('text-(color:--tag-text-color-disabled)')
+          .build(),
       },
     },
   },

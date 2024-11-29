@@ -4,6 +4,7 @@ export interface DrawerStyleConfig {
   '--drawer-bg-color-default': string
   '--drawer-border-color-default': string
   '--drawer-border-radius-default': string
+  // TODO: improve name
   '--drawer-padding-default': string
   '--drawer-shadow-default': string
 }

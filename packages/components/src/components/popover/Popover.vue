@@ -9,7 +9,7 @@ import {
 import { computed } from 'vue'
 
 import type { PopoverProps } from '@/components/popover/popover.props'
-import { popoverStyle } from '@/components/popover/popover.style'
+import { usePopoverStyle } from '@/components/popover/popover.style'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 
 const props = withDefaults(defineProps<PopoverProps>(), {
@@ -31,11 +31,13 @@ const isOpen = defineModel<boolean>('isOpen', {
 
 const themeContext = injectThemeProviderContext()
 
-const style = popoverStyle()
+const popoverStyle = usePopoverStyle()
 
-const contentClasses = computed<string>(() => style.content())
-const arrowBoxClasses = computed<string>(() => style.arrowBox())
-const arrowClasses = computed<string>(() => style.arrow())
+const contentClasses = computed<string>(() => popoverStyle.content({
+  width: props.popoverWidth ?? '',
+}))
+const arrowBoxClasses = computed<string>(() => popoverStyle.arrowBox())
+const arrowClasses = computed<string>(() => popoverStyle.arrow())
 </script>
 
 <template>
@@ -58,10 +60,6 @@ const arrowClasses = computed<string>(() => style.arrow())
         :side-offset="props.popoverOffsetInPx"
         :hide-when-detached="true"
         :class="[
-          {
-            'w-[--reka-popover-trigger-width]': props.popoverWidth === 'anchor-width',
-            'w-[--reka-popover-content-available-width]': props.popoverWidth === 'available-width',
-          },
           contentClasses,
           themeContext.theme.value,
         ]"

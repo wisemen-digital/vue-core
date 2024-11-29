@@ -54,7 +54,7 @@ const canScrollVertically = ref<boolean>(false)
 const hasTopSlot = computed<boolean>(() => slots.top !== undefined)
 
 const gridColsStyle = computed<string>(() => (
-  `${props.columns.map((col) => `minmax(${col.width ?? 'min-content'},${col.maxWidth ?? 'auto'})`).join(' ')}`
+  `${props.columns.map((col) => `minmax(${col.width ?? 'min-content'},auto)`).join(' ')}`
 ))
 
 const hasActiveFilters = computed<boolean>(
@@ -152,7 +152,7 @@ provideTableContext({
   <div
     :style="props.styleConfig"
     :class="[variantClass, themeProviderContext.theme.value]"
-    class="relative flex h-full flex-1 flex-col overflow-hidden rounded-table-border-radius-default border border-solid border-table-border-color-default bg-primary"
+    class="relative flex h-full flex-1 flex-col overflow-hidden rounded-(--table-border-radius-default) border border-solid border-(--table-border-color-default) bg-(--table-bg-color-default)"
   >
     <div
       v-if="hasTopSlot"

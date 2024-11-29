@@ -24,7 +24,7 @@ export function setupDefaultTagStyles(): void {
       '--tag-border-color-disabled': 'var(--border-disabled)',
       '--tag-border-radius-default': 'var(--radius-md)',
       '--tag-font-size-default': 'var(--text-sm)',
-      '--tag-font-weight-default': '500',
+      '--tag-font-weight-default': 'var(--font-weight-medium)',
       '--tag-padding-x-default': 'var(--spacing-sm)',
       '--tag-padding-y-default': 'var(--spacing-none)',
       '--tag-text-color-default': 'var(--text-primary)',

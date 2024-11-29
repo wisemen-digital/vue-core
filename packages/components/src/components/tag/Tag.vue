@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 
 import { provideTagContext } from '@/components/tag/tag.context'
-import { tagStyle } from '@/components/tag/tag.style'
+import { useTagStyle } from '@/components/tag/tag.style'
 import TagRemoveButton from '@/components/tag/TagRemoveButton.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import type { Stylable } from '@/types/stylable.type'
@@ -22,13 +22,13 @@ const emit = defineEmits<{
 
 const themeProviderContext = injectThemeProviderContext()
 
-const style = tagStyle()
+const tagStyle = useTagStyle()
 
-const tagBoxClasses = computed<string>(() => style.tagBox({
+const tagBoxClasses = computed<string>(() => tagStyle.tagBox({
   isDisabled: props.isDisabled,
 }))
 
-const tagContentClasses = computed<string>(() => style.tagContent({
+const tagContentClasses = computed<string>(() => tagStyle.tagContent({
   isDisabled: props.isDisabled,
 }))
 

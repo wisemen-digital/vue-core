@@ -3,6 +3,7 @@ import {
   PaginationEllipsis,
   PaginationListItem,
 } from 'reka-ui'
+import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import Button from '@/components/button/button/Button.vue'
@@ -17,16 +18,18 @@ const props = defineProps<{
 }>()
 
 const { n } = useI18n()
+
+const paginationListItemRef = ref<InstanceType<typeof PaginationListItem> | null>(null)
 </script>
 
 <template>
   <template v-for="(page, index) in props.items">
     <PaginationListItem
       v-if="page.type === 'page'"
+      ref="paginationListItemRef"
       :key="index"
       :as-child="true"
       :value="page.value"
-      class="data-[selected]:bg-primary-hover"
     >
       <slot
         :page="n(page.value)"
@@ -35,7 +38,7 @@ const { n } = useI18n()
         <Button
           variant="tertiary"
           size="sm"
-          class="min-w-9"
+          class="data-selected:bg-primary-hover data-selected:border-(--bg-primary-hover) min-w-9"
         >
           {{ n(page.value) }}
         </Button>

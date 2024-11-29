@@ -25,7 +25,7 @@ import type {
   SelectDisplayFn,
   SelectProps,
 } from '@/components/select/select.props'
-import { selectStyle } from '@/components/select/select.style'
+import { useSelectStyle } from '@/components/select/select.style'
 import SelectFilter from '@/components/select/SelectFilter.vue'
 import SelectItem from '@/components/select/SelectItem.vue'
 import SelectValueBasic from '@/components/select/values/SelectValueBasic.vue'
@@ -78,7 +78,7 @@ const isOpen = ref<boolean>(false)
 const isFocused = ref<boolean>(false)
 const isMouseOver = ref<boolean>(false)
 
-const style = selectStyle()
+const selectStyle = useSelectStyle()
 
 const { t } = useI18n()
 const slots = useSlots()
@@ -95,24 +95,24 @@ const inputId = computed<string>(() => props.id ?? useId())
 const isHovered = computed<boolean>(() => isMouseOver.value && !props.isDisabled)
 const hasError = computed<boolean>(() => props.errors !== undefined && props.isTouched && props.errors !== null)
 
-const dropdownContentClasses = computed<string>(() => style.dropdownContent())
-const listboxContentClasses = computed<string>(() => style.listboxContent())
+const dropdownContentClasses = computed<string>(() => selectStyle.dropdownContent())
+const listboxContentClasses = computed<string>(() => selectStyle.listboxContent())
 
-const labelClasses = computed<string>(() => style.label({
+const labelClasses = computed<string>(() => selectStyle.label({
   hasError: hasError.value,
   isDisabled: props.isDisabled,
   isFocused: isFocused.value,
   isHovered: isHovered.value,
 }))
 
-const hintClasses = computed<string>(() => style.hint({
+const hintClasses = computed<string>(() => selectStyle.hint({
   hasError: hasError.value,
   isDisabled: props.isDisabled,
   isFocused: isFocused.value,
   isHovered: isHovered.value,
 }))
 
-const errorClasses = computed<string>(() => style.error())
+const errorClasses = computed<string>(() => selectStyle.error())
 
 const isMultiple = computed<boolean>(() => Array.isArray(model.value))
 
@@ -238,7 +238,7 @@ watch(isOpen, (isOpen) => {
 
 provideSelectContext({
   inputId,
-  testId: computed<null | string>(() => props.testId),
+  testId: computed<string | null>(() => props.testId),
   hasError,
   isDisabled: computed<boolean>(() => props.isDisabled),
   isFocused: computed<boolean>(() => isFocused.value),
@@ -247,11 +247,11 @@ provideSelectContext({
   isMultiple,
   isOpen: computed<boolean>(() => isOpen.value),
   displayFn: props.displayFn as SelectDisplayFn<SelectValue>,
-  hint: computed<null | string>(() => props.hint),
+  hint: computed<string | null>(() => props.hint),
   iconLeft: computed<Icon | null>(() => props.iconLeft),
   iconRight: computed<Icon>(() => props.iconRight),
   modelValue: model as Ref<SelectValue>,
-  placeholder: computed<null | string>(() => props.placeholder),
+  placeholder: computed<string | null>(() => props.placeholder),
   searchPlaceholder,
   searchTerm,
   onTriggerBlur,
@@ -350,7 +350,7 @@ provideSelectContext({
                 :search-term="searchTerm"
                 name="no-results"
               >
-                <span class="block px-select-option-padding-x-default py-select-option-padding-y-default text-sm text-tertiary">
+                <span class="block px-(--select-option-padding-x-default) py-(--select-option-padding-y-default) text-(size:--text-sm) text-tertiary">
                   {{ t('component.select.empty_text', { searchTerm }) }}
                 </span>
               </slot>

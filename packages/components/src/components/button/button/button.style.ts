@@ -1,45 +1,155 @@
 import { tv } from '@/libs/twVariants.lib'
+import { StyleBuilder } from '@/utils/style.util'
 
-export const buttonStyle = tv({
+export const useButtonStyle = tv({
   slots: {
-    button: 'relative flex h-button-height-default items-center justify-center overflow-hidden rounded-button-border-radius-default border border-solid border-button-border-color-default bg-button-bg-color-default px-button-padding-left-default text-button-font-size-default font-button-font-weight-default text-button-text-color-default shadow-button-shadow-default outline-none ring-offset-1 ring-offset-button-ring-offset-color-focus duration-200 focus-visible:ring-2',
-    iconLeft: 'mr-button-icon-left-spacing-default shrink-0 duration-200 [--icon-color:var(--button-icon-color-default)] [--icon-size:var(--button-icon-size-default)]',
-    iconRight: 'ml-button-icon-right-spacing-default shrink-0 duration-200 [--icon-color:var(--button-icon-color-default)] [--icon-size:var(--button-icon-size-default)]',
-    loader: 'h-button-loader-size-default w-button-loader-size-default text-button-loader-color-default',
-    loaderBox: 'absolute left-1/2 top-1/2 flex size-full -translate-x-1/2 -translate-y-1/2 items-center justify-center bg-button-bg-color-default',
+    base: new StyleBuilder()
+      .withClasses('relative overflow-hidden cursor-pointer flex items-center justify-center outline-none duration-200')
+      .withBackgroundColor('bg-(--button-bg-color-default)')
+      .withBorder('border border-solid border-(--button-border-color-default)')
+      .withBorderRadius('rounded-(--button-border-radius-default)')
+      .withColor('text-(color:--button-text-color-default)')
+      .withFontSize('text-(size:--button-font-size-default)')
+      .withFontWeight('font-(--button-font-weight-default)')
+      .withPadding('px-(--button-padding-left-default)')
+      .withShadow('shadow-(--button-shadow-default)')
+      .withSize('h-(--button-height-default)')
+      .withRing('ring-offset-1 focus-visible:ring-2 ring-offset-(--button-ring-offset-color-focus)')
+      .build(),
+    iconLeft: new StyleBuilder()
+      .withClasses('shrink-0 duration-200')
+      .withSize('size-(--button-icon-size-default)')
+      .withMargin('mr-(--button-icon-left-spacing-default)')
+      .withColor('text-(color:--button-icon-color-default)')
+      .build(),
+    iconRight: new StyleBuilder()
+      .withClasses('shrink-0 duration-200')
+      .withSize('size-(--button-icon-size-default)')
+      .withMargin('ml-(--button-icon-right-spacing-default)')
+      .withColor('text-(color:--button-icon-color-default)')
+      .build(),
+    loader: new StyleBuilder()
+      .withSize('size-(--button-loader-size-default)')
+      .withColor('text-(color:--button-loader-color-default)')
+      .build(),
+    loaderBox: new StyleBuilder()
+      .withClasses('absolute left-1/2 top-1/2 flex size-full -translate-x-1/2 -translate-y-1/2 items-center justify-center')
+      .withBackgroundColor('bg-(--button-bg-color-default)')
+      .build(),
   },
   variants: {
+    variant: {
+      'default': {
+        base: 'button-primary',
+      },
+      'destructive-primary': {
+        base: 'button-destructive-primary',
+      },
+      'destructive-secondary': {
+        base: 'button-destructive-secondary',
+      },
+      'destructive-tertiary': {
+        base: 'button-destructive-tertiary',
+      },
+      'secondary': {
+        base: 'button-secondary-gray',
+      },
+      'secondary-color': {
+        base: 'button-secondary-color',
+      },
+      'tertiary': {
+        base: 'button-tertiary-gray',
+      },
+      'tertiary-color': {
+        base: 'button-tertiary-color',
+      },
+    },
+    size: {
+      '2xl': {
+        base: 'button-2xl',
+      },
+      'default': {},
+      'lg': {
+        base: 'button-lg',
+      },
+      'sm': {
+        base: 'button-sm',
+      },
+      'xl': {
+        base: 'button-xl',
+      },
+    },
     isDisabled: {
       true: {
-        button: 'cursor-not-allowed border-button-border-color-disabled bg-button-bg-color-disabled text-button-text-color-disabled shadow-button-shadow-disabled',
-        iconLeft: '[--icon-color:var(--button-icon-color-disabled)]',
-        iconRight: '[--icon-color:var(--button-icon-color-disabled)]',
+        base: new StyleBuilder()
+          .withClasses('cursor-not-allowed')
+          .withBorder('border-(--button-border-color-disabled)')
+          .withBackgroundColor('bg-(--button-bg-color-disabled)')
+          .withColor('text-(color:--button-text-color-disabled)')
+          .withShadow('shadow-(--button-shadow-disabled)')
+          .build(),
+        iconLeft: new StyleBuilder()
+          .withColor('text-(color:--button-icon-color-disabled)')
+          .build(),
+        iconRight: new StyleBuilder()
+          .withColor('text-(color:--button-icon-color-disabled)')
+          .build(),
       },
     },
     isFocused: {
       true: {
-        button: 'border-button-border-color-focus bg-button-bg-color-focus text-button-text-color-focus shadow-button-shadow-focus ring-button-ring-color-focus',
-        iconLeft: '[--icon-color:var(--button-icon-color-focus)]',
-        iconRight: '[--icon-color:var(--button-icon-color-focus)]',
+        base: new StyleBuilder()
+          .withRing('ring-(--button-ring-color-focus)')
+          .withBorder('border-(--button-border-color-focus)')
+          .withBackgroundColor('bg-(--button-bg-color-focus)')
+          .withColor('text-(color:--button-text-color-focus)')
+          .withShadow('shadow-(--button-shadow-focus)')
+          .build(),
+        iconLeft: new StyleBuilder()
+          .withColor('text-(color:--button-icon-color-focus)')
+          .build(),
+        iconRight: new StyleBuilder()
+          .withColor('text-(color:--button-icon-color-focus)')
+          .build(),
       },
     },
     isHovered: {
       true: {
-        button: 'border-button-border-color-hover bg-button-bg-color-hover text-button-text-color-hover shadow-button-shadow-hover',
-        iconLeft: '[--icon-color:var(--button-icon-color-hover)]',
-        iconRight: '[--icon-color:var(--button-icon-color-hover)]',
+        base: new StyleBuilder()
+          .withBorder('border-(--button-border-color-hover)')
+          .withBackgroundColor('bg-(--button-bg-color-hover)')
+          .withColor('text-(color:--button-text-color-hover)')
+          .withShadow('shadow-(--button-shadow-hover)')
+          .build(),
+        iconLeft: new StyleBuilder()
+          .withColor('text-(color:--button-icon-color-hover)')
+          .build(),
+        iconRight: new StyleBuilder()
+          .withColor('text-(color:--button-icon-color-hover)')
+          .build(),
       },
     },
     isActive: {
       true: {
-        button: 'border-button-border-color-active bg-button-bg-color-active text-button-text-color-active shadow-button-shadow-active',
-        iconLeft: '[--icon-color:var(--button-icon-color-active)]',
-        iconRight: '[--icon-color:var(--button-icon-color-active)]',
+        base: new StyleBuilder()
+          .withBorder('border-(--button-border-color-active)')
+          .withBackgroundColor('bg-(--button-bg-color-active)')
+          .withColor('text-(color:--button-text-color-active)')
+          .withShadow('shadow-(--button-shadow-active)')
+          .build(),
+        iconLeft: new StyleBuilder()
+          .withColor('text-(color:--button-icon-color-active)')
+          .build(),
+        iconRight: new StyleBuilder()
+          .withColor('text-(color:--button-icon-color-active)')
+          .build(),
       },
     },
     isLoading: {
       true: {
-        button: 'cursor-not-allowed border-button-border-color-default bg-button-bg-color-default',
+        base: new StyleBuilder()
+          .withClasses('cursor-not-allowed')
+          .build(),
       },
     },
   },

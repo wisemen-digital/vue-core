@@ -1,10 +1,10 @@
 import type { ComponentStyleConfigRegistry } from '@/types/style.type'
 
-interface DefineStyleConfigOptions<TComponent extends keyof ComponentStyleConfigRegistry, TTheme extends '*' | 'default' | string & {}> {
+interface DefineStyleConfigOptions<TComponent extends keyof ComponentStyleConfigRegistry, TTheme extends string & {} | '*' | 'default'> {
   colorScheme: '*' | 'dark' | 'light'
   config: Partial<ComponentStyleConfigRegistry[TComponent]['config']>
   theme: TTheme
-  variant: ComponentStyleConfigRegistry[TComponent]['variants'][number] | string & {}
+  variant: string & {} | ComponentStyleConfigRegistry[TComponent]['variants'][number]
   component: TComponent
 }
 
@@ -39,7 +39,7 @@ function getSelector(
 
 export function defineStyleConfig<
   TComponent extends keyof ComponentStyleConfigRegistry,
-  TTheme extends '*' | 'default' | string & {},
+  TTheme extends string & {} | '*' | 'default',
 >(
   options: DefineStyleConfigOptions<TComponent, TTheme>,
 ): void {

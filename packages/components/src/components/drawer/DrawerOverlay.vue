@@ -2,10 +2,10 @@
 import { DialogOverlay } from 'reka-ui'
 import { computed } from 'vue'
 
-import { drawerStyle } from '@/components/drawer/drawer.style'
+import { useDrawerStyle } from '@/components/drawer/drawer.style'
 
-const style = drawerStyle()
-const overlayClasses = computed<string>(() => style.overlay())
+const drawerStyle = useDrawerStyle()
+const overlayClasses = computed<string>(() => drawerStyle.overlay())
 </script>
 
 <template>

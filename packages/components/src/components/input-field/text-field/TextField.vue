@@ -5,7 +5,7 @@ import { computed, ref } from 'vue'
 import Collapsable from '@/components/collapsable/Collapsable.vue'
 import Icon from '@/components/icon/Icon.vue'
 import type { TextFieldProps } from '@/components/input-field/text-field/textField.props'
-import { textFieldStyle } from '@/components/input-field/text-field/textField.style'
+import { useTextFieldStyle } from '@/components/input-field/text-field/textField.style'
 import InputFieldError from '@/components/input-field-error/InputFieldError.vue'
 import InputFieldHint from '@/components/input-field-hint/InputFieldHint.vue'
 import InputFieldLabel from '@/components/input-field-label/InputFieldLabel.vue'
@@ -55,11 +55,10 @@ const model = defineModel<TValue | null>({
 })
 
 const themeContext = injectThemeProviderContext()
+const textFieldStyle = useTextFieldStyle()
 
 const isFocused = ref<boolean>(false)
 const isMouseOver = ref<boolean>(false)
-
-const style = textFieldStyle()
 
 const inputId = computed<string>(() => props.id ?? useId())
 const isHovered = computed<boolean>(() => isMouseOver.value && !props.isDisabled)
@@ -71,14 +70,14 @@ const ariaDescribedBy = useAriaDescribedBy({
   hasHint: computed<boolean>(() => props.hint !== null),
 })
 
-const boxClasses = computed<string>(() => style.box({
+const boxClasses = computed<string>(() => textFieldStyle.box({
   hasError: hasError.value,
   isDisabled: props.isDisabled,
   isFocused: isFocused.value,
   isHovered: isHovered.value,
 }))
 
-const inputClasses = computed<string>(() => style.input({
+const inputClasses = computed<string>(() => textFieldStyle.input({
   hasError: hasError.value,
   hasIconLeft: props.iconLeft !== null,
   hasIconRight: props.iconRight !== null,
@@ -87,44 +86,44 @@ const inputClasses = computed<string>(() => style.input({
   isHovered: isHovered.value,
 }))
 
-const iconLeftClasses = computed<string>(() => style.iconLeft({
+const iconLeftClasses = computed<string>(() => textFieldStyle.iconLeft({
   hasError: hasError.value,
   isDisabled: props.isDisabled,
   isFocused: isFocused.value,
   isHovered: isHovered.value,
 }))
 
-const iconRightClasses = computed<string>(() => style.iconRight({
+const iconRightClasses = computed<string>(() => textFieldStyle.iconRight({
   hasError: hasError.value,
   isDisabled: props.isDisabled,
   isFocused: isFocused.value,
   isHovered: isHovered.value,
 }))
 
-const inputLabelClasses = computed<string>(() => style.inputLabel({
+const inputLabelClasses = computed<string>(() => textFieldStyle.inputLabel({
   hasError: hasError.value,
   isDisabled: props.isDisabled,
   isFocused: isFocused.value,
   isHovered: isHovered.value,
 }))
 
-const loaderBoxClasses = computed<string>(() => style.loaderBox())
+const loaderBoxClasses = computed<string>(() => textFieldStyle.loaderBox())
 
-const loaderClasses = computed<string>(() => style.loader({
+const loaderClasses = computed<string>(() => textFieldStyle.loader({
   hasError: hasError.value,
   isDisabled: props.isDisabled,
   isFocused: isFocused.value,
   isHovered: isHovered.value,
 }))
 
-const hintClasses = computed<string>(() => style.hint({
+const hintClasses = computed<string>(() => textFieldStyle.hint({
   hasError: hasError.value,
   isDisabled: props.isDisabled,
   isFocused: isFocused.value,
   isHovered: isHovered.value,
 }))
 
-const errorClasses = computed<string>(() => style.error())
+const errorClasses = computed<string>(() => textFieldStyle.error())
 
 function onMouseEnter(): void {
   isMouseOver.value = true

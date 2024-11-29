@@ -32,7 +32,7 @@ const props = withDefaults(defineProps<DropdownMenuProps>(), {
   popoverAlign: 'center',
   popoverCollisionPaddingInPx: 10,
   popoverContainerElement: null,
-  popoverOffsetInPx: 4,
+  popoverOffsetInPx: 6,
   popoverSide: 'bottom',
   popoverWidth: 'available-width',
   styleConfig: null,

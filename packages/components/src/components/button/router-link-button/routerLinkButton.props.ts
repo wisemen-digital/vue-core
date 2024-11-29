@@ -6,12 +6,7 @@ export interface RouterLinkButtonProps extends Stylable<'button'> {
   /**
    * The test id of the button.
    */
-  dataTestId?: null | string
-  /**
-   * Whether the button is in a loading state.
-   * @default false
-   */
-  isLoading?: boolean
+  dataTestId?: string | null
   /**
    * The left icon of the button.
    * @default null

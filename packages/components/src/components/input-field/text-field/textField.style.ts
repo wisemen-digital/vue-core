@@ -1,70 +1,189 @@
 import { tv } from '@/libs/twVariants.lib'
+import { Style, StyleBuilder } from '@/utils/style.util'
 
-export const textFieldStyle = tv({
+export const useTextFieldStyle = tv({
   slots: {
-    box: 'group relative flex h-text-field-height-default items-center overflow-hidden rounded-bl-text-field-border-radius-bottom-left-default rounded-br-text-field-border-radius-bottom-right-default rounded-tl-text-field-border-radius-top-left-default rounded-tr-text-field-border-radius-top-right-default border border-solid border-b-text-field-border-bottom-color-default border-l-text-field-border-left-color-default border-r-text-field-border-right-color-default border-t-text-field-border-top-color-default bg-text-field-bg-color-default shadow-text-field-shadow-default duration-200',
-    error: '[--input-field-error-font-size-default:var(--text-field-error-font-size-default)] [--input-field-error-spacing-default:var(--text-field-error-spacing-default)] [--input-field-error-text-color-default:var(--text-field-error-text-color-default)]',
-    hint: '[--input-field-hint-font-size-default:var(--text-field-hint-font-size-default)] [--input-field-hint-text-color-default:var(--text-field-hint-text-color-default)]',
-    iconLeft: 'ml-text-field-icon-left-spacing-default box-content shrink-0 duration-200 [--icon-color:var(--text-field-icon-color-default)] [--icon-size:var(--text-field-icon-size-default)]',
-    iconRight: 'mr-text-field-icon-right-spacing-default box-content shrink-0 duration-200 [--icon-color:var(--text-field-icon-color-default)]  [--icon-size:var(--text-field-icon-size-default)]',
-    input: 'size-full bg-transparent pl-text-field-padding-left-default pr-text-field-padding-right-default text-text-field-font-size-default font-text-field-font-weight-default text-text-field-text-color-default outline-none placeholder:text-text-field-placeholder-color-default',
-    inputLabel: '[--input-field-label-font-size-default:var(--text-field-label-font-size-default)] [--input-field-label-font-weight-default:var(--text-field-label-font-weight-default)] [--input-field-label-spacing-default:var(--text-field-label-spacing-default)] [--input-field-label-text-color-default:var(--text-field-label-text-color-default)]',
-    loader: 'h-text-field-loader-size-default w-text-field-loader-size-default text-text-field-loader-color-default',
-    loaderBox: 'mr-text-field-icon-right-spacing-default',
+    box: new StyleBuilder()
+      .withClasses('group relative flex items-center overflow-hidden duration-200')
+      .withSize('h-(--text-field-height-default)')
+      .withBorderRadius('rounded-bl-(--text-field-border-radius-bottom-left-default) rounded-br-(--text-field-border-radius-bottom-right-default) rounded-tl-(--text-field-border-radius-top-left-default) rounded-tr-(--text-field-border-radius-top-right-default)')
+      .withBorder('border border-solid border-b-(--text-field-border-bottom-color-default) border-l-(--text-field-border-left-color-default) border-r-(--text-field-border-right-color-default) border-t-(--text-field-border-top-color-default)')
+      .withBackgroundColor('bg-(--text-field-bg-color-default)')
+      .withShadow('shadow-(--text-field-shadow-default)')
+      .build(),
+    error: new StyleBuilder()
+      .withFontSize(Style.var('--input-field-error-font-size-default', '--text-field-error-font-size-default'))
+      .withSpacing(Style.var('--input-field-error-spacing-default', '--text-field-error-spacing-default'))
+      .withColor(Style.var('--input-field-error-text-color-default', '--text-field-error-text-color-default'))
+      .build(),
+    hint: new StyleBuilder()
+      .withFontSize(Style.var('--input-field-hint-font-size-default', '--text-field-hint-font-size-default'))
+      .withSpacing(Style.var('--input-field-hint-spacing-default', '--text-field-hint-spacing-default'))
+      .withColor(Style.var('--input-field-hint-text-color-default', '--text-field-hint-text-color-default'))
+      .build(),
+    iconLeft: new StyleBuilder()
+      .withClasses('box-content shrink-0 duration-200')
+      .withSpacing('ml-(--text-field-icon-left-spacing-default)')
+      .withColor('text-(color:--text-field-icon-color-default)')
+      .withSize('size-(--text-field-icon-size-default)')
+      .build(),
+    iconRight: new StyleBuilder()
+      .withClasses('box-content shrink-0 duration-200')
+      .withSpacing('mr-(--text-field-icon-right-spacing-default)')
+      .withColor('text-(color:--text-field-icon-color-default)')
+      .withSize('size-(--text-field-icon-size-default)')
+      .build(),
+    input: new StyleBuilder()
+      .withClasses('size-full bg-transparent outline-none')
+      .withPadding('pl-(--text-field-padding-left-default) pr-(--text-field-padding-right-default)')
+      .withFontSize('text-(size:--text-field-font-size-default)')
+      .withFontWeight('font-(--text-field-font-weight-default)')
+      .withColor('text-(color:--text-field-text-color-default)')
+      .withPlaceholderColor('placeholder:text-(color:--text-field-placeholder-color-default)')
+      .build(),
+    inputLabel: new StyleBuilder()
+      .withFontSize(Style.var('--text-field-label-font-size-default', '--text-field-label-font-size-default'))
+      .withFontWeight(Style.var('--text-field-label-font-weight-default', '--text-field-label-font-weight-default'))
+      .withSpacing(Style.var('--text-field-label-spacing-default', '--text-field-label-spacing-default'))
+      .withColor(Style.var('--text-field-label-text-color-default', '--text-field-label-text-color-default'))
+      .build(),
+    loader: new StyleBuilder()
+      .withSize('size-(--text-field-loader-size-default)')
+      .withColor('text-(color:--text-field-loader-color-default)')
+      .build(),
+    loaderBox: new StyleBuilder()
+      .withSpacing('mr-(--text-field-icon-right-spacing-default)')
+      .build(),
   },
   variants: {
     isDisabled: {
       true: {
-        box: 'cursor-not-allowed border-b-text-field-border-bottom-color-disabled border-l-text-field-border-left-color-disabled border-r-text-field-border-right-color-disabled border-t-text-field-border-top-color-disabled bg-text-field-bg-color-disabled shadow-text-field-shadow-disabled',
-        hint: '[--input-field-hint-text-color-disabled:var(--text-field-hint-text-color-disabled)]',
-        iconLeft: '[--icon-color:var(--text-field-icon-color-disabled)]',
-        iconRight: '[--icon-color:var(--text-field-icon-color-disabled)]',
-        input: 'cursor-not-allowed text-text-field-text-color-disabled placeholder:text-text-field-placeholder-color-disabled',
-        inputLabel: '[--input-field-label-text-color-default:var(--text-field-label-text-color-disabled)]',
-        loader: 'text-text-field-loader-color-disabled',
+        box: new StyleBuilder()
+          .withColor('cursor-not-allowed')
+          .withBorder('border-b-(--text-field-border-bottom-color-disabled) border-l-(--text-field-border-left-color-disabled) border-r-(--text-field-border-right-color-disabled) border-t-(--text-field-border-top-color-disabled)')
+          .withBackgroundColor('bg-(--text-field-bg-color-disabled)')
+          .withShadow('shadow-(--text-field-shadow-disabled)')
+          .build(),
+        hint: new StyleBuilder()
+          .withColor(Style.var('--input-field-hint-text-color-disabled', '--text-field-hint-text-color-disabled'))
+          .build(),
+        iconLeft: new StyleBuilder()
+          .withColor('text-(color:--text-field-icon-color-disabled)')
+          .build(),
+        iconRight: new StyleBuilder()
+          .withColor('text-(color:--text-field-icon-color-disabled)')
+          .build(),
+        input: new StyleBuilder()
+          .withClasses('cursor-not-allowed')
+          .withColor('text-(color:--text-field-text-color-disabled)')
+          .withPlaceholderColor('placeholder:text-(color:--text-field-placeholder-color-disabled)')
+          .build(),
+        inputLabel: new StyleBuilder()
+          .withColor(Style.var('--input-field-label-text-color-disabled', '--text-field-label-text-color-disabled'))
+          .build(),
+        loader: new StyleBuilder()
+          .withColor('text-(color:--text-field-loader-color-disabled)')
+          .build(),
       },
     },
     isHovered: {
       true: {
-        box: 'border-b-text-field-border-bottom-color-hover border-l-text-field-border-left-color-hover border-r-text-field-border-right-color-hover border-t-text-field-border-top-color-hover bg-text-field-bg-color-hover shadow-text-field-shadow-hover',
-        hint: '[--input-field-hint-text-color-hover:var(--text-field-hint-text-color-hover)]',
-        iconLeft: '[--icon-color:var(--text-field-icon-color-hover)]',
-        iconRight: '[--icon-color:var(--text-field-icon-color-hover)]',
-        input: 'text-text-field-text-color-hover placeholder:text-text-field-placeholder-color-hover',
-        inputLabel: '[--input-field-label-text-color-default:var(--text-field-label-text-color-hover)]',
-        loader: 'text-text-field-loader-color-hover',
+        box: new StyleBuilder()
+          .withBorder('border-b-(--text-field-border-bottom-color-hover) border-l-(--text-field-border-left-color-hover) border-r-(--text-field-border-right-color-hover) border-t-(--text-field-border-top-color-hover)')
+          .withBackgroundColor('bg-(--text-field-bg-color-hover)')
+          .withShadow('shadow-(--text-field-shadow-hover)')
+          .build(),
+        hint: new StyleBuilder()
+          .withColor(Style.var('--input-field-hint-text-color-hover', '--text-field-hint-text-color-hover'))
+          .build(),
+        iconLeft: new StyleBuilder()
+          .withColor('text-(color:--text-field-icon-color-hover)')
+          .build(),
+        iconRight: new StyleBuilder()
+          .withColor('text-(color:--text-field-icon-color-hover)')
+          .build(),
+        input: new StyleBuilder()
+          .withColor('text-(color:--text-field-text-color-hover)')
+          .withPlaceholderColor('placeholder:text-(color:--text-field-placeholder-color-hover)')
+          .build(),
+        inputLabel: new StyleBuilder()
+          .withColor(Style.var('--input-field-label-text-color-default', '--text-field-label-text-color-hover'))
+          .build(),
+        loader: new StyleBuilder()
+          .withColor('text-(color:--text-field-loader-color-hover)')
+          .build(),
       },
     },
     isFocused: {
       true: {
-        box: 'border-b-text-field-border-bottom-color-focus border-l-text-field-border-left-color-focus border-r-text-field-border-right-color-focus border-t-text-field-border-top-color-focus bg-text-field-bg-color-focus shadow-text-field-shadow-focus ring-2 ring-text-field-ring-color-focus',
-        hint: '[--input-field-hint-text-color-focus:var(--text-field-hint-text-color-focus)]',
-        iconLeft: '[--icon-color:var(--text-field-icon-color-focus)]',
-        iconRight: '[--icon-color:var(--text-field-icon-color-focus)]',
-        input: 'text-text-field-text-color-focus placeholder:text-text-field-placeholder-color-focus',
-        inputLabel: '[--input-field-label-text-color-default:var(--text-field-label-text-color-focus)]',
-        loader: 'text-text-field-loader-color-focus',
+        box: new StyleBuilder()
+          .withRing('ring-1 ring-(--text-field-ring-color-focus)')
+          .withBorder('border-b-(--text-field-border-bottom-color-focus) border-l-(--text-field-border-left-color-focus) border-r-(--text-field-border-right-color-focus) border-t-(--text-field-border-top-color-focus)')
+          .withBackgroundColor('bg-(--text-field-bg-color-focus)')
+          .withShadow('shadow-(--text-field-shadow-focus)')
+          .build(),
+        hint: new StyleBuilder()
+          .withColor(Style.var('--input-field-hint-text-color-focus', '--text-field-hint-text-color-focus'))
+          .build(),
+        iconLeft: new StyleBuilder()
+          .withColor('text-(color:--text-field-icon-color-focus)')
+          .build(),
+        iconRight: new StyleBuilder()
+          .withColor('text-(color:--text-field-icon-color-focus)')
+          .build(),
+        input: new StyleBuilder()
+          .withColor('text-(color:--text-field-text-color-focus)')
+          .withPlaceholderColor('placeholder:text-(color:--text-field-placeholder-color-focus)')
+          .build(),
+        inputLabel: new StyleBuilder()
+          .withColor(Style.var('--input-field-label-text-color-default', '--text-field-label-text-color-focus'))
+          .build(),
+        loader: new StyleBuilder()
+          .withColor('text-(color:--text-field-loader-color-focus)')
+          .build(),
       },
     },
     hasError: {
       true: {
-        box: 'border-b-text-field-border-bottom-color-error border-l-text-field-border-left-color-error border-r-text-field-border-right-color-error border-t-text-field-border-top-color-error bg-text-field-bg-color-error shadow-text-field-shadow-error ring-text-field-ring-color-error',
-        hint: '[--input-field-hint-text-color-error:var(--text-field-hint-text-color-error)]',
-        iconLeft: '[--icon-color:var(--text-field-icon-color-error)]',
-        iconRight: '[--icon-color:var(--text-field-icon-color-error)]',
-        input: 'text-text-field-text-color-error placeholder:text-text-field-placeholder-color-error',
-        inputLabel: '[--input-field-label-text-color-default:var(--text-field-label-text-color-error)]',
-        loader: 'text-text-field-loader-color-error',
+        box: new StyleBuilder()
+          .withBorder('border-b-(--text-field-border-bottom-color-error) border-l-(--text-field-border-left-color-error) border-r-(--text-field-border-right-color-error) border-t-(--text-field-border-top-color-error)')
+          .withBackgroundColor('bg-(--text-field-bg-color-error)')
+          .withShadow('shadow-(--text-field-shadow-error)')
+          .withRing('focus-visible:ring ring-(--text-field-ring-color-error)')
+          .build(),
+        hint: new StyleBuilder()
+          .withColor(Style.var('--input-field-hint-text-color-error', '--text-field-hint-text-color-error'))
+          .build(),
+        iconLeft: new StyleBuilder()
+          .withColor('!text-(color:--text-field-icon-color-error)')
+          .build(),
+        iconRight: new StyleBuilder()
+          .withColor('!text-(color:--text-field-icon-color-error)')
+          .build(),
+        input: new StyleBuilder()
+          .withColor('text-(color:--text-field-text-color-error)')
+          .withPlaceholderColor('placeholder:text-(color:--text-field-placeholder-color-error)')
+          .build(),
+        inputLabel: new StyleBuilder()
+          .withColor(Style.var('--input-field-label-text-color-default', '--text-field-label-text-color-error'))
+          .build(),
+        loader: new StyleBuilder()
+          .withColor('text-(color:--text-field-loader-color-error)')
+          .build(),
       },
     },
     hasIconLeft: {
       true: {
-        input: 'pl-text-field-with-icon-left-padding-left-default',
+        input: new StyleBuilder()
+          .withPadding('pl-(--text-field-with-icon-left-padding-left-default)')
+          .build(),
       },
     },
     hasIconRight: {
       true: {
-        input: 'pr-text-field-with-icon-right-padding-right-default',
+        input: new StyleBuilder()
+          .withPadding('pr-(--text-field-with-icon-right-padding-right-default)')
+          .build(),
       },
     },
   },

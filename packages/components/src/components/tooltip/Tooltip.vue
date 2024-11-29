@@ -10,7 +10,7 @@ import { computed } from 'vue'
 
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import type { TooltipProps } from '@/components/tooltip/tooltip.props'
-import { tooltipStyle } from '@/components/tooltip/tooltip.style'
+import { useTooltipStyle } from '@/components/tooltip/tooltip.style'
 import TooltipTrigger from '@/components/tooltip/TooltipTrigger.vue'
 
 const props = withDefaults(defineProps<TooltipProps>(), {
@@ -30,11 +30,11 @@ const props = withDefaults(defineProps<TooltipProps>(), {
 
 const themeProviderContext = injectThemeProviderContext()
 
-const style = tooltipStyle()
+const tooltipStyle = useTooltipStyle()
 
-const contentClasses = computed<string>(() => style.content())
-const arrowBoxClasses = computed<string>(() => style.arrowBox())
-const arrowClasses = computed<string>(() => style.arrow())
+const contentClasses = computed<string>(() => tooltipStyle.content())
+const arrowBoxClasses = computed<string>(() => tooltipStyle.arrowBox())
+const arrowClasses = computed<string>(() => tooltipStyle.arrow())
 </script>
 
 <template>

@@ -7,15 +7,10 @@ import type { StyleConfig } from '@/types/style.type'
 
 const props = withDefaults(
   defineProps<{
-  /**
-   * The icon to be displayed
-   */
-    icon: Icon
     /**
-     * The size of the icon
-     * @default 'default'
+     * The icon to be displayed
      */
-    size?: 'default' | 'full' | 'lg' | 'sm' | 'xl' | 'xs'
+    icon: Icon
     /**
      *
      */
@@ -34,7 +29,6 @@ const attrs = useAttrs()
   <Suspense>
     <AsyncIcon
       :icon="props.icon"
-      :size="props.size"
       :style-config="props.styleConfig"
       v-bind="attrs"
     />

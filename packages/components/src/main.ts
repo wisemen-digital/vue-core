@@ -1,5 +1,5 @@
-import '@/styles/index.scss'
 import '@fontsource-variable/inter'
+import '@/styles/tailwind.css'
 
 import { createApp } from 'vue'
 import { createI18n } from 'vue-i18n'
@@ -39,6 +39,9 @@ const i18n = createI18n({
             description: 'There are no results matching your search criteria.',
           },
           page_count: '{startIndex} - {endIndex} of {totalItems}',
+        },
+        tag: {
+          remove: 'Remove',
         },
       },
     },
