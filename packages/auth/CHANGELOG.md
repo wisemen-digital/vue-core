@@ -1,4 +1,4 @@
-## 1.0.0
+## 1.1.0
 
 ### Major Changes
 
@@ -9,6 +9,6 @@
 - Created a new `FetchStrategy` interface that can be implemented to customize the way the client makes requests to the identity provider
 - Created a new `TokensStrategy` interface that can be implemented to customize the way the client saves and retrieves tokens
 
-- Created a new `useAxiosFetchStrategy` function that can be used to create a `FetchStrategy` that uses Axios
-- Created a new `localStorageTokensStrategy` variable that can be used to create a `TokensStrategy` that uses localStorage
+- Created a new `new AxiosFetchStrategy(axiosInstance)` function that can be used to create a `FetchStrategy` that uses axios
+- Created a new `new LocalStorageTokensStrategy()` function that can be used to create a `TokensStrategy` that uses localStorage
 
