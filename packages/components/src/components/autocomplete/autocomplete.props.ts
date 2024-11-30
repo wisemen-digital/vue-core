@@ -7,10 +7,6 @@ import type {
 } from '@/types/select.type'
 import type { Stylable } from '@/types/stylable.type'
 
-export type AutocompleteDisplayFn<TValue extends SelectValue> = (
-  value: TValue extends Array<infer U> ? U : TValue
-) => string
-
 export interface AutocompleteProps<TValue extends SelectValue> extends Omit<PopperProps, 'isArrowHidden'>, Stylable<'select'> {
   /**
    * The id of the input.

@@ -25,12 +25,7 @@ interface AddressCoordinates {
   lng: null | number
 }
 
-interface Place {
-  id: PlaceId
-  label: string
-}
-
-const props = withDefaults(defineProps<Omit<AutocompleteProps<Address>, 'displayFn' | 'isLoading' | 'items'> & {
+const props = withDefaults(defineProps<Omit<AutocompleteProps<Address>, | 'isLoading' | 'items'> & {
   modelValue: Address | null
 }>(), {
   isRequired: false,
@@ -69,17 +64,14 @@ const toast = useToast()
 
 const isLoading = ref<boolean>(false)
 
-const selectedPlace = ref<Place | null>(getDefaultPlace())
+const selectedPlace = ref<SelectOption<string> | null>(getDefaultPlace())
 const predictions = ref<AutocompletePrediction[]>([])
 
-const autocompleteOptions = computed<SelectOption<Place>[]>(() => (
+const autocompleteOptions = computed<SelectOption<string>[]>(() => (
   predictions.value.map((prediction) => ({
     label: prediction.description,
     type: 'option',
-    value: {
-      id: prediction.place_id,
-      label: prediction.description,
-    },
+    value: prediction.place_id,
   }))
 ))
 
@@ -138,35 +130,26 @@ function onSearch(searchTerm: string): void {
   debounceSearch(searchTerm)
 }
 
-function getDefaultPlace(): Place | null {
+function getDefaultPlace(): SelectOption<string> | null {
   if (props.modelValue === null) {
     return null
   }
 
   return {
-    id: '',
     label: formatAddressObjectToString(props.modelValue),
+    type: 'option',
+    value: '',
   }
 }
 
-function displayFn(place: Place): string {
-  if (place === null) {
-    return ''
-  }
-
-  return place.label
-}
-
-async function onUpdateModelValue(place: Place | null): Promise<void> {
+async function onUpdateModelValue(place: SelectOption<string> | null): Promise<void> {
   if (place === null) {
     model.value = null
 
     return
   }
 
-  const address = await getAddressFormByPlaceId(place.id)
-
-  model.value = address
+  model.value = await getAddressFormByPlaceId(place.value)
 }
 
 async function getAddressFormByPlaceId(placeId: string): Promise<Address> {
@@ -243,7 +226,6 @@ onMounted(async () => {
     :id="props.id"
     v-model="selectedPlace"
     :items="autocompleteOptions"
-    :display-fn="displayFn"
     :label="props.label"
     :is-required="props.isRequired"
     :icon-left="props.iconLeft"

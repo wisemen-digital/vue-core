@@ -24,7 +24,7 @@ import Popover from '@/components/popover/Popover.vue'
 import PopoverAnchor from '@/components/popover/PopoverAnchor.vue'
 import { selectStyle } from '@/components/select/select.style'
 import Spinner from '@/components/spinner/Spinner.vue'
-import type { SelectValue } from '@/types/select.type'
+import type { SelectOption, SelectValue } from '@/types/select.type'
 
 const props = withDefaults(defineProps<AutocompleteProps<TValue>>(), {
   id: null,
@@ -54,7 +54,7 @@ const emit = defineEmits<{
   search: [searchTerm: string]
 }>()
 
-const model = defineModel<TValue | null>({
+const model = defineModel<SelectOption<TValue> | null>({
   required: true,
 })
 
@@ -159,9 +159,15 @@ const isActuallyOpen = computed<boolean>({
 })
 
 const computedModel = computed<TValue | undefined>({
-  get: () => model.value ?? undefined,
+  get: () => model.value?.value ?? undefined,
   set: (value) => {
-    model.value = value ?? null
+    model.value = value !== undefined
+      ? {
+          label: props.items.find((item) => item.value === value)?.label ?? '',
+          type: 'option',
+          value,
+        }
+      : null
   },
 })
 
@@ -185,7 +191,7 @@ function onBlur(): void {
   isFocused.value = false
 
   if (model.value !== null && !isActuallyOpen.value) {
-    updateSearchTermWithValue(model.value)
+    updateSearchTermWithValue(model.value.value)
     isActuallyOpen.value = false
   }
 }
@@ -198,17 +204,21 @@ function onMouseLeave(): void {
   isMouseOver.value = false
 }
 
+function onSearchTermUpdate(value: string): void {
+  searchTerm.value = value
+}
+
 watch(model, (model) => {
   if (model === null) {
     return
   }
 
-  updateSearchTermWithValue(model)
+  updateSearchTermWithValue(model.value)
 })
 
 watch(isOpen, (isOpen) => {
   if (!isOpen && !isFocused.value && model.value !== null) {
-    updateSearchTermWithValue(model.value)
+    updateSearchTermWithValue(model.value.value)
   }
 })
 
@@ -217,7 +227,7 @@ watch(searchTerm, (searchTerm) => {
 })
 
 if (model.value !== null) {
-  updateSearchTermWithValue(model.value)
+  updateSearchTermWithValue(model.value.value)
 }
 </script>
 
@@ -275,10 +285,11 @@ if (model.value !== null) {
 
             <ListboxFilter
               :id="inputId"
-              v-model="searchTerm"
+              :model-value="model !== null ? model.label : searchTerm"
               :class="[inputClasses]"
               :placeholder="props.placeholder"
               autocomplete="off"
+              @update:model-value="onSearchTermUpdate"
               @focus="onFocus"
               @input="onInput"
               @blur="onBlur"

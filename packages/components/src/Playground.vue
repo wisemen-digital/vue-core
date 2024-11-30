@@ -3,6 +3,7 @@ import '@/styles/index.scss'
 
 import { ref } from 'vue'
 
+import AddressAutocomplete from '@/components/autocomplete/AddressAutocomplete.vue'
 import Button from '@/components/button/button/Button.vue'
 import IconButton from '@/components/button/icon-button/IconButton.vue'
 import ConfigProvider from '@/components/config-provider/ConfigProvider.vue'
@@ -11,6 +12,7 @@ import TimeField from '@/components/input-field/time-field/TimeField.vue'
 import ThemeProvider from '@/components/theme-provider/ThemeProvider.vue'
 import { useDialog } from '@/composables/index'
 import { setupDefaultStyles } from '@/styling/setupDefaultStyles'
+import type { Address } from '@/types/addressAutoComplete'
 import type { SelectOption } from '@/types/select.type'
 
 setupDefaultStyles()
@@ -57,6 +59,19 @@ const dialog = useDialog({
   component: () => import('./ExampleDialog.vue'),
 })
 
+const address = ref<Address | null>({
+  bus: '',
+  city: 'Hasselt',
+  coordinates: {
+    lat: 50.9305,
+    lng: 5.3636,
+  },
+  country: 'Belgium',
+  postalCode: '3500',
+  street: 'Nijverheidskaai',
+  streetNumber: '4',
+})
+
 const test = ref<null | string>(null)
 </script>
 
@@ -65,16 +80,16 @@ const test = ref<null | string>(null)
     :pagination="{ limit: 30 }"
     google-maps-api-key="AIzaSyATX2fY3BZwaKeURsQhwpEVLmLRr27s4vw"
     locale="nl"
-    google-maps-api-key="AIzaSyATX2fY3BZwaKeURsQhwpEVLmLRr27s4vw"
   >
     <ThemeProvider
-      :is-dark-mode-enabled="true"
+      :is-dark-mode-enabled="false"
       theme="default"
       class="bg-primary"
     >
       <div
-        class="grid grid-cols-2 p-8"
+        class="grid grid-cols-1 p-12"
       >
+        <AddressAutocomplete v-model="address" />
         <IconButton
           :style-config="{
             '--button-icon-color-default': '#ff00ff',
