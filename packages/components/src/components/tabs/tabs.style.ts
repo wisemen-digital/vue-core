@@ -8,6 +8,7 @@ export const useTabsStyle = tv({
       .withBorder('border border-solid border-b-(--tabs-container-border-bottom-color-default) border-l-(--tabs-container-border-left-color-default) border-r-(--tabs-container-border-right-color-default) border-t-(--tabs-container-border-top-color-default)')
       .withBackgroundColor('bg-(--tabs-container-bg-color-default)')
       .withPadding('px-(--tabs-container-padding-x-default) py-(--tabs-container-padding-y-default)')
+      .withBorderRadius('rounded-(--tabs-container-border-radius-default)')
       .build(),
     indicator: new StyleBuilder()
       .withClasses('absolute bottom-0 left-0 duration-200')

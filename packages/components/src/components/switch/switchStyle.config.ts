@@ -2,7 +2,61 @@ import { defineStyleConfig } from '@/styling/defineStyleConfig'
 import type { BaseStyleConfig } from '@/types/style.type'
 
 export interface SwitchStyleConfig extends BaseStyleConfig {
-  //
+  '--switch-bg-color-checked': string
+  '--switch-bg-color-default': string
+  '--switch-bg-color-disabled': string
+  '--switch-bg-color-error': string
+  '--switch-bg-color-focus': string
+  '--switch-bg-color-hover': string
+
+  '--switch-border-color-checked': string
+  '--switch-border-color-default': string
+  '--switch-border-color-disabled': string
+  '--switch-border-color-error': string
+  '--switch-border-color-focus': string
+  '--switch-border-color-hover': string
+
+  '--switch-border-radius-default': string
+
+  '--switch-error-font-size': string
+  '--switch-error-font-weight': string
+  '--switch-error-spacing-default': string
+  '--switch-error-text-color': string
+
+  '--switch-hint-font-size': string
+  '--switch-hint-font-weight': string
+  '--switch-hint-spacing-default': string
+  '--switch-hint-text-color-checked': string
+  '--switch-hint-text-color-default': string
+  '--switch-hint-text-color-disabled': string
+  '--switch-hint-text-color-error': string
+  '--switch-hint-text-color-focus': string
+  '--switch-hint-text-color-hover': string
+
+  '--switch-icon-color-checked': string
+  '--switch-icon-color-default': string
+  '--switch-icon-color-disabled': string
+  '--switch-icon-color-error': string
+  '--switch-icon-color-focus': string
+  '--switch-icon-color-hover': string
+  '--switch-icon-size-default': string
+
+  '--switch-label-font-size': string
+  '--switch-label-font-weight': string
+  '--switch-label-spacing-default': string
+  '--switch-label-text-color-checked': string
+  '--switch-label-text-color-default': string
+  '--switch-label-text-color-disabled': string
+  '--switch-label-text-color-error': string
+  '--switch-label-text-color-focus': string
+  '--switch-label-text-color-hover': string
+
+  '--switch-ring-color-focus': string
+
+  '--switch-thumb-bg-color': string
+  '--switch-thumb-padding-default': string
+  '--switch-thumb-shadow-default': string
+  '--switch-thumb-size-default': string
 }
 
 export function setupDefaultSwitchStyles(): void {
@@ -40,13 +94,13 @@ export function setupDefaultSwitchStyles(): void {
       '--switch-hint-text-color-focus': 'var(--input-field-hint-text-color-default)',
       '--switch-hint-text-color-hover': 'var(--input-field-hint-text-color-default)',
 
-      '--switch-icon-color-checked': 'var(--fg-tertiary)',
+      '--switch-icon-color-checked': 'var(--switch-bg-color-checked)',
       '--switch-icon-color-default': 'var(--fg-tertiary)',
       '--switch-icon-color-disabled': 'var(--fg-tertiary)',
       '--switch-icon-color-error': 'var(--fg-error-secondary)',
       '--switch-icon-color-focus': 'var(--fg-tertiary)',
       '--switch-icon-color-hover': 'var(--fg-tertiary)',
-      '--switch-icon-size-default': '0.875rem',
+      '--switch-icon-size-default': 'calc(var(--switch-thumb-size-default)/1.5)',
 
       '--switch-label-font-size-default': 'var(--text-base)',
       '--switch-label-font-weight-default': 'var(--font-weight-medium)',
@@ -71,38 +125,27 @@ export function setupDefaultSwitchStyles(): void {
     component: 'switch',
   })
 
-  // defineStyleConfig({
-  //   colorScheme: '*',
-  //   config: {
-  //     '--switch-indicator-bg-color-disabled': 'var(--gray-600)',
-  //     '--switch-indicator-border-color-disabled': 'var(--gray-600)',
-  //   },
-  //   theme: 'dark',
-  //   variant: 'default',
-  //   component: 'switch',
-  // })
+  defineStyleConfig({
+    colorScheme: '*',
+    config: {
+      '--switch-icon-color-default': 'var(--gray-900)',
+      '--switch-icon-color-focus': 'var(--gray-900)',
+      '--switch-icon-color-hover': 'var(--gray-900)',
+      '--switch-indicator-bg-color-disabled': 'var(--gray-600)',
+      '--switch-indicator-border-color-disabled': 'var(--gray-600)',
+    },
+    theme: 'dark',
+    variant: 'default',
+    component: 'switch',
+  })
 
-  // defineStyleConfig({
-  //   colorScheme: '*',
-  //   config: {
-  //     '--switch-height-default': '1.5rem',
-  //     '--switch-indicator-size-default': '1.25rem',
-  //     '--switch-width-default': '2.75rem',
-  //   },
-  //   theme: '*',
-  //   variant: 'md',
-  //   component: 'switch',
-  // })
-
-  // defineStyleConfig({
-  //   colorScheme: '*',
-  //   config: {
-  //     '--switch-height-default': '1.25rem',
-  //     '--switch-indicator-size-default': '1.01rem',
-  //     '--switch-width-default': '2.25rem',
-  //   },
-  //   theme: '*',
-  //   variant: 'sm',
-  //   component: 'switch',
-  // })
+  defineStyleConfig({
+    colorScheme: '*',
+    config: {
+      '--switch-thumb-size-default': '1rem',
+    },
+    theme: '*',
+    variant: 'sm',
+    component: 'switch',
+  })
 }

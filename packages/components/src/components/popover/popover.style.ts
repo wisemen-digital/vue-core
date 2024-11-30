@@ -14,7 +14,7 @@ export const usePopoverStyle = tv({
       .withClasses('relative z-50 -mb-4 h-4 w-10 overflow-hidden')
       .build(),
     content: new StyleBuilder()
-      .withClasses('custom-popover-content z-popover')
+      .withClasses('popper-content z-popover')
       .withSize('min-w-(--popover-min-width-default) max-w-(--popover-max-width-default)')
       .withBorderRadius('rounded-(--popover-border-radius-default)')
       .withBorder('border border-solid border-(--popover-border-color-default)')

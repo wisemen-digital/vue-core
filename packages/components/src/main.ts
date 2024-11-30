@@ -1,5 +1,5 @@
 import '@fontsource-variable/inter'
-import '@/styles/tailwind.css'
+import '@/styles/index.css'
 
 import { createApp } from 'vue'
 import { createI18n } from 'vue-i18n'

@@ -467,6 +467,7 @@ export function setupDefaultButtonStyles(): void {
       '--button-loader-color-default': 'var(--error-200)',
       '--button-loader-color-focus': 'var(--error-200)',
       '--button-loader-color-hover': 'var(--error-100)',
+      '--button-ring-color-focus': 'var(--error-500)',
       '--button-text-color-active': 'var(--error-100)',
       '--button-text-color-default': 'var(--error-200)',
       '--button-text-color-focus': 'var(--error-200)',

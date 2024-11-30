@@ -23,7 +23,7 @@ const props = withDefaults(defineProps<Omit<TextFieldProps, 'iconRight' | 'type'
   placeholder: null,
 })
 
-const model = defineModel<null | string>({
+const model = defineModel<string | null>({
   required: true,
 })
 
@@ -65,10 +65,10 @@ const buttonLabel = computed<string>(() => (
           :style-config="{
             '--icon-button-size-default': '32px',
             '--icon-button-icon-size-default': '16px',
-            '--button-ring-color-focus': 'transparent',
-            '--button-bg-color-focus': 'var(--bg-secondary-hover)',
-            '--button-bg-color-disabled': 'transparent',
-            '--button-border-color-disabled': 'transparent',
+            '--icon-button-ring-color-focus': 'transparent',
+            '--icon-button-bg-color-focus': 'var(--bg-secondary-hover)',
+            '--icon-button-bg-color-disabled': 'transparent',
+            '--icon-button-border-color-disabled': 'transparent',
           }"
           :is-disabled="props.isDisabled"
           size="sm"

@@ -29,8 +29,7 @@ const { t } = useI18n()
     <div class="absolute left-1/2 top-1/2 mx-auto mt-4 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center p-4xl text-center">
       <Icon
         icon="tableNoData"
-        class="text-primary"
-        size="lg"
+        class="text-primary w-5 h-5"
       />
 
       <h3 class="py-md font-semibold text-primary">

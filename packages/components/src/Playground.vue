@@ -207,6 +207,7 @@ const tabs: TabItem[] = [
 ]
 
 const tab = ref<TabItem>(tabs[0]!)
+const isTouched = ref<boolean>(false)
 </script>
 
 <template>
@@ -248,8 +249,16 @@ const tab = ref<TabItem>(tabs[0]!)
             <IconButton
               icon="translate"
               label="test"
-              variant="destructive-secondary"
+              variant="tertiary"
             />
+
+            <Button
+              icon-left="translate"
+              label="test"
+              variant="tertiary"
+            >
+              Button
+            </Button>
           </div>
 
           <div>
@@ -281,10 +290,16 @@ const tab = ref<TabItem>(tabs[0]!)
               :errors="{
                 _errors: ['Error'],
               }"
-              :is-touched="false"
+              :style-config="{
+                // '--switch-thumb-size-default': '40px',
+                // '--switch-icon-size-default': '20px',
+              }"
+              :is-touched="isTouched"
+              size="default"
               hint="This is a hint."
               icon-unchecked="translate"
               icon-checked="check"
+              @blur="isTouched = true"
             />
           </div>
 
@@ -419,7 +434,7 @@ const tab = ref<TabItem>(tabs[0]!)
             <Button
               :is-loading="false"
               :is-disabled="false"
-              variant="destructive-primary"
+              variant="destructive-secondary"
             >
               Button
             </Button>

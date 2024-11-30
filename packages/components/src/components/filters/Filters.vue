@@ -15,7 +15,7 @@ import IconButton from '@/components/button/icon-button/IconButton.vue'
 import Collapsable3 from '@/components/collapsable/Collapsable3.vue'
 import Icon from '@/components/icon/Icon.vue'
 import Popover from '@/components/popover/Popover.vue'
-import { selectStyle } from '@/components/select/select.style'
+import { useSelectStyle } from '@/components/select/select.style'
 import type { Icon as IconType } from '@/icons/icons'
 import type { SelectValue } from '@/types/select.type'
 
@@ -125,13 +125,13 @@ const filters: Filter<string>[] = [
 
 const isOpen = ref<boolean>(false)
 const search = ref<string>('')
-const selectedFilterLabel = ref<null | string>(null)
+const selectedFilterLabel = ref<string | null>(null)
 
-const style = selectStyle()
+const selectStyle = useSelectStyle()
 
-const optionClasses = computed<string>(() => style.option())
-const dropdownContentClasses = computed<string>(() => style.dropdownContent())
-const listboxContentClasses = computed<string>(() => style.listboxContent())
+const optionClasses = computed<string>(() => selectStyle.option())
+const dropdownContentClasses = computed<string>(() => selectStyle.dropdownContent())
+const listboxContentClasses = computed<string>(() => selectStyle.listboxContent())
 
 const displayItems = computed<DisplayItem[]>(() => {
   if (selectedFilterLabel.value !== null) {

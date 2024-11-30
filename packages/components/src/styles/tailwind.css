@@ -1,6 +1,7 @@
 @import 'tailwindcss';
-@import './colors.css';
-@import './variables.css';
+
+@variant motion-reduce (&:where(.reduce-motion, .reduce-motion *));
+@variant dark (&:where(.dark, .dark *));
 
 @theme inline {
   --color-*: initial;
@@ -160,14 +161,14 @@
 }
 
 @theme {
-/* TODO: ease, ... */
-
   --z-index-dialog: 40;
   --z-index-dialog-overlay: 39;
   --z-index-popover: 50;
   --z-index-tabs-item: 1;
 
   --ease-switch: cubic-bezier(0.1, 0.91, 0.48, 0.99);
+
+  --toast-width-default: 600px;
 
   --spacing-none: 0rem;     /* 0px */
   --spacing-xxs: 0.125rem;  /* 2px */
@@ -305,106 +306,4 @@
   --shadow-lg: 0 12px 16px -4px rgba(16, 24, 40, 0.08), 0px 12px 16px -4px rgba(16, 24, 40, 0.03);
   --shadow-table-sticky-left-column: 2px 0px 3px -2px rgba(0, 0, 0, 0.1);
   --shadow-table-sticky-right-column: -2px 0px 3px -2px rgba(0, 0, 0, 0.1);
-}
-
-@keyframes fade-in-from-top {
-  from {
-    transform: translateY(6px) scale(0.95);
-    opacity: 0;
-  }
-}
-
-@keyframes fade-in-from-bottom {
-  from {
-    transform: translateY(-6px) scale(0.95);
-    opacity: 0;
-  }
-}
-
-@keyframes fade-in-from-left {
-  from {
-    transform: translateX(6px) scale(0.95);
-    opacity: 0;
-  }
-}
-
-@keyframes fade-in-from-right {
-  from {
-    transform: translateX(-6px) scale(0.95);
-    opacity: 0;
-  }
-}
-
-@keyframes fade-out-to-top {
-  to {
-    transform: translateY(6px) scale(0.95);
-    opacity: 0;
-  }
-}
-
-@keyframes fade-out-to-bottom {
-  to {
-    transform: translateY(-6px) scale(0.95);
-    opacity: 0;
-  }
-}
-
-@keyframes fade-out-to-left {
-  to {
-    transform: translateX(6px) scale(0.95);
-    opacity: 0;
-  }
-}
-
-@keyframes fade-out-to-right {
-  to {
-    transform: translateX(-6px) scale(0.95);
-    opacity: 0;
-  }
-}
-
-.custom-popover-content[data-state='open'],
-.custom-popover-content[data-state='delayed-open'] {
-  &[data-side='top'] {
-    animation: fade-in-from-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
-    transform-origin: bottom;
-  }
-
-  &[data-side='bottom'] {
-    animation: fade-in-from-bottom 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
-    transform-origin: top;
-  }
-
-  &[data-side='left'] {
-    animation: fade-in-from-left 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
-    transform-origin: right;
-  }
-
-  &[data-side='right'] {
-    animation: fade-in-from-right 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
-    transform-origin: left;
-  }
-}
-
-.custom-popover-content[data-state='closed'],
-.custom-popover-content[data-state='delayed-closed'] {
-  &[data-side='top'] {
-    animation: fade-out-to-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
-    transform-origin: bottom;
-  }
-
-  &[data-side='bottom'] {
-    animation: fade-out-to-bottom 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
-    transform-origin: top;
-  }
-
-  &[data-side='left'] {
-    animation: fade-out-to-left 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
-    transform-origin: right;
-  }
-
-  &[data-side='right'] {
-    animation: fade-out-to-right 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
-    transform-origin: left;
-  }
 }

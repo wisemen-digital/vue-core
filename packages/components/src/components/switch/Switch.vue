@@ -67,6 +67,7 @@ const baseClasses = computed<string>(() => switchStyle.base({
   isDisabled: isDisabled.value,
   isFocused: isFocused.value,
   isHovered: isHovered.value,
+  size: props.size,
 }))
 
 const thumbClasses = computed<string>(() => switchStyle.thumb({
@@ -105,18 +106,18 @@ const iconClasses = computed<string>(() => switchStyle.icon({
 
 const enterFromClass = computed<string>(() => {
   if (model.value) {
-    return 'opacity-0 -translate-x-1/4 scale-85'
+    return 'opacity-0 translate-x-4 scale-50'
   }
 
-  return 'opacity-0 translate-x-1/4 scale-85'
+  return 'opacity-0 -translate-x-4 scale-50'
 })
 
 const leaveToClass = computed<string>(() => {
   if (model.value) {
-    return 'opacity-0 translate-x-1/4 scale-85'
+    return 'opacity-0 -translate-x-4 scale-50'
   }
 
-  return 'opacity-0 -translate-x-1/4 scale-85'
+  return 'opacity-0 translate-x-4 scale-50'
 })
 
 function onMouseEnter(): void {
@@ -181,38 +182,40 @@ function onBlur(e: Event): void {
         </SwitchThumb>
       </SwitchRoot>
 
-      <!-- <label :class="labelClasses">label</label> -->
       <InputFieldLabel
+        v-if="props.label !== null"
         :class="labelClasses"
         :is-required="props.isRequired"
         :for="inputId"
-        label="Label"
+        :label="props.label"
       />
 
       <span />
 
       <slot name="bottom">
-        <Collapsable>
-          <div v-if="hasError">
-            <slot name="error">
-              <InputFieldError
-                :errors="props.errors"
-                :class="errorClasses"
-                :input-id="inputId"
-              />
-            </slot>
-          </div>
+        <div>
+          <Collapsable>
+            <div v-if="hasError">
+              <slot name="error">
+                <InputFieldError
+                  :errors="props.errors"
+                  :class="errorClasses"
+                  :input-id="inputId"
+                />
+              </slot>
+            </div>
 
-          <div v-else-if="props.hint !== null">
-            <slot name="hint">
-              <InputFieldHint
-                :input-id="inputId"
-                :hint="props.hint"
-                :class="hintClasses"
-              />
-            </slot>
-          </div>
-        </Collapsable>
+            <div v-else-if="props.hint !== null">
+              <slot name="hint">
+                <InputFieldHint
+                  :input-id="inputId"
+                  :hint="props.hint"
+                  :class="hintClasses"
+                />
+              </slot>
+            </div>
+          </Collapsable>
+        </div>
       </slot>
     </div>
   </div>

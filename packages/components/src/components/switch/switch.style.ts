@@ -39,7 +39,7 @@ export const useSwitchStyle = tv({
       .withSpacing('ml-(--switch-label-spacing-default) mb-0')
       .build(),
     thumb: new StyleBuilder()
-      .withClasses('relative overflow-hidden block duration-200 ease-switch data-[state=checked]:translate-x-full')
+      .withClasses('relative overflow-hidden block not-motion-reduce:duration-200 ease-switch data-[state=checked]:translate-x-full')
       .withBorderRadius('rounded-(--switch-border-radius-default)')
       .withSize('size-(--switch-thumb-size-default)')
       .withBackgroundColor('bg-(--switch-thumb-bg-color-default)')
@@ -92,7 +92,7 @@ export const useSwitchStyle = tv({
           .withColor(Style.var('--input-field-hint-text-color-checked', '--switch-hint-text-color-checked'))
           .build(),
         icon: new StyleBuilder()
-          .withColor('color-(--switch-icon-color-checked)')
+          .withColor('text-(--switch-icon-color-checked)')
           .build(),
         label: new StyleBuilder()
           .withColor(Style.var('--input-field-label-text-color-checked', '--switch-label-text-color-checked'))
@@ -133,6 +133,12 @@ export const useSwitchStyle = tv({
         label: new StyleBuilder()
           .withColor(Style.var('--input-field-label-text-color-disabled', '--switch-label-text-color-disabled'))
           .build(),
+      },
+    },
+    size: {
+      default: {},
+      sm: {
+        base: 'switch-sm',
       },
     },
   },
