@@ -1,5 +1,6 @@
 import { Buffer } from 'node:buffer'
 
+import type { AxiosInstance } from 'axios'
 import axios from 'axios'
 import AxiosMockAdapter from 'axios-mock-adapter'
 import {
@@ -17,6 +18,7 @@ import type {
 } from '../src'
 import { ZitadelClient } from '../src'
 import type { OAuth2Tokens } from '../src/apiClient'
+import { AxiosFetchStrategy } from '../src/fetch-strategy/axios.fetchStrategy'
 
 let mockAxios: AxiosMockAdapter
 
@@ -51,11 +53,11 @@ const axiosInstance = axios.create({
   baseURL: BASE_URL,
 })
 
-const clientOptions: OAuth2VueClientOptions = {
+const clientOptions: OAuth2VueClientOptions<AxiosInstance> = {
   clientId: 'client_id_value',
   organizationId: 'organization_id_value',
-  axios: axiosInstance,
   baseUrl: BASE_URL,
+  fetchStrategy: new AxiosFetchStrategy(axiosInstance),
   loginRedirectUri: '/login',
   offline: false,
   postLogoutRedirectUri: '/post-logout',
@@ -63,8 +65,6 @@ const clientOptions: OAuth2VueClientOptions = {
 
 describe('zitadelClient', () => {
   beforeEach(() => {
-    // eslint-disable-next-line ts/ban-ts-comment
-    // @ts-ignore MockAdapter is not typed correctly https://github.com/ctimmerm/axios-mock-adapter/issues/400
     mockAxios = new AxiosMockAdapter(axiosInstance)
   })
 
@@ -86,7 +86,7 @@ describe('zitadelClient', () => {
 
       const client = new ZitadelClient(clientOptions)
 
-      const actualAuthorizationHeader = client.getAxios().defaults.headers.Authorization
+      const actualAuthorizationHeader = client.getFetchInstance().defaults.headers.Authorization
 
       expect(actualAuthorizationHeader).toBeUndefined()
     })
@@ -163,7 +163,7 @@ describe('zitadelClient', () => {
 
       const storedTokens = JSON.parse(localStorage.getItem('tokens') as string)
 
-      const axiosInstance = client.getAxios()
+      const axiosInstance = client.getFetchInstance()
 
       expect(storedTokens.access_token).toBe(mockAccessToken)
       expect(axiosInstance.defaults.headers.Authorization).toBe(`Bearer ${mockAccessToken}`)

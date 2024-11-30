@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
-import type { AxiosInstance } from 'axios'
 
+import type { FetchStrategy } from './fetch-strategy/fetchStrategy.type'
+import type { TokensStrategy } from './tokens-strategy/tokensStrategy.type'
 import type {
   ZitadelUser,
 } from './zitadel.type'
@@ -14,20 +15,18 @@ export interface OAuth2Tokens {
   token_type: string
 }
 
-interface ApiClientOptions {
+interface ApiClientOptions<TFetchInstance> {
   clientId: string
-  axios: AxiosInstance
   baseUrl: string
+  fetchStrategy: FetchStrategy<TFetchInstance>
   redirectUri: string
   scopes?: string[]
+  tokensStrategy: TokensStrategy
 }
 
 interface Token {
   exp: number
 }
-
-export const CODE_VERIFIER_KEY = 'code_verifier'
-const LOCAL_STORAGE_KEY = 'tokens'
 
 function decodeToken(token: string): Token {
   const base64Url = token.split('.')[1]
@@ -42,10 +41,10 @@ function decodeToken(token: string): Token {
   return JSON.parse(jsonPayload)
 }
 
-export class ApiClient {
+export class ApiClient<TFetchInstance> {
   private _promise: Promise<void> | null = null
 
-  constructor(private readonly options: ApiClientOptions) {}
+  constructor(private readonly options: ApiClientOptions<TFetchInstance>) {}
 
   /*
   * @returns base url without trailing slash
@@ -55,22 +54,16 @@ export class ApiClient {
   }
 
   private async getNewAccessToken(refreshToken: string): Promise<OAuth2Tokens> {
-    const response = await this.options.axios.post<OAuth2Tokens>(
-      `${this.getBaseUrl()}/oauth/v2/token`,
-      {
-        client_id: this.options.clientId,
-        grant_type: 'refresh_token',
-        refresh_token: refreshToken,
-        scope: this.options.scopes?.join(' '),
-      },
-      {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-      },
-    )
+    return await this.options.fetchStrategy.getNewAccessToken({
+      clientId: this.options.clientId,
+      refreshToken,
+      scope: this.options.scopes?.join(' '),
+      url: `${this.getBaseUrl()}/oauth/v2/token`,
+    })
+  }
 
-    return response.data
+  private getTokensStrategy(): TokensStrategy {
+    return this.options.tokensStrategy
   }
 
   private async refreshToken(): Promise<void> {
@@ -107,7 +100,7 @@ export class ApiClient {
   }
 
   public clearTokens(): void {
-    localStorage.removeItem(LOCAL_STORAGE_KEY)
+    this.getTokensStrategy().removeTokens()
   }
 
   public async getAccessToken(): Promise<string> {
@@ -135,25 +128,18 @@ export class ApiClient {
   }
 
   public getTokens(): OAuth2Tokens | null {
-    const tokens = localStorage.getItem(LOCAL_STORAGE_KEY)
-
-    if (tokens === null) {
-      return null
-    }
-
-    return JSON.parse(tokens as string) as OAuth2Tokens
+    return this.getTokensStrategy().getTokens()
   }
 
   async getUserInfo(): Promise<ZitadelUser> {
     const accessToken = await this.getAccessToken()
 
-    const response = await this.options.axios.get(`${this.getBaseUrl()}/oidc/v1/userinfo`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
+    const response = await this.options.fetchStrategy.getUserInfo({
+      accessToken,
+      url: `${this.getBaseUrl()}/oidc/v1/userinfo`,
     })
 
-    return response.data
+    return response
   }
 
   public isAccessTokenExpired(): boolean {
@@ -167,23 +153,22 @@ export class ApiClient {
   }
 
   public async loginWithCode(code: string): Promise<void> {
-    const codeVerifier = localStorage.getItem(CODE_VERIFIER_KEY)
+    const codeVerifier = this.getTokensStrategy().getCodeVerifier()
 
-    const response = await this.options.axios.post<OAuth2Tokens>(`${this.getBaseUrl()}/oauth/v2/token`, {
-      client_id: this.options.clientId,
+    if (codeVerifier === null) {
+      throw new Error('Code verifier is not set')
+    }
+
+    const response = await this.options.fetchStrategy.loginWithCode({
+      clientId: this.options.clientId,
       code,
-      code_verifier: codeVerifier,
-      grant_type: 'authorization_code',
-      redirect_uri: this.options.redirectUri,
-    }, {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
+      codeVerifier,
+      redirectUri: this.options.redirectUri,
+      url: `${this.getBaseUrl()}/oauth/v2/token`,
     })
 
-    localStorage.removeItem(CODE_VERIFIER_KEY)
-
-    this.setTokens(response.data)
+    this.getTokensStrategy().removeCodeVerifier()
+    this.setTokens(response)
   }
 
   public setMockTokens(): void {
@@ -196,7 +181,7 @@ export class ApiClient {
       token_type: '',
     }
 
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(mockTokens))
+    this.getTokensStrategy().setTokens(mockTokens)
   }
 
   public setTokens(tokens: OAuth2Tokens): void {
@@ -211,6 +196,6 @@ export class ApiClient {
       token_type: tokens.token_type,
     }
 
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(tokensWithExpiration))
+    this.getTokensStrategy().setTokens(tokensWithExpiration)
   }
 }
