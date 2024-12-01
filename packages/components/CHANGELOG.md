@@ -18,25 +18,17 @@
 - **VcIcon**  
   - Removed the `size` prop.
 
----
-
 
 ## [alpha.13]
 - Bug fixes
-
----
 
 
 ## [alpha.12]
 - Bug fixes
 
----
-
 
 ## [alpha.11]
 - Bug fixes
-
----
 
 
 ## [alpha.10]
@@ -71,8 +63,6 @@
 
 - **i18n-iso-countries**  
   - This package is now externalized, requiring you to install it in your project manually.  
-
----
 
 ## [alpha.8]
 
