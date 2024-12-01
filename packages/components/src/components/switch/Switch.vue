@@ -190,6 +190,10 @@ function onBlur(e: Event): void {
         :label="props.label"
       />
 
+      <!-- Spacer element for grid -->
+      <span v-else />
+
+      <!-- Spacer element for grid -->
       <span />
 
       <slot name="bottom">

@@ -6,7 +6,8 @@ import {
 } from 'vue'
 
 interface ConfigContext {
-  googleMapsApiKey: null | string
+  areKeyboardShortcutHintsHidden: ComputedRef<boolean>
+  googleMapsApiKey: string | null
   locale: ComputedRef<string>
   pagination?: {
     limit?: number

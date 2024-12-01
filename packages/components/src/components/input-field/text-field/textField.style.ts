@@ -1,5 +1,5 @@
 import { tv } from '@/libs/twVariants.lib'
-import { Style, StyleBuilder } from '@/utils/style.util'
+import { StyleBuilder } from '@/utils/style.util'
 
 export const useTextFieldStyle = tv({
   slots: {
@@ -12,14 +12,14 @@ export const useTextFieldStyle = tv({
       .withShadow('shadow-(--text-field-shadow-default)')
       .build(),
     error: new StyleBuilder()
-      .withFontSize(Style.var('--input-field-error-font-size-default', '--text-field-error-font-size-default'))
-      .withSpacing(Style.var('--input-field-error-spacing-default', '--text-field-error-spacing-default'))
-      .withColor(Style.var('--input-field-error-text-color-default', '--text-field-error-text-color-default'))
+      .withFontSize('[--input-field-error-font-size-default:var(--text-field-error-font-size-default)]')
+      .withSpacing('[--input-field-error-spacing-default:var(--text-field-error-spacing-default)]')
+      .withColor('[--input-field-error-text-color-default:var(--text-field-error-text-color-default)]')
       .build(),
     hint: new StyleBuilder()
-      .withFontSize(Style.var('--input-field-hint-font-size-default', '--text-field-hint-font-size-default'))
-      .withSpacing(Style.var('--input-field-hint-spacing-default', '--text-field-hint-spacing-default'))
-      .withColor(Style.var('--input-field-hint-text-color-default', '--text-field-hint-text-color-default'))
+      .withFontSize('[--input-field-hint-font-size-default:var(--text-field-hint-font-size-default)]')
+      .withSpacing('[--input-field-hint-spacing-default:var(--text-field-hint-spacing-default)]')
+      .withColor('[--input-field-hint-text-color-default:var(--text-field-hint-text-color-default)]')
       .build(),
     iconLeft: new StyleBuilder()
       .withClasses('box-content shrink-0 duration-200')
@@ -42,10 +42,10 @@ export const useTextFieldStyle = tv({
       .withPlaceholderColor('placeholder:text-(color:--text-field-placeholder-color-default)')
       .build(),
     inputLabel: new StyleBuilder()
-      .withFontSize(Style.var('--text-field-label-font-size-default', '--text-field-label-font-size-default'))
-      .withFontWeight(Style.var('--text-field-label-font-weight-default', '--text-field-label-font-weight-default'))
-      .withSpacing(Style.var('--text-field-label-spacing-default', '--text-field-label-spacing-default'))
-      .withColor(Style.var('--text-field-label-text-color-default', '--text-field-label-text-color-default'))
+      .withFontSize('[--input-field-label-font-size-default:var(--text-field-label-font-size-default)]')
+      .withFontWeight('[--input-field-label-font-weight-default:var(--text-field-label-font-weight-default)]')
+      .withSpacing('[--input-field-label-spacing-default:var(--text-field-label-spacing-default)]')
+      .withColor('[--input-field-label-text-color-default:var(--text-field-label-text-color-default)]')
       .build(),
     loader: new StyleBuilder()
       .withSize('size-(--text-field-loader-size-default)')
@@ -65,7 +65,7 @@ export const useTextFieldStyle = tv({
           .withShadow('shadow-(--text-field-shadow-disabled)')
           .build(),
         hint: new StyleBuilder()
-          .withColor(Style.var('--input-field-hint-text-color-disabled', '--text-field-hint-text-color-disabled'))
+          .withColor('[--input-field-hint-text-color-disabled:var(--text-field-hint-text-color-disabled)]')
           .build(),
         iconLeft: new StyleBuilder()
           .withColor('text-(color:--text-field-icon-color-disabled)')
@@ -79,7 +79,7 @@ export const useTextFieldStyle = tv({
           .withPlaceholderColor('placeholder:text-(color:--text-field-placeholder-color-disabled)')
           .build(),
         inputLabel: new StyleBuilder()
-          .withColor(Style.var('--input-field-label-text-color-disabled', '--text-field-label-text-color-disabled'))
+          .withColor('[--input-field-label-text-color-disabled:var(--text-field-label-text-color-disabled)]')
           .build(),
         loader: new StyleBuilder()
           .withColor('text-(color:--text-field-loader-color-disabled)')
@@ -94,7 +94,7 @@ export const useTextFieldStyle = tv({
           .withShadow('shadow-(--text-field-shadow-hover)')
           .build(),
         hint: new StyleBuilder()
-          .withColor(Style.var('--input-field-hint-text-color-hover', '--text-field-hint-text-color-hover'))
+          .withColor('[--input-field-hint-text-color-hover:var(--text-field-hint-text-color-hover)]')
           .build(),
         iconLeft: new StyleBuilder()
           .withColor('text-(color:--text-field-icon-color-hover)')
@@ -107,7 +107,7 @@ export const useTextFieldStyle = tv({
           .withPlaceholderColor('placeholder:text-(color:--text-field-placeholder-color-hover)')
           .build(),
         inputLabel: new StyleBuilder()
-          .withColor(Style.var('--input-field-label-text-color-default', '--text-field-label-text-color-hover'))
+          .withColor('[--input-field-label-text-color-default:var(--text-field-label-text-color-hover)]')
           .build(),
         loader: new StyleBuilder()
           .withColor('text-(color:--text-field-loader-color-hover)')
@@ -123,7 +123,7 @@ export const useTextFieldStyle = tv({
           .withShadow('shadow-(--text-field-shadow-focus)')
           .build(),
         hint: new StyleBuilder()
-          .withColor(Style.var('--input-field-hint-text-color-focus', '--text-field-hint-text-color-focus'))
+          .withColor('[--input-field-hint-text-color-focus:var(--text-field-hint-text-color-focus)]')
           .build(),
         iconLeft: new StyleBuilder()
           .withColor('text-(color:--text-field-icon-color-focus)')
@@ -136,7 +136,7 @@ export const useTextFieldStyle = tv({
           .withPlaceholderColor('placeholder:text-(color:--text-field-placeholder-color-focus)')
           .build(),
         inputLabel: new StyleBuilder()
-          .withColor(Style.var('--input-field-label-text-color-default', '--text-field-label-text-color-focus'))
+          .withColor('[--input-field-label-text-color-default:var(--text-field-label-text-color-focus)]')
           .build(),
         loader: new StyleBuilder()
           .withColor('text-(color:--text-field-loader-color-focus)')
@@ -152,7 +152,7 @@ export const useTextFieldStyle = tv({
           .withRing('focus-visible:ring ring-(--text-field-ring-color-error)')
           .build(),
         hint: new StyleBuilder()
-          .withColor(Style.var('--input-field-hint-text-color-error', '--text-field-hint-text-color-error'))
+          .withColor('[--input-field-hint-text-color-error:var(--text-field-hint-text-color-error)]')
           .build(),
         iconLeft: new StyleBuilder()
           .withColor('!text-(color:--text-field-icon-color-error)')
@@ -165,7 +165,7 @@ export const useTextFieldStyle = tv({
           .withPlaceholderColor('placeholder:text-(color:--text-field-placeholder-color-error)')
           .build(),
         inputLabel: new StyleBuilder()
-          .withColor(Style.var('--input-field-label-text-color-default', '--text-field-label-text-color-error'))
+          .withColor('[--input-field-label-text-color-default:var(--text-field-label-text-color-error)]')
           .build(),
         loader: new StyleBuilder()
           .withColor('text-(color:--text-field-loader-color-error)')

@@ -8,7 +8,7 @@ const selectContext = injectSelectContext()
 </script>
 
 <template>
-  <div class="px-(--select-dropdown-padding-x-default)">
+  <div class="px-(--select-dropdown-padding-x-default) pt-(--select-dropdown-padding-y-default)">
     <ListboxFilter :as-child="true">
       <TextField
         v-model="selectContext.searchTerm.value"

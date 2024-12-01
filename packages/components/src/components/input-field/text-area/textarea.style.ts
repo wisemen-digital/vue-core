@@ -1,23 +1,23 @@
 import { tv } from '@/libs/twVariants.lib'
-import { Style, StyleBuilder } from '@/utils/style.util'
+import { StyleBuilder } from '@/utils/style.util'
 
 export const textareaStyle = tv({
   slots: {
     error: new StyleBuilder()
       .withClasses('absolute right-0 top-0 duration-200')
-      .withFontSize(Style.var('--input-field-error-font-size-default', '--textarea-error-font-size-default'))
-      .withSpacing(Style.var('--input-field-error-spacing-default', '--textarea-error-spacing-default'))
-      .withColor(Style.var('--input-field-error-text-color-default', '--textarea-error-text-color-default'))
+      .withFontSize('[--input-field-error-font-size-default:var(--textarea-error-font-size-default)]')
+      .withSpacing('[--input-field-error-spacing-default:var(--textarea-error-spacing-default)]')
+      .withColor('[--input-field-error-text-color-default:var(--textarea-error-text-color-default)]')
       .build(),
     hint: new StyleBuilder()
-      .withFontSize(Style.var('--input-field-hint-font-size-default', '--textarea-hint-font-size-default'))
-      .withColor(Style.var('--input-field-hint-text-color-default', '--textarea-hint-text-color-default'))
+      .withFontSize('[--input-field-hint-font-size-default:var(--textarea-hint-font-size-default)]')
+      .withColor('[--input-field-hint-text-color-default:var(--textarea-hint-text-color-default)]')
       .build(),
     label: new StyleBuilder()
-      .withFontSize(Style.var('--input-field-label-font-size-default', '--textarea-label-font-size-default'))
-      .withFontWeight(Style.var('--input-field-label-font-weight-default', '--textarea-label-font-weight-default'))
-      .withSpacing(Style.var('--input-field-label-spacing-default', '--textarea-label-spacing-default'))
-      .withColor(Style.var('--input-field-label-text-color-default', '--textarea-label-text-color-default'))
+      .withFontSize('[--input-field-label-font-size-default:var(--textarea-label-font-size-default)]')
+      .withFontWeight('[--input-field-label-font-weight-default:var(--textarea-label-font-weight-default)]')
+      .withSpacing('[--input-field-label-spacing-default:var(--textarea-label-spacing-default)]')
+      .withColor('[--input-field-label-text-color-default:var(--textarea-label-text-color-default)]')
       .build(),
     textarea: new StyleBuilder()
       .withClasses('w-full outline-none duration-200 transition-[color,border-color,background-color,box-shadow]')
@@ -39,10 +39,10 @@ export const textareaStyle = tv({
     isDisabled: {
       true: {
         hint: new StyleBuilder()
-          .withColor(Style.var('--input-field-hint-text-color-disabled', '--textarea-hint-text-color-disabled'))
+          .withColor('[--input-field-hint-text-color-disabled:var(--textarea-hint-text-color-disabled)]')
           .build(),
         label: new StyleBuilder()
-          .withColor(Style.var('--input-field-label-text-color-default', '--textarea-label-text-color-disabled'))
+          .withColor('[--input-field-label-text-color-default:var(--textarea-label-text-color-disabled)]')
           .build(),
         textarea: new StyleBuilder()
           .withClasses('cursor-not-allowed duration-200')
@@ -57,10 +57,10 @@ export const textareaStyle = tv({
     isHovered: {
       true: {
         hint: new StyleBuilder()
-          .withColor(Style.var('--input-field-hint-text-color-hover', '--textarea-hint-text-color-hover'))
+          .withColor('[--input-field-hint-text-color-hover:var(--textarea-hint-text-color-hover)]')
           .build(),
         label: new StyleBuilder()
-          .withColor(Style.var('--input-field-label-text-color-default', '--textarea-label-text-color-hover'))
+          .withColor('[--input-field-label-text-color-default:var(--textarea-label-text-color-hover)]')
           .build(),
         textarea: new StyleBuilder()
           .withBorder('border-b-(--textarea-border-bottom-color-hover) border-l-(--textarea-border-left-color-hover) border-r-(--textarea-border-right-color-hover) border-t-(--textarea-border-top-color-hover)')
@@ -73,10 +73,10 @@ export const textareaStyle = tv({
     isFocused: {
       true: {
         hint: new StyleBuilder()
-          .withColor(Style.var('--input-field-hint-text-color-focus', '--textarea-hint-text-color-focus'))
+          .withColor('[--input-field-hint-text-color-focus:var(--textarea-hint-text-color-focus)]')
           .build(),
         label: new StyleBuilder()
-          .withColor(Style.var('--input-field-label-text-color-default', '--textarea-label-text-color-focus'))
+          .withColor('[--input-field-label-text-color-default:var(--textarea-label-text-color-focus)]')
           .build(),
         textarea: new StyleBuilder()
           .withBorder('border-b-(--textarea-border-bottom-color-focus) border-l-(--textarea-border-left-color-focus) border-r-(--textarea-border-right-color-focus) border-t-(--textarea-border-top-color-focus)')
@@ -91,10 +91,10 @@ export const textareaStyle = tv({
     hasError: {
       true: {
         hint: new StyleBuilder()
-          .withColor(Style.var('--input-field-hint-text-color-error', '--textarea-hint-text-color-error'))
+          .withColor('[--input-field-hint-text-color-error:var(--textarea-hint-text-color-error)]')
           .build(),
         label: new StyleBuilder()
-          .withColor(Style.var('--input-field-label-text-color-default', '--textarea-label-text-color-error'))
+          .withColor('[--input-field-label-text-color-default:var(--textarea-label-text-color-error)]')
           .build(),
         textarea: new StyleBuilder()
           .withBorder('border-b-(--textarea-border-bottom-color-error) border-l-(--textarea-border-left-color-error) border-r-(--textarea-border-right-color-error) border-t-(--textarea-border-top-color-error)')

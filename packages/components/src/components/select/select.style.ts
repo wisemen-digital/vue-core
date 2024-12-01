@@ -1,16 +1,15 @@
 import { tv } from '@/libs/twVariants.lib'
-import { Style, StyleBuilder } from '@/utils/style.util'
+import { StyleBuilder } from '@/utils/style.util'
 
 export const useSelectStyle = tv({
   slots: {
     dropdownContent: new StyleBuilder()
-      .withPadding('py-(--select-dropdown-padding-y-default)')
       .withClasses('outline-none')
       .build(),
     error: new StyleBuilder()
-      .withFontSize(Style.var('--input-field-error-font-size-default', '--select-error-font-size-default'))
-      .withSpacing(Style.var('--input-field-error-spacing-default', '--select-error-spacing-default'))
-      .withColor(Style.var('--input-field-error-text-color-default', '--select-error-text-color-default'))
+      .withFontSize('[--input-field-error-font-size-default:var(--select-error-font-size-default)]')
+      .withSpacing('[--input-field-error-spacing-default:var(--select-error-spacing-default)]')
+      .withColor('[--input-field-error-text-color-default:var(--select-error-text-color-default)]')
       .build(),
     groupContent: new StyleBuilder()
       .withPadding('px-(--select-group-content-padding-x-default) py-(--select-group-content-padding-y-default)')
@@ -22,8 +21,8 @@ export const useSelectStyle = tv({
       .withColor('text-(color:--select-group-label-text-color-default)')
       .build(),
     hint: new StyleBuilder()
-      .withFontSize(Style.var('--input-field-hint-font-size-default', '--select-hint-font-size-default'))
-      .withColor(Style.var('--input-field-hint-text-color-default', '--select-hint-text-color-default'))
+      .withFontSize('[--input-field-hint-font-size-default:var(--select-hint-font-size-default)]')
+      .withColor('[--input-field-hint-text-color-default:var(--select-hint-text-color-default)]')
       .build(),
     iconLeft: new StyleBuilder()
       .withClasses('box-content shrink-0 duration-200')
@@ -38,10 +37,10 @@ export const useSelectStyle = tv({
       .withSize('size-(--select-icon-right-size-default)')
       .build(),
     label: new StyleBuilder()
-      .withFontSize(Style.var('--input-field-label-font-size-default', '--select-label-font-size-default'))
-      .withFontWeight(Style.var('--input-field-label-font-weight-default', '--select-label-font-weight-default'))
-      .withSpacing(Style.var('--input-field-label-spacing-default', '--select-label-spacing-default'))
-      .withColor(Style.var('--input-field-label-text-color-default', '--select-label-text-color-default'))
+      .withFontSize('[--input-field-label-font-size-default:var(--select-label-font-size-default)]')
+      .withFontWeight('[--input-field-label-font-weight-default:var(--select-label-font-weight-default)]')
+      .withSpacing('[--input-field-label-spacing-default:var(--select-label-spacing-default)]')
+      .withColor('[--input-field-label-text-color-default:var(--select-label-text-color-default)]')
       .build(),
     listboxContent: new StyleBuilder()
       .withClasses('outline-none overflow-y-auto')
@@ -102,10 +101,17 @@ export const useSelectStyle = tv({
       .build(),
   },
   variants: {
+    isFilterVisible: {
+      false: {
+        listboxContent: new StyleBuilder()
+          .withPadding('py-(--select-dropdown-padding-y-default)')
+          .build(),
+      },
+    },
     isDisabled: {
       true: {
         hint: new StyleBuilder()
-          .withColor(Style.var('--input-field-hint-text-color-disabled', '--select-hint-text-color-disabled'))
+          .withColor('[--input-field-hint-text-color-disabled:var(--select-hint-text-color-disabled)]')
           .build(),
         iconLeft: new StyleBuilder()
           .withColor('text-(color:--select-icon-color-disabled)')
@@ -114,13 +120,13 @@ export const useSelectStyle = tv({
           .withColor('text-(color:--select-icon-color-disabled)')
           .build(),
         label: new StyleBuilder()
-          .withColor(Style.var('--input-field-label-text-color-default', '--select-label-text-color-disabled'))
+          .withColor('[--input-field-label-text-color-default:var(--select-label-text-color-disabled)]')
           .build(),
         loader: new StyleBuilder()
           .withColor('text-(color:--select-loader-color-disabled)')
           .build(),
         placeholder: new StyleBuilder()
-          .withColor(Style.var('--input-field-placeholder-color-default', '--select-placeholder-color-disabled'))
+          .withColor('[--input-field-placeholder-color-default:var(--select-placeholder-color-disabled)]')
           .build(),
         selectBox: new StyleBuilder()
           .withClasses('cursor-not-allowed')
@@ -134,7 +140,7 @@ export const useSelectStyle = tv({
     isHovered: {
       true: {
         hint: new StyleBuilder()
-          .withColor(Style.var('--input-field-hint-text-color-hover', '--select-hint-text-color-hover'))
+          .withColor('[--input-field-hint-text-color-hover:var(--select-hint-text-color-hover)]')
           .build(),
         iconLeft: new StyleBuilder()
           .withColor('text-(color:--select-icon-color-hover)')
@@ -143,13 +149,13 @@ export const useSelectStyle = tv({
           .withColor('text-(color:--select-icon-color-hover)')
           .build(),
         label: new StyleBuilder()
-          .withColor(Style.var('--input-field-label-text-color-default', '--select-label-text-color-hover'))
+          .withColor('[--input-field-label-text-color-default:var(--select-label-text-color-hover)]')
           .build(),
         loader: new StyleBuilder()
           .withColor('text-(color:--select-loader-color-hover)')
           .build(),
         placeholder: new StyleBuilder()
-          .withColor(Style.var('--input-field-placeholder-color-default', '--select-placeholder-color-hover'))
+          .withColor('[--input-field-placeholder-color-default:var(--select-placeholder-color-hover)]')
           .build(),
         selectBox: new StyleBuilder()
           .withBorder('border-b-(--select-border-bottom-color-hover) border-l-(--select-border-left-color-hover) border-r-(--select-border-right-color-hover) border-t-(--select-border-top-color-hover)')
@@ -162,7 +168,7 @@ export const useSelectStyle = tv({
     isFocused: {
       true: {
         hint: new StyleBuilder()
-          .withColor(Style.var('--input-field-hint-text-color-focus', '--select-hint-text-color-focus'))
+          .withColor('[--input-field-hint-text-color-focus:var(--select-hint-text-color-focus)]')
           .build(),
         iconLeft: new StyleBuilder()
           .withColor('text-(color:--select-icon-color-focus)')
@@ -171,13 +177,13 @@ export const useSelectStyle = tv({
           .withColor('text-(color:--select-icon-color-focus)')
           .build(),
         label: new StyleBuilder()
-          .withColor(Style.var('--input-field-label-text-color-default', '--select-label-text-color-focus'))
+          .withColor('[--input-field-label-text-color-default:var(--select-label-text-color-focus)]')
           .build(),
         loader: new StyleBuilder()
           .withColor('text-(color:--select-loader-color-focus)')
           .build(),
         placeholder: new StyleBuilder()
-          .withColor(Style.var('--input-field-placeholder-color-default', '--select-placeholder-color-focus'))
+          .withColor('[--input-field-placeholder-color-default:var(--select-placeholder-color-focus)]')
           .build(),
         selectBox: new StyleBuilder()
           .withBorder('border-b-(--select-border-bottom-color-focus) border-l-(--select-border-left-color-focus) border-r-(--select-border-right-color-focus) border-t-(--select-border-top-color-focus)')
@@ -191,7 +197,7 @@ export const useSelectStyle = tv({
     hasError: {
       true: {
         hint: new StyleBuilder()
-          .withColor(Style.var('--input-field-hint-text-color-error', '--select-hint-text-color-error'))
+          .withColor('[--input-field-hint-text-color-error:var(--select-hint-text-color-error)]')
           .build(),
         iconLeft: new StyleBuilder()
           .withColor('!text-(color:--select-icon-color-error)')
@@ -200,7 +206,7 @@ export const useSelectStyle = tv({
           .withColor('!text-(color:--select-icon-color-error)')
           .build(),
         label: new StyleBuilder()
-          .withColor(Style.var('--input-field-label-text-color-default', '--select-label-text-color-error'))
+          .withColor('[--input-field-label-text-color-default:var(--select-label-text-color-error)]')
           .build(),
         loader: new StyleBuilder()
           .withColor('text-(color:--select-loader-color-error)')

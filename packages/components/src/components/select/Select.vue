@@ -96,7 +96,9 @@ const isHovered = computed<boolean>(() => isMouseOver.value && !props.isDisabled
 const hasError = computed<boolean>(() => props.errors !== undefined && props.isTouched && props.errors !== null)
 
 const dropdownContentClasses = computed<string>(() => selectStyle.dropdownContent())
-const listboxContentClasses = computed<string>(() => selectStyle.listboxContent())
+const listboxContentClasses = computed<string>(() => selectStyle.listboxContent({
+  isFilterVisible: props.filterFn !== null,
+}))
 
 const labelClasses = computed<string>(() => selectStyle.label({
   hasError: hasError.value,

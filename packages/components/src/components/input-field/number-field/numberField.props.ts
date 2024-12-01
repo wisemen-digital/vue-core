@@ -15,12 +15,12 @@ export interface NumberFieldProps extends Omit<TextFieldProps, 'type'> {
    * The maximum value of the number input.
    * @default null
    */
-  max?: null | number
+  max?: number | null
   /**
    * The minimum value of the number input.
    * @default null
    */
-  min?: null | number
+  min?: number | null
   /**
    * The step of the number input.
    * @default 1

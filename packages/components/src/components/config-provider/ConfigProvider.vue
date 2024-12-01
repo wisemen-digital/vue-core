@@ -4,6 +4,7 @@ import { computed } from 'vue'
 import { provideConfigContext } from '@/components/config-provider/config.context'
 
 const props = defineProps<{
+  areKeyboardShortcutHintsHidden?: boolean
   googleMapsApiKey?: string
   locale: string
   pagination?: {
@@ -12,6 +13,7 @@ const props = defineProps<{
 }>()
 
 provideConfigContext({
+  areKeyboardShortcutHintsHidden: computed<boolean>(() => props.areKeyboardShortcutHintsHidden ?? false),
   googleMapsApiKey: props.googleMapsApiKey ?? null,
   locale: computed<string>(() => props.locale),
   pagination: {

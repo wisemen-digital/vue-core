@@ -290,12 +290,9 @@ const isTouched = ref<boolean>(false)
               :errors="{
                 _errors: ['Error'],
               }"
-              :style-config="{
-                // '--switch-thumb-size-default': '40px',
-                // '--switch-icon-size-default': '20px',
-              }"
               :is-touched="isTouched"
               size="default"
+              label="test"
               hint="This is a hint."
               icon-unchecked="translate"
               icon-checked="check"
@@ -317,6 +314,9 @@ const isTouched = ref<boolean>(false)
             <PhoneNumberField
               :model-value="null"
               :is-required="true"
+              :style-config="{
+                '--text-field-label-font-size-default': '40px',
+              }"
               label="Phone number"
             />
           </div>
@@ -330,8 +330,8 @@ const isTouched = ref<boolean>(false)
                 _errors: ['This is an error message.'],
               }"
               :style-config="{
-              // '--select-option-font-weight-default': '600',
-              // '--select-option-text-color-default': '#ff00ff',
+                '--select-label-font-size-default': '20px',
+                '--select-label-font-weight-default': '700',
               }"
               :is-touched="false"
               hint="This is a hint."
@@ -344,13 +344,14 @@ const isTouched = ref<boolean>(false)
           <div>
             <TextField
               :style-config="{
-              // '--text-field-label-font-size-default': '20px',
-              // '--text-field-label-font-weight-default': '600',
+                '--text-field-label-font-size-default': '20px',
+                '--text-field-label-font-weight-default': '600',
               }"
               :model-value="null"
               icon-right="translate"
               icon-left="translate"
               label="Email address"
+              hint="This is a hint."
             />
           </div>
 

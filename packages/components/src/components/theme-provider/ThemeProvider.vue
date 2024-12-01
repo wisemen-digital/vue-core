@@ -5,7 +5,7 @@ import { provideThemeProviderContext } from '@/components/theme-provider/themePr
 
 const props = withDefaults(defineProps<{
   isDarkModeEnabled?: boolean
-  theme: 'default' | string & {}
+  theme: string & {} | 'default'
 }>(), {
   isDarkModeEnabled: false,
 })

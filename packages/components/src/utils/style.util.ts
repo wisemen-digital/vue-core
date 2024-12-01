@@ -1,9 +1,3 @@
-export class Style {
-  public static var(varName: string, value: string): string {
-    return `[${varName}:var(${value})]`
-  }
-}
-
 export class StyleBuilder {
   private readonly classes: string[] = []
 

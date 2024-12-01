@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import { injectConfigContext } from '@/components/config-provider/config.context'
 import KeyboardKey from '@/components/keyboard/KeyboardKey.vue'
 import type { KeyboardKey as KeyboardKeyType } from '@/types/keyboard.type'
 
@@ -9,7 +10,7 @@ const props = withDefaults(defineProps<{
   /**
    * Keyboard classes
    */
-  keyboardClasses?: null | string
+  keyboardClasses?: string | null
   /**
    * The keyboard key(s) to display
    */
@@ -19,6 +20,8 @@ const props = withDefaults(defineProps<{
 })
 
 const { t } = useI18n()
+
+const globalConfigContext = injectConfigContext()
 
 function isModifier(key: KeyboardKeyType): boolean {
   return key === 'ctrl' || key === 'shift' || key === 'alt' || key === 'meta'
@@ -30,7 +33,10 @@ const isSequence = computed<boolean>(() => {
 </script>
 
 <template>
-  <div class="flex items-center gap-x-1">
+  <div
+    v-if="globalConfigContext.areKeyboardShortcutHintsHidden.value"
+    class="flex items-center gap-x-1"
+  >
     <template
       v-for="(keyboardKey, index) of keyboardKeys"
       :key="index"
