@@ -20,6 +20,7 @@ import InputFieldHint from '@/components/input-field-hint/InputFieldHint.vue'
 import InputFieldLabel from '@/components/input-field-label/InputFieldLabel.vue'
 import Popover from '@/components/popover/Popover.vue'
 import PopoverAnchor from '@/components/popover/PopoverAnchor.vue'
+import ScrollArea from '@/components/scroll-area/ScrollArea.vue'
 import { provideSelectContext } from '@/components/select/select.context'
 import type {
   SelectDisplayFn,
@@ -346,7 +347,10 @@ provideSelectContext({
               <SelectFilter />
             </slot>
 
-            <ListboxContent :class="listboxContentClasses">
+            <ScrollArea
+              :as="ListboxContent"
+              :scroll-area-class="listboxContentClasses"
+            >
               <slot
                 v-if="hasNoResults"
                 :search-term="searchTerm"
@@ -435,7 +439,7 @@ provideSelectContext({
                   </template>
                 </SelectItem>
               </template>
-            </ListboxContent>
+            </ScrollArea>
           </ListboxRoot>
 
           <slot name="content-bottom" />

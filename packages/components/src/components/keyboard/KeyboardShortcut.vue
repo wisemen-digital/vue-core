@@ -34,7 +34,7 @@ const isSequence = computed<boolean>(() => {
 
 <template>
   <div
-    v-if="globalConfigContext.areKeyboardShortcutHintsHidden.value"
+    v-if="!globalConfigContext.areKeyboardShortcutHintsHidden.value"
     class="flex items-center gap-x-1"
   >
     <template

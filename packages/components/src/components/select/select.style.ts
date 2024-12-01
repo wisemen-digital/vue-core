@@ -43,7 +43,7 @@ export const useSelectStyle = tv({
       .withColor('[--input-field-label-text-color-default:var(--select-label-text-color-default)]')
       .build(),
     listboxContent: new StyleBuilder()
-      .withClasses('outline-none overflow-y-auto')
+      .withClasses('!inset-ring-0')
       .withSize('max-h-(--select-dropdown-max-height-default)')
       .withPadding('px-(--select-dropdown-padding-x-default)')
       .build(),
@@ -93,7 +93,7 @@ export const useSelectStyle = tv({
       .build(),
     tags: new StyleBuilder()
       .withClasses('flex w-full flex-wrap items-center gap-1 py-1.5')
-      .withPadding('pl-(--select-tags-padding-left-default) pr-(--select-tags-padding-right-default)')
+      .withPadding('pl-[calc(var(--select-padding-left-default)/2)] pr-(--select-padding-right-default)')
       .build(),
     value: new StyleBuilder()
       .withClasses('w-full truncate')

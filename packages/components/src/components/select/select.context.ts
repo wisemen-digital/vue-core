@@ -12,7 +12,7 @@ import type { SelectValue } from '@/types/select.type'
 
 interface SelectContext {
   inputId: ComputedRef<string>
-  testId: ComputedRef<null | string>
+  testId: ComputedRef<string | null>
   hasError: ComputedRef<boolean>
   isDisabled: ComputedRef<boolean>
   isFocused: ComputedRef<boolean>
@@ -21,11 +21,11 @@ interface SelectContext {
   isMultiple: ComputedRef<boolean>
   isOpen: ComputedRef<boolean>
   displayFn: SelectDisplayFn<SelectValue>
-  hint: ComputedRef<null | string>
+  hint: ComputedRef<string | null>
   iconLeft: ComputedRef<Icon | null>
   iconRight: ComputedRef<Icon>
   modelValue: Ref<SelectValue>
-  placeholder: ComputedRef<null | string>
+  placeholder: ComputedRef<string | null>
   searchPlaceholder: ComputedRef<string>
   searchTerm: Ref<string>
   onTriggerBlur: () => void

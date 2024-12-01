@@ -115,7 +115,7 @@ const isEmpty = computed<boolean>(() => (selectContext.modelValue.value as Array
           :class="{
             'pointer-events-none': selectContext.isDisabled.value,
           }"
-          class="flex size-full min-h-7 min-w-3 flex-1 items-center justify-end bg-transparent outline-none"
+          class="cursor-pointer flex size-full min-h-7 min-w-3 flex-1 items-center justify-end bg-transparent outline-none"
           @keydown="selectContext.onTriggerKeyDown"
           @focus="selectContext.onTriggerFocus"
           @blur="selectContext.onTriggerBlur"

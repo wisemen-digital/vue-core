@@ -9,6 +9,7 @@ import {
   watch,
 } from 'vue'
 
+import ScrollArea from '@/components/scroll-area/ScrollArea.vue'
 import TablePagination from '@/components/table/pagination/TablePagination.vue'
 import { provideTableContext } from '@/components/table/table.context'
 import type { TableProps } from '@/components/table/table.props'
@@ -35,7 +36,7 @@ const themeProviderContext = injectThemeProviderContext()
 
 const slots = useSlots()
 
-const tableContainerRef = ref<HTMLElement | null>(null)
+const scrollContainerRef = ref<HTMLElement | null>(null)
 
 // Used to observe the table's width and height to recalculate the variables below
 let resizeObserver: ResizeObserver | null = null
@@ -100,22 +101,30 @@ function handleTableResize(tableContainerEl: HTMLElement): void {
   hasReachedHorizontalScrollEnd.value = getHasReachedHorizontalScrollEnd(tableContainerEl)
 }
 
-function onScroll(): void {
-  handleTableResize(tableContainerRef.value!)
+function onSetScrollContainerRef(el: HTMLElement): void {
+  scrollContainerRef.value = el
 }
 
-watch(() => props.data, () => {
-  if (tableContainerRef.value === null) {
+function onScroll(): void {
+  if (scrollContainerRef.value === null) {
     return
   }
 
-  handleTableResize(tableContainerRef.value)
+  handleTableResize(scrollContainerRef.value)
+}
+
+watch(() => props.data, () => {
+  if (scrollContainerRef.value === null) {
+    return
+  }
+
+  handleTableResize(scrollContainerRef.value)
 }, {
   flush: 'post',
 })
 
 onMounted(() => {
-  const tableContainerEl = tableContainerRef.value
+  const tableContainerEl = scrollContainerRef.value
 
   if (tableContainerEl === null) {
     return
@@ -177,14 +186,13 @@ provideTableContext({
         </template>
       </TableEmptyState>
 
-      <div
+      <ScrollArea
         v-else
-        ref="tableContainerRef"
         :aria-rowcount="data!.meta.total"
-        class="h-full flex-1 overflow-y-auto"
-        tabindex="0"
+        class="h-full flex-1"
         role="table"
         @scroll="onScroll"
+        @scroll-container-ref="onSetScrollContainerRef"
       >
         <div
           :style="{
@@ -195,7 +203,7 @@ provideTableContext({
           <TableHeader />
           <TableBody />
         </div>
-      </div>
+      </ScrollArea>
     </div>
 
     <TableBottom v-if="!isEmpty">

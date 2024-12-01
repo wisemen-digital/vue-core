@@ -12,6 +12,7 @@ const { t } = useI18n()
     <slot>
       <IconButton
         :label="t('shared.close')"
+        :is-tooltip-hidden="true"
         icon="close"
         variant="tertiary"
         size="sm"

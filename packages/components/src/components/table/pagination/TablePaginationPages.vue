@@ -38,7 +38,7 @@ const paginationListItemRef = ref<InstanceType<typeof PaginationListItem> | null
         <Button
           variant="tertiary"
           size="sm"
-          class="data-selected:bg-primary-hover data-selected:border-(--bg-primary-hover) min-w-9"
+          class="data-[selected]:bg-primary-hover data-[selected]:border-(--bg-primary-hover) min-w-9"
         >
           {{ n(page.value) }}
         </Button>
