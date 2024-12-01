@@ -1,7 +1,6 @@
 export default {
   plugins: {
-    'autoprefixer': {},
-    'tailwindcss': {},
+    '@tailwindcss/postcss': {},
     'postcss-prefix-selector': {
       prefix: ':not(:where(.vp-raw *))',
       includeFiles: [

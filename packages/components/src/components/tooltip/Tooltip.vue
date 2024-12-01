@@ -17,8 +17,8 @@ const props = withDefaults(defineProps<TooltipProps>(), {
   isArrowHidden: false,
   isHidden: false,
   delayDuration: 0,
-  disableCloseOnTriggerClick: false,
   disableHoverableContent: false,
+  enableCloseOnTriggerClick: false,
   popoverAlign: 'center',
   popoverCollisionPaddingInPx: 10,
   popoverContainerElement: null,
@@ -41,7 +41,7 @@ const arrowClasses = computed<string>(() => tooltipStyle.arrow())
   <TooltipProvider>
     <TooltipRoot
       :delay-duration="props.delayDuration"
-      :disable-closing-trigger="props.disableCloseOnTriggerClick"
+      :disable-closing-trigger="!props.enableCloseOnTriggerClick"
       :disable-hoverable-content="props.disableHoverableContent"
       :ignore-non-keyboard-focus="true"
     >
@@ -56,8 +56,8 @@ const arrowClasses = computed<string>(() => tooltipStyle.arrow())
           v-if="!props.isHidden"
           :class="[
             {
-              'w-[--reka-tooltip-trigger-width]': props.popoverWidth === 'anchor-width',
-              'w-[--reka-tooltip-content-available-width]': props.popoverWidth === 'available-width',
+              'w-(--reka-tooltip-trigger-width)': props.popoverWidth === 'anchor-width',
+              'w-(--reka-tooltip-content-available-width)': props.popoverWidth === 'available-width',
             },
             contentClasses,
             themeProviderContext.theme.value,

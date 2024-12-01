@@ -13,13 +13,13 @@ export interface TooltipProps extends PopperProps, Stylable<'tooltip'> {
    */
   delayDuration?: number
   /**
-   * When true, clicking on trigger will not close the content.
-   * @default false
-   */
-  disableCloseOnTriggerClick?: boolean
-  /**
    * When true, trying to hover the content will result in the tooltip closing as the pointer leaves the trigger.
    * @default false
    */
   disableHoverableContent?: boolean
+  /**
+   * When true, clicking on trigger will close the tooltip.
+   * @default false
+   */
+  enableCloseOnTriggerClick?: boolean
 }

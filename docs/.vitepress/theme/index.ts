@@ -1,8 +1,7 @@
-/* eslint-disable simple-import-sort/imports */
-import DefaultTheme from 'vitepress/theme'
 import '@wisemen/vue-core/style.css'
-import './index.scss'
+import './base.css'
 import './override.css'
+import DefaultTheme from 'vitepress/theme'
 
 import ComponentPreview from '@docs/.vitepress/components/ComponentPreview.vue'
 import { createI18n } from 'vue-i18n'
@@ -27,7 +26,7 @@ export const i18nPlugin = createI18n({
 })
 
 const theme: typeof DefaultTheme = {
-  ...DefaultTheme,
+  Layout: DefaultTheme.Layout,
   enhanceApp(ctx) {
     // Add global properties
     // eslint-disable-next-line node/prefer-global/process

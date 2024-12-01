@@ -1,6 +1,11 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/**
+ * Default theme configuration for the application.
+ * 
+ * Guidelines for adding custom themes:
+ * - Place all custom themes in the `themes` folder.
+ * - Each theme must include both a `light` and a `dark` version.
+ * - Structure theme files as: `<THEME_NAME>.light` and `<THEME_NAME>.dark`.
+ */
 
 .default.light {
   --brand-primary-50: #e3f0fe;
@@ -184,57 +189,4 @@
   --utility-blue-dark-800: #0040C1;
   --utility-blue-dark-900: #00359E;
   --utility-blue-dark-950: #002266;
-}
-
-:root {
-  --spacing-none: 0px;
-  --spacing-xxs: 2px;
-  --spacing-xs: 4px;
-  --spacing-sm: 6px;
-  --spacing-md: 8px;
-  --spacing-lg: 12px;
-  --spacing-xl: 16px;
-  --spacing-2xl: 20px;
-  --spacing-3xl: 24px;
-  --spacing-4xl: 32px;
-  --spacing-5xl: 40px;
-  --spacing-6xl: 48px;
-  --spacing-7xl: 64px;
-  --spacing-8xl: 80px;
-  --spacing-9xl: 96px;
-  --spacing-10xl: 128px;
-  --spacing-11xl: 160px;
-
-  --line-height-text-xs: 18px;
-  --line-height-text-sm: 20px;
-  --line-height-text-md: 24px;
-  --line-height-test-lg: 28px;
-  --line-height-test-xl: 30px;
-  --line-height-display-xs: 32px;
-  --line-height-display-sm: 38px;
-  --line-height-display-md: 44px;
-  --line-height-display-lg: 60px;
-  --line-height-display-xl: 72px;
-  --line-height-display-2xl: 90px;
-
-  --radius-none: 0px;
-  --radius-xxs: 2px;
-  --radius-xs: 4px;
-  --radius-sm: 6px;
-  --radius-md: 8px;
-  --radius-lg: 10px;
-  --radius-xl: 12px;
-  --radius-2xl: 16px;
-  --radius-4xl: 24px;
-  --radius-full: 9999px;
-
-  --text-xs: 12px;
-  --text-sm: 14px;
-  --text-md: 16px;
-  --text-lg: 18px;
-
-  --shadow-none: 0px 0px 0px 0px #000000;
-  --shadow-xs: 0px 1px 2px 0px #00000010;
-  --shadow-lg: 0 12px 16px -4px rgba(16, 24, 40, 0.08), 0px 12px 16px -4px rgba(16, 24, 40, 0.03);
-  --shadow-sm: 0px 1px 3px 0px rgba(16, 24, 40, 0.10);
 }

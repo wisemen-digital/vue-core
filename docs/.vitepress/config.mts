@@ -3,6 +3,7 @@ import { resolve } from 'node:path'
 import { defineConfig } from 'vitepress'
 
 import ComponentPreviewPlugin from './plugins/ComponentPreview'
+import tailwindcss from '@tailwindcss/vite'
 
 const guide = [
   {
@@ -143,5 +144,8 @@ export default defineConfig({
         '@': resolve(__dirname, '../../components/src'),
       },
     },
+    plugins: [
+      tailwindcss(),
+    ]
   },
 })

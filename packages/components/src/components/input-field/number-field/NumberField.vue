@@ -4,12 +4,14 @@ import {
   NumberFieldIncrement,
   NumberFieldInput,
   NumberFieldRoot,
+  useForwardExpose,
   useId,
 } from 'reka-ui'
 import {
   computed,
   ref,
 } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import IconButton from '@/components/button/icon-button/IconButton.vue'
 import Collapsable from '@/components/collapsable/Collapsable.vue'
@@ -80,8 +82,10 @@ const computedModel = computed<number | undefined>({
 const themeProviderContext = injectThemeProviderContext()
 const globalConfigContext = injectConfigContext()
 
-const decrementButtonRef = ref<InstanceType<typeof IconButton> | null>(null)
-const incrementButtonRef = ref<InstanceType<typeof IconButton> | null>(null)
+const { t } = useI18n()
+
+const { currentElement: decrementButtonEl, forwardRef: decrementForwardRef } = useForwardExpose()
+const { currentElement: incrementButtonEl, forwardRef: incrementForwardRef } = useForwardExpose()
 
 const isDecrementButtonDisabled = ref<boolean>(false)
 const isIncrementButtonDisabled = ref<boolean>(false)
@@ -94,7 +98,7 @@ const textFieldStyle = useTextFieldStyle()
 if (!props.areControlsHidden) {
   useElementAttributeObserver({
     attribute: 'disabled',
-    element: computed<HTMLElement | null>(() => decrementButtonRef.value?.$el ?? null),
+    element: computed<HTMLElement | null>(() => decrementButtonEl.value ?? null),
     onChange: (value) => {
       isDecrementButtonDisabled.value = value !== null
     },
@@ -102,7 +106,7 @@ if (!props.areControlsHidden) {
 
   useElementAttributeObserver({
     attribute: 'disabled',
-    element: computed<HTMLElement | null>(() => incrementButtonRef.value?.$el ?? null),
+    element: computed<HTMLElement | null>(() => incrementButtonEl.value ?? null),
     onChange: (value) => {
       isIncrementButtonDisabled.value = value !== null
     },
@@ -247,18 +251,19 @@ function onBlur(): void {
           :as-child="true"
         >
           <IconButton
-            ref="decrementButtonRef"
+            :ref="decrementForwardRef"
             :style-config="{
-              '--icon-button-size-default': '32px',
-              '--icon-button-icon-size-default': '16px',
+              '--icon-button-size-default': '2rem',
+              '--icon-button-icon-size-default': '1rem',
               '--icon-button-ring-color-focus': 'transparent',
               '--icon-button-bg-color-focus': 'var(--bg-secondary-hover)',
               '--icon-button-bg-color-disabled': 'transparent',
               '--icon-button-border-color-disabled': 'transparent',
             }"
             :is-disabled="props.isDisabled || isDecrementButtonDisabled"
+            :is-tooltip-hidden="true"
+            :label="t('component.number_field.decrement')"
             class="ml-[0.1875rem]"
-            label="Decrement"
             icon="minus"
             size="sm"
             variant="tertiary"
@@ -292,17 +297,18 @@ function onBlur(): void {
           :as-child="true"
         >
           <IconButton
-            ref="incrementButtonRef"
+            :ref="incrementForwardRef"
             :style-config="{
-              '--icon-button-size-default': '32px',
-              '--icon-button-icon-size-default': '16px',
+              '--icon-button-size-default': '2rem',
+              '--icon-button-icon-size-default': '1rem',
               '--icon-button-ring-color-focus': 'transparent',
               '--icon-button-bg-color-focus': 'var(--bg-secondary-hover)',
               '--icon-button-bg-color-disabled': 'transparent',
               '--icon-button-border-color-disabled': 'transparent',
             }"
             :is-disabled="props.isDisabled || isIncrementButtonDisabled"
-            label="Increment"
+            :is-tooltip-hidden="true"
+            :label="t('component.number_field.increment')"
             icon="plus"
             size="sm"
             variant="tertiary"

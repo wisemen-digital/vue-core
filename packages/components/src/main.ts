@@ -21,6 +21,10 @@ const i18n = createI18n({
         keyboard_shortcut: {
           then: 'then',
         },
+        number_field: {
+          decrement: 'Decrement',
+          increment: 'Increment',
+        },
         password_field: {
           hide_password: 'Hide password',
           show_password: 'Show password',
