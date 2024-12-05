@@ -61,7 +61,10 @@ function onClose(): void {
   >
     <div class="flex items-center gap-x-2 overflow-hidden">
       <div :class="iconContainerClasses">
-        <Icon :icon="props.toast.icon ?? defaultIcon" />
+        <Icon
+          :icon="props.toast.icon ?? defaultIcon"
+          class="size-4"
+        />
       </div>
 
       <span
@@ -86,7 +89,10 @@ function onClose(): void {
         aria-label="close"
         @click="onClose"
       >
-        <Icon icon="close" />
+        <Icon
+          icon="close"
+          class="size-4"
+        />
       </button>
     </div>
   </div>

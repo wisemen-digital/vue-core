@@ -18,11 +18,6 @@ export interface IconButtonProps extends Stylable<'iconButton'> {
    */
   isLoading?: boolean
   /**
-   * Whether the tooltip is hidden.
-   * @default false
-   */
-  isTooltipHidden?: boolean
-  /**
    * The icon of the button.
    */
   icon: Icon

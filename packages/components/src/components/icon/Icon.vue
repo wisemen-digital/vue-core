@@ -2,25 +2,12 @@
 import { useAttrs } from 'vue'
 
 import AsyncIcon from '@/components/icon/AsyncIcon.vue'
-import type { Icon } from '@/icons/icons'
-import type { StyleConfig } from '@/types/style.type'
+import type { IconProps } from '@/components/icon/icon.props'
 
-const props = withDefaults(
-  defineProps<{
-    /**
-     * The icon to be displayed
-     */
-    icon: Icon
-    /**
-     *
-     */
-    styleConfig?: StyleConfig<'icon'> | null
-  }>(),
-  {
-    size: 'default',
-    styleConfig: null,
-  },
-)
+const props = withDefaults(defineProps<IconProps>(), {
+  size: 'default',
+  styleConfig: null,
+})
 
 const attrs = useAttrs()
 </script>

@@ -7,7 +7,6 @@ import type { IconButtonProps } from '@/components/button/icon-button/iconButton
 import Icon from '@/components/icon/Icon.vue'
 import Spinner from '@/components/spinner/Spinner.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
-import Tooltip from '@/components/tooltip/Tooltip.vue'
 
 const props = withDefaults(defineProps<IconButtonProps>(), {
   testId: null,
@@ -36,7 +35,6 @@ const {
   iconClasses,
   loaderBoxClasses,
   loaderClasses,
-  tooltipClasses,
   onBlur,
   onClick,
   onFocus,
@@ -58,68 +56,48 @@ const {
 </script>
 
 <template>
-  <Tooltip
-    :is-arrow-hidden="true"
-    :is-hidden="props.isTooltipHidden || props.isDisabled || props.isLoading"
-    :popover-offset-in-px="4"
-    popover-side="top"
+  <button
+    v-bind="attrs"
+    :data-test-id="props.testId"
+    :style="props.styleConfig"
+    :type="props.type"
+    :disabled="props.isDisabled"
+    :aria-busy="props.isLoading"
+    :aria-label="props.label"
+    :class="[baseClasses, themeProviderContext.theme.value]"
+    class="icon-button-default"
+    @focus="onFocus"
+    @blur="onBlur"
+    @mouseenter="onMouseEnter"
+    @mouseleave="onMouseLeave"
+    @mousedown="onMouseDown"
+    @mouseup="onMouseUp"
+    @keydown="onKeyDown"
+    @keyup="onKeyUp"
+    @click="onClick"
   >
-    <template #trigger>
-      <button
-        v-bind="attrs"
-        :data-test-id="props.testId"
-        :style="props.styleConfig"
-        :type="props.type"
-        :disabled="props.isDisabled"
-        :aria-busy="props.isLoading"
-        :aria-label="props.label"
-        :class="[baseClasses, themeProviderContext.theme.value]"
-        class="icon-button-default"
-        @focus="onFocus"
-        @blur="onBlur"
-        @mouseenter="onMouseEnter"
-        @mouseleave="onMouseLeave"
-        @mousedown="onMouseDown"
-        @mouseup="onMouseUp"
-        @keydown="onKeyDown"
-        @keyup="onKeyUp"
-        @click="onClick"
-      >
-        <Icon
-          :icon="props.icon"
-          :class="[
-            iconClasses,
-            {
-              'opacity-0': props.isLoading,
-            },
-          ]"
-        />
+    <Icon
+      :icon="props.icon"
+      :class="[
+        iconClasses,
+        {
+          'opacity-0': props.isLoading,
+        },
+      ]"
+    />
 
-        <Transition
-          enter-from-class="opacity-0"
-          leave-active-class="duration-150"
-          enter-active-class="duration-150"
-          leave-to-class="opacity-0"
-        >
-          <div
-            v-if="props.isLoading"
-            :class="loaderBoxClasses"
-          >
-            <Spinner :class="loaderClasses" />
-          </div>
-        </Transition>
-      </button>
-    </template>
-
-    <template #content>
+    <Transition
+      enter-from-class="opacity-0"
+      leave-active-class="duration-150"
+      enter-active-class="duration-150"
+      leave-to-class="opacity-0"
+    >
       <div
-        :class="[tooltipClasses]"
-        class="icon-button-default"
+        v-if="props.isLoading"
+        :class="loaderBoxClasses"
       >
-        <span>
-          {{ props.label }}
-        </span>
+        <Spinner :class="loaderClasses" />
       </div>
-    </template>
-  </Tooltip>
+    </Transition>
+  </button>
 </template>

@@ -224,11 +224,11 @@ watch(isActuallyOpen, () => {
 
 .custom-dialog-overlay {
   &[data-state='open'] {
-    animation: dialog-overlay-animate-in 0.5s cubic-bezier(0.17, 0.67, 0.16, 0.99);
+    animation: dialog-overlay-animate-in 0.5s var(--ease-dialog-overlay);
   }
 
   &[data-state='closed'] {
-    animation: dialog-overlay-animate-out 0.5s cubic-bezier(0.17, 0.67, 0.16, 0.99);
+    animation: dialog-overlay-animate-out 0.5s var(--ease-dialog-overlay);
   }
 }
 

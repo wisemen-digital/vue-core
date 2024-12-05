@@ -20,7 +20,6 @@ interface UseIconButtonReturnType {
   iconClasses: ComputedRef<string>
   loaderBoxClasses: ComputedRef<string>
   loaderClasses: ComputedRef<string>
-  tooltipClasses: ComputedRef<string>
   onBlur: () => void
   onClick: (event: Event) => void
   onFocus: () => void
@@ -71,8 +70,6 @@ export function useIconButton(options: UseIconButtonOptions): UseIconButtonRetur
     isHovered: isHovered.value,
   }))
 
-  const tooltipClasses = computed<string>(() => iconButtonStyle.tooltip())
-
   function onFocus(): void {
     isFocused.value = true
   }
@@ -122,7 +119,6 @@ export function useIconButton(options: UseIconButtonOptions): UseIconButtonRetur
     iconClasses,
     loaderBoxClasses,
     loaderClasses,
-    tooltipClasses,
     onBlur,
     onClick,
     onFocus,

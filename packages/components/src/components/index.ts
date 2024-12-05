@@ -18,7 +18,7 @@ import type {
   SelectValue,
 } from '@/types'
 
-// Throw an error when using `export { XXXProps as VcXXXProps }` for some reason
+// Throws an error when using `export { XXXProps as VcXXXProps }` for some reason
 export type VcAutocompleteProps<TValue extends SelectValue> = AutocompleteProps<TValue>
 export type VcButtonProps = ButtonProps
 export type VcCheckboxProps = CheckboxProps
@@ -140,6 +140,9 @@ export { default as VcRadioGroupIndicator } from '@/components/radio-group/Radio
 export { default as VcRadioGroupItem } from '@/components/radio-group/RadioGroupItem.vue'
 export { default as VcRadioGroupItemDefault } from '@/components/radio-group/RadioGroupItemDefault.vue'
 export { default as VcRadioGroupRoot } from '@/components/radio-group/RadioGroupRoot.vue'
+
+// Scroll area
+export { default as VcScrollArea } from '@/components/scroll-area/ScrollArea.vue'
 
 // Table
 export { default as VcTablePagination } from '@/components/table/pagination/TablePagination.vue'

@@ -46,14 +46,16 @@ onMounted(() => {
     throw new Error('[ScrollArea] No scroll container ref found')
   }
 
-  emit('scrollContainerRef', scrollContainerRef.value.$el)
+  emit('scrollContainerRef', scrollContainerRef.value.$el.firstChild.nextElementSibling)
 })
 </script>
 
 <template>
-  <ScrollAreaRoot type="hover">
+  <ScrollAreaRoot
+    ref="scrollContainerRef"
+    type="hover"
+  >
     <ScrollAreaViewport
-      ref="scrollContainerRef"
       :as="props.as"
       :class="[
         props.scrollAreaClass,

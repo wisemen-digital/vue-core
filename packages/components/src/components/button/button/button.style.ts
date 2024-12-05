@@ -14,7 +14,7 @@ export const useButtonStyle = tv({
       .withPadding('px-(--button-padding-left-default)')
       .withShadow('shadow-(--button-shadow-default)')
       .withSize('h-(--button-height-default)')
-      .withRing('ring-offset-1 focus-visible:ring-2 ring-offset-(--button-ring-offset-color-focus)')
+      .withRing('focus-visible:ring-offset-1 focus-visible:ring-2 ring-offset-(--button-ring-offset-color-focus)')
       .build(),
     iconLeft: new StyleBuilder()
       .withClasses('shrink-0 duration-200')

@@ -6,8 +6,7 @@ import Icon from '@/components/icon/Icon.vue'
   <li role="presentation">
     <Icon
       icon="chevronRight"
-      size="sm"
-      class="text-secondary"
+      class="text-secondary size-3.5"
     />
   </li>
 </template>

@@ -18,7 +18,6 @@ const { t } = useI18n()
       '--icon-button-border-color-disabled': 'transparent',
     }"
     :is-disabled="tagContext.isDisabled.value"
-    :is-tooltip-hidden="true"
     :label="t('component.tag.remove')"
     icon="close"
     variant="tertiary"

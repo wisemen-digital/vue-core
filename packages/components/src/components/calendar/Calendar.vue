@@ -300,7 +300,7 @@ watch(placeholderYear, () => {
                   :day="weekDate"
                   :month="month.value"
                   class="
-                  flex size-8 items-center justify-center rounded-lg text-center text-sm text-tertiary outline-none
+                  cursor-pointer flex size-8 items-center justify-center rounded-lg text-center text-sm text-tertiary outline-none
                   duration-100 focus:bg-brand-secondary
                   focus:text-brand-primary
                   data-[selected]:!bg-brand-solid

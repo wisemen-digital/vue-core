@@ -261,9 +261,8 @@ function onBlur(): void {
               '--icon-button-border-color-disabled': 'transparent',
             }"
             :is-disabled="props.isDisabled || isDecrementButtonDisabled"
-            :is-tooltip-hidden="true"
             :label="t('component.number_field.decrement')"
-            class="ml-[0.1875rem]"
+            class="ml-[0.1875rem] flex-shrink-0"
             icon="minus"
             size="sm"
             variant="tertiary"
@@ -307,12 +306,11 @@ function onBlur(): void {
               '--icon-button-border-color-disabled': 'transparent',
             }"
             :is-disabled="props.isDisabled || isIncrementButtonDisabled"
-            :is-tooltip-hidden="true"
             :label="t('component.number_field.increment')"
             icon="plus"
             size="sm"
             variant="tertiary"
-            class="mr-[0.1875rem]"
+            class="mr-[0.1875rem] flex-shrink-0"
           />
         </NumberFieldIncrement>
 

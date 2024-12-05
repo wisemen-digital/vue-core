@@ -5,20 +5,13 @@ import {
   watch,
 } from 'vue'
 
+import type { IconProps } from '@/components/icon/icon.props'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
-import { type Icon, icons } from '@/icons/icons'
-import type { StyleConfig } from '@/types/style.type'
+import { icons } from '@/icons/icons'
 
-const props = withDefaults(
-  defineProps<{
-    icon: Icon
-    styleConfig?: StyleConfig<'icon'> | null
-  }>(),
-  {
-    size: 'default',
-    styleConfig: null,
-  },
-)
+const props = withDefaults(defineProps<IconProps>(), {
+  styleConfig: null,
+})
 
 const themeProviderContext = injectThemeProviderContext()
 const svgComponent = shallowRef<Component | null>(null)
@@ -26,7 +19,7 @@ const svgComponent = shallowRef<Component | null>(null)
 async function setIcon(): Promise<void> {
   const resolvedComponent = await icons[props.icon]
 
-  // @ts-expect-error TODO fix this
+  // @ts-expect-error Property 'default' does not exist on type 'Component'
   svgComponent.value = resolvedComponent.default
 }
 

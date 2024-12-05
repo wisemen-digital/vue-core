@@ -12,7 +12,7 @@ export const useIconButtonStyle = tv({
       .withPadding('px-(--icon-button-padding-left-default)')
       .withShadow('shadow-(--icon-button-shadow-default)')
       .withSize('size-(--icon-button-size-default)')
-      .withRing('ring-offset-1 focus-visible:ring-2 ring-offset-(--icon-button-ring-offset-color-focus)')
+      .withRing('focus-visible:ring-offset-1 focus-visible:ring-2 ring-offset-(--icon-button-ring-offset-color-focus)')
       .build(),
     icon: new StyleBuilder()
       .withClasses('shrink-0 duration-200')
@@ -27,13 +27,6 @@ export const useIconButtonStyle = tv({
     loaderBox: new StyleBuilder()
       .withClasses('absolute left-1/2 top-1/2 flex size-full -translate-x-1/2 -translate-y-1/2 items-center justify-center')
       .withBackgroundColor('bg-(--icon-button-bg-color-default)')
-      .build(),
-    tooltip: new StyleBuilder()
-      .withColor('text-(color:--icon-button-tooltip-text-color-default)')
-      .withFontSize('text-(size:--icon-button-tooltip-font-size-default)')
-      .withFontWeight('font-(--icon-button-tooltip-font-weight-default)')
-      .withPadding('px-(--icon-button-tooltip-padding-x-default)')
-      .withPadding('py-(--icon-button-tooltip-padding-y-default)')
       .build(),
   },
   variants: {
