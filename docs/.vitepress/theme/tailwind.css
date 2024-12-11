@@ -297,16 +297,6 @@
 
   --font-sans: Inter Variable, sans-serif;
 
-  --ease-dialog: cubic-bezier(0.22, 0.68, 0, 1.51);
-  --ease-dialog-overlay: cubic-bezier(0.17, 0.67, 0.16, 0.99);
-  /* --ease-switch: cubic-bezier(.1, .91, .48, .99); */
-  --ease-switch: linear(
-    0, 0.009, 0.035 2.1%, 0.141, 0.281 6.7%, 0.723 12.9%, 0.938 16.7%, 1.017,
-    1.077, 1.121, 1.149 24.3%, 1.159, 1.163, 1.161, 1.154 29.9%, 1.129 32.8%,
-    1.051 39.6%, 1.017 43.1%, 0.991, 0.977 51%, 0.974 53.8%, 0.975 57.1%,
-    0.997 69.8%, 1.003 76.9%, 1.004 83.8%, 1
-  );
-
   --width-dialog-sm: 26rem;
   --width-drawer-lg: 40rem;
   --width-drawer-md: 30rem;

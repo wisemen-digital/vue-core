@@ -28,17 +28,17 @@ export function useDialogContainer(): UseDialogContainerReturnType {
   }
 }
 
+function removeDialogFromContainer(id: string): void {
+  dialogs.value = dialogs.value.filter((dialog) => dialog.id !== id)
+}
+
 export function useDialog<TComponent extends Component>(
   options: UseDialogOptions<TComponent>,
 ): UseDialogReturnType<TComponent> {
-  const dialogId = useId()
-
-  function removeDialogFromContainer(id: string): void {
-    dialogs.value = dialogs.value.filter((dialog) => dialog.id !== id)
-  }
+  const dialogId = `dialog-${useId()}`
 
   async function openDialog(attrs: Attrs<TComponent> & { id?: string }): Promise<void> {
-    const dialog = await createDialog(attrs, attrs.id ?? dialogId)
+    const dialog = await createDialog(attrs, attrs?.id ?? dialogId)
 
     if (dialog === null) {
       return
@@ -104,7 +104,7 @@ export function useDialog<TComponent extends Component>(
     const isOpen = dialogs.value.some((dialog) => dialog.id === idToUse)
 
     return {
-      'id': `dialog-${idToUse}`,
+      'id': idToUse,
       'aria-expanded': isOpen,
       'aria-haspopup': 'dialog',
       'data-state': isOpen,

@@ -3,7 +3,7 @@ import type { RouteLocationNamedRaw } from 'vue-router'
 type BaseTabItem<TMeta = undefined> = {
   testId?: string
   label: string
-} & (TMeta extends undefined ? object : { meta: TMeta })
+} & (TMeta extends undefined ? object : TMeta)
 
 export type TabItem<TMeta = undefined> = BaseTabItem<TMeta> & {
   isDisabled?: boolean

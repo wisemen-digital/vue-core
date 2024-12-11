@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
+import Button from '@/components/button/button/Button.vue'
 import Checkbox from '@/components/checkbox/Checkbox.vue'
 import ConfigProvider from '@/components/config-provider/ConfigProvider.vue'
 import Switch from '@/components/switch/Switch.vue'
@@ -24,6 +25,17 @@ const value = ref<boolean>(false)
         v-if="false"
         v-model="value"
       />
+
+      <Button
+        :style-config="{
+          '--button-justify-content-default': 'center',
+        }"
+        icon-left="translate"
+        variant="secondary"
+        class="w-80"
+      >
+        test
+      </Button>
     </ThemeProvider>
   </ConfigProvider>
 </template>

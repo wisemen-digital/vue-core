@@ -1,5 +1,23 @@
 # Changelog
 
+## [alpha.15]
+
+### Breaking Changes
+
+- **VcTabs**
+- **VcRouteTabs**
+  - Tab items with a meta generic are no longer typed as `{ meta: TMeta }`. Instead, the properties from meta will now be directly available at the root level.
+
+### Bug fixes
+
+- **VcDialog**
+- **VcDrawer**
+  - Fix a bug with `dialog.open` or `drawer.open` throwing an error when `id` was not provided.
+
+- **VcSkeletonItem**
+  - Fix a bug where the shimmer animation was not working correctly.
+
+
 ## [alpha.14]
 
 ### Features

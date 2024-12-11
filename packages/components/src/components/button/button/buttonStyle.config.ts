@@ -28,6 +28,7 @@ export interface ButtonStyleConfig extends BaseStyleConfig {
   // refer to `--button-padding-right-default`
   '--button-icon-right-spacing-default': string
   '--button-icon-size-default': string
+  '--button-justify-content-default': string
   '--button-loader-color-active': string
   '--button-loader-color-default': string
   '--button-loader-color-disabled': string
@@ -77,6 +78,7 @@ export function setupDefaultButtonStyles(): void {
       '--button-icon-left-spacing-default': 'var(--spacing-sm)',
       '--button-icon-right-spacing-default': 'var(--spacing-sm)',
       '--button-icon-size-default': 'var(--text-md)',
+      '--button-justify-content-default': 'center',
       '--button-loader-color-active': 'var(--fg-white)',
       '--button-loader-color-default': 'var(--fg-white)',
       '--button-loader-color-disabled': 'var(--fg-disabled)',

@@ -42,7 +42,7 @@ function isReduceMotion(): boolean {
 }
 
 function getTriggerElement(): HTMLElement | null {
-  const triggerEl = document.querySelector(`#dialog-${props.id}`)
+  const triggerEl = document.querySelector(`#${props.id}`)
 
   return triggerEl as HTMLElement ?? null
 }

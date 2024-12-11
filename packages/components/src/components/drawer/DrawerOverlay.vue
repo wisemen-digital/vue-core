@@ -12,8 +12,5 @@ const overlayClasses = computed<string>(() => drawerStyle.overlay())
   <DialogOverlay
     :force-mount="true"
     :class="overlayClasses"
-    :style="{
-      viewTransitionName: 'drawer-overlay',
-    }"
   />
 </template>

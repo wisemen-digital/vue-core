@@ -4,7 +4,7 @@ import { StyleBuilder } from '@/utils/style.util'
 export const useSwitchStyle = tv({
   slots: {
     base: new StyleBuilder()
-      .withClasses('outline-none cursor-pointer not-motion-reduce:duration-400 ease-switch box-content focus-visible:ring-2')
+      .withClasses('outline-none cursor-pointer not-motion-reduce:duration-300 box-content focus-visible:ring-2')
       .withBorder('border border-solid border-(--switch-border-color-default)')
       .withBorderRadius('rounded-(--switch-border-radius-default)')
       .withBackgroundColor('bg-(--switch-bg-color-default)')
@@ -28,7 +28,7 @@ export const useSwitchStyle = tv({
       .withSpacing('[--input-field-hint-spacing-default:var(--switch-hint-spacing-default)]')
       .build(),
     icon: new StyleBuilder()
-      .withClasses('absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 not-motion-reduce:duration-400 ease-switch')
+      .withClasses('absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 not-motion-reduce:duration-300')
       .withSize('size-(--switch-icon-size-default)')
       .withColor('text-(--switch-icon-color-default)')
       .build(),
@@ -39,7 +39,7 @@ export const useSwitchStyle = tv({
       .withSpacing('ml-(--switch-label-spacing-default) mb-0')
       .build(),
     thumb: new StyleBuilder()
-      .withClasses('thumb relative overflow-hidden block not-motion-reduce:duration-400 ease-switch data-[state=checked]:translate-x-full')
+      .withClasses('relative overflow-hidden block not-motion-reduce:duration-400 ease-switch data-[state=checked]:translate-x-full')
       .withBorderRadius('rounded-(--switch-border-radius-default)')
       .withSize('size-(--switch-thumb-size-default)')
       .withBackgroundColor('bg-(--switch-thumb-bg-color-default)')

@@ -21,8 +21,8 @@ type PlaceResult = google.maps.places.PlaceResult
 type AddressComponentType = 'country' | 'locality' | 'postal_code' | 'route' | 'street_number'
 type GeocoderAddressComponent = google.maps.GeocoderAddressComponent
 interface AddressCoordinates {
-  lat: null | number
-  lng: null | number
+  lat: number | null
+  lng: number | null
 }
 
 interface Place {
