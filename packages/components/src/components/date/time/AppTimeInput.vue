@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { vMaska } from 'maska/vue'
-
 import AppInput from '@/components/input/AppInput.vue'
 import type { Icon } from '@/icons/icons.js'
+import { TimeUtil } from '@/utils/time.util'
 
 const props = withDefaults(defineProps<{
   /**
@@ -57,21 +56,52 @@ const modelValue = defineModel<string | null>({
   required: true,
 })
 
-function isValidTime(time: string): boolean {
-  // HH:MM
-  const timeRegex = /^(?:[01]?\d|2[0-3]):[0-5]\d$/
-
-  return timeRegex.test(time)
-}
-
 function onInputBlur(): void {
   if (modelValue.value === null) {
     return
   }
 
-  const isValid = isValidTime(modelValue.value)
+  const time = modelValue.value
 
-  if (isValid) {
+  if (/^\d+$/.test(time) && time.length <= 4) {
+    modelValue.value = TimeUtil.formatNumberToTime(Number.parseInt(time))
+
+    return
+  }
+
+  if (/^\d{1,2}h$/.test(time)) {
+    const hours: number = Number.parseInt(time.replace('h', ''))
+
+    modelValue.value = TimeUtil.formatHoursMinutesToTime(hours, 0)
+
+    return
+  }
+
+  if (/^\d{1,2}m$/.test(time)) {
+    const minutes: number = Number.parseInt(time.replace('m', ''))
+
+    modelValue.value = TimeUtil.formatHoursMinutesToTime(0, minutes)
+
+    return
+  }
+
+  if (/^\d{1,2}[hm]\d{1,2}m?$/.test(time)) {
+    const timeParts = time.split(/[hm]/)
+    const hours: number = Number.parseInt(timeParts[0] ?? '0')
+    const minutes: number = Number.parseInt(timeParts[1] ?? '0')
+
+    modelValue.value = TimeUtil.formatHoursMinutesToTime(hours, minutes)
+
+    return
+  }
+
+  if (/^\d{1,2}[:.\-, ]\d{1,2}$/.test(time)) {
+    const timeParts = time.split(/[:.\-, ]/)
+    const hours: number = Number.parseInt(timeParts[0] ?? '0')
+    const minutes: number = Number.parseInt(timeParts[1] ?? '0')
+
+    modelValue.value = TimeUtil.formatHoursMinutesToTime(hours, minutes)
+
     return
   }
 
@@ -90,7 +120,6 @@ function onInputBlur(): void {
     :placeholder="props.placeholder"
     :icon-left="props.iconLeft"
     :is-readonly="props.isReadonly"
-    v-maska="'##:##'"
     @blur="onInputBlur"
   >
     <template #right>
