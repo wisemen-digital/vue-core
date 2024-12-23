@@ -6,12 +6,12 @@ export interface TextareaProps extends Stylable<'textarea'> {
    * The id of the input.
    * @default null
    */
-  id?: null | string
+  id?: string | null
   /**
    * The test id of the input.
    * @default null
    */
-  testId?: null | string
+  testId?: string | null
   /**
    * Whether the input is disabled.
    * @default false
@@ -44,17 +44,17 @@ export interface TextareaProps extends Stylable<'textarea'> {
    * The hint text of the input.
    * @default null
    */
-  hint?: null | string
+  hint?: string | null
   /**
    * The label of the input.
    * @default null
    */
-  label?: null | string
+  label?: string | null
   /**
    * The placeholder text of the input.
    * @default null
    */
-  placeholder?: null | string
+  placeholder?: string | null
   /**
    * Whether the textarea can be resized.
    * @default 'none'

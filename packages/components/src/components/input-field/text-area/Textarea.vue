@@ -3,12 +3,9 @@ import { useTextareaAutosize } from '@vueuse/core'
 import { useId } from 'reka-ui'
 import { computed, ref } from 'vue'
 
-import Collapsable from '@/components/collapsable/Collapsable.vue'
+import InputField from '@/components/input-field/InputField.vue'
 import type { TextareaProps } from '@/components/input-field/text-area/textarea.props'
 import { textareaStyle } from '@/components/input-field/text-area/textarea.style'
-import InputFieldError from '@/components/input-field-error/InputFieldError.vue'
-import InputFieldHint from '@/components/input-field-hint/InputFieldHint.vue'
-import InputFieldLabel from '@/components/input-field-label/InputFieldLabel.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { useAriaDescribedBy } from '@/composables/aria-described-by/ariaDescribedBy.composable'
 
@@ -62,22 +59,6 @@ const textareaClasses = computed<string>(() => style.textarea({
   resizeMode: props.resize,
 }))
 
-const hintClasses = computed<string>(() => style.hint({
-  hasError: hasError.value,
-  isDisabled: props.isDisabled,
-  isFocused: isFocused.value,
-  isHovered: isHovered.value,
-}))
-
-const label = computed<string>(() => style.label({
-  hasError: hasError.value,
-  isDisabled: props.isDisabled,
-  isFocused: isFocused.value,
-  isHovered: isHovered.value,
-}))
-
-const errorClasses = computed<string>(() => style.error())
-
 const { textarea } = useTextareaAutosize({
   watch: () => {
     if (props.resize === 'auto-vertical') {
@@ -108,23 +89,32 @@ function onBlur(): void {
 </script>
 
 <template>
-  <div
+  <InputField
+    :input-id="inputId"
+    :label="props.label"
+    :hint="props.hint"
+    :is-touched="isTouched"
+    :errors="props.errors"
+    :is-required="props.isRequired"
     :style="props.styleConfig"
     :class="themeProviderContext.theme.value"
-    class="textarea-default input-field-label-default input-field-error-default input-field-hint-default icon-default"
+    class="textarea-default"
   >
-    <slot
-      v-if="props.label !== null"
-      :input-id="inputId"
-      name="label"
-    >
-      <InputFieldLabel
-        :for="inputId"
-        :label="props.label"
-        :is-required="props.isRequired"
-        :class="label"
-      />
-    </slot>
+    <template #label>
+      <slot name="label" />
+    </template>
+
+    <template #error>
+      <slot name="error" />
+    </template>
+
+    <template #hint>
+      <slot name="hint" />
+    </template>
+
+    <template #bottom>
+      <slot name="bottom" />
+    </template>
 
     <textarea
       :id="inputId"
@@ -144,31 +134,7 @@ function onBlur(): void {
       @mouseenter="onMouseEnter"
       @mouseleave="onMouseLeave"
     />
-
-    <slot name="bottom">
-      <Collapsable :is-visible="hasError || props.hint !== null">
-        <div v-if="hasError">
-          <slot name="error">
-            <InputFieldError
-              :errors="props.errors"
-              :class="errorClasses"
-              :input-id="inputId"
-            />
-          </slot>
-        </div>
-
-        <div v-else-if="props.hint !== null">
-          <slot name="hint">
-            <InputFieldHint
-              :hint="props.hint"
-              :class="hintClasses"
-              :input-id="inputId"
-            />
-          </slot>
-        </div>
-      </Collapsable>
-    </slot>
-  </div>
+  </InputField>
 </template>
 
 <style>

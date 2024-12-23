@@ -265,5 +265,21 @@ onMounted(async () => {
     @search="onSearch"
     @blur="emit('blur')"
     @update:model-value="onUpdateModelValue"
-  />
+  >
+    <template #label>
+      <slot name="label" />
+    </template>
+
+    <template #error>
+      <slot name="error" />
+    </template>
+
+    <template #hint>
+      <slot name="hint" />
+    </template>
+
+    <template #bottom>
+      <slot name="bottom" />
+    </template>
+  </Autocomplete>
 </template>

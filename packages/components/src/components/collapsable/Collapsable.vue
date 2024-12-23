@@ -1,14 +1,7 @@
 <script lang="ts" setup>
-import {
-  AnimatePresence,
-  Motion,
-} from 'motion-v'
+import { computed } from 'vue'
 
 const props = withDefaults(defineProps<{
-  /**
-   * Whether the collapsable content is visible.
-   */
-  isVisible: boolean
   /**
    * The duration of the transition in milliseconds.
    */
@@ -21,34 +14,82 @@ defineSlots<{
   /** Content of the transition */
   default: () => void
 }>()
+
+const durationString = computed<string>(() => `${props.durationInMs}ms`)
+
+function enter(element: Element): void {
+  const htmlElement: HTMLElement = element as HTMLElement
+  const width = getComputedStyle(htmlElement).width
+
+  htmlElement.style.width = width
+  htmlElement.style.position = 'absolute'
+  htmlElement.style.visibility = 'hidden'
+  htmlElement.style.height = 'auto'
+
+  const height = getComputedStyle(htmlElement).height
+
+  htmlElement.style.width = ''
+  htmlElement.style.position = ''
+  htmlElement.style.visibility = ''
+  htmlElement.style.height = ''
+
+  getComputedStyle(htmlElement)
+
+  requestAnimationFrame(() => {
+    htmlElement.style.height = height
+  })
+}
+
+function afterEnter(element: Element): void {
+  const htmlElement: HTMLElement = element as HTMLElement
+
+  htmlElement.style.height = 'auto'
+}
+
+function leave(element: Element): void {
+  const htmlElement: HTMLElement = element as HTMLElement
+  const height = getComputedStyle(htmlElement).height
+
+  htmlElement.style.height = height
+  getComputedStyle(htmlElement)
+
+  requestAnimationFrame(() => {
+    htmlElement.style.height = '0'
+  })
+}
 </script>
 
 <template>
-  <AnimatePresence :initial="false">
-    <Motion
-      v-if="props.isVisible"
-      :as-child="true"
-      :initial="{
-        opacity: 0,
-        height: 0,
-        y: -8,
-      }"
-      :animate="{
-        opacity: 1,
-        height: 'auto',
-        y: 0,
-      }"
-      :exit="{
-        opacity: 0,
-        height: 0,
-        y: -8,
-      }"
-      :transition="{
-        duration: 0.2,
-      }"
-      class="overflow-hidden"
-    >
-      <slot />
-    </Motion>
-  </AnimatePresence>
+  <Transition
+    name="expand"
+    @after-enter="afterEnter"
+    @enter="enter"
+    @leave="leave"
+  >
+    <slot />
+  </Transition>
 </template>
+
+<style scoped>
+.expand-enter-active,
+.expand-leave-active {
+  transition:
+    height v-bind(durationString) cubic-bezier(0.645, 0.045, 0.355, 1),
+    opacity v-bind(durationString),
+    transform v-bind(durationString);
+  overflow: hidden;
+}
+
+.expand-enter-from,
+.expand-leave-to {
+  opacity: 0;
+  height: 0;
+  transform: translateY(-0.5rem);
+}
+
+* {
+  will-change: height;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+</style>

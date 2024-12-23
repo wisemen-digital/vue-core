@@ -11,16 +11,6 @@ export const useTextFieldStyle = tv({
       .withBackgroundColor('bg-(--text-field-bg-color-default)')
       .withShadow('shadow-(--text-field-shadow-default)')
       .build(),
-    error: new StyleBuilder()
-      .withFontSize('[--input-field-error-font-size-default:var(--text-field-error-font-size-default)]')
-      .withSpacing('[--input-field-error-spacing-default:var(--text-field-error-spacing-default)]')
-      .withColor('[--input-field-error-text-color-default:var(--text-field-error-text-color-default)]')
-      .build(),
-    hint: new StyleBuilder()
-      .withFontSize('[--input-field-hint-font-size-default:var(--text-field-hint-font-size-default)]')
-      .withSpacing('[--input-field-hint-spacing-default:var(--text-field-hint-spacing-default)]')
-      .withColor('[--input-field-hint-text-color-default:var(--text-field-hint-text-color-default)]')
-      .build(),
     iconLeft: new StyleBuilder()
       .withClasses('box-content shrink-0 duration-200')
       .withSpacing('ml-(--text-field-icon-left-spacing-default)')
@@ -41,12 +31,6 @@ export const useTextFieldStyle = tv({
       .withColor('text-(color:--text-field-text-color-default)')
       .withPlaceholderColor('placeholder:text-(color:--text-field-placeholder-color-default)')
       .build(),
-    inputLabel: new StyleBuilder()
-      .withFontSize('[--input-field-label-font-size-default:var(--text-field-label-font-size-default)]')
-      .withFontWeight('[--input-field-label-font-weight-default:var(--text-field-label-font-weight-default)]')
-      .withSpacing('[--input-field-label-spacing-default:var(--text-field-label-spacing-default)]')
-      .withColor('[--input-field-label-text-color-default:var(--text-field-label-text-color-default)]')
-      .build(),
     loader: new StyleBuilder()
       .withSize('size-(--text-field-loader-size-default)')
       .withColor('text-(color:--text-field-loader-color-default)')
@@ -64,9 +48,6 @@ export const useTextFieldStyle = tv({
           .withBackgroundColor('bg-(--text-field-bg-color-disabled)')
           .withShadow('shadow-(--text-field-shadow-disabled)')
           .build(),
-        hint: new StyleBuilder()
-          .withColor('[--input-field-hint-text-color-disabled:var(--text-field-hint-text-color-disabled)]')
-          .build(),
         iconLeft: new StyleBuilder()
           .withColor('text-(color:--text-field-icon-color-disabled)')
           .build(),
@@ -77,9 +58,6 @@ export const useTextFieldStyle = tv({
           .withClasses('cursor-not-allowed')
           .withColor('text-(color:--text-field-text-color-disabled)')
           .withPlaceholderColor('placeholder:text-(color:--text-field-placeholder-color-disabled)')
-          .build(),
-        inputLabel: new StyleBuilder()
-          .withColor('[--input-field-label-text-color-disabled:var(--text-field-label-text-color-disabled)]')
           .build(),
         loader: new StyleBuilder()
           .withColor('text-(color:--text-field-loader-color-disabled)')
@@ -93,9 +71,6 @@ export const useTextFieldStyle = tv({
           .withBackgroundColor('bg-(--text-field-bg-color-hover)')
           .withShadow('shadow-(--text-field-shadow-hover)')
           .build(),
-        hint: new StyleBuilder()
-          .withColor('[--input-field-hint-text-color-hover:var(--text-field-hint-text-color-hover)]')
-          .build(),
         iconLeft: new StyleBuilder()
           .withColor('text-(color:--text-field-icon-color-hover)')
           .build(),
@@ -105,9 +80,6 @@ export const useTextFieldStyle = tv({
         input: new StyleBuilder()
           .withColor('text-(color:--text-field-text-color-hover)')
           .withPlaceholderColor('placeholder:text-(color:--text-field-placeholder-color-hover)')
-          .build(),
-        inputLabel: new StyleBuilder()
-          .withColor('[--input-field-label-text-color-default:var(--text-field-label-text-color-hover)]')
           .build(),
         loader: new StyleBuilder()
           .withColor('text-(color:--text-field-loader-color-hover)')
@@ -122,9 +94,6 @@ export const useTextFieldStyle = tv({
           .withBackgroundColor('bg-(--text-field-bg-color-focus)')
           .withShadow('shadow-(--text-field-shadow-focus)')
           .build(),
-        hint: new StyleBuilder()
-          .withColor('[--input-field-hint-text-color-focus:var(--text-field-hint-text-color-focus)]')
-          .build(),
         iconLeft: new StyleBuilder()
           .withColor('text-(color:--text-field-icon-color-focus)')
           .build(),
@@ -134,9 +103,6 @@ export const useTextFieldStyle = tv({
         input: new StyleBuilder()
           .withColor('text-(color:--text-field-text-color-focus)')
           .withPlaceholderColor('placeholder:text-(color:--text-field-placeholder-color-focus)')
-          .build(),
-        inputLabel: new StyleBuilder()
-          .withColor('[--input-field-label-text-color-default:var(--text-field-label-text-color-focus)]')
           .build(),
         loader: new StyleBuilder()
           .withColor('text-(color:--text-field-loader-color-focus)')
@@ -151,9 +117,6 @@ export const useTextFieldStyle = tv({
           .withShadow('shadow-(--text-field-shadow-error)')
           .withRing('focus-visible:ring ring-(--text-field-ring-color-error)')
           .build(),
-        hint: new StyleBuilder()
-          .withColor('[--input-field-hint-text-color-error:var(--text-field-hint-text-color-error)]')
-          .build(),
         iconLeft: new StyleBuilder()
           .withColor('!text-(color:--text-field-icon-color-error)')
           .build(),
@@ -163,9 +126,6 @@ export const useTextFieldStyle = tv({
         input: new StyleBuilder()
           .withColor('text-(color:--text-field-text-color-error)')
           .withPlaceholderColor('placeholder:text-(color:--text-field-placeholder-color-error)')
-          .build(),
-        inputLabel: new StyleBuilder()
-          .withColor('[--input-field-label-text-color-default:var(--text-field-label-text-color-error)]')
           .build(),
         loader: new StyleBuilder()
           .withColor('text-(color:--text-field-loader-color-error)')

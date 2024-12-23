@@ -3,11 +3,13 @@ import {
   computed,
   ref,
   useAttrs,
+  useId,
   watch,
 } from 'vue'
 
 import type { AutocompleteProps } from '@/components/autocomplete/autocomplete.props'
 import IconButton from '@/components/button/icon-button/IconButton.vue'
+import InputField from '@/components/input-field/InputField.vue'
 import TextField from '@/components/input-field/text-field/TextField.vue'
 import SelectEmpty from '@/components/select-v2/blocks/SelectEmpty.vue'
 import SelectFilter from '@/components/select-v2/blocks/SelectFilter.vue'
@@ -54,6 +56,8 @@ const model = defineModel<TValue | null>({
 const searchTerm = ref<string>('')
 const isOpen = ref<boolean>(false)
 const items = ref<SelectItem<TValue>[]>([])
+
+const inputId = props.id ?? useId()
 
 useAttrs()
 
@@ -133,7 +137,30 @@ watch(() => props.items, (newItems) => {
 </script>
 
 <template>
-  <div>
+  <InputField
+    :input-id="inputId"
+    :is-required="props.isRequired"
+    :errors="props.errors"
+    :hint="props.hint"
+    :label="props.label"
+    :is-touched="props.isTouched"
+  >
+    <template #label>
+      <slot name="label" />
+    </template>
+
+    <template #error>
+      <slot name="error" />
+    </template>
+
+    <template #hint>
+      <slot name="hint" />
+    </template>
+
+    <template #bottom>
+      <slot name="bottom" />
+    </template>
+
     <SelectRoot
       :id="props.id"
       v-model="model"
@@ -203,5 +230,5 @@ watch(() => props.items, (newItems) => {
         </template>
       </SelectPopover>
     </SelectRoot>
-  </div>
+  </InputField>
 </template>

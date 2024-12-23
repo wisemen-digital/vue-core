@@ -3,22 +3,6 @@ import { StyleBuilder } from '@/utils/style.util'
 
 export const textareaStyle = tv({
   slots: {
-    error: new StyleBuilder()
-      .withClasses('absolute right-0 top-0 duration-200')
-      .withFontSize('[--input-field-error-font-size-default:var(--textarea-error-font-size-default)]')
-      .withSpacing('[--input-field-error-spacing-default:var(--textarea-error-spacing-default)]')
-      .withColor('[--input-field-error-text-color-default:var(--textarea-error-text-color-default)]')
-      .build(),
-    hint: new StyleBuilder()
-      .withFontSize('[--input-field-hint-font-size-default:var(--textarea-hint-font-size-default)]')
-      .withColor('[--input-field-hint-text-color-default:var(--textarea-hint-text-color-default)]')
-      .build(),
-    label: new StyleBuilder()
-      .withFontSize('[--input-field-label-font-size-default:var(--textarea-label-font-size-default)]')
-      .withFontWeight('[--input-field-label-font-weight-default:var(--textarea-label-font-weight-default)]')
-      .withSpacing('[--input-field-label-spacing-default:var(--textarea-label-spacing-default)]')
-      .withColor('[--input-field-label-text-color-default:var(--textarea-label-text-color-default)]')
-      .build(),
     textarea: new StyleBuilder()
       .withClasses('w-full outline-none duration-200 transition-[color,border-color,background-color,box-shadow]')
       .withSize('max-h-(--textarea-max-height-default) min-h-(--textarea-min-height-default)')
@@ -38,12 +22,6 @@ export const textareaStyle = tv({
   variants: {
     isDisabled: {
       true: {
-        hint: new StyleBuilder()
-          .withColor('[--input-field-hint-text-color-disabled:var(--textarea-hint-text-color-disabled)]')
-          .build(),
-        label: new StyleBuilder()
-          .withColor('[--input-field-label-text-color-default:var(--textarea-label-text-color-disabled)]')
-          .build(),
         textarea: new StyleBuilder()
           .withClasses('cursor-not-allowed duration-200')
           .withBorder('border-b-(--textarea-border-bottom-color-disabled) border-l-(--textarea-border-left-color-disabled) border-r-(--textarea-border-right-color-disabled) border-t-(--textarea-border-top-color-disabled)')
@@ -56,12 +34,6 @@ export const textareaStyle = tv({
     },
     isHovered: {
       true: {
-        hint: new StyleBuilder()
-          .withColor('[--input-field-hint-text-color-hover:var(--textarea-hint-text-color-hover)]')
-          .build(),
-        label: new StyleBuilder()
-          .withColor('[--input-field-label-text-color-default:var(--textarea-label-text-color-hover)]')
-          .build(),
         textarea: new StyleBuilder()
           .withBorder('border-b-(--textarea-border-bottom-color-hover) border-l-(--textarea-border-left-color-hover) border-r-(--textarea-border-right-color-hover) border-t-(--textarea-border-top-color-hover)')
           .withBackgroundColor('bg-(--textarea-bg-color-hover)')
@@ -72,12 +44,6 @@ export const textareaStyle = tv({
     },
     isFocused: {
       true: {
-        hint: new StyleBuilder()
-          .withColor('[--input-field-hint-text-color-focus:var(--textarea-hint-text-color-focus)]')
-          .build(),
-        label: new StyleBuilder()
-          .withColor('[--input-field-label-text-color-default:var(--textarea-label-text-color-focus)]')
-          .build(),
         textarea: new StyleBuilder()
           .withBorder('border-b-(--textarea-border-bottom-color-focus) border-l-(--textarea-border-left-color-focus) border-r-(--textarea-border-right-color-focus) border-t-(--textarea-border-top-color-focus)')
           .withBackgroundColor('bg-(--textarea-bg-color-focus)')
@@ -90,12 +56,6 @@ export const textareaStyle = tv({
     },
     hasError: {
       true: {
-        hint: new StyleBuilder()
-          .withColor('[--input-field-hint-text-color-error:var(--textarea-hint-text-color-error)]')
-          .build(),
-        label: new StyleBuilder()
-          .withColor('[--input-field-label-text-color-default:var(--textarea-label-text-color-error)]')
-          .build(),
         textarea: new StyleBuilder()
           .withBorder('border-b-(--textarea-border-bottom-color-error) border-l-(--textarea-border-left-color-error) border-r-(--textarea-border-right-color-error) border-t-(--textarea-border-top-color-error)')
           .withBackgroundColor('bg-(--textarea-bg-color-error)')

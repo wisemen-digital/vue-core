@@ -10,6 +10,6 @@ const address = ref<any | null>(null)
     v-model="address"
     placeholder="Search for an address"
     icon-left="search"
-    class="w-72"
+    class="w-72 opacity-25"
   />
 </template>

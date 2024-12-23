@@ -69,7 +69,7 @@ const selectedTab = ref<TabItem | null>(tabItems.value?.[0] ?? null)
           <VcSwitch
             v-model="showCode"
             :style-config="{
-              '--switch-label-font-size-default': '12px',
+              // '--switch-label-font-size-default': '12px',
             }"
             label="Show code"
           />

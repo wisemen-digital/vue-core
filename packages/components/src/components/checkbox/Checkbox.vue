@@ -38,7 +38,7 @@ const emit = defineEmits<{
   focus: []
 }>()
 
-const model = defineModel<boolean | null>({
+const model = defineModel<boolean>({
   default: null,
   required: false,
 })
@@ -75,6 +75,10 @@ const computedModel = computed<boolean | 'indeterminate' | null>({
     return false
   },
   set(value) {
+    if (value === null) {
+      return
+    }
+
     model.value = value === 'indeterminate' ? false : value
   },
 })

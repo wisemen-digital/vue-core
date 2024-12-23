@@ -30,28 +30,8 @@ export interface TextareaStyleConfig {
   '--textarea-border-top-color-error': string
   '--textarea-border-top-color-focus': string
   '--textarea-border-top-color-hover': string
-  '--textarea-error-font-size-default': string
-  '--textarea-error-font-weight-default': string
-  '--textarea-error-spacing-default': string
-  '--textarea-error-text-color-default': string
   '--textarea-font-size-default': string
   '--textarea-font-weight-default': string
-  '--textarea-hint-font-size-default': string
-  '--textarea-hint-font-weight-default': string
-  '--textarea-hint-spacing-default': string
-  '--textarea-hint-text-color-default': string
-  '--textarea-hint-text-color-disabled': string
-  '--textarea-hint-text-color-error': string
-  '--textarea-hint-text-color-focus': string
-  '--textarea-hint-text-color-hover': string
-  '--textarea-label-font-size-default': string
-  '--textarea-label-font-weight-default': string
-  '--textarea-label-spacing-default': string
-  '--textarea-label-text-color-default': string
-  '--textarea-label-text-color-disabled': string
-  '--textarea-label-text-color-error': string
-  '--textarea-label-text-color-focus': string
-  '--textarea-label-text-color-hover': string
   '--textarea-line-height-default': string
   '--textarea-max-height-default': string
   '--textarea-min-height-default': string
@@ -111,28 +91,8 @@ export function setupDefaultTextareaStyles(): void {
       '--textarea-border-top-color-error': 'var(--border-error-subtle)',
       '--textarea-border-top-color-focus': 'var(--border-brand)',
       '--textarea-border-top-color-hover': 'var(--border-primary)',
-      '--textarea-error-font-size-default': 'var(--input-field-error-font-size-default)',
-      '--textarea-error-font-weight-default': 'var(--input-field-error-font-weight-default)',
-      '--textarea-error-spacing-default': 'var(--input-field-error-spacing-default)',
-      '--textarea-error-text-color-default': 'var(--input-field-error-text-color-default)',
       '--textarea-font-size-default': 'var(--text-sm)',
       '--textarea-font-weight-default': '400',
-      '--textarea-hint-font-size-default': 'var(--input-field-hint-font-size-default)',
-      '--textarea-hint-font-weight-default': 'var(--input-field-hint-font-weight-default)',
-      '--textarea-hint-spacing-default': 'var(--input-field-hint-spacing-default)',
-      '--textarea-hint-text-color-default': 'var(--input-field-hint-text-color-default)',
-      '--textarea-hint-text-color-disabled': 'var(--input-field-hint-text-color-default)',
-      '--textarea-hint-text-color-error': 'var(--input-field-hint-text-color-default)',
-      '--textarea-hint-text-color-focus': 'var(--input-field-hint-text-color-default)',
-      '--textarea-hint-text-color-hover': 'var(--input-field-hint-text-color-default)',
-      '--textarea-label-font-size-default': 'var(--input-field-label-font-size-default)',
-      '--textarea-label-font-weight-default': 'var(--input-field-label-font-weight-default)',
-      '--textarea-label-spacing-default': 'var(--input-field-label-spacing-default)',
-      '--textarea-label-text-color-default': 'var(--input-field-label-text-color-default)',
-      '--textarea-label-text-color-disabled': 'var(--input-field-label-text-color-default)',
-      '--textarea-label-text-color-error': 'var(--input-field-label-text-color-default)',
-      '--textarea-label-text-color-focus': 'var(--input-field-label-text-color-default)',
-      '--textarea-label-text-color-hover': 'var(--input-field-label-text-color-default)',
       '--textarea-line-height-default': 'var(--line-height-text-sm)',
       '--textarea-max-height-default': '12.5rem',
       '--textarea-min-height-default': '6.25rem',

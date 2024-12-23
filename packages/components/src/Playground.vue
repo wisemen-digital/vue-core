@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
+import Checkbox from '@/components/checkbox/Checkbox.vue'
 import ConfigProvider from '@/components/config-provider/ConfigProvider.vue'
-import RadioGroup from '@/components/radio-group/RadioGroup.vue'
-import RadioGroupItem from '@/components/radio-group/RadioGroupItem.vue'
+import TextField from '@/components/input-field/text-field/TextField.vue'
+import Select from '@/components/select-v2/Select.vue'
 import ThemeProvider from '@/components/theme-provider/ThemeProvider.vue'
 import { setupDefaultStyles } from '@/styling/setupDefaultStyles'
+import type { SelectItem } from '@/types/select.type'
 
 setupDefaultStyles()
 
@@ -15,7 +17,22 @@ const items = [
   'c',
 ]
 
-const value = ref<string>('a')
+const selectItems = computed<SelectItem<string>[]>(() => [
+  {
+    type: 'option',
+    value: 'a',
+  },
+  {
+    type: 'option',
+    value: 'b',
+  },
+  {
+    type: 'option',
+    value: 'c',
+  },
+])
+
+const value = ref<string | null>(null)
 </script>
 
 <template>
@@ -26,22 +43,37 @@ const value = ref<string>('a')
     <ThemeProvider
       :is-dark-mode-enabled="false"
       theme="default"
-      class="p-11xl grid grid-cols-2 bg-primary min-h-screen"
+      class="p-11xl grid grid-cols-2 gap-xl bg-primary min-h-screen"
     >
-      <RadioGroup
+      <Checkbox label="Checkbox" />
+
+      <TextField
         v-model="value"
-        class=""
-      >
-        <RadioGroupItem
-          v-for="item of items"
-          :key="item"
-          :value="item"
-          :label="`Label ${item}`"
-          :style-config="{
-            '--radio-group-item-indicator-bg-color-checked': 'red',
-          }"
-        />
-      </RadioGroup>
+        :is-touched="true"
+        :errors="{
+          _errors: ['This is an error message.'],
+        }"
+        icon-left="alertCircle"
+        label="Label"
+      />
+
+      <Select
+        v-model="value"
+        :items="selectItems"
+        :display-fn="(value) => value"
+        :style-config="{}"
+        label="Yeet!"
+        placeholder="Select a value"
+      />
+      <!--
+      <div>
+        <Button
+          icon-left="translate"
+          class="w-84"
+        >
+          Yeet
+        </Button>
+      </div> -->
     </ThemeProvider>
   </configprovider>
 </template>

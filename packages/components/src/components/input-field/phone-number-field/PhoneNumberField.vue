@@ -176,6 +176,22 @@ watch(countryCodeModel, () => {
     }"
     type="tel"
   >
+    <template #label>
+      <slot name="label" />
+    </template>
+
+    <template #error>
+      <slot name="error" />
+    </template>
+
+    <template #hint>
+      <slot name="hint" />
+    </template>
+
+    <template #bottom>
+      <slot name="bottom" />
+    </template>
+
     <template #left>
       <Select
         v-model="countryCodeModel"

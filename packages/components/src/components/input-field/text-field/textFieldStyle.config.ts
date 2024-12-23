@@ -30,21 +30,9 @@ export interface TextFieldStyleConfig {
   '--text-field-border-top-color-error': string
   '--text-field-border-top-color-focus': string
   '--text-field-border-top-color-hover': string
-  '--text-field-error-font-size-default': string
-  '--text-field-error-font-weight-default': string
-  '--text-field-error-spacing-default': string
-  '--text-field-error-text-color-default': string
   '--text-field-font-size-default': string
   '--text-field-font-weight-default': string
   '--text-field-height-default': string
-  '--text-field-hint-font-size-default': string
-  '--text-field-hint-font-weight-default': string
-  '--text-field-hint-spacing-default': string
-  '--text-field-hint-text-color-default': string
-  '--text-field-hint-text-color-disabled': string
-  '--text-field-hint-text-color-error': string
-  '--text-field-hint-text-color-focus': string
-  '--text-field-hint-text-color-hover': string
   '--text-field-icon-color-default': string
   '--text-field-icon-color-disabled': string
   '--text-field-icon-color-error': string
@@ -53,14 +41,6 @@ export interface TextFieldStyleConfig {
   '--text-field-icon-left-spacing-default': string
   '--text-field-icon-right-spacing-default': string
   '--text-field-icon-size-default': string
-  '--text-field-label-font-size-default': string
-  '--text-field-label-font-weight-default': string
-  '--text-field-label-spacing-default': string
-  '--text-field-label-text-color-default': string
-  '--text-field-label-text-color-disabled': string
-  '--text-field-label-text-color-error': string
-  '--text-field-label-text-color-focus': string
-  '--text-field-label-text-color-hover': string
   '--text-field-loader-color-default': string
   '--text-field-loader-color-disabled': string
   '--text-field-loader-color-error': string
@@ -124,21 +104,9 @@ export function setupDefaultTextFieldStyles(): void {
       '--text-field-border-top-color-error': 'var(--border-error-subtle)',
       '--text-field-border-top-color-focus': 'var(--border-brand)',
       '--text-field-border-top-color-hover': 'var(--border-primary)',
-      '--text-field-error-font-size-default': 'var(--input-field-error-font-size-default)',
-      '--text-field-error-font-weight-default': 'var(--input-field-error-font-weight-default)',
-      '--text-field-error-spacing-default': 'var(--input-field-error-spacing-default)',
-      '--text-field-error-text-color-default': 'var(--input-field-error-text-color-default)',
       '--text-field-font-size-default': 'var(--text-sm)',
       '--text-field-font-weight-default': '400',
       '--text-field-height-default': '2.5rem',
-      '--text-field-hint-font-size-default': 'var(--input-field-hint-font-size-default)',
-      '--text-field-hint-font-weight-default': 'var(--input-field-hint-font-weight-default)',
-      '--text-field-hint-spacing-default': 'var(--input-field-hint-spacing-default)',
-      '--text-field-hint-text-color-default': 'var(--input-field-hint-text-color-default)',
-      '--text-field-hint-text-color-disabled': 'var(--input-field-hint-text-color-default)',
-      '--text-field-hint-text-color-error': 'var(--input-field-hint-text-color-default)',
-      '--text-field-hint-text-color-focus': 'var(--input-field-hint-text-color-default)',
-      '--text-field-hint-text-color-hover': 'var(--input-field-hint-text-color-default)',
       '--text-field-icon-color-default': 'var(--fg-quaternary)',
       '--text-field-icon-color-disabled': 'var(--fg-quaternary)',
       '--text-field-icon-color-error': 'var(--fg-error-secondary)',
@@ -147,14 +115,6 @@ export function setupDefaultTextFieldStyles(): void {
       '--text-field-icon-left-spacing-default': 'var(--spacing-lg)',
       '--text-field-icon-right-spacing-default': 'var(--spacing-lg)',
       '--text-field-icon-size-default': '1.125rem',
-      '--text-field-label-font-size-default': 'var(--input-field-label-font-size-default)',
-      '--text-field-label-font-weight-default': 'var(--input-field-label-font-weight-default)',
-      '--text-field-label-spacing-default': 'var(--input-field-label-spacing-default)',
-      '--text-field-label-text-color-default': 'var(--input-field-label-text-color-default)',
-      '--text-field-label-text-color-disabled': 'var(--input-field-label-text-color-default)',
-      '--text-field-label-text-color-error': 'var(--input-field-label-text-color-default)',
-      '--text-field-label-text-color-focus': 'var(--input-field-label-text-color-default)',
-      '--text-field-label-text-color-hover': 'var(--input-field-label-text-color-default)',
       '--text-field-loader-color-default': 'var(--fg-quaternary)',
       '--text-field-loader-color-disabled': 'var(--fg-quaternary)',
       '--text-field-loader-color-error': 'var(--fg-error-secondary)',

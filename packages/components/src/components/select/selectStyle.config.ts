@@ -60,10 +60,6 @@ export interface SelectStyleConfig extends SelectOptionStyleConfig {
   '--select-dropdown-padding-x-default': string
   '--select-dropdown-padding-y-default': string
   '--select-dropdown-shadow-default': string
-  '--select-error-font-size-default': string
-  '--select-error-font-weight-default': string
-  '--select-error-spacing-default': string
-  '--select-error-text-color-default': string
   '--select-font-size-default': string
   '--select-font-weight-default': string
   '--select-group-content-padding-x-default': string
@@ -74,14 +70,6 @@ export interface SelectStyleConfig extends SelectOptionStyleConfig {
   '--select-group-label-spacing-top-default': string
   '--select-group-label-spacing-x-default': string
   '--select-group-label-text-color-default': string
-  '--select-hint-font-size-default': string
-  '--select-hint-font-weight-default': string
-  '--select-hint-spacing-default': string
-  '--select-hint-text-color-default': string
-  '--select-hint-text-color-disabled': string
-  '--select-hint-text-color-error': string
-  '--select-hint-text-color-focus': string
-  '--select-hint-text-color-hover': string
   '--select-icon-color-default': string
   '--select-icon-color-disabled': string
   '--select-icon-color-error': string
@@ -91,14 +79,6 @@ export interface SelectStyleConfig extends SelectOptionStyleConfig {
   '--select-icon-left-spacing-default': string
   '--select-icon-right-size-default': string
   '--select-icon-right-spacing-default': string
-  '--select-label-font-size-default': string
-  '--select-label-font-weight-default': string
-  '--select-label-spacing-default': string
-  '--select-label-text-color-default': string
-  '--select-label-text-color-disabled': string
-  '--select-label-text-color-error': string
-  '--select-label-text-color-focus': string
-  '--select-label-text-color-hover': string
   '--select-loader-color-default': string
   '--select-loader-color-disabled': string
   '--select-loader-color-error': string
@@ -174,10 +154,6 @@ export function setupDefaultSelectStyles(): void {
       '--select-dropdown-padding-x-default': 'var(--spacing-sm)',
       '--select-dropdown-padding-y-default': 'var(--spacing-sm)',
       '--select-dropdown-shadow-default': 'var(--shadow-xl)',
-      '--select-error-font-size-default': 'var(--input-field-error-font-size-default)',
-      '--select-error-font-weight-default': 'var(--input-field-error-font-weight-default)',
-      '--select-error-spacing-default': 'var(--input-field-error-spacing-default)',
-      '--select-error-text-color-default': 'var(--input-field-error-text-color-default)',
       '--select-font-size-default': 'var(--text-sm)',
       '--select-font-weight-default': '400',
       '--select-group-content-padding-x-default': 'var(--spacing-none)',
@@ -188,14 +164,6 @@ export function setupDefaultSelectStyles(): void {
       '--select-group-label-spacing-top-default': 'var(--spacing-md)',
       '--select-group-label-spacing-x-default': 'var(--spacing-md)',
       '--select-group-label-text-color-default': 'var(--text-tertiary)',
-      '--select-hint-font-size-default': 'var(--input-field-hint-font-size-default)',
-      '--select-hint-font-weight-default': 'var(--input-field-hint-font-weight-default)',
-      '--select-hint-spacing-default': 'var(--input-field-hint-spacing-default)',
-      '--select-hint-text-color-default': 'var(--input-field-hint-text-color-default)',
-      '--select-hint-text-color-disabled': 'var(--input-field-hint-text-color-default)',
-      '--select-hint-text-color-error': 'var(--input-field-hint-text-color-default)',
-      '--select-hint-text-color-focus': 'var(--input-field-hint-text-color-default)',
-      '--select-hint-text-color-hover': 'var(--input-field-hint-text-color-default)',
       '--select-icon-color-default': 'var(--fg-quaternary)',
       '--select-icon-color-disabled': 'var(--fg-quaternary)',
       '--select-icon-color-error': 'var(--fg-error-secondary)',
@@ -205,14 +173,6 @@ export function setupDefaultSelectStyles(): void {
       '--select-icon-left-spacing-default': 'var(--spacing-lg)',
       '--select-icon-right-size-default': '1rem',
       '--select-icon-right-spacing-default': 'var(--spacing-lg)',
-      '--select-label-font-size-default': 'var(--input-field-label-font-size-default)',
-      '--select-label-font-weight-default': 'var(--input-field-label-font-weight-default)',
-      '--select-label-spacing-default': 'var(--input-field-label-spacing-default)',
-      '--select-label-text-color-default': 'var(--input-field-label-text-color-default)',
-      '--select-label-text-color-disabled': 'var(--input-field-label-text-color-default)',
-      '--select-label-text-color-error': 'var(--input-field-label-text-color-default)',
-      '--select-label-text-color-focus': 'var(--input-field-label-text-color-default)',
-      '--select-label-text-color-hover': 'var(--input-field-label-text-color-default)',
       '--select-loader-color-default': 'var(--fg-quaternary)',
       '--select-loader-color-disabled': 'var(--fg-quaternary)',
       '--select-loader-color-error': 'var(--fg-error-secondary)',
