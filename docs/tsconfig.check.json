@@ -30,6 +30,5 @@
     "components/**/*.ts",
     "components/**/*.tsx",
     "components/**/*.vue"
-
   ]
 }

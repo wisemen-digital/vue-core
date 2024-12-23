@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import {
-  RadioGroupIndicator,
-  RadioGroupItem,
-} from 'reka-ui'
+import type { AcceptableValue } from 'reka-ui'
+import { RadioGroupItem } from 'reka-ui'
 import {
   computed,
   ref,
@@ -13,8 +11,12 @@ import Collapsable from '@/components/collapsable/Collapsable.vue'
 import InputFieldError from '@/components/input-field-error/InputFieldError.vue'
 import InputFieldHint from '@/components/input-field-hint/InputFieldHint.vue'
 import InputFieldLabel from '@/components/input-field-label/InputFieldLabel.vue'
+import { provideRadioGroupItemContext } from '@/components/radio-group/radioGroupItem.context'
 import type { RadioGroupItemProps } from '@/components/radio-group/radioGroupItem.props'
 import { useRadioGroupItemStyle } from '@/components/radio-group/radioGroupItem.style'
+import RadioGroupItemIndicator from '@/components/radio-group/RadioGroupItemIndicator.vue'
+import { useAriaDescribedBy } from '@/composables/aria-described-by/ariaDescribedBy.composable'
+import { useElementAttributeObserver } from '@/composables/element-attribute-observer/elementAttributeObserver.composable'
 
 const props = withDefaults(defineProps<RadioGroupItemProps>(), {
   id: null,
@@ -38,6 +40,8 @@ const radioGroupItemStyle = useRadioGroupItemStyle()
 
 const inputId = props.id ?? useId()
 
+const radioGroupItemRef = ref<InstanceType<any> | null>(null)
+
 const isChecked = ref<boolean>(false)
 const isFocused = ref<boolean>(false)
 const isMouseOver = ref<boolean>(false)
@@ -45,6 +49,20 @@ const isMouseOver = ref<boolean>(false)
 const isHovered = computed<boolean>(() => isMouseOver.value && !props.isDisabled)
 const isDisabled = computed<boolean>(() => props.isDisabled || props.isReadonly)
 const hasError = computed<boolean>(() => props.errors !== undefined && props.isTouched && props.errors !== null)
+
+useElementAttributeObserver({
+  attribute: 'aria-checked',
+  element: computed<HTMLElement | null>(() => radioGroupItemRef.value?.$el ?? null),
+  onChange: (value) => {
+    isChecked.value = value === 'true'
+  },
+})
+
+const ariaDescribedBy = useAriaDescribedBy({
+  id: inputId,
+  hasErrors: hasError,
+  hasHint: computed<boolean>(() => props.hint !== null),
+})
 
 const labelClasses = computed<string>(() => radioGroupItemStyle.label({
   hasError: hasError.value,
@@ -81,30 +99,49 @@ function onMouseEnter(): void {
 function onMouseLeave(): void {
   isMouseOver.value = false
 }
+
+provideRadioGroupItemContext({
+  inputId,
+  testId: computed<string | null>(() => props.testId),
+  hasError,
+  isChecked,
+  isDisabled: computed<boolean>(() => props.isDisabled),
+  isFocused: computed<boolean>(() => isFocused.value),
+  isHovered: computed<boolean>(() => isHovered.value),
+  isReadonly: computed<boolean>(() => props.isReadonly),
+  isRequired: computed<boolean>(() => props.isRequired),
+  hint: computed<string | null>(() => props.hint),
+  value: computed<AcceptableValue>(() => props.value),
+  onBlur,
+  onFocus,
+  onMouseEnter,
+  onMouseLeave,
+})
 </script>
 
 <template>
   <div class="radio-group-item-default input-field-label-default input-field-error-default input-field-hint-default">
     <div class="grid grid-cols-[min-content_auto] items-center">
-      <slot>
-        <RadioGroupItem
-          :id="inputId"
-          :data-test-id="props.testId"
-          :aria-describedby="ariaDescribedBy"
-          :disabled="props.isDisabled"
-          :readonly="props.isReadonly"
-          :required="props.isRequired"
-          :value="props.value"
-          @focus="onFocus"
-          @blur="onBlur"
-          @mouseenter="onMouseEnter"
-          @mouseleave="onMouseLeave"
-        >
-          <RadioGroupIndicator>
-            x
-          </RadioGroupIndicator>
-        </RadioGroupItem>
-      </slot>
+      <RadioGroupItem
+        :id="inputId"
+        ref="radioGroupItemRef"
+        :data-test-id="props.testId"
+        :aria-describedby="ariaDescribedBy"
+        :disabled="props.isDisabled"
+        :readonly="props.isReadonly"
+        :required="props.isRequired"
+        :value="props.value"
+        :style="props.styleConfig"
+        class="group outline-none"
+        @focus="onFocus"
+        @blur="onBlur"
+        @mouseenter="onMouseEnter"
+        @mouseleave="onMouseLeave"
+      >
+        <slot>
+          <RadioGroupItemIndicator />
+        </slot>
+      </RadioGroupItem>
 
       <InputFieldLabel
         v-if="props.label !== null"

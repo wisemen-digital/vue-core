@@ -92,7 +92,7 @@ const computedModel = computed<TValue | undefined>({
   },
 })
 
-const inputId = computed<string>(() => props.id ?? useId())
+const inputId = props.id ?? useId()
 const isHovered = computed<boolean>(() => isMouseOver.value && !props.isDisabled)
 const hasError = computed<boolean>(() => props.errors !== undefined && props.isTouched && props.errors !== null)
 
@@ -448,7 +448,7 @@ provideSelectContext({
     </Popover>
 
     <slot name="bottom">
-      <Collapsable>
+      <Collapsable :is-visible="hasError || props.hint !== null">
         <div v-if="hasError">
           <slot name="error">
             <InputFieldError

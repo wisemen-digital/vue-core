@@ -6,17 +6,17 @@
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
 | delayDuration | `number` | The duration in milliseconds to wait before showing the tooltip. | `0` |
-| disableCloseOnTriggerClick | `boolean` | When true, clicking on trigger will not close the content. | `false` |
 | disableHoverableContent | `boolean` | When true, trying to hover the content will result in the tooltip closing as the pointer leaves the trigger. | `false` |
+| enableCloseOnTriggerClick | `boolean` | When true, clicking on trigger will close the tooltip. | `false` |
 | isArrowHidden | `boolean` | When true, the arrow will be hidden. | `false` |
 | isHidden | `boolean` | When true, the tooltip will be hidden. | `false` |
-| popoverAlign | `PopperAlign` | The alignment of the popper content. |  |
-| popoverCollisionPaddingInPx | `number` | The padding of the popper collision. |  |
-| popoverContainerElement | `HTMLElement \| null` | The element to render the tooltip in. By default this is the viewport |  |
-| popoverOffsetInPx | `number` | The offset of the popper content. |  |
-| popoverSide | `"bottom" \| "left" \| "right" \| "top"` | The side of the trigger the tooltip should be on. |  |
+| popoverAlign | `PopperAlign` | The alignment of the popper content. | `"center"` |
+| popoverCollisionPaddingInPx | `number` | The padding of the popper collision. | `10` |
+| popoverContainerElement | `HTMLElement \| null` | The element to render the tooltip in. By default this is the viewport | `null` |
+| popoverOffsetInPx | `number` | The offset of the popper content. | `10` |
+| popoverSide | `"bottom" \| "left" \| "right" \| "top"` | The side of the trigger the tooltip should be on. | `"bottom"` |
 | popoverWidth | `PopperWidth \| null` | The width of the popper. | `null` |
-| styleConfig | `Partial<TooltipStyleConfig> \| null` |  | `null` |
+| styleConfig | `Partial<TooltipStyleConfig> \| null` | The style config of the component. | `null` |
 
 
 ## Slots

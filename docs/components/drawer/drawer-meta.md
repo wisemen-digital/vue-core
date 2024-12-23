@@ -5,12 +5,12 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
+| id | `string \| null` | The id of the element that triggers the drawer. Must be set for accessibility purposes. | `null` |
 | shouldAnimateFromTrigger | `boolean` | Whether to animate the drawer with the View Transitions API |  |
 | shouldPreventClickOutside | `boolean` | Prevent clicks outside the drawer content to close the drawer | `false` |
-| styleConfig | `Partial<DrawerStyleConfig> \| null` |  | `null` |
+| styleConfig | `Partial<DrawerStyleConfig> \| null` | The style config of the component. | `null` |
 | testId | `string` | The test id of the drawer. |  |
 | transitionClasses | `{ enterActive?: string; enterFrom?: string; enterTo?: string; leaveActive?: string; leaveFrom?: string; leaveTo?: string; } \| null` | The transition classes to apply to the drawer | `null` |
-| triggerId | `string \| null` | The id of the element that triggers the drawer: Will be set automatically when using the `useDrawer` composable | `null` |
 
 
 ## Slots

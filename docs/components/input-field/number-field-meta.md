@@ -7,6 +7,7 @@
 | ---- | ---- | ----------- | ------- |
 | areControlsHidden | `boolean` | Whether the controls are visible. | `false` |
 | autoComplete | `"off" \| "on"` | The autocorrect property of the input. | `"off"` |
+| autoFocus | `boolean` | Whether the input should be focused automatically. |  |
 | errors | `FormFieldErrors` | The errors associated with the input. | `null` |
 | formatOptions | `NumberFormatOptions \| null` | The format options of the number input. | `null` |
 | hint | `string \| null` | The hint text of the input. | `null` |
@@ -24,7 +25,7 @@
 | min | `number \| null` | The minimum value of the number input. | `null` |
 | placeholder | `string \| null` | The placeholder text of the input. | `null` |
 | step | `number` | The step of the number input. | `1` |
-| styleConfig | `Partial<TextFieldStyleConfig> \| null` |  | `null` |
+| styleConfig | `Partial<TextFieldStyleConfig> \| null` | The style config of the component. | `null` |
 | testId | `string \| null` | The test id of the input. | `null` |
 
 

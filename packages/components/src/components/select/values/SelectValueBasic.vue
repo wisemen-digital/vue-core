@@ -13,7 +13,7 @@ const selectContext = injectSelectContext()
 const selectStyle = useSelectStyle()
 
 const ariaDescribedBy = useAriaDescribedBy({
-  id: selectContext.inputId.value,
+  id: selectContext.inputId,
   hasErrors: selectContext.hasError,
   hasHint: computed<boolean>(() => selectContext.hint.value !== null),
 })
@@ -78,7 +78,7 @@ const isEmpty = computed<boolean>(() => {
 <template>
   <PopoverTrigger>
     <button
-      :id="selectContext.inputId.value"
+      :id="selectContext.inputId"
       :data-test-id="selectContext.testId.value"
       :class="selectBoxClasses"
       :disabled="selectContext.isDisabled.value"

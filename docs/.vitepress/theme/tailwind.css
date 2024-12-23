@@ -160,7 +160,28 @@
   --border-color-error-subtle: var(--border-error-subtle);
 }
 
+@keyframes shimmer {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(200%);
+  }
+}
+
 @theme {
+  --z-index-dialog: 40;
+  --z-index-dialog-overlay: 39;
+  --z-index-popover: 50;
+  --z-index-tabs-item: 1;
+
+  --ease-switch: linear(0.00, -0.0145, 0.0307, 0.111, 0.227, 0.358, 0.492, 0.622, 0.742, 0.846, 0.934, 1.00, 1.06, 1.10, 1.12, 1.13, 1.13, 1.12, 1.11, 1.10, 1.08, 1.06, 1.05, 1.03, 1.02, 1.01, 0.999, 0.992, 0.987, 0.985, 0.983, 0.983, 0.984, 0.986, 0.988, 0.990, 0.992, 0.994, 0.996, 0.998, 0.999, 1.00, 1.00);
+  --ease-dialog: cubic-bezier(0.22, 0.68, 0, 1.51);
+  --ease-dialog-overlay: cubic-bezier(0.17, 0.67, 0.16, 0.99);
+  --animate-shimmer: shimmer 2s ease-in-out infinite;
+
+  --toast-width-default: 600px;
+
   --spacing-none: 0rem;     /* 0px */
   --spacing-xxs: 0.125rem;  /* 2px */
   --spacing-xs: 0.25rem;    /* 4px */
@@ -227,7 +248,7 @@
   --text-4xl--line-height: 
     var(--line-height-4xl);
 
-    --margin-*: initial;
+  --margin-*: initial;
   --margin-none: var(--spacing-none);
   --margin-xxs: var(--spacing-xxs);
   --margin-xs: var(--spacing-xs);
@@ -289,15 +310,22 @@
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
+  
+  --font-size-*: initial;
+  --font-size-xs: 0.75rem;               /* 12px */
+  --font-size-sm: 0.875rem;              /* 14px */
+  --font-size-md: 1rem;                  /* 16px */
+  --font-size-lg: 1.125rem;              /* 18px */
+  --font-size-xl: 1.25rem;               /* 20px */
+  --font-size-display-xs: 1.5rem;        /* 24px */
+  --font-size-display-sm: 1.875rem;      /* 30px */
+  --font-size-4xl: 2.25rem;              /* 36px */
 
   --shadow-*: initial;
   --shadow-xs: 0px 1px 2px 0px #00000010;
+  --shadow-sm: 0px 1px 3px 0px rgba(10, 13, 18, 0.10);
   --shadow: -2px 5px 10px 0px #00000036;
   --shadow-lg: 0 12px 16px -4px rgba(16, 24, 40, 0.08), 0px 12px 16px -4px rgba(16, 24, 40, 0.03);
-
-  --font-sans: Inter Variable, sans-serif;
-
-  --width-dialog-sm: 26rem;
-  --width-drawer-lg: 40rem;
-  --width-drawer-md: 30rem;
+  --shadow-table-sticky-left-column: 2px 0px 3px -2px rgba(0, 0, 0, 0.1);
+  --shadow-table-sticky-right-column: -2px 0px 3px -2px rgba(0, 0, 0, 0.1);
 }

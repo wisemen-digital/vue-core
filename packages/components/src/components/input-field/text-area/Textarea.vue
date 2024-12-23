@@ -44,7 +44,7 @@ const isMouseOver = ref<boolean>(false)
 
 const style = textareaStyle()
 
-const inputId = computed<string>(() => props.id ?? useId())
+const inputId = props.id ?? useId()
 const isHovered = computed<boolean>(() => isMouseOver.value && !props.isDisabled)
 const hasError = computed<boolean>(() => props.errors !== undefined && props.isTouched && props.errors !== null)
 
@@ -146,7 +146,7 @@ function onBlur(): void {
     />
 
     <slot name="bottom">
-      <Collapsable>
+      <Collapsable :is-visible="hasError || props.hint !== null">
         <div v-if="hasError">
           <slot name="error">
             <InputFieldError

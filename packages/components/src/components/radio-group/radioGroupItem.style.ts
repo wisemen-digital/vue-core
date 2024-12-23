@@ -27,8 +27,9 @@ export const useRadioGroupItemStyle = tv({
       .withSpacing('[--input-field-hint-spacing-default:var(--radio-group-item-hint-spacing-default)]')
       .build(),
     indicator: new StyleBuilder()
-      .withClasses('duration-200')
+      .withClasses('group duration-200')
       .withSize('size-(--radio-group-item-indicator-size-default)')
+      .withBorderRadius('rounded-(--radio-group-item-indicator-border-radius-default)')
       .build(),
     label: new StyleBuilder()
       .withColor('[--input-field-label-text-color-default:var(--radio-group-item-label-text-color-default)]')
@@ -52,7 +53,7 @@ export const useRadioGroupItemStyle = tv({
           .withColor('[--input-field-hint-text-color-focus:var(--radio-group-item-hint-text-color-focus)]')
           .build(),
         indicator: new StyleBuilder()
-          .withColor('text-(--radio-group-item-indicator-color-focus)')
+          .withColor('bg-(--radio-group-item-indicator-bg-color-focus)')
           .build(),
         label: new StyleBuilder()
           .withColor('[--input-field-label-text-color-focus:var(--radio-group-item-label-text-color-focus)]')
@@ -69,7 +70,7 @@ export const useRadioGroupItemStyle = tv({
           .withColor('[--input-field-hint-text-color-hover:var(--radio-group-item-hint-text-color-hover)]')
           .build(),
         indicator: new StyleBuilder()
-          .withColor('text-(--radio-group-item-indicator-color-hover)')
+          .withColor('bg-(--radio-group-item-indicator-bg-color-hover)')
           .build(),
         label: new StyleBuilder()
           .withColor('[--input-field-label-text-color-hover:var(--radio-group-item-label-text-color-hover)]')
@@ -86,21 +87,10 @@ export const useRadioGroupItemStyle = tv({
           .withColor('[--input-field-hint-text-color-checked:var(--radio-group-item-hint-text-color-checked)]')
           .build(),
         indicator: new StyleBuilder()
-          .withColor('text-(--radio-group-item-indicator-color-checked)')
+          .withColor('bg-(--radio-group-item-indicator-bg-color-checked)')
           .build(),
         label: new StyleBuilder()
           .withColor('[--input-field-label-text-color-checked:var(--radio-group-item-label-text-color-checked)]')
-          .build(),
-      },
-    },
-    isIndeterminate: {
-      true: {
-        base: new StyleBuilder()
-          .withBorder('border borer-solid border-(--radio-group-item-border-color-indeterminate)')
-          .withBackgroundColor('bg-(--radio-group-item-bg-color-indeterminate)')
-          .build(),
-        indicator: new StyleBuilder()
-          .withColor('text-(--radio-group-item-indicator-color-indeterminate)')
           .build(),
       },
     },
@@ -115,7 +105,7 @@ export const useRadioGroupItemStyle = tv({
           .withColor('[--input-field-hint-text-color-error:var(--radio-group-item-hint-text-color-error)]')
           .build(),
         indicator: new StyleBuilder()
-          .withColor('text-(--radio-group-item-indicator-color-error)')
+          .withColor('bg-(--radio-group-item-indicator-bg-color-error)')
           .build(),
         label: new StyleBuilder()
           .withColor('[--input-field-label-text-color-error:var(--radio-group-item-label-text-color-error)]')
@@ -133,7 +123,7 @@ export const useRadioGroupItemStyle = tv({
           .withColor('[--input-field-hint-text-color-disabled:var(--radio-group-item-hint-text-color-disabled)]')
           .build(),
         indicator: new StyleBuilder()
-          .withColor('text-(--radio-group-item-indicator-color-disabled)')
+          .withColor('bg-(--radio-group-item-indicator-bg-color-disabled)')
           .build(),
         label: new StyleBuilder()
           .withColor('[--input-field-label-text-color-disabled:var(--radio-group-item-label-text-color-disabled)]')

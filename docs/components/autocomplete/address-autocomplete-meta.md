@@ -5,7 +5,9 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
+| clearSearchOnSelection | `boolean \| null` | Whether the search input should be cleared when a selection is made. |  |
 | errors | `FormFieldErrors` | The errors associated with the input. |  |
+| hideClearButton | `boolean \| null` | Whether the clear button should be hidden. |  |
 | hint | `string \| null` | The hint text of the input. |  |
 | iconLeft | `keyof Icons \| null` | The left icon of the input. |  |
 | iconRight | `keyof Icons \| null` | The right icon of the input. |  |
@@ -23,8 +25,7 @@
 | popoverOffsetInPx | `number` | The offset of the popper content. |  |
 | popoverSide | `"bottom" \| "left" \| "right" \| "top"` | The side of the trigger the tooltip should be on. |  |
 | popoverWidth | `PopperWidth \| null` | The width of the popper. |  |
-| shouldRemainOpenOnValueChange | `boolean \| null` | Whether the select should remain open when the value changes. |  |
-| styleConfig | `Partial<SelectStyleConfig> \| null` |  |  |
+| styleConfig | `Partial<SelectStyleConfig> \| null` | The style config of the component. |  |
 | testId | `string \| null` | The test id of the input. |  |
 
 

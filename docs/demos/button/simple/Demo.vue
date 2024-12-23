@@ -14,7 +14,7 @@ const variants = [
 </script>
 
 <template>
-  <div class="grid grid-cols-3 gap-8">
+  <div class="grid grid-cols-3 gap-xl">
     <VcButton
       v-for="variant of variants"
       :key="variant"

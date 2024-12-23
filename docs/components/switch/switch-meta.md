@@ -5,18 +5,18 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| errors | `FormFieldErrors` | The errors associated with the checkbox. | `null` |
-| hint | `string \| null` | The hint text of the checkbox. | `null` |
+| errors | `FormFieldErrors` | The errors associated with the input. | `null` |
+| hint | `string \| null` | The hint text of the input. | `null` |
 | iconChecked | `keyof Icons \| null` | The icon to display in the indicator when the switch is checked. | `null` |
 | iconUnchecked | `keyof Icons \| null` | The icon to display in the indicator when the switch is not checked. | `null` |
-| id | `string \| null` | The id of the checkbox. | `null` |
-| isDisabled | `boolean` | Whether the checkbox is disabled. | `false` |
+| id | `string \| null` | The id of the input. | `null` |
+| isDisabled | `boolean` | Whether the input is disabled. | `false` |
 | isReadonly | `boolean` | Whether the input is readonly. | `false` |
-| isRequired | `boolean` | Whether the checkbox is required. | `false` |
+| isRequired | `boolean` | Whether the input is required. | `false` |
 | isTouched | `boolean` | Whether the input is touched. Used to determine if an error should be shown. | `false` |
-| label | `string \| null` | The label of the checkbox | `null` |
+| label | `string \| null` | The label of the input. | `null` |
 | size | `"default" \| "sm"` | The size of the switch. | `"default"` |
-| styleConfig | `Partial<SwitchStyleConfig> \| null` | The style config of the switch. | `null` |
+| styleConfig | `Partial<SwitchStyleConfig> \| null` | The style config of the component. | `null` |
 | testId | `string \| null` | The test id of the input. | `null` |
 
 
@@ -27,14 +27,13 @@
 | `bottom` | None |  |
 | `error` | None |  |
 | `hint` | None |  |
-| `label` | \{ inputId: string; \} |  |
 
 
 ## Events
 
 | Event name | Type | Description |
 | ---------- | ---- | ----------- |
-| `blur` | [] |  |
-| `focus` | [] |  |
+| `blur` | [event: Event] |  |
+| `focus` | [event: Event] |  |
 | `update:modelValue` | [modelValue: boolean] |  |
 

@@ -108,7 +108,7 @@ const isEmpty = computed<boolean>(() => (selectContext.modelValue.value as Array
 
       <PopoverTrigger>
         <button
-          :id="selectContext.inputId.value"
+          :id="selectContext.inputId"
           :data-test-id="selectContext.testId.value"
           :disabled="selectContext.isDisabled.value"
           :aria-describedby="ariaDescribedBy"

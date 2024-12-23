@@ -5,17 +5,18 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| errors | `FormFieldErrors` | The errors associated with the checkbox. | `null` |
-| hint | `string \| null` | The hint text of the checkbox. | `null` |
-| id | `string \| null` | The id of the checkbox. | `null` |
-| isDisabled | `boolean` | Whether the checkbox is disabled. | `false` |
+| errors | `FormFieldErrors` | The errors associated with the input. | `null` |
+| hint | `string \| null` | The hint text of the input. | `null` |
+| id | `string \| null` | The id of the input. | `null` |
+| isDisabled | `boolean` | Whether the input is disabled. | `false` |
 | isIndeterminate | `boolean` | Whether the checkbox is in an indeterminate state. | `false` |
 | isReadonly | `boolean` | Whether the input is readonly. | `false` |
-| isRequired | `boolean` | Whether the checkbox is required. | `false` |
+| isRequired | `boolean` | Whether the input is required. | `false` |
 | isTouched | `boolean` | Whether the input is touched. Used to determine if an error should be shown. | `false` |
-| label | `string \| null` | The label of the checkbox | `null` |
-| styleConfig | `Partial<CheckboxStyleConfig> \| null` |  | `null` |
+| label | `string \| null` | The label of the input. | `null` |
+| styleConfig | `Partial<CheckboxStyleConfig> \| null` | The style config of the component. | `null` |
 | testId | `string \| null` | The test id of the input. | `null` |
+| value | `AcceptableValue \| null` | The value of the checkbox. Only used when the checkbox is in a group. | `null` |
 
 
 ## Slots
@@ -23,11 +24,9 @@
 | Slot | Type | Description |
 | --------- | ---- | ----------- |
 | `bottom` | None |  |
+| `default` | None |  |
 | `error` | None |  |
 | `hint` | None |  |
-| `icon-checked` | None |  |
-| `icon-indeterminate` | None |  |
-| `label` | \{ inputId: string; \} |  |
 
 
 ## Events
@@ -36,5 +35,5 @@
 | ---------- | ---- | ----------- |
 | `blur` | [] |  |
 | `focus` | [] |  |
-| `update:modelValue` | [modelValue: boolean] |  |
+| `update:modelValue` | [modelValue: boolean \| null] |  |
 

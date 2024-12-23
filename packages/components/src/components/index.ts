@@ -8,13 +8,13 @@ import type { DrawerProps } from '@/components/drawer/drawer.props'
 import type { DropdownMenuProps } from '@/components/dropdown-menu/dropdownMenu.props'
 import type { TextFieldProps } from '@/components/input-field/text-field/textField.props'
 import type { PopoverProps } from '@/components/popover/popover.props'
-import type { RadioGroupProps } from '@/components/radio-group-old/radioGroup.props'
+// import type { RadioGroupProps } from '@/components/radio-group-old/radioGroup.props'
 import type { SelectProps } from '@/components/select/select.props'
 import type { SwitchProps } from '@/components/switch/switch.props'
 import type { TableProps } from '@/components/table/table.props'
 import type { TooltipProps } from '@/components/tooltip/tooltip.props'
 import type {
-  AcceptableValue,
+  // AcceptableValue,
   SelectValue,
 } from '@/types'
 
@@ -27,7 +27,7 @@ export type VcDrawerProps = DrawerProps
 export type VcDropdownMenuProps = DropdownMenuProps
 export type VcIconButtonProps = IconButtonProps
 export type VcPopoverProps = PopoverProps
-export type VcRadioGroupProps<TValue extends AcceptableValue> = RadioGroupProps<TValue>
+// export type VcRadioGroupProps<TValue extends AcceptableValue> = RadioGroupProps<TValue>
 export type VcRouterLinkButtonProps = RouterLinkButtonProps
 export type VcSelectProps<TValue extends SelectValue> = SelectProps<TValue>
 export type VcSwitchProps = SwitchProps
@@ -138,11 +138,9 @@ export { default as VcSpinner } from '@/components/spinner/Spinner.vue'
 export { default as VcSwitch } from '@/components/switch/Switch.vue'
 
 // RadioGroup
-export { default as VcRadioGroup } from '@/components/radio-group-old/RadioGroup.vue'
-export { default as VcRadioGroupIndicator } from '@/components/radio-group-old/RadioGroupIndicator.vue'
-export { default as VcRadioGroupItem } from '@/components/radio-group-old/RadioGroupItem.vue'
-export { default as VcRadioGroupItemDefault } from '@/components/radio-group-old/RadioGroupItemDefault.vue'
-export { default as VcRadioGroupRoot } from '@/components/radio-group-old/RadioGroupRoot.vue'
+export { default as VcRadioGroup } from '@/components/radio-group/RadioGroup.vue'
+export { default as VcRadioGroupItem } from '@/components/radio-group/RadioGroupItem.vue'
+export { default as VcRadioGroupIndicator } from '@/components/radio-group/RadioGroupItemIndicator.vue'
 
 // Scroll area
 export { default as VcScrollArea } from '@/components/scroll-area/ScrollArea.vue'

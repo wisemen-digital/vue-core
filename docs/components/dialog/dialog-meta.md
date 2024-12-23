@@ -5,11 +5,11 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
+| id | `string \| null` | The id of the element that triggers the dialog. Must be set for accessibility purposes. | `null` |
 | shouldAnimateFromTrigger | `boolean` | Whether to animate the dialog with the View Transitions API | `false` |
 | shouldPreventClickOutside | `boolean` | Prevent clicks outside the dialog content to close the dialog | `false` |
-| styleConfig | `Partial<DialogStyleConfig> \| null` |  | `null` |
+| styleConfig | `Partial<DialogStyleConfig> \| null` | The style config of the component. | `null` |
 | testId | `string` | The test id of the dialog. |  |
-| triggerId | `string \| null` | The id of the element that triggers the dialog: Will be set automatically when using the `useDialog` composable | `null` |
 
 
 ## Slots

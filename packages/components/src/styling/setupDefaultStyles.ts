@@ -12,7 +12,6 @@ import { setupDefaultInputFieldHintStyles } from '@/components/input-field-hint/
 import { setupDefaultInputFieldLabelStyles } from '@/components/input-field-label/inputFieldLabelStyle.config'
 import { setupDefaultPopoverStyles } from '@/components/popover/popoverStyle.config'
 import { setupDefaultRadioGroupItemStyles } from '@/components/radio-group/radioGroupItemStyle.config'
-import { setupDefaultRadioGroupStyles } from '@/components/radio-group-old/radioGroupStyle.config'
 import { setupDefaultSelectStyles } from '@/components/select/selectStyle.config'
 import { setupDefaultSwitchStyles } from '@/components/switch/switchStyle.config'
 import { setupDefaultTableStyles } from '@/components/table/tableStyle.config'
@@ -40,6 +39,5 @@ export function setupDefaultStyles(): void {
   setupDefaultTabsStyles()
   setupDefaultTagStyles()
   setupDefaultTooltipStyles()
-  setupDefaultRadioGroupStyles()
   setupDefaultRadioGroupItemStyles()
 }

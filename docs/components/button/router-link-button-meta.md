@@ -8,9 +8,8 @@
 | dataTestId | `string \| null` | The test id of the button. | `null` |
 | iconLeft | `keyof Icons \| null` | The left icon of the button. | `null` |
 | iconRight | `keyof Icons \| null` | The right icon of the button. | `null` |
-| isLoading | `boolean` | Whether the button is in a loading state. | `false` |
-| size | `"default" \| "sm" \| "lg" \| "xl" \| "2xl"` | The size of the button. | `"default"` |
-| styleConfig | `Partial<ButtonStyleConfig> \| null` | The style config of the button. | `null` |
+| size | `"default" \| "sm" \| "2xl" \| "lg" \| "xl"` | The size of the button. | `"default"` |
+| styleConfig | `Partial<ButtonStyleConfig> \| null` | The style config of the component. | `null` |
 | to* | `any` | The route to link to. |  |
 | variant | `"default" \| "destructive-primary" \| "destructive-secondary" \| "destructive-tertiary" \| "secondary" \| "secondary-color" \| "tertiary" \| "tertiary-color"` | The variant of the button. | `"default"` |
 
@@ -25,11 +24,4 @@
 | `left` | any |  |
 | `loader` | any |  |
 | `right` | any |  |
-
-
-## Events
-
-| Event name | Type | Description |
-| ---------- | ---- | ----------- |
-| `click` | [] |  |
 

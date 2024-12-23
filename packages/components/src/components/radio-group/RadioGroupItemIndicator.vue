@@ -1,31 +1,33 @@
 <script setup lang="ts">
 import { RadioGroupIndicator } from 'reka-ui'
+import { computed } from 'vue'
 
-import RadioGroupItem from '@/components/radio-group/RadioGroupItem.vue'
+import { injectRadioGroupItemContext } from '@/components/radio-group/radioGroupItem.context'
+import { useRadioGroupItemStyle } from '@/components/radio-group/radioGroupItem.style'
 
-const ariaDescribedBy = useAriaDescribedBy({
-  id: inputId,
-  hasErrors: hasError,
-  hasHint: computed<boolean>(() => props.hint !== null),
-})
+const radioGroupItemContext = injectRadioGroupItemContext()
+
+const radioGroupItemStyle = useRadioGroupItemStyle()
+
+const baseClasses = computed<string>(() => radioGroupItemStyle.base({
+  hasError: radioGroupItemContext.hasError.value,
+  isChecked: radioGroupItemContext.isChecked.value,
+  isDisabled: radioGroupItemContext.isDisabled.value,
+  isFocused: radioGroupItemContext.isFocused.value,
+  isHovered: radioGroupItemContext.isHovered.value,
+}))
+
+const indicatorClasses = computed<string>(() => radioGroupItemStyle.indicator({
+  hasError: radioGroupItemContext.hasError.value,
+  isChecked: radioGroupItemContext.isChecked.value,
+  isDisabled: radioGroupItemContext.isDisabled.value,
+  isFocused: radioGroupItemContext.isFocused.value,
+  isHovered: radioGroupItemContext.isHovered.value,
+}))
 </script>
 
 <template>
-  <RadioGroupItem
-    :id="inputId"
-    :data-test-id="props.testId"
-    :aria-describedby="ariaDescribedBy"
-    :disabled="props.isDisabled"
-    :readonly="props.isReadonly"
-    :required="props.isRequired"
-    :value="props.value"
-    @focus="onFocus"
-    @blur="onBlur"
-    @mouseenter="onMouseEnter"
-    @mouseleave="onMouseLeave"
-  >
-    <RadioGroupIndicator>
-      x
-    </RadioGroupIndicator>
-  </RadioGroupItem>
+  <div :class="baseClasses">
+    <RadioGroupIndicator :class="indicatorClasses" />
+  </div>
 </template>

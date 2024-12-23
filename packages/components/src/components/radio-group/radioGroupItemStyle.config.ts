@@ -33,12 +33,12 @@ export interface RadioGroupItemStyleConfig extends BaseStyleConfig {
   '--radio-group-item-hint-text-color-focus': string
   '--radio-group-item-hint-text-color-hover': string
 
-  '--radio-group-item-indicator-color-checked': string
-  '--radio-group-item-indicator-color-disabled': string
-  '--radio-group-item-indicator-color-error': string
-  '--radio-group-item-indicator-color-focus': string
-  '--radio-group-item-indicator-color-hover': string
-  '--radio-group-item-indicator-color-indeterminate': string
+  '--radio-group-item-indicator-bg-color-checked': string
+  '--radio-group-item-indicator-bg-color-disabled': string
+  '--radio-group-item-indicator-bg-color-error': string
+  '--radio-group-item-indicator-bg-color-focus': string
+  '--radio-group-item-indicator-bg-color-hover': string
+  '--radio-group-item-indicator-border-radius-default': string
   '--radio-group-item-indicator-size-default': string
   '--radio-group-item-label-font-size-default': string
   '--radio-group-item-label-font-weight-default': string
@@ -76,7 +76,7 @@ export function setupDefaultRadioGroupItemStyles(): void {
 
       '--radio-group-item-border-color-focus': 'var(--border-primary)',
       '--radio-group-item-border-color-hover': 'var(--border-primary)',
-      '--radio-group-item-border-radius-default': 'var(--radius-sm)',
+      '--radio-group-item-border-radius-default': 'var(--radius-full)',
       '--radio-group-item-error-font-size-default': 'var(--text-sm)',
       '--radio-group-item-error-font-weight-default': 'var(--font-weight-medium)',
       '--radio-group-item-error-spacing-default': 'var(--spacing-none)',
@@ -91,13 +91,14 @@ export function setupDefaultRadioGroupItemStyles(): void {
       '--radio-group-item-hint-text-color-error': 'var(--input-field-hint-text-color-default)',
       '--radio-group-item-hint-text-color-focus': 'var(--input-field-hint-text-color-default)',
       '--radio-group-item-hint-text-color-hover': 'var(--input-field-hint-text-color-default)',
-      '--radio-group-item-indicator-color-checked': 'var(--fg-white)',
 
-      '--radio-group-item-indicator-color-disabled': 'var(--fg-disabled)',
-      '--radio-group-item-indicator-color-error': 'var(--fg-error-secondary)',
-      '--radio-group-item-indicator-color-focus': 'var(--fg-white)',
-      '--radio-group-item-indicator-color-hover': 'var(--fg-white)',
-      '--radio-group-item-indicator-size-default': '0.875rem',
+      '--radio-group-item-indicator-bg-color-checked': 'var(--fg-white)',
+      '--radio-group-item-indicator-bg-color-disabled': 'var(--fg-disabled)',
+      '--radio-group-item-indicator-bg-color-error': 'var(--fg-error-secondary)',
+      '--radio-group-item-indicator-bg-color-focus': 'var(--fg-white)',
+      '--radio-group-item-indicator-bg-color-hover': 'var(--fg-white)',
+      '--radio-group-item-indicator-border-radius-default': 'var(--radius-full)',
+      '--radio-group-item-indicator-size-default': '0.5rem',
       '--radio-group-item-label-font-size-default': 'var(--text-md)',
 
       '--radio-group-item-label-font-weight-default': 'var(--font-weight-medium)',

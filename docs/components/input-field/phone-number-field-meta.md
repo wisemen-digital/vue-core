@@ -6,6 +6,7 @@
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
 | autoComplete | `"off" \| "on"` | The autocorrect property of the input. | `"off"` |
+| autoFocus | `boolean` | Whether the input should be focused automatically. |  |
 | defaultCountryCode | `CountryCode` | The default country code of the phone number. | `"BE"` |
 | errors | `FormFieldErrors` | The errors associated with the input. | `null` |
 | hint | `string \| null` | The hint text of the input. | `null` |
@@ -20,7 +21,7 @@
 | isTouched | `boolean` | Whether the input is touched. Used to determine if an error should be shown. | `false` |
 | label | `string \| null` | The label of the input. | `null` |
 | placeholder | `string \| null` | The placeholder text of the input. | `null` |
-| styleConfig | `Partial<TextFieldStyleConfig> \| null` |  | `null` |
+| styleConfig | `Partial<TextFieldStyleConfig> \| null` | The style config of the component. | `null` |
 | testId | `string \| null` | The test id of the input. | `null` |
 
 

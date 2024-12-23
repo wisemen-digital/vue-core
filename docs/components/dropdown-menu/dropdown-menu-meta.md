@@ -8,12 +8,13 @@
 | enableGlobalKeyboardShortcuts | `boolean` |  | `false` |
 | isArrowHidden | `boolean` | When true, the arrow will be hidden. | `false` |
 | items* | `DropdownMenuItem[]` |  |  |
-| popoverAlign | `PopperAlign` | The alignment of the popper content. |  |
-| popoverCollisionPaddingInPx | `number` | The padding of the popper collision. |  |
-| popoverContainerElement | `HTMLElement \| null` | The element to render the tooltip in. By default this is the viewport |  |
-| popoverOffsetInPx | `number` | The offset of the popper content. |  |
-| popoverSide | `"bottom" \| "left" \| "right" \| "top"` | The side of the trigger the tooltip should be on. |  |
+| popoverAlign | `PopperAlign` | The alignment of the popper content. | `"center"` |
+| popoverCollisionPaddingInPx | `number` | The padding of the popper collision. | `10` |
+| popoverContainerElement | `HTMLElement \| null` | The element to render the tooltip in. By default this is the viewport | `null` |
+| popoverOffsetInPx | `number` | The offset of the popper content. | `6` |
+| popoverSide | `"bottom" \| "left" \| "right" \| "top"` | The side of the trigger the tooltip should be on. | `"bottom"` |
 | popoverWidth | `PopperWidth \| null` | The width of the popper. | `"available-width"` |
+| styleConfig | `Partial<DropdownMenuStyleConfig> \| null` | The style config of the component. | `null` |
 
 
 ## Slots

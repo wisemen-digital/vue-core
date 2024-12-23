@@ -16,7 +16,7 @@
 | label | `string \| null` | The label of the input. | `null` |
 | placeholder | `string \| null` | The placeholder text of the input. | `null` |
 | resize | `"none" \| "both" \| "auto-vertical" \| "horizontal" \| "vertical"` | Whether the textarea can be resized. | `"none"` |
-| styleConfig | `Partial<TextareaStyleConfig> \| null` |  | `null` |
+| styleConfig | `Partial<TextareaStyleConfig> \| null` | The style config of the component. | `null` |
 | testId | `string \| null` | The test id of the input. | `null` |
 
 

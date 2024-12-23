@@ -36,33 +36,12 @@
 When enabled, items must be restricted to the option type | `null` |
 
 
-## Slots
-
-| Slot | Type | Description |
-| --------- | ---- | ----------- |
-| `bottom` | None |  |
-| `content-bottom` | None |  |
-| `content-top` | None |  |
-| `error` | None |  |
-| `filter` | None |  |
-| `group-label` | \{ label: string; \} |  |
-| `hint` | None |  |
-| `label` | \{ inputId: string; \} |  |
-| `loader` | None |  |
-| `no-results` | \{ searchTerm: string; \} |  |
-| `option` | \{ item: SelectOption\<AcceptableValue\>; \} |  |
-| `option-content` | \{ item: SelectOption\<AcceptableValue\>; \} |  |
-| `option-indicator` | \{ item: SelectOption\<AcceptableValue\>; \} |  |
-| `separator` | None |  |
-| `tag` | \{ value: SelectValue; \} |  |
-| `value` | \{ value: NonNullable\<SelectValue\>; \} |  |
-
-
 ## Events
 
 | Event name | Type | Description |
 | ---------- | ---- | ----------- |
 | `blur` | [] |  |
 | `focus` | [] |  |
+| `select` | [value: SelectValue] |  |
 | `update:modelValue` | [modelValue: SelectValue \| null] |  |
 

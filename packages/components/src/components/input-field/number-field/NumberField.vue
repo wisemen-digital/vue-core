@@ -338,7 +338,7 @@ function onBlur(): void {
     </NumberFieldRoot>
 
     <slot name="bottom">
-      <Collapsable>
+      <Collapsable :is-visible="hasError || props.hint !== null">
         <div v-if="hasError">
           <slot name="error">
             <InputFieldError

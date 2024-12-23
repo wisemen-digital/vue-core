@@ -11,7 +11,7 @@ import type { Icon } from '@/icons/icons'
 import type { SelectValue } from '@/types/select.type'
 
 interface SelectContext {
-  inputId: ComputedRef<string>
+  inputId: string
   testId: ComputedRef<string | null>
   hasError: ComputedRef<boolean>
   isDisabled: ComputedRef<boolean>

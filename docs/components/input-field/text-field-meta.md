@@ -6,6 +6,7 @@
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
 | autoComplete | `"off" \| "on"` | The autocorrect property of the input. | `"off"` |
+| autoFocus | `boolean` | Whether the input should be focused automatically. | `false` |
 | errors | `FormFieldErrors` | The errors associated with the input. | `null` |
 | hint | `string \| null` | The hint text of the input. | `null` |
 | iconLeft | `keyof Icons \| null` | The left icon of the input. | `null` |
@@ -20,7 +21,7 @@
 | label | `string \| null` | The label of the input. | `null` |
 | modelValue* | `string \| null` |  |  |
 | placeholder | `string \| null` | The placeholder text of the input. | `null` |
-| styleConfig | `Partial<TextFieldStyleConfig> \| null` |  | `null` |
+| styleConfig | `Partial<TextFieldStyleConfig> \| null` | The style config of the component. | `null` |
 | testId | `string \| null` | The test id of the input. | `null` |
 | type | `"search" \| "text" \| "date" \| "email" \| "password" \| "tel" \| "time" \| "url"` | The type of the input. | `"text"` |
 

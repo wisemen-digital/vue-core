@@ -13,7 +13,8 @@
 | isLoading* | `boolean` | Whether the table is loading |  |
 | pagination* | `Pagination<T>` | The pagination of the table |  |
 | rowClass | `((row: T, rowIndex: number) => string) \| null` | The class to apply to the row | `null` |
-| styleConfig | `Partial<TableStyleConfig> \| null` | The style config of the table. | `null` |
+| styleConfig | `Partial<TableStyleConfig> \| null` | The style config of the component. | `null` |
+| variant | `"default" \| "borderless"` | The variant of the table | `"default"` |
 
 
 ## Slots
@@ -21,6 +22,8 @@
 | Slot | Type | Description |
 | --------- | ---- | ----------- |
 | `bottom` | None |  |
+| `empty-state-no-data-actions` | None |  |
+| `empty-state-no-results-actions` | None |  |
 | `page-count` | None |  |
 | `pagination` | \{ items: (\{ type: "ellipsis"; \} | \{ type: "page"; value: number; \})[]; \} |  |
 | `top` | None |  |

@@ -24,7 +24,7 @@ defineSlots<{
 </script>
 
 <template>
-  <AnimatePresence>
+  <AnimatePresence :initial="false">
     <Motion
       v-if="props.isVisible"
       :as-child="true"
