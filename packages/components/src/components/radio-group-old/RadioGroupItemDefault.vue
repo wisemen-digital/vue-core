@@ -8,7 +8,7 @@ import { computed, ref } from 'vue'
 import Collapsable from '@/components/collapsable/Collapsable.vue'
 import InputFieldHint from '@/components/input-field-hint/InputFieldHint.vue'
 import InputFieldLabel from '@/components/input-field-label/InputFieldLabel.vue'
-import { injectRadioGroupContext } from '@/components/radio-group/radioGroup.context'
+import { injectRadioGroupContext } from '@/components/radio-group-old/radioGroup.context'
 import RadioGroupItem from '@/components/radio-group/RadioGroupItem.vue'
 import type { RadioGroupItem as RadioGroupItemType } from '@/types/radioGroup.type'
 

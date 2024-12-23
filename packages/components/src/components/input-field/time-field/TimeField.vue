@@ -3,9 +3,12 @@ import { Time } from '@internationalized/date'
 import {
   TimeFieldInput,
   TimeFieldRoot,
-  useId,
 } from 'reka-ui'
-import { computed, ref } from 'vue'
+import {
+  computed,
+  ref,
+  useId,
+} from 'vue'
 
 import Collapsable from '@/components/collapsable/Collapsable.vue'
 import { injectConfigContext } from '@/components/config-provider/config.context'
@@ -28,6 +31,8 @@ const props = withDefaults(defineProps<Omit<TextFieldProps, 'autocomplete' | 'pl
   isRequired: false,
   isSpellCheckEnabled: false,
   isTouched: false,
+  autoComplete: 'off',
+  autoFocus: false,
   errors: null,
   hint: null,
   iconLeft: null,
@@ -57,7 +62,7 @@ const model = defineModel<TValue | null>({
   required: true,
 })
 
-const computedModel = computed<Time | undefined>({
+const delegatedModel = computed<Time | undefined>({
   get: () => {
     if (model.value === null) {
       return undefined
@@ -80,19 +85,23 @@ const computedModel = computed<Time | undefined>({
       return
     }
 
-    model.value = `${value.hour}:${value.minute}` as TValue
+    const updatedValue = `${value.hour.toString().padStart(2, '0')}:${value.minute.toString().padStart(2, '0')}` as TValue
+
+    model.value = updatedValue as TValue
   },
 })
 
 const globalConfigContext = injectConfigContext()
 const themeContext = injectThemeProviderContext()
 
+const timeFieldRootRef = ref<InstanceType<typeof TimeFieldRoot> | null>(null)
+
 const isFocused = ref<boolean>(false)
 const isMouseOver = ref<boolean>(false)
 
 const textFieldStyle = useTextFieldStyle()
 
-const inputId = computed<string>(() => props.id ?? useId())
+const inputId = props.id ?? useId()
 const isHovered = computed<boolean>(() => isMouseOver.value && !props.isDisabled)
 const hasError = computed<boolean>(() => props.errors !== undefined && props.isTouched && props.errors !== null)
 
@@ -172,7 +181,14 @@ function onFocus(): void {
 
 function onBlur(): void {
   isFocused.value = false
-  emit('blur')
+
+  // Since there are multiple inputs, it's possible that a blur event is triggered while navigating to another input
+  // In this case, we don't want to emit the blur event since the focus is still within the component
+  setTimeout(() => {
+    if (!isFocused.value) {
+      emit('blur')
+    }
+  })
 }
 </script>
 
@@ -215,8 +231,9 @@ function onBlur(): void {
 
       <TimeFieldRoot
         :id="inputId"
+        ref="timeFieldRootRef"
         v-slot="{ segments }"
-        v-model="(computedModel as any)"
+        v-model="(delegatedModel as any)"
         :locale="globalConfigContext.locale.value"
         :aria-describedby="ariaDescribedBy"
         :data-test-id="props.testId"
@@ -242,7 +259,7 @@ function onBlur(): void {
           <TimeFieldInput
             v-else
             :part="item.part"
-            class="rounded px-0.5 text-primary outline-none duration-200 focus:bg-quaternary data-[placeholder]:text-placeholder"
+            class="rounded-xs px-0.5 text-primary outline-none duration-200 focus:bg-quaternary data-[placeholder]:text-placeholder"
             @focus="onFocus"
             @blur="onBlur"
           >

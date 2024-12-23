@@ -8,6 +8,7 @@ export interface TableStyleConfig {
   '--table-header-label-font-size-default': string
   '--table-header-label-font-weight-default': string
   '--table-header-label-text-color-default': string
+  '--table-row-border-bottom-color-default': string
 }
 
 export function setupDefaultTableStyles(): void {
@@ -21,6 +22,7 @@ export function setupDefaultTableStyles(): void {
       '--table-header-label-font-size-default': 'var(--text-sm)',
       '--table-header-label-font-weight-default': '500',
       '--table-header-label-text-color-default': 'var(--text-tertiary)',
+      '--table-row-border-bottom-color-default': 'var(--border-secondary)',
     },
     theme: '*',
     variant: 'default',

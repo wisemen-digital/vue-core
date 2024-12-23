@@ -1,7 +1,7 @@
 {
   "name": "@wisemen/vue-core",
   "type": "module",
-  "version": "1.0.0-alpha.14",
+  "version": "1.0.0-alpha.16",
   "license": "MIT",
   "sideEffects": false,
   "exports": {
@@ -45,8 +45,9 @@
     "axios": "1.7.3",
     "date-fns": "3.6.0",
     "defu": "^6.1.4",
+    "motion-v": "^0.4.1",
     "postcss": "8.4.38",
-    "reka-ui": "1.0.0-alpha.6",
+    "reka-ui": "1.0.0-alpha.7",
     "tailwindcss": "4.0.0-beta.4"
   },
   "devDependencies": {

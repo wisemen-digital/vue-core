@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Motion } from 'motion-v'
 import {
   SwitchRoot,
   SwitchThumb,
@@ -48,7 +49,7 @@ const switchStyle = useSwitchStyle()
 const isFocused = ref<boolean>(false)
 const isMouseOver = ref<boolean>(false)
 
-const inputId = computed<string>(() => props.id ?? useId())
+const inputId = props.id ?? useId()
 
 const isHovered = computed<boolean>(() => isMouseOver.value && !props.isDisabled)
 const isChecked = computed<boolean>(() => model.value)
@@ -158,28 +159,39 @@ function onBlur(e: Event): void {
         @focus="onFocus"
         @blur="onBlur"
       >
-        <SwitchThumb :class="thumbClasses">
-          <Transition
-            :enter-from-class="enterFromClass"
-            :leave-to-class="leaveToClass"
-          >
-            <div
-              v-if="props.iconChecked !== null || props.iconUnchecked !== null"
-              :key="+model"
-              :class="iconClasses"
+        <Motion
+          :as-child="true"
+          :layout="true"
+          :transition="{
+            type: 'spring',
+            stiffness: 700,
+            damping: 40,
+          }"
+          :data-animation-state="model"
+        >
+          <SwitchThumb :class="thumbClasses">
+            <Transition
+              :enter-from-class="enterFromClass"
+              :leave-to-class="leaveToClass"
             >
-              <Icon
-                v-if="model && props.iconChecked !== null"
-                :icon="props.iconChecked"
-              />
+              <div
+                v-if="props.iconChecked !== null || props.iconUnchecked !== null"
+                :key="+model"
+                :class="iconClasses"
+              >
+                <Icon
+                  v-if="model && props.iconChecked !== null"
+                  :icon="props.iconChecked"
+                />
 
-              <Icon
-                v-else-if="!model && props.iconUnchecked !== null"
-                :icon="props.iconUnchecked"
-              />
-            </div>
-          </Transition>
-        </SwitchThumb>
+                <Icon
+                  v-else-if="!model && props.iconUnchecked !== null"
+                  :icon="props.iconUnchecked"
+                />
+              </div>
+            </Transition>
+          </SwitchThumb>
+        </Motion>
       </SwitchRoot>
 
       <InputFieldLabel

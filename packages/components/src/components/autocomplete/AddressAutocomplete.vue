@@ -99,7 +99,7 @@ const debounceSearch = useDebounceFn(async (value: string) => {
 }, 300)
 
 async function fetchPredictions(searchTerm: string): Promise<AutocompletePrediction[]> {
-  if (searchTerm === null || searchTerm.length < 5 || autocompleteService === null) {
+  if (searchTerm === null || autocompleteService === null) {
     return []
   }
 
@@ -127,7 +127,7 @@ async function fetchPredictions(searchTerm: string): Promise<AutocompletePredict
 }
 
 function onSearch(searchTerm: string): void {
-  if (searchTerm === null || searchTerm.length < 5) {
+  if (searchTerm === null || searchTerm.length === 0) {
     predictions.value = []
 
     return
@@ -249,20 +249,19 @@ onMounted(async () => {
     :icon-right="props.iconRight"
     :is-arrow-visible="props.isArrowVisible"
     :is-disabled="props.isDisabled"
-    :collision-padding-in-px="props.popoverCollisionPaddingInPx"
-    :container-element="props.popoverContainerElement"
+    :popover-collision-padding-in-px="props.popoverCollisionPaddingInPx"
+    :popover-container-element="props.popoverContainerElement"
     :style-config="props.styleConfig"
-    :side="props.popoverSide"
-    :align="props.popoverAlign"
+    :popover-align="props.popoverAlign"
     :is-loading="isLoading"
     :errors="props.errors"
     :hint="props.hint"
     :is-touched="props.isTouched"
     :test-id="props.testId"
-    :offset-in-px="props.popoverOffsetInPx"
+    :popover-offset-in-px="props.popoverOffsetInPx"
     :placeholder="props.placeholder"
     :popover-width="props.popoverWidth"
-    :should-remain-open-on-value-change="props.shouldRemainOpenOnValueChange"
+    :popover-side="props.popoverSide"
     @search="onSearch"
     @blur="emit('blur')"
     @update:model-value="onUpdateModelValue"

@@ -11,10 +11,10 @@ const props = withDefaults(defineProps<{
    * Whether the skeleton item should shimmer
    * @default false
    */
-  shouldShimmer?: boolean
+  shimmer?: boolean
 }>(), {
   animationDelayInMs: 0,
-  shouldShimmer: false,
+  shimmer: false,
 })
 
 const themeProviderContext = injectThemeProviderContext()
@@ -29,7 +29,7 @@ const themeProviderContext = injectThemeProviderContext()
     aria-live="polite"
   >
     <div
-      v-if="props.shouldShimmer"
+      v-if="props.shimmer"
       :style="{
         animationDelay: `${props.animationDelayInMs}ms`,
       }"

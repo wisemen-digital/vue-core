@@ -63,8 +63,8 @@ const buttonLabel = computed<string>(() => (
           :icon="buttonIcon"
           :label="buttonLabel"
           :style-config="{
-            '--icon-button-size-default': '32px',
-            '--icon-button-icon-size-default': '16px',
+            '--icon-button-size-default': '2rem',
+            '--icon-button-icon-size-default': '1rem',
             '--icon-button-ring-color-focus': 'transparent',
             '--icon-button-bg-color-focus': 'var(--bg-secondary-hover)',
             '--icon-button-bg-color-disabled': 'transparent',
@@ -72,7 +72,7 @@ const buttonLabel = computed<string>(() => (
           }"
           :is-disabled="props.isDisabled"
           size="sm"
-          class="mr-[0.1875rem]"
+          class="mr-[0.1875rem] shrink-0"
           variant="tertiary"
         />
       </Toggle>

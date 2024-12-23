@@ -1,7 +1,7 @@
 import { computed, type ComputedRef } from 'vue'
 
 interface AriaDescribedByOptions {
-  id: ComputedRef<string>
+  id: string
   hasErrors: ComputedRef<boolean>
   hasHint: ComputedRef<boolean>
 }

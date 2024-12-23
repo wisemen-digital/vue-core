@@ -43,7 +43,7 @@ export const useSelectStyle = tv({
       .withColor('[--input-field-label-text-color-default:var(--select-label-text-color-default)]')
       .build(),
     listboxContent: new StyleBuilder()
-      .withClasses('!inset-ring-0')
+      .withClasses('outline-none')
       .withSize('max-h-(--select-dropdown-max-height-default)')
       .withPadding('px-(--select-dropdown-padding-x-default)')
       .build(),
@@ -55,7 +55,7 @@ export const useSelectStyle = tv({
       .withSpacing('mr-(--select-icon-right-spacing-default)')
       .build(),
     option: new StyleBuilder()
-      .withClasses('group flex w-full cursor-pointer items-center justify-between outline-none duration-200 data-[disabled]:cursor-not-allowed')
+      .withClasses('group flex w-full cursor-pointer items-center justify-between outline-none data-[disabled]:cursor-not-allowed')
       .withSize('min-h-(--select-option-min-height-default)')
       .withBorderRadius('rounded-(--select-option-border-radius-default)')
       .withBackgroundColor('bg-(--select-option-bg-color-default) hover:bg-(--select-option-bg-color-hover) data-[disabled]:bg-(--select-option-bg-color-disabled) data-[highlighted]:bg-(--select-option-bg-color-highlighted) data-[state=checked]:bg-(--select-option-bg-color-selected) data-[state=checked]:data-[highlighted]:bg-(--select-option-bg-color-highlighted) data-[disabled]:hover:bg-(--select-option-bg-color-disabled) data-[highlighted]:hover:bg-(--select-option-bg-color-hover) data-[state=checked]:hover:bg-(--select-option-bg-color-hover) hover:data-[disabled]:bg-(--select-option-bg-color-disabled)')

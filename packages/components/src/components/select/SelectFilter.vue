@@ -29,7 +29,6 @@ const selectContext = injectSelectContext()
           '--text-field-shadow-default': '0 0 0 0 transparent',
           '--text-field-shadow-focus': '0 0 0 0 transparent',
           '--text-field-shadow-hover': '0 0 0 0 transparent',
-
           '--text-field-bg-color-default': 'var(--bg-secondary)',
           '--text-field-bg-color-focus': 'var(--bg-secondary)',
           '--text-field-bg-color-hover': 'var(--bg-secondary)',

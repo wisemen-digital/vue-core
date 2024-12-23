@@ -113,7 +113,7 @@ if (!props.areControlsHidden) {
   })
 }
 
-const inputId = computed<string>(() => props.id ?? useId())
+const inputId = props.id ?? useId()
 const isHovered = computed<boolean>(() => isMouseOver.value && !props.isDisabled)
 const hasError = computed<boolean>(() => props.errors !== undefined && props.isTouched && props.errors !== null)
 

@@ -1,64 +1,68 @@
-<script setup lang="ts" generic="TValue extends AcceptableValue">
+<script setup lang="ts">
 import {
-  type AcceptableValue,
-  RadioGroupItem as RekaRadioGroupItem,
-  useId,
+  RadioGroupIndicator,
+  RadioGroupItem,
 } from 'reka-ui'
 import {
   computed,
   ref,
-  useAttrs,
+  useId,
 } from 'vue'
 
-import { injectRadioGroupContext } from '@/components/radio-group/radioGroup.context'
-import { radioGroupStyle } from '@/components/radio-group/radioGroup.style'
-import { provideRadioGroupItemContext } from '@/components/radio-group/radioGroupItem.context'
-import type { RadioGroupItem } from '@/types/radioGroup.type'
+import Collapsable from '@/components/collapsable/Collapsable.vue'
+import InputFieldError from '@/components/input-field-error/InputFieldError.vue'
+import InputFieldHint from '@/components/input-field-hint/InputFieldHint.vue'
+import InputFieldLabel from '@/components/input-field-label/InputFieldLabel.vue'
+import type { RadioGroupItemProps } from '@/components/radio-group/radioGroupItem.props'
+import { useRadioGroupItemStyle } from '@/components/radio-group/radioGroupItem.style'
 
-const props = defineProps<{
-  id?: string
-  item: RadioGroupItem<TValue>
-}>()
+const props = withDefaults(defineProps<RadioGroupItemProps>(), {
+  id: null,
+  testId: null,
+  isDisabled: false,
+  isReadonly: false,
+  isRequired: false,
+  isTouched: false,
+  errors: null,
+  hint: null,
+  label: null,
+  styleConfig: null,
+})
 
 const emit = defineEmits<{
   blur: []
   focus: []
 }>()
 
-const context = injectRadioGroupContext()
+const radioGroupItemStyle = useRadioGroupItemStyle()
 
-const attrs = useAttrs()
+const inputId = props.id ?? useId()
 
+const isChecked = ref<boolean>(false)
 const isFocused = ref<boolean>(false)
 const isMouseOver = ref<boolean>(false)
 
-const style = radioGroupStyle()
+const isHovered = computed<boolean>(() => isMouseOver.value && !props.isDisabled)
+const isDisabled = computed<boolean>(() => props.isDisabled || props.isReadonly)
+const hasError = computed<boolean>(() => props.errors !== undefined && props.isTouched && props.errors !== null)
 
-const isDisabled = computed<boolean>(() => context.isDisabled.value || (props.item.isDisabled ?? false))
-const isHovered = computed<boolean>(() => isMouseOver.value && !isDisabled.value)
-const hasError = computed<boolean>(() => context.hasError.value)
-const isChecked = computed<boolean>(() => context.isItemChecked(props.item))
-
-const itemClasses = computed<string>(() => style.item({
+const labelClasses = computed<string>(() => radioGroupItemStyle.label({
   hasError: hasError.value,
   isChecked: isChecked.value,
   isDisabled: isDisabled.value,
   isFocused: isFocused.value,
   isHovered: isHovered.value,
-  class: attrs.class as string,
 }))
 
-const stringValue = computed<string>(() => JSON.stringify(props.item.value))
+const hintClasses = computed<string>(() => radioGroupItemStyle.hint({
+  hasError: hasError.value,
+  isChecked: isChecked.value,
+  isDisabled: isDisabled.value,
+  isFocused: isFocused.value,
+  isHovered: isHovered.value,
+}))
 
-const inputId = computed<string>(() => props.id ?? useId())
-
-function onMouseEnter(): void {
-  isMouseOver.value = true
-}
-
-function onMouseLeave(): void {
-  isMouseOver.value = false
-}
+const errorClasses = computed<string>(() => radioGroupItemStyle.error())
 
 function onFocus(): void {
   isFocused.value = true
@@ -70,25 +74,77 @@ function onBlur(): void {
   emit('blur')
 }
 
-provideRadioGroupItemContext({
-  isChecked,
-  isDisabled,
-  isFocused: computed<boolean>(() => isFocused.value),
-  isHovered,
-})
+function onMouseEnter(): void {
+  isMouseOver.value = true
+}
+
+function onMouseLeave(): void {
+  isMouseOver.value = false
+}
 </script>
 
 <template>
-  <RekaRadioGroupItem
-    :id="inputId"
-    :value="stringValue"
-    :disabled="isDisabled"
-    :class="itemClasses"
-    @mouseenter="onMouseEnter"
-    @mouseleave="onMouseLeave"
-    @focus="onFocus"
-    @blur="onBlur"
-  >
-    <slot />
-  </RekaRadioGroupItem>
+  <div class="radio-group-item-default input-field-label-default input-field-error-default input-field-hint-default">
+    <div class="grid grid-cols-[min-content_auto] items-center">
+      <slot>
+        <RadioGroupItem
+          :id="inputId"
+          :data-test-id="props.testId"
+          :aria-describedby="ariaDescribedBy"
+          :disabled="props.isDisabled"
+          :readonly="props.isReadonly"
+          :required="props.isRequired"
+          :value="props.value"
+          @focus="onFocus"
+          @blur="onBlur"
+          @mouseenter="onMouseEnter"
+          @mouseleave="onMouseLeave"
+        >
+          <RadioGroupIndicator>
+            x
+          </RadioGroupIndicator>
+        </RadioGroupItem>
+      </slot>
+
+      <InputFieldLabel
+        v-if="props.label !== null"
+        :class="labelClasses"
+        :is-required="props.isRequired"
+        :for="inputId"
+        :label="props.label"
+      />
+
+      <!-- Spacer element for grid -->
+      <span v-else />
+
+      <!-- Spacer element for grid -->
+      <span />
+
+      <slot name="bottom">
+        <div>
+          <Collapsable :is-visible="hasError || props.hint !== null">
+            <div v-if="hasError">
+              <slot name="error">
+                <InputFieldError
+                  :errors="props.errors"
+                  :class="errorClasses"
+                  :input-id="inputId"
+                />
+              </slot>
+            </div>
+
+            <div v-else-if="props.hint !== null">
+              <slot name="hint">
+                <InputFieldHint
+                  :input-id="inputId"
+                  :hint="props.hint"
+                  :class="hintClasses"
+                />
+              </slot>
+            </div>
+          </Collapsable>
+        </div>
+      </slot>
+    </div>
+  </div>
 </template>

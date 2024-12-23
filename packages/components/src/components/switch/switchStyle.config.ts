@@ -41,8 +41,8 @@ export interface SwitchStyleConfig extends BaseStyleConfig {
   '--switch-icon-color-hover': string
   '--switch-icon-size-default': string
 
-  '--switch-label-font-size': string
-  '--switch-label-font-weight': string
+  '--switch-label-font-size-default': string
+  '--switch-label-font-weight-default': string
   '--switch-label-spacing-default': string
   '--switch-label-text-color-checked': string
   '--switch-label-text-color-default': string
@@ -51,6 +51,7 @@ export interface SwitchStyleConfig extends BaseStyleConfig {
   '--switch-label-text-color-focus': string
   '--switch-label-text-color-hover': string
 
+  '--switch-ring-color-error': string
   '--switch-ring-color-focus': string
 
   '--switch-thumb-bg-color': string
@@ -112,6 +113,7 @@ export function setupDefaultSwitchStyles(): void {
       '--switch-label-text-color-focus': 'var(--text-primary)',
       '--switch-label-text-color-hover': 'var(--text-primary)',
 
+      '--switch-ring-color-error': 'var(--error-500)',
       '--switch-ring-color-focus': 'var(--brand-primary-500)',
 
       '--switch-thumb-bg-color-default': 'white',

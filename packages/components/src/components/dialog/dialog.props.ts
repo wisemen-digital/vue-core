@@ -5,7 +5,7 @@ export interface DialogProps extends Stylable<'dialog'> {
    * The id of the element that triggers the dialog. Must be set for accessibility purposes.
    * @default null
    */
-  id?: null | string
+  id?: string | null
   /**
    * The test id of the dialog.
    */

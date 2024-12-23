@@ -33,7 +33,7 @@ const emit = defineEmits<{
   focus: []
 }>()
 
-const model = defineModel<null | string>({
+const model = defineModel<string | null>({
   required: true,
 })
 

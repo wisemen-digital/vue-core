@@ -6,5 +6,5 @@ export interface PopoverProps extends PopperProps, Stylable<'popover'> {
    * The test id of the popover.
    * @default null
    */
-  testId?: null | string
+  testId?: string | null
 }

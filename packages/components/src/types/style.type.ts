@@ -13,7 +13,7 @@ import type {
 } from '@/components/input-field-hint/inputFieldHintStyle.config'
 import type { InputFieldLabelStyleConfig } from '@/components/input-field-label/inputFieldLabelStyle.config'
 import type { PopoverStyleConfig } from '@/components/popover/popoverStyle.config'
-import type { RadioGroupStyleConfig } from '@/components/radio-group/radioGroupStyle.config'
+import type { RadioGroupItemStyleConfig } from '@/components/radio-group/radioGroupItemStyle.config'
 import type {
   SelectOptionStyleConfig,
   SelectStyleConfig,
@@ -101,8 +101,8 @@ export interface ComponentStyleConfigRegistry {
     config: PopoverStyleConfig
     variants: ['default']
   }
-  radioGroup: {
-    config: RadioGroupStyleConfig
+  radioGroupItem: {
+    config: RadioGroupItemStyleConfig
     variants: ['default']
   }
   select: {

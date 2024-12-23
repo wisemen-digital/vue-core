@@ -2,8 +2,8 @@ export interface Address {
   bus: string
   city: string
   coordinates: {
-    lat: null | number
-    lng: null | number
+    lat: number | null
+    lng: number | null
   }
   country: string
   postalCode: string

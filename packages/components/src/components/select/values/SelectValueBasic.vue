@@ -13,7 +13,7 @@ const selectContext = injectSelectContext()
 const selectStyle = useSelectStyle()
 
 const ariaDescribedBy = useAriaDescribedBy({
-  id: selectContext.inputId,
+  id: selectContext.inputId.value,
   hasErrors: selectContext.hasError,
   hasHint: computed<boolean>(() => selectContext.hint.value !== null),
 })

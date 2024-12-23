@@ -8,7 +8,7 @@ import type { DrawerProps } from '@/components/drawer/drawer.props'
 import type { DropdownMenuProps } from '@/components/dropdown-menu/dropdownMenu.props'
 import type { TextFieldProps } from '@/components/input-field/text-field/textField.props'
 import type { PopoverProps } from '@/components/popover/popover.props'
-import type { RadioGroupProps } from '@/components/radio-group/radioGroup.props'
+import type { RadioGroupProps } from '@/components/radio-group-old/radioGroup.props'
 import type { SelectProps } from '@/components/select/select.props'
 import type { SwitchProps } from '@/components/switch/switch.props'
 import type { TableProps } from '@/components/table/table.props'
@@ -56,6 +56,8 @@ export { default as VcCalendar } from '@/components/calendar/Calendar.vue'
 
 // Checkbox
 export { default as VcCheckbox } from '@/components/checkbox/Checkbox.vue'
+export { default as VcCheckboxGroup } from '@/components/checkbox/CheckboxGroup.vue'
+export { default as VcCheckboxIndicator } from '@/components/checkbox/CheckboxIndicator.vue'
 
 // Collapsable
 export { default as VcCollapsable } from '@/components/collapsable/Collapsable.vue'
@@ -96,6 +98,7 @@ export { default as VcPasswordField } from '@/components/input-field/password-fi
 export { default as VcPhoneNumberField } from '@/components/input-field/phone-number-field/PhoneNumberField.vue'
 export { default as VcTextarea } from '@/components/input-field/text-area/Textarea.vue'
 export { default as VcTextField } from '@/components/input-field/text-field/TextField.vue'
+export { default as VcTimeField } from '@/components/input-field/time-field/TimeField.vue'
 
 // Input field error
 export { default as VcInputFieldError } from '@/components/input-field-error/InputFieldError.vue'
@@ -118,12 +121,12 @@ export { default as VcPopoverCloseButton } from '@/components/popover/PopoverClo
 export { default as VcPopoverTrigger } from '@/components/popover/PopoverTrigger.vue'
 
 // Select
-export { default as VcSelectGroup } from '@/components/select/items/SelectGroup.vue'
-export { default as VcSelectOption } from '@/components/select/items/SelectOption.vue'
-export { default as VcSelectOptionIndicator } from '@/components/select/items/SelectOptionIndicator.vue'
-export { default as VcSelectSeparator } from '@/components/select/items/SelectSeparator.vue'
 export { default as VcSelect } from '@/components/select/Select.vue'
 export { default as VcSelectFilter } from '@/components/select/SelectFilter.vue'
+export { default as VcSelectGroup } from '@/components/select-v2/blocks/items/SelectGroup.vue'
+export { default as VcSelectOption } from '@/components/select-v2/blocks/items/SelectOption.vue'
+export { default as VcSelectOptionIndicator } from '@/components/select-v2/blocks/items/SelectOptionIndicator.vue'
+export { default as VcSelectSeparator } from '@/components/select-v2/blocks/items/SelectSeparator.vue'
 
 // Skeleton
 export { default as VcSkeletonItem } from '@/components/skeleton/SkeletonItem.vue'
@@ -135,11 +138,11 @@ export { default as VcSpinner } from '@/components/spinner/Spinner.vue'
 export { default as VcSwitch } from '@/components/switch/Switch.vue'
 
 // RadioGroup
-export { default as VcRadioGroup } from '@/components/radio-group/RadioGroup.vue'
-export { default as VcRadioGroupIndicator } from '@/components/radio-group/RadioGroupIndicator.vue'
-export { default as VcRadioGroupItem } from '@/components/radio-group/RadioGroupItem.vue'
-export { default as VcRadioGroupItemDefault } from '@/components/radio-group/RadioGroupItemDefault.vue'
-export { default as VcRadioGroupRoot } from '@/components/radio-group/RadioGroupRoot.vue'
+export { default as VcRadioGroup } from '@/components/radio-group-old/RadioGroup.vue'
+export { default as VcRadioGroupIndicator } from '@/components/radio-group-old/RadioGroupIndicator.vue'
+export { default as VcRadioGroupItem } from '@/components/radio-group-old/RadioGroupItem.vue'
+export { default as VcRadioGroupItemDefault } from '@/components/radio-group-old/RadioGroupItemDefault.vue'
+export { default as VcRadioGroupRoot } from '@/components/radio-group-old/RadioGroupRoot.vue'
 
 // Scroll area
 export { default as VcScrollArea } from '@/components/scroll-area/ScrollArea.vue'

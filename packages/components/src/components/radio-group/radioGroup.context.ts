@@ -1,4 +1,3 @@
-import type { AcceptableValue } from 'reka-ui'
 import {
   type ComputedRef,
   inject,
@@ -6,30 +5,24 @@ import {
   provide,
 } from 'vue'
 
-import type { RadioGroupItem } from '@/types/radioGroup.type'
+interface RadioGroupContext {
+  inputId: string
+  testId: ComputedRef<string | null>
 
-export interface RadioGroupContext<TValue extends AcceptableValue> {
-  hasError: ComputedRef<boolean>
-  isDisabled: ComputedRef<boolean>
-  isItemChecked: (item: RadioGroupItem<TValue>) => boolean
-  isRequired: ComputedRef<boolean>
-  isTouched: ComputedRef<boolean>
-  items: ComputedRef<RadioGroupItem<TValue>[]>
-  model: ComputedRef<TValue | null>
 }
 
-const radioGroupContextKey: InjectionKey<RadioGroupContext<any>> = Symbol('radioGroupContextKey')
+const radioGroupContextKey: InjectionKey<RadioGroupContext> = Symbol('radioGroupContextKey')
 
-export function provideRadioGroupContext<TValue extends AcceptableValue>(context: RadioGroupContext<TValue>): void {
+export function provideRadioGroupContext(context: RadioGroupContext): void {
   provide(radioGroupContextKey, context)
 }
 
-export function injectRadioGroupContext<TValue extends AcceptableValue>(): RadioGroupContext<TValue> {
-  const context = inject(radioGroupContextKey) as RadioGroupContext<TValue>
+export function injectRadioGroupContext(): RadioGroupContext {
+  const context = inject(radioGroupContextKey)
 
   if (context === undefined) {
     throw new Error('RadioGroup context is not provided. Please use `provideRadioGroupContext` to provide the context.')
   }
 
-  return context as RadioGroupContext<TValue>
+  return context
 }

@@ -39,7 +39,7 @@ export const useSwitchStyle = tv({
       .withSpacing('ml-(--switch-label-spacing-default) mb-0')
       .build(),
     thumb: new StyleBuilder()
-      .withClasses('relative overflow-hidden block not-motion-reduce:duration-400 ease-switch data-[state=checked]:translate-x-full')
+      .withClasses('relative overflow-hidden block data-[state=checked]:justify-self-end')
       .withBorderRadius('rounded-(--switch-border-radius-default)')
       .withSize('size-(--switch-thumb-size-default)')
       .withBackgroundColor('bg-(--switch-thumb-bg-color-default)')
@@ -104,7 +104,7 @@ export const useSwitchStyle = tv({
         base: new StyleBuilder()
           .withBackgroundColor('bg-(--switch-bg-color-error)')
           .withBorder('border-(--switch-border-color-error)')
-          .withRing('ring-(--switch-border-color-error)')
+          .withRing('ring-(--switch-ring-color-error)')
           .build(),
         hint: new StyleBuilder()
           .withColor('[--input-field-hint-text-color-error:var(--switch-hint-text-color-error)]')

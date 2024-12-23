@@ -11,17 +11,21 @@ export type AutocompleteDisplayFn<TValue extends SelectValue> = (
   value: TValue extends Array<infer U> ? U : TValue
 ) => string
 
-export interface AutocompleteProps<TValue extends SelectValue> extends Omit<PopperProps, 'isArrowHidden'>, Stylable<'select'> {
+export interface AutocompleteProps<
+  TValue extends SelectValue,
+> extends Omit<
+    PopperProps, 'isArrowHidden'
+  >, Stylable<'select'> {
   /**
    * The id of the input.
    * @default null
    */
-  id?: null | string
+  id?: string | null
   /**
    * The test id of the input.
    * @default null
    */
-  testId?: null | string
+  testId?: string | null
   /**
    * Whether the arrow is visible.
    * @default false
@@ -47,6 +51,11 @@ export interface AutocompleteProps<TValue extends SelectValue> extends Omit<Popp
    */
   isTouched?: boolean
   /**
+   * Whether the search input should be cleared when a selection is made.
+   * @default false
+   */
+  clearSearchOnSelection?: boolean | null
+  /**
    * The display function for the selected value.
    */
   displayFn: AutocompleteDisplayFn<TValue>
@@ -55,10 +64,15 @@ export interface AutocompleteProps<TValue extends SelectValue> extends Omit<Popp
    */
   errors?: FormFieldErrors | null
   /**
+   * Whether the clear button should be hidden.
+   * @default false
+   */
+  hideClearButton?: boolean | null
+  /**
    * The hint text of the input.
    * @default null
    */
-  hint?: null | string
+  hint?: string | null
   /**
    * The left icon of the input.
    * @default null
@@ -77,16 +91,10 @@ export interface AutocompleteProps<TValue extends SelectValue> extends Omit<Popp
    * The label of the input.
    * @default null
    */
-  label?: null | string
+  label?: string | null
   /**
    * The placeholder text of the input.
    * @default null
    */
-  placeholder?: null | string
-  /**
-   * Whether the select should remain open when the value changes.
-   * @default true - when the value is an array
-   * @default false - when the value is a single value
-   */
-  shouldRemainOpenOnValueChange?: boolean | null
+  placeholder?: string | null
 }

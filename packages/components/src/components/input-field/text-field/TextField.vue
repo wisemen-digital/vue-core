@@ -1,6 +1,10 @@
 <script setup lang="ts" generic="TValue extends string">
 import { useId } from 'reka-ui'
-import { computed, ref } from 'vue'
+import {
+  computed,
+  onMounted,
+  ref,
+} from 'vue'
 
 import Collapsable from '@/components/collapsable/Collapsable.vue'
 import Icon from '@/components/icon/Icon.vue'
@@ -23,6 +27,7 @@ const props = withDefaults(defineProps<TextFieldProps>(), {
   isSpellCheckEnabled: false,
   isTouched: false,
   autoComplete: 'off',
+  autoFocus: false,
   errors: null,
   hint: null,
   iconLeft: null,
@@ -57,10 +62,12 @@ const model = defineModel<TValue | null>({
 const themeContext = injectThemeProviderContext()
 const textFieldStyle = useTextFieldStyle()
 
+const inputRef = ref<HTMLInputElement | null>(null)
+
 const isFocused = ref<boolean>(false)
 const isMouseOver = ref<boolean>(false)
 
-const inputId = computed<string>(() => props.id ?? useId())
+const inputId = props.id ?? useId()
 const isHovered = computed<boolean>(() => isMouseOver.value && !props.isDisabled)
 const hasError = computed<boolean>(() => props.errors !== undefined && props.isTouched && props.errors !== null)
 
@@ -142,6 +149,18 @@ function onBlur(): void {
   isFocused.value = false
   emit('blur')
 }
+
+function setInitialFocus(): void {
+  setTimeout(() => {
+    inputRef.value?.focus()
+  })
+}
+
+onMounted(() => {
+  if (props.autoFocus) {
+    setInitialFocus()
+  }
+})
 </script>
 
 <template>
@@ -183,6 +202,7 @@ function onBlur(): void {
 
       <input
         :id="inputId"
+        ref="inputRef"
         v-model="model"
         :data-test-id="props.testId"
         :readonly="props.isReadonly"
@@ -222,7 +242,7 @@ function onBlur(): void {
     </div>
 
     <slot name="bottom">
-      <Collapsable>
+      <Collapsable :is-visible="hasError || props.hint !== null">
         <div v-if="hasError">
           <slot name="error">
             <InputFieldError

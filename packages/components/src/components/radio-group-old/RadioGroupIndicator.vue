@@ -2,8 +2,8 @@
 import { RadioGroupIndicator } from 'reka-ui'
 import { computed } from 'vue'
 
-import { injectRadioGroupContext } from '@/components/radio-group/radioGroup.context'
-import { injectRadioGroupItemContext } from '@/components/radio-group/radioGroupItem.context'
+import { injectRadioGroupContext } from '@/components/radio-group-old/radioGroup.context'
+import { injectRadioGroupItemContext } from '@/components/radio-group-old/radioGroupItem.context'
 
 import { radioGroupStyle } from './radioGroup.style'
 

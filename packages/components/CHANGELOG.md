@@ -1,5 +1,37 @@
 # Changelog
 
+## [alpha.16]
+
+### Breaking Changes
+
+- **VcSkeletonItem**
+  - Rename `should-shimmer` prop to `shimmer`.
+
+### Improvements
+
+- **VcAutocomplete**
+  - Improve internal logic to determine when to show the dropdown.
+
+- **VcCheckbox**
+  - Fix styling
+  - Export `VcCheckboxIndicator` component
+
+### Features
+
+- **VcTimeField**
+  - Add new time field component.
+
+- **VcCheckboxGroup**
+  - Add new checkbox group component.
+
+- **VcAutocomplete**
+  - Add `clearSearchOnSelection` prop.
+
+### Bug fixes
+
+- **VcAutocomplete**
+  - Fix `isDisabled` prop not working correctly.
+
 ## [alpha.15]
 
 ### Breaking Changes
@@ -12,10 +44,13 @@
 
 - **VcDialog**
 - **VcDrawer**
-  - Fix a bug with `dialog.open` or `drawer.open` throwing an error when `id` was not provided.
+  - Fix `dialog.open` or `drawer.open` throwing an error when `id` is not provided.
+
+- **VcDialog**
+  - Fix the dialog transition ease.
 
 - **VcSkeletonItem**
-  - Fix a bug where the shimmer animation was not working correctly.
+  - Fix the shimmer animation not working correctly.
 
 
 ## [alpha.14]

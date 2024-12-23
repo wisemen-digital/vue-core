@@ -52,12 +52,15 @@ export function usePagination<TFilters>({
       ...(userOptions.filters ?? {}),
     } as PaginationFilters<TFilters>
 
+    const search = currentOptions.search ?? userOptions.search ?? ''
+
     return {
       filters: mergedFilters,
       pagination: {
         ...currentOptions.pagination,
         ...userOptions.pagination,
       },
+      search: search.trim().length > 0 ? search : undefined,
       sort: currentOptions.sort ?? userOptions.sort ?? undefined,
       staticFilters: {
         ...currentOptions.staticFilters,

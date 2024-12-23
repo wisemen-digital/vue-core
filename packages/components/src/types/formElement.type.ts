@@ -5,12 +5,12 @@ export interface FormElementProps {
    * The id of the input.
    * @default null
    */
-  id?: null | string
+  id?: string | null
   /**
    * The test id of the input.
    * @default null
    */
-  testId?: null | string
+  testId?: string | null
   /**
    * Whether the input is disabled.
    * @default false
@@ -40,10 +40,10 @@ export interface FormElementProps {
    * The hint text of the input.
    * @default null
    */
-  hint?: null | string
+  hint?: string | null
   /**
    * The label of the input.
    * @default null
    */
-  label?: null | string
+  label?: string | null
 }
