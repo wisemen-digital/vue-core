@@ -13,7 +13,7 @@ const dialog = useDialog({
 <template>
   <!-- Make sure to bind the trigger id to the button for correct focus management -->
   <VcButton
-    v-bind="dialog.triggerProps.value"
+    v-bind="dialog.getTriggerProps()"
     @click="dialog.open()"
   >
     Open dialog

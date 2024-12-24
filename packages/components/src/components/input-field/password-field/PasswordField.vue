@@ -54,20 +54,33 @@ const buttonLabel = computed<string>(() => (
     v-model="model"
     :type="inputType"
   >
-    <template #label>
-      <slot name="label" />
+    <template #label="{ label }">
+      <slot
+        :label="label"
+        name="label"
+      />
     </template>
 
-    <template #error>
-      <slot name="error" />
+    <template #error="{ errors }">
+      <slot
+        :errors="errors"
+        name="error"
+      />
     </template>
 
-    <template #hint>
-      <slot name="hint" />
+    <template #hint="{ hint }">
+      <slot
+        :hint="hint"
+        name="hint"
+      />
     </template>
 
-    <template #bottom>
-      <slot name="bottom" />
+    <template #bottom="{ errors, hint }">
+      <slot
+        :errors="errors"
+        :hint="hint"
+        name="bottom"
+      />
     </template>
 
     <template #right>

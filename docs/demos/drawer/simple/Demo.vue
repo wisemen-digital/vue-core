@@ -13,7 +13,7 @@ const drawer = useDrawer({
 <template>
   <!-- Make sure to bind the trigger id to the button for correct focus management -->
   <VcButton
-    v-bind="drawer.triggerProps.value"
+    v-bind="drawer.getTriggerProps()"
     @click="drawer.open()"
   >
     Open drawer

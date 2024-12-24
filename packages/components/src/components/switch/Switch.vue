@@ -163,9 +163,8 @@ function onBlur(e: Event): void {
           :as-child="true"
           :layout="true"
           :transition="{
-            type: 'spring',
-            stiffness: 700,
-            damping: 40,
+            duration: 0.22,
+            ease: 'easeInOut',
           }"
           :data-animation-state="model"
         >

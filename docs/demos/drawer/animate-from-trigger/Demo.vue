@@ -12,7 +12,7 @@ const drawer = useDrawer({
 
 <template>
   <VcButton
-    v-bind="drawer.triggerProps.value"
+    v-bind="drawer.getTriggerProps()"
     @click="drawer.open()"
   >
     Open drawer

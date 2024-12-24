@@ -13,6 +13,7 @@ import { useTextFieldStyle } from '@/components/input-field/text-field/textField
 import Spinner from '@/components/spinner/Spinner.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { useAriaDescribedBy } from '@/composables/aria-described-by/ariaDescribedBy.composable'
+import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
 const props = withDefaults(defineProps<TextFieldProps>(), {
   id: null,
@@ -41,12 +42,12 @@ const emit = defineEmits<{
 }>()
 
 defineSlots<{
-  'bottom': () => void
-  'error': () => null
-  'hint': () => null
+  'bottom': ({ errors, hint }: { errors: FormFieldErrors | null, hint: string | null }) => void
+  'error': ({ errors }: { errors: FormFieldErrors | null }) => void
+  'hint': ({ hint }: { hint: string | null }) => void
   'icon-left': () => null
   'icon-right': () => null
-  'label': () => void
+  'label': ({ label }: { label: string | null }) => void
   'left': () => null
   'loader': () => null
   'right': () => null
@@ -156,20 +157,33 @@ onMounted(() => {
     :label="props.label"
     class="text-field-default"
   >
-    <template #label>
-      <slot name="label" />
+    <template #label="{ label }">
+      <slot
+        :label="label"
+        name="label"
+      />
     </template>
 
-    <template #error>
-      <slot name="error" />
+    <template #error="{ errors }">
+      <slot
+        :errors="errors"
+        name="error"
+      />
     </template>
 
-    <template #hint>
-      <slot name="hint" />
+    <template #hint="{ hint }">
+      <slot
+        :hint="hint"
+        name="hint"
+      />
     </template>
 
-    <template #bottom>
-      <slot name="bottom" />
+    <template #bottom="{ errors, hint }">
+      <slot
+        :errors="errors"
+        :hint="hint"
+        name="bottom"
+      />
     </template>
 
     <div

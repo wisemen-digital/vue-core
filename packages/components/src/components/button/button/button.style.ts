@@ -82,7 +82,7 @@ export const useButtonStyle = tv({
     isDisabled: {
       true: {
         base: new StyleBuilder()
-          .withClasses('cursor-not-allowed')
+          .withClasses('!cursor-not-allowed')
           .withBorder('border-(--button-border-color-disabled)')
           .withBackgroundColor('bg-(--button-bg-color-disabled)')
           .withColor('text-(color:--button-text-color-disabled)')

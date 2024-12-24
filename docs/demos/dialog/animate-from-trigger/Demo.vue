@@ -9,7 +9,7 @@ const dialog = useDialog({
 
 <template>
   <VcButton
-    v-bind="dialog.triggerProps.value"
+    v-bind="dialog.getTriggerProps()"
     @click="dialog.open()"
   >
     Open dialog

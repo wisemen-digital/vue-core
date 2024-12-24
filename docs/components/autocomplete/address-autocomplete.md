@@ -2,7 +2,7 @@
 sidebar: auto
 ---
 
-# AddressAutocomplete <Badge type="warning" text="Requires testing" />
+# AddressAutocomplete
 
 ## Description
 

@@ -6,7 +6,6 @@ export default {
       includeFiles: [
         /vp-doc\.css/,
         /base\.css/,
-      // eslint-disable-next-line ts/explicit-function-return-type
       ], transform(prefix, _selector) {
         const [
           selector,

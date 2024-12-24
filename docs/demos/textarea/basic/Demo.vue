@@ -9,5 +9,7 @@ const value = ref<null | string>(null)
   <VcTextarea
     v-model="value"
     class="w-72"
+    label="Bio"
+    placeholder="Write a short bio"
   />
 </template>

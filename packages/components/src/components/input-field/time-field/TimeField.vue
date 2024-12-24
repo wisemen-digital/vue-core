@@ -10,14 +10,11 @@ import {
   useId,
 } from 'vue'
 
-import Collapsable from '@/components/collapsable/Collapsable.vue'
 import { injectConfigContext } from '@/components/config-provider/config.context'
 import Icon from '@/components/icon/Icon.vue'
+import InputField from '@/components/input-field/InputField.vue'
 import type { TextFieldProps } from '@/components/input-field/text-field/textField.props'
 import { useTextFieldStyle } from '@/components/input-field/text-field/textField.style'
-import InputFieldError from '@/components/input-field-error/InputFieldError.vue'
-import InputFieldHint from '@/components/input-field-hint/InputFieldHint.vue'
-import InputFieldLabel from '@/components/input-field-label/InputFieldLabel.vue'
 import Spinner from '@/components/spinner/Spinner.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { useAriaDescribedBy } from '@/composables/aria-described-by/ariaDescribedBy.composable'
@@ -52,7 +49,7 @@ defineSlots<{
   'hint': () => null
   'icon-left': () => null
   'icon-right': () => null
-  'label': (props: { inputId: string }) => void
+  'label': () => void
   'left': () => null
   'loader': () => null
   'right': () => null
@@ -141,13 +138,6 @@ const iconRightClasses = computed<string>(() => textFieldStyle.iconRight({
   isHovered: isHovered.value,
 }))
 
-const inputLabelClasses = computed<string>(() => textFieldStyle.inputLabel({
-  hasError: hasError.value,
-  isDisabled: props.isDisabled,
-  isFocused: isFocused.value,
-  isHovered: isHovered.value,
-}))
-
 const loaderBoxClasses = computed<string>(() => textFieldStyle.loaderBox())
 
 const loaderClasses = computed<string>(() => textFieldStyle.loader({
@@ -156,15 +146,6 @@ const loaderClasses = computed<string>(() => textFieldStyle.loader({
   isFocused: isFocused.value,
   isHovered: isHovered.value,
 }))
-
-const hintClasses = computed<string>(() => textFieldStyle.hint({
-  hasError: hasError.value,
-  isDisabled: props.isDisabled,
-  isFocused: isFocused.value,
-  isHovered: isHovered.value,
-}))
-
-const errorClasses = computed<string>(() => textFieldStyle.error())
 
 function onMouseEnter(): void {
   isMouseOver.value = true
@@ -193,23 +174,45 @@ function onBlur(): void {
 </script>
 
 <template>
-  <div
+  <InputField
+    :input-id="inputId"
+    :is-required="props.isRequired"
+    :is-touched="props.isTouched"
+    :errors="props.errors"
+    :hint="props.hint"
+    :label="props.label"
     :style="props.styleConfig"
     :class="themeContext.theme.value"
-    class="text-field-default input-field-label-default input-field-error-default input-field-hint-default icon-default"
+    class="text-field-default"
   >
-    <slot
-      v-if="props.label !== null"
-      :input-id="inputId"
-      name="label"
-    >
-      <InputFieldLabel
-        :for="inputId"
-        :label="props.label"
-        :is-required="props.isRequired"
-        :class="inputLabelClasses"
+    <template #label="{ label }">
+      <slot
+        :label="label"
+        name="label"
       />
-    </slot>
+    </template>
+
+    <template #error="{ errors }">
+      <slot
+        :errors="errors"
+        name="error"
+      />
+    </template>
+
+    <template #hint="{ hint }">
+      <slot
+        :hint="hint"
+        name="hint"
+      />
+    </template>
+
+    <template #bottom="{ errors, hint }">
+      <slot
+        :errors="errors"
+        :hint="hint"
+        name="bottom"
+      />
+    </template>
 
     <div
       :class="boxClasses"
@@ -289,29 +292,5 @@ function onBlur(): void {
         />
       </slot>
     </div>
-
-    <slot name="bottom">
-      <Collapsable :is-visible="hasError || props.hint !== null">
-        <div v-if="hasError">
-          <slot name="error">
-            <InputFieldError
-              :errors="props.errors"
-              :class="errorClasses"
-              :input-id="inputId"
-            />
-          </slot>
-        </div>
-
-        <div v-else-if="props.hint !== null">
-          <slot name="hint">
-            <InputFieldHint
-              :input-id="inputId"
-              :hint="props.hint"
-              :class="hintClasses"
-            />
-          </slot>
-        </div>
-      </Collapsable>
-    </slot>
-  </div>
+  </InputField>
 </template>

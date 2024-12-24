@@ -46,4 +46,9 @@ You can add icons to the left and right side of the text field by using the `ico
 
 <ComponentPreview name="text-field/with-icons" />
 
+### Custom
+You can customize the text field component by using the provided slots.
+
+<ComponentPreview name="text-field/custom" />
+
 <!-- @include: ./text-field-meta.md -->

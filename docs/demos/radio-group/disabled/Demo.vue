@@ -1,20 +1,21 @@
 <script setup lang="ts">
-import { type RadioGroupItem, VcRadioGroup } from '@wisemen/vue-core'
+import { VcRadioGroup, VcRadioGroupItem } from '@wisemen/vue-core'
 import { ref } from 'vue'
 
-const selectedItem = ref<null | string>('Apple')
+const selectedItem = ref<string>('Apple')
 
-const items: RadioGroupItem<string>[] = [
+const items = [
   {
     label: 'Apple',
     value: 'Apple',
   },
   {
     label: 'Banana',
+    hint: 'This option is disabled.',
     value: 'Banana',
+    isDisabled: true,
   },
   {
-    hint: 'This is a hint.',
     label: 'Blueberry',
     value: 'Blueberry',
   },
@@ -24,9 +25,20 @@ const items: RadioGroupItem<string>[] = [
 <template>
   <VcRadioGroup
     v-model="selectedItem"
-    :is-disabled="true"
+    :errors="{
+      _errors: ['This is an error message.'],
+    }"
     :items="items"
     label="Radio Group"
     hint="This is a radio group."
-  />
+  >
+    <VcRadioGroupItem 
+      v-for="item of items" 
+      :key="item.label"
+      :value="item.value" 
+      :label="item.label" 
+      :hint="item.hint"
+      :is-disabled="item.isDisabled"
+    />
+  </VcRadioGroup>
 </template>

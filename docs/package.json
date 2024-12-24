@@ -2,7 +2,7 @@
   "name": "docs",
   "type": "module",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is the documentation for the Wisemen vue-core library.",
   "author": "",
   "license": "ISC",
   "keywords": [],

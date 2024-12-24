@@ -21,7 +21,10 @@ const hasError = computed<boolean>(() => props.errors !== undefined && props.err
 
 <template>
   <div>
-    <slot name="label">
+    <slot
+      :label="label"
+      name="label"
+    >
       <InputFieldLabel
         :for="inputId"
         :label="label"
@@ -31,10 +34,17 @@ const hasError = computed<boolean>(() => props.errors !== undefined && props.err
 
     <slot />
 
-    <slot name="bottom">
+    <slot
+      :errors="errors"
+      :hint="hint"
+      name="bottom"
+    >
       <Collapsable>
         <div v-if="hasError">
-          <slot name="error">
+          <slot
+            :errors="errors"
+            name="error"
+          >
             <InputFieldError
               :errors="errors"
               :input-id="inputId"
@@ -43,7 +53,10 @@ const hasError = computed<boolean>(() => props.errors !== undefined && props.err
         </div>
 
         <div v-else-if="hint !== null">
-          <slot name="hint">
+          <slot
+            :hint="hint"
+            name="hint"
+          >
             <InputFieldHint
               :input-id="inputId"
               :hint="hint"

@@ -4,6 +4,8 @@ import { computed, ref } from 'vue'
 import Checkbox from '@/components/checkbox/Checkbox.vue'
 import ConfigProvider from '@/components/config-provider/ConfigProvider.vue'
 import TextField from '@/components/input-field/text-field/TextField.vue'
+import RadioGroup from '@/components/radio-group/RadioGroup.vue'
+import RadioGroupItem from '@/components/radio-group/RadioGroupItem.vue'
 import Select from '@/components/select-v2/Select.vue'
 import ThemeProvider from '@/components/theme-provider/ThemeProvider.vue'
 import { setupDefaultStyles } from '@/styling/setupDefaultStyles'
@@ -32,6 +34,26 @@ const selectItems = computed<SelectItem<string>[]>(() => [
   },
 ])
 
+const selectedItem = ref<string>('Apple')
+
+const radioItems = [
+  {
+    label: 'Apple',
+    value: 'Apple',
+  },
+  {
+    isDisabled: true,
+    hint: 'This is a disabled.',
+    label: 'Banana',
+    value: 'Banana',
+  },
+  {
+    hint: 'This is a hint.',
+    label: 'Blueberry',
+    value: 'Blueberry',
+  },
+]
+
 const value = ref<string | null>(null)
 </script>
 
@@ -45,6 +67,27 @@ const value = ref<string | null>(null)
       theme="default"
       class="p-11xl grid grid-cols-2 gap-xl bg-primary min-h-screen"
     >
+      <RadioGroup
+        v-model="selectedItem"
+        :errors="{
+          _errors: ['This is an error message.'],
+        }"
+        :is-disabled="false"
+        :items="items"
+        label="Radio Group"
+        hint="This is a radio group."
+      >
+        <RadioGroupItem
+          v-for="item of radioItems"
+          :key="item.label"
+          :value="item.value"
+        >
+          <div class="group-data-[state=checked]:bg-brand-primary-500">
+            content
+          </div>
+        </RadioGroupItem>
+      </RadioGroup>
+
       <Checkbox label="Checkbox" />
 
       <TextField

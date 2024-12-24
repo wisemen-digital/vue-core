@@ -43,7 +43,6 @@ export const useTextFieldStyle = tv({
     isDisabled: {
       true: {
         box: new StyleBuilder()
-          .withColor('cursor-not-allowed')
           .withBorder('border-b-(--text-field-border-bottom-color-disabled) border-l-(--text-field-border-left-color-disabled) border-r-(--text-field-border-right-color-disabled) border-t-(--text-field-border-top-color-disabled)')
           .withBackgroundColor('bg-(--text-field-bg-color-disabled)')
           .withShadow('shadow-(--text-field-shadow-disabled)')
@@ -55,7 +54,7 @@ export const useTextFieldStyle = tv({
           .withColor('text-(color:--text-field-icon-color-disabled)')
           .build(),
         input: new StyleBuilder()
-          .withClasses('cursor-not-allowed')
+          .withClasses('!cursor-not-allowed')
           .withColor('text-(color:--text-field-text-color-disabled)')
           .withPlaceholderColor('placeholder:text-(color:--text-field-placeholder-color-disabled)')
           .build(),
