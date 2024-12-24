@@ -1,6 +1,5 @@
 import type { Icon } from '@/icons/icons'
 import type { PopperProps } from '@/types'
-import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 import type {
   SelectOption,
   SelectValue,
@@ -62,7 +61,7 @@ export interface AutocompleteProps<
   /**
    * The errors associated with the input.
    */
-  errors?: FormFieldErrors | null
+  errors?: string[]
   /**
    * Whether the clear button should be hidden.
    * @default false

@@ -36,7 +36,7 @@ const props = withDefaults(defineProps<SelectProps<TValue>>(), {
   isReadonly: false,
   isRequired: false,
   isTouched: false,
-  errors: null,
+  errors: () => [],
   filterFn: null,
   hint: null,
   iconLeft: null,
@@ -91,7 +91,7 @@ const isFocused = ref<boolean>(false)
 const isMouseOver = ref<boolean>(false)
 
 const isHovered = computed<boolean>(() => isMouseOver.value && !props.isDisabled)
-const hasError = computed<boolean>(() => props.errors !== undefined && props.isTouched && props.errors !== null)
+const hasError = computed<boolean>(() => props.isTouched && props.errors.length > 0)
 const isMultiple = computed<boolean>(() => Array.isArray(model.value))
 
 const filteredItems = computed<SelectItem<TValue extends Array<infer U> ? U : TValue>[]>(() => {

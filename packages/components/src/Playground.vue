@@ -7,6 +7,7 @@ import TextField from '@/components/input-field/text-field/TextField.vue'
 import RadioGroup from '@/components/radio-group/RadioGroup.vue'
 import RadioGroupItem from '@/components/radio-group/RadioGroupItem.vue'
 import Select from '@/components/select-v2/Select.vue'
+import Switch from '@/components/switch/Switch.vue'
 import ThemeProvider from '@/components/theme-provider/ThemeProvider.vue'
 import { setupDefaultStyles } from '@/styling/setupDefaultStyles'
 import type { SelectItem } from '@/types/select.type'
@@ -55,6 +56,7 @@ const radioItems = [
 ]
 
 const value = ref<string | null>(null)
+const switchValue = ref<boolean>(false)
 </script>
 
 <template>
@@ -67,11 +69,21 @@ const value = ref<string | null>(null)
       theme="default"
       class="p-11xl grid grid-cols-2 gap-xl bg-primary min-h-screen"
     >
+      <Switch
+        v-model="switchValue"
+        icon-checked="check"
+        icon-unchecked="close"
+        label="Switch"
+      />
+
+      <Checkbox
+        v-model="switchValue"
+        label="Checkbox"
+      />
+
       <RadioGroup
         v-model="selectedItem"
-        :errors="{
-          _errors: ['This is an error message.'],
-        }"
+        :errors="['This is an error message.']"
         :is-disabled="false"
         :items="items"
         label="Radio Group"
@@ -93,9 +105,7 @@ const value = ref<string | null>(null)
       <TextField
         v-model="value"
         :is-touched="true"
-        :errors="{
-          _errors: ['This is an error message.'],
-        }"
+        :errors="['This is an error message.']"
         icon-left="alertCircle"
         label="Label"
       />

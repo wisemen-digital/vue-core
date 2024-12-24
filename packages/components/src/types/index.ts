@@ -8,7 +8,6 @@ export type {
   DropdownMenuSeparator,
   DropdownMenuSubMenu,
 } from './dropdownMenu.type'
-export type { FormFieldErrors } from './formFieldErrors.type'
 export type {
   KeyboardKey,
   KeyboardShortcut,

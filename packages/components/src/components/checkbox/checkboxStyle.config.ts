@@ -103,7 +103,7 @@ export function setupDefaultCheckboxStyles(): void {
       '--checkbox-indicator-color-hover': 'var(--fg-white)',
       '--checkbox-indicator-color-indeterminate': 'var(--fg-white)',
       '--checkbox-indicator-size-default': '0.875rem',
-      '--checkbox-label-font-size-default': 'var(--text-md)',
+      '--checkbox-label-font-size-default': 'var(--text-sm)',
 
       '--checkbox-label-font-weight-default': 'var(--font-weight-medium)',
 

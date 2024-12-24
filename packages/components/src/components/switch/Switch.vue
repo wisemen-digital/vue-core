@@ -24,7 +24,7 @@ const props = withDefaults(defineProps<SwitchProps>(), {
   isReadonly: false,
   isRequired: false,
   isTouched: false,
-  errors: null,
+  errors: () => [],
   hint: null,
   iconChecked: null,
   iconUnchecked: null,
@@ -54,7 +54,7 @@ const inputId = props.id ?? useId()
 const isHovered = computed<boolean>(() => isMouseOver.value && !props.isDisabled)
 const isChecked = computed<boolean>(() => model.value)
 const isDisabled = computed<boolean>(() => props.isDisabled || props.isReadonly)
-const hasError = computed<boolean>(() => props.errors !== undefined && props.isTouched && props.errors !== null)
+const hasError = computed<boolean>(() => props.isTouched && props.errors.length > 0)
 
 const ariaDescribedBy = useAriaDescribedBy({
   id: inputId,
@@ -163,8 +163,7 @@ function onBlur(e: Event): void {
           :as-child="true"
           :layout="true"
           :transition="{
-            duration: 0.22,
-            ease: 'easeInOut',
+            duration: 0.2,
           }"
           :data-animation-state="model"
         >

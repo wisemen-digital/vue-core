@@ -3,14 +3,14 @@ import { computed } from 'vue'
 
 import { inputFieldErrorStyle } from '@/components/input-field-error/inputFieldError.style'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
-import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 import type { StyleConfig } from '@/types/style.type'
 
 const props = withDefaults(defineProps<{
   inputId: string
-  errors: FormFieldErrors | null
+  errors: string[]
   styleConfig?: StyleConfig<'inputFieldError'> | null
 }>(), {
+  errors: () => [],
   styleConfig: null,
 })
 
@@ -22,6 +22,7 @@ const errorClasses = computed<string>(() => style.error())
 
 <template>
   <span
+    v-if="props.errors.length > 0"
     :id="`${props.inputId}-error`"
     :class="[errorClasses, themeProviderContext.theme.value]"
     :style="props.styleConfig"
@@ -29,6 +30,6 @@ const errorClasses = computed<string>(() => style.error())
     role="alert"
     class="input-field-error-default"
   >
-    {{ props.errors?._errors[0] }}
+    {{ props.errors[0] }}
   </span>
 </template>

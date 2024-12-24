@@ -34,7 +34,7 @@ const props = withDefaults(defineProps<PhoneNumberFieldProps>(), {
   isTouched: false,
   autoComplete: 'off',
   defaultCountryCode: 'BE',
-  errors: null,
+  errors: () => [],
   hint: null,
   iconLeft: null,
   iconRight: null,

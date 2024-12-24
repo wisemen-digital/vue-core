@@ -30,7 +30,7 @@ const props = withDefaults(defineProps<Omit<TextFieldProps, 'autocomplete' | 'pl
   isTouched: false,
   autoComplete: 'off',
   autoFocus: false,
-  errors: null,
+  errors: () => [],
   hint: null,
   iconLeft: null,
   iconRight: null,
@@ -100,7 +100,7 @@ const textFieldStyle = useTextFieldStyle()
 
 const inputId = props.id ?? useId()
 const isHovered = computed<boolean>(() => isMouseOver.value && !props.isDisabled)
-const hasError = computed<boolean>(() => props.errors !== undefined && props.isTouched && props.errors !== null)
+const hasError = computed<boolean>(() => props.isTouched && props.errors.length > 0)
 
 const ariaDescribedBy = useAriaDescribedBy({
   id: inputId,

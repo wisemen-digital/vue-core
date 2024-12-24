@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<TextareaProps>(), {
   isRequired: false,
   isSpellCheckEnabled: false,
   isTouched: false,
-  errors: null,
+  errors: () => [],
   hint: null,
   label: null,
   placeholder: null,
@@ -43,7 +43,7 @@ const style = textareaStyle()
 
 const inputId = props.id ?? useId()
 const isHovered = computed<boolean>(() => isMouseOver.value && !props.isDisabled)
-const hasError = computed<boolean>(() => props.errors !== undefined && props.isTouched && props.errors !== null)
+const hasError = computed<boolean>(() => props.isTouched && props.errors.length > 0)
 
 const ariaDescribedBy = useAriaDescribedBy({
   id: inputId,

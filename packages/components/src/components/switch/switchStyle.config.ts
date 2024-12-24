@@ -103,7 +103,7 @@ export function setupDefaultSwitchStyles(): void {
       '--switch-icon-color-hover': 'var(--fg-tertiary)',
       '--switch-icon-size-default': 'calc(var(--switch-thumb-size-default)/1.5)',
 
-      '--switch-label-font-size-default': 'var(--text-md)',
+      '--switch-label-font-size-default': 'var(--text-sm)',
       '--switch-label-font-weight-default': 'var(--font-weight-medium)',
       '--switch-label-spacing-default': 'var(--spacing-lg)',
       '--switch-label-text-color-checked': 'var(--text-primary)',

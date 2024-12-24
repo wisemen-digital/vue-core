@@ -13,7 +13,6 @@ import { useTextFieldStyle } from '@/components/input-field/text-field/textField
 import Spinner from '@/components/spinner/Spinner.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { useAriaDescribedBy } from '@/composables/aria-described-by/ariaDescribedBy.composable'
-import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
 const props = withDefaults(defineProps<TextFieldProps>(), {
   id: null,
@@ -26,7 +25,7 @@ const props = withDefaults(defineProps<TextFieldProps>(), {
   isTouched: false,
   autoComplete: 'off',
   autoFocus: false,
-  errors: null,
+  errors: () => [],
   hint: null,
   iconLeft: null,
   iconRight: null,
@@ -42,8 +41,8 @@ const emit = defineEmits<{
 }>()
 
 defineSlots<{
-  'bottom': ({ errors, hint }: { errors: FormFieldErrors | null, hint: string | null }) => void
-  'error': ({ errors }: { errors: FormFieldErrors | null }) => void
+  'bottom': ({ errors, hint }: { errors: string[], hint: string | null }) => void
+  'error': ({ errors }: { errors: string[] }) => void
   'hint': ({ hint }: { hint: string | null }) => void
   'icon-left': () => null
   'icon-right': () => null
@@ -67,7 +66,7 @@ const isMouseOver = ref<boolean>(false)
 
 const inputId = props.id ?? useId()
 const isHovered = computed<boolean>(() => isMouseOver.value && !props.isDisabled)
-const hasError = computed<boolean>(() => props.errors !== undefined && props.isTouched && props.errors !== null)
+const hasError = computed<boolean>(() => props.isTouched && props.errors.length > 0)
 
 const ariaDescribedBy = useAriaDescribedBy({
   id: inputId,

@@ -1,5 +1,3 @@
-import type { FormFieldErrors } from '@/types/formFieldErrors.type'
-
 export interface FormElementProps {
   /**
    * The id of the input.
@@ -33,9 +31,9 @@ export interface FormElementProps {
   isTouched?: boolean
   /**
    * The errors associated with the input.
-   * @default null
+   * @default []
    */
-  errors?: FormFieldErrors | null
+  errors?: string[]
   /**
    * The hint text of the input.
    * @default null

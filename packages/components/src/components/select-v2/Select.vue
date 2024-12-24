@@ -21,7 +21,7 @@ const props = withDefaults(defineProps<SelectProps<TValue>>(), {
   isReadonly: false,
   isRequired: false,
   isTouched: false,
-  errors: null,
+  errors: () => [],
   filterFn: null,
   hint: null,
   iconLeft: null,

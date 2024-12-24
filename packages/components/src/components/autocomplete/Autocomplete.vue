@@ -27,7 +27,7 @@ const props = withDefaults(defineProps<AutocompleteProps<TValue>>(), {
   isRequired: false,
   isTouched: false,
   clearSearchOnSelection: false,
-  errors: null,
+  errors: () => [],
   hideClearButton: false,
   hint: null,
   iconLeft: null,

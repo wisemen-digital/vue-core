@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<Omit<TextFieldProps, 'iconRight' | 'type'
   isRequired: false,
   isSpellCheckEnabled: false,
   autoComplete: 'off',
-  errors: null,
+  errors: () => [],
   hint: null,
   iconLeft: null,
   label: null,

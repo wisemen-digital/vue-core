@@ -26,7 +26,7 @@ const props = withDefaults(defineProps<CheckboxProps>(), {
   isReadonly: false,
   isRequired: false,
   isTouched: false,
-  errors: null,
+  errors: () => [],
   hint: null,
   label: null,
   styleConfig: null,
@@ -90,7 +90,7 @@ const isMouseOver = ref<boolean>(false)
 
 const isHovered = computed<boolean>(() => isMouseOver.value && !props.isDisabled)
 const isDisabled = computed<boolean>(() => props.isDisabled || props.isReadonly)
-const hasError = computed<boolean>(() => props.errors !== undefined && props.isTouched && props.errors !== null)
+const hasError = computed<boolean>(() => props.isTouched && props.errors.length > 0)
 
 const ariaDescribedBy = useAriaDescribedBy({
   id: inputId,

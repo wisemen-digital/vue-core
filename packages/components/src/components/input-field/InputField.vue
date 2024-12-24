@@ -5,18 +5,17 @@ import Collapsable from '@/components/collapsable/Collapsable.vue'
 import InputFieldError from '@/components/input-field-error/InputFieldError.vue'
 import InputFieldHint from '@/components/input-field-hint/InputFieldHint.vue'
 import InputFieldLabel from '@/components/input-field-label/InputFieldLabel.vue'
-import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 
 const props = defineProps<{
   inputId: string
   isRequired: boolean
   isTouched: boolean
-  errors: FormFieldErrors | null
+  errors: string[]
   hint: string | null
   label: string | null
 }>()
 
-const hasError = computed<boolean>(() => props.errors !== undefined && props.errors !== null && props.isTouched)
+const hasError = computed<boolean>(() => props.errors.length > 0 && props.isTouched)
 </script>
 
 <template>

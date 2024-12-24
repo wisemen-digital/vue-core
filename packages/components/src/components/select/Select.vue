@@ -44,7 +44,7 @@ const props = withDefaults(defineProps<SelectProps<TValue>>(), {
   isReadonly: false,
   isRequired: false,
   isTouched: false,
-  errors: null,
+  errors: () => [],
   filterFn: null,
   hint: null,
   iconLeft: null,
@@ -94,7 +94,7 @@ const computedModel = computed<TValue | undefined>({
 
 const inputId = props.id ?? useId()
 const isHovered = computed<boolean>(() => isMouseOver.value && !props.isDisabled)
-const hasError = computed<boolean>(() => props.errors !== undefined && props.isTouched && props.errors !== null)
+const hasError = computed<boolean>(() => props.isTouched && props.errors.length > 0)
 
 const dropdownContentClasses = computed<string>(() => selectStyle.dropdownContent())
 const listboxContentClasses = computed<string>(() => selectStyle.listboxContent({

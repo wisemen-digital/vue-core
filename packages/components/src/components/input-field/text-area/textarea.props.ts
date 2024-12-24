@@ -1,4 +1,3 @@
-import type { FormFieldErrors } from '@/types/formFieldErrors.type'
 import type { Stylable } from '@/types/stylable.type'
 
 export interface TextareaProps extends Stylable<'textarea'> {
@@ -39,7 +38,7 @@ export interface TextareaProps extends Stylable<'textarea'> {
   /**
    * The errors associated with the input.
    */
-  errors?: FormFieldErrors | null
+  errors?: string[]
   /**
    * The hint text of the input.
    * @default null
