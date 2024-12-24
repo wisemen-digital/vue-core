@@ -1,9 +1,7 @@
 import { resolve } from 'node:path'
-
 import { defineConfig } from 'vitepress'
 
 import ComponentPreviewPlugin from './plugins/ComponentPreview'
-import tailwindcss from '@tailwindcss/vite'
 
 const guide = [
   {
@@ -19,13 +17,6 @@ const guide = [
     text: 'Styling API',
   },
 ]
-
-// const query = [
-//   {
-//     link: '/query/getting-started',
-//     text: 'Getting started',
-//   },
-// ]
 
 const docs = [
   {
@@ -107,17 +98,14 @@ export default defineConfig({
   base: '/vue-core/',
   description: 'Vue Core',
   themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
     nav: [
       { link: '/', text: 'Home' },
-      { link: '/markdown-examples', text: 'Examples' },
+      // { link: '/markdown-examples', text: 'Examples' },
     ],
 
-    search: {
-      provider: 'local',
-    },
-
-    darkModeSwitchLabel: undefined,
+    // search: {
+    //   provider: 'local',
+    // },
 
     sidebar: [
       {
