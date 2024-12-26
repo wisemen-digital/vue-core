@@ -42,6 +42,7 @@ const props = withDefaults(defineProps<DateFieldProps>(), {
   areYearArrowsHidden: false,
   autoFocus: false,
   errors: () => [],
+  hideDropdownTrigger: false,
   hint: null,
   iconLeft: null,
   iconRight: null,
@@ -62,6 +63,7 @@ const emit = defineEmits<{
 
 defineSlots<{
   'bottom': () => void
+  'date': ({ date }: { date: Date }) => void
   'error': () => null
   'hint': () => null
   'icon-left': () => null
@@ -283,11 +285,11 @@ function onBlur(): void {
         </DateFieldRoot>
 
         <div>
-          <PopoverTrigger>
+          <PopoverTrigger v-if="!props.hideDropdownTrigger">
             <IconButton
               :style-config="{
                 '--icon-button-size-default': '2rem',
-                '--icon-button-icon-size-default': '1rem',
+                '--icon-button-icon-size-default': '1.125rem',
                 '--icon-button-ring-color-focus': 'transparent',
                 '--icon-button-bg-color-focus': 'var(--bg-secondary-hover)',
                 '--icon-button-bg-color-disabled': 'transparent',
@@ -296,7 +298,6 @@ function onBlur(): void {
               :is-disabled="props.isDisabled"
               icon="dateFieldIconRight"
               label="Open"
-              size="sm"
               class="mr-[0.1875rem] shrink-0"
               variant="tertiary"
             />
@@ -332,7 +333,14 @@ function onBlur(): void {
             :are-year-arrows-hidden="props.areYearArrowsHidden"
             :default-placeholder-date="props.defaultPlaceholderDate"
             :is-date-disabled="props.isDateDisabled"
-          />
+          >
+            <template #date="{ date }">
+              <slot
+                :date="date"
+                name="date"
+              />
+            </template>
+          </Calendar>
         </div>
       </template>
     </Popover>

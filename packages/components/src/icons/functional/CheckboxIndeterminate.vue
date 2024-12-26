@@ -7,9 +7,9 @@
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      d="M10 3L4.5 8.5L2 6"
+      d="M2.5 6H9.5"
       stroke="currentColor"
-      stroke-width="1.6666"
+      stroke-width="1.66666"
       stroke-linecap="round"
       stroke-linejoin="round"
     />

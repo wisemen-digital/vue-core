@@ -4,4 +4,10 @@ import type { PopperProps } from '@/types'
 
 export interface DateFieldProps extends Omit<TextFieldProps, 'autocomplete' | 'placeholder' | 'type'>,
   CalendarProps,
-  PopperProps {}
+  PopperProps {
+  /**
+   * Whether the dropdown trigger should be hidden.
+   * @default false
+   */
+  hideDropdownTrigger?: boolean
+}

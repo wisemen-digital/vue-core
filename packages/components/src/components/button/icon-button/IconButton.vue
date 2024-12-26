@@ -76,15 +76,24 @@ const {
     @keyup="onKeyUp"
     @click="onClick"
   >
-    <Icon
-      :icon="props.icon"
-      :class="[
-        iconClasses,
-        {
-          'opacity-0': props.isLoading,
-        },
-      ]"
-    />
+    <Transition
+      enter-from-class="opacity-0 scale-75"
+      leave-to-class="opacity-0 scale-75"
+      enter-active-class="duration-200"
+      leave-active-class="duration-200 absolute"
+    >
+      <div :key="props.icon">
+        <Icon
+          :icon="props.icon"
+          :class="[
+            iconClasses,
+            {
+              'opacity-0': props.isLoading,
+            },
+          ]"
+        />
+      </div>
+    </Transition>
 
     <Transition
       enter-from-class="opacity-0"

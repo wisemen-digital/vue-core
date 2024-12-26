@@ -188,7 +188,79 @@ watch(placeholderYear, () => {
     :class="themeProviderContext.theme.value"
   >
     <Collapsable2>
-      <div v-if="activeView === 'day'">
+      <div
+        v-if="activeView === 'day'"
+        class="flex flex-col-reverse"
+      >
+        <CalendarGrid
+          v-for="month in grid"
+          :key="month.value.toString()"
+          class="w-full"
+        >
+          <CalendarGridHead>
+            <CalendarGridRow class="grid w-full grid-cols-7 py-4">
+              <CalendarHeadCell
+                v-for="day in weekDays"
+                :key="day"
+                class="text-sm font-medium text-quaternary"
+              >
+                {{ day }}
+              </CalendarHeadCell>
+            </CalendarGridRow>
+          </CalendarGridHead>
+
+          <CalendarGridBody class="grid gap-y-1">
+            <CalendarGridRow
+              v-for="(weekDates, index) in month.rows"
+              :key="`weekDate-${index}`"
+              class="grid grid-cols-7"
+            >
+              <CalendarCell
+                v-for="weekDate in weekDates"
+                :key="weekDate.toString()"
+                :date="weekDate"
+                class="relative flex items-center justify-center"
+              >
+                <CalendarCellTrigger
+                  :day="weekDate"
+                  :month="month.value"
+                  class="
+                    overflow-hidden
+                    cursor-pointer flex size-8 items-center justify-center rounded-full text-center text-sm text-tertiary outline-none
+                    duration-100
+                    focus:bg-brand-secondary
+                    focus:text-brand-primary
+                    focus-visible:ring-brand-primary-500
+                    focus-visible:ring-2
+                    ring-offset-1
+                    group
+                    data-[selected]:bg-brand-solid
+                    data-[selected]:text-primary-on-brand
+                    data-[selected]:focus-visible:ring-2
+                    data-[selected]:data-[unavailable]:text-primary-on-brand
+                    data-[today]:bg-secondary-hover
+                    data-[today]:text-primary
+                    data-[today]:focus:bg-brand-secondary
+                    data-[today]:focus:text-brand-primary
+                    data-[disabled]:text-disabled
+                    data-[unavailable]:text-disabled
+                    data-[unavailable]:pointer-events-none
+                    data-[unavailable]:line-through
+                    data-[outside-view]:text-disabled
+                  "
+                >
+                  {{ new Date(weekDate).getDate() }}
+
+                  <slot
+                    :date="new Date(weekDate)"
+                    name="date"
+                  />
+                </CalendarCellTrigger>
+              </CalendarCell>
+            </CalendarGridRow>
+          </CalendarGridBody>
+        </CalendarGrid>
+
         <CalendarHeader class="flex items-center justify-between">
           <div class="flex gap-x-1.5">
             <CalendarPrev
@@ -268,64 +340,6 @@ watch(placeholderYear, () => {
             </CalendarNext>
           </div>
         </CalendarHeader>
-
-        <CalendarGrid
-          v-for="month in grid"
-          :key="month.value.toString()"
-          class="w-full"
-        >
-          <CalendarGridHead>
-            <CalendarGridRow class="grid w-full grid-cols-7 py-4">
-              <CalendarHeadCell
-                v-for="day in weekDays"
-                :key="day"
-                class="text-sm font-medium text-quaternary"
-              >
-                {{ day }}
-              </CalendarHeadCell>
-            </CalendarGridRow>
-          </CalendarGridHead>
-
-          <CalendarGridBody class="grid gap-y-1">
-            <CalendarGridRow
-              v-for="(weekDates, index) in month.rows"
-              :key="`weekDate-${index}`"
-              class="grid grid-cols-7"
-            >
-              <CalendarCell
-                v-for="weekDate in weekDates"
-                :key="weekDate.toString()"
-                :date="weekDate"
-                class="flex items-center justify-center"
-              >
-                <CalendarCellTrigger
-                  :day="weekDate"
-                  :month="month.value"
-                  class="
-                  cursor-pointer flex size-8 items-center justify-center rounded-md text-center text-sm text-tertiary outline-none
-                  duration-100 focus:bg-brand-secondary
-                  focus:text-brand-primary
-                  data-[selected]:!bg-brand-solid
-                  data-[today]:bg-secondary-hover
-                  data-[selected]:!text-primary-on-brand
-                  data-[today]:text-primary
-                  data-[today]:focus:bg-brand-secondary
-                  data-[today]:focus:text-brand-primary
-                  data-[disabled]:text-disabled
-                  data-[unavailable]:text-disabled
-                  data-[unavailable]:cursor-not-allowed
-                  data-[unavailable]:line-through
-                  data-[outside-view]:text-disabled"
-                >
-                  <slot
-                    :date="new Date(weekDate)"
-                    name="date"
-                  />
-                </CalendarCellTrigger>
-              </CalendarCell>
-            </CalendarGridRow>
-          </CalendarGridBody>
-        </CalendarGrid>
       </div>
 
       <div

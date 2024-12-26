@@ -4,6 +4,7 @@ import { computed, ref } from 'vue'
 import Checkbox from '@/components/checkbox/Checkbox.vue'
 import ConfigProvider from '@/components/config-provider/ConfigProvider.vue'
 import DateField from '@/components/input-field/date-field/DateField.vue'
+import PasswordField from '@/components/input-field/password-field/PasswordField.vue'
 import TextField from '@/components/input-field/text-field/TextField.vue'
 import TimeField from '@/components/input-field/time-field/TimeField.vue'
 import RadioGroup from '@/components/radio-group/RadioGroup.vue'
@@ -79,23 +80,37 @@ const locale = navigator.language
       theme="default"
       class="p-11xl grid grid-cols-2 gap-xl bg-primary min-h-screen"
     >
+      <PasswordField
+        :model-value="null"
+        label="Password"
+      />
+
       <DateField
         v-model="date"
         :is-date-disabled="(date) => {
           return date.getDay() === 4
         }"
+        :hide-dropdown-trigger="true"
         class="w-72"
         label="Date field"
         hint="Select a date"
-      />
+      >
+        <template #date="{ date: d }">
+          <div
+            v-if="d.getDay() === 5"
+            class="absolute bottom-1 size-1 bg-black rounded-full left-1/2 -translate-x-1/2 group-data-[selected]:bg-white"
+          />
+        </template>
+      </DateField>
 
       <TimeField :model-value="null" />
 
       <Switch
         v-model="switchValue"
-        icon-checked="check"
+        icon-checked="checkboxIndicator"
         icon-unchecked="close"
         label="Switch"
+        size="sm"
       />
 
       <Checkbox

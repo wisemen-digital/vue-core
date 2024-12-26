@@ -39,7 +39,7 @@ const indicatorClasses = computed<string>(() => checkboxStyle.indicator({
       <CheckboxIndicator>
         <Icon
           :class="indicatorClasses"
-          :icon="checkboxContext.isIndeterminate.value ? 'minus' : 'checkboxIndicator'"
+          :icon="checkboxContext.isIndeterminate.value ? 'checkboxIndeterminate' : 'checkboxIndicator'"
         />
       </CheckboxIndicator>
     </Transition>
