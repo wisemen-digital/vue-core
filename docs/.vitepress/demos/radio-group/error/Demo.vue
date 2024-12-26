@@ -26,19 +26,19 @@ const items = [
     v-model="selectedItem"
     :items="items"
     :is-touched="true"
-    :errors="{
-      _errors: ['This is an error message.'],
-    }"
+    :errors="['This is an error message.']"
     label="Radio Group"
     hint="This is a radio group."
   >
-    <VcRadioGroupItem 
-      v-for="item of items" 
-      :key="item.label"
-      :value="item.value" 
-      :label="item.label" 
-      :is-touched="true"
-      :errors="item.hasError ? { _errors: ['This is an error message.'] } : null"
-    />
+    <div class="flex flex-col gap-y-2">
+      <VcRadioGroupItem 
+        v-for="item of items" 
+        :key="item.label"
+        :value="item.value" 
+        :label="item.label" 
+        :is-touched="true"
+        :errors="item.hasError ? ['This is an error message.'] : []"
+      />
+    </div>
   </VcRadioGroup>
 </template>

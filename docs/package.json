@@ -23,13 +23,13 @@
   },
   "dependencies": {
     "@internationalized/date": "3.5.4",
-    "@tailwindcss/postcss": "0.0.0-development.1",
     "@wisemen/vue-core": "workspace:*",
     "i18n-iso-countries": "7.11.2",
     "vue-router": "4.3.3"
   },
   "devDependencies": {
     "@babel/traverse": "7.24.8",
+    "@tailwindcss/postcss": "4.0.0-beta.8",
     "@tailwindcss/vite": "4.0.0-beta.4",
     "@types/babel__traverse": "7.20.6",
     "@types/dom-view-transitions": "1.0.4",

@@ -2,13 +2,36 @@
 sidebar: auto
 ---
 
-# NumberField
+# Number Field
 
-## Description
+An input field component for a number.
 
-An input field component for a number input.
+## Use cases
 
-## Examples
+<BulletList
+  :items="[
+    {
+      description: 'When you want to allow users to input a number.',
+      variant: 'good',
+    },
+    {
+      description: 'When you want to allow users to input a phone number.',
+      variant: 'bad',
+      link: {
+        label: 'Phone Number Field',
+        href: '/vue-core/components/input-field/phone-number-field',
+      },
+    },
+  ]"
+/>
+
+## Import
+
+```ts
+import { VcNumberField } from '@wisemen/vue-core'
+```
+
+<!-- @include: ./number-field-meta.md -->
 
 ### Basic usage
 The most basic usage of the number field component.
@@ -34,5 +57,3 @@ You can set a step value for the number field component by using the `step` prop
 You can set a format options for the number field component by using the `format-options` prop.
 
 <ComponentPreview name="number-field/format-options" />
-
-<!-- @include: ./number-field-meta.md -->

@@ -2,12 +2,54 @@
 sidebar: auto
 ---
 
-# RadioGroup
+# Radio Group
 
 ## Description
-A radio group component where you can select 1 value of a set of options.
 
-## Examples
+A radio group component where you can select one value of a set of options.
+
+## Use cases
+
+<BulletList
+  :items="[
+    {
+      description: 'When you want to allow users to select a single option from a short list of options.',
+      variant: 'good',
+    },
+    {
+      description: 'When selecting an option is not required.',
+      variant: 'bad',
+    },
+    {
+      description: 'When you want to allow users to select multiple options from a list.',
+      variant: 'bad',
+      link: {
+        label: 'Checkbox Group',
+        href: '/vue-core/components/checkbox/checkbox-group',
+      },
+    },
+    {
+      description: 'When the list of options is extensive, or if you want to include a search field.',
+      variant: 'bad',
+      link: {
+        label: 'Select',
+        href: '/vue-core/components/select/select',
+      },
+    }
+  ]"
+/>
+
+## Import
+
+```ts
+import {
+  VcRadioGroup,
+  VcRadioGroupItem,
+  VcRadioGroupItemIndicator,
+} from '@wisemen/vue-core'
+```
+
+<!-- @include: ./radio-group-meta.md -->
 
 ### Basic usage
 The most basic usage of the radio group component.
@@ -24,15 +66,15 @@ When an error occurs, you can display an error message in the switch component b
 
 <ComponentPreview name="radio-group/error" />
 
-### Custom items
-You can use custom items as your radio group items. Using the `items` slot in the `AppRadioGroup` you can define your own template for displaying each item.
+### Custom
+You can fully customize the RadioGroup component by providing a custom template for each `RadioGroupItem`. Additionally, you can use the `RadioGroupItemIndicator` component to render the default indicator if needed.
 
-The slot exposes the `items`, which you can use to loop over. You should use the `AppRadioGroupItem` component to render each item.
+When styling the component, the following selectors are available:
 
-This item exposes `isChecked`, `isDisabled`, `isFocused`, `isHovered` and `hasError` props. Passing these props to the `AppRadioGroupIndicator` component will allow you to display the correct indicators.
+- `data-[state=checked]` - Applied to the radio group item when it is checked.
+- `data-[state=unchecked]` - Applied to the radio group item when it is unchecked.
+- `disabled` - Applied to the radio group item when it is disabled.
+
+**Note**: When using a custom template, ensure you manually render essential elements like the label, hint, and error messages.
 
 <ComponentPreview name="radio-group/custom" />
-
-
-
-<!-- @include: ./radio-group-meta.md -->

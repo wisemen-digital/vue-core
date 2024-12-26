@@ -140,10 +140,7 @@ export { default as VcSwitch } from '@/components/switch/Switch.vue'
 // RadioGroup
 export { default as VcRadioGroup } from '@/components/radio-group/RadioGroup.vue'
 export { default as VcRadioGroupItem } from '@/components/radio-group/RadioGroupItem.vue'
-export { default as VcRadioGroupIndicator } from '@/components/radio-group/RadioGroupItemIndicator.vue'
-
-// Scroll area
-export { default as VcScrollArea } from '@/components/scroll-area/ScrollArea.vue'
+export { default as VcRadioGroupItemIndicator } from '@/components/radio-group/RadioGroupItemIndicator.vue'
 
 // Table
 export { default as VcTablePagination } from '@/components/table/pagination/TablePagination.vue'

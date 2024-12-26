@@ -20,10 +20,10 @@
 
 | Slot | Type | Description |
 | --------- | ---- | ----------- |
-| `default` | any |  |
-| `icon-left` | any |  |
-| `icon-right` | any |  |
-| `loader` | any |  |
+| default | `any` |  |
+| icon-left | `any` |  |
+| icon-right | `any` |  |
+| loader | `any` |  |
 
 
 ## Events

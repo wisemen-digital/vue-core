@@ -41,19 +41,19 @@ const docs = [
   },
   {
     link: '/components/dropdown-menu/dropdown-menu',
-    text: 'DropdownMenu',
+    text: 'Dropdown Menu',
   },
   {
     link: '/components/input-field/text-field',
-    text: 'TextField',
+    text: 'Text Field',
   },
   {
     link: '/components/input-field/number-field',
-    text: 'NumberField',
+    text: 'Number Field',
   },
   {
     link: '/components/input-field/password-field',
-    text: 'PasswordField',
+    text: 'Password Field',
   },
   {
     link: '/components/input-field/textarea',
@@ -61,7 +61,7 @@ const docs = [
   },
   {
     link: '/components/input-field/phone-number-field',
-    text: 'PhoneNumberField',
+    text: 'Phone Number Field',
   },
   {
     link: '/components/select/select',
@@ -73,7 +73,7 @@ const docs = [
   },
   {
     link: '/components/radio-group/radio-group',
-    text: 'RadioGroup',
+    text: 'Radio Group',
   },
   {
     link: '/components/table/table',
@@ -85,7 +85,7 @@ const docs = [
   },
   {
     link: '/components/theme-provider/theme-provider',
-    text: 'ThemeProvider',
+    text: 'Theme Provider',
   },
   {
     link: '/components/toast/toast',
@@ -102,10 +102,6 @@ export default defineConfig({
       { link: '/', text: 'Home' },
       // { link: '/markdown-examples', text: 'Examples' },
     ],
-
-    // search: {
-    //   provider: 'local',
-    // },
 
     sidebar: [
       {

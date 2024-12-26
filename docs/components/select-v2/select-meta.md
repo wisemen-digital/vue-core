@@ -6,7 +6,7 @@
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
 | displayFn* | `SelectDisplayFn<SelectValue>` | The display function for the selected value. |  |
-| errors | `FormFieldErrors` | The errors associated with the input. | `null` |
+| errors | `string[]` | The errors associated with the input. | `[]` |
 | filterFn | `SelectFilterFn<SelectValue> \| null` | The function to filter the options. | `null` |
 | hint | `string \| null` | The hint text of the input. | `null` |
 | iconLeft | `keyof Icons \| null` | The left icon of the input. | `null` |
@@ -34,6 +34,16 @@
 | testId | `string \| null` | The test id of the input. | `null` |
 | virtualList | `{ optionHeight: number; } \| null` | Whether the select should use a virtual list.
 When enabled, items must be restricted to the option type | `null` |
+
+
+## Slots
+
+| Slot | Type | Description |
+| --------- | ---- | ----------- |
+| bottom | `{}` |  |
+| error | `{}` |  |
+| hint | `{}` |  |
+| label | `{}` |  |
 
 
 ## Events

@@ -6,8 +6,6 @@ const address = ref<any | null>(null)
 </script>
 
 <template>
-  <div class="size-8 bg-brand-primary"></div>
-
   <VcAddressAutocomplete
     v-model="address"
     placeholder="Search for an address"

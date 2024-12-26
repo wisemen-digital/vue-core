@@ -23,8 +23,8 @@ const props = withDefaults(defineProps<TextFieldProps>(), {
   isRequired: false,
   isSpellCheckEnabled: false,
   isTouched: false,
-  autoComplete: 'off',
   autoFocus: false,
+  autocomplete: 'off',
   errors: () => [],
   hint: null,
   iconLeft: null,
@@ -213,7 +213,7 @@ onMounted(() => {
         :placeholder="props.placeholder ?? undefined"
         :spellcheck="props.isSpellCheckEnabled"
         :class="inputClasses"
-        :autocomplete="props.autoComplete"
+        :autocomplete="props.autocomplete"
         :aria-describedby="ariaDescribedBy"
         :type="props.type"
         :required="props.isRequired"

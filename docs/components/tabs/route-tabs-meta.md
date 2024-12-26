@@ -13,7 +13,7 @@
 
 | Slot | Type | Description |
 | --------- | ---- | ----------- |
-| `default` | None |  |
-| `item-left` | \{ item: RouteTabItem\<T\>; \} |  |
-| `item-right` | \{ item: RouteTabItem\<T\>; \} |  |
+| default | `{}` |  |
+| item-left | `{ item: RouteTabItem<T>; }` |  |
+| item-right | `{ item: RouteTabItem<T>; }` |  |
 

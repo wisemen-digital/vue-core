@@ -19,15 +19,15 @@ export interface TextFieldProps extends FormElementProps, Stylable<'textField'> 
    */
   isSpellCheckEnabled?: boolean
   /**
-   * The autocorrect property of the input.
-   * @default 'off'
-   */
-  autoComplete?: 'off' | 'on'
-  /**
    * Whether the input should be focused automatically.
    * @default false
    */
   autoFocus?: boolean
+  /**
+   * The autocorrect property of the input.
+   * @default 'off'
+   */
+  autocomplete?: 'off' | 'on'
   /**
    * The left icon of the input.
    * @default null

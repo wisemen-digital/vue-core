@@ -7,6 +7,7 @@ import { useId } from 'vue'
 
 import InputField from '@/components/input-field/InputField.vue'
 import type { RadioGroupProps } from '@/components/radio-group/radioGroup.props'
+import type { FormElementSlots } from '@/types/formElement.type'
 
 const props = withDefaults(defineProps<RadioGroupProps>(), {
   id: null,
@@ -19,6 +20,8 @@ const props = withDefaults(defineProps<RadioGroupProps>(), {
   hint: null,
   label: null,
 })
+
+defineSlots<FormElementSlots>()
 
 const model = defineModel<TValue>({
   required: true,

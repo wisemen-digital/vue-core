@@ -6,7 +6,7 @@
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
 | displayFn* | `SelectDisplayFn<SelectValue>` | The display function for the selected value. |  |
-| errors | `FormFieldErrors` | The errors associated with the input. | `null` |
+| errors | `string[]` | The errors associated with the input. | `[]` |
 | filterFn | `SelectFilterFn<SelectValue> \| null` | The function to filter the options. | `null` |
 | hint | `string \| null` | The hint text of the input. | `null` |
 | iconLeft | `keyof Icons \| null` | The left icon of the input. | `null` |
@@ -40,22 +40,22 @@ When enabled, items must be restricted to the option type | `null` |
 
 | Slot | Type | Description |
 | --------- | ---- | ----------- |
-| `bottom` | None |  |
-| `content-bottom` | None |  |
-| `content-top` | None |  |
-| `error` | None |  |
-| `filter` | None |  |
-| `group-label` | \{ label: string; \} |  |
-| `hint` | None |  |
-| `label` | \{ inputId: string; \} |  |
-| `loader` | None |  |
-| `no-results` | \{ searchTerm: string; \} |  |
-| `option` | \{ item: SelectOption\<AcceptableValue\>; \} |  |
-| `option-content` | \{ item: SelectOption\<AcceptableValue\>; \} |  |
-| `option-indicator` | \{ item: SelectOption\<AcceptableValue\>; \} |  |
-| `separator` | None |  |
-| `tag` | \{ value: SelectValue; \} |  |
-| `value` | \{ value: NonNullable\<SelectValue\>; \} |  |
+| bottom | `{}` |  |
+| content-bottom | `{}` |  |
+| content-top | `{}` |  |
+| error | `{}` |  |
+| filter | `{}` |  |
+| group-label | `{ label: string; }` |  |
+| hint | `{}` |  |
+| label | `{ inputId: string; }` |  |
+| loader | `{}` |  |
+| no-results | `{ searchTerm: string; }` |  |
+| option | `{ item: SelectOption<AcceptableValue>; }` |  |
+| option-content | `{ item: SelectOption<AcceptableValue>; }` |  |
+| option-indicator | `{ item: SelectOption<AcceptableValue>; }` |  |
+| separator | `{}` |  |
+| tag | `{ value: SelectValue; }` |  |
+| value | `{ value: NonNullable<SelectValue>; }` |  |
 
 
 ## Events

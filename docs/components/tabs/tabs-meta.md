@@ -14,9 +14,9 @@
 
 | Slot | Type | Description |
 | --------- | ---- | ----------- |
-| `default` | None |  |
-| `item-left` | \{ item: TabItem\<T\>; \} |  |
-| `item-right` | \{ item: TabItem\<T\>; \} |  |
+| default | `{}` |  |
+| item-left | `{ item: TabItem<T>; }` |  |
+| item-right | `{ item: TabItem<T>; }` |  |
 
 
 ## Events

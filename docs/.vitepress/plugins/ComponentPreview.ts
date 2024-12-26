@@ -53,7 +53,7 @@ export default function (md: MarkdownRenderer): void {
 
     // Iterate through the Markdown content and replace the pattern
     state.src = state.src.replace(regex, (match, componentName) => {
-      const pathName = `../../demos/${componentName}`
+      const pathName = `../../.vitepress/demos/${componentName}`
       const convertedName = kebabCaseToCamelCase(componentName)
 
       insertComponentImport(`import ${convertedName} from '${pathName}/Demo.vue'`)

@@ -15,6 +15,7 @@ export interface BaseIcons {
   chevronRightDouble: Promise<Component>
   chevronUp: Promise<Component>
   close: Promise<Component>
+  dateFieldIconRight: Promise<Component>
   eye: Promise<Component>
   eyeOff: Promise<Component>
   filter: Promise<Component>
@@ -49,6 +50,7 @@ export const icons: BaseIcons = {
   chevronRightDouble: import('@/icons/ChevronRightDoubleIcon.vue'),
   chevronUp: import('@/icons/ChevronUpIcon.vue'),
   close: import('@/icons/CloseIcon.vue'),
+  dateFieldIconRight: import('@/icons/functional/DateFieldIconRight.vue'),
   eye: import('@/icons/EyeIcon.vue'),
   eyeOff: import('@/icons/EyeOffIcon.vue'),
   filter: import('@/icons/FilterIcon.vue'),

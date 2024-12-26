@@ -1,5 +1,7 @@
 @import 'tailwindcss';
 
+/* @source '../demos'; */
+
 @variant motion-reduce (&:where(.reduce-motion, .reduce-motion *));
 @variant dark (&:where(.dark, .dark *));
 
@@ -343,4 +345,6 @@
   --color-brand-primary-gradient-to: #0A1F3E;
 
   --z-index-page-header: 5;
+
+  --color-yeetyeet: red;
 }

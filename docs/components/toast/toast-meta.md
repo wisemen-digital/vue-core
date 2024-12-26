@@ -34,11 +34,11 @@
 
 | Slot | Type | Description |
 | --------- | ---- | ----------- |
-| `error-icon` | None |  |
-| `info-icon` | None |  |
-| `loading-icon` | None |  |
-| `success-icon` | None |  |
-| `warning-icon` | None |  |
+| error-icon | `{}` |  |
+| info-icon | `{}` |  |
+| loading-icon | `{}` |  |
+| success-icon | `{}` |  |
+| warning-icon | `{}` |  |
 
 
 ## Events

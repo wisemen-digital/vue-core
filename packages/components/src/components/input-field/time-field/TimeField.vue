@@ -13,13 +13,13 @@ import {
 import { injectConfigContext } from '@/components/config-provider/config.context'
 import Icon from '@/components/icon/Icon.vue'
 import InputField from '@/components/input-field/InputField.vue'
-import type { TextFieldProps } from '@/components/input-field/text-field/textField.props'
 import { useTextFieldStyle } from '@/components/input-field/text-field/textField.style'
+import type { TimeFieldProps } from '@/components/input-field/time-field/timeField.props'
 import Spinner from '@/components/spinner/Spinner.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { useAriaDescribedBy } from '@/composables/aria-described-by/ariaDescribedBy.composable'
 
-const props = withDefaults(defineProps<Omit<TextFieldProps, 'autocomplete' | 'placeholder' | 'type'>>(), {
+const props = withDefaults(defineProps<TimeFieldProps>(), {
   id: null,
   testId: null,
   isDisabled: false,
@@ -28,7 +28,6 @@ const props = withDefaults(defineProps<Omit<TextFieldProps, 'autocomplete' | 'pl
   isRequired: false,
   isSpellCheckEnabled: false,
   isTouched: false,
-  autoComplete: 'off',
   autoFocus: false,
   errors: () => [],
   hint: null,
@@ -90,8 +89,6 @@ const delegatedModel = computed<Time | undefined>({
 
 const globalConfigContext = injectConfigContext()
 const themeContext = injectThemeProviderContext()
-
-const timeFieldRootRef = ref<InstanceType<typeof TimeFieldRoot> | null>(null)
 
 const isFocused = ref<boolean>(false)
 const isMouseOver = ref<boolean>(false)
@@ -234,7 +231,6 @@ function onBlur(): void {
 
       <TimeFieldRoot
         :id="inputId"
-        ref="timeFieldRootRef"
         v-slot="{ segments }"
         v-model="(delegatedModel as any)"
         :locale="globalConfigContext.locale.value"

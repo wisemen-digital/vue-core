@@ -23,9 +23,6 @@ importers:
       '@internationalized/date':
         specifier: 3.5.4
         version: 3.5.4
-      '@tailwindcss/postcss':
-        specifier: 0.0.0-development.1
-        version: 0.0.0-development.1
       '@wisemen/vue-core':
         specifier: workspace:*
         version: link:../packages/components
@@ -45,6 +42,9 @@ importers:
       '@babel/traverse':
         specifier: 7.24.8
         version: 7.24.8
+      '@tailwindcss/postcss':
+        specifier: 4.0.0-beta.8
+        version: 4.0.0-beta.8
       '@tailwindcss/vite':
         specifier: 4.0.0-beta.4
         version: 4.0.0-beta.4(@babel/core@8.0.0-alpha.13)(postcss@8.4.38)(sass@1.77.5)(svelte@5.2.8)(typescript@5.6.3)(vite@5.3.1)
@@ -2113,8 +2113,6 @@ packages:
       putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
       try-catch: 3.0.1
       try-to-catch: 3.0.1
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /@putout/engine-parser@10.8.0:
@@ -2158,8 +2156,6 @@ packages:
       picomatch: 4.0.2
       putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
       try-to-catch: 3.0.1
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /@putout/engine-reporter@2.0.0(putout@36.10.0):
@@ -2175,8 +2171,6 @@ packages:
       putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
       try-catch: 3.0.1
       try-to-catch: 3.0.1
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /@putout/engine-runner@21.2.0(putout@36.10.0):
@@ -2447,8 +2441,6 @@ packages:
       '@putout/operator-filesystem': 4.1.0(putout@36.10.0)
       '@putout/operator-json': 2.2.0
       putout: 36.10.0(eslint@9.10.0)(typescript@5.6.3)
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /@putout/operator-regexp@1.0.0(putout@36.10.0):
@@ -3963,7 +3955,6 @@ packages:
       enhanced-resolve: 5.17.1
       jiti: 2.4.0
       tailwindcss: 4.0.0-beta.8
-    dev: false
 
   /@tailwindcss/oxide-android-arm64@4.0.0-beta.4:
     resolution: {integrity: sha512-r/MBScgeBZXE1xkZ+mw8/QybAlTOEzSJ6Jo9W9YCaqy+6S0Iaeo6CmwOPBrtX4/nlHm/v3hcmQWnaeJDQJMkTg==}
@@ -3979,16 +3970,6 @@ packages:
     cpu: [arm64]
     os: [android]
     requiresBuild: true
-    dev: false
-    optional: true
-
-  /@tailwindcss/oxide-darwin-arm64@0.0.0-development.1:
-    resolution: {integrity: sha512-NJAmnxZDJBClJuQhej1hFQ/sQ2LvtyvEucCs25eSN+GQbb06JdfjCDbI3HjORkHYJpu5z2eHerU1dUHx31V3FQ==}
-    engines: {node: '>= 10'}
-    cpu: [arm64]
-    os: [darwin]
-    requiresBuild: true
-    dev: false
     optional: true
 
   /@tailwindcss/oxide-darwin-arm64@4.0.0-beta.4:
@@ -4005,7 +3986,6 @@ packages:
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@tailwindcss/oxide-darwin-x64@4.0.0-beta.4:
@@ -4022,7 +4002,6 @@ packages:
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@tailwindcss/oxide-freebsd-x64@4.0.0-beta.4:
@@ -4039,7 +4018,6 @@ packages:
     cpu: [x64]
     os: [freebsd]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@tailwindcss/oxide-linux-arm-gnueabihf@4.0.0-beta.4:
@@ -4056,7 +4034,6 @@ packages:
     cpu: [arm]
     os: [linux]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@tailwindcss/oxide-linux-arm64-gnu@4.0.0-beta.4:
@@ -4073,7 +4050,6 @@ packages:
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@tailwindcss/oxide-linux-arm64-musl@4.0.0-beta.4:
@@ -4090,7 +4066,6 @@ packages:
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@tailwindcss/oxide-linux-x64-gnu@4.0.0-beta.4:
@@ -4107,7 +4082,6 @@ packages:
     cpu: [x64]
     os: [linux]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@tailwindcss/oxide-linux-x64-musl@4.0.0-beta.4:
@@ -4124,7 +4098,6 @@ packages:
     cpu: [x64]
     os: [linux]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@tailwindcss/oxide-win32-arm64-msvc@4.0.0-beta.4:
@@ -4141,7 +4114,6 @@ packages:
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@tailwindcss/oxide-win32-x64-msvc@4.0.0-beta.4:
@@ -4158,15 +4130,7 @@ packages:
     cpu: [x64]
     os: [win32]
     requiresBuild: true
-    dev: false
     optional: true
-
-  /@tailwindcss/oxide@0.0.0-development.1:
-    resolution: {integrity: sha512-dHF8RdHDyQwDGlddjhjeFoAfM58qBb7epxxA9pi2tq+iy3by52lbOevz/m+5r4HoallnFq0hJyrjEcSEcWIFQA==}
-    engines: {node: '>= 10'}
-    optionalDependencies:
-      '@tailwindcss/oxide-darwin-arm64': 0.0.0-development.1
-    dev: false
 
   /@tailwindcss/oxide@4.0.0-beta.4:
     resolution: {integrity: sha512-yYZ069LXAEOrQt3SwYV+PhwsGBM0qo7ofsOF5BDrju9Nsz+X0z9NCF9fvc6zJ11wX1bSVuiyLbwIS4P9rVT8hg==}
@@ -4199,14 +4163,17 @@ packages:
       '@tailwindcss/oxide-linux-x64-musl': 4.0.0-beta.8
       '@tailwindcss/oxide-win32-arm64-msvc': 4.0.0-beta.8
       '@tailwindcss/oxide-win32-x64-msvc': 4.0.0-beta.8
-    dev: false
 
-  /@tailwindcss/postcss@0.0.0-development.1:
-    resolution: {integrity: sha512-PuojQKMCyGEzZLWjtu525jQoMoqOWXYGptkxlBIwOYK6NQbBKQca4AdlMYe8ZmiIpHObHBbOkIEbIrIH/wb68w==}
+  /@tailwindcss/postcss@4.0.0-beta.8:
+    resolution: {integrity: sha512-fdxUB9iRm4QocxXiAX/6NlU/VQG/IU1NlDMSGcwvR91/lZNVmWElialB4AVzdsZXIpv5xgrbmz9bb4nvPrT2Ug==}
     dependencies:
-      '@tailwindcss/oxide': 0.0.0-development.1
-      tailwindcss: 0.0.0-development.1
-    dev: false
+      '@alloc/quick-lru': 5.2.0
+      '@tailwindcss/node': 4.0.0-beta.8
+      '@tailwindcss/oxide': 4.0.0-beta.8
+      lightningcss: 1.27.0
+      postcss: 8.4.49
+      tailwindcss: 4.0.0-beta.8
+    dev: true
 
   /@tailwindcss/vite@4.0.0-beta.4(@babel/core@8.0.0-alpha.13)(postcss@8.4.38)(sass@1.77.5)(svelte@5.2.8)(typescript@5.6.3)(vite@5.3.1):
     resolution: {integrity: sha512-VpexhM1fzmhT3KfviF3BAOeJ5p0Pc0wW6QkTUI+aiRlIHtaPI9QxNrOvLgkLSqGxucb78ERA0eI2hrcAN6gjWA==}
@@ -5462,7 +5429,7 @@ packages:
       '@vue/shared': 3.4.29
       estree-walker: 2.0.2
       magic-string: 0.30.12
-      postcss: 8.4.49
+      postcss: 8.4.38
       source-map-js: 1.2.1
 
   /@vue/compiler-sfc@3.5.12:
@@ -13603,14 +13570,6 @@ packages:
       tailwind-merge: 2.5.5
       tailwindcss: 4.0.0-beta.4
     dev: true
-
-  /tailwindcss@0.0.0-development.1:
-    resolution: {integrity: sha512-6mOfJb2JWT5z5J8DnLqAaWsAqZrMnUSm5sCqDm7TfAQwRF/OL/Xp0rKUryGRluFFoGNNG7CiNzkgn71Hnl0e7g==}
-    hasBin: true
-    dependencies:
-      '@tailwindcss/oxide': 0.0.0-development.1
-      lightningcss: 1.27.0
-    dev: false
 
   /tailwindcss@3.4.4:
     resolution: {integrity: sha512-ZoyXOdJjISB7/BcLTR6SEsLgKtDStYyYZVLsUtWChO4Ps20CBad7lfJKVDiejocV4ME1hLmyY0WJE3hSDcmQ2A==}

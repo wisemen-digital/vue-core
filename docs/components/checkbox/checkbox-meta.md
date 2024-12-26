@@ -5,7 +5,7 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| errors | `FormFieldErrors` | The errors associated with the input. | `null` |
+| errors | `string[]` | The errors associated with the input. | `[]` |
 | hint | `string \| null` | The hint text of the input. | `null` |
 | id | `string \| null` | The id of the input. | `null` |
 | isDisabled | `boolean` | Whether the input is disabled. | `false` |
@@ -23,10 +23,10 @@
 
 | Slot | Type | Description |
 | --------- | ---- | ----------- |
-| `bottom` | None |  |
-| `default` | None |  |
-| `error` | None |  |
-| `hint` | None |  |
+| bottom | `{}` |  |
+| default | `{}` |  |
+| error | `{}` |  |
+| hint | `{}` |  |
 
 
 ## Events
@@ -35,5 +35,5 @@
 | ---------- | ---- | ----------- |
 | `blur` | [] |  |
 | `focus` | [] |  |
-| `update:modelValue` | [modelValue: boolean \| null] |  |
+| `update:modelValue` | [modelValue: boolean] |  |
 

@@ -25,20 +25,20 @@ const items = [
 <template>
   <VcRadioGroup
     v-model="selectedItem"
-    :errors="{
-      _errors: ['This is an error message.'],
-    }"
+    :errors="['This is an error message.']"
     :items="items"
     label="Radio Group"
     hint="This is a radio group."
   >
-    <VcRadioGroupItem 
-      v-for="item of items" 
-      :key="item.label"
-      :value="item.value" 
-      :label="item.label" 
-      :hint="item.hint"
-      :is-disabled="item.isDisabled"
-    />
+    <div class="flex flex-col gap-y-2">
+      <VcRadioGroupItem 
+        v-for="item of items" 
+        :key="item.label"
+        :value="item.value" 
+        :label="item.label" 
+        :hint="item.hint"
+        :is-disabled="item.isDisabled"
+      />
+    </div>
   </VcRadioGroup>
 </template>

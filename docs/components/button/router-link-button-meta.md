@@ -18,10 +18,10 @@
 
 | Slot | Type | Description |
 | --------- | ---- | ----------- |
-| `default` | any |  |
-| `icon-left` | any |  |
-| `icon-right` | any |  |
-| `left` | any |  |
-| `loader` | any |  |
-| `right` | any |  |
+| default | `any` |  |
+| icon-left | `any` |  |
+| icon-right | `any` |  |
+| left | `any` |  |
+| loader | `any` |  |
+| right | `any` |  |
 

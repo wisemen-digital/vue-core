@@ -5,6 +5,7 @@ import Collapsable from '@/components/collapsable/Collapsable.vue'
 import InputFieldError from '@/components/input-field-error/InputFieldError.vue'
 import InputFieldHint from '@/components/input-field-hint/InputFieldHint.vue'
 import InputFieldLabel from '@/components/input-field-label/InputFieldLabel.vue'
+import type { FormElementSlots } from '@/types/formElement.type'
 
 const props = defineProps<{
   inputId: string
@@ -14,6 +15,8 @@ const props = defineProps<{
   hint: string | null
   label: string | null
 }>()
+
+defineSlots<FormElementSlots>()
 
 const hasError = computed<boolean>(() => props.errors.length > 0 && props.isTouched)
 </script>

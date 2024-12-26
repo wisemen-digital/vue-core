@@ -21,11 +21,11 @@
 
 | Slot | Type | Description |
 | --------- | ---- | ----------- |
-| `content-bottom` | None |  |
-| `content-top` | None |  |
-| `default` | None |  |
-| `group-label` | \{ label: any; \} |  |
-| `option-content` | \{ item: DropdownMenuItem; \} |  |
-| `sub-menu-trigger-content` | \{ label: string; \} |  |
-| `trigger` | None |  |
+| content-bottom | `{}` |  |
+| content-top | `{}` |  |
+| default | `{}` |  |
+| group-label | `{ label: any; }` |  |
+| option-content | `{ item: DropdownMenuItem; }` |  |
+| sub-menu-trigger-content | `{ label: string; }` |  |
+| trigger | `{}` |  |
 

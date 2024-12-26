@@ -5,7 +5,7 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| errors | `FormFieldErrors` | The errors associated with the input. | `null` |
+| errors | `string[]` | The errors associated with the input. | `[]` |
 | hint | `string \| null` | The hint text of the input. | `null` |
 | iconChecked | `keyof Icons \| null` | The icon to display in the indicator when the switch is checked. | `null` |
 | iconUnchecked | `keyof Icons \| null` | The icon to display in the indicator when the switch is not checked. | `null` |
@@ -24,9 +24,9 @@
 
 | Slot | Type | Description |
 | --------- | ---- | ----------- |
-| `bottom` | None |  |
-| `error` | None |  |
-| `hint` | None |  |
+| bottom | `{}` |  |
+| error | `{}` |  |
+| hint | `{}` |  |
 
 
 ## Events

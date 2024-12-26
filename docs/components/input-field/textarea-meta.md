@@ -5,7 +5,7 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| errors | `FormFieldErrors` | The errors associated with the input. | `null` |
+| errors | `string[]` | The errors associated with the input. | `[]` |
 | hint | `string \| null` | The hint text of the input. | `null` |
 | id | `string \| null` | The id of the input. | `null` |
 | isDisabled | `boolean` | Whether the input is disabled. | `false` |
@@ -24,10 +24,10 @@
 
 | Slot | Type | Description |
 | --------- | ---- | ----------- |
-| `bottom` | None |  |
-| `error` | None |  |
-| `hint` | None |  |
-| `label` | \{ inputId: string; \} |  |
+| bottom | `{ errors: string[]; hint: string \| null; }` |  |
+| error | `{ errors: string[]; }` |  |
+| hint | `{ hint: string \| null; }` |  |
+| label | `{ label: string \| null; }` |  |
 
 
 ## Events

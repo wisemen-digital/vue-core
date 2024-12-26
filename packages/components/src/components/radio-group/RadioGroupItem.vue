@@ -17,6 +17,7 @@ import { useRadioGroupItemStyle } from '@/components/radio-group/radioGroupItem.
 import RadioGroupItemIndicator from '@/components/radio-group/RadioGroupItemIndicator.vue'
 import { useAriaDescribedBy } from '@/composables/aria-described-by/ariaDescribedBy.composable'
 import { useElementAttributeObserver } from '@/composables/element-attribute-observer/elementAttributeObserver.composable'
+import type { FormElementSlots } from '@/types/formElement.type'
 
 const props = withDefaults(defineProps<RadioGroupItemProps>(), {
   id: null,
@@ -36,8 +37,9 @@ const emit = defineEmits<{
   focus: []
 }>()
 
-const radioGroupItemStyle = useRadioGroupItemStyle()
+const slots = defineSlots<FormElementSlots>()
 
+const radioGroupItemStyle = useRadioGroupItemStyle()
 const inputId = props.id ?? useId()
 
 const radioGroupItemRef = ref<InstanceType<any> | null>(null)
@@ -49,6 +51,8 @@ const isMouseOver = ref<boolean>(false)
 const isHovered = computed<boolean>(() => isMouseOver.value && !props.isDisabled)
 const isDisabled = computed<boolean>(() => props.isDisabled || props.isReadonly)
 const hasError = computed<boolean>(() => props.isTouched && props.errors.length > 0)
+
+const hasDefaultSlot = computed<boolean>(() => slots.default !== undefined)
 
 useElementAttributeObserver({
   attribute: 'aria-checked',
@@ -120,68 +124,102 @@ provideRadioGroupItemContext({
 </script>
 
 <template>
-  <div class="radio-group-item-default input-field-label-default input-field-error-default input-field-hint-default">
-    <div class="grid grid-cols-[min-content_auto] items-center">
-      <RadioGroupItem
-        :id="inputId"
-        ref="radioGroupItemRef"
-        :data-test-id="props.testId"
-        :aria-describedby="ariaDescribedBy"
-        :disabled="props.isDisabled"
-        :readonly="props.isReadonly"
-        :required="props.isRequired"
-        :value="props.value"
-        :style="props.styleConfig"
-        class="group outline-none"
-        @focus="onFocus"
-        @blur="onBlur"
-        @mouseenter="onMouseEnter"
-        @mouseleave="onMouseLeave"
-      >
-        <slot>
-          <RadioGroupItemIndicator />
-        </slot>
-      </RadioGroupItem>
+  <RadioGroupItem
+    v-if="hasDefaultSlot"
+    :id="inputId"
+    ref="radioGroupItemRef"
+    :data-test-id="props.testId"
+    :aria-describedby="ariaDescribedBy"
+    :disabled="props.isDisabled"
+    :readonly="props.isReadonly"
+    :required="props.isRequired"
+    :value="props.value"
+    :style="props.styleConfig"
+    class="group outline-none radio-group-item-default input-field-label-default input-field-error-default input-field-hint-default"
+    @focus="onFocus"
+    @blur="onBlur"
+    @mouseenter="onMouseEnter"
+    @mouseleave="onMouseLeave"
+  >
+    <slot />
+  </RadioGroupItem>
 
+  <div
+    v-else
+    class="radio-group-item-default input-field-label-default input-field-error-default input-field-hint-default grid grid-cols-[min-content_auto] items-center"
+  >
+    <RadioGroupItem
+      :id="inputId"
+      ref="radioGroupItemRef"
+      :data-test-id="props.testId"
+      :aria-describedby="ariaDescribedBy"
+      :disabled="props.isDisabled"
+      :readonly="props.isReadonly"
+      :required="props.isRequired"
+      :value="props.value"
+      :style="props.styleConfig"
+      class="group outline-none"
+      @focus="onFocus"
+      @blur="onBlur"
+      @mouseenter="onMouseEnter"
+      @mouseleave="onMouseLeave"
+    >
+      <RadioGroupItemIndicator />
+    </RadioGroupItem>
+
+    <slot
+      v-if="props.label !== null"
+      :label="props.label"
+      name="label"
+    >
       <InputFieldLabel
-        v-if="props.label !== null"
         :class="labelClasses"
         :is-required="props.isRequired"
         :for="inputId"
         :label="props.label"
       />
+    </slot>
 
-      <!-- Spacer element for grid -->
-      <span v-else />
+    <!-- Spacer element for grid -->
+    <span v-else />
 
-      <!-- Spacer element for grid -->
-      <span />
+    <!-- Spacer element for grid -->
+    <span />
 
-      <slot name="bottom">
-        <div>
-          <Collapsable :is-visible="hasError || props.hint !== null">
-            <div v-if="hasError">
-              <slot name="error">
-                <InputFieldError
-                  :errors="props.errors"
-                  :class="errorClasses"
-                  :input-id="inputId"
-                />
-              </slot>
-            </div>
+    <slot
+      :errors="props.errors"
+      :hint="props.hint"
+      name="bottom"
+    >
+      <div>
+        <Collapsable :is-visible="hasError || props.hint !== null">
+          <div v-if="hasError">
+            <slot
+              :errors="props.errors"
+              name="error"
+            >
+              <InputFieldError
+                :errors="props.errors"
+                :class="errorClasses"
+                :input-id="inputId"
+              />
+            </slot>
+          </div>
 
-            <div v-else-if="props.hint !== null">
-              <slot name="hint">
-                <InputFieldHint
-                  :input-id="inputId"
-                  :hint="props.hint"
-                  :class="hintClasses"
-                />
-              </slot>
-            </div>
-          </Collapsable>
-        </div>
-      </slot>
-    </div>
+          <div v-else-if="props.hint !== null">
+            <slot
+              :hint="props.hint"
+              name="hint"
+            >
+              <InputFieldHint
+                :input-id="inputId"
+                :hint="props.hint"
+                :class="hintClasses"
+              />
+            </slot>
+          </div>
+        </Collapsable>
+      </div>
+    </slot>
   </div>
 </template>

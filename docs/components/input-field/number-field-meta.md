@@ -8,7 +8,7 @@
 | areControlsHidden | `boolean` | Whether the controls are visible. | `false` |
 | autoComplete | `"off" \| "on"` | The autocorrect property of the input. | `"off"` |
 | autoFocus | `boolean` | Whether the input should be focused automatically. |  |
-| errors | `FormFieldErrors` | The errors associated with the input. | `null` |
+| errors | `string[]` | The errors associated with the input. | `[]` |
 | formatOptions | `NumberFormatOptions \| null` | The format options of the number input. | `null` |
 | hint | `string \| null` | The hint text of the input. | `null` |
 | iconLeft | `keyof Icons \| null` | The left icon of the input. | `null` |
@@ -33,15 +33,15 @@
 
 | Slot | Type | Description |
 | --------- | ---- | ----------- |
-| `bottom` | any |  |
-| `error` | any |  |
-| `hint` | any |  |
-| `icon-left` | any |  |
-| `icon-right` | any |  |
-| `label` | \{ inputId: string; \} |  |
-| `left` | any |  |
-| `loader` | any |  |
-| `right` | any |  |
+| bottom | `any` |  |
+| error | `any` |  |
+| hint | `any` |  |
+| icon-left | `any` |  |
+| icon-right | `any` |  |
+| label | `any` |  |
+| left | `any` |  |
+| loader | `any` |  |
+| right | `any` |  |
 
 
 ## Events

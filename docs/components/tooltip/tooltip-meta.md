@@ -23,7 +23,7 @@
 
 | Slot | Type | Description |
 | --------- | ---- | ----------- |
-| `content` | None |  |
-| `default` | None |  |
-| `trigger` | None |  |
+| content | `{}` |  |
+| default | `{}` |  |
+| trigger | `{}` |  |
 

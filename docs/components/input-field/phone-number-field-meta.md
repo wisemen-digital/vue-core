@@ -8,7 +8,7 @@
 | autoComplete | `"off" \| "on"` | The autocorrect property of the input. | `"off"` |
 | autoFocus | `boolean` | Whether the input should be focused automatically. |  |
 | defaultCountryCode | `CountryCode` | The default country code of the phone number. | `"BE"` |
-| errors | `FormFieldErrors` | The errors associated with the input. | `null` |
+| errors | `string[]` | The errors associated with the input. | `[]` |
 | hint | `string \| null` | The hint text of the input. | `null` |
 | iconLeft | `keyof Icons \| null` | The left icon of the input. | `null` |
 | iconRight | `keyof Icons \| null` | The right icon of the input. | `null` |
@@ -23,6 +23,16 @@
 | placeholder | `string \| null` | The placeholder text of the input. | `null` |
 | styleConfig | `Partial<TextFieldStyleConfig> \| null` | The style config of the component. | `null` |
 | testId | `string \| null` | The test id of the input. | `null` |
+
+
+## Slots
+
+| Slot | Type | Description |
+| --------- | ---- | ----------- |
+| bottom | `{ errors: string[]; hint: string \| null; }` |  |
+| error | `{ errors: string[]; }` |  |
+| hint | `{ hint: string \| null; }` |  |
+| label | `{ label: string \| null; }` |  |
 
 
 ## Events

@@ -28,7 +28,7 @@
     "skipLibCheck": true
   },
   "files": [
-    "postcss.config.js",
+    "postcss.config.mjs",
     "eslint.config.js"
   ],
   "include": [
@@ -45,6 +45,12 @@
     "../components/src/**/*.vue",
     "./components/**/*.vue",
     "./icons/**/*.ts",
-    "./icons/**/*.vue"
-  ]
+    "./icons/**/*.vue",
+    "docs/**/*.ts",
+    "docs/**/*.vue",
+    "docs/**/*.md",
+  ],
+  "vueCompilerOptions": {
+    "vitePressExtensions": [".md"],
+  },
 }

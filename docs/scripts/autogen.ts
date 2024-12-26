@@ -65,15 +65,20 @@ function parseMeta(meta: any) {
   const slots = meta.slots
     .map((slot: any) => {
       const { name, type, description } = slot
+
       const descriptionString = description ?? ''
+      const t = type.replace(/\s*\|\s*undefined/g, '').replace('unknown', 'T').replace(/\</g, '\\<').replace(/\>/g, '\\>')
+
       return ({
         name,
+        // description: descriptionString.replace(/^[ \t]+/gm, ''),
+        // type: type === "{}" ? "None" : `${type
+        //   .replace(/\s*\|\s*undefined/g, '')
+        //   .replace('unknown', 'T')
+        //   .replace(/\</g, '\\<')
+        //   .replace(/\>/g, '\\>')}`,
         description: descriptionString.replace(/^[ \t]+/gm, ''),
-        type: type === "{}" ? "None" : `${type
-          .replace(/\s*\|\s*undefined/g, '')
-          .replace('unknown', 'T')
-          .replace(/\</g, '\\<')
-          .replace(/\>/g, '\\>')}`,
+        type: type.replace(/\s*\|\s*undefined/g, '').replace('unknown', 'T'),
       })
     })
     .sort((a: { name: string }, b: { name: string }) => a.name.localeCompare(b.name))
@@ -89,7 +94,6 @@ function generateDocsForComponents() {
   primitiveComponents.forEach((componentPath) => {
     const componentName = parse(componentPath).name
     const meta = parseMeta(tsconfigChecker.getComponentMeta(componentPath))
-
     const componentFolderName = parse(componentPath).dir.match(/src\/components\/([^\/]+)/)?.[1]
 
     const metaDirPath = resolve(__dirname, `../components/${componentFolderName}`)
@@ -138,7 +142,11 @@ function generateDocsForComponents() {
         type: string;
         description: string;
       }) => {
-        parsedString += `| \`${slot.name}\` | ${slot.type.replace(/\{/g, '\\{').replace(/\}/g, '\\}')} | ${slot.description} |\n`
+        const name = slot.name
+        const type = `\`${slot.type.replace(/\|/g, '\\|')}\``
+        const description = slot.description
+
+        parsedString += `| ${name} | ${type} | ${description} |\n`
       })
       parsedString += '\n'
     }
@@ -148,6 +156,7 @@ function generateDocsForComponents() {
       parsedString += '| Event name | Type | Description |\n'
       parsedString += '| ---------- | ---- | ----------- |\n'
       meta.events.forEach((event: { name: string; type: string; description: string }) => {
+        
         parsedString += `| \`${event.name}\` | ${event.type.replace(/\|/g, '\\|')} | ${event.description} |\n`
       })
       parsedString += '\n'

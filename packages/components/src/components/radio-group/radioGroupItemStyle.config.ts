@@ -99,7 +99,7 @@ export function setupDefaultRadioGroupItemStyles(): void {
       '--radio-group-item-indicator-bg-color-hover': 'var(--fg-white)',
       '--radio-group-item-indicator-border-radius-default': 'var(--radius-full)',
       '--radio-group-item-indicator-size-default': '0.5rem',
-      '--radio-group-item-label-font-size-default': 'var(--text-md)',
+      '--radio-group-item-label-font-size-default': 'var(--text-sm)',
 
       '--radio-group-item-label-font-weight-default': 'var(--font-weight-medium)',
 

@@ -1,84 +1,340 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="TValue extends Date">
 import {
+  CalendarDate,
   type DateValue,
   getLocalTimeZone,
-  today,
 } from '@internationalized/date'
 import {
   DateFieldInput,
   DateFieldRoot,
 } from 'reka-ui'
-import { ref } from 'vue'
+import {
+  computed,
+  ref,
+  useId,
+} from 'vue'
 
-import Button from '@/components/button/button/Button.vue'
+import IconButton from '@/components/button/icon-button/IconButton.vue'
 import Calendar from '@/components/calendar/Calendar.vue'
 import { injectConfigContext } from '@/components/config-provider/config.context'
+import Icon from '@/components/icon/Icon.vue'
+import type { DateFieldProps } from '@/components/input-field/date-field/dateField.props'
+import InputField from '@/components/input-field/InputField.vue'
+import { useTextFieldStyle } from '@/components/input-field/text-field/textField.style'
 import Popover from '@/components/popover/Popover.vue'
-import PopoverAnchor from '@/components/popover/PopoverAnchor.vue'
 import PopoverTrigger from '@/components/popover/PopoverTrigger.vue'
+import Spinner from '@/components/spinner/Spinner.vue'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
+import { useAriaDescribedBy } from '@/composables/aria-described-by/ariaDescribedBy.composable'
+
+const props = withDefaults(defineProps<DateFieldProps>(), {
+  id: null,
+  testId: null,
+  defaultPlaceholderDate: () => new Date(),
+  isArrowHidden: false,
+  isDateDisabled: () => false,
+  isDisabled: false,
+  isLoading: false,
+  isReadonly: false,
+  isRequired: false,
+  isSpellCheckEnabled: false,
+  isTouched: false,
+  areYearArrowsHidden: false,
+  autoFocus: false,
+  errors: () => [],
+  hint: null,
+  iconLeft: null,
+  iconRight: null,
+  label: null,
+  popoverAlign: 'end',
+  popoverCollisionPaddingInPx: 12,
+  popoverContainerElement: null,
+  popoverOffsetInPx: 12,
+  popoverSide: 'bottom',
+  popoverWidth: null,
+  styleConfig: null,
+})
+
+const emit = defineEmits<{
+  blur: []
+  focus: []
+}>()
+
+defineSlots<{
+  'bottom': () => void
+  'error': () => null
+  'hint': () => null
+  'icon-left': () => null
+  'icon-right': () => null
+  'label': () => void
+  'left': () => null
+  'loader': () => null
+  'right': () => null
+}>()
+
+const model = defineModel<TValue | null>({
+  required: true,
+})
+
+const delegatedModel = computed<DateValue | undefined>({
+  get: () => {
+    if (model.value === null) {
+      return
+    }
+
+    const date = model.value.getDate()
+    const month = model.value.getMonth()
+    const year = model.value.getFullYear()
+
+    return new CalendarDate(year, month + 1, date)
+  },
+  set: (value) => {
+    model.value = (value?.toDate(getLocalTimeZone()) ?? null) as TValue | null
+  },
+})
 
 const globalConfigContext = injectConfigContext()
+const themeContext = injectThemeProviderContext()
 
-const model = ref<Date | null>(null)
+const isFocused = ref<boolean>(false)
+const isMouseOver = ref<boolean>(false)
 
-const placeholder = ref<DateValue>(today(getLocalTimeZone()))
+const textFieldStyle = useTextFieldStyle()
+
+const inputId = props.id ?? useId()
+const isHovered = computed<boolean>(() => isMouseOver.value && !props.isDisabled)
+const hasError = computed<boolean>(() => props.isTouched && props.errors.length > 0)
+
+const ariaDescribedBy = useAriaDescribedBy({
+  id: inputId,
+  hasErrors: hasError,
+  hasHint: computed<boolean>(() => props.hint !== null),
+})
+
+const boxClasses = computed<string>(() => textFieldStyle.box({
+  hasError: hasError.value,
+  isDisabled: props.isDisabled,
+  isFocused: isFocused.value,
+  isHovered: isHovered.value,
+}))
+
+const inputClasses = computed<string>(() => textFieldStyle.input({
+  hasError: hasError.value,
+  hasIconLeft: props.iconLeft !== null,
+  hasIconRight: props.iconRight !== null,
+  isDisabled: props.isDisabled,
+  isFocused: isFocused.value,
+  isHovered: isHovered.value,
+}))
+
+const iconLeftClasses = computed<string>(() => textFieldStyle.iconLeft({
+  hasError: hasError.value,
+  isDisabled: props.isDisabled,
+  isFocused: isFocused.value,
+  isHovered: isHovered.value,
+}))
+
+const iconRightClasses = computed<string>(() => textFieldStyle.iconRight({
+  hasError: hasError.value,
+  isDisabled: props.isDisabled,
+  isFocused: isFocused.value,
+  isHovered: isHovered.value,
+}))
+
+const loaderBoxClasses = computed<string>(() => textFieldStyle.loaderBox())
+
+const loaderClasses = computed<string>(() => textFieldStyle.loader({
+  hasError: hasError.value,
+  isDisabled: props.isDisabled,
+  isFocused: isFocused.value,
+  isHovered: isHovered.value,
+}))
+
+function onMouseEnter(): void {
+  isMouseOver.value = true
+}
+
+function onMouseLeave(): void {
+  isMouseOver.value = false
+}
+
+function onFocus(): void {
+  isFocused.value = true
+  emit('focus')
+}
+
+function onBlur(): void {
+  isFocused.value = false
+
+  // Since there are multiple inputs, it's possible that a blur event is triggered while navigating to another input
+  // In this case, we don't want to emit the blur event since the focus is still within the component
+  setTimeout(() => {
+    if (!isFocused.value) {
+      emit('blur')
+    }
+  })
+}
 </script>
 
 <template>
-  <div>
+  <InputField
+    :input-id="inputId"
+    :is-required="props.isRequired"
+    :is-touched="props.isTouched"
+    :errors="props.errors"
+    :hint="props.hint"
+    :label="props.label"
+    :style="props.styleConfig"
+    :class="themeContext.theme.value"
+    class="text-field-default"
+  >
+    <template #label="{ label }">
+      <slot
+        :label="label"
+        name="label"
+      />
+    </template>
+
+    <template #error="{ errors }">
+      <slot
+        :errors="errors"
+        name="error"
+      />
+    </template>
+
+    <template #hint="{ hint }">
+      <slot
+        :hint="hint"
+        name="hint"
+      />
+    </template>
+
+    <template #bottom="{ errors, hint }">
+      <slot
+        :errors="errors"
+        :hint="hint"
+        name="bottom"
+      />
+    </template>
+
     <Popover
-      :is-arrow-hidden="true"
-      :offset-in-px="4"
-      :style-config="{
-        '--popover-min-width-default': '350px',
-        '--popover-max-width-default': '350px',
-      }"
-      popover-width="available-width"
-      align="start"
+      :is-arrow-hidden="props.isArrowHidden"
+      :popover-align="props.popoverAlign"
+      :popover-collision-padding-in-px="props.popoverCollisionPaddingInPx"
+      :popover-container-element="props.popoverContainerElement"
+      :popover-offset-in-px="props.popoverOffsetInPx"
+      :popover-width="props.popoverWidth"
+      :popover-side="props.popoverSide"
     >
-      <PopoverAnchor>
-        <!-- @vue-expect-error TODO: fix this -->
-        <DateFieldRoot
-          v-slot="{ segments }"
-          v-model:placeholder="placeholder"
-          v-model="model"
-          :locale="globalConfigContext.locale.value"
-          class="rounded-lg border border-solid border-primary p-2 ring-brand-primary-500 duration-200 focus-within:ring-2"
+      <div
+        :class="boxClasses"
+        :aria-disabled="props.isDisabled"
+        @mouseenter="onMouseEnter"
+        @mouseleave="onMouseLeave"
+      >
+        <slot
+          v-if="props.iconLeft !== null"
+          name="icon-left"
         >
-          <div class="flex">
-            <template
-              v-for="item in segments"
-              :key="item.part"
+          <Icon
+            :icon="props.iconLeft"
+            :class="iconLeftClasses"
+          />
+        </slot>
+
+        <slot name="left" />
+
+        <DateFieldRoot
+          :id="inputId"
+          v-slot="{ segments }"
+          v-model="(delegatedModel as any)"
+          :locale="globalConfigContext.locale.value"
+          :aria-describedby="ariaDescribedBy"
+          :data-test-id="props.testId"
+          :readonly="props.isReadonly"
+          :disabled="props.isDisabled"
+          :aria-invalid="props.errors !== undefined && props.errors !== null"
+          :required="props.isRequired"
+          :class="inputClasses"
+          class="flex w-full items-center"
+        >
+          <template
+            v-for="item in segments"
+            :key="item.part"
+          >
+            <DateFieldInput
+              v-if="item.part === 'literal'"
+              :part="item.part"
+              class="text-tertiary"
             >
-              <DateFieldInput
-                v-if="item.part === 'literal'"
-                :part="item.part"
-                class="text-tertiary"
-              >
-                {{ item.value }}
-              </DateFieldInput>
+              {{ item.value }}
+            </DateFieldInput>
 
-              <DateFieldInput
-                v-else
-                :part="item.part"
-                class="rounded px-0.5 text-primary outline-none duration-200 focus:bg-quaternary data-[placeholder]:text-placeholder"
-              >
-                {{ item.value }}
-              </DateFieldInput>
-            </template>
-          </div>
+            <DateFieldInput
+              v-else
+              :part="item.part"
+              class="rounded-xs px-0.5 text-primary outline-none duration-200 focus:bg-quaternary data-[placeholder]:text-placeholder"
+              @focus="onFocus"
+              @blur="onBlur"
+            >
+              {{ item.value }}
+            </DateFieldInput>
+          </template>
         </DateFieldRoot>
-      </PopoverAnchor>
 
-      <PopoverTrigger>
-        <Button>
-          Trigger
-        </Button>
-      </PopoverTrigger>
+        <div>
+          <PopoverTrigger>
+            <IconButton
+              :style-config="{
+                '--icon-button-size-default': '2rem',
+                '--icon-button-icon-size-default': '1rem',
+                '--icon-button-ring-color-focus': 'transparent',
+                '--icon-button-bg-color-focus': 'var(--bg-secondary-hover)',
+                '--icon-button-bg-color-disabled': 'transparent',
+                '--icon-button-border-color-disabled': 'transparent',
+              }"
+              :is-disabled="props.isDisabled"
+              icon="dateFieldIconRight"
+              label="Open"
+              size="sm"
+              class="mr-[0.1875rem] shrink-0"
+              variant="tertiary"
+            />
+          </PopoverTrigger>
+
+          <slot name="right" />
+        </div>
+
+        <div
+          v-if="props.isLoading"
+          :class="loaderBoxClasses"
+        >
+          <slot name="loader">
+            <Spinner :class="loaderClasses" />
+          </slot>
+        </div>
+
+        <slot
+          v-else-if="props.iconRight !== null"
+          name="icon-right"
+        >
+          <Icon
+            :icon="props.iconRight"
+            :class="iconRightClasses"
+          />
+        </slot>
+      </div>
 
       <template #content>
-        <Calendar v-model="model" />
+        <div class="p-4 w-80">
+          <Calendar
+            v-model="model"
+            :are-year-arrows-hidden="props.areYearArrowsHidden"
+            :default-placeholder-date="props.defaultPlaceholderDate"
+            :is-date-disabled="props.isDateDisabled"
+          />
+        </div>
       </template>
     </Popover>
-  </div>
+  </InputField>
 </template>

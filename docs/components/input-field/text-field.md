@@ -2,13 +2,60 @@
 sidebar: auto
 ---
 
-# TextField
+# Text Field
 
-## Description
+An input field component for text.
 
-An input field component for text input.
+## Use cases
 
-## Examples
+<BulletList
+  :items="[
+    {
+      description: 'When you want to allow users to input text.',
+      variant: 'good',
+    },
+    {
+      description: 'When you want to allow users to input a number.',
+      variant: 'bad',
+      link: {
+        label: 'Number Field',
+        href: '/vue-core/components/input-field/number-field',
+      },
+    },
+    {
+      description: 'When you want to allow users to input a phone number.',
+      variant: 'bad',
+      link: {
+        label: 'Phone Number Field',
+        href: '/vue-core/components/input-field/phone-number-field',
+      },
+    },
+     {
+      description: 'When you want to allow users to input a password.',
+      variant: 'bad',
+      link: {
+        label: 'Password Field',
+        href: '/vue-core/components/input-field/password-field',
+      },
+    },
+    {
+      description: 'When you want to allow users to input a large amount of text.',
+      variant: 'bad',
+      link: {
+        label: 'Textarea',
+        href: '/vue-core/components/input-field/textarea',
+      },
+    },
+  ]"
+/>
+
+## Import
+
+```ts
+import { VcTextField } from '@wisemen/vue-core'
+```
+
+<!-- @include: ./text-field-meta.md -->
 
 ### Basic usage
 The most basic usage of the text field component.
@@ -17,7 +64,6 @@ The most basic usage of the text field component.
 
 ### Label
 It is recommended to provide a label for the text field component by using the `label` prop. When `is-required` is set to `true`, a * will be displayed next to the label.
-
 
 <ComponentPreview name="text-field/with-label" />
 
@@ -50,5 +96,3 @@ You can add icons to the left and right side of the text field by using the `ico
 You can customize the text field component by using the provided slots.
 
 <ComponentPreview name="text-field/custom" />
-
-<!-- @include: ./text-field-meta.md -->

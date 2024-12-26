@@ -6,7 +6,7 @@
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
 | clearSearchOnSelection | `boolean \| null` | Whether the search input should be cleared when a selection is made. |  |
-| errors | `FormFieldErrors` | The errors associated with the input. |  |
+| errors | `string[]` | The errors associated with the input. |  |
 | hideClearButton | `boolean \| null` | Whether the clear button should be hidden. |  |
 | hint | `string \| null` | The hint text of the input. |  |
 | iconLeft | `keyof Icons \| null` | The left icon of the input. |  |
@@ -27,6 +27,16 @@
 | popoverWidth | `PopperWidth \| null` | The width of the popper. |  |
 | styleConfig | `Partial<SelectStyleConfig> \| null` | The style config of the component. |  |
 | testId | `string \| null` | The test id of the input. |  |
+
+
+## Slots
+
+| Slot | Type | Description |
+| --------- | ---- | ----------- |
+| bottom | `{}` |  |
+| error | `{}` |  |
+| hint | `{}` |  |
+| label | `{}` |  |
 
 
 ## Events

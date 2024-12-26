@@ -3,7 +3,6 @@ import {
   CalendarDate,
   type DateValue,
   getLocalTimeZone,
-  today,
 } from '@internationalized/date'
 import {
   CalendarCell,
@@ -27,13 +26,14 @@ import {
 
 import Button from '@/components/button/button/Button.vue'
 import IconButton from '@/components/button/icon-button/IconButton.vue'
+import type { CalendarProps } from '@/components/calendar/calendar.props'
 import Collapsable2 from '@/components/collapsable/Collapsable2.vue'
 import { injectConfigContext } from '@/components/config-provider/config.context'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 
-const props = withDefaults(defineProps<{
-  areYearArrowsHidden?: boolean
-}>(), {
+const props = withDefaults(defineProps<CalendarProps>(), {
+  defaultPlaceholderDate: () => new Date(),
+  isDateDisabled: () => false,
   areYearArrowsHidden: false,
 })
 
@@ -41,17 +41,13 @@ const model = defineModel<Date | null>({
   required: true,
 })
 
-const computedModel = computed<CalendarDate | null>({
+const delegatedModel = computed<DateValue | null>({
   get: () => {
     if (model.value === null) {
       return null
     }
 
-    const modelDay = model.value.getDate()
-    const modelMonth = model.value.getMonth()
-    const modelYear = model.value.getFullYear()
-
-    return new CalendarDate(modelYear, modelMonth + 1, modelDay)
+    return dateToDateValue(model.value)
   },
   set: (value) => {
     if (value === null) {
@@ -67,7 +63,7 @@ const computedModel = computed<CalendarDate | null>({
 const themeProviderContext = injectThemeProviderContext()
 const globalConfigContext = injectConfigContext()
 
-const placeholder = ref<DateValue>(today(getLocalTimeZone()))
+const placeholder = ref<DateValue>(dateToDateValue(model.value ?? props.defaultPlaceholderDate))
 
 const yearScrollContainerRef = ref<HTMLElement | null>(null)
 const activeView = ref<'day' | 'month' | 'year'>('day')
@@ -76,22 +72,22 @@ const now = new Date()
 const placeholderYear = computed<number>({
   get: () => placeholder.value.year,
   set: (value) => {
-    if (computedModel.value === null) {
+    if (delegatedModel.value === null) {
       return
     }
 
-    computedModel.value = computedModel.value.set({ year: value })
+    delegatedModel.value = delegatedModel.value.set({ year: value })
   },
 })
 
 const placeholderMonth = computed<number>({
   get: () => placeholder.value.month,
   set: (value) => {
-    if (computedModel.value === null) {
+    if (delegatedModel.value === null) {
       return
     }
 
-    computedModel.value = computedModel.value.set({ month: value })
+    delegatedModel.value = delegatedModel.value.set({ month: value })
   },
 })
 
@@ -103,6 +99,10 @@ const years = computed<number[]>(() => {
     ...Array.from({ length: 100 }, (_, i) => currentYear + (i + 1)),
   ].sort((a, b) => a - b) // Sort in ascending order
 })
+
+function dateToDateValue(date: Date): DateValue {
+  return new CalendarDate(date.getFullYear(), date.getMonth() + 1, date.getDate())
+}
 
 function getMonthName(month: number, format: 'long' | 'short'): string {
   return new Intl.DateTimeFormat(globalConfigContext.locale.value, { month: format }).format(new Date(1, month - 1))
@@ -176,17 +176,19 @@ watch(placeholderYear, () => {
 <template>
   <CalendarRoot
     v-slot="{ weekDays, grid, date }"
-    v-model="computedModel"
+    v-model="delegatedModel"
     v-model:placeholder="placeholder"
     :week-starts-on="1"
+    :is-date-unavailable="(date: DateValue) => {
+      return props.isDateDisabled(date.toDate(
+        getLocalTimeZone(),
+      ))
+    }"
     :prevent-deselect="true"
     :class="themeProviderContext.theme.value"
   >
     <Collapsable2>
-      <div
-        v-if="activeView === 'day'"
-        class="p-5"
-      >
+      <div v-if="activeView === 'day'">
         <CalendarHeader class="flex items-center justify-between">
           <div class="flex gap-x-1.5">
             <CalendarPrev
@@ -300,7 +302,7 @@ watch(placeholderYear, () => {
                   :day="weekDate"
                   :month="month.value"
                   class="
-                  cursor-pointer flex size-8 items-center justify-center rounded-lg text-center text-sm text-tertiary outline-none
+                  cursor-pointer flex size-8 items-center justify-center rounded-md text-center text-sm text-tertiary outline-none
                   duration-100 focus:bg-brand-secondary
                   focus:text-brand-primary
                   data-[selected]:!bg-brand-solid
@@ -308,8 +310,18 @@ watch(placeholderYear, () => {
                   data-[selected]:!text-primary-on-brand
                   data-[today]:text-primary
                   data-[today]:focus:bg-brand-secondary
-                  data-[today]:focus:text-brand-primary"
-                />
+                  data-[today]:focus:text-brand-primary
+                  data-[disabled]:text-disabled
+                  data-[unavailable]:text-disabled
+                  data-[unavailable]:cursor-not-allowed
+                  data-[unavailable]:line-through
+                  data-[outside-view]:text-disabled"
+                >
+                  <slot
+                    :date="new Date(weekDate)"
+                    name="date"
+                  />
+                </CalendarCellTrigger>
               </CalendarCell>
             </CalendarGridRow>
           </CalendarGridBody>
@@ -318,7 +330,7 @@ watch(placeholderYear, () => {
 
       <div
         v-else-if="activeView === 'month'"
-        class="grid grid-cols-3 p-5"
+        class="grid grid-cols-3"
       >
         <div
           v-for="monthIndex of 12"
@@ -350,7 +362,7 @@ watch(placeholderYear, () => {
       <div
         v-else-if="activeView === 'year'"
         ref="yearScrollContainerRef"
-        class="grid max-h-60 grid-cols-2 overflow-y-auto p-5"
+        class="grid max-h-60 grid-cols-2 overflow-y-auto"
       >
         <div
           v-for="year of years"

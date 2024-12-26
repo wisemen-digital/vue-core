@@ -9,7 +9,6 @@ import {
   watch,
 } from 'vue'
 
-import ScrollArea from '@/components/scroll-area/ScrollArea.vue'
 import TablePagination from '@/components/table/pagination/TablePagination.vue'
 import { provideTableContext } from '@/components/table/table.context'
 import type { TableProps } from '@/components/table/table.props'
@@ -101,10 +100,6 @@ function handleTableResize(tableContainerEl: HTMLElement): void {
   hasReachedHorizontalScrollEnd.value = getHasReachedHorizontalScrollEnd(tableContainerEl)
 }
 
-function onSetScrollContainerRef(el: HTMLElement): void {
-  scrollContainerRef.value = el
-}
-
 function onScroll(): void {
   if (scrollContainerRef.value === null) {
     return
@@ -186,13 +181,13 @@ provideTableContext({
         </template>
       </TableEmptyState>
 
-      <ScrollArea
+      <div
         v-else
+        ref="scrollContainerRef"
         :aria-rowcount="data!.meta.total"
-        class="h-full flex-1"
+        class="h-full flex-1 overflow-y-auto"
         role="table"
         @scroll="onScroll"
-        @scroll-container-ref="onSetScrollContainerRef"
       >
         <div
           :style="{
@@ -203,7 +198,7 @@ provideTableContext({
           <TableHeader />
           <TableBody />
         </div>
-      </ScrollArea>
+      </div>
     </div>
 
     <TableBottom v-if="!isEmpty">

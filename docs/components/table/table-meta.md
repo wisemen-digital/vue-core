@@ -21,10 +21,10 @@
 
 | Slot | Type | Description |
 | --------- | ---- | ----------- |
-| `bottom` | None |  |
-| `empty-state-no-data-actions` | None |  |
-| `empty-state-no-results-actions` | None |  |
-| `page-count` | None |  |
-| `pagination` | \{ items: (\{ type: "ellipsis"; \} | \{ type: "page"; value: number; \})[]; \} |  |
-| `top` | None |  |
+| bottom | `{}` |  |
+| empty-state-no-data-actions | `{}` |  |
+| empty-state-no-results-actions | `{}` |  |
+| page-count | `{}` |  |
+| pagination | `{ items: ({ type: "ellipsis"; } \| { type: "page"; value: number; })[]; }` |  |
+| top | `{}` |  |
 

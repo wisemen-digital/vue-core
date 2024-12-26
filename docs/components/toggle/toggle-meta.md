@@ -12,7 +12,7 @@
 
 | Slot | Type | Description |
 | --------- | ---- | ----------- |
-| `default` | \{ isToggled: boolean; isDisabled: boolean; \} |  |
+| default | `{ isToggled: boolean; isDisabled: boolean; }` |  |
 
 
 ## Events

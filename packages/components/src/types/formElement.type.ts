@@ -45,3 +45,26 @@ export interface FormElementProps {
    */
   label?: string | null
 }
+
+export interface FormElementSlots {
+  /**
+   * Can be used to render a custom hint and error message.
+   */
+  bottom: ({ errors, hint }: { errors: string[], hint: string | null }) => void
+  /**
+   * The content slot.
+   */
+  default: () => void
+  /**
+   * Can be used to render a custom error message.
+   */
+  error: ({ errors }: { errors: string[] }) => void
+  /**
+   * Can be used to render a custom hint message.
+   */
+  hint: ({ hint }: { hint: string | null }) => void
+  /**
+   * Can be used to render a custom label.
+   */
+  label: ({ label }: { label: string | null }) => void
+}

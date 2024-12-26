@@ -17,7 +17,7 @@
 
 | Slot | Type | Description |
 | --------- | ---- | ----------- |
-| `default` | None |  |
+| default | `{}` |  |
 
 
 ## Events

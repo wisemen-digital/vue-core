@@ -7,7 +7,7 @@
 | ---- | ---- | ----------- | ------- |
 | autoComplete | `"off" \| "on"` | The autocorrect property of the input. | `"off"` |
 | autoFocus | `boolean` | Whether the input should be focused automatically. | `false` |
-| errors | `FormFieldErrors` | The errors associated with the input. | `null` |
+| errors | `string[]` | The errors associated with the input. | `[]` |
 | hint | `string \| null` | The hint text of the input. | `null` |
 | iconLeft | `keyof Icons \| null` | The left icon of the input. | `null` |
 | iconRight | `keyof Icons \| null` | The right icon of the input. | `null` |
@@ -30,15 +30,15 @@
 
 | Slot | Type | Description |
 | --------- | ---- | ----------- |
-| `bottom` | any |  |
-| `error` | any |  |
-| `hint` | any |  |
-| `icon-left` | any |  |
-| `icon-right` | any |  |
-| `label` | \{ inputId: string; \} |  |
-| `left` | any |  |
-| `loader` | any |  |
-| `right` | any |  |
+| bottom | `{ errors: string[]; hint: string \| null; }` |  |
+| error | `{ errors: string[]; }` |  |
+| hint | `{ hint: string \| null; }` |  |
+| icon-left | `any` |  |
+| icon-right | `any` |  |
+| label | `{ label: string \| null; }` |  |
+| left | `any` |  |
+| loader | `any` |  |
+| right | `any` |  |
 
 
 ## Events

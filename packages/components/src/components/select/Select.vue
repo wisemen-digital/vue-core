@@ -14,13 +14,9 @@ import {
 } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import Collapsable from '@/components/collapsable/Collapsable.vue'
-import InputFieldError from '@/components/input-field-error/InputFieldError.vue'
-import InputFieldHint from '@/components/input-field-hint/InputFieldHint.vue'
-import InputFieldLabel from '@/components/input-field-label/InputFieldLabel.vue'
+import InputField from '@/components/input-field/InputField.vue'
 import Popover from '@/components/popover/Popover.vue'
 import PopoverAnchor from '@/components/popover/PopoverAnchor.vue'
-import ScrollArea from '@/components/scroll-area/ScrollArea.vue'
 import { provideSelectContext } from '@/components/select/select.context'
 import type {
   SelectDisplayFn,
@@ -100,22 +96,6 @@ const dropdownContentClasses = computed<string>(() => selectStyle.dropdownConten
 const listboxContentClasses = computed<string>(() => selectStyle.listboxContent({
   isFilterVisible: props.filterFn !== null,
 }))
-
-const labelClasses = computed<string>(() => selectStyle.label({
-  hasError: hasError.value,
-  isDisabled: props.isDisabled,
-  isFocused: isFocused.value,
-  isHovered: isHovered.value,
-}))
-
-const hintClasses = computed<string>(() => selectStyle.hint({
-  hasError: hasError.value,
-  isDisabled: props.isDisabled,
-  isFocused: isFocused.value,
-  isHovered: isHovered.value,
-}))
-
-const errorClasses = computed<string>(() => selectStyle.error())
 
 const isMultiple = computed<boolean>(() => Array.isArray(model.value))
 
@@ -266,24 +246,17 @@ provideSelectContext({
 </script>
 
 <template>
-  <div
-    :style="props.styleConfig"
+  <InputField
     :class="themeProviderContext.theme.value"
-    class="select-default input-field-label-default input-field-error-default input-field-hint-default icon-default"
+    :input-id="inputId"
+    :is-required="props.isRequired"
+    :is-touched="props.isTouched"
+    :errors="props.errors"
+    :hint="props.hint"
+    :label="props.label"
+    :style="props.styleConfig"
+    class="select-default"
   >
-    <slot
-      v-if="props.label !== null"
-      :input-id="inputId"
-      name="label"
-    >
-      <InputFieldLabel
-        :for="inputId"
-        :label="props.label"
-        :is-required="props.isRequired"
-        :class="labelClasses"
-      />
-    </slot>
-
     <Popover
       v-model:is-open="isOpen"
       :popover-align="props.popoverAlign"
@@ -326,7 +299,8 @@ provideSelectContext({
       </template>
 
       <template #content>
-        <!-- TODO: I'm not sure why I have to to provide the theme again, since it should be provided in the popover -->
+        <!-- TODO: I'm not sure why I have to to provide the theme again,
+           since it should be provided in the popover -->
         <div
           :style="props.styleConfig"
           :class="[dropdownContentClasses, themeProviderContext.theme.value]"
@@ -347,9 +321,9 @@ provideSelectContext({
               <SelectFilter />
             </slot>
 
-            <ScrollArea
-              :as="ListboxContent"
-              :scroll-area-class="listboxContentClasses"
+            <ListboxContent
+              :class="listboxContentClasses"
+              class="overflow-y-auto"
             >
               <slot
                 v-if="hasNoResults"
@@ -439,36 +413,12 @@ provideSelectContext({
                   </template>
                 </SelectItem>
               </template>
-            </ScrollArea>
+            </ListboxContent>
           </ListboxRoot>
 
           <slot name="content-bottom" />
         </div>
       </template>
     </Popover>
-
-    <slot name="bottom">
-      <Collapsable :is-visible="hasError || props.hint !== null">
-        <div v-if="hasError">
-          <slot name="error">
-            <InputFieldError
-              :errors="props.errors"
-              :class="errorClasses"
-              :input-id="inputId"
-            />
-          </slot>
-        </div>
-
-        <div v-else-if="props.hint !== null">
-          <slot name="hint">
-            <InputFieldHint
-              :input-id="inputId"
-              :hint="props.hint"
-              :class="hintClasses"
-            />
-          </slot>
-        </div>
-      </Collapsable>
-    </slot>
-  </div>
+  </InputField>
 </template>
