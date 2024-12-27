@@ -18,87 +18,79 @@ const guide = [
   },
 ]
 
-const docs = [
+const components = [
   {
-    link: '/components/autocomplete/address-autocomplete',
-    text: 'AddressAutocomplete',
+    text: 'Buttons',
+    items: [
+      { text: 'Button', link: '/components/button/button' },
+      { text: 'Icon Button', link: '/components/icon-button/icon-button' },
+      { text: 'Router Link Button', link: '/components/router-link-button/router-link-button' },
+      { text: 'Toggle', link: '/components/toggle/toggle' },
+    ]
   },
   {
-    link: '/components/button/button',
-    text: 'Button',
+    text: 'Form Components',
+    items: [
+      { text: 'Checkbox', link: '/components/checkbox/checkbox' },
+      { text: 'Checkbox Group', link: '/components/checkbox-group/checkbox-group' },
+      { text: 'Date Field', link: '/components/date-field/date-field' },
+      { text: 'Input Field', link: '/components/input-field/input-field' },
+      { text: 'Number Field', link: '/components/number-field/number-field' },
+      { text: 'Password Field', link: '/components/password-field/password-field' },
+      { text: 'Phone Number Field', link: '/components/phone-number-field/phone-number-field' },
+      { text: 'Radio Group', link: '/components/radio-group/radio-group' },
+      { text: 'Select', link: '/components/select/select' },
+      { text: 'Text Field', link: '/components/text-field/text-field' },
+      { text: 'Textarea', link: '/components/textarea/textarea' },
+    ]
   },
-  {
-    link: '/components/checkbox/checkbox',
-    text: 'Checkbox',
-  },
-  {
-    link: '/components/checkbox/checkbox-group',
-    text: 'Checkbox Group',
-  },
-  {
-    link: '/components/input-field/date-field',
-    text: 'Date Field',
-  },
-  {
-    link: '/components/dialog/dialog',
-    text: 'Dialog',
-  },
-  {
-    link: '/components/drawer/drawer',
-    text: 'Drawer',
-  },
-  {
-    link: '/components/dropdown-menu/dropdown-menu',
-    text: 'Dropdown Menu',
-  },
-  {
-    link: '/components/input-field/text-field',
-    text: 'Text Field',
-  },
-  {
-    link: '/components/input-field/number-field',
-    text: 'Number Field',
-  },
-  {
-    link: '/components/input-field/password-field',
-    text: 'Password Field',
-  },
-  {
-    link: '/components/input-field/textarea',
-    text: 'Textarea',
-  },
-  {
-    link: '/components/input-field/phone-number-field',
-    text: 'Phone Number Field',
-  },
-  {
-    link: '/components/select/select',
-    text: 'Select',
-  },
-  {
-    link: '/components/switch/switch',
-    text: 'Switch',
-  },
-  {
-    link: '/components/radio-group/radio-group',
-    text: 'Radio Group',
-  },
-  {
-    link: '/components/table/table',
-    text: 'Table',
-  },
-  {
-    link: '/components/tabs/tabs',
-    text: 'Tabs',
-  },
-  {
-    link: '/components/theme-provider/theme-provider',
-    text: 'Theme Provider',
-  },
-  {
-    link: '/components/toast/toast',
-    text: 'Toast',
-  },
+  // {
+  //   text: 'Overlays & Popups',
+  //   items: [
+  //     { text: 'Dialog', link: '/components/dialog/dialog' },
+  //     { text: 'Drawer', link: '/components/drawer/drawer' },
+  //     { text: 'Popover', link: '/components/popover/popover' },
+  //     { text: 'Tooltip', link: '/components/tooltip/tooltip' },
+  //     { text: 'Toast', link: '/components/toast/toast' },
+  //     { text: 'Dropdown Menu', link: '/components/dropdown-menu/dropdown-menu' }
+  //   ]
+  // },
+  // {
+  //   text: 'Navigation & Layout',
+  //   items: [
+  //     { text: 'Tabs', link: '/components/tabs/tabs' },
+  //     { text: 'Table', link: '/components/table/table' },
+  //   ]
+  // },
+  // {
+  //   text: 'Interactive Elements',
+  //   items: [
+  //     { text: 'Button', link: '/components/button/button' },
+  //     { text: 'Toggle', link: '/components/toggle/toggle' },
+  //     { text: 'Switch', link: '/components/switch/switch' }
+  //   ]
+  // },
+  // {
+  //   text: 'Keyboard',
+  //   items: [
+  //     { text: 'Keyboard Shortcut', link: '/components/keyboard/keyboard-shortcut' },
+  //     { text: 'Keyboard Shortcut Provider', link: '/components/keyboard/keyboard-shortcut-provider' }
+  //   ]
+  // },
+  // {
+  //   text: 'Autocomplete',
+  //   items: [
+  //     { text: 'Autocomplete', link: '/components/autocomplete/autocomplete' },
+  //     { text: 'Address Autocomplete', link: '/components/autocomplete/address-autocomplete' },
+  //   ]
+  // },
+  // {
+  //   text: 'Utilities',
+  //   items: [
+  //     { text: 'Config Provider', link: '/components/config-provider/config-provider' },
+  //     { text: 'Theme Provider', link: '/components/theme-provider/theme-provider' },
+  //   ]
+  // }
 ]
 
 // https://vitepress.dev/reference/site-config
@@ -129,8 +121,7 @@ export default defineConfig({
         text: 'Guide',
       },
       {
-        collapsed: false,
-        items: docs,
+        items: components,
         text: 'Components',
       },
     ],
