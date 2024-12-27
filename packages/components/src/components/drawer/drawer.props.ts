@@ -5,7 +5,7 @@ export interface DrawerProps extends Stylable<'drawer'> {
    * The id of the element that triggers the drawer. Must be set for accessibility purposes.
    * @default null
    */
-  id?: null | string
+  id?: string | null
   /**
    * The test id of the drawer.
    */

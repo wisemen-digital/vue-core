@@ -86,6 +86,7 @@ observer.observe(document.documentElement, {
             <div class="vp-raw flex items-center justify-center rounded-lg border border-solid border-gray-100 p-16 dark:border-black dark:bg-gray-950">
               <VcConfigProvider
                 locale="nl-US"
+                teleport-target-selector="#teleport-target"
                 google-maps-api-key="AIzaSyATX2fY3BZwaKeURsQhwpEVLmLRr27s4vw"
               >
                 <slot />

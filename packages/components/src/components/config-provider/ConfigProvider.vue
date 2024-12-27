@@ -10,6 +10,7 @@ const props = defineProps<{
   pagination?: {
     limit?: number
   }
+  teleportTargetSelector?: string
 }>()
 
 provideConfigContext({
@@ -19,6 +20,7 @@ provideConfigContext({
   pagination: {
     limit: props.pagination?.limit,
   },
+  teleportTargetSelector: props.teleportTargetSelector ?? 'body',
 })
 </script>
 

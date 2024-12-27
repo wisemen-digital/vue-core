@@ -12,6 +12,9 @@
 - **VcDateField**
   - Add new date field component.
 
+- **VcThemeProvider**
+  - Add `teleportTargetSelector` prop to allow customizing where elements such as tooltips and popovers are rendered. This prop defaults to `body`.
+
 ## [alpha.16]
 
 ### Breaking Changes

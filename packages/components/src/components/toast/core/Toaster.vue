@@ -122,7 +122,7 @@ function removeToast(toast: ToastT): void {
   toasts.value = toasts.value.filter(({ id }) => id !== toast.id)
 }
 
-function onBlur(event: FocusEvent | any): void {
+function onBlur(event: any | FocusEvent): void {
   if (
     isFocusWithinRef.value
     && !event.currentTarget?.contains?.(event.relatedTarget)
@@ -136,7 +136,7 @@ function onBlur(event: FocusEvent | any): void {
   }
 }
 
-function onFocus(event: FocusEvent | any): void {
+function onFocus(event: any | FocusEvent): void {
   const isNotDismissible
     = event.target instanceof HTMLElement
     && event.target.dataset.dismissible === 'false'

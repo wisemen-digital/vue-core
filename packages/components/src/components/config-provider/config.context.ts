@@ -12,6 +12,7 @@ interface ConfigContext {
   pagination?: {
     limit?: number
   }
+  teleportTargetSelector: string
 }
 
 const configContextKey: InjectionKey<ConfigContext> = Symbol('configContextKey')

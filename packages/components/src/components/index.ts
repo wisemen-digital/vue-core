@@ -8,17 +8,14 @@ import type { DrawerProps } from '@/components/drawer/drawer.props'
 import type { DropdownMenuProps } from '@/components/dropdown-menu/dropdownMenu.props'
 import type { TextFieldProps } from '@/components/input-field/text-field/textField.props'
 import type { PopoverProps } from '@/components/popover/popover.props'
-// import type { RadioGroupProps } from '@/components/radio-group-old/radioGroup.props'
 import type { SelectProps } from '@/components/select/select.props'
 import type { SwitchProps } from '@/components/switch/switch.props'
 import type { TableProps } from '@/components/table/table.props'
 import type { TooltipProps } from '@/components/tooltip/tooltip.props'
 import type {
-  // AcceptableValue,
   SelectValue,
 } from '@/types'
 
-// Throws an error when using `export { XXXProps as VcXXXProps }` for some reason
 export type VcAutocompleteProps<TValue extends SelectValue> = AutocompleteProps<TValue>
 export type VcButtonProps = ButtonProps
 export type VcCheckboxProps = CheckboxProps
@@ -27,7 +24,6 @@ export type VcDrawerProps = DrawerProps
 export type VcDropdownMenuProps = DropdownMenuProps
 export type VcIconButtonProps = IconButtonProps
 export type VcPopoverProps = PopoverProps
-// export type VcRadioGroupProps<TValue extends AcceptableValue> = RadioGroupProps<TValue>
 export type VcRouterLinkButtonProps = RouterLinkButtonProps
 export type VcSelectProps<TValue extends SelectValue> = SelectProps<TValue>
 export type VcSwitchProps = SwitchProps
@@ -166,6 +162,7 @@ export { default as VcTag } from '@/components/tag/Tag.vue'
 export { default as VcTagRemoveButton } from '@/components/tag/TagRemoveButton.vue'
 
 // Theme Provider
+export { injectThemeProviderContext, provideThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 export { default as VcThemeProvider } from '@/components/theme-provider/ThemeProvider.vue'
 
 // Toast

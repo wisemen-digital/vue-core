@@ -11,7 +11,6 @@ import RadioGroup from '@/components/radio-group/RadioGroup.vue'
 import RadioGroupItem from '@/components/radio-group/RadioGroupItem.vue'
 import Select from '@/components/select/Select.vue'
 import Switch from '@/components/switch/Switch.vue'
-import ThemeProvider from '@/components/theme-provider/ThemeProvider.vue'
 import Tooltip from '@/components/tooltip/Tooltip.vue'
 import { setupDefaultStyles } from '@/styling/setupDefaultStyles'
 import type { SelectItem } from '@/types/select.type'
@@ -74,9 +73,10 @@ const locale = navigator.language
 <template>
   <ConfigProvider
     :locale="locale"
+    teleport-target-selector="#teleport-target"
     google-maps-api-key="AIzaSyATX2fY3BZwaKeURsQhwpEVLmLRr27s4vw"
   >
-    <ThemeProvider
+    <div
       :is-dark-mode-enabled="false"
       theme="default"
       class="p-11xl grid grid-cols-2 gap-xl bg-primary min-h-screen"
@@ -177,6 +177,8 @@ const locale = navigator.language
           Yeet
         </Button>
       </div> -->
-    </ThemeProvider>
-  </configprovider>
+    </div>
+
+    <div id="teleport-target" />
+  </ConfigProvider>
 </template>

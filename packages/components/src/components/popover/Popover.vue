@@ -8,6 +8,7 @@ import {
 } from 'reka-ui'
 import { computed } from 'vue'
 
+import { injectConfigContext } from '@/components/config-provider/config.context'
 import type { PopoverProps } from '@/components/popover/popover.props'
 import { usePopoverStyle } from '@/components/popover/popover.style'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
@@ -31,6 +32,7 @@ const isOpen = defineModel<boolean>('isOpen', {
 })
 
 const themeProviderContext = injectThemeProviderContext()
+const configContext = injectConfigContext()
 
 const popoverStyle = usePopoverStyle()
 
@@ -53,7 +55,7 @@ const arrowClasses = computed<string>(() => popoverStyle.arrow())
       </PopoverTrigger>
     </slot>
 
-    <PopoverPortal to="#teleport-target">
+    <PopoverPortal :to="configContext.teleportTargetSelector">
       <PopoverContent
         :align="props.popoverAlign"
         :side="props.popoverSide"

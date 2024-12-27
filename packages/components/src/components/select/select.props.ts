@@ -53,12 +53,12 @@ export interface SelectProps<TValue extends SelectValue> extends FormElementProp
    * The placeholder text of the input.
    * @default null
    */
-  placeholder?: null | string
+  placeholder?: string | null
   /**
    * The placeholder of the search input.
    * @default 't("component.select.search_placeholder")'
    */
-  searchPlaceholder?: null | string
+  searchPlaceholder?: string | null
   /**
    * Whether the select should remain open when the value changes.
    * @default true - when the value is an array
