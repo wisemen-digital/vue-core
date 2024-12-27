@@ -1,37 +1,37 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import { provideThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
+import {
+  injectThemeProviderContext,
+  provideThemeProviderContext,
+} from '@/components/theme-provider/themeProvider.context'
+import { ThemeUtil } from '@/utils/theme.util'
 
 const props = withDefaults(defineProps<{
-  isDarkModeEnabled?: boolean
-  theme: string & {} | 'default'
+  isDarkModeEnabled?: boolean | null
+  theme?: string & {} | 'default' | null
 }>(), {
-  isDarkModeEnabled: false,
+  isDarkModeEnabled: null,
+  theme: null,
 })
 
-const theme = computed<string>(() => {
-  const themeClasses = [
-    props.theme,
-  ]
+const themeContext = injectThemeProviderContext()
 
-  if (props.isDarkModeEnabled) {
-    themeClasses.push('dark')
-  }
-  else {
-    themeClasses.push('light')
-  }
+const isDarkModeEnabled = computed<boolean>(() => (
+  props.isDarkModeEnabled ?? themeContext.isDarkModeEnabled.value
+))
 
-  return themeClasses.join(' ')
-})
+const theme = computed<string>(() =>
+  props.theme ?? themeContext.theme.value)
 
 provideThemeProviderContext({
+  isDarkModeEnabled,
   theme,
 })
 </script>
 
 <template>
-  <div :class="theme">
+  <div :class="ThemeUtil.getClasses(theme, isDarkModeEnabled)">
     <slot />
   </div>
 </template>

@@ -8,6 +8,7 @@ import type { TextareaProps } from '@/components/input-field/text-area/textarea.
 import { textareaStyle } from '@/components/input-field/text-area/textarea.style'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { useAriaDescribedBy } from '@/composables/aria-described-by/ariaDescribedBy.composable'
+import { ThemeUtil } from '@/utils/theme.util'
 
 const props = withDefaults(defineProps<TextareaProps>(), {
   id: null,
@@ -97,7 +98,7 @@ function onBlur(): void {
     :errors="props.errors"
     :is-required="props.isRequired"
     :style="props.styleConfig"
-    :class="themeProviderContext.theme.value"
+    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value)"
     class="textarea-default"
   >
     <template #label="{ label }">

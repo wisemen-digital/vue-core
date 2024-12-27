@@ -4,6 +4,7 @@ import { computed } from 'vue'
 
 import { useDrawerStyle } from '@/components/drawer/drawer.style'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
+import { ThemeUtil } from '@/utils/theme.util'
 
 const props = defineProps<{
   shouldPreventClickOutside: boolean
@@ -38,7 +39,10 @@ function onOpenAutoFocus(e: Event): void {
 <template>
   <DialogContent
     :force-mount="true"
-    :class="[wrapperClasses, themeProviderContext.theme.value]"
+    :class="[
+      wrapperClasses,
+      ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value),
+    ]"
     :disable-outside-pointer-events="false"
     class="drawer-default"
     @interact-outside="onInteractOutside"

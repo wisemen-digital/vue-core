@@ -32,6 +32,14 @@ const docs = [
     text: 'Checkbox',
   },
   {
+    link: '/components/checkbox/checkbox-group',
+    text: 'Checkbox Group',
+  },
+  {
+    link: '/components/input-field/date-field',
+    text: 'Date Field',
+  },
+  {
     link: '/components/dialog/dialog',
     text: 'Dialog',
   },
@@ -98,10 +106,22 @@ export default defineConfig({
   base: '/vue-core/',
   description: 'Vue Core',
   themeConfig: {
-    nav: [
-      { link: '/', text: 'Home' },
-      // { link: '/markdown-examples', text: 'Examples' },
-    ],
+    nav: [],
+
+    search: {
+      provider: 'local',
+      options: {
+        miniSearch: {
+          searchOptions: {
+            fuzzy: false,
+            prefix: false,
+            boost: {
+              title: 10 
+            },
+          }
+        }
+      }
+    },
 
     sidebar: [
       {

@@ -6,6 +6,7 @@ import { useBreadcrumbsStyle } from '@/components/breadcrumbs/breadcrumbs.style'
 import BreadcrumbSeparator from '@/components/breadcrumbs/BreadcrumbSeparator.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import type { BreadcrumbItem as BreadcrumbItemType } from '@/types/breadcrumb.type'
+import { ThemeUtil } from '@/utils/theme.util'
 
 const props = defineProps<{
   /**
@@ -22,7 +23,7 @@ const breadcrumbsContainerClasses = computed<string>(() => breadcrumbsVariants.c
 
 <template>
   <nav
-    :class="themeProviderContext.theme.value"
+    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value)"
     aria-label="breadcrumb"
   >
     <ol :class="breadcrumbsContainerClasses">

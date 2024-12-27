@@ -17,6 +17,8 @@ import InputFieldLabel from '@/components/input-field-label/InputFieldLabel.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { useAriaDescribedBy } from '@/composables/aria-described-by/ariaDescribedBy.composable'
 import { useElementAttributeObserver } from '@/composables/element-attribute-observer/elementAttributeObserver.composable'
+import type { FormElementSlots } from '@/types/formElement.type'
+import { ThemeUtil } from '@/utils/theme.util'
 
 const props = withDefaults(defineProps<CheckboxProps>(), {
   id: null,
@@ -37,6 +39,8 @@ const emit = defineEmits<{
   blur: []
   focus: []
 }>()
+
+const slots = defineSlots<FormElementSlots>()
 
 const model = defineModel<boolean>({
   default: null,
@@ -91,6 +95,8 @@ const isMouseOver = ref<boolean>(false)
 const isHovered = computed<boolean>(() => isMouseOver.value && !props.isDisabled)
 const isDisabled = computed<boolean>(() => props.isDisabled || props.isReadonly)
 const hasError = computed<boolean>(() => props.isTouched && props.errors.length > 0)
+
+const hasDefaultSlot = computed<boolean>(() => slots.default !== undefined)
 
 const ariaDescribedBy = useAriaDescribedBy({
   id: inputId,
@@ -151,71 +157,105 @@ provideCheckboxContext({
 </script>
 
 <template>
-  <div
-    :style="props.styleConfig"
-    :class="themeProviderContext.theme.value"
+  <CheckboxRoot
+    v-if="hasDefaultSlot"
+    :id="inputId"
+    ref="checkboxRootRef"
+    :model-value="computedModel === null ? undefined : computedModel"
+    :data-test-id="props.testId"
+    :disabled="props.isDisabled || props.isReadonly"
+    :aria-describedby="ariaDescribedBy"
+    :class="[
+      rootClasses,
+      ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value),
+    ]"
+    :value="props.value ?? undefined"
     class="checkbox-default input-field-label-default input-field-error-default input-field-hint-default"
+    @update:model-value="onUpdateModelValue"
+    @focus="onFocus"
+    @blur="onBlur"
+    @mouseenter="onMouseEnter"
+    @mouseleave="onMouseLeave"
   >
-    <div class="grid grid-cols-[min-content_auto] items-center">
-      <CheckboxRoot
-        :id="inputId"
-        ref="checkboxRootRef"
-        :model-value="computedModel === null ? undefined : computedModel"
-        :data-test-id="props.testId"
-        :disabled="props.isDisabled || props.isReadonly"
-        :aria-describedby="ariaDescribedBy"
-        :class="rootClasses"
-        :value="props.value ?? undefined"
-        @update:model-value="onUpdateModelValue"
-        @focus="onFocus"
-        @blur="onBlur"
-        @mouseenter="onMouseEnter"
-        @mouseleave="onMouseLeave"
-      >
-        <slot>
-          <CheckboxIndicator />
-        </slot>
-      </CheckboxRoot>
+    <slot>
+      <CheckboxIndicator />
+    </slot>
+  </CheckboxRoot>
 
-      <InputFieldLabel
-        v-if="props.label !== null"
-        :class="labelClasses"
-        :is-required="props.isRequired"
-        :for="inputId"
-        :label="props.label"
-      />
-
-      <!-- Spacer element for grid -->
-      <span v-else />
-
-      <!-- Spacer element for grid -->
-      <span />
-
-      <slot name="bottom">
-        <div>
-          <Collapsable :is-visible="hasError || props.hint !== null">
-            <div v-if="hasError">
-              <slot name="error">
-                <InputFieldError
-                  :errors="props.errors"
-                  :class="errorClasses"
-                  :input-id="inputId"
-                />
-              </slot>
-            </div>
-
-            <div v-else-if="props.hint !== null">
-              <slot name="hint">
-                <InputFieldHint
-                  :input-id="inputId"
-                  :hint="props.hint"
-                  :class="hintClasses"
-                />
-              </slot>
-            </div>
-          </Collapsable>
-        </div>
+  <div
+    v-else
+    :style="props.styleConfig"
+    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value)"
+    class="grid grid-cols-[min-content_auto] items-center checkbox-default input-field-label-default input-field-error-default input-field-hint-default"
+  >
+    <CheckboxRoot
+      :id="inputId"
+      ref="checkboxRootRef"
+      :model-value="computedModel === null ? undefined : computedModel"
+      :data-test-id="props.testId"
+      :disabled="props.isDisabled || props.isReadonly"
+      :aria-describedby="ariaDescribedBy"
+      :class="rootClasses"
+      :value="props.value ?? undefined"
+      @update:model-value="onUpdateModelValue"
+      @focus="onFocus"
+      @blur="onBlur"
+      @mouseenter="onMouseEnter"
+      @mouseleave="onMouseLeave"
+    >
+      <slot>
+        <CheckboxIndicator />
       </slot>
-    </div>
+    </CheckboxRoot>
+
+    <InputFieldLabel
+      v-if="props.label !== null"
+      :class="labelClasses"
+      :is-required="props.isRequired"
+      :for="inputId"
+      :label="props.label"
+    />
+
+    <!-- Spacer element for grid -->
+    <span v-else />
+
+    <!-- Spacer element for grid -->
+    <span />
+
+    <slot
+      :errors="props.errors"
+      :hint="props.hint"
+      name="bottom"
+    >
+      <div>
+        <Collapsable :is-visible="hasError || props.hint !== null">
+          <div v-if="hasError">
+            <slot
+              :errors="props.errors"
+              name="error"
+            >
+              <InputFieldError
+                :errors="props.errors"
+                :class="errorClasses"
+                :input-id="inputId"
+              />
+            </slot>
+          </div>
+
+          <div v-else-if="props.hint !== null">
+            <slot
+              :hint="props.hint"
+              name="hint"
+            >
+              <InputFieldHint
+                :input-id="inputId"
+                :hint="props.hint"
+                :class="hintClasses"
+              />
+            </slot>
+          </div>
+        </Collapsable>
+      </div>
+    </slot>
   </div>
 </template>

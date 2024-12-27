@@ -30,6 +30,7 @@ import SelectValueTags from '@/components/select/values/SelectValueTags.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import type { Icon } from '@/icons/icons'
 import type { SelectItem as SelectItemType, SelectValue } from '@/types/select.type'
+import { ThemeUtil } from '@/utils/theme.util'
 
 const props = withDefaults(defineProps<SelectProps<TValue>>(), {
   id: null,
@@ -247,7 +248,7 @@ provideSelectContext({
 
 <template>
   <InputField
-    :class="themeProviderContext.theme.value"
+    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value)"
     :input-id="inputId"
     :is-required="props.isRequired"
     :is-touched="props.isTouched"
@@ -303,7 +304,10 @@ provideSelectContext({
            since it should be provided in the popover -->
         <div
           :style="props.styleConfig"
-          :class="[dropdownContentClasses, themeProviderContext.theme.value]"
+          :class="[
+            dropdownContentClasses,
+            ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value),
+          ]"
           class="select-default"
         >
           <slot name="content-top" />

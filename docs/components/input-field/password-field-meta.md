@@ -5,7 +5,7 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| autoComplete | `"off" \| "on"` | The autocorrect property of the input. | `"off"` |
+| autocomplete | `"off" \| "on"` | The autocorrect property of the input. |  |
 | autoFocus | `boolean` | Whether the input should be focused automatically. |  |
 | errors | `string[]` | The errors associated with the input. | `[]` |
 | hint | `string \| null` | The hint text of the input. | `null` |

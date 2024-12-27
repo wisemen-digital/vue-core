@@ -78,7 +78,7 @@ export function setupDefaultRadioGroupItemStyles(): void {
       '--radio-group-item-border-color-hover': 'var(--border-primary)',
       '--radio-group-item-border-radius-default': 'var(--radius-full)',
       '--radio-group-item-error-font-size-default': 'var(--text-sm)',
-      '--radio-group-item-error-font-weight-default': 'var(--font-weight-medium)',
+      '--radio-group-item-error-font-weight-default': 'var(--input-field-error-font-weight-default)',
       '--radio-group-item-error-spacing-default': 'var(--spacing-none)',
       '--radio-group-item-error-text-color-default': 'var(--text-error-primary)',
       '--radio-group-item-hint-font-size-default': 'var(--input-field-hint-font-size-default)',

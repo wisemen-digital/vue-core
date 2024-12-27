@@ -15,17 +15,8 @@ const props = defineProps<{
   files?: string
 }>()
 
-const darkMode = useDarkMode()
-
 const showCode = ref<boolean>(false)
 const parsedFiles = computed<string[]>(() => JSON.parse(decodeURIComponent(props.files ?? '')))
-
-const isDark = computed<boolean>({
-  get: () => darkMode.value.value === 'dark',
-  set: (value) => {
-    darkMode.value.value = value ? 'dark' : 'light'
-  },
-})
 
 const tabItems = computed<TabItem[]>(() => {
   // Sort parsedFiles by first 'Demo.vue' and then by the file name
@@ -50,22 +41,35 @@ const tabItems = computed<TabItem[]>(() => {
 })
 
 const selectedTab = ref<TabItem | null>(tabItems.value?.[0] ?? null)
+
+const isDark = ref<boolean>(false)
+
+const observer = new MutationObserver((mutations) => {
+  mutations.forEach((mutation) => {
+    if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+      const darkClass = document.documentElement.classList.contains('dark')
+
+      if (darkClass !== isDark.value) {
+        isDark.value = darkClass
+      }
+    }
+  })
+})
+
+observer.observe(document.documentElement, {
+  attributes: true,
+  attributeFilter: ['class'],
+})
 </script>
 
 <template>
   <VcThemeProvider
-    :is-dark-mode-enabled="darkMode.isEnabled.value"
+    :is-dark-mode-enabled="isDark"
     theme="default"
   >
     <div class="flex flex-col gap-2">
       <div class="vp-raw">
         <div class="flex justify-end gap-x-4">
-          <VcSwitch
-            v-model="isDark"
-            label="Dark mode"
-            value="dark"
-          />
-
           <VcSwitch
             v-model="showCode"
             :style-config="{
@@ -81,7 +85,7 @@ const selectedTab = ref<TabItem | null>(tabItems.value?.[0] ?? null)
           <div v-if="!showCode">
             <div class="vp-raw flex items-center justify-center rounded-lg border border-solid border-gray-100 p-16 dark:border-black dark:bg-gray-950">
               <VcConfigProvider
-                locale="en"
+                locale="nl-US"
                 google-maps-api-key="AIzaSyATX2fY3BZwaKeURsQhwpEVLmLRr27s4vw"
               >
                 <slot />
@@ -114,5 +118,7 @@ const selectedTab = ref<TabItem | null>(tabItems.value?.[0] ?? null)
         </VcCollapsable2>
       </div>
     </div>
+
+    <div id="teleport-target" class="vp-raw"></div>
   </VcThemeProvider>
 </template>

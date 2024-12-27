@@ -88,7 +88,6 @@ const inputId = props.id ?? useId()
       v-model="model"
       v-bind="props"
       :style="props.styleConfig"
-      class="input-field-label-default input-field-error-default input-field-hint-default"
       @select="emit('select', $event)"
       @blur="emit('blur')"
       @focus="emit('focus')"

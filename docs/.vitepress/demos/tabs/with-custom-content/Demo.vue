@@ -6,36 +6,33 @@ import {
   VcTabsContent,
   VcTag,
 } from '@wisemen/vue-core'
+
 import { ref } from 'vue'
 
-const tabItems: TabItem<{ hasAlert: boolean, icon: Icon }>[] = [
+interface CustomTabItem extends TabItem<{ hasAlert: boolean, icon: Icon }> {}
+
+const tabItems: CustomTabItem[] = [
   {
     value: 'customization',
     label: 'Customization',
-    meta: {
-      icon: 'switchVertical',
-      hasAlert: false,
-    },
+    icon: 'switchVertical',
+    hasAlert: false,
   },
   {
     value: 'components',
     label: 'Components',
-    meta: {
-      icon: 'filter',
-      hasAlert: true,
-    },
+    icon: 'filter',
+    hasAlert: true,
   },
   {
     value: 'settings',
     label: 'Settings',
-    meta: {
-      icon: 'settings',
-      hasAlert: false,
-    },
+    icon: 'settings',
+    hasAlert: false,
   },
 ]
 
-const value = ref<TabItem>(tabItems[0]!)
+const value = ref<CustomTabItem>(tabItems[0]!)
 </script>
 
 <template>
@@ -45,11 +42,10 @@ const value = ref<TabItem>(tabItems[0]!)
   >
     <template #item-left="{ item }">
       <VcTag
-        v-if="item.meta.hasAlert"
+        v-if="item.hasAlert"
         :style-config="{
-          '--tag-font-size-default': '12px',
+          '--tag-font-size-default': '10px',
           '--tag-padding-x-default': '6px',
-          '--tag-padding-y-default': '1px',
         }"
         class="mr-2"
       >
@@ -61,8 +57,8 @@ const value = ref<TabItem>(tabItems[0]!)
 
     <template #item-right="{ item }">
       <VcIcon
-        :icon="item.meta.icon"
-        class="ml-2"
+        :icon="item.icon"
+        class="ml-2 size-4"
       />
     </template>
 

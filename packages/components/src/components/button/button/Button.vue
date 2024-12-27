@@ -6,6 +6,7 @@ import type { ButtonProps } from '@/components/button/button/button.props'
 import Icon from '@/components/icon/Icon.vue'
 import Spinner from '@/components/spinner/Spinner.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
+import { ThemeUtil } from '@/utils/theme.util'
 
 const props = withDefaults(defineProps<ButtonProps>(), {
   testId: null,
@@ -68,7 +69,10 @@ const {
     :disabled="props.isDisabled"
     :aria-busy="props.isLoading"
     :data-test-id="props.testId"
-    :class="[baseClasses, themeContext.theme.value]"
+    :class="[
+      baseClasses,
+      ThemeUtil.getClasses(themeContext.theme.value, themeContext.isDarkModeEnabled.value),
+    ]"
     class="button-default"
     @focus="onFocus"
     @blur="onBlur"

@@ -13,6 +13,7 @@ import { useTextFieldStyle } from '@/components/input-field/text-field/textField
 import Spinner from '@/components/spinner/Spinner.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { useAriaDescribedBy } from '@/composables/aria-described-by/ariaDescribedBy.composable'
+import { ThemeUtil } from '@/utils/theme.util'
 
 const props = withDefaults(defineProps<TextFieldProps>(), {
   id: null,
@@ -56,7 +57,7 @@ const model = defineModel<TValue | null>({
   required: true,
 })
 
-const themeContext = injectThemeProviderContext()
+const themeProviderContext = injectThemeProviderContext()
 const textFieldStyle = useTextFieldStyle()
 
 const inputRef = ref<HTMLInputElement | null>(null)
@@ -147,13 +148,13 @@ onMounted(() => {
 <template>
   <InputField
     :style="props.styleConfig"
-    :class="themeContext.theme.value"
     :input-id="inputId"
     :is-required="props.isRequired"
     :is-touched="props.isTouched"
     :errors="props.errors"
     :hint="props.hint"
     :label="props.label"
+    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value)"
     class="text-field-default"
   >
     <template #label="{ label }">

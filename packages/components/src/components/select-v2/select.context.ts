@@ -24,6 +24,7 @@ interface SelectContext {
   hasError: ComputedRef<boolean>
   hasFilter: ComputedRef<boolean>
   isArrowVisible: ComputedRef<boolean>
+  isDarkModeEnabled: ComputedRef<boolean>
   isDisabled: ComputedRef<boolean>
   isEmpty: ComputedRef<boolean>
   isFocused: ComputedRef<boolean>

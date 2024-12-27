@@ -4,6 +4,7 @@ import { computed } from 'vue'
 import { inputFieldErrorStyle } from '@/components/input-field-error/inputFieldError.style'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import type { StyleConfig } from '@/types/style.type'
+import { ThemeUtil } from '@/utils/theme.util'
 
 const props = withDefaults(defineProps<{
   inputId: string
@@ -24,7 +25,10 @@ const errorClasses = computed<string>(() => style.error())
   <span
     v-if="props.errors.length > 0"
     :id="`${props.inputId}-error`"
-    :class="[errorClasses, themeProviderContext.theme.value]"
+    :class="[
+      errorClasses,
+      ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value),
+    ]"
     :style="props.styleConfig"
     aria-live="assertive"
     role="alert"

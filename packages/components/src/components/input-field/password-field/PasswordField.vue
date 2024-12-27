@@ -94,6 +94,7 @@ const buttonLabel = computed<string>(() => (
           :style-config="{
             '--icon-button-size-default': '2rem',
             '--icon-button-icon-size-default': '1.125rem',
+            '--icon-button-border-radius-default': 'var(--radius-sm)',
             '--icon-button-ring-color-focus': 'transparent',
             '--icon-button-bg-color-focus': 'var(--bg-secondary-hover)',
             '--icon-button-bg-color-disabled': 'transparent',

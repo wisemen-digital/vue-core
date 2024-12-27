@@ -30,6 +30,7 @@ import type { CalendarProps } from '@/components/calendar/calendar.props'
 import Collapsable2 from '@/components/collapsable/Collapsable2.vue'
 import { injectConfigContext } from '@/components/config-provider/config.context'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
+import { ThemeUtil } from '@/utils/theme.util'
 
 const props = withDefaults(defineProps<CalendarProps>(), {
   defaultPlaceholderDate: () => new Date(),
@@ -185,7 +186,7 @@ watch(placeholderYear, () => {
       ))
     }"
     :prevent-deselect="true"
-    :class="themeProviderContext.theme.value"
+    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value)"
   >
     <Collapsable2>
       <div

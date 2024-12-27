@@ -25,6 +25,7 @@ import type {
   DropdownMenuOption,
   DropdownMenuRoute,
 } from '@/types/dropdownMenu.type'
+import { ThemeUtil } from '@/utils/theme.util'
 
 const props = withDefaults(defineProps<DropdownMenuProps>(), {
   isArrowHidden: false,
@@ -38,7 +39,7 @@ const props = withDefaults(defineProps<DropdownMenuProps>(), {
   styleConfig: null,
 })
 
-const themeContext = injectThemeProviderContext()
+const themeProviderContext = injectThemeProviderContext()
 
 const router = useRouter()
 
@@ -159,7 +160,10 @@ onBeforeUnmount(() => {
 
     <DropdownMenuPortal>
       <DropdownMenuContent
-        :class="[dropdownClasses, themeContext.theme.value]"
+        :class="[
+          dropdownClasses,
+          ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value),
+        ]"
         :side-offset="props.popoverOffsetInPx"
         :side="props.popoverSide"
         :align="props.popoverAlign"

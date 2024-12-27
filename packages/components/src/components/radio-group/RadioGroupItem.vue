@@ -15,9 +15,11 @@ import { provideRadioGroupItemContext } from '@/components/radio-group/radioGrou
 import type { RadioGroupItemProps } from '@/components/radio-group/radioGroupItem.props'
 import { useRadioGroupItemStyle } from '@/components/radio-group/radioGroupItem.style'
 import RadioGroupItemIndicator from '@/components/radio-group/RadioGroupItemIndicator.vue'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { useAriaDescribedBy } from '@/composables/aria-described-by/ariaDescribedBy.composable'
 import { useElementAttributeObserver } from '@/composables/element-attribute-observer/elementAttributeObserver.composable'
 import type { FormElementSlots } from '@/types/formElement.type'
+import { ThemeUtil } from '@/utils/theme.util'
 
 const props = withDefaults(defineProps<RadioGroupItemProps>(), {
   id: null,
@@ -38,6 +40,8 @@ const emit = defineEmits<{
 }>()
 
 const slots = defineSlots<FormElementSlots>()
+
+const themeProviderContext = injectThemeProviderContext()
 
 const radioGroupItemStyle = useRadioGroupItemStyle()
 const inputId = props.id ?? useId()
@@ -135,6 +139,7 @@ provideRadioGroupItemContext({
     :required="props.isRequired"
     :value="props.value"
     :style="props.styleConfig"
+    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value)"
     class="group outline-none radio-group-item-default input-field-label-default input-field-error-default input-field-hint-default"
     @focus="onFocus"
     @blur="onBlur"
@@ -146,6 +151,8 @@ provideRadioGroupItemContext({
 
   <div
     v-else
+    :style="props.styleConfig"
+    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value)"
     class="radio-group-item-default input-field-label-default input-field-error-default input-field-hint-default grid grid-cols-[min-content_auto] items-center"
   >
     <RadioGroupItem

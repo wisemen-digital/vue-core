@@ -11,6 +11,7 @@ import { computed } from 'vue'
 import type { PopoverProps } from '@/components/popover/popover.props'
 import { usePopoverStyle } from '@/components/popover/popover.style'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
+import { ThemeUtil } from '@/utils/theme.util'
 
 const props = withDefaults(defineProps<PopoverProps>(), {
   testId: null,
@@ -29,7 +30,7 @@ const isOpen = defineModel<boolean>('isOpen', {
   required: false,
 })
 
-const themeContext = injectThemeProviderContext()
+const themeProviderContext = injectThemeProviderContext()
 
 const popoverStyle = usePopoverStyle()
 
@@ -52,7 +53,7 @@ const arrowClasses = computed<string>(() => popoverStyle.arrow())
       </PopoverTrigger>
     </slot>
 
-    <PopoverPortal>
+    <PopoverPortal to="#teleport-target">
       <PopoverContent
         :align="props.popoverAlign"
         :side="props.popoverSide"
@@ -61,7 +62,7 @@ const arrowClasses = computed<string>(() => popoverStyle.arrow())
         :hide-when-detached="true"
         :class="[
           contentClasses,
-          themeContext.theme.value,
+          ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value),
         ]"
         :style="props.styleConfig"
         :collision-boundary="props.popoverContainerElement"

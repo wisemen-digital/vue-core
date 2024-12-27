@@ -6,6 +6,7 @@ import { useTagStyle } from '@/components/tag/tag.style'
 import TagRemoveButton from '@/components/tag/TagRemoveButton.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import type { Stylable } from '@/types/stylable.type'
+import { ThemeUtil } from '@/utils/theme.util'
 
 const props = withDefaults(defineProps<{
   isDisabled?: boolean
@@ -42,7 +43,10 @@ provideTagContext({
 
 <template>
   <div
-    :class="[tagBoxClasses, themeProviderContext.theme.value]"
+    :class="[
+      tagBoxClasses,
+      ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value),
+    ]"
     :style="props.styleConfig"
     class="tag-default"
   >

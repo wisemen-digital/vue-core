@@ -64,7 +64,7 @@ function onClearAll(): void {
   >
     <template #content-top>
       <div class="mb-1 flex items-center justify-between">
-        <span class="pl-select-dropdown-padding-x-default text-sm font-medium">
+        <span class="px-3 text-sm font-medium">
           Fruits
         </span>
 

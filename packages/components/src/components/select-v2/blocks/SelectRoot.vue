@@ -25,6 +25,7 @@ import type {
   PopperWidth,
 } from '@/types/popper'
 import type { SelectItem, SelectValue } from '@/types/select.type'
+import { ThemeUtil } from '@/utils/theme.util'
 
 const props = withDefaults(defineProps<SelectProps<TValue>>(), {
   id: null,
@@ -219,6 +220,7 @@ provideSelectContext({
   hasError,
   hasFilter: computed<boolean>(() => props.filterFn !== null),
   isArrowVisible: computed<boolean>(() => props.isArrowVisible),
+  isDarkModeEnabled: computed<boolean>(() => themeProviderContext.isDarkModeEnabled.value),
   isDisabled: computed<boolean>(() => props.isDisabled),
   isEmpty,
   isFocused: computed<boolean>(() => isFocused.value),
@@ -257,7 +259,7 @@ provideSelectContext({
   <ListboxRoot
     v-model="delegatedModel"
     :ignore-filter="true"
-    :class="themeProviderContext.theme.value"
+    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value)"
     :selection-behavior="isMultiple ? 'toggle' : 'replace'"
     class="select-default"
     @update:model-value="onModelValueUpdate"

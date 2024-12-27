@@ -1,4 +1,5 @@
 import {
+  computed,
   type ComputedRef,
   inject,
   type InjectionKey,
@@ -6,7 +7,8 @@ import {
 } from 'vue'
 
 interface ThemeProviderContext {
-  theme: ComputedRef<'dark' | 'light' | string & {}>
+  isDarkModeEnabled: ComputedRef<boolean>
+  theme: ComputedRef<string & {} | 'default'>
 }
 
 export const themeProviderContextKey: InjectionKey<ThemeProviderContext> = Symbol('themeProviderContextKey')
@@ -16,10 +18,13 @@ export function provideThemeProviderContext(context: ThemeProviderContext): void
 }
 
 export function injectThemeProviderContext(): ThemeProviderContext {
-  const context = inject(themeProviderContextKey)
+  const context = inject(themeProviderContextKey, null)
 
-  if (context === undefined) {
-    throw new Error('ThemeProviderContext is not provided. Make sure to wrap your app with `<ThemeProvider />`.')
+  if (context === null) {
+    return {
+      isDarkModeEnabled: computed<boolean>(() => false),
+      theme: computed<string>(() => 'default'),
+    }
   }
 
   return context

@@ -11,6 +11,7 @@ import { useTabsStyle } from '@/components/tabs/tabs.style'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import type { Stylable } from '@/types/stylable.type'
 import type { TabItem } from '@/types/tabs.type'
+import { ThemeUtil } from '@/utils/theme.util'
 
 const props = defineProps<{
   items: TabItem<TMeta>[]
@@ -40,7 +41,7 @@ const itemContentClasses = computed<string>(() => tabsStyle.itemContent())
 <template>
   <TabsRoot
     v-model="modelAsString"
-    :class="themeProviderContext.theme.value"
+    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value)"
     class="tabs-default"
   >
     <TabsList :class="containerClasses">

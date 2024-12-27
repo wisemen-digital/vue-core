@@ -18,6 +18,7 @@ import type { TimeFieldProps } from '@/components/input-field/time-field/timeFie
 import Spinner from '@/components/spinner/Spinner.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { useAriaDescribedBy } from '@/composables/aria-described-by/ariaDescribedBy.composable'
+import { ThemeUtil } from '@/utils/theme.util'
 
 const props = withDefaults(defineProps<TimeFieldProps>(), {
   id: null,
@@ -88,7 +89,7 @@ const delegatedModel = computed<Time | undefined>({
 })
 
 const globalConfigContext = injectConfigContext()
-const themeContext = injectThemeProviderContext()
+const themeProviderContext = injectThemeProviderContext()
 
 const isFocused = ref<boolean>(false)
 const isMouseOver = ref<boolean>(false)
@@ -179,7 +180,7 @@ function onBlur(): void {
     :hint="props.hint"
     :label="props.label"
     :style="props.styleConfig"
-    :class="themeContext.theme.value"
+    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value)"
     class="text-field-default"
   >
     <template #label="{ label }">

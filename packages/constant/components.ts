@@ -12,6 +12,7 @@ export const components = {
   ],
   checkbox: [
     'Checkbox',
+    'CheckboxGroup',
   ],
   dialog: [
     'Dialog',
@@ -22,7 +23,8 @@ export const components = {
   dropdownMenu: [
     'DropdownMenu',
   ],
-  textField: [
+  inputField: [
+    'DateField',
     'PasswordField',
     'TextField',
     'Textarea',

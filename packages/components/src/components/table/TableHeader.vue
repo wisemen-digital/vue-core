@@ -13,7 +13,7 @@ const tableContext = injectTableContext()
 
 <template>
   <div
-    class="sticky top-0 z-20 col-span-full grid h-11 grid-cols-subgrid border-b border-solid border-(--table-border-color-default)"
+    class="sticky top-0 z-20 col-span-full grid h-11 grid-cols-subgrid border-b border-solid border-(--table-row-border-color-default)"
     role="row"
   >
     <div
@@ -22,8 +22,8 @@ const tableContext = injectTableContext()
       :class="{
         'first:sticky first:left-0 first:z-10 first:border-r first:border-solid first:border-transparent': tableContext.isFirstColumnSticky.value && !props.areStickyColumnsDisabled,
         'last:sticky last:right-0 last:z-10 last:border-l last:border-solid last:border-transparent': tableContext.isLastColumnSticky.value && !props.areStickyColumnsDisabled,
-        'first:border-r-secondary first:shadow-table-sticky-left-column': tableContext.isScrolledToRight.value && tableContext.isFirstColumnSticky.value,
-        'last:border-l-secondary last:shadow-table-sticky-right-column': !tableContext.hasReachedHorizontalScrollEnd.value && tableContext.isLastColumnSticky.value,
+        'first:border-r-(--table-row-border-color-default) first:shadow-table-sticky-left-column': tableContext.isScrolledToRight.value && tableContext.isFirstColumnSticky.value,
+        'last:border-l-(--table-row-border-color-default) last:shadow-table-sticky-right-column': !tableContext.hasReachedHorizontalScrollEnd.value && tableContext.isLastColumnSticky.value,
       }"
       class="overflow-hidden bg-(--table-header-bg-color-default) duration-200"
     >

@@ -12,6 +12,7 @@ import RadioGroupItem from '@/components/radio-group/RadioGroupItem.vue'
 import Select from '@/components/select/Select.vue'
 import Switch from '@/components/switch/Switch.vue'
 import ThemeProvider from '@/components/theme-provider/ThemeProvider.vue'
+import Tooltip from '@/components/tooltip/Tooltip.vue'
 import { setupDefaultStyles } from '@/styling/setupDefaultStyles'
 import type { SelectItem } from '@/types/select.type'
 
@@ -84,6 +85,18 @@ const locale = navigator.language
         :model-value="null"
         label="Password"
       />
+
+      <Tooltip>
+        <template #trigger>
+          <button>
+            test
+          </button>
+        </template>
+
+        <template #content>
+          content
+        </template>
+      </Tooltip>
 
       <DateField
         v-model="date"

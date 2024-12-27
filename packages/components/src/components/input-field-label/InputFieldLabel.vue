@@ -5,6 +5,7 @@ import { computed } from 'vue'
 import { inputFieldLabelStyle } from '@/components/input-field-label/inputFieldLabel.style'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import type { Stylable } from '@/types/stylable.type'
+import { ThemeUtil } from '@/utils/theme.util'
 
 const props = withDefaults(defineProps<{
   isRequired: boolean
@@ -23,7 +24,10 @@ const labelClasses = computed<string>(() => style.label())
 <template>
   <Label
     v-if="props.label !== null"
-    :class="[labelClasses, themeProviderContext.theme.value]"
+    :class="[
+      labelClasses,
+      ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value),
+    ]"
     :for="props.for"
     :style="props.styleConfig"
     class="input-field-label-default"

@@ -6,6 +6,7 @@ import { injectThemeProviderContext } from '@/components/theme-provider/themePro
 import { toastStyle } from '@/components/toast/toast.style'
 import type { Icon as IconType } from '@/icons/icons'
 import type { Toast } from '@/types/toast.type'
+import { ThemeUtil } from '@/utils/theme.util'
 
 const props = defineProps<{
   toast: Toast
@@ -56,7 +57,10 @@ function onClose(): void {
 
 <template>
   <div
-    :class="[themeProviderContext.theme.value, containerClasses]"
+    :class="[
+      containerClasses,
+      ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value),
+    ]"
     :data-test-id="props.toast.testId"
   >
     <div class="flex items-center gap-x-2 overflow-hidden">

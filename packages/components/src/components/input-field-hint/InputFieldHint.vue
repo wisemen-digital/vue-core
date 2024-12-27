@@ -4,6 +4,7 @@ import { computed } from 'vue'
 import { inputFieldHintStyle } from '@/components/input-field-hint/inputFieldHint.style'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import type { StyleConfig } from '@/types/style.type'
+import { ThemeUtil } from '@/utils/theme.util'
 
 const props = withDefaults(defineProps<{
   inputId: string
@@ -22,7 +23,10 @@ const hintClasses = computed<string>(() => style.hint())
 <template>
   <span
     :id="`${props.inputId}-hint`"
-    :class="[hintClasses, themeProviderContext.theme.value]"
+    :class="[
+      hintClasses,
+      ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value),
+    ]"
     :style="props.styleConfig"
     aria-live="polite"
     role="alert"

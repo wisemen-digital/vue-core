@@ -12,7 +12,45 @@ export const i18nPlugin = createI18n({
   fallbackWarn: false,
   legacy: false,
   messages: {
-    en: {},
+    en: {
+      shared: {
+        close: 'Close',
+      },
+      component: {
+        address_autocomplete: {
+          failed_to_fetch: 'Failed to fetch predictions.',
+        },
+        keyboard_shortcut: {
+          then: 'then',
+        },
+        number_field: {
+          decrement: 'Decrement',
+          increment: 'Increment',
+        },
+        password_field: {
+          hide_password: 'Hide password',
+          show_password: 'Show password',
+        },
+        select: {
+          empty_text: 'No results found for \'{searchTerm}\'.',
+          search_placeholder: 'Search...',
+        },
+        table: {
+          no_data: {
+            title: 'No data',
+            description: 'There is currently no data to display.',
+          },
+          no_results: {
+            title: 'No results',
+            description: 'There are no results matching your search criteria.',
+          },
+          page_count: '{startIndex} - {endIndex} of {totalItems}',
+        },
+        tag: {
+          remove: 'Remove',
+        },
+      }
+    },
   },
   missingWarn: false,
 })

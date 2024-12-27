@@ -23,7 +23,6 @@ const items = [
 <template>
   <VcRadioGroup
     v-model="selectedItem"
-    :items="items"
     label="Radio Group"
     hint="This is a radio group."
   >

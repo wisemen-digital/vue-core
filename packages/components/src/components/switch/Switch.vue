@@ -16,6 +16,7 @@ import type { SwitchProps } from '@/components/switch/switch.props'
 import { useSwitchStyle } from '@/components/switch/switch.style'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { useAriaDescribedBy } from '@/composables/aria-described-by/ariaDescribedBy.composable'
+import { ThemeUtil } from '@/utils/theme.util'
 
 const props = withDefaults(defineProps<SwitchProps>(), {
   id: null,
@@ -143,7 +144,7 @@ function onBlur(e: Event): void {
 <template>
   <div
     :style="props.styleConfig"
-    :class="themeProviderContext.theme.value"
+    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value)"
     class="switch-default input-field-label-default input-field-hint-default input-field-error-default"
   >
     <div class="grid grid-cols-[min-content_auto] items-center">

@@ -12,6 +12,7 @@ import { injectThemeProviderContext } from '@/components/theme-provider/themePro
 import type { TooltipProps } from '@/components/tooltip/tooltip.props'
 import { useTooltipStyle } from '@/components/tooltip/tooltip.style'
 import TooltipTrigger from '@/components/tooltip/TooltipTrigger.vue'
+import { ThemeUtil } from '@/utils/theme.util'
 
 const props = withDefaults(defineProps<TooltipProps>(), {
   isArrowHidden: false,
@@ -60,7 +61,7 @@ const arrowClasses = computed<string>(() => tooltipStyle.arrow())
               'w-(--reka-tooltip-content-available-width)': props.popoverWidth === 'available-width',
             },
             contentClasses,
-            themeProviderContext.theme.value,
+            ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value),
           ]"
           :style="props.styleConfig"
           :collision-boundary="props.popoverContainerElement"

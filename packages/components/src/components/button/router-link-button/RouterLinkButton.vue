@@ -7,6 +7,7 @@ import type { ButtonProps } from '@/components/button/button/button.props'
 import type { RouterLinkButtonProps } from '@/components/button/router-link-button/routerLinkButton.props'
 import Icon from '@/components/icon/Icon.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
+import { ThemeUtil } from '@/utils/theme.util'
 
 const props = withDefaults(defineProps<RouterLinkButtonProps>(), {
   dataTestId: null,
@@ -54,7 +55,10 @@ const {
     :to="props.to"
     :style="props.styleConfig"
     :data-test-id="props.dataTestId"
-    :class="[baseClasses, themeProviderContext.theme.value]"
+    :class="[
+      baseClasses,
+      ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value),
+    ]"
     class="button-default"
     @focus="onFocus"
     @blur="onBlur"

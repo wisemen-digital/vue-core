@@ -7,6 +7,7 @@ import {
 
 import type { CheckboxGroupProps } from '@/components/checkbox/checkboxGroup.props'
 import InputField from '@/components/input-field/InputField.vue'
+import type { FormElementSlots } from '@/types/formElement.type'
 
 const props = withDefaults(defineProps<CheckboxGroupProps>(), {
   id: null,
@@ -19,6 +20,8 @@ const props = withDefaults(defineProps<CheckboxGroupProps>(), {
   hint: null,
   label: null,
 })
+
+defineSlots<FormElementSlots>()
 
 const model = defineModel<TValue[]>({
   required: true,

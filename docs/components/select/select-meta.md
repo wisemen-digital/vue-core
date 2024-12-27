@@ -40,14 +40,10 @@ When enabled, items must be restricted to the option type | `null` |
 
 | Slot | Type | Description |
 | --------- | ---- | ----------- |
-| bottom | `{}` |  |
 | content-bottom | `{}` |  |
 | content-top | `{}` |  |
-| error | `{}` |  |
 | filter | `{}` |  |
 | group-label | `{ label: string; }` |  |
-| hint | `{}` |  |
-| label | `{ inputId: string; }` |  |
 | loader | `{}` |  |
 | no-results | `{ searchTerm: string; }` |  |
 | option | `{ item: SelectOption<AcceptableValue>; }` |  |

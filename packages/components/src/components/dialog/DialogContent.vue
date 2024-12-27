@@ -4,10 +4,13 @@ import { computed } from 'vue'
 
 import { useDialogStyle } from '@/components/dialog/dialog.style'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
+import { ThemeUtil } from '@/utils/theme.util'
 
-const props = defineProps<{
-  shouldPreventClickOutside: boolean
-}>()
+const props = withDefaults(defineProps<{
+  shouldPreventClickOutside?: boolean
+}>(), {
+  shouldPreventClickOutside: false,
+})
 
 const themeProviderContext = injectThemeProviderContext()
 
@@ -37,7 +40,10 @@ function onOpenAutoFocus(e: Event): void {
 <template>
   <DialogContent
     :force-mount="true"
-    :class="[contentClasses, themeProviderContext.theme.value]"
+    :class="[
+      contentClasses,
+      ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value),
+    ]"
     :disable-outside-pointer-events="false"
     class="dialog-default"
     @interact-outside="onInteractOutside"

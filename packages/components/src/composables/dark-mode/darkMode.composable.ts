@@ -26,13 +26,13 @@ interface UseDarkModeReturnType {
   value: Ref<'dark' | 'light' | 'system'>
 }
 
+function systemHasDarkMode(): boolean {
+  return window.matchMedia('(prefers-color-scheme: dark)').matches
+}
+
 export function useDarkMode(): UseDarkModeReturnType {
   const darkModeValue = useLocalStorage<'dark' | 'light' | 'system'>('theme', 'system')
   const isSystemDarkMode = ref<boolean>(systemHasDarkMode())
-
-  function systemHasDarkMode(): boolean {
-    return window.matchMedia('(prefers-color-scheme: dark)').matches
-  }
 
   function updateDarkModeState(): void {
     if (darkModeValue.value === 'dark' || (isSystemDarkMode.value && darkModeValue.value === 'system')) {

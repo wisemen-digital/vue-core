@@ -4,6 +4,7 @@ import { computed } from 'vue'
 import { keyboardStyle } from '@/components/keyboard/keyboard.style'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import type { KeyboardKey } from '@/types/keyboard.type'
+import { ThemeUtil } from '@/utils/theme.util'
 
 const props = defineProps<{
   keyboardKey: KeyboardKey
@@ -70,7 +71,12 @@ const keyClasses = computed<string>(() => style.key())
 </script>
 
 <template>
-  <kbd :class="[keyClasses, themeProviderContext.theme.value]">
+  <kbd
+    :class="[
+      keyClasses,
+      ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value),
+    ]"
+  >
     {{ keyboardKey }}
   </kbd>
 </template>

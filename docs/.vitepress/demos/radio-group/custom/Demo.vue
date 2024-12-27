@@ -27,7 +27,6 @@ const items = [
 <template>
   <VcRadioGroup
     v-model="selectedItem"
-    :items="items"
     label="Select a fruit"
   >
    <div class="grid grid-cols-3 gap-4">

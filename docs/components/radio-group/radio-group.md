@@ -67,7 +67,7 @@ When an error occurs, you can display an error message in the switch component b
 <ComponentPreview name="radio-group/error" />
 
 ### Custom
-You can fully customize the RadioGroup component by providing a custom template for each `RadioGroupItem`. Additionally, you can use the `RadioGroupItemIndicator` component to render the default indicator if needed.
+You can fully customize the RadioGroup component by providing a custom template for each `VcRadioGroupItem`. Additionally, you can use the `VcRadioGroupItemIndicator` component to render the default indicator if needed.
 
 When styling the component, the following selectors are available:
 

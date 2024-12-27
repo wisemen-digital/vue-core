@@ -26,7 +26,6 @@ const items = [
   <VcRadioGroup
     v-model="selectedItem"
     :errors="['This is an error message.']"
-    :items="items"
     label="Radio Group"
     hint="This is a radio group."
   >

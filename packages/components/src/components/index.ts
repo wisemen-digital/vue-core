@@ -94,6 +94,7 @@ export { default as VcIcon } from '@/components/icon/Icon.vue'
 
 // Input Fields
 export { default as VcDateField } from '@/components/input-field/date-field/DateField.vue'
+export { default as VcInputField } from '@/components/input-field/InputField.vue'
 export { default as VcNumberField } from '@/components/input-field/number-field/NumberField.vue'
 export { default as VcPasswordField } from '@/components/input-field/password-field/PasswordField.vue'
 export { default as VcPhoneNumberField } from '@/components/input-field/phone-number-field/PhoneNumberField.vue'

@@ -82,7 +82,7 @@ export function setupDefaultCheckboxStyles(): void {
       '--checkbox-border-color-indeterminate': 'var(--border-brand-alt)',
       '--checkbox-border-radius-default': 'var(--radius-sm)',
       '--checkbox-error-font-size-default': 'var(--text-sm)',
-      '--checkbox-error-font-weight-default': 'var(--font-weight-medium)',
+      '--checkbox-error-font-weight-default': 'var(--input-field-error-font-weight-default)',
       '--checkbox-error-spacing-default': 'var(--spacing-none)',
       '--checkbox-error-text-color-default': 'var(--text-error-primary)',
       '--checkbox-hint-font-size-default': 'var(--input-field-hint-font-size-default)',

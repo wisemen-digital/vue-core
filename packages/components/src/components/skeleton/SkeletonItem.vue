@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
+import { ThemeUtil } from '@/utils/theme.util'
 
 const props = withDefaults(defineProps<{
   /**
@@ -23,7 +24,7 @@ const themeProviderContext = injectThemeProviderContext()
 <template>
   <div
     :aria-busy="true"
-    :class="themeProviderContext.theme.value"
+    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value)"
     class="relative overflow-hidden rounded bg-tertiary"
     role="status"
     aria-live="polite"

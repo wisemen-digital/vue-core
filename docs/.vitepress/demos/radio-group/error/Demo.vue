@@ -24,7 +24,6 @@ const items = [
 <template>
   <VcRadioGroup
     v-model="selectedItem"
-    :items="items"
     :is-touched="true"
     :errors="['This is an error message.']"
     label="Radio Group"

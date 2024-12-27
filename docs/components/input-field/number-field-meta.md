@@ -6,7 +6,7 @@
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
 | areControlsHidden | `boolean` | Whether the controls are visible. | `false` |
-| autoComplete | `"off" \| "on"` | The autocorrect property of the input. | `"off"` |
+| autocomplete | `"off" \| "on"` | The autocorrect property of the input. |  |
 | autoFocus | `boolean` | Whether the input should be focused automatically. |  |
 | errors | `string[]` | The errors associated with the input. | `[]` |
 | formatOptions | `NumberFormatOptions \| null` | The format options of the number input. | `null` |

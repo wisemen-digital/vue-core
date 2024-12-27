@@ -23,6 +23,7 @@ import Spinner from '@/components/spinner/Spinner.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { useAriaDescribedBy } from '@/composables/aria-described-by/ariaDescribedBy.composable'
 import { useElementAttributeObserver } from '@/composables/element-attribute-observer/elementAttributeObserver.composable'
+import { ThemeUtil } from '@/utils/theme.util'
 
 const props = withDefaults(defineProps<NumberFieldProps>(), {
   id: null,
@@ -187,7 +188,7 @@ function onBlur(): void {
     :hint="props.hint"
     :label="props.label"
     :style="props.styleConfig"
-    :class="themeProviderContext.theme.value"
+    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value)"
     class="text-field-default"
   >
     <template #label="{ label }">
@@ -257,8 +258,9 @@ function onBlur(): void {
             :ref="decrementForwardRef"
             :style-config="{
               '--icon-button-size-default': '2rem',
-              '--icon-button-icon-size-default': '1rem',
+              '--icon-button-icon-size-default': '1.125rem',
               '--icon-button-ring-color-focus': 'transparent',
+              '--icon-button-border-radius-default': 'var(--radius-sm)',
               '--icon-button-bg-color-focus': 'var(--bg-secondary-hover)',
               '--icon-button-bg-color-disabled': 'transparent',
               '--icon-button-border-color-disabled': 'transparent',
@@ -285,7 +287,7 @@ function onBlur(): void {
                 'text-center': !props.areControlsHidden,
               },
             ]"
-            :autocomplete="props.autoComplete"
+            :autocomplete="props.autocomplete"
             :aria-describedby="ariaDescribedBy"
             :required="props.isRequired"
             :aria-invalid="props.errors !== undefined && props.errors !== null"
@@ -302,8 +304,9 @@ function onBlur(): void {
             :ref="incrementForwardRef"
             :style-config="{
               '--icon-button-size-default': '2rem',
-              '--icon-button-icon-size-default': '1rem',
+              '--icon-button-icon-size-default': '1.125rem',
               '--icon-button-ring-color-focus': 'transparent',
+              '--icon-button-border-radius-default': 'var(--radius-sm)',
               '--icon-button-bg-color-focus': 'var(--bg-secondary-hover)',
               '--icon-button-bg-color-disabled': 'transparent',
               '--icon-button-border-color-disabled': 'transparent',

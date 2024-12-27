@@ -1,5 +1,17 @@
 # Changelog
 
+## [alpha.17]
+
+### Breaking Changes
+
+- **VcPopover**
+  - Change teleport target from `body` to `#teleport-target`. Make sure to render this element in your app, preferably within the first `VcThemeProvider` component in `App.vue`.
+
+### Features
+
+- **VcDateField**
+  - Add new date field component.
+
 ## [alpha.16]
 
 ### Breaking Changes

@@ -8,6 +8,7 @@ import {
 import type { IconProps } from '@/components/icon/icon.props'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { icons } from '@/icons/icons'
+import { ThemeUtil } from '@/utils/theme.util'
 
 const props = withDefaults(defineProps<IconProps>(), {
   styleConfig: null,
@@ -40,7 +41,7 @@ await setIcon()
   <Component
     :is="svgComponent"
     v-if="svgComponent !== null"
-    :class="[themeProviderContext.theme.value]"
+    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value)"
     :style="props.styleConfig"
     class="icon-default text-icon"
   />

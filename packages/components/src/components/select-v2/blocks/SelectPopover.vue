@@ -2,6 +2,7 @@
 import Popover from '@/components/popover/Popover.vue'
 import PopoverAnchor from '@/components/popover/PopoverAnchor.vue'
 import { injectSelectContext } from '@/components/select-v2/select.context'
+import { ThemeUtil } from '@/utils/theme.util'
 
 const selectContext = injectSelectContext()
 </script>
@@ -28,7 +29,7 @@ const selectContext = injectSelectContext()
 
     <template #content>
       <div
-        :class="selectContext.theme.value"
+        :class="ThemeUtil.getClasses(selectContext.theme.value, selectContext.isDarkModeEnabled.value)"
         class="select-default"
       >
         <slot name="content" />

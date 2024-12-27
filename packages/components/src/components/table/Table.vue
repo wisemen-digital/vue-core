@@ -21,6 +21,7 @@ import TablePageCount from '@/components/table/TablePageCount.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import type { PaginatedData, Pagination } from '@/types/pagination.type'
 import type { TableColumn } from '@/types/table.type'
+import { ThemeUtil } from '@/utils/theme.util'
 
 const props = withDefaults(defineProps<TableProps<Tschema, TFilters>>(), {
   isFirstColumnSticky: false,
@@ -66,12 +67,12 @@ const isEmpty = computed<boolean>(() => (
   props.data !== null && props.data.meta.total === 0 && !props.isLoading
 ))
 
-const variantClass = computed<string>(() => {
+const variantClass = computed<string | null>(() => {
   if (props.variant === 'borderless') {
     return 'table-borderless'
   }
 
-  return 'table-default'
+  return null
 })
 
 function getIsScrolledtoRight(element: HTMLElement): boolean {
@@ -155,8 +156,11 @@ provideTableContext({
 <template>
   <div
     :style="props.styleConfig"
-    :class="[variantClass, themeProviderContext.theme.value]"
-    class="relative flex h-full flex-1 flex-col overflow-hidden rounded-(--table-border-radius-default) border border-solid border-(--table-border-color-default) bg-(--table-bg-color-default)"
+    :class="[
+      variantClass,
+      ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value),
+    ]"
+    class="table-default relative flex h-full flex-1 flex-col overflow-hidden rounded-(--table-border-radius-default) border border-solid border-(--table-border-color-default) bg-(--table-bg-color-default)"
   >
     <div
       v-if="hasTopSlot"
