@@ -17,12 +17,12 @@
 
 ## Slots
 
-| Slot | Type | Description |
+| Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
-| default | `any` |  |
-| icon-left | `any` |  |
-| icon-right | `any` |  |
-| loader | `any` |  |
+| default | `-` | The content to display in the button. |
+| icon-left | `{ iconLeft: keyof Icons; }` | The content to display on the left side of the button. |
+| icon-right | `{ iconRight: keyof Icons; }` | The content to display on the right side of the button. |
+| loader | `-` | The content to display when the button is loading. |
 
 
 ## Events

@@ -19,10 +19,10 @@
 
 ## Slots
 
-| Slot | Type | Description |
+| Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
 | bottom | `{ errors: string[]; hint: string \| null; }` | Can be used to render a custom hint and error message. |
-| default | `any` | The content slot. |
+| default | `-` | The content slot. |
 | error | `{ errors: string[]; }` | Can be used to render a custom error message. |
 | hint | `{ hint: string \| null; }` | Can be used to render a custom hint message. |
 | label | `{ label: string \| null; }` | Can be used to render a custom label. |

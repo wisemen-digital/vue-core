@@ -70,18 +70,11 @@ function parseMeta(meta: ComponentMeta): ParsedMeta {
       const { name, type, description } = slot
 
       const descriptionString = description ?? ''
-      const t = type.replace(/\s*\|\s*undefined/g, '').replace('unknown', 'T').replace(/\</g, '\\<').replace(/\>/g, '\\>')
 
       return ({
         name,
-        // description: descriptionString.replace(/^[ \t]+/gm, ''),
-        // type: type === "{}" ? "None" : `${type
-        //   .replace(/\s*\|\s*undefined/g, '')
-        //   .replace('unknown', 'T')
-        //   .replace(/\</g, '\\<')
-        //   .replace(/\>/g, '\\>')}`,
         description: descriptionString.replace(/^[ \t]+/gm, ''),
-        type: type.replace(/\s*\|\s*undefined/g, '').replace('unknown', 'T'),
+        type: type === 'any' ? '-' : type.replace(/\s*\|\s*undefined/g, '').replace('unknown', 'T'),
       })
     })
     .sort((a: { name: string }, b: { name: string }) => a.name.localeCompare(b.name))
@@ -118,7 +111,7 @@ function generateMeta(meta: ParsedMeta): string {
 
   if (meta.slots.length > 0) {
     parsedString += '\n## Slots\n\n'
-    parsedString += '| Slot | Type | Description |\n'
+    parsedString += '| Slot | Slot Props | Description |\n'
     parsedString += '| --------- | ---- | ----------- |\n'
     meta.slots.forEach((slot: {
       name: string;
@@ -176,12 +169,33 @@ sidebar: auto
   writeFileSync(componentMdFilePath, template, 'utf8')
 }
 
+function formatCodeString(code: string): string {
+  let indentLevel = 0
+
+  return code
+    // Add line breaks after semicolons and curly braces
+    .replace(/;/g, ';\n')
+    .replace(/{/g, '{\n')
+    .replace(/}/g, '\n}')
+    // Add indentation for nested structures
+    .split('\n')
+    .reduce((formatted, line) => {
+      if (line.includes('}')) indentLevel--;
+      formatted += '  '.repeat(indentLevel) + line.trim() + '\n';
+      if (line.includes('{')) indentLevel++;
+      return formatted;
+    }, '')
+    .trim();
+}
+
 function generateDocs(components: Component[]): void {
   components.forEach((component) => {
     console.group('Generating docs for', component.componentName)
     const sourcePath = resolve(__dirname, `../../packages/components/src/components/${component.sourceFolder}`)
     console.log('Component source path:', sourcePath)
     const componentMeta = tsconfigChecker.getComponentMeta(sourcePath)
+
+    console.log(componentMeta.slots[0]?.type)
 
     const targetDirPath = resolve(__dirname, `../components/${component.targetFolder}`)
     console.log('Component target path:', targetDirPath)

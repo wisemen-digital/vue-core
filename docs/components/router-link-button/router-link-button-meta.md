@@ -15,12 +15,12 @@
 
 ## Slots
 
-| Slot | Type | Description |
+| Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
-| default | `any` |  |
-| icon-left | `any` |  |
-| icon-right | `any` |  |
-| left | `any` |  |
-| loader | `any` |  |
-| right | `any` |  |
+| default | `-` |  |
+| icon-left | `-` |  |
+| icon-right | `-` |  |
+| left | `-` |  |
+| loader | `-` |  |
+| right | `-` |  |
 

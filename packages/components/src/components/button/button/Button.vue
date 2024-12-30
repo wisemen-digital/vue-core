@@ -7,6 +7,7 @@ import Icon from '@/components/icon/Icon.vue'
 import Spinner from '@/components/spinner/Spinner.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { ThemeUtil } from '@/utils/theme.util'
+import type { Icons } from '@/icons/icons'
 
 const props = withDefaults(defineProps<ButtonProps>(), {
   testId: null,
@@ -22,15 +23,27 @@ const props = withDefaults(defineProps<ButtonProps>(), {
 
 const emit = defineEmits<{
   /**
-   * Event handler for the click event
+   * Event handler for the click event.
    */
   click: [event: Event]
 }>()
 
 defineSlots<{
+  /**
+   * The content to display in the button.
+   */
   'default': () => void
-  'icon-left': () => void
-  'icon-right': () => void
+  /**
+   * The content to display on the left side of the button.
+   */
+  'icon-left': ({ iconLeft }: { iconLeft: keyof Icons }) => void
+  /**
+   * The content to display on the right side of the button.
+   */
+  'icon-right': ({ iconRight }: { iconRight: keyof Icons }) => void
+  /**
+   * The content to display when the button is loading.
+   */
   'loader': () => void
 }>()
 
@@ -92,6 +105,7 @@ const {
       <slot
         v-if="props.iconLeft !== null"
         name="icon-left"
+        :icon-left="props.iconLeft"
       >
         <Icon
           :icon="props.iconLeft"
@@ -133,6 +147,7 @@ const {
       <slot
         v-if="props.iconRight !== null"
         name="icon-right"
+        :icon-right="props.iconRight"
       >
         <Icon
           :icon="props.iconRight"

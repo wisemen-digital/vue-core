@@ -13,7 +13,7 @@
 
 ## Slots
 
-| Slot | Type | Description |
+| Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
 | default | `{}` |  |
 

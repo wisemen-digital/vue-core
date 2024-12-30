@@ -2,7 +2,7 @@
 
 ## Slots
 
-| Slot | Type | Description |
+| Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
 | default | `{ items: ({ type: "ellipsis"; } \| { type: "page"; value: number; })[]; }` |  |
 

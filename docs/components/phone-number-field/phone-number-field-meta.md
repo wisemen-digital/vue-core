@@ -26,7 +26,7 @@
 
 ## Slots
 
-| Slot | Type | Description |
+| Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
 | bottom | `{ errors: string[]; hint: string \| null; }` |  |
 | error | `{ errors: string[]; }` |  |

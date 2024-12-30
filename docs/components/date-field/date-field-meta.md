@@ -35,18 +35,18 @@
 
 ## Slots
 
-| Slot | Type | Description |
+| Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
-| bottom | `any` |  |
+| bottom | `-` |  |
 | date | `{ date: Date; }` |  |
-| error | `any` |  |
-| hint | `any` |  |
-| icon-left | `any` |  |
-| icon-right | `any` |  |
-| label | `any` |  |
-| left | `any` |  |
-| loader | `any` |  |
-| right | `any` |  |
+| error | `-` |  |
+| hint | `-` |  |
+| icon-left | `-` |  |
+| icon-right | `-` |  |
+| label | `-` |  |
+| left | `-` |  |
+| loader | `-` |  |
+| right | `-` |  |
 
 
 ## Events

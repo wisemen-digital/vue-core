@@ -11,7 +11,7 @@
 
 ## Slots
 
-| Slot | Type | Description |
+| Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
 | default | `{}` |  |
 | item-left | `{ item: TabItem<T>; }` |  |

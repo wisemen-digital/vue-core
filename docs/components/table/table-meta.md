@@ -18,7 +18,7 @@
 
 ## Slots
 
-| Slot | Type | Description |
+| Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
 | bottom | `{}` |  |
 | empty-state-no-data-actions | `{}` |  |

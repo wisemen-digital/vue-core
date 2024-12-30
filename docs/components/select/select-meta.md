@@ -37,7 +37,7 @@ When enabled, items must be restricted to the option type | `null` |
 
 ## Slots
 
-| Slot | Type | Description |
+| Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
 | content-bottom | `{}` |  |
 | content-top | `{}` |  |

@@ -4,7 +4,7 @@ import { StyleBuilder } from '@/utils/style.util'
 export const useButtonStyle = tv({
   slots: {
     base: new StyleBuilder()
-      .withClasses('relative overflow-hidden cursor-pointer flex items-center justify-center outline-none duration-200')
+      .withClasses('relative group overflow-hidden cursor-pointer flex items-center justify-center outline-none duration-200')
       .withBackgroundColor('bg-(--button-bg-color-default)')
       .withBorder('border border-solid border-(--button-border-color-default)')
       .withBorderRadius('rounded-(--button-border-radius-default)')

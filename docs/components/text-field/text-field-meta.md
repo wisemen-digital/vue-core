@@ -27,17 +27,17 @@
 
 ## Slots
 
-| Slot | Type | Description |
+| Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
 | bottom | `{ errors: string[]; hint: string \| null; }` |  |
 | error | `{ errors: string[]; }` |  |
 | hint | `{ hint: string \| null; }` |  |
-| icon-left | `any` |  |
-| icon-right | `any` |  |
+| icon-left | `-` |  |
+| icon-right | `-` |  |
 | label | `{ label: string \| null; }` |  |
-| left | `any` |  |
-| loader | `any` |  |
-| right | `any` |  |
+| left | `-` |  |
+| loader | `-` |  |
+| right | `-` |  |
 
 
 ## Events

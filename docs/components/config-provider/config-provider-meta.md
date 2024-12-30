@@ -8,11 +8,12 @@
 | googleMapsApiKey | `string` |  |  |
 | locale* | `string` |  |  |
 | pagination | `{ limit?: number; }` |  |  |
+| teleportTargetSelector | `string` |  |  |
 
 
 ## Slots
 
-| Slot | Type | Description |
+| Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
 | default | `{}` |  |
 
