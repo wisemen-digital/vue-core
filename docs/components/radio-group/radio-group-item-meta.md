@@ -4,6 +4,7 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
+| **value*** | `AcceptableValue` | The value of the radio group item. |  |
 | errors | `string[]` | The errors associated with the input. | `[]` |
 | hint | `string \| null` | The hint text of the input. | `null` |
 | id | `string \| null` | The id of the input. | `null` |
@@ -14,7 +15,6 @@
 | label | `string \| null` | The label of the input. | `null` |
 | styleConfig | `Partial<RadioGroupItemStyleConfig> \| null` | The style config of the component. | `null` |
 | testId | `string \| null` | The test id of the input. | `null` |
-| value* | `AcceptableValue` | The value of the radio group item. |  |
 
 
 ## Slots

@@ -38,7 +38,6 @@ const props = withDefaults(defineProps<DateFieldProps>(), {
   isLoading: false,
   isReadonly: false,
   isRequired: false,
-  isSpellCheckEnabled: false,
   isTouched: false,
   areYearArrowsHidden: false,
   autoFocus: false,
@@ -63,13 +62,13 @@ const emit = defineEmits<{
 }>()
 
 defineSlots<{
-  'bottom': () => void
+  'bottom': ({ errors, hint }: { errors: string[], hint: string | null }) => void
   'date': ({ date }: { date: Date }) => void
-  'error': () => null
-  'hint': () => null
+  'error': ({ errors }: { errors: string[] }) => void
+  'hint': ({ hint }: { hint: string | null }) => void
   'icon-left': () => null
   'icon-right': () => null
-  'label': () => void
+  'label': ({ label }: { label: string | null }) => void
   'left': () => null
   'loader': () => null
   'right': () => null

@@ -4,7 +4,7 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| items* | `({ type: "ellipsis"; } \| { type: "page"; value: number; })[]` |  |  |
+| **items*** | `({ type: "ellipsis"; } \| { type: "page"; value: number; })[]` |  |  |
 
 
 ## Slots

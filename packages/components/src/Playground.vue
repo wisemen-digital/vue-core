@@ -4,9 +4,11 @@ import { computed, ref } from 'vue'
 import Checkbox from '@/components/checkbox/Checkbox.vue'
 import ConfigProvider from '@/components/config-provider/ConfigProvider.vue'
 import DateField from '@/components/input-field/date-field/DateField.vue'
+import NumberField from '@/components/input-field/number-field/NumberField.vue'
 import PasswordField from '@/components/input-field/password-field/PasswordField.vue'
 import TextField from '@/components/input-field/text-field/TextField.vue'
 import TimeField from '@/components/input-field/time-field/TimeField.vue'
+import Popover from '@/components/popover/Popover.vue'
 import RadioGroup from '@/components/radio-group/RadioGroup.vue'
 import RadioGroupItem from '@/components/radio-group/RadioGroupItem.vue'
 import Select from '@/components/select/Select.vue'
@@ -81,6 +83,29 @@ const locale = navigator.language
       theme="default"
       class="p-11xl grid grid-cols-2 gap-xl bg-primary min-h-screen"
     >
+      <div>
+        <NumberField
+          :model-value="0"
+          :format-options="{
+            minimumFractionDigits: 2,
+          }"
+          :step="0.01"
+          class="w-72"
+        />
+      </div>
+
+      <div>
+        <Popover :show-on-hover="true">
+          <template #trigger>
+            <button>test</button>
+          </template>
+
+          <template #content>
+            test
+          </template>
+        </Popover>
+      </div>
+
       <PasswordField
         :model-value="null"
         label="Password"
@@ -103,7 +128,7 @@ const locale = navigator.language
         :is-date-disabled="(date) => {
           return date.getDay() === 4
         }"
-        :hide-dropdown-trigger="true"
+        :hide-dropdown-trigger="false"
         class="w-72"
         label="Date field"
         hint="Select a date"

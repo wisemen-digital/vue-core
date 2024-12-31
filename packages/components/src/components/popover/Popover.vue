@@ -4,13 +4,13 @@ import {
   PopoverContent,
   PopoverPortal,
   PopoverRoot,
-  PopoverTrigger,
 } from 'reka-ui'
 import { computed } from 'vue'
 
 import { injectConfigContext } from '@/components/config-provider/config.context'
 import type { PopoverProps } from '@/components/popover/popover.props'
 import { usePopoverStyle } from '@/components/popover/popover.style'
+import PopoverTrigger from '@/components/popover/PopoverTrigger.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { ThemeUtil } from '@/utils/theme.util'
 
@@ -50,7 +50,7 @@ const arrowClasses = computed<string>(() => popoverStyle.arrow())
     <!-- The reason both options are possible is because in some cases `PopoverAnchor`
          is used for custom positioning -->
     <slot>
-      <PopoverTrigger :as-child="true">
+      <PopoverTrigger>
         <slot name="trigger" />
       </PopoverTrigger>
     </slot>

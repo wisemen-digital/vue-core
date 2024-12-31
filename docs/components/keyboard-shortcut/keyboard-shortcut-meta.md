@@ -4,6 +4,6 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
+| **keyboardKeys*** | `KeyboardKey[]` | The keyboard key(s) to display |  |
 | keyboardClasses | `string \| null` | Keyboard classes | `null` |
-| keyboardKeys* | `KeyboardKey[]` | The keyboard key(s) to display |  |
 

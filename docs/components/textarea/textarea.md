@@ -1,3 +1,3 @@
-# Text Area
+# Textarea
 
 <!-- @include: ./textarea-meta.md -->

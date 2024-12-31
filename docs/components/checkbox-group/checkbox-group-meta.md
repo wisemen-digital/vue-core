@@ -4,6 +4,7 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
+| **modelValue*** | `AcceptableValue[]` |  |  |
 | errors | `string[]` | The errors associated with the input. | `[]` |
 | hint | `string \| null` | The hint text of the input. | `null` |
 | id | `string \| null` | The id of the input. | `null` |
@@ -12,7 +13,6 @@
 | isRequired | `boolean` | Whether the input is required. | `false` |
 | isTouched | `boolean` | Whether the input is touched. Used to determine if an error should be shown. | `false` |
 | label | `string \| null` | The label of the input. | `null` |
-| modelValue* | `AcceptableValue[]` |  |  |
 | testId | `string \| null` | The test id of the input. | `null` |
 
 

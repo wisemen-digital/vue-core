@@ -4,8 +4,8 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| toast* | `Toast` |  |  |
-| type* | `"error" \| "info" \| "success"` |  |  |
+| **toast*** | `Toast` |  |  |
+| **type*** | `"error" \| "info" \| "success"` |  |  |
 
 
 ## Events

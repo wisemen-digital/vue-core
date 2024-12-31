@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { type SelectItem, VcSelect } from '@wisemen/vue-core'
+import {
+  type SelectItem,
+  VcButton,
+  VcSelect,
+} from '@wisemen/vue-core'
 import { ref } from 'vue'
 
 const value = ref<string[]>([])
@@ -42,6 +46,10 @@ const items: SelectItem<string>[] = [
     value: 'Cherry',
   },
 ]
+
+function onClearAll(): void {
+  value.value = []
+}
 </script>
 
 <template>
@@ -51,7 +59,23 @@ const items: SelectItem<string>[] = [
     :display-fn="(value) => value"
     label="Select a fruit"
     placeholder="Select a fruit"
-    hint="Tip: You can select multiple fruits."
+    hint="You can select multiple fruits."
     class="w-72"
-  />
+  >
+    <template #content-top>
+      <div class="mt-1 pl-3 pr-1 flex items-center justify-between">
+        <span class="text-sm font-medium">
+          Fruits
+        </span>
+
+        <VcButton
+          size="sm"
+          variant="tertiary"
+          @click="onClearAll"
+        >
+          Clear all
+        </VcButton>
+      </div>
+    </template>
+  </VcSelect>
 </template>

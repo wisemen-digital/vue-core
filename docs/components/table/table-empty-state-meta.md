@@ -4,7 +4,7 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| hasActiveFilters* | `boolean` |  |  |
+| **hasActiveFilters*** | `boolean` |  |  |
 
 
 ## Slots

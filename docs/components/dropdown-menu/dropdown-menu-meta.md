@@ -4,9 +4,9 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
+| **items*** | `DropdownMenuItem[]` |  |  |
 | enableGlobalKeyboardShortcuts | `boolean` |  | `false` |
 | isArrowHidden | `boolean` | When true, the arrow will be hidden. | `false` |
-| items* | `DropdownMenuItem[]` |  |  |
 | popoverAlign | `PopperAlign` | The alignment of the popper content. | `"center"` |
 | popoverCollisionPaddingInPx | `number` | The padding of the popper collision. | `10` |
 | popoverContainerElement | `HTMLElement \| null` | The element to render the tooltip in. By default this is the viewport | `null` |

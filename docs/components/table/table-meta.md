@@ -4,13 +4,13 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| columns* | `TableColumn<T>[]` | The columns of the table |  |
-| data* | `PaginatedData<T> \| null` | The data of the table |  |
+| **columns*** | `TableColumn<T>[]` | The columns of the table |  |
+| **data*** | `PaginatedData<T> \| null` | The data of the table |  |
+| **isLoading*** | `boolean` | Whether the table is loading |  |
+| **pagination*** | `Pagination<T>` | The pagination of the table |  |
 | expandedRowContent | `((row: T) => VNode<RendererNode, RendererElement, { [key: string]: any; }>) \| null` | The content to show when a row is expanded | `null` |
 | isFirstColumnSticky | `boolean` | Whether the first column is sticky | `false` |
 | isLastColumnSticky | `boolean` | Whether the last column is sticky | `false` |
-| isLoading* | `boolean` | Whether the table is loading |  |
-| pagination* | `Pagination<T>` | The pagination of the table |  |
 | rowClass | `((row: T, rowIndex: number) => string) \| null` | The class to apply to the row | `null` |
 | styleConfig | `Partial<TableStyleConfig> \| null` | The style config of the component. | `null` |
 | variant | `"default" \| "borderless"` | The variant of the table | `"default"` |

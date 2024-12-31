@@ -4,12 +4,12 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
+| **to*** | `any` | The route to link to. |  |
 | dataTestId | `string \| null` | The test id of the button. | `null` |
 | iconLeft | `keyof Icons \| null` | The left icon of the button. | `null` |
 | iconRight | `keyof Icons \| null` | The right icon of the button. | `null` |
 | size | `"default" \| "2xl" \| "lg" \| "sm" \| "xl"` | The size of the button. | `"default"` |
 | styleConfig | `Partial<ButtonStyleConfig> \| null` | The style config of the component. | `null` |
-| to* | `any` | The route to link to. |  |
 | variant | `"default" \| "destructive-primary" \| "destructive-secondary" \| "destructive-tertiary" \| "secondary" \| "secondary-color" \| "tertiary" \| "tertiary-color"` | The variant of the button. | `"default"` |
 
 
@@ -17,10 +17,8 @@
 
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
-| default | `-` |  |
-| icon-left | `-` |  |
-| icon-right | `-` |  |
-| left | `-` |  |
-| loader | `-` |  |
-| right | `-` |  |
+| default | `-` | The content to display in the button. |
+| icon-left | `{ iconLeft: keyof Icons; }` | The content to display on the left side of the button. |
+| icon-right | `{ iconRight: keyof Icons; }` | The content to display on the right side of the button. |
+| loader | `-` | The content to display when the button is loading. |
 

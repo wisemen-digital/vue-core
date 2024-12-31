@@ -93,6 +93,20 @@ function generateMeta(meta: ParsedMeta): string {
     parsedString += '\n## Props\n\n'
     parsedString += '| Prop | Type | Description | Default |\n'
     parsedString += '| ---- | ---- | ----------- | ------- |\n'
+
+    // Sort props by required first, then alphabetically
+    meta.props.sort((a, b) => {
+      if (a.required && !b.required) {
+        return -1
+      }
+
+      if (!a.required && b.required) {
+        return 1
+      }
+
+      return a.name.localeCompare(b.name)
+    })
+
     meta.props.forEach((prop: { 
       name: string; 
       type: string; 
@@ -100,7 +114,8 @@ function generateMeta(meta: ParsedMeta): string {
       required: boolean;
       default?: string;
     }) => {
-      const name = `${prop.name}${prop.required ? '*' : ''}`
+      // const name = `${prop.name}${prop.required ? '*' : ''}`
+      const name = prop.required ? `**${prop.name}***` : prop.name
       const type = `\`${prop.type.replace(/\|/g, '\\|')}\``
       const defaultValue = prop.default === undefined ? '' : `\`${prop.default}\``
       parsedString += `| ${name} | ${type} | ${prop.description} | ${defaultValue} |\n`

@@ -15,7 +15,7 @@ Displays a button or a component that looks like a button.
       variant: 'bad',
       link: {
         label: 'Router Link Button',
-        href: '/vue-core/components/button/router-link-button',
+        href: '/vue-core/components/router-link-button/router-link-button',
       },
     },
     {
@@ -23,7 +23,7 @@ Displays a button or a component that looks like a button.
       variant: 'bad',
       link: {
         label: 'Icon Button',
-        href: '/vue-core/components/button/icon-button',
+        href: '/vue-core/components/icon-button/icon-button',
       },
     },
     {

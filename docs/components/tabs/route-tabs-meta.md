@@ -4,7 +4,7 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| items* | `RouteTabItem<T>[]` |  |  |
+| **items*** | `RouteTabItem<T>[]` |  |  |
 | styleConfig | `Partial<TabsStyleConfig> \| null` | The style config of the component. |  |
 
 

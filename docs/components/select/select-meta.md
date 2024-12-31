@@ -4,7 +4,9 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| displayFn* | `SelectDisplayFn<SelectValue>` | The display function for the selected value. |  |
+| **displayFn*** | `SelectDisplayFn<SelectValue>` | The display function for the selected value. |  |
+| **items*** | `SelectItem<AcceptableValue>[]` | The items of the select. |  |
+| **modelValue*** | `SelectValue \| null` |  |  |
 | errors | `string[]` | The errors associated with the input. | `[]` |
 | filterFn | `SelectFilterFn<SelectValue> \| null` | The function to filter the options. | `null` |
 | hint | `string \| null` | The hint text of the input. | `null` |
@@ -17,9 +19,7 @@
 | isReadonly | `boolean` | Whether the input is readonly. | `false` |
 | isRequired | `boolean` | Whether the input is required. | `false` |
 | isTouched | `boolean` | Whether the input is touched. Used to determine if an error should be shown. | `false` |
-| items* | `SelectItem<AcceptableValue>[]` | The items of the select. |  |
 | label | `string \| null` | The label of the input. | `null` |
-| modelValue* | `SelectValue \| null` |  |  |
 | placeholder | `string \| null` | The placeholder text of the input. | `null` |
 | popoverAlign | `PopperAlign` | The alignment of the popper content. | `"center"` |
 | popoverCollisionPaddingInPx | `number` | The padding of the popper collision. | `0` |

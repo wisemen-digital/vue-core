@@ -4,12 +4,12 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| errors* | `string[]` |  |  |
-| hint* | `string \| null` |  |  |
-| inputId* | `string` |  |  |
-| isRequired* | `boolean` |  |  |
-| isTouched* | `boolean` |  |  |
-| label* | `string \| null` |  |  |
+| **errors*** | `string[]` |  |  |
+| **hint*** | `string \| null` |  |  |
+| **inputId*** | `string` |  |  |
+| **isRequired*** | `boolean` |  |  |
+| **isTouched*** | `boolean` |  |  |
+| **label*** | `string \| null` |  |  |
 
 
 ## Slots

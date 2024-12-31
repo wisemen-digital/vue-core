@@ -4,9 +4,9 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
+| **locale*** | `string` |  |  |
 | areKeyboardShortcutHintsHidden | `boolean` |  |  |
 | googleMapsApiKey | `string` |  |  |
-| locale* | `string` |  |  |
 | pagination | `{ limit?: number; }` |  |  |
 | teleportTargetSelector | `string` |  |  |
 

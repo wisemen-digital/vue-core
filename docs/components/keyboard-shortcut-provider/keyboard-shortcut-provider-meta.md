@@ -4,7 +4,7 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| config* | `KeyboardShortcutConfig` | The keyboard shortcut configuration |  |
+| **config*** | `KeyboardShortcutConfig` | The keyboard shortcut configuration |  |
 
 
 ## Slots

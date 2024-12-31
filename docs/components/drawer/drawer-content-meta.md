@@ -4,7 +4,7 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| shouldPreventClickOutside* | `boolean` |  |  |
+| **shouldPreventClickOutside*** | `boolean` |  |  |
 
 
 ## Slots

@@ -27,6 +27,13 @@ const emit = defineEmits<{
   click: [event: Event]
 }>()
 
+defineSlots<{
+  /**
+   * The content to display in the button.
+   */
+  loader: () => void
+}>()
+
 const themeProviderContext = injectThemeProviderContext()
 
 const attrs = useAttrs()
@@ -109,7 +116,9 @@ const {
         v-if="props.isLoading"
         :class="loaderBoxClasses"
       >
-        <Spinner :class="loaderClasses" />
+        <slot name="loader">
+          <Spinner :class="loaderClasses" />
+        </slot>
       </div>
     </Transition>
   </button>

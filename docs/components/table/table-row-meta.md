@@ -4,6 +4,6 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| row* | `T` |  |  |
-| rowIndex* | `number` |  |  |
+| **row*** | `T` |  |  |
+| **rowIndex*** | `number` |  |  |
 

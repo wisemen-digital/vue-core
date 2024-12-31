@@ -4,8 +4,8 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| items* | `TabItem<T>[]` |  |  |
-| modelValue* | `TabItem<T>` |  |  |
+| **items*** | `TabItem<T>[]` |  |  |
+| **modelValue*** | `TabItem<T>` |  |  |
 | styleConfig | `Partial<TabsStyleConfig> \| null` | The style config of the component. |  |
 
 

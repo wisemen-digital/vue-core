@@ -4,7 +4,7 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| value* | `string` |  |  |
+| **value*** | `string` |  |  |
 
 
 ## Slots

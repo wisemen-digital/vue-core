@@ -4,6 +4,7 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
+| **modelValue*** | `Date \| null` |  |  |
 | areYearArrowsHidden | `boolean` | Whether the year arrows should be hidden. | `false` |
 | autoFocus | `boolean` | Whether the input should be focused automatically. | `false` |
 | defaultPlaceholderDate | `Date` | The default placeholder date of the calendar. Will only be used when `modelValue` is `null`. | `new Date()` |
@@ -19,10 +20,8 @@
 | isLoading | `boolean` | Whether the input is loading. | `false` |
 | isReadonly | `boolean` | Whether the input is readonly. | `false` |
 | isRequired | `boolean` | Whether the input is required. | `false` |
-| isSpellCheckEnabled | `boolean` | Whether the input is spell check enabled. | `false` |
 | isTouched | `boolean` | Whether the input is touched. Used to determine if an error should be shown. | `false` |
 | label | `string \| null` | The label of the input. | `null` |
-| modelValue* | `Date \| null` |  |  |
 | popoverAlign | `PopperAlign` | The alignment of the popper content. | `"end"` |
 | popoverCollisionPaddingInPx | `number` | The padding of the popper collision. | `12` |
 | popoverContainerElement | `HTMLElement \| null` | The element to render the tooltip in. By default this is the viewport | `null` |
@@ -37,13 +36,13 @@
 
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
-| bottom | `-` |  |
+| bottom | `{ errors: string[]; hint: string \| null; }` |  |
 | date | `{ date: Date; }` |  |
-| error | `-` |  |
-| hint | `-` |  |
+| error | `{ errors: string[]; }` |  |
+| hint | `{ hint: string \| null; }` |  |
 | icon-left | `-` |  |
 | icon-right | `-` |  |
-| label | `-` |  |
+| label | `{ label: string \| null; }` |  |
 | left | `-` |  |
 | loader | `-` |  |
 | right | `-` |  |

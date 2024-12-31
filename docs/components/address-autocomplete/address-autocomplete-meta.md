@@ -4,6 +4,7 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
+| **modelValue*** | `Address \| null` |  |  |
 | clearSearchOnSelection | `boolean \| null` | Whether the search input should be cleared when a selection is made. |  |
 | errors | `string[]` | The errors associated with the input. |  |
 | hideClearButton | `boolean \| null` | Whether the clear button should be hidden. |  |
@@ -16,7 +17,6 @@
 | isRequired | `boolean` | Whether the input is required. | `false` |
 | isTouched | `boolean` | Whether the input is touched. Used to determine if an error should be shown. |  |
 | label | `string \| null` | The label of the input. | `null` |
-| modelValue* | `Address \| null` |  |  |
 | placeholder | `string \| null` | The placeholder text of the input. |  |
 | popoverAlign | `PopperAlign` | The alignment of the popper content. |  |
 | popoverCollisionPaddingInPx | `number` | The padding of the popper collision. |  |

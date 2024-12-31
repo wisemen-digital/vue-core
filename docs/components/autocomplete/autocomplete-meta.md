@@ -4,8 +4,10 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
+| **displayFn*** | `AutocompleteDisplayFn<SelectValue>` | The display function for the selected value. |  |
+| **items*** | `SelectOption<AcceptableValue>[]` | The items of the select. |  |
+| **modelValue*** | `SelectValue \| null` |  |  |
 | clearSearchOnSelection | `boolean \| null` | Whether the search input should be cleared when a selection is made. | `false` |
-| displayFn* | `AutocompleteDisplayFn<SelectValue>` | The display function for the selected value. |  |
 | errors | `string[]` | The errors associated with the input. | `[]` |
 | hideClearButton | `boolean \| null` | Whether the clear button should be hidden. | `false` |
 | hint | `string \| null` | The hint text of the input. | `null` |
@@ -17,9 +19,7 @@
 | isLoading | `boolean` | Whether the input is loading. | `false` |
 | isRequired | `boolean` | Whether the input is required. | `false` |
 | isTouched | `boolean` | Whether the input is touched. Used to determine if an error should be shown. | `false` |
-| items* | `SelectOption<AcceptableValue>[]` | The items of the select. |  |
 | label | `string \| null` | The label of the input. | `null` |
-| modelValue* | `SelectValue \| null` |  |  |
 | placeholder | `string \| null` | The placeholder text of the input. | `null` |
 | popoverAlign | `PopperAlign` | The alignment of the popper content. | `"center"` |
 | popoverCollisionPaddingInPx | `number` | The padding of the popper collision. | `0` |

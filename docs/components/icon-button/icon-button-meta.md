@@ -4,15 +4,22 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| icon* | `keyof Icons` | The icon of the button. |  |
+| **icon*** | `keyof Icons` | The icon of the button. |  |
+| **label*** | `string` | The label for the button for accessibility |  |
 | isDisabled | `boolean` | Whether the button is disabled. | `false` |
 | isLoading | `boolean` | Whether the button is in a loading state. | `false` |
-| label* | `string` | The label for the button for accessibility |  |
 | size | `"default" \| "2xl" \| "lg" \| "sm" \| "xl"` | The size of the button. | `"default"` |
 | styleConfig | `Partial<IconButtonStyleConfig> \| null` | The style config of the component. | `null` |
 | testId | `string \| null` | The test id of the button. | `null` |
 | type | `"button" \| "reset" \| "submit"` | The type of the button. | `"button"` |
 | variant | `"default" \| "destructive-primary" \| "destructive-secondary" \| "destructive-tertiary" \| "secondary" \| "secondary-color" \| "tertiary" \| "tertiary-color"` | The variant of the button. | `"default"` |
+
+
+## Slots
+
+| Slot | Slot Props | Description |
+| --------- | ---- | ----------- |
+| loader | `-` | The content to display in the button. |
 
 
 ## Events

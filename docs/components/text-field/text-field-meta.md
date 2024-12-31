@@ -4,6 +4,7 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
+| **modelValue*** | `string \| null` |  |  |
 | autocomplete | `"off" \| "on"` | The autocorrect property of the input. | `"off"` |
 | autoFocus | `boolean` | Whether the input should be focused automatically. | `false` |
 | errors | `string[]` | The errors associated with the input. | `[]` |
@@ -18,7 +19,6 @@
 | isSpellCheckEnabled | `boolean` | Whether the input is spell check enabled. | `false` |
 | isTouched | `boolean` | Whether the input is touched. Used to determine if an error should be shown. | `false` |
 | label | `string \| null` | The label of the input. | `null` |
-| modelValue* | `string \| null` |  |  |
 | placeholder | `string \| null` | The placeholder text of the input. | `null` |
 | styleConfig | `Partial<TextFieldStyleConfig> \| null` | The style config of the component. | `null` |
 | testId | `string \| null` | The test id of the input. | `null` |

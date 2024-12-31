@@ -6,8 +6,8 @@ import type { ButtonProps } from '@/components/button/button/button.props'
 import Icon from '@/components/icon/Icon.vue'
 import Spinner from '@/components/spinner/Spinner.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
-import { ThemeUtil } from '@/utils/theme.util'
 import type { Icons } from '@/icons/icons'
+import { ThemeUtil } from '@/utils/theme.util'
 
 const props = withDefaults(defineProps<ButtonProps>(), {
   testId: null,
@@ -104,8 +104,8 @@ const {
     >
       <slot
         v-if="props.iconLeft !== null"
-        name="icon-left"
         :icon-left="props.iconLeft"
+        name="icon-left"
       >
         <Icon
           :icon="props.iconLeft"
@@ -146,8 +146,8 @@ const {
     >
       <slot
         v-if="props.iconRight !== null"
-        name="icon-right"
         :icon-right="props.iconRight"
+        name="icon-right"
       >
         <Icon
           :icon="props.iconRight"

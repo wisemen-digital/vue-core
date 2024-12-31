@@ -7,6 +7,7 @@ import type { ButtonProps } from '@/components/button/button/button.props'
 import type { RouterLinkButtonProps } from '@/components/button/router-link-button/routerLinkButton.props'
 import Icon from '@/components/icon/Icon.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
+import type { Icons } from '@/icons/icons'
 import { ThemeUtil } from '@/utils/theme.util'
 
 const props = withDefaults(defineProps<RouterLinkButtonProps>(), {
@@ -19,12 +20,22 @@ const props = withDefaults(defineProps<RouterLinkButtonProps>(), {
 })
 
 defineSlots<{
+  /**
+   * The content to display in the button.
+   */
   'default': () => void
-  'icon-left': () => void
-  'icon-right': () => void
-  'left': () => void
+  /**
+   * The content to display on the left side of the button.
+   */
+  'icon-left': ({ iconLeft }: { iconLeft: keyof Icons }) => void
+  /**
+   * The content to display on the right side of the button.
+   */
+  'icon-right': ({ iconRight }: { iconRight: keyof Icons }) => void
+  /**
+   * The content to display when the button is loading.
+   */
   'loader': () => void
-  'right': () => void
 }>()
 
 const themeProviderContext = injectThemeProviderContext()
@@ -70,10 +81,9 @@ const {
     @keyup="onKeyUp"
     @click="onClick"
   >
-    <slot name="left" />
-
     <slot
       v-if="props.iconLeft !== null"
+      :icon-left="props.iconLeft"
       name="icon-left"
     >
       <Icon
@@ -88,6 +98,7 @@ const {
 
     <slot
       v-if="props.iconRight !== null"
+      :icon-right="props.iconRight"
       name="icon-right"
     >
       <Icon
@@ -95,7 +106,5 @@ const {
         :class="iconRightClasses"
       />
     </slot>
-
-    <slot name="right" />
   </RouterLink>
 </template>

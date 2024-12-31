@@ -31,3 +31,5 @@ When an error occurs, you can display an error message in the checkbox component
 <ComponentPreview name="checkbox/error" />
 
 <!-- @include: ./checkbox-meta.md -->
+
+This component doesn't have any documentation yet.

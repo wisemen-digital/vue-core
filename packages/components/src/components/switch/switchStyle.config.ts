@@ -65,11 +65,11 @@ export function setupDefaultSwitchStyles(): void {
     colorScheme: '*',
     config: {
       '--switch-bg-color-checked': 'var(--bg-brand-solid)',
-      '--switch-bg-color-default': 'var(--bg-tertiary)',
+      '--switch-bg-color-default': 'var(--bg-quaternary)',
       '--switch-bg-color-disabled': 'var(--bg-disabled)',
       '--switch-bg-color-error': 'var(--bg-error-primary)',
-      '--switch-bg-color-focus': 'var(--bg-tertiary)',
-      '--switch-bg-color-hover': 'var(--bg-tertiary)',
+      '--switch-bg-color-focus': 'var(--bg-quaternary)',
+      '--switch-bg-color-hover': 'var(--bg-quaternary)',
 
       '--switch-border-color-checked': 'var(--bg-brand-solid)',
       '--switch-border-color-default': 'var(--bg-tertiary)',
