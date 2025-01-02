@@ -24,7 +24,7 @@ export function injectThemeProviderContext(): ThemeProviderContext {
 
   if (context === null) {
     return {
-      darkModeValue: computed<DarkModeValue>(() => 'system'),
+      darkModeValue: computed<DarkModeValue>(() => 'light'),
       theme: computed<string>(() => 'default'),
     }
   }

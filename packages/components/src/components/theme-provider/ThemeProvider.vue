@@ -19,7 +19,7 @@ const props = withDefaults(defineProps<{
 const themeContext = injectThemeProviderContext()
 
 const darkModeValueComputed = computed<DarkModeValue>(() => (
-  props.darkModeValue ?? themeContext.darkModeValue.value ?? 'system'
+  props.darkModeValue ?? themeContext.darkModeValue.value ?? 'light'
 ))
 
 const theme = computed<string>(() =>
