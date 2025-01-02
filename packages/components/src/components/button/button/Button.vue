@@ -84,7 +84,7 @@ const {
     :data-test-id="props.testId"
     :class="[
       baseClasses,
-      ThemeUtil.getClasses(themeContext.theme.value, themeContext.isDarkModeEnabled.value),
+      ThemeUtil.getClasses(themeContext.theme.value, themeContext.darkModeValue.value),
     ]"
     class="button-default"
     @focus="onFocus"

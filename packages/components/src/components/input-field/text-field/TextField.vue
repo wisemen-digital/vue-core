@@ -154,7 +154,7 @@ onMounted(() => {
     :errors="props.errors"
     :hint="props.hint"
     :label="props.label"
-    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value)"
+    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.darkModeValue.value)"
     class="text-field-default"
   >
     <template #label="{ label }">

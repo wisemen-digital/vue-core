@@ -1,15 +1,12 @@
+import type { DarkModeValue } from '@/composables/dark-mode/darkMode.composable'
+
 export class ThemeUtil {
-  static getClasses(theme: string, isDarkModeEnabled: boolean): string {
+  static getClasses(theme: string, darkModeValue: DarkModeValue): string {
     const classes = [
       theme,
     ]
 
-    if (isDarkModeEnabled) {
-      classes.push('dark')
-    }
-    else {
-      classes.push('light')
-    }
+    classes.push(darkModeValue)
 
     return classes.join(' ')
   }

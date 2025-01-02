@@ -158,7 +158,7 @@ provideTableContext({
     :style="props.styleConfig"
     :class="[
       variantClass,
-      ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value),
+      ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.darkModeValue.value),
     ]"
     class="table-default relative flex h-full flex-1 flex-col overflow-hidden rounded-(--table-border-radius-default) border border-solid border-(--table-border-color-default) bg-(--table-bg-color-default)"
   >

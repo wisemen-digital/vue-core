@@ -6,8 +6,10 @@ import {
   provide,
 } from 'vue'
 
+import type { DarkModeValue } from '@/composables/dark-mode/darkMode.composable'
+
 interface ThemeProviderContext {
-  isDarkModeEnabled: ComputedRef<boolean>
+  darkModeValue: ComputedRef<DarkModeValue>
   theme: ComputedRef<string & {} | 'default'>
 }
 
@@ -22,7 +24,7 @@ export function injectThemeProviderContext(): ThemeProviderContext {
 
   if (context === null) {
     return {
-      isDarkModeEnabled: computed<boolean>(() => false),
+      darkModeValue: computed<DarkModeValue>(() => 'system'),
       theme: computed<string>(() => 'default'),
     }
   }

@@ -23,7 +23,7 @@ const breadcrumbsContainerClasses = computed<string>(() => breadcrumbsVariants.c
 
 <template>
   <nav
-    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value)"
+    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.darkModeValue.value)"
     aria-label="breadcrumb"
   >
     <ol :class="breadcrumbsContainerClasses">

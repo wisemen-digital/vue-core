@@ -20,34 +20,34 @@ interface UseToastReturnType {
   success: (toast: ToastWithOptions) => void
 }
 
+function showErrorToast(toast: ToastWithOptions): void {
+  toastState.custom(h(Toast, {
+    toast,
+    type: 'error',
+  }), {
+    duration: toast.durationInMs ?? DEFAULT_ERROR_TOAST_DURATION,
+  })
+}
+
+function showInfoToast(toast: ToastWithOptions): void {
+  toastState.custom(h(Toast, {
+    toast,
+    type: 'info',
+  }), {
+    duration: toast.durationInMs ?? DEFAULT_TOAST_DURATION,
+  })
+}
+
+function showSuccessToast(toast: ToastWithOptions): void {
+  toastState.custom(h(Toast, {
+    toast,
+    type: 'success',
+  }), {
+    duration: toast.durationInMs ?? DEFAULT_TOAST_DURATION,
+  })
+}
+
 export function useToast(): UseToastReturnType {
-  function showErrorToast(toast: ToastWithOptions): void {
-    toastState.custom(h(Toast, {
-      toast,
-      type: 'error',
-    }), {
-      duration: toast.durationInMs ?? DEFAULT_ERROR_TOAST_DURATION,
-    })
-  }
-
-  function showInfoToast(toast: ToastWithOptions): void {
-    toastState.custom(h(Toast, {
-      toast,
-      type: 'info',
-    }), {
-      duration: toast.durationInMs ?? DEFAULT_TOAST_DURATION,
-    })
-  }
-
-  function showSuccessToast(toast: ToastWithOptions): void {
-    toastState.custom(h(Toast, {
-      toast,
-      type: 'success',
-    }), {
-      duration: toast.durationInMs ?? DEFAULT_TOAST_DURATION,
-    })
-  }
-
   return {
     error: showErrorToast,
     info: showInfoToast,

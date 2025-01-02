@@ -3,6 +3,7 @@ import {
   VcIcon,
   VcThemeProvider,
 } from '@wisemen/vue-core'
+import { useData } from 'vitepress'
 
 const props = defineProps<{
   items: {
@@ -14,10 +15,15 @@ const props = defineProps<{
     variant: 'bad' | 'good'
   }[]
 }>()
+
+const theme = useData()
 </script>
 
 <template>
-  <VcThemeProvider theme="default">
+  <VcThemeProvider
+    :dark-mode-value="theme.isDark.value ? 'dark' : 'light'"
+    theme="default"
+  >
     <ul class="!pl-0">
       <li
         v-for="item of props.items"

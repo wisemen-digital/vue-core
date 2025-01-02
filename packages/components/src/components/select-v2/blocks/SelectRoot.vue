@@ -18,6 +18,7 @@ import type {
   SelectProps,
 } from '@/components/select-v2/select.props'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
+import type { DarkModeValue } from '@/composables/dark-mode/darkMode.composable'
 import type { Icon } from '@/icons/icons'
 import type {
   PopperAlign,
@@ -220,7 +221,6 @@ provideSelectContext({
   hasError,
   hasFilter: computed<boolean>(() => props.filterFn !== null),
   isArrowVisible: computed<boolean>(() => props.isArrowVisible),
-  isDarkModeEnabled: computed<boolean>(() => themeProviderContext.isDarkModeEnabled.value),
   isDisabled: computed<boolean>(() => props.isDisabled),
   isEmpty,
   isFocused: computed<boolean>(() => isFocused.value),
@@ -228,6 +228,7 @@ provideSelectContext({
   isLoading: computed<boolean>(() => props.isLoading),
   isMultiple,
   isOpen,
+  darkModeValue: computed<DarkModeValue>(() => themeProviderContext.darkModeValue.value),
   displayFn: props.displayFn as SelectDisplayFn<SelectValue>,
   hint: computed<string | null>(() => props.hint),
   iconLeft: computed<Icon | null>(() => props.iconLeft),
@@ -259,7 +260,7 @@ provideSelectContext({
   <ListboxRoot
     v-model="delegatedModel"
     :ignore-filter="true"
-    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value)"
+    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.darkModeValue.value)"
     :selection-behavior="isMultiple ? 'toggle' : 'replace'"
     class="select-default"
     @update:model-value="onModelValueUpdate"
