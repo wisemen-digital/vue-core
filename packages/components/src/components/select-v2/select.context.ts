@@ -10,6 +10,7 @@ import type {
   SelectDisplayFn,
   SelectProps,
 } from '@/components/select/select.props'
+import type { DarkModeValue } from '@/composables/dark-mode/darkMode.composable'
 import type { Icon } from '@/icons/icons'
 import type { SelectItem, SelectValue } from '@/types'
 import type {
@@ -24,7 +25,6 @@ interface SelectContext {
   hasError: ComputedRef<boolean>
   hasFilter: ComputedRef<boolean>
   isArrowVisible: ComputedRef<boolean>
-  isDarkModeEnabled: ComputedRef<boolean>
   isDisabled: ComputedRef<boolean>
   isEmpty: ComputedRef<boolean>
   isFocused: ComputedRef<boolean>
@@ -32,6 +32,7 @@ interface SelectContext {
   isLoading: ComputedRef<boolean>
   isMultiple: ComputedRef<boolean>
   isOpen: Ref<boolean>
+  darkModeValue: ComputedRef<DarkModeValue>
   displayFn: SelectDisplayFn<SelectValue>
   hint: ComputedRef<string | null>
   iconLeft: ComputedRef<Icon | null>

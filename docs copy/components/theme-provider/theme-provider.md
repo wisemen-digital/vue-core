@@ -12,7 +12,7 @@ import { VcThemeProvider } from '@wisemen/vue-core'
 </script>
 
 <template>
-  <VcThemeProvider theme="light">
+  <VcThemeProvider theme="default" dark-mode-value="system">
     <!-- Your app content here -->
   </VcThemeProvider>
 </template>

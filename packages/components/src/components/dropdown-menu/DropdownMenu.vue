@@ -162,7 +162,7 @@ onBeforeUnmount(() => {
       <DropdownMenuContent
         :class="[
           dropdownClasses,
-          ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value),
+          ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.darkModeValue.value),
         ]"
         :side-offset="props.popoverOffsetInPx"
         :side="props.popoverSide"

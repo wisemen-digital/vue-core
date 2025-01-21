@@ -167,7 +167,7 @@ provideCheckboxContext({
     :aria-describedby="ariaDescribedBy"
     :class="[
       rootClasses,
-      ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value),
+      ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.darkModeValue.value),
     ]"
     :value="props.value ?? undefined"
     class="checkbox-default input-field-label-default input-field-error-default input-field-hint-default"
@@ -185,7 +185,7 @@ provideCheckboxContext({
   <div
     v-else
     :style="props.styleConfig"
-    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value)"
+    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.darkModeValue.value)"
     class="grid grid-cols-[min-content_auto] items-center checkbox-default input-field-label-default input-field-error-default input-field-hint-default"
   >
     <CheckboxRoot

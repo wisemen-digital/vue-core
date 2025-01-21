@@ -41,7 +41,7 @@ const itemContentClasses = computed<string>(() => tabsStyle.itemContent())
 <template>
   <TabsRoot
     v-model="modelAsString"
-    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value)"
+    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.darkModeValue.value)"
     class="tabs-default"
   >
     <TabsList :class="containerClasses">

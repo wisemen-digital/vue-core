@@ -13,19 +13,19 @@ interface UseDocumentTitleReturnType {
 
 const template = ref<string>('{title}')
 
+function setTemplate(newTemplate: string): void {
+  if (!newTemplate.includes('{title}')) {
+    throw new Error('Template must include {title}')
+  }
+
+  template.value = newTemplate
+}
+
 export function useDocumentTitle(): UseDocumentTitleReturnType {
   const documentTitle = ref<string>(document.title)
 
   function setDocumentTitle(title: string): void {
     documentTitle.value = title
-  }
-
-  function setTemplate(newTemplate: string): void {
-    if (!newTemplate.includes('{title}')) {
-      throw new Error('Template must include {title}')
-    }
-
-    template.value = newTemplate
   }
 
   watch(

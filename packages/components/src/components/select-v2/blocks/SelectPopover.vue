@@ -29,7 +29,7 @@ const selectContext = injectSelectContext()
 
     <template #content>
       <div
-        :class="ThemeUtil.getClasses(selectContext.theme.value, selectContext.isDarkModeEnabled.value)"
+        :class="ThemeUtil.getClasses(selectContext.theme.value, selectContext.darkModeValue.value)"
         class="select-default"
       >
         <slot name="content" />

@@ -98,7 +98,7 @@ function onBlur(): void {
     :errors="props.errors"
     :is-required="props.isRequired"
     :style="props.styleConfig"
-    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value)"
+    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.darkModeValue.value)"
     class="textarea-default"
   >
     <template #label="{ label }">

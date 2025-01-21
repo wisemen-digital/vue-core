@@ -27,7 +27,7 @@ const errorClasses = computed<string>(() => style.error())
     :id="`${props.inputId}-error`"
     :class="[
       errorClasses,
-      ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value),
+      ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.darkModeValue.value),
     ]"
     :style="props.styleConfig"
     aria-live="assertive"

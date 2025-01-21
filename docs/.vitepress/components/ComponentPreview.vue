@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { TabItem } from '@wisemen/vue-core'
 import {
-  useDarkMode,
   VcCollapsable2,
   VcConfigProvider,
   VcSwitch,
@@ -58,13 +57,15 @@ const observer = new MutationObserver((mutations) => {
 
 observer.observe(document.documentElement, {
   attributes: true,
-  attributeFilter: ['class'],
+  attributeFilter: [
+    'class',
+  ],
 })
 </script>
 
 <template>
   <VcThemeProvider
-    :is-dark-mode-enabled="isDark"
+    :dark-mode-value="isDark ? 'dark' : 'light'"
     theme="default"
   >
     <div class="flex flex-col gap-2">
@@ -120,6 +121,9 @@ observer.observe(document.documentElement, {
       </div>
     </div>
 
-    <div id="teleport-target" class="vp-raw"></div>
+    <div
+      id="teleport-target"
+      class="vp-raw"
+    />
   </VcThemeProvider>
 </template>

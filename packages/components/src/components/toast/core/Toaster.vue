@@ -1,3 +1,4 @@
+<!-- eslint-disable no-nested-ternary -->
 <script lang="ts" setup>
 import {
   computed,

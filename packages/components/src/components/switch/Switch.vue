@@ -144,7 +144,7 @@ function onBlur(e: Event): void {
 <template>
   <div
     :style="props.styleConfig"
-    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value)"
+    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.darkModeValue.value)"
     class="switch-default input-field-label-default input-field-hint-default input-field-error-default"
   >
     <div class="grid grid-cols-[min-content_auto] items-center">

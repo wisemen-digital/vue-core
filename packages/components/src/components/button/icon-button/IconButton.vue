@@ -74,7 +74,7 @@ const {
     :aria-label="props.label"
     :class="[
       baseClasses,
-      ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value),
+      ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.darkModeValue.value),
     ]"
     class="icon-button-default"
     @focus="onFocus"

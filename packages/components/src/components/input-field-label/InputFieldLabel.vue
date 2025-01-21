@@ -26,7 +26,7 @@ const labelClasses = computed<string>(() => style.label())
     v-if="props.label !== null"
     :class="[
       labelClasses,
-      ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value),
+      ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.darkModeValue.value),
     ]"
     :for="props.for"
     :style="props.styleConfig"

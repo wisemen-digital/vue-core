@@ -42,7 +42,7 @@ function onOpenAutoFocus(e: Event): void {
     :force-mount="true"
     :class="[
       contentClasses,
-      ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value),
+      ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.darkModeValue.value),
     ]"
     :disable-outside-pointer-events="false"
     class="dialog-default"

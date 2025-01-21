@@ -61,7 +61,7 @@ const arrowClasses = computed<string>(() => tooltipStyle.arrow())
               'w-(--reka-tooltip-content-available-width)': props.popoverWidth === 'available-width',
             },
             contentClasses,
-            ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.isDarkModeEnabled.value),
+            ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.darkModeValue.value),
           ]"
           :style="props.styleConfig"
           :collision-boundary="props.popoverContainerElement"
