@@ -1,7 +1,4 @@
 export type { OAuth2Tokens } from './apiClient'
-export { AxiosFetchStrategy } from './fetch-strategy/axios.fetchStrategy'
-export type { FetchStrategy, FetchStrategyGetNewAccessTokenOptions, FetchStrategyGetUserInfoOptions, FetchStrategyLoginWithCodeOptions } from './fetch-strategy/fetchStrategy.type'
-export { OAuth2VueClient } from './oAuthClient'
 export { LocalStorageTokensStrategy } from './tokens-strategy/localStorage.tokensStrategy'
 export type { TokensStrategy } from './tokens-strategy/tokensStrategy.type'
 export type { ZitadelUser } from './zitadel.type'

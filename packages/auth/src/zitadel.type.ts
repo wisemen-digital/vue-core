@@ -1,4 +1,3 @@
-import type { FetchStrategy } from './fetch-strategy/fetchStrategy.type'
 import type { TokensStrategy } from './tokens-strategy/tokensStrategy.type'
 
 export interface ZitadelUser {
@@ -13,7 +12,7 @@ export interface ZitadelUser {
   sub: string
 }
 
-export interface OAuth2VueClientOptions<TFetchInstance> {
+export interface OAuth2VueClientOptions {
   /*
   * The client ID
   */
@@ -26,7 +25,6 @@ export interface OAuth2VueClientOptions<TFetchInstance> {
   * The base URL of the OAuth2 server
   */
   baseUrl: string
-  fetchStrategy: FetchStrategy<TFetchInstance>
   /*
   * The URL to redirect to after login
   */
