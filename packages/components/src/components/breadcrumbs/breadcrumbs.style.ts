@@ -8,8 +8,8 @@ export const useBreadcrumbsStyle = tv({
     itemPageIcon: 'text-muted-foreground',
     itemPageText: 'max-w-32 truncate text-muted-foreground',
     itemRoute: 'flex items-center gap-x-2 rounded p-0.5 outline-none ring-offset-background duration-200 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
-    itemRouteIcon: 'text-muted-foreground/75',
-    itemRouteText: 'max-w-32 truncate text-muted-foreground/75',
+    itemRouteIcon: 'text-muted-foreground/90',
+    itemRouteText: 'max-w-32 truncate text-muted-foreground',
   },
 })
 

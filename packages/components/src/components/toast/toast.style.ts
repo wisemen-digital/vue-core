@@ -4,7 +4,7 @@ import { tv } from '@/libs/twVariants.lib'
 export const useToastStyle = tv({
   slots: {
     actionButton: 'h-5',
-    actionButtonText: 'font-medium text-muted-foreground',
+    actionButtonText: 'font-medium text-neutral-500',
     actionContainer: 'mt-4',
     actionLoader: 'size-5 text-muted-foreground',
     closeButton: 'flex size-5 items-center justify-center rounded-full border border-solid border-neutral-100 bg-background p-1',

@@ -337,7 +337,6 @@ onUnmounted(() => {
       ...toastStyle,
     }"
     aria-atomic="true"
-    role="status"
     tabindex="0"
     data-sonner-toast=""
     @pointerdown="onPointerDown"
