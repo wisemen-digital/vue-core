@@ -67,6 +67,7 @@ function toggleSidebar(): void {
     </div>
     <button
       :class="toggleButtonClasses"
+      aria-label="Toggle sidebar"
       @click="toggleSidebar"
     >
       <AppIcon
@@ -74,15 +75,40 @@ function toggleSidebar(): void {
       />
     </button>
     <nav :class="navClasses">
-      <ul :class="itemsListClasses">
-        <div
-          v-for="item of props.items"
-          :key="item.label"
-          class="size-full "
+      <ul
+        v-for="item of props.items"
+        :key="item.label"
+        :class="itemsListClasses"
+        class="w-full"
+      >
+        <AppSidebarNavigationItem
+          v-if="item.type === 'option'"
+          :item="item"
+        >
+          <template #trigger="{ navigationItem }">
+            <slot
+              :navigation-item="navigationItem"
+              :is-open="isOpen"
+              name="trigger"
+            />
+          </template>
+          <template #content="{ navigationItem }">
+            <slot
+              :navigation-item="navigationItem"
+              :is-open="isOpen"
+              name="content"
+            />
+          </template>
+        </AppSidebarNavigationItem>
+
+        <AppSidebarNavigationGroup
+          v-else
+          :item="item"
         >
           <AppSidebarNavigationItem
-            v-if="item.type === 'option'"
-            :item="item"
+            v-for="option of item.items"
+            :key="option.label"
+            :item="option"
           >
             <template #trigger="{ navigationItem }">
               <slot
@@ -99,33 +125,7 @@ function toggleSidebar(): void {
               />
             </template>
           </AppSidebarNavigationItem>
-
-          <AppSidebarNavigationGroup
-            v-else
-            :item="item"
-          >
-            <AppSidebarNavigationItem
-              v-for="option of item.items"
-              :key="option.label"
-              :item="option"
-            >
-              <template #trigger="{ navigationItem }">
-                <slot
-                  :navigation-item="navigationItem"
-                  :is-open="isOpen"
-                  name="trigger"
-                />
-              </template>
-              <template #content="{ navigationItem }">
-                <slot
-                  :navigation-item="navigationItem"
-                  :is-open="isOpen"
-                  name="content"
-                />
-              </template>
-            </AppSidebarNavigationItem>
-          </AppSidebarNavigationGroup>
-        </div>
+        </AppSidebarNavigationGroup>
       </ul>
     </nav>
     <div>

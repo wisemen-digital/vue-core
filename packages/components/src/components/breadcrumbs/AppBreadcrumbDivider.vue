@@ -3,8 +3,9 @@ import AppIcon from '@/components/icon/AppIcon.vue'
 </script>
 
 <template>
-  <li role="presentation">
+  <li>
     <AppIcon
+      aria-hidden="true"
       icon="chevronRight"
       size="sm"
       class="text-muted-foreground"
