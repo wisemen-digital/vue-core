@@ -273,6 +273,7 @@ provideSelectContext({
         '--popover-border-radius-default': 'var(--select-dropdown-border-radius-default)',
         ...props.styleConfig ?? {},
       }"
+      class="select-default"
     >
       <template #default>
         <PopoverAnchor>
