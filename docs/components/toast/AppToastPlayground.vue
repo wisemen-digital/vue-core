@@ -42,10 +42,6 @@ function onButtonClick(title: string, description: string, type: 'error' | 'info
       description,
       icon: 'checkmark',
       type: 'info',
-      action: {
-        label: 'Undo',
-        onClick: () => console.log('Undo clicked'),
-      },
     })
   }
   if (type === 'success') {
