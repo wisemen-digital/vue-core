@@ -14,13 +14,13 @@ import RadioGroupItem from '@/components/radio-group/RadioGroupItem.vue'
 import Select from '@/components/select/Select.vue'
 import Switch from '@/components/switch/Switch.vue'
 import Tooltip from '@/components/tooltip/Tooltip.vue'
+import { defineStyleConfig } from '@/styling/defineStyleConfig'
 import { setupDefaultStyles } from '@/styling/setupDefaultStyles'
 import type { SelectItem } from '@/types/select.type'
 
 import Button from './components/button/button/Button.vue'
 import ThemeProvider from './components/theme-provider/ThemeProvider.vue'
 import { useDarkMode } from './composables'
-import { defineStyleConfig } from './styling/defineStyleConfig'
 
 setupDefaultStyles()
 
@@ -78,23 +78,16 @@ const date = ref<Date>(test)
 const locale = navigator.language
 
 defineStyleConfig({
-  colorScheme: 'dark',
+  colorScheme: '*',
   config: {
-    '--button-bg-color-default': 'red',
+    '--select-dropdown-border-radius-default': '0',
+    '--select-dropdown-padding-x-default': '0',
+    '--select-dropdown-padding-y-default': '0',
+    '--select-option-border-radius-default': '0',
   },
   theme: '*',
-  variant: 'primary',
-  component: 'button',
-})
-
-defineStyleConfig({
-  colorScheme: 'light',
-  config: {
-    '--button-bg-color-default': 'blue',
-  },
-  theme: '*',
-  variant: 'primary',
-  component: 'button',
+  variant: 'default',
+  component: 'select',
 })
 </script>
 
@@ -235,7 +228,6 @@ defineStyleConfig({
           v-model="value"
           :items="selectItems"
           :display-fn="(value) => value"
-          :style-config="{}"
           label="Yeet!"
           placeholder="Select a value"
         />

@@ -270,6 +270,7 @@ provideSelectContext({
       :style-config="{
         '--popover-max-width-default': 'var(--select-dropdown-max-width-default)',
         '--popover-min-width-default': 'var(--select-dropdown-min-width-default)',
+        '--popover-border-radius-default': 'var(--select-dropdown-border-radius-default)',
         ...props.styleConfig ?? {},
       }"
     >
