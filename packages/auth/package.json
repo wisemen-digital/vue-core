@@ -1,7 +1,7 @@
 {
   "name": "@wisemen/vue-core-auth",
   "type": "module",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "license": "MIT",
   "sideEffects": false,
   "exports": {
@@ -36,13 +36,11 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "axios": "1.7.7",
     "pkce-challenge": "4.1.0"
   },
   "devDependencies": {
     "@types/node": "22.9.0",
     "@wisemen/eslint-config-vue": "0.2.0",
-    "axios-mock-adapter": "2.1.0",
     "bumpp": "9.8.1",
     "eslint": "9.14.0",
     "esno": "4.8.0",

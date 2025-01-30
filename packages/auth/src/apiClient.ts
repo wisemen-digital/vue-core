@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 
-import type { FetchStrategy } from './fetch-strategy/fetchStrategy.type'
 import type { TokensStrategy } from './tokens-strategy/tokensStrategy.type'
 import type {
   ZitadelUser,
@@ -15,10 +14,9 @@ export interface OAuth2Tokens {
   token_type: string
 }
 
-interface ApiClientOptions<TFetchInstance> {
+interface ApiClientOptions {
   clientId: string
   baseUrl: string
-  fetchStrategy: FetchStrategy<TFetchInstance>
   redirectUri: string
   scopes?: string[]
   tokensStrategy: TokensStrategy
@@ -41,10 +39,10 @@ function decodeToken(token: string): Token {
   return JSON.parse(jsonPayload)
 }
 
-export class ApiClient<TFetchInstance> {
+export class ApiClient {
   private _promise: Promise<void> | null = null
 
-  constructor(private readonly options: ApiClientOptions<TFetchInstance>) {}
+  constructor(private readonly options: ApiClientOptions) {}
 
   /*
   * @returns base url without trailing slash
@@ -54,12 +52,20 @@ export class ApiClient<TFetchInstance> {
   }
 
   private async getNewAccessToken(refreshToken: string): Promise<OAuth2Tokens> {
-    return await this.options.fetchStrategy.getNewAccessToken({
-      clientId: this.options.clientId,
-      refreshToken,
-      scope: this.options.scopes?.join(' '),
-      url: `${this.getBaseUrl()}/oauth/v2/token`,
+    const response = await fetch(`${this.getBaseUrl()}/oauth/v2/token`, {
+      body: JSON.stringify({
+        client_id: this.options.clientId,
+        grant_type: 'refresh_token',
+        refresh_token: refreshToken,
+        scope: this.options.scopes?.join(' ') ?? '',
+      }),
+      headers: new Headers({
+        'Content-Type': 'application/x-www-form-urlencoded',
+      }),
+      method: 'POST',
     })
+
+    return await response.json() as OAuth2Tokens
   }
 
   private getTokensStrategy(): TokensStrategy {
@@ -134,12 +140,13 @@ export class ApiClient<TFetchInstance> {
   async getUserInfo(): Promise<ZitadelUser> {
     const accessToken = await this.getAccessToken()
 
-    const response = await this.options.fetchStrategy.getUserInfo({
-      accessToken,
-      url: `${this.getBaseUrl()}/oidc/v1/userinfo`,
+    const response = await fetch(`${this.getBaseUrl()}/oidc/v1/userinfo`, {
+      headers: new Headers({
+        Authorization: `Bearer ${accessToken}`,
+      }),
     })
 
-    return response
+    return await response.json() as ZitadelUser
   }
 
   public isAccessTokenExpired(): boolean {
@@ -159,16 +166,24 @@ export class ApiClient<TFetchInstance> {
       throw new Error('Code verifier is not set')
     }
 
-    const response = await this.options.fetchStrategy.loginWithCode({
-      clientId: this.options.clientId,
-      code,
-      codeVerifier,
-      redirectUri: this.options.redirectUri,
-      url: `${this.getBaseUrl()}/oauth/v2/token`,
+    const response = await fetch(`${this.getBaseUrl()}/oauth/v2/token`, {
+      body: new URLSearchParams({
+        client_id: this.options.clientId,
+        code,
+        code_verifier: codeVerifier,
+        grant_type: 'authorization_code',
+        redirect_uri: this.options.redirectUri,
+      }),
+      headers: new Headers({
+        'Content-Type': 'application/x-www-form-urlencoded',
+      }),
+      method: 'POST',
     })
 
+    const tokens = await response.json() as OAuth2Tokens
+
     this.getTokensStrategy().removeCodeVerifier()
-    this.setTokens(response)
+    this.setTokens(tokens)
   }
 
   public setMockTokens(): void {
@@ -185,10 +200,12 @@ export class ApiClient<TFetchInstance> {
   }
 
   public setTokens(tokens: OAuth2Tokens): void {
-    const expirationInSecondsSinceUnixEpoch = decodeToken(tokens.id_token).exp
+    const expirationSinceUnixEpoch = decodeToken(tokens.access_token).exp
+
+    const MARGIN_EXPIRES_AT = 100000
 
     const tokensWithExpiration = {
-      expires_at: expirationInSecondsSinceUnixEpoch * 1000,
+      expires_at: new Date((expirationSinceUnixEpoch * 1000) - MARGIN_EXPIRES_AT).getTime(),
       access_token: tokens.access_token,
       id_token: tokens.id_token,
       refresh_token: tokens.refresh_token,

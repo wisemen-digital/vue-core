@@ -8,46 +8,24 @@ import type {
   ZitadelUser,
 } from './zitadel.type'
 
-export class ZitadelClient<TFetchInstance> {
-  private client: ApiClient<TFetchInstance> | null = null
+export class ZitadelClient {
+  private client: ApiClient | null = null
   private readonly offline: boolean
   private tokensStrategy: TokensStrategy
 
-  constructor(private readonly options: OAuth2VueClientOptions<TFetchInstance>) {
+  constructor(private readonly options: OAuth2VueClientOptions) {
     this.offline = options.offline ?? false
 
     this.tokensStrategy = this.options.tokensStrategy ?? new LocalStorageTokensStrategy()
-    this.client = new ApiClient<TFetchInstance>(
+    this.client = new ApiClient(
       {
         clientId: this.options.clientId,
         baseUrl: this.options.baseUrl,
-        fetchStrategy: this.options.fetchStrategy,
         redirectUri: this.options.loginRedirectUri,
         scopes: this.options.scopes ?? this.getDefaultScopes(),
         tokensStrategy: this.tokensStrategy,
       },
     )
-  }
-
-  private async addAuthorizationHeader(): Promise<void> {
-    const client = this.getClient()
-
-    if (client === null || this.offline) {
-      return
-    }
-
-    try {
-      const token = await client.getAccessToken()
-
-      this.options.fetchStrategy.setAuthorizationHeader(token)
-    }
-    catch (error) {
-      console.error('Failed to get access token, logging out', error)
-
-      this.logout()
-
-      throw new Error('Failed to get access token')
-    }
   }
 
   private getDefaultScopes(): string[] {
@@ -62,10 +40,6 @@ export class ZitadelClient<TFetchInstance> {
 
   private getTokensStrategy(): TokensStrategy {
     return this.tokensStrategy
-  }
-
-  private removeAuthorizationHeader(): void {
-    this.options.fetchStrategy.removeAuthorizationHeader()
   }
 
   /*
@@ -86,20 +60,12 @@ export class ZitadelClient<TFetchInstance> {
   * Get the client
   * This will return the client that is used to make requests to the identity provider
   */
-  public getClient(): ApiClient<TFetchInstance> {
+  public getClient(): ApiClient {
     if (this.client === null) {
       throw new Error('Client is not initialized')
     }
 
     return this.client
-  }
-
-  /*
-  * Get the fetch instance
-  * This will return the fetch instance that is used to make requests to the identity provider
-  */
-  public getFetchInstance(): TFetchInstance {
-    return this.options.fetchStrategy.getFetchInstance()
   }
 
   public async getIdentityProviderLoginUrl(idpId: string): Promise<string> {
@@ -190,9 +156,7 @@ export class ZitadelClient<TFetchInstance> {
     }
 
     try {
-      const token = await this.client.getAccessToken()
-
-      this.options.fetchStrategy.setAuthorizationHeader(token)
+      await this.client.getAccessToken()
 
       return true
     }
@@ -229,8 +193,6 @@ export class ZitadelClient<TFetchInstance> {
 
     try {
       await this.getClient().loginWithCode(code)
-
-      await this.addAuthorizationHeader()
     }
     catch (error) {
       this.logout()
@@ -245,6 +207,5 @@ export class ZitadelClient<TFetchInstance> {
   public logout(): void {
     this.client?.clearTokens()
     this.client = null
-    this.removeAuthorizationHeader()
   }
 }
