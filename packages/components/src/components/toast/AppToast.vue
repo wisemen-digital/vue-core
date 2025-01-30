@@ -75,6 +75,7 @@ const contentWrapperClasses = computed<string>(() => toastStyle.contentWrapper()
     <div :class="closeContainerClasses">
       <button
         :class="closeButtonClasses"
+        aria-label="Close toast"
         type="button"
         @click.stop="onClose"
       >
