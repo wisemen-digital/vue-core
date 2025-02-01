@@ -2,9 +2,7 @@
 import { computed } from 'vue'
 
 import Filters from '@/components/filters/Filters.vue'
-import type {
-  Filter,
-} from '@/types/filter.type'
+import type { Filter } from '@/types/filter.type'
 
 import { usePagination } from './composables'
 
@@ -28,7 +26,7 @@ const pagination = usePagination<TestFilter>({
 })
 
 const filters = computed<Filter<TestFilter>[]>(() => {
-  const values: Filter<TestFilter>[] = [
+  const newVar: Filter<TestFilter>[] = [
     {
       displayFn: (value: CustomerStatus): string => value.toString(),
       icon: 'alertCircle',
@@ -43,12 +41,29 @@ const filters = computed<Filter<TestFilter>[]>(() => {
         },
       ],
       key: 'customerStatus',
-      label: 'Empoyee status',
+      label: 'Customer status',
       type: 'multiselect',
+    },
+    {
+      displayFn: (value: EmployeeStatus): string => value.toString(),
+      icon: 'alertCircle',
+      items: [
+        {
+          type: 'option',
+          value: EmployeeStatus.ACTIVE,
+        },
+        {
+          type: 'option',
+          value: EmployeeStatus.INACTIVE,
+        },
+      ],
+      key: 'employeeStatus',
+      label: 'Employee status',
+      type: 'select',
     },
   ]
 
-  return values
+  return newVar
 })
 </script>
 

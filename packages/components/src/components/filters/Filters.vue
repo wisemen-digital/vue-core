@@ -169,15 +169,7 @@ watch(isOpen, (isOpen) => {
 </script>
 
 <template>
-  <div>
-    {{ props.pagination.paginationOptions.value.filters }}
-    <Button
-      v-for="(filterValue, filterKey) in props.pagination.paginationOptions.value.filters"
-      @click="onFilterRemove(filterKey)"
-    >
-      {{ filterKey }}
-      {{ filterValue }}
-    </Button>
+  <div class="flex items-center gap-xl">
     <Popover
       v-model:is-open="isOpen"
       :is-arrow-hidden="true"
@@ -304,5 +296,12 @@ watch(isOpen, (isOpen) => {
         </ListboxRoot>
       </template>
     </Popover>
+
+    <Button
+      v-for="(filterValue, filterKey) in props.pagination.paginationOptions.value.filters"
+      @click="onFilterRemove(filterKey)"
+    >
+      {{ filterValue }}
+    </Button>
   </div>
 </template>
