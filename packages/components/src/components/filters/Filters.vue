@@ -1,7 +1,4 @@
-<script setup lang="ts" generic="TValue extends SelectValue, TFilter extends Record<string, AcceptableValue>">
-import type {
-  AcceptableValue,
-} from '@wisemen/vue-core'
+<script setup lang="ts" generic="TValue extends SelectValue, TFilter">
 import {
   ListboxContent,
   ListboxFilter,
@@ -14,12 +11,12 @@ import {
   watch,
 } from 'vue'
 
-import Button from '@/components/button/button/Button.vue'
 import IconButton from '@/components/button/icon-button/IconButton.vue'
 import Collapsable3 from '@/components/collapsable/Collapsable3.vue'
 import Icon from '@/components/icon/Icon.vue'
 import Popover from '@/components/popover/Popover.vue'
 import { useSelectStyle } from '@/components/select/select.style'
+import Select from '@/components/select/Select.vue'
 import type { Icon as IconType } from '@/icons/icons'
 import type {
   Pagination,
@@ -149,15 +146,16 @@ function onSelectFilter(filter: Filter<TFilter>): void {
 }
 
 function onSelectValue(value: FilterChangeEvent<TFilter>): void {
+  console.log('onSelectValue', value)
   props.pagination.handleFilterChange(value)
 
   isOpen.value = false
 }
 
-function onFilterRemove(filterKey: string): void {
+function onFilterRemove(filterKey: keyof TFilter): void {
   props.pagination.handleFilterChange({
     [filterKey]: undefined,
-  })
+  } as FilterChangeEvent<TFilter>)
 }
 
 watch(isOpen, (isOpen) => {
@@ -297,11 +295,26 @@ watch(isOpen, (isOpen) => {
       </template>
     </Popover>
 
-    <Button
+    <div
       v-for="(filterValue, filterKey) in props.pagination.paginationOptions.value.filters"
-      @click="onFilterRemove(filterKey)"
+      :key="`${filterKey.toString()}-${filterValue.toString()}`"
+      class="flex items-center gap-sm"
     >
-      {{ filterValue }}
-    </Button>
+      <Select
+        :model-value="filterValue"
+        :display-fn="(value) => value"
+        :items="props.filters.find((filter) => filter.key === filterKey)?.items"
+        class="w-32"
+        @update:model-value="(v) => onSelectValue({ [filterKey]: v })"
+      />
+      <IconButton
+        icon="close"
+        variant="tertiary"
+        size="sm"
+        label="remove"
+        @click="onFilterRemove(filterKey)"
+      />
+    </div>
   </div>
+  {{ props.pagination.paginationOptions.value }}
 </template>
