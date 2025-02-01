@@ -1,3 +1,5 @@
+import type { Icon } from '@/icons/icons.ts'
+
 import type { AcceptableValue } from './acceptableValue.type'
 
 export type SelectValue = AcceptableValue | AcceptableValue[]
@@ -7,6 +9,7 @@ export interface SelectSeparator {
 }
 
 export interface SelectGroup<TValue extends SelectValue> {
+  icon?: Icon
   items: SelectItem<TValue>[]
   label: string
   type: 'group'
@@ -15,6 +18,7 @@ export interface SelectGroup<TValue extends SelectValue> {
 export interface SelectOption<TValue extends SelectValue> {
   testId?: string
   isDisabled?: boolean
+  icon?: Icon
   type: 'option'
   value: TValue
 }

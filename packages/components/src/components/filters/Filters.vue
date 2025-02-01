@@ -1,4 +1,7 @@
-<script setup lang="ts" generic="TValue extends SelectValue">
+<script setup lang="ts" generic="TValue extends SelectValue, TFilter extends Record<string, AcceptableValue>">
+import type {
+  AcceptableValue,
+} from '@wisemen/vue-core'
 import {
   ListboxContent,
   ListboxFilter,
@@ -11,23 +14,19 @@ import {
   watch,
 } from 'vue'
 
+import Button from '@/components/button/button/Button.vue'
 import IconButton from '@/components/button/icon-button/IconButton.vue'
 import Collapsable3 from '@/components/collapsable/Collapsable3.vue'
 import Icon from '@/components/icon/Icon.vue'
 import Popover from '@/components/popover/Popover.vue'
 import { useSelectStyle } from '@/components/select/select.style'
 import type { Icon as IconType } from '@/icons/icons'
-import type { SelectValue } from '@/types/select.type'
-
-interface Filter<TValue extends SelectValue> {
-  icon?: IconType
-  label: string
-  options: {
-    icon?: IconType
-    value: TValue
-  }[]
-  type: 'multiselect'
-}
+import type {
+  Pagination,
+  SelectValue,
+} from '@/types'
+import type { Filter } from '@/types/filter.type'
+import type { FilterChangeEvent } from '@/types/pagination.type.ts'
 
 interface DisplayItemFilter {
   icon?: IconType
@@ -44,88 +43,16 @@ interface DisplayItemValue {
   onSelect: () => void
 }
 
-type DisplayItem = DisplayItemFilter | DisplayItemValue
+const props = defineProps<{
+  filters: Filter<TFilter>[]
+  pagination: Pagination<TFilter>
+}>()
 
-const filters: Filter<string>[] = [
-  {
-    icon: 'alertCircle',
-    label: 'Status',
-    options: [
-      {
-        icon: 'alertCircle',
-        value: 'Active',
-      },
-      {
-        icon: 'alertCircle',
-        value: 'Inactive',
-      },
-      {
-        icon: 'alertCircle',
-        value: 'On hold',
-      },
-    ],
-    type: 'multiselect',
-  },
-  {
-    icon: 'eye',
-    label: 'Visibility',
-    options: [
-      {
-        icon: 'eye',
-        value: 'Public',
-      },
-      {
-        icon: 'eyeOff',
-        value: 'Private',
-      },
-    ],
-    type: 'multiselect',
-  },
-  {
-    label: 'Priority',
-    options: [
-      // 'High',
-      // 'Medium',
-      // 'Low',
-      // 'None',
-      {
-        value: 'High',
-      },
-      {
-        value: 'Medium',
-      },
-      {
-        value: 'Low',
-      },
-      {
-        value: 'None',
-      },
-    ],
-    type: 'multiselect',
-  },
-  {
-    label: 'Label',
-    options: [
-      {
-        value: 'Bug',
-      },
-      {
-        value: 'Feature',
-      },
-      {
-        value: 'Improvement',
-      },
-      {
-        value: 'Reopened',
-      },
-    ],
-    type: 'multiselect',
-  },
-]
+type DisplayItem = DisplayItemFilter | DisplayItemValue
 
 const isOpen = ref<boolean>(false)
 const search = ref<string>('')
-const selectedFilterLabel = ref<string | null>(null)
+const selectedFilterKey = ref<keyof TFilter | null>(null)
 
 const selectStyle = useSelectStyle()
 
@@ -134,25 +61,31 @@ const dropdownContentClasses = computed<string>(() => selectStyle.dropdownConten
 const listboxContentClasses = computed<string>(() => selectStyle.listboxContent())
 
 const displayItems = computed<DisplayItem[]>(() => {
-  if (selectedFilterLabel.value !== null) {
+  if (selectedFilterKey.value !== null) {
     // Show all options for the selected filter
-    const selectedFilter = filters.find((filter) => filter.label === selectedFilterLabel.value)
+    const selectedFilter = props.filters.find((filter) => filter.key === selectedFilterKey.value)
 
     if (selectedFilter === undefined) {
       return []
     }
 
-    return selectedFilter.options.map((option) => ({
+    if (selectedFilter.type !== 'select' && selectedFilter.type !== 'multiselect') {
+      return []
+    }
+
+    return selectedFilter.items.filter((item) => item.type === 'option').map((option) => ({
       filterName: selectedFilter.label,
       icon: option.icon,
       label: option.value,
       type: 'value',
-      onSelect: onSelectValue,
+      onSelect: (): void => onSelectValue({
+        [selectedFilter.key]: option.value,
+      }),
     })).filter((item) => item.label.toLowerCase().includes(search.value.toLowerCase())) as DisplayItem[]
   }
 
   if (search.value.trim().length === 0) {
-    return filters.map((filter) => ({
+    return props.filters.map((filter) => ({
       icon: filter.icon,
       label: filter.label,
       type: 'filter',
@@ -167,7 +100,7 @@ const displayItems = computed<DisplayItem[]>(() => {
   // First loop over filters, if filter label matches search, add filter
   // Then loop over options, if option label matches search, add option
 
-  for (const filter of filters) {
+  for (const filter of props.filters) {
     if (filter.label.toLowerCase().includes(search.value.toLowerCase())) {
       displayItems.push({
         icon: filter.icon,
@@ -182,15 +115,25 @@ const displayItems = computed<DisplayItem[]>(() => {
       continue
     }
 
-    for (const option of filter.options) {
-      if (option.value.toLowerCase().includes(search.value.toLowerCase())) {
+    if (filter.type !== 'select' && filter.type !== 'multiselect') {
+      continue
+    }
+
+    for (const option of filter.items) {
+      if (option.type !== 'option') {
+        return
+      }
+
+      if (option.value?.toLowerCase().includes(search.value.toLowerCase())) {
         displayItems.push({
           filterName: filter.label,
-          icon: option.icon,
+          icon: option?.icon,
           label: option.value,
           type: 'value',
           onSelect: (): void => {
-            onSelectValue()
+            onSelectValue({
+              [filter.key]: option.value,
+            })
           },
         })
       }
@@ -200,113 +143,120 @@ const displayItems = computed<DisplayItem[]>(() => {
   return displayItems
 })
 
-function onSelectFilter(filter: Filter<any>): void {
-  selectedFilterLabel.value = filter.label
+function onSelectFilter(filter: Filter<TFilter>): void {
+  selectedFilterKey.value = filter.key
   search.value = ''
 }
 
-function onSelectValue(): void {
+function onSelectValue(value: FilterChangeEvent<TFilter>): void {
+  props.pagination.handleFilterChange(value)
+
   isOpen.value = false
+}
+
+function onFilterRemove(filterKey: string): void {
+  props.pagination.handleFilterChange({
+    [filterKey]: undefined,
+  })
 }
 
 watch(isOpen, (isOpen) => {
   if (isOpen) {
     search.value = ''
-    selectedFilterLabel.value = null
+    selectedFilterKey.value = null
   }
 })
 </script>
 
 <template>
-  <Popover
-    v-model:is-open="isOpen"
-    :is-arrow-hidden="true"
-    :style-config="{
-      '--popover-max-width-default': '250px',
-    }"
-    popover-width="available-width"
-  >
-    <template #trigger>
-      <IconButton
-        label="Filter"
-        icon="alertCircle"
-        variant="secondary"
-        size="sm"
-      />
-    </template>
+  <div>
+    {{ props.pagination.paginationOptions.value.filters }}
+    <Button
+      v-for="(filterValue, filterKey) in props.pagination.paginationOptions.value.filters"
+      @click="onFilterRemove(filterKey)"
+    >
+      {{ filterKey }}
+      {{ filterValue }}
+    </Button>
+    <Popover
+      v-model:is-open="isOpen"
+      :is-arrow-hidden="true"
+      :style-config="{
+        '--popover-max-width-default': '250px',
+      }"
+      popover-width="available-width"
+    >
+      <template #trigger>
+        <IconButton
+          label="Filter"
+          icon="alertCircle"
+          variant="secondary"
+          size="sm"
+        />
+      </template>
 
-    <template #content>
-      <ListboxRoot
-        :multiple="true"
-        class="select-default"
-      >
-        <div class="flex flex-col border-b border-solid border-primary">
-          <div
-            v-if="false"
-            class="flex items-center gap-x-1 border-b border-solid border-primary px-select-dropdown-padding-x-default py-2.5"
-          >
-            <Icon
-              v-if="selectedFilterLabel !== null"
-              icon="chevronLeft"
-            />
-
-            <span class="text-sm font-medium text-secondary">
-              Filters
-            </span>
-          </div>
-
-          <div class="px-select-dropdown-padding-x-default">
-            <ListboxFilter
-              v-model="search"
-              placeholder="Search"
-              class="w-full bg-transparent px-select-option-padding-x-default py-2.5 text-sm outline-none"
-            />
-          </div>
-        </div>
-
-        <div :class="dropdownContentClasses">
-          <Collapsable3 :duration-in-ms="150">
-            <ListboxContent
-              :key="displayItems.length"
-              :class="listboxContentClasses"
+      <template #content>
+        <ListboxRoot
+          :multiple="true"
+          class="select-default"
+        >
+          <div class="flex flex-col border-b border-solid border-primary">
+            <div
+              v-if="false"
+              class="flex items-center gap-x-1 border-b border-solid border-primary px-select-dropdown-padding-x-default py-2.5"
             >
-              <ListboxItem
-                v-for="item of displayItems"
-                :key="item.label"
-                :value="item.label"
-                :class="optionClasses"
-                @select="item.onSelect"
+              <Icon
+                v-if="selectedFilterKey !== null"
+                icon="chevronLeft"
+                class="size-4"
+              />
+
+              <span class="text-sm font-medium text-secondary">
+                Filters
+              </span>
+            </div>
+
+            <div class="px-select-dropdown-padding-x-default">
+              <ListboxFilter
+                v-model="search"
+                placeholder="Search"
+                class="w-full bg-transparent px-select-option-padding-x-default py-2.5 text-sm outline-none"
+              />
+            </div>
+          </div>
+
+          <div :class="dropdownContentClasses">
+            <Collapsable3 :duration-in-ms="150">
+              <ListboxContent
+                :key="displayItems.length"
+                :class="listboxContentClasses"
               >
-                <div
-                  v-if="item.type === 'value' && selectedFilterLabel === null"
-                  class="flex items-center gap-x-1"
+                <ListboxItem
+                  v-for="item of displayItems"
+                  :key="item.label"
+                  :value="item.label"
+                  :class="optionClasses"
+                  @select="item.onSelect"
                 >
-                  <div class="flex items-center gap-x-2">
+                  <div
+                    v-if="item.type === 'value' && selectedFilterKey === null"
+                    class="flex items-center gap-x-1"
+                  >
+                    <div class="flex items-center gap-x-2">
+                      <Icon
+                        v-if="item.icon !== undefined"
+                        :icon="item.icon"
+                        class="size-4"
+                      />
+
+                      <span class="text-quaternary">
+                        {{ item.filterName }}
+                      </span>
+                    </div>
+
                     <Icon
-                      v-if="item.icon !== undefined"
-                      :icon="item.icon"
-                    />
-
-                    <span class="text-quaternary">
-                      {{ item.filterName }}
-                    </span>
-                  </div>
-
-                  <Icon icon="chevronRight" />
-
-                  <span>
-                    {{ item.label }}
-                  </span>
-                </div>
-
-                <div
-                  v-else-if="item.type === 'filter'"
-                  class="flex w-full items-center justify-between"
-                >
-                  <div class="flex items-center gap-x-2">
-                    <Icon
-                      v-if="item.icon !== undefined"
-                      :icon="item.icon"
+                      icon="chevronRight"
+                      class="size-4"
                     />
 
                     <span>
@@ -314,27 +264,45 @@ watch(isOpen, (isOpen) => {
                     </span>
                   </div>
 
-                  <Icon
-                    icon="chevronRight"
-                    class="text-quaternary"
-                  />
-                </div>
+                  <div
+                    v-else-if="item.type === 'filter'"
+                    class="flex w-full items-center justify-between"
+                  >
+                    <div class="flex items-center gap-x-2">
+                      <Icon
+                        v-if="item.icon !== undefined"
+                        :icon="item.icon"
+                        class="size-4"
+                      />
 
-                <template v-else>
-                  <div class="flex items-center gap-x-2">
+                      <span>
+                        {{ item.label }}
+                      </span>
+                    </div>
+
                     <Icon
-                      v-if="item.icon !== undefined"
-                      :icon="item.icon"
+                      icon="chevronRight"
+                      class="text-quaternary size-4"
                     />
-
-                    {{ item.label }}
                   </div>
-                </template>
-              </ListboxItem>
-            </ListboxContent>
-          </Collapsable3>
-        </div>
-      </ListboxRoot>
-    </template>
-  </Popover>
+
+                  <template v-else>
+                    <div class="flex items-center gap-x-2">
+                      <Icon
+                        v-if="item.icon !== undefined"
+                        :icon="item.icon"
+                        class="size-4"
+                      />
+
+                      {{ item.label }}
+                    </div>
+                  </template>
+                </ListboxItem>
+              </ListboxContent>
+            </Collapsable3>
+          </div>
+        </ListboxRoot>
+      </template>
+    </Popover>
+  </div>
 </template>

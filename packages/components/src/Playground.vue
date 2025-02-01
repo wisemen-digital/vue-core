@@ -14,6 +14,7 @@ import RadioGroupItem from '@/components/radio-group/RadioGroupItem.vue'
 import Select from '@/components/select/Select.vue'
 import Switch from '@/components/switch/Switch.vue'
 import Tooltip from '@/components/tooltip/Tooltip.vue'
+import PlaygroundFilters from '@/PlaygroundFilters.vue'
 import { defineStyleConfig } from '@/styling/defineStyleConfig'
 import { setupDefaultStyles } from '@/styling/setupDefaultStyles'
 import type { SelectItem } from '@/types/select.type'
@@ -101,6 +102,7 @@ defineStyleConfig({
       <div
         class="p-11xl grid grid-cols-2 gap-xl bg-primary min-h-screen"
       >
+        <PlaygroundFilters />
         <Button
           variant="secondary-color"
           @click="darkMode = 'dark'"
