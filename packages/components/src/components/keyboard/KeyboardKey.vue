@@ -74,7 +74,7 @@ const keyClasses = computed<string>(() => style.key())
   <kbd
     :class="[
       keyClasses,
-      ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.darkModeValue.value),
+      ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.appearance.value),
     ]"
   >
     {{ keyboardKey }}

@@ -228,7 +228,7 @@ provideSelectContext({
   isLoading: computed<boolean>(() => props.isLoading),
   isMultiple,
   isOpen,
-  darkModeValue: computed<DarkModeValue>(() => themeProviderContext.darkModeValue.value),
+  darkModeValue: computed<DarkModeValue>(() => themeProviderContext.appearance.value),
   displayFn: props.displayFn as SelectDisplayFn<SelectValue>,
   hint: computed<string | null>(() => props.hint),
   iconLeft: computed<Icon | null>(() => props.iconLeft),
@@ -260,7 +260,7 @@ provideSelectContext({
   <ListboxRoot
     v-model="delegatedModel"
     :ignore-filter="true"
-    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.darkModeValue.value)"
+    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.appearance.value)"
     :selection-behavior="isMultiple ? 'toggle' : 'replace'"
     class="select-default"
     @update:model-value="onModelValueUpdate"

@@ -45,7 +45,7 @@ provideTagContext({
   <div
     :class="[
       tagBoxClasses,
-      ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.darkModeValue.value),
+      ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.appearance.value),
     ]"
     :style="props.styleConfig"
     class="tag-default"

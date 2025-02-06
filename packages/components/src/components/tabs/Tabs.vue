@@ -41,14 +41,12 @@ const itemContentClasses = computed<string>(() => tabsStyle.itemContent())
 <template>
   <TabsRoot
     v-model="modelAsString"
-    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.darkModeValue.value)"
+    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.appearance.value)"
     class="tabs-default"
   >
     <TabsList :class="containerClasses">
       <div class="relative flex">
-        <TabsIndicator
-          :class="indicatorClasses"
-        />
+        <TabsIndicator :class="indicatorClasses" />
 
         <TabsTrigger
           v-for="item of props.items"

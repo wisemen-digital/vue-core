@@ -59,7 +59,7 @@ function onClose(): void {
   <div
     :class="[
       containerClasses,
-      ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.darkModeValue.value),
+      ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.appearance.value),
     ]"
     :data-test-id="props.toast.testId"
   >

@@ -162,7 +162,7 @@ onBeforeUnmount(() => {
       <DropdownMenuContent
         :class="[
           dropdownClasses,
-          ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.darkModeValue.value),
+          ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.appearance.value),
         ]"
         :side-offset="props.popoverOffsetInPx"
         :side="props.popoverSide"
@@ -170,6 +170,7 @@ onBeforeUnmount(() => {
         :collision-padding-in-px="props.popoverCollisionPaddingInPx"
         :container-element="props.popoverContainerElement"
         :offset-in-px="props.popoverOffsetInPx"
+        :style="props.styleConfig"
         position="popper"
         class="dropdown-menu-default"
       >

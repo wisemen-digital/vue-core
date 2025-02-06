@@ -67,7 +67,7 @@ const arrowClasses = computed<string>(() => popoverStyle.arrow())
         :hide-when-detached="true"
         :class="[
           contentClasses,
-          ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.darkModeValue.value),
+          ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.appearance.value),
         ]"
         :style="props.styleConfig"
         :collision-boundary="props.popoverContainerElement"

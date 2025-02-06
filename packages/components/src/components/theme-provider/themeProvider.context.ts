@@ -9,7 +9,7 @@ import {
 import type { DarkModeValue } from '@/composables/dark-mode/darkMode.composable'
 
 interface ThemeProviderContext {
-  darkModeValue: ComputedRef<DarkModeValue>
+  appearance: ComputedRef<DarkModeValue>
   theme: ComputedRef<string & {} | 'default'>
 }
 
@@ -24,7 +24,7 @@ export function injectThemeProviderContext(): ThemeProviderContext {
 
   if (context === null) {
     return {
-      darkModeValue: computed<DarkModeValue>(() => 'light'),
+      appearance: computed<DarkModeValue>(() => 'light'),
       theme: computed<string>(() => 'default'),
     }
   }

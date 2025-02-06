@@ -174,39 +174,37 @@ watch(isActuallyOpen, () => {
 </script>
 
 <template>
-  <div>
-    <DialogRoot
-      v-model:open="isOpen"
-      :modal="isActuallyOpen"
+  <DialogRoot
+    v-model:open="isOpen"
+    :modal="isActuallyOpen"
+  >
+    <Transition
+      enter-active-class="duration-200"
+      enter-from-class="opacity-0"
+      leave-active-class="duration-200"
+      leave-to-class="opacity-0"
     >
-      <Transition
-        enter-active-class="duration-200"
-        enter-from-class="opacity-0"
-        leave-active-class="duration-200"
-        leave-to-class="opacity-0"
-      >
-        <DialogOverlay />
-      </Transition>
+      <DialogOverlay />
+    </Transition>
 
-      <Component
-        :is="props.shouldAnimateFromTrigger ? 'div' : Transition"
-        enter-active-class="duration-300 ease-dialog"
-        enter-from-class="opacity-0 not-motion-reduce:scale-110"
-        leave-active-class="duration-300 ease-dialog"
-        leave-to-class="opacity-0 not-motion-reduce:scale-110"
+    <Component
+      :is="props.shouldAnimateFromTrigger ? 'div' : Transition"
+      enter-active-class="duration-300 ease-dialog"
+      enter-from-class="opacity-0 not-motion-reduce:scale-110"
+      leave-active-class="duration-300 ease-dialog"
+      leave-to-class="opacity-0 not-motion-reduce:scale-110"
+    >
+      <DialogContent
+        v-if="isActuallyOpen"
+        v-bind="attrs"
+        :data-test-id="props.testId"
+        :should-prevent-click-outside="props.shouldPreventClickOutside"
+        :style="props.styleConfig"
       >
-        <DialogContent
-          v-if="isActuallyOpen"
-          v-bind="attrs"
-          :data-test-id="props.testId"
-          :should-prevent-click-outside="props.shouldPreventClickOutside"
-          :style="props.styleConfig"
-        >
-          <slot />
-        </DialogContent>
-      </Component>
-    </DialogRoot>
-  </div>
+        <slot />
+      </DialogContent>
+    </Component>
+  </DialogRoot>
 </template>
 
 <style lang="scss">

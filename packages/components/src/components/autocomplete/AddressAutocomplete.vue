@@ -281,5 +281,9 @@ onMounted(async () => {
     <template #bottom>
       <slot name="bottom" />
     </template>
+
+    <template #empty>
+      <slot name="empty" />
+    </template>
   </Autocomplete>
 </template>

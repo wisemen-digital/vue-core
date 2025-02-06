@@ -41,7 +41,7 @@ function onOpenAutoFocus(e: Event): void {
     :force-mount="true"
     :class="[
       wrapperClasses,
-      ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.darkModeValue.value),
+      ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.appearance.value),
     ]"
     :disable-outside-pointer-events="false"
     class="drawer-default"

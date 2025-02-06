@@ -63,9 +63,25 @@ const hasActiveFilters = computed<boolean>(
     && Object.keys(props.pagination.paginationOptions.value.filters).length > 0,
 )
 
+const hasActiveSearch = computed<boolean>(() => {
+  const search = props.pagination.paginationOptions.value.search ?? null
+
+  return search !== null && search.length > 0
+})
+
 const isEmpty = computed<boolean>(() => (
   props.data !== null && props.data.meta.total === 0 && !props.isLoading
 ))
+
+const hasMoreThanOnePage = computed<boolean>(() => {
+  if (props.data === null) {
+    return false
+  }
+
+  const { limit, total } = props.data.meta
+
+  return total > limit
+})
 
 const variantClass = computed<string | null>(() => {
   if (props.variant === 'borderless') {
@@ -158,7 +174,7 @@ provideTableContext({
     :style="props.styleConfig"
     :class="[
       variantClass,
-      ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.darkModeValue.value),
+      ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.appearance.value),
     ]"
     class="table-default relative flex h-full flex-1 flex-col overflow-hidden rounded-(--table-border-radius-default) border border-solid border-(--table-border-color-default) bg-(--table-bg-color-default)"
   >
@@ -172,18 +188,20 @@ provideTableContext({
     <div class="relative flex h-full flex-1 flex-col overflow-hidden">
       <TableLoadingState v-if="isLoading" />
 
-      <TableEmptyState
+      <slot
         v-else-if="isEmpty"
-        :has-active-filters="hasActiveFilters"
+        name="empty-state"
       >
-        <template #empty-state-no-data-actions>
-          <slot name="empty-state-no-data-actions" />
-        </template>
+        <TableEmptyState :has-active-filters="hasActiveFilters || hasActiveSearch">
+          <template #empty-state-no-data-actions>
+            <slot name="empty-state-no-data-actions" />
+          </template>
 
-        <template #empty-state-no-results-actions>
-          <slot name="empty-state-no-results-actions" />
-        </template>
-      </TableEmptyState>
+          <template #empty-state-no-results-actions>
+            <slot name="empty-state-no-results-actions" />
+          </template>
+        </TableEmptyState>
+      </slot>
 
       <div
         v-else
@@ -212,7 +230,7 @@ provideTableContext({
             <TablePageCount />
           </slot>
 
-          <TablePagination>
+          <TablePagination v-if="hasMoreThanOnePage">
             <template #default="{ items }">
               <slot
                 :items="items"

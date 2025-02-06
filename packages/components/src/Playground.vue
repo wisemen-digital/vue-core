@@ -92,7 +92,7 @@ defineStyleConfig({
 </script>
 
 <template>
-  <ThemeProvider :dark-mode-value="darkMode">
+  <ThemeProvider :appearance="darkMode">
     <ConfigProvider
       :locale="locale"
       teleport-target-selector="#teleport-target"
@@ -107,9 +107,11 @@ defineStyleConfig({
         >
           Dark
         </Button>
+
         <Button @click="darkMode = 'light'">
           Light
         </Button>
+
         <Button @click="darkMode = 'system'">
           System
         </Button>

@@ -25,7 +25,7 @@ const hintClasses = computed<string>(() => style.hint())
     :id="`${props.inputId}-hint`"
     :class="[
       hintClasses,
-      ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.darkModeValue.value),
+      ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.appearance.value),
     ]"
     :style="props.styleConfig"
     aria-live="polite"

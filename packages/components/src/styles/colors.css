@@ -1,4 +1,4 @@
-.default.light {
+.light {
   --fg-primary: var(--gray-900);
   --fg-secondary: var(--gray-700);
   --fg-secondary-hover: var(--gray-800);
@@ -86,7 +86,7 @@
   --border-error-subtle: var(--error-300);
 }
 
-.default.dark {
+.dark {
   --fg-primary: var(--white);
   --fg-secondary: var(--gray-300);
   --fg-secondary-hover: var(--gray-200);
@@ -175,7 +175,7 @@
   --border-error-subtle: var(--error-400);
 }
 
-.default.system {
+.system {
   --fg-primary: var(--gray-900);
   --fg-secondary: var(--gray-700);
   --fg-secondary-hover: var(--gray-800);

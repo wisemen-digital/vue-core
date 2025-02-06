@@ -103,7 +103,10 @@ export function usePagination<TFilters>({
   function handlePageChange(event: PageChangeEvent): void {
     paginationOptions.value = {
       ...paginationOptions.value,
-      pagination: event,
+      pagination: {
+        ...paginationOptions.value.pagination,
+        ...event,
+      },
     }
   }
 

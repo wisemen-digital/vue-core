@@ -248,7 +248,7 @@ provideSelectContext({
 
 <template>
   <InputField
-    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.darkModeValue.value)"
+    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.appearance.value)"
     :input-id="inputId"
     :is-required="props.isRequired"
     :is-touched="props.isTouched"
@@ -308,7 +308,7 @@ provideSelectContext({
           :style="props.styleConfig"
           :class="[
             dropdownContentClasses,
-            ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.darkModeValue.value),
+            ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.appearance.value),
           ]"
           class="select-default"
         >

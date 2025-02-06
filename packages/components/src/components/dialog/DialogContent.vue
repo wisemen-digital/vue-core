@@ -42,15 +42,13 @@ function onOpenAutoFocus(e: Event): void {
     :force-mount="true"
     :class="[
       contentClasses,
-      ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.darkModeValue.value),
+      ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.appearance.value),
     ]"
     :disable-outside-pointer-events="false"
     class="dialog-default"
     @interact-outside="onInteractOutside"
     @open-auto-focus="onOpenAutoFocus"
   >
-    <div>
-      <slot />
-    </div>
+    <slot />
   </DialogContent>
 </template>

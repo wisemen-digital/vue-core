@@ -9,30 +9,30 @@ import type { DarkModeValue } from '@/composables/dark-mode/darkMode.composable'
 import { ThemeUtil } from '@/utils/theme.util'
 
 const props = withDefaults(defineProps<{
-  darkModeValue?: DarkModeValue | null
+  appearance?: DarkModeValue | null
   theme?: string & {} | 'default' | null
 }>(), {
-  darkModeValue: null,
+  appearance: null,
   theme: null,
 })
 
 const themeContext = injectThemeProviderContext()
 
-const darkModeValueComputed = computed<DarkModeValue>(() => (
-  props.darkModeValue ?? themeContext.darkModeValue.value ?? 'light'
+const appearanceComputed = computed<DarkModeValue>(() => (
+  props.appearance ?? themeContext.appearance.value ?? 'light'
 ))
 
 const theme = computed<string>(() =>
   props.theme ?? themeContext.theme.value)
 
 provideThemeProviderContext({
-  darkModeValue: darkModeValueComputed,
+  appearance: appearanceComputed,
   theme,
 })
 </script>
 
 <template>
-  <div :class="ThemeUtil.getClasses(theme, darkModeValueComputed)">
+  <div :class="ThemeUtil.getClasses(theme, appearanceComputed)">
     <slot />
   </div>
 </template>

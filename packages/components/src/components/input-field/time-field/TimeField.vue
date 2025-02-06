@@ -180,7 +180,7 @@ function onBlur(): void {
     :hint="props.hint"
     :label="props.label"
     :style="props.styleConfig"
-    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.darkModeValue.value)"
+    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.appearance.value)"
     class="text-field-default"
   >
     <template #label="{ label }">

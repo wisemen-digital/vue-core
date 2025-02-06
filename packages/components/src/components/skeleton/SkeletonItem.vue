@@ -24,7 +24,7 @@ const themeProviderContext = injectThemeProviderContext()
 <template>
   <div
     :aria-busy="true"
-    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.darkModeValue.value)"
+    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.appearance.value)"
     class="relative overflow-hidden rounded bg-tertiary"
     role="status"
     aria-live="polite"

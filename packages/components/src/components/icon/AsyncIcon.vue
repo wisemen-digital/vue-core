@@ -41,7 +41,7 @@ await setIcon()
   <Component
     :is="svgComponent"
     v-if="svgComponent !== null"
-    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.darkModeValue.value)"
+    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.appearance.value)"
     :style="props.styleConfig"
     class="icon-default text-icon"
   />

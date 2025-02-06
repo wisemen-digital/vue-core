@@ -186,7 +186,7 @@ watch(placeholderYear, () => {
       ))
     }"
     :prevent-deselect="true"
-    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.darkModeValue.value)"
+    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.appearance.value)"
   >
     <Collapsable2>
       <div

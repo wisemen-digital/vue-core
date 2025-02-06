@@ -238,7 +238,9 @@ watch(() => props.items, (newItems) => {
 
         <template #content>
           <!-- Without the if, the empty state "flickers" when the search is emptied -->
-          <SelectEmpty v-if="!isSearchTermEmpty" />
+          <SelectEmpty v-if="!isSearchTermEmpty">
+            <slot name="empty" />
+          </SelectEmpty>
           <SelectList />
         </template>
       </SelectPopover>
