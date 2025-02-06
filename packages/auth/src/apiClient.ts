@@ -53,7 +53,7 @@ export class ApiClient {
 
   private async getNewAccessToken(refreshToken: string): Promise<OAuth2Tokens> {
     const response = await fetch(`${this.getBaseUrl()}/oauth/v2/token`, {
-      body: JSON.stringify({
+      body: new URLSearchParams({
         client_id: this.options.clientId,
         grant_type: 'refresh_token',
         refresh_token: refreshToken,
@@ -202,10 +202,8 @@ export class ApiClient {
   public setTokens(tokens: OAuth2Tokens): void {
     const expirationSinceUnixEpoch = decodeToken(tokens.access_token).exp
 
-    const MARGIN_EXPIRES_AT = 100000
-
     const tokensWithExpiration = {
-      expires_at: new Date((expirationSinceUnixEpoch * 1000) - MARGIN_EXPIRES_AT).getTime(),
+      expires_at: new Date(expirationSinceUnixEpoch * 1000).getTime(),
       access_token: tokens.access_token,
       id_token: tokens.id_token,
       refresh_token: tokens.refresh_token,
