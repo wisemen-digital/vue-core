@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="TPaginationSchema extends PaginationSchema">
 import { computed } from 'vue'
 
 import IconButton from '@/components/button/icon-button/IconButton.vue'
@@ -6,6 +6,7 @@ import { injectTableContext } from '@/components/table/table.context'
 import type { Icon } from '@/icons/icons'
 import type {
   PaginationOptions,
+  PaginationSchema,
   SortChangeEvent,
   SortDirection,
 } from '@/types/pagination.type'
@@ -17,16 +18,20 @@ const props = defineProps<{
 
 const tableContext = injectTableContext()
 
-const paginationOptions = computed<PaginationOptions<unknown>>(
-  () => tableContext.pagination.value.paginationOptions.value,
-)
+const paginationOptions = computed<PaginationOptions<TPaginationSchema>>(() => {
+  return tableContext.pagination.value.paginationOptions.value as PaginationOptions<TPaginationSchema>
+})
 
 const currentSortDirection = computed<SortDirection | null>(() => {
-  return getCurrentSortDirection(paginationOptions.value.sort?.direction ?? null)
+  return getCurrentSortDirection(paginationOptions.value.sort?.find((sortItem) => {
+    return sortItem.key === props.column.key
+  })?.order ?? null)
 })
 
 const isCurrentColumnBeingSorted = computed<boolean>(() => {
-  return props.column.key === paginationOptions.value.sort?.key
+  return props.column.key === paginationOptions.value.sort?.find((sortItem) => {
+    return sortItem.key === props.column.key
+  })?.key
 })
 
 const sortIcon = computed<Icon | null>(() => {
@@ -66,8 +71,8 @@ function handleSortChange(): void {
   //    - If the current sort direction is 'asc', change it to 'desc'
   if (isCurrentColumnBeingSorted.value && currentSortDirection.value === 'asc') {
     tableContext.pagination.value.handleSortChange({
-      direction: 'desc',
       key: props.column.key,
+      order: 'desc',
     })
 
     return
@@ -81,8 +86,8 @@ function handleSortChange(): void {
 
   // If column is not already sorted, sort it and set the current sort direction to 'asc'
   tableContext.pagination.value.handleSortChange({
-    direction: 'asc',
     key: props.column.key,
+    order: 'asc',
   })
 }
 </script>

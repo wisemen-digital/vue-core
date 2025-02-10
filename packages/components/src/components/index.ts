@@ -13,6 +13,7 @@ import type { SwitchProps } from '@/components/switch/switch.props'
 import type { TableProps } from '@/components/table/table.props'
 import type { TooltipProps } from '@/components/tooltip/tooltip.props'
 import type {
+  PaginationSchema,
   SelectValue,
 } from '@/types'
 
@@ -27,7 +28,7 @@ export type VcPopoverProps = PopoverProps
 export type VcRouterLinkButtonProps = RouterLinkButtonProps
 export type VcSelectProps<TValue extends SelectValue> = SelectProps<TValue>
 export type VcSwitchProps = SwitchProps
-export type VcTableProps<TSchema, TFilters> = TableProps<TSchema, TFilters>
+export type VcTableProps<TSchema, TPaginationSchema extends PaginationSchema> = TableProps<TSchema, TPaginationSchema>
 export type VcTextFieldProps = TextFieldProps
 export type VcTooltipProps = TooltipProps
 

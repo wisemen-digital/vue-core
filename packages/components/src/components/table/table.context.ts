@@ -6,12 +6,16 @@ import {
   type VNode,
 } from 'vue'
 
-import type { PaginatedData, Pagination } from '@/types/pagination.type'
+import type {
+  PaginatedData,
+  Pagination,
+  PaginationSchema,
+} from '@/types/pagination.type'
 import type { TableColumn } from '@/types/table.type'
 
 export type TableRowComponent = ((data: unknown) => VNode | null) | null
 
-interface TableContext {
+interface TableContext<TPaginationSchema extends PaginationSchema> {
   hasReachedHorizontalScrollEnd: ComputedRef<boolean>
   isFirstColumnSticky: ComputedRef<boolean>
   isLastColumnSticky: ComputedRef<boolean>
@@ -22,22 +26,24 @@ interface TableContext {
   data: ComputedRef<PaginatedData<unknown> | null>
   expandedRowContent: ComputedRef<((row: unknown) => VNode) | null>
   gridColsStyle: ComputedRef<string>
-  pagination: ComputedRef<Pagination<unknown>>
+  pagination: ComputedRef<Pagination<TPaginationSchema>>
   rowClass: ComputedRef<((row: unknown, rowIndex: number) => string) | null>
 }
 
-const tableContextKey: InjectionKey<TableContext> = Symbol('tableContext')
+const tableContextKey: InjectionKey<TableContext<PaginationSchema>> = Symbol('tableContext')
 
-export function provideTableContext(context: TableContext): void {
+export function provideTableContext<TPaginationSchema extends PaginationSchema>(
+  context: TableContext<TPaginationSchema>,
+): void {
   provide(tableContextKey, context)
 }
 
-export function injectTableContext(): TableContext {
+export function injectTableContext<TPaginationSchema extends PaginationSchema>(): TableContext<TPaginationSchema> {
   const context = inject(tableContextKey)
 
   if (context === undefined) {
     throw new Error('Table context is not provided. Please use `provideTableContext` to provide the context.')
   }
 
-  return context
+  return context as TableContext<TPaginationSchema>
 }

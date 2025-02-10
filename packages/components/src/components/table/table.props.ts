@@ -1,10 +1,14 @@
 import type { VNode } from 'vue'
 
-import type { PaginatedData, Pagination } from '@/types/pagination.type'
+import type {
+  PaginatedData,
+  Pagination,
+  PaginationSchema,
+} from '@/types/pagination.type'
 import type { Stylable } from '@/types/stylable.type'
 import type { TableColumn } from '@/types/table.type'
 
-export interface TableProps<TSchema, TFilters> extends Stylable<'table'> {
+export interface TableProps<TSchema, TPaginationSchema extends PaginationSchema> extends Stylable<'table'> {
   /**
    * Whether the first column is sticky
    * @default false
@@ -35,7 +39,7 @@ export interface TableProps<TSchema, TFilters> extends Stylable<'table'> {
   /**
    * The pagination of the table
    */
-  pagination: Pagination<TFilters>
+  pagination: Pagination<TPaginationSchema>
   /**
    * The class to apply to the row
    * @default null

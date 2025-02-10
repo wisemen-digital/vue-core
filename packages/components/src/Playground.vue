@@ -16,11 +16,13 @@ import Switch from '@/components/switch/Switch.vue'
 import Tooltip from '@/components/tooltip/Tooltip.vue'
 import { defineStyleConfig } from '@/styling/defineStyleConfig'
 import { setupDefaultStyles } from '@/styling/setupDefaultStyles'
+import type { PaginationSchema } from '@/types'
+import type { FilterValues } from '@/types/pagination.type'
 import type { SelectItem } from '@/types/select.type'
 
 import Button from './components/button/button/Button.vue'
 import ThemeProvider from './components/theme-provider/ThemeProvider.vue'
-import { useDarkMode } from './composables'
+import { useDarkMode, usePagination } from './composables'
 
 setupDefaultStyles()
 
@@ -88,6 +90,58 @@ defineStyleConfig({
   theme: '*',
   variant: 'default',
   component: 'select',
+})
+
+enum TestPaginationSortKeys {
+  AGE = 'age',
+  START_DATE = 'start_date',
+}
+
+enum ContractType {
+  FULL_TIME = 'FULL_TIME',
+  PART_TIME = 'PART_TIME',
+}
+
+enum WorkType {
+  FREE = 'FREE',
+  PAID = 'PAID',
+}
+
+interface TestPaginationFilters extends Record<string, FilterValues> {
+  name: string
+  contractType: ContractType
+  workTypes: WorkType[]
+  yolo: number
+}
+
+interface TestPagination extends PaginationSchema {
+  filters: TestPaginationFilters
+  sortKeys: TestPaginationSortKeys
+}
+
+const testTest: Record<string, string> = TestPaginationSortKeys
+
+console.log('testTest', testTest)
+
+const pagination = usePagination<TestPagination>({
+  isRouteQueryEnabled: false,
+  options: {
+    filters: {
+      name: 'test',
+      contractType: ContractType.FULL_TIME,
+      workTypes: [
+        WorkType.FREE,
+        WorkType.PAID,
+      ],
+      yolo: 0,
+    },
+    sort: [
+      {
+        key: TestPaginationSortKeys.AGE,
+        order: 'asc',
+      },
+    ],
+  },
 })
 </script>
 

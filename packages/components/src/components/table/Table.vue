@@ -1,4 +1,4 @@
-<script setup lang="ts" generic="Tschema, TFilters">
+<script setup lang="ts" generic="Tschema, TPaginationSchema extends PaginationSchema">
 import {
   computed,
   onBeforeUnmount,
@@ -19,11 +19,15 @@ import TableHeader from '@/components/table/TableHeader.vue'
 import TableLoadingState from '@/components/table/TableLoadingState.vue'
 import TablePageCount from '@/components/table/TablePageCount.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
-import type { PaginatedData, Pagination } from '@/types/pagination.type'
+import type {
+  PaginatedData,
+  Pagination,
+  PaginationSchema,
+} from '@/types/pagination.type'
 import type { TableColumn } from '@/types/table.type'
 import { ThemeUtil } from '@/utils/theme.util'
 
-const props = withDefaults(defineProps<TableProps<Tschema, TFilters>>(), {
+const props = withDefaults(defineProps<TableProps<Tschema, TPaginationSchema>>(), {
   isFirstColumnSticky: false,
   isLastColumnSticky: false,
   expandedRowContent: null,
@@ -163,7 +167,7 @@ provideTableContext({
   expandedRowContent: computed<((row: unknown) => VNode) | null>(
     () => props.expandedRowContent as ((row: unknown) => VNode) | null),
   gridColsStyle,
-  pagination: computed<Pagination<unknown>>(() => props.pagination),
+  pagination: computed<Pagination<TPaginationSchema>>(() => props.pagination),
   rowClass: computed<((row: unknown, rowIndex: number) => string) | null>(
     () => props.rowClass as ((row: unknown, rowIndex: number) => string) | null),
 })
