@@ -2,8 +2,6 @@
 
 An input field component for a password or secret text.
 
-**This component shares the same props as the [Text Field](/components/text-field/text-field) component.**
-
 ## Use cases
 
 <BulletList
@@ -29,3 +27,8 @@ import { VcPasswordField } from '@wisemen/vue-core'
 The basic usage of the password field component.
 
 <ComponentPreview name="password-field/basic" />
+
+
+## Style Config
+
+See <a href="/vue-core/components/text-field/text-field.html#style-config">Text Field Style Config</a>
