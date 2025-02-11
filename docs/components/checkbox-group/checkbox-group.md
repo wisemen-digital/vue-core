@@ -75,3 +75,8 @@ When styling the component, the following selectors are available:
 **Note**: When using a custom template, ensure you manually render essential elements like the label, hint, and error messages.
 
 <ComponentPreview name="checkbox-group/custom" />
+
+
+## Style Config
+
+See <a href="/vue-core/components/checkbox/checkbox.html#style-config">Checkbox Style Config</a>
