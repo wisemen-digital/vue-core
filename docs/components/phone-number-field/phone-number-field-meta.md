@@ -28,10 +28,10 @@
 
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
-| bottom | `{ errors: string[]; hint: string \| null; }` |  |
-| error | `{ errors: string[]; }` |  |
-| hint | `{ hint: string \| null; }` |  |
-| label | `{ label: string \| null; }` |  |
+| bottom | `{ errors: string[]; hint: string \| null; }` | Can be used to render a custom hint and error message. |
+| error | `{ errors: string[]; }` | Can be used to render a custom error message. |
+| hint | `{ hint: string \| null; }` | Can be used to render a custom hint message. |
+| label | `{ label: string \| null; }` | Can be used to render a custom label. |
 
 
 ## Events
