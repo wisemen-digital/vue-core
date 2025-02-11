@@ -5,7 +5,7 @@
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
 | areControlsHidden | `boolean` | Whether the controls are visible. | `false` |
-| autocomplete | `"off" \| "on"` | The autocorrect property of the input. |  |
+| autocomplete | `"off" \| "on"` | The autocomplete property of the input. |  |
 | autoFocus | `boolean` | Whether the input should be focused automatically. |  |
 | errors | `string[]` | The errors associated with the input. | `[]` |
 | formatOptions | `NumberFormatOptions \| null` | The format options of the number input. | `null` |
@@ -32,15 +32,15 @@
 
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
-| bottom | `-` |  |
-| error | `-` |  |
-| hint | `-` |  |
-| icon-left | `-` |  |
-| icon-right | `-` |  |
-| label | `-` |  |
-| left | `-` |  |
-| loader | `-` |  |
-| right | `-` |  |
+| bottom | `{ errors: string[]; hint: string \| null; }` | Can be used to render a custom hint and error message. |
+| error | `{ errors: string[]; }` | Can be used to render a custom error message. |
+| hint | `{ hint: string \| null; }` | Can be used to render a custom hint message. |
+| icon-left | `-` | The content to display on the left side. |
+| icon-right | `-` | The content to display on the right side. |
+| label | `{ label: string \| null; }` | Can be used to render a custom label. |
+| left | `-` | The content to display on the left side. (Will show under the iconLeft slot) |
+| loader | `-` | Can be used to render a custom loader. |
+| right | `-` | The content to display on the right side. (Will show under the calendar icon) |
 
 
 ## Events

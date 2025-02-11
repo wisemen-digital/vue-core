@@ -24,7 +24,7 @@ export interface TextFieldProps extends FormElementProps, Stylable<'textField'> 
    */
   autoFocus?: boolean
   /**
-   * The autocorrect property of the input.
+   * The autocomplete property of the input.
    * @default 'off'
    */
   autocomplete?: 'off' | 'on'

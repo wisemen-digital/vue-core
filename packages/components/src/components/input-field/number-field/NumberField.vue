@@ -55,14 +55,41 @@ const emit = defineEmits<{
 }>()
 
 defineSlots<{
-  'bottom': () => void
-  'error': () => null
-  'hint': () => null
+  /**
+   * Can be used to render a custom hint and error message.
+   */
+  'bottom': ({ errors, hint }: { errors: string[], hint: string | null }) => void
+  /**
+   * Can be used to render a custom error message.
+   */
+  'error': ({ errors }: { errors: string[] }) => void
+  /**
+   * Can be used to render a custom hint message.
+   */
+  'hint': ({ hint }: { hint: string | null }) => void
+  /**
+   * The content to display on the left side.
+   */
   'icon-left': () => null
+  /**
+   * The content to display on the right side.
+   */
   'icon-right': () => null
-  'label': () => void
-  'left': () => void
+    /**
+   * Can be used to render a custom label.
+   */
+  'label': ({ label }: { label: string | null }) => void
+  /**
+   * The content to display on the left side. (Will show under the iconLeft slot)
+   */
+  'left': () => null
+  /**
+   * Can be used to render a custom loader.
+   */
   'loader': () => null
+  /**
+   * The content to display on the right side. (Will show under the calendar icon)
+   */
   'right': () => null
 }>()
 

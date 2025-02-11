@@ -15,7 +15,7 @@ An input field component for a number.
       variant: 'bad',
       link: {
         label: 'Phone Number Field',
-        href: '/vue-core/components/input-field/phone-number-field',
+        href: '/vue-core/components/password-field/password-field.html',
       },
     },
   ]"
@@ -50,6 +50,12 @@ You can set a step value for the number field component by using the `step` prop
 <ComponentPreview name="number-field/step" />
 
 ### Format options
-You can set a format options for the number field component by using the `format-options` prop.
+You can set a format options for the number field component by using the `format-options` prop. <br>
+<a href="https://api.haxe.org/v/development/js/lib/intl/NumberFormatOptions.html" target="_blank">Documentation</a> detailing the NumberFormatOptions
 
 <ComponentPreview name="number-field/format-options" />
+
+
+## Style Config
+
+See <a href="/vue-core/components/text-field/text-field.html#style-config">Text Field Style Config</a>

@@ -4,7 +4,7 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| autocomplete | `"off" \| "on"` | The autocorrect property of the input. |  |
+| autocomplete | `"off" \| "on"` | The autocomplete property of the input. |  |
 | autoFocus | `boolean` | Whether the input should be focused automatically. |  |
 | defaultCountryCode | `CountryCode` | The default country code of the phone number. | `"BE"` |
 | errors | `string[]` | The errors associated with the input. | `[]` |
