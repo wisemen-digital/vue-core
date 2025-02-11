@@ -36,16 +36,16 @@
 
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
-| bottom | `{ errors: string[]; hint: string \| null; }` |  |
-| date | `{ date: Date; }` |  |
-| error | `{ errors: string[]; }` |  |
-| hint | `{ hint: string \| null; }` |  |
-| icon-left | `-` |  |
-| icon-right | `-` |  |
-| label | `{ label: string \| null; }` |  |
-| left | `-` |  |
-| loader | `-` |  |
-| right | `-` |  |
+| bottom | `{ errors: string[]; hint: string \| null; }` | Can be used to render a custom hint and error message. |
+| date | `{ date: Date; }` | Can be used to add content to each date. |
+| error | `{ errors: string[]; }` | Can be used to render a custom error message. |
+| hint | `{ hint: string \| null; }` | Can be used to render a custom hint message. |
+| icon-left | `-` | The content to display on the left side. |
+| icon-right | `-` | The content to display on the right side. |
+| label | `{ label: string \| null; }` | Can be used to render a custom label. |
+| left | `-` | The content to display on the left side. (Will show under the iconLeft slot) |
+| loader | `-` | Can be used to render a custom loader. |
+| right | `-` | The content to display on the right side. (Will show under the calendar icon) |
 
 
 ## Events

@@ -28,4 +28,4 @@ See <a href="/vue-core/components/button/button.html#examples">Button</a> exampl
 
 ## Style Config
 
-There are no additional properties you can customize for the router link button
+See <a href="/vue-core/components/button/button.html#style-config">Button Style Config</a>

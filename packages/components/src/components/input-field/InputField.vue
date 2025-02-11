@@ -8,11 +8,29 @@ import InputFieldLabel from '@/components/input-field-label/InputFieldLabel.vue'
 import type { FormElementSlots } from '@/types/formElement.type'
 
 const props = defineProps<{
+  /**
+   * The Id of the input field
+   */
   inputId: string
+  /**
+   * Whether the input is required.
+   */
   isRequired: boolean
+  /**
+   * Whether the input is touched. Used to determine if an error should be shown.
+   */
   isTouched: boolean
+  /**
+   * The errors associated with the input.
+   */
   errors: string[]
+  /**
+   * The hint text of the input.
+   */
   hint: string | null
+  /**
+   * The label of the input.
+   */
   label: string | null
 }>()
 

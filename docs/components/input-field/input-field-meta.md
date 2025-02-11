@@ -4,12 +4,12 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| **errors*** | `string[]` |  |  |
-| **hint*** | `string \| null` |  |  |
-| **inputId*** | `string` |  |  |
-| **isRequired*** | `boolean` |  |  |
-| **isTouched*** | `boolean` |  |  |
-| **label*** | `string \| null` |  |  |
+| **errors*** | `string[]` | The errors associated with the input. |  |
+| **hint*** | `string \| null` | The hint text of the input. |  |
+| **inputId*** | `string` | The Id of the input field |  |
+| **isRequired*** | `boolean` | Whether the input is required. |  |
+| **isTouched*** | `boolean` | Whether the input is touched. Used to determine if an error should be shown. |  |
+| **label*** | `string \| null` | The label of the input. |  |
 
 
 ## Slots
