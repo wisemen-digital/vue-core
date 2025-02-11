@@ -4,6 +4,8 @@ A group of checkboxes.
 
 **For the checkbox documentation, see [Checkbox](/components/checkbox/checkbox).**
 
+## Use cases
+
 <BulletList
   :items="[
     {

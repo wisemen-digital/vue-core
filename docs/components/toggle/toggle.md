@@ -2,6 +2,8 @@
 
 An unstyled two-state button that can be either on or off.
 
+## Use cases
+
 <BulletList
   :items="[
     {

@@ -9,6 +9,14 @@
       description: 'When you want to allow users to input a short text.',
       variant: 'good',
     },
+    {
+      description: 'When you want to allow users to input a long text.',
+      variant: 'bad',
+      link: {
+        label: 'Textarea',
+        href: '/vue-core/components/textarea/textarea.html'
+      }
+    },
   ]"
 />
 

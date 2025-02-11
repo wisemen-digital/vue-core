@@ -39,18 +39,18 @@ When enabled, items must be restricted to the option type | `null` |
 
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
-| content-bottom | `{}` |  |
-| content-top | `{}` |  |
-| filter | `{}` |  |
-| group-label | `{ label: string; }` |  |
-| loader | `{}` |  |
-| no-results | `{ searchTerm: string; }` |  |
-| option | `{ item: SelectOption<AcceptableValue>; }` |  |
-| option-content | `{ item: SelectOption<AcceptableValue>; }` |  |
-| option-indicator | `{ item: SelectOption<AcceptableValue>; }` |  |
-| separator | `{}` |  |
-| tag | `{ value: SelectValue; }` |  |
-| value | `{ value: NonNullable<SelectValue>; }` |  |
+| content-bottom | `-` | Can be used to add other content to the top of the dropdown. |
+| content-top | `-` | Can be used to add other content to the top of the dropdown. |
+| filter | `-` | Can be used to render the filter. Visible if filterFn is not null. |
+| group-label | `{ label: any; }` | Can be used to render the label of a group. |
+| loader | `-` | Can be used to render a custom loader. |
+| no-results | `{ searchTerm: string; }` | Can be used to render content when no results are found. |
+| option | `{ item: SelectItem<SelectValue>; }` | Can be used to render an entire option. |
+| option-content | `{ item: SelectItem<SelectValue>; }` | Can be used to render the content for each option. |
+| option-indicator | `{ item: SelectItem<SelectValue>; }` | Can be used to render the indication for each option. |
+| separator | `-` | Can be used to render the separator. |
+| tag | `{ value: SelectValue; }` | Only when you want to select multiple values: use to render a custom tag per selected item. |
+| value | `{ value: SelectValue; }` | Can be used to render the selected value(s). |
 
 
 ## Events

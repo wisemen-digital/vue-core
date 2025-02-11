@@ -29,6 +29,13 @@ A component that displays a list of options for the user to pick from, triggered
   ]"
 />
 
+
+## Import
+
+```ts
+import { VcSelect } from '@wisemen/vue-core'
+```
+
 <!-- @include: ./select-meta.md -->
 
 ## Examples
