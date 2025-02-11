@@ -24,12 +24,11 @@ import type {
 } from '@/components/select/select.props'
 import { useSelectStyle } from '@/components/select/select.style'
 import SelectFilter from '@/components/select/SelectFilter.vue'
-import SelectItem from '@/components/select/SelectItem.vue'
 import SelectValueBasic from '@/components/select/values/SelectValueBasic.vue'
 import SelectValueTags from '@/components/select/values/SelectValueTags.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import type { Icon } from '@/icons/icons'
-import type { SelectItem as SelectItemType, SelectValue } from '@/types/select.type'
+import type { SelectItem, SelectItem as SelectItemType, SelectValue } from '@/types/select.type'
 import { ThemeUtil } from '@/utils/theme.util'
 
 const props = withDefaults(defineProps<SelectProps<TValue>>(), {
@@ -59,6 +58,58 @@ const props = withDefaults(defineProps<SelectProps<TValue>>(), {
   styleConfig: null,
   virtualList: null,
 })
+
+
+defineSlots<{
+  /**
+   * Only when you want to select multiple values: use to render a custom tag per selected item.
+   */
+  'tag': ({ value }: { value: TValue }) => void
+  /**
+   * Can be used to render a custom loader.
+   */
+  'loader': () => null
+  /**
+   * Can be used to render the selected value(s).
+   */
+  'value': ({ value }: { value: TValue }) => void
+  /**
+   * Can be used to add other content to the top of the dropdown.
+   */
+  'content-top': () => null
+  /**
+   * Can be used to add other content to the top of the dropdown.
+   */
+  'content-bottom': () => null
+  /**
+   * Can be used to render the filter. Visible if filterFn is not null.
+   */
+  'filter': () => null
+  /**
+   * Can be used to render content when no results are found.
+   */
+  'no-results': ({ searchTerm }: { searchTerm: string }) => void
+  /**
+   * Can be used to render an entire option.
+   */
+  'option': ({ item }: { item: SelectItem<TValue> }) => void
+  /**
+   * Can be used to render the content for each option.
+   */
+  'option-content': ({ item }: { item: SelectItem<TValue> }) => void
+  /**
+   * Can be used to render the indication for each option.
+   */
+  'option-indicator': ({ item }: { item: SelectItem<TValue> }) => void
+  /**
+   * Can be used to render the label of a group.
+   */
+  'group-label': ({ label }: { label: any }) => void
+  /**
+   * Can be used to render the separator.
+   */
+  'separator': () => null
+}>()
 
 const emit = defineEmits<{
   blur: []

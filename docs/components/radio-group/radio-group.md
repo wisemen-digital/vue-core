@@ -1,7 +1,5 @@
 # Radio Group
 
-## Description
-
 A radio group component where you can select one value of a set of options.
 
 ## Use cases
@@ -9,19 +7,15 @@ A radio group component where you can select one value of a set of options.
 <BulletList
   :items="[
     {
-      description: 'When you want to allow users to select a single option from a short list of options.',
+      description: 'When you want to allow users to only select a single option.',
       variant: 'good',
     },
     {
-      description: 'When selecting an option is not required.',
-      variant: 'bad',
-    },
-    {
-      description: 'When you want to allow users to select multiple options from a list.',
+      description: 'When you want to allow users to select multiple options from a short list.',
       variant: 'bad',
       link: {
         label: 'Checkbox Group',
-        href: '/vue-core/components/checkbox/checkbox-group',
+        href: '/vue-core/components/checkbox-group/checkbox-group.html',
       },
     },
     {
@@ -50,7 +44,7 @@ import { VcRadioGroup } from '@wisemen/vue-core'
 
 A single radio group item.
 
-## Import
+## Group item Import
 
 ```ts
 import { VcRadioGroupItem } from '@wisemen/vue-core'
@@ -63,9 +57,11 @@ import { VcRadioGroupItem } from '@wisemen/vue-core'
 
 # Radio Group Item Indicator
 
-The default indicator for a radio group item.
+The default indicator for a radio group item. <br>
+If you want your radio item to have a special design, you can customize the rendering of the radio content. 
+You can use the VcRadioGroupItemIndicator to render the state
 
-## Import
+## Indicator Import
 
 ```ts
 import { VcRadioGroupItemIndicator } from '@wisemen/vue-core'
@@ -102,3 +98,68 @@ When styling the component, the following selectors are available:
 **Note**: When using a custom template, ensure you manually render essential elements like the label, hint, and error messages.
 
 <ComponentPreview name="radio-group/custom" />
+
+
+## Style Config
+
+These are all the properties you can customize for the radio group
+
+```ts
+interface RadioGroupItemStyleConfig {
+  '--radio-group-item-bg-color-checked': string
+  '--radio-group-item-bg-color-default': string
+  '--radio-group-item-bg-color-disabled': string
+  '--radio-group-item-bg-color-error': string
+  '--radio-group-item-bg-color-focus': string
+  '--radio-group-item-bg-color-hover': string
+
+  '--radio-group-item-border-color-checked': string
+  '--radio-group-item-border-color-default': string
+  '--radio-group-item-border-color-disabled': string
+  '--radio-group-item-border-color-error': string
+  '--radio-group-item-border-color-focus': string
+  '--radio-group-item-border-color-hover': string
+
+  '--radio-group-item-border-radius-default': string
+
+  '--radio-group-item-error-font-size': string
+  '--radio-group-item-error-font-weight': string
+  '--radio-group-item-error-spacing-default': string
+  '--radio-group-item-error-text-color': string
+
+  '--radio-group-item-hint-font-size': string
+  '--radio-group-item-hint-font-weight': string
+  '--radio-group-item-hint-spacing-default': string
+  '--radio-group-item-hint-text-color-checked': string
+  '--radio-group-item-hint-text-color-default': string
+  '--radio-group-item-hint-text-color-disabled': string
+  '--radio-group-item-hint-text-color-error': string
+  '--radio-group-item-hint-text-color-focus': string
+  '--radio-group-item-hint-text-color-hover': string
+
+  '--radio-group-item-indicator-bg-color-checked': string
+  '--radio-group-item-indicator-bg-color-disabled': string
+  '--radio-group-item-indicator-bg-color-error': string
+  '--radio-group-item-indicator-bg-color-focus': string
+  '--radio-group-item-indicator-bg-color-hover': string
+  '--radio-group-item-indicator-border-radius-default': string
+  '--radio-group-item-indicator-size-default': string
+  '--radio-group-item-label-font-size-default': string
+  '--radio-group-item-label-font-weight-default': string
+
+  '--radio-group-item-label-spacing-default': string
+  '--radio-group-item-label-text-color-checked': string
+  '--radio-group-item-label-text-color-default': string
+  '--radio-group-item-label-text-color-disabled': string
+  '--radio-group-item-label-text-color-error': string
+  '--radio-group-item-label-text-color-focus': string
+
+  '--radio-group-item-label-text-color-hover': string
+
+  '--radio-group-item-ring-color-error': string
+  '--radio-group-item-ring-color-focus': string
+
+  '--radio-group-item-size-default': string
+}
+
+```
