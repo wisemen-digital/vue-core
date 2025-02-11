@@ -15,7 +15,7 @@
 | label | `string \| null` | The label of the input. | `null` |
 | styleConfig | `Partial<CheckboxStyleConfig> \| null` | The style config of the component. | `null` |
 | testId | `string \| null` | The test id of the input. | `null` |
-| value | `AcceptableValue \| null` | The value of the checkbox. Only used when the checkbox is in a group. | `null` |
+| value | `AcceptableValue` | The value of the checkbox. Only used when the checkbox is in a group. | `null` |
 
 
 ## Slots

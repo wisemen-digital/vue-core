@@ -4,7 +4,7 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| isDarkModeEnabled | `boolean \| null` |  | `null` |
+| appearance | `DarkModeValue \| null` |  | `null` |
 | theme | `"default" \| (string & {}) \| null` |  | `null` |
 
 

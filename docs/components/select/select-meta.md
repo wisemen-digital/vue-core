@@ -6,7 +6,7 @@
 | ---- | ---- | ----------- | ------- |
 | **displayFn*** | `SelectDisplayFn<SelectValue>` | The display function for the selected value. |  |
 | **items*** | `SelectItem<AcceptableValue>[]` | The items of the select. |  |
-| **modelValue*** | `SelectValue \| null` |  |  |
+| **modelValue*** | `SelectValue` |  |  |
 | errors | `string[]` | The errors associated with the input. | `[]` |
 | filterFn | `SelectFilterFn<SelectValue> \| null` | The function to filter the options. | `null` |
 | hint | `string \| null` | The hint text of the input. | `null` |
@@ -59,5 +59,5 @@ When enabled, items must be restricted to the option type | `null` |
 | ---------- | ---- | ----------- |
 | `blur` | [] |  |
 | `focus` | [] |  |
-| `update:modelValue` | [modelValue: SelectValue \| null] |  |
+| `update:modelValue` | [modelValue: SelectValue] |  |
 

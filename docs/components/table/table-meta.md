@@ -21,6 +21,7 @@
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
 | bottom | `{}` |  |
+| empty-state | `{}` |  |
 | empty-state-no-data-actions | `{}` |  |
 | empty-state-no-results-actions | `{}` |  |
 | page-count | `{}` |  |
