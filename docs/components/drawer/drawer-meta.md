@@ -16,7 +16,7 @@
 
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
-| default | `{}` |  |
+| default | `-` | The content to display in the drawer. |
 
 
 ## Events

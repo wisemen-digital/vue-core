@@ -10,6 +10,13 @@ const props = defineProps<{
   shouldPreventClickOutside: boolean
 }>()
 
+defineSlots<{
+  /**
+   * Use to indicate the main content of the drawer.
+   */
+  'default': () => void
+}>()
+
 const themeProviderContext = injectThemeProviderContext()
 
 const drawerStyle = useDrawerStyle()
