@@ -26,3 +26,21 @@
 | `close` | [] |  |
 | `update:isOpen` | [isOpen: boolean] |  |
 
+
+## Style configuration
+
+The following interfaces are defined in the component’s style configuration file:
+
+#### DrawerStyleConfig
+
+```ts
+export interface DrawerStyleConfig  {
+'--drawer-bg-color-default': string
+  '--drawer-border-color-default': string
+  '--drawer-border-radius-default': string
+  // TODO: improve name
+  '--drawer-padding-default': string
+  '--drawer-shadow-default': string
+}
+```
+

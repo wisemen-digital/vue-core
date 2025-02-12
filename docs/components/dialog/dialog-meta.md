@@ -25,3 +25,19 @@
 | `close` | [] |  |
 | `update:isOpen` | [isOpen: boolean] |  |
 
+
+## Style configuration
+
+The following interfaces are defined in the component’s style configuration file:
+
+#### DialogStyleConfig
+
+```ts
+export interface DialogStyleConfig  {
+'--dialog-bg-color-default': string
+  '--dialog-border-color-default': string
+  '--dialog-border-radius-default': string
+  '--dialog-shadow-default': string
+}
+```
+

@@ -30,3 +30,21 @@
 | ---------- | ---- | ----------- |
 | `update:isOpen` | [isOpen: boolean] |  |
 
+
+## Style configuration
+
+The following interfaces are defined in the component’s style configuration file:
+
+#### PopoverStyleConfig
+
+```ts
+export interface PopoverStyleConfig  {
+'--popover-bg-color-default': string
+  '--popover-border-color-default': string
+  '--popover-border-radius-default': string
+  '--popover-max-width-default': string
+  '--popover-min-width-default': string
+  '--popover-shadow-default': string
+}
+```
+

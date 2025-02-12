@@ -37,3 +37,71 @@
 | `focus` | [] |  |
 | `update:modelValue` | [modelValue: boolean] |  |
 
+
+## Style configuration
+
+The following interfaces are defined in the component’s style configuration file:
+
+#### CheckboxStyleConfig
+
+```ts
+export interface CheckboxStyleConfig extends BaseStyleConfig {
+'--checkbox-bg-color-checked': string
+  '--checkbox-bg-color-default': string
+  '--checkbox-bg-color-disabled': string
+  '--checkbox-bg-color-error': string
+  '--checkbox-bg-color-focus': string
+  '--checkbox-bg-color-hover': string
+  '--checkbox-bg-color-indeterminate': string
+
+  '--checkbox-border-color-checked': string
+  '--checkbox-border-color-default': string
+  '--checkbox-border-color-disabled': string
+  '--checkbox-border-color-error': string
+  '--checkbox-border-color-focus': string
+  '--checkbox-border-color-hover': string
+  '--checkbox-border-color-indeterminate': string
+
+  '--checkbox-border-radius-default': string
+
+  '--checkbox-error-font-size': string
+  '--checkbox-error-font-weight': string
+  '--checkbox-error-spacing-default': string
+  '--checkbox-error-text-color': string
+
+  '--checkbox-hint-font-size': string
+  '--checkbox-hint-font-weight': string
+  '--checkbox-hint-spacing-default': string
+  '--checkbox-hint-text-color-checked': string
+  '--checkbox-hint-text-color-default': string
+  '--checkbox-hint-text-color-disabled': string
+  '--checkbox-hint-text-color-error': string
+  '--checkbox-hint-text-color-focus': string
+  '--checkbox-hint-text-color-hover': string
+
+  '--checkbox-indicator-color-checked': string
+  '--checkbox-indicator-color-disabled': string
+  '--checkbox-indicator-color-error': string
+  '--checkbox-indicator-color-focus': string
+  '--checkbox-indicator-color-hover': string
+  '--checkbox-indicator-color-indeterminate': string
+  '--checkbox-indicator-size-default': string
+  '--checkbox-label-font-size-default': string
+  '--checkbox-label-font-weight-default': string
+
+  '--checkbox-label-spacing-default': string
+  '--checkbox-label-text-color-checked': string
+  '--checkbox-label-text-color-default': string
+  '--checkbox-label-text-color-disabled': string
+  '--checkbox-label-text-color-error': string
+  '--checkbox-label-text-color-focus': string
+
+  '--checkbox-label-text-color-hover': string
+
+  '--checkbox-ring-color-error': string
+  '--checkbox-ring-color-focus': string
+
+  '--checkbox-size-default': string
+}
+```
+
