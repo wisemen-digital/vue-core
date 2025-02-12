@@ -29,6 +29,13 @@ import { VcNumberField } from '@wisemen/vue-core'
 
 <!-- @include: ./number-field-meta.md -->
 
+
+## Style configuration
+
+See <a href="/vue-core/components/text-field/text-field.html#style-configuration">Text Field Style configuration</a>
+
+## Examples
+
 ### Basic usage
 The most basic usage of the number field component.
 
@@ -54,8 +61,3 @@ You can set a format options for the number field component by using the `format
 <a href="https://api.haxe.org/v/development/js/lib/intl/NumberFormatOptions.html" target="_blank">Documentation</a> detailing the NumberFormatOptions
 
 <ComponentPreview name="number-field/format-options" />
-
-
-## Style Config
-
-See <a href="/vue-core/components/text-field/text-field.html#style-config">Text Field Style Config</a>

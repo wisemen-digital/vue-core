@@ -38,6 +38,10 @@ function toKebabCase(str: string): string {
   return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
 }
 
+function toCamelCase(str: string): string {
+  return str.replace(/^([A-Z])/, (match) => match.toLowerCase());
+}
+
 function parseMeta(meta: ComponentMeta, styleInterfaces: InterfaceMeta[] = []): ParsedMeta {
   const props = meta.props
     .filter((prop: any) => !prop.global)
@@ -251,9 +255,10 @@ function generateDocs(components: Component[]): void {
     console.log(componentMeta.slots[0]?.type)
 
     const componentNameKebabCase = toKebabCase(component.componentName)
+    const componentNameCamelCase = toCamelCase(component.componentName)
     const componentPath = component.sourceFolder.slice(0, component.sourceFolder.lastIndexOf("/"))
 
-    const styleConfigFilePath = resolve(__dirname, `../../packages/components/src/components/${componentPath}/${componentNameKebabCase}Style.config.ts`)
+    const styleConfigFilePath = resolve(__dirname, `../../packages/components/src/components/${componentPath}/${componentNameCamelCase}Style.config.ts`)
     console.log('Checking for style config:', styleConfigFilePath)
     const styleInterfaces = extractInterfacesFromFile(styleConfigFilePath)
 

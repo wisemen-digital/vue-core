@@ -43,6 +43,10 @@ import {
 
 <!-- @include: ./checkbox-group-meta.md -->
 
+## Style configuration
+
+See <a href="/vue-core/components/checkbox/checkbox.html#style-configuration">Checkbox Style configuration</a>
+
 ## Examples
 
 ### Basic usage
@@ -77,8 +81,3 @@ When styling the component, the following selectors are available:
 **Note**: When using a custom template, ensure you manually render essential elements like the label, hint, and error messages.
 
 <ComponentPreview name="checkbox-group/custom" />
-
-
-## Style Config
-
-See <a href="/vue-core/components/checkbox/checkbox.html#style-config">Checkbox Style Config</a>

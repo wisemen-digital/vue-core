@@ -21,14 +21,14 @@ import { VcPasswordField } from '@wisemen/vue-core'
 
 <!-- @include: ./password-field-meta.md -->
 
+
+## Style configuration
+
+See <a href="/vue-core/components/text-field/text-field.html#style-configuration">Text Field Style configuration</a>
+
 ## Examples
 
 ### Basic usage
 The basic usage of the password field component.
 
 <ComponentPreview name="password-field/basic" />
-
-
-## Style Config
-
-See <a href="/vue-core/components/text-field/text-field.html#style-config">Text Field Style Config</a>

@@ -35,8 +35,3 @@ import { VcToggle } from '@wisemen/vue-core'
 The component doesn’t render any content by itself, so the default slot is required to display an interactive element.
 
 <ComponentPreview name="toggle/basic" />
-
-
-## Style Config
-
-There are no additional properties you can customize for the toggle

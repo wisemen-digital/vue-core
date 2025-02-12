@@ -35,3 +35,69 @@
 | `blur` | [] |  |
 | `focus` | [] |  |
 
+
+## Style configuration
+
+The following interfaces are defined in the component’s style configuration file:
+
+#### RadioGroupItemStyleConfig
+
+```ts
+export interface RadioGroupItemStyleConfig extends BaseStyleConfig {
+'--radio-group-item-bg-color-checked': string
+  '--radio-group-item-bg-color-default': string
+  '--radio-group-item-bg-color-disabled': string
+  '--radio-group-item-bg-color-error': string
+  '--radio-group-item-bg-color-focus': string
+  '--radio-group-item-bg-color-hover': string
+
+  '--radio-group-item-border-color-checked': string
+  '--radio-group-item-border-color-default': string
+  '--radio-group-item-border-color-disabled': string
+  '--radio-group-item-border-color-error': string
+  '--radio-group-item-border-color-focus': string
+  '--radio-group-item-border-color-hover': string
+
+  '--radio-group-item-border-radius-default': string
+
+  '--radio-group-item-error-font-size': string
+  '--radio-group-item-error-font-weight': string
+  '--radio-group-item-error-spacing-default': string
+  '--radio-group-item-error-text-color': string
+
+  '--radio-group-item-hint-font-size': string
+  '--radio-group-item-hint-font-weight': string
+  '--radio-group-item-hint-spacing-default': string
+  '--radio-group-item-hint-text-color-checked': string
+  '--radio-group-item-hint-text-color-default': string
+  '--radio-group-item-hint-text-color-disabled': string
+  '--radio-group-item-hint-text-color-error': string
+  '--radio-group-item-hint-text-color-focus': string
+  '--radio-group-item-hint-text-color-hover': string
+
+  '--radio-group-item-indicator-bg-color-checked': string
+  '--radio-group-item-indicator-bg-color-disabled': string
+  '--radio-group-item-indicator-bg-color-error': string
+  '--radio-group-item-indicator-bg-color-focus': string
+  '--radio-group-item-indicator-bg-color-hover': string
+  '--radio-group-item-indicator-border-radius-default': string
+  '--radio-group-item-indicator-size-default': string
+  '--radio-group-item-label-font-size-default': string
+  '--radio-group-item-label-font-weight-default': string
+
+  '--radio-group-item-label-spacing-default': string
+  '--radio-group-item-label-text-color-checked': string
+  '--radio-group-item-label-text-color-default': string
+  '--radio-group-item-label-text-color-disabled': string
+  '--radio-group-item-label-text-color-error': string
+  '--radio-group-item-label-text-color-focus': string
+
+  '--radio-group-item-label-text-color-hover': string
+
+  '--radio-group-item-ring-color-error': string
+  '--radio-group-item-ring-color-focus': string
+
+  '--radio-group-item-size-default': string
+}
+```
+

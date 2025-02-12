@@ -55,16 +55,3 @@ You can show a loading state by setting the `is-loading` prop to `true`, indicat
 To customize the loading state, you can provide a custom template for the `loader` slot.
 
 <ComponentPreview name="icon-button/loading-slot" />
-
-
-
-## Style Config
-
-These are all the properties you can customize for the icon button
-
-```ts
-interface IconStyleConfig {
-  '--icon-color': string
-  '--icon-size': string
-}
-```

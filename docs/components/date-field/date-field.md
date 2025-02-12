@@ -21,14 +21,13 @@ import { VcDateField } from '@wisemen/vue-core'
 
 <!-- @include: ./date-field-meta.md -->
 
+## Style configuration
+
+See <a href="/vue-core/components/text-field/text-field.html#style-configuration">Text Field Style configuration</a>
+
 ## Examples <Badge type="warning" text="More examples to be added" />
 
 ### Basic usage
 The most basic usage of the date field component.
 
 <ComponentPreview name="date-field/basic" />
-
-
-## Style Config
-
-See <a href="/vue-core/components/text-field/text-field.html#style-config">Text Field Style Config</a>
