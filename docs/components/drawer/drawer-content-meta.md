@@ -11,5 +11,5 @@
 
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
-| default | `{}` |  |
+| default | `-` | Use to indicate the main content of the drawer. |
 

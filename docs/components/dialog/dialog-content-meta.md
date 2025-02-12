@@ -4,12 +4,12 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| shouldPreventClickOutside | `boolean` |  | `false` |
+| shouldPreventClickOutside | `boolean` | Prevent clicks outside the dialog content to close the dialog | `false` |
 
 
 ## Slots
 
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
-| default | `{}` |  |
+| default | `-` | Use to indicate the main content of the dialog. |
 
