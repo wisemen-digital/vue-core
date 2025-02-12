@@ -44,17 +44,17 @@ const components = [
       { text: 'Textarea', link: '/components/textarea/textarea' },
     ]
   },
-  // {
-  //   text: 'Overlays & Popups',
-  //   items: [
-  //     { text: 'Dialog', link: '/components/dialog/dialog' },
-  //     { text: 'Drawer', link: '/components/drawer/drawer' },
-  //     { text: 'Popover', link: '/components/popover/popover' },
-  //     { text: 'Tooltip', link: '/components/tooltip/tooltip' },
-  //     { text: 'Toast', link: '/components/toast/toast' },
-  //     { text: 'Dropdown Menu', link: '/components/dropdown-menu/dropdown-menu' }
-  //   ]
-  // },
+  {
+    text: 'Overlays & Popups',
+    items: [
+      // { text: 'Dialog', link: '/components/dialog/dialog' },
+      // { text: 'Drawer', link: '/components/drawer/drawer' },
+      // { text: 'Popover', link: '/components/popover/popover' },
+      { text: 'Tooltip', link: '/components/tooltip/tooltip' },
+      // { text: 'Toast', link: '/components/toast/toast' },
+      // { text: 'Dropdown Menu', link: '/components/dropdown-menu/dropdown-menu' }
+    ]
+  },
   // {
   //   text: 'Navigation & Layout',
   //   items: [
