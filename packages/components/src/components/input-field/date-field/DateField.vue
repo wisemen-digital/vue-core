@@ -86,7 +86,7 @@ defineSlots<{
    * The content to display on the right side.
    */
   'icon-right': () => null
-    /**
+  /**
    * Can be used to render a custom label.
    */
   'label': ({ label }: { label: string | null }) => void

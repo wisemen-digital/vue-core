@@ -26,29 +26,28 @@ const props = withDefaults(defineProps<TextareaProps>(), {
   styleConfig: null,
 })
 
+const emit = defineEmits<{
+  blur: []
+  focus: []
+}>()
 
 defineSlots<{
   /**
    * Can be used to render a custom hint and error message.
    */
-  'bottom': ({ errors, hint }: { errors: string[], hint: string | null }) => void
+  bottom: ({ errors, hint }: { errors: string[], hint: string | null }) => void
   /**
    * Can be used to render a custom error message.
    */
-  'error': ({ errors }: { errors: string[] }) => void
+  error: ({ errors }: { errors: string[] }) => void
   /**
    * Can be used to render a custom hint message.
    */
-  'hint': ({ hint }: { hint: string | null }) => void
-    /**
+  hint: ({ hint }: { hint: string | null }) => void
+  /**
    * Can be used to render a custom label.
    */
-  'label': ({ label }: { label: string | null }) => void
-}>()
-
-const emit = defineEmits<{
-  blur: []
-  focus: []
+  label: ({ label }: { label: string | null }) => void
 }>()
 
 const model = defineModel<string | null>({
