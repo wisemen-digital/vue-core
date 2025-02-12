@@ -15,6 +15,13 @@
   ]"
 />
 
+
+## Import
+
+```ts
+import { useToast } from '@wisemen/vue-core'
+```
+
 <!-- @include: ./toast-meta.md -->
 
 
@@ -34,3 +41,15 @@ Using the toast component to display an error message.
 Using the toast component to display a success message.
 
 <ComponentPreview name="toast/success" />
+
+<br>
+<br>
+
+# Tooltip Container
+Import the container in your App.vue to render the tooltips as intended within the application.
+
+## Import tooltip container
+
+```ts
+import { VcToastContainer } from '@wisemen/vue-core'
+```

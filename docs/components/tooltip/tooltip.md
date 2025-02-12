@@ -19,6 +19,12 @@
   ]"
 />
 
+## Import
+
+```ts
+import { VcTooltip } from '@wisemen/vue-core'
+```
+
 <!-- @include: ./tooltip-meta.md -->
 
 

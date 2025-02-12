@@ -20,11 +20,6 @@ function onClick(): void {
 <template>
   <div>
     <VcToastContainer />
-    <VcButton 
-      variant="tertiary" 
-      @click="onClick"
-      >
-      Show Success Toast
-      </VcButton>
+    <VcButton variant="tertiary" @click="onClick">Show Success Toast</VcButton>
   </div>
 </template>
