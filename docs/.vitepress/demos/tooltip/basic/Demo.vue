@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {VcTooltip} from '@wisemen/vue-core'
+import { VcTooltip } from '@wisemen/vue-core'
 </script>
 
 <template>
