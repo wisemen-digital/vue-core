@@ -1,19 +1,29 @@
 <script setup lang="ts">
-import { VcDialogTitle, VcDialogDescription, VcDialog } from '@wisemen/vue-core'
+import { VcDialogTitle, VcDialogDescription, VcDialog, VcButton, VcDialogCloseButton } from '@wisemen/vue-core'
 </script>
 
 <template>
-  <div>
-    <VcDialog>
-      <div>
-        <VcDialogTitle>Dialog Title</VcDialogTitle>
-        <VcDialogDescription>
-          This is a dialog description. You can put any content here.
-        </VcDialogDescription>
+  <VcDialog>
+    <div class="py-2 px-3">
+      <VcDialogTitle>
         <p>
-          And then this is the main content of the dialog.
+          Dialog Title
         </p>
-      </div>
-    </VcDialog>
-  </div>
+      </VcDialogTitle>
+      <VcDialogDescription>
+        <p>
+          This is a dialog description.
+        </p>
+      </VcDialogDescription>
+      <p class="py-2">
+        And then this is the main content of the dialog.
+      </p>
+
+      <VcDialogCloseButton>
+        <VcButton variant="tertiary" size="sm">
+          Close
+        </VcButton>
+      </VcDialogCloseButton>
+    </div>
+  </VcDialog>
 </template>

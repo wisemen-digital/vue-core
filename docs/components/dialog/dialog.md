@@ -19,6 +19,12 @@
   ]"
 />
 
+## Import
+
+```ts
+import { useDialog } from '@wisemen/vue-core'
+```
+
 <!-- @include: ./dialog-meta.md -->
 
 <br>
