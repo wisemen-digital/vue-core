@@ -4,5 +4,5 @@
 
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
-| default | `{}` |  |
+| default | `-` | Use to indicate the description of the dialog. |
 

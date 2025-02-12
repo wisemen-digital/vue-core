@@ -7,10 +7,21 @@ import { injectThemeProviderContext } from '@/components/theme-provider/themePro
 import { ThemeUtil } from '@/utils/theme.util'
 
 const props = withDefaults(defineProps<{
+  /**
+   * Prevent clicks outside the dialog content to close the dialog
+   * @default false
+   */
   shouldPreventClickOutside?: boolean
 }>(), {
   shouldPreventClickOutside: false,
 })
+
+defineSlots<{
+  /**
+   * Use to indicate the main content of the dialog.
+   */
+  'default': () => void
+}>()
 
 const themeProviderContext = injectThemeProviderContext()
 

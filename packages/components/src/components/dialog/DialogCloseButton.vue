@@ -5,6 +5,14 @@ import { useI18n } from 'vue-i18n'
 import IconButton from '@/components/button/icon-button/IconButton.vue'
 
 const { t } = useI18n()
+
+defineSlots<{
+  /**
+   * Use to display your own close button.
+   */
+  'default': () => void
+}>()
+
 </script>
 
 <template>
