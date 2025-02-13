@@ -9,12 +9,11 @@ const props = withDefaults(defineProps<{
   isPrimaryCell: false,
 })
 
-
 defineSlots<{
   /**
    * Use this to render the table cell data.
    */
-  'default': () => void
+  default: () => void
 }>()
 </script>
 

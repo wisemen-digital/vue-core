@@ -9,9 +9,8 @@ defineSlots<{
   /**
    * Use this to render your own pagination control to go to the previous page.
    */
-  'default': ({isFirstPage}: { isFirstPage: boolean }) => void
+  default: ({ isFirstPage }: { isFirstPage: boolean }) => void
 }>()
-
 
 const tableContext = injectTableContext()
 

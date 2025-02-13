@@ -34,13 +34,21 @@ const props = withDefaults(defineProps<TableProps<Tschema, TFilters>>(), {
 
 defineSlots<{
   /**
-   * Use this to add content to the top of the table.
-   */
-  'top': () => void
-  /**
    * Use this to render your own table bottom.
    */
   'bottom': () => void
+  /**
+   * Use this to render your own empty state.
+   */
+  'empty-state': () => void
+  /**
+   * Use this to render your own empty state when no data is found.
+   */
+  'empty-state-no-data-actions': () => void
+  /**
+   * Use this to render your own empty state when no results are found.
+   */
+  'empty-state-no-results-actions': () => void
   /**
    * Use this to render your own page count in the table bottom.
    */
@@ -48,19 +56,11 @@ defineSlots<{
   /**
    * Use this to render your own pagination in the table bottom.
    */
-  'pagination': () => void
+  'pagination': ({ items }: { items: ({ type: 'ellipsis' } | { type: 'page', value: number })[] }) => void
   /**
-   * Use this to render your own empty state. 
+   * Use this to add content to the top of the table.
    */
-  'empty-state': () => void
-  /**
-   * Use this to render your own empty state when no data is found. 
-   */
-  'empty-state-no-data-actions': () => void
-  /**
-   * Use this to render your own empty state when no results are found.
-   */
-  'empty-state-no-results-actions': () => void
+  'top': () => void
 }>()
 
 const themeProviderContext = injectThemeProviderContext()

@@ -15,7 +15,7 @@ defineSlots<{
   /**
    * Use this to render your own pagination controls.
    */
-  'default': ({items}: { items: ({ type: "ellipsis"; } | { type: "page"; value: number; })[]; }) => void
+  default: ({ items }: { items: ({ type: 'ellipsis' } | { type: 'page', value: number })[] }) => void
 }>()
 
 const tableContext = injectTableContext()

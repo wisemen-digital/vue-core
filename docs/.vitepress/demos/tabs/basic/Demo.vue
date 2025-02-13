@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { TabItem, VcTabs, VcTabsContent } from '@wisemen/vue-core'
-import { ref } from 'vue';
+import type { TabItem } from '@wisemen/vue-core'
+import { VcTabs, VcTabsContent } from '@wisemen/vue-core'
+import { ref } from 'vue'
 
 const tabs: TabItem[] = [
   {
@@ -14,16 +15,16 @@ const tabs: TabItem[] = [
   {
     label: 'Tab 3',
     value: 'tab3',
-  }
+  },
 ]
 
-const activeTab = ref(tabs[0])
+const activeTab = ref<TabItem>(tabs[0])
 </script>
 
 <template>
   <VcTabs
-    :items="tabs"
     v-model="activeTab"
+    :items="tabs"
   >
     <div class="p-3">
       <VcTabsContent value="tab1">

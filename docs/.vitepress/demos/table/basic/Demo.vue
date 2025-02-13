@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { 
-  PaginatedData, 
-  TableColumn, 
-  VcTable, 
-  VcTableCell, 
+import type { PaginatedData,
+  TableColumn } from '@wisemen/vue-core'
+import {
   usePagination,
+  VcTable,
+  VcTableCell,
 } from '@wisemen/vue-core'
-import { computed, h, VNode } from 'vue';
+import type { VNode } from 'vue'
+import { computed, h } from 'vue'
 
 interface Filters {}
 interface Index {
@@ -51,7 +52,9 @@ const data: PaginatedData<Index> = {
     :data="data"
   >
     <template #top>
-      <h4 class="p-md font-semibold">Users</h4>
+      <h4 class="p-md font-semibold">
+        Users
+      </h4>
     </template>
   </VcTable>
 </template>

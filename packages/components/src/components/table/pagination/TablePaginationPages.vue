@@ -24,7 +24,7 @@ defineSlots<{
   /**
    * Use this to render your own pagination controls.
    */
-  'item': ({page}: { page: string }) => void
+  item: ({ page }: { page: string }) => void
 }>()
 
 const { n } = useI18n()

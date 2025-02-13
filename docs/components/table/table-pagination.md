@@ -62,3 +62,10 @@ import { VcTablePaginationPages } from '@wisemen/vue-core'
 ```
 
 <!-- @include: ./table-pagination-pages-meta.md -->
+
+## Examples
+
+### Customize pagination
+Customize the look of your table pagination
+
+<ComponentPreview name="table-pagination/customize" />
