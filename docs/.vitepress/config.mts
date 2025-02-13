@@ -55,13 +55,13 @@ const components = [
       // { text: 'Dropdown Menu', link: '/components/dropdown-menu/dropdown-menu' }
     ]
   },
-  // {
-  //   text: 'Navigation & Layout',
-  //   items: [
-  //     { text: 'Tabs', link: '/components/tabs/tabs' },
-  //     { text: 'Table', link: '/components/table/table' },
-  //   ]
-  // },
+  {
+    text: 'Navigation & Layout',
+    items: [
+      { text: 'Tabs', link: '/components/tabs/tabs' },
+      { text: 'Table', link: '/components/table/table' },
+    ]
+  },
   // {
   //   text: 'Interactive Elements',
   //   items: [
