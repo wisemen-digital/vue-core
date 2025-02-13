@@ -4,7 +4,7 @@ import {
   TableColumn, 
   VcTable, 
   VcTableCell, 
-  usePagination 
+  usePagination,
 } from '@wisemen/vue-core'
 import { computed, h, VNode } from 'vue';
 
