@@ -2,6 +2,8 @@
 
 A control that allows the user to toggle between checked and not checked.
 
+## Use cases
+
 <BulletList
   :items="[
     {
@@ -52,8 +54,16 @@ When an error occurs, you can display an error message in the checkbox.
 <br />
 <br />
 
-# Checkbox Indicator <Badge type="warning" text="Documentation in progress" />
+# Checkbox Indicator
 
 A component that displays the indicator of the checkbox.
 
 <!-- @include: ./checkbox-indicator-meta.md -->
+
+## Checkbox Indicator Example
+
+### Basic usage
+If you want your checkbox to have a special design, you can customize the rendering of the checkbox content. 
+You can use the VcCheckboxIndicator to render the state of the checkbox
+
+<ComponentPreview name="checkbox-indicator/simple" />

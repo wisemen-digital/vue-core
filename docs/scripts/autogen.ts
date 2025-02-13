@@ -2,7 +2,7 @@ import { join, parse, resolve } from 'path'
 import { components } from './components'
 import { ComponentMeta, createChecker  } from 'vue-component-meta'
 import { fileURLToPath } from 'node:url'
-import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, writeFileSync, readFileSync } from 'node:fs'
 import MarkdownIt from 'markdown-it'
 
 interface Component {
@@ -15,6 +15,12 @@ interface ParsedMeta {
   props: any[]
   events: any[]
   slots: any[]
+  interfaces?: InterfaceMeta[]
+}
+
+interface InterfaceMeta {
+  name: string
+  content: string
 }
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
@@ -32,7 +38,11 @@ function toKebabCase(str: string): string {
   return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
 }
 
-function parseMeta(meta: ComponentMeta): ParsedMeta {
+function toCamelCase(str: string): string {
+  return str.replace(/^([A-Z])/, (match) => match.toLowerCase());
+}
+
+function parseMeta(meta: ComponentMeta, styleInterfaces: InterfaceMeta[] = []): ParsedMeta {
   const props = meta.props
     .filter((prop: any) => !prop.global)
     .map((prop: any) => {
@@ -83,7 +93,31 @@ function parseMeta(meta: ComponentMeta): ParsedMeta {
     props,
     events,
     slots,
+    interfaces: styleInterfaces,
   }
+}
+
+function extractInterfacesFromFile(filePath: string): InterfaceMeta[] {
+  if (!existsSync(filePath)) return []
+
+  const content = readFileSync(filePath, 'utf8')
+
+  const interfaceRegex = /export\s+interface\s+([A-Za-z0-9_]+)(\s+extends\s+[A-Za-z0-9_]+)?\s*{([^}]*)}/gs
+  const interfaces: InterfaceMeta[] = []
+
+  let match: RegExpExecArray | null
+  while ((match = interfaceRegex.exec(content)) !== null) {
+    const interfaceName = match[1]
+    const extendsClause = match[2] ? match[2].trim() : ''
+    const body = match[3].trim()
+
+    interfaces.push({
+      name: interfaceName,
+      content: `\`\`\`ts\nexport interface ${interfaceName} ${extendsClause} {\n${body}\n}\n\`\`\``,
+    })
+  }
+
+  return interfaces
 }
 
 function generateMeta(meta: ParsedMeta): string {
@@ -154,6 +188,14 @@ function generateMeta(meta: ParsedMeta): string {
     parsedString += '\n'
   }
 
+  if (meta.interfaces?.length) {
+    parsedString += '\n## Style configuration\n\n'
+    parsedString += 'The following interfaces are defined in the component’s style configuration file:\n\n'
+    meta.interfaces.forEach((item) => {
+      parsedString += `#### ${item.name}\n\n${item.content}\n\n`
+    })
+  }
+
   return parsedString
 }
 
@@ -212,6 +254,14 @@ function generateDocs(components: Component[]): void {
 
     console.log(componentMeta.slots[0]?.type)
 
+    const componentNameKebabCase = toKebabCase(component.componentName)
+    const componentNameCamelCase = toCamelCase(component.componentName)
+    const componentPath = component.sourceFolder.slice(0, component.sourceFolder.lastIndexOf("/"))
+
+    const styleConfigFilePath = resolve(__dirname, `../../packages/components/src/components/${componentPath}/${componentNameCamelCase}Style.config.ts`)
+    console.log('Checking for style config:', styleConfigFilePath)
+    const styleInterfaces = extractInterfacesFromFile(styleConfigFilePath)
+
     const targetDirPath = resolve(__dirname, `../components/${component.targetFolder}`)
     console.log('Component target path:', targetDirPath)
 
@@ -222,12 +272,11 @@ function generateDocs(components: Component[]): void {
       console.log('Target directory already exists:', targetDirPath)
     }
 
-    const componentNameKebabCase = toKebabCase(component.componentName)
     const metaMdFilePath = join(targetDirPath, `${componentNameKebabCase}-meta.md`)
 
     console.log('Meta file path:', metaMdFilePath)
 
-    const parsedMeta = generateMeta(parseMeta(componentMeta))
+    const parsedMeta = generateMeta(parseMeta(componentMeta, styleInterfaces))
 
     writeFileSync(metaMdFilePath, parsedMeta, 'utf8')
 

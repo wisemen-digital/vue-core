@@ -4,7 +4,7 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| autocomplete | `"off" \| "on"` | The autocorrect property of the input. |  |
+| autocomplete | `"off" \| "on"` | The autocomplete property of the input. |  |
 | autoFocus | `boolean` | Whether the input should be focused automatically. |  |
 | errors | `string[]` | The errors associated with the input. | `[]` |
 | hint | `string \| null` | The hint text of the input. | `null` |
@@ -26,10 +26,10 @@
 
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
-| bottom | `{ errors: string[]; hint: string \| null; }` |  |
-| error | `{ errors: string[]; }` |  |
-| hint | `{ hint: string \| null; }` |  |
-| label | `{ label: string \| null; }` |  |
+| bottom | `{ errors: string[]; hint: string \| null; }` | Can be used to render a custom hint and error message. |
+| error | `{ errors: string[]; }` | Can be used to render a custom error message. |
+| hint | `{ hint: string \| null; }` | Can be used to render a custom hint message. |
+| label | `{ label: string \| null; }` | Can be used to render a custom label. |
 
 
 ## Events

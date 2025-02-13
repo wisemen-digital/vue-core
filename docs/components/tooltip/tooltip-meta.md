@@ -26,3 +26,20 @@
 | default | `{}` |  |
 | trigger | `{}` |  |
 
+
+## Style configuration
+
+The following interfaces are defined in the component’s style configuration file:
+
+#### TooltipStyleConfig
+
+```ts
+export interface TooltipStyleConfig  {
+'--tooltip-bg-color-default': string
+  '--tooltip-border-color-default': string
+  '--tooltip-border-radius-default': string
+  '--tooltip-shadow-default': string
+  '--tooltip-text-color-default': string
+}
+```
+

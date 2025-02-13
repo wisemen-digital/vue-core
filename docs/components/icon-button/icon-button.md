@@ -28,3 +28,30 @@ import { VcIconButton } from '@wisemen/vue-core'
 ```
 
 <!-- @include: ./icon-button-meta.md -->
+
+
+## Examples
+
+### Variant
+By providing the `variant` prop, you can change the appearance of the icon button.
+
+<ComponentPreview name="icon-button/variants" />
+
+### Size
+By providing the `size` prop, you can change the size of the icon button.
+
+<ComponentPreview name="icon-button/size" />
+
+### Disabled
+You can disable the icon button component by setting the `is-disabled` prop to `true`, preventing user interaction.
+
+<ComponentPreview name="icon-button/disabled" />
+
+### Loading
+You can show a loading state by setting the `is-loading` prop to `true`, indicating that the icon button is in a loading state.
+
+<ComponentPreview name="icon-button/loading" />
+
+To customize the loading state, you can provide a custom template for the `loader` slot.
+
+<ComponentPreview name="icon-button/loading-slot" />

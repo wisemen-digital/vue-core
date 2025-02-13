@@ -24,3 +24,48 @@
 | ---------- | ---- | ----------- |
 | `update:modelValue` | [modelValue: TabItem\<T\>] |  |
 
+
+## Style configuration
+
+The following interfaces are defined in the component’s style configuration file:
+
+#### TabsStyleConfig
+
+```ts
+export interface TabsStyleConfig  {
+'--tabs-container-bg-color-default': string
+  '--tabs-container-border-bottom-color-default': string
+  '--tabs-container-border-left-color-default': string
+  '--tabs-container-border-radius-default': string
+  '--tabs-container-border-right-color-default': string
+  '--tabs-container-border-top-color-default': string
+  '--tabs-container-padding-x-default': string
+  '--tabs-container-padding-y-default': string
+  '--tabs-indicator-bg-color-default': string
+  '--tabs-indicator-border-bottom-color-default': string
+  '--tabs-indicator-border-left-color-default': string
+  '--tabs-indicator-border-radius-default': string
+  '--tabs-indicator-border-right-color-default': string
+  '--tabs-indicator-border-top-color-default': string
+  '--tabs-indicator-height-default': string
+  '--tabs-indicator-shadow-default': string
+  '--tabs-item-bg-color-active': string
+  '--tabs-item-bg-color-default': string
+  '--tabs-item-bg-color-focus': string
+  '--tabs-item-bg-color-hover': string
+  '--tabs-item-border-radius-default': string
+  '--tabs-item-container-padding-x-default': string
+  '--tabs-item-container-padding-y-default': string
+  '--tabs-item-font-size-default': string
+  '--tabs-item-font-weight-default': string
+  '--tabs-item-padding-x-default': string
+  '--tabs-item-padding-y-default': string
+  '--tabs-item-ring-color-default': string
+  '--tabs-item-text-color-active': string
+  '--tabs-item-text-color-default': string
+  '--tabs-item-text-color-disabled': string
+  '--tabs-item-text-color-focus': string
+  '--tabs-item-text-color-hover': string
+}
+```
+

@@ -28,3 +28,65 @@
 | sub-menu-trigger-content | `{ label: string; }` |  |
 | trigger | `{}` |  |
 
+
+## Style configuration
+
+The following interfaces are defined in the component’s style configuration file:
+
+#### DropdownMenuStyleConfig
+
+```ts
+export interface DropdownMenuStyleConfig  {
+'--dropdown-menu-bg-color-default': string
+  '--dropdown-menu-border-color-default': string
+  '--dropdown-menu-border-radius-default': string
+  '--dropdown-menu-destructive-item-bg-color-default': string
+  '--dropdown-menu-destructive-item-bg-color-disabled': string
+  '--dropdown-menu-destructive-item-bg-color-highlighted': string
+  '--dropdown-menu-destructive-item-bg-color-hover': string
+  '--dropdown-menu-destructive-item-icon-color-default': string
+  '--dropdown-menu-destructive-item-icon-color-disabled': string
+  '--dropdown-menu-destructive-item-icon-color-highlighted': string
+  '--dropdown-menu-destructive-item-icon-color-hover': string
+  '--dropdown-menu-destructive-item-text-color-default': string
+  '--dropdown-menu-destructive-item-text-color-disabled': string
+  '--dropdown-menu-destructive-item-text-color-highlighted': string
+  '--dropdown-menu-destructive-item-text-color-hover': string
+  '--dropdown-menu-group-label-font-size-default': string
+  '--dropdown-menu-group-label-font-weight-default': string
+  '--dropdown-menu-group-label-spacing-bottom-default': string
+  '--dropdown-menu-group-label-spacing-top-default': string
+  '--dropdown-menu-group-label-spacing-x-default': string
+  '--dropdown-menu-group-label-text-color-default': string
+  '--dropdown-menu-group-spacing-bottom-default': string
+  '--dropdown-menu-group-spacing-top-default': string
+  '--dropdown-menu-group-spacing-x-default': string
+  '--dropdown-menu-item-bg-color-default': string
+  '--dropdown-menu-item-bg-color-disabled': string
+  '--dropdown-menu-item-bg-color-highlighted': string
+  '--dropdown-menu-item-bg-color-hover': string
+  '--dropdown-menu-item-border-radius-default': string
+  '--dropdown-menu-item-font-size-default': string
+  '--dropdown-menu-item-font-weight-default': string
+  '--dropdown-menu-item-icon-color-default': string
+  '--dropdown-menu-item-icon-color-disabled': string
+  '--dropdown-menu-item-icon-color-highlighted': string
+  '--dropdown-menu-item-icon-color-hover': string
+  '--dropdown-menu-item-icon-size-default': string
+  '--dropdown-menu-item-icon-spacing-default': string
+  '--dropdown-menu-item-padding-x-default': string
+  '--dropdown-menu-item-padding-y-default': string
+  '--dropdown-menu-item-separator-color-default': string
+  '--dropdown-menu-item-separator-spacing-y-default': string
+  '--dropdown-menu-item-text-color-default': string
+  '--dropdown-menu-item-text-color-disabled': string
+  '--dropdown-menu-item-text-color-highlighted': string
+  '--dropdown-menu-item-text-color-hover': string
+  '--dropdown-menu-max-width-default': string
+  '--dropdown-menu-min-width-default': string
+  '--dropdown-menu-padding-x-default': string
+  '--dropdown-menu-padding-y-default': string
+  '--dropdown-menu-shadow-default': string
+}
+```
+

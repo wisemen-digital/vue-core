@@ -5,7 +5,7 @@
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
 | **modelValue*** | `string \| null` |  |  |
-| autocomplete | `"off" \| "on"` | The autocorrect property of the input. | `"off"` |
+| autocomplete | `"off" \| "on"` | The autocomplete property of the input. | `"off"` |
 | autoFocus | `boolean` | Whether the input should be focused automatically. | `false` |
 | errors | `string[]` | The errors associated with the input. | `[]` |
 | hint | `string \| null` | The hint text of the input. | `null` |
@@ -29,15 +29,15 @@
 
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
-| bottom | `{ errors: string[]; hint: string \| null; }` |  |
-| error | `{ errors: string[]; }` |  |
-| hint | `{ hint: string \| null; }` |  |
-| icon-left | `-` |  |
-| icon-right | `-` |  |
-| label | `{ label: string \| null; }` |  |
-| left | `-` |  |
-| loader | `-` |  |
-| right | `-` |  |
+| bottom | `{ errors: string[]; hint: string \| null; }` | Can be used to render a custom hint and error message. |
+| error | `{ errors: string[]; }` | Can be used to render a custom error message. |
+| hint | `{ hint: string \| null; }` | Can be used to render a custom hint message. |
+| icon-left | `-` | The content to display on the left side. |
+| icon-right | `-` | The content to display on the right side. |
+| label | `{ label: string \| null; }` | Can be used to render a custom label. |
+| left | `-` | The content to display on the left side. (Will show under the icon-left slot) |
+| loader | `-` | Can be used to render a custom loader. |
+| right | `-` | The content to display on the right side. (Will show above the icon-right slot) |
 
 
 ## Events
@@ -47,4 +47,83 @@
 | `blur` | [] |  |
 | `focus` | [] |  |
 | `update:modelValue` | [modelValue: string \| null] |  |
+
+
+## Style configuration
+
+The following interfaces are defined in the component’s style configuration file:
+
+#### TextFieldStyleConfig
+
+```ts
+export interface TextFieldStyleConfig  {
+'--text-field-bg-color-default': string
+  '--text-field-bg-color-disabled': string
+  '--text-field-bg-color-error': string
+  '--text-field-bg-color-focus': string
+  '--text-field-bg-color-hover': string
+  '--text-field-border-bottom-color-default': string
+  '--text-field-border-bottom-color-disabled': string
+  '--text-field-border-bottom-color-error': string
+  '--text-field-border-bottom-color-focus': string
+  '--text-field-border-bottom-color-hover': string
+  '--text-field-border-left-color-default': string
+  '--text-field-border-left-color-disabled': string
+  '--text-field-border-left-color-error': string
+  '--text-field-border-left-color-focus': string
+  '--text-field-border-left-color-hover': string
+  '--text-field-border-radius-bottom-left-default': string
+  '--text-field-border-radius-bottom-right-default': string
+  '--text-field-border-radius-top-left-default': string
+  '--text-field-border-radius-top-right-default': string
+  '--text-field-border-right-color-default': string
+  '--text-field-border-right-color-disabled': string
+  '--text-field-border-right-color-error': string
+  '--text-field-border-right-color-focus': string
+  '--text-field-border-right-color-hover': string
+  '--text-field-border-top-color-default': string
+  '--text-field-border-top-color-disabled': string
+  '--text-field-border-top-color-error': string
+  '--text-field-border-top-color-focus': string
+  '--text-field-border-top-color-hover': string
+  '--text-field-font-size-default': string
+  '--text-field-font-weight-default': string
+  '--text-field-height-default': string
+  '--text-field-icon-color-default': string
+  '--text-field-icon-color-disabled': string
+  '--text-field-icon-color-error': string
+  '--text-field-icon-color-focus': string
+  '--text-field-icon-color-hover': string
+  '--text-field-icon-left-spacing-default': string
+  '--text-field-icon-right-spacing-default': string
+  '--text-field-icon-size-default': string
+  '--text-field-loader-color-default': string
+  '--text-field-loader-color-disabled': string
+  '--text-field-loader-color-error': string
+  '--text-field-loader-color-focus': string
+  '--text-field-loader-color-hover': string
+  '--text-field-loader-size-default': string
+  '--text-field-padding-left-default': string
+  '--text-field-padding-right-default': string
+  '--text-field-placeholder-color-default': string
+  '--text-field-placeholder-color-disabled': string
+  '--text-field-placeholder-color-error': string
+  '--text-field-placeholder-color-focus': string
+  '--text-field-placeholder-color-hover': string
+  '--text-field-ring-color-error': string
+  '--text-field-ring-color-focus': string
+  '--text-field-shadow-default': string
+  '--text-field-shadow-disabled': string
+  '--text-field-shadow-error': string
+  '--text-field-shadow-focus': string
+  '--text-field-shadow-hover': string
+  '--text-field-text-color-default': string
+  '--text-field-text-color-disabled': string
+  '--text-field-text-color-error': string
+  '--text-field-text-color-focus': string
+  '--text-field-text-color-hover': string
+  '--text-field-with-icon-left-padding-left-default': string
+  '--text-field-with-icon-right-padding-right-default': string
+}
+```
 

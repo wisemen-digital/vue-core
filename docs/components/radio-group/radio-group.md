@@ -1,7 +1,5 @@
 # Radio Group
 
-## Description
-
 A radio group component where you can select one value of a set of options.
 
 ## Use cases
@@ -9,19 +7,15 @@ A radio group component where you can select one value of a set of options.
 <BulletList
   :items="[
     {
-      description: 'When you want to allow users to select a single option from a short list of options.',
+      description: 'When you want to allow users to only select a single option.',
       variant: 'good',
     },
     {
-      description: 'When selecting an option is not required.',
-      variant: 'bad',
-    },
-    {
-      description: 'When you want to allow users to select multiple options from a list.',
+      description: 'When you want to allow users to select multiple options from a short list.',
       variant: 'bad',
       link: {
         label: 'Checkbox Group',
-        href: '/vue-core/components/checkbox/checkbox-group',
+        href: '/vue-core/components/checkbox-group/checkbox-group.html',
       },
     },
     {
@@ -50,7 +44,7 @@ import { VcRadioGroup } from '@wisemen/vue-core'
 
 A single radio group item.
 
-## Import
+## Group item Import
 
 ```ts
 import { VcRadioGroupItem } from '@wisemen/vue-core'
@@ -63,9 +57,11 @@ import { VcRadioGroupItem } from '@wisemen/vue-core'
 
 # Radio Group Item Indicator
 
-The default indicator for a radio group item.
+The default indicator for a radio group item. <br>
+If you want your radio item to have a special design, you can customize the rendering of the radio content. 
+You can use the VcRadioGroupItemIndicator to render the state
 
-## Import
+## Indicator Import
 
 ```ts
 import { VcRadioGroupItemIndicator } from '@wisemen/vue-core'

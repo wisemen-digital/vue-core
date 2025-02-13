@@ -4,6 +4,8 @@ A group of checkboxes.
 
 **For the checkbox documentation, see [Checkbox](/components/checkbox/checkbox).**
 
+## Use cases
+
 <BulletList
   :items="[
     {
@@ -40,6 +42,10 @@ import {
 ```
 
 <!-- @include: ./checkbox-group-meta.md -->
+
+## Style configuration
+
+See <a href="/vue-core/components/checkbox/checkbox.html#style-configuration">Checkbox Style configuration</a>
 
 ## Examples
 

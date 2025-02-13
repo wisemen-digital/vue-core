@@ -20,3 +20,11 @@ import { VcRouterLinkButton } from '@wisemen/vue-core'
 ```
 
 <!-- @include: ./router-link-button-meta.md -->
+
+## Style configuration
+
+See <a href="/vue-core/components/button/button.html#style-configuration">Button Style configuration</a>
+
+## Examples
+
+See <a href="/vue-core/components/button/button.html#examples">Button</a> examples

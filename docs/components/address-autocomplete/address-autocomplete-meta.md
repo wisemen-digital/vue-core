@@ -33,6 +33,7 @@
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
 | bottom | `{}` |  |
+| empty | `{}` |  |
 | error | `{}` |  |
 | hint | `{}` |  |
 | label | `{}` |  |

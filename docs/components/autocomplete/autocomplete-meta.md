@@ -6,7 +6,7 @@
 | ---- | ---- | ----------- | ------- |
 | **displayFn*** | `AutocompleteDisplayFn<SelectValue>` | The display function for the selected value. |  |
 | **items*** | `SelectOption<AcceptableValue>[]` | The items of the select. |  |
-| **modelValue*** | `SelectValue \| null` |  |  |
+| **modelValue*** | `SelectValue` |  |  |
 | clearSearchOnSelection | `boolean \| null` | Whether the search input should be cleared when a selection is made. | `false` |
 | errors | `string[]` | The errors associated with the input. | `[]` |
 | hideClearButton | `boolean \| null` | Whether the clear button should be hidden. | `false` |
@@ -36,6 +36,7 @@
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
 | bottom | `{ errors: string[]; hint: string \| null; }` |  |
+| empty | `{}` |  |
 | error | `{ errors: string[]; }` |  |
 | hint | `{ hint: string \| null; }` |  |
 | label | `{ label: string \| null; }` |  |
@@ -48,5 +49,5 @@
 | `blur` | [] |  |
 | `focus` | [] |  |
 | `search` | [searchTerm: string] |  |
-| `update:modelValue` | [modelValue: SelectValue \| null] |  |
+| `update:modelValue` | [modelValue: SelectValue] |  |
 

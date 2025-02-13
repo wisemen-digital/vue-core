@@ -21,9 +21,30 @@
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
 | bottom | `{}` |  |
+| empty-state | `{}` |  |
 | empty-state-no-data-actions | `{}` |  |
 | empty-state-no-results-actions | `{}` |  |
 | page-count | `{}` |  |
 | pagination | `{ items: ({ type: "ellipsis"; } \| { type: "page"; value: number; })[]; }` |  |
 | top | `{}` |  |
+
+
+## Style configuration
+
+The following interfaces are defined in the component’s style configuration file:
+
+#### TableStyleConfig
+
+```ts
+export interface TableStyleConfig  {
+'--table-bg-color-default': string
+  '--table-border-color-default': string
+  '--table-border-radius-default': string
+  '--table-header-bg-color-default': string
+  '--table-header-label-font-size-default': string
+  '--table-header-label-font-weight-default': string
+  '--table-header-label-text-color-default': string
+  '--table-row-border-color-default': string
+}
+```
 
