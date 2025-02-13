@@ -29,3 +29,10 @@ import { VcTableCell } from '@wisemen/vue-core'
 The most basic usage of the table component.
 
 <ComponentPreview name="table/basic" />
+
+### Borderless with primary cells
+Borderless variant.
+Also using isPrimary on VcTableCell.
+
+
+<ComponentPreview name="table/borderless" />
