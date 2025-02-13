@@ -29,6 +29,22 @@ const props = withDefaults(defineProps<TooltipProps>(), {
   styleConfig: null,
 })
 
+
+defineSlots<{
+  /**
+   * The content that will trigger the tooltip.
+   */
+  'trigger': () => void
+  /**
+   * Use this to render your own trigger. Import VcTooltipTrigger for the trigger to work.
+   */
+  'default': () => void
+  /**
+   * The content to display in the tooltip.
+   */
+  'content': () => void
+}>()
+
 const themeProviderContext = injectThemeProviderContext()
 
 const tooltipStyle = useTooltipStyle()
