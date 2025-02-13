@@ -9,7 +9,13 @@ import type { Toast } from '@/types/toast.type'
 import { ThemeUtil } from '@/utils/theme.util'
 
 const props = defineProps<{
+  /**
+   * The toast to display.
+   */
   toast: Toast
+  /**
+   * The type of the toast.
+   */
   type: 'error' | 'info' | 'success'
 }>()
 

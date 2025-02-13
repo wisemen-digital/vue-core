@@ -108,13 +108,7 @@ observer.observe(document.documentElement, {
                 v-for="(fileName, index) in parsedFiles"
                 :key="index"
               >
-                <div
-                  v-if="selectedTab.value === fileName"
-                  :style="{
-                    maxHeight: '500px',
-                    overflowY: 'auto',
-                  }"
-                >
+                <div v-if="selectedTab.value === fileName">
                   <slot :name="index" />
                 </div>
               </template>

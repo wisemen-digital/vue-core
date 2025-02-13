@@ -22,9 +22,9 @@
 
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
-| content | `{}` |  |
-| default | `{}` |  |
-| trigger | `{}` |  |
+| content | `-` | The content to display in the tooltip. |
+| default | `-` | Use this to render your own trigger. Import VcTooltipTrigger for the trigger to work. |
+| trigger | `-` | The content that will trigger the tooltip. |
 
 
 ## Style configuration
