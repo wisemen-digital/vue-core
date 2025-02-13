@@ -39,6 +39,38 @@ const props = withDefaults(defineProps<DropdownMenuProps>(), {
   styleConfig: null,
 })
 
+
+defineSlots<{
+  /**
+   * The content that will trigger the dropdown.
+   */
+  'trigger': () => void
+  /**
+   * Use this to render your own trigger. Import VcDropdownMenuTrigger for the trigger to work.
+   */
+  'default': () => void
+  /**
+   * Can be used to add other content at the top of the dropdown.
+   */
+  'content-top': () => void  
+  /**
+   * Can be used to add other content to the bottom of the dropdown.
+   */
+  'content-bottom': () => null
+  /**
+   * Can be used to render the content for each option.
+   */
+  'option-content': ({ item }: { item: DropdownMenuItemType }) => void
+  /**
+   * Can be used to render the label of a group.
+   */
+  'group-label': ({ label }: { label: any }) => void
+  /**
+   * Can be used to render the label of sub menu trigger.
+   */
+  'sub-menu-trigger-content': ({ label }: { label: any }) => void
+}>()
+
 const themeProviderContext = injectThemeProviderContext()
 
 const router = useRouter()

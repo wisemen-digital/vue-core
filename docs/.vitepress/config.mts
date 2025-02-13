@@ -49,7 +49,7 @@ const components = [
     items: [
       { text: 'Dialog', link: '/components/dialog/dialog' },
       { text: 'Drawer', link: '/components/drawer/drawer' },
-      // { text: 'Dropdown Menu', link: '/components/dropdown-menu/dropdown-menu' }
+      { text: 'Dropdown Menu', link: '/components/dropdown-menu/dropdown-menu' },
       { text: 'Popover', link: '/components/popover/popover' },
       { text: 'Tooltip', link: '/components/tooltip/tooltip' },
       { text: 'Toast', link: '/components/toast/toast' },

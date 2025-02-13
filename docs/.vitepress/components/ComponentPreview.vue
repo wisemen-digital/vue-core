@@ -66,7 +66,7 @@ observer.observe(document.documentElement, {
 
 <template>
   <VcThemeProvider
-    :dark-mode-value="isDark ? 'dark' : 'light'"
+    :appearance="isDark ? 'dark' : 'light'"
     theme="default"
   >
   
