@@ -19,9 +19,9 @@
 
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
-| content | `{}` |  |
-| default | `{}` |  |
-| trigger | `{}` |  |
+| content | `-` | The content to display in the popover. |
+| default | `-` | Use this to render your own trigger. Import VcPopoverTrigger for the trigger to work. |
+| trigger | `-` | The content that will trigger the popover. |
 
 
 ## Events

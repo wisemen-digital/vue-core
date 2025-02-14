@@ -20,13 +20,13 @@
 
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
-| content-bottom | `{}` |  |
-| content-top | `{}` |  |
-| default | `{}` |  |
-| group-label | `{ label: any; }` |  |
-| option-content | `{ item: DropdownMenuItem; }` |  |
-| sub-menu-trigger-content | `{ label: string; }` |  |
-| trigger | `{}` |  |
+| content-bottom | `-` | Can be used to add other content to the bottom of the dropdown. |
+| content-top | `-` | Can be used to add other content at the top of the dropdown. |
+| default | `-` | Use this to render your own trigger. Import VcDropdownMenuTrigger for the trigger to work. |
+| group-label | `{ label: any; }` | Can be used to render the label of a group. |
+| option-content | `{ item: DropdownMenuItem; }` | Can be used to render the content for each option. |
+| sub-menu-trigger-content | `{ label: any; }` | Can be used to render the label of sub menu trigger. |
+| trigger | `-` | The content that will trigger the dropdown. |
 
 
 ## Style configuration
