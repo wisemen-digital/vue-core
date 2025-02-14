@@ -40,6 +40,7 @@ const components = [
       { text: 'Phone Number Field', link: '/components/phone-number-field/phone-number-field' },
       { text: 'Radio Group', link: '/components/radio-group/radio-group' },
       { text: 'Select', link: '/components/select/select' },
+      { text: 'Switch', link: '/components/switch/switch' },
       { text: 'Text Field', link: '/components/text-field/text-field' },
       { text: 'Textarea', link: '/components/textarea/textarea' },
     ]
@@ -60,14 +61,6 @@ const components = [
   //   items: [
   //     { text: 'Tabs', link: '/components/tabs/tabs' },
   //     { text: 'Table', link: '/components/table/table' },
-  //   ]
-  // },
-  // {
-  //   text: 'Interactive Elements',
-  //   items: [
-  //     { text: 'Button', link: '/components/button/button' },
-  //     { text: 'Toggle', link: '/components/toggle/toggle' },
-  //     { text: 'Switch', link: '/components/switch/switch' }
   //   ]
   // },
   // {
