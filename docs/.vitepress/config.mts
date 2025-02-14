@@ -84,13 +84,13 @@ const components = [
   //     { text: 'Address Autocomplete', link: '/components/autocomplete/address-autocomplete' },
   //   ]
   // },
-  // {
-  //   text: 'Utilities',
-  //   items: [
-  //     { text: 'Config Provider', link: '/components/config-provider/config-provider' },
-  //     { text: 'Theme Provider', link: '/components/theme-provider/theme-provider' },
-  //   ]
-  // }
+  {
+    text: 'Utilities',
+    items: [
+      { text: 'Config Provider', link: '/components/config-provider/config-provider' },
+      { text: 'Theme Provider', link: '/components/theme-provider/theme-provider' },
+    ]
+  }
 ]
 
 // https://vitepress.dev/reference/site-config

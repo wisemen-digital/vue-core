@@ -4,16 +4,16 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| **locale*** | `string` |  |  |
-| areKeyboardShortcutHintsHidden | `boolean` |  |  |
-| googleMapsApiKey | `string` |  |  |
-| pagination | `{ limit?: number; }` |  |  |
-| teleportTargetSelector | `string` |  |  |
+| **locale*** | `string` | The locale to use for localization. |  |
+| areKeyboardShortcutHintsHidden | `boolean` | Whether the keyboard shortcut hints should be hidden. |  |
+| googleMapsApiKey | `string` | The Google Maps API key (used for example to validate addresses using the AddressAutocomplete component). |  |
+| pagination | `{ limit?: number; }` | The limit for pagination. |  |
+| teleportTargetSelector | `string` | The selector for the teleport target. |  |
 
 
 ## Slots
 
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
-| default | `{}` |  |
+| default | `-` | Wrap your application in this component to provide configuration to all components. |
 
