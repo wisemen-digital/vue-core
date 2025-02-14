@@ -4,5 +4,5 @@
 
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
-| default | `{}` |  |
+| default | `-` | Use to display your own close button. |
 

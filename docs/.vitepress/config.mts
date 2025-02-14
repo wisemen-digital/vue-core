@@ -47,8 +47,8 @@ const components = [
   {
     text: 'Overlays & Popups',
     items: [
-      // { text: 'Dialog', link: '/components/dialog/dialog' },
-      // { text: 'Drawer', link: '/components/drawer/drawer' },
+      { text: 'Dialog', link: '/components/dialog/dialog' },
+      { text: 'Drawer', link: '/components/drawer/drawer' },
       // { text: 'Popover', link: '/components/popover/popover' },
       { text: 'Tooltip', link: '/components/tooltip/tooltip' },
       { text: 'Toast', link: '/components/toast/toast' },

@@ -19,6 +19,13 @@ const props = withDefaults(defineProps<DialogProps>(), {
   styleConfig: null,
 })
 
+defineSlots<{
+  /**
+   * The content to display in the dialog.
+   */
+  'default': () => void
+}>()
+
 const emit = defineEmits<{
   close: []
 }>()

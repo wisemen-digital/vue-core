@@ -6,6 +6,7 @@ import {
   VcSwitch,
   VcTabs,
   VcThemeProvider,
+  VcDialogContainer,
 } from '@wisemen/vue-core'
 import { computed, ref } from 'vue'
 
@@ -68,6 +69,8 @@ observer.observe(document.documentElement, {
     :dark-mode-value="isDark ? 'dark' : 'light'"
     theme="default"
   >
+  
+  <VcDialogContainer />
     <div class="flex flex-col gap-2">
       <div class="vp-raw">
         <div class="flex justify-end gap-x-4">

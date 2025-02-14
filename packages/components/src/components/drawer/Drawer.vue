@@ -20,6 +20,13 @@ const props = withDefaults(defineProps<DrawerProps>(), {
   transitionClasses: null,
 })
 
+defineSlots<{
+  /**
+   * The content to display in the drawer.
+   */
+  'default': () => void
+}>()
+
 const emit = defineEmits<{
   close: []
 }>()
