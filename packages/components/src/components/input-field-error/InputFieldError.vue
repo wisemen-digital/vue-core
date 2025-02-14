@@ -7,8 +7,19 @@ import type { StyleConfig } from '@/types/style.type'
 import { ThemeUtil } from '@/utils/theme.util'
 
 const props = withDefaults(defineProps<{
+  /**
+   * The id of the related input field.
+   */
   inputId: string
+  /**
+   * The errors related to the input field.
+   * @default []
+   */
   errors: string[]
+  /**
+   * The style configuration for the error message.
+   * @default null
+   */
   styleConfig?: StyleConfig<'inputFieldError'> | null
 }>(), {
   errors: () => [],
