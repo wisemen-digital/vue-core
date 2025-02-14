@@ -1,6 +1,9 @@
 # Input Field
 
-A wrapper for your custom inputs. Supports label, errors and hint styling
+A wrapper for your custom inputs. Supports label, errors and hint slots. 
+<br>
+<br>
+To customize form utilities overall in your project, see [InputFieldLabel](/), [InputFieldError](/), [InputFieldHint](/).
 
 ## Use cases
 
