@@ -6,6 +6,6 @@ const selectContext = injectSelectContext()
 
 <template>
   <div v-if="selectContext.isEmpty.value">
-    Empty
+    <slot />
   </div>
 </template>

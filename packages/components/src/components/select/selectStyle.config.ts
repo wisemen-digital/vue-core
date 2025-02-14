@@ -206,7 +206,7 @@ export function setupDefaultSelectStyles(): void {
       '--select-placeholder-color-focus': 'var(--text-placeholder)',
       '--select-placeholder-color-hover': 'var(--text-placeholder)',
       '--select-ring-color-error': 'var(--error-500)',
-      '--select-ring-color-focus': 'var(--brand-primary-500)',
+      '--select-ring-color-focus': 'var(--brand-500)',
       '--select-separator-color-default': 'var(--border-primary)',
       '--select-separator-spacing-y-default': 'var(--spacing-xs)',
       '--select-shadow-default': 'var(--shadow-xs)',

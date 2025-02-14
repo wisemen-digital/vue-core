@@ -247,8 +247,6 @@ function onBlur(): void {
       />
     </template>
 
-    {{ themeProviderContext.theme.value }} - {{ themeProviderContext.appearance.value }}
-
     <NumberFieldRoot
       v-model="computedModel"
       :default-value="computedModel"

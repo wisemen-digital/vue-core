@@ -1,5 +1,18 @@
 # Changelog
 
+## [alpha.21]
+
+### Breaking Changes
+
+- **useDocumentTitle**
+  - Change `documentTitle.set` parameter from `string` to `MaybeRefOrGetter<string>`.
+
+## [alpha.20]
+
+## [alpha.19]
+
+## [alpha.18]
+
 ## [alpha.17]
 
 ### Breaking Changes

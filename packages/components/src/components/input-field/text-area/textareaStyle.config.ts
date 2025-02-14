@@ -104,7 +104,7 @@ export function setupDefaultTextareaStyles(): void {
       '--textarea-placeholder-color-focus': 'var(--text-placeholder)',
       '--textarea-placeholder-color-hover': 'var(--text-placeholder)',
       '--textarea-ring-color-error': 'var(--error-500)',
-      '--textarea-ring-color-focus': 'var(--brand-primary-500)',
+      '--textarea-ring-color-focus': 'var(--brand-500)',
       '--textarea-ring-offset-color-focus': 'var(--bg-primary)',
       '--textarea-shadow-default': 'var(--shadow-xs)',
       '--textarea-shadow-disabled': 'var(--shadow-xs)',

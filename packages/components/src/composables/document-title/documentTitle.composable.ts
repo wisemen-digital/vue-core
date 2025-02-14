@@ -1,13 +1,17 @@
-import type { Ref } from 'vue'
+import type {
+  MaybeRefOrGetter,
+  Ref,
+} from 'vue'
 import {
   readonly,
   ref,
+  toValue,
   watch,
 } from 'vue'
 
 interface UseDocumentTitleReturnType {
   title: Readonly<Ref<string>>
-  set: (title: string) => void
+  set: (title: MaybeRefOrGetter<string>) => void
   setTemplate: (newTemplate: string) => void
 }
 
@@ -24,8 +28,12 @@ function setTemplate(newTemplate: string): void {
 export function useDocumentTitle(): UseDocumentTitleReturnType {
   const documentTitle = ref<string>(document.title)
 
-  function setDocumentTitle(title: string): void {
-    documentTitle.value = title
+  function setDocumentTitle(title: MaybeRefOrGetter<string>): void {
+    watch(() => toValue(title), (newTitle) => {
+      documentTitle.value = newTitle
+    }, {
+      immediate: true,
+    })
   }
 
   watch(

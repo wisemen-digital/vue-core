@@ -117,7 +117,7 @@ export function setupDefaultCheckboxStyles(): void {
       '--checkbox-label-text-color-hover': 'var(--text-primary)',
 
       '--checkbox-ring-color-error': 'var(--error-500)',
-      '--checkbox-ring-color-focus': 'var(--brand-primary-500)',
+      '--checkbox-ring-color-focus': 'var(--brand-500)',
 
       '--checkbox-size-default': '1.25rem',
     },

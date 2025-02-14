@@ -113,7 +113,7 @@ export function setupDefaultRadioGroupItemStyles(): void {
       '--radio-group-item-label-text-color-hover': 'var(--text-primary)',
 
       '--radio-group-item-ring-color-error': 'var(--error-500)',
-      '--radio-group-item-ring-color-focus': 'var(--brand-primary-500)',
+      '--radio-group-item-ring-color-focus': 'var(--brand-500)',
 
       '--radio-group-item-size-default': '1.25rem',
     },

@@ -129,7 +129,7 @@ export function setupDefaultTextFieldStyles(): void {
       '--text-field-placeholder-color-focus': 'var(--text-placeholder)',
       '--text-field-placeholder-color-hover': 'var(--text-placeholder)',
       '--text-field-ring-color-error': 'var(--error-500)',
-      '--text-field-ring-color-focus': 'var(--brand-primary-500)',
+      '--text-field-ring-color-focus': 'var(--brand-500)',
       '--text-field-shadow-default': 'var(--shadow-xs)',
       '--text-field-shadow-disabled': 'var(--shadow-xs)',
       '--text-field-shadow-error': 'var(--shadow-xs)',

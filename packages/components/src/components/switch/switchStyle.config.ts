@@ -114,7 +114,7 @@ export function setupDefaultSwitchStyles(): void {
       '--switch-label-text-color-hover': 'var(--text-primary)',
 
       '--switch-ring-color-error': 'var(--error-500)',
-      '--switch-ring-color-focus': 'var(--brand-primary-500)',
+      '--switch-ring-color-focus': 'var(--brand-500)',
 
       '--switch-thumb-bg-color-default': 'white',
       '--switch-thumb-padding-default': 'var(--spacing-xxs)',

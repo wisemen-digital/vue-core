@@ -8,18 +8,18 @@
   --color-black: #000000;
   --color-white: #ffffff;
 
-  --color-brand-primary-25: var(--brand-primary-25);
-  --color-brand-primary-50: var(--brand-primary-50);
-  --color-brand-primary-100: var(--brand-primary-100);
-  --color-brand-primary-200: var(--brand-primary-200);
-  --color-brand-primary-300: var(--brand-primary-300);
-  --color-brand-primary-400: var(--brand-primary-400);
-  --color-brand-primary-500: var(--brand-primary-500);
-  --color-brand-primary-600: var(--brand-primary-600);
-  --color-brand-primary-700: var(--brand-primary-700);
-  --color-brand-primary-800: var(--brand-primary-800);
-  --color-brand-primary-900: var(--brand-primary-900);
-  --color-brand-primary-950: var(--brand-primary-950);
+  --color-brand-25: var(--brand-25);
+  --color-brand-50: var(--brand-50);
+  --color-brand-100: var(--brand-100);
+  --color-brand-200: var(--brand-200);
+  --color-brand-300: var(--brand-300);
+  --color-brand-400: var(--brand-400);
+  --color-brand-500: var(--brand-500);
+  --color-brand-600: var(--brand-600);
+  --color-brand-700: var(--brand-700);
+  --color-brand-800: var(--brand-800);
+  --color-brand-900: var(--brand-900);
+  --color-brand-950: var(--brand-950);
 
   --color-error-25: var(--error-25);
   --color-error-50: var(--error-50);
@@ -133,7 +133,7 @@
   --background-color-disabled-subtle: var(--bg-disabled-subtle);
   --background-color-overlay: var(--bg-overlay);
   --background-color-brand-primary: var(--bg-brand-primary);
-  --background-color-brand-primary-alt: var(--bg-brand-primary-alt);
+  --background-color-brand-alt: var(--bg-brand-primary-alt);
   --background-color-brand-secondary: var(--bg-brand-secondary);
   --background-color-brand-solid: var(--bg-brand-solid);
   --background-color-brand-solid-hover: var(--bg-brand-solid-hover);

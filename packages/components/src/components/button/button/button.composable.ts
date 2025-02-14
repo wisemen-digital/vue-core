@@ -1,3 +1,4 @@
+import { useEventListener } from '@vueuse/core'
 import {
   computed,
   type ComputedRef,
@@ -121,6 +122,8 @@ export function useButton(options: UseButtonOptions): UseButtonReturnType {
 
     options.onClick?.(event)
   }
+
+  useEventListener('mouseup', onMouseUp)
 
   return {
     baseClasses,

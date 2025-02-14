@@ -7,6 +7,7 @@ import {
   computed,
   h,
   markRaw,
+  onBeforeUnmount,
   reactive,
   ref,
 } from 'vue'
@@ -110,6 +111,10 @@ export function useDialog<TComponent extends Component>(
       'data-state': isOpen,
     }
   }
+
+  onBeforeUnmount(() => {
+    closeDialog()
+  })
 
   return {
     close: closeDialog,

@@ -149,6 +149,8 @@ export const useButtonStyle = tv({
       true: {
         base: new StyleBuilder()
           .withClasses('cursor-not-allowed')
+          .withBorder('border-(--button-border-color-default)')
+          .withShadow('shadow-(--button-shadow-color-default)')
           .build(),
       },
     },

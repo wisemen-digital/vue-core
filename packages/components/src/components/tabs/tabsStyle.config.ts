@@ -50,11 +50,11 @@ export function setupDefaultTabsStyles(): void {
       '--tabs-container-padding-y-default': '0px',
 
       '--tabs-indicator-bg-color-default': 'transparent',
-      '--tabs-indicator-border-bottom-color-default': 'var(--brand-primary-500)',
-      '--tabs-indicator-border-left-color-default': 'var(--brand-primary-500)',
+      '--tabs-indicator-border-bottom-color-default': 'var(--brand-500)',
+      '--tabs-indicator-border-left-color-default': 'var(--brand-500)',
       '--tabs-indicator-border-radius-default': 'var(--radius-sm)',
-      '--tabs-indicator-border-right-color-default': 'var(--brand-primary-500)',
-      '--tabs-indicator-border-top-color-default': 'var(--brand-primary-500)',
+      '--tabs-indicator-border-right-color-default': 'var(--brand-500)',
+      '--tabs-indicator-border-top-color-default': 'var(--brand-500)',
       '--tabs-indicator-height-default': '1px',
       '--tabs-indicator-shadow-default': '0px 0px 0px 0px transparent',
 
