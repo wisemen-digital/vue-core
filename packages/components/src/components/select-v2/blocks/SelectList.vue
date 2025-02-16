@@ -2,6 +2,7 @@
 import {
   injectListboxRootContext,
   ListboxContent,
+  ListboxVirtualizer,
 } from 'reka-ui'
 import {
   computed,
@@ -63,21 +64,87 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div>
-    <!-- TODO: slot top & bottom -->
-    <ListboxContent
-      ref="listboxContentRef"
+  <ListboxContent
+    v-if="!selectContext.isEmpty.value"
+    ref="listboxContentRef"
+    :class="listboxContentClasses"
+  >
+    <ListboxVirtualizer
+      v-if="selectContext.virtualList.value !== null"
+      :options="selectContext.filteredItems.value"
+      :overscan="10"
+      :estimate-size="selectContext.virtualList.value.optionHeight"
     >
-      <div
-        v-if="!selectContext.isEmpty.value"
-        :class="listboxContentClasses"
+      <template #default="{ option }">
+        <SelectItem :item="option">
+          <template #option="{ item: selectItem }">
+            <slot
+              v-if="selectItem.type === 'option'"
+              :item="selectItem"
+              name="option"
+            />
+          </template>
+
+          <template #option-content="{ item: selectItem }">
+            <slot
+              v-if="selectItem.type === 'option'"
+              :item="selectItem"
+              name="option-content"
+            />
+          </template>
+
+          <template #option-indicator="{ item: selectItem }">
+            <slot
+              v-if="selectItem.type === 'option'"
+              :item="selectItem"
+              name="option-indicator"
+            />
+          </template>
+        </SelectItem>
+      </template>
+    </ListboxVirtualizer>
+
+    <template v-else>
+      <SelectItem
+        v-for="(item, itemIndex) of selectContext.items.value"
+        :key="itemIndex"
+        :item="item"
       >
-        <SelectItem
-          v-for="(item, itemIndex) of selectContext.items.value"
-          :key="itemIndex"
-          :item="item"
-        />
-      </div>
-    </ListboxContent>
-  </div>
+        <template #option="{ item: selectItem }">
+          <slot
+            v-if="selectItem.type === 'option'"
+            :item="selectItem"
+            name="option"
+          />
+        </template>
+
+        <template #option-content="{ item: selectItem }">
+          <slot
+            v-if="selectItem.type === 'option'"
+            :item="selectItem"
+            name="option-content"
+          />
+        </template>
+
+        <template #option-indicator="{ item: selectItem }">
+          <slot
+            v-if="selectItem.type === 'option'"
+            :item="selectItem"
+            name="option-indicator"
+          />
+        </template>
+
+        <template #group-label="{ label }">
+          <slot
+            :label="label"
+            name="group-label"
+          />
+        </template>
+
+        <template #separator>
+          <slot name="separator" />
+        </template>
+      </SelectItem>
+    </template>
+  </ListboxContent>
 </template>

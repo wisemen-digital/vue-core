@@ -2,6 +2,7 @@
 import { ListboxItemIndicator } from 'reka-ui'
 import { computed } from 'vue'
 
+import Icon from '@/components/icon/Icon.vue'
 import { injectSelectContext } from '@/components/select-v2/select.context'
 import { useSelectStyle } from '@/components/select-v2/select.style'
 import { injectSelectOptionContext } from '@/components/select-v2/selectOption.context'
@@ -15,10 +16,7 @@ const optionIndicatorClasses = computed<string>(() => selectStyle.optionIndicato
 </script>
 
 <template>
-  <ListboxItemIndicator>
-    x
-  </ListboxItemIndicator>
-  <!-- <template v-if="selectContext.isMultiple.value">
+  <template v-if="selectContext.isMultiple.value">
     <div
       v-if="!selectOptionContext.isSelected.value"
       class="rounded-xs border border-solid border-primary"
@@ -75,5 +73,5 @@ const optionIndicatorClasses = computed<string>(() => selectStyle.optionIndicato
         </div>
       </ListboxItemIndicator>
     </Transition>
-  </template> -->
+  </template>
 </template>

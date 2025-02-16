@@ -7,6 +7,61 @@ const selectContext = injectSelectContext()
 </script>
 
 <template>
-  <SelectValueMultiple v-if="selectContext.isMultiple.value" />
-  <SelectValueBasic v-else />
+  <SelectValueMultiple v-if="selectContext.isMultiple.value">
+    <template #tag="{ value }">
+      <slot
+        :value="value"
+        name="tag"
+      />
+    </template>
+
+    <template #left>
+      <slot name="left" />
+    </template>
+
+    <template #icon-left>
+      <slot name="icon-left" />
+    </template>
+
+    <template #icon-right>
+      <slot name="icon-right" />
+    </template>
+
+    <template #loader>
+      <slot name="loader" />
+    </template>
+
+    <template #right>
+      <slot name="right" />
+    </template>
+  </SelectValueMultiple>
+
+  <SelectValueBasic v-else>
+    <template #left>
+      <slot name="left" />
+    </template>
+
+    <template #icon-left>
+      <slot name="icon-left" />
+    </template>
+
+    <template #icon-right>
+      <slot name="icon-right" />
+    </template>
+
+    <template #value="{ value }">
+      <slot
+        :value="value"
+        name="value"
+      />
+    </template>
+
+    <template #loader>
+      <slot name="loader" />
+    </template>
+
+    <template #right>
+      <slot name="right" />
+    </template>
+  </SelectValueBasic>
 </template>

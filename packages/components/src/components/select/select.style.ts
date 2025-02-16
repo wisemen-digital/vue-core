@@ -43,7 +43,7 @@ export const useSelectStyle = tv({
       .withColor('[--input-field-label-text-color-default:var(--select-label-text-color-default)]')
       .build(),
     listboxContent: new StyleBuilder()
-      .withClasses('outline-none')
+      .withClasses('outline-none overflow-y-auto')
       .withSize('max-h-(--select-dropdown-max-height-default)')
       .withPadding('px-(--select-dropdown-padding-x-default)')
       .withPadding('py-(--select-dropdown-padding-y-default)')

@@ -207,8 +207,17 @@ function onTriggerKeyDown(event: KeyboardEvent): void {
   }
 }
 
-// When the value changes, we want to reset the search term because
-// without it, the options will be filtered each time the dropdown closes
+watch(isOpen, (isOpen) => {
+  if (isOpen) {
+    searchTerm.value = ''
+  }
+  else if (!isFocused.value) {
+    emit('blur')
+  }
+})
+
+// When the value changes, we want to reset the search term.
+// Otherwise the options will be filtered each time the dropdown closes
 watch(model, () => {
   setTimeout(() => {
     resetSearchTerm()
@@ -230,6 +239,7 @@ provideSelectContext({
   isOpen,
   darkModeValue: computed<DarkModeValue>(() => themeProviderContext.appearance.value),
   displayFn: props.displayFn as SelectDisplayFn<SelectValue>,
+  filteredItems,
   hint: computed<string | null>(() => props.hint),
   iconLeft: computed<Icon | null>(() => props.iconLeft),
   iconRight: computed<Icon | null>(() => props.iconRight),
@@ -247,6 +257,9 @@ provideSelectContext({
   shouldRemainOpenOnValueChange,
   styleConfig: computed<SelectProps<TValue>['styleConfig']>(() => props.styleConfig),
   theme: computed<string>(() => themeProviderContext.theme.value),
+  virtualList: computed<NonNullable<SelectProps<TValue>['virtualList']> | null>(
+    () => props.virtualList ?? null,
+  ),
   onFilterInput,
   onTriggerBlur,
   onTriggerFocus,
@@ -262,6 +275,7 @@ provideSelectContext({
     :ignore-filter="true"
     :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.appearance.value)"
     :selection-behavior="isMultiple ? 'toggle' : 'replace'"
+    :multiple="isMultiple"
     class="select-default"
     @update:model-value="onModelValueUpdate"
   >

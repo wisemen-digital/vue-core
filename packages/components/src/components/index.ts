@@ -119,12 +119,12 @@ export { default as VcPopoverCloseButton } from '@/components/popover/PopoverClo
 export { default as VcPopoverTrigger } from '@/components/popover/PopoverTrigger.vue'
 
 // Select
-export { default as VcSelect } from '@/components/select/Select.vue'
 export { default as VcSelectFilter } from '@/components/select/SelectFilter.vue'
 export { default as VcSelectGroup } from '@/components/select-v2/blocks/items/SelectGroup.vue'
 export { default as VcSelectOption } from '@/components/select-v2/blocks/items/SelectOption.vue'
 export { default as VcSelectOptionIndicator } from '@/components/select-v2/blocks/items/SelectOptionIndicator.vue'
 export { default as VcSelectSeparator } from '@/components/select-v2/blocks/items/SelectSeparator.vue'
+export { default as VcSelect } from '@/components/select-v2/Select.vue'
 
 // Skeleton
 export { default as VcSkeletonItem } from '@/components/skeleton/SkeletonItem.vue'

@@ -34,6 +34,7 @@ interface SelectContext {
   isOpen: Ref<boolean>
   darkModeValue: ComputedRef<DarkModeValue>
   displayFn: SelectDisplayFn<SelectValue>
+  filteredItems: ComputedRef<SelectItem<SelectValue>[]>
   hint: ComputedRef<string | null>
   iconLeft: ComputedRef<Icon | null>
   iconRight: ComputedRef<Icon | null>
@@ -51,6 +52,7 @@ interface SelectContext {
   shouldRemainOpenOnValueChange: ComputedRef<boolean>
   styleConfig: ComputedRef<SelectProps<SelectValue>['styleConfig']>
   theme: ComputedRef<string>
+  virtualList: ComputedRef<NonNullable<SelectProps<SelectValue>['virtualList']> | null>
   onFilterInput: () => void
   onTriggerBlur: () => void
   onTriggerFocus: () => void

@@ -74,11 +74,17 @@ const isEmpty = computed<boolean>(() => (selectContext.modelValue.value as Array
 
 <template>
   <div :class="[selectBoxClasses]">
-    <Icon
+    <slot name="left" />
+
+    <slot
       v-if="selectContext.iconLeft.value !== null"
-      :icon="selectContext.iconLeft.value"
-      :class="iconLeftClasses"
-    />
+      name="icon-left"
+    >
+      <Icon
+        :icon="selectContext.iconLeft.value"
+        :class="iconLeftClasses"
+      />
+    </slot>
 
     <span
       v-if="isEmpty && selectContext.placeholder.value !== null"
@@ -134,12 +140,18 @@ const isEmpty = computed<boolean>(() => (selectContext.modelValue.value as Array
             </slot>
           </div>
 
-          <Icon
+          <slot
             v-else-if="selectContext.iconRight.value !== null"
-            :class="iconRightClasses"
-            :icon="selectContext.iconRight.value"
-            class="!mr-0"
-          />
+            name="icon-right"
+          >
+            <Icon
+              :class="iconRightClasses"
+              :icon="selectContext.iconRight.value"
+              class="!mr-0"
+            />
+          </slot>
+
+          <slot name="right" />
         </button>
       </PopoverTrigger>
     </div>

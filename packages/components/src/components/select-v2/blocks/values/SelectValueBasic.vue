@@ -89,6 +89,8 @@ const isEmpty = computed<boolean>(() => {
       @mouseleave="selectContext.onTriggerMouseLeave"
       @keydown="selectContext.onTriggerKeyDown"
     >
+      <slot name="left" />
+
       <slot
         v-if="selectContext.iconLeft.value !== null"
         name="icon-left"
@@ -142,6 +144,8 @@ const isEmpty = computed<boolean>(() => {
           :class="iconRightClasses"
         />
       </slot>
+
+      <slot name="right" />
     </button>
   </PopoverTrigger>
 </template>

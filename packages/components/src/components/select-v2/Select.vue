@@ -9,7 +9,11 @@ import SelectList from '@/components/select-v2/blocks/SelectList.vue'
 import SelectPopover from '@/components/select-v2/blocks/SelectPopover.vue'
 import SelectRoot from '@/components/select-v2/blocks/SelectRoot.vue'
 import SelectValue from '@/components/select-v2/blocks/values/SelectValue.vue'
-import type { SelectValue as SelectValueType } from '@/types/select.type'
+import type {
+  SelectItem,
+  SelectOption,
+  SelectValue as SelectValueType,
+} from '@/types/select.type'
 
 const props = withDefaults(defineProps<SelectProps<TValue>>(), {
   id: null,
@@ -46,17 +50,94 @@ const emit = defineEmits<{
   select: [value: TValue]
 }>()
 
+defineSlots<{
+  /**
+   * Can be used to render a custom hint and error message.
+   */
+  'bottom': ({ errors, hint }: { errors: string[], hint: string | null }) => void
+  /**
+   * Can be used to add other content to the top of the dropdown.
+   */
+  'content-bottom': () => null
+  /**
+   * Can be used to add other content to the top of the dropdown.
+   */
+  'content-top': () => null
+  /**
+   * Can be used to render content when no results are found.
+   */
+  'empty': ({ searchTerm }: { searchTerm: string }) => void
+  /**
+   * Can be used to render a custom error message.
+   */
+  'error': ({ errors }: { errors: string[] }) => void
+  /**
+   * Can be used to render the filter. Visible if filterFn is not null.
+   */
+  'filter': () => null
+  /**
+   * Can be used to render the label of a group.
+   */
+  'group-label': ({ label }: { label: any }) => void
+  /**
+   * Can be used to render a custom hint message.
+   */
+  'hint': ({ hint }: { hint: string | null }) => void
+  /**
+   * The icon to the left of the input.
+   */
+  'icon-left': () => null
+  /**
+   * The icon to the right of the input.
+   */
+  'icon-right': () => null
+  /**
+   * Can be used to render a custom label.
+   */
+  'label': ({ label }: { label: string | null }) => void
+  /**
+   * The content to display on the left side. (Will show under the icon-left slot)
+   */
+  'left': () => null
+  /**
+   * Can be used to render a custom loader.
+   */
+  'loader': () => null
+  /**
+   * Can be used to render an entire option.
+   */
+  'option': ({ item }: { item: SelectItem<TValue> }) => void
+  /**
+   * Can be used to render the content for each option.
+   */
+  'option-content': ({ item }: { item: SelectOption<TValue> }) => void
+  /**
+   * Can be used to render the indication for each option.
+   */
+  'option-indicator': ({ item }: { item: SelectItem<TValue> }) => void
+  /**
+   * The content to display on the right side. (Will show above the icon-right slot)
+   */
+  'right': () => null
+  /**
+   * Can be used to render the separator.
+   */
+  'separator': () => null
+  /**
+   * Only when you want to select multiple values: use to render a custom tag per selected item.
+   */
+  'tag': ({ value }: { value: TValue }) => void
+  /**
+   * Can be used to render the selected value(s).
+   */
+  'value': ({ value }: { value: TValue }) => void
+}>()
+
 const model = defineModel<TValue | null>({
   required: true,
 })
 
 const inputId = props.id ?? useId()
-
-// TODO: add slots
-// TODO: option styling
-// TODO: remove `displayFn`
-// TODO: add default `filterFn`
-// TODO: add virtualizer
 </script>
 
 <template>
@@ -69,19 +150,32 @@ const inputId = props.id ?? useId()
     :is-touched="props.isTouched"
   >
     <template #label>
-      <slot name="label" />
+      <slot
+        :label="props.label"
+        name="label"
+      />
     </template>
 
     <template #error>
-      <slot name="error" />
+      <slot
+        :errors="props.errors"
+        name="error"
+      />
     </template>
 
     <template #hint>
-      <slot name="hint" />
+      <slot
+        :hint="props.hint"
+        name="hint"
+      />
     </template>
 
     <template #bottom>
-      <slot name="bottom" />
+      <slot
+        :errors="props.errors"
+        :hint="props.hint"
+        name="bottom"
+      />
     </template>
 
     <SelectRoot
@@ -94,13 +188,88 @@ const inputId = props.id ?? useId()
     >
       <SelectPopover>
         <template #trigger>
-          <SelectValue />
+          <SelectValue>
+            <template #value="{ value }">
+              <slot
+                :value="(value as any)"
+                name="value"
+              />
+            </template>
+
+            <template #loader>
+              <slot name="loader" />
+            </template>
+
+            <template #left>
+              <slot name="left" />
+            </template>
+
+            <template #icon-left>
+              <slot name="icon-left" />
+            </template>
+
+            <template #icon-right>
+              <slot name="icon-right" />
+            </template>
+
+            <template #right>
+              <slot name="right" />
+            </template>
+          </SelectValue>
         </template>
 
         <template #content>
-          <SelectFilter />
-          <SelectEmpty />
-          <SelectList />
+          <slot name="content-top" />
+
+          <slot name="filter">
+            <SelectFilter />
+          </slot>
+
+          <SelectEmpty v-slot="{ searchTerm }">
+            <slot
+              :search-term="searchTerm"
+              name="empty"
+            />
+          </SelectEmpty>
+
+          <SelectList>
+            <template #option="{ item: selectItem }">
+              <slot
+                v-if="selectItem.type === 'option'"
+                :item="(selectItem as SelectItem<TValue>)"
+                name="option"
+              />
+            </template>
+
+            <template #option-content="{ item: selectItem }">
+              <slot
+                v-if="selectItem.type === 'option'"
+                :item="(selectItem as SelectOption<TValue>)"
+                name="option-content"
+              />
+            </template>
+
+            <template #option-indicator="{ item: selectItem }">
+              <slot
+                v-if="selectItem.type === 'option'"
+                :item="(selectItem as SelectItem<TValue>)"
+                name="option-indicator"
+              />
+            </template>
+
+            <template #group-label="{ label }">
+              <slot
+                :label="label"
+                name="group-label"
+              />
+            </template>
+
+            <template #separator>
+              <slot name="separator" />
+            </template>
+          </SelectList>
+
+          <slot name="content-bottom" />
         </template>
       </SelectPopover>
     </SelectRoot>

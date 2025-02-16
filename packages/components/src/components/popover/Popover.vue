@@ -28,17 +28,17 @@ const props = withDefaults(defineProps<PopoverProps>(), {
 
 defineSlots<{
   /**
-   * The content that will trigger the popover.
+   * The content to display in the popover.
    */
-  'trigger': () => void
+  content: () => void
   /**
    * Use this to render your own trigger. Import VcPopoverTrigger for the trigger to work.
    */
-  'default': () => void
+  default: () => void
   /**
-   * The content to display in the popover.
+   * The content that will trigger the popover.
    */
-  'content': () => void
+  trigger: () => void
 }>()
 
 const isOpen = defineModel<boolean>('isOpen', {

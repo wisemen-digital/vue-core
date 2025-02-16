@@ -20,7 +20,7 @@ import {
 import { injectConfigContext } from '@/components/config-provider/config.context'
 import type { PhoneNumberFieldProps } from '@/components/input-field/phone-number-field/phoneNumberField.props'
 import TextField from '@/components/input-field/text-field/TextField.vue'
-import Select from '@/components/select/Select.vue'
+import Select from '@/components/select-v2/Select.vue'
 import type { SelectItem } from '@/types/select.type'
 
 const props = withDefaults(defineProps<PhoneNumberFieldProps>(), {
@@ -191,7 +191,7 @@ watch(countryCodeModel, () => {
     ref="phoneNumberFieldRef"
     v-model="inputModel"
     :style="{
-      '--text-field-padding-left-default': '6px',
+      '--text-field-padding-left-default': '0.375rem',
     }"
     type="tel"
   >
@@ -263,10 +263,10 @@ watch(countryCodeModel, () => {
         popover-width="available-width"
         class="w-16 shrink-0"
       >
-        <template #value>
+        <template #value="{ value }">
           <img
-            :src="getCountryFlagUrl(countryCodeModel) ?? undefined"
-            :alt="getCountryName(countryCodeModel) ?? undefined"
+            :src="getCountryFlagUrl(value) ?? undefined"
+            :alt="getCountryName(value) ?? undefined"
             class="h-3 w-5 shrink-0 rounded-xxs object-cover"
           >
         </template>
