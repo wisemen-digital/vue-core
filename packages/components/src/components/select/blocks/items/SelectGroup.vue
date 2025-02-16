@@ -5,7 +5,7 @@ import {
 } from 'reka-ui'
 import { computed } from 'vue'
 
-import { useSelectStyle } from '@/components/select-v2/select.style'
+import { useSelectStyle } from '@/components/select/select.style'
 import type { SelectGroup, SelectValue } from '@/types/select.type'
 
 const props = defineProps<{

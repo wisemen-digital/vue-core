@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 
 import ConfigProvider from '@/components/config-provider/ConfigProvider.vue'
-import Select from '@/components/select-v2/Select.vue'
+import Select from '@/components/select/Select.vue'
 import ThemeProvider from '@/components/theme-provider/ThemeProvider.vue'
 import { setupDefaultStyles } from '@/styling/setupDefaultStyles'
 import type { SelectItem } from '@/types/select.type'

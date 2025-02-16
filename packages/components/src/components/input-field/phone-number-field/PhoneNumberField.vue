@@ -20,7 +20,7 @@ import {
 import { injectConfigContext } from '@/components/config-provider/config.context'
 import type { PhoneNumberFieldProps } from '@/components/input-field/phone-number-field/phoneNumberField.props'
 import TextField from '@/components/input-field/text-field/TextField.vue'
-import Select from '@/components/select-v2/Select.vue'
+import Select from '@/components/select/Select.vue'
 import type { SelectItem } from '@/types/select.type'
 
 const props = withDefaults(defineProps<PhoneNumberFieldProps>(), {

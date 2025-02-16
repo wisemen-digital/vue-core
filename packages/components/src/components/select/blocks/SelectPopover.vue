@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Popover from '@/components/popover/Popover.vue'
 import PopoverAnchor from '@/components/popover/PopoverAnchor.vue'
-import { injectSelectContext } from '@/components/select-v2/select.context'
+import { injectSelectContext } from '@/components/select/select.context'
 import { ThemeUtil } from '@/utils/theme.util'
 
 const selectContext = injectSelectContext()

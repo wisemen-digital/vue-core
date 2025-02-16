@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 
-import { injectSelectContext } from '@/components/select-v2/select.context'
+import { injectSelectContext } from '@/components/select/select.context'
 
 const selectContext = injectSelectContext()
 

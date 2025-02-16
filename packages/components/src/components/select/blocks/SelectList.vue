@@ -12,8 +12,8 @@ import {
 } from 'vue'
 
 import { useSelectStyle } from '@/components/select/select.style'
-import SelectItem from '@/components/select-v2/blocks/SelectItem.vue'
-import { injectSelectContext } from '@/components/select-v2/select.context'
+import SelectItem from '@/components/select/blocks/SelectItem.vue'
+import { injectSelectContext } from '@/components/select/select.context'
 
 const selectContext = injectSelectContext()
 const selectStyle = useSelectStyle()

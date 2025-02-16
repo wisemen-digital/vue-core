@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { injectSelectContext } from '@/components/select-v2/select.context'
+import { injectSelectContext } from '@/components/select/select.context'
 import Tag from '@/components/tag/Tag.vue'
 import type { SelectValue } from '@/types/select.type'
 

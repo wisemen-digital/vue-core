@@ -3,8 +3,8 @@ import { computed } from 'vue'
 
 import Icon from '@/components/icon/Icon.vue'
 import PopoverTrigger from '@/components/popover/PopoverTrigger.vue'
-import { injectSelectContext } from '@/components/select-v2/select.context'
-import { useSelectStyle } from '@/components/select-v2/select.style'
+import { injectSelectContext } from '@/components/select/select.context'
+import { useSelectStyle } from '@/components/select/select.style'
 import Spinner from '@/components/spinner/Spinner.vue'
 import { useAriaDescribedBy } from '@/composables/aria-described-by/ariaDescribedBy.composable'
 

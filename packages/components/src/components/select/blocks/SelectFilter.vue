@@ -9,7 +9,7 @@ import {
 
 import type { TextFieldProps } from '@/components/input-field/text-field/textField.props'
 import TextField from '@/components/input-field/text-field/TextField.vue'
-import { injectSelectContext } from '@/components/select-v2/select.context'
+import { injectSelectContext } from '@/components/select/select.context'
 
 interface Props extends TextFieldProps {}
 

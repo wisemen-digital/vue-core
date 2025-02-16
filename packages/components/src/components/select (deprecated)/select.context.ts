@@ -6,54 +6,28 @@ import {
   type Ref,
 } from 'vue'
 
-import type {
-  SelectDisplayFn,
-  SelectProps,
-} from '@/components/select/select.props'
-import type { DarkModeValue } from '@/composables/dark-mode/darkMode.composable'
+import type { SelectDisplayFn } from '@/components/select/select.props'
 import type { Icon } from '@/icons/icons'
-import type { SelectItem, SelectValue } from '@/types'
-import type {
-  PopperAlign,
-  PopperSide,
-  PopperWidth,
-} from '@/types/popper'
+import type { SelectValue } from '@/types/select.type'
 
 interface SelectContext {
   inputId: string
   testId: ComputedRef<string | null>
   hasError: ComputedRef<boolean>
-  hasFilter: ComputedRef<boolean>
-  isArrowVisible: ComputedRef<boolean>
   isDisabled: ComputedRef<boolean>
-  isEmpty: ComputedRef<boolean>
   isFocused: ComputedRef<boolean>
   isHovered: ComputedRef<boolean>
   isLoading: ComputedRef<boolean>
   isMultiple: ComputedRef<boolean>
-  isOpen: Ref<boolean>
-  darkModeValue: ComputedRef<DarkModeValue>
+  isOpen: ComputedRef<boolean>
   displayFn: SelectDisplayFn<SelectValue>
-  filteredItems: ComputedRef<SelectItem<SelectValue>[]>
   hint: ComputedRef<string | null>
   iconLeft: ComputedRef<Icon | null>
-  iconRight: ComputedRef<Icon | null>
-  items: ComputedRef<SelectItem<SelectValue>[]>
+  iconRight: ComputedRef<Icon>
   modelValue: Ref<SelectValue>
   placeholder: ComputedRef<string | null>
-  popoverAlign: ComputedRef<PopperAlign>
-  popoverCollisionPaddingInPx: ComputedRef<number>
-  popoverContainerElement: ComputedRef<HTMLElement | null>
-  popoverOffsetInPx: ComputedRef<number>
-  popoverSide: ComputedRef<PopperSide>
-  popoverWidth: ComputedRef<PopperWidth | null>
-  searchPlaceholder: ComputedRef<string | null>
+  searchPlaceholder: ComputedRef<string>
   searchTerm: Ref<string>
-  shouldRemainOpenOnValueChange: ComputedRef<boolean>
-  styleConfig: ComputedRef<SelectProps<SelectValue>['styleConfig']>
-  theme: ComputedRef<string>
-  virtualList: ComputedRef<NonNullable<SelectProps<SelectValue>['virtualList']> | null>
-  onFilterInput: () => void
   onTriggerBlur: () => void
   onTriggerFocus: () => void
   onTriggerKeyDown: (event: KeyboardEvent) => void

@@ -1,7 +1,7 @@
 <script setup lang="ts" generic="TValue extends SelectValue">
-import SelectGroup from '@/components/select-v2/blocks/items/SelectGroup.vue'
-import SelectOption from '@/components/select-v2/blocks/items/SelectOption.vue'
-import SelectSeparator from '@/components/select-v2/blocks/items/SelectSeparator.vue'
+import SelectGroup from '@/components/select/blocks/items/SelectGroup.vue'
+import SelectOption from '@/components/select/blocks/items/SelectOption.vue'
+import SelectSeparator from '@/components/select/blocks/items/SelectSeparator.vue'
 import type { SelectItem, SelectValue } from '@/types/select.type'
 
 const props = defineProps<{

@@ -12,11 +12,11 @@ import {
 } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import { provideSelectContext } from '@/components/select-v2/select.context'
+import { provideSelectContext } from '@/components/select/select.context'
 import type {
   SelectDisplayFn,
   SelectProps,
-} from '@/components/select-v2/select.props'
+} from '@/components/select/select.props'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import type { DarkModeValue } from '@/composables/dark-mode/darkMode.composable'
 import type { Icon } from '@/icons/icons'

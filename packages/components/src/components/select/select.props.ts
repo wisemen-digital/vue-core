@@ -16,7 +16,10 @@ export type SelectFilterFn<TValue extends SelectValue> = (
   searchTerm: string,
 ) => boolean
 
-export interface SelectProps<TValue extends SelectValue> extends FormElementProps, Omit<PopperProps, 'isArrowHidden'>, Stylable<'select'> {
+export interface SelectProps<
+  TValue extends SelectValue> extends FormElementProps,
+  Omit<PopperProps, 'isArrowHidden'>, Stylable<'select'
+  > {
   /**
    * Whether the arrow is visible.
    * @default false
@@ -27,6 +30,11 @@ export interface SelectProps<TValue extends SelectValue> extends FormElementProp
    * @default false
    */
   isLoading?: boolean
+  /**
+   * Whether the open state is controlled by the `isOpen` prop.
+   * @default false
+   */
+  isOpenControlled?: boolean
   /**
    * The display function for the selected value.
    */
@@ -44,7 +52,7 @@ export interface SelectProps<TValue extends SelectValue> extends FormElementProp
    * The right icon of the input.
    * @default 'chevronSelectorVertical'
    */
-  iconRight?: Icon
+  iconRight?: Icon | null
   /**
    * The items of the select.
    */

@@ -43,10 +43,9 @@ export const useSelectStyle = tv({
       .withColor('[--input-field-label-text-color-default:var(--select-label-text-color-default)]')
       .build(),
     listboxContent: new StyleBuilder()
-      .withClasses('outline-none overflow-y-auto')
+      .withClasses('!inset-ring-0')
       .withSize('max-h-(--select-dropdown-max-height-default)')
       .withPadding('px-(--select-dropdown-padding-x-default)')
-      .withPadding('py-(--select-dropdown-padding-y-default)')
       .build(),
     loader: new StyleBuilder()
       .withSize('size-(--select-loader-size-default)')
@@ -103,9 +102,9 @@ export const useSelectStyle = tv({
   },
   variants: {
     isFilterVisible: {
-      true: {
+      false: {
         listboxContent: new StyleBuilder()
-          .withPadding('pt-0')
+          .withPadding('py-(--select-dropdown-padding-y-default)')
           .build(),
       },
     },

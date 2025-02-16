@@ -119,12 +119,16 @@ export { default as VcPopoverCloseButton } from '@/components/popover/PopoverClo
 export { default as VcPopoverTrigger } from '@/components/popover/PopoverTrigger.vue'
 
 // Select
-export { default as VcSelectFilter } from '@/components/select/SelectFilter.vue'
-export { default as VcSelectGroup } from '@/components/select-v2/blocks/items/SelectGroup.vue'
-export { default as VcSelectOption } from '@/components/select-v2/blocks/items/SelectOption.vue'
-export { default as VcSelectOptionIndicator } from '@/components/select-v2/blocks/items/SelectOptionIndicator.vue'
-export { default as VcSelectSeparator } from '@/components/select-v2/blocks/items/SelectSeparator.vue'
-export { default as VcSelect } from '@/components/select-v2/Select.vue'
+export { default as VcSelectGroup } from '@/components/select/blocks/items/SelectGroup.vue'
+export { default as VcSelectOption } from '@/components/select/blocks/items/SelectOption.vue'
+export { default as VcSelectOptionIndicator } from '@/components/select/blocks/items/SelectOptionIndicator.vue'
+export { default as VcSelectSeparator } from '@/components/select/blocks/items/SelectSeparator.vue'
+export { default as VcSelectEmpty } from '@/components/select/blocks/SelectEmpty.vue'
+export { default as VcSelectFilter } from '@/components/select/blocks/SelectFilter.vue'
+export { default as VcSelectList } from '@/components/select/blocks/SelectList.vue'
+export { default as VcSelectPopover } from '@/components/select/blocks/SelectPopover.vue'
+export { default as VcSelectRoot } from '@/components/select/blocks/SelectRoot.vue'
+export { default as VcSelect } from '@/components/select/Select.vue'
 
 // Skeleton
 export { default as VcSkeletonItem } from '@/components/skeleton/SkeletonItem.vue'

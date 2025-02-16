@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import SelectValueBasic from '@/components/select-v2/blocks/values/SelectValueBasic.vue'
-import SelectValueMultiple from '@/components/select-v2/blocks/values/SelectValueMultiple.vue'
-import { injectSelectContext } from '@/components/select-v2/select.context'
+import SelectValueBasic from '@/components/select/blocks/values/SelectValueBasic.vue'
+import SelectValueMultiple from '@/components/select/blocks/values/SelectValueMultiple.vue'
+import { injectSelectContext } from '@/components/select/select.context'
 
 const selectContext = injectSelectContext()
 </script>

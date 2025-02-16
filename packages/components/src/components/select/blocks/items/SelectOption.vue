@@ -6,10 +6,10 @@ import {
   useAttrs,
 } from 'vue'
 
-import SelectOptionIndicator from '@/components/select-v2/blocks/items/SelectOptionIndicator.vue'
-import { injectSelectContext } from '@/components/select-v2/select.context'
-import { useSelectStyle } from '@/components/select-v2/select.style'
-import { provideSelectOptionContext } from '@/components/select-v2/selectOption.context'
+import SelectOptionIndicator from '@/components/select/blocks/items/SelectOptionIndicator.vue'
+import { injectSelectContext } from '@/components/select/select.context'
+import { useSelectStyle } from '@/components/select/select.style'
+import { provideSelectOptionContext } from '@/components/select/selectOption.context'
 import { useElementAttributeObserver } from '@/composables/element-attribute-observer/elementAttributeObserver.composable'
 import type { SelectOption, SelectValue } from '@/types/select.type'
 import type { StyleConfig } from '@/types/style.type'

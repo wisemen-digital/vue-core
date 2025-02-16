@@ -11,11 +11,11 @@ import type { AutocompleteProps } from '@/components/autocomplete/autocomplete.p
 import IconButton from '@/components/button/icon-button/IconButton.vue'
 import InputField from '@/components/input-field/InputField.vue'
 import TextField from '@/components/input-field/text-field/TextField.vue'
-import SelectEmpty from '@/components/select-v2/blocks/SelectEmpty.vue'
-import SelectFilter from '@/components/select-v2/blocks/SelectFilter.vue'
-import SelectList from '@/components/select-v2/blocks/SelectList.vue'
-import SelectPopover from '@/components/select-v2/blocks/SelectPopover.vue'
-import SelectRoot from '@/components/select-v2/blocks/SelectRoot.vue'
+import SelectEmpty from '@/components/select/blocks/SelectEmpty.vue'
+import SelectFilter from '@/components/select/blocks/SelectFilter.vue'
+import SelectList from '@/components/select/blocks/SelectList.vue'
+import SelectPopover from '@/components/select/blocks/SelectPopover.vue'
+import SelectRoot from '@/components/select/blocks/SelectRoot.vue'
 import type { SelectItem, SelectValue as SelectValueType } from '@/types/select.type'
 
 const props = withDefaults(defineProps<AutocompleteProps<TValue>>(), {
