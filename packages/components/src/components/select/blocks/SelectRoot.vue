@@ -44,6 +44,7 @@ const props = withDefaults(defineProps<SelectProps<TValue>>(), {
   iconLeft: null,
   iconRight: 'selectIconRight',
   label: null,
+  persistSearchTermOnClose: false,
   placeholder: null,
   popoverAlign: 'center',
   popoverCollisionPaddingInPx: 0,
@@ -209,9 +210,14 @@ function onTriggerKeyDown(event: KeyboardEvent): void {
 
 watch(isOpen, (isOpen) => {
   if (isOpen) {
-    searchTerm.value = ''
+    return
   }
-  else if (!isFocused.value) {
+
+  if (!props.persistSearchTermOnClose) {
+    resetSearchTerm()
+  }
+
+  if (!isFocused.value) {
     emit('blur')
   }
 })
@@ -219,6 +225,10 @@ watch(isOpen, (isOpen) => {
 // When the value changes, we want to reset the search term.
 // Otherwise the options will be filtered each time the dropdown closes
 watch(model, () => {
+  if (props.persistSearchTermOnClose) {
+    return
+  }
+
   setTimeout(() => {
     resetSearchTerm()
   }, 0)

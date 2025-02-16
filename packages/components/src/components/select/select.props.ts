@@ -58,6 +58,11 @@ export interface SelectProps<
    */
   items: SelectItem<TValue extends Array<infer U> ? U : TValue>[]
   /**
+   * Whether the search should persist closing the dropdown.
+   * @default false
+   */
+  persistSearchTermOnClose?: boolean
+  /**
    * The placeholder text of the input.
    * @default null
    */

@@ -11,9 +11,9 @@ import {
   useTemplateRef,
 } from 'vue'
 
-import { useSelectStyle } from '@/components/select/select.style'
 import SelectItem from '@/components/select/blocks/SelectItem.vue'
 import { injectSelectContext } from '@/components/select/select.context'
+import { useSelectStyle } from '@/components/select/select.style'
 
 const selectContext = injectSelectContext()
 const selectStyle = useSelectStyle()
@@ -23,7 +23,11 @@ const listboxContentRef = useTemplateRef('listboxContentRef')
 const listboxContentClasses = computed<string>(() => selectStyle.listboxContent())
 
 function getOptions(): HTMLElement[] {
-  const el = listboxContentRef.value?.$el as HTMLElement
+  const el = listboxContentRef.value?.$el ?? null as HTMLElement | null
+
+  if (el === null) {
+    return []
+  }
 
   return Array.from(el.querySelectorAll('[role=option]')) as HTMLElement[]
 }
