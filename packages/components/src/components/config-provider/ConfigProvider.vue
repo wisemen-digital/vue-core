@@ -19,7 +19,7 @@ const props = defineProps<{
    */
   locale: string
   /**
-   * Define the default pagination limit used in .
+   * Define the default pagination limit used in the usePagination composable.
    */
   pagination?: {
     limit?: number
@@ -35,7 +35,7 @@ defineSlots<{
   /**
    * Wrap your application in this component to provide configuration to all components.
    */
-  'default': () => void
+  default: () => void
 }>()
 
 provideConfigContext({

@@ -1,14 +1,14 @@
-# Config Provider
+# Theme Provider
 
-Wrap your application in this component to provide some base configuration variables to all components.
+Wrap your application in this component to provide the theme configuration to all components.
 
 ## Import
 
 ```ts
-import { VcConfigProvider } from '@wisemen/vue-core'
+import { VcThemeProvider } from '@wisemen/vue-core'
 ```
 
-<!-- @include: ./config-provider-meta.md -->
+<!-- @include: ./theme-provider-meta.md -->
 
 ## Examples
 

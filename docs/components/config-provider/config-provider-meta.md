@@ -7,7 +7,7 @@
 | **locale*** | `string` | The locale to use for localization. |  |
 | areKeyboardShortcutHintsHidden | `boolean` | Whether the keyboard shortcut hints should be hidden. |  |
 | googleMapsApiKey | `string` | The Google Maps API key (used for example to validate addresses using the AddressAutocomplete component). |  |
-| pagination | `{ limit?: number; }` | The limit for pagination. |  |
+| pagination | `{ limit?: number; }` | Define the default pagination limit used in the usePagination composable. |  |
 | teleportTargetSelector | `string` | The selector for the teleport target. |  |
 
 
