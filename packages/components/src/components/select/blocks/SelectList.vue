@@ -8,7 +8,7 @@ import {
   computed,
   onBeforeUnmount,
   onMounted,
-  useTemplateRef,
+  ref,
 } from 'vue'
 
 import SelectItem from '@/components/select/blocks/SelectItem.vue'
@@ -18,7 +18,7 @@ import { useSelectStyle } from '@/components/select/select.style'
 const selectContext = injectSelectContext()
 const selectStyle = useSelectStyle()
 const listboxRootContext = injectListboxRootContext()
-const listboxContentRef = useTemplateRef('listboxContentRef')
+const listboxContentRef = ref<InstanceType<typeof ListboxContent> | null>(null)
 
 const listboxContentClasses = computed<string>(() => selectStyle.listboxContent())
 

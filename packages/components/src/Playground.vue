@@ -2,6 +2,8 @@
 import { ref } from 'vue'
 
 import ConfigProvider from '@/components/config-provider/ConfigProvider.vue'
+import Popover from '@/components/popover/Popover.vue'
+import PopoverTrigger from '@/components/popover/PopoverTrigger.vue'
 import Select from '@/components/select/Select.vue'
 import ThemeProvider from '@/components/theme-provider/ThemeProvider.vue'
 import { setupDefaultStyles } from '@/styling/setupDefaultStyles'
@@ -32,6 +34,16 @@ const selectItems: SelectItem<string>[] = [
           :filter-fn="(option, searchTerm) => option.includes(searchTerm)"
           class="w-72"
         />
+
+        <Popover>
+          <PopoverTrigger>
+            <button>trigger</button>
+          </PopoverTrigger>
+
+          <template #content>
+            <button>button</button>
+          </template>
+        </Popover>
       </div>
     </ThemeProvider>
   </ConfigProvider>

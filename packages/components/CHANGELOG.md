@@ -1,5 +1,17 @@
 # Changelog
 
+## [alpha.23]
+
+### Features
+- **Autocomplete**
+  - Various improvements
+
+### Fixes
+- **DropdownMenu**
+  - Fix dropdown menu sub content styling.
+
+## [alpha.22]
+
 ## [alpha.21]
 
 ### Breaking Changes

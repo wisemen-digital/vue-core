@@ -11,6 +11,7 @@ import { dropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style
 import Icon from '@/components/icon/Icon.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import type { DropdownMenuSubMenu } from '@/types/dropdownMenu.type'
+import { ThemeUtil } from '@/utils/theme.util'
 
 const props = defineProps<{
   item: DropdownMenuSubMenu
@@ -29,6 +30,7 @@ const dropdownContentClasses = computed<string>(() => style.dropdownContent())
 <template>
   <DropdownMenuSub>
     <DropdownMenuSubTrigger
+      :item="props.item"
       :class="itemClasses"
       :data-test-id="props.item.testId"
     >
@@ -50,7 +52,11 @@ const dropdownContentClasses = computed<string>(() => style.dropdownContent())
 
     <DropdownMenuPortal>
       <DropdownMenuSubContent
-        :class="[dropdownClasses, dropdownContentClasses, themeProviderContext.theme.value]"
+        :class="[
+          dropdownClasses,
+          dropdownContentClasses,
+          ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.appearance.value),
+        ]"
         :side-offset="10"
         class="dropdown-menu-default"
       >

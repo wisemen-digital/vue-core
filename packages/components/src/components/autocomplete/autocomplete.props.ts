@@ -45,6 +45,10 @@ export interface AutocompleteProps<
    */
   isRequired?: boolean
   /**
+   * If enabled, the dropdown will be able to be opened without having a search term.
+   */
+  isSearchTermOptional?: boolean
+  /**
    * Whether the input is touched. Used to determine if an error should be shown.
    * @default false
    */
@@ -96,4 +100,10 @@ export interface AutocompleteProps<
    * @default null
    */
   placeholder?: string | null
+  /**
+   * By default, a value is set only when an option is selected.
+   * If set to true, an option matching the search term will be automatically selected when the input loses focus.
+   * @default false
+   */
+  selectMatchOnBlur?: boolean
 }

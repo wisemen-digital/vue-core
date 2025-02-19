@@ -25,7 +25,7 @@ const themeProviderContext = injectThemeProviderContext()
   <div
     :aria-busy="true"
     :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.appearance.value)"
-    class="relative overflow-hidden rounded bg-tertiary"
+    class="relative overflow-hidden rounded bg-secondary-subtle"
     role="status"
     aria-live="polite"
   >
