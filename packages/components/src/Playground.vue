@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 
 import ConfigProvider from '@/components/config-provider/ConfigProvider.vue'
+import NumberField from '@/components/input-field/number-field/NumberField.vue'
 import Popover from '@/components/popover/Popover.vue'
 import PopoverTrigger from '@/components/popover/PopoverTrigger.vue'
 import Select from '@/components/select/Select.vue'
@@ -21,6 +22,8 @@ const selectItems: SelectItem<string>[] = [
     value: index.toString(),
   })) as any,
 ]
+
+const test = ref(5)
 </script>
 
 <template>
@@ -34,6 +37,10 @@ const selectItems: SelectItem<string>[] = [
           :filter-fn="(option, searchTerm) => option.includes(searchTerm)"
           class="w-72"
         />
+
+        {{ test }}
+
+        <NumberField v-model="test" />
 
         <Popover>
           <PopoverTrigger>

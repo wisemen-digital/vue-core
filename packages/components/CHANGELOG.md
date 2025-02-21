@@ -1,5 +1,13 @@
 # Changelog
 
+## [alpha.25]
+
+### Fixes
+- **NumberField**
+  - Fix bug where clearing the input would reset to the previous value, or default value if no value was set.
+
+## [alpha.24]
+
 ## [alpha.23]
 
 ### Features
