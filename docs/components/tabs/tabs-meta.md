@@ -4,7 +4,7 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| **items*** | `TabItem<T>[]` |  |  |
+| **items*** | `TabItem<T>[]` | All the tab items to render. |  |
 | **modelValue*** | `TabItem<T>` |  |  |
 | styleConfig | `Partial<TabsStyleConfig> \| null` | The style config of the component. |  |
 
@@ -13,9 +13,9 @@
 
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
-| default | `{}` |  |
-| item-left | `{ item: TabItem<T>; }` |  |
-| item-right | `{ item: TabItem<T>; }` |  |
+| default | `-` | Tabs content to display. Wrap each content with VcTabsContent and set the value prop to the tab value for accessibility. |
+| item-left | `-` | Use this to add content to the left of the tab label. |
+| item-right | `-` | Use this to add content to the right of the tab label. |
 
 
 ## Events

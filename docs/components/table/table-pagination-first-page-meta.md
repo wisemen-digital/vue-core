@@ -4,5 +4,5 @@
 
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
-| default | `{ isFirstPage: boolean; }` |  |
+| default | `{ isFirstPage: boolean; }` | Use this to render your own pagination control for the return to the 1st page. |
 

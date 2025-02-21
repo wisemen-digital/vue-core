@@ -14,8 +14,26 @@ import type { TabItem } from '@/types/tabs.type'
 import { ThemeUtil } from '@/utils/theme.util'
 
 const props = defineProps<{
+  /**
+   * All the tab items to render.
+   */
   items: TabItem<TMeta>[]
 } & Stylable<'tabs'>>()
+
+defineSlots<{
+  /**
+   * Use this to add content to the left of the tab label.
+   */
+  'item-left': () => void
+  /**
+   * Use this to add content to the right of the tab label.
+   */
+  'item-right': () => void
+  /**
+   * Tabs content to display. Wrap each content with VcTabsContent and set the value prop to the tab value for accessibility.
+   */
+  'default': () => void
+}>()
 
 const model = defineModel<TabItem<TMeta>>({
   required: true,

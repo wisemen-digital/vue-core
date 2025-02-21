@@ -55,13 +55,14 @@ const components = [
       { text: 'Toast', link: '/components/toast/toast' },
     ]
   },
-  // {
-  //   text: 'Navigation & Layout',
-  //   items: [
-  //     { text: 'Tabs', link: '/components/tabs/tabs' },
-  //     { text: 'Table', link: '/components/table/table' },
-  //   ]
-  // },
+  {
+    text: 'Navigation & Layout',
+    items: [
+      { text: 'Tabs', link: '/components/tabs/tabs' },
+      { text: 'Table', link: '/components/table/table' },
+      { text: 'Table Pagination', link: '/components/table/table-pagination' },
+    ]
+  },
   // {
   //   text: 'Interactive Elements',
   //   items: [

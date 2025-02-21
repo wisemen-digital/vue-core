@@ -11,6 +11,13 @@ import TablePaginationPages from '@/components/table/pagination/TablePaginationP
 import TablePaginationPrevPage from '@/components/table/pagination/TablePaginationPrevPage.vue'
 import { injectTableContext } from '@/components/table/table.context'
 
+defineSlots<{
+  /**
+   * Use this to render your own pagination controls.
+   */
+  default: ({ items }: { items: ({ type: 'ellipsis' } | { type: 'page', value: number })[] }) => void
+}>()
+
 const tableContext = injectTableContext()
 
 const limit = computed<number>(() => tableContext.pagination.value.paginationOptions.value.pagination.limit)

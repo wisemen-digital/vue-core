@@ -11,5 +11,5 @@
 
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
-| default | `{}` |  |
+| default | `-` | Use this to render the table cell data. |
 
