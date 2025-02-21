@@ -23,9 +23,9 @@
 
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
-| bottom | `{}` |  |
-| error | `{}` |  |
-| hint | `{}` |  |
+| bottom | `-` | Can be used to render you own hint and errors. |
+| error | `-` | Can be used to render your own errors. |
+| hint | `-` | Can be used to render your own hint. |
 
 
 ## Events
@@ -61,21 +61,6 @@ export interface SwitchStyleConfig extends BaseStyleConfig {
 
   '--switch-border-radius-default': string
 
-  '--switch-error-font-size': string
-  '--switch-error-font-weight': string
-  '--switch-error-spacing-default': string
-  '--switch-error-text-color': string
-
-  '--switch-hint-font-size': string
-  '--switch-hint-font-weight': string
-  '--switch-hint-spacing-default': string
-  '--switch-hint-text-color-checked': string
-  '--switch-hint-text-color-default': string
-  '--switch-hint-text-color-disabled': string
-  '--switch-hint-text-color-error': string
-  '--switch-hint-text-color-focus': string
-  '--switch-hint-text-color-hover': string
-
   '--switch-icon-color-checked': string
   '--switch-icon-color-default': string
   '--switch-icon-color-disabled': string
@@ -83,16 +68,6 @@ export interface SwitchStyleConfig extends BaseStyleConfig {
   '--switch-icon-color-focus': string
   '--switch-icon-color-hover': string
   '--switch-icon-size-default': string
-
-  '--switch-label-font-size-default': string
-  '--switch-label-font-weight-default': string
-  '--switch-label-spacing-default': string
-  '--switch-label-text-color-checked': string
-  '--switch-label-text-color-default': string
-  '--switch-label-text-color-disabled': string
-  '--switch-label-text-color-error': string
-  '--switch-label-text-color-focus': string
-  '--switch-label-text-color-hover': string
 
   '--switch-ring-color-error': string
   '--switch-ring-color-focus': string

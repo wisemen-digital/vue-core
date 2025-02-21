@@ -20,6 +20,21 @@ export const components = [
     componentName: 'InputField',
   },
   {
+    sourceFolder: 'input-field-error/InputFieldError.vue',
+    targetFolder: 'input-field-error',
+    componentName: 'InputFieldError',
+  },
+  {
+    sourceFolder: 'input-field-hint/InputFieldHint.vue',
+    targetFolder: 'input-field-hint',
+    componentName: 'InputFieldHint',
+  },
+  {
+    sourceFolder: 'input-field-label/InputFieldLabel.vue',
+    targetFolder: 'input-field-label',
+    componentName: 'InputFieldLabel',
+  },
+  {
     sourceFolder: 'input-field/date-field/DateField.vue',
     targetFolder: 'date-field',
     componentName: 'DateField',

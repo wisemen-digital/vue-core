@@ -1,6 +1,9 @@
 # Input Field
 
-A wrapper for your custom inputs. Supports label, errors and hint styling
+A wrapper for your custom inputs. Supports label, errors and hint slots. 
+<br>
+<br>
+To customize form utilities overall in your project, see [InputFieldLabel](/components/input-field-label/input-field-label.html), [InputFieldError](/components/input-field-error/input-field-error.html), [InputFieldHint](/components/input-field-hint/input-field-hint.html).
 
 ## Use cases
 
