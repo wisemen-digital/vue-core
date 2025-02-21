@@ -5,6 +5,13 @@ import { computed } from 'vue'
 import IconButton from '@/components/button/icon-button/IconButton.vue'
 import { injectTableContext } from '@/components/table/table.context'
 
+defineSlots<{
+  /**
+   * Use this to render your own pagination control to go to the next page.
+   */
+  default: ({ isLastPage }: { isLastPage: boolean }) => void
+}>()
+
 const tableContext = injectTableContext()
 
 const totalPages = computed<number>(() => (

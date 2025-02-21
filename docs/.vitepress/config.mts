@@ -29,17 +29,26 @@ const components = [
     ]
   },
   {
+    text: 'Form Utilities',
+    items: [
+      { text: 'Input Field', link: '/components/input-field/input-field' },
+      { text: 'Input Field Error', link: '/components/input-field-error/input-field-error' },
+      { text: 'Input Field Hint', link: '/components/input-field-hint/input-field-hint' },
+      { text: 'Input Field Label', link: '/components/input-field-label/input-field-label' },
+    ]
+  },
+  {
     text: 'Form Components',
     items: [
       { text: 'Checkbox', link: '/components/checkbox/checkbox' },
       { text: 'Checkbox Group', link: '/components/checkbox-group/checkbox-group' },
       { text: 'Date Field', link: '/components/date-field/date-field' },
-      { text: 'Input Field', link: '/components/input-field/input-field' },
       { text: 'Number Field', link: '/components/number-field/number-field' },
       { text: 'Password Field', link: '/components/password-field/password-field' },
       { text: 'Phone Number Field', link: '/components/phone-number-field/phone-number-field' },
       { text: 'Radio Group', link: '/components/radio-group/radio-group' },
       { text: 'Select', link: '/components/select/select' },
+      { text: 'Switch', link: '/components/switch/switch' },
       { text: 'Text Field', link: '/components/text-field/text-field' },
       { text: 'Textarea', link: '/components/textarea/textarea' },
     ]
@@ -55,21 +64,14 @@ const components = [
       { text: 'Toast', link: '/components/toast/toast' },
     ]
   },
-  // {
-  //   text: 'Navigation & Layout',
-  //   items: [
-  //     { text: 'Tabs', link: '/components/tabs/tabs' },
-  //     { text: 'Table', link: '/components/table/table' },
-  //   ]
-  // },
-  // {
-  //   text: 'Interactive Elements',
-  //   items: [
-  //     { text: 'Button', link: '/components/button/button' },
-  //     { text: 'Toggle', link: '/components/toggle/toggle' },
-  //     { text: 'Switch', link: '/components/switch/switch' }
-  //   ]
-  // },
+  {
+    text: 'Navigation & Layout',
+    items: [
+      { text: 'Tabs', link: '/components/tabs/tabs' },
+      { text: 'Table', link: '/components/table/table' },
+      { text: 'Table Pagination', link: '/components/table/table-pagination' },
+    ]
+  },
   // {
   //   text: 'Keyboard',
   //   items: [
@@ -84,13 +86,13 @@ const components = [
   //     { text: 'Address Autocomplete', link: '/components/autocomplete/address-autocomplete' },
   //   ]
   // },
-  // {
-  //   text: 'Utilities',
-  //   items: [
-  //     { text: 'Config Provider', link: '/components/config-provider/config-provider' },
-  //     { text: 'Theme Provider', link: '/components/theme-provider/theme-provider' },
-  //   ]
-  // }
+  {
+    text: 'Utilities',
+    items: [
+      { text: 'Config Provider', link: '/components/config-provider/config-provider' },
+      { text: 'Theme Provider', link: '/components/theme-provider/theme-provider' },
+    ]
+  }
 ]
 
 // https://vitepress.dev/reference/site-config

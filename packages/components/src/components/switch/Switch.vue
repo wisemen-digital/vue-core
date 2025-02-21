@@ -39,6 +39,21 @@ const emit = defineEmits<{
   focus: [event: Event]
 }>()
 
+defineSlots<{
+  /**
+   * Can be used to render you own hint and errors.
+   */
+  bottom: () => null
+  /**
+   * Can be used to render your own errors.
+   */
+  error: () => null
+  /**
+   * Can be used to render your own hint.
+   */
+  hint: () => null
+}>()
+
 const model = defineModel<boolean>({
   required: true,
 })
@@ -79,24 +94,6 @@ const thumbClasses = computed<string>(() => switchStyle.thumb({
   isFocused: isFocused.value,
   isHovered: isHovered.value,
 }))
-
-const labelClasses = computed<string>(() => switchStyle.label({
-  hasError: hasError.value,
-  isChecked: isChecked.value,
-  isDisabled: isDisabled.value,
-  isFocused: isFocused.value,
-  isHovered: isHovered.value,
-}))
-
-const hintClasses = computed<string>(() => switchStyle.hint({
-  hasError: hasError.value,
-  isChecked: isChecked.value,
-  isDisabled: isDisabled.value,
-  isFocused: isFocused.value,
-  isHovered: isHovered.value,
-}))
-
-const errorClasses = computed<string>(() => switchStyle.error())
 
 const iconClasses = computed<string>(() => switchStyle.icon({
   hasError: hasError.value,
@@ -195,7 +192,6 @@ function onBlur(e: Event): void {
 
       <InputFieldLabel
         v-if="props.label !== null"
-        :class="labelClasses"
         :is-required="props.isRequired"
         :for="inputId"
         :label="props.label"
@@ -214,7 +210,6 @@ function onBlur(e: Event): void {
               <slot name="error">
                 <InputFieldError
                   :errors="props.errors"
-                  :class="errorClasses"
                   :input-id="inputId"
                 />
               </slot>
@@ -225,7 +220,6 @@ function onBlur(e: Event): void {
                 <InputFieldHint
                   :input-id="inputId"
                   :hint="props.hint"
-                  :class="hintClasses"
                 />
               </slot>
             </div>
