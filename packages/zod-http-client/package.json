@@ -1,7 +1,7 @@
 {
   "name": "@wisemen/vue-core-zod-http-client",
   "type": "module",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
   "sideEffects": false,
   "exports": {
@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "axios": "1.7.7",
-    "zod": "3.23.8"
+    "zod": "3.24.2"
   },
   "devDependencies": {
     "@types/node": "22.9.0",
