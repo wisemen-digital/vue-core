@@ -1,5 +1,15 @@
 # Changelog
 
+## [alpha.26]
+
+### Features
+- **InputFieldLabel**
+  - Add `--input-field-label-asterisk-color-default` to the style config to allow customizing the color of the asterisk.
+
+### Fixes
+- **Autocomplete**
+  - Fix `label` prop not working.
+
 ## [alpha.25]
 
 ### Fixes

@@ -28,6 +28,7 @@ const themeProviderContext = injectThemeProviderContext()
 
 const style = inputFieldLabelStyle()
 const labelClasses = computed<string>(() => style.label())
+const asteriskClasses = computed<string>(() => style.asterisk())
 </script>
 
 <template>
@@ -41,6 +42,12 @@ const labelClasses = computed<string>(() => style.label())
     :style="props.styleConfig"
     class="input-field-label-default"
   >
-    {{ props.label }} <template v-if="props.isRequired">*</template>
+    {{ props.label }}
+    <span
+      v-if="props.isRequired"
+      :class="asteriskClasses"
+    >
+      *
+    </span>
   </Label>
 </template>

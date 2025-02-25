@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
+import AnimatedNumber from '@/components/animated-number/AnimatedNumber.vue'
+import AnimatedNumberGroup from '@/components/animated-number/AnimatedNumberGroup.vue'
 import ConfigProvider from '@/components/config-provider/ConfigProvider.vue'
 import NumberField from '@/components/input-field/number-field/NumberField.vue'
-import Popover from '@/components/popover/Popover.vue'
-import PopoverTrigger from '@/components/popover/PopoverTrigger.vue'
-import Select from '@/components/select/Select.vue'
 import ThemeProvider from '@/components/theme-provider/ThemeProvider.vue'
 import { setupDefaultStyles } from '@/styling/setupDefaultStyles'
+import TestTransition from '@/TestTransition.vue'
 import type { SelectItem } from '@/types/select.type'
 
 setupDefaultStyles()
@@ -23,34 +23,37 @@ const selectItems: SelectItem<string>[] = [
   })) as any,
 ]
 
-const test = ref(5)
+const test = ref<number>(5)
 </script>
 
 <template>
   <ConfigProvider locale="en">
     <ThemeProvider>
-      <div class="p-24 grid grid-cols-1 gap-4xl">
-        <Select
-          v-model="value"
-          :items="selectItems"
-          :display-fn="item => item"
-          :filter-fn="(option, searchTerm) => option.includes(searchTerm)"
-          class="w-72"
-        />
+      <div class="p-24">
+        <TestTransition />
+      </div>
 
-        {{ test }}
-
+      <div
+        v-if="false"
+        class="p-24 grid grid-cols-1 gap-4xl"
+      >
         <NumberField v-model="test" />
 
-        <Popover>
-          <PopoverTrigger>
-            <button>trigger</button>
-          </PopoverTrigger>
+        <div class="flex">
+          <AnimatedNumberGroup>
+            <AnimatedNumber
+              :value="test"
+              class="text-4xl"
+              suffix=" Cows"
+            />
 
-          <template #content>
-            <button>button</button>
-          </template>
-        </Popover>
+            <AnimatedNumber
+              :value="test"
+              class="text-4xl"
+              suffix=" Cows"
+            />
+          </AnimatedNumberGroup>
+        </div>
       </div>
     </ThemeProvider>
   </ConfigProvider>

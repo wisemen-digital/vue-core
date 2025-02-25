@@ -204,6 +204,7 @@ watch(() => props.items, (newItems) => {
             :is-loading="props.isLoading"
             :is-required="props.isRequired"
             :is-touched="props.isTouched"
+            :label="label"
             :errors="props.errors"
             @input="onInput"
             @focus="emit('focus')"
