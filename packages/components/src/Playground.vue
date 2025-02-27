@@ -7,7 +7,6 @@ import ConfigProvider from '@/components/config-provider/ConfigProvider.vue'
 import NumberField from '@/components/input-field/number-field/NumberField.vue'
 import ThemeProvider from '@/components/theme-provider/ThemeProvider.vue'
 import { setupDefaultStyles } from '@/styling/setupDefaultStyles'
-import TestTransition from '@/TestTransition.vue'
 import type { SelectItem } from '@/types/select.type'
 
 setupDefaultStyles()
@@ -29,9 +28,7 @@ const test = ref<number>(5)
 <template>
   <ConfigProvider locale="en">
     <ThemeProvider>
-      <div class="p-24">
-        <TestTransition />
-      </div>
+      <div class="p-24" />
 
       <div
         v-if="false"

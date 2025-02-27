@@ -196,6 +196,13 @@ const inputId = props.id ?? useId()
               />
             </template>
 
+            <template #tag="{ value }">
+              <slot
+                :value="(value as any)"
+                name="tag"
+              />
+            </template>
+
             <template #loader>
               <slot name="loader" />
             </template>

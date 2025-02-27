@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Format } from '@number-flow/vue'
+// @ts-expect-error - Weird issue where the compiler whines about the continuous export not being found
 import NumberFlow, { continuous } from '@number-flow/vue'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
