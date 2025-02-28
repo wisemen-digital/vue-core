@@ -16,6 +16,12 @@ export const useSwitchStyle = tv({
       .withSize('size-(--switch-icon-size-default)')
       .withColor('text-(--switch-icon-color-default)')
       .build(),
+    label: new StyleBuilder()
+      .withColor('[--input-field-label-text-color-default:var(--switch-label-text-color-default)]')
+      .withFontSize('[--input-field-label-font-size-default:var(--switch-label-font-size-default)]')
+      .withFontWeight('[--input-field-label-font-weight-default:var(--switch-label-font-weight-default)]')
+      .withSpacing('ml-(--switch-label-spacing-default) mb-0')
+      .build(),
     thumb: new StyleBuilder()
       .withClasses('relative overflow-hidden block data-[state=checked]:justify-self-end')
       .withBorderRadius('rounded-(--switch-border-radius-default)')

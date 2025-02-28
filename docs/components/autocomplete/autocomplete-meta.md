@@ -17,7 +17,9 @@
 | isArrowVisible | `boolean` | Whether the arrow is visible. | `false` |
 | isDisabled | `boolean` | Whether the input is disabled. | `false` |
 | isLoading | `boolean` | Whether the input is loading. | `false` |
+| isOpen | `boolean` |  |  |
 | isRequired | `boolean` | Whether the input is required. | `false` |
+| isSearchTermOptional | `boolean` | If enabled, the dropdown will be able to be opened without having a search term. | `false` |
 | isTouched | `boolean` | Whether the input is touched. Used to determine if an error should be shown. | `false` |
 | label | `string \| null` | The label of the input. | `null` |
 | placeholder | `string \| null` | The placeholder text of the input. | `null` |
@@ -27,6 +29,8 @@
 | popoverOffsetInPx | `number` | The offset of the popper content. | `4` |
 | popoverSide | `"bottom" \| "left" \| "right" \| "top"` | The side of the trigger the tooltip should be on. | `"bottom"` |
 | popoverWidth | `PopperWidth \| null` | The width of the popper. | `"anchor-width"` |
+| selectMatchOnBlur | `boolean` | By default, a value is set only when an option is selected.
+If set to true, an option matching the search term will be automatically selected when the input loses focus. | `false` |
 | styleConfig | `Partial<SelectStyleConfig> \| null` | The style config of the component. | `null` |
 | testId | `string \| null` | The test id of the input. | `null` |
 
@@ -38,8 +42,14 @@
 | bottom | `{ errors: string[]; hint: string \| null; }` |  |
 | empty | `{}` |  |
 | error | `{ errors: string[]; }` |  |
+| group-label | `{ label: string; }` |  |
 | hint | `{ hint: string \| null; }` |  |
 | label | `{ label: string \| null; }` |  |
+| option | `{ item: SelectItem<SelectValue>; }` |  |
+| option-content | `{ item: SelectOption<SelectValue>; }` |  |
+| option-indicator | `{ item: SelectItem<SelectValue>; }` |  |
+| right | `{}` |  |
+| separator | `{}` |  |
 
 
 ## Events
@@ -49,5 +59,6 @@
 | `blur` | [] |  |
 | `focus` | [] |  |
 | `search` | [searchTerm: string] |  |
+| `update:isOpen` | [isOpen: boolean] |  |
 | `update:modelValue` | [modelValue: SelectValue] |  |
 

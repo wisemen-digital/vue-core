@@ -1,4 +1,5 @@
 import { resolve } from 'node:path'
+
 import { defineConfig } from 'vitepress'
 
 import ComponentPreviewPlugin from './plugins/ComponentPreview'
@@ -26,7 +27,7 @@ const components = [
       { text: 'Icon Button', link: '/components/icon-button/icon-button' },
       { text: 'Router Link Button', link: '/components/router-link-button/router-link-button' },
       { text: 'Toggle', link: '/components/toggle/toggle' },
-    ]
+    ],
   },
   {
     text: 'Form Utilities',
@@ -35,7 +36,7 @@ const components = [
       { text: 'Input Field Error', link: '/components/input-field-error/input-field-error' },
       { text: 'Input Field Hint', link: '/components/input-field-hint/input-field-hint' },
       { text: 'Input Field Label', link: '/components/input-field-label/input-field-label' },
-    ]
+    ],
   },
   {
     text: 'Form Components',
@@ -51,7 +52,7 @@ const components = [
       { text: 'Switch', link: '/components/switch/switch' },
       { text: 'Text Field', link: '/components/text-field/text-field' },
       { text: 'Textarea', link: '/components/textarea/textarea' },
-    ]
+    ],
   },
   {
     text: 'Overlays & Popups',
@@ -62,7 +63,7 @@ const components = [
       { text: 'Popover', link: '/components/popover/popover' },
       { text: 'Tooltip', link: '/components/tooltip/tooltip' },
       { text: 'Toast', link: '/components/toast/toast' },
-    ]
+    ],
   },
   {
     text: 'Navigation & Layout',
@@ -70,7 +71,7 @@ const components = [
       { text: 'Tabs', link: '/components/tabs/tabs' },
       { text: 'Table', link: '/components/table/table' },
       { text: 'Table Pagination', link: '/components/table/table-pagination' },
-    ]
+    ],
   },
   // {
   //   text: 'Keyboard',
@@ -91,8 +92,8 @@ const components = [
     items: [
       { text: 'Config Provider', link: '/components/config-provider/config-provider' },
       { text: 'Theme Provider', link: '/components/theme-provider/theme-provider' },
-    ]
-  }
+    ],
+  },
 ]
 
 // https://vitepress.dev/reference/site-config
@@ -110,11 +111,11 @@ export default defineConfig({
             fuzzy: false,
             prefix: false,
             boost: {
-              title: 10 
+              title: 10,
             },
-          }
-        }
-      }
+          },
+        },
+      },
     },
 
     sidebar: [
@@ -143,6 +144,6 @@ export default defineConfig({
     },
     plugins: [
       // tailwindcss(),
-    ]
+    ],
   },
 })

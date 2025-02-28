@@ -26,12 +26,24 @@ export interface SwitchStyleConfig extends BaseStyleConfig {
   '--switch-icon-color-hover': string
   '--switch-icon-size-default': string
 
+  '--switch-label-font-size-default': string
+  '--switch-label-font-weight-default': string
+
+  '--switch-label-spacing-default': string
+  '--switch-label-text-color-checked': string
+  '--switch-label-text-color-default': string
+  '--switch-label-text-color-disabled': string
+
+  '--switch-label-text-color-error': string
+  '--switch-label-text-color-focus': string
+
+  '--switch-label-text-color-hover': string
   '--switch-ring-color-error': string
   '--switch-ring-color-focus': string
-
   '--switch-thumb-bg-color': string
   '--switch-thumb-padding-default': string
   '--switch-thumb-shadow-default': string
+
   '--switch-thumb-size-default': string
 }
 
@@ -63,12 +75,25 @@ export function setupDefaultSwitchStyles(): void {
       '--switch-icon-color-hover': 'var(--fg-tertiary)',
       '--switch-icon-size-default': 'calc(var(--switch-thumb-size-default)/1.5)',
 
+      '--switch-label-font-size-default': 'var(--text-sm)',
+      '--switch-label-font-weight-default': 'var(--font-weight-medium)',
+
+      '--switch-label-spacing-default': 'var(--spacing-lg)',
+      '--switch-label-text-color-checked': 'var(--text-primary)',
+      '--switch-label-text-color-default': 'var(--text-secondary)',
+      '--switch-label-text-color-disabled': 'var(--text-disabled)',
+
+      '--switch-label-text-color-error': 'var(--text-primary)',
+
+      '--switch-label-text-color-focus': 'var(--text-primary)',
+
+      '--switch-label-text-color-hover': 'var(--text-primary)',
       '--switch-ring-color-error': 'var(--error-500)',
       '--switch-ring-color-focus': 'var(--brand-500)',
-
       '--switch-thumb-bg-color-default': 'white',
       '--switch-thumb-padding-default': 'var(--spacing-xxs)',
       '--switch-thumb-shadow-default': 'var(--shadow-sm)',
+
       '--switch-thumb-size-default': '1.25rem',
 
     },

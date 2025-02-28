@@ -18,7 +18,8 @@ The following interfaces are defined in the component’s style configuration fi
 
 ```ts
 export interface InputFieldLabelStyleConfig  {
-'--input-field-label-font-size-default': string
+'--input-field-label-asterisk-color-default': string
+  '--input-field-label-font-size-default': string
   '--input-field-label-font-weight-default': string
   '--input-field-label-spacing-default': string
   '--input-field-label-text-color-default': string

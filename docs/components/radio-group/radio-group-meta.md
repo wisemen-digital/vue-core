@@ -24,7 +24,7 @@
 | default | `-` | The content slot. |
 | error | `{ errors: string[]; }` | Can be used to render a custom error message. |
 | hint | `{ hint: string \| null; }` | Can be used to render a custom hint message. |
-| label | `{ label: string \| null; }` | Can be used to render a custom label. |
+| label | `{ inputId: string; isRequired: boolean; label: string \| null; }` | Can be used to render a custom label. |
 
 
 ## Events

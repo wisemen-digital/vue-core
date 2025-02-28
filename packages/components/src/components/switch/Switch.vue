@@ -103,6 +103,14 @@ const iconClasses = computed<string>(() => switchStyle.icon({
   isHovered: isHovered.value,
 }))
 
+const labelClasses = computed<string>(() => switchStyle.label({
+  hasError: hasError.value,
+  isChecked: isChecked.value,
+  isDisabled: isDisabled.value,
+  isFocused: isFocused.value,
+  isHovered: isHovered.value,
+}))
+
 const enterFromClass = computed<string>(() => {
   if (model.value) {
     return 'opacity-0 translate-x-4 scale-50'
@@ -195,6 +203,7 @@ function onBlur(e: Event): void {
         :is-required="props.isRequired"
         :for="inputId"
         :label="props.label"
+        :class="labelClasses"
       />
 
       <!-- Spacer element for grid -->

@@ -15,6 +15,7 @@
 | isArrowVisible | `boolean` | Whether the arrow is visible. |  |
 | isDisabled | `boolean` | Whether the input is disabled. |  |
 | isRequired | `boolean` | Whether the input is required. | `false` |
+| isSearchTermOptional | `boolean` | If enabled, the dropdown will be able to be opened without having a search term. |  |
 | isTouched | `boolean` | Whether the input is touched. Used to determine if an error should be shown. |  |
 | label | `string \| null` | The label of the input. | `null` |
 | placeholder | `string \| null` | The placeholder text of the input. |  |
@@ -24,6 +25,8 @@
 | popoverOffsetInPx | `number` | The offset of the popper content. |  |
 | popoverSide | `"bottom" \| "left" \| "right" \| "top"` | The side of the trigger the tooltip should be on. |  |
 | popoverWidth | `PopperWidth \| null` | The width of the popper. |  |
+| selectMatchOnBlur | `boolean` | By default, a value is set only when an option is selected.
+If set to true, an option matching the search term will be automatically selected when the input loses focus. |  |
 | styleConfig | `Partial<SelectStyleConfig> \| null` | The style config of the component. |  |
 | testId | `string \| null` | The test id of the input. |  |
 
