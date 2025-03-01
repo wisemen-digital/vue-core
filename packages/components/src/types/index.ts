@@ -15,11 +15,15 @@ export type {
 } from './keyboard.type'
 export type {
   DeepPartial,
+  InfinitePaginatedData,
+  InfinitePaginationOptions,
   PaginatedData,
   Pagination,
   PaginationFilter,
   PaginationFilters,
   PaginationOptions,
+  UseInfinitePaginationOptions,
+  UseInfinitePaginationReturnType,
   UsePaginationOptions,
   UsePaginationReturnType,
 } from './pagination.type'

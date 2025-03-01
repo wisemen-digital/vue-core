@@ -39,6 +39,17 @@ export interface PaginationOptions<TFilters> {
   staticFilters?: PaginationFilters<TFilters>
 }
 
+export interface InfinitePaginationOptions<TFilters> {
+  filters?: PaginationFilters<TFilters>
+  pagination: {
+    key: never | null
+    limit: number
+  }
+  search?: string
+  sort?: PaginationSort | undefined
+  staticFilters?: PaginationFilters<TFilters>
+}
+
 interface PaginationFilterBase<TFilters> {
   id: keyof TFilters
   isVisible?: boolean
@@ -97,6 +108,13 @@ export interface PaginatedData<TSchema> {
   }
 }
 
+export interface InfinitePaginatedData<TSchema> {
+  data: TSchema[]
+  meta: {
+    next: never | null
+  }
+}
+
 // Pagination composable types
 
 export interface UsePaginationOptions<TFilters> {
@@ -116,6 +134,23 @@ export interface UsePaginationOptions<TFilters> {
   options?: MaybeRefOrGetter<DeepPartial<PaginationOptions<TFilters>>> | null
 }
 
+export interface UseInfinitePaginationOptions<TFilters> {
+  /**
+   * When enabled, the pagination state will be stored in the route query.
+   */
+  isRouteQueryEnabled: boolean
+  /**
+   * The key to store pagination options in the route query.
+   */
+  key?: string
+  /**
+   * The initial pagination options to use. If not provided, the default options will be used.
+   * These options can be reactive and will update the pagination state when changed.
+   * @default null
+   */
+  options?: MaybeRefOrGetter<DeepPartial<InfinitePaginationOptions<TFilters>>> | null
+}
+
 export interface UsePaginationReturnType<TFilters> {
   clearFilters: () => void
   handleFilterChange: (event: FilterChangeEvent<TFilters>) => void
@@ -123,6 +158,15 @@ export interface UsePaginationReturnType<TFilters> {
   handleSearchChange: (value: string) => void
   handleSortChange: (event: SortChangeEvent) => void
   paginationOptions: ComputedRef<PaginationOptions<TFilters>>
+}
+
+export interface UseInfinitePaginationReturnType<TFilters> {
+  clearFilters: () => void
+  handleFilterChange: (event: FilterChangeEvent<TFilters>) => void
+  handlePageChange: (event: PageChangeEvent) => void
+  handleSearchChange: (value: string) => void
+  handleSortChange: (event: SortChangeEvent) => void
+  paginationOptions: ComputedRef<InfinitePaginationOptions<TFilters>>
 }
 
 // Local pagination composable types
