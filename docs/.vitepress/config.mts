@@ -4,6 +4,8 @@ import { defineConfig } from 'vitepress'
 
 import ComponentPreviewPlugin from './plugins/ComponentPreview'
 
+const pkg = require('../../packages/components/package.json')
+
 const guide = [
   {
     link: '/guide/getting-started',
@@ -101,7 +103,17 @@ export default defineConfig({
   base: '/vue-core/',
   description: 'Vue Core',
   themeConfig: {
-    nav: [],
+    nav: [
+      {
+        text: pkg.version,
+        items:[
+          {
+            text: 'Changelog',
+            link: 'https://github.com/wisemen-digital/vue-core/blob/v2/packages/components/CHANGELOG.md',
+          }
+        ]
+      }
+    ],
 
     search: {
       provider: 'local',
