@@ -31,7 +31,8 @@
     "test:unit": "vitest --run",
     "test": "vitest --run",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "peerDependencies": {
     "vue": "3.5.12",
@@ -43,6 +44,7 @@
     "@tailwindcss/vite": "4.0.0-beta.4",
     "@vuepic/vue-datepicker": "9.0.2",
     "axios": "1.7.3",
+    "conventional-changelog": "6.0.0",
     "date-fns": "3.6.0",
     "defu": "^6.1.4",
     "motion-v": "^0.10.0",
