@@ -11,15 +11,17 @@
 | filterFn | `SelectFilterFn<SelectValue> \| null` | The function to filter the options. | `null` |
 | hint | `string \| null` | The hint text of the input. | `null` |
 | iconLeft | `keyof Icons \| null` | The left icon of the input. | `null` |
-| iconRight | `keyof Icons` | The right icon of the input. | `"selectIconRight"` |
+| iconRight | `keyof Icons \| null` | The right icon of the input. | `"selectIconRight"` |
 | id | `string \| null` | The id of the input. | `null` |
 | isArrowVisible | `boolean` | Whether the arrow is visible. | `false` |
 | isDisabled | `boolean` | Whether the input is disabled. | `false` |
 | isLoading | `boolean` | Whether the input is loading. | `false` |
+| isOpenControlled | `boolean` | Whether the open state is controlled by the `isOpen` prop. | `false` |
 | isReadonly | `boolean` | Whether the input is readonly. | `false` |
 | isRequired | `boolean` | Whether the input is required. | `false` |
 | isTouched | `boolean` | Whether the input is touched. Used to determine if an error should be shown. | `false` |
 | label | `string \| null` | The label of the input. | `null` |
+| persistSearchTermOnClose | `boolean` | Whether the search should persist closing the dropdown. |  |
 | placeholder | `string \| null` | The placeholder text of the input. | `null` |
 | popoverAlign | `PopperAlign` | The alignment of the popper content. | `"center"` |
 | popoverCollisionPaddingInPx | `number` | The padding of the popper collision. | `0` |
@@ -39,15 +41,23 @@ When enabled, items must be restricted to the option type | `null` |
 
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
+| bottom | `{ errors: string[]; hint: string \| null; }` | Can be used to render a custom hint and error message. |
 | content-bottom | `-` | Can be used to add other content to the top of the dropdown. |
 | content-top | `-` | Can be used to add other content to the top of the dropdown. |
-| filter | `-` | Can be used to render the filter. Visible if filterFn is not null. |
+| empty | `{ searchTerm: string; }` | Can be used to render content when no results are found. |
+| error | `{ errors: string[]; }` | Can be used to render a custom error message. |
+| filter | `-` | Can be used to render the filter. Only rendered when `filterFn` is provided. |
 | group-label | `{ label: any; }` | Can be used to render the label of a group. |
+| hint | `{ hint: string \| null; }` | Can be used to render a custom hint message. |
+| icon-left | `-` | The icon to the left of the input. |
+| icon-right | `-` | The icon to the right of the input. |
+| label | `{ label: string \| null; }` | Can be used to render a custom label. |
+| left | `-` | The content to display on the left side. |
 | loader | `-` | Can be used to render a custom loader. |
-| no-results | `{ searchTerm: string; }` | Can be used to render content when no results are found. |
-| option | `{ item: SelectItem<SelectValue>; }` | Can be used to render an entire option. |
+| option | `{ item: SelectItem<SelectValue>; }` | Can be used to replace the entire option with custom content. |
 | option-content | `{ item: SelectOption<SelectValue>; }` | Can be used to render the content for each option. |
-| option-indicator | `{ item: SelectItem<SelectValue>; }` | Can be used to render the indication for each option. |
+| option-indicator | `{ item: SelectItem<SelectValue>; }` | Can be used to render a custom indicator for each option. |
+| right | `-` | The content to display on the right side. |
 | separator | `-` | Can be used to render the separator. |
 | tag | `{ value: SelectValue; }` | Only when you want to select multiple values: use to render a custom tag per selected item. |
 | value | `{ value: SelectValue; }` | Can be used to render the selected value(s). |
@@ -59,6 +69,7 @@ When enabled, items must be restricted to the option type | `null` |
 | ---------- | ---- | ----------- |
 | `blur` | [] |  |
 | `focus` | [] |  |
+| `select` | [value: SelectValue] |  |
 | `update:modelValue` | [modelValue: SelectValue] |  |
 
 

@@ -29,7 +29,6 @@ const props = withDefaults(defineProps<TooltipProps>(), {
   styleConfig: null,
 })
 
-
 defineSlots<{
   /**
    * The content that will trigger the tooltip.

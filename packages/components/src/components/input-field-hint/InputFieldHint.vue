@@ -7,8 +7,18 @@ import type { StyleConfig } from '@/types/style.type'
 import { ThemeUtil } from '@/utils/theme.util'
 
 const props = withDefaults(defineProps<{
+  /**
+   * The id of the related input field.
+   */
   inputId: string
+  /**
+   * The hint to be displayed related to the input field.
+   */
   hint: string
+  /**
+   * The style configuration for the error message.
+   * @default null
+   */
   styleConfig?: StyleConfig<'inputFieldHint'> | null
 }>(), {
   styleConfig: null,

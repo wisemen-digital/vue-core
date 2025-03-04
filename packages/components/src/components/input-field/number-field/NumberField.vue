@@ -100,6 +100,12 @@ const model = defineModel<number | null>({
 const computedModel = computed<number | undefined>({
   get: () => model.value ?? undefined,
   set: (value: number | undefined) => {
+    if (Number.isNaN(value)) {
+      model.value = null
+
+      return
+    }
+
     model.value = value ?? null
   },
 })
@@ -249,7 +255,6 @@ function onBlur(): void {
 
     <NumberFieldRoot
       v-model="computedModel"
-      :default-value="computedModel"
       :locale="globalConfigContext.locale.value"
       :aria-describedby="ariaDescribedBy"
       :as-child="true"

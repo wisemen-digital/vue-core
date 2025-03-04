@@ -66,5 +66,5 @@ export interface FormElementSlots {
   /**
    * Can be used to render a custom label.
    */
-  label: ({ label }: { label: string | null }) => void
+  label: ({ inputId, isRequired, label }: { inputId: string, isRequired: boolean, label: string | null }) => void
 }

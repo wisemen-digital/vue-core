@@ -72,7 +72,7 @@ defineSlots<{
    */
   'error': ({ errors }: { errors: string[] }) => void
   /**
-   * Can be used to render the filter. Visible if filterFn is not null.
+   * Can be used to render the filter. Only rendered when `filterFn` is provided.
    */
   'filter': () => null
   /**
@@ -96,7 +96,7 @@ defineSlots<{
    */
   'label': ({ label }: { label: string | null }) => void
   /**
-   * The content to display on the left side. (Will show under the icon-left slot)
+   * The content to display on the left side.
    */
   'left': () => null
   /**
@@ -104,7 +104,7 @@ defineSlots<{
    */
   'loader': () => null
   /**
-   * Can be used to render an entire option.
+   * Can be used to replace the entire option with custom content.
    */
   'option': ({ item }: { item: SelectItem<TValue> }) => void
   /**
@@ -112,11 +112,11 @@ defineSlots<{
    */
   'option-content': ({ item }: { item: SelectOption<TValue> }) => void
   /**
-   * Can be used to render the indication for each option.
+   * Can be used to render a custom indicator for each option.
    */
   'option-indicator': ({ item }: { item: SelectItem<TValue> }) => void
   /**
-   * The content to display on the right side. (Will show above the icon-right slot)
+   * The content to display on the right side.
    */
   'right': () => null
   /**
@@ -194,6 +194,13 @@ const inputId = props.id ?? useId()
               <slot
                 :value="(value as any)"
                 name="value"
+              />
+            </template>
+
+            <template #tag="{ value }">
+              <slot
+                :value="(value as any)"
+                name="tag"
               />
             </template>
 

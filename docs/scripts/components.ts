@@ -20,6 +20,21 @@ export const components = [
     componentName: 'InputField',
   },
   {
+    sourceFolder: 'input-field-error/InputFieldError.vue',
+    targetFolder: 'input-field-error',
+    componentName: 'InputFieldError',
+  },
+  {
+    sourceFolder: 'input-field-hint/InputFieldHint.vue',
+    targetFolder: 'input-field-hint',
+    componentName: 'InputFieldHint',
+  },
+  {
+    sourceFolder: 'input-field-label/InputFieldLabel.vue',
+    targetFolder: 'input-field-label',
+    componentName: 'InputFieldLabel',
+  },
+  {
     sourceFolder: 'input-field/date-field/DateField.vue',
     targetFolder: 'date-field',
     componentName: 'DateField',
@@ -285,77 +300,3 @@ export const components = [
     componentName: 'ThemeProvider',
   },
 ]
-
-// export const components = {
-//   checkbox: ['Checkbox', 'CheckboxGroup'],
-//   dateField: ['DateField'],
-//   // autocomplete: [
-//   //   'Autocomplete',
-//   //   'AddressAutocomplete',
-//   // ],
-//   // breadcrumbs: [
-//   //   'Breadcrumbs',
-//   // ],
-//   // button: [
-//   //   'Button',
-//   //   'IconButton',
-//   //   'RouterLinkButton',
-//   // ],
-//   // calendar: [
-//   //   'Calendar',
-//   // ],
-//   // dialog: [
-//   //   'Dialog',
-//   // ],
-//   // drawer: [
-//   //   'Drawer',
-//   // ],
-//   // dropdownMenu: [
-//   //   'DropdownMenu',
-//   // ],
-//   // inputField: [
-//   //   'InputField',
-//   //   'DateField',
-//   //   'PasswordField',
-//   //   'TextField',
-//   //   'Textarea',
-//   //   'NumberField',
-//   //   'PhoneNumberField',
-//   // ],
-//   // keyboard: [
-//   //   'KeyboardShortcut',
-//   //   'KeyboardShortcutProvider',
-//   // ],
-//   // popover: [
-//   //   'Popover',
-//   // ],
-//   // radioGroup: [
-//   //   'RadioGroup',
-//   //   'RadioGroupItem',
-//   // ],
-//   // select: [
-//   //   'Select',
-//   // ],
-//   // skeleton: [
-//   //   'SkeletonItem',
-//   // ],
-//   // switch: [
-//   //   'Switch',
-//   // ],
-//   // table: [
-//   //   'Table',
-//   // ],
-//   // tabs: [
-//   //   'Tabs',
-//   //   'RouteTabs',
-//   // ],
-//   // toast: [
-//   //   'Toast',
-//   // ],
-//   // toggle: [
-//   //   'Toggle',
-//   // ],
-//   // tooltip: [
-//   //   'Tooltip',
-//   // ],
-// }

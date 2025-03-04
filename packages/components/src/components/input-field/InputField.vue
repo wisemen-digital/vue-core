@@ -43,6 +43,8 @@ const hasError = computed<boolean>(() => props.errors.length > 0 && props.isTouc
   <div>
     <slot
       :label="label"
+      :input-id="inputId"
+      :is-required="props.isRequired"
       name="label"
     >
       <InputFieldLabel

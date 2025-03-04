@@ -42,6 +42,8 @@ const inputId = props.id ?? useId()
     <template #label="{ label }">
       <slot
         :label="label"
+        :is-required="props.isRequired"
+        :input-id="inputId"
         name="label"
       />
     </template>

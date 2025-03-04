@@ -4,5 +4,5 @@
 
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
-| default | `{ items: ({ type: "ellipsis"; } \| { type: "page"; value: number; })[]; }` |  |
+| default | `{ items: ({ type: "ellipsis"; } \| { type: "page"; value: number; })[]; }` | Use this to render your own pagination controls. |
 

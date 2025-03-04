@@ -1,7 +1,7 @@
 {
   "name": "@wisemen/vue-core",
   "type": "module",
-  "version": "1.0.0-alpha.22",
+  "version": "1.0.0-alpha.28",
   "license": "MIT",
   "sideEffects": false,
   "exports": {
@@ -45,13 +45,14 @@
     "axios": "1.7.3",
     "date-fns": "3.6.0",
     "defu": "^6.1.4",
-    "motion-v": "^0.4.1",
+    "motion-v": "^0.10.0",
     "postcss": "8.4.38",
-    "reka-ui": "1.0.0-alpha.8",
+    "reka-ui": "1.0.0-alpha.11",
     "tailwindcss": "4.0.0-beta.4"
   },
   "devDependencies": {
     "@fontsource-variable/inter": "^5.1.0",
+    "@number-flow/vue": "^0.4.3",
     "@tsconfig/node18": "18.2.4",
     "@types/dom-view-transitions": "1.0.4",
     "@types/google.maps": "3.55.4",

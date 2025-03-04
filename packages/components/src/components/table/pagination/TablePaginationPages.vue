@@ -9,12 +9,22 @@ import { useI18n } from 'vue-i18n'
 import Button from '@/components/button/button/Button.vue'
 
 const props = defineProps<{
+  /**
+   * The items to render in the pagination.
+   */
   items: ({
     type: 'ellipsis'
   } | {
     type: 'page'
     value: number
   })[]
+}>()
+
+defineSlots<{
+  /**
+   * Use this to render your own pagination controls.
+   */
+  item: ({ page }: { page: string }) => void
 }>()
 
 const { n } = useI18n()

@@ -177,6 +177,8 @@ provideRadioGroupItemContext({
     <slot
       v-if="props.label !== null"
       :label="props.label"
+      :input-id="inputId"
+      :is-required="props.isRequired"
       name="label"
     >
       <InputFieldLabel

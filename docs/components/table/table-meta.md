@@ -20,13 +20,13 @@
 
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
-| bottom | `{}` |  |
-| empty-state | `{}` |  |
-| empty-state-no-data-actions | `{}` |  |
-| empty-state-no-results-actions | `{}` |  |
-| page-count | `{}` |  |
-| pagination | `{ items: ({ type: "ellipsis"; } \| { type: "page"; value: number; })[]; }` |  |
-| top | `{}` |  |
+| bottom | `-` | Use this to render your own table bottom. |
+| empty-state | `-` | Use this to render your own empty state. |
+| empty-state-no-data-actions | `-` | Use this to render your own empty state when no data is found. |
+| empty-state-no-results-actions | `-` | Use this to render your own empty state when no results are found. |
+| page-count | `-` | Use this to render your own page count in the table bottom. |
+| pagination | `{ items: ({ type: "ellipsis"; } \| { type: "page"; value: number; })[]; }` | Use this to render your own pagination in the table bottom. |
+| top | `-` | Use this to add content to the top of the table. |
 
 
 ## Style configuration

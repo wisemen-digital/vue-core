@@ -8,8 +8,17 @@ import type { Stylable } from '@/types/stylable.type'
 import { ThemeUtil } from '@/utils/theme.util'
 
 const props = withDefaults(defineProps<{
+  /**
+   * Whether the input field is required.
+   */
   isRequired: boolean
+  /**
+   * Point to the id of the related input field.
+   */
   for: string
+  /**
+   * The label to be displayed.
+   */
   label: string | null
 } & Stylable<'inputFieldLabel'>>(), {
   styleConfig: null,
@@ -19,6 +28,7 @@ const themeProviderContext = injectThemeProviderContext()
 
 const style = inputFieldLabelStyle()
 const labelClasses = computed<string>(() => style.label())
+const asteriskClasses = computed<string>(() => style.asterisk())
 </script>
 
 <template>
@@ -32,6 +42,12 @@ const labelClasses = computed<string>(() => style.label())
     :style="props.styleConfig"
     class="input-field-label-default"
   >
-    {{ props.label }} <template v-if="props.isRequired">*</template>
+    {{ props.label }}
+    <span
+      v-if="props.isRequired"
+      :class="asteriskClasses"
+    >
+      *
+    </span>
   </Label>
 </template>

@@ -1,13 +1,18 @@
 <script setup lang="ts">
+import { computed, useSlots } from 'vue'
+
 import SelectValueBasic from '@/components/select/blocks/values/SelectValueBasic.vue'
 import SelectValueMultiple from '@/components/select/blocks/values/SelectValueMultiple.vue'
 import { injectSelectContext } from '@/components/select/select.context'
 
 const selectContext = injectSelectContext()
+
+const slots = useSlots()
+const hasValueSlot = computed<boolean>(() => slots.value !== undefined)
 </script>
 
 <template>
-  <SelectValueMultiple v-if="selectContext.isMultiple.value">
+  <SelectValueMultiple v-if="selectContext.isMultiple.value && !hasValueSlot">
     <template #tag="{ value }">
       <slot
         :value="value"

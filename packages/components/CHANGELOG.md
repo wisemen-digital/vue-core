@@ -1,5 +1,35 @@
 # Changelog
 
+## [alpha.26]
+
+### Features
+- **InputFieldLabel**
+  - Add `--input-field-label-asterisk-color-default` to the style config to allow customizing the color of the asterisk.
+
+### Fixes
+- **Autocomplete**
+  - Fix `label` prop not working.
+
+## [alpha.25]
+
+### Fixes
+- **NumberField**
+  - Fix bug where clearing the input would reset to the previous value, or default value if no value was set.
+
+## [alpha.24]
+
+## [alpha.23]
+
+### Features
+- **Autocomplete**
+  - Various improvements
+
+### Fixes
+- **DropdownMenu**
+  - Fix dropdown menu sub content styling.
+
+## [alpha.22]
+
 ## [alpha.21]
 
 ### Breaking Changes
