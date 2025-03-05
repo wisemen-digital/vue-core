@@ -22,15 +22,23 @@ export function usePagination<TFilters>({
   isRouteQueryEnabled,
   key: routeQueryKey,
   options = null,
+  type = 'offset',
 }: UsePaginationOptions<TFilters>): UsePaginationReturnType<TFilters> {
   const globalConfigContext = injectConfigContext()
 
   const DEFAULT_PAGINATION_OPTIONS: PaginationOptions<unknown> = {
     filters: {} as PaginationFilters<unknown>,
-    pagination: {
-      limit: globalConfigContext.pagination?.limit ?? 20,
-      offset: 0,
-    },
+    pagination: type === 'offset'
+      ? {
+          limit: globalConfigContext.pagination?.limit ?? 20,
+          offset: 0,
+          type: 'offset',
+        }
+      : {
+          key: null,
+          limit: globalConfigContext.pagination?.limit ?? 20,
+          type: 'keyset',
+        },
     search: undefined,
     sort: undefined,
     staticFilters: {} as PaginationFilters<unknown>,
@@ -123,20 +131,34 @@ export function usePagination<TFilters>({
     paginationOptions.value = {
       ...paginationOptions.value,
       filters: filtersWithoutUndefinedValues,
-      pagination: {
-        ...paginationOptions.value.pagination,
-        offset: 0,
-      },
+      pagination: type === 'offset'
+        ? {
+            ...paginationOptions.value.pagination,
+            offset: 0,
+            type: 'offset',
+          }
+        : {
+            ...paginationOptions.value.pagination,
+            key: null,
+            type: 'keyset',
+          },
     }
   }
 
   function handleSearchChange(value: string): void {
     paginationOptions.value = {
       ...paginationOptions.value,
-      pagination: {
-        ...paginationOptions.value.pagination,
-        offset: 0,
-      },
+      pagination: type === 'offset'
+        ? {
+            ...paginationOptions.value.pagination,
+            offset: 0,
+            type: 'offset',
+          }
+        : {
+            ...paginationOptions.value.pagination,
+            key: null,
+            type: 'keyset',
+          },
       search: value.trim().length > 0 ? value : undefined,
     }
   }
@@ -152,10 +174,17 @@ export function usePagination<TFilters>({
     paginationOptions.value = {
       ...paginationOptions.value,
       filters: {} as PaginationFilters<TFilters>,
-      pagination: {
-        ...paginationOptions.value.pagination,
-        offset: 0,
-      },
+      pagination: type === 'offset'
+        ? {
+            ...paginationOptions.value.pagination,
+            offset: 0,
+            type: 'offset',
+          }
+        : {
+            ...paginationOptions.value.pagination,
+            key: null,
+            type: 'keyset',
+          },
     }
   }
 

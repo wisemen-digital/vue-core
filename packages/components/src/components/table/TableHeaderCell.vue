@@ -7,7 +7,7 @@ import type { Icon } from '@/icons/icons'
 import type {
   PaginationOptions,
   SortChangeEvent,
-  SortDirection,
+  SortOrder,
 } from '@/types/pagination.type'
 import type { TableColumn } from '@/types/table.type'
 
@@ -21,7 +21,7 @@ const paginationOptions = computed<PaginationOptions<unknown>>(
   () => tableContext.pagination.value.paginationOptions.value,
 )
 
-const currentSortDirection = computed<SortDirection | null>(() => {
+const currentSortDirection = computed<SortOrder | null>(() => {
   return getCurrentSortDirection(paginationOptions.value.sort?.direction ?? null)
 })
 
@@ -57,7 +57,7 @@ const ariaSort = computed<'ascending' | 'descending' | 'none'>(() => {
   return 'descending'
 })
 
-function getCurrentSortDirection(currentDirection: SortDirection | null): SortDirection {
+function getCurrentSortDirection(currentDirection: SortOrder | null): SortOrder {
   return currentDirection ?? 'asc'
 }
 
@@ -91,12 +91,12 @@ function handleSortChange(): void {
   <div
     :aria-sort="ariaSort"
     role="columnheader"
-    class="flex h-full items-center px-3xl py-lg"
+    class="px-3xl py-lg flex h-full items-center"
   >
     <slot name="left" />
 
     <label class="flex items-center gap-x-2">
-      <span class="select-none whitespace-nowrap text-(size:--table-header-label-font-size-default) font-(--table-header-label-font-weight-default) text-(color:--table-header-label-text-color-default)">
+      <span class="text-(size:--table-header-label-font-size-default) font-(--table-header-label-font-weight-default) text-(color:--table-header-label-text-color-default) select-none whitespace-nowrap">
         <slot name="label">
           {{ props.column.headerLabel }}
         </slot>
