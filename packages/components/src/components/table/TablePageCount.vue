@@ -4,12 +4,22 @@ import { useI18n } from 'vue-i18n'
 
 import SkeletonItem from '@/components/skeleton/SkeletonItem.vue'
 import { injectTableContext } from '@/components/table/table.context'
+import type { PaginationSet } from '@/types/pagination.type'
 
 const tableContext = injectTableContext()
 
 const { n, t } = useI18n()
 
-const offset = computed<number>(() => tableContext.pagination.value.paginationOptions.value.pagination.offset)
+const pagination = computed<PaginationSet>(() => tableContext.pagination.value.paginationOptions.value.pagination)
+
+const offset = computed<number>(() => {
+  if ('offset' in pagination.value) {
+    return pagination.value.offset
+  }
+
+  throw new Error('This component only supports offset pagination')
+})
+
 const limit = computed<number>(() => tableContext.pagination.value.paginationOptions.value.pagination.limit)
 
 const totalItems = computed<number>(() => (
@@ -19,10 +29,7 @@ const totalItems = computed<number>(() => (
 const startIndex = computed<number>(() => (offset.value * limit.value) + 1)
 
 const endIndex = computed<number>(() => (
-  Math.min(
-    (offset.value * limit.value) + limit.value,
-    tableContext.data.value?.meta.total ?? 0,
-  )
+  Math.min((offset.value * limit.value) + limit.value, tableContext.data.value?.meta.total ?? 0)
 ))
 </script>
 
@@ -35,7 +42,7 @@ const endIndex = computed<number>(() => (
 
   <span
     v-else
-    class="text-sm text-tertiary"
+    class="text-tertiary text-sm"
   >
     {{
       t('component.table.page_count', {

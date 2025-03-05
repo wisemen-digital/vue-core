@@ -5,13 +5,13 @@ import type {
 
 import type { SelectItem } from '@/types/select.type'
 
-export enum SortOrder {
+export enum PaginationSortOrder {
   ASC = 'asc',
   DESC = 'desc',
 }
 
 export interface PaginationSort {
-  direction: SortOrder
+  direction: PaginationSortOrder
   key: string
 }
 
@@ -27,21 +27,27 @@ export interface PageChangeEvent {
 export type FilterChangeEvent<TFilters> = PaginationFilters<TFilters>
 
 export interface SortChangeEvent {
-  direction: SortOrder
+  direction: PaginationSortOrder
   key: string
 }
 
+interface PaginationKeyset {
+  key: unknown | null
+  limit: number
+  type: 'keyset'
+}
+
+interface PaginationOffset {
+  limit: number
+  offset: number
+  type: 'offset'
+}
+
+export type PaginationSet = PaginationKeyset | PaginationOffset
+
 export interface PaginationOptions<TFilters> {
   filters?: PaginationFilters<TFilters>
-  pagination: {
-    key: never | null
-    limit: number
-    type: 'keyset'
-  } | {
-    limit: number
-    offset: number
-    type: 'offset'
-  }
+  pagination: PaginationSet
   search?: string
   sort?: PaginationSort | undefined
   staticFilters?: PaginationFilters<TFilters>

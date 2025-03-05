@@ -10,6 +10,7 @@ import TablePaginationNextPage from '@/components/table/pagination/TablePaginati
 import TablePaginationPages from '@/components/table/pagination/TablePaginationPages.vue'
 import TablePaginationPrevPage from '@/components/table/pagination/TablePaginationPrevPage.vue'
 import { injectTableContext } from '@/components/table/table.context'
+import type { PaginationSet } from '@/types/pagination.type'
 
 defineSlots<{
   /**
@@ -20,7 +21,17 @@ defineSlots<{
 
 const tableContext = injectTableContext()
 
-const limit = computed<number>(() => tableContext.pagination.value.paginationOptions.value.pagination.limit)
+const pagination = computed<PaginationSet>(() => tableContext.pagination.value.paginationOptions.value.pagination)
+
+const limit = computed<number>(() => pagination.value.limit)
+
+const offset = computed<number>(() => {
+  if ('offset' in pagination.value) {
+    return pagination.value.offset
+  }
+
+  throw new Error('This component only supports offset pagination')
+})
 
 function onPageChange(page: number): void {
   tableContext.pagination.value.handlePageChange({
@@ -32,11 +43,11 @@ function onPageChange(page: number): void {
 
 <template>
   <PaginationRoot
-    :page="tableContext.pagination.value.paginationOptions.value.pagination.offset + 1"
+    :page="offset + 1"
     :total="tableContext.data.value?.meta.total ?? 0"
     :sibling-count="2"
     :items-per-page="limit"
-    :default-page="tableContext.pagination.value.paginationOptions.value.pagination.offset + 1"
+    :default-page="offset + 1"
     :show-edges="true"
     aria-label="Pagination"
     @update:page="onPageChange"

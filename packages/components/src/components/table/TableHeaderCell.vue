@@ -7,8 +7,8 @@ import type { Icon } from '@/icons/icons'
 import type {
   PaginationOptions,
   SortChangeEvent,
-  SortOrder,
 } from '@/types/pagination.type'
+import { PaginationSortOrder } from '@/types/pagination.type'
 import type { TableColumn } from '@/types/table.type'
 
 const props = defineProps<{
@@ -21,7 +21,7 @@ const paginationOptions = computed<PaginationOptions<unknown>>(
   () => tableContext.pagination.value.paginationOptions.value,
 )
 
-const currentSortDirection = computed<SortOrder | null>(() => {
+const currentSortDirection = computed<PaginationSortOrder | null>(() => {
   return getCurrentSortDirection(paginationOptions.value.sort?.direction ?? null)
 })
 
@@ -50,30 +50,30 @@ const ariaSort = computed<'ascending' | 'descending' | 'none'>(() => {
     return 'none'
   }
 
-  if (currentSortDirection.value === 'asc') {
+  if (currentSortDirection.value === PaginationSortOrder.ASC) {
     return 'ascending'
   }
 
   return 'descending'
 })
 
-function getCurrentSortDirection(currentDirection: SortOrder | null): SortOrder {
-  return currentDirection ?? 'asc'
+function getCurrentSortDirection(currentDirection: PaginationSortOrder | null): PaginationSortOrder {
+  return currentDirection ?? PaginationSortOrder.ASC
 }
 
 function handleSortChange(): void {
   // If the column is already sorted
   //    - If the current sort direction is 'asc', change it to 'desc'
-  if (isCurrentColumnBeingSorted.value && currentSortDirection.value === 'asc') {
+  if (isCurrentColumnBeingSorted.value && currentSortDirection.value === PaginationSortOrder.ASC) {
     tableContext.pagination.value.handleSortChange({
-      direction: 'desc',
+      direction: PaginationSortOrder.DESC,
       key: props.column.key,
     })
 
     return
   }
   //    - If the current sort direction is 'desc', remove the sort
-  if (isCurrentColumnBeingSorted.value && currentSortDirection.value === 'desc') {
+  if (isCurrentColumnBeingSorted.value && currentSortDirection.value === PaginationSortOrder.DESC) {
     tableContext.pagination.value.handleSortChange({} as SortChangeEvent)
 
     return
@@ -81,7 +81,7 @@ function handleSortChange(): void {
 
   // If column is not already sorted, sort it and set the current sort direction to 'asc'
   tableContext.pagination.value.handleSortChange({
-    direction: 'asc',
+    direction: PaginationSortOrder.ASC,
     key: props.column.key,
   })
 }

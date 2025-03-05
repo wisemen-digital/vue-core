@@ -122,6 +122,10 @@ const variantClass = computed<string | null>(() => {
   return null
 })
 
+const isOffsetPagination = computed<boolean>(() => {
+  return 'offset' in props.pagination.paginationOptions.value.pagination
+})
+
 function getIsScrolledtoRight(element: HTMLElement): boolean {
   return element.scrollLeft > 0
 }
@@ -261,7 +265,7 @@ provideTableContext({
             <TablePageCount />
           </slot>
 
-          <TablePagination v-if="hasMoreThanOnePage">
+          <TablePagination v-if="hasMoreThanOnePage && isOffsetPagination">
             <template #default="{ items }">
               <slot
                 :items="items"

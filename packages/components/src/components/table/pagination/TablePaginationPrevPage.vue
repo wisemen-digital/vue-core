@@ -4,6 +4,7 @@ import { computed } from 'vue'
 
 import IconButton from '@/components/button/icon-button/IconButton.vue'
 import { injectTableContext } from '@/components/table/table.context'
+import type { PaginationSet } from '@/types/pagination.type'
 
 defineSlots<{
   /**
@@ -14,9 +15,15 @@ defineSlots<{
 
 const tableContext = injectTableContext()
 
-const isFirstPage = computed<boolean>(() => (
-  tableContext.pagination.value.paginationOptions.value.pagination.offset === 0
-))
+const pagination = computed<PaginationSet>(() => tableContext.pagination.value.paginationOptions.value.pagination)
+
+const isFirstPage = computed<boolean>(() => {
+  if ('offset' in pagination.value) {
+    return pagination.value.offset === 0
+  }
+
+  throw new Error('This component only supports offset pagination')
+})
 </script>
 
 <template>

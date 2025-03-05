@@ -1,6 +1,6 @@
 import type {
   PaginationOptions,
-  SortOrder,
+  PaginationSortOrder,
 } from '@/types/pagination.type'
 
 const DEFAULT_OFFSET = 0
@@ -18,7 +18,7 @@ export interface PaginationParamsDto<TFilterSchema> {
 
 interface PaginationSort {
   key: string
-  order: SortOrder
+  order: PaginationSortOrder
 }
 
 export class PaginationParamsDtoBuilder<TFilterSchema> {
@@ -26,7 +26,6 @@ export class PaginationParamsDtoBuilder<TFilterSchema> {
 
   constructor(paginationOptions?: PaginationOptions<TFilterSchema>) {
     const limit = (paginationOptions?.pagination.limit ?? DEFAULT_LIMIT)
-    const offset = (paginationOptions?.pagination.offset ?? DEFAULT_OFFSET) * limit
 
     const allFilters = {
       ...paginationOptions?.filters ?? {},
@@ -34,10 +33,15 @@ export class PaginationParamsDtoBuilder<TFilterSchema> {
     }
 
     this.paginationOptions = {
-      pagination: {
-        limit,
-        offset,
-      },
+      pagination: paginationOptions?.pagination.type === 'offset'
+        ? {
+            limit,
+            offset: (paginationOptions?.pagination.offset ?? DEFAULT_OFFSET) * limit,
+          }
+        : {
+            key: paginationOptions?.pagination.key,
+            limit,
+          },
       search: paginationOptions?.search,
     } as PaginationParamsDto<TFilterSchema>
 

@@ -20,6 +20,7 @@ export type {
   PaginationFilter,
   PaginationFilters,
   PaginationOptions,
+  PaginationSortOrder,
   UsePaginationOptions,
   UsePaginationReturnType,
 } from './pagination.type'
