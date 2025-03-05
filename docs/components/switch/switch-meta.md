@@ -69,12 +69,24 @@ export interface SwitchStyleConfig extends BaseStyleConfig {
   '--switch-icon-color-hover': string
   '--switch-icon-size-default': string
 
+  '--switch-label-font-size-default': string
+  '--switch-label-font-weight-default': string
+
+  '--switch-label-spacing-default': string
+  '--switch-label-text-color-checked': string
+  '--switch-label-text-color-default': string
+  '--switch-label-text-color-disabled': string
+
+  '--switch-label-text-color-error': string
+  '--switch-label-text-color-focus': string
+
+  '--switch-label-text-color-hover': string
   '--switch-ring-color-error': string
   '--switch-ring-color-focus': string
-
   '--switch-thumb-bg-color': string
   '--switch-thumb-padding-default': string
   '--switch-thumb-shadow-default': string
+
   '--switch-thumb-size-default': string
 }
 ```

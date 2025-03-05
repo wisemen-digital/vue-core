@@ -1,5 +1,10 @@
 export const components = [
   {
+    sourceFolder: 'breadcrumbs/Breadcrumbs.vue',
+    targetFolder: 'breadcrumbs',
+    componentName: 'Breadcrumbs',
+  },
+  {
     sourceFolder: 'checkbox/Checkbox.vue',
     targetFolder: 'checkbox',
     componentName: 'Checkbox',

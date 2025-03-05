@@ -68,6 +68,7 @@ const components = [
   {
     text: 'Navigation & Layout',
     items: [
+      { text: 'Breadcrumbs', link: '/components/breadcrumbs/breadcrumbs' },
       { text: 'Tabs', link: '/components/tabs/tabs' },
       { text: 'Table', link: '/components/table/table' },
       { text: 'Table Pagination', link: '/components/table/table-pagination' },
