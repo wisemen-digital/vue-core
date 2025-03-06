@@ -5,10 +5,7 @@ import type {
 
 import type { SelectItem } from '@/types/select.type'
 
-export enum PaginationSortOrder {
-  ASC = 'asc',
-  DESC = 'desc',
-}
+export type PaginationSortOrder = 'asc' | 'desc'
 
 export interface PaginationSort {
   direction: PaginationSortOrder

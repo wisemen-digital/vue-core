@@ -6,9 +6,9 @@ import { injectTableContext } from '@/components/table/table.context'
 import type { Icon } from '@/icons/icons'
 import type {
   PaginationOptions,
+  PaginationSortOrder,
   SortChangeEvent,
 } from '@/types/pagination.type'
-import { PaginationSortOrder } from '@/types/pagination.type'
 import type { TableColumn } from '@/types/table.type'
 
 const props = defineProps<{
@@ -50,7 +50,7 @@ const ariaSort = computed<'ascending' | 'descending' | 'none'>(() => {
     return 'none'
   }
 
-  if (currentSortDirection.value === PaginationSortOrder.ASC) {
+  if (currentSortDirection.value === 'asc') {
     return 'ascending'
   }
 
@@ -58,22 +58,22 @@ const ariaSort = computed<'ascending' | 'descending' | 'none'>(() => {
 })
 
 function getCurrentSortDirection(currentDirection: PaginationSortOrder | null): PaginationSortOrder {
-  return currentDirection ?? PaginationSortOrder.ASC
+  return currentDirection ?? 'asc'
 }
 
 function handleSortChange(): void {
   // If the column is already sorted
   //    - If the current sort direction is 'asc', change it to 'desc'
-  if (isCurrentColumnBeingSorted.value && currentSortDirection.value === PaginationSortOrder.ASC) {
+  if (isCurrentColumnBeingSorted.value && currentSortDirection.value === 'asc') {
     tableContext.pagination.value.handleSortChange({
-      direction: PaginationSortOrder.DESC,
+      direction: 'desc',
       key: props.column.key,
     })
 
     return
   }
   //    - If the current sort direction is 'desc', remove the sort
-  if (isCurrentColumnBeingSorted.value && currentSortDirection.value === PaginationSortOrder.DESC) {
+  if (isCurrentColumnBeingSorted.value && currentSortDirection.value === 'desc') {
     tableContext.pagination.value.handleSortChange({} as SortChangeEvent)
 
     return
@@ -81,7 +81,7 @@ function handleSortChange(): void {
 
   // If column is not already sorted, sort it and set the current sort direction to 'asc'
   tableContext.pagination.value.handleSortChange({
-    direction: PaginationSortOrder.ASC,
+    direction: 'asc',
     key: props.column.key,
   })
 }
