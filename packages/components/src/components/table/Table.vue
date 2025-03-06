@@ -258,14 +258,14 @@ provideTableContext({
       </div>
     </div>
 
-    <TableBottom v-if="!isEmpty">
+    <TableBottom v-if="!isEmpty && isOffsetPagination">
       <slot name="bottom">
         <div class="flex w-full items-center justify-between">
           <slot name="page-count">
             <TablePageCount />
           </slot>
 
-          <TablePagination v-if="hasMoreThanOnePage && isOffsetPagination">
+          <TablePagination v-if="hasMoreThanOnePage">
             <template #default="{ items }">
               <slot
                 :items="items"
