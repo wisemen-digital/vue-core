@@ -1,4 +1,5 @@
 <script setup lang="ts" generic="Tschema, TFilters">
+import { useInfiniteScroll } from '@vueuse/core'
 import {
   computed,
   onBeforeUnmount,
@@ -24,6 +25,7 @@ import type { TableColumn } from '@/types/table.type'
 import { ThemeUtil } from '@/utils/theme.util'
 
 const props = withDefaults(defineProps<TableProps<Tschema, TFilters>>(), {
+  isFetching: false,
   isFirstColumnSticky: false,
   isLastColumnSticky: false,
   expandedRowContent: null,
@@ -84,6 +86,7 @@ const hasReachedHorizontalScrollEnd = ref<boolean>(false)
 const canScrollVertically = ref<boolean>(false)
 
 const hasTopSlot = computed<boolean>(() => slots.top !== undefined)
+const hasBottomSlot = computed<boolean>(() => slots.bottom !== undefined)
 
 const gridColsStyle = computed<string>(() => (
   `${props.columns.map((col) => `minmax(${col.width ?? 'min-content'},auto)`).join(' ')}`
@@ -100,18 +103,25 @@ const hasActiveSearch = computed<boolean>(() => {
   return search !== null && search.length > 0
 })
 
-const isEmpty = computed<boolean>(() => (
-  props.data !== null && props.data.meta.total === 0 && !props.isLoading
-))
+const isEmpty = computed<boolean>(() => {
+  return props.data !== null && props.data.meta.total === 0 && !props.isLoading
+})
 
 const hasMoreThanOnePage = computed<boolean>(() => {
   if (props.data === null) {
     return false
   }
 
-  const { limit, total } = props.data.meta
+  const meta = props.data.meta
 
-  return total > limit
+  if ('limit' in meta) {
+    const total = meta?.total ?? 0
+    const limit = meta?.limit ?? 0
+
+    return total > limit
+  }
+
+  return false
 })
 
 const variantClass = computed<string | null>(() => {
@@ -122,11 +132,15 @@ const variantClass = computed<string | null>(() => {
   return null
 })
 
-const isOffsetPagination = computed<boolean>(() => {
-  return 'offset' in props.pagination.paginationOptions.value.pagination
+const isInfiniteScroll = computed<boolean>(() => props.infiniteScroll !== undefined)
+
+const isPaginationVisible = computed<boolean>(() => {
+  const hasOffset = props.pagination.paginationOptions.value.pagination.type === 'offset'
+
+  return !isEmpty.value && hasOffset && !isInfiniteScroll.value
 })
 
-function getIsScrolledtoRight(element: HTMLElement): boolean {
+function getIsScrolledToRight(element: HTMLElement): boolean {
   return element.scrollLeft > 0
 }
 
@@ -147,7 +161,7 @@ function createResizeObserver(element: HTMLElement, onResize: () => void): Resiz
 }
 
 function handleTableResize(tableContainerEl: HTMLElement): void {
-  isScrolledToRight.value = getIsScrolledtoRight(tableContainerEl)
+  isScrolledToRight.value = getIsScrolledToRight(tableContainerEl)
   canScrollVertically.value = getCanScrollVertically(tableContainerEl)
   hasReachedHorizontalScrollEnd.value = getHasReachedHorizontalScrollEnd(tableContainerEl)
 }
@@ -159,6 +173,20 @@ function onScroll(): void {
 
   handleTableResize(scrollContainerRef.value)
 }
+
+useInfiniteScroll(
+  scrollContainerRef,
+  async () => {
+    if (props.infiniteScroll === undefined) {
+      return
+    }
+
+    await props.infiniteScroll.onNext()
+  },
+  {
+    distance: props.infiniteScroll?.distance,
+  },
+)
 
 watch(() => props.data, () => {
   if (scrollContainerRef.value === null) {
@@ -241,7 +269,7 @@ provideTableContext({
       <div
         v-else
         ref="scrollContainerRef"
-        :aria-rowcount="data!.meta.total"
+        :aria-rowcount="data?.meta?.total ?? 0"
         class="h-full flex-1 overflow-y-auto"
         role="table"
         @scroll="onScroll"
@@ -255,12 +283,19 @@ provideTableContext({
           <TableHeader />
           <TableBody />
         </div>
+        <TableLoadingState
+          v-if="isInfiniteScroll && props.isFetching"
+          :hide-header="true"
+        />
       </div>
     </div>
 
-    <TableBottom v-if="!isEmpty && isOffsetPagination">
+    <TableBottom v-if="hasBottomSlot || isPaginationVisible">
       <slot name="bottom">
-        <div class="flex w-full items-center justify-between">
+        <div
+          v-if="isPaginationVisible"
+          class="flex w-full items-center justify-between"
+        >
           <slot name="page-count">
             <TablePageCount />
           </slot>

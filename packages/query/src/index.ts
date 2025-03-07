@@ -4,4 +4,4 @@ export type { UseQueryOptions, UseQueryReturnType } from './composables/query/qu
 export { useQuery } from './composables/query/query.composable'
 export type { QueryKeys } from './types/queryKeys.type'
 export {  useInfiniteQuery } from './composables/query/infiniteQuery.composable'
-export type {  InfiniteQueryData, InfinitePaginatedData, UseInfiniteQueryReturnType } from './composables/query/infiniteQuery.composable'
+export type { UseInfiniteQueryReturnType } from './composables/query/infiniteQuery.composable'

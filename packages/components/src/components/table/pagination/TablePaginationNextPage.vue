@@ -15,10 +15,12 @@ defineSlots<{
 
 const tableContext = injectTableContext()
 
-const totalPages = computed<number>(() => (
-  Math.ceil((tableContext.data.value?.meta.total ?? 0)
-    / tableContext.pagination.value.paginationOptions.value.pagination.limit)
-))
+const totalPages = computed<number>(() => {
+  const total = tableContext.data.value?.meta?.total ?? 0
+  const limit = tableContext.pagination.value.paginationOptions.value.pagination.limit
+
+  return Math.ceil(total / limit)
+})
 
 const pagination = computed<PaginationSet>(() => tableContext.pagination.value.paginationOptions.value.pagination)
 

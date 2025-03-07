@@ -44,7 +44,7 @@ function onPageChange(page: number): void {
 <template>
   <PaginationRoot
     :page="offset + 1"
-    :total="tableContext.data.value?.meta.total ?? 0"
+    :total="tableContext.data.value?.meta?.total ?? 0"
     :sibling-count="2"
     :items-per-page="limit"
     :default-page="offset + 1"

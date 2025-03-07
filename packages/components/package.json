@@ -1,7 +1,7 @@
 {
   "name": "@wisemen/vue-core",
   "type": "module",
-  "version": "1.0.0-alpha.31",
+  "version": "1.0.0-alpha.32",
   "license": "MIT",
   "sideEffects": false,
   "exports": {
@@ -40,19 +40,19 @@
   "dependencies": {
     "@googlemaps/js-api-loader": "1.16.8",
     "@internationalized/date": "3.5.4",
-    "@tailwindcss/vite": "4.0.0-beta.4",
+    "@tailwindcss/vite": "4.0.11",
     "@vuepic/vue-datepicker": "9.0.2",
     "axios": "1.7.3",
     "date-fns": "3.6.0",
-    "defu": "^6.1.4",
-    "motion-v": "^0.10.0",
+    "defu": "6.1.4",
+    "motion-v": "0.10.0",
     "postcss": "8.4.38",
     "reka-ui": "1.0.0-alpha.11",
-    "tailwindcss": "4.0.0-beta.4"
+    "tailwindcss": "4.0.11"
   },
   "devDependencies": {
-    "@fontsource-variable/inter": "^5.1.0",
-    "@number-flow/vue": "^0.4.3",
+    "@fontsource-variable/inter": "5.1.0",
+    "@number-flow/vue": "0.4.3",
     "@tsconfig/node18": "18.2.4",
     "@types/dom-view-transitions": "1.0.4",
     "@types/google.maps": "3.55.4",
@@ -70,7 +70,7 @@
     "i18n-iso-countries": "7.11.2",
     "jsdom": "24.1.0",
     "libphonenumber-js": "1.11.3",
-    "maska": "^3.0.0",
+    "maska": "3.0.0",
     "minimist": "1.2.8",
     "sass": "1.77.5",
     "tailwind-merge": "2.3.0",

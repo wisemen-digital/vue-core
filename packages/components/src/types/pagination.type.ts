@@ -105,6 +105,9 @@ export interface PaginatedData<TSchema> {
     limit: number
     offset: number
     total: number
+  } | {
+    next: unknown | null
+    total: number
   }
 }
 
