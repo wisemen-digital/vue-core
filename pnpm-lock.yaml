@@ -264,8 +264,8 @@ importers:
         specifier: 0.1.5
         version: 0.1.5(@typescript-eslint/eslint-plugin@8.0.0-alpha.40(@typescript-eslint/parser@8.0.0-alpha.40(eslint@9.10.0(jiti@2.4.2))(typescript@5.4.5))(eslint@9.10.0(jiti@2.4.2))(typescript@5.4.5))(@vue/compiler-sfc@3.5.13)(eslint@9.10.0(jiti@2.4.2))(putout@38.5.2(eslint@9.10.0(jiti@2.4.2))(typescript@5.4.5))(svelte@5.22.5)(tailwindcss@4.0.11)(typescript@5.4.5)(vitest@1.6.0(@types/node@20.14.5)(jsdom@24.1.0)(lightningcss@1.29.2)(sass@1.77.5))(vue-eslint-parser@9.4.3(eslint@9.10.0(jiti@2.4.2)))
       '@wisemen/vue-core':
-        specifier: file:/Users/kirylmaltsav/Workspace/vue-core/packages/components/wisemen-vue-core-1.0.0-alpha.32.tgz
-        version: file:packages/components/wisemen-vue-core-1.0.0-alpha.32.tgz(typescript@5.4.5)(vite@5.3.1(@types/node@20.14.5)(lightningcss@1.29.2)(sass@1.77.5))(vue-i18n@10.0.4(vue@3.4.29(typescript@5.4.5)))(vue@3.4.29(typescript@5.4.5))
+        specifier: 1.0.0-alpha.31
+        version: 1.0.0-alpha.31(typescript@5.4.5)(vite@5.3.1(@types/node@20.14.5)(lightningcss@1.29.2)(sass@1.77.5))(vue-i18n@10.0.4(vue@3.4.29(typescript@5.4.5)))(vue@3.4.29(typescript@5.4.5))
       eslint:
         specifier: 9.10.0
         version: 9.10.0(jiti@2.4.2)
@@ -3125,9 +3125,8 @@ packages:
     peerDependencies:
       eslint: 9.6.0
 
-  '@wisemen/vue-core@file:packages/components/wisemen-vue-core-1.0.0-alpha.32.tgz':
-    resolution: {integrity: sha512-rqkcj9o4+mkpjhFAzaqTtxV+iYoN9SgmZ/CF4YiD7mth0kLShIW47UWrrI2NYQWGyRSafaWHOxKIGcSUXqM5Rg==, tarball: file:packages/components/wisemen-vue-core-1.0.0-alpha.32.tgz}
-    version: 1.0.0-alpha.32
+  '@wisemen/vue-core@1.0.0-alpha.31':
+    resolution: {integrity: sha512-+APlRHGmTsCTr/6L9dBmOznTv0LbowmHXL2luZeVXJwcL/+KOWY/vgxVzDqUTacaEuFecYNH+2DZFJYXv2oDzg==}
     peerDependencies:
       vue: 3.5.12
       vue-i18n: 10.0.4
@@ -12370,7 +12369,7 @@ snapshots:
       - vitest
       - vue-eslint-parser
 
-  '@wisemen/vue-core@file:packages/components/wisemen-vue-core-1.0.0-alpha.32.tgz(typescript@5.4.5)(vite@5.3.1(@types/node@20.14.5)(lightningcss@1.29.2)(sass@1.77.5))(vue-i18n@10.0.4(vue@3.4.29(typescript@5.4.5)))(vue@3.4.29(typescript@5.4.5))':
+  '@wisemen/vue-core@1.0.0-alpha.31(typescript@5.4.5)(vite@5.3.1(@types/node@20.14.5)(lightningcss@1.29.2)(sass@1.77.5))(vue-i18n@10.0.4(vue@3.4.29(typescript@5.4.5)))(vue@3.4.29(typescript@5.4.5))':
     dependencies:
       '@googlemaps/js-api-loader': 1.16.8
       '@internationalized/date': 3.5.4
