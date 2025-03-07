@@ -4,6 +4,7 @@ import { computed } from 'vue'
 
 import IconButton from '@/components/button/icon-button/IconButton.vue'
 import { injectTableContext } from '@/components/table/table.context'
+import type { PaginationSet } from '@/types/pagination.type'
 
 defineSlots<{
   /**
@@ -14,15 +15,22 @@ defineSlots<{
 
 const tableContext = injectTableContext()
 
-const totalPages = computed<number>(() => (
-  Math.ceil((tableContext.data.value?.meta.total ?? 0)
-    / tableContext.pagination.value.paginationOptions.value.pagination.limit)
-))
+const totalPages = computed<number>(() => {
+  const total = tableContext.data.value?.meta?.total ?? 0
+  const limit = tableContext.pagination.value.paginationOptions.value.pagination.limit
 
-const isLastPage = computed<boolean>(() => (
-  tableContext.pagination.value.paginationOptions.value.pagination.offset
-  === totalPages.value - 1
-))
+  return Math.ceil(total / limit)
+})
+
+const pagination = computed<PaginationSet>(() => tableContext.pagination.value.paginationOptions.value.pagination)
+
+const isLastPage = computed<boolean>(() => {
+  if ('offset' in pagination.value) {
+    return pagination.value.offset === totalPages.value - 1
+  }
+
+  throw new Error('This component only supports offset pagination')
+})
 </script>
 
 <template>
