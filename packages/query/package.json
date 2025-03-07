@@ -41,7 +41,7 @@
     "@vue/tsconfig": "0.5.1",
     "@vue/language-server": "2.2.8",
     "@wisemen/eslint-config-vue": "0.1.5",
-    "@wisemen/vue-core": "file:/Users/kirylmaltsav/Workspace/vue-core/packages/components/wisemen-vue-core-1.0.0-alpha.32.tgz",
+    "@wisemen/vue-core": "1.0.0-alpha.31",
     "eslint": "9.10.0",
     "jsdom": "24.1.0",
     "minimist": "1.2.8",
