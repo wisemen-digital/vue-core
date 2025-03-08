@@ -60,6 +60,7 @@ const itemContentClasses = computed<string>(() => tabsStyle.itemContent())
 <template>
   <TabsRoot
     v-model="modelAsString"
+    :style="props.styleConfig"
     :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.appearance.value)"
     class="tabs-default"
   >

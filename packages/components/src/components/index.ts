@@ -31,6 +31,9 @@ export type VcTableProps<TSchema, TFilters> = TableProps<TSchema, TFilters>
 export type VcTextFieldProps = TextFieldProps
 export type VcTooltipProps = TooltipProps
 
+// Animate Height
+export { default as VcAnimateHeight } from '@/components/animate-height/AnimateHeight.vue'
+
 // Animated Number
 export { default as VcAnimatedNumber } from '@/components/animated-number/AnimatedNumber.vue'
 export { default as VcAnimatedNumberGroup } from '@/components/animated-number/AnimatedNumberGroup.vue'

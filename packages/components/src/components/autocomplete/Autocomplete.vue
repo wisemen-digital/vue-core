@@ -118,6 +118,7 @@ function onInput(): void {
 function onClear(): void {
   searchTerm.value = ''
   model.value = null
+  emit('blur')
 }
 
 function selectMatchOnBlur(): void {
