@@ -13,6 +13,7 @@ const i18n = createI18n({
     en: {
       shared: {
         close: 'Close',
+        loading: 'Loading',
       },
       component: {
         address_autocomplete: {

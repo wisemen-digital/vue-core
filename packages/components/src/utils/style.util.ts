@@ -17,6 +17,12 @@ export class StyleBuilder {
     return this
   }
 
+  public withBase(classes: string): this {
+    this.classes.push(classes)
+
+    return this
+  }
+
   public withBorder(border: string): this {
     this.with(border)
 
@@ -41,6 +47,12 @@ export class StyleBuilder {
     return this
   }
 
+  public withCursor(cursor: string): this {
+    this.with(cursor)
+
+    return this
+  }
+
   public withFontColor(fontColor: string): this {
     this.with(fontColor)
 
@@ -61,6 +73,12 @@ export class StyleBuilder {
 
   public withGap(gap: string): this {
     this.with(gap)
+
+    return this
+  }
+
+  public withHeight(height: string): this {
+    this.with(height)
 
     return this
   }
@@ -109,6 +127,12 @@ export class StyleBuilder {
 
   public withSpacing(spacing: string): this {
     this.with(spacing)
+
+    return this
+  }
+
+  public withTransition(transition: string): this {
+    this.with(transition)
 
     return this
   }
