@@ -55,6 +55,8 @@ useProvideButtonContext({
     :aria-disabled="props.isLoading"
     :aria-busy="props.isLoading"
     :type="props.type"
+    :data-is-loading="props.isLoading"
+    :data-is-not-loading="!props.isLoading"
     :class="buttonStyle.base({
       class: mergeClasses(customClassConfig.base, props.classConfig?.base),
     })"

@@ -11,7 +11,7 @@ export const createButtonStyle = tv({
       .withBorderRadius('rounded-md')
       .withShadow('shadow-button')
       .withCursor('cursor-pointer disabled:cursor-not-allowed')
-      .withTransition('duration-100 enabled:active:scale-99')
+      .withTransition('duration-100 data-[is-loading=false]:enabled:active:scale-99')
       .build(),
     contentContainer: new StyleBuilder()
       .withClasses('flex items-center justify-center [grid-area:stack]')
@@ -36,21 +36,21 @@ export const createButtonStyle = tv({
           .withBackgroundColor('bg-error-600 disabled:bg-disabled')
           .withBorder('border-error-600 disabled:border-disabled-subtle')
           .withRing('ring-error-600')
-          .withTransition('enabled:hover:brightness-95 enabled:active:brightness-90')
+          .withTransition('data-[is-loading=false]:enabled:hover:brightness-95 data-[is-loading=false]:enabled:active:brightness-90')
           .build(),
       },
       'destructive-secondary': {
         base: new StyleBuilder()
-          .withColor('text-error-700 disabled:text-fg-disabled')
-          .withBackgroundColor('bg-transparent enabled:hover:bg-error-50 enabled:active:brightness-98')
-          .withBorder('border-error-300 disabled:border-disabled-subtle')
+          .withColor('text-error-700 dark:text-error-200 disabled:text-fg-disabled')
+          .withBackgroundColor('bg-transparent dark:bg-error-950 data-[is-loading=false]:enabled:hover:bg-error-50 dark:data-[is-loading=false]:enabled:hover:bg-error-900 data-[is-loading=false]:enabled:active:brightness-98')
+          .withBorder('border-error-300 dark:border-error-800 disabled:border-disabled-subtle')
           .withRing('ring-error-600')
           .build(),
       },
       'destructive-tertiary': {
         base: new StyleBuilder()
-          .withColor('text-error-700 disabled:text-fg-disabled')
-          .withBackgroundColor('bg-transparent enabled:hover:bg-error-50 enabled:active:brightness-98')
+          .withColor('text-error-700 dark:text-error-300 dark:data-[is-loading=false]:enabled:hover:text-error-200 disabled:text-fg-disabled')
+          .withBackgroundColor('bg-transparent data-[is-loading=false]:enabled:hover:bg-error-50 dark:data-[is-loading=false]:enabled:hover:bg-error-900 data-[is-loading=false]:enabled:active:brightness-98')
           .withBorder('border-transparent')
           .withShadow('shadow-none')
           .withRing('ring-error-600')
@@ -61,35 +61,35 @@ export const createButtonStyle = tv({
           .withColor('text-white disabled:text-fg-disabled')
           .withBackgroundColor('bg-brand-600 disabled:bg-disabled')
           .withBorder('border-brand-600 disabled:border-disabled-subtle')
-          .withTransition('enabled:hover:brightness-95 enabled:active:brightness-90')
+          .withTransition('data-[is-loading=false]:enabled:hover:brightness-95 data-[is-loading=false]:enabled:active:brightness-90')
           .build(),
       },
       'secondary-color': {
         base: new StyleBuilder()
-          .withColor('text-brand-700 disabled:text-fg-disabled')
-          .withBackgroundColor('bg-transparent enabled:hover:bg-brand-50 enabled:active:brightness-98')
-          .withBorder('border-brand-300 disabled:border-disabled-subtle')
+          .withColor('text-brand-700 disabled:text-fg-disabled dark:text-gray-300')
+          .withBackgroundColor('bg-transparent data-[is-loading=false]:enabled:hover:bg-brand-50 data-[is-loading=false]:enabled:hover:dark:bg-gray-800 data-[is-loading=false]:enabled:active:brightness-98')
+          .withBorder('border-brand-300 disabled:border-disabled-subtle dark:border-gray-700')
           .build(),
       },
       'secondary-gray': {
         base: new StyleBuilder()
-          .withColor('text-gray-700 disabled:text-fg-disabled')
-          .withBackgroundColor('bg-transparent enabled:hover:bg-gray-50 enabled:active:brightness-98')
-          .withBorder('border-gray-300 disabled:border-disabled-subtle')
+          .withColor('text-gray-700 disabled:text-fg-disabled dark:text-gray-300')
+          .withBackgroundColor('bg-transparent data-[is-loading=false]:enabled:hover:bg-gray-50 data-[is-loading=false]:enabled:hover:dark:bg-gray-800 data-[is-loading=false]:enabled:active:brightness-98')
+          .withBorder('border-gray-300 disabled:border-disabled-subtle dark:border-gray-700')
           .build(),
       },
       'tertiary-color': {
         base: new StyleBuilder()
-          .withColor('text-brand-700 disabled:text-fg-disabled')
-          .withBackgroundColor('bg-transparent enabled:hover:bg-brand-50 enabled:active:brightness-98')
+          .withColor('text-brand-700 disabled:text-fg-disabled dark:text-gray-300')
+          .withBackgroundColor('bg-transparent data-[is-loading=false]:enabled:hover:bg-brand-50  data-[is-loading=false]:enabled:dark:hover:bg-gray-800 data-[is-loading=false]:enabled:active:brightness-98')
           .withBorder('border-transparent')
           .withShadow('shadow-none')
           .build(),
       },
       'tertiary-gray': {
         base: new StyleBuilder()
-          .withColor('text-gray-600 disabled:text-fg-disabled')
-          .withBackgroundColor('bg-transparent enabled:hover:bg-gray-50 enabled:active:brightness-98')
+          .withColor('text-gray-600 disabled:text-fg-disabled dark:text-gray-300')
+          .withBackgroundColor('bg-transparent data-[is-loading=false]:enabled:hover:bg-gray-50 data-[is-loading=false]:enabled:dark:hover:bg-gray-800 data-[is-loading=false]:enabled:active:brightness-98')
           .withBorder('border-transparent')
           .withShadow('shadow-none')
           .build(),
@@ -180,6 +180,9 @@ export const createButtonStyle = tv({
           .build(),
       },
       true: {
+        base: new StyleBuilder()
+          .withClasses('cursor-not-allowed')
+          .build(),
         contentContainer: new StyleBuilder()
           .withClasses('opacity-0 invisible')
           .build(),

@@ -17,7 +17,6 @@ const { t } = useI18n()
 
 <template>
   <div
-    :aria-hidden="true"
     :class="style.loader({
       class: mergeClasses(customClassConfig.loader, classConfig?.loader),
     })"
@@ -29,7 +28,7 @@ const { t } = useI18n()
     </VisuallyHidden>
 
     <slot>
-      <VcSpinner />
+      <VcSpinner :aria-hidden="true" />
     </slot>
   </div>
 </template>
