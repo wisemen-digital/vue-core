@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import Collapsable from '@/components/collapsable/Collapsable.vue'
+import AnimateHeight from '@/components/animate-height/AnimateHeight.vue'
 import InputFieldError from '@/components/input-field-error/InputFieldError.vue'
 import InputFieldHint from '@/components/input-field-hint/InputFieldHint.vue'
 import InputFieldLabel from '@/components/input-field-label/InputFieldLabel.vue'
@@ -61,7 +61,7 @@ const hasError = computed<boolean>(() => props.errors.length > 0 && props.isTouc
       :hint="hint"
       name="bottom"
     >
-      <Collapsable>
+      <AnimateHeight>
         <div v-if="hasError">
           <slot
             :errors="errors"
@@ -85,7 +85,7 @@ const hasError = computed<boolean>(() => props.errors.length > 0 && props.isTouc
             />
           </slot>
         </div>
-      </Collapsable>
+      </AnimateHeight>
     </slot>
   </div>
 </template>

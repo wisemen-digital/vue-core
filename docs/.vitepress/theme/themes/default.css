@@ -9,7 +9,7 @@
 
 .default.light {
   --brand-50: #e3f0fe;
-  --brand-primary-100: #d5eafe;
+  --brand-100: #d5eafe;
   --brand-200: #c2e0fc;
   --brand-300: #8fc8fb;
   --brand-400: #5dabf7;
@@ -101,7 +101,7 @@
 
 .default.dark {
   --brand-50: #e3f0fe;
-  --brand-primary-100: #d5eafe;
+  --brand-100: #d5eafe;
   --brand-200: #c2e0fc;
   --brand-300: #8fc8fb;
   --brand-400: #5dabf7;

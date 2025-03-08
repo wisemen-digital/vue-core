@@ -63,5 +63,5 @@ const i18n = createI18n({
 
 const app = createApp(Playground)
 
-app.use(i18n)
+app.use(i18n as any)
 app.mount('#app')

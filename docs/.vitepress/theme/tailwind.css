@@ -10,9 +10,9 @@
   --color-black: #000000;
   --color-white: #ffffff;
 
-  --color-brand-primary-25: var(--brand-primary-25);
+  --color-brand-primary-25: var(--brand-25);
   --color-brand-primary-50: var(--brand-50);
-  --color-brand-primary-100: var(--brand-primary-100);
+  --color-brand-primary-100: var(--brand-100);
   --color-brand-primary-200: var(--brand-200);
   --color-brand-primary-300: var(--brand-300);
   --color-brand-primary-400: var(--brand-400);

@@ -92,7 +92,7 @@ const isActuallyOpen = computed<boolean>(() => {
     const isFirstItemSelected = JSON.stringify(options[0]?.value) === JSON.stringify(model.value)
     const doesSearchTermMatchFirstItem
         = options[0] !== null
-        && searchTerm.value === props.displayFn(options[0]!.value as any)
+          && searchTerm.value === props.displayFn(options[0]!.value as any)
 
     if (isFirstItemSelected && !doesSearchTermMatchFirstItem) {
       return false
@@ -118,6 +118,7 @@ function onInput(): void {
 function onClear(): void {
   searchTerm.value = ''
   model.value = null
+  emit('blur')
 }
 
 function selectMatchOnBlur(): void {

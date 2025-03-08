@@ -6,6 +6,11 @@ import type { TableColumn } from '@/types/table.type'
 
 export interface TableProps<TSchema, TFilters> extends Stylable<'table'> {
   /**
+   * Whether the table is fetching
+   * @default false
+   */
+  isFetching?: boolean
+  /**
    * Whether the first column is sticky
    * @default false
    */
@@ -32,6 +37,14 @@ export interface TableProps<TSchema, TFilters> extends Stylable<'table'> {
    * @default null
    */
   expandedRowContent?: ((row: TSchema) => VNode) | null
+  /**
+   * The options for the infinite scroll
+   * @default undefined
+   */
+  infiniteScroll?: {
+    distance?: number
+    onNext: () => Promise<void>
+  }
   /**
    * The pagination of the table
    */

@@ -5,6 +5,12 @@ import TableCell from '@/components/table/TableCell.vue'
 import TableHeader from '@/components/table/TableHeader.vue'
 import { NumberUtil } from '@/utils/number.util'
 
+const props = withDefaults(defineProps<{
+  hideHeader?: boolean
+}>(), {
+  hideHeader: false,
+})
+
 const tableContext = injectTableContext()
 </script>
 
@@ -15,7 +21,10 @@ const tableContext = injectTableContext()
     }"
     class="relative grid overflow-hidden"
   >
-    <TableHeader :are-sticky-columns-disabled="true" />
+    <TableHeader
+      v-if="!props.hideHeader"
+      :are-sticky-columns-disabled="true"
+    />
 
     <div
       v-for="rowIndex in tableContext.pagination.value.paginationOptions.value.pagination.limit"

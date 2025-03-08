@@ -38,6 +38,7 @@ export const textareaStyle = tv({
           .withBorder('border-b-(--textarea-border-bottom-color-hover) border-l-(--textarea-border-left-color-hover) border-r-(--textarea-border-right-color-hover) border-t-(--textarea-border-top-color-hover)')
           .withBackgroundColor('bg-(--textarea-bg-color-hover)')
           .withColor('text-(--textarea-text-color-hover)')
+          .withShadow('shadow-(--textarea-shadow-hover)')
           .withPlaceholderColor('placeholder:text-(--textarea-placeholder-color-hover)')
           .build(),
       },

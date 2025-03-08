@@ -3,8 +3,8 @@ import { TabsContent } from 'reka-ui'
 
 const props = defineProps<{
   /**
- * A unique value that associates the content with a trigger.
- */
+   * A unique value that associates the content with a trigger.
+   */
   value: string
 }>()
 
@@ -12,7 +12,7 @@ defineSlots<{
   /**
    * The content to display in the tab.
    */
-  'default': () => void
+  default: () => void
 }>()
 </script>
 

@@ -5,10 +5,10 @@ import type {
 
 import type { SelectItem } from '@/types/select.type'
 
-export type SortDirection = 'asc' | 'desc'
+export type PaginationSortOrder = 'asc' | 'desc'
 
 export interface PaginationSort {
-  direction: SortDirection
+  direction: PaginationSortOrder
   key: string
 }
 
@@ -24,16 +24,27 @@ export interface PageChangeEvent {
 export type FilterChangeEvent<TFilters> = PaginationFilters<TFilters>
 
 export interface SortChangeEvent {
-  direction: SortDirection
+  direction: PaginationSortOrder
   key: string
 }
 
+interface PaginationKeyset {
+  key: unknown | null
+  limit: number
+  type: 'keyset'
+}
+
+interface PaginationOffset {
+  limit: number
+  offset: number
+  type: 'offset'
+}
+
+export type PaginationSet = PaginationKeyset | PaginationOffset
+
 export interface PaginationOptions<TFilters> {
   filters?: PaginationFilters<TFilters>
-  pagination: {
-    limit: number
-    offset: number
-  }
+  pagination: PaginationSet
   search?: string
   sort?: PaginationSort | undefined
   staticFilters?: PaginationFilters<TFilters>
@@ -94,6 +105,9 @@ export interface PaginatedData<TSchema> {
     limit: number
     offset: number
     total: number
+  } | {
+    next: unknown | null
+    total: number
   }
 }
 
@@ -114,6 +128,7 @@ export interface UsePaginationOptions<TFilters> {
    * @default null
    */
   options?: MaybeRefOrGetter<DeepPartial<PaginationOptions<TFilters>>> | null
+  type?: 'keyset' | 'offset'
 }
 
 export interface UsePaginationReturnType<TFilters> {
