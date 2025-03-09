@@ -24,7 +24,7 @@ export const createButtonStyle = tv({
       .withBase('shrink-0')
       .build(),
     loader: new StyleBuilder()
-      .withClasses('min-w-5 min-h-5 [grid-area:stack] mx-auto')
+      .withClasses('size-5 [grid-area:stack] mx-auto')
       .withTransition('duration-200')
       .build(),
   },

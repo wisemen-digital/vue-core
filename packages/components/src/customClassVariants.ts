@@ -9,14 +9,14 @@ export interface Components {
 
 export interface ClassVariant<
   TComponent extends keyof Components,
-  TTarget extends keyof VariantProps<Components[TComponent]>,
+  TTargetProp extends keyof VariantProps<Components[TComponent]>,
 > {
   config: {
     [K in keyof Components[TComponent]['slots']]?: string
   }
   target?: {
-    prop: TTarget
-    value: keyof VariantProps<Components[TComponent]>
+    prop: TTargetProp
+    value: VariantProps<Components[TComponent]>[TTargetProp]
   }
   theme?: string & {} | 'default'
   component: TComponent
