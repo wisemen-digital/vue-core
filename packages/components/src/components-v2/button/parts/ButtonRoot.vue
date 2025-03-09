@@ -13,6 +13,7 @@ import {
   getComponentClassConfig,
   mergeClasses,
 } from '@/customClassVariants'
+import type { NativeEvents } from '@/types/emits.type'
 import { toComputedRefs } from '@/utils/props.util'
 
 const props = withDefaults(defineProps<ButtonProps>(), {
@@ -27,9 +28,7 @@ const props = withDefaults(defineProps<ButtonProps>(), {
   variant: 'primary',
 })
 
-const emit = defineEmits<{
-  click: [event: MouseEvent]
-}>()
+const emit = defineEmits<NativeEvents>()
 
 const buttonStyle = computed<CreateButtonStyle>(() => createButtonStyle({
   isLoading: props.isLoading,

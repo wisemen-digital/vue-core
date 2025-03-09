@@ -1,10 +1,13 @@
 <script setup lang="ts">
-import type { ButtonProps } from '@/components-v2/button/button.props'
+import type {
+  ButtonProps,
+} from '@/components-v2/button/button.props'
 import ButtonContentContainer from '@/components-v2/button/parts/ButtonContentContainer.vue'
 import ButtonIconLeft from '@/components-v2/button/parts/ButtonIconLeft.vue'
 import ButtonIconRight from '@/components-v2/button/parts/ButtonIconRight.vue'
 import ButtonLoader from '@/components-v2/button/parts/ButtonLoader.vue'
 import ButtonRoot from '@/components-v2/button/parts/ButtonRoot.vue'
+import type { NativeEvents } from '@/types/emits.type'
 
 const props = withDefaults(defineProps<ButtonProps>(), {
   testId: null,
@@ -18,9 +21,7 @@ const props = withDefaults(defineProps<ButtonProps>(), {
   variant: 'primary',
 })
 
-const emit = defineEmits<{
-  click: [event: MouseEvent]
-}>()
+const emit = defineEmits<NativeEvents>()
 </script>
 
 <template>
