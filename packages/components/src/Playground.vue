@@ -1,10 +1,15 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
+import Checkbox from '@/components/checkbox/Checkbox.vue'
 import ConfigProvider from '@/components/config-provider/ConfigProvider.vue'
 import ThemeProvider from '@/components/theme-provider/ThemeProvider.vue'
-import type { ButtonProps } from '@/components-v2/button/button.props'
 import Button from '@/components-v2/button/Button.vue'
+import ButtonIconLeft from '@/components-v2/button/parts/ButtonIconLeft.vue'
+import ButtonIconRight from '@/components-v2/button/parts/ButtonIconRight.vue'
+import ButtonLoader from '@/components-v2/button/parts/ButtonLoader.vue'
+import ButtonRoot from '@/components-v2/button/parts/ButtonRoot.vue'
+import { defineClassVariant } from '@/customClassVariants'
 import { setupDefaultStyles } from '@/styling/setupDefaultStyles'
 
 setupDefaultStyles()
@@ -15,50 +20,86 @@ setupDefaultStyles()
 //   component: () => import('...'),
 // })
 
-const isDisabled = ref(false)
+defineClassVariant({
+  config: {
+    base: 'enabled:bg-gradient-to-r from-brand-600 to-brand-800',
+  },
+  target: {
+    prop: 'variant',
+    value: 'primary',
+  },
+  component: 'button',
+})
 
-function onDisabled(): void {
-  isDisabled.value = !isDisabled.value
-
-  setTimeout(() => {
-    isDisabled.value = !isDisabled.value
-  }, 2000)
-}
+const isLoading = ref<boolean>(false)
+const isDisabled = ref<boolean>(false)
 </script>
 
 <template>
   <ConfigProvider locale="en-US">
     <ThemeProvider appearance="light">
-      <div class="flex flex-col items-center size-full h-screen justify-center gap-8 bg-primary">
-        <div
-          v-if="false"
-          class="flex gap-8"
-        >
-          <Button
-            v-for="size in ['sm', 'md', 'lg', 'xl', '2xl']"
-            :key="size"
-            :class-config="{
-              // iconRight: 'enabled:group-hover/button:translate-x-0.5 group-focus-visible/button:translate-x-0.5',
-              // base: '',
-            }"
-            :size="size"
-            icon-right="arrowRight"
-          >
-            Content
-          </Button>
+      <div class="w-full h-screen flex-col gap-xl flex items-center justify-center">
+        <div class="flex gap-xl">
+          <Checkbox
+            v-model="isLoading"
+            label="Is loading"
+          />
+          <Checkbox
+            v-model="isDisabled"
+            label="Is disabled"
+          />
         </div>
 
-        <div class="flex gap-8">
-          <Button
-            v-for="variant of ['primary', 'secondary-gray', 'secondary-color', 'tertiary-gray', 'tertiary-color', 'destructive-primary', 'destructive-secondary', 'destructive-tertiary']"
-            :key="variant"
-            :is-loading="false"
-            :variant="(variant as ButtonProps['variant'])"
-            size="sm"
-            icon-left="search"
-          >
-            Cancel
-          </Button>
+        <div class="grid grid-cols-4 gap-lg">
+          <div>
+            <Button
+              :is-loading="isLoading"
+              :is-disabled="isDisabled"
+              icon-left="search"
+            >
+              A Button
+            </Button>
+          </div>
+
+          <div>
+            <ButtonRoot
+              :is-loading="isLoading"
+              :is-disabled="isDisabled"
+              :class-config="{
+                loader: 'size-4 mr-1',
+              }"
+              icon-left="search"
+              variant="secondary-color"
+            >
+              <div class="flex items-center">
+                <ButtonLoader v-if="isLoading" />
+
+                <ButtonIconLeft v-if="!isLoading" />
+                A Button
+                <ButtonIconRight />
+              </div>
+            </ButtonRoot>
+          </div>
+
+          <div>
+            <Button
+              :is-loading="isLoading"
+              :is-disabled="isDisabled"
+              :class-config="{
+                loader: 'size-auto',
+              }"
+              icon-left="search"
+              size="sm"
+            >
+              A Button
+
+              <template #loader>
+                <ButtonLoader>
+                  Loading...
+                </ButtonLoader>
+              </template>
+            </Button>
+          </div>
         </div>
       </div>
     </ThemeProvider>
