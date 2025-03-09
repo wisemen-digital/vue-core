@@ -17,10 +17,17 @@ const props = withDefaults(defineProps<ButtonProps>(), {
   type: 'button',
   variant: 'primary',
 })
+
+const emit = defineEmits<{
+  click: [event: MouseEvent]
+}>()
 </script>
 
 <template>
-  <ButtonRoot v-bind="props">
+  <ButtonRoot
+    v-bind="props"
+    @click="emit('click', $event)"
+  >
     <ButtonContentContainer>
       <slot name="icon-left">
         <ButtonIconLeft />

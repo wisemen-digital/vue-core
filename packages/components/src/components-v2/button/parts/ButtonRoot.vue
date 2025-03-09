@@ -27,6 +27,10 @@ const props = withDefaults(defineProps<ButtonProps>(), {
   variant: 'primary',
 })
 
+const emit = defineEmits<{
+  click: [event: MouseEvent]
+}>()
+
 const buttonStyle = computed<CreateButtonStyle>(() => createButtonStyle({
   isLoading: props.isLoading,
   size: props.size,
@@ -40,6 +44,14 @@ const customClassConfig = computed<ClassConfig<'button'>>(
     variant: props.variant,
   }),
 )
+
+function onClick(event: MouseEvent): void {
+  if (props.isLoading) {
+    return
+  }
+
+  emit('click', event)
+}
 
 useProvideButtonContext({
   ...toComputedRefs(props),
@@ -61,6 +73,7 @@ useProvideButtonContext({
       class: mergeClasses(customClassConfig.base, props.classConfig?.base),
     })"
     as="button"
+    @click="onClick"
   >
     <slot />
   </InteractableElement>
