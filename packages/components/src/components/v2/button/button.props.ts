@@ -4,9 +4,10 @@ import type { NativeEvent } from '@/types/emits.type'
 import type {
   CustomizableElement,
   InteractableElement,
+  PrimitiveElement,
 } from '@/utils/props.util'
 
-export interface ButtonProps extends InteractableElement, CustomizableElement<'button'> {
+export interface ButtonProps extends PrimitiveElement, InteractableElement, CustomizableElement<'button'> {
   /**
    * Indicates whether the button is in a loading state. When true, interactions are disabled.
    * @default false

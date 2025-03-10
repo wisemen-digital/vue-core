@@ -7,6 +7,7 @@ import ButtonLoader from '@/components/v2/button/parts/ButtonLoader.vue'
 import ButtonRoot from '@/components/v2/button/parts/ButtonRoot.vue'
 
 const props = withDefaults(defineProps<ButtonProps>(), {
+  id: null,
   testId: null,
   isDisabled: false,
   isLoading: false,

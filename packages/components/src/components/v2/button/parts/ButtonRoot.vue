@@ -9,6 +9,7 @@ import {
   createButtonStyle,
 } from '@/components/v2/button/style/button.style'
 import InteractableElement from '@/components/v2/core/InteractableElement.vue'
+import PrimitiveElement from '@/components/v2/core/PrimitiveElement.vue'
 import {
   type ClassConfig,
   getComponentClassConfig,
@@ -17,6 +18,7 @@ import {
 import { toComputedRefs } from '@/utils/props.util'
 
 const props = withDefaults(defineProps<ButtonProps>(), {
+  id: null,
   testId: null,
   isDisabled: false,
   isLoading: false,
@@ -62,20 +64,24 @@ useProvideButtonContext({
 </script>
 
 <template>
-  <InteractableElement
-    :is-disabled="props.isDisabled"
+  <PrimitiveElement
+    :id="props.id"
     :test-id="props.testId"
-    :aria-disabled="props.isLoading"
-    :aria-busy="props.isLoading"
-    :type="props.type"
-    :data-is-loading="props.isLoading"
-    :data-is-not-loading="!props.isLoading"
-    :class="buttonStyle.base({
-      class: mergeClasses(customClassConfig.base, props.classConfig?.base),
-    })"
-    as="button"
-    @click="onClick"
   >
-    <slot />
-  </InteractableElement>
+    <InteractableElement
+      :is-disabled="props.isDisabled"
+      :aria-disabled="props.isLoading"
+      :aria-busy="props.isLoading"
+      :type="props.type"
+      :data-is-loading="props.isLoading"
+      :data-is-not-loading="!props.isLoading"
+      :class="buttonStyle.base({
+        class: mergeClasses(customClassConfig.base, props.classConfig?.base),
+      })"
+      as="button"
+      @click="onClick"
+    >
+      <slot />
+    </InteractableElement>
+  </PrimitiveElement>
 </template>
