@@ -29,11 +29,11 @@ defineSlots<{
   /**
    * Use this to add content to the left of the tab label.
    */
-  'item-left': () => void
+  'item-left': ({ item }: { item: TabItem<TMeta> }) => void
   /**
    * Use this to add content to the right of the tab label.
    */
-  'item-right': () => void
+  'item-right': ({ item }: { item: TabItem<TMeta> }) => void
 }>()
 
 const model = defineModel<TabItem<TMeta>>({
