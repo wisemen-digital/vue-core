@@ -1,5 +1,11 @@
 # Changelog
 
+## [alpha.32]
+
+### Fixes
+- **Tabs**
+  - Fix slots `#item-left` and `#item-right` typing
+
 ## [alpha.31]
 
 ### Features
