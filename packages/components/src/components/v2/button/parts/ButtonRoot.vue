@@ -1,19 +1,19 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import { useProvideButtonContext } from '@/components-v2/button/button.context'
-import type { ButtonProps } from '@/components-v2/button/button.props'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
+import { useProvideButtonContext } from '@/components/v2/button/button.context'
+import type { ButtonEmits, ButtonProps } from '@/components/v2/button/button.props'
 import {
   type CreateButtonStyle,
   createButtonStyle,
-} from '@/components-v2/button/style/button.style'
-import InteractableElement from '@/components-v2/core/InteractableElement.vue'
+} from '@/components/v2/button/style/button.style'
+import InteractableElement from '@/components/v2/core/InteractableElement.vue'
 import {
   type ClassConfig,
   getComponentClassConfig,
   mergeClasses,
 } from '@/customClassVariants'
-import type { NativeEvents } from '@/types/emits.type'
 import { toComputedRefs } from '@/utils/props.util'
 
 const props = withDefaults(defineProps<ButtonProps>(), {
@@ -28,7 +28,9 @@ const props = withDefaults(defineProps<ButtonProps>(), {
   variant: 'primary',
 })
 
-const emit = defineEmits<NativeEvents>()
+const emit = defineEmits<ButtonEmits>()
+
+const themeContext = injectThemeProviderContext()
 
 const buttonStyle = computed<CreateButtonStyle>(() => createButtonStyle({
   isLoading: props.isLoading,
@@ -37,7 +39,7 @@ const buttonStyle = computed<CreateButtonStyle>(() => createButtonStyle({
 }))
 
 const customClassConfig = computed<ClassConfig<'button'>>(
-  () => getComponentClassConfig('button', 'default', {
+  () => getComponentClassConfig('button', themeContext.theme.value, {
     isLoading: props.isLoading,
     size: props.size,
     variant: props.variant,

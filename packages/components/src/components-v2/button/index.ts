@@ -1,7 +1,0 @@
-export type { ButtonProps } from './button.props'
-export { default as VcButtonv2 } from './Button.vue'
-export { default as VcButtonv2ContentContainer } from './parts/ButtonContentContainer.vue'
-export { default as VcButtonv2IconLeft } from './parts/ButtonIconLeft.vue'
-export { default as VcButtonv2IconRight } from './parts/ButtonIconRight.vue'
-export { default as VcButtonv2Loader } from './parts/ButtonLoader.vue'
-export { default as VcButtonv2Root } from './parts/ButtonRoot.vue'

@@ -160,15 +160,6 @@
   --border-color-error-subtle: var(--border-error-subtle);
 }
 
-@keyframes shimmer {
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(200%);
-  }
-}
-
 @theme {
   --z-index-dialog: 40;
   --z-index-dialog-overlay: 39;
@@ -331,4 +322,13 @@
   --shadow-button: 0px 0px 0px 0px rgba(10, 13, 18, 0.18) inset, 
                    0px -1px 0px 0px rgba(10, 13, 18, 0.05) inset, 
                    0px 1px 2px 0px rgba(10, 13, 18, 0.05);
+}
+
+@keyframes shimmer {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(200%);
+  }
 }

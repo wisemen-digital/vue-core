@@ -24,6 +24,7 @@ const components = [
     text: 'Buttons',
     items: [
       { text: 'Button', link: '/components/button/button' },
+      { text: 'Button V2', link: '/components/button-v2/button' },
       { text: 'Icon Button', link: '/components/icon-button/icon-button' },
       { text: 'Router Link Button', link: '/components/router-link-button/router-link-button' },
       { text: 'Toggle', link: '/components/toggle/toggle' },

@@ -260,6 +260,11 @@ export const components = [
     componentName: 'Button',
   },
   {
+    sourceFolder: 'v2/button/Button.vue',
+    targetFolder: 'button-v2',
+    componentName: 'Button',
+  },
+  {
     sourceFolder: 'button/icon-button/IconButton.vue',
     targetFolder: 'icon-button',
     componentName: 'IconButton',

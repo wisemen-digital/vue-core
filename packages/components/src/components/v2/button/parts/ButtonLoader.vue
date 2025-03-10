@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import { VisuallyHidden } from 'reka-ui'
 import { useI18n } from 'vue-i18n'
 
 import { VcSpinner } from '@/components/index'
-import { useInjectButtonContext } from '@/components-v2/button/button.context'
+import { useInjectButtonContext } from '@/components/v2/button/button.context'
 import { mergeClasses } from '@/customClassVariants'
 
 const {
@@ -21,11 +20,9 @@ const { t } = useI18n()
       class: mergeClasses(customClassConfig.loader, classConfig?.loader),
     })"
   >
-    <VisuallyHidden>
-      <span>
-        {{ t('shared.loading') }}
-      </span>
-    </VisuallyHidden>
+    <span class="sr-only">
+      {{ t('shared.loading') }}
+    </span>
 
     <slot>
       <VcSpinner :aria-hidden="true" />

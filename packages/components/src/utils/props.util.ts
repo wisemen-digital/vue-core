@@ -8,21 +8,22 @@ export type NonUndefined<T> = {
 
 export interface InteractableElement {
   /**
-   * A unique identifier used for testing purposes.
-   * Can be used as a `data-test-id` attribute in testing frameworks.
-   * If set to `null`, no test ID will be applied.
+   * A unique identifier used for testing purposes. If set to `null`, no test ID will be applied.
+   * @default null
    */
   testId?: string | null
 
   /**
-   * Determines whether the element is disabled.
-   * When `true`, the element becomes non-interactive.
+   * Determines whether the element is disabled. When `true`, the element becomes non-interactive.
    * @default false
    */
   isDisabled?: boolean
 }
 
 export interface CustomizableElement<TComponent extends keyof Components> {
+  /**
+   * The class configuration of the component.
+   */
   classConfig?: ClassConfig<TComponent> | null
 }
 
