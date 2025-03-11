@@ -79,10 +79,11 @@ export function useDialog<TComponent extends Component>(
   async function createDialog(attrs: Attrs<TComponent>, id: string): Promise<Ref<Dialog> | null> {
     const dialogWithSameId = dialogs.value.find((dialog) => dialog.id === id) ?? null
 
-    if (dialogWithSameId !== null) {
-      console.warn(`A dialog with the id ${id} already exists. Make sure to use a unique id.`)
-
-      return null
+    if (dialogWithSameId !== null && isDialogOpen(id)) {
+      throw new Error('A dialog with the same ID is already open.')
+    }
+    else if (dialogWithSameId !== null) {
+      removeDialogFromContainer(dialogWithSameId.id)
     }
 
     const c = await options.component()
@@ -95,12 +96,6 @@ export function useDialog<TComponent extends Component>(
           id,
           onClose: () => {
             closeDialog(id)
-          },
-          onUnmounted: () => {
-            // TODO: fix
-            setTimeout(() => {
-              removeDialogFromContainer(id)
-            }, 500)
           },
         }),
       )

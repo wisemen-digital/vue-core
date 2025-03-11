@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { DialogContent as RekaDialogContent } from 'reka-ui'
-import { computed } from 'vue'
 
 import { useInjectDialogContext } from '@/components/v2/dialog/dialog.context'
 import { mergeClasses } from '@/customClassVariants'
@@ -23,12 +22,10 @@ const {
   classConfig,
   customClassConfig,
   hideOverlay,
+  preventClickOutside,
   preventEsc,
   style,
-  onUnmounted,
 } = useInjectDialogContext()
-
-const shouldTrapFocus = computed<boolean>(() => !hideOverlay.value)
 
 function onEscapeKeyDown(event: KeyboardEvent): void {
   if (preventEsc.value) {
@@ -45,9 +42,9 @@ function onEscapeKeyDown(event: KeyboardEvent): void {
     :class="style.content({
       class: mergeClasses(customClassConfig.content, classConfig?.content),
     })"
-    :trap-focus="shouldTrapFocus"
+    :trap-focus="!hideOverlay"
+    :disable-outside-pointer-events="preventClickOutside"
     @escape-key-down="onEscapeKeyDown"
-    @vue:unmounted="onUnmounted"
   >
     <slot />
   </RekaDialogContent>

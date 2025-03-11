@@ -16,7 +16,6 @@ interface DialogContext extends PropsToComputed<DialogProps> {
   isOpen: ComputedRef<boolean>
   customClassConfig: ComputedRef<ClassConfig<'dialog'>>
   style: ComputedRef<CreateDialogStyle>
-  onUnmounted: () => void
 }
 
 const dialogContextKey: InjectionKey<DialogContext> = Symbol('dialogContext')

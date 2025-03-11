@@ -32,7 +32,6 @@ const props = withDefaults(defineProps<DialogProps>(), {
 
 const emit = defineEmits<{
   close: []
-  unmounted: []
 }>()
 
 defineSlots<{
@@ -54,10 +53,6 @@ const customClassConfig = computed<ClassConfig<'dialog'>>(
   () => getComponentClassConfig('dialog', themeContext.theme.value, {}),
 )
 
-function onUnmounted(): void {
-  emit('unmounted')
-}
-
 watch(isOpen, (isOpen) => {
   if (!isOpen) {
     emit('close')
@@ -69,7 +64,6 @@ useProvideDialogContext({
   isOpen: computed<boolean>(() => isOpen.value),
   customClassConfig,
   style: dialogStyle,
-  onUnmounted,
 })
 </script>
 
@@ -78,7 +72,10 @@ useProvideDialogContext({
     :id="props.id"
     :test-id="props.testId"
   >
-    <RekaDialogRoot v-model:open="isOpen">
+    <RekaDialogRoot
+      v-model:open="isOpen"
+      :modal="!props.hideOverlay"
+    >
       <slot />
     </RekaDialogRoot>
   </PrimitiveElement>
