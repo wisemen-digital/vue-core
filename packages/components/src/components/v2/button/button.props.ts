@@ -1,6 +1,5 @@
 import type { ButtonStyle } from '@/components/v2/button/style/button.style'
 import type { Icon } from '@/icons/icons'
-import type { NativeEvent } from '@/types/emits.type'
 import type {
   CustomizableElement,
   InteractableElement,
@@ -45,6 +44,8 @@ export interface ButtonProps extends PrimitiveElement, InteractableElement, Cust
   variant?: ButtonStyle['variant']
 }
 
-export type ButtonEmits = NativeEvent<'click'>
-  & NativeEvent<'focus'>
-  & NativeEvent<'blur'>
+export interface ButtonEmits {
+  (event: 'click', e: MouseEvent): void
+  (event: 'focus', e: FocusEvent): void
+  (event: 'blur', e: FocusEvent): void
+}
