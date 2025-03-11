@@ -13,7 +13,7 @@ export const createDialogStyle = tv({
       .withShadow('shadow-lg')
       .build(),
     overlay: new StyleBuilder()
-      .withClasses('fixed inset-0 bg-black/30')
+      .withClasses('fixed inset-0 bg-black/30 backdrop-blur-sm')
       .withZIndex('z-39')
       .build(),
   },

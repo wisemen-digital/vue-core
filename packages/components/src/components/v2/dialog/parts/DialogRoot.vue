@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { DialogRoot as RekaDialogRoot } from 'reka-ui'
-import { computed } from 'vue'
+import {
+  computed,
+  watch,
+} from 'vue'
 
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import PrimitiveElement from '@/components/v2/core/PrimitiveElement.vue'
@@ -21,13 +24,30 @@ const props = withDefaults(defineProps<DialogProps>(), {
   teleportTargetId: null,
   testId: null,
   classConfig: null,
+  mode: 'overlay',
   preventClickOutside: false,
   preventEsc: false,
 })
 
 const emit = defineEmits<{
   close: []
+  unmounted: []
 }>()
+
+defineSlots<{
+  /**
+   * Slot for the dialog components.
+   */
+  default: () => void
+}>()
+
+const isOpen = defineModel<boolean>('isOpen', {
+  default: false,
+})
+
+if (props.mode === 'inline' && props.teleportTargetId === null) {
+  throw new Error('``teleportTargetId` is required when `mode` is set to "inline"')
+}
 
 const themeContext = injectThemeProviderContext()
 
@@ -37,10 +57,22 @@ const customClassConfig = computed<ClassConfig<'dialog'>>(
   () => getComponentClassConfig('dialog', themeContext.theme.value, {}),
 )
 
+function onUnmounted(): void {
+  emit('unmounted')
+}
+
+watch(isOpen, (isOpen) => {
+  if (!isOpen) {
+    emit('close')
+  }
+})
+
 useProvideDialogContext({
   ...toComputedRefs(props),
+  isOpen: computed<boolean>(() => isOpen.value),
   customClassConfig,
   style: dialogStyle,
+  onUnmounted,
 })
 </script>
 
@@ -49,7 +81,7 @@ useProvideDialogContext({
     :id="props.id"
     :test-id="props.testId"
   >
-    <RekaDialogRoot>
+    <RekaDialogRoot v-model:open="isOpen">
       <slot />
     </RekaDialogRoot>
   </PrimitiveElement>
