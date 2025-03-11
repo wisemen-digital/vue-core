@@ -1,6 +1,6 @@
 import type { VariantProps } from 'tailwind-variants'
 
-import type { createButtonStyle } from '@/components/v2/button/style/button.style'
+import type { createButtonStyle } from '@/components/@next/button/style/button.style'
 import { twMerge } from '@/libs/twMerge.lib'
 
 export interface Components {

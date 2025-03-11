@@ -1,4 +1,4 @@
-import type { ButtonStyle } from '@/components/v2/button/style/button.style'
+import type { ButtonStyle } from '@/components/@next/button/style/button.style'
 import type { Icon } from '@/icons/icons'
 import type {
   CustomizableElement,

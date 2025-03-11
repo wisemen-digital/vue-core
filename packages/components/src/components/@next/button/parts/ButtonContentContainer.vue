@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useInjectButtonContext } from '@/components/v2/button/button.context'
+import { useInjectButtonContext } from '@/components/@next/button/button.context'
 import { mergeClasses } from '@/customClassVariants'
 
 const {
