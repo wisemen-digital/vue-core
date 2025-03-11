@@ -40,7 +40,7 @@ Displays a button or a component that looks like a button.
 ## Import
 
 ```ts
-import { VcButton } from '@wisemen/vue-core/v2'
+import { VcButton } from '@wisemen/vue-core/@next'
 ```
 
 ## Usage

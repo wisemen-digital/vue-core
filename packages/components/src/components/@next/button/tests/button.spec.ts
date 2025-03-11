@@ -6,8 +6,8 @@ import {
   vi,
 } from 'vitest'
 
-import type { ButtonProps } from '@/components/v2/button/button.props'
-import Button from '@/components/v2/button/Button.vue'
+import type { ButtonProps } from '@/components/@next/button/button.props'
+import Button from '@/components/@next/button/Button.vue'
 
 describe('button', () => {
   /**

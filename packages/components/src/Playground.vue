@@ -4,9 +4,9 @@ import {
   Motion,
 } from 'motion-v'
 
+import Button from '@/components/@next/button/Button.vue'
 import ConfigProvider from '@/components/config-provider/ConfigProvider.vue'
 import ThemeProvider from '@/components/theme-provider/ThemeProvider.vue'
-import Button from '@/components/v2/button/Button.vue'
 import { useDialog } from '@/components/v2/dialog/dialog.composable'
 import DialogContainer from '@/components/v2/dialog/DialogContainer.vue'
 import { setupDefaultStyles } from '@/styling/setupDefaultStyles'

@@ -2,14 +2,14 @@
 import { computed } from 'vue'
 
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
-import { useProvideButtonContext } from '@/components/v2/button/button.context'
-import type { ButtonEmits, ButtonProps } from '@/components/v2/button/button.props'
+import { useProvideButtonContext } from '@/components/@next/button/button.context'
+import type { ButtonEmits, ButtonProps } from '@/components/@next/button/button.props'
 import {
   type CreateButtonStyle,
   createButtonStyle,
-} from '@/components/v2/button/style/button.style'
-import InteractableElement from '@/components/v2/core/InteractableElement.vue'
-import PrimitiveElement from '@/components/v2/core/PrimitiveElement.vue'
+} from '@/components/@next/button/style/button.style'
+import InteractableElement from '@/components/@next/core/InteractableElement.vue'
+import PrimitiveElement from '@/components/@next/core/PrimitiveElement.vue'
 import {
   type ClassConfig,
   getComponentClassConfig,

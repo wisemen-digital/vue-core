@@ -2,7 +2,7 @@
 import { useI18n } from 'vue-i18n'
 
 import { VcSpinner } from '@/components/index'
-import { useInjectButtonContext } from '@/components/v2/button/button.context'
+import { useInjectButtonContext } from '@/components/@next/button/button.context'
 import { mergeClasses } from '@/customClassVariants'
 
 const {
