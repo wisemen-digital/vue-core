@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { DialogContent as RekaDialogContent } from 'reka-ui'
 
-import { useInjectDialogContext } from '@/components/v2/dialog/dialog.context'
+import { useInjectDialogContext } from '@/components/@next/dialog/dialog.context'
 import { mergeClasses } from '@/customClassVariants'
 
 const props = withDefaults(defineProps<{

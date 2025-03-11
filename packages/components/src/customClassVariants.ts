@@ -1,7 +1,7 @@
 import type { VariantProps } from 'tailwind-variants'
 
 import type { createButtonStyle } from '@/components/@next/button/style/button.style'
-import type { createDialogStyle } from '@/components/v2/dialog/style/dialog.style'
+import type { createDialogStyle } from '@/components/@next/dialog/style/dialog.style'
 import { twMerge } from '@/libs/twMerge.lib'
 
 export interface Components {

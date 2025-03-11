@@ -4,8 +4,8 @@ import {
   Motion,
 } from 'motion-v'
 
-import DialogContent from '@/components/v2/dialog/parts/DialogContent.vue'
-import DialogRoot from '@/components/v2/dialog/parts/DialogRoot.vue'
+import DialogContent from '@/components/@next/dialog/parts/DialogContent.vue'
+import DialogRoot from '@/components/@next/dialog/parts/DialogRoot.vue'
 
 const emit = defineEmits<{
   closeDialog: []

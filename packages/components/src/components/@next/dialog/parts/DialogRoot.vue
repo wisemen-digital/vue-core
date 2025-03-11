@@ -6,13 +6,13 @@ import {
 } from 'vue'
 
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
-import PrimitiveElement from '@/components/v2/core/PrimitiveElement.vue'
-import { useProvideDialogContext } from '@/components/v2/dialog/dialog.context'
-import type { DialogProps } from '@/components/v2/dialog/dialog.props'
+import PrimitiveElement from '@/components/@next/core/PrimitiveElement.vue'
+import { useProvideDialogContext } from '@/components/@next/dialog/dialog.context'
+import type { DialogProps } from '@/components/@next/dialog/dialog.props'
 import {
   type CreateDialogStyle,
   createDialogStyle,
-} from '@/components/v2/dialog/style/dialog.style'
+} from '@/components/@next/dialog/style/dialog.style'
 import {
   type ClassConfig,
   getComponentClassConfig,

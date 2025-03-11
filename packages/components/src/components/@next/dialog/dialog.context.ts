@@ -5,10 +5,10 @@ import {
   provide,
 } from 'vue'
 
-import type { DialogProps } from '@/components/v2/dialog/dialog.props'
+import type { DialogProps } from '@/components/@next/dialog/dialog.props'
 import type {
   CreateDialogStyle,
-} from '@/components/v2/dialog/style/dialog.style'
+} from '@/components/@next/dialog/style/dialog.style'
 import type { ClassConfig } from '@/customClassVariants'
 import type { PropsToComputed } from '@/utils/props.util'
 

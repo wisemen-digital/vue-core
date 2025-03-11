@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { useAttrs } from 'vue'
 
-import DialogContent from '@/components/v2/dialog/parts/DialogContent.vue'
-import DialogContentTransition from '@/components/v2/dialog/parts/DialogContentTransition.vue'
-import DialogOverlay from '@/components/v2/dialog/parts/DialogOverlay.vue'
-import DialogOverlayTransition from '@/components/v2/dialog/parts/DialogOverlayTransition.vue'
-import DialogPortal from '@/components/v2/dialog/parts/DialogPortal.vue'
-import DialogRoot from '@/components/v2/dialog/parts/DialogRoot.vue'
+import DialogContent from '@/components/@next/dialog/parts/DialogContent.vue'
+import DialogContentTransition from '@/components/@next/dialog/parts/DialogContentTransition.vue'
+import DialogOverlay from '@/components/@next/dialog/parts/DialogOverlay.vue'
+import DialogOverlayTransition from '@/components/@next/dialog/parts/DialogOverlayTransition.vue'
+import DialogPortal from '@/components/@next/dialog/parts/DialogPortal.vue'
+import DialogRoot from '@/components/@next/dialog/parts/DialogRoot.vue'
 
 const isOpen = defineModel<boolean>('isOpen', {
   default: false,

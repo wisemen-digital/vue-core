@@ -5,10 +5,10 @@ import {
 } from 'motion-v'
 
 import Button from '@/components/@next/button/Button.vue'
+import { useDialog } from '@/components/@next/dialog/dialog.composable'
+import DialogContainer from '@/components/@next/dialog/DialogContainer.vue'
 import ConfigProvider from '@/components/config-provider/ConfigProvider.vue'
 import ThemeProvider from '@/components/theme-provider/ThemeProvider.vue'
-import { useDialog } from '@/components/v2/dialog/dialog.composable'
-import DialogContainer from '@/components/v2/dialog/DialogContainer.vue'
 import { setupDefaultStyles } from '@/styling/setupDefaultStyles'
 
 setupDefaultStyles()
