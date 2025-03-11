@@ -16,7 +16,7 @@ const {
     v-if="iconRight !== null"
     :icon="iconRight"
     :class="style.iconRight({
-      class: mergeClasses(customClassConfig.base, classConfig?.iconRight),
+      class: mergeClasses(customClassConfig.iconRight, classConfig?.iconRight),
     })"
   />
 </template>
