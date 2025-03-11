@@ -1,5 +1,11 @@
 # Changelog
 
+## [alpha.33]
+
+### Fixes
+- **InputFieldLabel**
+  - Fix height animation bug
+
 ## [alpha.32]
 
 ### Fixes
