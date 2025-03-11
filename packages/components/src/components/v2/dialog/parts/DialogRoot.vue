@@ -24,6 +24,7 @@ const props = withDefaults(defineProps<DialogProps>(), {
   teleportTargetId: null,
   testId: null,
   classConfig: null,
+  hideOverlay: false,
   mode: 'overlay',
   preventClickOutside: false,
   preventEsc: false,
@@ -44,10 +45,6 @@ defineSlots<{
 const isOpen = defineModel<boolean>('isOpen', {
   default: false,
 })
-
-if (props.mode === 'inline' && props.teleportTargetId === null) {
-  throw new Error('``teleportTargetId` is required when `mode` is set to "inline"')
-}
 
 const themeContext = injectThemeProviderContext()
 

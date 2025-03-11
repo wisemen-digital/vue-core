@@ -14,14 +14,14 @@ const {
   isOpen,
   classConfig,
   customClassConfig,
-  mode,
+  hideOverlay,
   style,
 } = useInjectDialogContext()
 </script>
 
 <template>
   <RekaDialogOverlay
-    v-if="mode === 'overlay' && isOpen"
+    v-if="isOpen && !hideOverlay"
     :as-child="props.asChild"
     :force-mount="true"
     :class="style.overlay({

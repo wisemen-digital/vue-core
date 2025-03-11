@@ -3,10 +3,9 @@ import { Primitive } from 'reka-ui'
 
 import type {
   InteractableElement,
-  NonUndefined,
 } from '@/utils/props.util'
 
-const props = withDefaults(defineProps<NonUndefined<InteractableElement> & { as?: string | null }>(), {
+const props = withDefaults(defineProps<InteractableElement & { as?: string | null }>(), {
   isDisabled: false,
   as: null,
 })

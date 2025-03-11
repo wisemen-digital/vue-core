@@ -22,13 +22,13 @@ const {
   isOpen,
   classConfig,
   customClassConfig,
-  mode,
+  hideOverlay,
   preventEsc,
   style,
   onUnmounted,
 } = useInjectDialogContext()
 
-const shouldTrapFocus = computed<boolean>(() => mode.value === 'overlay')
+const shouldTrapFocus = computed<boolean>(() => !hideOverlay.value)
 
 function onEscapeKeyDown(event: KeyboardEvent): void {
   if (preventEsc.value) {

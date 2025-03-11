@@ -2,11 +2,10 @@
 import { Primitive } from 'reka-ui'
 
 import type {
-  NonUndefined,
   PrimitiveElement,
 } from '@/utils/props.util'
 
-const props = withDefaults(defineProps<NonUndefined<PrimitiveElement> & { as?: string | null }>(), {
+const props = withDefaults(defineProps<PrimitiveElement & { as?: string | null }>(), {
   id: null,
   testId: null,
   as: null,
