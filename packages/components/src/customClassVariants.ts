@@ -1,10 +1,12 @@
 import type { VariantProps } from 'tailwind-variants'
 
 import type { createButtonStyle } from '@/components/@next/button/style/button.style'
+import type { createTabsStyle } from '@/components/@next/tabs/style/tabs.style'
 import { twMerge } from '@/libs/twMerge.lib'
 
 export interface Components {
   button: typeof createButtonStyle
+  tabs: typeof createTabsStyle
 }
 
 export interface ClassVariant<

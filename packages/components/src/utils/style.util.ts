@@ -142,4 +142,10 @@ export class StyleBuilder {
 
     return this
   }
+
+  public withZIndex(zIndex: string): this {
+    this.with(zIndex)
+
+    return this
+  }
 }
