@@ -6,9 +6,9 @@ import { useInjectDialogContext } from '@/components/@next/dialog/dialog.context
 
 const { teleportTargetId } = useInjectDialogContext()
 
-const teleportTarget = computed<string | HTMLElement>(() => {
+const teleportTarget = computed<string | null>(() => {
   if (teleportTargetId.value === null) {
-    return document.body
+    return null
   }
 
   return `#${teleportTargetId.value}`
@@ -17,8 +17,9 @@ const teleportTarget = computed<string | HTMLElement>(() => {
 
 <template>
   <RekaDialogPortal
+    :disabled="teleportTargetId === null"
     :force-mount="true"
-    :to="teleportTarget"
+    :to="teleportTarget!"
   >
     <slot />
   </RekaDialogPortal>

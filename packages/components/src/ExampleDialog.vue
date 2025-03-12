@@ -5,6 +5,9 @@ import {
 } from 'motion-v'
 
 import DialogContent from '@/components/@next/dialog/parts/DialogContent.vue'
+import DialogOverlay from '@/components/@next/dialog/parts/DialogOverlay.vue'
+import DialogOverlayTransition from '@/components/@next/dialog/parts/DialogOverlayTransition.vue'
+import DialogPortal from '@/components/@next/dialog/parts/DialogPortal.vue'
 import DialogRoot from '@/components/@next/dialog/parts/DialogRoot.vue'
 
 const emit = defineEmits<{
@@ -13,34 +16,44 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <DialogRoot>
-    <AnimatePresence>
-      <DialogContent :as-child="true">
-        <Motion
-          :transition="{
-            duration: 0.4,
-            type: 'spring',
-            bounce: 0.2,
-          }"
-          layout-id="test"
-        >
-          <div class="w-80 h-40 p-xl">
-            <Motion
-              :transition="{
-                duration: 0.4,
-                type: 'spring',
-                bounce: 0.2,
-              }"
-              layout-id="title"
-              class="inline-block"
-            >
-              <h1 class="text-2xl font-bold">
-                Hello world
-              </h1>
-            </Motion>
-          </div>
-        </Motion>
-      </DialogContent>
-    </AnimatePresence>
+  <DialogRoot
+    :class-config="{
+
+    }"
+  >
+    <DialogPortal>
+      <AnimatePresence>
+        <DialogContent :as-child="true">
+          <Motion
+            :transition="{
+              duration: 0.4,
+              type: 'spring',
+              bounce: 0.2,
+            }"
+            layout-id="test"
+          >
+            <div class="w-80 h-40 p-xl">
+              <Motion
+                :transition="{
+                  duration: 0.4,
+                  type: 'spring',
+                  bounce: 0.2,
+                }"
+                layout-id="title"
+                class="inline-block"
+              >
+                <h1 class="text-2xl font-bold">
+                  Hello world
+                </h1>
+              </Motion>
+            </div>
+          </Motion>
+        </DialogContent>
+      </AnimatePresence>
+
+      <DialogOverlayTransition>
+        <DialogOverlay />
+      </DialogOverlayTransition>
+    </DialogPortal>
   </DialogRoot>
 </template>
