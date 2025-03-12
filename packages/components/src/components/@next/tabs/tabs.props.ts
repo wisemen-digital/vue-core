@@ -15,9 +15,16 @@ export interface TabsProps extends PrimitiveElement, InteractableElement, Custom
 }
 
 export interface TabItemProps extends PrimitiveElement, InteractableElement {
+  /**
+   * Unique identifier for the tab item.
+   */
   value: TabsValue
 }
 
 export interface TabsContentProps extends PrimitiveElement {
+  /**
+   * The value corresponding to a specific tab item.
+   * It determines which content is displayed when a tab is selected.
+   */
   value: TabsValue
 }
