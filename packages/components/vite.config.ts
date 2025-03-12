@@ -12,6 +12,7 @@ export default defineConfig({
   build: {
     lib: {
       name: 'vue-core',
+      cssFileName: 'style',
       entry: [
         resolve(__dirname, 'src/index.ts'),
         resolve(__dirname, 'src/next.ts'),

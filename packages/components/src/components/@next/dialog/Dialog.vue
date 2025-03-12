@@ -40,8 +40,8 @@ const attrs = useAttrs()
 
 <template>
   <DialogRoot
-    v-model:is-open="isOpen"
     v-bind="props"
+    v-model:is-open="isOpen"
     @close="emit('close')"
   >
     <DialogPortal>
