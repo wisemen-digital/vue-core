@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { Primitive } from 'reka-ui'
 
-import type {
-  PrimitiveElement,
-} from '@/utils/props.util'
-
-const props = withDefaults(defineProps<PrimitiveElement & { as?: string | null }>(), {
+const props = withDefaults(defineProps<{
+  id: string | null
+  testId: string | null
+  as?: string | null
+}>(), {
   id: null,
   testId: null,
   as: null,
