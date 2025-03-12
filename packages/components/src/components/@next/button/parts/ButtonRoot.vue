@@ -7,8 +7,8 @@ import {
   type CreateButtonStyle,
   createButtonStyle,
 } from '@/components/@next/button/style/button.style'
-import InteractableElement from '@/components/@next/core/InteractableElement.vue'
-import PrimitiveElement from '@/components/@next/core/PrimitiveElement.vue'
+import InteractableElement from '@/components/@next/shared/InteractableElement.vue'
+import PrimitiveElement from '@/components/@next/shared/PrimitiveElement.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import {
   type ClassConfig,
