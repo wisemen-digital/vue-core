@@ -111,11 +111,24 @@ export function useDialog<TComponent extends Component>(
     }
   }
 
+  function isDialogOpen(id?: string): boolean {
+    const idToUse = id ?? dialogId
+
+    const dialog = dialogs.value.find((dialog) => dialog.id === idToUse) ?? null
+
+    if (dialog === null) {
+      return false
+    }
+
+    return dialog.isOpen
+  }
+
   onBeforeUnmount(() => {
     closeDialog()
   })
 
   return {
+    isOpen: isDialogOpen,
     close: closeDialog,
     getTriggerProps,
     open: openDialog as UseDialogReturnType<TComponent>['open'],
