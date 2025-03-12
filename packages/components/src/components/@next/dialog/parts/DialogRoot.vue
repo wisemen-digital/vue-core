@@ -5,7 +5,6 @@ import {
   watch,
 } from 'vue'
 
-import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import PrimitiveElement from '@/components/@next/core/PrimitiveElement.vue'
 import { useProvideDialogContext } from '@/components/@next/dialog/dialog.context'
 import type { DialogProps } from '@/components/@next/dialog/dialog.props'
@@ -13,6 +12,7 @@ import {
   type CreateDialogStyle,
   createDialogStyle,
 } from '@/components/@next/dialog/style/dialog.style'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import {
   type ClassConfig,
   getComponentClassConfig,
