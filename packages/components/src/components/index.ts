@@ -31,8 +31,6 @@ export type VcTableProps<TSchema, TFilters> = TableProps<TSchema, TFilters>
 export type VcTextFieldProps = TextFieldProps
 export type VcTooltipProps = TooltipProps
 
-export * from '@/components/@next/button'
-
 // Animate Height
 export { default as VcAnimateHeight } from '@/components/animate-height/AnimateHeight.vue'
 
