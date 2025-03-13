@@ -5,6 +5,11 @@ import {
   watch,
 } from 'vue'
 
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
+import {
+  type ClassConfig,
+  getComponentClassConfig,
+} from '@/customClassVariants'
 import { useProvideDialogContext } from '@/packages/@next/dialog/dialog.context'
 import type { DialogProps } from '@/packages/@next/dialog/dialog.props'
 import {
@@ -12,11 +17,6 @@ import {
   createDialogStyle,
 } from '@/packages/@next/dialog/style/dialog.style'
 import PrimitiveElement from '@/packages/@next/shared/PrimitiveElement.vue'
-import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
-import {
-  type ClassConfig,
-  getComponentClassConfig,
-} from '@/customClassVariants'
 import { toComputedRefs } from '@/utils/props.util'
 
 const props = withDefaults(defineProps<DialogProps>(), {

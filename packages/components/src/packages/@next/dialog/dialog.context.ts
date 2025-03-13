@@ -5,11 +5,11 @@ import {
   provide,
 } from 'vue'
 
+import type { ClassConfig } from '@/customClassVariants'
 import type { DialogProps } from '@/packages/@next/dialog/dialog.props'
 import type {
   CreateDialogStyle,
 } from '@/packages/@next/dialog/style/dialog.style'
-import type { ClassConfig } from '@/customClassVariants'
 import type { PropsToComputed } from '@/utils/props.util'
 
 interface DialogContext extends PropsToComputed<DialogProps> {
