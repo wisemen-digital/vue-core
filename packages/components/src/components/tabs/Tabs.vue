@@ -22,17 +22,18 @@ const props = defineProps<{
 
 defineSlots<{
   /**
+   * Tabs content to display.
+   * Wrap each content with VcTabsContent and set the value prop to the tab value for accessibility.
+   */
+  'default': () => void
+  /**
    * Use this to add content to the left of the tab label.
    */
-  'item-left': () => void
+  'item-left': ({ item }: { item: TabItem<TMeta> }) => void
   /**
    * Use this to add content to the right of the tab label.
    */
-  'item-right': () => void
-  /**
-   * Tabs content to display. Wrap each content with VcTabsContent and set the value prop to the tab value for accessibility.
-   */
-  'default': () => void
+  'item-right': ({ item }: { item: TabItem<TMeta> }) => void
 }>()
 
 const model = defineModel<TabItem<TMeta>>({
@@ -59,6 +60,7 @@ const itemContentClasses = computed<string>(() => tabsStyle.itemContent())
 <template>
   <TabsRoot
     v-model="modelAsString"
+    :style="props.styleConfig"
     :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.appearance.value)"
     class="tabs-default"
   >

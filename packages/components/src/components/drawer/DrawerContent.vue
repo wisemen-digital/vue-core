@@ -14,7 +14,7 @@ defineSlots<{
   /**
    * Use to indicate the main content of the drawer.
    */
-  'default': () => void
+  default: () => void
 }>()
 
 const themeProviderContext = injectThemeProviderContext()

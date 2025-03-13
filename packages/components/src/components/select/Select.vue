@@ -147,6 +147,7 @@ const inputId = props.id ?? useId()
     :errors="props.errors"
     :hint="props.hint"
     :label="props.label"
+    :is-readonly="props.isReadonly"
     :is-touched="props.isTouched"
   >
     <template #label>

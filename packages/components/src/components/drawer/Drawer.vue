@@ -20,15 +20,15 @@ const props = withDefaults(defineProps<DrawerProps>(), {
   transitionClasses: null,
 })
 
+const emit = defineEmits<{
+  close: []
+}>()
+
 defineSlots<{
   /**
    * The content to display in the drawer.
    */
-  'default': () => void
-}>()
-
-const emit = defineEmits<{
-  close: []
+  default: () => void
 }>()
 
 const isOpen = defineModel<boolean>('isOpen', {

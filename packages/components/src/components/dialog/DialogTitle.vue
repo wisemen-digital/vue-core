@@ -5,7 +5,7 @@ defineSlots<{
   /**
    * Use to indicate the title of the dialog.
    */
-  'default': () => void
+  default: () => void
 }>()
 </script>
 

@@ -1,3 +1,54 @@
+# Changelog
+
+# [1.0.0-alpha.33]
+
+### Bug Fixes
+- **InputFieldLabel**
+  - Fix height animation bug
+
+# [1.0.0-alpha.32]
+
+### Bug Fixes
+- **Tabs**
+  - Fix slots `#item-left` and `#item-right` typing
+
+# [1.0.0-alpha.31]
+
+### Features
+- **AnimateHeight**
+  - Add new component to animate the height of its contents.
+
+# [1.0.0-alpha.30]
+
+### Bug Fixes
+- **Tabs**
+  - Fix `styleConfig` prop not working.
+
+- **RouteTabs**
+  - Fix `styleConfig` prop not working.
+
+# [1.0.0-alpha.29]
+
+### Bug Fixes
+- **Autocomplete**
+  - Blur the input field when clearing the search.
+
+# [1.0.0-alpha.28]
+
+### Bug Fixes
+- **Select**
+  - Fix `value` slot issue when an array value is used.
+
+### Bug Fixes
+- **Autocomplete**
+  - Blur the input field when clearing the search.
+
+# [1.0.0-alpha.27]
+
+### Bug Fixes
+- **Switch**
+  - Fix styling issue.
+
 # [1.0.0-alpha.26]
 
 ### Features

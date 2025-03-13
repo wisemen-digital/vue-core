@@ -5,7 +5,7 @@ defineSlots<{
   /**
    * Use to indicate the title of the drawer.
    */
-  'default': () => void
+  default: () => void
 }>()
 </script>
 
