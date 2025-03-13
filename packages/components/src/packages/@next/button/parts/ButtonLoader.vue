@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 
-import { useInjectButtonContext } from '@/components/@next/button/button.context'
 import { VcSpinner } from '@/components/index'
 import { mergeClasses } from '@/customClassVariants'
+import { useInjectButtonContext } from '@/packages/@next/button/button.context'
 
 const {
   classConfig,

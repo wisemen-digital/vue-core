@@ -5,11 +5,11 @@ import {
   provide,
 } from 'vue'
 
-import type { ButtonProps } from '@/components/@next/button/button.props'
+import type { ClassConfig } from '@/customClassVariants'
+import type { ButtonProps } from '@/packages/@next/button/button.props'
 import type {
   CreateButtonStyle,
-} from '@/components/@next/button/style/button.style'
-import type { ClassConfig } from '@/customClassVariants'
+} from '@/packages/@next/button/style/button.style'
 import type { PropsToComputed } from '@/utils/props.util'
 
 interface ButtonContext extends PropsToComputed<ButtonProps> {
