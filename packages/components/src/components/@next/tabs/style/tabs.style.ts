@@ -46,6 +46,7 @@ export const createTabsStyle = tv({
           .withColor('data-[state=active]:text-secondary data-[state=inactive]:text-quaternary disabled:opacity-75')
           .withSpacing('py-md px-lg')
           .withBorderRadius('rounded-sm')
+          .withTransition('enabled:hover:brightness-90')
           .build(),
         list: new StyleBuilder()
           .withSpacing('gap-x-xs')
@@ -62,6 +63,7 @@ export const createTabsStyle = tv({
           .withRing('focus-visible:ring-2 ring-offset-2 ring-fg-brand-primary-alt')
           .withBorderRadius('rounded-sm')
           .withSpacing('py-md px-lg')
+          .withBackgroundColor('enabled:hover:data-[state=inactive]:bg-primary-hover')
           .build(),
         list: new StyleBuilder()
           .withSpacing('gap-x-xs')
@@ -73,10 +75,12 @@ export const createTabsStyle = tv({
           .withBackgroundColor('bg-fg-brand-primary-alt')
           .build(),
         item: new StyleBuilder()
-          .withPadding('px-xs py-lg')
+          .withPadding('px-md py-sm')
+          .withMargin('my-sm')
           .withBorderRadius('rounded-md')
           .withRing('focus-visible:ring-2 ring-offset-2 ring-fg-brand-primary-alt')
           .withColor('data-[state=active]:text-brand-secondary data-[state=inactive]:text-quaternary disabled:opacity-75')
+          .withBackgroundColor('enabled:hover:bg-primary-hover enabled:data-[state=active]:hover:bg-brand-primary-alt')
           .build(),
         list: new StyleBuilder()
           .withSpacing('gap-x-lg')

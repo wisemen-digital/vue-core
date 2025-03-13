@@ -1,3 +1,5 @@
+import type { RouteLocationNamedRaw } from 'vue-router'
+
 import type { TabsStyle } from '@/components/@next/tabs/style/tabs.style'
 import type { TabsValue } from '@/components/@next/tabs/tabs.type'
 import type {
@@ -27,4 +29,11 @@ export interface TabsContentProps extends PrimitiveElement {
    * It determines which content is displayed when a tab is selected.
    */
   value: TabsValue
+}
+
+export interface RouteTabItemProps extends PrimitiveElement {
+  /**
+   * The route to navigate to when the tab is clicked.
+   */
+  to: RouteLocationNamedRaw
 }
