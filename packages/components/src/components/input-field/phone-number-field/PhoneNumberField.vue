@@ -259,6 +259,8 @@ watch(countryCodeModel, () => {
           '--select-with-icon-right-padding-right-default': '0',
           '--select-icon-right-spacing-default': 'var(--spacing-sm)',
         }"
+        :is-disabled="props.isDisabled"
+        :is-readonly="props.isReadonly"
         popover-align="start"
         popover-width="available-width"
         class="w-16 shrink-0"

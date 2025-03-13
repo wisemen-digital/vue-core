@@ -157,6 +157,7 @@ const hasValueSlot = computed<boolean>(() => slots.value !== undefined)
     :errors="props.errors"
     :hint="props.hint"
     :label="props.label"
+    :is-readonly="props.isReadonly"
     :is-touched="props.isTouched"
   >
     <template #label>

@@ -1,98 +1,98 @@
 # Changelog
 
-## [alpha.33]
+# [1.0.0-alpha.33]
 
-### Fixes
+### Bug Fixes
 - **InputFieldLabel**
   - Fix height animation bug
 
-## [alpha.32]
+# [1.0.0-alpha.32]
 
-### Fixes
+### Bug Fixes
 - **Tabs**
   - Fix slots `#item-left` and `#item-right` typing
 
-## [alpha.31]
+# [1.0.0-alpha.31]
 
 ### Features
 - **AnimateHeight**
   - Add new component to animate the height of its contents.
 
-## [alpha.30]
+# [1.0.0-alpha.30]
 
-### Fixes
+### Bug Fixes
 - **Tabs**
   - Fix `styleConfig` prop not working.
 
 - **RouteTabs**
   - Fix `styleConfig` prop not working.
 
-## [alpha.29]
+# [1.0.0-alpha.29]
 
-### Fixes
+### Bug Fixes
 - **Autocomplete**
   - Blur the input field when clearing the search.
 
-## [alpha.28]
+# [1.0.0-alpha.28]
 
-### Fixes
+### Bug Fixes
 - **Select**
   - Fix `value` slot issue when an array value is used.
 
-### Fixes
+### Bug Fixes
 - **Autocomplete**
   - Blur the input field when clearing the search.
 
-## [alpha.27]
+# [1.0.0-alpha.27]
 
-### Fixes
+### Bug Fixes
 - **Switch**
   - Fix styling issue.
 
-## [alpha.26]
+# [1.0.0-alpha.26]
 
 ### Features
 - **InputFieldLabel**
   - Add `--input-field-label-asterisk-color-default` to the style config to allow customizing the color of the asterisk.
 
-### Fixes
+### Bug Fixes
 - **Autocomplete**
   - Fix `label` prop not working.
 
-## [alpha.25]
+# [1.0.0-alpha.25]
 
-### Fixes
+### Bug Fixes
 - **NumberField**
   - Fix bug where clearing the input would reset to the previous value, or default value if no value was set.
 
-## [alpha.24]
+# [1.0.0-alpha.24]
 
-## [alpha.23]
+# [1.0.0-alpha.23]
 
 ### Features
 - **Autocomplete**
   - Various improvements
 
-### Fixes
+### Bug Fixes
 - **DropdownMenu**
   - Fix dropdown menu sub content styling.
 
-## [alpha.22]
+# [1.0.0-alpha.22]
 
-## [alpha.21]
+# [1.0.0-alpha.21]
 
 ### Breaking Changes
 
 - **useDocumentTitle**
   - Change `documentTitle.set` parameter from `string` to `MaybeRefOrGetter<string>`.
 
-## [alpha.20]
+# [1.0.0-alpha.20]
 
-## [alpha.19]
+# [1.0.0-alpha.19]
 
-## [alpha.18]
+# [1.0.0-alpha.18]
 
-## [alpha.17]
+# [1.0.0-alpha.17]
 
 ### Breaking Changes
 
@@ -107,7 +107,7 @@
 - **VcThemeProvider**
   - Add `teleportTargetSelector` prop to allow customizing where elements such as tooltips and popovers are rendered. This prop defaults to `body`.
 
-## [alpha.16]
+# [1.0.0-alpha.16]
 
 ### Breaking Changes
 
@@ -134,12 +134,12 @@
 - **VcAutocomplete**
   - Add `clearSearchOnSelection` prop.
 
-### Bug fixes
+### Bug Fixes
 
 - **VcAutocomplete**
   - Fix `isDisabled` prop not working correctly.
 
-## [alpha.15]
+# [1.0.0-alpha.15]
 
 ### Breaking Changes
 
@@ -147,7 +147,7 @@
 - **VcRouteTabs**
   - Tab items with a meta generic are no longer typed as `{ meta: TMeta }`. Instead, the properties from meta will now be directly available at the root level.
 
-### Bug fixes
+### Bug Fixes
 
 - **VcDialog**
 - **VcDrawer**
@@ -160,7 +160,7 @@
   - Fix the shimmer animation not working correctly.
 
 
-## [alpha.14]
+# [1.0.0-alpha.14]
 
 ### Features
 
@@ -178,27 +178,23 @@
 - **VcIcon**  
   - Remove the `size` prop.  
 
----
 
-## [alpha.13]
-
-- Fix bugs.  
-
----
-
-## [alpha.12]
+# [1.0.0-alpha.13]
 
 - Fix bugs.  
 
----
 
-## [alpha.11]
+# [1.0.0-alpha.12]
 
 - Fix bugs.  
 
----
 
-## [alpha.10]
+# [1.0.0-alpha.11]
+
+- Fix bugs.  
+
+
+# [1.0.0-alpha.10]
 
 ### Breaking Changes
 
@@ -206,9 +202,8 @@
   - Export `setupDefaultStyles` for Server-Side Rendering (SSR) support.  
     - Execute this function in your project (`main.ts`) to ensure default styles work correctly.  
 
----
 
-## [alpha.9]
+# [1.0.0-alpha.9]
 
 ### Breaking Changes
 
@@ -233,9 +228,8 @@
 - **i18n-iso-countries**  
   - Externalize this package, requiring manual installation in your project.  
 
----
 
-## [alpha.8]
+# [1.0.0-alpha.8]
 
 ### Breaking Changes
 

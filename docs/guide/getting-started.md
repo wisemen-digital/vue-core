@@ -8,18 +8,18 @@ To get started with `@wisemen/vue-core`, first install the package by running th
 pnpm i @wisemen/vue-core
 ```
 
+## Adding your own icons
+
+See the <a href="/vue-core/guide/extending-icons.html">Extending icons</a> details
+
 ## Setting Up Styles
 
-To apply the necessary styles, import them into your main.ts:
-```ts
-import '@wisemen/vue-core/style.css'
-```
+See the <a href="/vue-core/guide/styling.html#style-configuration-api">Style configuration</a> details
 
-The `setupDefaultStyles` function is provided to apply default styles to all components variants. This function can be called once at the beginning of your application to ensure consistent styling across your application.
+## Provide global configuration
 
+To provide global configuration to your components, see the <a href="/vue-core/components/config-provider/config-provider.html">ConfigProvider</a> component.
 
-```ts
-import { setupDefaultStyles } from '@wisemen/vue-core'
+To provide theme configuration to your components, see the <a href="/vue-core/components/theme-provider/theme-provider.html">ThemeProvider</a> component.
 
-setupDefaultStyles()
-```
+Some components might break if you do not provide these configurations. Both `Providers` should be added in your App.vue, wrapping your whole application.
