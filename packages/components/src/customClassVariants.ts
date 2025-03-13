@@ -4,7 +4,7 @@ import { computed, type ComputedRef } from 'vue'
 import { injectThemeProviderContext } from '@/components'
 import { twMerge } from '@/libs/twMerge.lib'
 import type { createButtonStyle } from '@/packages/@next/button/style/button.style'
-import type { createTabsStyle } from '@/packages/@next/tabs/style/tabs.style'
+import type { createTabsStyle } from '@/packages/@next/tabs/shared/style/tabs.style'
 
 export interface Components {
   button: typeof createButtonStyle

@@ -6,8 +6,8 @@ import {
 } from 'vue'
 
 import type { ClassConfig } from '@/customClassVariants'
-import type { CreateTabsStyle } from '@/packages/@next/tabs/style/tabs.style'
-import type { TabsProps } from '@/packages/@next/tabs/tabs.props'
+import type { CreateTabsStyle } from '@/packages/@next/tabs/shared/style/tabs.style'
+import type { TabsProps } from '@/packages/@next/tabs/shared/tabs.props'
 import type { PropsToComputed } from '@/utils/props.util'
 
 interface TabsContext extends PropsToComputed<TabsProps> {

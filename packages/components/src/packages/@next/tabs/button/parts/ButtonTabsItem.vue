@@ -4,10 +4,10 @@ import { TabsTrigger as RekaTabsTrigger } from 'reka-ui'
 import { mergeClasses } from '@/customClassVariants'
 import InteractableElement from '@/packages/@next/shared/InteractableElement.vue'
 import PrimitiveElement from '@/packages/@next/shared/PrimitiveElement.vue'
-import { useInjectTabsContext } from '@/packages/@next/tabs/tabs.context'
-import type { TabItemProps } from '@/packages/@next/tabs/tabs.props'
+import type { ButtonTabsItemProps } from '@/packages/@next/tabs/button/buttonTabs.props'
+import { useInjectTabsContext } from '@/packages/@next/tabs/shared/tabs.context'
 
-const props = withDefaults(defineProps<TabItemProps>(), {
+const props = withDefaults(defineProps<ButtonTabsItemProps>(), {
   id: null,
   testId: null,
   isDisabled: false,

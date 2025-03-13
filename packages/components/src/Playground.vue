@@ -4,8 +4,8 @@ import { ref } from 'vue'
 import ConfigProvider from '@/components/config-provider/ConfigProvider.vue'
 import ThemeProvider from '@/components/theme-provider/ThemeProvider.vue'
 import Icon from '@/packages/@next/icon/Icon.vue'
-import TabsItem from '@/packages/@next/tabs/parts/TabsItem.vue'
-import Tabs from '@/packages/@next/tabs/Tabs.vue'
+import Tabs from '@/packages/@next/tabs/button/ButtonTabs.vue'
+import TabsItem from '@/packages/@next/tabs/button/parts/ButtonTabsItem.vue'
 import { setupDefaultStyles } from '@/styling/setupDefaultStyles'
 
 setupDefaultStyles()

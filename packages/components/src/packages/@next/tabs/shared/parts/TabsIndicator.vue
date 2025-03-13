@@ -2,7 +2,7 @@
 import { TabsIndicator as RekaTabsIndicator } from 'reka-ui'
 
 import { mergeClasses } from '@/customClassVariants'
-import { useInjectTabsContext } from '@/packages/@next/tabs/tabs.context'
+import { useInjectTabsContext } from '@/packages/@next/tabs/shared/tabs.context'
 
 const {
   classConfig,

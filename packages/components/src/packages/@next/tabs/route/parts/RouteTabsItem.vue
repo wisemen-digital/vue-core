@@ -4,10 +4,10 @@ import { RouterLink } from 'vue-router'
 
 import { mergeClasses } from '@/customClassVariants'
 import PrimitiveElement from '@/packages/@next/shared/PrimitiveElement.vue'
-import { useInjectTabsContext } from '@/packages/@next/tabs/tabs.context'
-import type { RouteTabItemProps } from '@/packages/@next/tabs/tabs.props'
+import { useInjectTabsContext } from '@/packages/@next/tabs/shared/tabs.context'
+import type { RouteTabsItemProps } from '@/packages/@next/tabs/shared/tabs.props'
 
-const props = withDefaults(defineProps<RouteTabItemProps>(), {
+const props = withDefaults(defineProps<RouteTabsItemProps>(), {
   id: null,
   testId: null,
   isDisabled: false,

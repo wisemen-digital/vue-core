@@ -6,13 +6,13 @@ import {
   mergeClasses,
   useComponentClassConfig,
 } from '@/customClassVariants'
+import type { ButtonTabsValue } from '@/packages/@next/tabs/button/buttonTabs.props'
 import {
   type CreateTabsStyle,
   createTabsStyle,
-} from '@/packages/@next/tabs/style/tabs.style'
-import { useProvideTabsContext } from '@/packages/@next/tabs/tabs.context'
-import type { TabsProps } from '@/packages/@next/tabs/tabs.props'
-import type { TabsValue } from '@/packages/@next/tabs/tabs.type'
+} from '@/packages/@next/tabs/shared/style/tabs.style'
+import { useProvideTabsContext } from '@/packages/@next/tabs/shared/tabs.context'
+import type { TabsProps } from '@/packages/@next/tabs/shared/tabs.props'
 import { toComputedRefs } from '@/utils/props.util'
 
 const props = withDefaults(defineProps<TabsProps>(), {
@@ -23,7 +23,7 @@ const props = withDefaults(defineProps<TabsProps>(), {
   variant: 'underline',
 })
 
-const model = defineModel<TabsValue>({
+const model = defineModel<ButtonTabsValue>({
   required: true,
 })
 
