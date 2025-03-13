@@ -1,18 +1,51 @@
 <script setup lang="ts">
-import Button from '@/components/@next/button/Button.vue'
+import { ref } from 'vue'
+
+import Icon from '@/components/@next/icon/Icon.vue'
+import TabsItem from '@/components/@next/tabs/parts/TabsItem.vue'
+import Tabs from '@/components/@next/tabs/Tabs.vue'
 import ConfigProvider from '@/components/config-provider/ConfigProvider.vue'
 import ThemeProvider from '@/components/theme-provider/ThemeProvider.vue'
 import { setupDefaultStyles } from '@/styling/setupDefaultStyles'
 
 setupDefaultStyles()
+
+const tabValue = ref<string>('underline')
 </script>
 
 <template>
   <ConfigProvider locale="en-US">
     <ThemeProvider appearance="light">
-      <Button @click="(e) => console.log('e')">
-        Button
-      </Button>
+      <div class="p-8xl flex">
+        <Tabs
+          v-model="tabValue"
+          variant="underline"
+        >
+          <template #items>
+            <TabsItem value="underline">
+              Settings
+            </TabsItem>
+
+            <TabsItem value="button-border">
+              Profile
+            </TabsItem>
+
+            <TabsItem
+              :is-disabled="true"
+              value="button-brand"
+            >
+              <div class="flex items-center gap-x-2 justify-center">
+                <Icon
+                  icon="search"
+                  class="size-4"
+                />
+
+                Search
+              </div>
+            </TabsItem>
+          </template>
+        </Tabs>
+      </div>
     </ThemeProvider>
   </ConfigProvider>
 </template>
