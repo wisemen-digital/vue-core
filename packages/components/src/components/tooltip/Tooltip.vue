@@ -31,17 +31,17 @@ const props = withDefaults(defineProps<TooltipProps>(), {
 
 defineSlots<{
   /**
-   * The content that will trigger the tooltip.
+   * The content to display in the tooltip.
    */
-  'trigger': () => void
+  content: () => void
   /**
    * Use this to render your own trigger. Import VcTooltipTrigger for the trigger to work.
    */
-  'default': () => void
+  default: () => void
   /**
-   * The content to display in the tooltip.
+   * The content that will trigger the tooltip.
    */
-  'content': () => void
+  trigger: () => void
 }>()
 
 const themeProviderContext = injectThemeProviderContext()

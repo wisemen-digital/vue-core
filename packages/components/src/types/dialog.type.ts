@@ -48,11 +48,6 @@ export type Attrs<TComponent> = Omit<
 
 export interface UseDialogOptions<TComponent extends Component> {
   /**
-   * Whether the dialog should animate from the trigger
-   * @default false
-   */
-  shouldAnimateFromTrigger?: boolean
-  /**
    * The component to render. Must be a component of which the root is `AppDialog`
    */
   component: () => Promise<{ default: Constructor<TComponent> }>

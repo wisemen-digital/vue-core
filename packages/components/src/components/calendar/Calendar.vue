@@ -4,6 +4,8 @@ import {
   type DateValue,
   getLocalTimeZone,
 } from '@internationalized/date'
+import { useElementSize } from '@vueuse/core'
+import { Motion } from 'motion-v'
 import {
   CalendarCell,
   CalendarCellTrigger,
@@ -27,7 +29,6 @@ import {
 import Button from '@/components/button/button/Button.vue'
 import IconButton from '@/components/button/icon-button/IconButton.vue'
 import type { CalendarProps } from '@/components/calendar/calendar.props'
-import Collapsable2 from '@/components/collapsable/Collapsable2.vue'
 import { injectConfigContext } from '@/components/config-provider/config.context'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { ThemeUtil } from '@/utils/theme.util'
@@ -63,6 +64,9 @@ const delegatedModel = computed<DateValue | null>({
 
 const themeProviderContext = injectThemeProviderContext()
 const globalConfigContext = injectConfigContext()
+
+const calendarContentRef = ref<HTMLElement | null>(null)
+const { height } = useElementSize(calendarContentRef)
 
 const placeholder = ref<DateValue>(dateToDateValue(model.value ?? props.defaultPlaceholderDate))
 
@@ -188,44 +192,56 @@ watch(placeholderYear, () => {
     :prevent-deselect="true"
     :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.appearance.value)"
   >
-    <Collapsable2>
+    <Motion
+      :animate="{ height }"
+      :transition="{
+        bounce: 0,
+        duration: 0.4,
+        type: 'spring',
+      }"
+      tabindex="-1"
+    >
       <div
-        v-if="activeView === 'day'"
-        class="flex flex-col-reverse"
+        ref="calendarContentRef"
+        class="overflow-hidden"
       >
-        <CalendarGrid
-          v-for="month in grid"
-          :key="month.value.toString()"
-          class="w-full"
+        <div
+          v-if="activeView === 'day'"
+          class="flex flex-col-reverse"
         >
-          <CalendarGridHead>
-            <CalendarGridRow class="grid w-full grid-cols-7 py-4">
-              <CalendarHeadCell
-                v-for="day in weekDays"
-                :key="day"
-                class="text-sm font-medium text-quaternary"
-              >
-                {{ day }}
-              </CalendarHeadCell>
-            </CalendarGridRow>
-          </CalendarGridHead>
+          <CalendarGrid
+            v-for="month in grid"
+            :key="month.value.toString()"
+            class="w-full"
+          >
+            <CalendarGridHead>
+              <CalendarGridRow class="grid w-full grid-cols-7 py-4">
+                <CalendarHeadCell
+                  v-for="day in weekDays"
+                  :key="day"
+                  class="text-sm font-medium text-quaternary"
+                >
+                  {{ day }}
+                </CalendarHeadCell>
+              </CalendarGridRow>
+            </CalendarGridHead>
 
-          <CalendarGridBody class="grid gap-y-1">
-            <CalendarGridRow
-              v-for="(weekDates, index) in month.rows"
-              :key="`weekDate-${index}`"
-              class="grid grid-cols-7"
-            >
-              <CalendarCell
-                v-for="weekDate in weekDates"
-                :key="weekDate.toString()"
-                :date="weekDate"
-                class="relative flex items-center justify-center"
+            <CalendarGridBody class="grid gap-y-1">
+              <CalendarGridRow
+                v-for="(weekDates, index) in month.rows"
+                :key="`weekDate-${index}`"
+                class="grid grid-cols-7"
               >
-                <CalendarCellTrigger
-                  :day="weekDate"
-                  :month="month.value"
-                  class="
+                <CalendarCell
+                  v-for="weekDate in weekDates"
+                  :key="weekDate.toString()"
+                  :date="weekDate"
+                  class="relative flex items-center justify-center"
+                >
+                  <CalendarCellTrigger
+                    :day="weekDate"
+                    :month="month.value"
+                    class="
                     overflow-hidden
                     cursor-pointer flex size-8 items-center justify-center rounded-full text-center text-sm text-tertiary outline-none
                     duration-100
@@ -249,162 +265,163 @@ watch(placeholderYear, () => {
                     data-[unavailable]:line-through
                     data-[outside-view]:text-disabled
                   "
-                >
-                  {{ new Date(weekDate).getDate() }}
+                  >
+                    {{ new Date(weekDate).getDate() }}
 
-                  <slot
-                    :date="new Date(weekDate)"
-                    name="date"
-                  />
-                </CalendarCellTrigger>
-              </CalendarCell>
-            </CalendarGridRow>
-          </CalendarGridBody>
-        </CalendarGrid>
+                    <slot
+                      :date="new Date(weekDate)"
+                      name="date"
+                    />
+                  </CalendarCellTrigger>
+                </CalendarCell>
+              </CalendarGridRow>
+            </CalendarGridBody>
+          </CalendarGrid>
 
-        <CalendarHeader class="flex items-center justify-between">
-          <div class="flex gap-x-1.5">
-            <CalendarPrev
-              v-if="!props.areYearArrowsHidden"
-              :as-child="true"
-              :prev-page="(date) => pagingFunc(date, -1)"
-            >
-              <IconButton
+          <CalendarHeader class="flex items-center justify-between">
+            <div class="flex gap-x-1.5">
+              <CalendarPrev
+                v-if="!props.areYearArrowsHidden"
+                :as-child="true"
+                :prev-page="(date) => pagingFunc(date, -1)"
+              >
+                <IconButton
+                  variant="tertiary"
+                  icon="chevronLeftDouble"
+                  size="sm"
+                  label="Previous year"
+                />
+              </CalendarPrev>
+
+              <CalendarPrev :as-child="true">
+                <IconButton
+                  variant="tertiary"
+                  icon="chevronLeft"
+                  size="sm"
+                  label="Previous month"
+                />
+              </CalendarPrev>
+            </div>
+
+            <CalendarHeading class="flex items-center gap-x-1">
+              <Button
+                :style-config="{
+                  '--button-font-weight-default': '600',
+                  '--button-padding-left-default': 'var(--spacing-sm)',
+                  '--button-padding-right-default': 'var(--spacing-sm)',
+                  '--button-height-default': '32px',
+                }"
                 variant="tertiary"
-                icon="chevronLeftDouble"
                 size="sm"
-                label="Previous year"
-              />
-            </CalendarPrev>
+                @click="onShowMonthView"
+              >
+                {{ getMonthName(new Date(date).getMonth() + 1, 'long') }}
+              </Button>
 
-            <CalendarPrev :as-child="true">
-              <IconButton
+              <Button
+                :style-config="{
+                  '--button-font-weight-default': '600',
+                  '--button-padding-left-default': 'var(--spacing-sm)',
+                  '--button-padding-right-default': 'var(--spacing-sm)',
+                  '--button-height-default': '32px',
+                }"
                 variant="tertiary"
-                icon="chevronLeft"
                 size="sm"
-                label="Previous month"
-              />
-            </CalendarPrev>
-          </div>
+                @click="onShowYearView"
+              >
+                {{ new Date(date).getFullYear() }}
+              </Button>
+            </CalendarHeading>
 
-          <CalendarHeading class="flex items-center gap-x-1">
-            <Button
-              :style-config="{
-                '--button-font-weight-default': '600',
-                '--button-padding-left-default': 'var(--spacing-sm)',
-                '--button-padding-right-default': 'var(--spacing-sm)',
-                '--button-height-default': '32px',
-              }"
-              variant="tertiary"
-              size="sm"
-              @click="onShowMonthView"
-            >
-              {{ getMonthName(new Date(date).getMonth() + 1, 'long') }}
-            </Button>
+            <div class="flex gap-x-1.5">
+              <CalendarNext :as-child="true">
+                <IconButton
+                  variant="tertiary"
+                  icon="chevronRight"
+                  size="sm"
+                  label="Next month"
+                />
+              </CalendarNext>
 
-            <Button
-              :style-config="{
-                '--button-font-weight-default': '600',
-                '--button-padding-left-default': 'var(--spacing-sm)',
-                '--button-padding-right-default': 'var(--spacing-sm)',
-                '--button-height-default': '32px',
-              }"
-              variant="tertiary"
-              size="sm"
-              @click="onShowYearView"
-            >
-              {{ new Date(date).getFullYear() }}
-            </Button>
-          </CalendarHeading>
+              <CalendarNext
+                v-if="!props.areYearArrowsHidden"
+                :as-child="true"
+                :next-page="(date) => pagingFunc(date, 1)"
+              >
+                <IconButton
+                  variant="tertiary"
+                  icon="chevronRightDouble"
+                  size="sm"
+                  label="Next year"
+                />
+              </CalendarNext>
+            </div>
+          </CalendarHeader>
+        </div>
 
-          <div class="flex gap-x-1.5">
-            <CalendarNext :as-child="true">
-              <IconButton
-                variant="tertiary"
-                icon="chevronRight"
-                size="sm"
-                label="Next month"
-              />
-            </CalendarNext>
-
-            <CalendarNext
-              v-if="!props.areYearArrowsHidden"
-              :as-child="true"
-              :next-page="(date) => pagingFunc(date, 1)"
-            >
-              <IconButton
-                variant="tertiary"
-                icon="chevronRightDouble"
-                size="sm"
-                label="Next year"
-              />
-            </CalendarNext>
-          </div>
-        </CalendarHeader>
-      </div>
-
-      <div
-        v-else-if="activeView === 'month'"
-        class="grid grid-cols-3"
-      >
         <div
-          v-for="monthIndex of 12"
-          :key="monthIndex"
+          v-else-if="activeView === 'month'"
+          class="grid grid-cols-3"
         >
-          <input
-            :id="`month-${monthIndex}`"
-            v-model="placeholderMonth"
-            :value="monthIndex"
-            type="radio"
-            name="month"
-            class="absolute scale-0 opacity-0"
-            @keydown.enter="onSelectMonth"
+          <div
+            v-for="monthIndex of 12"
+            :key="monthIndex"
           >
+            <input
+              :id="`month-${monthIndex}`"
+              v-model="placeholderMonth"
+              :value="monthIndex"
+              type="radio"
+              name="month"
+              class="absolute scale-0 opacity-0"
+              @keydown.enter="onSelectMonth"
+            >
 
-          <label
-            :for="`month-${monthIndex}`"
-            :class="{
-              'bg-secondary-hover': placeholderMonth === monthIndex,
-            }"
-            class="block cursor-pointer rounded-md p-2 text-center text-sm text-tertiary"
-            @click="onSelectMonth"
+            <label
+              :for="`month-${monthIndex}`"
+              :class="{
+                'bg-secondary-hover': placeholderMonth === monthIndex,
+              }"
+              class="block cursor-pointer rounded-md p-2 text-center text-sm text-tertiary"
+              @click="onSelectMonth"
+            >
+              {{ getMonthName(monthIndex, 'short') }}
+            </label>
+          </div>
+        </div>
+
+        <div
+          v-else-if="activeView === 'year'"
+          ref="yearScrollContainerRef"
+          class="grid max-h-60 grid-cols-2 overflow-y-auto"
+        >
+          <div
+            v-for="year of years"
+            :key="year"
           >
-            {{ getMonthName(monthIndex, 'short') }}
-          </label>
+            <input
+              :id="`year-${year}`"
+              v-model="placeholderYear"
+              :value="year"
+              type="radio"
+              name="year"
+              class="absolute scale-0 opacity-0"
+              @keydown.enter="onSelectYear"
+            >
+
+            <label
+              :for="`year-${year}`"
+              :class="{
+                'bg-secondary-hover': placeholderYear === year,
+              }"
+              class="block cursor-pointer rounded-md p-2 text-center text-sm text-tertiary"
+              @click="onSelectYear"
+            >
+              {{ year }}
+            </label>
+          </div>
         </div>
       </div>
-
-      <div
-        v-else-if="activeView === 'year'"
-        ref="yearScrollContainerRef"
-        class="grid max-h-60 grid-cols-2 overflow-y-auto"
-      >
-        <div
-          v-for="year of years"
-          :key="year"
-        >
-          <input
-            :id="`year-${year}`"
-            v-model="placeholderYear"
-            :value="year"
-            type="radio"
-            name="year"
-            class="absolute scale-0 opacity-0"
-            @keydown.enter="onSelectYear"
-          >
-
-          <label
-            :for="`year-${year}`"
-            :class="{
-              'bg-secondary-hover': placeholderYear === year,
-            }"
-            class="block cursor-pointer rounded-md p-2 text-center text-sm text-tertiary"
-            @click="onSelectYear"
-          >
-            {{ year }}
-          </label>
-        </div>
-      </div>
-    </Collapsable2>
+    </Motion>
   </CalendarRoot>
 </template>

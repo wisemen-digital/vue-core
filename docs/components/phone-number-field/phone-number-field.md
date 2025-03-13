@@ -31,3 +31,8 @@ See <a href="/vue-core/components/text-field/text-field.html#style-configuration
 The basic usage of the phone number field component.
 
 <ComponentPreview name="phone-number-field/basic" />
+
+### In a form
+An example of the phone number field component within a form.
+
+<ComponentPreview name="phone-number-field/form" />

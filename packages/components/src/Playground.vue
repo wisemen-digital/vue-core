@@ -1,18 +1,19 @@
 <script setup lang="ts">
-import Checkbox from '@/components/checkbox/Checkbox.vue'
-import Switch from '@/components/switch/Switch.vue'
+import ConfigProvider from '@/components/config-provider/ConfigProvider.vue'
+import ThemeProvider from '@/components/theme-provider/ThemeProvider.vue'
 import { setupDefaultStyles } from '@/styling/setupDefaultStyles'
 
 setupDefaultStyles()
+
+// const dialog = useDialog({
+//   overlay: () => import('...'),
+//   transition: () => import('...'),
+//   component: () => import('...'),
+// })
 </script>
 
 <template>
-  <div class="p-8xl">
-    <Switch
-      :model-value="true"
-      label="test"
-    />
-
-    <Checkbox label="test" />
-  </div>
+  <ConfigProvider locale="en-US">
+    <ThemeProvider />
+  </ConfigProvider>
 </template>

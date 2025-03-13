@@ -1,7 +1,7 @@
 {
   "name": "@wisemen/vue-core-query",
   "type": "module",
-  "version": "0.0.32",
+  "version": "0.0.33",
   "license": "MIT",
   "sideEffects": false,
   "exports": {
@@ -39,7 +39,9 @@
     "@vitejs/plugin-vue": "5.0.5",
     "@vue/test-utils": "2.4.6",
     "@vue/tsconfig": "0.5.1",
+    "@vue/language-server": "2.2.8",
     "@wisemen/eslint-config-vue": "0.1.5",
+    "@wisemen/vue-core": "1.0.0-alpha.31",
     "eslint": "9.10.0",
     "jsdom": "24.1.0",
     "minimist": "1.2.8",

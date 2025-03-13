@@ -20,8 +20,8 @@
     "precommit": "pnpm run -r lint && pnpm run -r type-check && pnpm run -r test && pnpm run -r docs:gen"
   },
   "devDependencies": {
-    "turbo": "^2.0.1",
-    "vitest": "^1.6.0",
-    "rimraf": "5.0.7"
+    "rimraf": "5.0.7",
+    "turbo": "^2.4.4",
+    "vitest": "^1.6.1"
   }
 }

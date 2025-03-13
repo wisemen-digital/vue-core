@@ -1,7 +1,9 @@
 <script setup lang="ts">
-
+import { NumberFlowGroup } from '@number-flow/vue'
 </script>
 
 <template>
-  <div />
+  <NumberFlowGroup>
+    <slot />
+  </NumberFlowGroup>
 </template>
