@@ -1,2 +1,1 @@
-export * from '@/components/@next/button'
-export * from '@/components/@next/dialog'
+export * from '@/packages/@next'

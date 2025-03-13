@@ -4,11 +4,11 @@ import {
   Motion,
 } from 'motion-v'
 
-import DialogContent from '@/components/@next/dialog/parts/DialogContent.vue'
-import DialogOverlay from '@/components/@next/dialog/parts/DialogOverlay.vue'
-import DialogOverlayTransition from '@/components/@next/dialog/parts/DialogOverlayTransition.vue'
-import DialogPortal from '@/components/@next/dialog/parts/DialogPortal.vue'
-import DialogRoot from '@/components/@next/dialog/parts/DialogRoot.vue'
+import DialogContent from '@/packages/@next/dialog/parts/DialogContent.vue'
+import DialogOverlay from '@/packages/@next/dialog/parts/DialogOverlay.vue'
+import DialogOverlayTransition from '@/packages/@next/dialog/parts/DialogOverlayTransition.vue'
+import DialogPortal from '@/packages/@next/dialog/parts/DialogPortal.vue'
+import DialogRoot from '@/packages/@next/dialog/parts/DialogRoot.vue'
 
 const emit = defineEmits<{
   closeDialog: []

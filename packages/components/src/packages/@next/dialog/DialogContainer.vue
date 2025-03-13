@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useDialogContainer } from '@/components/@next/dialog/dialog.composable'
+import { useDialogContainer } from '@/packages/@next/dialog/dialog.composable'
 
 const { dialogs } = useDialogContainer()
 </script>

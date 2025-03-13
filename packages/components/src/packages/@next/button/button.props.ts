@@ -1,5 +1,5 @@
-import type { ButtonStyle } from '@/components/@next/button/style/button.style'
 import type { Icon } from '@/icons/icons'
+import type { ButtonStyle } from '@/packages/@next/button/style/button.style'
 import type {
   CustomizableElement,
   InteractableElement,

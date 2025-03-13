@@ -4,11 +4,11 @@ import {
   Motion,
 } from 'motion-v'
 
-import Button from '@/components/@next/button/Button.vue'
-import { useDialog } from '@/components/@next/dialog/dialog.composable'
-import DialogContainer from '@/components/@next/dialog/DialogContainer.vue'
 import ConfigProvider from '@/components/config-provider/ConfigProvider.vue'
 import ThemeProvider from '@/components/theme-provider/ThemeProvider.vue'
+import Button from '@/packages/@next/button/Button.vue'
+import { useDialog } from '@/packages/@next/dialog/dialog.composable'
+import DialogContainer from '@/packages/@next/dialog/DialogContainer.vue'
 import { setupDefaultStyles } from '@/styling/setupDefaultStyles'
 
 setupDefaultStyles()

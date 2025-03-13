@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { DialogOverlay as RekaDialogOverlay } from 'reka-ui'
 
-import { useInjectDialogContext } from '@/components/@next/dialog/dialog.context'
+import { useInjectDialogContext } from '@/packages/@next/dialog/dialog.context'
 import { mergeClasses } from '@/customClassVariants'
 
 const props = withDefaults(defineProps<{

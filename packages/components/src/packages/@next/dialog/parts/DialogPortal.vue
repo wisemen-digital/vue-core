@@ -2,7 +2,7 @@
 import { DialogPortal as RekaDialogPortal } from 'reka-ui'
 import { computed } from 'vue'
 
-import { useInjectDialogContext } from '@/components/@next/dialog/dialog.context'
+import { useInjectDialogContext } from '@/packages/@next/dialog/dialog.context'
 
 const { teleportTargetId } = useInjectDialogContext()
 
