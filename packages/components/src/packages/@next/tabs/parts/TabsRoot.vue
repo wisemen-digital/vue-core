@@ -2,11 +2,9 @@
 import { TabsRoot as RekaTabsRoot } from 'reka-ui'
 import { computed } from 'vue'
 
-import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import {
-  type ClassConfig,
-  getComponentClassConfig,
   mergeClasses,
+  useComponentClassConfig,
 } from '@/customClassVariants'
 import {
   type CreateTabsStyle,
@@ -36,17 +34,13 @@ const delegatedModel = computed<string>({
   },
 })
 
-const themeContext = injectThemeProviderContext()
-
 const tabsStyle = computed<CreateTabsStyle>(() => createTabsStyle({
   variant: props.variant,
 }))
 
-const customClassConfig = computed<ClassConfig<'tabs'>>(
-  () => getComponentClassConfig('tabs', themeContext.theme.value, {
-    variant: props.variant,
-  }),
-)
+const customClassConfig = useComponentClassConfig('tabs', {
+  variant: props.variant,
+})
 
 useProvideTabsContext({
   ...toComputedRefs(props),
