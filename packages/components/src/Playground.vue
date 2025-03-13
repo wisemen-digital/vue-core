@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import TabsItem from '@/components/@next/tabs/parts/TabsItem.vue'
-import Tabs from '@/components/@next/tabs/Tabs.vue'
 import ConfigProvider from '@/components/config-provider/ConfigProvider.vue'
 import ThemeProvider from '@/components/theme-provider/ThemeProvider.vue'
 import Icon from '@/packages/@next/icon/Icon.vue'
+import TabsItem from '@/packages/@next/tabs/parts/TabsItem.vue'
+import Tabs from '@/packages/@next/tabs/Tabs.vue'
 import { setupDefaultStyles } from '@/styling/setupDefaultStyles'
 
 setupDefaultStyles()

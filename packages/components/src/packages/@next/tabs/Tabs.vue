@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
-
-import TabsIndicator from '@/components/@next/tabs/parts/TabsIndicator.vue'
-import TabsList from '@/components/@next/tabs/parts/TabsList.vue'
-import TabsRoot from '@/components/@next/tabs/parts/TabsRoot.vue'
-import type { TabsProps } from '@/components/@next/tabs/tabs.props'
+import TabsIndicator from '@/packages/@next/tabs/parts/TabsIndicator.vue'
+import TabsList from '@/packages/@next/tabs/parts/TabsList.vue'
+import TabsRoot from '@/packages/@next/tabs/parts/TabsRoot.vue'
+import type { TabsProps } from '@/packages/@next/tabs/tabs.props'
+import type { TabsValue } from '@/packages/@next/tabs/tabs.type'
 
 const props = withDefaults(defineProps<TabsProps>(), {
   id: null,
@@ -26,14 +24,15 @@ defineSlots<{
   items: () => void
 }>()
 
-const route = useRoute()
-const activeRouteName = computed<string>(() => route.name as string)
+const model = defineModel<TabsValue>({
+  required: true,
+})
 </script>
 
 <template>
   <TabsRoot
     v-bind="props"
-    :model-value="activeRouteName"
+    v-model="model"
   >
     <TabsList>
       <slot name="items" />

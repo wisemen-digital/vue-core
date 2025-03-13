@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { TabsList as RekaTabsList } from 'reka-ui'
 
-import { useInjectTabsContext } from '@/components/@next/tabs/tabs.context'
 import { mergeClasses } from '@/customClassVariants'
+import { useInjectTabsContext } from '@/packages/@next/tabs/tabs.context'
 
 const {
   classConfig,

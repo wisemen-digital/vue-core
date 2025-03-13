@@ -2,10 +2,10 @@
 import { TabsTrigger as RekaTabsTrigger } from 'reka-ui'
 import { RouterLink } from 'vue-router'
 
-import PrimitiveElement from '@/components/@next/shared/PrimitiveElement.vue'
-import { useInjectTabsContext } from '@/components/@next/tabs/tabs.context'
-import type { RouteTabItemProps } from '@/components/@next/tabs/tabs.props'
 import { mergeClasses } from '@/customClassVariants'
+import PrimitiveElement from '@/packages/@next/shared/PrimitiveElement.vue'
+import { useInjectTabsContext } from '@/packages/@next/tabs/tabs.context'
+import type { RouteTabItemProps } from '@/packages/@next/tabs/tabs.props'
 
 const props = withDefaults(defineProps<RouteTabItemProps>(), {
   id: null,

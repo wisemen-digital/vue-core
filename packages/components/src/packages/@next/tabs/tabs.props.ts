@@ -1,7 +1,7 @@
 import type { RouteLocationNamedRaw } from 'vue-router'
 
-import type { TabsStyle } from '@/components/@next/tabs/style/tabs.style'
-import type { TabsValue } from '@/components/@next/tabs/tabs.type'
+import type { TabsStyle } from '@/packages/@next/tabs/style/tabs.style'
+import type { TabsValue } from '@/packages/@next/tabs/tabs.type'
 import type {
   CustomizableElement,
   InteractableElement,

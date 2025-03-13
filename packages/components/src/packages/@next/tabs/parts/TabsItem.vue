@@ -1,11 +1,11 @@
 <script setup lang="ts" generic="TMeta">
 import { TabsTrigger as RekaTabsTrigger } from 'reka-ui'
 
-import InteractableElement from '@/components/@next/shared/InteractableElement.vue'
-import PrimitiveElement from '@/components/@next/shared/PrimitiveElement.vue'
-import { useInjectTabsContext } from '@/components/@next/tabs/tabs.context'
-import type { TabItemProps } from '@/components/@next/tabs/tabs.props'
 import { mergeClasses } from '@/customClassVariants'
+import InteractableElement from '@/packages/@next/shared/InteractableElement.vue'
+import PrimitiveElement from '@/packages/@next/shared/PrimitiveElement.vue'
+import { useInjectTabsContext } from '@/packages/@next/tabs/tabs.context'
+import type { TabItemProps } from '@/packages/@next/tabs/tabs.props'
 
 const props = withDefaults(defineProps<TabItemProps>(), {
   id: null,

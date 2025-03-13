@@ -2,19 +2,19 @@
 import { TabsRoot as RekaTabsRoot } from 'reka-ui'
 import { computed } from 'vue'
 
-import {
-  type CreateTabsStyle,
-  createTabsStyle,
-} from '@/components/@next/tabs/style/tabs.style'
-import { useProvideTabsContext } from '@/components/@next/tabs/tabs.context'
-import type { TabsProps } from '@/components/@next/tabs/tabs.props'
-import type { TabsValue } from '@/components/@next/tabs/tabs.type'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import {
   type ClassConfig,
   getComponentClassConfig,
   mergeClasses,
 } from '@/customClassVariants'
+import {
+  type CreateTabsStyle,
+  createTabsStyle,
+} from '@/packages/@next/tabs/style/tabs.style'
+import { useProvideTabsContext } from '@/packages/@next/tabs/tabs.context'
+import type { TabsProps } from '@/packages/@next/tabs/tabs.props'
+import type { TabsValue } from '@/packages/@next/tabs/tabs.type'
 import { toComputedRefs } from '@/utils/props.util'
 
 const props = withDefaults(defineProps<TabsProps>(), {
@@ -58,7 +58,7 @@ useProvideTabsContext({
 <template>
   <RekaTabsRoot
     v-model="delegatedModel"
-    :class="tabsStyle.base({ class: mergeClasses(customClassConfig.base, classConfig?.base) })"
+    :class="tabsStyle.root({ class: mergeClasses(customClassConfig.root, classConfig?.root) })"
   >
     <slot />
   </RekaTabsRoot>
