@@ -1,20 +1,20 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import { useProvideButtonContext } from '@/components/@next/button/button.context'
-import type { ButtonEmits, ButtonProps } from '@/components/@next/button/button.props'
-import {
-  type CreateButtonStyle,
-  createButtonStyle,
-} from '@/components/@next/button/style/button.style'
-import InteractableElement from '@/components/@next/shared/InteractableElement.vue'
-import PrimitiveElement from '@/components/@next/shared/PrimitiveElement.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import {
   type ClassConfig,
   getComponentClassConfig,
   mergeClasses,
 } from '@/customClassVariants'
+import { useProvideButtonContext } from '@/packages/@next/button/button.context'
+import type { ButtonEmits, ButtonProps } from '@/packages/@next/button/button.props'
+import {
+  type CreateButtonStyle,
+  createButtonStyle,
+} from '@/packages/@next/button/style/button.style'
+import InteractableElement from '@/packages/@next/shared/InteractableElement.vue'
+import PrimitiveElement from '@/packages/@next/shared/PrimitiveElement.vue'
 import { toComputedRefs } from '@/utils/props.util'
 
 const props = withDefaults(defineProps<ButtonProps>(), {
@@ -75,8 +75,8 @@ useProvideButtonContext({
       :type="props.type"
       :data-is-loading="props.isLoading"
       :data-is-not-loading="!props.isLoading"
-      :class="buttonStyle.base({
-        class: mergeClasses(customClassConfig.base, props.classConfig?.base),
+      :class="buttonStyle.root({
+        class: mergeClasses(customClassConfig.root, props.classConfig?.root),
       })"
       as="button"
       @click="onClick"
