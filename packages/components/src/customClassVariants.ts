@@ -1,5 +1,7 @@
 import type { VariantProps } from 'tailwind-variants'
+import { computed, type ComputedRef } from 'vue'
 
+import { injectThemeProviderContext } from '@/components'
 import { twMerge } from '@/libs/twMerge.lib'
 import type { createButtonStyle } from '@/packages/@next/button/style/button.style'
 import type { createDialogStyle } from '@/packages/@next/dialog/style/dialog.style'
@@ -54,6 +56,23 @@ export type ClassConfig<
   TTarget extends keyof VariantProps<Components[TComponent]> = any,
 > = {
   [K in keyof ClassVariant<TComponent, TTarget>['config']]: ClassVariant<TComponent, TTarget>['config'][K]
+}
+
+export function useComponentClassConfig<
+  TComponent extends keyof Components,
+  TTarget extends keyof VariantProps<Components[TComponent]>,
+>(
+  component: TComponent,
+  target: {
+    [K in keyof VariantProps<Components[TComponent]>]: VariantProps<Components[TComponent]>[K]
+  },
+): ComputedRef<ClassConfig<TComponent, TTarget>> {
+  const themeContext = injectThemeProviderContext()
+
+  return computed<ClassConfig<TComponent, TTarget>>(() => getComponentClassConfig(component, themeContext.theme.value, {
+    variant: themeContext.theme.value,
+    ...target,
+  }))
 }
 
 export function getComponentClassConfig<
