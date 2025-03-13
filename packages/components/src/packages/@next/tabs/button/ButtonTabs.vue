@@ -10,6 +10,7 @@ const props = withDefaults(defineProps<TabsProps>(), {
   testId: null,
   isDisabled: false,
   classConfig: null,
+  direction: 'horizontal',
   variant: 'underline',
 })
 

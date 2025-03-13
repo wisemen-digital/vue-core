@@ -6,6 +6,7 @@ import {
   mergeClasses,
   useComponentClassConfig,
 } from '@/customClassVariants'
+import PrimitiveElement from '@/packages/@next/shared/PrimitiveElement.vue'
 import type { ButtonTabsValue } from '@/packages/@next/tabs/button/buttonTabs.props'
 import {
   type CreateTabsStyle,
@@ -20,6 +21,7 @@ const props = withDefaults(defineProps<TabsProps>(), {
   testId: null,
   isDisabled: false,
   classConfig: null,
+  direction: 'horizontal',
   variant: 'underline',
 })
 
@@ -50,10 +52,16 @@ useProvideTabsContext({
 </script>
 
 <template>
-  <RekaTabsRoot
-    v-model="delegatedModel"
-    :class="tabsStyle.root({ class: mergeClasses(customClassConfig.root, classConfig?.root) })"
+  <PrimitiveElement
+    :id="props.id"
+    :test-id="props.testId"
   >
-    <slot />
-  </RekaTabsRoot>
+    <RekaTabsRoot
+      v-model="delegatedModel"
+      :orientation="props.orientation"
+      :class="tabsStyle.root({ class: mergeClasses(customClassConfig.root, classConfig?.root) })"
+    >
+      <slot />
+    </RekaTabsRoot>
+  </PrimitiveElement>
 </template>

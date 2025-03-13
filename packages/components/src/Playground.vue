@@ -19,7 +19,8 @@ const tabValue = ref<string>('underline')
       <div class="p-8xl flex">
         <Tabs
           v-model="tabValue"
-          variant="underline"
+          variant="button-brand"
+          orientation="vertical"
         >
           <template #items>
             <TabsItem value="underline">

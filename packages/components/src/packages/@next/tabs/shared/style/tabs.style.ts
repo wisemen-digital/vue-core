@@ -7,13 +7,13 @@ export const createTabsStyle = tv({
       .withBase('outline-none')
       .build(),
     indicator: new StyleBuilder()
-      .withBase('absolute bottom-0')
-      .withSize('w-(--reka-tabs-indicator-size)')
-      .withTranslate('translate-x-(--reka-tabs-indicator-position)')
+      .withBase('absolute group-data-[orientation=horizontal]:bottom-0 group-data-[orientation=vertical]:left-0')
+      .withSize('group-data-[orientation=horizontal]:w-(--reka-tabs-indicator-size) group-data-[orientation=vertical]:h-(--reka-tabs-indicator-size)')
+      .withTranslate('group-data-[orientation=horizontal]:translate-x-(--reka-tabs-indicator-position) group-data-[orientation=vertical]:translate-y-(--reka-tabs-indicator-position)')
       .withTransition('duration-200')
       .build(),
     item: new StyleBuilder()
-      .withBase('relative outline-none')
+      .withBase('relative outline-none data-[orientation=vertical]:text-left')
       .withFontSize('text-sm')
       .withFontWeight('font-semibold')
       .withTransition('duration-200')
@@ -21,7 +21,7 @@ export const createTabsStyle = tv({
       .withZIndex('z-10')
       .build(),
     list: new StyleBuilder()
-      .withBase('relative flex')
+      .withBase('group relative flex data-[orientation=vertical]:flex-col')
       .build(),
     root: new StyleBuilder()
       .build(),
@@ -32,18 +32,17 @@ export const createTabsStyle = tv({
         indicator: new StyleBuilder()
           .withBackgroundColor('bg-primary-alt')
           .withBorderRadius('rounded-sm')
-          .withHeight('h-full')
+          .withSize('group-data-[orientation=horizontal]:h-full group-data-[orientation=vertical]:w-full')
           .withShadow('shadow-xs')
           .build(),
         item: new StyleBuilder()
           .withRing('focus-visible:ring-2 ring-offset-2 ring-fg-brand-primary-alt')
-          .withColor('data-[state=active]:text-secondary data-[state=inactive]:text-quaternary disabled:opacity-75')
+          .withColor('data-[state=active]:text-secondary data-[state=inactive]:text-quaternary enabled:data-[state=inactive]:hover:text-tertiary disabled:opacity-75')
           .withSpacing('py-md px-lg')
           .withBorderRadius('rounded-sm')
-          .withTransition('enabled:hover:brightness-90')
           .build(),
         list: new StyleBuilder()
-          .withSpacing('gap-x-xs')
+          .withSpacing('gap-xs')
           .build(),
         root: new StyleBuilder()
           .withBackgroundColor('bg-secondary-alt')
@@ -54,36 +53,35 @@ export const createTabsStyle = tv({
       },
       'button-brand': {
         indicator: new StyleBuilder()
-          .withHeight('h-full')
+          .withSize('group-data-[orientation=horizontal]:h-full group-data-[orientation=vertical]:w-full')
           .withBorderRadius('rounded-sm')
           .withBackgroundColor('bg-brand-primary-alt')
           .build(),
         item: new StyleBuilder()
-          .withColor('data-[state=active]:text-brand-secondary data-[state=inactive]:text-quaternary disabled:opacity-75')
+          .withColor('data-[state=active]:text-brand-secondary data-[state=inactive]:text-quaternary enabled:data-[state=inactive]:hover:text-tertiary disabled:opacity-75')
           .withRing('focus-visible:ring-2 ring-offset-2 ring-fg-brand-primary-alt')
           .withBorderRadius('rounded-sm')
           .withSpacing('py-md px-lg')
-          .withBackgroundColor('enabled:hover:data-[state=inactive]:bg-primary-hover')
           .build(),
         list: new StyleBuilder()
-          .withSpacing('gap-x-xs')
+          .withSpacing('gap-xs')
           .build(),
       },
       'underline': {
         indicator: new StyleBuilder()
-          .withSize('h-0.5')
+          .withSize('group-data-[orientation=horizontal]:h-0.5 group-data-[orientation=vertical]:w-0.5')
           .withBackgroundColor('bg-fg-brand-primary-alt')
           .build(),
         item: new StyleBuilder()
           .withPadding('px-md py-sm')
-          .withMargin('my-sm')
+          .withMargin('group-data-[orientation=horizontal]:my-sm group-data-[orientation=vertical]:mx-sm')
           .withBorderRadius('rounded-md')
           .withRing('focus-visible:ring-2 ring-offset-2 ring-fg-brand-primary-alt')
           .withColor('data-[state=active]:text-brand-secondary data-[state=inactive]:text-quaternary disabled:opacity-75')
           .withBackgroundColor('enabled:hover:bg-primary-hover enabled:data-[state=active]:hover:bg-brand-primary-alt')
           .build(),
         list: new StyleBuilder()
-          .withSpacing('gap-x-lg')
+          .withSpacing('gap-lg')
           .build(),
       },
     },
