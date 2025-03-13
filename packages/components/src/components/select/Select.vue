@@ -1,5 +1,10 @@
 <script setup lang="ts" generic="TValue extends SelectValueType">
-import { useId } from 'vue'
+import {
+  computed,
+  useAttrs,
+  useId,
+  useSlots,
+} from 'vue'
 
 import InputField from '@/components/input-field/InputField.vue'
 import SelectEmpty from '@/components/select/blocks/SelectEmpty.vue'
@@ -137,7 +142,12 @@ const model = defineModel<TValue | null>({
   required: true,
 })
 
+const attrs = useAttrs()
+const slots = useSlots()
+
 const inputId = props.id ?? useId()
+
+const hasValueSlot = computed<boolean>(() => slots.value !== undefined)
 </script>
 
 <template>
@@ -180,7 +190,10 @@ const inputId = props.id ?? useId()
 
     <SelectRoot
       v-model="model"
-      v-bind="props"
+      v-bind="{
+        ...props,
+        ...attrs,
+      }"
       :style="props.styleConfig"
       @select="emit('select', $event)"
       @blur="emit('blur')"
@@ -188,7 +201,7 @@ const inputId = props.id ?? useId()
     >
       <SelectPopover>
         <template #trigger>
-          <SelectValue>
+          <SelectValue :has-value-slot="hasValueSlot">
             <template #value="{ value }">
               <slot
                 :value="(value as any)"
