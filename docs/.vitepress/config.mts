@@ -89,6 +89,12 @@ const components = [
   //   ]
   // },
   {
+    text: 'Other display components',
+    items: [
+      { text: 'Calendar', link: '/components/calendar/calendar' },
+    ],
+  },
+  {
     text: 'Utilities',
     items: [
       { text: 'Config Provider', link: '/components/config-provider/config-provider' },

@@ -1,5 +1,10 @@
 export const components = [
   {
+    sourceFolder: 'calendar/Calendar.vue',
+    targetFolder: 'calendar',
+    componentName: 'Calendar',
+  },
+  {
     sourceFolder: 'breadcrumbs/Breadcrumbs.vue',
     targetFolder: 'breadcrumbs',
     componentName: 'Breadcrumbs',
