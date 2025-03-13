@@ -309,4 +309,9 @@ export const components = [
     targetFolder: 'theme-provider',
     componentName: 'ThemeProvider',
   },
+  {
+    sourceFolder: 'collapsable/Collapsable.vue',
+    targetFolder: 'collapsable',
+    componentName: 'Collapsable',
+  },
 ]

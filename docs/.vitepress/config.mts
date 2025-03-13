@@ -95,6 +95,12 @@ const components = [
     ],
   },
   {
+    text: 'Transitions',
+    items: [
+      { text: 'Collapsable', link: '/components/collapsable/collapsable' },
+    ],
+  },
+  {
     text: 'Utilities',
     items: [
       { text: 'Config Provider', link: '/components/config-provider/config-provider' },
