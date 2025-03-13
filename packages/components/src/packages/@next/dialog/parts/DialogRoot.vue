@@ -5,11 +5,7 @@ import {
   watch,
 } from 'vue'
 
-import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
-import {
-  type ClassConfig,
-  getComponentClassConfig,
-} from '@/customClassVariants'
+import { useComponentClassConfig } from '@/customClassVariants'
 import { useProvideDialogContext } from '@/packages/@next/dialog/dialog.context'
 import type { DialogProps } from '@/packages/@next/dialog/dialog.props'
 import {
@@ -45,13 +41,9 @@ const isOpen = defineModel<boolean>('isOpen', {
   default: false,
 })
 
-const themeContext = injectThemeProviderContext()
-
 const dialogStyle = computed<CreateDialogStyle>(() => createDialogStyle({}))
 
-const customClassConfig = computed<ClassConfig<'dialog'>>(
-  () => getComponentClassConfig('dialog', themeContext.theme.value, {}),
-)
+const customClassConfig = useComponentClassConfig('dialog', {})
 
 watch(isOpen, (isOpen) => {
   if (!isOpen) {
