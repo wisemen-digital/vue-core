@@ -1,17 +1,11 @@
 import { tv, type VariantProps } from '@/libs/twVariants.lib'
 import { StyleBuilder } from '@/utils/style.util'
 
-export const createButtonStyle = tv({
+export const createSharedButtonStyle = tv({
   slots: {
     contentContainer: new StyleBuilder()
       .withClasses('flex items-center justify-center [grid-area:stack]')
       .withTransition('duration-200')
-      .build(),
-    iconLeft: new StyleBuilder()
-      .withBase('shrink-0')
-      .build(),
-    iconRight: new StyleBuilder()
-      .withBase('shrink-0')
       .build(),
     loader: new StyleBuilder()
       .withClasses('size-5 [grid-area:stack] mx-auto')
@@ -20,7 +14,6 @@ export const createButtonStyle = tv({
     root: new StyleBuilder()
       .withBase('group/button outline-none grid items-center justify-center [grid-template-areas:"stack"] whitespace-nowrap')
       .withRing('focus-visible:ring-2 focus-visible:ring-offset-1 ring-brand-600')
-      .withFontWeight('font-medium')
       .withBorder('border border-solid')
       .withBorderRadius('rounded-md')
       .withShadow('shadow-button')
@@ -97,79 +90,29 @@ export const createButtonStyle = tv({
     },
     size: {
       '2xl': {
-        iconLeft: new StyleBuilder()
-          .withMargin('mr-md')
-          .withSize('size-5')
-          .build(),
-        iconRight: new StyleBuilder()
-          .withMargin('ml-md')
-          .withSize('size-5')
-          .build(),
         root: new StyleBuilder()
-          .withHeight('h-15')
-          .withPadding('px-5.5')
-          .withFontSize('text-lg')
+          .withHeight('min-w-15 h-15')
           .withBorderRadius('rounded-lg')
           .build(),
       },
       'lg': {
-        iconLeft: new StyleBuilder()
-          .withMargin('mr-sm')
-          .withSize('size-4')
-          .build(),
-        iconRight: new StyleBuilder()
-          .withMargin('ml-sm')
-          .withSize('size-4')
-          .build(),
         root: new StyleBuilder()
-          .withHeight('h-11')
-          .withPadding('px-xl')
-          .withFontSize('text-md')
+          .withHeight('min-w-11 h-11')
           .build(),
       },
       'md': {
-        iconLeft: new StyleBuilder()
-          .withMargin('mr-xs')
-          .withSize('size-4')
-          .build(),
-        iconRight: new StyleBuilder()
-          .withMargin('ml-xs')
-          .withSize('size-4')
-          .build(),
         root: new StyleBuilder()
-          .withHeight('h-10')
-          .withPadding('px-3.5')
-          .withFontSize('text-sm')
+          .withHeight('min-w-10 h-10')
           .build(),
       },
       'sm': {
-        iconLeft: new StyleBuilder()
-          .withMargin('mr-xs')
-          .withSize('size-4')
-          .build(),
-        iconRight: new StyleBuilder()
-          .withMargin('ml-xs')
-          .withSize('size-4')
-          .build(),
         root: new StyleBuilder()
-          .withHeight('h-9')
-          .withPadding('px-lg')
-          .withFontSize('text-sm')
+          .withHeight('min-w-9 h-9')
           .build(),
       },
       'xl': {
-        iconLeft: new StyleBuilder()
-          .withMargin('mr-sm')
-          .withSize('size-5')
-          .build(),
-        iconRight: new StyleBuilder()
-          .withMargin('ml-sm')
-          .withSize('size-5')
-          .build(),
         root: new StyleBuilder()
-          .withHeight('h-12')
-          .withPadding('px-4.5')
-          .withFontSize('text-md')
+          .withHeight('min-w-12 h-12')
           .build(),
       },
     },
@@ -191,5 +134,5 @@ export const createButtonStyle = tv({
   },
 })
 
-export type ButtonStyle = VariantProps<typeof createButtonStyle>
-export type CreateButtonStyle = ReturnType<typeof createButtonStyle>
+export type SharedButtonStyle = VariantProps<typeof createSharedButtonStyle>
+export type CreateSharedButtonStyle = ReturnType<typeof createSharedButtonStyle>

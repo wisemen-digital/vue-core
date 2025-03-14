@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import type { ButtonEmits, ButtonProps } from '@/packages/@next/button/button.props'
-import ButtonContentContainer from '@/packages/@next/button/parts/ButtonContentContainer.vue'
-import ButtonIconLeft from '@/packages/@next/button/parts/ButtonIconLeft.vue'
-import ButtonIconRight from '@/packages/@next/button/parts/ButtonIconRight.vue'
-import ButtonLoader from '@/packages/@next/button/parts/ButtonLoader.vue'
-import ButtonRoot from '@/packages/@next/button/parts/ButtonRoot.vue'
+import type { ButtonProps } from '@/packages/@next/button/button/button.props'
+import ButtonContentContainer from '@/packages/@next/button/button/parts/ButtonContentContainer.vue'
+import ButtonIconLeft from '@/packages/@next/button/button/parts/ButtonIconLeft.vue'
+import ButtonIconRight from '@/packages/@next/button/button/parts/ButtonIconRight.vue'
+import ButtonLoader from '@/packages/@next/button/button/parts/ButtonLoader.vue'
+import ButtonRoot from '@/packages/@next/button/button/parts/ButtonRoot.vue'
+import type { ButtonEmits } from '@/packages/@next/button/shared/sharedButton.props'
 
 const props = withDefaults(defineProps<ButtonProps>(), {
   id: null,

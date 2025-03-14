@@ -1,7 +1,7 @@
 import type { Icon } from '@/icons/icons'
-import type { Stylable } from '@/types/stylable.type'
+import type { CustomizableElement } from '@/utils/props.util'
 
-export interface ButtonProps extends Stylable<'button'> {
+export interface ButtonProps extends CustomizableElement<'button'> {
   /**
    * The test id of the button.
    * @default null

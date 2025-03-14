@@ -5,24 +5,23 @@ import {
   mergeClasses,
   useComponentClassConfig,
 } from '@/customClassVariants'
-import { useProvideButtonContext } from '@/packages/@next/button/button.context'
-import type { ButtonEmits, ButtonProps } from '@/packages/@next/button/button.props'
+import { useProvideIconButtonContext } from '@/packages/@next/button/icon/iconButton.context'
+import type { IconButtonProps } from '@/packages/@next/button/icon/iconButton.props'
 import {
-  type CreateButtonStyle,
-  createButtonStyle,
-} from '@/packages/@next/button/style/button.style'
+  type CreateIconButtonStyle,
+  createIconButtonStyle,
+} from '@/packages/@next/button/icon/style/iconButton.style'
+import type { ButtonEmits } from '@/packages/@next/button/shared/sharedButton.props'
 import InteractableElement from '@/packages/@next/shared/InteractableElement.vue'
 import PrimitiveElement from '@/packages/@next/shared/PrimitiveElement.vue'
 import { toComputedRefs } from '@/utils/props.util'
 
-const props = withDefaults(defineProps<ButtonProps>(), {
+const props = withDefaults(defineProps<IconButtonProps>(), {
   id: null,
   testId: null,
   isDisabled: false,
   isLoading: false,
   classConfig: null,
-  iconLeft: null,
-  iconRight: null,
   size: 'md',
   type: 'button',
   variant: 'primary',
@@ -30,13 +29,13 @@ const props = withDefaults(defineProps<ButtonProps>(), {
 
 const emit = defineEmits<ButtonEmits>()
 
-const buttonStyle = computed<CreateButtonStyle>(() => createButtonStyle({
+const buttonStyle = computed<CreateIconButtonStyle>(() => createIconButtonStyle({
   isLoading: props.isLoading,
   size: props.size,
   variant: props.variant,
 }))
 
-const customClassConfig = useComponentClassConfig('button', {
+const customClassConfig = useComponentClassConfig('iconButton', {
   isLoading: props.isLoading,
   size: props.size,
   variant: props.variant,
@@ -50,7 +49,7 @@ function onClick(event: MouseEvent): void {
   emit('click', event)
 }
 
-useProvideButtonContext({
+useProvideIconButtonContext({
   ...toComputedRefs(props),
   customClassConfig,
   style: buttonStyle,
@@ -75,6 +74,10 @@ useProvideButtonContext({
       as="button"
       @click="onClick"
     >
+      <span class="sr-only">
+        {{ props.label }}
+      </span>
+
       <slot />
     </InteractableElement>
   </PrimitiveElement>

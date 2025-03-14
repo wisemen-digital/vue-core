@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import ConfigProvider from '@/components/config-provider/ConfigProvider.vue'
 import ThemeProvider from '@/components/theme-provider/ThemeProvider.vue'
-import Button from '@/packages/@next/button/Button.vue'
+import Button from '@/packages/@next/button/button/Button.vue'
+import IconButton from '@/packages/@next/button/icon/IconButton.vue'
 import { setupDefaultStyles } from '@/styling/setupDefaultStyles'
 
 setupDefaultStyles()
@@ -10,9 +11,21 @@ setupDefaultStyles()
 <template>
   <ConfigProvider locale="en-US">
     <ThemeProvider appearance="light">
-      <Button @click="(e) => console.log('e')">
-        Button
-      </Button>
+      <div class="flex w-full gap-lg h-screen items-center justify-center">
+        <Button
+          icon-left="search"
+          variant="primary"
+        >
+          Button
+        </Button>
+
+        <IconButton
+          icon="search"
+          size="md"
+          variant="primary"
+          label="Search"
+        />
+      </div>
     </ThemeProvider>
   </ConfigProvider>
 </template>
