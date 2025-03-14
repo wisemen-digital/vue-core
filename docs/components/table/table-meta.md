@@ -9,6 +9,8 @@
 | **isLoading*** | `boolean` | Whether the table is loading |  |
 | **pagination*** | `Pagination<T>` | The pagination of the table |  |
 | expandedRowContent | `((row: T) => VNode<RendererNode, RendererElement, { [key: string]: any; }>) \| null` | The content to show when a row is expanded | `null` |
+| infiniteScroll | `{ distance?: number; onNext: () => Promise<void>; }` | The options for the infinite scroll |  |
+| isFetching | `boolean` | Whether the table is fetching | `false` |
 | isFirstColumnSticky | `boolean` | Whether the first column is sticky | `false` |
 | isLastColumnSticky | `boolean` | Whether the last column is sticky | `false` |
 | rowClass | `((row: T, rowIndex: number) => string) \| null` | The class to apply to the row | `null` |
