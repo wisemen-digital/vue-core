@@ -39,6 +39,13 @@ const props = withDefaults(defineProps<CalendarProps>(), {
   areYearArrowsHidden: false,
 })
 
+defineSlots<{
+  /**
+   * Additional content in the date cell
+   */
+  date: ({ date }: { date: Date }) => void
+}>()
+
 const model = defineModel<Date | null>({
   required: true,
 })

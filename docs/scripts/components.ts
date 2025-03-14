@@ -1,5 +1,15 @@
 export const components = [
   {
+    sourceFolder: 'calendar/Calendar.vue',
+    targetFolder: 'calendar',
+    componentName: 'Calendar',
+  },
+  {
+    sourceFolder: 'breadcrumbs/Breadcrumbs.vue',
+    targetFolder: 'breadcrumbs',
+    componentName: 'Breadcrumbs',
+  },
+  {
     sourceFolder: 'checkbox/Checkbox.vue',
     targetFolder: 'checkbox',
     componentName: 'Checkbox',
@@ -298,5 +308,10 @@ export const components = [
     sourceFolder: 'theme-provider/ThemeProvider.vue',
     targetFolder: 'theme-provider',
     componentName: 'ThemeProvider',
+  },
+  {
+    sourceFolder: 'collapsable/Collapsable.vue',
+    targetFolder: 'collapsable',
+    componentName: 'Collapsable',
   },
 ]

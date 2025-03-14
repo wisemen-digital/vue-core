@@ -13,9 +13,10 @@
 
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
-| default | `-` | Tabs content to display. Wrap each content with VcTabsContent and set the value prop to the tab value for accessibility. |
-| item-left | `-` | Use this to add content to the left of the tab label. |
-| item-right | `-` | Use this to add content to the right of the tab label. |
+| default | `-` | Tabs content to display.
+Wrap each content with VcTabsContent and set the value prop to the tab value for accessibility. |
+| item-left | `{ item: TabItem<T>; }` | Use this to add content to the left of the tab label. |
+| item-right | `{ item: TabItem<T>; }` | Use this to add content to the right of the tab label. |
 
 
 ## Events

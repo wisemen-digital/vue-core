@@ -70,6 +70,7 @@ const components = [
   {
     text: 'Navigation & Layout',
     items: [
+      { text: 'Breadcrumbs', link: '/components/breadcrumbs/breadcrumbs' },
       { text: 'Tabs', link: '/components/tabs/tabs' },
       { text: 'Table', link: '/components/table/table' },
       { text: 'Table Pagination', link: '/components/table/table-pagination' },
@@ -89,6 +90,18 @@ const components = [
   //     { text: 'Address Autocomplete', link: '/components/autocomplete/address-autocomplete' },
   //   ]
   // },
+  {
+    text: 'Other display components',
+    items: [
+      { text: 'Calendar', link: '/components/calendar/calendar' },
+    ],
+  },
+  {
+    text: 'Transitions',
+    items: [
+      { text: 'Collapsable', link: '/components/collapsable/collapsable' },
+    ],
+  },
   {
     text: 'Utilities',
     items: [
