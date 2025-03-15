@@ -6,7 +6,7 @@ import {
 
 import ConfigProvider from '@/components/config-provider/ConfigProvider.vue'
 import ThemeProvider from '@/components/theme-provider/ThemeProvider.vue'
-import Button from '@/packages/@next/button/Button.vue'
+import Button from '@/packages/@next/button/button/Button.vue'
 import { useDialog } from '@/packages/@next/dialog/dialog.composable'
 import DialogContainer from '@/packages/@next/dialog/DialogContainer.vue'
 import { setupDefaultStyles } from '@/styling/setupDefaultStyles'

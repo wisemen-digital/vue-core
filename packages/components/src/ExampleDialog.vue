@@ -4,6 +4,7 @@ import {
   Motion,
 } from 'motion-v'
 
+import DialogCloseButton from '@/packages/@next/dialog/parts/DialogCloseButton.vue'
 import DialogContent from '@/packages/@next/dialog/parts/DialogContent.vue'
 import DialogOverlay from '@/packages/@next/dialog/parts/DialogOverlay.vue'
 import DialogOverlayTransition from '@/packages/@next/dialog/parts/DialogOverlayTransition.vue'
@@ -33,6 +34,7 @@ const emit = defineEmits<{
             layout-id="test"
           >
             <div class="w-80 h-40 p-xl">
+              <DialogCloseButton class="absolute top-1 right-1" />
               <Motion
                 :transition="{
                   duration: 0.4,
