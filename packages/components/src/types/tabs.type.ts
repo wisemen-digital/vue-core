@@ -1,4 +1,4 @@
-import type { RouteLocationNamedRaw } from 'vue-router'
+import type { Routes } from '@/types/routes.type'
 
 type BaseTabItem<TMeta = undefined> = {
   testId?: string
@@ -11,5 +11,6 @@ export type TabItem<TMeta = undefined> = BaseTabItem<TMeta> & {
 }
 
 export type RouteTabItem<TMeta = undefined> = BaseTabItem<TMeta> & {
-  to: RouteLocationNamedRaw
+  // @ts-expect-error no matching signature
+  to: Routes[number]
 }
