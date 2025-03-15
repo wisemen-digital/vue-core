@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { mergeClasses } from '@/customClassVariants'
-import { useInjectButtonContext } from '@/packages/@next/button/button.context'
+import { useInjectIconButtonContext } from '@/packages/@next/button/icon/iconButton.context'
 
 const {
   classConfig,
   customClassConfig,
   style,
-} = useInjectButtonContext()
+} = useInjectIconButtonContext()
 </script>
 
 <template>
