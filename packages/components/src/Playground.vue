@@ -14,10 +14,10 @@ setupDefaultStyles()
     teleport-target-selector="#test"
   >
     <ThemeProvider appearance="light">
-      <div class="flex w-full gap-lg h-[300vh] items-center justify-center">
+      <div class="flex w-full gap-lg h-[100vh] items-center justify-center">
         <Popover
           :is-close-button-hidden="true"
-          popover-side="bottom"
+          popover-side="right"
         >
           <template #trigger>
             <Button>Trigger</Button>

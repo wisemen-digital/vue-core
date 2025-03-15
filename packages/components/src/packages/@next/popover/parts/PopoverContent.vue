@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import {
-  AnimatePresence,
-  Motion,
-} from 'motion-v'
+import { AnimatePresence } from 'motion-v'
 import {
   PopoverContent as RekaPopoverContent,
 } from 'reka-ui'
@@ -43,31 +40,7 @@ const {
         class="data-[content-width=anchor-width]:w-(--reka-popover-trigger-width) data-[content-width=available-width]:w-(--reka-popover-content-available-width)"
         sticky="always"
       >
-        <Motion
-          :initial="{
-            opacity: 0,
-            scale: 0,
-            filter: 'blur(4px)',
-          }"
-          :animate="{
-            opacity: 1,
-            scale: 1,
-            filter: 'blur(0px)',
-          }"
-          :exit="{
-            opacity: 0,
-            scale: 0,
-            filter: 'blur(4px)',
-          }"
-          :transition="{
-            duration: 0.4,
-            type: 'spring',
-            bounce: 0.2,
-          }"
-          class="data-[side=bottom]:origin-top data-[side=top]:origin-bottom data-[side=left]:origin-right data-[side=right]:origin-left"
-        >
-          <slot />
-        </Motion>
+        <slot />
       </RekaPopoverContent>
     </PrimitiveElement>
   </AnimatePresence>
