@@ -5,10 +5,12 @@ import { injectThemeProviderContext } from '@/components'
 import { twMerge } from '@/libs/twMerge.lib'
 import type { createIconButtonStyle } from '@/packages/@next/button/icon/style/iconButton.style'
 import type { createButtonStyle } from '@/packages/@next/button/shared/style/button.style'
+import type { createPopoverStyle } from '@/packages/@next/popover/style/popover.style'
 
 export interface Components {
   button: typeof createButtonStyle
   iconButton: typeof createIconButtonStyle
+  popover: typeof createPopoverStyle
 }
 
 export interface ComponentVariants {}
