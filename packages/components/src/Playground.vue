@@ -16,39 +16,52 @@ setupDefaultStyles()
 const dialog = useDialog({
   component: () => import('@/ExampleDialog.vue'),
 })
+
+const basicDialog = useDialog({
+  component: () => import('@/ExampleDialogBasic.vue'),
+})
 </script>
 
 <template>
   <ConfigProvider locale="en-US">
     <ThemeProvider appearance="light">
-      <div class="h-screen flex items-center justify-center">
-        <AnimatePresence>
-          <Motion
-            v-if="!dialog.isOpen()"
-            :transition="{
-              duration: 0.4,
-              type: 'spring',
-              bounce: 0.2,
-            }"
-            layout-id="test"
-          >
-            <Button
-              variant="secondary-gray"
-              @click="dialog.open()"
+      <div class="h-screen flex items-center flex-col justify-center">
+        <Button
+          @click="basicDialog.open()"
+        >
+          Open basic dialog
+        </Button>
+
+        <div class="size-40">
+          <AnimatePresence>
+            <Motion
+              v-if="!dialog.isOpen()"
+              :transition="{
+                duration: 0.4,
+                type: 'spring',
+                bounce: 0.2,
+              }"
+              layout-id="test"
+              class="inline-block"
             >
-              <Motion
-                :transition="{
-                  duration: 0.4,
-                  type: 'spring',
-                  bounce: 0.2,
-                }"
-                layout-id="title"
+              <Button
+                variant="secondary-gray"
+                @click="dialog.open()"
               >
-                Open
-              </Motion>
-            </Button>
-          </Motion>
-        </AnimatePresence>
+                <Motion
+                  :transition="{
+                    duration: 0.4,
+                    type: 'spring',
+                    bounce: 0.2,
+                  }"
+                  layout-id="title"
+                >
+                  Open
+                </Motion>
+              </Button>
+            </Motion>
+          </AnimatePresence>
+        </div>
       </div>
 
       <DialogContainer />

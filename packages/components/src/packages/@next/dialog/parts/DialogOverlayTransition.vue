@@ -1,24 +1,20 @@
 <script setup lang="ts">
-const props = withDefaults(defineProps<{
-  enterActiveClass?: string
-  enterFromClass?: string
-  leaveActiveClass?: string
-  leaveToClass?: string
-}>(), {
-  enterActiveClass: 'duration-200',
-  enterFromClass: 'opacity-0',
-  leaveActiveClass: 'duration-200',
-  leaveToClass: 'opacity-0',
-})
+import { Motion } from 'motion-v'
 </script>
 
 <template>
-  <Transition
-    :enter-active-class="props.enterActiveClass"
-    :enter-from-class="props.enterFromClass"
-    :leave-active-class="props.leaveActiveClass"
-    :leave-to-class="props.leaveToClass"
-  >
-    <slot />
-  </Transition>
+  <Motion
+    :initial="{
+      opacity: 0,
+    }"
+    :animate="{
+      opacity: 1,
+    }"
+    :exit="{
+      opacity: 0,
+    }"
+    :transition="{
+      duration: 0.2,
+    }"
+  />
 </template>

@@ -1,24 +1,27 @@
 <script setup lang="ts">
-const props = withDefaults(defineProps<{
-  enterActiveClass?: string
-  enterFromClass?: string
-  leaveActiveClass?: string
-  leaveToClass?: string
-}>(), {
-  enterActiveClass: 'duration-300 ease-dialog',
-  enterFromClass: 'opacity-0 not-motion-reduce:scale-110',
-  leaveActiveClass: 'duration-300 ease-dialog',
-  leaveToClass: 'opacity-0 not-motion-reduce:scale-110',
-})
+import { Motion } from 'motion-v'
 </script>
 
 <template>
-  <Transition
-    :enter-active-class="props.enterActiveClass"
-    :enter-from-class="props.enterFromClass"
-    :leave-active-class="props.leaveActiveClass"
-    :leave-to-class="props.leaveToClass"
+  <Motion
+    :initial="{
+      opacity: 0,
+      scale: 1.1,
+    }"
+    :animate="{
+      opacity: 1,
+      scale: 1,
+    }"
+    :exit="{
+      opacity: 0,
+      scale: 1.1,
+    }"
+    :transition="{
+      duration: 0.5,
+      bounce: 0.4,
+      type: 'spring',
+    }"
   >
     <slot />
-  </Transition>
+  </Motion>
 </template>

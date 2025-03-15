@@ -6,25 +6,23 @@ import {
 
 import DialogCloseButton from '@/packages/@next/dialog/parts/DialogCloseButton.vue'
 import DialogContent from '@/packages/@next/dialog/parts/DialogContent.vue'
+import DialogDescription from '@/packages/@next/dialog/parts/DialogDescription.vue'
 import DialogOverlay from '@/packages/@next/dialog/parts/DialogOverlay.vue'
 import DialogOverlayTransition from '@/packages/@next/dialog/parts/DialogOverlayTransition.vue'
 import DialogPortal from '@/packages/@next/dialog/parts/DialogPortal.vue'
 import DialogRoot from '@/packages/@next/dialog/parts/DialogRoot.vue'
-
-const emit = defineEmits<{
-  closeDialog: []
-}>()
+import DialogTitle from '@/packages/@next/dialog/parts/DialogTitle.vue'
 </script>
 
 <template>
   <DialogRoot
     :class-config="{
-
+      // content: 'top-0 right-0 translate-x-0 translate-y-0 h-full left-auto',
     }"
   >
     <DialogPortal>
       <AnimatePresence>
-        <DialogContent :as-child="true">
+        <DialogContent>
           <Motion
             :transition="{
               duration: 0.4,
@@ -34,7 +32,10 @@ const emit = defineEmits<{
             layout-id="test"
           >
             <div class="w-80 h-40 p-xl">
-              <DialogCloseButton class="absolute top-1 right-1" />
+              <div class="flex items-center gap-x-md">
+                <DialogCloseButton class="absolute top-1 right-1" />
+              </div>
+
               <Motion
                 :transition="{
                   duration: 0.4,
@@ -44,18 +45,24 @@ const emit = defineEmits<{
                 layout-id="title"
                 class="inline-block"
               >
-                <h1 class="text-2xl font-bold">
-                  Hello world
-                </h1>
+                <DialogTitle>
+                  <h1 class="text-2xl font-bold">
+                    Hello world
+                  </h1>
+                </DialogTitle>
               </Motion>
+
+              <DialogDescription>
+                <p>This is a description</p>
+              </DialogDescription>
             </div>
           </Motion>
         </DialogContent>
       </AnimatePresence>
 
-      <DialogOverlayTransition>
-        <DialogOverlay />
-      </DialogOverlayTransition>
+      <DialogOverlay>
+        <DialogOverlayTransition />
+      </DialogOverlay>
     </DialogPortal>
   </DialogRoot>
 </template>

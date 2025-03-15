@@ -45,15 +45,15 @@ const attrs = useAttrs()
     @close="emit('close')"
   >
     <DialogPortal>
-      <DialogOverlayTransition>
-        <DialogOverlay />
-      </DialogOverlayTransition>
+      <DialogOverlay>
+        <DialogOverlayTransition />
+      </DialogOverlay>
 
-      <DialogContentTransition>
-        <DialogContent v-bind="attrs">
+      <DialogContent v-bind="attrs">
+        <DialogContentTransition>
           <slot />
-        </DialogContent>
-      </DialogContentTransition>
+        </DialogContentTransition>
+      </DialogContent>
     </DialogPortal>
   </DialogRoot>
 </template>

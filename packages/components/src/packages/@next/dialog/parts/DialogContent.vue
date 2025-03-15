@@ -1,14 +1,9 @@
 <script setup lang="ts">
+import { AnimatePresence } from 'motion-v'
 import { DialogContent as RekaDialogContent } from 'reka-ui'
 
 import { mergeClasses } from '@/customClassVariants'
 import { useInjectDialogContext } from '@/packages/@next/dialog/dialog.context'
-
-const props = withDefaults(defineProps<{
-  asChild?: boolean
-}>(), {
-  asChild: false,
-})
 
 defineSlots<{
   /**
@@ -35,17 +30,19 @@ function onEscapeKeyDown(event: KeyboardEvent): void {
 </script>
 
 <template>
-  <RekaDialogContent
-    v-if="isOpen"
-    :as-child="props.asChild"
-    :force-mount="true"
-    :class="style.content({
-      class: mergeClasses(customClassConfig.content, classConfig?.content),
-    })"
-    :trap-focus="!hideOverlay"
-    :disable-outside-pointer-events="preventClickOutside"
-    @escape-key-down="onEscapeKeyDown"
-  >
-    <slot />
-  </RekaDialogContent>
+  <AnimatePresence>
+    <RekaDialogContent
+      v-if="isOpen"
+      :as-child="true"
+      :force-mount="true"
+      :class="style.content({
+        class: mergeClasses(customClassConfig.content, classConfig?.content),
+      })"
+      :trap-focus="!hideOverlay"
+      :disable-outside-pointer-events="preventClickOutside"
+      @escape-key-down="onEscapeKeyDown"
+    >
+      <slot />
+    </RekaDialogContent>
+  </AnimatePresence>
 </template>

@@ -1,14 +1,9 @@
 <script setup lang="ts">
+import { AnimatePresence } from 'motion-v'
 import { DialogOverlay as RekaDialogOverlay } from 'reka-ui'
 
 import { mergeClasses } from '@/customClassVariants'
 import { useInjectDialogContext } from '@/packages/@next/dialog/dialog.context'
-
-const props = withDefaults(defineProps<{
-  asChild?: boolean
-}>(), {
-  asChild: false,
-})
 
 const {
   isOpen,
@@ -20,14 +15,16 @@ const {
 </script>
 
 <template>
-  <RekaDialogOverlay
-    v-if="isOpen && !hideOverlay"
-    :as-child="props.asChild"
-    :force-mount="true"
-    :class="style.overlay({
-      class: mergeClasses(customClassConfig.overlay, classConfig?.overlay),
-    })"
-  >
-    <slot />
-  </RekaDialogOverlay>
+  <AnimatePresence>
+    <RekaDialogOverlay
+      v-if="isOpen && !hideOverlay"
+      :as-child="true"
+      :force-mount="true"
+      :class="style.overlay({
+        class: mergeClasses(customClassConfig.overlay, classConfig?.overlay),
+      })"
+    >
+      <slot />
+    </RekaDialogOverlay>
+  </AnimatePresence>
 </template>
