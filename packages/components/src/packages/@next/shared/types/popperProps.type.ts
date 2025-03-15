@@ -7,29 +7,24 @@ export interface PopperProps {
    * Defines how the popper content is aligned relative to the trigger element.
    */
   popoverAlign?: PopperAlign
-
   /**
    * Specifies the padding (in pixels) used when handling collision detection.
    * A larger value increases the spacing between the popper and the container edges.
    */
   popoverCollisionPaddingInPx?: number
-
   /**
    * The HTML element in which the popper content should be rendered.
    * By default, the popper content is rendered inside the viewport.
    */
   popoverContainerElement?: HTMLElement | null
-
   /**
    * The distance (in pixels) between the popper content and the trigger element.
    */
   popoverOffsetInPx?: number
-
   /**
    * Defines which side the content should appear on.
    */
   popoverSide?: PopperSide
-
   /**
    * Determines the width of the popper content.
    * - `anchor-width`: Matches the width of the trigger element.
