@@ -1,6 +1,5 @@
-import type { RouteLocationNamedRaw } from 'vue-router'
-
 import type { TabsStyle } from '@/packages/@next/tabs/shared/style/tabs.style'
+import type { Routes } from '@/types'
 import type {
   CustomizableElement,
   PrimitiveElement,
@@ -23,5 +22,6 @@ export interface RouterLinkTabsItemProps extends PrimitiveElement {
   /**
    * The route to navigate to when the tab is clicked.
    */
-  to: RouteLocationNamedRaw
+  // @ts-expect-error no matching signature
+  to: Routes[number]
 }
