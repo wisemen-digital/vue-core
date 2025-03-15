@@ -1,7 +1,7 @@
 {
   "name": "@wisemen/vue-core",
   "type": "module",
-  "version": "1.0.0-alpha.31",
+  "version": "1.0.0-alpha.37",
   "license": "MIT",
   "sideEffects": false,
   "exports": {
@@ -52,6 +52,7 @@
     "motion-v": "0.10.0",
     "postcss": "8.4.38",
     "reka-ui": "1.0.0-alpha.11",
+    "tailwind-variants": "1.0.0",
     "tailwindcss": "4.0.11"
   },
   "devDependencies": {
@@ -78,7 +79,6 @@
     "minimist": "1.2.8",
     "sass": "1.77.5",
     "tailwind-merge": "2.3.0",
-    "tailwind-variants": "0.3.0",
     "typescript": "5.6.3",
     "vite": "6.2.1",
     "vite-plugin-dts": "4.3.0",

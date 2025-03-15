@@ -14,15 +14,15 @@ setupDefaultStyles()
       <div class="flex w-full gap-lg h-screen items-center justify-center">
         <Button
           icon-left="search"
-          variant="primary"
+          variant="secondary-color"
         >
           Button
         </Button>
 
         <IconButton
+          :is-loading="false"
           icon="search"
-          size="md"
-          variant="primary"
+          variant="secondary-color"
           label="Search"
         />
       </div>

@@ -53,6 +53,12 @@ export class StyleBuilder {
     return this
   }
 
+  public withFlex(flex: string): this {
+    this.with(flex)
+
+    return this
+  }
+
   public withFontColor(fontColor: string): this {
     this.with(fontColor)
 
@@ -73,6 +79,12 @@ export class StyleBuilder {
 
   public withGap(gap: string): this {
     this.with(gap)
+
+    return this
+  }
+
+  public withGrid(grid: string): this {
+    this.with(grid)
 
     return this
   }

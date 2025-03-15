@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ButtonProps } from '@/packages/@next/button/button/button.props'
+import type { ButtonProps } from '@/packages/@next/button/shared/button.props'
 import ButtonContentContainer from '@/packages/@next/button/button/parts/ButtonContentContainer.vue'
 import ButtonIconLeft from '@/packages/@next/button/button/parts/ButtonIconLeft.vue'
 import ButtonIconRight from '@/packages/@next/button/button/parts/ButtonIconRight.vue'

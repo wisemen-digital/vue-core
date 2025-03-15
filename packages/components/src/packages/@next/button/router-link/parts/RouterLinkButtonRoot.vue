@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { RouterLink } from 'vue-router'
 
 import {
   mergeClasses,
   useComponentClassConfig,
 } from '@/customClassVariants'
-import { useProvideButtonContext } from '@/packages/@next/button/button/button.context'
-import type { ButtonProps } from '@/packages/@next/button/shared/button.props'
-import type { ButtonEmits } from '@/packages/@next/button/shared/sharedButton.props'
+import { useProvideRouterLinkButtonContext } from '@/packages/@next/button/router-link/routerLinkbutton.context'
+import type { RouterLinkButtonProps } from '@/packages/@next/button/router-link/routerLinkbutton.props'
 import {
   type CreateButtonStyle,
   createButtonStyle,
@@ -16,7 +16,7 @@ import InteractableElement from '@/packages/@next/shared/InteractableElement.vue
 import PrimitiveElement from '@/packages/@next/shared/PrimitiveElement.vue'
 import { toComputedRefs } from '@/utils/props.util'
 
-const props = withDefaults(defineProps<ButtonProps>(), {
+const props = withDefaults(defineProps<RouterLinkButtonProps>(), {
   id: null,
   testId: null,
   isDisabled: false,
@@ -29,8 +29,6 @@ const props = withDefaults(defineProps<ButtonProps>(), {
   variant: 'primary',
 })
 
-const emit = defineEmits<ButtonEmits>()
-
 const buttonStyle = computed<CreateButtonStyle>(() => createButtonStyle({
   size: props.size,
   variant: props.variant,
@@ -41,15 +39,7 @@ const customClassConfig = useComponentClassConfig('button', {
   variant: props.variant,
 })
 
-function onClick(event: MouseEvent): void {
-  if (props.isLoading) {
-    return
-  }
-
-  emit('click', event)
-}
-
-useProvideButtonContext({
+useProvideRouterLinkButtonContext({
   ...toComputedRefs(props),
   customClassConfig,
   style: buttonStyle,
@@ -62,18 +52,16 @@ useProvideButtonContext({
     :test-id="props.testId"
   >
     <InteractableElement
-      :is-disabled="props.isDisabled"
-      :aria-disabled="props.isLoading"
-      :aria-busy="props.isLoading"
+      :is-disabled="false"
+      :data-is-loading="false"
       :type="props.type"
-      :data-is-loading="props.isLoading"
       :class="buttonStyle.root({
         class: mergeClasses(customClassConfig.root, props.classConfig?.root),
       })"
-      as="button"
-      @click="onClick"
     >
-      <slot />
+      <RouterLink :to="props.to">
+        <slot />
+      </RouterLink>
     </InteractableElement>
   </PrimitiveElement>
 </template>

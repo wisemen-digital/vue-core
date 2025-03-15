@@ -3,28 +3,25 @@ import { computed, type ComputedRef } from 'vue'
 
 import { injectThemeProviderContext } from '@/components'
 import { twMerge } from '@/libs/twMerge.lib'
-import type { createButtonStyle } from '@/packages/@next/button/button/style/button.style'
 import type { createIconButtonStyle } from '@/packages/@next/button/icon/style/iconButton.style'
+import type { createButtonStyle } from '@/packages/@next/button/shared/style/button.style'
 
 export interface Components {
   button: typeof createButtonStyle
   iconButton: typeof createIconButtonStyle
 }
 
-export type CustomClassVariants = [
-  ClassVariant<'button', 'variant', 'custom'>,
-  ClassVariant<'iconButton', 'variant', 'icon-custom'>,
-]
+export interface ComponentVariants {}
 
 export type GetComponentPropCustomValues<
   TComponent extends keyof Components,
   TTargetProp extends keyof VariantProps<Components[TComponent]>,
-> = Extract<
-  CustomClassVariants[number],
-  ClassVariant<TComponent, TTargetProp, any>
-> extends ClassVariant<TComponent, TTargetProp, infer TTargetPropValue>
-  ? TTargetPropValue
-  : undefined
+> =
+ComponentVariants extends { variants: Array<infer TVariant> }
+  ? TVariant extends ClassVariant<TComponent, TTargetProp, infer TTargetPropValue>
+    ? TTargetPropValue
+    : never
+  : never
 
 export interface ClassVariant<
   TComponent extends keyof Components,
@@ -44,7 +41,7 @@ export interface ClassVariant<
 
 export const customClassVariants: ClassVariant<any, never, string>[] = []
 
-export function defineClassVariant<
+export function defineComponentVariant<
   TComponent extends keyof Components,
   TTarget extends keyof VariantProps<Components[TComponent]>,
   TTargetPropValue extends string,

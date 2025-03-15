@@ -30,13 +30,11 @@ const props = withDefaults(defineProps<IconButtonProps>(), {
 const emit = defineEmits<ButtonEmits>()
 
 const buttonStyle = computed<CreateIconButtonStyle>(() => createIconButtonStyle({
-  isLoading: props.isLoading,
   size: props.size,
   variant: props.variant,
 }))
 
 const customClassConfig = useComponentClassConfig('iconButton', {
-  isLoading: props.isLoading,
   size: props.size,
   variant: props.variant,
 })
@@ -67,7 +65,6 @@ useProvideIconButtonContext({
       :aria-busy="props.isLoading"
       :type="props.type"
       :data-is-loading="props.isLoading"
-      :data-is-not-loading="!props.isLoading"
       :class="buttonStyle.root({
         class: mergeClasses(customClassConfig.root, props.classConfig?.root),
       })"

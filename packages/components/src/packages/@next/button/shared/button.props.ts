@@ -1,6 +1,6 @@
 import type { GetComponentPropCustomValues } from '@/customClassVariants'
 import type { Icon } from '@/icons/icons'
-import type { ButtonStyle } from '@/packages/@next/button/button/style/button.style'
+import type { ButtonStyle } from '@/packages/@next/button/shared/style/button.style'
 import type { SharedButtonProps } from '@/packages/@next/button/shared/sharedButton.props'
 import type { CustomizableElement } from '@/utils/props.util'
 
@@ -19,7 +19,7 @@ export interface ButtonProps extends SharedButtonProps, CustomizableElement<'but
    * Defines the button’s size.
    * @default 'md'
    */
-  size?: ButtonStyle['size']
+  size?: ButtonStyle['size'] | GetComponentPropCustomValues<'button', 'size'>
   /**
    * Defines the visual style of the button.
    * @default 'primary'
