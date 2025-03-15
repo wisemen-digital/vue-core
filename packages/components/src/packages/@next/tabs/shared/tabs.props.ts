@@ -19,7 +19,7 @@ export interface TabsProps extends PrimitiveElement, CustomizableElement<'tabs'>
   variant?: TabsStyle['variant']
 }
 
-export interface RouteTabsItemProps extends PrimitiveElement {
+export interface RouterLinkTabsItemProps extends PrimitiveElement {
   /**
    * The route to navigate to when the tab is clicked.
    */
