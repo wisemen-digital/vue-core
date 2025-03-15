@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { mergeClasses } from '@/customClassVariants'
-import { useInjectButtonContext } from '@/packages/@next/button/button.context'
+import { useInjectRouterLinkButtonContext } from '@/packages/@next/button/router-link/routerLinkbutton.context'
 import Icon from '@/packages/@next/icon/Icon.vue'
 
 const {
@@ -8,7 +8,7 @@ const {
   customClassConfig,
   iconLeft,
   style,
-} = useInjectButtonContext()
+} = useInjectRouterLinkButtonContext()
 </script>
 
 <template>
