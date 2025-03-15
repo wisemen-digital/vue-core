@@ -3,7 +3,6 @@ import PopoverAnchor from '@/packages/@next/popover/parts/PopoverAnchor.vue'
 import PopoverArrow from '@/packages/@next/popover/parts/PopoverArrow.vue'
 import PopoverCloseButton from '@/packages/@next/popover/parts/PopoverCloseButton.vue'
 import PopoverContent from '@/packages/@next/popover/parts/PopoverContent.vue'
-import PopoverContentTransition from '@/packages/@next/popover/parts/PopoverContentTransition.vue'
 import PopoverInnerContent from '@/packages/@next/popover/parts/PopoverInnerContent.vue'
 import PopoverPortal from '@/packages/@next/popover/parts/PopoverPortal.vue'
 import PopoverRoot from '@/packages/@next/popover/parts/PopoverRoot.vue'
@@ -42,16 +41,14 @@ const isOpen = defineModel<boolean>('isOpen', {
     </PopoverAnchor>
 
     <PopoverPortal>
-      <PopoverContentTransition>
-        <PopoverContent>
-          <PopoverInnerContent>
-            <slot name="content" />
-            <PopoverCloseButton />
-          </PopoverInnerContent>
+      <PopoverContent>
+        <PopoverInnerContent>
+          <slot name="content" />
+          <PopoverCloseButton />
+        </PopoverInnerContent>
 
-          <PopoverArrow />
-        </PopoverContent>
-      </PopoverContentTransition>
+        <PopoverArrow />
+      </PopoverContent>
     </PopoverPortal>
   </PopoverRoot>
 </template>

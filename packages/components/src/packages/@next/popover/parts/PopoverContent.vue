@@ -1,6 +1,11 @@
 <script setup lang="ts">
-import { Motion } from 'motion-v'
-import { PopoverContent as RekaPopoverContent } from 'reka-ui'
+import {
+  AnimatePresence,
+  Motion,
+} from 'motion-v'
+import {
+  PopoverContent as RekaPopoverContent,
+} from 'reka-ui'
 
 import { useInjectPopoverContext } from '@/packages/@next/popover/popover.context'
 import PrimitiveElement from '@/packages/@next/shared/PrimitiveElement.vue'
@@ -19,32 +24,51 @@ const {
 </script>
 
 <template>
-  <PrimitiveElement
-    v-if="isOpen"
-    :id="id"
-    :test-id="testId"
-  >
-    <RekaPopoverContent
-      :force-mount="true"
-      :as-child="true"
-      :data-content-width="popoverWidth"
-      :align="popoverAlign"
-      :align-offset="popoverOffsetInPx"
-      :collision-padding="popoverCollisionPaddingInPx"
-      :collision-boundary="popoverContainerElement"
-      :side="popoverSide"
-      :side-offset="popoverOffsetInPx"
-      class="data-[content-width=anchor-width]:w-(--reka-popover-trigger-width) data-[content-width=available-width]:w-(--reka-popover-content-available-width)"
-      sticky="always"
+  <AnimatePresence :unwrap-element="true">
+    <PrimitiveElement
+      v-if="isOpen"
+      :id="id"
+      :test-id="testId"
     >
-      <Motion
-        :initial="{ opacity: 0, scale: 0.95 }"
-        :animate="{ opacity: 1, scale: 1 }"
-        :exit="{ opacity: 0, scale: 2 }"
-        :transition="{ duration: 0.3, ease: 'easeInOut' }"
+      <RekaPopoverContent
+        :force-mount="true"
+        :as-child="true"
+        :data-content-width="popoverWidth"
+        :align="popoverAlign"
+        :align-offset="popoverOffsetInPx"
+        :collision-padding="popoverCollisionPaddingInPx"
+        :collision-boundary="popoverContainerElement"
+        :side="popoverSide"
+        :side-offset="popoverOffsetInPx"
+        class="data-[content-width=anchor-width]:w-(--reka-popover-trigger-width) data-[content-width=available-width]:w-(--reka-popover-content-available-width)"
+        sticky="always"
       >
-        <slot />
-      </Motion>
-    </RekaPopoverContent>
-  </PrimitiveElement>
+        <Motion
+          :initial="{
+            opacity: 0,
+            scale: 0,
+            filter: 'blur(4px)',
+          }"
+          :animate="{
+            opacity: 1,
+            scale: 1,
+            filter: 'blur(0px)',
+          }"
+          :exit="{
+            opacity: 0,
+            scale: 0,
+            filter: 'blur(4px)',
+          }"
+          :transition="{
+            duration: 0.4,
+            type: 'spring',
+            bounce: 0.2,
+          }"
+          class="data-[side=bottom]:origin-top data-[side=top]:origin-bottom data-[side=left]:origin-right data-[side=right]:origin-left"
+        >
+          <slot />
+        </Motion>
+      </RekaPopoverContent>
+    </PrimitiveElement>
+  </AnimatePresence>
 </template>

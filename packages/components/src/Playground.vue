@@ -14,17 +14,22 @@ setupDefaultStyles()
     teleport-target-selector="#test"
   >
     <ThemeProvider appearance="light">
-      <div class="flex w-full gap-lg h-screen items-center justify-center">
-        <Popover :is-close-button-hidden="true">
+      <div class="flex w-full gap-lg h-[300vh] items-center justify-center">
+        <Popover
+          :is-close-button-hidden="true"
+          popover-side="bottom"
+        >
           <template #trigger>
             <Button>Trigger</Button>
           </template>
 
           <template #content>
-            <img
+            <div
               src="https://images.unsplash.com/photo-1740715537042-6de862cdaab4?q=80&w=2477&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               class="w-80 h-40 p-xs rounded-xl"
             >
+              <Button>Hehe</Button>
+            </div>
           </template>
         </Popover>
       </div>
