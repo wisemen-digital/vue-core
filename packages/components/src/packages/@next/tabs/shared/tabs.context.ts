@@ -1,11 +1,9 @@
-import {
-  type ComputedRef,
-  inject,
-  type InjectionKey,
-  provide,
+import type {
+  ComputedRef,
 } from 'vue'
 
 import type { ClassConfig } from '@/customClassVariants'
+import { useContext } from '@/packages/@next/shared/context.composable'
 import type { CreateTabsStyle } from '@/packages/@next/tabs/shared/style/tabs.style'
 import type { TabsProps } from '@/packages/@next/tabs/shared/tabs.props'
 import type { PropsToComputed } from '@/utils/props.util'
@@ -15,18 +13,7 @@ interface TabsContext extends PropsToComputed<TabsProps> {
   style: ComputedRef<CreateTabsStyle>
 }
 
-const tabsContextKey: InjectionKey<TabsContext> = Symbol('tabsContext')
-
-export function useProvideTabsContext(context: TabsContext): void {
-  provide(tabsContextKey, context)
-}
-
-export function useInjectTabsContext(): TabsContext {
-  const context = inject(tabsContextKey)
-
-  if (context === undefined) {
-    throw new Error('Tabs context is not provided. Make sure to wrap your components in `TabsRoot`.')
-  }
-
-  return context
-}
+export const [
+  useProvideTabsContext,
+  useInjectTabsContext,
+] = useContext<TabsContext>('tabsContext')
