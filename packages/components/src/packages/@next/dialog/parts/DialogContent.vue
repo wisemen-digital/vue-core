@@ -4,6 +4,7 @@ import { DialogContent as RekaDialogContent } from 'reka-ui'
 
 import { mergeClasses } from '@/customClassVariants'
 import { useInjectDialogContext } from '@/packages/@next/dialog/dialog.context'
+import PrimitiveElement from '@/packages/@next/shared/PrimitiveElement.vue'
 
 defineSlots<{
   /**
@@ -13,6 +14,8 @@ defineSlots<{
 }>()
 
 const {
+  id,
+  testId,
   isOpen,
   classConfig,
   customClassConfig,
@@ -37,18 +40,23 @@ function onInteractOutside(event: CustomEvent): void {
 
 <template>
   <AnimatePresence>
-    <RekaDialogContent
+    <PrimitiveElement
       v-if="isOpen"
-      :as-child="true"
-      :force-mount="true"
-      :class="style.content({
-        class: mergeClasses(customClassConfig.content, classConfig?.content),
-      })"
-      :trap-focus="!hideOverlay"
-      @escape-key-down="onEscapeKeyDown"
-      @interact-outside="onInteractOutside"
+      :id="id"
+      :test-id="testId"
     >
-      <slot />
-    </RekaDialogContent>
+      <RekaDialogContent
+        :as-child="true"
+        :force-mount="true"
+        :class="style.content({
+          class: mergeClasses(customClassConfig.content, classConfig?.content),
+        })"
+        :trap-focus="!hideOverlay"
+        @escape-key-down="onEscapeKeyDown"
+        @interact-outside="onInteractOutside"
+      >
+        <slot />
+      </RekaDialogContent>
+    </PrimitiveElement>
   </AnimatePresence>
 </template>
