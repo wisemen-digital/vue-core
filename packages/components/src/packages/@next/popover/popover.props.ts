@@ -4,10 +4,4 @@ import type {
   PrimitiveElement,
 } from '@/utils/props.util'
 
-export interface PopoverProps extends PopperPropsWithArrowVisibleByDefault, PrimitiveElement, CustomizableElement<'popover'> {
-  /**
-   * Hides the close button.
-   * @default false
-   */
-  isCloseButtonHidden?: boolean
-}
+export interface PopoverProps extends PopperPropsWithArrowVisibleByDefault, PrimitiveElement, CustomizableElement<'popover'> {}

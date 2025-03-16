@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import PopoverAnchor from '@/packages/@next/popover/parts/PopoverAnchor.vue'
 import PopoverArrow from '@/packages/@next/popover/parts/PopoverArrow.vue'
-import PopoverCloseButton from '@/packages/@next/popover/parts/PopoverCloseButton.vue'
 import PopoverContent from '@/packages/@next/popover/parts/PopoverContent.vue'
 import PopoverContentTransition from '@/packages/@next/popover/parts/PopoverContentTransition.vue'
 import PopoverInnerContent from '@/packages/@next/popover/parts/PopoverInnerContent.vue'
@@ -46,7 +45,6 @@ const isOpen = defineModel<boolean>('isOpen', {
         <PopoverContentTransition>
           <PopoverInnerContent>
             <slot name="content" />
-            <PopoverCloseButton />
           </PopoverInnerContent>
 
           <PopoverArrow />
