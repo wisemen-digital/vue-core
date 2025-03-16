@@ -1,7 +1,7 @@
 import type { GetComponentPropCustomValues } from '@/customClassVariants'
 import type { Icon } from '@/icons/icons'
-import type { ButtonStyle } from '@/packages/@next/button/shared/style/button.style'
 import type { SharedButtonProps } from '@/packages/@next/button/shared/sharedButton.props'
+import type { ButtonStyle } from '@/packages/@next/button/shared/style/button.style'
 import type { CustomizableElement } from '@/utils/props.util'
 
 export interface ButtonProps extends SharedButtonProps, CustomizableElement<'button'> {
