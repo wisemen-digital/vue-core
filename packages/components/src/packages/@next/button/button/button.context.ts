@@ -1,13 +1,11 @@
-import {
-  type ComputedRef,
-  inject,
-  type InjectionKey,
-  provide,
+import type {
+  ComputedRef,
 } from 'vue'
 
 import type { ClassConfig } from '@/customClassVariants'
 import type { ButtonProps } from '@/packages/@next/button/shared/button.props'
 import type { CreateButtonStyle } from '@/packages/@next/button/shared/style/button.style'
+import { useContext } from '@/packages/@next/shared/context.composable'
 import type { PropsToComputed } from '@/utils/props.util'
 
 interface ButtonContext extends PropsToComputed<ButtonProps> {
@@ -15,18 +13,7 @@ interface ButtonContext extends PropsToComputed<ButtonProps> {
   style: ComputedRef<CreateButtonStyle>
 }
 
-const buttonContextKey: InjectionKey<ButtonContext> = Symbol('buttonContext')
-
-export function useProvideButtonContext(context: ButtonContext): void {
-  provide(buttonContextKey, context)
-}
-
-export function useInjectButtonContext(): ButtonContext {
-  const context = inject(buttonContextKey)
-
-  if (context === undefined) {
-    throw new Error('Button context is not provided. Make sure to wrap your components in `ButtonRoot`.')
-  }
-
-  return context
-}
+export const [
+  useProvideButtonContext,
+  useInjectButtonContext,
+] = useContext<ButtonContext>('buttonContext')
