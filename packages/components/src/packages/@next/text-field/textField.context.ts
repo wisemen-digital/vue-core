@@ -15,6 +15,8 @@ interface TextFieldContext extends PropsToComputed<TextFieldProps> {
   customClassConfig: ComputedRef<ClassConfig<'textField'>>
   modelValue: Ref<string | null>
   style: ComputedRef<CreateTextFieldStyle>
+  onBlur: (event: FocusEvent) => void
+  onFocus: (event: FocusEvent) => void
 }
 
 const textFieldContextKey: InjectionKey<TextFieldContext> = Symbol('textFieldContext')

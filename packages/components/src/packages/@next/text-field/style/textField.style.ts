@@ -20,7 +20,7 @@ export const createTextFieldStyle = tv({
       .withSize('size-full')
       .withFontSize('text-sm')
       .withPadding('px-3 group-data-[has-icon-left=true]/text-field:pl-2 group-data-[has-icon-right=true]/text-field:pr-2')
-      .withColor('text-primary disabled:text-disabled')
+      .withColor('text-primary disabled:text-disabled placeholder:text-placeholder')
       .withBackgroundColor('bg-transparent')
       .withCursor('disabled:cursor-not-allowed')
       .build(),
@@ -31,14 +31,19 @@ export const createTextFieldStyle = tv({
       .withColor('text-quaternary')
       .build(),
     root: new StyleBuilder()
-      .withBase('group/text-field')
+      .withBase('group/text-field overflow-hidden')
       .withFlex('flex items-center')
       .withHeight('h-10')
-      .withBorder('border border-solid border-primary data-[is-disabled=true]:border-disabled-subtle data-[is-disabled=false]:focus-within:border-brand-500')
+      // Default
+      .withBorder('border border-solid border-primary focus-within:border-brand-500')
+      // Disabled
+      .withBorder('data-[is-disabled=true]:border-disabled-subtle')
+      // Invalid
+      .withBorder('data-[is-invalid=true]:border-error data-[is-invalid=true]:focus-within:border-error')
       .withBackgroundColor('bg-primary data-[is-disabled=true]:bg-disabled-subtle')
       .withBorderRadius('rounded-md')
       .withShadow('shadow-xs')
-      .withRing('ring-brand-500 data-[is-disabled=false]:focus-within:ring')
+      .withRing('ring-brand-500 focus-within:ring data-[is-invalid=true]:ring-error-500')
       .withTransition('duration-200')
       .withCursor('data-[is-disabled=true]:cursor-not-allowed')
       .build(),

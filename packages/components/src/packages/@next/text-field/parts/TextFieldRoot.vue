@@ -10,7 +10,7 @@ import {
   createTextFieldStyle,
 } from '@/packages/@next/text-field/style/textField.style'
 import { useProvideTextFieldContext } from '@/packages/@next/text-field/textField.context'
-import type { TextFieldProps } from '@/packages/@next/text-field/textField.props'
+import type { TextFieldEmits, TextFieldProps } from '@/packages/@next/text-field/textField.props'
 import { toComputedRefs } from '@/utils/props.util'
 
 const props = withDefaults(defineProps<TextFieldProps>(), {
@@ -21,11 +21,14 @@ const props = withDefaults(defineProps<TextFieldProps>(), {
   isSpellCheckEnabled: false,
   autocomplete: 'off',
   classConfig: null,
+  errors: () => [],
   iconLeft: null,
   iconRight: null,
   placeholder: null,
   type: 'text',
 })
+
+const emit = defineEmits<TextFieldEmits>()
 
 const modelValue = defineModel<TValue | null>({
   required: true,
@@ -35,11 +38,21 @@ const textFieldStyle = computed<CreateTextFieldStyle>(() => createTextFieldStyle
 
 const customClassConfig = useComponentClassConfig('textField', {})
 
+function onBlur(event: FocusEvent): void {
+  emit('blur', event)
+}
+
+function onFocus(event: FocusEvent): void {
+  emit('focus', event)
+}
+
 useProvideTextFieldContext({
   ...toComputedRefs(props),
   customClassConfig,
   modelValue,
   style: textFieldStyle,
+  onBlur,
+  onFocus,
 })
 </script>
 
@@ -50,6 +63,7 @@ useProvideTextFieldContext({
     })"
     :data-has-icon-left="props.iconLeft !== null"
     :data-has-icon-right="props.iconRight !== null"
+    :data-is-invalid="props.errors.length > 0 && props.isTouched"
     :data-is-disabled="props.isDisabled"
   >
     <slot />

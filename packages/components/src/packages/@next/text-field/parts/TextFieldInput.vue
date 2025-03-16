@@ -9,15 +9,23 @@ const {
   testId,
   isDisabled,
   isLoading,
+  isRequired,
   isSpellCheckEnabled,
   autocomplete,
   classConfig,
   customClassConfig,
+  errors,
   modelValue,
   placeholder,
   style,
   type,
+  onBlur,
+  onFocus,
 } = useInjectTextFieldContext()
+
+function onInput(event: InputEvent): void {
+  modelValue.value = (event.target as HTMLInputElement).value
+}
 </script>
 
 <template>
@@ -26,19 +34,23 @@ const {
     :test-id="testId"
   >
     <InteractableElement
-      v-model="modelValue"
+      :value="modelValue"
       :is-disabled="isDisabled"
       :class="style.input({
         class: mergeClasses(customClassConfig.input, classConfig?.input),
       })"
+      :describedby="`${id}-error ${id}-hint`"
       :aria-busy="isLoading"
+      :aria-invalid="errors.length > 0"
       :type="type"
       :autocomplete="autocomplete"
       :placeholder="placeholder"
       :spellcheck="isSpellCheckEnabled"
+      :required="isRequired"
       as="input"
-    >
-      <slot />
-    </InteractableElement>
+      @focus="onFocus"
+      @blur="onBlur"
+      @input="onInput"
+    />
   </PrimitiveElement>
 </template>

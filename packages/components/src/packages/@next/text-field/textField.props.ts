@@ -1,11 +1,12 @@
 import type { Icon } from '@/icons/icons'
 import type {
   CustomizableElement,
+  FormElement,
   InteractableElement,
   PrimitiveElement,
 } from '@/utils/props.util'
 
-export interface TextFieldProps extends PrimitiveElement, InteractableElement, CustomizableElement<'textField'> {
+export interface TextFieldProps extends PrimitiveElement, InteractableElement, FormElement, CustomizableElement<'textField'> {
   /**
    * Whether the input is loading.
    * @default false
@@ -41,4 +42,9 @@ export interface TextFieldProps extends PrimitiveElement, InteractableElement, C
    * @default 'text'
    */
   type?: 'date' | 'email' | 'password' | 'search' | 'tel' | 'text' | 'time' | 'url'
+}
+
+export interface TextFieldEmits {
+  (event: 'focus', e: FocusEvent): void
+  (event: 'blur', e: FocusEvent): void
 }
