@@ -6,16 +6,7 @@ import IconButtonLoader from '@/packages/@next/button/icon/parts/IconButtonLoade
 import IconButtonRoot from '@/packages/@next/button/icon/parts/IconButtonRoot.vue'
 import type { ButtonEmits } from '@/packages/@next/button/shared/sharedButton.props'
 
-const props = withDefaults(defineProps<IconButtonProps>(), {
-  id: null,
-  testId: null,
-  isDisabled: false,
-  isLoading: false,
-  classConfig: null,
-  size: 'md',
-  type: 'button',
-  variant: 'primary',
-})
+const props = defineProps<IconButtonProps>()
 
 const emit = defineEmits<ButtonEmits>()
 

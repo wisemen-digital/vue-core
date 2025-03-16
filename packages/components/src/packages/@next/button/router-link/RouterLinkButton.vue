@@ -5,16 +5,7 @@ import RouterLinkButtonIconRight from '@/packages/@next/button/router-link/parts
 import RouterLinkButtonRoot from '@/packages/@next/button/router-link/parts/RouterLinkButtonRoot.vue'
 import type { RouterLinkButtonProps } from '@/packages/@next/button/router-link/routerLinkbutton.props'
 
-const props = withDefaults(defineProps<RouterLinkButtonProps>(), {
-  id: null,
-  testId: null,
-  classConfig: null,
-  iconLeft: null,
-  iconRight: null,
-  size: 'md',
-  type: 'button',
-  variant: 'primary',
-})
+const props = defineProps<RouterLinkButtonProps>()
 
 defineSlots<{
   /**
