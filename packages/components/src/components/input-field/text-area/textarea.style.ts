@@ -10,7 +10,7 @@ export const textareaStyle = tv({
       .withBorder('border border-solid border-b-(--textarea-border-bottom-color-default) border-l-(--textarea-border-left-color-default) border-r-(--textarea-border-right-color-default) border-t-(--textarea-border-top-color-default)')
       .withBackgroundColor('bg-(--textarea-bg-color-default)')
       .withPadding('px-(--textarea-padding-x-default) py-(--textarea-padding-y-default)')
-      .withFontSize('text-(size:--textarea-font-size-default)')
+      .withFontSize('text-(length:--textarea-font-size-default)')
       .withFontWeight('font-(--textarea-font-weight-default)')
       .withLeading('leading-(--textarea-line-height-default)')
       .withColor('text-(color:--textarea-text-color-default)')
