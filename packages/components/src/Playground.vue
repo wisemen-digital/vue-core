@@ -25,7 +25,12 @@ const basicDialog = useDialog({
 <template>
   <ConfigProvider locale="en-US">
     <ThemeProvider appearance="light">
-      <div class="h-screen flex items-center flex-col justify-center">
+      <div
+        :class="{
+          'scale-98': dialog.isOpen(),
+        }"
+        class="h-screen flex items-center flex-col justify-center duration-300"
+      >
         <Button
           @click="basicDialog.open()"
         >

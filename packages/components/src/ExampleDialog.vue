@@ -31,7 +31,7 @@ import DialogTitle from '@/packages/@next/dialog/parts/DialogTitle.vue'
             }"
             layout-id="test"
           >
-            <div class="w-80 h-40 p-xl">
+            <div class="w-120 h-60 p-xl">
               <div class="flex items-center gap-x-md">
                 <DialogCloseButton class="absolute top-1 right-1" />
               </div>
@@ -46,7 +46,7 @@ import DialogTitle from '@/packages/@next/dialog/parts/DialogTitle.vue'
                 class="inline-block"
               >
                 <DialogTitle>
-                  <h1 class="text-2xl font-bold">
+                  <h1 class="text-display-xs font-bold">
                     Hello world
                   </h1>
                 </DialogTitle>
