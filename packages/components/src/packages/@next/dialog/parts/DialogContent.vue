@@ -27,6 +27,12 @@ function onEscapeKeyDown(event: KeyboardEvent): void {
     event.preventDefault()
   }
 }
+
+function onInteractOutside(event: CustomEvent): void {
+  if (preventClickOutside.value) {
+    event.preventDefault()
+  }
+}
 </script>
 
 <template>
@@ -39,8 +45,8 @@ function onEscapeKeyDown(event: KeyboardEvent): void {
         class: mergeClasses(customClassConfig.content, classConfig?.content),
       })"
       :trap-focus="!hideOverlay"
-      :disable-outside-pointer-events="preventClickOutside"
       @escape-key-down="onEscapeKeyDown"
+      @interact-outside="onInteractOutside"
     >
       <slot />
     </RekaDialogContent>

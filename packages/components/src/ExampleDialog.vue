@@ -16,6 +16,7 @@ import DialogTitle from '@/packages/@next/dialog/parts/DialogTitle.vue'
 
 <template>
   <DialogRoot
+    :prevent-esc="true"
     :class-config="{
       // content: 'top-0 right-0 translate-x-0 translate-y-0 h-full left-auto',
     }"
