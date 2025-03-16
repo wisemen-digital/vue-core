@@ -1,13 +1,11 @@
-import {
-  type ComputedRef,
-  inject,
-  type InjectionKey,
-  provide,
+import type {
+  ComputedRef,
 } from 'vue'
 
 import type { ClassConfig } from '@/customClassVariants'
 import type { FormFieldProps } from '@/packages/@next/form-field/formField.props'
 import type { CreateFormFieldStyle } from '@/packages/@next/form-field/style/formField.style'
+import { useContext } from '@/packages/@next/shared/context.composable'
 import type { PropsToComputed } from '@/utils/props.util'
 
 interface FormFieldContext extends PropsToComputed<FormFieldProps> {
@@ -16,18 +14,7 @@ interface FormFieldContext extends PropsToComputed<FormFieldProps> {
 
 }
 
-const formFieldContextKey: InjectionKey<FormFieldContext> = Symbol('formFieldContext')
-
-export function useProvideFormFieldContext(context: FormFieldContext): void {
-  provide(formFieldContextKey, context)
-}
-
-export function useInjectFormFieldContext(): FormFieldContext {
-  const context = inject(formFieldContextKey)
-
-  if (context === undefined) {
-    throw new Error('FormField context is not provided. Make sure to wrap your components in `FormFieldRoot`.')
-  }
-
-  return context
-}
+export const [
+  useProvideFormFieldContext,
+  useInjectFormFieldContext,
+] = useContext<FormFieldContext>('formFieldContext')

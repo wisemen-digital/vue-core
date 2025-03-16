@@ -1,12 +1,10 @@
-import {
-  type ComputedRef,
-  inject,
-  type InjectionKey,
-  provide,
-  type Ref,
+import type {
+  ComputedRef,
+  Ref,
 } from 'vue'
 
 import type { ClassConfig } from '@/customClassVariants'
+import { useContext } from '@/packages/@next/shared/context.composable'
 import type { CreateTextFieldStyle } from '@/packages/@next/text-field/style/textField.style'
 import type { TextFieldProps } from '@/packages/@next/text-field/textField.props'
 import type { PropsToComputed } from '@/utils/props.util'
@@ -19,18 +17,7 @@ interface TextFieldContext extends PropsToComputed<TextFieldProps> {
   onFocus: (event: FocusEvent) => void
 }
 
-const textFieldContextKey: InjectionKey<TextFieldContext> = Symbol('textFieldContext')
-
-export function useProvideTextFieldContext(context: TextFieldContext): void {
-  provide(textFieldContextKey, context)
-}
-
-export function useInjectTextFieldContext(): TextFieldContext {
-  const context = inject(textFieldContextKey)
-
-  if (context === undefined) {
-    throw new Error('TextField context is not provided. Make sure to wrap your components in `TextFieldRoot`.')
-  }
-
-  return context
-}
+export const [
+  useProvideTextFieldContext,
+  useInjectTextFieldContext,
+] = useContext<TextFieldContext>('textFieldContext')
