@@ -11,15 +11,15 @@ export interface TooltipProps extends PopperPropsWithArrowVisibleByDefault, Prim
    */
   isHidden?: boolean
   /**
-   * When true, clicking on trigger will close the tooltip.
-   * @default false
-   */
-  closeOnTriggerClick?: boolean
-  /**
    * The duration in milliseconds to wait before showing the tooltip.
    * @default 0
    */
   delayDuration?: number
+  /**
+   * When true, clicking on trigger won't close the tooltip.
+   * @default false
+   */
+  disableCloseOnTriggerClick?: boolean
   /**
    * When true, trying to hover the content will result in the tooltip closing as the pointer leaves the trigger.
    * @default false

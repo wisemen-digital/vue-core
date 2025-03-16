@@ -54,7 +54,7 @@ useProvideTooltipContext({
       v-model:open="isOpen"
       :delay-duration="props.delayDuration"
       :disable-hoverable-content="props.disableHoverableContent"
-      :disable-closing-trigger="props.closeOnTriggerClick"
+      :disable-closing-trigger="props.disableCloseOnTriggerClick"
       :disabled="props.isHidden"
       :ignore-non-keyboard-focus="true"
     >

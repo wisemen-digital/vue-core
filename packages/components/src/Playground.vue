@@ -23,7 +23,7 @@ setupDefaultStyles()
           Button
         </Button>
 
-        <Tooltip>
+        <Tooltip :disable-close-on-trigger-click="true">
           <template #trigger>
             <IconButton
               :is-loading="false"
