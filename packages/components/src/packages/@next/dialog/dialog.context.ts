@@ -1,8 +1,5 @@
-import {
-  type ComputedRef,
-  inject,
-  type InjectionKey,
-  provide,
+import type {
+  ComputedRef,
 } from 'vue'
 
 import type { ClassConfig } from '@/customClassVariants'
@@ -10,6 +7,7 @@ import type { DialogProps } from '@/packages/@next/dialog/dialog.props'
 import type {
   CreateDialogStyle,
 } from '@/packages/@next/dialog/style/dialog.style'
+import { useContext } from '@/packages/@next/shared/context.composable'
 import type { PropsToComputed } from '@/utils/props.util'
 
 interface DialogContext extends PropsToComputed<DialogProps> {
@@ -18,18 +16,7 @@ interface DialogContext extends PropsToComputed<DialogProps> {
   style: ComputedRef<CreateDialogStyle>
 }
 
-const dialogContextKey: InjectionKey<DialogContext> = Symbol('dialogContext')
-
-export function useProvideDialogContext(context: DialogContext): void {
-  provide(dialogContextKey, context)
-}
-
-export function useInjectDialogContext(): DialogContext {
-  const context = inject(dialogContextKey)
-
-  if (context === undefined) {
-    throw new Error('Dialog context is not provided. Make sure to wrap your components in `DialogRoot`.')
-  }
-
-  return context
-}
+export const [
+  useProvideDialogContext,
+  useInjectDialogContext,
+] = useContext<DialogContext>('dialogContext')
