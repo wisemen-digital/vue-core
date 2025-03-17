@@ -32,7 +32,7 @@ export const dropdownMenuStyle = tv({
       .build(),
     groupLabel: new StyleBuilder()
       .withSpacing('px-(--dropdown-menu-group-label-spacing-x-default) pb-(--dropdown-menu-group-label-spacing-bottom-default) pt-(--dropdown-menu-group-label-spacing-top-default)')
-      .withFontSize('text-(size:--dropdown-menu-group-label-font-size-default)')
+      .withFontSize('text-(length:--dropdown-menu-group-label-font-size-default)')
       .withFontWeight('font-(--dropdown-menu-group-label-font-weight-default)')
       .withColor('text-(color:--dropdown-menu-group-label-text-color-default)')
       .build(),
@@ -40,7 +40,7 @@ export const dropdownMenuStyle = tv({
       .withClasses('cursor-pointer data-[disabled]:cursor-not-allowed group flex items-center justify-between overflow-hidden outline-none duration-200')
       .withBorderRadius('rounded-(--dropdown-menu-item-border-radius-default)')
       .withPadding('px-(--dropdown-menu-item-padding-x-default) py-(--dropdown-menu-item-padding-y-default)')
-      .withFontSize('text-(size:--dropdown-menu-item-font-size-default)')
+      .withFontSize('text-(length:--dropdown-menu-item-font-size-default)')
       .withFontWeight('font-(--dropdown-menu-item-font-weight-default)')
       .withColor('text-(color:--dropdown-menu-item-text-color-default) hover:text-(color:--dropdown-menu-item-text-color-hover) data-[disabled]:text-(color:--dropdown-menu-item-text-color-disabled) data-[highlighted]:text-(color:--dropdown-menu-item-text-color-highlighted)')
       .withBackgroundColor('bg-(--dropdown-menu-item-bg-color-default) hover:bg-(--dropdown-menu-item-bg-color-hover) data-[disabled]:bg-(--dropdown-menu-item-bg-color-disabled) data-[highlighted]:bg-(--dropdown-menu-item-bg-color-highlighted)')

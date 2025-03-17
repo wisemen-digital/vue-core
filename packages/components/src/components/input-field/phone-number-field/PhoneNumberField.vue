@@ -294,7 +294,7 @@ watch(countryCodeModel, () => {
         </template>
       </Select>
 
-      <span class="ml-sm text-(size:--text-field-font-size-default) text-placeholder">
+      <span class="ml-sm text-(length:--text-field-font-size-default) text-placeholder">
         {{ dialCodeDisplayValue }}
       </span>
     </template>

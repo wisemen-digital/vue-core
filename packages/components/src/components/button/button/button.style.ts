@@ -9,7 +9,7 @@ export const useButtonStyle = tv({
       .withBorder('border border-solid border-(--button-border-color-default)')
       .withBorderRadius('rounded-(--button-border-radius-default)')
       .withColor('text-(color:--button-text-color-default)')
-      .withFontSize('text-(size:--button-font-size-default)')
+      .withFontSize('text-(length:--button-font-size-default)')
       .withFontWeight('font-(--button-font-weight-default)')
       .withPadding('px-(--button-padding-left-default)')
       .withShadow('shadow-(--button-shadow-default)')

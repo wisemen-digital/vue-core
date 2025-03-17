@@ -28,7 +28,7 @@ export const useTabsStyle = tv({
       .withBorderRadius('rounded-(--tabs-item-border-radius-default)')
       .withBackgroundColor('bg-(--tabs-item-bg-color-default) group-hover:bg-(--tabs-item-bg-color-hover) group-focus-visible:!bg-(--tabs-item-bg-color-focus) group-data-[disabled]:bg-(--tabs-item-bg-color-disabled) group-data-[state=active]:bg-(--tabs-item-bg-color-active) group-hover:group-data-[state=active]:bg-(--tabs-item-bg-color-active)')
       .withPadding('px-(--tabs-item-padding-x-default) py-(--tabs-item-padding-y-default)')
-      .withFontSize('text-(size:--tabs-item-font-size-default)')
+      .withFontSize('text-(length:--tabs-item-font-size-default)')
       .withFontWeight('font-(--tabs-item-font-weight-default)')
       .withColor('text-(color:--tabs-item-text-color-default) group-hover:text-(color:--tabs-item-text-color-hover) group-focus-visible:!text-(color:--tabs-item-text-color-focus) group-data-[disabled]:text-(color:--tabs-item-text-color-disabled) group-data-[state=active]:text-(color:--tabs-item-text-color-active) group-hover:group-data-[state=active]:text-(color:--tabs-item-text-color-active)')
       .withRing('ring-offset-1 ring-(--tabs-item-ring-color-default)')

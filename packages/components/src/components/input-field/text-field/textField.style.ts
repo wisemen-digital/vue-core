@@ -26,7 +26,7 @@ export const useTextFieldStyle = tv({
     input: new StyleBuilder()
       .withClasses('size-full bg-transparent outline-none')
       .withPadding('pl-(--text-field-padding-left-default) pr-(--text-field-padding-right-default)')
-      .withFontSize('text-(size:--text-field-font-size-default)')
+      .withFontSize('text-(length:--text-field-font-size-default)')
       .withFontWeight('font-(--text-field-font-weight-default)')
       .withColor('text-(color:--text-field-text-color-default)')
       .withPlaceholderColor('placeholder:text-(color:--text-field-placeholder-color-default)')

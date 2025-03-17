@@ -12,7 +12,7 @@ export const useTagStyle = tv({
       .build(),
     tagContent: new StyleBuilder()
       .withClasses('duration-200')
-      .withFontSize('text-(size:--tag-font-size-default)')
+      .withFontSize('text-(length:--tag-font-size-default)')
       .withColor('text-(color:--tag-text-color-default)')
       .withFontWeight('font-(--tag-font-weight-default)')
       .build(),

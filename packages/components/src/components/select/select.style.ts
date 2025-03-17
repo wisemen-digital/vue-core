@@ -16,7 +16,7 @@ export const useSelectStyle = tv({
       .build(),
     groupLabel: new StyleBuilder()
       .withPadding('px-(--select-group-label-spacing-x-default) pb-(--select-group-label-spacing-bottom-default) pt-(--select-group-label-spacing-top-default)')
-      .withFontSize('text-(size:--select-group-label-font-size-default)')
+      .withFontSize('text-(length:--select-group-label-font-size-default)')
       .withFontWeight('font-(--select-group-label-font-weight-default)')
       .withColor('text-(color:--select-group-label-text-color-default)')
       .build(),
@@ -60,7 +60,7 @@ export const useSelectStyle = tv({
       .withBorderRadius('rounded-(--select-option-border-radius-default)')
       .withBackgroundColor('bg-(--select-option-bg-color-default) hover:bg-(--select-option-bg-color-hover) data-[disabled]:bg-(--select-option-bg-color-disabled) data-[highlighted]:bg-(--select-option-bg-color-highlighted) data-[state=checked]:bg-(--select-option-bg-color-selected) data-[state=checked]:data-[highlighted]:bg-(--select-option-bg-color-highlighted) data-[disabled]:hover:bg-(--select-option-bg-color-disabled) data-[highlighted]:hover:bg-(--select-option-bg-color-hover) data-[state=checked]:hover:bg-(--select-option-bg-color-hover) hover:data-[disabled]:bg-(--select-option-bg-color-disabled)')
       .withPadding('px-(--select-option-padding-x-default) py-(--select-option-padding-y-default)')
-      .withFontSize('text-(size:--select-option-font-size-default)')
+      .withFontSize('text-(length:--select-option-font-size-default)')
       .withFontWeight('font-(--select-option-font-weight-default)')
       .withColor('text-(color:--select-option-text-color-default) hover:text-(color:--select-option-text-color-hover) data-[disabled]:text-(color:--select-option-text-color-disabled) data-[state=checked]:text-(color:--select-option-text-color-selected)')
       .build(),
@@ -81,7 +81,7 @@ export const useSelectStyle = tv({
       .withBorder('border border-solid border-b-(--select-border-bottom-color-default) border-l-(--select-border-left-color-default) border-r-(--select-border-right-color-default) border-t-(--select-border-top-color-default)')
       .withBackgroundColor('bg-(--select-bg-color-default)')
       .withPadding('py-(--select-padding-y-default)')
-      .withFontSize('text-(size:--select-font-size-default)')
+      .withFontSize('text-(length:--select-font-size-default)')
       .withFontWeight('font-(--select-font-weight-default)')
       .withColor('text-(color:--select-text-color-default)')
       .withShadow('shadow-(--select-shadow-default)')

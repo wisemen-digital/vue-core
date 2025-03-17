@@ -96,7 +96,7 @@ function handleSortChange(): void {
     <slot name="left" />
 
     <label class="flex items-center gap-x-2">
-      <span class="text-(size:--table-header-label-font-size-default) font-(--table-header-label-font-weight-default) text-(color:--table-header-label-text-color-default) select-none whitespace-nowrap">
+      <span class="text-(length:--table-header-label-font-size-default) font-(--table-header-label-font-weight-default) text-(color:--table-header-label-text-color-default) select-none whitespace-nowrap">
         <slot name="label">
           {{ props.column.headerLabel }}
         </slot>
