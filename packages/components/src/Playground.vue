@@ -34,7 +34,11 @@ setupDefaultStyles()
           </template>
 
           <template #content>
-            <div class="h-20 w-40" />
+            <div class="flex px-sm py-xs">
+              <span class="text-sm text-primary">
+                Click to search
+              </span>
+            </div>
           </template>
         </Tooltip>
       </div>
