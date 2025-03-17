@@ -26,7 +26,7 @@ const pagination = computed<PaginationSet>(() => tableContext.pagination.value.p
 
 const isLastPage = computed<boolean>(() => {
   if ('offset' in pagination.value) {
-    return pagination.value.offset === totalPages.value - 1
+    return (pagination.value.offset / pagination.value.limit) === totalPages.value - 1
   }
 
   throw new Error('This component only supports offset pagination')

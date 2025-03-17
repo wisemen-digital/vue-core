@@ -27,7 +27,7 @@ const limit = computed<number>(() => pagination.value.limit)
 
 const offset = computed<number>(() => {
   if ('offset' in pagination.value) {
-    return pagination.value.offset
+    return (pagination.value.offset ?? 0) / limit.value
   }
 
   throw new Error('This component only supports offset pagination')
@@ -36,7 +36,7 @@ const offset = computed<number>(() => {
 function onPageChange(page: number): void {
   tableContext.pagination.value.handlePageChange({
     limit: limit.value,
-    offset: page - 1,
+    offset: (page - 1) * limit.value,
   })
 }
 </script>

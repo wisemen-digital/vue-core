@@ -24,10 +24,10 @@ const limit = computed<number>(() => tableContext.pagination.value.paginationOpt
 
 const totalItems = computed<number>(() => tableContext.data.value?.meta?.total ?? 0)
 
-const startIndex = computed<number>(() => (offset.value * limit.value) + 1)
+const startIndex = computed<number>(() => offset.value + 1)
 
 const endIndex = computed<number>(() => (
-  Math.min((offset.value * limit.value) + limit.value, tableContext.data.value?.meta?.total ?? 0)
+  Math.min(offset.value + limit.value, tableContext.data.value?.meta?.total ?? 0)
 ))
 </script>
 
