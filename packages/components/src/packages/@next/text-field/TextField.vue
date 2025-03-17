@@ -10,20 +10,7 @@ import TextFieldRoot from '@/packages/@next/text-field/parts/TextFieldRoot.vue'
 import type { TextFieldEmits, TextFieldProps } from '@/packages/@next/text-field/textField.props'
 import type { TextFieldSlots } from '@/packages/@next/text-field/textField.slots'
 
-const props = withDefaults(defineProps<TextFieldProps>(), {
-  id: null,
-  testId: null,
-  isDisabled: false,
-  isLoading: false,
-  isSpellCheckEnabled: false,
-  autocomplete: 'off',
-  classConfig: null,
-  iconLeft: null,
-  iconRight: null,
-  placeholder: null,
-  type: 'text',
-})
-
+const props = defineProps<TextFieldProps>()
 const emit = defineEmits<TextFieldEmits>()
 
 defineSlots<TextFieldSlots>()
