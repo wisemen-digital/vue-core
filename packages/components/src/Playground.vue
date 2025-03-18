@@ -17,7 +17,8 @@ setupDefaultStyles()
         <Select
           :model-value="null"
           :filter="{
-            isEnabled: false,
+            isEnabled: true,
+            isInline: true,
           }"
           class="w-72"
         />

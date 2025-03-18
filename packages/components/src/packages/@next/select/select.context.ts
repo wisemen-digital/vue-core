@@ -14,6 +14,7 @@ interface SelectContext extends PropsToComputed<SelectProps<any>> {
   isMultiple: ComputedRef<boolean>
   customClassConfig: ComputedRef<ClassConfig<'select'>>
   modelValue: Ref<SelectValue>
+  searchInputElementRef: Ref<HTMLInputElement | null>
   searchTerm: Ref<string>
   setIsDropdownVisible: (value: boolean) => void
   style: ComputedRef<CreateSelectStyle>

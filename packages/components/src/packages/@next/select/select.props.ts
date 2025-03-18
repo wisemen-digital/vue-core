@@ -35,6 +35,7 @@ export interface SelectProps<TValue extends SelectValue> extends
    */
   filter?: {
     isEnabled: boolean
+    isInline?: boolean
     fn?: SelectFilterFn<TValue>
   } | null
   /**

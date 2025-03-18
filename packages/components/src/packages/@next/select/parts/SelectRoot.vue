@@ -35,7 +35,7 @@ const props = withDefaults(defineProps<SelectProps<TValue>>(), {
   filterFn: null,
   filterPlaceholder: null,
   iconLeft: null,
-  iconRight: null,
+  iconRight: 'selectIconRight',
   placeholder: null,
   popoverAlign: 'center',
   popoverCollisionPaddingInPx: 0,
@@ -57,6 +57,7 @@ const searchTerm = defineModel<string>('searchTerm', {
 })
 
 const isDropdownVisible = ref<boolean>(false)
+const searchInputElementRef = ref<HTMLInputElement | null>(null)
 
 const { isMultiple } = useSelect({
   ...toComputedRefs(props),
@@ -83,6 +84,27 @@ function onModelValueChange(): void {
   setIsDropdownVisible(false)
 }
 
+function focusInlineSearchInputElement(isDropdownVisible: boolean): void {
+  if (isDropdownVisible) {
+    searchInputElementRef.value?.focus()
+  }
+  else {
+    setTimeout(() => {
+      searchInputElementRef.value?.focus()
+    }, 0)
+  }
+}
+
+watch(isDropdownVisible, (isDropdownVisible) => {
+  const isInline = (props.filter?.isEnabled && props.filter?.isInline) ?? false
+
+  if (!isInline) {
+    return
+  }
+
+  focusInlineSearchInputElement(isDropdownVisible)
+})
+
 watch(modelValue, onModelValueChange)
 
 useProvideSelectContext({
@@ -91,6 +113,7 @@ useProvideSelectContext({
   isMultiple,
   customClassConfig,
   modelValue,
+  searchInputElementRef,
   searchTerm,
   setIsDropdownVisible,
   style: selectStyle,
