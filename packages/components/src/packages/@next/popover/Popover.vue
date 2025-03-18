@@ -32,13 +32,15 @@ const isOpen = defineModel<boolean>('isOpen', {
 <template>
   <PopoverRoot
     v-bind="props"
-    v-model="isOpen"
+    v-model:is-open="isOpen"
   >
-    <PopoverAnchor>
-      <PopoverTrigger>
-        <slot name="trigger" />
-      </PopoverTrigger>
-    </PopoverAnchor>
+    <slot>
+      <PopoverAnchor>
+        <PopoverTrigger>
+          <slot name="trigger" />
+        </PopoverTrigger>
+      </PopoverAnchor>
+    </slot>
 
     <PopoverPortal>
       <PopoverContent>
