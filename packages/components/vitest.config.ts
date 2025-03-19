@@ -15,6 +15,23 @@ export default defineConfig({
     },
   },
   test: {
+    coverage: {
+      all: true,
+      exclude: [
+        '**/node_modules/**',
+        '**/*.{spec,test}.{ts,tsx,js,jsx,vue}',
+      ],
+      include: [
+        'src/packages/components/src/components/**/*.{ts,tsx,js,jsx,vue}',
+        'src/packages/components/src/composables/**/*.{ts,tsx,js,jsx,vue}',
+        'src/packages/components/src/utils/**/*.{ts,tsx,js,jsx,vue}',
+      ],
+      provider: 'v8',
+      reporter: [
+        'text',
+        'html',
+      ],
+    },
     environment: 'jsdom',
     setupFiles: './vitest.setup.ts',
   },
