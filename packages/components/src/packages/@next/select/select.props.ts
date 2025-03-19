@@ -11,9 +11,13 @@ import type {
 export type SelectValue = AcceptableValue | AcceptableValue[]
 
 export type SelectFilterFn<TValue extends SelectValue> = (
-  option: TValue extends Array<infer U> ? U : TValue,
+  option: TValue extends Array<infer U> ? U : NonNullable<TValue>,
   searchTerm: string,
 ) => boolean
+
+export type SelectDisplayFn<TValue extends SelectValue> = (
+  option: TValue extends Array<infer U> ? U : NonNullable<TValue>,
+) => string
 
 export interface SelectProps<TValue extends SelectValue> extends
   PrimitiveElement,
@@ -30,6 +34,10 @@ export interface SelectProps<TValue extends SelectValue> extends
    * @default false
    */
   isOpenControlled?: boolean
+  /**
+   *
+   */
+  displayFn: SelectDisplayFn<TValue>
   /**
    * TODO: docs
    */
@@ -63,7 +71,7 @@ export interface SelectProps<TValue extends SelectValue> extends
    * @default true - when the value is an array
    * @default false - when the value is a single value
    */
-  remainOpenOnValueChange?: boolean
+  remainOpenOnValueChange?: boolean | null
   /**
    * Whether the select should use a virtual list.
    * When enabled, items must be restricted to the option type

@@ -10,6 +10,10 @@ import {
   ref,
 } from 'vue'
 
+import { useInjectSelectContext } from '@/packages/@next/select/select.context'
+
+const { filteredItems } = useInjectSelectContext()
+
 const listboxRootContext = injectListboxRootContext()
 const listboxContentRef = ref<InstanceType<typeof ListboxContent> | null>(null)
 
@@ -44,13 +48,12 @@ function highlightSelectedOrFirstOption(
 }
 
 onMounted(() => {
-  const options = getOptions()
+  // Wait for children to be rendered
+  setTimeout(() => {
+    const options = getOptions()
 
-  if (options.length === 0) {
-    return
-  }
-
-  highlightSelectedOrFirstOption(options)
+    highlightSelectedOrFirstOption(options)
+  }, 0)
 })
 
 onBeforeUnmount(() => {
@@ -59,7 +62,10 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <RekaListboxContent ref="listboxContentRef">
+  <RekaListboxContent
+    ref="listboxContentRef"
+    class="p-sm flex flex-col gap-y-xs"
+  >
     <slot />
   </RekaListboxContent>
 </template>

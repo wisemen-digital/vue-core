@@ -12,7 +12,6 @@ import {
   mergeClasses,
   useComponentClassConfig,
 } from '@/customClassVariants'
-import { useSelect } from '@/packages/@next/select/select.composable'
 import { useProvideSelectContext } from '@/packages/@next/select/select.context'
 import type { SelectProps, SelectValue } from '@/packages/@next/select/select.props'
 import {
@@ -43,7 +42,7 @@ const props = withDefaults(defineProps<SelectProps<TValue>>(), {
   popoverOffsetInPx: 6,
   popoverSide: 'bottom',
   popoverWidth: 'anchor-width',
-  remainOpenOnValueChange: false,
+  remainOpenOnValueChange: null,
   virtualList: null,
 })
 
@@ -56,17 +55,69 @@ const searchTerm = defineModel<string>('searchTerm', {
   required: false,
 })
 
-const isDropdownVisible = ref<boolean>(false)
-const searchInputElementRef = ref<HTMLInputElement | null>(null)
+// We need to track every item in the listbox to determine if it should be displayed or not
+const allItems = ref<Map<string, unknown>>(new Map())
+const allGroups = ref<Map<string, Set<string>>>(new Map())
 
-const { isMultiple } = useSelect({
-  ...toComputedRefs(props),
-  modelValue: computed<SelectValue>(() => modelValue.value),
-})
+const isDropdownVisible = ref<boolean>(false)
+const inlinesearchInputElementRef = ref<HTMLInputElement | null>(null)
+
+// A search term is always present when an option is selected
+// since we set the search term to the displayFn of the selected option.
+// However, when the dropdown is first opened, all options should be displayed, even if a search term is entered.
+const hasInteractedWithInlineSearchInput = ref<boolean>(false)
 
 const selectStyle = computed<CreateSelectStyle>(() => createSelectStyle({}))
 
 const customClassConfig = useComponentClassConfig('select', {})
+
+const isMultiple = computed<boolean>(() => Array.isArray(modelValue.value))
+
+const remainOpenOnValueChange = computed<boolean>(() => (
+  props.remainOpenOnValueChange ?? isMultiple.value
+))
+
+const hasInlineSearchInput = computed<boolean>(() => {
+  if (props.filter === null) {
+    return false
+  }
+
+  return (props.filter.isEnabled && props.filter.isInline) ?? false
+})
+
+const filteredItems = computed<Map<string, unknown>>(() => {
+  if (props.filter === null || !props.filter.isEnabled) {
+    return allItems.value
+  }
+
+  if (hasInlineSearchInput.value && !hasInteractedWithInlineSearchInput.value) {
+    return allItems.value
+  }
+
+  if (props.filter.fn === undefined) {
+    throw new Error('Please provide a filterFn, this feature is not yet supported.')
+  }
+
+  return new Map(
+    Array.from(allItems.value.entries())
+      .filter(([
+        _key,
+        value,
+      ]) => props.filter!.fn!(value as any, searchTerm.value)),
+  )
+})
+
+const filteredGroups = computed<Map<string, Set<string>>>(() => {
+  return new Map(
+    Array.from(allGroups.value.entries())
+      .filter(([
+        _key,
+        value,
+      ]) => {
+        return Array.from(value).some((itemId) => filteredItems.value.has(itemId))
+      }),
+  )
+})
 
 function setIsDropdownVisible(value: boolean): void {
   if (props.isOpenControlled) {
@@ -77,43 +128,67 @@ function setIsDropdownVisible(value: boolean): void {
 }
 
 function onModelValueChange(): void {
-  if (props.remainOpenOnValueChange) {
+  if (remainOpenOnValueChange.value) {
     return
   }
 
   setIsDropdownVisible(false)
 }
 
-function focusInlineSearchInputElement(isDropdownVisible: boolean): void {
-  if (isDropdownVisible) {
-    searchInputElementRef.value?.focus()
-  }
-  else {
-    setTimeout(() => {
-      searchInputElementRef.value?.focus()
-    }, 0)
-  }
-}
+function resetSearchTerm(): void {
+  if (isMultiple.value || !hasInlineSearchInput.value || modelValue.value === null) {
+    searchTerm.value = ''
 
-watch(isDropdownVisible, (isDropdownVisible) => {
-  const isInline = (props.filter?.isEnabled && props.filter?.isInline) ?? false
-
-  if (!isInline) {
     return
   }
 
-  focusInlineSearchInputElement(isDropdownVisible)
+  searchTerm.value = props.displayFn(modelValue.value as any)
+}
+
+function focusInlineSearchInputElement(): void {
+  if (hasInlineSearchInput.value) {
+    inlinesearchInputElementRef.value?.focus()
+  }
+}
+
+function onOpenDropdown(): void {
+  focusInlineSearchInputElement()
+}
+
+function onCloseDropdown(): void {
+  resetSearchTerm()
+  hasInteractedWithInlineSearchInput.value = false
+
+  setTimeout(() => {
+    focusInlineSearchInputElement()
+  })
+}
+
+watch(isDropdownVisible, (isDropdownVisible) => {
+  if (isDropdownVisible) {
+    onOpenDropdown()
+  }
+  else {
+    onCloseDropdown()
+  }
 })
 
 watch(modelValue, onModelValueChange)
 
 useProvideSelectContext({
   ...toComputedRefs(props),
+  hasInlineSearchInput,
+  hasInteractedWithInlineSearchInput,
   isDropdownVisible: computed<boolean>(() => isDropdownVisible.value),
   isMultiple,
+  allGroups,
+  allItems,
   customClassConfig,
+  filteredGroups,
+  filteredItems,
+  inlinesearchInputElementRef,
   modelValue,
-  searchInputElementRef,
+  remainOpenOnValueChange,
   searchTerm,
   setIsDropdownVisible,
   style: selectStyle,
