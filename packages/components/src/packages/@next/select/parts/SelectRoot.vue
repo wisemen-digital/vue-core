@@ -1,6 +1,7 @@
 <script setup lang="ts" generic="TValue extends SelectValue">
 import {
   ListboxRoot as RekaListboxRoot,
+  useFilter,
 } from 'reka-ui'
 import {
   computed,
@@ -67,6 +68,8 @@ const inlinesearchInputElementRef = ref<HTMLInputElement | null>(null)
 // However, when the dropdown is first opened, all options should be displayed, even if a search term is entered.
 const hasInteractedWithInlineSearchInput = ref<boolean>(false)
 
+const { contains } = useFilter()
+
 const selectStyle = computed<CreateSelectStyle>(() => createSelectStyle({}))
 
 const customClassConfig = useComponentClassConfig('select', {})
@@ -85,6 +88,12 @@ const hasInlineSearchInput = computed<boolean>(() => {
   return (props.filter.isEnabled && props.filter.isInline) ?? false
 })
 
+function defaultFilterFn(value: unknown, searchTerm: string): boolean {
+  const displayValue = props.displayFn(value as any)
+
+  return contains(displayValue, searchTerm)
+}
+
 const filteredItems = computed<Map<string, unknown>>(() => {
   if (props.filter === null || !props.filter.isEnabled) {
     return allItems.value
@@ -94,16 +103,16 @@ const filteredItems = computed<Map<string, unknown>>(() => {
     return allItems.value
   }
 
-  if (props.filter.fn === undefined) {
-    throw new Error('Please provide a filterFn, this feature is not yet supported.')
-  }
-
   return new Map(
     Array.from(allItems.value.entries())
       .filter(([
         _key,
         value,
-      ]) => props.filter!.fn!(value as any, searchTerm.value)),
+      ]) => {
+        const filterFn = props.filter?.fn ?? defaultFilterFn
+
+        return filterFn(value as any, searchTerm.value)
+      }),
   )
 })
 

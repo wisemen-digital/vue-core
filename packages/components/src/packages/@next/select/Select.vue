@@ -9,6 +9,7 @@ import SelectItem from '@/packages/@next/select/parts/SelectItem.vue'
 import SelectPopover from '@/packages/@next/select/parts/SelectPopover.vue'
 import SelectRoot from '@/packages/@next/select/parts/SelectRoot.vue'
 import SelectFilter from '@/packages/@next/select/parts/SelectSearchInput.vue'
+import SelectSeparator from '@/packages/@next/select/parts/SelectSeparator.vue'
 import SelectValue from '@/packages/@next/select/parts/SelectValue.vue'
 import type { SelectProps, SelectValue as SelectValueType } from '@/packages/@next/select/select.props'
 
@@ -41,6 +42,8 @@ const modelValue = defineModel<TValue>({
           <SelectItem value="First option">
             First option
           </SelectItem>
+
+          <SelectSeparator />
 
           <SelectItem value="Second option">
             Second option

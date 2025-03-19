@@ -25,60 +25,91 @@ export interface SelectProps<TValue extends SelectValue> extends
   PopperPropsWithArrowHiddenByDefault,
   CustomizableElement<'select'> {
   /**
-   * Whether the input is loading.
+   * Whether the select input should display a loading state.
+   * This is useful when data is being fetched asynchronously.
    * @default false
    */
   isLoading?: boolean
   /**
-   * Whether the open state is controlled by the `isOpen` prop.
+   * Determines whether the open/close state of the dropdown is controlled externally.
+   * If `true`, the dropdown will only open or close when explicitly controlled via props.
+   * If `false`, the dropdown state is managed internally.
    * @default false
    */
   isOpenControlled?: boolean
   /**
-   *
+   * A function that determines how selected options are displayed in the input field.
+   * It receives the selected option as an argument and should return a string representation.
    */
   displayFn: SelectDisplayFn<TValue>
   /**
-   * TODO: docs
+   * Configuration for filtering the select options.
+   * If `null`, filtering is disabled.
+   * @default null;
    */
   filter?: {
+    /**
+     * Enables or disables filtering of the options.
+     */
     isEnabled: boolean
+    /**
+     * Determines whether the filtering input is displayed inline within the dropdown.
+     */
     isInline?: boolean
+    /**
+     * A custom filtering function that determines whether an option should be shown
+     * based on the search term.
+     * If not provided, a default filtering function is used.
+     */
     fn?: SelectFilterFn<TValue>
   } | null
   /**
-   * The placeholder of the filter input.
+   * Placeholder text for the search input when filtering is enabled.
    * @default 't("component.select.filter_placeholder")'
    */
   filterPlaceholder?: string | null
   /**
-   * The left icon of the input.
+   * Icon displayed on the left side of the input field.
+   * If `null`, no icon is displayed.
    * @default null
    */
   iconLeft?: Icon | null
   /**
-   * The right icon of the input.
+   * Icon displayed on the right side of the input field.
    * @default 'chevronSelectorVertical'
    */
   iconRight?: Icon | null
   /**
-   * The placeholder text of the input.
+   * Placeholder text for the select input when no value is selected.
    * @default null
    */
   placeholder?: string | null
   /**
-   * Whether the select should remain open when the value changes.
-   * @default true - when the value is an array
-   * @default false - when the value is a single value
+   * Determines whether the dropdown should remain open when the selected value changes.
+   * - If `true`, the dropdown remains open after selecting an option.
+   * - If `false`, the dropdown closes when an option is selected.
+   * - If `null`, defaults to `true` if the select allows multiple selections, otherwise `false`.
+   * @default null
    */
   remainOpenOnValueChange?: boolean | null
   /**
-   * Whether the select should use a virtual list.
-   * When enabled, items must be restricted to the option type
+   * Placeholder text for the search input.
+   * @default null
+   */
+  searchInputPlaceholder?: string | null
+  /**
+   * Configuration for enabling a virtualized list when displaying large sets of options.
    * @default null
    */
   virtualList?: {
+    /**
+     * Whether virtualization is enabled for the list of options.
+     * This is useful for optimizing performance when dealing with a large number of items.
+     */
     isEnabled: boolean
+    /**
+     * The fixed height (in pixels) of each option in the virtualized list.
+     */
     optionHeight: number
   } | null
 }

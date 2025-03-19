@@ -23,7 +23,7 @@ const value = ref<string[]>([])
           :filter="{
             isEnabled: true,
             isInline: true,
-            fn: (option, searchTerm) => option.includes(searchTerm),
+            // fn: (option, searchTerm) => option.includes(searchTerm),
           }"
           :display-fn="option => option"
           icon-left="search"

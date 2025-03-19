@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import SelectInlineSearchInput from '@/packages/@next/select/parts/SelectInlineSearchInput.vue'
-import SelectPopoverTrigger from '@/packages/@next/select/parts/SelectPopoverTrigger.vue'
 import { useInjectSelectContext } from '@/packages/@next/select/select.context'
 
 const {
@@ -17,8 +16,4 @@ const {
       {{ modelValue }}
     </span>
   </div>
-
-  <SelectPopoverTrigger>
-    <button class="absolute inset-0 outline-none" />
-  </SelectPopoverTrigger>
 </template>
