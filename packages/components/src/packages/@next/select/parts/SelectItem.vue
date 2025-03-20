@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import {
-  type AcceptableValue,
   ListboxItem as RekaListboxItem,
   type SelectItemSelectEvent,
 } from 'reka-ui'
@@ -11,12 +10,14 @@ import {
 } from 'vue'
 
 import { mergeClasses } from '@/customClassVariants'
+import SelectItemIndicator from '@/packages/@next/select/parts/SelectItemIndicator.vue'
 import { useInjectSelectContext } from '@/packages/@next/select/select.context'
+import type { SelectItemProps } from '@/packages/@next/select/select.props'
 import { useInjectSelectGroupContext } from '@/packages/@next/select/selectGroup.context'
 
-const props = defineProps<{
-  value: AcceptableValue
-}>()
+const props = withDefaults(defineProps<SelectItemProps>(), {
+  isDisabled: false,
+})
 
 const {
   allGroups,
@@ -86,9 +87,14 @@ onBeforeUnmount(() => {
   <RekaListboxItem
     v-if="filteredItems.has(id)"
     :value="props.value"
+    :disabled="props.isDisabled"
     :class="style.item({ class: mergeClasses(customClassConfig.item, classConfig?.item) })"
     @select="onSelect"
   >
     <slot />
+
+    <slot name="indicator">
+      <SelectItemIndicator />
+    </slot>
   </RekaListboxItem>
 </template>

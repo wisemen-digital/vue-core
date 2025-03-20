@@ -20,6 +20,7 @@ const value = ref<string[]>([])
       <div class="flex w-full gap-lg h-[100vh] items-center justify-center">
         <Select
           v-model="value"
+          :is-disabled="false"
           :filter="{
             isEnabled: true,
             isInline: true,

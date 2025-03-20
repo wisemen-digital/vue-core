@@ -1,13 +1,22 @@
 <script setup lang="ts">
+import { mergeClasses } from '@/customClassVariants'
 import { useInjectSelectContext } from '@/packages/@next/select/select.context'
 
-const { allItems, filteredItems } = useInjectSelectContext()
+const {
+  allItems,
+  classConfig,
+  customClassConfig,
+  filteredItems,
+  style,
+} = useInjectSelectContext()
 </script>
 
 <template>
   <div
     v-if="allItems.size === filteredItems.size"
+    :class="style.separator({
+      class: mergeClasses(customClassConfig.separator, classConfig?.separator),
+    })"
     aria-hidden="true"
-    class="h-px bg-quaternary"
   />
 </template>

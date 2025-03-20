@@ -113,3 +113,8 @@ export interface SelectProps<TValue extends SelectValue> extends
     optionHeight: number
   } | null
 }
+
+export interface SelectItemProps {
+  isDisabled?: boolean
+  value: AcceptableValue
+}

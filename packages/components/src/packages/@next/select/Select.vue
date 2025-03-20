@@ -49,7 +49,10 @@ const modelValue = defineModel<TValue>({
             Second option
           </SelectItem>
 
-          <SelectItem value="Third option">
+          <SelectItem
+            :is-disabled="true"
+            value="Third option"
+          >
             Third option
           </SelectItem>
 

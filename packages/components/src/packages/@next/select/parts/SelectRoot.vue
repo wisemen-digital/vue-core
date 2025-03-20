@@ -44,6 +44,7 @@ const props = withDefaults(defineProps<SelectProps<TValue>>(), {
   popoverSide: 'bottom',
   popoverWidth: 'anchor-width',
   remainOpenOnValueChange: null,
+  searchInputPlaceholder: null,
   virtualList: null,
 })
 
@@ -209,10 +210,14 @@ useProvideSelectContext({
     :id="props.id"
     :test-id="props.testId"
   >
+    <!-- TODO: data-is-invalid -->
     <InteractableElement
       :is-disabled="props.isDisabled"
       :aria-disabled="props.isLoading"
       :aria-busy="props.isLoading"
+      :data-has-icon-left="iconLeft !== null"
+      :data-has-icon-right="iconRight !== null"
+      :data-is-disabled="props.isDisabled"
     >
       <RekaListboxRoot
         v-model="modelValue"

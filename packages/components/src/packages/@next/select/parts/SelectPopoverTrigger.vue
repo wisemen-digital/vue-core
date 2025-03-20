@@ -3,8 +3,10 @@ import { computed } from 'vue'
 
 import PopoverTrigger from '@/packages/@next/popover/parts/PopoverTrigger.vue'
 import { useInjectSelectContext } from '@/packages/@next/select/select.context'
+import InteractableElement from '@/packages/@next/shared/InteractableElement.vue'
 
 const {
+  isDisabled,
   filter,
   setIsDropdownVisible,
 } = useInjectSelectContext()
@@ -23,12 +25,17 @@ function openDropdown(): void {
 </script>
 
 <template>
-  <PopoverTrigger
-    :tabindex="isTriggerFocusable ? 0 : -1"
-    role="combobox"
-    @keydown.arrow-down.prevent="openDropdown"
-    @keydown.arrow-up.prevent="openDropdown"
-  >
-    <slot />
-  </PopoverTrigger>
+  <InteractableElement :is-disabled="isDisabled">
+    <PopoverTrigger
+      :tabindex="isTriggerFocusable ? 0 : -1"
+      :class="{
+        'cursor-not-allowed': isDisabled,
+      }"
+      role="combobox"
+      @keydown.arrow-down.prevent="openDropdown"
+      @keydown.arrow-up.prevent="openDropdown"
+    >
+      <slot />
+    </PopoverTrigger>
+  </InteractableElement>
 </template>

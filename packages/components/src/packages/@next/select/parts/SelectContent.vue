@@ -10,9 +10,14 @@ import {
   ref,
 } from 'vue'
 
+import { mergeClasses } from '@/customClassVariants'
 import { useInjectSelectContext } from '@/packages/@next/select/select.context'
 
-const { filteredItems } = useInjectSelectContext()
+const {
+  classConfig,
+  customClassConfig,
+  style,
+} = useInjectSelectContext()
 
 const listboxRootContext = injectListboxRootContext()
 const listboxContentRef = ref<InstanceType<typeof ListboxContent> | null>(null)
@@ -64,7 +69,9 @@ onBeforeUnmount(() => {
 <template>
   <RekaListboxContent
     ref="listboxContentRef"
-    class="p-sm flex flex-col gap-y-xs"
+    :class="style.content({
+      class: mergeClasses(customClassConfig.content, classConfig?.content),
+    })"
   >
     <slot />
   </RekaListboxContent>

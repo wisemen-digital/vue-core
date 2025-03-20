@@ -6,10 +6,17 @@ import {
   useId,
 } from 'vue'
 
+import { mergeClasses } from '@/customClassVariants'
 import { useInjectSelectContext } from '@/packages/@next/select/select.context'
 import { useProvideSelectGroupContext } from '@/packages/@next/select/selectGroup.context'
 
-const { allGroups, filteredGroups } = useInjectSelectContext()
+const {
+  allGroups,
+  classConfig,
+  customClassConfig,
+  filteredGroups,
+  style,
+} = useInjectSelectContext()
 
 const id = useId()
 
@@ -35,6 +42,9 @@ const context = useProvideSelectGroupContext({
   <RekaListboxGroup
     :hidden="!filteredGroups.has(id)"
     :aria-labelledby="context.labelId"
+    :class="style.group({
+      class: mergeClasses(customClassConfig.group, classConfig?.group),
+    })"
   >
     <slot />
   </RekaListboxGroup>
