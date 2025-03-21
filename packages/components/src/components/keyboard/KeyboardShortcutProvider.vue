@@ -35,7 +35,7 @@ function isTabbable(element: Element): boolean {
 }
 
 function getFirstInteractiveDescendant(root: HTMLElement): HTMLElement | null {
-  const tabbableSelector = 'a, button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])'
+  const tabbableSelector = 'a, button, input, textarea, select, details, [tabindex]:not([tabindex="-1"]), [contenteditable]'
 
   const allTabbableElements = Array.from(root.querySelectorAll(tabbableSelector))
 

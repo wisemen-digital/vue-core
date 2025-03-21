@@ -74,7 +74,9 @@ export function useKeyboardShortcut(
   }
 
   function isInputFocused(): boolean {
-    return document.activeElement instanceof HTMLInputElement || document.activeElement instanceof HTMLTextAreaElement
+    return document.activeElement instanceof HTMLInputElement
+      || document.activeElement instanceof HTMLTextAreaElement
+      || document.activeElement?.attributes.getNamedItem('contenteditable')?.value !== undefined
   }
 
   function isShortcutActive(pressedKeys: KeyboardKey[]): boolean {
