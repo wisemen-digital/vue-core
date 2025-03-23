@@ -5,9 +5,11 @@ import { injectThemeProviderContext } from '@/components'
 import { twMerge } from '@/libs/twMerge.lib'
 import type { createIconButtonStyle } from '@/packages/@next/button/icon/style/iconButton.style'
 import type { createButtonStyle } from '@/packages/@next/button/shared/style/button.style'
+import type { createDialogStyle } from '@/packages/@next/dialog/style/dialog.style'
 
 export interface Components {
   button: typeof createButtonStyle
+  dialog: typeof createDialogStyle
   iconButton: typeof createIconButtonStyle
 }
 

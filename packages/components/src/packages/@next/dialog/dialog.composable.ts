@@ -62,19 +62,28 @@ export function useDialog<TComponent extends Component>(
     }
 
     dialog.isOpen = false
+  }
 
-    setTimeout(() => {
-      removeDialogFromContainer(idToUse)
-    }, 500)
+  function isDialogOpen(id?: string): boolean {
+    const idToUse = id ?? dialogId
+
+    const dialog = dialogs.value.find((dialog) => dialog.id === idToUse) ?? null
+
+    if (dialog === null) {
+      return false
+    }
+
+    return dialog.isOpen
   }
 
   async function createDialog(attrs: Attrs<TComponent>, id: string): Promise<Ref<Dialog> | null> {
     const dialogWithSameId = dialogs.value.find((dialog) => dialog.id === id) ?? null
 
-    if (dialogWithSameId !== null) {
-      console.warn(`A dialog with the id ${id} already exists. Make sure to use a unique id.`)
-
-      return null
+    if (dialogWithSameId !== null && isDialogOpen(id)) {
+      throw new Error('A dialog with the same ID is already open.')
+    }
+    else if (dialogWithSameId !== null) {
+      removeDialogFromContainer(dialogWithSameId.id)
     }
 
     const c = await options.component()
@@ -109,18 +118,6 @@ export function useDialog<TComponent extends Component>(
       'aria-haspopup': 'dialog',
       'data-state': isOpen,
     }
-  }
-
-  function isDialogOpen(id?: string): boolean {
-    const idToUse = id ?? dialogId
-
-    const dialog = dialogs.value.find((dialog) => dialog.id === idToUse) ?? null
-
-    if (dialog === null) {
-      return false
-    }
-
-    return dialog.isOpen
   }
 
   onBeforeUnmount(() => {
