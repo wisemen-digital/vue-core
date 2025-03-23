@@ -64,7 +64,9 @@ export interface CustomizableElement<TComponent extends keyof Components> {
 }
 
 export type PropsToComputed<T> = NonUndefined<{
-  [K in keyof T]: NonUndefined<ComputedRef<NonUndefined<T[K]>>>
+  [K in keyof T]: T[K] extends ((...args: any[]) => any)
+    ? T[K]
+    : NonUndefined<ComputedRef<NonUndefined<T[K]>>>
 }>
 
 export function toComputedRefs<T>(props: T): PropsToComputed<T> {

@@ -8,6 +8,7 @@ import type { createButtonStyle } from '@/packages/@next/button/shared/style/but
 import type { createDialogStyle } from '@/packages/@next/dialog/style/dialog.style'
 import type { createFormFieldStyle } from '@/packages/@next/form-field/style/formField.style'
 import type { createPopoverStyle } from '@/packages/@next/popover/style/popover.style'
+import type { createSelectStyle } from '@/packages/@next/select/style/select.style'
 import type { createTabsStyle } from '@/packages/@next/tabs/shared/style/tabs.style'
 import type { createTextFieldStyle } from '@/packages/@next/text-field/style/textField.style'
 import type { createTooltipStyle } from '@/packages/@next/tooltip/style/tooltip.style'
@@ -19,6 +20,7 @@ export interface Components {
   iconButton: typeof createIconButtonStyle
   popover: typeof createPopoverStyle
 
+  select: typeof createSelectStyle
   tabs: typeof createTabsStyle
   textField: typeof createTextFieldStyle
   tooltip: typeof createTooltipStyle
