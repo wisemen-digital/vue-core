@@ -7,7 +7,10 @@ import {
 } from '@/components/index'
 import PhoneNumberField from '@/components/input-field/phone-number-field/PhoneNumberField.vue'
 import Button from '@/packages/@next/button/button/Button.vue'
+import SelectGroup from '@/packages/@next/select/parts/SelectGroup.vue'
+import SelectGroupLabel from '@/packages/@next/select/parts/SelectGroupLabel.vue'
 import SelectItem from '@/packages/@next/select/parts/SelectItem.vue'
+import SelectSeparator from '@/packages/@next/select/parts/SelectSeparator.vue'
 import Select from '@/packages/@next/select/Select.vue'
 import TextField from '@/packages/@next/text-field/TextField.vue'
 import { setupDefaultStyles } from '@/styling/setupDefaultStyles'
@@ -26,7 +29,7 @@ setupDefaultStyles()
     teleport-target-selector="#test"
   >
     <VcThemeProvider appearance="light">
-      <div class="flex items-center justify-center h-screen">
+      <div class="flex items-center justify-center h-screen bg-primary">
         <div class="flex flex-col gap-md">
           <Button @click="isDisabled = !isDisabled">
             Toggle disabled
@@ -59,8 +62,24 @@ setupDefaultStyles()
             icon-left="search"
             placeholder="Search"
           >
+            <SelectGroup>
+              <SelectGroupLabel>
+                Most used
+              </SelectGroupLabel>
+
+              <SelectItem
+                v-for="item in items.slice(0, 5)"
+                :key="item"
+                :value="item"
+              >
+                {{ item }}
+              </SelectItem>
+            </SelectGroup>
+
+            <SelectSeparator />
+
             <SelectItem
-              v-for="item in items"
+              v-for="item in items.slice(5)"
               :key="item"
               :value="item"
             >

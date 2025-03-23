@@ -84,6 +84,7 @@ onBeforeUnmount(() => {
   >
     <div ref="listboxContentWrapperRef">
       <RekaListboxContent
+        ref="listboxContentRef"
         :class="style.content({
           class: mergeClasses(customClassConfig.content, classConfig?.content),
         })"

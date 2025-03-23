@@ -28,9 +28,7 @@ export const createSelectStyle = tv({
       .withFontSize('text-sm')
       .withPadding('p-sm')
       .build(),
-    group: new StyleBuilder()
-      .withFlex('flex flex-col gap-y-xxs')
-      .build(),
+    group: new StyleBuilder().build(),
     groupLabel: new StyleBuilder()
       .withColor('text-tertiary')
       .withFontSize('text-sm')
@@ -65,7 +63,8 @@ export const createSelectStyle = tv({
       .withSpacing('my-xxs')
       .withFlex('flex items-center justify-between')
       .withFontSize('text-sm')
-      .withColor('text-primary data-disabled:text-disabled')
+      .withFontWeight('data-[state=checked]:font-medium')
+      .withColor('text-secondary data-disabled:text-disabled')
       .withBackgroundColor('data-[state=checked]:bg-secondary not-data-disabled:data-highlighted:bg-secondary-hover not-data-disabled:hover:bg-secondary-hover')
       .withTransition('not-data-disabled:data-highlighted:data-[state=checked]:brightness-98')
       .build(),
