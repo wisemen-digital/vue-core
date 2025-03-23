@@ -10,6 +10,7 @@ import type { createFormFieldStyle } from '@/packages/@next/form-field/style/for
 import type { createPopoverStyle } from '@/packages/@next/popover/style/popover.style'
 import type { createTabsStyle } from '@/packages/@next/tabs/shared/style/tabs.style'
 import type { createTextFieldStyle } from '@/packages/@next/text-field/style/textField.style'
+import type { createTooltipStyle } from '@/packages/@next/tooltip/style/tooltip.style'
 
 export interface Components {
   button: typeof createButtonStyle
@@ -20,6 +21,7 @@ export interface Components {
 
   tabs: typeof createTabsStyle
   textField: typeof createTextFieldStyle
+  tooltip: typeof createTooltipStyle
 }
 
 export interface ComponentVariants {}

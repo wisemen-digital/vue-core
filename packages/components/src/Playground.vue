@@ -7,7 +7,11 @@ import ThemeProvider from '@/components/theme-provider/ThemeProvider.vue'
 import { defineComponentVariant } from '@/customClassVariants'
 import Button from '@/packages/@next/button/button/Button.vue'
 import IconButton from '@/packages/@next/button/icon/IconButton.vue'
+<<<<<<< HEAD
 import TextField from '@/packages/@next/text-field/TextField.vue'
+=======
+import Tooltip from '@/packages/@next/tooltip/Tooltip.vue'
+>>>>>>> @next/tooltip
 import { setupDefaultStyles } from '@/styling/setupDefaultStyles'
 
 import TextFieldOld from './components/input-field/text-field/TextField.vue'
@@ -60,6 +64,7 @@ const isTouched = ref<boolean>(false)
               <Button>Trigger</Button>
             </template>
 
+<<<<<<< HEAD
             <<<<<<< HEAD
             <template #content>
               <div
@@ -121,6 +126,26 @@ const isTouched = ref<boolean>(false)
           bottom
         </div>
         >>>>>>> @next/text-field
+=======
+        <Tooltip :disable-close-on-trigger-click="true">
+          <template #trigger>
+            <IconButton
+              :is-loading="false"
+              icon="search"
+              variant="secondary-color"
+              label="Search"
+            />
+          </template>
+
+          <template #content>
+            <div class="flex px-sm py-xs">
+              <span class="text-sm text-primary">
+                Click to search
+              </span>
+            </div>
+          </template>
+        </Tooltip>
+>>>>>>> @next/tooltip
       </div>
 
       <div id="test" />
