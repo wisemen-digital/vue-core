@@ -3,10 +3,9 @@ import { ref } from 'vue'
 
 import ConfigProvider from '@/components/config-provider/ConfigProvider.vue'
 import ThemeProvider from '@/components/theme-provider/ThemeProvider.vue'
-import DialogContainer from '@/packages/@next/dialog/DialogContainer.vue'
-import Icon from '@/packages/@next/icon/Icon.vue'
-import Tabs from '@/packages/@next/tabs/button/ButtonTabs.vue'
-import TabsItem from '@/packages/@next/tabs/button/parts/ButtonTabsItem.vue'
+import Button from '@/packages/@next/button/button/Button.vue'
+import PopoverCloseButton from '@/packages/@next/popover/parts/PopoverCloseButton.vue'
+import Popover from '@/packages/@next/popover/Popover.vue'
 import { setupDefaultStyles } from '@/styling/setupDefaultStyles'
 
 setupDefaultStyles()
@@ -15,41 +14,34 @@ const tabValue = ref<string>('underline')
 </script>
 
 <template>
-  <ConfigProvider locale="en-US">
+  <ConfigProvider
+    locale="en-US"
+    teleport-target-selector="#test"
+  >
     <ThemeProvider appearance="light">
-      <div class="p-8xl flex">
-        <Tabs
-          v-model="tabValue"
-          variant="button-brand"
-          orientation="vertical"
+      <div class="flex w-full gap-lg h-[100vh] items-center justify-center">
+        <Popover
+          :is-close-button-hidden="false"
+          popover-side="top"
         >
-          <template #items>
-            <TabsItem value="underline">
-              Settings
-            </TabsItem>
-
-            <TabsItem value="button-border">
-              Profile
-            </TabsItem>
-
-            <TabsItem
-              :is-disabled="true"
-              value="button-brand"
-            >
-              <div class="flex items-center gap-x-2 justify-center">
-                <Icon
-                  icon="search"
-                  class="size-4"
-                />
-
-                Search
-              </div>
-            </TabsItem>
+          <template #trigger>
+            <Button>Trigger</Button>
           </template>
-        </Tabs>
+
+          <template #content>
+            <div
+              src="https://images.unsplash.com/photo-1740715537042-6de862cdaab4?q=80&w=2477&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              class="w-80 h-40 p-xs rounded-xl"
+            >
+              <div class="flex justify-end">
+                <PopoverCloseButton />
+              </div>
+            </div>
+          </template>
+        </Popover>
       </div>
 
-      <DialogContainer />
+      <div id="test" />
     </ThemeProvider>
   </ConfigProvider>
 </template>
