@@ -1,15 +1,23 @@
 <script setup lang="ts">
+import { mergeClasses } from '@/customClassVariants'
 import SelectPlaceholder from '@/packages/@next/select/parts/SelectPlaceholder.vue'
 import { useInjectSelectContext } from '@/packages/@next/select/select.context'
 
 const {
+  classConfig,
+  customClassConfig,
   displayFn,
   modelValue,
+  style,
 } = useInjectSelectContext()
 </script>
 
 <template>
-  <div class="px-2">
+  <div
+    :class="style.baseSingle({
+      class: mergeClasses(customClassConfig.baseSingle, classConfig?.baseSingle),
+    })"
+  >
     <SelectPlaceholder />
 
     <span

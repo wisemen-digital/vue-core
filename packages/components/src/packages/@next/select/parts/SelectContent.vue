@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import type { ListboxContent } from 'reka-ui'
+import { useElementSize } from '@vueuse/core'
+import { Motion } from 'motion-v'
 import {
   injectListboxRootContext,
   ListboxContent as RekaListboxContent,
@@ -20,7 +21,10 @@ const {
 } = useInjectSelectContext()
 
 const listboxRootContext = injectListboxRootContext()
-const listboxContentRef = ref<InstanceType<typeof ListboxContent> | null>(null)
+const listboxContentRef = ref<InstanceType<any> | null>(null)
+const listboxContentWrapperRef = ref<HTMLDivElement | null>(null)
+
+const listboxSize = useElementSize(listboxContentWrapperRef)
 
 function getOptions(): HTMLElement[] {
   const el = listboxContentRef.value?.$el ?? null as HTMLElement | null
@@ -58,7 +62,7 @@ onMounted(() => {
     const options = getOptions()
 
     highlightSelectedOrFirstOption(options)
-  }, 0)
+  })
 })
 
 onBeforeUnmount(() => {
@@ -67,12 +71,25 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <RekaListboxContent
-    ref="listboxContentRef"
-    :class="style.content({
-      class: mergeClasses(customClassConfig.content, classConfig?.content),
-    })"
+  <Motion
+    :animate="{
+      height: listboxSize.height.value,
+    }"
+    :transition="{
+      type: 'spring',
+      bounce: 0,
+      duration: 0.3,
+    }"
+    tabindex="-1"
   >
-    <slot />
-  </RekaListboxContent>
+    <div ref="listboxContentWrapperRef">
+      <RekaListboxContent
+        :class="style.content({
+          class: mergeClasses(customClassConfig.content, classConfig?.content),
+        })"
+      >
+        <slot />
+      </RekaListboxContent>
+    </div>
+  </Motion>
 </template>

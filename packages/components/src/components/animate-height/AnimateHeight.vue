@@ -9,7 +9,9 @@ const { height } = useElementSize(el)
 
 <template>
   <Motion
-    :animate="{ height }"
+    :animate="{
+      height,
+    }"
     :transition="{
       bounce: 0,
       duration: 0.4,

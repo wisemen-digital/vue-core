@@ -17,6 +17,7 @@ const {
 
 <template>
   <div
+    v-if="label !== null"
     :class="style.labelContainer({
       class: mergeClasses(customClassConfig.labelContainer, classConfig?.labelContainer),
     })"

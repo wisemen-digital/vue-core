@@ -1,4 +1,5 @@
 import type { AcceptableValue } from 'reka-ui'
+import type { Component } from 'vue'
 
 import type { Icon } from '@/icons/icons'
 import type { PopperPropsWithArrowHiddenByDefault } from '@/packages/@next/shared/types/popperProps.type'
@@ -108,9 +109,19 @@ export interface SelectProps<TValue extends SelectValue> extends
      */
     isEnabled: boolean
     /**
-     * The fixed height (in pixels) of each option in the virtualized list.
+     * The component to use for rendering each option in the virtualized list.
+     * If not provided, the default `SelectItem` component is used.
      */
-    optionHeight: number
+    itemComponent?: Component
+    /**
+     * The items to display in the virtualized list.
+     */
+    items: AcceptableValue[]
+    /**
+     * The fixed height (in pixels) of each option in the virtualized list.
+     * Defaults to `39`
+     */
+    optionHeight?: number
   } | null
 }
 

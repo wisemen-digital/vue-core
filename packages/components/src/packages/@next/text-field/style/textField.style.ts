@@ -7,13 +7,13 @@ export const createTextFieldStyle = tv({
       .withBase('shrink-0')
       .withSize('size-4.5')
       .withSpacing('ml-3')
-      .withColor('text-quaternary')
+      .withColor('text-quaternary group-data-[is-disabled=true]/text-field:text-fg-disabled')
       .build(),
     iconRight: new StyleBuilder()
       .withBase('shrink-0')
       .withSize('size-4.5')
       .withSpacing('mr-3')
-      .withColor('text-quaternary')
+      .withColor('text-quaternary group-data-[is-disabled=true]/text-field:text-fg-disabled')
       .build(),
     input: new StyleBuilder()
       .withBase('outline-none')

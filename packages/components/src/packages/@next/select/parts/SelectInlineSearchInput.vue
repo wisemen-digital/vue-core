@@ -34,6 +34,9 @@ onMounted(() => {
       class: mergeClasses(customClassConfig.inlineSearchInput, classConfig?.inlineSearchInput),
     })"
     :placeholder="placeholder ?? searchInputPlaceholder"
+    aria-autocomplete="list"
+    role="combobox"
+    autocomplete="false"
     @input="onInput"
   />
 </template>

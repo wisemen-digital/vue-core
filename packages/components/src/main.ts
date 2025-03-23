@@ -32,7 +32,8 @@ const i18n = createI18n({
         },
         select: {
           empty_text: 'No results found for \'{searchTerm}\'.',
-          search_placeholder: 'Search...',
+          remove_value: 'Remove value',
+          search_input_placeholder: 'Search...',
         },
         table: {
           no_data: {

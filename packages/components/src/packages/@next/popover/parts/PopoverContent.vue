@@ -21,7 +21,7 @@ const {
 </script>
 
 <template>
-  <AnimatePresence :unwrap-element="true">
+  <AnimatePresence>
     <PrimitiveElement
       v-if="isOpen"
       :id="id"

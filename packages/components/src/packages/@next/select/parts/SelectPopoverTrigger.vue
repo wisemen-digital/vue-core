@@ -26,16 +26,17 @@ function openDropdown(): void {
 
 <template>
   <InteractableElement :is-disabled="isDisabled">
-    <PopoverTrigger
-      :tabindex="isTriggerFocusable ? 0 : -1"
-      :class="{
-        'cursor-not-allowed': isDisabled,
-      }"
-      role="combobox"
-      @keydown.arrow-down.prevent="openDropdown"
-      @keydown.arrow-up.prevent="openDropdown"
-    >
-      <slot />
+    <PopoverTrigger>
+      <button
+        :tabindex="isTriggerFocusable ? 0 : -1"
+        :class="{
+          'cursor-not-allowed': isDisabled,
+        }"
+        role="combobox"
+        class="absolute inset-0 outline-none"
+        @keydown.arrow-down.prevent="openDropdown"
+        @keydown.arrow-up.prevent="openDropdown"
+      />
     </PopoverTrigger>
   </InteractableElement>
 </template>

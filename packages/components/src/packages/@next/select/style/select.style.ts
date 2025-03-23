@@ -8,11 +8,26 @@ export const createSelectStyle = tv({
       .withFlex('flex items-center')
       .withSize('size-full')
       .build(),
-    content: new StyleBuilder()
-      .withPadding('p-sm')
-      .withFlex('flex flex-col gap-y-xxs')
+    baseMultiple: new StyleBuilder()
+      .withPadding('px-3 group-data-[has-icon-left=true]/select:pl-2 group-data-[has-icon-right=true]/select:pr-2')
+      .withFlex('flex items-center gap-xs')
+      .withSize('size-full')
       .build(),
-    empty: '',
+    baseSingle: new StyleBuilder()
+      .withPadding('px-3 group-data-[has-icon-left=true]/select:pl-2 group-data-[has-icon-right=true]/select:pr-2')
+      .withFlex('flex items-center')
+      .build(),
+    content: new StyleBuilder()
+      .withBase('outline-none')
+      .withBase('overflow-auto')
+      .withPadding('p-sm')
+      .withHeight('max-h-80')
+      .build(),
+    empty: new StyleBuilder()
+      .withColor('text-tertiary')
+      .withFontSize('text-sm')
+      .withPadding('p-sm')
+      .build(),
     group: new StyleBuilder()
       .withFlex('flex flex-col gap-y-xxs')
       .build(),
@@ -43,14 +58,16 @@ export const createSelectStyle = tv({
       .build(),
     item: new StyleBuilder()
       .withBase('outline-none')
+      .withSize('w-full')
       .withCursor('cursor-pointer data-disabled:cursor-not-allowed')
       .withBorderRadius('rounded-md')
       .withPadding('p-md')
+      .withSpacing('my-xxs')
       .withFlex('flex items-center justify-between')
       .withFontSize('text-sm')
       .withColor('text-primary data-disabled:text-disabled')
       .withBackgroundColor('data-[state=checked]:bg-secondary not-data-disabled:data-highlighted:bg-secondary-hover not-data-disabled:hover:bg-secondary-hover')
-      .withTransition('duration-200 not-data-disabled:data-highlighted:data-[state=checked]:brightness-98')
+      .withTransition('not-data-disabled:data-highlighted:data-[state=checked]:brightness-98')
       .build(),
     itemIndicator: new StyleBuilder()
       .withSize('size-4')

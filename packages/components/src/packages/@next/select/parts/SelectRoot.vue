@@ -1,5 +1,6 @@
 <script setup lang="ts" generic="TValue extends SelectValue">
 import {
+  type AcceptableValue,
   ListboxRoot as RekaListboxRoot,
   useFilter,
 } from 'reka-ui'
@@ -8,6 +9,7 @@ import {
   ref,
   watch,
 } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import {
   mergeClasses,
@@ -56,6 +58,8 @@ const searchTerm = defineModel<string>('searchTerm', {
   default: '',
   required: false,
 })
+
+const { t } = useI18n()
 
 // We need to track every item in the listbox to determine if it should be displayed or not
 const allItems = ref<Map<string, unknown>>(new Map())
@@ -117,6 +121,16 @@ const filteredItems = computed<Map<string, unknown>>(() => {
   )
 })
 
+const virtualListFilteredItems = computed<AcceptableValue[]>(() => {
+  if (props.virtualList === null || !props.virtualList.isEnabled) {
+    return []
+  }
+
+  return props.virtualList.items.filter((item) => (
+    defaultFilterFn(item, searchTerm.value)
+  ))
+})
+
 const filteredGroups = computed<Map<string, Set<string>>>(() => {
   return new Map(
     Array.from(allGroups.value.entries())
@@ -127,6 +141,10 @@ const filteredGroups = computed<Map<string, Set<string>>>(() => {
         return Array.from(value).some((itemId) => filteredItems.value.has(itemId))
       }),
   )
+})
+
+const searchInputPlaceholder = computed<string>(() => {
+  return props.searchInputPlaceholder ?? t('component.select.search_input_placeholder')
 })
 
 function setIsDropdownVisible(value: boolean): void {
@@ -199,9 +217,11 @@ useProvideSelectContext({
   inlinesearchInputElementRef,
   modelValue,
   remainOpenOnValueChange,
+  searchInputPlaceholder,
   searchTerm,
   setIsDropdownVisible,
   style: selectStyle,
+  virtualListFilteredItems,
 })
 </script>
 

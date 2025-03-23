@@ -24,6 +24,7 @@ interface SelectContext extends PropsToComputed<SelectProps<any>> {
   searchTerm: Ref<string>
   setIsDropdownVisible: (value: boolean) => void
   style: ComputedRef<CreateSelectStyle>
+  virtualListFilteredItems: ComputedRef<unknown[]>
 }
 
 export const [

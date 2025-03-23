@@ -36,9 +36,7 @@ const {
     @update:is-open="setIsDropdownVisible"
   >
     <PopoverAnchor>
-      <SelectPopoverTrigger>
-        <button class="absolute inset-0 outline-none" />
-      </SelectPopoverTrigger>
+      <SelectPopoverTrigger />
     </PopoverAnchor>
 
     <slot name="trigger" />

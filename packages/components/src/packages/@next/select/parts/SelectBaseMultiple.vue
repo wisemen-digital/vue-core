@@ -5,14 +5,22 @@ import {
   onMounted,
   ref,
 } from 'vue'
+import { useI18n } from 'vue-i18n'
 
+import { mergeClasses } from '@/customClassVariants'
+import IconButton from '@/packages/@next/button/icon/IconButton.vue'
 import SelectPlaceholder from '@/packages/@next/select/parts/SelectPlaceholder.vue'
 import { useInjectSelectContext } from '@/packages/@next/select/select.context'
 
 const {
+  classConfig,
+  customClassConfig,
   displayFn,
   modelValue,
+  style,
 } = useInjectSelectContext()
+
+const { t } = useI18n()
 
 const tagContainerRef = ref<HTMLDivElement | null>(null)
 const tagContainerWidth = ref<number>(0)
@@ -49,6 +57,12 @@ const moreTagsCount = computed<number>(() => {
   return modelValueAsArray.value.length - filteredModelValue.value.length
 })
 
+function onRemoveValue(value: AcceptableValue): void {
+  modelValue.value = (modelValue.value as AcceptableValue[]).filter((v) => (
+    JSON.stringify(v) !== JSON.stringify(value)
+  ))
+}
+
 onMounted(() => {
   if (tagContainerRef.value === null) {
     return
@@ -65,7 +79,9 @@ onMounted(() => {
 <template>
   <div
     ref="tagContainerRef"
-    class="px-sm flex items-center gap-xs w-full"
+    :class="style.baseMultiple({
+      class: mergeClasses(customClassConfig.baseMultiple, classConfig?.baseMultiple),
+    })"
   >
     <SelectPlaceholder />
 
@@ -74,17 +90,39 @@ onMounted(() => {
       v-for="(value, valueIndex) of modelValueAsArray"
       :key="valueIndex"
       ref="tagRef"
-      class="absolute invisible text-xs px-sm py-xs bg-secondary rounded-md border border-solid border-secondary whitespace-nowrap"
+      class="absolute invisible flex items-center gap-sm text-sm pl-sm pr-xxs h-8 bg-secondary rounded-md border border-solid border-secondary whitespace-nowrap"
     >
       {{ displayFn(value) }}
+
+      <IconButton
+        :label="t('component.select.remove_value')"
+        :class-config="{
+          root: 'size-6 min-w-auto rounded-sm',
+          icon: 'size-3',
+        }"
+        variant="tertiary-gray"
+        icon="close"
+      />
     </div>
 
     <div
       v-for="(value, valueIndex) of filteredModelValue"
       :key="valueIndex"
-      class="text-xs px-sm py-xs bg-secondary rounded-md border border-solid border-secondary whitespace-nowrap"
+      class="flex items-center gap-sm text-sm pl-sm pr-xxs h-7 bg-secondary rounded-md border border-solid border-secondary whitespace-nowrap"
     >
       {{ displayFn(value) }}
+
+      <IconButton
+        :label="t('component.select.remove_value')"
+        :class-config="{
+          root: 'size-6 min-w-auto rounded-sm',
+          icon: 'size-3',
+        }"
+        variant="tertiary-gray"
+        icon="close"
+        class="z-10"
+        @click="onRemoveValue(value)"
+      />
     </div>
 
     <div

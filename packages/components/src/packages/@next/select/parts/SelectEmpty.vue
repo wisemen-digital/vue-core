@@ -1,15 +1,38 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 
+import { mergeClasses } from '@/customClassVariants'
 import { useInjectSelectContext } from '@/packages/@next/select/select.context'
 
-const { filteredItems } = useInjectSelectContext()
+const { t } = useI18n()
 
-const isEmpty = computed<boolean>(() => filteredItems.value.size === 0)
+const {
+  classConfig,
+  customClassConfig,
+  filteredItems,
+  searchTerm,
+  style,
+  virtualList,
+  virtualListFilteredItems,
+} = useInjectSelectContext()
+
+const isEmpty = computed<boolean>(() => {
+  if (virtualList.value === null || !virtualList.value.isEnabled) {
+    return filteredItems.value.size === 0
+  }
+
+  return virtualListFilteredItems.value.length === 0
+})
 </script>
 
 <template>
-  <div v-if="isEmpty">
-    Empty
+  <div
+    v-if="isEmpty"
+    :class="style.empty({
+      class: mergeClasses(customClassConfig.empty, classConfig?.empty),
+    })"
+  >
+    {{ t('component.select.empty_text', { searchTerm }) }}
   </div>
 </template>

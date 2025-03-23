@@ -28,6 +28,7 @@ const {
   remainOpenOnValueChange,
   setIsDropdownVisible,
   style,
+  virtualList,
 } = useInjectSelectContext()
 
 const selectGroupContext = useInjectSelectGroupContext(null)
@@ -85,7 +86,7 @@ onBeforeUnmount(() => {
 
 <template>
   <RekaListboxItem
-    v-if="filteredItems.has(id)"
+    v-if="filteredItems.has(id) || virtualList?.isEnabled"
     :value="props.value"
     :disabled="props.isDisabled"
     :class="style.item({ class: mergeClasses(customClassConfig.item, classConfig?.item) })"
