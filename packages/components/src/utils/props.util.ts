@@ -28,6 +28,34 @@ export interface InteractableElement {
   isDisabled?: boolean
 }
 
+export interface FormElement {
+  /**
+   * Whether the input is required.
+   * @default false
+   */
+  isRequired?: boolean
+  /**
+   * Whether the input is touched. Used to determine if an error should be shown.
+   * @default false
+   */
+  isTouched?: boolean
+  /**
+   * The errors associated with the input.
+   * @default []
+   */
+  errors?: string[]
+  /**
+   * The hint text of the input.
+   * @default null
+   */
+  hint?: string | null
+  /**
+   * The label of the input.
+   * @default null
+   */
+  label?: string | null
+}
+
 export interface CustomizableElement<TComponent extends keyof Components> {
   /**
    * The class configuration of the component.

@@ -6,15 +6,20 @@ import { twMerge } from '@/libs/twMerge.lib'
 import type { createIconButtonStyle } from '@/packages/@next/button/icon/style/iconButton.style'
 import type { createButtonStyle } from '@/packages/@next/button/shared/style/button.style'
 import type { createDialogStyle } from '@/packages/@next/dialog/style/dialog.style'
+import type { createFormFieldStyle } from '@/packages/@next/form-field/style/formField.style'
 import type { createPopoverStyle } from '@/packages/@next/popover/style/popover.style'
 import type { createTabsStyle } from '@/packages/@next/tabs/shared/style/tabs.style'
+import type { createTextFieldStyle } from '@/packages/@next/text-field/style/textField.style'
 
 export interface Components {
   button: typeof createButtonStyle
   dialog: typeof createDialogStyle
+  formField: typeof createFormFieldStyle
   iconButton: typeof createIconButtonStyle
   popover: typeof createPopoverStyle
+
   tabs: typeof createTabsStyle
+  textField: typeof createTextFieldStyle
 }
 
 export interface ComponentVariants {}
