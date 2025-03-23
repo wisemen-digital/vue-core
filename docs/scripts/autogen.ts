@@ -246,39 +246,32 @@ function formatCodeString(code: string): string {
 }
 
 function generateDocs(components: Component[]): void {
-  components.forEach((component) => {
-    console.group('Generating docs for', component.componentName)
-    const sourcePath = resolve(__dirname, `../../packages/components/src/components/${component.sourceFolder}`)
-    console.log('Component source path:', sourcePath)
-    const componentMeta = tsconfigChecker.getComponentMeta(sourcePath)
+  components.forEach((component) => {    
+    try {
+      const sourcePath = resolve(__dirname, `../../packages/components/src/components/${component.sourceFolder}`)
+      const componentMeta = tsconfigChecker.getComponentMeta(sourcePath)
 
-    console.log(componentMeta.slots[0]?.type)
+      const componentNameKebabCase = toKebabCase(component.componentName)
+      const componentNameCamelCase = toCamelCase(component.componentName)
+      const componentPath = component.sourceFolder.slice(0, component.sourceFolder.lastIndexOf("/"))
 
-    const componentNameKebabCase = toKebabCase(component.componentName)
-    const componentNameCamelCase = toCamelCase(component.componentName)
-    const componentPath = component.sourceFolder.slice(0, component.sourceFolder.lastIndexOf("/"))
+      const styleConfigFilePath = resolve(__dirname, `../../packages/components/src/components/${componentPath}/${componentNameCamelCase}Style.config.ts`)
+      const styleInterfaces = extractInterfacesFromFile(styleConfigFilePath)
 
-    const styleConfigFilePath = resolve(__dirname, `../../packages/components/src/components/${componentPath}/${componentNameCamelCase}Style.config.ts`)
-    console.log('Checking for style config:', styleConfigFilePath)
-    const styleInterfaces = extractInterfacesFromFile(styleConfigFilePath)
+      const targetDirPath = resolve(__dirname, `../components/${component.targetFolder}`)
 
-    const targetDirPath = resolve(__dirname, `../components/${component.targetFolder}`)
-    console.log('Component target path:', targetDirPath)
+      if (!existsSync(targetDirPath)) {
+        mkdirSync(targetDirPath)
+      }
 
-    if (!existsSync(targetDirPath)) {
-      console.log('Creating target directory:', targetDirPath)
-      mkdirSync(targetDirPath)
-    } else {
-      console.log('Target directory already exists:', targetDirPath)
+      const metaMdFilePath = join(targetDirPath, `${componentNameKebabCase}-meta.md`)
+
+      const parsedMeta = generateMeta(parseMeta(componentMeta, styleInterfaces))
+
+      writeFileSync(metaMdFilePath, parsedMeta, 'utf8')
+    } catch(error) {
+      console.log(`Error while generating docs for ${component.componentName}:`, error)
     }
-
-    const metaMdFilePath = join(targetDirPath, `${componentNameKebabCase}-meta.md`)
-
-    console.log('Meta file path:', metaMdFilePath)
-
-    const parsedMeta = generateMeta(parseMeta(componentMeta, styleInterfaces))
-
-    writeFileSync(metaMdFilePath, parsedMeta, 'utf8')
 
     console.groupEnd()
   })
