@@ -10,10 +10,12 @@ const attrs = useAttrs()
 </script>
 
 <template>
-  <Suspense>
-    <AsyncIcon
-      :icon="props.icon"
-      v-bind="attrs"
-    />
-  </Suspense>
+  <div>
+    <Suspense>
+      <AsyncIcon
+        :icon="props.icon"
+        v-bind="attrs"
+      />
+    </Suspense>
+  </div>
 </template>

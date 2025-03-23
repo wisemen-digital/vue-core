@@ -8,7 +8,7 @@ import {
 import { useI18n } from 'vue-i18n'
 
 import { mergeClasses } from '@/customClassVariants'
-import IconButton from '@/packages/@next/button/icon/IconButton.vue'
+import IconButton from '@/packages/@next/button/icon-button/IconButton.vue'
 import SelectPlaceholder from '@/packages/@next/select/parts/SelectPlaceholder.vue'
 import { useInjectSelectContext } from '@/packages/@next/select/select.context'
 

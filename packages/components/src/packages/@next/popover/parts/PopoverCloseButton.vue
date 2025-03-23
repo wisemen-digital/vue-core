@@ -2,7 +2,7 @@
 import { PopoverClose as RekaPopoverClose } from 'reka-ui'
 import { useI18n } from 'vue-i18n'
 
-import IconButton from '@/packages/@next/button/icon/IconButton.vue'
+import IconButton from '@/packages/@next/button/icon-button/IconButton.vue'
 
 const { t } = useI18n()
 </script>

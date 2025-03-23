@@ -1,5 +1,6 @@
 import '@fontsource-variable/inter'
 import '@/styles/index.css'
+import '@/icons/icons'
 
 import { createApp } from 'vue'
 import { createI18n } from 'vue-i18n'
@@ -18,6 +19,9 @@ const i18n = createI18n({
       component: {
         address_autocomplete: {
           failed_to_fetch: 'Failed to fetch predictions.',
+        },
+        button: {
+          loading_label: 'Loading...',
         },
         keyboard_shortcut: {
           then: 'then',

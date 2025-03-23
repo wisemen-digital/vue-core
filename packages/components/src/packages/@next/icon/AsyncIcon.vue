@@ -6,13 +6,10 @@ import {
 } from 'vue'
 
 import type { IconProps } from '@/components/icon/icon.props'
-import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { icons } from '@/icons/icons'
-import { ThemeUtil } from '@/utils/theme.util'
 
 const props = defineProps<IconProps>()
 
-const themeProviderContext = injectThemeProviderContext()
 const svgComponent = shallowRef<Component | null>(null)
 
 async function setIcon(): Promise<void> {
@@ -39,6 +36,5 @@ await setIcon()
   <Component
     :is="svgComponent"
     v-if="svgComponent !== null"
-    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.appearance.value)"
   />
 </template>

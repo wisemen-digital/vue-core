@@ -3,8 +3,9 @@ import { computed, type ComputedRef } from 'vue'
 
 import { injectThemeProviderContext } from '@/components'
 import { twMerge } from '@/libs/twMerge.lib'
-import type { createIconButtonStyle } from '@/packages/@next/button/icon/style/iconButton.style'
-import type { createButtonStyle } from '@/packages/@next/button/shared/style/button.style'
+import type { createButtonStyle } from '@/packages/@next/button/default-button/button.style'
+import type { createIconButtonStyle } from '@/packages/@next/button/icon-button/iconButton.style'
+import type { createRouterLinkButtonStyle } from '@/packages/@next/button/router-link-button/routerLinkButton.style'
 import type { createDialogStyle } from '@/packages/@next/dialog/style/dialog.style'
 import type { createFormFieldStyle } from '@/packages/@next/form-field/style/formField.style'
 import type { createPopoverStyle } from '@/packages/@next/popover/style/popover.style'
@@ -19,6 +20,7 @@ export interface Components {
   formField: typeof createFormFieldStyle
   iconButton: typeof createIconButtonStyle
   popover: typeof createPopoverStyle
+  routerLinkButton: typeof createRouterLinkButtonStyle
 
   select: typeof createSelectStyle
   tabs: typeof createTabsStyle
@@ -44,6 +46,7 @@ export interface ClassVariant<
   TTargetPropValue extends string,
 > {
   config: {
+    // @ts-expect-error too complex type
     [K in keyof Components[TComponent]['slots']]?: string
   }
   target?: {

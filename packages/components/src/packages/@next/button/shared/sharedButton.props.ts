@@ -10,6 +10,14 @@ export interface SharedButtonProps extends PrimitiveElement, InteractableElement
    */
   isLoading?: boolean
   /**
+   * The label of the button.
+   */
+  label: string
+  /**
+   * The label to display when the button is loading. Defaults to `t('component.button.loading_label')`.
+   */
+  loadingLabel?: string | null
+  /**
    * Specifies the button's type attribute.
    * @default 'button'
    */
