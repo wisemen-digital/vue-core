@@ -3,7 +3,14 @@ import { ListboxFilter as RekaListboxFilter } from 'reka-ui'
 
 import { useInjectSelectContext } from '@/packages/@next/select/select.context'
 
+const props = withDefaults(defineProps<{
+  placeholder?: string | null
+}>(), {
+  placeholder: null,
+})
+
 const {
+  searchInputPlaceholder,
   searchTerm,
   setIsDropdownVisible,
 } = useInjectSelectContext()
@@ -18,6 +25,7 @@ function openDropdown(): void {
 <template>
   <RekaListboxFilter
     v-model="searchTerm"
+    :placeholder="props.placeholder ?? searchInputPlaceholder"
     class="outline-none bg-transparent text-sm"
     aria-autocomplete="list"
     role="combobox"

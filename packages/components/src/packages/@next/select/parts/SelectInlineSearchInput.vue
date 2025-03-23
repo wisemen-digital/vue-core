@@ -11,6 +11,8 @@ const {
   classConfig,
   customClassConfig,
   inlinesearchInputElementRef,
+  placeholder,
+  searchInputPlaceholder,
   style,
 } = useInjectSelectContext()
 const listboxFilterRef = ref<InstanceType<typeof SelectSearchInput>>()
@@ -31,6 +33,7 @@ onMounted(() => {
     :class="style.inlineSearchInput({
       class: mergeClasses(customClassConfig.inlineSearchInput, classConfig?.inlineSearchInput),
     })"
+    :placeholder="placeholder ?? searchInputPlaceholder"
     @input="onInput"
   />
 </template>

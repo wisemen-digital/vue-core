@@ -3,6 +3,11 @@ import { StyleBuilder } from '@/utils/style.util'
 
 export const createSelectStyle = tv({
   slots: {
+    base: new StyleBuilder()
+      .withBase('overflow-hidden')
+      .withFlex('flex items-center')
+      .withSize('size-full')
+      .build(),
     content: new StyleBuilder()
       .withPadding('p-sm')
       .withFlex('flex flex-col gap-y-xxs')
@@ -15,22 +20,24 @@ export const createSelectStyle = tv({
       .withColor('text-tertiary')
       .withFontSize('text-sm')
       .withFontWeight('font-medium')
+      .withSpacing('py-xs')
       .build(),
     iconLeft: new StyleBuilder()
       .withBase('shrink-0')
       .withSize('size-4.5')
       .withSpacing('ml-3')
-      .withColor('text-quaternary')
+      .withColor('text-quaternary group-data-[is-disabled=true]/select:text-fg-disabled')
       .build(),
     iconRight: new StyleBuilder()
       .withBase('shrink-0')
       .withSize('size-4.5')
       .withSpacing('mr-3')
-      .withColor('text-quaternary')
+      .withColor('text-quaternary group-data-[is-disabled=true]/select:text-fg-disabled')
       .build(),
     inlineSearchInput: new StyleBuilder()
       .withBase('z-10')
       .withSize('size-full')
+      .withColor('text-primary')
       .withPadding('px-3 group-data-[has-icon-left=true]/select:pl-2 group-data-[has-icon-right=true]/select:pr-2')
       .withCursor('disabled:cursor-not-allowed')
       .build(),
@@ -50,6 +57,7 @@ export const createSelectStyle = tv({
       .withColor('text-secondary')
       .build(),
     loader: new StyleBuilder()
+      .withBase('pointer-events-none')
       .withBase('shrink-0')
       .withSpacing('mr-3')
       .withSize('size-4')
@@ -76,6 +84,7 @@ export const createSelectStyle = tv({
     separator: new StyleBuilder()
       .withHeight('h-px')
       .withBackgroundColor('bg-quaternary')
+      .withSpacing('my-xs')
       .build(),
   },
 })

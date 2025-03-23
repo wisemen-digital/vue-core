@@ -92,7 +92,7 @@ const hasInlineSearchInput = computed<boolean>(() => {
 function defaultFilterFn(value: unknown, searchTerm: string): boolean {
   const displayValue = props.displayFn(value as any)
 
-  return contains(displayValue, searchTerm)
+  return contains(displayValue.toLowerCase(), searchTerm.toLowerCase())
 }
 
 const filteredItems = computed<Map<string, unknown>>(() => {

@@ -1,16 +1,13 @@
 <script setup lang="ts" generic="TValue extends SelectValueType">
+import SelectBase from '@/packages/@next/select/parts/SelectBase.vue'
 import SelectContent from '@/packages/@next/select/parts/SelectContent.vue'
 import SelectEmpty from '@/packages/@next/select/parts/SelectEmpty.vue'
-import SelectGroup from '@/packages/@next/select/parts/SelectGroup.vue'
-import SelectGroupLabel from '@/packages/@next/select/parts/SelectGroupLabel.vue'
 import SelectIconLeft from '@/packages/@next/select/parts/SelectIconLeft.vue'
 import SelectIconRight from '@/packages/@next/select/parts/SelectIconRight.vue'
-import SelectItem from '@/packages/@next/select/parts/SelectItem.vue'
+import SelectLoader from '@/packages/@next/select/parts/SelectLoader.vue'
 import SelectPopover from '@/packages/@next/select/parts/SelectPopover.vue'
 import SelectRoot from '@/packages/@next/select/parts/SelectRoot.vue'
 import SelectFilter from '@/packages/@next/select/parts/SelectSearchInput.vue'
-import SelectSeparator from '@/packages/@next/select/parts/SelectSeparator.vue'
-import SelectValue from '@/packages/@next/select/parts/SelectValue.vue'
 import type { SelectProps, SelectValue as SelectValueType } from '@/packages/@next/select/select.props'
 
 const props = withDefaults(defineProps<SelectProps<TValue>>(), {
@@ -21,54 +18,46 @@ const props = withDefaults(defineProps<SelectProps<TValue>>(), {
 const modelValue = defineModel<TValue>({
   required: true,
 })
+
+const searchTerm = defineModel<string>('searchTerm', {
+  required: false,
+})
 </script>
 
 <template>
   <SelectRoot
     v-bind="props"
     v-model="modelValue"
+    v-model:search-term="searchTerm"
   >
     <SelectPopover>
       <template #trigger>
-        <SelectIconLeft />
-        <SelectValue />
-        <SelectIconRight />
+        <slot name="left" />
+
+        <slot name="icon-left">
+          <SelectIconLeft />
+        </slot>
+
+        <slot name="base">
+          <SelectBase />
+        </slot>
+
+        <slot name="icon-right">
+          <SelectIconRight />
+        </slot>
+
+        <slot name="loader">
+          <SelectLoader />
+        </slot>
+
+        <slot name="right" />
       </template>
 
       <template #content>
         <SelectFilter v-if="props.filter !== null && props.filter?.isEnabled && !props.filter.isInline" />
 
         <SelectContent>
-          <SelectItem value="First option">
-            First option
-          </SelectItem>
-
-          <SelectSeparator />
-
-          <SelectItem value="Second option">
-            Second option
-          </SelectItem>
-
-          <SelectItem
-            :is-disabled="true"
-            value="Third option"
-          >
-            Third option
-          </SelectItem>
-
-          <SelectGroup>
-            <SelectGroupLabel>
-              Label
-            </SelectGroupLabel>
-
-            <SelectItem value="Fourth option">
-              Fourth option
-            </SelectItem>
-
-            <SelectItem value="Fifth option">
-              Fifth option
-            </SelectItem>
-          </SelectGroup>
+          <slot />
 
           <SelectEmpty />
         </SelectContent>
