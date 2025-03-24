@@ -15,12 +15,13 @@ export const createSelectStyle = tv({
       .build(),
     baseSingle: new StyleBuilder()
       .withPadding('px-3 group-data-[has-icon-left=true]/select:pl-2 group-data-[has-icon-right=true]/select:pr-2')
+      .withSize('w-full')
       .withFlex('flex items-center')
       .build(),
     content: new StyleBuilder()
       .withBase('outline-none')
       .withBase('overflow-auto')
-      .withPadding('p-sm')
+      .withPadding('p-xs')
       .withHeight('max-h-80')
       .build(),
     empty: new StyleBuilder()
@@ -58,9 +59,9 @@ export const createSelectStyle = tv({
       .withBase('outline-none')
       .withSize('w-full')
       .withCursor('cursor-pointer data-disabled:cursor-not-allowed')
-      .withBorderRadius('rounded-md')
+      .withBorderRadius('rounded-sm')
       .withPadding('p-md')
-      .withSpacing('my-xxs')
+      .withSpacing('my-xxs first:my-0 last:my-0')
       .withFlex('flex items-center justify-between')
       .withFontSize('text-sm')
       .withFontWeight('data-[state=checked]:font-medium')

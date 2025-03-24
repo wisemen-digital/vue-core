@@ -13,7 +13,7 @@ const {
 <template>
   <div
     v-if="filter !== null && filter.isEnabled && !filter.isInline"
-    class="p-sm pb-0"
+    class="p-xs pb-0"
   >
     <SelectSearchInput
       :placeholder="searchInputPlaceholder"
@@ -22,7 +22,7 @@ const {
       <TextField
         v-model="searchTerm"
         :class-config="{
-          root: 'border-none shadow-none !ring-0 bg-secondary h-8',
+          root: 'border-none shadow-none !ring-0 bg-secondary h-8 rounded-sm',
           iconLeft: 'ml-md',
         }"
         icon-left="search"

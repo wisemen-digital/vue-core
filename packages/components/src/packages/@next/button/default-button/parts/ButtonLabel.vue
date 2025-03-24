@@ -3,7 +3,7 @@ import {
   AnimatePresence,
   Motion,
 } from 'motion-v'
-import { computed } from 'vue'
+import { computed, useId } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import { useInjectButtonContext } from '@/packages/@next/button/default-button/button.context'
@@ -23,6 +23,8 @@ const computedLabel = computed<string>(() => {
 
   return label.value
 })
+
+const id = useId()
 </script>
 
 <template>
@@ -33,6 +35,7 @@ const computedLabel = computed<string>(() => {
     >
       <Motion
         :key="computedLabel"
+        :layout-id="id"
         :initial="{ opacity: 0, filter: 'blur(1px)' }"
         :animate="{ opacity: 1, filter: 'blur(0)' }"
         :exit="{ opacity: 0, filter: 'blur(1px)' }"

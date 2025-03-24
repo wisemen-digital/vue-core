@@ -9,6 +9,8 @@ import PhoneNumberField from '@/components/input-field/phone-number-field/PhoneN
 import Button from '@/packages/@next/button/default-button/Button.vue'
 import IconButton from '@/packages/@next/button/icon-button/IconButton.vue'
 import Popover from '@/packages/@next/popover/Popover.vue'
+import SelectBase from '@/packages/@next/select/parts/SelectBase.vue'
+import SelectBaseSingle from '@/packages/@next/select/parts/SelectBaseSingle.vue'
 import SelectItem from '@/packages/@next/select/parts/SelectItem.vue'
 import SelectSeparator from '@/packages/@next/select/parts/SelectSeparator.vue'
 import Select from '@/packages/@next/select/Select.vue'
@@ -29,12 +31,75 @@ setupDefaultStyles()
       <div class="flex items-center justify-center h-screen bg-primary">
         <div class="flex flex-col gap-md">
           <div class="w-96 flex gap-24 flex-col items-end">
+            <Select
+              :model-value="null"
+              :display-fn="(v) => v"
+              :is-loading="false"
+              :is-disabled="isLoading"
+              :filter="{
+                isEnabled: true,
+                isInline: false,
+              }"
+              class="w-72"
+              icon-left="search"
+              placeholder="Search"
+            >
+              <template #base>
+                <SelectBase>
+                  <SelectBaseSingle>
+                    <template #right>
+                      <span class="ml-auto block text-xs bg-secondary rounded-md px-sm py-xxs border border-solid border-secondary font-medium text-primary">
+                        hier
+                      </span>
+                    </template>
+                  </SelectBaseSingle>
+                </SelectBase>
+              </template>
+
+              <SelectItem
+                value="First item"
+              >
+                First item
+              </SelectItem>
+
+              <SelectSeparator />
+
+              <SelectItem
+                value="Second item"
+              >
+                Second item
+              </SelectItem>
+
+              <SelectItem
+                value="Third item"
+              >
+                Third item
+              </SelectItem>
+
+              <SelectItem
+                value="Fourth item"
+              >
+                Fourth item
+              </SelectItem>
+
+              <SelectItem
+                value="Fifth item"
+              >
+                Fifth item
+              </SelectItem>
+
+              <SelectItem
+                value="Sixth item"
+              >
+                Sixth item
+              </SelectItem>
+            </Select>
+
             <Button
               :is-loading="isLoading"
-              icon-left="plus"
-              loading-label="Creating project..."
               label="Create project"
-              variant="primary"
+              icon-left="plus"
+              variant="secondary"
               size="sm"
             />
 
@@ -44,7 +109,7 @@ setupDefaultStyles()
                   :is-loading="isLoading"
                   icon="filter"
                   label="Content"
-                  variant="secondary-gray"
+                  variant="secondary"
                 />
               </template>
 
@@ -53,10 +118,15 @@ setupDefaultStyles()
               </template>
             </Popover>
 
-            <Button
-              label="Toggle"
-              @click="isLoading = !isLoading"
-            />
+            <div class="grid grid-cols-2 gap-lg">
+              <div class="p-4xl">
+                <Button
+                  label="Toggle"
+                  variant="secondary"
+                  @click="isLoading = !isLoading"
+                />
+              </div>
+            </div>
           </div>
 
           <TextField
@@ -72,34 +142,6 @@ setupDefaultStyles()
             v-if="false"
             :model-value="null"
           />
-
-          <Select
-            :model-value="null"
-            :display-fn="(v) => v"
-            :is-loading="false"
-            :is-disabled="isLoading"
-            :filter="{
-              isEnabled: true,
-              isInline: true,
-            }"
-            class="w-72"
-            icon-left="search"
-            placeholder="Search"
-          >
-            <SelectItem
-              value="1"
-            >
-              First item
-            </SelectItem>
-
-            <SelectSeparator />
-
-            <SelectItem
-              value="2"
-            >
-              Second item
-            </SelectItem>
-          </Select>
         </div>
       </div>
 

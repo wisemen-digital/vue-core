@@ -20,11 +20,12 @@ const {
   >
     <SelectPlaceholder />
 
-    <span
-      v-if="modelValue !== null"
-      class="text-sm text-primary group-data-[is-disabled=true]/select:text-disabled"
-    >
-      {{ displayFn(modelValue) }}
-    </span>
+    <slot v-if="modelValue !== null">
+      <span class="text-sm text-primary group-data-[is-disabled=true]/select:text-disabled">
+        {{ displayFn(modelValue) }}
+      </span>
+
+      <slot name="right" />
+    </slot>
   </div>
 </template>

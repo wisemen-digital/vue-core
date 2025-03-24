@@ -100,7 +100,7 @@ onMounted(() => {
           root: 'size-6 min-w-auto rounded-sm',
           icon: 'size-3',
         }"
-        variant="tertiary-gray"
+        variant="tertiary"
         icon="close"
       />
     </div>
@@ -118,7 +118,7 @@ onMounted(() => {
           root: 'size-6 min-w-auto rounded-sm',
           icon: 'size-3',
         }"
-        variant="tertiary-gray"
+        variant="tertiary"
         icon="close"
         class="z-10"
         @click="onRemoveValue(value)"

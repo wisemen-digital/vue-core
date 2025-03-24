@@ -47,34 +47,19 @@ export const createSharedButtonStyle = tv({
       'primary': {
         root: new StyleBuilder()
           .withColor('text-white disabled:text-fg-disabled')
-          .withBackgroundColor('bg-brand-600 disabled:bg-disabled')
+          .withBackgroundColor('bg-brand-solid disabled:bg-disabled')
           .withBorder('border-brand-600 disabled:border-disabled-subtle')
           .withTransition('data-[loading=false]:not-disabled:hover:brightness-95 data-[loading=false]:not-disabled:active:brightness-90')
           .build(),
       },
-      'secondary-color': {
-        root: new StyleBuilder()
-          .withColor('text-brand-700 disabled:text-fg-disabled dark:text-gray-300')
-          .withBackgroundColor('bg-transparent data-[loading=false]:not-disabled:hover:bg-brand-50 data-[loading=false]:not-disabled:hover:dark:bg-gray-800 data-[loading=false]:not-disabled:active:brightness-98')
-          .withBorder('border-brand-300 disabled:border-disabled-subtle dark:border-gray-700')
-          .build(),
-      },
-      'secondary-gray': {
+      'secondary': {
         root: new StyleBuilder()
           .withColor('text-gray-700 disabled:text-fg-disabled dark:text-gray-300')
           .withBackgroundColor('bg-transparent data-[loading=false]:not-disabled:hover:bg-gray-50 data-[loading=false]:not-disabled:hover:dark:bg-gray-800 data-[loading=false]:not-disabled:active:brightness-98 data-[loading=true]:bg-gray-50 dark:data-[loading=true]:bg-gray-800')
           .withBorder('border-gray-300 disabled:border-disabled-subtle dark:border-gray-700')
           .build(),
       },
-      'tertiary-color': {
-        root: new StyleBuilder()
-          .withColor('text-brand-700 disabled:text-fg-disabled dark:text-gray-300')
-          .withBackgroundColor('bg-transparent data-[loading=false]:not-disabled:hover:bg-brand-50 data-[loading=false]:not-disabled:dark:hover:bg-gray-800 data-[loading=false]:not-disabled:active:brightness-98')
-          .withBorder('border-transparent')
-          .withShadow('shadow-none')
-          .build(),
-      },
-      'tertiary-gray': {
+      'tertiary': {
         root: new StyleBuilder()
           .withColor('text-gray-600 disabled:text-fg-disabled dark:text-gray-300')
           .withBackgroundColor('bg-transparent data-[loading=false]:not-disabled:hover:bg-gray-50 data-[loading=false]:not-disabled:dark:hover:bg-gray-800 data-[loading=false]:not-disabled:active:brightness-98 data-[loading=true]:bg-gray-50 dark:data-[loading=true]:bg-gray-800')
