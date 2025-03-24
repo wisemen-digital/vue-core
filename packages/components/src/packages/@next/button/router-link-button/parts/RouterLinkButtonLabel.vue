@@ -11,7 +11,7 @@ const { label } = useInjectRouterLinkButtonContext()
 </script>
 
 <template>
-  <AnimateSize>
+  <AnimateSize class="overflow-hidden relative">
     <AnimatePresence
       :initial="false"
       mode="popLayout"

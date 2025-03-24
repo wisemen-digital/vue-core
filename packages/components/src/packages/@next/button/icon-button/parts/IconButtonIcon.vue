@@ -4,6 +4,7 @@ import { useInjectIconButtonContext } from '@/packages/@next/button/icon-button/
 import Icon from '@/packages/@next/icon/Icon.vue'
 
 const {
+  isLoading,
   classConfig,
   customClassConfig,
   icon,
@@ -13,7 +14,7 @@ const {
 
 <template>
   <Icon
-    v-if="icon !== null"
+    v-if="icon !== null && !isLoading"
     :icon="icon"
     :class="style.icon({
       class: mergeClasses(customClassConfig.icon, classConfig?.icon),

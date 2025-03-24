@@ -1,20 +1,21 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import IconButton from '@/components/button/icon-button/IconButton.vue'
 import {
   VcConfigProvider,
   VcThemeProvider,
 } from '@/components/index'
 import PhoneNumberField from '@/components/input-field/phone-number-field/PhoneNumberField.vue'
 import Button from '@/packages/@next/button/default-button/Button.vue'
+import IconButton from '@/packages/@next/button/icon-button/IconButton.vue'
+import Popover from '@/packages/@next/popover/Popover.vue'
+import SelectItem from '@/packages/@next/select/parts/SelectItem.vue'
+import SelectSeparator from '@/packages/@next/select/parts/SelectSeparator.vue'
+import Select from '@/packages/@next/select/Select.vue'
 import TextField from '@/packages/@next/text-field/TextField.vue'
 import { setupDefaultStyles } from '@/styling/setupDefaultStyles'
 
-const selectValue = ref<string | string[] | null>([])
 const isLoading = ref<boolean>(false)
-
-const items = Array.from({ length: 100 }, (_, i) => `Item ${i + 1}`)
 
 setupDefaultStyles()
 </script>
@@ -30,17 +31,27 @@ setupDefaultStyles()
           <div class="w-96 flex gap-24 flex-col items-end">
             <Button
               :is-loading="isLoading"
-              loading-label="Submitting..."
-              label="Content"
-              variant="secondary-gray"
-              icon-left="search"
+              icon-left="plus"
+              loading-label="Creating project..."
+              label="Create project"
+              variant="primary"
+              size="sm"
             />
 
-            <IconButton
-              :is-loading="isLoading"
-              icon="search"
-              label="Content"
-            />
+            <Popover>
+              <template #trigger>
+                <IconButton
+                  :is-loading="isLoading"
+                  icon="filter"
+                  label="Content"
+                  variant="secondary-gray"
+                />
+              </template>
+
+              <template #content>
+                <div class="w-96 h-40" />
+              </template>
+            </Popover>
 
             <Button
               label="Toggle"
@@ -62,16 +73,11 @@ setupDefaultStyles()
             :model-value="null"
           />
 
-          <!-- <Select
-            v-if="false"
-            v-model="selectValue"
+          <Select
+            :model-value="null"
             :display-fn="(v) => v"
             :is-loading="false"
             :is-disabled="isLoading"
-            :virtual-list="{
-              isEnabled: false,
-              items,
-            }"
             :filter="{
               isEnabled: true,
               isInline: true,
@@ -81,23 +87,19 @@ setupDefaultStyles()
             placeholder="Search"
           >
             <SelectItem
-              v-for="item in items.slice(0, 5)"
-              :key="item"
-              :value="item"
+              value="1"
             >
-              {{ item }}
+              First item
             </SelectItem>
 
             <SelectSeparator />
 
             <SelectItem
-              v-for="item in items.slice(5)"
-              :key="item"
-              :value="item"
+              value="2"
             >
-              {{ item }}
+              Second item
             </SelectItem>
-          </Select> -->
+          </Select>
         </div>
       </div>
 

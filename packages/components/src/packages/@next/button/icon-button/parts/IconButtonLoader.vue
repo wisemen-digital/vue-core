@@ -6,6 +6,7 @@ import { mergeClasses } from '@/customClassVariants'
 import { useInjectIconButtonContext } from '@/packages/@next/button/icon-button/iconButton.context'
 
 const {
+  isLoading,
   classConfig,
   customClassConfig,
   loadingLabel,
@@ -17,6 +18,7 @@ const { t } = useI18n()
 
 <template>
   <div
+    v-if="isLoading"
     :class="style.loader({
       class: mergeClasses(customClassConfig.loader, classConfig?.loader),
     })"

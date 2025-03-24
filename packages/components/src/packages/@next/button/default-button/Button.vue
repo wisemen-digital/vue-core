@@ -54,9 +54,9 @@ defineSlots<{
         <AnimatePresence mode="popLayout">
           <Motion
             v-if="props.isLoading"
-            :initial="{ opacity: 0, scale: 0.8 }"
+            :initial="{ opacity: 0, scale: 0.75 }"
             :animate="{ opacity: 1, scale: 1 }"
-            :exit="{ opacity: 0, scale: 0.8 }"
+            :exit="{ opacity: 0, scale: 0.75 }"
           >
             <slot name="loader">
               <ButtonLoader />
@@ -65,9 +65,9 @@ defineSlots<{
 
           <Motion
             v-else
-            :initial="{ opacity: 0, scale: 0.8 }"
+            :initial="{ opacity: 0, scale: 0.75 }"
             :animate="{ opacity: 1, scale: 1 }"
-            :exit="{ opacity: 0, scale: 0.8 }"
+            :exit="{ opacity: 0, scale: 0.75 }"
           >
             <slot name="icon-left">
               <ButtonIconLeft />
@@ -80,9 +80,20 @@ defineSlots<{
         <ButtonLabel />
       </slot>
 
-      <slot name="icon-right">
-        <ButtonIconRight />
-      </slot>
+      <AnimateSize>
+        <AnimatePresence mode="popLayout">
+          <Motion
+            v-if="!props.isLoading"
+            :initial="{ opacity: 0, scale: 0.75 }"
+            :animate="{ opacity: 1, scale: 1 }"
+            :exit="{ opacity: 0, scale: 0.75 }"
+          >
+            <slot name="icon-right">
+              <ButtonIconRight />
+            </slot>
+          </Motion>
+        </AnimatePresence>
+      </AnimateSize>
     </MotionConfig>
   </ButtonRoot>
 </template>

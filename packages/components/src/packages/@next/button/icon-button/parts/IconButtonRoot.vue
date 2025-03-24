@@ -64,7 +64,7 @@ useProvideIconButtonContext({
       :aria-disabled="props.isLoading"
       :aria-busy="props.isLoading"
       :type="props.type"
-      :data-is-loading="props.isLoading"
+      :data-loading="props.isLoading"
       :class="buttonStyle.root({
         class: mergeClasses(customClassConfig.root, props.classConfig?.root),
       })"

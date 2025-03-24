@@ -27,7 +27,7 @@ const props = withDefaults(defineProps<TooltipProps>(), {
   popoverCollisionPaddingInPx: 10,
   popoverContainerElement: null,
   popoverOffsetInPx: 10,
-  popoverSide: 'bottom',
+  popoverSide: 'top',
   popoverWidth: null,
 })
 

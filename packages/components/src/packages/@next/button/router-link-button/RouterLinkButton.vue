@@ -47,9 +47,9 @@ defineSlots<{
         <AnimatePresence mode="popLayout">
           <Motion
             v-if="props.iconLeft !== null"
-            :initial="{ opacity: 0, scale: 0.8 }"
+            :initial="{ opacity: 0, scale: 0.75 }"
             :animate="{ opacity: 1, scale: 1 }"
-            :exit="{ opacity: 0, scale: 0.8 }"
+            :exit="{ opacity: 0, scale: 0.75 }"
           >
             <slot name="icon-left">
               <RouterLinkButtonIconLeft />

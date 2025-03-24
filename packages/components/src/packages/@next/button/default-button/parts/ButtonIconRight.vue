@@ -4,6 +4,7 @@ import { useInjectButtonContext } from '@/packages/@next/button/default-button/b
 import Icon from '@/packages/@next/icon/Icon.vue'
 
 const {
+  isLoading,
   classConfig,
   customClassConfig,
   iconRight,
@@ -13,7 +14,7 @@ const {
 
 <template>
   <Icon
-    v-if="iconRight !== null"
+    v-if="iconRight !== null && !isLoading"
     :icon="iconRight"
     :class="style.iconRight({
       class: mergeClasses(customClassConfig.iconRight, classConfig?.iconRight),

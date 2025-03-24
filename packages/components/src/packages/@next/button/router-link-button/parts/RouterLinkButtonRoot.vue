@@ -12,7 +12,6 @@ import {
 } from '@/packages/@next/button/default-button/button.style'
 import { useProvideRouterLinkButtonContext } from '@/packages/@next/button/router-link-button/routerLinkButton.context'
 import type { RouterLinkButtonProps } from '@/packages/@next/button/router-link-button/routerLinkButton.props'
-import InteractableElement from '@/packages/@next/shared/InteractableElement.vue'
 import PrimitiveElement from '@/packages/@next/shared/PrimitiveElement.vue'
 import { toComputedRefs } from '@/utils/props.util'
 
@@ -24,7 +23,6 @@ const props = withDefaults(defineProps<RouterLinkButtonProps>(), {
   iconLeft: null,
   iconRight: null,
   size: 'md',
-  type: 'button',
   variant: 'primary',
 })
 
@@ -50,17 +48,14 @@ useProvideRouterLinkButtonContext({
     :id="props.id"
     :test-id="props.testId"
   >
-    <InteractableElement
-      :is-disabled="false"
-      :data-is-loading="false"
-      :type="props.type"
+    <RouterLink
       :class="buttonStyle.root({
         class: mergeClasses(customClassConfig.root, props.classConfig?.root),
       })"
+      :data-loading="false"
+      :to="props.to"
     >
-      <RouterLink :to="props.to">
-        <slot />
-      </RouterLink>
-    </InteractableElement>
+      <slot />
+    </RouterLink>
   </PrimitiveElement>
 </template>

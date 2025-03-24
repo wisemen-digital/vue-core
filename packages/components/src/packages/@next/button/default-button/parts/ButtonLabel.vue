@@ -26,16 +26,16 @@ const computedLabel = computed<string>(() => {
 </script>
 
 <template>
-  <AnimateSize>
+  <AnimateSize class="relative">
     <AnimatePresence
       :initial="false"
       mode="popLayout"
     >
       <Motion
         :key="computedLabel"
-        :initial="{ opacity: 0, y: -24 }"
-        :animate="{ opacity: 1, y: 0 }"
-        :exit="{ opacity: 0, y: 24 }"
+        :initial="{ opacity: 0, filter: 'blur(1px)' }"
+        :animate="{ opacity: 1, filter: 'blur(0)' }"
+        :exit="{ opacity: 0, filter: 'blur(1px)' }"
       >
         <span>
           {{ computedLabel }}
