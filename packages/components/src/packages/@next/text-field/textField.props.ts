@@ -1,12 +1,11 @@
 import type { Icon } from '@/icons/icons'
 import type {
   CustomizableElement,
-  FormElement,
   InteractableElement,
   PrimitiveElement,
 } from '@/utils/props.util'
 
-export interface TextFieldProps extends PrimitiveElement, InteractableElement, FormElement, CustomizableElement<'textField'> {
+export interface TextFieldProps extends PrimitiveElement, InteractableElement, CustomizableElement<'textField'> {
   /**
    * Whether the input is loading.
    * @default false

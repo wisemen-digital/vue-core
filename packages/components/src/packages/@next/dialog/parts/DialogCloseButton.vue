@@ -13,7 +13,7 @@ const { t } = useI18n()
       <IconButton
         :label="t('shared.close')"
         icon="close"
-        variant="tertiary-gray"
+        variant="tertiary"
         size="sm"
       />
     </slot>

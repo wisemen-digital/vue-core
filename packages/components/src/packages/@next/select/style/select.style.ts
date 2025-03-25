@@ -61,7 +61,7 @@ export const createSelectStyle = tv({
       .withCursor('cursor-pointer data-disabled:cursor-not-allowed')
       .withBorderRadius('rounded-sm')
       .withPadding('p-md')
-      .withSpacing('my-xxs first:my-0 last:my-0')
+      .withSpacing('not-last:mb-xxs')
       .withFlex('flex items-center justify-between')
       .withFontSize('text-sm')
       .withFontWeight('data-[state=checked]:font-medium')

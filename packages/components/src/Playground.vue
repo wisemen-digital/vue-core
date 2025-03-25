@@ -5,21 +5,29 @@ import {
   VcConfigProvider,
   VcThemeProvider,
 } from '@/components/index'
-import PhoneNumberField from '@/components/input-field/phone-number-field/PhoneNumberField.vue'
-import Button from '@/packages/@next/button/default-button/Button.vue'
-import IconButton from '@/packages/@next/button/icon-button/IconButton.vue'
-import Popover from '@/packages/@next/popover/Popover.vue'
-import SelectBase from '@/packages/@next/select/parts/SelectBase.vue'
-import SelectBaseSingle from '@/packages/@next/select/parts/SelectBaseSingle.vue'
+import Autocomplete from '@/packages/@next/autocomplete/Autocomplete.vue'
+import DialogContainer from '@/packages/@next/dialog/DialogContainer.vue'
 import SelectItem from '@/packages/@next/select/parts/SelectItem.vue'
-import SelectSeparator from '@/packages/@next/select/parts/SelectSeparator.vue'
 import Select from '@/packages/@next/select/Select.vue'
-import TextField from '@/packages/@next/text-field/TextField.vue'
-import { setupDefaultStyles } from '@/styling/setupDefaultStyles'
 
-const isLoading = ref<boolean>(false)
+const items = ref<string[]>([])
+const isFetchingItems = ref<boolean>(false)
 
-setupDefaultStyles()
+function onSearch(searchTerm: string): void {
+  if (searchTerm.length === 0) {
+    items.value = []
+
+    return
+  }
+
+  isFetchingItems.value = true
+
+  setTimeout(() => {
+    items.value = Array.from(Array.from({ length: 10 }), (_, i) => `${searchTerm} ${i + 1}`)
+
+    isFetchingItems.value = false
+  }, 200)
+}
 </script>
 
 <template>
@@ -28,124 +36,42 @@ setupDefaultStyles()
     teleport-target-selector="#test"
   >
     <VcThemeProvider appearance="light">
-      <div class="flex items-center justify-center h-screen bg-primary">
-        <div class="flex flex-col gap-md">
-          <div class="w-96 flex gap-24 flex-col items-end">
-            <Select
-              :model-value="null"
-              :display-fn="(v) => v"
-              :is-loading="false"
-              :is-disabled="isLoading"
-              :filter="{
-                isEnabled: true,
-                isInline: false,
-              }"
-              class="w-72"
-              icon-left="search"
-              placeholder="Search"
-            >
-              <template #base>
-                <SelectBase>
-                  <SelectBaseSingle>
-                    <template #right>
-                      <span class="ml-auto block text-xs bg-secondary rounded-md px-sm py-xxs border border-solid border-secondary font-medium text-primary">
-                        hier
-                      </span>
-                    </template>
-                  </SelectBaseSingle>
-                </SelectBase>
-              </template>
+      <div class="flex items-center justify-center h-screen gap-lg">
+        <Autocomplete
+          v-if="true"
+          :items="items"
+          :display-fn="(v) => v"
+          :is-loading="isFetchingItems"
+          icon-left="search"
+          class="w-72"
+          label="Autocomplete"
+          hint="Type something to search"
+          @search="onSearch"
+        />
 
-              <SelectItem
-                value="First item"
-              >
-                First item
-              </SelectItem>
-
-              <SelectSeparator />
-
-              <SelectItem
-                value="Second item"
-              >
-                Second item
-              </SelectItem>
-
-              <SelectItem
-                value="Third item"
-              >
-                Third item
-              </SelectItem>
-
-              <SelectItem
-                value="Fourth item"
-              >
-                Fourth item
-              </SelectItem>
-
-              <SelectItem
-                value="Fifth item"
-              >
-                Fifth item
-              </SelectItem>
-
-              <SelectItem
-                value="Sixth item"
-              >
-                Sixth item
-              </SelectItem>
-            </Select>
-
-            <Button
-              :is-loading="isLoading"
-              label="Create project"
-              icon-left="plus"
-              variant="secondary"
-              size="sm"
-            />
-
-            <Popover>
-              <template #trigger>
-                <IconButton
-                  :is-loading="isLoading"
-                  icon="filter"
-                  label="Content"
-                  variant="secondary"
-                />
-              </template>
-
-              <template #content>
-                <div class="w-96 h-40" />
-              </template>
-            </Popover>
-
-            <div class="grid grid-cols-2 gap-lg">
-              <div class="p-4xl">
-                <Button
-                  label="Toggle"
-                  variant="secondary"
-                  @click="isLoading = !isLoading"
-                />
-              </div>
-            </div>
-          </div>
-
-          <TextField
-            v-if="false"
-            :model-value="null"
-            :is-loading="false"
-            :is-disabled="false"
-            icon-left="search"
-            placeholder="Search"
-          />
-
-          <PhoneNumberField
-            v-if="false"
-            :model-value="null"
-          />
-        </div>
+        <Select
+          v-if="true"
+          :model-value="null"
+          :display-fn="(v) => v"
+          :filter="{
+            isEnabled: true,
+            isInline: true,
+          }"
+          hint="Select an item"
+          label="Select"
+          class="w-72"
+        >
+          <SelectItem
+            v-for="(item, itemIndex) of ['first', 'second', 'third']"
+            :key="itemIndex"
+            :value="item"
+          >
+            {{ item }}
+          </SelectItem>
+        </Select>
       </div>
-
       <div id="test" />
+      <DialogContainer />
     </VcThemeProvider>
   </VcConfigProvider>
 </template>

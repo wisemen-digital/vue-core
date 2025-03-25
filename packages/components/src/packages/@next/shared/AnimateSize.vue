@@ -8,7 +8,10 @@ const isAnimationEnabled = ref<boolean>(false)
 const { height, width } = useElementSize(contentRef)
 
 onMounted(() => {
-  isAnimationEnabled.value = true
+  // TODO: fix this
+  setTimeout(() => {
+    isAnimationEnabled.value = true
+  }, 50)
 })
 </script>
 

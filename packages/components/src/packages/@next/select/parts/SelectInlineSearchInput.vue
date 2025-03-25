@@ -15,6 +15,7 @@ const {
   searchInputPlaceholder,
   style,
 } = useInjectSelectContext()
+
 const listboxFilterRef = ref<InstanceType<typeof SelectSearchInput>>()
 
 function onInput(): void {

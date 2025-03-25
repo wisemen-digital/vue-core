@@ -26,18 +26,24 @@ export interface SelectProps<TValue extends SelectValue> extends
   PopperPropsWithArrowHiddenByDefault,
   CustomizableElement<'select'> {
   /**
+   * Controls the visibility of the dropdown.
+   * When set to `true`, the dropdown remains hidden.
+   * @default false
+   */
+  isDropdownHidden?: boolean
+  /**
    * Whether the select input should display a loading state.
    * This is useful when data is being fetched asynchronously.
    * @default false
    */
   isLoading?: boolean
   /**
-   * Determines whether the open/close state of the dropdown is controlled externally.
-   * If `true`, the dropdown will only open or close when explicitly controlled via props.
-   * If `false`, the dropdown state is managed internally.
+   * Determines whether the search term is controlled externally.
+   * If `true`, the search term will only be updated when explicitly controlled via props.
+   * If `false`, the search term is managed internally.
    * @default false
    */
-  isOpenControlled?: boolean
+  isSearchTermControlled?: boolean
   /**
    * A function that determines how selected options are displayed in the input field.
    * It receives the selected option as an argument and should return a string representation.
@@ -64,11 +70,6 @@ export interface SelectProps<TValue extends SelectValue> extends
      */
     fn?: SelectFilterFn<TValue>
   } | null
-  /**
-   * Placeholder text for the search input when filtering is enabled.
-   * @default 't("component.select.filter_placeholder")'
-   */
-  filterPlaceholder?: string | null
   /**
    * Icon displayed on the left side of the input field.
    * If `null`, no icon is displayed.
@@ -126,6 +127,13 @@ export interface SelectProps<TValue extends SelectValue> extends
 }
 
 export interface SelectItemProps {
+  /**
+   * Whether the option is disabled. If `true`, the option cannot be selected.
+   * @default false
+   */
   isDisabled?: boolean
+  /**
+   * The value of the option
+   */
   value: AcceptableValue
 }

@@ -25,6 +25,13 @@ const props = withDefaults(defineProps<PopoverProps>(), {
   popoverWidth: null,
 })
 
+const emit = defineEmits<{
+  autoFocusOnClose: [event: Event]
+  escapeKeyDown: [event: KeyboardEvent]
+  focusOutside: [event: CustomEvent]
+  interactOutside: [event: CustomEvent]
+}>()
+
 const isOpen = defineModel<boolean>('isOpen', {
   default: false,
   required: false,
@@ -34,11 +41,31 @@ const popoverStyle = computed<CreatePopoverStyle>(() => createPopoverStyle({}))
 
 const customClassConfig = useComponentClassConfig('popover', {})
 
+function onContentEscapeKeyDown(event: KeyboardEvent): void {
+  emit('escapeKeyDown', event)
+}
+
+function onContentFocusOutside(event: CustomEvent): void {
+  emit('focusOutside', event)
+}
+
+function onContentInteractOutside(event: CustomEvent): void {
+  emit('interactOutside', event)
+}
+
+function onAutoFocusOnClose(event: Event): void {
+  emit('autoFocusOnClose', event)
+}
+
 useProvidePopoverContext({
   ...toComputedRefs(props),
   isOpen: computed<boolean>(() => isOpen.value),
   customClassConfig,
   style: popoverStyle,
+  onAutoFocusOnClose,
+  onContentEscapeKeyDown,
+  onContentFocusOutside,
+  onContentInteractOutside,
 })
 </script>
 

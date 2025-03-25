@@ -12,6 +12,10 @@ interface PopoverContext extends PropsToComputed<PopoverProps> {
   isOpen: ComputedRef<boolean>
   customClassConfig: ComputedRef<ClassConfig<'popover'>>
   style: ComputedRef<CreatePopoverStyle>
+  onAutoFocusOnClose: (event: Event) => void
+  onContentEscapeKeyDown: (event: KeyboardEvent) => void
+  onContentFocusOutside: (event: CustomEvent) => void
+  onContentInteractOutside: (event: CustomEvent) => void
 }
 
 export const [

@@ -10,7 +10,9 @@ import SelectPopoverTrigger from '@/packages/@next/select/parts/SelectPopoverTri
 import { useInjectSelectContext } from '@/packages/@next/select/select.context'
 
 const {
+  hasInlineSearchInput,
   isArrowVisible,
+  isDropdownHidden,
   isDropdownVisible,
   popoverAlign,
   popoverCollisionPaddingInPx,
@@ -19,12 +21,20 @@ const {
   popoverSide,
   popoverWidth,
   setIsDropdownVisible,
+  onDropdownEscapeKeyDown,
+  onDropdownInteractOutside,
 } = useInjectSelectContext()
+
+function onAutoFocusOnClose(event: Event): void {
+  if (hasInlineSearchInput.value) {
+    event.preventDefault()
+  }
+}
 </script>
 
 <template>
   <PopoverRoot
-    :is-open="isDropdownVisible"
+    :is-open="isDropdownVisible && !isDropdownHidden"
     :is-arrow-hidden="!isArrowVisible"
     :align="popoverAlign"
     :popover-align="popoverAlign"
@@ -34,6 +44,9 @@ const {
     :popover-side="popoverSide"
     :popover-width="popoverWidth"
     @update:is-open="setIsDropdownVisible"
+    @escape-key-down="onDropdownEscapeKeyDown"
+    @interact-outside="onDropdownInteractOutside"
+    @auto-focus-on-close="onAutoFocusOnClose"
   >
     <PopoverAnchor>
       <SelectPopoverTrigger />

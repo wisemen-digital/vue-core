@@ -25,6 +25,9 @@ interface SelectContext extends PropsToComputed<SelectProps<any>> {
   setIsDropdownVisible: (value: boolean) => void
   style: ComputedRef<CreateSelectStyle>
   virtualListFilteredItems: ComputedRef<unknown[]>
+  onDropdownEscapeKeyDown: () => void
+  onDropdownInteractOutside: (event: CustomEvent) => void
+  onSelectItem: () => void
 }
 
 export const [

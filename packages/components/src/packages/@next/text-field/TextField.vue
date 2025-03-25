@@ -9,8 +9,9 @@ import TextFieldLoader from '@/packages/@next/text-field/parts/TextFieldLoader.v
 import TextFieldRoot from '@/packages/@next/text-field/parts/TextFieldRoot.vue'
 import type { TextFieldEmits, TextFieldProps } from '@/packages/@next/text-field/textField.props'
 import type { TextFieldSlots } from '@/packages/@next/text-field/textField.slots'
+import type { FormElement } from '@/utils/props.util'
 
-const props = defineProps<TextFieldProps>()
+const props = defineProps<TextFieldProps & FormElement>()
 const emit = defineEmits<TextFieldEmits>()
 
 defineSlots<TextFieldSlots>()

@@ -23,6 +23,13 @@ const props = withDefaults(defineProps<PopoverProps>(), {
   popoverWidth: null,
 })
 
+const emit = defineEmits<{
+  autoFocusOnClose: [event: Event]
+  escapeKeyDown: [event: KeyboardEvent]
+  focusOutside: [event: CustomEvent]
+  interactOutside: [event: CustomEvent]
+}>()
+
 const isOpen = defineModel<boolean>('isOpen', {
   default: false,
   required: false,
@@ -33,6 +40,10 @@ const isOpen = defineModel<boolean>('isOpen', {
   <PopoverRoot
     v-bind="props"
     v-model:is-open="isOpen"
+    @escape-key-down="emit('escapeKeyDown', $event)"
+    @focus-outside="emit('focusOutside', $event)"
+    @interact-outside="emit('interactOutside', $event)"
+    @auto-focus-on-close="emit('autoFocusOnClose', $event)"
   >
     <slot>
       <PopoverAnchor>

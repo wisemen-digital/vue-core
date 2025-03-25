@@ -16,6 +16,7 @@ import {
   useComponentClassConfig,
 } from '@/customClassVariants'
 import { useProvideSelectContext } from '@/packages/@next/select/select.context'
+import type { SelectEmits } from '@/packages/@next/select/select.emits'
 import type { SelectProps, SelectValue } from '@/packages/@next/select/select.props'
 import {
   type CreateSelectStyle,
@@ -30,8 +31,10 @@ const props = withDefaults(defineProps<SelectProps<TValue>>(), {
   testId: null,
   isArrowVisible: false,
   isDisabled: false,
+  isDropdownHidden: false,
   isLoading: false,
   isOpenControlled: false,
+  isSearchTermControlled: false,
   classConfig: null,
   filter: null,
   filterFn: null,
@@ -50,6 +53,9 @@ const props = withDefaults(defineProps<SelectProps<TValue>>(), {
   virtualList: null,
 })
 
+// TODO: emit focus & blur events
+const emit = defineEmits<SelectEmits>()
+
 const modelValue = defineModel<TValue>({
   required: true,
 })
@@ -59,13 +65,19 @@ const searchTerm = defineModel<string>('searchTerm', {
   required: false,
 })
 
+const isDropdownVisible = defineModel<boolean>('isOpen', {
+  default: false,
+  required: false,
+})
+
 const { t } = useI18n()
+
+const rootRef = ref<InstanceType<typeof InteractableElement> | null>(null)
 
 // We need to track every item in the listbox to determine if it should be displayed or not
 const allItems = ref<Map<string, unknown>>(new Map())
 const allGroups = ref<Map<string, Set<string>>>(new Map())
 
-const isDropdownVisible = ref<boolean>(false)
 const inlinesearchInputElementRef = ref<HTMLInputElement | null>(null)
 
 // A search term is always present when an option is selected
@@ -80,6 +92,8 @@ const selectStyle = computed<CreateSelectStyle>(() => createSelectStyle({}))
 const customClassConfig = useComponentClassConfig('select', {})
 
 const isMultiple = computed<boolean>(() => Array.isArray(modelValue.value))
+
+const hasSelectRootFocusIn = ref<boolean>(false)
 
 const remainOpenOnValueChange = computed<boolean>(() => (
   props.remainOpenOnValueChange ?? isMultiple.value
@@ -148,19 +162,9 @@ const searchInputPlaceholder = computed<string>(() => {
 })
 
 function setIsDropdownVisible(value: boolean): void {
-  if (props.isOpenControlled) {
-    return
+  if (!props.isOpenControlled) {
+    isDropdownVisible.value = value
   }
-
-  isDropdownVisible.value = value
-}
-
-function onModelValueChange(): void {
-  if (remainOpenOnValueChange.value) {
-    return
-  }
-
-  setIsDropdownVisible(false)
 }
 
 function resetSearchTerm(): void {
@@ -175,7 +179,9 @@ function resetSearchTerm(): void {
 
 function focusInlineSearchInputElement(): void {
   if (hasInlineSearchInput.value) {
-    inlinesearchInputElementRef.value?.focus()
+    setTimeout(() => {
+      inlinesearchInputElementRef.value?.focus()
+    })
   }
 }
 
@@ -184,12 +190,62 @@ function onOpenDropdown(): void {
 }
 
 function onCloseDropdown(): void {
-  resetSearchTerm()
-  hasInteractedWithInlineSearchInput.value = false
+  if (!props.isSearchTermControlled) {
+    resetSearchTerm()
+  }
 
+  hasInteractedWithInlineSearchInput.value = false
+}
+
+function onRootFocusIn(): void {
+  if (!hasSelectRootFocusIn.value) {
+    onFocus()
+  }
+
+  hasSelectRootFocusIn.value = true
+}
+
+function onRootBlur(): void {
   setTimeout(() => {
-    focusInlineSearchInputElement()
+    const isFocusInsideRoot = rootRef.value?.$el.contains(document.activeElement)
+
+    if (!isFocusInsideRoot && !isDropdownVisible.value) {
+      hasSelectRootFocusIn.value = false
+
+      onBlur()
+    }
   })
+}
+
+function onDropdownEscapeKeyDown(): void {
+  focusInlineSearchInputElement()
+}
+
+function onFocus(): void {
+  emit('focus')
+}
+
+function onBlur(): void {
+  emit('blur')
+}
+
+function onDropdownInteractOutside(event: CustomEvent): void {
+  const eventTargetIsSearchInput = event.target === inlinesearchInputElementRef.value
+
+  if (eventTargetIsSearchInput) {
+    event.preventDefault()
+  }
+  else {
+    onBlur()
+  }
+}
+
+function onSelectItem(): void {
+  focusInlineSearchInputElement()
+
+  if (!remainOpenOnValueChange.value) {
+    setIsDropdownVisible(false)
+  }
 }
 
 watch(isDropdownVisible, (isDropdownVisible) => {
@@ -200,8 +256,6 @@ watch(isDropdownVisible, (isDropdownVisible) => {
     onCloseDropdown()
   }
 })
-
-watch(modelValue, onModelValueChange)
 
 useProvideSelectContext({
   ...toComputedRefs(props),
@@ -222,6 +276,9 @@ useProvideSelectContext({
   setIsDropdownVisible,
   style: selectStyle,
   virtualListFilteredItems,
+  onDropdownEscapeKeyDown,
+  onDropdownInteractOutside,
+  onSelectItem,
 })
 </script>
 
@@ -232,12 +289,15 @@ useProvideSelectContext({
   >
     <!-- TODO: data-is-invalid -->
     <InteractableElement
+      ref="rootRef"
       :is-disabled="props.isDisabled"
       :aria-disabled="props.isLoading"
       :aria-busy="props.isLoading"
       :data-has-icon-left="iconLeft !== null"
       :data-has-icon-right="iconRight !== null"
       :data-is-disabled="props.isDisabled"
+      @focusin="onRootFocusIn"
+      @focusout="onRootBlur"
     >
       <RekaListboxRoot
         v-model="modelValue"

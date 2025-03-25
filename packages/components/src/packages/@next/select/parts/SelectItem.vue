@@ -29,6 +29,7 @@ const {
   setIsDropdownVisible,
   style,
   virtualList,
+  onSelectItem,
 } = useInjectSelectContext()
 
 const selectGroupContext = useInjectSelectGroupContext(null)
@@ -55,6 +56,8 @@ function onSelect(e: SelectItemSelectEvent<unknown>): void {
   if (isAlreadySelected && !remainOpenOnValueChange.value) {
     setIsDropdownVisible(false)
   }
+
+  onSelectItem()
 }
 
 onMounted(() => {

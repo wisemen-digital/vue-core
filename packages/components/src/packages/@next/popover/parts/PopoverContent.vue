@@ -17,6 +17,10 @@ const {
   popoverOffsetInPx,
   popoverSide,
   popoverWidth,
+  onAutoFocusOnClose,
+  onContentEscapeKeyDown,
+  onContentFocusOutside,
+  onContentInteractOutside,
 } = useInjectPopoverContext()
 </script>
 
@@ -39,6 +43,10 @@ const {
         :side-offset="popoverOffsetInPx"
         class="data-[content-width=anchor-width]:w-(--reka-popover-trigger-width) data-[content-width=available-width]:w-(--reka-popover-content-available-width)"
         sticky="always"
+        @escape-key-down="onContentEscapeKeyDown"
+        @focus-outside="onContentFocusOutside"
+        @interact-outside="onContentInteractOutside"
+        @close-auto-focus="onAutoFocusOnClose"
       >
         <slot />
       </RekaPopoverContent>
