@@ -17,12 +17,6 @@ export class StyleBuilder {
     return this
   }
 
-  public withBase(classes: string): this {
-    this.classes.push(classes)
-
-    return this
-  }
-
   public withBorder(border: string): this {
     this.with(border)
 
@@ -47,18 +41,6 @@ export class StyleBuilder {
     return this
   }
 
-  public withCursor(cursor: string): this {
-    this.with(cursor)
-
-    return this
-  }
-
-  public withFlex(flex: string): this {
-    this.with(flex)
-
-    return this
-  }
-
   public withFontColor(fontColor: string): this {
     this.with(fontColor)
 
@@ -79,18 +61,6 @@ export class StyleBuilder {
 
   public withGap(gap: string): this {
     this.with(gap)
-
-    return this
-  }
-
-  public withGrid(grid: string): this {
-    this.with(grid)
-
-    return this
-  }
-
-  public withHeight(height: string): this {
-    this.with(height)
 
     return this
   }
@@ -143,20 +113,8 @@ export class StyleBuilder {
     return this
   }
 
-  public withTransition(transition: string): this {
-    this.with(transition)
-
-    return this
-  }
-
   public withTranslate(translate: string): this {
     this.with(translate)
-
-    return this
-  }
-
-  public withZIndex(zIndex: string): this {
-    this.with(zIndex)
 
     return this
   }

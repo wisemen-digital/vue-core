@@ -5,6 +5,7 @@ import {
   computed,
   onMounted,
   ref,
+  watch,
 } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -69,7 +70,7 @@ const toast = useToast()
 
 const isLoading = ref<boolean>(false)
 
-const selectedPlace = ref<Place | null>(getDefaultPlace())
+const selectedPlace = ref<Place | null>(null)
 const predictions = ref<AutocompletePrediction[]>([])
 
 const autocompleteOptions = computed<SelectOption<Place>[]>(() => (
@@ -126,6 +127,14 @@ async function fetchPredictions(searchTerm: string): Promise<AutocompletePredict
   return []
 }
 
+function isEmptyAddress(address: Address): boolean {
+  return address.street.length === 0
+    && address.streetNumber.length === 0
+    && address.postalCode.length === 0
+    && address.city.length === 0
+    && address.country.length === 0
+}
+
 function onSearch(searchTerm: string): void {
   if (searchTerm === null || searchTerm.length === 0) {
     predictions.value = []
@@ -135,17 +144,6 @@ function onSearch(searchTerm: string): void {
 
   isLoading.value = true
   debounceSearch(searchTerm)
-}
-
-function getDefaultPlace(): Place | null {
-  if (props.modelValue === null) {
-    return null
-  }
-
-  return {
-    id: '',
-    label: formatAddressObjectToString(props.modelValue),
-  }
 }
 
 function displayFn(place: Place): string {
@@ -215,6 +213,21 @@ function getCoordinates(place: PlaceResult): AddressCoordinates {
 function findAddressComponent(place: PlaceResult, type: AddressComponentType): GeocoderAddressComponent | null {
   return place?.address_components?.find((component) => component.types[0] === type) ?? null
 }
+
+watch(() => props.modelValue, (value) => {
+  if (value === null || isEmptyAddress(value)) {
+    selectedPlace.value = null
+
+    return
+  }
+
+  selectedPlace.value = {
+    id: '',
+    label: formatAddressObjectToString(value),
+  }
+}, {
+  immediate: true,
+})
 
 onMounted(async () => {
   const { googleMapsApiKey } = globalConfigContext

@@ -16,12 +16,14 @@
     "pub:release-query": "cd packages/query && pnpm pub:release --no-git-checks",
     "lint": "pnpm run -r lint",
     "dev": "turbo run dev",
+    "test": "pnpm run -r test",
     "type-check": "pnpm run -r type-check",
-    "precommit": "pnpm run -r lint && pnpm run -r type-check && pnpm run -r test && pnpm run -r docs:gen"
+    "precommit": "pnpm run -r lint --fix && pnpm run -r type-check && pnpm run -r test && pnpm run -r docs:gen"
   },
   "devDependencies": {
-    "rimraf": "5.0.7",
     "turbo": "^2.4.4",
-    "vitest": "^1.6.1"
+    "radix-vue": "1.9.9",
+    "rimraf": "6.0.1",
+    "vitest": "2.1.3"
   }
 }

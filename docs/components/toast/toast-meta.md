@@ -4,8 +4,9 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| **toast*** | `Toast` | The toast to display. |  |
-| **type*** | `"error" \| "info" \| "success"` | The type of the toast. |  |
+| isFullWidth | `boolean` | Whether the tabs should take up the full width of the container. | `false` |
+| items* | `TabItem[]` | All the tabs to be rendered. |  |
+| tab* | `TabItem` |  |  |
 
 
 ## Events

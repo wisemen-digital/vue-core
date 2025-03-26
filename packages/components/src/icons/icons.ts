@@ -1,37 +1,37 @@
 import type { Component } from 'vue'
 
 export interface BaseIcons {
-  alertCircle: Component
-  arrowDown: Component
-  arrowLeft: Component
-  arrowRight: Component
-  arrowUp: Component
-  check: Component
-  checkboxIndeterminate: Component
-  checkboxIndicator: Component
-  chevronDown: Component
-  chevronLeft: Component
-  chevronLeftDouble: Component
-  chevronRight: Component
-  chevronRightDouble: Component
-  chevronUp: Component
-  close: Component
-  dateFieldIconRight: Component
-  eye: Component
-  eyeOff: Component
-  filter: Component
-  infoCircle: Component
-  minus: Component
-  passwordFieldEye: Component
-  passwordFieldEyeOff: Component
-  plus: Component
-  search: Component
-  selectIconRight: Component
-  settings: Component
-  switchVertical: Component
-  tableNoData: Component
-  translate: Component
-  trash: Component
+  alertCircle: Promise<Component>
+  arrowDown: Promise<Component>
+  arrowLeft: Promise<Component>
+  arrowRight: Promise<Component>
+  arrowUp: Promise<Component>
+  check: Promise<Component>
+  checkboxIndeterminate: Promise<Component>
+  checkboxIndicator: Promise<Component>
+  chevronDown: Promise<Component>
+  chevronLeft: Promise<Component>
+  chevronLeftDouble: Promise<Component>
+  chevronRight: Promise<Component>
+  chevronRightDouble: Promise<Component>
+  chevronUp: Promise<Component>
+  close: Promise<Component>
+  dateFieldIconRight: Promise<Component>
+  eye: Promise<Component>
+  eyeOff: Promise<Component>
+  filter: Promise<Component>
+  infoCircle: Promise<Component>
+  minus: Promise<Component>
+  passwordFieldEye: Promise<Component>
+  passwordFieldEyeOff: Promise<Component>
+  plus: Promise<Component>
+  search: Promise<Component>
+  selectIconRight: Promise<Component>
+  settings: Promise<Component>
+  switchVertical: Promise<Component>
+  tableNoData: Promise<Component>
+  translate: Promise<Component>
+  trash: Promise<Component>
 }
 
 export interface Icons extends BaseIcons {}

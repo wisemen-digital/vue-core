@@ -54,7 +54,6 @@ export interface UseDialogOptions<TComponent extends Component> {
 }
 
 export interface UseDialogReturnType<TComponent extends Component> {
-  isOpen: (id?: string) => boolean
   /**
    * Close the dialog
    */

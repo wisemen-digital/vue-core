@@ -1,5 +1,11 @@
 # Changelog
 
+# [1.0.0-alpha.41]
+
+### Bug fixes
+- **AddressAutocomplete**
+  - Fix reactivity issue
+
 # [1.0.0-alpha.33]
 
 ### Bug Fixes

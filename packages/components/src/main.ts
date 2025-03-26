@@ -1,6 +1,5 @@
 import '@fontsource-variable/inter'
 import '@/styles/index.css'
-import '@/icons/icons'
 
 import { createApp } from 'vue'
 import { createI18n } from 'vue-i18n'
@@ -14,14 +13,10 @@ const i18n = createI18n({
     en: {
       shared: {
         close: 'Close',
-        loading: 'Loading',
       },
       component: {
         address_autocomplete: {
           failed_to_fetch: 'Failed to fetch predictions.',
-        },
-        button: {
-          loading_label: 'Loading...',
         },
         keyboard_shortcut: {
           then: 'then',
@@ -36,8 +31,7 @@ const i18n = createI18n({
         },
         select: {
           empty_text: 'No results found for \'{searchTerm}\'.',
-          remove_value: 'Remove value',
-          search_input_placeholder: 'Search...',
+          search_placeholder: 'Search...',
         },
         table: {
           no_data: {

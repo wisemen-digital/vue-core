@@ -1,12 +1,12 @@
 import '@wisemen/vue-core/style.css'
-import DefaultTheme from 'vitepress/theme'
 import './main.css'
 import './override.css'
 
-import ComponentPreview from '@docs/.vitepress/components/ComponentPreview.vue'
 import BulletList from '@docs/.vitepress/components/BulletList.vue'
-import { createI18n } from 'vue-i18n'
+import ComponentPreview from '@docs/.vitepress/components/ComponentPreview.vue'
 import { setupDefaultStyles } from '@wisemen/vue-core'
+import DefaultTheme from 'vitepress/theme'
+import { createI18n } from 'vue-i18n'
 
 export const i18nPlugin = createI18n({
   fallbackWarn: false,
@@ -45,11 +45,16 @@ export const i18nPlugin = createI18n({
             description: 'There are no results matching your search criteria.',
           },
           page_count: '{startIndex} - {endIndex} of {totalItems}',
+          items: 'items',
+          next: 'Next',
+          of: 'of',
+          previous: 'Previous',
+          results_might_be_hidden_because_of_active_filters: 'Results might be hidden because of {count} active filter | Results might be hidden because of {count} active filters',
         },
         tag: {
           remove: 'Remove',
         },
-      }
+      },
     },
   },
   missingWarn: false,

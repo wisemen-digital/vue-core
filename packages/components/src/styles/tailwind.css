@@ -133,7 +133,7 @@
   --background-color-disabled-subtle: var(--bg-disabled-subtle);
   --background-color-overlay: var(--bg-overlay);
   --background-color-brand-primary: var(--bg-brand-primary);
-  --background-color-brand-primary-alt: var(--bg-brand-primary-alt);
+  --background-color-brand-alt: var(--bg-brand-primary-alt);
   --background-color-brand-secondary: var(--bg-brand-secondary);
   --background-color-brand-solid: var(--bg-brand-solid);
   --background-color-brand-solid-hover: var(--bg-brand-solid-hover);
@@ -158,6 +158,15 @@
   --border-color-brand-alt: var(--border-brand-alt);
   --border-color-error: var(--border-error);
   --border-color-error-subtle: var(--border-error-subtle);
+}
+
+@keyframes shimmer {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(200%);
+  }
 }
 
 @theme {
@@ -319,16 +328,4 @@
   --shadow-lg: 0 12px 16px -4px rgba(16, 24, 40, 0.08), 0px 12px 16px -4px rgba(16, 24, 40, 0.03);
   --shadow-table-sticky-left-column: 2px 0px 3px -2px rgba(0, 0, 0, 0.1);
   --shadow-table-sticky-right-column: -2px 0px 3px -2px rgba(0, 0, 0, 0.1);
-  --shadow-button: 0px 0px 0px 0px rgba(10, 13, 18, 0.18) inset, 
-                   0px -1px 0px 0px rgba(10, 13, 18, 0.05) inset, 
-                   0px 1px 2px 0px rgba(10, 13, 18, 0.05);
-}
-
-@keyframes shimmer {
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(200%);
-  }
 }
