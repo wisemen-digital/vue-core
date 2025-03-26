@@ -1,6 +1,0 @@
-export { type FormFieldProps as VcFormFieldPropsNext } from './formField.props'
-export { default as FormField } from './FormField.vue'
-export { default as FormFieldError } from './parts/FormFieldError.vue'
-export { default as FormFieldHint } from './parts/FormFieldHint.vue'
-export { default as FormFieldLabel } from './parts/FormFieldLabel.vue'
-export { default as FormFieldRoot } from './parts/FormFieldRoot.vue'

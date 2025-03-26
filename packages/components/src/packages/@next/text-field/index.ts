@@ -1,7 +1,0 @@
-export { default as TextFieldIconLeft } from './parts/TextFieldIconLeft.vue'
-export { default as TextFieldIconRight } from './parts/TextFieldIconRight.vue'
-export { default as TextFieldInput } from './parts/TextFieldInput.vue'
-export { default as TextFieldLoader } from './parts/TextFieldLoader.vue'
-export { default as TextFieldRoot } from './parts/TextFieldRoot.vue'
-export { type TextFieldProps as VcTextFieldPropsNext } from './textField.props'
-export { default as TextField } from './TextField.vue'
