@@ -2,7 +2,7 @@
   "name": "docs",
   "type": "module",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is the documentation for the Wisemen vue-core library.",
   "author": "",
   "license": "ISC",
   "keywords": [],
@@ -14,11 +14,11 @@
     "docs:preview": "vitepress preview",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "type-check": "vue-tsc --build --force",
+    "type-check": "vue-tsc --noEmit",
     "docs:gen": "vue-tsc --noEmit --project tsconfig.autogen.json && tsx scripts/autogen.ts"
   },
   "peerDependencies": {
-    "vue": "3.4.35",
+    "vue": "3.5.12",
     "vue-i18n": "9.13.1"
   },
   "dependencies": {
@@ -29,20 +29,22 @@
   },
   "devDependencies": {
     "@babel/traverse": "7.24.8",
+    "@tailwindcss/postcss": "4.0.0-beta.8",
+    "@tailwindcss/vite": "4.0.0-beta.4",
     "@types/babel__traverse": "7.20.6",
     "@types/dom-view-transitions": "1.0.4",
     "@types/markdown-it": "14.1.1",
     "@types/node": "20.14.2",
-    "@wisemen/eslint-config-vue": "0.1.5",
-    "eslint": "9.10.0",
+    "@wisemen/eslint-config-vue": "1.0.0-next.0",
+    "eslint": "9.4.0",
     "fast-glob": "3.3.2",
     "markdown-it": "14.1.0",
     "postcss": "8.4.38",
     "postcss-prefix-selector": "1.16.1",
-    "tailwindcss": "3.4.4",
+    "tailwindcss": "4.0.0-beta.4",
     "ts-node": "10.9.2",
     "tsx": "4.16.0",
-    "vitepress": "1.2.3",
+    "vitepress": "1.6.3",
     "vue-component-meta": "2.0.24",
     "vue-tsc": "2.0.21"
   }

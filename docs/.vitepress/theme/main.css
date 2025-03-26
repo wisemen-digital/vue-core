@@ -1,0 +1,9 @@
+@import '@wisemen/vue-core/style.css' layer(base);
+@import './tailwind.css';
+@import './colors.css'; 
+@import './themes/default.css';
+
+pre {
+  max-height: 500px;
+  overflow: auto;
+}

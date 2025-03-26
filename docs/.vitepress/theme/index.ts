@@ -1,86 +1,69 @@
 import '@wisemen/vue-core/style.css'
-import './index.scss'
+import DefaultTheme from 'vitepress/theme'
+import './main.css'
 import './override.css'
 
-import type { Config } from '@wisemen/vue-core'
-import { defineConfig } from '@wisemen/vue-core'
-import DefaultTheme from 'vitepress/theme'
+import ComponentPreview from '@docs/.vitepress/components/ComponentPreview.vue'
+import BulletList from '@docs/.vitepress/components/BulletList.vue'
 import { createI18n } from 'vue-i18n'
-
-const globalConfig: Config = {
-  googleMapsApiKey: 'AIzaSyATX2fY3BZwaKeURsQhwpEVLmLRr27s4vw',
-}
+import { setupDefaultStyles } from '@wisemen/vue-core'
 
 export const i18nPlugin = createI18n({
   fallbackWarn: false,
   legacy: false,
   messages: {
     en: {
-      components: {
-        autocomplete: {
-          no_results_found: 'No results found',
-        },
-        editable: {
-          edit: 'Edit',
-          submit: 'Submit',
-          cancel: 'Cancel',
+      shared: {
+        close: 'Close',
+      },
+      component: {
+        address_autocomplete: {
+          failed_to_fetch: 'Failed to fetch predictions.',
         },
         keyboard_shortcut: {
           then: 'then',
         },
+        number_field: {
+          decrement: 'Decrement',
+          increment: 'Increment',
+        },
+        password_field: {
+          hide_password: 'Hide password',
+          show_password: 'Show password',
+        },
+        select: {
+          empty_text: 'No results found for \'{searchTerm}\'.',
+          search_placeholder: 'Search...',
+        },
         table: {
-          clear_filter_filters: 'Clear filter | Clear {count} filters',
-          clear_filters: 'Clear filters',
-          empty_state: {
-            no_data: {
-              message: 'There is no data to display at this moment.',
-              title: 'No items found',
-            },
-            no_results: {
-              message: 'Your query did not match any results. Try changing your filters or clearing them.',
-              title: 'No results found',
-            },
+          no_data: {
+            title: 'No data',
+            description: 'There is currently no data to display.',
           },
-          items: 'items',
-          next: 'Next',
-          of: 'of',
-          previous: 'Previous',
-          results_might_be_hidden_because_of_active_filters: 'Results might be hidden because of {count} active filter | Results might be hidden because of {count} active filters',
+          no_results: {
+            title: 'No results',
+            description: 'There are no results matching your search criteria.',
+          },
+          page_count: '{startIndex} - {endIndex} of {totalItems}',
         },
-        calendar: {
-          select: 'Select',
-          cancel: 'Cancel',
+        tag: {
+          remove: 'Remove',
         },
-      },
-      error: {
-        default_error: {
-          title: 'Try again later',
-          description: 'Something went wrong.',
-        },
-      },
+      }
     },
   },
   missingWarn: false,
 })
 
 const theme: typeof DefaultTheme = {
-  ...DefaultTheme,
+  Layout: DefaultTheme.Layout,
   enhanceApp(ctx) {
-    // Add global properties
-    // eslint-disable-next-line node/prefer-global/process
-    if (process.env.NODE_ENV === 'development') {
-      // @ts-expect-error - temp work
-      globalThis.__VUE_PROD_DEVTOOLS__ = true
-    }
-    else {
-      // @ts-expect-error - temp work
-      globalThis.__VUE_PROD_DEVTOOLS__ = false
-    }
-
     ctx.app.use(i18nPlugin as any)
+    ctx.app.component('ComponentPreview', ComponentPreview)
+    ctx.app.component('BulletList', BulletList)
     DefaultTheme.enhanceApp(ctx)
 
-    defineConfig(globalConfig)
+    setupDefaultStyles()
   },
 }
 

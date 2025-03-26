@@ -2,564 +2,112 @@ import { resolve } from 'node:path'
 
 import { defineConfig } from 'vitepress'
 
+import ComponentPreviewPlugin from './plugins/ComponentPreview'
+
+const pkg = require('../../packages/components/package.json')
+
 const guide = [
   {
     link: '/guide/getting-started',
     text: 'Getting started',
   },
   {
-    link: '/guide/cli',
-    text: 'CLI',
+    link: '/guide/extending-icons',
+    text: 'Extending icons',
+  },
+  {
+    link: '/guide/styling',
+    text: 'Styling API',
   },
 ]
 
-const query = [
+const components = [
   {
-    link: '/query/getting-started',
-    text: 'Getting started',
-  },
-]
-
-const docs = [
-  {
-    collapsed: true,
+    text: 'Buttons',
     items: [
-      {
-        link: '/components/accordion/app-accordion',
-        text: 'AppAccordion',
-      },
+      { text: 'Button', link: '/components/button/button' },
+      { text: 'Icon Button', link: '/components/icon-button/icon-button' },
+      { text: 'Router Link Button', link: '/components/router-link-button/router-link-button' },
+      { text: 'Toggle', link: '/components/toggle/toggle' },
     ],
-    text: 'Accordion',
   },
   {
-    collapsed: true,
+    text: 'Form Utilities',
     items: [
-      {
-        link: '/components/address/form-address-autocomplete',
-        text: 'FormAddressAutocomplete',
-      },
+      { text: 'Input Field', link: '/components/input-field/input-field' },
+      { text: 'Input Field Error', link: '/components/input-field-error/input-field-error' },
+      { text: 'Input Field Hint', link: '/components/input-field-hint/input-field-hint' },
+      { text: 'Input Field Label', link: '/components/input-field-label/input-field-label' },
     ],
-    text: 'Address',
   },
   {
-    collapsed: true,
+    text: 'Form Components',
     items: [
-      {
-        link: '/components/avatar/app-avatar',
-        text: 'AppAvatar',
-      },
+      { text: 'Checkbox', link: '/components/checkbox/checkbox' },
+      { text: 'Checkbox Group', link: '/components/checkbox-group/checkbox-group' },
+      { text: 'Date Field', link: '/components/date-field/date-field' },
+      { text: 'Number Field', link: '/components/number-field/number-field' },
+      { text: 'Password Field', link: '/components/password-field/password-field' },
+      { text: 'Phone Number Field', link: '/components/phone-number-field/phone-number-field' },
+      { text: 'Radio Group', link: '/components/radio-group/radio-group' },
+      { text: 'Select', link: '/components/select/select' },
+      { text: 'Switch', link: '/components/switch/switch' },
+      { text: 'Text Field', link: '/components/text-field/text-field' },
+      { text: 'Textarea', link: '/components/textarea/textarea' },
     ],
-
-    text: 'Avatar',
   },
   {
-    collapsed: true,
+    text: 'Overlays & Popups',
     items: [
-      {
-        link: '/components/badge/app-badge',
-        text: 'AppBadge',
-      },
+      { text: 'Dialog', link: '/components/dialog/dialog' },
+      { text: 'Drawer', link: '/components/drawer/drawer' },
+      { text: 'Dropdown Menu', link: '/components/dropdown-menu/dropdown-menu' },
+      { text: 'Popover', link: '/components/popover/popover' },
+      { text: 'Tooltip', link: '/components/tooltip/tooltip' },
+      { text: 'Toast', link: '/components/toast/toast' },
     ],
-
-    text: 'Badge',
   },
   {
-    collapsed: true,
+    text: 'Navigation & Layout',
     items: [
-      {
-        link: '/components/breadcrumbs/app-breadcrumbs',
-        text: 'AppBreadcrumbs',
-      },
+      { text: 'Breadcrumbs', link: '/components/breadcrumbs/breadcrumbs' },
+      { text: 'Tabs', link: '/components/tabs/tabs' },
+      { text: 'Table', link: '/components/table/table' },
+      { text: 'Table Pagination', link: '/components/table/table-pagination' },
     ],
-    text: 'Breadcrumbs',
+  },
+  // {
+  //   text: 'Keyboard',
+  //   items: [
+  //     { text: 'Keyboard Shortcut', link: '/components/keyboard/keyboard-shortcut' },
+  //     { text: 'Keyboard Shortcut Provider', link: '/components/keyboard/keyboard-shortcut-provider' }
+  //   ]
+  // },
+  // {
+  //   text: 'Autocomplete',
+  //   items: [
+  //     { text: 'Autocomplete', link: '/components/autocomplete/autocomplete' },
+  //     { text: 'Address Autocomplete', link: '/components/autocomplete/address-autocomplete' },
+  //   ]
+  // },
+  {
+    text: 'Other display components',
+    items: [
+      { text: 'Calendar', link: '/components/calendar/calendar' },
+    ],
   },
   {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/button/app-button',
-        text: 'AppButton',
-      },
-      {
-        link: '/components/button/app-icon-button',
-        text: 'AppIconButton',
-      },
-      {
-        link: '/components/button/app-router-link-button',
-        text: 'AppRouterLinkButton',
-      },
-      {
-        link: '/components/button/app-unstyled-button',
-        text: 'AppUnstyledButton',
-      },
-    ],
-    text: 'Button',
-  },
-  {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/checkbox/form-checkbox',
-        text: 'FormCheckbox',
-      },
-      {
-        link: '/components/checkbox/form-checkbox-group',
-        text: 'FormCheckboxGroup',
-      },
-    ],
-    text: 'Checkbox',
-  },
-  {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/combobox/app-combobox',
-        text: 'AppCombobox',
-      },
-      {
-        link: '/components/combobox/app-multi-combobox',
-        text: 'AppMultiCombobox',
-      },
-      {
-        link: '/components/combobox/app-tags-combobox',
-        text: 'AppTagsCombobox',
-      },
-      {
-        link: '/components/combobox/form-combobox',
-        text: 'FormCombobox',
-      },
-      {
-        link: '/components/combobox/form-multi-combobox',
-        text: 'FormMultiCombobox',
-      },
-      {
-        link: '/components/combobox/form-tags-combobox',
-        text: 'FormTagsCombobox',
-      },
-    ],
-    text: 'Combobox',
-  },
-  {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/container/app-container',
-        text: 'AppContainer',
-      },
-    ],
-    text: 'Container',
-  },
-  {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/date/app-date-picker',
-        text: 'AppDatePicker',
-      },
-      {
-        link: '/components/date/app-week-picker',
-        text: 'AppWeekPicker',
-      },
-      {
-        link: '/components/date/app-month-picker',
-        text: 'AppMonthPicker',
-      },
-      {
-        link: '/components/date/app-time-input',
-        text: 'AppTimeInput',
-      },
-      {
-        link: '/components/date/form-date-picker',
-        text: 'FormDatePicker',
-      },
-      {
-        link: '/components/date/form-week-picker',
-        text: 'FormWeekPicker',
-      },
-      {
-        link: '/components/date/form-month-picker',
-        text: 'FormMonthPicker',
-      },
-      {
-        link: '/components/date/form-time-input',
-        text: 'FormTimeInput',
-      },
-    ],
-    text: 'Date',
-  },
-  {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/date-range/app-date-range-picker',
-        text: 'AppDateRangePicker',
-      },
-      {
-        link: '/components/date-range/form-date-range-picker',
-        text: 'FormDateRangePicker',
-      },
-    ],
-    text: 'DateRange',
-  },
-  {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/dialog/app-dialog',
-        text: 'AppDialog',
-      },
-    ],
-    text: 'Dialog',
-  },
-  {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/dropdown-menu/app-dropdown-menu',
-        text: 'AppDropdownMenu',
-      },
-    ],
-    text: 'DropdownMenu',
-  },
-  {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/editable/app-editable',
-        text: 'AppEditable',
-      },
-    ],
-    text: 'Editable',
-  },
-  {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/form-element/form-element',
-        text: 'FormElement',
-      },
-    ],
-    text: 'FormElement',
-  },
-  {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/form-error/form-error',
-        text: 'FormError',
-      },
-    ],
-    text: 'FormError',
-  },
-  {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/form-group/form-group',
-        text: 'FormGroup',
-      },
-    ],
-    text: 'FormGroup',
-  },
-  {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/form-label/form-label',
-        text: 'FormLabel',
-      },
-    ],
-    text: 'FormLabel',
-  },
-  {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/icon/app-icon',
-        text: 'AppIcon',
-      },
-    ],
-    text: 'Icon',
-  },
-  {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/input/app-input',
-        text: 'AppInput',
-      },
-      {
-        link: '/components/input/app-number-input',
-        text: 'AppNumberInput',
-      },
-      {
-        link: '/components/input/form-input',
-        text: 'FormInput',
-      },
-      {
-        link: '/components/input/form-number-input',
-        text: 'FormNumberInput',
-      },
-      {
-        link: '/components/input/form-password-input',
-        text: 'FormPasswordInput',
-      },
-      {
-        link: '/components/input/form-phone-number-input',
-        text: 'FormPhoneNumberInput',
-      },
-    ],
-    text: 'Input',
-  },
-  {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/keyboard/app-keyboard-key',
-        text: 'AppKeyboardKey',
-      },
-      {
-        link: '/components/keyboard/app-keyboard-shortcut',
-        text: 'AppKeyboardShortcut',
-      },
-      {
-        link: '/components/keyboard/app-keyboard-shortcut-provider',
-        text: 'AppKeyboardShortcutProvider',
-      },
-    ],
-    text: 'Keyboard',
-  },
-  {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/loader/app-loader',
-        text: 'AppLoader',
-      },
-    ],
-    text: 'Loader',
-  },
-  {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/popover/app-popover',
-        text: 'AppPopover',
-      },
-    ],
-    text: 'Popover',
-  },
-  {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/radio-group/form-radio-group',
-        text: 'FormRadioGroup',
-      },
-    ],
-    text: 'Radio-group',
-  },
-  {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/select/app-select',
-        text: 'AppSelect',
-      },
-      {
-        link: '/components/select/app-multi-select',
-        text: 'AppMultiSelect',
-      },
-      {
-        link: '/components/select/form-select',
-        text: 'FormSelect',
-      },
-      {
-        link: '/components/select/form-multi-select',
-        text: 'FormMultiSelect',
-      },
-    ],
-    text: 'Select',
-  },
-  {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/sidebar-nav/app-sidebar-navigation',
-        text: 'AppSidebarNavigation',
-      },
-    ],
-    text: 'Sidebar Nav',
-  },
-  {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/progress-bar/app-progress-bar',
-        text: 'Progress-bar',
-      },
-    ],
-    text: 'ProgressBar',
-  },
-  {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/skeleton-loader/app-page-skeleton-loader',
-        text: 'AppPageSkeletonLoader',
-      },
-      {
-        link: '/components/skeleton-loader/app-skeleton-loader-button',
-        text: 'AppSkeletonLoaderButton',
-      },
-      {
-        link: '/components/skeleton-loader/app-skeleton-loader-row',
-        text: 'AppSkeletonLoaderRow',
-      },
-      {
-        link: '/components/skeleton-loader/app-skeleton-loader-rows',
-        text: 'AppSkeletonLoaderRows',
-      },
-    ],
-    text: 'SkeletonLoader',
-  },
-  {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/stepper/app-stepper',
-        text: 'AppStepper',
-      },
-    ],
-    text: 'Stepper',
-  },
-  {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/switch/form-switch',
-        text: 'FormSwitch',
-      },
-    ],
-    text: 'Switch',
-  },
-  {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/table/app-table',
-        text: 'AppTable',
-      },
-      {
-        link: '/components/table/app-table-local',
-        text: 'AppTable (local)',
-      },
-      {
-        link: '/components/table/app-collapsible-table',
-        text: 'AppCollapsibleTable',
-      },
-      {
-        link: '/components/table/app-table-skeleton-loader',
-        text: 'AppTableSkeletonLoader',
-      },
-      {
-        link: '/components/table/app-table-filters-popover',
-        text: 'AppTableFiltersPopover',
-      },
-    ],
-    text: 'Table',
-  },
-  {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/tabs/app-tabs',
-        text: 'AppTabs',
-      },
-      {
-        link: '/components/tabs/app-route-tabs',
-        text: 'AppRouteTabs',
-      },
-    ],
-    text: 'Tabs',
-  },
-  {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/tags-input/app-tags-input',
-        text: 'AppTagsInput',
-      },
-      {
-        link: '/components/tags-input/form-tags-input',
-        text: 'FormTagsInput',
-      },
-    ],
-    text: 'TagsInput',
-  },
-  {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/text/app-text',
-        text: 'AppText',
-      },
-    ],
-    text: 'Text',
-  },
-  {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/textarea/app-textarea',
-        text: 'AppTextarea',
-      },
-      {
-        link: '/components/textarea/form-textarea',
-        text: 'FormTextarea',
-      },
-    ],
-    text: 'Textarea',
-  },
-  {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/toast/app-toast',
-        text: 'AppToast',
-      },
-    ],
-    text: 'Toast',
-  },
-  {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/toggle/app-toggle',
-        text: 'AppToggle',
-      },
-    ],
-    text: 'Toggle',
-  },
-  {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/tooltip/app-tooltip',
-        text: 'AppTooltip',
-      },
-    ],
-    text: 'Tooltip',
-  },
-  {
-    collapsed: true,
-    items: [
-      {
-        link: '/components/transitions/app-collapse-transition',
-        text: 'AppCollapseTransition',
-      },
-    ],
     text: 'Transitions',
+    items: [
+      { text: 'Collapsable', link: '/components/collapsable/collapsable' },
+    ],
+  },
+  {
+    text: 'Utilities',
+    items: [
+      { text: 'Config Provider', link: '/components/config-provider/config-provider' },
+      { text: 'Theme Provider', link: '/components/theme-provider/theme-provider' },
+    ],
   },
 ]
 
@@ -568,14 +116,31 @@ export default defineConfig({
   base: '/vue-core/',
   description: 'Vue Core',
   themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { link: '/', text: 'Home' },
-      { link: '/markdown-examples', text: 'Examples' },
+      {
+        text: pkg.version,
+        items:[
+          {
+            text: 'Changelog',
+            link: 'https://github.com/wisemen-digital/vue-core/blob/v2/packages/components/CHANGELOG.md',
+          }
+        ]
+      }
     ],
 
     search: {
       provider: 'local',
+      options: {
+        miniSearch: {
+          searchOptions: {
+            fuzzy: false,
+            prefix: false,
+            boost: {
+              title: 10,
+            },
+          },
+        },
+      },
     },
 
     sidebar: [
@@ -584,15 +149,15 @@ export default defineConfig({
         text: 'Guide',
       },
       {
-        items: query,
-        text: 'Query',
-      },
-      {
-        collapsed: false,
-        items: docs,
+        items: components,
         text: 'Components',
       },
     ],
+  },
+  markdown: {
+    preConfig(md) {
+      md.use(ComponentPreviewPlugin)
+    },
   },
   title: 'Vue Core',
   vite: {
@@ -602,5 +167,8 @@ export default defineConfig({
         '@': resolve(__dirname, '../../components/src'),
       },
     },
+    plugins: [
+      // tailwindcss(),
+    ],
   },
 })
