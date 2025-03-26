@@ -3,7 +3,6 @@ import { useDebounceFn } from '@vueuse/core'
 import type { AcceptableValue } from 'reka-ui'
 import {
   computed,
-  type Ref,
   ref,
   watch,
 } from 'vue'
@@ -21,7 +20,10 @@ const emit = defineEmits<{
   search: [searchTerm: string]
 }>()
 
-const modelValue = ref<TValue | null>(null) as Ref<TValue>
+const modelValue = defineModel<TValue>({
+  required: true,
+})
+
 const searchTerm = ref<string>('')
 const isDebouncing = ref<boolean>(false)
 const delegatedItems = ref<TValue[]>(props.items)

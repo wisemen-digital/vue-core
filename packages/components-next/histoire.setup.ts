@@ -15,6 +15,7 @@ export const setupVue3 = defineSetupVue3(({ addWrapper, app }) => {
         'component.select.empty_text': 'No results found for "{searchTerm}"',
         'component.select.remove_value': 'Remove value',
         'component.select.search_input_placeholder': 'Search',
+        'shared.close': 'Close',
       },
     },
   })

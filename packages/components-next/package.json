@@ -60,7 +60,7 @@
     "conventional-changelog": "6.0.0",
     "eslint": "9.4",
     "histoire": "1.0.0-alpha.2",
-    "i18n-iso-countries": "7.11.2",
+    "i18n-iso-countries": "7.14.0",
     "jsdom": "24.1.0",
     "libphonenumber-js": "1.11.3",
     "maska": "3.0.0",

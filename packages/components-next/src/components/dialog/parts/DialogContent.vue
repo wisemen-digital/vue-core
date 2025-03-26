@@ -1,10 +1,15 @@
 <script setup lang="ts">
 import { AnimatePresence } from 'motion-v'
 import { DialogContent as RekaDialogContent } from 'reka-ui'
+import { useAttrs } from 'vue'
 
 import { useInjectDialogContext } from '@/components/dialog/dialog.context'
 import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
 import { mergeClasses } from '@/customClassVariants'
+
+defineOptions({
+  inheritAttrs: false,
+})
 
 defineSlots<{
   /**
@@ -24,6 +29,8 @@ const {
   preventEsc,
   style,
 } = useInjectDialogContext()
+
+const attrs = useAttrs()
 
 function onEscapeKeyDown(event: KeyboardEvent): void {
   if (preventEsc.value) {
@@ -52,6 +59,7 @@ function onInteractOutside(event: CustomEvent): void {
           class: mergeClasses(customClassConfig.content, classConfig?.content),
         })"
         :trap-focus="!hideOverlay"
+        v-bind="attrs"
         @escape-key-down="onEscapeKeyDown"
         @interact-outside="onInteractOutside"
       >

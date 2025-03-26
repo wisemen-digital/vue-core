@@ -5,13 +5,11 @@ import { ref } from 'vue'
 
 const containerRef = ref<HTMLElement | null>(null)
 
-// TODO: extract to `AnimatedElementSize`? component
 const { height, width } = useElementSize(containerRef)
 </script>
 
 <template>
   <Motion
-    :layout="true"
     :initial="{
       opacity: 0,
       scale: 1.1,

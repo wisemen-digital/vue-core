@@ -14,6 +14,7 @@ const value = ref<string | null>(null)
       hint="You can type anything"
       icon-left="search"
       label="Text field"
+      placeholder="Placeholder"
       class="w-72"
     />
   </Story>
