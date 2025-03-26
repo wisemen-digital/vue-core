@@ -7,16 +7,14 @@ import {
 export const extendedConfig = {
   extend: {
     classGroups: {
-      'font-size': [
+      'border-w': [
         {
-          text: [
-            'subtext',
-            'caption',
-            'hero',
-            'title',
-            'subtitle',
-            'heading',
-            'body',
+          border: [
+            'checkbox-border-width-default',
+            'switch-border-width-default',
+            'switch-indicator-border-width-default',
+            'radio-group-item-indicator-border-width-default',
+            'radio-group-item-border-width-default',
           ],
         },
       ],

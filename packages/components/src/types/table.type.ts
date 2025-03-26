@@ -1,33 +1,44 @@
 import type { VNode } from 'vue'
 
-export interface TableEmptyTextProp {
-  noData: {
-    title: string
-    message?: string
-  }
-  noResults: {
-    title: string
-    message?: string
-  }
-}
-
-interface BaseTableColumn {
-  id: string
+export interface TableColumn<TSchema> {
+  /**
+   * The test id of the column
+   * @default null
+   */
   testId?: string
+  /**
+   * Whether the column is sortable
+   * @default false
+   */
   isSortable?: boolean
-  label: string
-  maxWidth?: string
-  width: string
+  /**
+   * The cell render function of the column
+   */
+  cell: (row: TSchema) => VNode
+  /**
+   * The header render function of the column
+   */
+  header?: (column: TableColumn<TSchema>) => VNode
+  /**
+   * The header label of the column
+   */
+  headerLabel?: string
+  /**
+   * The key of the column
+   */
+  key: string
+  /**
+   * The maximum width of the column
+   * @default 'auto
+   */
+  // maxWidth?: string
+  /**
+   * The skeleton render function of the column
+   */
+  skeleton?: (row: TSchema) => VNode
+  /**
+   * The width of the column
+   * @default 'min-content'
+   */
+  width?: string
 }
-
-interface TableColumnWithRender<TSchema> extends BaseTableColumn {
-  render: (row: TSchema) => VNode
-  value?: never
-}
-
-interface TableColumnWithValue<TSchema> extends BaseTableColumn {
-  render?: never
-  value: (row: TSchema) => string
-}
-
-export type TableColumn<TSchema> = TableColumnWithRender<TSchema> | TableColumnWithValue<TSchema>

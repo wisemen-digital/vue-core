@@ -1,7 +1,12 @@
-import { onBeforeUnmount } from 'vue'
+import {
+  getCurrentInstance,
+  onBeforeUnmount,
+} from 'vue'
 
-import type { KeyboardKey } from '@/types/keyboard.type'
-import type { KeyboardShortcut } from '@/types/keyboardShortcut.type'
+import type {
+  KeyboardKey,
+  KeyboardShortcut,
+} from '@/types/keyboard.type'
 
 interface UseKeyboardShortcutOptions extends KeyboardShortcut {
   onTrigger: (event: KeyboardEvent) => void
@@ -23,6 +28,8 @@ const keyMap = new Map<string, KeyboardKey>([
 export function useKeyboardShortcut(
   options: UseKeyboardShortcutOptions,
 ): UseKeyboardShortcutReturnType {
+  const currentInstance = getCurrentInstance()
+
   const previouslyPressedKeys: KeyboardKey[] = []
 
   const {
@@ -67,7 +74,9 @@ export function useKeyboardShortcut(
   }
 
   function isInputFocused(): boolean {
-    return document.activeElement instanceof HTMLInputElement || document.activeElement instanceof HTMLTextAreaElement
+    return document.activeElement instanceof HTMLInputElement
+      || document.activeElement instanceof HTMLTextAreaElement
+      || document.activeElement?.attributes.getNamedItem('contenteditable')?.value !== undefined
   }
 
   function isShortcutActive(pressedKeys: KeyboardKey[]): boolean {
@@ -123,9 +132,11 @@ export function useKeyboardShortcut(
 
   element.addEventListener('keydown', handleKeyDown)
 
-  onBeforeUnmount(() => {
-    unbind()
-  })
+  if (currentInstance !== null) {
+    onBeforeUnmount(() => {
+      unbind()
+    })
+  }
 
   return {
     unbind,

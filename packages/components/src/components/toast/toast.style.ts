@@ -1,35 +1,33 @@
-import type { VariantProps } from '@/libs/twVariants.lib'
 import { tv } from '@/libs/twVariants.lib'
 
-export const useToastStyle = tv({
+export const toastStyle = tv({
   slots: {
-    actionButton: 'h-5',
-    actionButtonText: 'font-medium text-neutral-500',
-    actionContainer: 'mt-4',
-    actionLoader: 'size-5 text-muted-foreground',
-    closeButton: 'flex size-5 items-center justify-center rounded-full border border-solid border-neutral-100 bg-background p-1',
-    closeContainer: 'absolute right-0 top-0 -translate-y-1/3 translate-x-1/3',
-    closeIcon: 'text-muted-foreground',
-    container: 'pointer-events-auto relative z-above-everything w-[22rem] rounded-popover border border-solid border-neutral-100 bg-popover p-4 shadow-toast-shadow',
-    contentContainer: 'flex shrink-0 items-start gap-x-4',
-    contentDescription: 'mt-1',
-    contentIcon: 'mt-[3px]',
-    contentTitle: 'font-medium',
-    contentWrapper: 'w-full pr-4',
+    action: 'whitespace-nowrap rounded-lg px-md py-xs font-semibold underline underline-offset-2 outline-none duration-200 focus-visible:ring-2',
+    closeButton: 'flex size-8 items-center justify-center rounded-lg outline-none duration-200 focus-visible:ring-2',
+    container: 'pointer-events-auto z-toast flex w-(--toast-width-default) items-center justify-between gap-x-8 overflow-hidden rounded-xl border border-solid p-md text-sm shadow-lg',
+    iconContainer: 'flex size-8 flex-shrink-0 items-center justify-center rounded-md',
+    message: 'truncate pr-2',
   },
   variants: {
     variant: {
       error: {
-        contentIcon: 'text-destructive',
+        action: 'ring-error-500',
+        closeButton: 'ring-error-500 hover:bg-error-100',
+        container: 'border-error-200 bg-error-50 text-error-600',
+        iconContainer: 'bg-error-100',
       },
       info: {
-        contentIcon: 'text-primary',
+        action: 'ring-fg-primary',
+        closeButton: 'ring-fg-primary hover:bg-secondary-hover',
+        container: 'border-secondary bg-secondary text-secondary',
+        iconContainer: 'bg-tertiary',
       },
       success: {
-        contentIcon: 'text-success',
+        action: 'ring-success-500',
+        closeButton: 'ring-success-500 hover:bg-success-100',
+        container: 'border-success-200 bg-success-50 text-success-600',
+        iconContainer: 'bg-success-100',
       },
     },
   },
 })
-
-export type ToastStyleProps = VariantProps<typeof useToastStyle>

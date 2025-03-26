@@ -6,6 +6,7 @@ import {
   watch,
 } from 'vue'
 
+import { injectConfigContext } from '@/components/config-provider/config.context'
 import type {
   FilterChangeEvent,
   PageChangeEvent,
@@ -17,23 +18,37 @@ import type {
 } from '@/types/pagination.type'
 import { base64Decode, base64Encode } from '@/utils/base64.util'
 
-const DEFAULT_PAGINATION_OPTIONS: PaginationOptions<unknown> = {
-  filters: {} as PaginationFilters<unknown>,
-  pagination: {
-    page: 0,
-    perPage: 20,
-  },
-  search: undefined,
-  sort: undefined,
-  staticFilters: {} as PaginationFilters<unknown>,
-} as const
-
 export function usePagination<TFilters>({
-  id,
-  defaultPaginationOptions = null,
-  disableRouteQuery = false,
+  isRouteQueryEnabled,
+  key: routeQueryKey,
+  options = null,
+  type = 'offset',
 }: UsePaginationOptions<TFilters>): UsePaginationReturnType<TFilters> {
-  const routeQuery = disableRouteQuery ? null : useRouteQuery(id)
+  const globalConfigContext = injectConfigContext()
+
+  const DEFAULT_PAGINATION_OPTIONS: PaginationOptions<unknown> = {
+    filters: {} as PaginationFilters<unknown>,
+    pagination: type === 'offset'
+      ? {
+          limit: globalConfigContext.pagination?.limit ?? 20,
+          offset: 0,
+          type: 'offset',
+        }
+      : {
+          key: null,
+          limit: globalConfigContext.pagination?.limit ?? 20,
+          type: 'keyset',
+        },
+    search: undefined,
+    sort: undefined,
+    staticFilters: {} as PaginationFilters<unknown>,
+  } as const
+
+  if (isRouteQueryEnabled && routeQueryKey === undefined) {
+    throw new Error('The `key` prop is required when using the `isRouteQueryEnabled` prop')
+  }
+
+  const routeQuery = isRouteQueryEnabled ? useRouteQuery(routeQueryKey as string) : null
   const paginationOptions = shallowRef<PaginationOptions<TFilters>>(getDefaultPaginationOptions())
 
   function mergePaginationOptions(
@@ -45,12 +60,15 @@ export function usePagination<TFilters>({
       ...(userOptions.filters ?? {}),
     } as PaginationFilters<TFilters>
 
+    const search = currentOptions.search ?? userOptions.search ?? ''
+
     return {
       filters: mergedFilters,
       pagination: {
         ...currentOptions.pagination,
         ...userOptions.pagination,
       },
+      search: search.trim().length > 0 ? search : undefined,
       sort: currentOptions.sort ?? userOptions.sort ?? undefined,
       staticFilters: {
         ...currentOptions.staticFilters,
@@ -60,14 +78,17 @@ export function usePagination<TFilters>({
   }
 
   function getRouteQueryPaginationOptions(): PaginationOptions<TFilters> | null {
-    const searchParams = new URLSearchParams(window.location.search)
-    const paginationOptionsQuery = searchParams.get(id)
-
-    if (paginationOptionsQuery === null) {
+    if (routeQuery === null) {
       return null
     }
 
-    return JSON.parse(base64Decode(paginationOptionsQuery))
+    const queryValue = routeQuery.value
+
+    if (queryValue === null || queryValue === undefined) {
+      return null
+    }
+
+    return JSON.parse(base64Decode(queryValue.toString()))
   }
 
   function getDefaultPaginationOptions(): PaginationOptions<TFilters> {
@@ -77,9 +98,9 @@ export function usePagination<TFilters>({
       return routeQueryPaginationOptions
     }
 
-    if (defaultPaginationOptions !== null) {
+    if (options !== null) {
       return mergePaginationOptions(
-        toValue(defaultPaginationOptions as PaginationOptions<TFilters>),
+        toValue(options as PaginationOptions<TFilters>),
         DEFAULT_PAGINATION_OPTIONS as PaginationOptions<TFilters>,
       )
     }
@@ -90,7 +111,10 @@ export function usePagination<TFilters>({
   function handlePageChange(event: PageChangeEvent): void {
     paginationOptions.value = {
       ...paginationOptions.value,
-      pagination: event,
+      pagination: {
+        ...paginationOptions.value.pagination,
+        ...event,
+      },
     }
   }
 
@@ -101,26 +125,40 @@ export function usePagination<TFilters>({
         ...event,
       }).filter(([
         , value,
-      ]) => value !== undefined && value !== null && value !== ''),
+      ]) => value !== undefined),
     ) as PaginationFilters<TFilters>
 
     paginationOptions.value = {
       ...paginationOptions.value,
       filters: filtersWithoutUndefinedValues,
-      pagination: {
-        ...paginationOptions.value.pagination,
-        page: 0,
-      },
+      pagination: type === 'offset'
+        ? {
+            ...paginationOptions.value.pagination,
+            offset: 0,
+            type: 'offset',
+          }
+        : {
+            ...paginationOptions.value.pagination,
+            key: null,
+            type: 'keyset',
+          },
     }
   }
 
   function handleSearchChange(value: string): void {
     paginationOptions.value = {
       ...paginationOptions.value,
-      pagination: {
-        ...paginationOptions.value.pagination,
-        page: 0,
-      },
+      pagination: type === 'offset'
+        ? {
+            ...paginationOptions.value.pagination,
+            offset: 0,
+            type: 'offset',
+          }
+        : {
+            ...paginationOptions.value.pagination,
+            key: null,
+            type: 'keyset',
+          },
       search: value.trim().length > 0 ? value : undefined,
     }
   }
@@ -136,19 +174,39 @@ export function usePagination<TFilters>({
     paginationOptions.value = {
       ...paginationOptions.value,
       filters: {} as PaginationFilters<TFilters>,
-      pagination: {
-        ...paginationOptions.value.pagination,
-        page: 0,
-      },
+      pagination: type === 'offset'
+        ? {
+            ...paginationOptions.value.pagination,
+            offset: 0,
+            type: 'offset',
+          }
+        : {
+            ...paginationOptions.value.pagination,
+            key: null,
+            type: 'keyset',
+          },
     }
   }
 
-  watch(paginationOptions, (newPaginationOptions) => {
-    if (disableRouteQuery) {
+  watch(() => toValue(options), (newOptions) => {
+    if (newOptions === null) {
       return
     }
 
-    routeQuery!.value = base64Encode(JSON.stringify(newPaginationOptions))
+    paginationOptions.value = mergePaginationOptions(
+      toValue(newOptions as PaginationOptions<TFilters>),
+      paginationOptions.value,
+    )
+  })
+
+  watch(paginationOptions, (newPaginationOptions) => {
+    if (!isRouteQueryEnabled) {
+      return
+    }
+
+    if (routeQuery !== null) {
+      routeQuery.value = base64Encode(JSON.stringify(newPaginationOptions))
+    }
   })
 
   return {

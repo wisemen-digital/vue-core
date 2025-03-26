@@ -8,6 +8,6 @@ export class NumberUtil {
   }
 
   static toLocaleNumber(value: number): string {
-    return value.toLocaleString('nl-BE')
+    return value.toLocaleString(navigator.language)
   }
 }

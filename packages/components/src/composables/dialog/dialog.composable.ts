@@ -1,4 +1,4 @@
-import { useId } from 'radix-vue'
+import { useId } from 'reka-ui'
 import type {
   Component,
   Ref,
@@ -7,6 +7,7 @@ import {
   computed,
   h,
   markRaw,
+  onBeforeUnmount,
   reactive,
   ref,
 } from 'vue'
@@ -14,12 +15,13 @@ import {
 import type {
   Attrs,
   Dialog,
+  DialogTriggerProps,
   UseDialogContainerReturnType,
   UseDialogOptions,
   UseDialogReturnType,
 } from '@/types/dialog.type'
 
-const dialogs = ref<Dialog[]>([])
+export const dialogs = ref<Dialog[]>([]) as Ref<Dialog[]>
 
 export function useDialogContainer(): UseDialogContainerReturnType {
   return {
@@ -27,18 +29,21 @@ export function useDialogContainer(): UseDialogContainerReturnType {
   }
 }
 
-export function useDialog<TComponent extends Component>({
-  animateFromTrigger = false,
-  component,
-}: UseDialogOptions<TComponent>): UseDialogReturnType<TComponent> {
-  const triggerId = useId()
+function removeDialogFromContainer(id: string): void {
+  dialogs.value = dialogs.value.filter((dialog) => dialog.id !== id)
+}
 
-  function removeDialogFromContainer(): void {
-    dialogs.value = dialogs.value.filter((dialog) => dialog.id !== triggerId)
-  }
+export function useDialog<TComponent extends Component>(
+  options: UseDialogOptions<TComponent>,
+): UseDialogReturnType<TComponent> {
+  const dialogId = `dialog-${useId()}`
 
-  async function openDialog(attrs: Attrs<TComponent>): Promise<void> {
-    const dialog = await createDialog(attrs)
+  async function openDialog(attrs: Attrs<TComponent> & { id?: string }): Promise<void> {
+    const dialog = await createDialog(attrs, attrs?.id ?? dialogId)
+
+    if (dialog === null) {
+      return
+    }
 
     dialogs.value.push(dialog.value)
 
@@ -47,8 +52,10 @@ export function useDialog<TComponent extends Component>({
     })
   }
 
-  function closeDialog(): void {
-    const dialog = dialogs.value.find((dialog) => dialog.id === triggerId) ?? null
+  function closeDialog(id?: string): void {
+    const idToUse = id ?? dialogId
+
+    const dialog = dialogs.value.find((dialog) => dialog.id === idToUse) ?? null
 
     if (dialog === null) {
       return
@@ -56,42 +63,61 @@ export function useDialog<TComponent extends Component>({
 
     dialog.isOpen = false
 
-    setTimeout(removeDialogFromContainer, 500)
+    setTimeout(() => {
+      removeDialogFromContainer(idToUse)
+    }, 500)
   }
 
-  async function createDialog(attrs: Attrs<TComponent>): Promise<Ref<Dialog>> {
-    const dialogWithSameTriggerId = dialogs.value.find((dialog) => dialog.id === triggerId) ?? null
+  async function createDialog(attrs: Attrs<TComponent>, id: string): Promise<Ref<Dialog> | null> {
+    const dialogWithSameId = dialogs.value.find((dialog) => dialog.id === id) ?? null
 
-    if (dialogWithSameTriggerId !== null) {
-      throw new Error(`Dialog with triggerId ${triggerId} already exists`)
+    if (dialogWithSameId !== null) {
+      console.warn(`A dialog with the id ${id} already exists. Make sure to use a unique id.`)
+
+      return null
     }
 
-    const c = await component()
+    const c = await options.component()
 
     const dialogComponent = computed<Component>(() => {
       return h(
         c.default as Component,
         reactive<Attrs<TComponent>>({
           ...attrs,
-          triggerId,
-          animateFromTrigger,
+          id,
           onClose: () => {
-            closeDialog()
+            closeDialog(id)
           },
         }),
       )
     })
 
     return ref<Dialog>({
-      id: triggerId,
+      id,
       isOpen: false,
       component: markRaw(dialogComponent),
     })
   }
 
+  function getTriggerProps(id?: string): DialogTriggerProps {
+    const idToUse = id ?? dialogId
+    const isOpen = dialogs.value.some((dialog) => dialog.id === idToUse)
+
+    return {
+      'id': idToUse,
+      'aria-expanded': isOpen,
+      'aria-haspopup': 'dialog',
+      'data-state': isOpen,
+    }
+  }
+
+  onBeforeUnmount(() => {
+    closeDialog()
+  })
+
   return {
-    triggerId,
     close: closeDialog,
+    getTriggerProps,
     open: openDialog as UseDialogReturnType<TComponent>['open'],
   }
 }

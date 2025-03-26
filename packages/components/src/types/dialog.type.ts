@@ -1,4 +1,14 @@
-import type { Component, Ref } from 'vue'
+import type {
+  Component,
+  Ref,
+} from 'vue'
+
+export interface DialogTriggerProps {
+  'id': string
+  'aria-expanded': boolean
+  'aria-haspopup': 'dialog'
+  'data-state': boolean
+}
 
 export type IgnoredKeys =
   | '__v_isVNode'
@@ -38,11 +48,6 @@ export type Attrs<TComponent> = Omit<
 
 export interface UseDialogOptions<TComponent extends Component> {
   /**
-   * Whether the dialog should animate from the trigger
-   * @default false
-   */
-  animateFromTrigger?: boolean
-  /**
    * The component to render. Must be a component of which the root is `AppDialog`
    */
   component: () => Promise<{ default: Constructor<TComponent> }>
@@ -50,26 +55,27 @@ export interface UseDialogOptions<TComponent extends Component> {
 
 export interface UseDialogReturnType<TComponent extends Component> {
   /**
-   * The dialog id. Should be bound to the trigger
-   */
-  triggerId: string
-  /**
    * Close the dialog
    */
-  close: () => void
+  close: (id?: string) => void
+  /**
+   * The props to pass to the trigger
+   * @param id The id of the dialog
+   */
+  getTriggerProps: (id?: string) => DialogTriggerProps
   /**
    * Open the dialog
    * @param attrs The props to pass to the dialog - optional
    */
   open: Omit<Attrs<TComponent>, 'Symbol'> extends Record<string, never>
     ? // No params because there are no attributes
-      () => Promise<void>
+      (attrs?: { id?: string }) => Promise<void>
     : // Check if there are only optional attributes
     RequiredKeys<Omit<Attrs<TComponent>, 'Symbol'>> extends Record<string, never>
       ? // If there are only optional attributes, then the parameter is optional
-        (attrs?: Omit<Attrs<TComponent>, IgnoredKeys>) => Promise<void>
+        (attrs?: Omit<Attrs<TComponent>, IgnoredKeys> & { id?: string }) => Promise<void>
       : // If there are required attributes, then the parameter is required
-        (attrs: Omit<Attrs<TComponent>, IgnoredKeys>) => Promise<void>
+        (attrs: Omit<Attrs<TComponent>, IgnoredKeys> & { id?: string }) => Promise<void>
 }
 
 export interface Dialog {

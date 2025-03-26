@@ -1,60 +1,247 @@
-import type { VariantProps } from '@/libs/twVariants.lib'
 import { tv } from '@/libs/twVariants.lib'
+import { StyleBuilder } from '@/utils/style.util'
 
 export const useSelectStyle = tv({
   slots: {
-    clearButton: 'absolute right-7 top-1/2 -translate-y-1/2 p-2',
-    contentContainer: 'custom-select-content custom-popover-content relative z-popover min-w-min overflow-hidden rounded-popover bg-background shadow-popover-shadow',
-    contentViewport: 'max-h-[25rem] p-1.5',
-    divider: 'my-1 h-px bg-border',
-    groupLabelContainer: 'px-2 py-1',
-    groupLabelSlot: 'pl-2',
-    groupLabelText: 'text-secondary-foreground',
-    iconLeft: 'ml-3 text-muted-foreground',
-    input: 'block size-full cursor-pointer truncate bg-transparent py-2 pl-3 pr-8 text-sm outline-none duration-200 placeholder:text-input-foreground disabled:cursor-not-allowed',
-    loader: 'mr-3 size-3 flex-shrink-0 text-muted-foreground',
-    multiInputContainer: 'relative flex h-10 items-center rounded-input border border-solid bg-input outline-none ring-offset-background duration-200 [&:has(:focus-visible)]:ring-2',
-    multiTrigger: 'absolute right-0 top-0 mr-1 flex size-full items-center justify-end p-2',
-    optionContainer: 'cursor-default rounded-md px-3 py-1.5 outline-none hover:bg-muted-background focus:bg-muted-background data-[disabled]:cursor-not-allowed data-[disabled]:bg-background data-[highlighted]:bg-muted-background data-[disabled]:opacity-50',
-    optionIndicator: 'text-muted-foreground',
-    optionIndicatorContainer: 'w-4',
-    optionWrapper: 'flex items-center justify-between gap-x-3',
-    popoverContainer: 'z-popover',
-    scrollButtonDown: 'absolute bottom-0 z-10 flex w-full justify-center bg-gradient-to-b from-transparent to-popover p-2',
-    scrollButtonIcon: 'text-muted-foreground',
-    scrollButtonUp: 'absolute top-0 z-10 flex w-full justify-center bg-gradient-to-t from-transparent to-popover p-2',
-    trigger: 'flex h-10 w-full items-center justify-between rounded-input border border-solid bg-input ring-offset-background duration-200 focus-visible:outline-none focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-50',
-    triggerIcon: 'size-3 text-muted-foreground',
-    value: 'w-full truncate px-3 text-left text-subtext',
+    dropdownContent: new StyleBuilder()
+      .withClasses('outline-none')
+      .build(),
+    error: new StyleBuilder()
+      .withFontSize('[--input-field-error-font-size-default:var(--select-error-font-size-default)]')
+      .withSpacing('[--input-field-error-spacing-default:var(--select-error-spacing-default)]')
+      .withColor('[--input-field-error-text-color-default:var(--select-error-text-color-default)]')
+      .build(),
+    groupContent: new StyleBuilder()
+      .withPadding('px-(--select-group-content-padding-x-default) py-(--select-group-content-padding-y-default)')
+      .build(),
+    groupLabel: new StyleBuilder()
+      .withPadding('px-(--select-group-label-spacing-x-default) pb-(--select-group-label-spacing-bottom-default) pt-(--select-group-label-spacing-top-default)')
+      .withFontSize('text-(length:--select-group-label-font-size-default)')
+      .withFontWeight('font-(--select-group-label-font-weight-default)')
+      .withColor('text-(color:--select-group-label-text-color-default)')
+      .build(),
+    hint: new StyleBuilder()
+      .withFontSize('[--input-field-hint-font-size-default:var(--select-hint-font-size-default)]')
+      .withColor('[--input-field-hint-text-color-default:var(--select-hint-text-color-default)]')
+      .build(),
+    iconLeft: new StyleBuilder()
+      .withClasses('box-content shrink-0 duration-200')
+      .withSpacing('ml-(--select-icon-left-spacing-default)')
+      .withColor('text-(color:--select-icon-color-default)')
+      .withSize('size-(--select-icon-left-size-default)')
+      .build(),
+    iconRight: new StyleBuilder()
+      .withClasses('box-content shrink-0 duration-200')
+      .withSpacing('mr-(--select-icon-right-spacing-default)')
+      .withColor('text-(color:--select-icon-color-default)')
+      .withSize('size-(--select-icon-right-size-default)')
+      .build(),
+    label: new StyleBuilder()
+      .withFontSize('[--input-field-label-font-size-default:var(--select-label-font-size-default)]')
+      .withFontWeight('[--input-field-label-font-weight-default:var(--select-label-font-weight-default)]')
+      .withSpacing('[--input-field-label-spacing-default:var(--select-label-spacing-default)]')
+      .withColor('[--input-field-label-text-color-default:var(--select-label-text-color-default)]')
+      .build(),
+    listboxContent: new StyleBuilder()
+      .withClasses('!inset-ring-0 overflow-y-auto')
+      .withSize('max-h-(--select-dropdown-max-height-default)')
+      .withPadding('px-(--select-dropdown-padding-x-default)')
+      .build(),
+    loader: new StyleBuilder()
+      .withSize('size-(--select-loader-size-default)')
+      .withColor('text-(color:--select-loader-color-default)')
+      .build(),
+    loaderBox: new StyleBuilder()
+      .withSpacing('mr-(--select-icon-right-spacing-default)')
+      .build(),
+    option: new StyleBuilder()
+      .withClasses('group flex w-full cursor-pointer items-center justify-between outline-none data-[disabled]:cursor-not-allowed')
+      .withSize('min-h-(--select-option-min-height-default)')
+      .withBorderRadius('rounded-(--select-option-border-radius-default)')
+      .withBackgroundColor('bg-(--select-option-bg-color-default) hover:bg-(--select-option-bg-color-hover) data-[disabled]:bg-(--select-option-bg-color-disabled) data-[highlighted]:bg-(--select-option-bg-color-highlighted) data-[state=checked]:bg-(--select-option-bg-color-selected) data-[state=checked]:data-[highlighted]:bg-(--select-option-bg-color-highlighted) data-[disabled]:hover:bg-(--select-option-bg-color-disabled) data-[highlighted]:hover:bg-(--select-option-bg-color-hover) data-[state=checked]:hover:bg-(--select-option-bg-color-hover) hover:data-[disabled]:bg-(--select-option-bg-color-disabled)')
+      .withPadding('px-(--select-option-padding-x-default) py-(--select-option-padding-y-default)')
+      .withFontSize('text-(length:--select-option-font-size-default)')
+      .withFontWeight('font-(--select-option-font-weight-default)')
+      .withColor('text-(color:--select-option-text-color-default) hover:text-(color:--select-option-text-color-hover) data-[disabled]:text-(color:--select-option-text-color-disabled) data-[state=checked]:text-(color:--select-option-text-color-selected)')
+      .build(),
+    optionIndicator: new StyleBuilder()
+      .withClasses('flex-shrink-0')
+      .withSize('size-(--select-option-indicator-size-default)')
+      .withColor('text-(color:--select-option-indicator-color-default)')
+      .build(),
+    placeholder: new StyleBuilder()
+      .withClasses('pointer-events-none block w-full truncate duration-200')
+      .withPadding('pl-(--select-padding-left-default) pr-(--select-padding-right-default)')
+      .withColor('text-(color:--select-placeholder-color-default)')
+      .build(),
+    selectBox: new StyleBuilder()
+      .withClasses('relative cursor-pointer flex outline-none duration-200 w-full items-center text-left')
+      .withSize('min-h-(--select-min-height-default)')
+      .withBorderRadius('rounded-bl-(--select-border-radius-bottom-left-default) rounded-br-(--select-border-radius-bottom-right-default) rounded-tl-(--select-border-radius-top-left-default) rounded-tr-(--select-border-radius-top-right-default)')
+      .withBorder('border border-solid border-b-(--select-border-bottom-color-default) border-l-(--select-border-left-color-default) border-r-(--select-border-right-color-default) border-t-(--select-border-top-color-default)')
+      .withBackgroundColor('bg-(--select-bg-color-default)')
+      .withPadding('py-(--select-padding-y-default)')
+      .withFontSize('text-(length:--select-font-size-default)')
+      .withFontWeight('font-(--select-font-weight-default)')
+      .withColor('text-(color:--select-text-color-default)')
+      .withShadow('shadow-(--select-shadow-default)')
+      .build(),
+    separator: new StyleBuilder()
+      .withClasses('h-px')
+      .withBackgroundColor('bg-(--select-separator-color-default)')
+      .withSpacing('my-(--select-separator-spacing-y-default)')
+      .build(),
+    tags: new StyleBuilder()
+      .withClasses('flex w-full flex-wrap items-center gap-1 py-1.5')
+      .withPadding('pl-[calc(var(--select-padding-left-default)/2)] pr-(--select-padding-right-default)')
+      .build(),
+    value: new StyleBuilder()
+      .withClasses('w-full truncate')
+      .withPadding('pl-(--select-padding-left-default) pr-(--select-padding-right-default)')
+      .build(),
   },
   variants: {
-    isInvalid: {
+    isFilterVisible: {
       false: {
-        multiInputContainer: 'border-input-border [&:has(:focus-visible)]:ring-ring',
-        trigger: 'border-input-border focus-visible:ring-ring',
-      },
-      true: {
-        multiInputContainer: 'border-destructive [&:has(:focus-visible)]:border-input-border [&:has(:focus-visible)]:ring-destructive',
-        trigger: 'border-destructive focus-visible:border-input-border focus-visible:ring-destructive',
-      },
-    },
-    isEmpty: {
-      false: {
-        input: 'placeholder:text-input-foreground',
-      },
-      true: {
-        input: 'placeholder:text-input-placeholder',
-        value: 'text-input-placeholder',
+        listboxContent: new StyleBuilder()
+          .withPadding('py-(--select-dropdown-padding-y-default)')
+          .build(),
       },
     },
     isDisabled: {
       true: {
-        multiInputContainer: 'cursor-not-allowed opacity-50',
-        multiTrigger: 'cursor-not-allowed',
-        trigger: 'cursor-not-allowed opacity-50',
+        hint: new StyleBuilder()
+          .withColor('[--input-field-hint-text-color-disabled:var(--select-hint-text-color-disabled)]')
+          .build(),
+        iconLeft: new StyleBuilder()
+          .withColor('text-(color:--select-icon-color-disabled)')
+          .build(),
+        iconRight: new StyleBuilder()
+          .withColor('text-(color:--select-icon-color-disabled)')
+          .build(),
+        label: new StyleBuilder()
+          .withColor('[--input-field-label-text-color-default:var(--select-label-text-color-disabled)]')
+          .build(),
+        loader: new StyleBuilder()
+          .withColor('text-(color:--select-loader-color-disabled)')
+          .build(),
+        placeholder: new StyleBuilder()
+          .withColor('[--input-field-placeholder-color-default:var(--select-placeholder-color-disabled)]')
+          .build(),
+        selectBox: new StyleBuilder()
+          .withClasses('cursor-not-allowed')
+          .withBorder('border-b-(--select-border-bottom-color-disabled) border-l-(--select-border-left-color-disabled) border-r-(--select-border-right-color-disabled) border-t-(--select-border-top-color-disabled)')
+          .withBackgroundColor('bg-(--select-bg-color-disabled)')
+          .withColor('text-(color:--select-text-color-disabled)')
+          .withShadow('shadow-(--select-shadow-disabled)')
+          .build(),
+      },
+    },
+    isHovered: {
+      true: {
+        hint: new StyleBuilder()
+          .withColor('[--input-field-hint-text-color-hover:var(--select-hint-text-color-hover)]')
+          .build(),
+        iconLeft: new StyleBuilder()
+          .withColor('text-(color:--select-icon-color-hover)')
+          .build(),
+        iconRight: new StyleBuilder()
+          .withColor('text-(color:--select-icon-color-hover)')
+          .build(),
+        label: new StyleBuilder()
+          .withColor('[--input-field-label-text-color-default:var(--select-label-text-color-hover)]')
+          .build(),
+        loader: new StyleBuilder()
+          .withColor('text-(color:--select-loader-color-hover)')
+          .build(),
+        placeholder: new StyleBuilder()
+          .withColor('[--input-field-placeholder-color-default:var(--select-placeholder-color-hover)]')
+          .build(),
+        selectBox: new StyleBuilder()
+          .withBorder('border-b-(--select-border-bottom-color-hover) border-l-(--select-border-left-color-hover) border-r-(--select-border-right-color-hover) border-t-(--select-border-top-color-hover)')
+          .withBackgroundColor('bg-(--select-bg-color-hover)')
+          .withColor('text-(color:--select-text-color-hover)')
+          .withShadow('shadow-(--select-shadow-hover)')
+          .build(),
+      },
+    },
+    isFocused: {
+      true: {
+        hint: new StyleBuilder()
+          .withColor('[--input-field-hint-text-color-focus:var(--select-hint-text-color-focus)]')
+          .build(),
+        iconLeft: new StyleBuilder()
+          .withColor('text-(color:--select-icon-color-focus)')
+          .build(),
+        iconRight: new StyleBuilder()
+          .withColor('text-(color:--select-icon-color-focus)')
+          .build(),
+        label: new StyleBuilder()
+          .withColor('[--input-field-label-text-color-default:var(--select-label-text-color-focus)]')
+          .build(),
+        loader: new StyleBuilder()
+          .withColor('text-(color:--select-loader-color-focus)')
+          .build(),
+        placeholder: new StyleBuilder()
+          .withColor('[--input-field-placeholder-color-default:var(--select-placeholder-color-focus)]')
+          .build(),
+        selectBox: new StyleBuilder()
+          .withBorder('border-b-(--select-border-bottom-color-focus) border-l-(--select-border-left-color-focus) border-r-(--select-border-right-color-focus) border-t-(--select-border-top-color-focus)')
+          .withBackgroundColor('bg-(--select-bg-color-focus)')
+          .withColor('text-(color:--select-text-color-focus)')
+          .withShadow('shadow-(--select-shadow-focus)')
+          .withRing('ring ring-(--select-ring-color-focus)')
+          .build(),
+      },
+    },
+    hasError: {
+      true: {
+        hint: new StyleBuilder()
+          .withColor('[--input-field-hint-text-color-error:var(--select-hint-text-color-error)]')
+          .build(),
+        iconLeft: new StyleBuilder()
+          .withColor('!text-(color:--select-icon-color-error)')
+          .build(),
+        iconRight: new StyleBuilder()
+          .withColor('!text-(color:--select-icon-color-error)')
+          .build(),
+        label: new StyleBuilder()
+          .withColor('[--input-field-label-text-color-default:var(--select-label-text-color-error)]')
+          .build(),
+        loader: new StyleBuilder()
+          .withColor('text-(color:--select-loader-color-error)')
+          .build(),
+        placeholder: new StyleBuilder()
+          .withColor('text-(color:--select-placeholder-color-error)')
+          .build(),
+        selectBox: new StyleBuilder()
+          .withBorder('border-b-(--select-border-bottom-color-error) border-l-(--select-border-left-color-error) border-r-(--select-border-right-color-error) border-t-(--select-border-top-color-error)')
+          .withBackgroundColor('bg-(--select-bg-color-error)')
+          .withColor('text-(color:--select-text-color-error)')
+          .withShadow('shadow-(--select-shadow-error)')
+          .withRing('ring-(--select-ring-color-error)')
+          .build(),
+      },
+    },
+    hasIconLeft: {
+      true: {
+        placeholder: new StyleBuilder()
+          .withPadding('pl-(--select-with-icon-left-padding-left-default)')
+          .build(),
+        value: new StyleBuilder()
+          .withPadding('pl-(--select-with-icon-left-padding-left-default)')
+          .build(),
+      },
+    },
+    hasIconRight: {
+      true: {
+        placeholder: new StyleBuilder()
+          .withPadding('pr-(--select-with-icon-right-padding-right-default)')
+          .build(),
+        value: new StyleBuilder()
+          .withPadding('pr-(--select-with-icon-right-padding-right-default)')
+          .build(),
       },
     },
   },
 })
-
-export type SelectStyleProps = VariantProps<typeof useSelectStyle>

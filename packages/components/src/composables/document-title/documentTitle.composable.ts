@@ -1,23 +1,39 @@
-import type { Ref } from 'vue'
+import type {
+  MaybeRefOrGetter,
+  Ref,
+} from 'vue'
 import {
   readonly,
   ref,
+  toValue,
   watch,
 } from 'vue'
 
 interface UseDocumentTitleReturnType {
-  documentTitle: Readonly<Ref<string>>
-  setDocumentTitle: (title: string) => void
+  title: Readonly<Ref<string>>
+  set: (title: MaybeRefOrGetter<string>) => void
   setTemplate: (newTemplate: string) => void
 }
 
 const template = ref<string>('{title}')
 
+function setTemplate(newTemplate: string): void {
+  if (!newTemplate.includes('{title}')) {
+    throw new Error('Template must include {title}')
+  }
+
+  template.value = newTemplate
+}
+
 export function useDocumentTitle(): UseDocumentTitleReturnType {
   const documentTitle = ref<string>(document.title)
 
-  function setDocumentTitle(title: string): void {
-    documentTitle.value = title
+  function setDocumentTitle(title: MaybeRefOrGetter<string>): void {
+    watch(() => toValue(title), (newTitle) => {
+      documentTitle.value = newTitle
+    }, {
+      immediate: true,
+    })
   }
 
   watch(
@@ -31,16 +47,8 @@ export function useDocumentTitle(): UseDocumentTitleReturnType {
   )
 
   return {
-    documentTitle: readonly(documentTitle),
-    setDocumentTitle,
+    title: readonly(documentTitle),
+    set: setDocumentTitle,
     setTemplate,
   }
-}
-
-function setTemplate(newTemplate: string): void {
-  if (!newTemplate.includes('{title}')) {
-    throw new Error('Template must include {title}')
-  }
-
-  template.value = newTemplate
 }

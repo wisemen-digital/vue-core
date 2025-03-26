@@ -1,47 +1,38 @@
-import type { VariantProps } from '@/libs/twVariants.lib'
 import { tv } from '@/libs/twVariants.lib'
+import { StyleBuilder } from '@/utils/style.util'
 
-// eslint-disable-next-line tailwindcss/no-custom-classname
 export const useTabsStyle = tv({
   slots: {
-    gradient: 'absolute top-0 z-10 h-full w-10 bg-gradient-to-l from-white to-transparent',
-    indicator: 'absolute bottom-0 left-0 h-[2px] w-[--radix-tabs-indicator-size] translate-x-[--radix-tabs-indicator-position] rounded-t-full bg-primary px-8 duration-200',
-    list: 'hide-scroll relative flex overflow-x-auto border-b border-solid border-border',
-    scrollButton: 'absolute top-1/2 z-20 w-fit -translate-y-1/2 rounded-full border border-border bg-white p-1',
-    text: 'duration-200',
-    triggerGroup: 'group py-2 outline-none',
-    triggerTab: 'flex flex-row items-center gap-2 text-nowrap rounded-button px-3 py-2 duration-200 group-hover:bg-muted-background group-focus-visible:bg-muted-background',
-  },
-  variants: {
-    direction: {
-      'to-left': {
-        gradient: 'right-0 bg-gradient-to-l',
-        scrollButton: 'left-0 ml-2',
-      },
-      'to-right': {
-        gradient: 'left-0 bg-gradient-to-r',
-        scrollButton: 'right-0 mr-2',
-      },
-    },
-    isFullWidth: {
-      false: {
-        list: 'justify-start',
-      },
-      true: {
-        list: 'justify-between',
-        triggerGroup: 'flex-1',
-        triggerTab: 'justify-center',
-      },
-    },
-    isActive: {
-      false: {
-        text: 'text-muted-foreground',
-      },
-      true: {
-        text: 'text-primary',
-      },
-    },
+    container: new StyleBuilder()
+      .withClasses('relative')
+      .withBorder('border border-solid border-b-(--tabs-container-border-bottom-color-default) border-l-(--tabs-container-border-left-color-default) border-r-(--tabs-container-border-right-color-default) border-t-(--tabs-container-border-top-color-default)')
+      .withBackgroundColor('bg-(--tabs-container-bg-color-default)')
+      .withPadding('px-(--tabs-container-padding-x-default) py-(--tabs-container-padding-y-default)')
+      .withBorderRadius('rounded-(--tabs-container-border-radius-default)')
+      .build(),
+    indicator: new StyleBuilder()
+      .withClasses('absolute bottom-0 left-0 duration-200')
+      .withSize('h-(--tabs-indicator-height-default) w-(--reka-tabs-indicator-size)')
+      .withTranslate('translate-x-(--reka-tabs-indicator-position)')
+      .withBorderRadius('rounded-(--tabs-indicator-border-radius-default)')
+      .withBorder('border border-solid border-b-(--tabs-indicator-border-bottom-color-default) border-l-(--tabs-indicator-border-left-color-default) border-r-(--tabs-indicator-border-right-color-default) border-t-(--tabs-indicator-border-top-color-default)')
+      .withBackgroundColor('bg-(--tabs-indicator-bg-color-default)')
+      .withShadow('shadow-(--tabs-indicator-shadow-default)')
+      .build(),
+    item: new StyleBuilder()
+      .withClasses('cursor-pointer group outline-none')
+      .withPadding('px-(--tabs-item-container-padding-x-default) py-(--tabs-item-container-padding-y-default)')
+      .build(),
+    itemContent: new StyleBuilder()
+      .withClasses('relative z-tabs-item flex items-center duration-200')
+      .withBorderRadius('rounded-(--tabs-item-border-radius-default)')
+      .withBackgroundColor('bg-(--tabs-item-bg-color-default) group-hover:bg-(--tabs-item-bg-color-hover) group-focus-visible:!bg-(--tabs-item-bg-color-focus) group-data-[disabled]:bg-(--tabs-item-bg-color-disabled) group-data-[state=active]:bg-(--tabs-item-bg-color-active) group-hover:group-data-[state=active]:bg-(--tabs-item-bg-color-active)')
+      .withPadding('px-(--tabs-item-padding-x-default) py-(--tabs-item-padding-y-default)')
+      .withFontSize('text-(length:--tabs-item-font-size-default)')
+      .withFontWeight('font-(--tabs-item-font-weight-default)')
+      .withColor('text-(color:--tabs-item-text-color-default) group-hover:text-(color:--tabs-item-text-color-hover) group-focus-visible:!text-(color:--tabs-item-text-color-focus) group-data-[disabled]:text-(color:--tabs-item-text-color-disabled) group-data-[state=active]:text-(color:--tabs-item-text-color-active) group-hover:group-data-[state=active]:text-(color:--tabs-item-text-color-active)')
+      .withRing('ring-offset-1 ring-(--tabs-item-ring-color-default)')
+      .withShadow('shadow-(--tabs-item-shadow-default)')
+      .build(),
   },
 })
-
-export type TabsStyleProps = VariantProps<typeof useTabsStyle>

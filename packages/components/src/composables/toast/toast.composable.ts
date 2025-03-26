@@ -1,79 +1,56 @@
-import { h, type VNode } from 'vue'
+import { h } from 'vue'
 
-import { toast as vueSonnerToast } from '@/components/sonner/state'
-import AppToast from '@/components/toast/AppToast.vue'
-import type { Toast } from '@/types/toast.type'
+import { toast as toastState } from '@/components/toast/core/state'
+import Toast from '@/components/toast/Toast.vue'
+import type { Toast as ToastType } from '@/types/toast.type'
 
-interface NamedToast {
-  testId?: string
-  title: string
-  description?: string
+const DEFAULT_TOAST_DURATION = 10_000
+const DEFAULT_ERROR_TOAST_DURATION = Infinity
+
+interface ToastWithOptions extends ToastType {
+  /**
+   * The duration of the toast in milliseconds
+   */
+  durationInMs?: number
 }
 
 interface UseToastReturnType {
-  testId?: string
-  custom: (toast: {
-    duration?: number
-    h: () => VNode
-  }) => void
-  error: (toast: NamedToast) => void
-  show: (toast: Toast) => void
-  success: (toast: NamedToast) => void
+  error: (toast: ToastWithOptions) => void
+  info: (toast: ToastWithOptions) => void
+  success: (toast: ToastWithOptions) => void
 }
 
-const DEFAULT_TOAST_DURATION = 10000
+function showErrorToast(toast: ToastWithOptions): void {
+  toastState.custom(h(Toast, {
+    toast,
+    type: 'error',
+  }), {
+    duration: toast.durationInMs ?? DEFAULT_ERROR_TOAST_DURATION,
+  })
+}
+
+function showInfoToast(toast: ToastWithOptions): void {
+  toastState.custom(h(Toast, {
+    toast,
+    type: 'info',
+  }), {
+    duration: toast.durationInMs ?? DEFAULT_TOAST_DURATION,
+  })
+}
+
+function showSuccessToast(toast: ToastWithOptions): void {
+  toastState.custom(h(Toast, {
+    toast,
+    type: 'success',
+  }), {
+    duration: toast.durationInMs ?? DEFAULT_TOAST_DURATION,
+  })
+}
 
 export function useToast(): UseToastReturnType {
   return {
-    custom: customToast,
     error: showErrorToast,
-    show: showToast,
+    info: showInfoToast,
     success: showSuccessToast,
   }
-}
-
-function showErrorToast(toast: NamedToast): void {
-  vueSonnerToast.custom(h(AppToast, {
-    testId: toast.testId,
-    title: toast.title,
-    description: toast.description ?? null,
-    icon: 'alertCircle',
-    type: 'error',
-  }), {
-    duration: DEFAULT_TOAST_DURATION,
-  })
-}
-
-function showSuccessToast(toast: NamedToast): void {
-  vueSonnerToast.custom(h(AppToast, {
-    testId: toast.testId,
-    title: toast.title,
-    description: toast.description ?? null,
-    icon: 'checkmarkCircle',
-    type: 'success',
-  }), {
-    duration: DEFAULT_TOAST_DURATION,
-  })
-}
-
-function showToast(toast: Toast): void {
-  vueSonnerToast.custom(h(AppToast, {
-    testId: toast.testId,
-    title: toast.title,
-    action: toast.action,
-    description: toast.description ?? null,
-    icon: toast.icon,
-    type: toast.type,
-  }), {
-    duration: toast.duration ?? DEFAULT_TOAST_DURATION,
-  })
-}
-
-function customToast(toast: {
-  duration?: number
-  h: () => VNode
-}): void {
-  vueSonnerToast.custom(toast.h(), {
-    duration: toast.duration,
-  })
 }

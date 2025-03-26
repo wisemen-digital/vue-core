@@ -3,13 +3,12 @@ import type {
   MaybeRefOrGetter,
 } from 'vue'
 
-import type { ComboboxItem } from '@/types/comboboxItem.type'
-import type { SelectItem } from '@/types/selectItem.type'
+import type { SelectItem } from '@/types/select.type'
 
-export type SortDirection = 'asc' | 'desc'
+export type PaginationSortOrder = 'asc' | 'desc'
 
 export interface PaginationSort {
-  direction: SortDirection
+  direction: PaginationSortOrder
   key: string
 }
 
@@ -18,28 +17,34 @@ export type PaginationFilters<TFilters> = {
 }
 
 export interface PageChangeEvent {
-  page: number
-  perPage: number
+  limit: number
+  offset: number
 }
 
 export type FilterChangeEvent<TFilters> = PaginationFilters<TFilters>
 
-export interface TableFilterEvent<TFilters> {
-  key: keyof TFilters
-  value: FilterValues | null
-}
-
 export interface SortChangeEvent {
-  direction: SortDirection
+  direction: PaginationSortOrder
   key: string
 }
 
+interface PaginationKeyset {
+  key: unknown | null
+  limit: number
+  type: 'keyset'
+}
+
+interface PaginationOffset {
+  limit: number
+  offset: number
+  type: 'offset'
+}
+
+export type PaginationSet = PaginationKeyset | PaginationOffset
+
 export interface PaginationOptions<TFilters> {
   filters?: PaginationFilters<TFilters>
-  pagination: {
-    page: number
-    perPage: number
-  }
+  pagination: PaginationSet
   search?: string
   sort?: PaginationSort | undefined
   staticFilters?: PaginationFilters<TFilters>
@@ -51,37 +56,13 @@ interface PaginationFilterBase<TFilters> {
   label: string
 }
 
-export type FilterValues = boolean
-  | number
+export type FilterValues = number
   | string
   | string[]
-export type Filters = Record<string, FilterValues | undefined>
-
-export interface PaginationFilterWithMultiAutocomplete<TFilters, TValue> extends PaginationFilterBase<TFilters> {
-  displayFn: (value: { uuid: TValue, label: string }) => string
-  filterFn: (options: { uuid: TValue, label: string }[], searchTerm: string) => { uuid: TValue, label: string }[]
-  items: ComboboxItem<{ uuid: TValue, label: string }>[]
-  label: string
-  modelValue: { uuid: TValue, label: string }[]
-  placeholder: string
-  type: 'multi-autocomplete'
-  onSearch: (search: string) => Promise<void>
-}
-
-export interface PaginationFilterWithAutocomplete<TFilters, TValue> extends PaginationFilterBase<TFilters> {
-  displayFn: (value: { uuid: TValue, label: string } | null) => string
-  filterFn: (options: { uuid: TValue, label: string }[], searchTerm: string) => { uuid: TValue, label: string }[]
-  items: ComboboxItem<{ uuid: TValue, label: string }>[]
-  label: string
-  modelValue: { uuid: TValue, label: string } | null
-  placeholder: string
-  type: 'autocomplete'
-  onSearch: (search: string | null) => Promise<void>
-}
 
 export interface PaginationFilterWithMultipleOptions<TFilters> extends PaginationFilterBase<TFilters> {
   displayFn: (value: string) => string
-  options: ComboboxItem<string>[]
+  options: SelectItem<string>[]
   type: 'multiselect'
 }
 
@@ -109,12 +90,10 @@ export interface PaginationFilterNumber<TFilters> extends PaginationFilterBase<T
   type: 'number'
 }
 
-export type PaginationFilter<TFilters, TValue = void> =
+export type PaginationFilter<TFilters> =
   | PaginationFilterBoolean<TFilters>
   | PaginationFilterNumber<TFilters>
   | PaginationFilterText<TFilters>
-  | PaginationFilterWithAutocomplete<TFilters, TValue>
-  | PaginationFilterWithMultiAutocomplete<TFilters, TValue>
   | PaginationFilterWithMultipleOptions<TFilters>
   | PaginationFilterWithSingleOption<TFilters>
 
@@ -122,26 +101,34 @@ export type Pagination<TFilters> = UsePaginationReturnType<TFilters>
 
 export interface PaginatedData<TSchema> {
   data: TSchema[]
-  total: number
+  meta: {
+    limit: number
+    offset: number
+    total: number
+  } | {
+    next: unknown | null
+    total: number
+  }
 }
 
 // Pagination composable types
 
 export interface UsePaginationOptions<TFilters> {
   /**
-   * Identifier used to store pagination options in a route query.
+   * When enabled, the pagination state will be stored in the route query.
    */
-  id: string
+  isRouteQueryEnabled: boolean
   /**
-   * Default pagination options. If not provided, the default options will be used.
+   * The key to store pagination options in the route query.
+   */
+  key?: string
+  /**
+   * The initial pagination options to use. If not provided, the default options will be used.
+   * These options can be reactive and will update the pagination state when changed.
    * @default null
    */
-  defaultPaginationOptions?: MaybeRefOrGetter<DeepPartial<PaginationOptions<TFilters>>> | null
-  /**
-   * If true, the route query will be disabled.
-   * @default false
-   */
-  disableRouteQuery?: boolean
+  options?: MaybeRefOrGetter<DeepPartial<PaginationOptions<TFilters>>> | null
+  type?: 'keyset' | 'offset'
 }
 
 export interface UsePaginationReturnType<TFilters> {
@@ -154,8 +141,9 @@ export interface UsePaginationReturnType<TFilters> {
 }
 
 // Local pagination composable types
+
 export interface UseLocalPaginationOptions<TSchema, TFilters> extends UsePaginationOptions<TFilters> {
-  items: ComputedRef<TSchema[]>
+  items: MaybeRefOrGetter<TSchema[]>
 }
 
 export interface UseLocalPaginationReturnType<TSchema, TFilters> {

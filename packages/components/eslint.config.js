@@ -4,13 +4,13 @@ export default [
   ...(await eslintVueConfig),
   {
     rules: {
+      '@intlify/vue-i18n/no-raw-text': 'off',
       'import/extensions': 'off',
     },
   },
   {
     ignores: [
       '**/src/components/sonner/Toaster.vue',
-      '**/src/components/sonner/state.ts',
     ],
   },
 ]
