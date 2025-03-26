@@ -4,6 +4,8 @@ import { StyleBuilder } from '@/utils/styleBuilder.util'
 
 export const createTabsStyle = tv({
   slots: {
+    base: new StyleBuilder()
+      .build(),
     content: new StyleBuilder()
       .withBase('outline-none')
       .build(),
@@ -24,12 +26,16 @@ export const createTabsStyle = tv({
     list: new StyleBuilder()
       .withBase('group relative flex data-[orientation=vertical]:flex-col')
       .build(),
-    root: new StyleBuilder()
-      .build(),
   },
   variants: {
     variant: {
       'button-border': {
+        base: new StyleBuilder()
+          .withBackgroundColor('bg-secondary-alt')
+          .withBorder('border border-secondary')
+          .withBorderRadius('rounded-lg')
+          .withSpacing('p-xs')
+          .build(),
         indicator: new StyleBuilder()
           .withBackgroundColor('bg-primary-alt')
           .withBorderRadius('rounded-sm')
@@ -44,12 +50,6 @@ export const createTabsStyle = tv({
           .build(),
         list: new StyleBuilder()
           .withSpacing('gap-xs')
-          .build(),
-        root: new StyleBuilder()
-          .withBackgroundColor('bg-secondary-alt')
-          .withBorder('border border-secondary')
-          .withBorderRadius('rounded-lg')
-          .withSpacing('p-xs')
           .build(),
       },
       'button-brand': {

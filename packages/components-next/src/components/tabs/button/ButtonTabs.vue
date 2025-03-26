@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { ButtonTabsValue } from '@/components/tabs/button/buttonTabs.props'
+import TabsBase from '@/components/tabs/shared/parts/TabsBase.vue'
 import TabsIndicator from '@/components/tabs/shared/parts/TabsIndicator.vue'
 import TabsList from '@/components/tabs/shared/parts/TabsList.vue'
 import TabsRoot from '@/components/tabs/shared/parts/TabsRoot.vue'
@@ -35,11 +36,13 @@ const model = defineModel<ButtonTabsValue>({
     v-bind="props"
     v-model="model"
   >
-    <TabsList>
-      <slot name="items" />
+    <TabsBase>
+      <TabsList>
+        <slot name="items" />
 
-      <TabsIndicator />
-    </TabsList>
+        <TabsIndicator />
+      </TabsList>
+    </TabsBase>
 
     <slot name="content" />
   </TabsRoot>

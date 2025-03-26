@@ -11,7 +11,9 @@ import Tooltip from '@/components/tooltip/Tooltip.vue'
       </template>
 
       <template #content>
-        <div>Tooltip content</div>
+        <div class="text-sm px-md py-xs">
+          <span class="text-primary">Tooltip content</span>
+        </div>
       </template>
     </Tooltip>
   </Story>

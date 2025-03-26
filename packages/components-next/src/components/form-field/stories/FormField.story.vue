@@ -10,7 +10,7 @@ import FormField from '@/components/form-field/FormField.vue'
       label="Label"
       hint="Hint"
     >
-      Content
+      <input id="input-id">
     </FormField>
   </Story>
 </template>

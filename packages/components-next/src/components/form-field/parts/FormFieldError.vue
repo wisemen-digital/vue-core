@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useInjectFormFieldContext } from '@/components/form-field/formField.context'
 import type { FormFieldLabelSlots } from '@/components/form-field/formField.slots'
-import AnimateSize from '@/components/shared/AnimateSize.vue'
 import { mergeClasses } from '@/customClassVariants'
 
 defineSlots<FormFieldLabelSlots>()
@@ -17,7 +16,7 @@ const {
 </script>
 
 <template>
-  <AnimateSize>
+  <div>
     <span
       v-if="errors.length > 0 && isTouched"
       :id="`${forId}-error`"
@@ -29,5 +28,5 @@ const {
     >
       {{ errors[0] }}
     </span>
-  </AnimateSize>
+  </div>
 </template>

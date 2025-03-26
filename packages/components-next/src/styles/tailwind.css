@@ -80,15 +80,14 @@
   --color-fg-tertiary-hover: var(--fg-tertiary-hover);
   --color-fg-quaternary: var(--fg-quaternary);
   --color-fg-quaternary-hover: var(--fg-quaternary-hover);
-  --color-fg-quinary: var(--fg-quinary);
-  --color-fg-quinary-hover: var(--fg-quinary-hover);
-  --color-fg-senary: var(--fg-senary);
   --color-fg-white: var(--fg-white);
   --color-fg-disabled: var(--fg-disabled);
   --color-fg-disabled-subtle: var(--fg-disabled-subtle);
   --color-fg-brand-primary: var(--fg-brand-primary);
   --color-fg-brand-primary-alt: var(--fg-brand-primary-alt);
   --color-fg-brand-secondary: var(--fg-brand-secondary);
+  --color-fg-brand-secondary-alt: var(--fg-brand-secondary-alt);
+  --color-fg-brand-secondary-hover: var(--fg-brand-secondary-hover);
   --color-fg-error-primary: var(--fg-error-primary);
   --color-fg-error-secondary: var(--fg-error-secondary);
   --color-fg-warning-primary: var(--fg-warning-primary);
@@ -111,9 +110,11 @@
   --text-color-placeholder-subtle: var(--text-placeholder-subtle);
   --text-color-brand-primary: var(--text-brand-primary);
   --text-color-brand-secondary: var(--text-brand-secondary);
+  --text-color-brand-secondary-hover: var(--text-brand-secondary-hover);
   --text-color-brand-tertiary: var(--text-brand-tertiary);
   --text-color-brand-tertiary-alt: var(--text-brand-tertiary-alt);
   --text-color-error-primary: var(--text-error-primary);
+  --text-color-error-primary-hover: var(--text-error-primary-hover);
   --text-color-warning-primary: var(--text-warning-primary);
   --text-color-success-primary: var(--text-success-primary);
 
@@ -151,6 +152,7 @@
 
   --border-color-primary: var(--border-primary);
   --border-color-secondary: var(--border-secondary);
+  --border-color-secondary-alt: var(--border-secondary-alt);
   --border-color-tertiary: var(--border-tertiary);
   --border-color-disabled: var(--border-disabled);
   --border-color-disabled-subtle: var(--border-disabled-subtle);

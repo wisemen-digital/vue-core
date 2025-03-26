@@ -3,7 +3,6 @@ import { computed } from 'vue'
 
 import { useInjectFormFieldContext } from '@/components/form-field/formField.context'
 import type { FormFieldLabelSlots } from '@/components/form-field/formField.slots'
-import AnimateSize from '@/components/shared/AnimateSize.vue'
 import { mergeClasses } from '@/customClassVariants'
 
 defineSlots<FormFieldLabelSlots>()
@@ -22,7 +21,7 @@ const isErrorVisible = computed<boolean>(() => isTouched.value && errors.value.l
 </script>
 
 <template>
-  <AnimateSize>
+  <div>
     <span
       v-if="hint !== null && !isErrorVisible"
       :id="`${forId}-hint`"
@@ -33,5 +32,5 @@ const isErrorVisible = computed<boolean>(() => isTouched.value && errors.value.l
     >
       {{ hint }}
     </span>
-  </AnimateSize>
+  </div>
 </template>

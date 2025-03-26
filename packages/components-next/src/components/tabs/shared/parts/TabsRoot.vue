@@ -10,10 +10,7 @@ import {
   type CreateTabsStyle,
   createTabsStyle,
 } from '@/components/tabs/shared/tabs.style'
-import {
-  mergeClasses,
-  useComponentClassConfig,
-} from '@/customClassVariants'
+import { useComponentClassConfig } from '@/customClassVariants'
 import { toComputedRefs } from '@/utils/props.util'
 
 const props = withDefaults(defineProps<TabsProps>(), {
@@ -59,7 +56,6 @@ useProvideTabsContext({
     <RekaTabsRoot
       v-model="delegatedModel"
       :orientation="props.orientation"
-      :class="tabsStyle.root({ class: mergeClasses(customClassConfig.root, classConfig?.root) })"
     >
       <slot />
     </RekaTabsRoot>

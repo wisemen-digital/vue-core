@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 
+import TabsBase from '@/components/tabs/shared/parts/TabsBase.vue'
 import TabsIndicator from '@/components/tabs/shared/parts/TabsIndicator.vue'
 import TabsList from '@/components/tabs/shared/parts/TabsList.vue'
 import TabsRoot from '@/components/tabs/shared/parts/TabsRoot.vue'
@@ -36,12 +37,12 @@ const activeRouteName = computed<string>(() => route.name as string)
     v-bind="props"
     :model-value="activeRouteName"
   >
-    <TabsList>
-      <slot name="items" />
+    <TabsBase>
+      <TabsList>
+        <slot name="items" />
 
-      <TabsIndicator />
-    </TabsList>
-
-    <slot name="content" />
+        <TabsIndicator />
+      </TabsList>
+    </TabsBase>
   </TabsRoot>
 </template>

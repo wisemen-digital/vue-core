@@ -22,7 +22,7 @@ export const createSharedButtonStyle = tv({
       'destructive-primary': {
         root: new StyleBuilder()
           .withColor('text-white disabled:text-fg-disabled')
-          .withBackgroundColor('bg-error-600 disabled:bg-disabled')
+          .withBackgroundColor('bg-error-solid disabled:bg-disabled')
           .withBorder('border-error-600 disabled:border-disabled-subtle')
           .withRing('ring-error-600')
           .withTransition('data-[loading=false]:not-disabled:hover:brightness-95 data-[loading=false]:not-disabled:active:brightness-90')
@@ -30,16 +30,16 @@ export const createSharedButtonStyle = tv({
       },
       'destructive-secondary': {
         root: new StyleBuilder()
-          .withColor('text-error-700 dark:text-error-200 disabled:text-fg-disabled')
-          .withBackgroundColor('bg-transparent dark:bg-error-950 data-[loading=false]:not-disabled:hover:bg-error-50 dark:data-[loading=false]:not-disabled:hover:bg-error-900 data-[loading=false]:not-disabled:active:brightness-98 data-[loading=true]:bg-error-50 dark:data-[loading=true]:bg-error-900')
-          .withBorder('border-error-300 dark:border-error-800 disabled:border-disabled-subtle')
+          .withColor('text-error-primary disabled:text-fg-disabled')
+          .withBackgroundColor('bg-transparent data-[loading=false]:not-disabled:hover:bg-error-primary data-[loading=false]:not-disabled:active:brightness-98 data-[loading=true]:bg-error-primary')
+          .withBorder('border-error-subtle disabled:border-disabled-subtle')
           .withRing('ring-error-600')
           .build(),
       },
       'destructive-tertiary': {
         root: new StyleBuilder()
-          .withColor('text-error-700 dark:text-error-300 dark:data-[loading=false]:not-disabled:hover:text-error-200 disabled:text-fg-disabled')
-          .withBackgroundColor('bg-transparent data-[loading=false]:not-disabled:hover:bg-error-50 dark:data-[loading=false]:not-disabled:hover:bg-error-900 data-[loading=false]:not-disabled:active:brightness-98 data-[loading=true]:bg-error-50 dark:data-[loading=true]:bg-error-900')
+          .withColor('text-error-primary dark:data-[loading=false]:not-disabled:hover:text-error-200 disabled:text-fg-disabled')
+          .withBackgroundColor('bg-transparent data-[loading=false]:not-disabled:hover:bg-error-primary data-[loading=false]:not-disabled:active:brightness-98 data-[loading=true]:bg-error-primary')
           .withBorder('border-transparent')
           .withShadow('shadow-none')
           .withRing('ring-error-600')
@@ -55,15 +55,15 @@ export const createSharedButtonStyle = tv({
       },
       'secondary': {
         root: new StyleBuilder()
-          .withColor('text-gray-700 disabled:text-fg-disabled dark:text-gray-300')
-          .withBackgroundColor('bg-transparent data-[loading=false]:not-disabled:hover:bg-gray-50 data-[loading=false]:not-disabled:hover:dark:bg-gray-800 data-[loading=false]:not-disabled:active:brightness-98 data-[loading=true]:bg-gray-50 dark:data-[loading=true]:bg-gray-800')
-          .withBorder('border-gray-300 disabled:border-disabled-subtle dark:border-gray-700')
+          .withColor('text-secondary disabled:text-fg-disabled')
+          .withBackgroundColor('bg-transparent data-[loading=false]:not-disabled:hover:bg-primary-hover data-[loading=false]:not-disabled:active:brightness-98 data-[loading=true]:bg-primary-hover')
+          .withBorder('border-primary disabled:border-disabled-subtle')
           .build(),
       },
       'tertiary': {
         root: new StyleBuilder()
-          .withColor('text-gray-600 disabled:text-fg-disabled dark:text-gray-300')
-          .withBackgroundColor('bg-transparent data-[loading=false]:not-disabled:hover:bg-gray-50 data-[loading=false]:not-disabled:dark:hover:bg-gray-800 data-[loading=false]:not-disabled:active:brightness-98 data-[loading=true]:bg-gray-50 dark:data-[loading=true]:bg-gray-800')
+          .withColor('text-tertiary disabled:text-fg-disabled')
+          .withBackgroundColor('bg-transparent data-[loading=false]:not-disabled:hover:bg-primary-hover data-[loading=false]:not-disabled:active:brightness-98 data-[loading=true]:bg-primary-hover')
           .withBorder('border-transparent')
           .withShadow('shadow-none')
           .build(),
