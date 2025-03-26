@@ -2,8 +2,7 @@
   "eslint.workingDirectories": [
     "packages/docs",
     "packages/components",
-    "packages/playground",
-    "packages/components-cli"
+    "packages/playground"
   ],
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "javascript.preferences.importModuleSpecifier": "non-relative"
