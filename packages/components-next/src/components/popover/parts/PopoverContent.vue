@@ -36,7 +36,6 @@ const {
         :as-child="true"
         :data-content-width="popoverWidth"
         :align="popoverAlign"
-        :align-offset="popoverOffsetInPx"
         :collision-padding="popoverCollisionPaddingInPx"
         :collision-boundary="popoverContainerElement"
         :side="popoverSide"

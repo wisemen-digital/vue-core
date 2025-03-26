@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useElementSize } from '@vueuse/core'
 // import i18nCountries from 'i18n-iso-countries'
 import type { CountryCode } from 'libphonenumber-js'
 import {
@@ -13,11 +12,12 @@ import {
   computed,
   nextTick,
   ref,
-  watch,
 } from 'vue'
 
+import { getCountryFlagUrl } from '@/components/phone-number-field/phoneNumber.util'
 import type { PhoneNumberFieldProps } from '@/components/phone-number-field/phoneNumberField.props'
 import PhoneNumberFieldSelectItem from '@/components/phone-number-field/PhoneNumberFieldSelectItem.vue'
+import SelectBaseSingle from '@/components/select/parts/SelectBaseSingle.vue'
 import Select from '@/components/select/Select.vue'
 import TextField from '@/components/text-field/TextField.vue'
 
@@ -34,9 +34,7 @@ const model = defineModel<string | null>({
 })
 
 const phoneNumberFieldRef = ref<InstanceType<any> | null>(null)
-const phoneNumberFieldSize = useElementSize(
-  computed<HTMLElement | null>(() => phoneNumberFieldRef.value?.$el ?? null),
-)
+const phoneNumberFieldEl = computed<HTMLElement | null>(() => phoneNumberFieldRef.value?.$el ?? null)
 
 const countryCode = ref<CountryCode>(props.defaultCountryCode)
 const countries = getCountries()
@@ -113,19 +111,8 @@ const inputModel = computed<string | null>({
 const dialCodeDisplayValue = computed<string>(() => `+${getCountryCallingCode(countryCodeModel.value)}`)
 
 function filterFn(option: CountryCode, searchTerm: string): boolean {
-  return true
+  return option.toLowerCase().includes(searchTerm.toLowerCase())
 }
-
-// Focus the input when a country code is selected
-watch(countryCodeModel, () => {
-  if (countryCodeModel.value === null) {
-    return
-  }
-
-  const input = phoneNumberFieldRef.value.$el.querySelector('input') as HTMLInputElement
-
-  input.focus()
-})
 </script>
 
 <template>
@@ -133,25 +120,48 @@ watch(countryCodeModel, () => {
     ref="phoneNumberFieldRef"
     v-bind="props"
     v-model="inputModel"
+    :class-config="{
+      input: 'pl-sm',
+    }"
     type="tel"
   >
     <template #left>
       <Select
         v-model="countryCodeModel"
-        :display-fn="() => ''"
+        :popover-anchor-reference-element="phoneNumberFieldEl"
+        :display-fn="(countryCode) => countryCode"
         :filter="{
           isEnabled: true,
+          fn: filterFn,
         }"
         :virtual-list="{
           isEnabled: true,
           items: countries,
           itemComponent: PhoneNumberFieldSelectItem,
         }"
+        :class-config="{
+          root: 'h-8 ml-[0.18rem] rounded-sm border-none shadow-none !ring-0 not-disabled:hover:bg-primary-hover pr-xs focus-within:bg-tertiary',
+          iconRight: 'mr-0 size-4',
+          baseSingle: 'pr-0',
+        }"
         :is-disabled="props.isDisabled"
-        class="w-16 shrink-0"
-        popover-width="available-width"
+        class="shrink-0"
         popover-align="start"
-      />
+      >
+        <template #base>
+          <SelectBaseSingle>
+            <img
+              v-if="countryCodeModel !== null"
+              :src="getCountryFlagUrl(countryCodeModel) ?? undefined"
+              class="object-cover rounded-xxs block h-3.5 w-5 shrink-0"
+            >
+          </SelectBaseSingle>
+        </template>
+      </Select>
+
+      <span class="text-sm text-placeholder pl-xs">
+        {{ dialCodeDisplayValue }}
+      </span>
     </template>
   </TextField>
 </template>

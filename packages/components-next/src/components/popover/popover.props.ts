@@ -4,4 +4,9 @@ import type {
   PrimitiveElement,
 } from '@/utils/props.util'
 
-export interface PopoverProps extends PopperPropsWithArrowVisibleByDefault, PrimitiveElement, CustomizableElement<'popover'> {}
+export interface PopoverProps extends PopperPropsWithArrowVisibleByDefault, PrimitiveElement, CustomizableElement<'popover'> {
+  /**
+   * The element to which the popover should be anchored.
+   */
+  anchorReferenceElement?: HTMLElement | null
+}

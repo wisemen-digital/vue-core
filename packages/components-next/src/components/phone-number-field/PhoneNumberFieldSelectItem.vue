@@ -23,19 +23,22 @@ const countryName = computed<string | null>(
   () => getCountryName(props.value, globalConfigContext.locale.value),
 )
 
-const contryCallingCode = computed<string>(() => getCountryCallingCode(props.value))
+const countryCallingCode = computed<string>(() => getCountryCallingCode(props.value))
 </script>
 
 <template>
   <SelectItem :value="props.value">
-    <div>
-      <img
-        v-if="countryFlagImageUrl !== null"
-        :src="countryFlagImageUrl"
-      >
+    <div class="flex items-center gap-md">
+      <div class="h-3 w-5 rounded-xxs overflow-hidden">
+        <img
+          v-if="countryFlagImageUrl !== null"
+          :src="countryFlagImageUrl"
+          class="object-cover size-full"
+        >
+      </div>
 
       <span>
-        {{ countryName ?? contryCallingCode }}
+        {{ countryName ?? countryCallingCode }}
       </span>
     </div>
   </SelectItem>

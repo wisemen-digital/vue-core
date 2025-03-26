@@ -4,6 +4,6 @@ import PhoneNumberField from '@/components/phone-number-field/PhoneNumberField.v
 
 <template>
   <Story title="Phone Number Field">
-    <PhoneNumberField />
+    <PhoneNumberField class="w-72" />
   </Story>
 </template>

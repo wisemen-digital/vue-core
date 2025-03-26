@@ -16,6 +16,7 @@ const props = withDefaults(defineProps<PopoverProps>(), {
   testId: null,
   isArrowHidden: false,
   isCloseButtonHidden: false,
+  anchorReferenceElement: null,
   classConfig: null,
   popoverAlign: 'center',
   popoverCollisionPaddingInPx: 10,

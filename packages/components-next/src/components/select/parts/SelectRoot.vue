@@ -13,7 +13,11 @@ import { useI18n } from 'vue-i18n'
 
 import { useProvideSelectContext } from '@/components/select/select.context'
 import type { SelectEmits } from '@/components/select/select.emits'
-import type { SelectProps, SelectValue } from '@/components/select/select.props'
+import type {
+  SelectFilterFn,
+  SelectProps,
+  SelectValue,
+} from '@/components/select/select.props'
 import {
   type CreateSelectStyle,
   createSelectStyle,
@@ -33,16 +37,14 @@ const props = withDefaults(defineProps<SelectProps<TValue>>(), {
   isDisabled: false,
   isDropdownHidden: false,
   isLoading: false,
-  isOpenControlled: false,
   isSearchTermControlled: false,
   classConfig: null,
   filter: null,
-  filterFn: null,
-  filterPlaceholder: null,
   iconLeft: null,
   iconRight: 'selectIconRight',
   placeholder: null,
   popoverAlign: 'center',
+  popoverAnchorReferenceElement: null,
   popoverCollisionPaddingInPx: 0,
   popoverContainerElement: null,
   popoverOffsetInPx: 6,
@@ -113,6 +115,8 @@ function defaultFilterFn(value: unknown, searchTerm: string): boolean {
   return contains(displayValue.toLowerCase(), searchTerm.toLowerCase())
 }
 
+const filterFn = computed<SelectFilterFn<TValue>>(() => props.filter?.fn ?? defaultFilterFn)
+
 const filteredItems = computed<Map<string, unknown>>(() => {
   if (props.filter === null || !props.filter.isEnabled) {
     return allItems.value
@@ -128,9 +132,7 @@ const filteredItems = computed<Map<string, unknown>>(() => {
         _key,
         value,
       ]) => {
-        const filterFn = props.filter?.fn ?? defaultFilterFn
-
-        return filterFn(value as any, searchTerm.value)
+        return filterFn.value(value as any, searchTerm.value)
       }),
   )
 })
@@ -141,7 +143,7 @@ const virtualListFilteredItems = computed<AcceptableValue[]>(() => {
   }
 
   return props.virtualList.items.filter((item) => (
-    defaultFilterFn(item, searchTerm.value)
+    filterFn.value(item as any, searchTerm.value)
   ))
 })
 

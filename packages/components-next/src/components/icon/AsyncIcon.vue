@@ -6,17 +6,10 @@ import {
 } from 'vue'
 
 import type { IconProps } from '@/components/icon/icon.props'
-<<<<<<<< HEAD:packages/components-next/src/components/icon/AsyncIcon.vue
 import { icons } from '@/icons/icons'
-========
-import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
-import { icons } from '@/icons/icons'
-import { ThemeUtil } from '@/utils/theme.util'
->>>>>>>> main:packages/components/src/components-v2/icon/AsyncIcon.vue
 
 const props = defineProps<IconProps>()
 
-const themeProviderContext = injectThemeProviderContext()
 const svgComponent = shallowRef<Component | null>(null)
 
 async function setIcon(): Promise<void> {
@@ -43,9 +36,5 @@ await setIcon()
   <Component
     :is="svgComponent"
     v-if="svgComponent !== null"
-<<<<<<<< HEAD:packages/components-next/src/components/icon/AsyncIcon.vue
-========
-    :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.appearance.value)"
->>>>>>>> main:packages/components/src/components-v2/icon/AsyncIcon.vue
   />
 </template>

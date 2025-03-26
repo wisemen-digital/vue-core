@@ -58,7 +58,11 @@ const id = props.id ?? useId()
       @focus="emit('focus')"
     >
       <SelectPopover>
-        <template #trigger>
+        <template #anchor>
+          <slot name="anchor" />
+        </template>
+
+        <template #inline-content>
           <slot name="left" />
 
           <slot name="icon-left">

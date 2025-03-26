@@ -15,6 +15,7 @@ const {
   isDropdownHidden,
   isDropdownVisible,
   popoverAlign,
+  popoverAnchorReferenceElement,
   popoverCollisionPaddingInPx,
   popoverContainerElement,
   popoverOffsetInPx,
@@ -43,16 +44,19 @@ function onAutoFocusOnClose(event: Event): void {
     :popover-offset-in-px="popoverOffsetInPx"
     :popover-side="popoverSide"
     :popover-width="popoverWidth"
+    :anchor-reference-element="popoverAnchorReferenceElement"
     @update:is-open="setIsDropdownVisible"
     @escape-key-down="onDropdownEscapeKeyDown"
     @interact-outside="onDropdownInteractOutside"
     @auto-focus-on-close="onAutoFocusOnClose"
   >
-    <PopoverAnchor>
-      <SelectPopoverTrigger />
-    </PopoverAnchor>
+    <slot name="anchor">
+      <PopoverAnchor>
+        <SelectPopoverTrigger />
+      </PopoverAnchor>
+    </slot>
 
-    <slot name="trigger" />
+    <slot name="inline-content" />
 
     <PopoverPortal>
       <PopoverContent>
