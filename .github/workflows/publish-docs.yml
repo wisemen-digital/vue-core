@@ -3,7 +3,7 @@ name: Publish Docs
 
 on:
   push:
-    branches: ['main', 'v2']
+    branches: ['main']
   workflow_dispatch:
 
 jobs:
