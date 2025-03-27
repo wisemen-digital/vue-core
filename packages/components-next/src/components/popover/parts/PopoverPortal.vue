@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { injectConfigContext } from '@/components/config-provider/config.context'
+import { useInjectConfigContext } from '@/components/config-provider/config.context'
 
-const configContext = injectConfigContext()
+const configContext = useInjectConfigContext()
 </script>
 
 <template>

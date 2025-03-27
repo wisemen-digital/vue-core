@@ -5,7 +5,7 @@ import {
 } from 'libphonenumber-js'
 import { computed } from 'vue'
 
-import { injectConfigContext } from '@/components/config-provider/config.context'
+import { useInjectConfigContext } from '@/components/config-provider/config.context'
 import {
   getCountryFlagUrl,
   getCountryName,
@@ -16,7 +16,7 @@ const props = defineProps<{
   value: CountryCode
 }>()
 
-const globalConfigContext = injectConfigContext()
+const globalConfigContext = useInjectConfigContext()
 
 const countryFlagImageUrl = computed<string | null>(() => getCountryFlagUrl(props.value))
 const countryName = computed<string | null>(

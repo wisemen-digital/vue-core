@@ -4,9 +4,9 @@ import { computed, ref } from 'vue'
 import ConfigProvider from '@/components/config-provider/ConfigProvider.vue'
 import DialogContainer from '@/components/dialog/DialogContainer.vue'
 import ThemeProvider from '@/components/theme-provider/ThemeProvider.vue'
-import { useDarkMode } from '@/composables/darkMode.composable'
+import { useAppearance } from '@/composables/appearance.composable'
 
-const appearance = useDarkMode()
+const appearance = useAppearance()
 
 const isDark = computed<boolean>({
   get: () => appearance.value === 'dark',

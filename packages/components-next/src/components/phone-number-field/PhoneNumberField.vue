@@ -14,7 +14,7 @@ import {
   ref,
 } from 'vue'
 
-import { injectConfigContext } from '@/components/config-provider/config.context'
+import { useInjectConfigContext } from '@/components/config-provider/config.context'
 import {
   getCountryFlagUrl,
   getCountryName,
@@ -37,7 +37,7 @@ const model = defineModel<string | null>({
   required: false,
 })
 
-const globalConfigContext = injectConfigContext()
+const globalConfigContext = useInjectConfigContext()
 
 const phoneNumberFieldRef = ref<InstanceType<any> | null>(null)
 const phoneNumberFieldEl = computed<HTMLElement | null>(() => phoneNumberFieldRef.value?.$el ?? null)

@@ -6,7 +6,7 @@ import {
   provide,
 } from 'vue'
 
-import type { Appearance } from '@/composables/darkMode.composable'
+import type { Appearance } from '@/composables/appearance.composable'
 
 interface ThemeProviderContext {
   appearance: ComputedRef<Appearance>
