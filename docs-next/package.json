@@ -14,15 +14,12 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@internationalized/date": "3.5.4",
-    "@wisemen/vue-core": "workspace:*",
-    "i18n-iso-countries": "7.11.2",
+    "@wisemen/vue-core-components": "workspace:*",
     "vue-router": "4.3.3"
   },
   "devDependencies": {
     "@babel/traverse": "7.24.8",
     "@tailwindcss/postcss": "4.0.0-beta.8",
-    "@tailwindcss/vite": "4.0.0-beta.4",
     "@types/babel__traverse": "7.20.6",
     "@types/markdown-it": "14.1.1",
     "@types/node": "20.14.2",
@@ -32,11 +29,12 @@
     "markdown-it": "14.1.0",
     "postcss": "8.4.38",
     "postcss-prefix-selector": "1.16.1",
-    "tailwindcss": "4.0.0-beta.4",
+    "tailwindcss": "4.0.17",
     "ts-node": "10.9.2",
     "tsx": "4.16.0",
     "vitepress": "1.6.3",
     "vue-component-meta": "2.0.24",
+    "vue-i18n": "^11.1.2",
     "vue-tsc": "2.0.21"
   }
 }

@@ -24,7 +24,6 @@ const props = withDefaults(defineProps<ButtonProps>(), {
   classConfig: null,
   iconLeft: null,
   iconRight: null,
-  loadingLabel: null,
   size: 'md',
   type: 'button',
   variant: 'primary',

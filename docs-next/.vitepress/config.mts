@@ -1,4 +1,6 @@
 import { defineConfig } from 'vitepress'
+import ComponentPreviewPlugin from './plugins/ComponentPreview'
+import tailwindcss from '@tailwindcss/vite'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -32,5 +34,10 @@ export default defineConfig({
     socialLinks: [
       { icon: 'github', link: 'https://github.com/wisemen-digital/vue-core/packages/components-next' }
     ]
+  },
+  markdown: {
+    preConfig(md) {
+      md.use(ComponentPreviewPlugin)
+    }
   }
 })

@@ -26,9 +26,9 @@
     "playground/**/*.ts",
     "playground/**/*.tsx",
     "playground/**/*.vue",
-    "components/**/*",
-    "components/**/*.ts",
-    "components/**/*.tsx",
-    "components/**/*.vue"
+    "components-next/**/*",
+    "components-next/**/*.ts",
+    "components-next/**/*.tsx",
+    "components-next/**/*.vue"
   ]
 }

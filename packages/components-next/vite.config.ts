@@ -15,7 +15,6 @@ export default defineConfig({
       cssFileName: 'style',
       entry: [
         resolve(__dirname, 'src/index.ts'),
-        resolve(__dirname, 'src/next.ts'),
       ],
       fileName: (format, name) => {
         if (format === 'es') {

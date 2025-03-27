@@ -13,19 +13,23 @@ const emit = defineEmits<ButtonEmits>()
 
 defineSlots<{
   /**
-   *  Slot to override the main content of the button.
+   * The main content of the button.
+   * Typically includes text, but can also contain other elements.
    */
   'default': () => void
   /**
-   * Slot to override the default left-side icon of the button.
+   * Custom slot for the left-side icon.
+   * Overrides the default icon displayed before the button content.
    */
   'icon-left': () => void
   /**
-   * Slot to override the default right-side icon of the button.
+   * Custom slot for the right-side icon.
+   * Overrides the default icon displayed after the button content.
    */
   'icon-right': () => void
   /**
-   * Slot to override the default loading indicator.
+   * Custom slot for the loading indicator.
+   * Replaces the default loading spinner when the button is in a loading state.
    */
   'loader': () => void
 }>()

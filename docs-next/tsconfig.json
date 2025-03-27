@@ -27,7 +27,6 @@
     "skipLibCheck": true
   },
   "files": [
-    "postcss.config.mjs",
     "eslint.config.js"
   ],
   "include": [
@@ -37,12 +36,12 @@
     ".vitepress/config.mts",
     ".vitepress/theme/index.ts",
     "tailwind.config.ts",
-    "../components/env.d.ts",
-    "../components/src/**/*",
-    "../components/src/**/*.ts",
-    "../components/src/**/*.tsx",
-    "../components/src/**/*.vue",
-    "./components/**/*.vue",
+    "../components-next/env.d.ts",
+    "../components-next/src/**/*",
+    "../components-next/src/**/*.ts",
+    "../components-next/src/**/*.tsx",
+    "../components-next/src/**/*.vue",
+    "./components-next/**/*.vue",
     "./icons/**/*.ts",
     "./icons/**/*.vue",
     "docs/**/*.ts",

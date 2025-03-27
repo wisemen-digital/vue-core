@@ -15,13 +15,12 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "typings": "./dist/index.d.ts",
-  "web-types": "./dist/web-types.json",
   "files": [
     "./dist"
   ],
   "scripts": {
     "prerelease": "pnpm version prerelease --preid=alpha",
-    "build": "pnpm type-check && pnpm build-only && npm pack && cpx web-types.json dist/web-types.json",
+    "build": "pnpm type-check && pnpm build-only && npm pack",
     "precommit": "pnpm type-check && test:unit && pnpm build-only",
     "build-only": "vite build",
     "type-check": "vue-tsc -p tsconfig.check.json --noEmit",
@@ -46,6 +45,7 @@
     "@fontsource-variable/inter": "5.1.0",
     "@googlemaps/js-api-loader": "1.16.8",
     "@histoire/plugin-vue": "1.0.0-alpha.2",
+    "@tailwindcss/postcss": "4.0.0-beta.8",
     "@tailwindcss/vite": "4.0.11",
     "@tsconfig/node18": "18.2.4",
     "@types/google.maps": "3.55.4",
