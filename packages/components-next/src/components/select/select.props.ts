@@ -87,9 +87,10 @@ export interface SelectProps<TValue extends SelectValue> extends
    */
   placeholder?: string | null
   /**
-   *
+   * The element to which the popover should be anchored.
+   * @default null
    */
-  popoverAnchorReferenceElement: HTMLElement | null
+  popoverAnchorReferenceElement?: HTMLElement | null
   /**
    * Determines whether the dropdown should remain open when the selected value changes.
    * - If `true`, the dropdown remains open after selecting an option.

@@ -19,7 +19,7 @@ const props = withDefaults(defineProps<PopoverProps>(), {
   popoverCollisionPaddingInPx: 10,
   popoverContainerElement: null,
   popoverOffsetInPx: 10,
-  popoverSide: 'bottom',
+  popoverSide: 'top',
   popoverWidth: null,
 })
 

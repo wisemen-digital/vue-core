@@ -1,11 +1,5 @@
 <script setup lang="ts">
-import { useElementSize } from '@vueuse/core'
 import { Motion } from 'motion-v'
-import { ref } from 'vue'
-
-const containerRef = ref<HTMLElement | null>(null)
-
-const { height, width } = useElementSize(containerRef)
 </script>
 
 <template>
@@ -17,8 +11,6 @@ const { height, width } = useElementSize(containerRef)
     :animate="{
       opacity: 1,
       scale: 1,
-      width,
-      height,
     }"
     :exit="{
       opacity: 0,
@@ -39,10 +31,8 @@ const { height, width } = useElementSize(containerRef)
         type: 'spring',
       },
     }"
-    class="flex items-start justify-start"
+    :layout-root="true"
   >
-    <div ref="containerRef">
-      <slot />
-    </div>
+    <slot />
   </Motion>
 </template>

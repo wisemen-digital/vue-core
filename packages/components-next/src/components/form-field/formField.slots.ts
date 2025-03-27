@@ -1,5 +1,9 @@
 export interface FormFieldLabelSlots {
   /**
+   *
+   */
+  'label': () => unknown
+  /**
    * Content to be displayed before the label.
    */
   'label-leading': () => unknown

@@ -8,7 +8,6 @@ export const createSharedButtonStyle = tv({
   slots: {
     root: new StyleBuilder()
       .withBase('group/button outline-none whitespace-nowrap overflow-hidden relative')
-      .withFlex('flex items-center justify-center')
       .withRing('focus-visible:ring-2 focus-visible:ring-offset-1 ring-brand-600')
       .withBorder('border border-solid')
       .withBorderRadius('rounded-md')
@@ -38,7 +37,7 @@ export const createSharedButtonStyle = tv({
       },
       'destructive-tertiary': {
         root: new StyleBuilder()
-          .withColor('text-error-primary dark:data-[loading=false]:not-disabled:hover:text-error-200 disabled:text-fg-disabled')
+          .withColor('text-error-primary disabled:text-fg-disabled')
           .withBackgroundColor('bg-transparent data-[loading=false]:not-disabled:hover:bg-error-primary data-[loading=false]:not-disabled:active:brightness-98 data-[loading=true]:bg-error-primary')
           .withBorder('border-transparent')
           .withShadow('shadow-none')

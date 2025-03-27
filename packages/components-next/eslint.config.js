@@ -5,6 +5,7 @@ export default [
   {
     rules: {
       '@intlify/vue-i18n/no-raw-text': 'off',
+      'vue/no-undef-components': 'off',
     },
   },
   {

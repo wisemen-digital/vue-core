@@ -9,7 +9,9 @@ export const createIconButtonStyle = tv({
     contentContainer: '',
     icon: '',
     loader: '',
-    root: '',
+    root: new StyleBuilder()
+      .withFlex('flex items-center justify-center')
+      .build(),
   },
   variants: {
     size: {

@@ -9,6 +9,7 @@ export const createDialogStyle = tv({
       .withClasses('fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-40 outline-none overflow-hidden')
       .withZIndex('z-40')
       .withBorderRadius('rounded-lg')
+      .withBorder('border border-solid border-tertiary')
       .withBackgroundColor('bg-primary')
       .withShadow('shadow-lg')
       .build(),

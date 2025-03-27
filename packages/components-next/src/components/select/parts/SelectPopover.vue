@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { Motion } from 'motion-v'
-
 import PopoverAnchor from '@/components/popover/parts/PopoverAnchor.vue'
 import PopoverContent from '@/components/popover/parts/PopoverContent.vue'
 import PopoverInnerContent from '@/components/popover/parts/PopoverInnerContent.vue'
 import PopoverPortal from '@/components/popover/parts/PopoverPortal.vue'
 import PopoverRoot from '@/components/popover/parts/PopoverRoot.vue'
+import SelectPopoverContentTransition from '@/components/select/parts/SelectPopoverContentTransition.vue'
 import SelectPopoverTrigger from '@/components/select/parts/SelectPopoverTrigger.vue'
 import { useInjectSelectContext } from '@/components/select/select.context'
 
@@ -60,30 +59,11 @@ function onAutoFocusOnClose(event: Event): void {
 
     <PopoverPortal>
       <PopoverContent>
-        <Motion
-          :initial="{
-            opacity: 0,
-            scale: 0.95,
-          }"
-          :animate="{
-            opacity: 1,
-            scale: 1,
-          }"
-          :exit="{
-            opacity: 0,
-            scale: 0.95,
-          }"
-          :transition="{
-            duration: 0.4,
-            type: 'spring',
-            bounce: 0.2,
-          }"
-          class="data-[side=bottom]:origin-top data-[side=top]:origin-bottom data-[side=left]:origin-right data-[side=right]:origin-left"
-        >
+        <SelectPopoverContentTransition>
           <PopoverInnerContent>
             <slot name="content" />
           </PopoverInnerContent>
-        </Motion>
+        </SelectPopoverContentTransition>
       </PopoverContent>
     </PopoverPortal>
   </PopoverRoot>

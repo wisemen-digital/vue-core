@@ -3,6 +3,7 @@ import { ref } from 'vue'
 
 import Autocomplete from '@/components/autocomplete/Autocomplete.vue'
 
+const value = ref<string | null>(null)
 const items = ref<string[]>([])
 const isFetchingItems = ref<boolean>(false)
 
@@ -24,15 +25,15 @@ function onSearch(searchTerm: string): void {
 </script>
 
 <template>
-  <Story title="Autocomplete">
+  <Story title="Autocomplete/Basic">
     <Autocomplete
+      v-model="value"
       :items="items"
       :display-fn="(v) => v"
       :is-loading="isFetchingItems"
       icon-left="search"
       class="w-72"
       label="Autocomplete"
-      hint="Type something to search"
       @search="onSearch"
     />
   </Story>

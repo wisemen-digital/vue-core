@@ -3,17 +3,17 @@ import Button from '@/components/button/default-button/Button.vue'
 import { useDialog } from '@/components/dialog/dialog.composable'
 
 const dialog = useDialog({
-  component: () => import('@/components/dialog/stories/ExampleDialog.vue'),
+  component: () => import('@/components/dialog/stories/ExampleDrawerDialog.vue'),
 })
 </script>
 
 <template>
-  <Story title="Dialog/Basic">
+  <Story title="Dialog/Drawer">
     <Button
       v-bind="dialog.getTriggerProps()"
-      @click="dialog.open"
+      @click="dialog.open()"
     >
-      Open dialog
+      Open drawer
     </Button>
   </Story>
 </template>

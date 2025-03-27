@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useInjectRouterLinkButtonContext } from '@/components/button/router-link-button/routerLinkButton.context'
-import { mergeClasses } from '@/customClassVariants'
 import Icon from '@/components/icon/Icon.vue'
+import { mergeClasses } from '@/customClassVariants'
 
 const {
   classConfig,

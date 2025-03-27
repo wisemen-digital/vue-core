@@ -10,6 +10,10 @@ export interface IconButtonProps extends SharedButtonProps, CustomizableElement<
    */
   icon: Icon
   /**
+   * The label of the button used for screen readers.
+   */
+  label: string
+  /**
    * Defines the button’s size.
    * @default 'md'
    */

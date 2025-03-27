@@ -1,9 +1,4 @@
 <script setup lang="ts">
-import {
-  AnimatePresence,
-  Motion,
-} from 'motion-v'
-
 import type { IconButtonProps } from '@/components/button/icon-button/iconButton.props'
 import IconButtonIcon from '@/components/button/icon-button/parts/IconButtonIcon.vue'
 import IconButtonLoader from '@/components/button/icon-button/parts/IconButtonLoader.vue'
@@ -31,31 +26,12 @@ defineSlots<{
     v-bind="props"
     @click="emit('click', $event)"
   >
-    <AnimatePresence
-      :initial="false"
-      mode="popLayout"
-    >
-      <Motion
-        v-if="!props.isLoading"
-        :initial="{ opacity: 0, scale: 0.8 }"
-        :animate="{ opacity: 1, scale: 1 }"
-        :exit="{ opacity: 0, scale: 0.8 }"
-      >
-        <slot name="icon">
-          <IconButtonIcon />
-        </slot>
-      </Motion>
+    <slot name="icon">
+      <IconButtonIcon />
+    </slot>
 
-      <Motion
-        v-if="props.isLoading"
-        :initial="{ opacity: 0, scale: 0.8 }"
-        :animate="{ opacity: 1, scale: 1 }"
-        :exit="{ opacity: 0, scale: 0.8 }"
-      >
-        <slot name="loader">
-          <IconButtonLoader />
-        </slot>
-      </Motion>
-    </AnimatePresence>
+    <slot name="loader">
+      <IconButtonLoader />
+    </slot>
   </IconButtonRoot>
 </template>

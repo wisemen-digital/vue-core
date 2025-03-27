@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 
 import ConfigProvider from '@/components/config-provider/ConfigProvider.vue'
+import DialogContainer from '@/components/dialog/DialogContainer.vue'
 import ThemeProvider from '@/components/theme-provider/ThemeProvider.vue'
 import { useDarkMode } from '@/composables/darkMode.composable'
 
@@ -11,6 +12,8 @@ const isDark = computed<boolean>({
   get: () => appearance.value === 'dark',
   set: (value) => appearance.value = value ? 'dark' : 'light',
 })
+
+const activeDialogCount = ref<number>(0)
 </script>
 
 <template>
@@ -20,7 +23,12 @@ const isDark = computed<boolean>({
       teleport-target-selector="#teleport-target"
     >
       <ThemeProvider :appearance="appearance">
-        <div class="h-screen flex items-center justify-center gap-lg bg-primary">
+        <div
+          :class="{
+            'scale-98 rounded-xl overflow-hidden': activeDialogCount > 0,
+          }"
+          class="h-screen flex items-center justify-center gap-lg bg-primary duration-200"
+        >
           <div class="absolute top-4 right-4">
             <input
               v-model="isDark"
@@ -32,6 +40,8 @@ const isDark = computed<boolean>({
         </div>
 
         <div id="teleport-target" />
+
+        <DialogContainer @update:active-dialog-count="activeDialogCount = $event" />
       </ThemeProvider>
     </ConfigProvider>
   </div>

@@ -49,8 +49,8 @@ const attrs = useAttrs()
         <DialogOverlayTransition />
       </DialogOverlay>
 
-      <DialogContent v-bind="attrs">
-        <DialogContentTransition>
+      <DialogContent>
+        <DialogContentTransition v-bind="attrs">
           <slot />
         </DialogContentTransition>
       </DialogContent>

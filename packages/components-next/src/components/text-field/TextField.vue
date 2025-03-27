@@ -31,6 +31,10 @@ const id = props.id ?? useId()
     :label="props.label"
     :for="id"
   >
+    <template #label>
+      <slot name="label" />
+    </template>
+
     <template #label-leading>
       <slot name="label-leading" />
     </template>

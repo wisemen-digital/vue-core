@@ -13,7 +13,7 @@ const side = computed<PopperSide>(() => attrs['data-side'] as PopperSide)
 
 const motionRef = ref<InstanceType<any> | null>(null)
 
-const TRANSLATE_AMOUNT = 12
+const TRANSLATE_AMOUNT = 2
 
 function transform(side: PopperSide): { x: number, y: number } {
   switch (side) {
@@ -46,7 +46,7 @@ function transform(side: PopperSide): { x: number, y: number } {
     ref="motionRef"
     :initial="{
       opacity: 0,
-      scale: 0,
+      scale: 0.95,
       ...transform(side),
     }"
     :animate="{
@@ -57,7 +57,7 @@ function transform(side: PopperSide): { x: number, y: number } {
     }"
     :exit="{
       opacity: 0,
-      scale: 0,
+      scale: 0.95,
       ...transform(side),
     }"
     :transition="{

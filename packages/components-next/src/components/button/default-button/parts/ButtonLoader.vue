@@ -1,10 +1,13 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+
 import { useInjectButtonContext } from '@/components/button/default-button/button.context'
 import Spinner from '@/components/spinner/Spinner.vue'
 import { mergeClasses } from '@/customClassVariants'
 
+const { t } = useI18n()
+
 const {
-  isLoading,
   classConfig,
   customClassConfig,
   style,
@@ -13,13 +16,16 @@ const {
 
 <template>
   <div
-    v-if="isLoading"
     :class="style.loader({
       class: mergeClasses(customClassConfig.loader, classConfig?.loader),
     })"
   >
+    <span class="sr-only">
+      {{ t('shared.loading') }}
+    </span>
+
     <slot>
-      <Spinner :aria-hidden="true" />
+      <Spinner />
     </slot>
   </div>
 </template>

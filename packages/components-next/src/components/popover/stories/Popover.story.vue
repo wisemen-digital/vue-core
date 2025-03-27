@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import Button from '@/components/button/default-button/Button.vue'
-import Tooltip from '@/components/tooltip/Tooltip.vue'
+import Popover from '@/components/popover/Popover.vue'
 </script>
 
 <template>
-  <Story title="Tooltip">
-    <Tooltip>
+  <Story title="Popover">
+    <Popover>
       <template #trigger>
         <Button>
           Label
@@ -13,10 +13,8 @@ import Tooltip from '@/components/tooltip/Tooltip.vue'
       </template>
 
       <template #content>
-        <div class="text-sm px-md py-xs">
-          <span class="text-primary">Tooltip content</span>
-        </div>
+        <div class="w-80 h-40" />
       </template>
-    </Tooltip>
+    </Popover>
   </Story>
 </template>

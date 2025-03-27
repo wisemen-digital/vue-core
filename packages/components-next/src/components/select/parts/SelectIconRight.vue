@@ -13,11 +13,18 @@ const {
 </script>
 
 <template>
-  <Icon
-    v-if="iconRight !== null && !isLoading"
-    :icon="iconRight"
-    :class="style.iconRight({
-      class: mergeClasses(customClassConfig.iconRight, classConfig?.iconRight),
-    })"
-  />
+  <Transition
+    enter-from-class="opacity-0 scale-75 blur-xxs"
+    leave-to-class="opacity-0 scale-75 blur-xxs"
+    enter-active-class="duration-300"
+    leave-active-class="duration-300"
+  >
+    <Icon
+      v-if="iconRight !== null && !isLoading"
+      :icon="iconRight"
+      :class="style.iconRight({
+        class: mergeClasses(customClassConfig.iconRight, classConfig?.iconRight),
+      })"
+    />
+  </Transition>
 </template>

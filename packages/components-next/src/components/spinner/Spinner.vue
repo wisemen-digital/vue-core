@@ -1,5 +1,8 @@
 <template>
-  <svg viewBox="25 25 50 50">
+  <svg
+    viewBox="25 25 50 50"
+    aria-hidden="true"
+  >
     <circle
       class="size-full"
       cx="100%"

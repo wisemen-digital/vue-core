@@ -8,11 +8,11 @@ import {
 } from '@/components/button/default-button/button.style'
 import { useProvideRouterLinkButtonContext } from '@/components/button/router-link-button/routerLinkButton.context'
 import type { RouterLinkButtonProps } from '@/components/button/router-link-button/routerLinkButton.props'
+import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
 import {
   mergeClasses,
   useComponentClassConfig,
 } from '@/customClassVariants'
-import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
 import { toComputedRefs } from '@/utils/props.util'
 
 const props = withDefaults(defineProps<RouterLinkButtonProps>(), {

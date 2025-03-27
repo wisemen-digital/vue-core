@@ -6,7 +6,6 @@ import {
 
 import Button from '@/components/button/default-button/Button.vue'
 import { useDialog } from '@/components/dialog/dialog.composable'
-import DialogContainer from '@/components/dialog/DialogContainer.vue'
 
 const dialog = useDialog({
   component: () => import('@/components/dialog/stories/AnimatedDialog.vue'),
@@ -14,7 +13,7 @@ const dialog = useDialog({
 </script>
 
 <template>
-  <Story title="Animated Dialog">
+  <Story title="Dialog/Animated">
     <AnimatePresence>
       <Motion
         v-if="!dialog.isOpen()"
@@ -22,17 +21,23 @@ const dialog = useDialog({
         :transition="{
           type: 'spring',
           bounce: 0.2,
-          duration: 0.4,
+          duration: 0.6,
         }"
         layout-id="dialog-content"
       >
-        <Button
-          label="Open dialog"
-          @click="dialog.open"
-        />
+        <Button @click="dialog.open">
+          <Motion
+            :transition="{
+              type: 'spring',
+              bounce: 0.2,
+              duration: 0.6,
+            }"
+            layout-id="dialog-title"
+          >
+            Open dialog
+          </Motion>
+        </Button>
       </Motion>
     </AnimatePresence>
-
-    <DialogContainer />
   </Story>
 </template>

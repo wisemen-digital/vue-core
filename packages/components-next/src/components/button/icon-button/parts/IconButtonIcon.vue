@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useInjectIconButtonContext } from '@/components/button/icon-button/iconButton.context'
-import { mergeClasses } from '@/customClassVariants'
 import Icon from '@/components/icon/Icon.vue'
+import { mergeClasses } from '@/customClassVariants'
 
 const {
   isLoading,
@@ -13,11 +13,18 @@ const {
 </script>
 
 <template>
-  <Icon
-    v-if="icon !== null && !isLoading"
-    :icon="icon"
-    :class="style.icon({
-      class: mergeClasses(customClassConfig.icon, classConfig?.icon),
-    })"
-  />
+  <Transition
+    enter-from-class="opacity-0 scale-75 blur-xxs"
+    leave-to-class="opacity-0 scale-75 blur-xxs"
+    enter-active-class="duration-300"
+    leave-active-class="duration-300"
+  >
+    <Icon
+      v-if="icon !== null && !isLoading"
+      :icon="icon"
+      :class="style.icon({
+        class: mergeClasses(customClassConfig.icon, classConfig?.icon),
+      })"
+    />
+  </Transition>
 </template>

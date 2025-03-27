@@ -1,17 +1,22 @@
 <script setup lang="ts">
-import Popover from '@/components/popover/Popover.vue'
+import { ref } from 'vue'
+
+import IconButton from '@/components/button/icon-button/IconButton.vue'
+
+const isLoading = ref<boolean>(true)
 </script>
 
 <template>
   <Story title="Playground">
-    <Popover popover-width="anchor-width">
-      <template #trigger>
-        <div class="w-80 border h-20" />
-      </template>
+    <input
+      v-model="isLoading"
+      type="checkbox"
+    >
 
-      <template #content>
-        content
-      </template>
-    </Popover>
+    <IconButton
+      :is-loading="isLoading"
+      icon="plus"
+      label="Button"
+    />
   </Story>
 </template>

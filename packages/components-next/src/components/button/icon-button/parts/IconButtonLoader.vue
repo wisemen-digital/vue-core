@@ -9,7 +9,6 @@ const {
   isLoading,
   classConfig,
   customClassConfig,
-  loadingLabel,
   style,
 } = useInjectIconButtonContext()
 
@@ -17,18 +16,25 @@ const { t } = useI18n()
 </script>
 
 <template>
-  <div
-    v-if="isLoading"
-    :class="style.loader({
-      class: mergeClasses(customClassConfig.loader, classConfig?.loader),
-    })"
+  <Transition
+    enter-from-class="opacity-0 scale-75 blur-xxs"
+    leave-to-class="opacity-0 scale-75 blur-xxs"
+    enter-active-class="absolute duration-300"
+    leave-active-class="absolute duration-300"
   >
-    <span class="sr-only">
-      {{ loadingLabel ?? t('component.button.loading_label') }}
-    </span>
+    <div
+      v-if="isLoading"
+      :class="style.loader({
+        class: mergeClasses(customClassConfig.loader, classConfig?.loader),
+      })"
+    >
+      <span class="sr-only">
+        {{ t('shared.loading') }}
+      </span>
 
-    <slot>
-      <Spinner :aria-hidden="true" />
-    </slot>
-  </div>
+      <slot>
+        <Spinner />
+      </slot>
+    </div>
+  </Transition>
 </template>

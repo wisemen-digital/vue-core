@@ -7,135 +7,152 @@ const isLoading = ref<boolean>(true)
 </script>
 
 <template>
-  <Story title="Button">
+  <Story title="Button/Button">
     <Variant title="Primary">
       <Button
-        label="Button"
         variant="primary"
         icon-left="plus"
-      />
+      >
+        Button
+      </Button>
 
       <Button
         :is-disabled="true"
-        label="Button"
         variant="primary"
         icon-left="plus"
-      />
+      >
+        Button
+      </Button>
     </Variant>
 
     <Variant title="Secondary">
       <Button
         icon-left="plus"
-        label="Button"
         variant="secondary"
-      />
+      >
+        Button
+      </Button>
 
       <Button
         :is-disabled="true"
         icon-left="plus"
-        label="Button"
         variant="secondary"
-      />
+      >
+        Button
+      </Button>
     </Variant>
 
     <Variant title="Tertiary">
       <Button
         icon-left="plus"
-        label="Button"
         variant="tertiary"
-      />
+      >
+        Button
+      </Button>
 
       <Button
         :is-disabled="true"
-        label="Button"
         variant="tertiary"
         icon-left="plus"
-      />
+      >
+        Button
+      </Button>
     </Variant>
 
     <Variant title="Destructive Primary">
       <Button
         icon-left="plus"
-        label="Button"
         variant="destructive-primary"
-      />
+      >
+        Button
+      </Button>
 
       <Button
         :is-disabled="true"
-        label="Button"
         variant="destructive-primary"
         icon-left="plus"
-      />
+      >
+        Button
+      </Button>
     </Variant>
 
     <Variant title="Destructive Secondary">
       <Button
         icon-left="plus"
-        label="Button"
         variant="destructive-secondary"
-      />
+      >
+        Button
+      </Button>
 
       <Button
         :is-disabled="true"
-        label="Button"
         variant="destructive-secondary"
         icon-left="plus"
-      />
+      >
+        Button
+      </Button>
     </Variant>
 
     <Variant title="Destructive Tertiary">
       <Button
         icon-left="plus"
-        label="Button"
         variant="destructive-tertiary"
-      />
+      >
+        Button
+      </Button>
 
       <Button
         :is-disabled="true"
-        label="Button"
         variant="destructive-tertiary"
         icon-left="plus"
-      />
+      >
+        Button
+      </Button>
     </Variant>
 
     <Variant title="Sm">
       <Button
         icon-left="plus"
-        label="Button"
         size="sm"
-      />
+      >
+        Button
+      </Button>
     </Variant>
 
     <Variant title="Md">
       <Button
         icon-left="plus"
-        label="Button"
         size="md"
-      />
+      >
+        Button
+      </Button>
     </Variant>
 
     <Variant title="Lg">
       <Button
         icon-left="plus"
-        label="Button"
         size="lg"
-      />
+      >
+        Button
+      </Button>
     </Variant>
 
     <Variant title="Xl">
       <Button
         icon-left="plus"
-        label="Button"
         size="xl"
-      />
+      >
+        Button
+      </Button>
     </Variant>
 
     <Variant title="2xl">
       <Button
         icon-left="plus"
-        label="Button"
         size="2xl"
-      />
+      >
+        Button
+      </Button>
     </Variant>
 
     <Variant title="Loading">
@@ -147,9 +164,9 @@ const isLoading = ref<boolean>(true)
       <Button
         :is-loading="isLoading"
         icon-left="plus"
-        label="Button"
-        loading-label="Loading..."
-      />
+      >
+        Button
+      </Button>
     </Variant>
   </Story>
 </template>
