@@ -9,8 +9,6 @@ Customization can be applied in two ways:
 1. **Global Customization** – Modify component styles globally using `defineComponentVariant`.
 2. **Inline Customization** – Apply custom styles directly on specific component instances using the `class-config` prop.
 
----
-
 ## Global Customization
 
 Global customization allows you to define reusable styles for components across your application. Use the `defineComponentVariant` function to specify global configurations.
@@ -82,8 +80,6 @@ declare module '@wisemen/vue-core-components' {
   }
 }
 ```
-
----
 
 ## Inline Customization
 

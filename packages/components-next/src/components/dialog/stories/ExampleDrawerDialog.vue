@@ -28,7 +28,7 @@ const emit = defineEmits<{
         :transition="{
           duration: 0.5,
           type: 'spring',
-          bounce: 0.1,
+          bounce: 0.2,
         }"
         :drag-constraints="{
           left: 0,

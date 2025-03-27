@@ -149,7 +149,7 @@ function filterFn(option: CountryCode, searchTerm: string): boolean {
           itemComponent: PhoneNumberFieldSelectItem,
         }"
         :class-config="{
-          root: 'h-8 ml-[0.18rem] rounded-sm border-none shadow-none !ring-0 not-disabled:hover:bg-primary-hover pr-xs focus-within:bg-tertiary',
+          root: 'h-8 ml-[0.18rem] rounded-xs border-none shadow-none !ring-0 not-disabled:hover:bg-primary-hover pr-xs focus-within:bg-tertiary',
           iconRight: 'mr-0 size-4',
           baseSingle: 'pr-0',
         }"
@@ -162,6 +162,7 @@ function filterFn(option: CountryCode, searchTerm: string): boolean {
             <img
               v-if="countryCodeModel !== null"
               :src="getCountryFlagUrl(countryCodeModel) ?? undefined"
+              :alt="getCountryName(countryCodeModel, globalConfigContext.locale.value) ?? countryCodeModel"
               class="object-cover rounded-xxs block h-3.5 w-5 shrink-0"
             >
           </SelectBaseSingle>

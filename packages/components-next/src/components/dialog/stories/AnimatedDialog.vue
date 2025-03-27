@@ -5,7 +5,6 @@ import DialogCloseButton from '@/components/dialog/parts/DialogCloseButton.vue'
 import DialogContent from '@/components/dialog/parts/DialogContent.vue'
 import DialogDescription from '@/components/dialog/parts/DialogDescription.vue'
 import DialogOverlay from '@/components/dialog/parts/DialogOverlay.vue'
-import DialogOverlayTransition from '@/components/dialog/parts/DialogOverlayTransition.vue'
 import DialogRoot from '@/components/dialog/parts/DialogRoot.vue'
 import DialogTitle from '@/components/dialog/parts/DialogTitle.vue'
 </script>
@@ -52,7 +51,20 @@ import DialogTitle from '@/components/dialog/parts/DialogTitle.vue'
     </DialogContent>
 
     <DialogOverlay>
-      <DialogOverlayTransition />
+      <Motion
+        :initial="{
+          opacity: 0,
+        }"
+        :animate="{
+          opacity: 1,
+        }"
+        :exit="{
+          opacity: 0,
+        }"
+        :transition="{
+          duration: 0.4,
+        }"
+      />
     </DialogOverlay>
   </DialogRoot>
 </template>
