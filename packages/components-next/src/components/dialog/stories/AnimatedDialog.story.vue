@@ -5,6 +5,7 @@ import {
 } from 'motion-v'
 
 import Button from '@/components/button/default-button/Button.vue'
+import ButtonIconLeft from '@/components/button/default-button/parts/ButtonIconLeft.vue'
 import { useDialog } from '@/components/dialog/dialog.composable'
 
 const dialog = useDialog({
@@ -25,7 +26,14 @@ const dialog = useDialog({
         }"
         layout-id="dialog-content"
       >
-        <Button @click="dialog.open">
+        <Button
+          icon-left="search"
+          @click="dialog.open"
+        >
+          <template #icon-left>
+            <ButtonIconLeft />
+          </template>
+
           <Motion
             :transition="{
               type: 'spring',

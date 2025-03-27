@@ -1,0 +1,42 @@
+{
+  "name": "docs-next",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview",
+    "docs:gen": "vue-tsc --noEmit --project tsconfig.autogen.json && tsx scripts/autogen.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@internationalized/date": "3.5.4",
+    "@wisemen/vue-core": "workspace:*",
+    "i18n-iso-countries": "7.11.2",
+    "vue-router": "4.3.3"
+  },
+  "devDependencies": {
+    "@babel/traverse": "7.24.8",
+    "@tailwindcss/postcss": "4.0.0-beta.8",
+    "@tailwindcss/vite": "4.0.0-beta.4",
+    "@types/babel__traverse": "7.20.6",
+    "@types/markdown-it": "14.1.1",
+    "@types/node": "20.14.2",
+    "@wisemen/eslint-config-vue": "1.0.0-next.0",
+    "eslint": "9.4.0",
+    "fast-glob": "3.3.2",
+    "markdown-it": "14.1.0",
+    "postcss": "8.4.38",
+    "postcss-prefix-selector": "1.16.1",
+    "tailwindcss": "4.0.0-beta.4",
+    "ts-node": "10.9.2",
+    "tsx": "4.16.0",
+    "vitepress": "1.6.3",
+    "vue-component-meta": "2.0.24",
+    "vue-tsc": "2.0.21"
+  }
+}

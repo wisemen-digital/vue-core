@@ -1,22 +1,25 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-
-import IconButton from '@/components/button/icon-button/IconButton.vue'
-
-const isLoading = ref<boolean>(true)
+import FormFieldLabel from '@/components/form-field/parts/FormFieldLabel.vue'
+import Icon from '@/components/icon/Icon.vue'
+import TextField from '@/components/text-field/TextField.vue'
 </script>
 
 <template>
   <Story title="Playground">
-    <input
-      v-model="isLoading"
-      type="checkbox"
+    <TextField
+      :model-value="null"
+      label="Example"
     >
-
-    <IconButton
-      :is-loading="isLoading"
-      icon="plus"
-      label="Button"
-    />
+      <template #label>
+        <FormFieldLabel>
+          <template #label-trailing>
+            <Icon
+              icon="search"
+              class="size-4"
+            />
+          </template>
+        </FormFieldLabel>
+      </template>
+    </TextField>
   </Story>
 </template>

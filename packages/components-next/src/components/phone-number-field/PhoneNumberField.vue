@@ -14,7 +14,11 @@ import {
   ref,
 } from 'vue'
 
-import { getCountryFlagUrl } from '@/components/phone-number-field/phoneNumber.util'
+import { injectConfigContext } from '@/components/config-provider/config.context'
+import {
+  getCountryFlagUrl,
+  getCountryName,
+} from '@/components/phone-number-field/phoneNumber.util'
 import type { PhoneNumberFieldProps } from '@/components/phone-number-field/phoneNumberField.props'
 import PhoneNumberFieldSelectItem from '@/components/phone-number-field/PhoneNumberFieldSelectItem.vue'
 import SelectBaseSingle from '@/components/select/parts/SelectBaseSingle.vue'
@@ -32,6 +36,8 @@ const model = defineModel<string | null>({
   // TODO: required
   required: false,
 })
+
+const globalConfigContext = injectConfigContext()
 
 const phoneNumberFieldRef = ref<InstanceType<any> | null>(null)
 const phoneNumberFieldEl = computed<HTMLElement | null>(() => phoneNumberFieldRef.value?.$el ?? null)
@@ -111,7 +117,10 @@ const inputModel = computed<string | null>({
 const dialCodeDisplayValue = computed<string>(() => `+${getCountryCallingCode(countryCodeModel.value)}`)
 
 function filterFn(option: CountryCode, searchTerm: string): boolean {
+  const optionName = getCountryName(option, globalConfigContext.locale.value) ?? ''
+
   return option.toLowerCase().includes(searchTerm.toLowerCase())
+    || optionName.toLowerCase().includes(searchTerm.toLowerCase())
 }
 </script>
 

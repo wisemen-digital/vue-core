@@ -40,7 +40,6 @@
     "vue-i18n": "11.1.2"
   },
   "dependencies": {
-    "countries-list": "^3.1.1",
     "tailwind-variants": "1.0.0"
   },
   "devDependencies": {
@@ -61,7 +60,6 @@
     "conventional-changelog": "6.0.0",
     "eslint": "9.4",
     "histoire": "1.0.0-alpha.2",
-    "i18n-iso-countries": "7.14.0",
     "jsdom": "24.1.0",
     "libphonenumber-js": "1.11.3",
     "maska": "3.0.0",

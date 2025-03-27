@@ -1,0 +1,34 @@
+{
+  // tsconfig for type-check only
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "compilerOptions": {
+    "target": "esnext",
+    "jsx": "preserve",
+    "lib": ["esnext", "dom"],
+    "baseUrl": ".",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "resolveJsonModule": true,
+    "types": [],
+    "strict": true,
+    "declaration": false,
+    "outDir": "dist",
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  },
+  "include": [
+    "env.d.ts",
+    "playground/**/*",
+    "playground/**/*.ts",
+    "playground/**/*.tsx",
+    "playground/**/*.vue",
+    "components/**/*",
+    "components/**/*.ts",
+    "components/**/*.tsx",
+    "components/**/*.vue"
+  ]
+}
