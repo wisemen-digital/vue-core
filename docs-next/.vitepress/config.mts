@@ -1,6 +1,5 @@
 import { defineConfig } from 'vitepress'
 import ComponentPreviewPlugin from './plugins/ComponentPreview'
-import tailwindcss from '@tailwindcss/vite'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -27,6 +26,7 @@ export default defineConfig({
         text: 'Components',
         items: [
           { text: 'Button', link: '/components/button/button' },
+          { text: 'Icon Button', link: '/components/icon-button/icon-button' },
         ]
       }
     ],

@@ -4,9 +4,9 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| classConfig | `ClassConfig<"button"> \| null` | The class configuration of the component. |  |
-| iconLeft | `keyof Icons \| null` | The icon displayed on the left side of the button text. If set to null, no left icon will be shown. |  |
-| iconRight | `keyof Icons \| null` | The icon displayed on the right side of the button text. If set to null, no right icon will be shown. |  |
+| **icon*** | `keyof Icons` | The icon to display inside the button. |  |
+| **label*** | `string` | The label of the button used for screen readers. |  |
+| classConfig | `ClassConfig<"iconButton"> \| null` | The class configuration of the component. |  |
 | id | `string \| null` | The id of the element. If set to `null`, no ID will be applied. |  |
 | isDisabled | `boolean` | Determines whether the element is disabled. When `true`, the element becomes non-interactive. |  |
 | isLoading | `boolean` | Indicates whether the button is in a loading state. When true, interactions are disabled. |  |
@@ -20,14 +20,8 @@
 
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
-| default | `-` | The main content of the button.
-Typically includes text, but can also contain other elements. |
-| icon-left | `-` | Custom slot for the left-side icon.
-Overrides the default icon displayed before the button content. |
-| icon-right | `-` | Custom slot for the right-side icon.
-Overrides the default icon displayed after the button content. |
-| loader | `-` | Custom slot for the loading indicator.
-Replaces the default loading spinner when the button is in a loading state. |
+| icon | `-` | Slot to override the icon. |
+| loader | `-` | Slot to override the default loading indicator. |
 
 
 ## Events

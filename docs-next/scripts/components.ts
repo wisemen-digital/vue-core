@@ -4,4 +4,9 @@ export const components = [
     targetFolder: 'button',
     componentName: 'Button',
   },
+  {
+    sourceFolder: 'button/icon-button/IconButton.vue',
+    targetFolder: 'icon-button',
+    componentName: 'IconButton',
+  },
 ]
