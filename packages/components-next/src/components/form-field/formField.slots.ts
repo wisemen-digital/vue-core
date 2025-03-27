@@ -1,22 +1,33 @@
 export interface FormFieldLabelSlots {
   /**
-   *
-   */
-  'label': () => unknown
-  /**
-   * Content to be displayed before the label.
+   * Slot for content to be displayed before the label.
    */
   'label-leading': () => unknown
   /**
-   * Content to be displayed on the right side of the label.
+   * Slot for content positioned to the right of the label.
    */
   'label-right': () => unknown
   /**
-   * Content to be displayed after the label.
+   * Slot for content to be displayed after the label.
    */
   'label-trailing': () => unknown
 }
 
-export interface FormFieldSlots extends FormFieldLabelSlots {
+export interface FormFieldSlots {
+  /**
+   * Slot for the main content inside the form field.
+   */
   default: () => unknown
+  /**
+   * Slot for custom error messages, overriding the default error display.
+   */
+  error: () => unknown
+  /**
+   * Slot for additional information or guidance related to the form field, overriding the default hint text.
+   */
+  hint: () => unknown
+  /**
+   * Slot for customizing the label of the form field, overriding the default label display.
+   */
+  label: () => unknown
 }

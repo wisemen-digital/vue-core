@@ -9,4 +9,9 @@ export const components = [
     targetFolder: 'icon-button',
     componentName: 'IconButton',
   },
+  {
+    sourceFolder: 'form-field/FormField.vue',
+    targetFolder: 'form-field',
+    componentName: 'FormField',
+  }
 ]

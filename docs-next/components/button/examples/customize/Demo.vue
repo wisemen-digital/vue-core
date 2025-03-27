@@ -5,7 +5,7 @@ import { VcButton } from '@wisemen/vue-core-components'
 <template>
   <VcButton
     :class-config="{
-      root: 'bg-gradient-to-br from-slate-900 to-slate-800 border-none',
+      root: 'border-none rounded-full',
     }"
   >
     Button

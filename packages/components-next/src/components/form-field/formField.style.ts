@@ -31,6 +31,9 @@ export const createFormFieldStyle = tv({
       .withSpacing('mb-sm')
       .build(),
   },
+  variants: {
+    variant: {},
+  },
 })
 
 export type FormFieldStyle = VariantProps<typeof createFormFieldStyle>

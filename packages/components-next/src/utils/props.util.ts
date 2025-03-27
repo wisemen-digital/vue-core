@@ -20,7 +20,6 @@ export interface PrimitiveElement {
 }
 
 export interface InteractableElement {
-
   /**
    * Determines whether the element is disabled. When `true`, the element becomes non-interactive.
    * @default false

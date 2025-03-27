@@ -1,25 +1,29 @@
 <script setup lang="ts">
-import FormFieldLabel from '@/components/form-field/parts/FormFieldLabel.vue'
-import Icon from '@/components/icon/Icon.vue'
 import TextField from '@/components/text-field/TextField.vue'
+import { defineComponentVariant } from '@/customClassVariants'
+
+defineComponentVariant({
+  config: {},
+  target: {
+    prop: 'size',
+    value: 'super-large',
+  },
+  component: 'button',
+})
 </script>
 
 <template>
   <Story title="Playground">
     <TextField
       :model-value="null"
+      :class-config="{
+        root: 'border-success-500',
+      }"
+      :is-touched="false"
+      :is-disabled="false"
+      :errors="['error']"
+      icon-left="search"
       label="Example"
-    >
-      <template #label>
-        <FormFieldLabel>
-          <template #label-trailing>
-            <Icon
-              icon="search"
-              class="size-4"
-            />
-          </template>
-        </FormFieldLabel>
-      </template>
-    </TextField>
+    />
   </Story>
 </template>

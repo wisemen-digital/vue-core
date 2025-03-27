@@ -12,6 +12,7 @@ import type { PropsToComputed } from '@/utils/props.util'
 interface SelectContext extends PropsToComputed<SelectProps<any>> {
   hasInlineSearchInput: ComputedRef<boolean>
   hasInteractedWithInlineSearchInput: Ref<boolean>
+  hasScrolledInDropdownContent: Ref<boolean>
   isDropdownVisible: ComputedRef<boolean>
   isMultiple: ComputedRef<boolean>
   allGroups: Ref<Map<string, Set<string>>>

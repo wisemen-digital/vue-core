@@ -15,6 +15,7 @@ import { useInjectSelectContext } from '@/components/select/select.context'
 import { mergeClasses } from '@/customClassVariants'
 
 const {
+  hasScrolledInDropdownContent,
   classConfig,
   customClassConfig,
   style,
@@ -56,6 +57,12 @@ function highlightSelectedOrFirstOption(
   })
 }
 
+function onScroll(event: Event): void {
+  const eventTarget = event.target as HTMLElement
+
+  hasScrolledInDropdownContent.value = eventTarget.scrollTop !== 0
+}
+
 onMounted(() => {
   // Wait for children to be rendered
   setTimeout(() => {
@@ -88,6 +95,7 @@ onBeforeUnmount(() => {
         :class="style.content({
           class: mergeClasses(customClassConfig.content, classConfig?.content),
         })"
+        @scroll="onScroll"
       >
         <slot />
       </RekaListboxContent>

@@ -1,4 +1,4 @@
-# Button
+# Icon Button
 
 Displays a button with only an icon.
 

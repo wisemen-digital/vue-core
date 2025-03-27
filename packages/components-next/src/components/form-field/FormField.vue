@@ -6,16 +6,7 @@ import FormFieldHint from '@/components/form-field/parts/FormFieldHint.vue'
 import FormFieldLabel from '@/components/form-field/parts/FormFieldLabel.vue'
 import FormFieldRoot from '@/components/form-field/parts/FormFieldRoot.vue'
 
-const props = withDefaults(defineProps<FormFieldProps>(), {
-  id: null,
-  testId: null,
-  isDisabled: false,
-  isRequired: false,
-  isTouched: false,
-  errors: () => [],
-  hint: null,
-  label: null,
-})
+const props = withDefaults(defineProps<FormFieldProps>(), {})
 
 defineSlots<FormFieldSlots>()
 </script>
@@ -23,24 +14,17 @@ defineSlots<FormFieldSlots>()
 <template>
   <FormFieldRoot v-bind="props">
     <slot name="label">
-      <FormFieldLabel>
-        <template #label-leading>
-          <slot name="label-leading" />
-        </template>
-
-        <template #label-trailing>
-          <slot name="label-trailing" />
-        </template>
-
-        <template #label-right>
-          <slot name="label-right" />
-        </template>
-      </FormFieldLabel>
+      <FormFieldLabel />
     </slot>
 
     <slot />
 
-    <FormFieldError />
-    <FormFieldHint />
+    <slot name="error">
+      <FormFieldError />
+    </slot>
+
+    <slot name="hint">
+      <FormFieldHint />
+    </slot>
   </FormFieldRoot>
 </template>

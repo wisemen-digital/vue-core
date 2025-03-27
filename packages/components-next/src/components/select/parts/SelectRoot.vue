@@ -76,6 +76,8 @@ const { t } = useI18n()
 
 const rootRef = ref<InstanceType<typeof InteractableElement> | null>(null)
 
+const hasScrolledInDropdownContent = ref<boolean>(false)
+
 // We need to track every item in the listbox to determine if it should be displayed or not
 const allItems = ref<Map<string, unknown>>(new Map())
 const allGroups = ref<Map<string, Set<string>>>(new Map())
@@ -261,6 +263,7 @@ useProvideSelectContext({
   ...toComputedRefs(props),
   hasInlineSearchInput,
   hasInteractedWithInlineSearchInput,
+  hasScrolledInDropdownContent,
   isDropdownVisible: computed<boolean>(() => isDropdownVisible.value),
   isMultiple,
   allGroups,

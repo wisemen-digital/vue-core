@@ -4,6 +4,7 @@ import { useInjectSelectContext } from '@/components/select/select.context'
 import TextField from '@/components/text-field/TextField.vue'
 
 const {
+  hasScrolledInDropdownContent,
   filter,
   searchInputPlaceholder,
   searchTerm,
@@ -13,7 +14,7 @@ const {
 <template>
   <div
     v-if="filter !== null && filter.isEnabled && !filter.isInline"
-    class="p-xs pb-0"
+    class="relative p-xs pb-0"
   >
     <SelectSearchInput
       :placeholder="searchInputPlaceholder"
@@ -28,5 +29,10 @@ const {
         icon-left="search"
       />
     </SelectSearchInput>
+
+    <div
+      v-if="hasScrolledInDropdownContent"
+      class="absolute bottom-0 w-full translate-y-full z-10 h-4 bg-gradient-to-b from-primary to-transparent pointer-events-none"
+    />
   </div>
 </template>
