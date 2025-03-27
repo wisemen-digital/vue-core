@@ -2,15 +2,15 @@ export interface FormFieldLabelSlots {
   /**
    * Slot for content to be displayed before the label.
    */
-  'label-leading': () => unknown
+  leading: () => unknown
   /**
    * Slot for content positioned to the right of the label.
    */
-  'label-right': () => unknown
+  right: () => unknown
   /**
    * Slot for content to be displayed after the label.
    */
-  'label-trailing': () => unknown
+  trailing: () => unknown
 }
 
 export interface FormFieldSlots {

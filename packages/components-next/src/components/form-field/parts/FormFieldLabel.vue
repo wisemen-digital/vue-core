@@ -23,7 +23,7 @@ const {
     })"
   >
     <div class="flex items-center">
-      <slot name="label-leading" />
+      <slot name="leading" />
 
       <label
         :class="style.label({
@@ -40,9 +40,9 @@ const {
         >*</span>
       </label>
 
-      <slot name="label-trailing" />
+      <slot name="trailing" />
     </div>
 
-    <slot name="label-right" />
+    <slot name="right" />
   </div>
 </template>

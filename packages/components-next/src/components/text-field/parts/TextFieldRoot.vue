@@ -18,14 +18,19 @@ const props = withDefaults(defineProps<TextFieldProps>(), {
   testId: null,
   isDisabled: false,
   isLoading: false,
+  isRequired: false,
   isSpellCheckEnabled: false,
+  isTouched: false,
   autocomplete: 'off',
   classConfig: null,
   errors: () => [],
+  hint: null,
   iconLeft: null,
   iconRight: null,
+  label: null,
   placeholder: null,
   type: 'text',
+  variant: null,
 })
 
 const emit = defineEmits<TextFieldEmits>()
@@ -34,9 +39,13 @@ const modelValue = defineModel<TValue | null>({
   required: true,
 })
 
-const textFieldStyle = computed<CreateTextFieldStyle>(() => createTextFieldStyle({}))
+const textFieldStyle = computed<CreateTextFieldStyle>(() => createTextFieldStyle({
+  variant: props.variant ?? undefined,
+}))
 
-const customClassConfig = useComponentClassConfig('textField', {})
+const customClassConfig = useComponentClassConfig('textField', {
+  variant: props.variant ?? undefined,
+})
 
 function onBlur(event: FocusEvent): void {
   emit('blur', event)

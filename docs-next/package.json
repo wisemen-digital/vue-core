@@ -33,6 +33,7 @@
     "ts-node": "10.9.2",
     "tsx": "4.16.0",
     "vitepress": "1.6.3",
+    "vue": "3.5.12",
     "vue-component-meta": "2.0.24",
     "vue-i18n": "^11.1.2",
     "vue-tsc": "2.0.21"

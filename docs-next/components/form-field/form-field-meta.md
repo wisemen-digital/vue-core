@@ -7,11 +7,12 @@
 | **for*** | `string` | The unique identifier of the associated form field.
 This is typically used to link the label to the corresponding input element. |  |
 | classConfig | `ClassConfig<"formField"> \| null` | The class configuration of the component. |  |
-| errors | `string[]` | The errors associated with the input. | `[]` |
-| hint | `string \| null` | The hint text of the input. | `null` |
-| isRequired | `boolean` | Whether the input is required. | `false` |
-| isTouched | `boolean` | Whether the input is touched. Used to determine if an error should be shown. | `false` |
-| label | `string \| null` | The label of the input. | `null` |
+| errors | `string[]` | The errors associated with the input. |  |
+| hint | `string \| null` | The hint text of the input. |  |
+| isRequired | `boolean` | Whether the input is required. |  |
+| isTouched | `boolean` | Whether the input is touched. Used to determine if an error should be shown. |  |
+| label | `string \| null` | The label of the input. |  |
+| variant | `null` |  |  |
 
 
 ## Slots

@@ -1,6 +1,6 @@
 # Button
 
-Displays a button or a component that looks like a button.
+An element that triggers an action or event when clicked.
 
 <ComponentPreview name="button/examples/main" />
 

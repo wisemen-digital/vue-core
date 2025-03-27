@@ -1,3 +1,4 @@
+import type { GetComponentPropCustomValues } from '@/customClassVariants'
 import type { Icon } from '@/icons/icons'
 import type {
   CustomizableElement,
@@ -42,6 +43,10 @@ export interface TextFieldProps extends PrimitiveElement, InteractableElement, F
    * @default 'text'
    */
   type?: 'date' | 'email' | 'password' | 'search' | 'tel' | 'text' | 'time' | 'url'
+  /**
+   *
+   */
+  variant?: GetComponentPropCustomValues<'textField', 'variant'> | null
 }
 
 export interface TextFieldEmits {

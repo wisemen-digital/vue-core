@@ -45,7 +45,6 @@ export interface ClassVariant<
   TTargetPropValue extends string,
 > {
   config: {
-    // @ts-expect-error too complex type
     [K in keyof Components[TComponent]['slots']]?: string
   }
   target?: {

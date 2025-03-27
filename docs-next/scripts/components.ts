@@ -10,8 +10,18 @@ export const components = [
     componentName: 'IconButton',
   },
   {
+    sourceFolder: 'button/router-link-button/RouterLinkButton.vue',
+    targetFolder: 'router-link-button',
+    componentName: 'RouterLinkButton',
+  },
+  {
     sourceFolder: 'form-field/FormField.vue',
     targetFolder: 'form-field',
     componentName: 'FormField',
+  },
+  {
+    sourceFolder: 'text-field/TextField.vue',
+    targetFolder: 'text-field',
+    componentName: 'TextField',
   }
 ]

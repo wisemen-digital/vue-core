@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import RouterLinkButton from '@/components/button/router-link-button/RouterLinkButton.vue'
 import TextField from '@/components/text-field/TextField.vue'
 import { defineComponentVariant } from '@/customClassVariants'
 
@@ -25,5 +26,7 @@ defineComponentVariant({
       icon-left="search"
       label="Example"
     />
+
+    <RouterLinkButton to="/" />
   </Story>
 </template>

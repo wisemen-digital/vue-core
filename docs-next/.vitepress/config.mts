@@ -20,6 +20,7 @@ export default defineConfig({
           { text: 'Theming', link: '/getting-started/theming' },
           { text: 'Icons', link: '/getting-started/icons' },
           { text: 'Customization', link: '/getting-started/customization' },
+          { text: 'Composition', link: '/getting-started/composition' },
         ]
       },
       {
@@ -27,7 +28,9 @@ export default defineConfig({
         items: [
           { text: 'Button', link: '/components/button/button' },
           { text: 'Icon Button', link: '/components/icon-button/icon-button' },
+          { text: 'Router Link Button', link: '/components/router-link-button/router-link-button' },
           { text: 'Form Field', link: '/components/form-field/form-field' },
+          { text: 'Text Field', link: '/components/text-field/text-field' },
         ]
       }
     ],
