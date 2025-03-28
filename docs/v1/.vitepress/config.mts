@@ -112,7 +112,7 @@ const components = [
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  base: '/vue-core/',
+  base: '/vue-core/v1',
   description: 'Vue Core',
   themeConfig: {
     nav: [
