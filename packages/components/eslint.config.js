@@ -5,6 +5,7 @@ export default [
   {
     rules: {
       '@intlify/vue-i18n/no-raw-text': 'off',
+      'check-file/folder-naming-convention': 'off',
       'import/extensions': 'off',
     },
   },

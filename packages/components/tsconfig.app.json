@@ -18,7 +18,6 @@
     "noUncheckedIndexedAccess": true,
     "declaration": false,
     "outDir": "dist",
-
     "sourceMap": true,
     "esModuleInterop": true,
     "skipLibCheck": true

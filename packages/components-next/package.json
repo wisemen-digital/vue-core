@@ -1,0 +1,79 @@
+{
+  "name": "@wisemen/vue-core-components",
+  "type": "module",
+  "version": "1.0.0-alpha.0",
+  "license": "MIT",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./style.css": "./dist/style.css"
+  },
+  "main": "./dist/index.umd.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "typings": "./dist/index.d.ts",
+  "files": [
+    "./dist"
+  ],
+  "scripts": {
+    "prerelease": "pnpm version prerelease --preid=alpha",
+    "build": "pnpm type-check && pnpm build-only && npm pack",
+    "precommit": "pnpm type-check && test:unit && pnpm build-only",
+    "build-only": "vite build",
+    "type-check": "vue-tsc -p tsconfig.check.json --noEmit",
+    "pub:release": "pnpm publish --access public",
+    "test:unit": "vitest --run",
+    "test": "vitest --run",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "story:dev": "histoire dev",
+    "story:build": "histoire build",
+    "story:preview": "histoire preview"
+  },
+  "peerDependencies": {
+    "vue": "3.5.12",
+    "vue-i18n": "11.1.2"
+  },
+  "dependencies": {
+    "tailwind-variants": "1.0.0"
+  },
+  "devDependencies": {
+    "@fontsource-variable/inter": "5.1.0",
+    "@googlemaps/js-api-loader": "1.16.8",
+    "@histoire/plugin-vue": "1.0.0-alpha.2",
+    "@tailwindcss/postcss": "4.0.0-beta.8",
+    "@tailwindcss/vite": "4.0.11",
+    "@tsconfig/node18": "18.2.4",
+    "@types/google.maps": "3.55.4",
+    "@types/node": "20.14.2",
+    "@vitejs/plugin-vue": "5.1.4",
+    "@vue/test-utils": "2.4.6",
+    "@vue/tsconfig": "0.5.1",
+    "@vueuse/core": "10.11.0",
+    "@vueuse/router": "10.11.0",
+    "@wisemen/eslint-config-vue": "1.0.0-next.0",
+    "autoprefixer": "10.4.19",
+    "conventional-changelog": "6.0.0",
+    "eslint": "9.4",
+    "histoire": "1.0.0-alpha.2",
+    "jsdom": "24.1.0",
+    "libphonenumber-js": "1.11.3",
+    "maska": "3.0.0",
+    "motion-v": "0.13.1",
+    "postcss": "8.4.38",
+    "reka-ui": "2.1.0",
+    "sass": "1.77.5",
+    "tailwind-merge": "2.3.0",
+    "tailwindcss": "4.0.14",
+    "typescript": "5.6.3",
+    "vite": "6.2.3",
+    "vite-plugin-dts": "4.5.3",
+    "vitest": "1.6.0",
+    "vue-router": "4.3.3",
+    "vue-tsc": "2.1.10"
+  }
+}

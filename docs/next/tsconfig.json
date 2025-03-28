@@ -1,0 +1,54 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "jsx": "preserve",
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    "baseUrl": ".",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "paths": {
+      "@docs/*": [
+        "./*"
+      ]
+    },
+    "resolveJsonModule": true,
+    "types": [
+      "node",
+    ],
+    "allowJs": true,
+    "strict": true,
+    "declaration": false,
+    "outDir": "dist",
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  },
+  "files": [
+    "eslint.config.js"
+  ],
+  "include": [
+    "./playground/**/*.ts",
+    "./playground/**/*.tsx",
+    "./playground/**/*.vue",
+    ".vitepress/config.mts",
+    ".vitepress/theme/index.ts",
+    "tailwind.config.ts",
+    "../components-next/env.d.ts",
+    "../components-next/src/**/*",
+    "../components-next/src/**/*.ts",
+    "../components-next/src/**/*.tsx",
+    "../components-next/src/**/*.vue",
+    "./components-next/**/*.vue",
+    "./icons/**/*.ts",
+    "./icons/**/*.vue",
+    "docs/**/*.ts",
+    "docs/**/*.vue",
+    "docs/**/*.md",
+  ],
+  "vueCompilerOptions": {
+    "vitePressExtensions": [".md"],
+  },
+}

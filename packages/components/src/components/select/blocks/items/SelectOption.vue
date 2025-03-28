@@ -42,7 +42,7 @@ const displayValue = computed<string>(() => selectContext.displayFn(props.item.v
 
 // We need to manually close the dropdown when the already selected option is clicked
 function onSelect(): void {
-  if (isSelected.value && !selectContext.shouldRemainOpenOnValueChange.value) {
+  if (isSelected.value && !selectContext.shouldremainOpenOnSelect.value) {
     selectContext.isOpen.value = false
   }
 }

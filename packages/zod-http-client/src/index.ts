@@ -181,7 +181,7 @@ export function createHttpZodClient(
     } = options
 
     const { data } = await axios.delete(url, {
-      ...(config ?? {}),
+      ...config,
       data: body,
     })
 

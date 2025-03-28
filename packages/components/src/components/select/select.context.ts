@@ -49,7 +49,7 @@ interface SelectContext {
   popoverWidth: ComputedRef<PopperWidth | null>
   searchPlaceholder: ComputedRef<string | null>
   searchTerm: Ref<string>
-  shouldRemainOpenOnValueChange: ComputedRef<boolean>
+  shouldremainOpenOnSelect: ComputedRef<boolean>
   styleConfig: ComputedRef<SelectProps<SelectValue>['styleConfig']>
   theme: ComputedRef<string>
   virtualList: ComputedRef<NonNullable<SelectProps<SelectValue>['virtualList']> | null>

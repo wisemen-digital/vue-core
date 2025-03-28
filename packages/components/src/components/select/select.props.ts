@@ -77,7 +77,7 @@ export interface SelectProps<
    * @default true - when the value is an array
    * @default false - when the value is a single value
    */
-  shouldRemainOpenOnValueChange?: boolean | null
+  shouldremainOpenOnSelect?: boolean | null
   /**
    * Whether the select should use a virtual list.
    * When enabled, items must be restricted to the option type
