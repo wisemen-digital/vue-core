@@ -2,7 +2,7 @@
 import { 
   VcThemeProvider, 
   VcConfigProvider,
-  VcDialogContainer
+  VcDialogContainer,
 } from '@wisemen/vue-core-components'
 </script>
 
@@ -13,7 +13,7 @@ import {
       teleport-target-selector="#teleport-target"
     >
       <VcThemeProvider 
-        appearance="light" 
+        appearance="dark" 
         class="vp-raw"
       >
         <div class="vp-raw flex items-center justify-center p-20 border border-solid border-secondary rounded-xl bg-primary">

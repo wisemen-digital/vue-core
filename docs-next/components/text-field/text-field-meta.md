@@ -6,7 +6,7 @@
 | ---- | ---- | ----------- | ------- |
 | **modelValue*** | `string \| null` |  |  |
 | autocomplete | `"off" \| "on"` | The autocomplete property of the input. |  |
-| classConfig | `ClassConfig<"textField"> \| null` | The class configuration of the component. |  |
+| classConfig | `(ClassConfig<"textField"> & {}) \| null` | The class configuration of the component. |  |
 | errors | `string[]` | The errors associated with the input. |  |
 | hint | `string \| null` | The hint text of the input. |  |
 | iconLeft | `keyof Icons \| null` | The icon displayed on the left side of the input. If set to null, no icon will be shown. |  |

@@ -72,6 +72,7 @@ export const createTabsStyle = tv({
         indicator: new StyleBuilder()
           .withSize('group-data-[orientation=horizontal]:h-0.5 group-data-[orientation=vertical]:w-0.5')
           .withBackgroundColor('bg-fg-brand-primary-alt')
+          .withBorderRadius('rounded-md')
           .build(),
         item: new StyleBuilder()
           .withPadding('px-md py-sm')

@@ -6,17 +6,21 @@ import {
 
 import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
 import { useInjectTooltipContext } from '@/components/tooltip/tooltip.context'
+import { mergeClasses } from '@/customClassVariants'
 
 const {
   id,
   testId,
   isOpen,
+  classConfig,
+  customClassConfig,
   popoverAlign,
   popoverCollisionPaddingInPx,
   popoverContainerElement,
   popoverOffsetInPx,
   popoverSide,
   popoverWidth,
+  style,
 } = useInjectTooltipContext()
 </script>
 
@@ -37,7 +41,9 @@ const {
         :collision-boundary="popoverContainerElement"
         :side="popoverSide"
         :side-offset="popoverOffsetInPx"
-        class="data-[content-width=anchor-width]:w-(--reka-tooltip-trigger-width) data-[content-width=available-width]:w-(--reka-tooltip-content-available-width)"
+        :class="style.content({
+          class: mergeClasses(customClassConfig?.content, classConfig?.content),
+        })"
         sticky="always"
       >
         <slot />

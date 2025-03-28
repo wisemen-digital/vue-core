@@ -4,7 +4,7 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| classConfig | `ClassConfig<"button"> \| null` | The class configuration of the component. |  |
+| classConfig | `(ClassConfig<"button"> & {}) \| null` | The class configuration of the component. |  |
 | iconLeft | `keyof Icons \| null` | The icon displayed on the left side of the button text. If set to null, no left icon will be shown. |  |
 | iconRight | `keyof Icons \| null` | The icon displayed on the right side of the button text. If set to null, no right icon will be shown. |  |
 | id | `string \| null` | The id of the element. If set to `null`, no ID will be applied. |  |

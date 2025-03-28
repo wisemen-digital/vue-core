@@ -33,6 +33,9 @@ export default defineConfig({
           { text: 'Text Field', link: '/components/text-field/text-field' },
           { text: 'Popover', link: '/components/popover/popover' },
           { text: 'Dialog', link: '/components/dialog/dialog' },
+          { text: 'Tabs', link: '/components/tabs/tabs' },
+          { text: 'Router Link Tabs', link: '/components/router-link-tabs/router-link-tabs' },
+          { text: 'Tooltip', link: '/components/tooltip/tooltip' },
         ]
       }
     ],

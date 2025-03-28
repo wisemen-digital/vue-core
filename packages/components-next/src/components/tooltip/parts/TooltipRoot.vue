@@ -18,10 +18,11 @@ const props = withDefaults(defineProps<TooltipProps>(), {
   id: null,
   testId: null,
   isArrowHidden: false,
-  isHidden: false,
+  isDisabled: false,
   classConfig: null,
   closeOnTriggerClick: false,
   delayDuration: 200,
+  disableCloseOnTriggerClick: false,
   disableHoverableContent: false,
   popoverAlign: 'center',
   popoverCollisionPaddingInPx: 10,
@@ -29,6 +30,7 @@ const props = withDefaults(defineProps<TooltipProps>(), {
   popoverOffsetInPx: 10,
   popoverSide: 'top',
   popoverWidth: null,
+  variant: null,
 })
 
 const isOpen = defineModel<boolean>('isOpen', {
@@ -36,9 +38,13 @@ const isOpen = defineModel<boolean>('isOpen', {
   required: false,
 })
 
-const tooltipStyle = computed<CreateTooltipStyle>(() => createTooltipStyle({}))
+const tooltipStyle = computed<CreateTooltipStyle>(() => createTooltipStyle({
+  variant: props.variant ?? undefined,
+}))
 
-const customClassConfig = useComponentClassConfig('tooltip', {})
+const customClassConfig = useComponentClassConfig('tooltip', {
+  variant: props.variant ?? undefined,
+})
 
 useProvideTooltipContext({
   ...toComputedRefs(props),
@@ -55,7 +61,7 @@ useProvideTooltipContext({
       :delay-duration="props.delayDuration"
       :disable-hoverable-content="props.disableHoverableContent"
       :disable-closing-trigger="props.disableCloseOnTriggerClick"
-      :disabled="props.isHidden"
+      :disabled="props.isDisabled"
       :ignore-non-keyboard-focus="true"
     >
       <slot />

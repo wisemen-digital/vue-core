@@ -28,7 +28,7 @@ import {
           class="mt-xl"
         />
 
-        <div class="grid grid-cols-2 gap-md mt-3xl">
+        <div class="flex justify-between mt-3xl">
           <VcPopoverCloseButton>
             <VcButton variant="tertiary">
               Cancel

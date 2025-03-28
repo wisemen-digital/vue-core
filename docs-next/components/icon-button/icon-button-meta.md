@@ -6,7 +6,7 @@
 | ---- | ---- | ----------- | ------- |
 | **icon*** | `keyof Icons` | The icon to display inside the button. |  |
 | **label*** | `string` | The label of the button used for screen readers. |  |
-| classConfig | `ClassConfig<"iconButton"> \| null` | The class configuration of the component. |  |
+| classConfig | `(ClassConfig<"iconButton"> & {}) \| null` | The class configuration of the component. |  |
 | id | `string \| null` | The id of the element. If set to `null`, no ID will be applied. |  |
 | isDisabled | `boolean` | Determines whether the element is disabled. When `true`, the element becomes non-interactive. |  |
 | isLoading | `boolean` | Indicates whether the button is in a loading state. When true, interactions are disabled. |  |

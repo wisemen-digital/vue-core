@@ -33,5 +33,20 @@ export const components = [
     sourceFolder: 'dialog/Dialog.vue',
     targetFolder: 'dialog',
     componentName: 'Dialog',
+  },
+  {
+    sourceFolder: 'tabs/button/ButtonTabs.vue',
+    targetFolder: 'tabs',
+    componentName: 'Tabs',
+  },
+  {
+    sourceFolder: 'tabs/router-link/RouterLinkTabs.vue',
+    targetFolder: 'router-link-tabs',
+    componentName: 'RouterLinkTabs',
+  },
+  {
+    sourceFolder: 'tooltip/Tooltip.vue',
+    targetFolder: 'tooltip',
+    componentName: 'Tooltip',
   }
 ]

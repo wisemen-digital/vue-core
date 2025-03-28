@@ -4,7 +4,7 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| classConfig | `ClassConfig<"dialog"> \| null` | The class configuration of the component. | `null` |
+| classConfig | `(ClassConfig<"dialog"> & { closeButton?: ClassConfig<"iconButton">; }) \| null` | The class configuration of the component. | `null` |
 | hideOverlay | `boolean` | Whether to hide the overlay. | `false` |
 | id | `string \| null` | The id of the element. If set to `null`, no ID will be applied. | `null` |
 | preventClickOutside | `boolean` | Prevent clicks outside the dialog content to close the dialog. | `false` |
@@ -13,6 +13,7 @@
 By default, the dialog content is teleported to the body.
 Should be without the leading `#`. | `null` |
 | testId | `string \| null` | A unique identifier used for testing purposes. If set to `null`, no test ID will be applied. | `null` |
+| variant | `null` |  |  |
 
 
 ## Slots

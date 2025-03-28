@@ -1,5 +1,11 @@
 <script setup lang="ts">
-import { defineComponentVariant, VcButton, VcDialog, VcDialogCloseButton, VcDialogDescription, VcDialogTitle } from '@wisemen/vue-core-components'
+import {
+  VcButton,
+  VcDialog,
+  VcDialogCloseButton,
+  VcDialogDescription,
+  VcDialogTitle,
+} from '@wisemen/vue-core-components'
 </script>
 
 <template>

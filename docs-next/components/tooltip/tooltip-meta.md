@@ -4,11 +4,13 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| anchorReferenceElement | `HTMLElement \| null` | The HTML element that serves as the anchor point for the popover.
-If set to `null`, the popover will not be anchored to the trigger element. |  |
-| classConfig | `(ClassConfig<"popover"> & { closeButton?: ClassConfig<"iconButton">; }) \| null` | The class configuration of the component. |  |
+| classConfig | `(ClassConfig<"tooltip"> & {}) \| null` | The class configuration of the component. |  |
+| delayDuration | `number` | The duration in milliseconds to wait before showing the tooltip. |  |
+| disableCloseOnTriggerClick | `boolean` | When true, clicking on trigger won't close the tooltip. |  |
+| disableHoverableContent | `boolean` | When true, trying to hover the content will result in the tooltip closing as the pointer leaves the trigger. |  |
 | id | `string \| null` | The id of the element. If set to `null`, no ID will be applied. |  |
 | isArrowHidden | `boolean` | Controls the visibility of the popper arrow. |  |
+| isHidden | `boolean` | When true, the tooltip will be hidden. |  |
 | popoverAlign | `PopperAlign` | Defines how the popper content is aligned relative to the trigger element. |  |
 | popoverCollisionPaddingInPx | `number` | Specifies the padding (in pixels) used when handling collision detection.
 A larger value increases the spacing between the popper and the container edges. |  |
@@ -28,18 +30,13 @@ By default, the popper content is rendered inside the viewport. |  |
 
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
-| content | `-` | The content to display in the popover. |
-| default | `-` | Override the default popover anchor and trigger. |
-| trigger | `-` | The content that will trigger the popover. This should always be an interactive element. |
+| content | `{}` |  |
+| trigger | `{}` |  |
 
 
 ## Events
 
 | Event name | Type | Description |
 | ---------- | ---- | ----------- |
-| `autoFocusOnClose` | [event: Event] |  |
-| `escapeKeyDown` | [event: KeyboardEvent] |  |
-| `focusOutside` | [event: CustomEvent\<any\>] |  |
-| `interactOutside` | [event: CustomEvent\<any\>] |  |
 | `update:isOpen` | [isOpen: boolean] |  |
 

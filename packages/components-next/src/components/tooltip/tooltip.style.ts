@@ -14,6 +14,10 @@ export const createTooltipStyle = tv({
       .withShadow('shadow-lg')
       .build(),
     content: new StyleBuilder()
+      .withBase('data-[content-width=anchor-width]:w-(--reka-tooltip-trigger-width) data-[content-width=available-width]:w-(--reka-tooltip-content-available-width)')
+      .withZIndex('z-40')
+      .build(),
+    innerContent: new StyleBuilder()
       .withBackgroundColor('bg-primary')
       .withBorder('border border-solid border-secondary')
       .withBorderRadius('rounded-lg')
@@ -22,6 +26,9 @@ export const createTooltipStyle = tv({
       .withBorderRadius('rounded-lg')
       .withShadow('shadow-lg')
       .build(),
+  },
+  variants: {
+    variant: {},
   },
 })
 

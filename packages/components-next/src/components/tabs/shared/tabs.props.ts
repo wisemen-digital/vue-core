@@ -1,4 +1,5 @@
 import type { TabsStyle } from '@/components/tabs/shared/tabs.style'
+import type { GetComponentPropCustomValues } from '@/customClassVariants'
 import type {
   CustomizableElement,
   PrimitiveElement,
@@ -14,7 +15,7 @@ export interface TabsProps extends PrimitiveElement, CustomizableElement<'tabs'>
    * Defines the visual style of the tabs.
    * @default 'underline'
    */
-  variant?: TabsStyle['variant']
+  variant?: GetComponentPropCustomValues<'tabs', 'variant'> | TabsStyle['variant']
 }
 
 export interface RouterLinkTabsItemProps extends PrimitiveElement {

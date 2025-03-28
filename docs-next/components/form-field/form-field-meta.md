@@ -6,7 +6,7 @@
 | ---- | ---- | ----------- | ------- |
 | **for*** | `string` | The unique identifier of the associated form field.
 This is typically used to link the label to the corresponding input element. |  |
-| classConfig | `ClassConfig<"formField"> \| null` | The class configuration of the component. |  |
+| classConfig | `(ClassConfig<"formField"> & {}) \| null` | The class configuration of the component. |  |
 | errors | `string[]` | The errors associated with the input. |  |
 | hint | `string \| null` | The hint text of the input. |  |
 | isRequired | `boolean` | Whether the input is required. |  |
