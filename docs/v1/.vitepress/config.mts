@@ -2,7 +2,7 @@ import { resolve } from 'node:path'
 
 import { defineConfig } from 'vitepress'
 
-import pkg from '../../packages/components/package.json'
+import pkg from '../../../packages/components/package.json'
 import ComponentPreviewPlugin from './plugins/ComponentPreview'
 
 const guide = [
