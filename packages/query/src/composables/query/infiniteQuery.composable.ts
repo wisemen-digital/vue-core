@@ -1,15 +1,12 @@
 import type { InfiniteData } from '@tanstack/vue-query'
 import { useInfiniteQuery as useTanstackInfiniteQuery } from '@tanstack/vue-query'
+import type { ComputedRef, MaybeRef } from 'vue'
+import { computed } from 'vue'
+
 import type {
   PaginatedData,
   PaginationOptions,
-} from '@wisemen/vue-core'
-import {
-  computed,
-  type ComputedRef,
-  type MaybeRef,
-} from 'vue'
-
+} from '@/types/pagination.type'
 import type { QueryKeys } from '@/types/queryKeys.type'
 
 type NonOptionalKeys<T> = {
@@ -162,7 +159,7 @@ export function useInfiniteQuery<TResData, TFilters>(
       const meta = infiniteQuery.data.value?.pages[0].meta ?? null
 
       if (meta !== null && 'next' in meta) {
-        const newVar: PaginatedData<TResData> = {
+        const value: PaginatedData<TResData> = {
           data,
           meta: {
             next: meta.next,
@@ -170,7 +167,7 @@ export function useInfiniteQuery<TResData, TFilters>(
           },
         }
 
-        return newVar
+        return value
       }
 
       return {

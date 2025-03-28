@@ -317,9 +317,6 @@ importers:
       '@tanstack/vue-query':
         specifier: 5.45.0
         version: 5.45.0(vue@3.5.12(typescript@5.6.3))
-      '@wisemen/vue-core':
-        specifier: workspace:*
-        version: link:../components
     devDependencies:
       '@tsconfig/node18':
         specifier: 18.2.4
@@ -12169,7 +12166,7 @@ snapshots:
   '@typescript-eslint/eslint-plugin@8.28.0(@typescript-eslint/parser@8.28.0(eslint@9.14.0(jiti@2.4.2))(typescript@5.6.3))(eslint@9.14.0(jiti@2.4.2))(typescript@5.6.3)':
     dependencies:
       '@eslint-community/regexpp': 4.12.1
-      '@typescript-eslint/parser': 8.28.0(eslint@9.14.0(jiti@2.4.2))(typescript@5.6.3)
+      '@typescript-eslint/parser': 8.28.0(eslint@9.14.0(jiti@2.4.2))(typescript@5.7.3)
       '@typescript-eslint/scope-manager': 8.28.0
       '@typescript-eslint/type-utils': 8.28.0(eslint@9.14.0(jiti@2.4.2))(typescript@5.6.3)
       '@typescript-eslint/utils': 8.28.0(eslint@9.14.0(jiti@2.4.2))(typescript@5.6.3)
@@ -12255,7 +12252,7 @@ snapshots:
     dependencies:
       '@typescript-eslint/scope-manager': 8.28.0
       '@typescript-eslint/types': 8.28.0
-      '@typescript-eslint/typescript-estree': 8.28.0(typescript@5.6.3)
+      '@typescript-eslint/typescript-estree': 8.28.0(typescript@5.7.3)
       '@typescript-eslint/visitor-keys': 8.28.0
       debug: 4.4.0
       eslint: 9.14.0(jiti@2.4.2)
