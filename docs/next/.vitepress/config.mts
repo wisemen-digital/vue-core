@@ -10,6 +10,7 @@ if (typeof __VUE_PROD_DEVTOOLS__ === 'undefined') {
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   base: '/vue-core/next',
+  outDir: '../../docs/next/.vitepress/dist',
   title: "Vue Component Library",
   description: "A modern, customizable, and accessible component library for Vue 3.",
   themeConfig: {
