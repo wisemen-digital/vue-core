@@ -8,12 +8,12 @@ import {
   createIconButtonStyle,
 } from '@/components/button/icon-button/iconButton.style'
 import type { ButtonEmits } from '@/components/button/shared/sharedButton.props'
+import InteractableElement from '@/components/shared/InteractableElement.vue'
+import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
 import {
   mergeClasses,
   useComponentClassConfig,
 } from '@/customClassVariants'
-import InteractableElement from '@/components/shared/InteractableElement.vue'
-import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
 import { toComputedRefs } from '@/utils/props.util'
 
 const props = withDefaults(defineProps<IconButtonProps>(), {
