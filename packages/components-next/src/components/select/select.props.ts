@@ -1,10 +1,12 @@
 import type { AcceptableValue } from 'reka-ui'
 import type { Component } from 'vue'
 
+import type { GetComponentPropCustomValues } from '@/customClassVariants'
 import type { Icon } from '@/icons/icons'
 import type { PopperPropsWithArrowHiddenByDefault } from '@/types/popperProps.type'
 import type {
   CustomizableElement,
+  FormElement,
   InteractableElement,
   PrimitiveElement,
 } from '@/utils/props.util'
@@ -23,8 +25,14 @@ export type SelectDisplayFn<TValue extends SelectValue> = (
 export interface SelectProps<TValue extends SelectValue> extends
   PrimitiveElement,
   InteractableElement,
+  FormElement,
   PopperPropsWithArrowHiddenByDefault,
-  CustomizableElement<'select'> {
+  CustomizableElement<'select', [
+    {
+      name: 'dropdownSearchInput'
+      component: 'textField'
+    },
+  ]> {
   /**
    * Controls the visibility of the dropdown.
    * When set to `true`, the dropdown remains hidden.
@@ -87,23 +95,22 @@ export interface SelectProps<TValue extends SelectValue> extends
    */
   placeholder?: string | null
   /**
-   * The element to which the popover should be anchored.
-   * @default null
-   */
-  popoverAnchorReferenceElement?: HTMLElement | null
-  /**
    * Determines whether the dropdown should remain open when the selected value changes.
    * - If `true`, the dropdown remains open after selecting an option.
    * - If `false`, the dropdown closes when an option is selected.
    * - If `null`, defaults to `true` if the select allows multiple selections, otherwise `false`.
    * @default null
    */
-  remainOpenOnValueChange?: boolean | null
+  remainOpenOnSelect?: boolean | null
   /**
    * Placeholder text for the search input.
    * @default null
    */
   searchInputPlaceholder?: string | null
+  /**
+   *
+   */
+  variant?: GetComponentPropCustomValues<'select', 'variant'> | null
   /**
    * Configuration for enabling a virtualized list when displaying large sets of options.
    * @default null

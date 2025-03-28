@@ -9,9 +9,11 @@
 | disableCloseOnTriggerClick | `boolean` | When true, clicking on trigger won't close the tooltip. |  |
 | disableHoverableContent | `boolean` | When true, trying to hover the content will result in the tooltip closing as the pointer leaves the trigger. |  |
 | id | `string \| null` | The id of the element. If set to `null`, no ID will be applied. |  |
-| isArrowHidden | `boolean` | Controls the visibility of the popper arrow. |  |
-| isHidden | `boolean` | When true, the tooltip will be hidden. |  |
+| isDisabled | `boolean` | When true, the tooltip will be hidden. |  |
+| isPopoverArrowHidden | `boolean` | Controls the visibility of the popper arrow. |  |
 | popoverAlign | `PopperAlign` | Defines how the popper content is aligned relative to the trigger element. |  |
+| popoverAnchorReferenceElement | `HTMLElement \| null` | The HTML element that serves as the anchor point for the popover.
+If set to `null`, the popover will not be anchored to the trigger element. |  |
 | popoverCollisionPaddingInPx | `number` | Specifies the padding (in pixels) used when handling collision detection.
 A larger value increases the spacing between the popper and the container edges. |  |
 | popoverContainerElement | `HTMLElement \| null` | The HTML element in which the popper content should be rendered.

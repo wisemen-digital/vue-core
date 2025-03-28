@@ -53,7 +53,7 @@ const props = withDefaults(defineProps<SelectProps<TValue>>(), {
   popoverSide: 'bottom',
   popoverWidth: 'anchor-width',
   searchPlaceholder: null,
-  shouldRemainOpenOnValueChange: null,
+  shouldremainOpenOnSelect: null,
   styleConfig: null,
   virtualList: null,
 })
@@ -140,9 +140,9 @@ const filteredItems = computed<SelectItem<TValue extends Array<infer U> ? U : TV
     : TValue>[]
 })
 
-const shouldRemainOpenOnValueChange = computed<boolean>(() => {
-  if (props.shouldRemainOpenOnValueChange !== null) {
-    return props.shouldRemainOpenOnValueChange
+const shouldremainOpenOnSelect = computed<boolean>(() => {
+  if (props.shouldremainOpenOnSelect !== null) {
+    return props.shouldremainOpenOnSelect
   }
 
   return isMultiple.value
@@ -173,7 +173,7 @@ function onFilterInput(): void {
 function onModelValueUpdate(value: AcceptableValue): void {
   emit('select', value as TValue)
 
-  if (shouldRemainOpenOnValueChange.value) {
+  if (shouldremainOpenOnSelect.value) {
     return
   }
 
@@ -264,7 +264,7 @@ provideSelectContext({
   popoverWidth: computed<PopperWidth | null>(() => props.popoverWidth),
   searchPlaceholder,
   searchTerm,
-  shouldRemainOpenOnValueChange,
+  shouldremainOpenOnSelect,
   styleConfig: computed<SelectProps<TValue>['styleConfig']>(() => props.styleConfig),
   theme: computed<string>(() => themeProviderContext.theme.value),
   virtualList: computed<NonNullable<SelectProps<TValue>['virtualList']> | null>(

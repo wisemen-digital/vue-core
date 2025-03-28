@@ -10,7 +10,7 @@ export const createSelectStyle = tv({
       .withSize('size-full')
       .build(),
     baseMultiple: new StyleBuilder()
-      .withPadding('px-3 group-data-[has-icon-left=true]/select:pl-2 group-data-[has-icon-right=true]/select:pr-2')
+      .withPadding('px-xs group-data-[has-icon-left=true]/select:pl-2 group-data-[has-icon-right=true]/select:pr-2')
       .withFlex('flex items-center gap-xs')
       .withSize('size-full')
       .build(),
@@ -104,6 +104,9 @@ export const createSelectStyle = tv({
       .withBackgroundColor('bg-quaternary')
       .withSpacing('my-xs')
       .build(),
+  },
+  variants: {
+    variant: {},
   },
 })
 

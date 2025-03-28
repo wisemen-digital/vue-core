@@ -14,11 +14,10 @@ import { toComputedRefs } from '@/utils/props.util'
 const props = withDefaults(defineProps<PopoverProps>(), {
   id: null,
   testId: null,
-  isArrowHidden: false,
-  isCloseButtonHidden: false,
-  anchorReferenceElement: null,
+  isPopoverArrowHidden: false,
   classConfig: null,
   popoverAlign: 'center',
+  popoverAnchorReferenceElement: null,
   popoverCollisionPaddingInPx: 10,
   popoverContainerElement: null,
   popoverOffsetInPx: 10,

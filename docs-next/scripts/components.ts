@@ -48,5 +48,10 @@ export const components = [
     sourceFolder: 'tooltip/Tooltip.vue',
     targetFolder: 'tooltip',
     componentName: 'Tooltip',
+  },
+  {
+    sourceFolder: 'select/Select.vue',
+    targetFolder: 'select',
+    componentName: 'Select',
   }
 ]

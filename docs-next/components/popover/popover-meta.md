@@ -4,12 +4,12 @@
 
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| anchorReferenceElement | `HTMLElement \| null` | The HTML element that serves as the anchor point for the popover.
-If set to `null`, the popover will not be anchored to the trigger element. |  |
 | classConfig | `(ClassConfig<"popover"> & { closeButton?: ClassConfig<"iconButton">; }) \| null` | The class configuration of the component. |  |
 | id | `string \| null` | The id of the element. If set to `null`, no ID will be applied. |  |
-| isArrowHidden | `boolean` | Controls the visibility of the popper arrow. |  |
+| isPopoverArrowHidden | `boolean` | Controls the visibility of the popper arrow. |  |
 | popoverAlign | `PopperAlign` | Defines how the popper content is aligned relative to the trigger element. |  |
+| popoverAnchorReferenceElement | `HTMLElement \| null` | The HTML element that serves as the anchor point for the popover.
+If set to `null`, the popover will not be anchored to the trigger element. |  |
 | popoverCollisionPaddingInPx | `number` | Specifies the padding (in pixels) used when handling collision detection.
 A larger value increases the spacing between the popper and the container edges. |  |
 | popoverContainerElement | `HTMLElement \| null` | The HTML element in which the popper content should be rendered.

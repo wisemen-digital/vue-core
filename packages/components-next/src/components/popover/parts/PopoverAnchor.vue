@@ -3,13 +3,13 @@ import { PopoverAnchor as RekaPopoverAnchor } from 'reka-ui'
 
 import { useInjectPopoverContext } from '@/components/popover/popover.context'
 
-const { anchorReferenceElement } = useInjectPopoverContext()
+const { popoverAnchorReferenceElement } = useInjectPopoverContext()
 </script>
 
 <template>
   <RekaPopoverAnchor
     :as-child="true"
-    :reference="anchorReferenceElement ?? undefined"
+    :reference="popoverAnchorReferenceElement ?? undefined"
   >
     <slot />
   </RekaPopoverAnchor>

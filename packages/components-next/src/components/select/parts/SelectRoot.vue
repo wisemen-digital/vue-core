@@ -33,15 +33,20 @@ import { toComputedRefs } from '@/utils/props.util'
 const props = withDefaults(defineProps<SelectProps<TValue>>(), {
   id: null,
   testId: null,
-  isArrowVisible: false,
   isDisabled: false,
   isDropdownHidden: false,
   isLoading: false,
+  isPopoverArrowVisible: false,
+  isRequired: false,
   isSearchTermControlled: false,
+  isTouched: false,
   classConfig: null,
+  errors: () => [],
   filter: null,
+  hint: null,
   iconLeft: null,
   iconRight: 'selectIconRight',
+  label: null,
   placeholder: null,
   popoverAlign: 'center',
   popoverAnchorReferenceElement: null,
@@ -50,12 +55,12 @@ const props = withDefaults(defineProps<SelectProps<TValue>>(), {
   popoverOffsetInPx: 6,
   popoverSide: 'bottom',
   popoverWidth: 'anchor-width',
-  remainOpenOnValueChange: null,
+  remainOpenOnSelect: null,
   searchInputPlaceholder: null,
+  variant: null,
   virtualList: null,
 })
 
-// TODO: emit focus & blur events
 const emit = defineEmits<SelectEmits>()
 
 const modelValue = defineModel<TValue>({
@@ -91,16 +96,20 @@ const hasInteractedWithInlineSearchInput = ref<boolean>(false)
 
 const { contains } = useFilter()
 
-const selectStyle = computed<CreateSelectStyle>(() => createSelectStyle({}))
+const selectStyle = computed<CreateSelectStyle>(() => createSelectStyle({
+  variant: props.variant ?? undefined,
+}))
 
-const customClassConfig = useComponentClassConfig('select', {})
+const customClassConfig = useComponentClassConfig('select', {
+  variant: props.variant ?? undefined,
+})
 
 const isMultiple = computed<boolean>(() => Array.isArray(modelValue.value))
 
 const hasSelectRootFocusIn = ref<boolean>(false)
 
-const remainOpenOnValueChange = computed<boolean>(() => (
-  props.remainOpenOnValueChange ?? isMultiple.value
+const remainOpenOnSelect = computed<boolean>(() => (
+  props.remainOpenOnSelect ?? isMultiple.value
 ))
 
 const hasInlineSearchInput = computed<boolean>(() => {
@@ -245,7 +254,7 @@ function onDropdownInteractOutside(event: CustomEvent): void {
 function onSelectItem(): void {
   focusInlineSearchInputElement()
 
-  if (!remainOpenOnValueChange.value) {
+  if (!remainOpenOnSelect.value) {
     setIsDropdownVisible(false)
   }
 }
@@ -273,7 +282,7 @@ useProvideSelectContext({
   filteredItems,
   inlinesearchInputElementRef,
   modelValue,
-  remainOpenOnValueChange,
+  remainOpenOnSelect,
   searchInputPlaceholder,
   searchTerm,
   setIsDropdownVisible,

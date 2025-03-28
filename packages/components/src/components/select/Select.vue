@@ -44,7 +44,7 @@ const props = withDefaults(defineProps<SelectProps<TValue>>(), {
   popoverSide: 'bottom',
   popoverWidth: 'anchor-width',
   searchPlaceholder: null,
-  shouldRemainOpenOnValueChange: null,
+  shouldremainOpenOnSelect: null,
   styleConfig: null,
   virtualList: null,
 })

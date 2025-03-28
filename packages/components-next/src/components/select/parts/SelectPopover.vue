@@ -10,9 +10,9 @@ import { useInjectSelectContext } from '@/components/select/select.context'
 
 const {
   hasInlineSearchInput,
-  isArrowVisible,
   isDropdownHidden,
   isDropdownVisible,
+  isPopoverArrowVisible,
   popoverAlign,
   popoverAnchorReferenceElement,
   popoverCollisionPaddingInPx,
@@ -35,7 +35,7 @@ function onAutoFocusOnClose(event: Event): void {
 <template>
   <PopoverRoot
     :is-open="isDropdownVisible && !isDropdownHidden"
-    :is-arrow-hidden="!isArrowVisible"
+    :is-arrow-hidden="!isPopoverArrowVisible"
     :align="popoverAlign"
     :popover-align="popoverAlign"
     :popover-collision-padding-in-px="popoverCollisionPaddingInPx"

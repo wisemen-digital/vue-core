@@ -49,7 +49,8 @@ const filteredModelValue = computed<AcceptableValue[]>(() => {
       return sum + tag.getBoundingClientRect().width
     }, 0)
 
-    return tagWidth + previousTagsWidth + moreTagsCountWidth <= tagContainerWidth.value
+    // TODO: this 10 is a hack, find a better way to calculate the width of the tags
+    return tagWidth + previousTagsWidth + moreTagsCountWidth + 10 <= tagContainerWidth.value
   })
 })
 
@@ -83,26 +84,34 @@ onMounted(() => {
       class: mergeClasses(customClassConfig.baseMultiple, classConfig?.baseMultiple),
     })"
   >
-    <SelectPlaceholder />
+    <SelectPlaceholder class="pl-md" />
 
     <!-- Used to calculate the width of the tags -->
     <div
-      v-for="(value, valueIndex) of modelValueAsArray"
-      :key="valueIndex"
-      ref="tagRef"
-      class="absolute invisible flex items-center gap-sm text-sm pl-sm pr-xxs h-8 bg-secondary rounded-md border border-solid border-secondary whitespace-nowrap"
+      :class="style.baseMultiple({
+        class: mergeClasses(customClassConfig.baseMultiple, classConfig?.baseMultiple),
+      })"
+      aria-hidden="true"
+      class="absolute invisible"
     >
-      {{ displayFn(value) }}
+      <div
+        v-for="(value, valueIndex) of modelValueAsArray"
+        :key="valueIndex"
+        ref="tagRef"
+        class="flex items-center gap-sm text-sm pl-sm pr-xxs h-7 bg-secondary rounded-md border border-solid border-secondary whitespace-nowrap"
+      >
+        {{ displayFn(value) }}
 
-      <IconButton
-        :label="t('component.select.remove_value')"
-        :class-config="{
-          root: 'size-6 min-w-auto rounded-sm',
-          icon: 'size-3',
-        }"
-        variant="tertiary"
-        icon="close"
-      />
+        <IconButton
+          :label="t('component.select.remove_value')"
+          :class-config="{
+            root: 'size-6 min-w-auto rounded-sm',
+            icon: 'size-3',
+          }"
+          variant="tertiary"
+          icon="close"
+        />
+      </div>
     </div>
 
     <div

@@ -25,7 +25,7 @@ const {
   classConfig,
   customClassConfig,
   filteredItems,
-  remainOpenOnValueChange,
+  remainOpenOnSelect,
   setIsDropdownVisible,
   style,
   virtualList,
@@ -53,7 +53,7 @@ function onSelect(e: SelectItemSelectEvent<unknown>): void {
 
   // By default, when an already selected option is clicked, the dropdown doesn't close
   // This fixes that
-  if (isAlreadySelected && !remainOpenOnValueChange.value) {
+  if (isAlreadySelected && !remainOpenOnSelect.value) {
     setIsDropdownVisible(false)
   }
 

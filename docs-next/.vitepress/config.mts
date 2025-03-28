@@ -36,6 +36,7 @@ export default defineConfig({
           { text: 'Tabs', link: '/components/tabs/tabs' },
           { text: 'Router Link Tabs', link: '/components/router-link-tabs/router-link-tabs' },
           { text: 'Tooltip', link: '/components/tooltip/tooltip' },
+          { text: 'Select', link: '/components/select/select' },
         ]
       }
     ],

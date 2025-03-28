@@ -12,12 +12,6 @@ export interface PopoverProps extends PopperPropsWithArrowVisibleByDefault, Prim
   },
 ]> {
   /**
-   * The HTML element that serves as the anchor point for the popover.
-   * If set to `null`, the popover will not be anchored to the trigger element.
-   * @default null
-   */
-  anchorReferenceElement?: HTMLElement | null
-  /**
    *
    */
   variant?: GetComponentPropCustomValues<'popover', 'variant'> | null

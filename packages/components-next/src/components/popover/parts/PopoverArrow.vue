@@ -5,7 +5,7 @@ import { useInjectPopoverContext } from '@/components/popover/popover.context'
 import { mergeClasses } from '@/customClassVariants'
 
 const {
-  isArrowHidden,
+  isPopoverArrowHidden,
   classConfig,
   customClassConfig,
   style,
@@ -14,7 +14,7 @@ const {
 
 <template>
   <RekaPopoverArrow
-    v-if="!isArrowHidden"
+    v-if="!isPopoverArrowHidden"
     as="div"
     class="relative -mb-4 h-4 w-10 overflow-hidden -translate-y-px"
   >

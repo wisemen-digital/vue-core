@@ -5,6 +5,7 @@ import SelectItem from '@/components/select/parts/SelectItem.vue'
 import Select from '@/components/select/Select.vue'
 
 const value = ref<string | null>(null)
+const arrayValue = ref<string[]>([])
 const items = Array.from(Array.from({ length: 2000 }), (_, i) => `${i + 1}`)
 </script>
 
@@ -30,6 +31,35 @@ const items = Array.from(Array.from({ length: 2000 }), (_, i) => `${i + 1}`)
 
         <SelectItem value="Third item">
           Third item
+        </SelectItem>
+      </Select>
+    </Variant>
+
+    <Variant title="Multiple">
+      <Select
+        v-model="arrayValue"
+        :display-fn="(v) => v"
+        :filter="{
+          isEnabled: true,
+          isInline: false,
+        }"
+        placeholder="Multiple"
+        class="w-72"
+      >
+        <SelectItem value="First item">
+          First item
+        </SelectItem>
+
+        <SelectItem value="Second itemm">
+          Second item
+        </SelectItem>
+
+        <SelectItem value="Third item">
+          Third item
+        </SelectItem>
+
+        <SelectItem value="Fourth item">
+          Fourth item
         </SelectItem>
       </Select>
     </Variant>

@@ -9,7 +9,14 @@ export const i18nPlugin = createI18n({
   fallbackWarn: false,
   legacy: false,
   messages: {
-    en: {}
+    en: {
+      'component.button.loading_label': 'Loading...',
+      'component.select.empty_text': 'No results found for "{searchTerm}"',
+      'component.select.remove_value': 'Remove value',
+      'component.select.search_input_placeholder': 'Search',
+      'shared.close': 'Close',
+      'shared.loading': 'Loading...',
+    }
   }
 })
 

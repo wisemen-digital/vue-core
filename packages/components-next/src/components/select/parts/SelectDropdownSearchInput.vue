@@ -5,6 +5,7 @@ import TextField from '@/components/text-field/TextField.vue'
 
 const {
   hasScrolledInDropdownContent,
+  classConfig,
   filter,
   searchInputPlaceholder,
   searchTerm,
@@ -25,6 +26,7 @@ const {
         :class-config="{
           root: 'border-none shadow-none !ring-0 bg-secondary h-8 rounded-sm',
           iconLeft: 'ml-md',
+          ...classConfig?.dropdownSearchInput,
         }"
         icon-left="search"
       />

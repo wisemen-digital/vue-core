@@ -14,11 +14,10 @@ import SelectRoot from '@/components/select/parts/SelectRoot.vue'
 import SelectVirtualList from '@/components/select/parts/SelectVirtualList.vue'
 import type { SelectEmits } from '@/components/select/select.emits'
 import type { SelectProps, SelectValue as SelectValueType } from '@/components/select/select.props'
-import type { FormElement } from '@/utils/props.util'
 
-const props = withDefaults(defineProps<SelectProps<TValue> & FormElement>(), {
+const props = withDefaults(defineProps<SelectProps<TValue>>(), {
   // Vue automatically defaults boolean props to false, even if no value is provided
-  remainOpenOnValueChange: null,
+  remainOpenOnSelect: null,
 })
 
 const emit = defineEmits<SelectEmits>()
