@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { VcButton, useDrawer } from '@wisemen/vue-core'
+import { useDrawer, VcButton } from '@wisemen/vue-core'
 
 const drawer = useDrawer({
   component: () => import('./BasicDrawer.vue'),
@@ -11,5 +11,10 @@ async function onClick(): Promise<void> {
 </script>
 
 <template>
-  <VcButton variant="secondary" @click="onClick">Show Drawer</VcButton>
+  <VcButton
+    variant="secondary"
+    @click="onClick"
+  >
+    Show Drawer
+  </VcButton>
 </template>

@@ -3,8 +3,8 @@ import { VcIconButton } from '@wisemen/vue-core'
 </script>
 
 <template>
-  <VcIconButton 
-    :is-disabled="true" 
+  <VcIconButton
+    :is-disabled="true"
     icon="translate"
     label="Translate"
   />

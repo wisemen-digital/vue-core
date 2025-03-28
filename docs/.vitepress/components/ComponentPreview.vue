@@ -3,10 +3,10 @@ import type { TabItem } from '@wisemen/vue-core'
 import {
   VcCollapsable2,
   VcConfigProvider,
+  VcDialogContainer,
   VcSwitch,
   VcTabs,
   VcThemeProvider,
-  VcDialogContainer,
 } from '@wisemen/vue-core'
 import { computed, ref } from 'vue'
 
@@ -45,7 +45,7 @@ const selectedTab = ref<TabItem | null>(tabItems.value?.[0] ?? null)
 const isDark = ref<boolean>(document.documentElement.classList.contains('dark'))
 
 const observer = new MutationObserver((mutations) => {
-  mutations.forEach((mutation) => {
+  for (const mutation of mutations) {
     if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
       const darkClass = document.documentElement.classList.contains('dark')
 
@@ -53,7 +53,7 @@ const observer = new MutationObserver((mutations) => {
         isDark.value = darkClass
       }
     }
-  })
+  }
 })
 
 observer.observe(document.documentElement, {
@@ -69,8 +69,7 @@ observer.observe(document.documentElement, {
     :appearance="isDark ? 'dark' : 'light'"
     theme="default"
   >
-  
-  <VcDialogContainer />
+    <VcDialogContainer />
     <div class="flex flex-col gap-2">
       <div class="vp-raw">
         <div class="flex justify-end gap-x-4">

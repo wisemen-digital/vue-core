@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { VcCheckbox, VcCheckboxIndicator } from '@wisemen/vue-core'
+import {
+  VcCheckbox,
+  VcCheckboxIndicator,
+} from '@wisemen/vue-core'
 import { ref } from 'vue'
 
 const model = ref<boolean>(true)
@@ -13,13 +16,13 @@ const model = ref<boolean>(true)
     <template #default>
       <VcCheckboxIndicator class="absolute top-1 right-1" />
 
-        <span class="text-sm font-medium text-primary group-disabled:text-disabled">
-          I wanna use my promo code
-        </span>
+      <span class="text-sm font-medium text-primary group-disabled:text-disabled">
+        I wanna use my promo code
+      </span>
 
-        <p class="text-xs leading-5 text-tertiary group-disabled:text-disabled">
-          By using the promotion code saved in your profile, you can save 10% on your order.
-        </p>
+      <p class="text-xs leading-5 text-tertiary group-disabled:text-disabled">
+        By using the promotion code saved in your profile, you can save 10% on your order.
+      </p>
     </template>
   </VcCheckbox>
 </template>

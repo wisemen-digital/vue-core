@@ -2,9 +2,8 @@ import { resolve } from 'node:path'
 
 import { defineConfig } from 'vitepress'
 
+import pkg from '../../packages/components/package.json'
 import ComponentPreviewPlugin from './plugins/ComponentPreview'
-
-const pkg = require('../../packages/components/package.json')
 
 const guide = [
   {
@@ -119,13 +118,13 @@ export default defineConfig({
     nav: [
       {
         text: pkg.version,
-        items:[
+        items: [
           {
             text: 'Changelog',
             link: 'https://github.com/wisemen-digital/vue-core/blob/v2/packages/components/CHANGELOG.md',
-          }
-        ]
-      }
+          },
+        ],
+      },
     ],
 
     search: {
@@ -167,8 +166,5 @@ export default defineConfig({
         '@': resolve(__dirname, '../../components/src'),
       },
     },
-    plugins: [
-      // tailwindcss(),
-    ],
   },
 })

@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { VcButton, VcToastContainer, useToast } from '@wisemen/vue-core'
+import {
+  useToast,
+  VcButton,
+  VcToastContainer,
+} from '@wisemen/vue-core'
 
 const toast = useToast()
 
@@ -7,12 +11,13 @@ function onClick(): void {
   toast.error({
     icon: 'close',
     message: 'This is an error toast.',
-    action:{
+    action: {
       label: 'Action',
       onClick: () => {
+        // eslint-disable-next-line no-alert
         alert('Action clicked')
-      }
-    }
+      },
+    },
   })
 }
 </script>
@@ -20,6 +25,11 @@ function onClick(): void {
 <template>
   <div>
     <VcToastContainer />
-    <VcButton variant="destructive-secondary" @click="onClick">Show Error Toast</VcButton>
+    <VcButton
+      variant="destructive-secondary"
+      @click="onClick"
+    >
+      Show Error Toast
+    </VcButton>
   </div>
 </template>

@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { VcRadioGroup, VcRadioGroupItem } from '@wisemen/vue-core'
+import {
+  VcRadioGroup,
+  VcRadioGroupItem,
+} from '@wisemen/vue-core'
 import { ref } from 'vue'
 
 const selectedItem = ref<string>('Apple')
@@ -26,13 +29,13 @@ const items = [
     label="Radio Group"
     hint="This is a radio group."
   >
-   <div class="flex flex-col gap-y-2">
+    <div class="flex flex-col gap-y-2">
       <VcRadioGroupItem
-        v-for="item of items" 
+        v-for="item of items"
         :key="item.label"
-        :value="item.value" 
-        :label="item.label" 
+        :value="item.value"
+        :label="item.label"
       />
-   </div>
+    </div>
   </VcRadioGroup>
 </template>

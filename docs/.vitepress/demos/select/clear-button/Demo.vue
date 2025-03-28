@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import type { SelectItem } from '@wisemen/vue-core'
 import {
-  type SelectItem,
   VcButton,
   VcSelect,
 } from '@wisemen/vue-core'
