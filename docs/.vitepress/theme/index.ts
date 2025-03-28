@@ -59,6 +59,7 @@ const theme: typeof DefaultTheme = {
   Layout: DefaultTheme.Layout,
   enhanceApp(ctx) {
     ctx.app.use(i18nPlugin as any)
+    // @ts-expect-error - error
     ctx.app.component('ComponentPreview', ComponentPreview)
     ctx.app.component('BulletList', BulletList)
     DefaultTheme.enhanceApp(ctx)

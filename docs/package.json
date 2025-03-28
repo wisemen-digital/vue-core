@@ -46,6 +46,6 @@
     "tsx": "4.16.0",
     "vitepress": "1.6.3",
     "vue-component-meta": "2.0.24",
-    "vue-tsc": "2.0.21"
+    "vue-tsc": "2.2.8"
   }
 }
