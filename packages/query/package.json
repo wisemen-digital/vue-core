@@ -29,7 +29,8 @@
     "dev": "vite build --watch"
   },
   "dependencies": {
-    "@tanstack/vue-query": "5.45.0"
+    "@tanstack/vue-query": "5.45.0",
+    "@wisemen/vue-core": "workspace:*"
   },
   "devDependencies": {
     "@tsconfig/node18": "18.2.4",

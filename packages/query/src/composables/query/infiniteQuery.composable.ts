@@ -1,8 +1,16 @@
-import type {InfiniteData,} from '@tanstack/vue-query'
-import {useInfiniteQuery as useTanstackInfiniteQuery} from '@tanstack/vue-query'
-import {computed, type ComputedRef, type MaybeRef,} from 'vue'
-import type {QueryKeys} from "@/types/queryKeys.type";
-import type {PaginatedData, PaginationOptions} from "@wisemen/vue-core";
+import type { InfiniteData } from '@tanstack/vue-query'
+import { useInfiniteQuery as useTanstackInfiniteQuery } from '@tanstack/vue-query'
+import type {
+  PaginatedData,
+  PaginationOptions,
+} from '@wisemen/vue-core'
+import {
+  computed,
+  type ComputedRef,
+  type MaybeRef,
+} from 'vue'
+
+import type { QueryKeys } from '@/types/queryKeys.type'
 
 type NonOptionalKeys<T> = {
   [K in keyof T]-?: T[K]
@@ -74,13 +82,13 @@ export interface UseInfiniteQueryReturnType<TResData> {
 }
 
 export function useInfiniteQuery<TResData, TFilters>(
-    options: useInfiniteQueryOptions<TResData, TFilters>,
+  options: useInfiniteQueryOptions<TResData, TFilters>,
 ): UseInfiniteQueryReturnType<TResData> {
   const infiniteQuery = useTanstackInfiniteQuery<
-      PaginatedData<TResData>,
-      unknown,
-      InfiniteData<PaginatedData<TResData>>,
-      readonly unknown[],
+    PaginatedData<TResData>,
+    unknown,
+    InfiniteData<PaginatedData<TResData>>,
+    readonly unknown[],
       number | unknown | null
   >({
     enabled: options.enabled,
@@ -106,19 +114,19 @@ export function useInfiniteQuery<TResData, TFilters>(
       return null
     },
     initialPageParam: 'key' in options.paginationOptions.pagination
-        ? options.paginationOptions.pagination.key
-        : options.paginationOptions.pagination.offset,
+      ? options.paginationOptions.pagination.key
+      : options.paginationOptions.pagination.offset,
     placeholderData: (data) => data,
     queryFn: async ({ pageParam }) => {
       return await options.queryFn({
         ...options.paginationOptions,
         pagination: 'key' in options.paginationOptions.pagination
-            ? {
+          ? {
               key: pageParam as unknown | null,
               limit: options.paginationOptions.pagination.limit,
               type: 'keyset',
             }
-            : {
+          : {
               limit: options.paginationOptions.pagination.limit,
               offset: pageParam as number,
               type: 'offset',
@@ -150,27 +158,28 @@ export function useInfiniteQuery<TResData, TFilters>(
     isLoading: computed<boolean>(() => infiniteQuery.isLoading.value),
     isSuccess: computed<boolean>(() => infiniteQuery.isSuccess.value),
     data: computed<PaginatedData<TResData>>(() => {
-      let data = infiniteQuery.data.value?.pages.flatMap((page) => page.data) ?? [];
-      let meta = infiniteQuery.data.value?.pages[0].meta ?? null
+      const data = infiniteQuery.data.value?.pages.flatMap((page) => page.data) ?? []
+      const meta = infiniteQuery.data.value?.pages[0].meta ?? null
 
-      if(meta !== null && 'next' in meta) {
-        let newVar: PaginatedData<TResData> = {
-          data: data,
+      if (meta !== null && 'next' in meta) {
+        const newVar: PaginatedData<TResData> = {
+          data,
           meta: {
             next: meta.next,
             total: data.length,
           },
-        };
+        }
+
         return newVar
       }
 
       return {
-        data: data,
+        data,
         meta: {
           limit: meta?.limit ?? 0,
           offset: meta?.offset ?? 0,
           total: meta?.total ?? 0,
-        }
+        },
       }
     }),
     error: computed<unknown>(() => infiniteQuery.error.value),
