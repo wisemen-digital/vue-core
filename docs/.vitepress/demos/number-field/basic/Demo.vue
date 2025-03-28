@@ -2,7 +2,7 @@
 import { VcNumberField } from '@wisemen/vue-core'
 import { ref } from 'vue'
 
-const value = ref<null | number>(0)
+const value = ref<number | null>(0)
 </script>
 
 <template>

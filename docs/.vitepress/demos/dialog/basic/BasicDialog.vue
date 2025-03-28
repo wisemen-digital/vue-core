@@ -1,5 +1,11 @@
 <script setup lang="ts">
-import { VcDialogTitle, VcDialogDescription, VcDialog, VcButton, VcDialogCloseButton } from '@wisemen/vue-core'
+import {
+  VcButton,
+  VcDialog,
+  VcDialogCloseButton,
+  VcDialogDescription,
+  VcDialogTitle,
+} from '@wisemen/vue-core'
 </script>
 
 <template>
@@ -20,7 +26,10 @@ import { VcDialogTitle, VcDialogDescription, VcDialog, VcButton, VcDialogCloseBu
       </p>
 
       <VcDialogCloseButton>
-        <VcButton variant="tertiary" size="sm">
+        <VcButton
+          variant="tertiary"
+          size="sm"
+        >
           Close
         </VcButton>
       </VcDialogCloseButton>

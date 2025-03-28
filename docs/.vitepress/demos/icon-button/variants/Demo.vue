@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { VcIconButton, VcIconButtonProps } from '@wisemen/vue-core'
+import type { VcIconButtonProps } from '@wisemen/vue-core'
+import { VcIconButton } from '@wisemen/vue-core'
 
 const variants: VcIconButtonProps['variant'][] = [
   'default',
@@ -15,9 +16,9 @@ const variants: VcIconButtonProps['variant'][] = [
 
 <template>
   <div class="grid grid-cols-3 gap-8">
-    <VcIconButton 
-      v-for="variant of variants" 
-      :key="variant" 
+    <VcIconButton
+      v-for="variant of variants"
+      :key="variant"
       :variant="variant"
       icon="translate"
       label="Translate"

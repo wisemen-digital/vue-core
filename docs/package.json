@@ -35,7 +35,7 @@
     "@types/dom-view-transitions": "1.0.4",
     "@types/markdown-it": "14.1.1",
     "@types/node": "20.14.2",
-    "@wisemen/eslint-config-vue": "1.0.0-next.0",
+    "@wisemen/eslint-config-vue": "1.0.0-next.1",
     "eslint": "9.4.0",
     "fast-glob": "3.3.2",
     "markdown-it": "14.1.0",

@@ -1,9 +1,13 @@
 <script setup lang="ts">
-import { VcCheckboxGroup, VcCheckbox, VcInputField } from '@wisemen/vue-core'
+import {
+  VcCheckbox,
+  VcCheckboxGroup,
+} from '@wisemen/vue-core'
 import { computed, ref } from 'vue'
 
-const selectedItems = ref<string[]>(['Apple'])
-const areAllSelected = computed<boolean>(() => selectedItems.value.length === items.length)
+const selectedItems = ref<string[]>([
+  'Apple',
+])
 
 const items = [
   {
@@ -20,9 +24,11 @@ const items = [
   },
 ]
 
+const areAllSelected = computed<boolean>(() => selectedItems.value.length === items.length)
+
 function onToggleSelectAll(value: boolean): void {
   if (value) {
-    selectedItems.value = items.map(item => item.value)
+    selectedItems.value = items.map((item) => item.value)
   }
   else {
     selectedItems.value = []
@@ -32,11 +38,11 @@ function onToggleSelectAll(value: boolean): void {
 
 <template>
   <div>
-    <VcCheckbox 
-      :is-indeterminate="selectedItems.length > 0 && !areAllSelected" 
+    <VcCheckbox
+      :is-indeterminate="selectedItems.length > 0 && !areAllSelected"
       :model-value="areAllSelected"
-      @update:model-value="onToggleSelectAll"
       label="Select fruits"
+      @update:model-value="onToggleSelectAll"
     />
 
     <VcCheckboxGroup
@@ -45,12 +51,12 @@ function onToggleSelectAll(value: boolean): void {
       class="mt-2"
     >
       <div class="flex flex-col gap-y-2">
-          <VcCheckbox
-            v-for="item of items" 
-            :key="item.label"
-            :value="item.value" 
-            :label="item.label" 
-          />
+        <VcCheckbox
+          v-for="item of items"
+          :key="item.label"
+          :value="item.value"
+          :label="item.label"
+        />
       </div>
     </VcCheckboxGroup>
   </div>

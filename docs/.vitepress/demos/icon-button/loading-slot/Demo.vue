@@ -4,9 +4,9 @@ import { VcIconButton, VcSpinner } from '@wisemen/vue-core'
 
 <template>
   <VcIconButton
+    :is-loading="true"
     icon="translate"
     label="Translate"
-    :is-loading="true" 
   >
     <template #loader>
       <div class="flex items-center gap-x-3">

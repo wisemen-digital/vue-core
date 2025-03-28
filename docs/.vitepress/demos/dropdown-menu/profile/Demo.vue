@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { DropdownMenuItem, VcDropdownMenu } from '@wisemen/vue-core'
+import type { DropdownMenuItem } from '@wisemen/vue-core'
+import { VcDropdownMenu } from '@wisemen/vue-core'
 
 const items: DropdownMenuItem[] = [
   {
@@ -10,17 +11,19 @@ const items: DropdownMenuItem[] = [
       {
         label: 'Nederlands',
         type: 'option',
-        onSelect: () => {
+        onSelect: (): void => {
+          // eslint-disable-next-line no-alert
           alert('Dutch selected')
         },
-      }
-    ]
+      },
+    ],
   },
   {
     label: 'Uitloggen',
     type: 'option',
     isDestructive: true,
-    onSelect: () => {
+    onSelect: (): void => {
+      // eslint-disable-next-line no-alert
       alert('Log out')
     },
   },
