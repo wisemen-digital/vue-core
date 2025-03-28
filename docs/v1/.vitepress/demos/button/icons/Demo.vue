@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { VcButton, VcIcon } from '@wisemen/vue-core'
+import { VcButton } from '@wisemen/vue-core'
 </script>
 
 <template>

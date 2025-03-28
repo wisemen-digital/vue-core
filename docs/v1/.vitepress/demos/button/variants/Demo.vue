@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { VcButton, VcButtonProps } from '@wisemen/vue-core'
+import type { VcButtonProps } from '@wisemen/vue-core'
+import { VcButton } from '@wisemen/vue-core'
 
 const variants: VcButtonProps['variant'][] = [
   'default',
@@ -15,9 +16,9 @@ const variants: VcButtonProps['variant'][] = [
 
 <template>
   <div class="grid grid-cols-3 gap-8">
-    <VcButton 
-      v-for="variant of variants" 
-      :key="variant" 
+    <VcButton
+      v-for="variant of variants"
+      :key="variant"
       :variant="variant"
     >
       Button

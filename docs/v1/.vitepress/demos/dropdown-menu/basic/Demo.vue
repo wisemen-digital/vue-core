@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { DropdownMenuItem, VcButton, VcDropdownMenu } from '@wisemen/vue-core'
+import type { DropdownMenuItem } from '@wisemen/vue-core'
+import { VcButton, VcDropdownMenu } from '@wisemen/vue-core'
 
 const items: DropdownMenuItem[] = [
   {
     label: 'Item 1',
     type: 'option',
-    onSelect: () => {
+    onSelect: (): void => {
+      // eslint-disable-next-line no-alert
       alert('Item 1 selected')
     },
   },
@@ -19,11 +21,12 @@ const items: DropdownMenuItem[] = [
       {
         label: 'Item 2',
         type: 'option',
-        onSelect: () => {
+        onSelect: (): void => {
+          // eslint-disable-next-line no-alert
           alert('Item 2 selected')
         },
-      }
-    ]
+      },
+    ],
   },
   {
     type: 'separator',
@@ -35,12 +38,13 @@ const items: DropdownMenuItem[] = [
       {
         label: 'Item 2',
         type: 'option',
-        onSelect: () => {
+        onSelect: (): void => {
+          // eslint-disable-next-line no-alert
           alert('Item 2 selected')
         },
-      }
-    ]
-  }
+      },
+    ],
+  },
 ]
 </script>
 
