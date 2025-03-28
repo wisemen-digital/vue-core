@@ -114,7 +114,6 @@ const components = [
 export default defineConfig({
   base: '/vue-core/v1',
   description: 'Vue Core',
-  outDir: '../../docs/v1/.vitepress/dist',
   themeConfig: {
     nav: [
       {
