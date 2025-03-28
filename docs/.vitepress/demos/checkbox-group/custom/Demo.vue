@@ -1,8 +1,14 @@
 <script setup lang="ts">
-import { VcCheckboxGroup, VcCheckboxIndicator, VcCheckbox } from '@wisemen/vue-core'
+import {
+  VcCheckbox,
+  VcCheckboxGroup,
+  VcCheckboxIndicator,
+} from '@wisemen/vue-core'
 import { ref } from 'vue'
 
-const selectedItem = ref<string[]>(['Apple'])
+const selectedItem = ref<string[]>([
+  'Apple',
+])
 
 const items = [
   {
@@ -30,9 +36,9 @@ const items = [
     :items="items"
     label="Select a fruit"
   >
-   <div class="grid grid-cols-3 gap-4">
-      <VcCheckbox 
-        v-for="item of items" 
+    <div class="grid grid-cols-3 gap-4">
+      <VcCheckbox
+        v-for="item of items"
         :key="item.label"
         :value="item.value"
         :is-disabled="item.isDisabled"

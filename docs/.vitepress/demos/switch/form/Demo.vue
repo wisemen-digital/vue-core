@@ -12,7 +12,6 @@ const model = ref<boolean>(false)
       :errors="['You must accept the terms and conditions.']"
       :is-required="true"
       :is-touched="true"
-      label="Accept terms and conditions"
       :style-config="{
         '--switch-bg-color-checked': '#fbc2eb',
         '--switch-bg-color-default': '#a18cd1',
@@ -24,6 +23,7 @@ const model = ref<boolean>(false)
         '--switch-border-color-focus': 'transparent',
         '--switch-error-font-size': '0.2rem',
       }"
+      label="Accept terms and conditions"
     />
   </div>
 </template>

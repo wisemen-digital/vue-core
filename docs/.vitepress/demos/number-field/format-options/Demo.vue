@@ -2,8 +2,8 @@
 import { VcNumberField } from '@wisemen/vue-core'
 import { ref } from 'vue'
 
-const currencyValue = ref<null | number>(0)
-const percentValue = ref<null | number>(0)
+const currencyValue = ref<number | null>(0)
+const percentValue = ref<number | null>(0)
 </script>
 
 <template>

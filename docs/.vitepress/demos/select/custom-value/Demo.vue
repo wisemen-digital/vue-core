@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import type { SelectItem } from '@wisemen/vue-core'
 import {
-  type SelectItem,
   VcSelect,
   VcTag,
 } from '@wisemen/vue-core'
@@ -45,7 +45,7 @@ const items: SelectItem<string>[] = [
   },
 ]
 
-const value = ref<null | string>('Apple')
+const value = ref<string | null>('Apple')
 
 function displayFn(value: string): string {
   return value

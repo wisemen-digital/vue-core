@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { VcButton, VcToastContainer, useToast } from '@wisemen/vue-core'
+import {
+  useToast,
+  VcButton,
+  VcToastContainer,
+} from '@wisemen/vue-core'
 
 const toast = useToast()
 
@@ -7,12 +11,13 @@ function onClick(): void {
   toast.info({
     icon: 'check',
     message: 'This is an info toast.',
-    action:{
+    action: {
       label: 'Action',
       onClick: () => {
+        // eslint-disable-next-line no-alert
         alert('Action clicked')
-      }
-    }
+      },
+    },
   })
 }
 </script>
@@ -20,6 +25,11 @@ function onClick(): void {
 <template>
   <div>
     <VcToastContainer />
-    <VcButton @click="onClick" variant="secondary">Show Info Toast</VcButton>
+    <VcButton
+      variant="secondary"
+      @click="onClick"
+    >
+      Show Info Toast
+    </VcButton>
   </div>
 </template>

@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { VcRadioGroup, VcRadioGroupItemIndicator, VcRadioGroupItem } from '@wisemen/vue-core'
+import {
+  VcRadioGroup,
+  VcRadioGroupItem,
+  VcRadioGroupItemIndicator,
+} from '@wisemen/vue-core'
 import { ref } from 'vue'
 
 const selectedItem = ref<string>('Apple')
@@ -29,9 +33,9 @@ const items = [
     v-model="selectedItem"
     label="Select a fruit"
   >
-   <div class="grid grid-cols-3 gap-4">
-      <VcRadioGroupItem 
-        v-for="item of items" 
+    <div class="grid grid-cols-3 gap-4">
+      <VcRadioGroupItem
+        v-for="item of items"
         :key="item.label"
         :value="item.value"
         :is-disabled="item.isDisabled"

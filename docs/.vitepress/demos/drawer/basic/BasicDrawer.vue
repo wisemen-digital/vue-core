@@ -1,5 +1,11 @@
 <script setup lang="ts">
-import { VcDrawerTitle, VcDrawerDescription, VcDrawer, VcButton, VcDrawerCloseButton } from '@wisemen/vue-core'
+import {
+  VcButton,
+  VcDrawer,
+  VcDrawerCloseButton,
+  VcDrawerDescription,
+  VcDrawerTitle,
+} from '@wisemen/vue-core'
 </script>
 
 <template>
@@ -20,7 +26,10 @@ import { VcDrawerTitle, VcDrawerDescription, VcDrawer, VcButton, VcDrawerCloseBu
       </p>
 
       <VcDrawerCloseButton>
-        <VcButton variant="tertiary" size="sm">
+        <VcButton
+          variant="tertiary"
+          size="sm"
+        >
           Close
         </VcButton>
       </VcDrawerCloseButton>

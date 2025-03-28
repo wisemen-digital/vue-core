@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { type SelectItem, VcSelect } from '@wisemen/vue-core'
+import type { SelectItem } from '@wisemen/vue-core'
+import { VcSelect } from '@wisemen/vue-core'
 import { ref } from 'vue'
 
 const value = ref<string[]>([])
