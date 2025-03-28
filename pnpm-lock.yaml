@@ -26,9 +26,6 @@ importers:
       '@wisemen/vue-core-components':
         specifier: workspace:*
         version: link:../../packages/components-next
-      vue-router:
-        specifier: 4.3.3
-        version: 4.3.3(vue@3.5.12(typescript@5.6.3))
     devDependencies:
       '@babel/traverse':
         specifier: 7.24.8
@@ -82,8 +79,8 @@ importers:
         specifier: 2.0.24
         version: 2.0.24(typescript@5.6.3)
       vue-i18n:
-        specifier: ^11.1.2
-        version: 11.1.2(vue@3.5.12(typescript@5.6.3))
+        specifier: 9.13.1
+        version: 9.13.1(vue@3.5.12(typescript@5.6.3))
       vue-tsc:
         specifier: 2.0.21
         version: 2.0.21(typescript@5.6.3)
@@ -9684,7 +9681,7 @@ snapshots:
   '@conventional-changelog/git-client@1.0.1(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.1.0)':
     dependencies:
       '@types/semver': 7.5.8
-      semver: 7.6.3
+      semver: 7.7.1
     optionalDependencies:
       conventional-commits-filter: 5.0.0
       conventional-commits-parser: 6.1.0
@@ -16173,7 +16170,7 @@ snapshots:
       '@one-ini/wasm': 0.1.1
       commander: 10.0.1
       minimatch: 9.0.1
-      semver: 7.6.3
+      semver: 7.7.1
 
   ee-first@1.1.1: {}
 
@@ -19131,7 +19128,7 @@ snapshots:
   normalize-package-data@6.0.2:
     dependencies:
       hosted-git-info: 7.0.2
-      semver: 7.6.3
+      semver: 7.7.1
       validate-npm-package-license: 3.0.4
 
   normalize-path@2.1.1:
@@ -22401,6 +22398,13 @@ snapshots:
     dependencies:
       '@intlify/core-base': 11.1.2
       '@intlify/shared': 11.1.2
+      '@vue/devtools-api': 6.6.4
+      vue: 3.5.12(typescript@5.6.3)
+
+  vue-i18n@9.13.1(vue@3.5.12(typescript@5.6.3)):
+    dependencies:
+      '@intlify/core-base': 9.13.1
+      '@intlify/shared': 9.13.1
       '@vue/devtools-api': 6.6.4
       vue: 3.5.12(typescript@5.6.3)
 

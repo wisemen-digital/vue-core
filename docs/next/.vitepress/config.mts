@@ -1,6 +1,12 @@
 import { defineConfig } from 'vitepress'
 import ComponentPreviewPlugin from './plugins/ComponentPreview'
 
+// @ts-expect-error
+if (typeof __VUE_PROD_DEVTOOLS__ === 'undefined') {
+  // @ts-expect-error
+  globalThis.__VUE_PROD_DEVTOOLS__ = false;
+}
+
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "Vue Component Library",
@@ -51,5 +57,5 @@ export default defineConfig({
     preConfig(md) {
       md.use(ComponentPreviewPlugin)
     }
-  }
+  },
 })

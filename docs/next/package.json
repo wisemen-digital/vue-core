@@ -14,8 +14,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@wisemen/vue-core-components": "workspace:*",
-    "vue-router": "4.3.3"
+    "@wisemen/vue-core-components": "workspace:*"
   },
   "devDependencies": {
     "@babel/traverse": "7.24.8",
@@ -35,7 +34,7 @@
     "vitepress": "1.6.3",
     "vue": "3.5.12",
     "vue-component-meta": "2.0.24",
-    "vue-i18n": "^11.1.2",
-    "vue-tsc": "2.0.21"
+    "vue-tsc": "2.0.21",
+    "vue-i18n": "9.13.1"
   }
 }
