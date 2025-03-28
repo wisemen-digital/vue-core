@@ -24,6 +24,7 @@ const props = withDefaults(defineProps<PopoverProps>(), {
   popoverOffsetInPx: 10,
   popoverSide: 'bottom',
   popoverWidth: null,
+  variant: null,
 })
 
 const emit = defineEmits<{
@@ -38,9 +39,13 @@ const isOpen = defineModel<boolean>('isOpen', {
   required: false,
 })
 
-const popoverStyle = computed<CreatePopoverStyle>(() => createPopoverStyle({}))
+const popoverStyle = computed<CreatePopoverStyle>(() => createPopoverStyle({
+  variant: props.variant ?? undefined,
+}))
 
-const customClassConfig = useComponentClassConfig('popover', {})
+const customClassConfig = useComponentClassConfig('popover', {
+  variant: props.variant ?? undefined,
+})
 
 function onContentEscapeKeyDown(event: KeyboardEvent): void {
   emit('escapeKeyDown', event)

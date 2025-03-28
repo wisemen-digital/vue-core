@@ -3,6 +3,9 @@ import { PopoverClose as RekaPopoverClose } from 'reka-ui'
 import { useI18n } from 'vue-i18n'
 
 import IconButton from '@/components/button/icon-button/IconButton.vue'
+import { useInjectPopoverContext } from '@/components/popover/popover.context'
+
+const { classConfig } = useInjectPopoverContext()
 
 const { t } = useI18n()
 </script>
@@ -12,6 +15,7 @@ const { t } = useI18n()
     <slot>
       <IconButton
         :label="t('shared.close')"
+        :class-config="classConfig?.closeButton"
         icon="close"
         variant="tertiary"
         size="sm"

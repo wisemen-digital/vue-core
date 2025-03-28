@@ -12,7 +12,13 @@ const isSmall = ref<boolean>(false)
 </script>
 
 <template>
-  <Dialog>
+  <Dialog
+    :class-config="{
+      closeButton: {
+        root: 'scale-150',
+      },
+    }"
+  >
     <AnimateSize>
       <div
         :class="{

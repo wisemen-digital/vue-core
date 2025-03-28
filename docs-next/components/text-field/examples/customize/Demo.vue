@@ -17,7 +17,7 @@ const value = ref<string>('')
     v-model="value"
     id="email"
     :class-config="{
-      root: 'bg-transparent border-none bg-secondary h-9',
+      root: 'bg-transparent border-none bg-secondary h-9 shadow-none focus-within:ring-2',
       input: 'px-xxs',
       iconLeft: 'group-focus-within/text-field:scale-95 duration-200'
     }"

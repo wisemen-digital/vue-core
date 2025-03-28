@@ -6,17 +6,21 @@ import {
 
 import { useInjectPopoverContext } from '@/components/popover/popover.context'
 import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
+import { mergeClasses } from '@/customClassVariants'
 
 const {
   id,
   testId,
   isOpen,
+  classConfig,
+  customClassConfig,
   popoverAlign,
   popoverCollisionPaddingInPx,
   popoverContainerElement,
   popoverOffsetInPx,
   popoverSide,
   popoverWidth,
+  style,
   onAutoFocusOnClose,
   onContentEscapeKeyDown,
   onContentFocusOutside,
@@ -40,7 +44,9 @@ const {
         :collision-boundary="popoverContainerElement"
         :side="popoverSide"
         :side-offset="popoverOffsetInPx"
-        class="data-[content-width=anchor-width]:w-(--reka-popover-trigger-width) data-[content-width=available-width]:w-(--reka-popover-content-available-width)"
+        :class="style.content({
+          class: mergeClasses(customClassConfig.content, classConfig?.content),
+        })"
         sticky="always"
         @escape-key-down="onContentEscapeKeyDown"
         @focus-outside="onContentFocusOutside"

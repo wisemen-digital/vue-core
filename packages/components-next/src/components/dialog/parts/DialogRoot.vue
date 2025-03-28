@@ -24,6 +24,7 @@ const props = withDefaults(defineProps<DialogProps>(), {
   mode: 'overlay',
   preventClickOutside: false,
   preventEsc: false,
+  variant: null,
 })
 
 const emit = defineEmits<{
@@ -41,9 +42,13 @@ const isOpen = defineModel<boolean>('isOpen', {
   default: false,
 })
 
-const dialogStyle = computed<CreateDialogStyle>(() => createDialogStyle({}))
+const dialogStyle = computed<CreateDialogStyle>(() => createDialogStyle({
+  variant: props.variant ?? undefined,
+}))
 
-const customClassConfig = useComponentClassConfig('dialog', {})
+const customClassConfig = useComponentClassConfig('dialog', {
+  variant: props.variant ?? undefined,
+})
 
 watch(isOpen, (isOpen) => {
   if (!isOpen) {

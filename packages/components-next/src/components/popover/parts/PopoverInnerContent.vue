@@ -11,8 +11,8 @@ const {
 
 <template>
   <div
-    :class="style.content({
-      class: mergeClasses(customClassConfig.content, classConfig?.content),
+    :class="style.innerContent({
+      class: mergeClasses(customClassConfig.innerContent, classConfig?.innerContent),
     })"
   >
     <slot />

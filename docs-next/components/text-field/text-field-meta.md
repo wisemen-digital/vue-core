@@ -21,6 +21,7 @@
 | placeholder | `string \| null` | The placeholder text of the input. |  |
 | testId | `string \| null` | A unique identifier used for testing purposes. If set to `null`, no test ID will be applied. |  |
 | type | `"search" \| "date" \| "email" \| "password" \| "tel" \| "text" \| "time" \| "url"` | The type of the input. |  |
+| variant | `null` |  |  |
 
 
 ## Slots

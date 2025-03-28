@@ -1,9 +1,15 @@
+import type { GetComponentPropCustomValues } from '@/customClassVariants'
 import type {
   CustomizableElement,
   PrimitiveElement,
 } from '@/utils/props.util'
 
-export interface DialogProps extends PrimitiveElement, CustomizableElement<'dialog'> {
+export interface DialogProps extends PrimitiveElement, CustomizableElement<'dialog', [
+  {
+    name: 'closeButton'
+    component: 'iconButton'
+  },
+]> {
   /**
    * The ID of the element to teleport the dialog content to.
    * By default, the dialog content is teleported to the body.
@@ -26,4 +32,8 @@ export interface DialogProps extends PrimitiveElement, CustomizableElement<'dial
    * @default false
    */
   preventEsc?: boolean
+  /**
+   *
+   */
+  variant?: GetComponentPropCustomValues<'dialog', 'variant'> | null
 }

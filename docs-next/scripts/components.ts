@@ -23,5 +23,15 @@ export const components = [
     sourceFolder: 'text-field/TextField.vue',
     targetFolder: 'text-field',
     componentName: 'TextField',
+  },
+  {
+    sourceFolder: 'popover/Popover.vue',
+    targetFolder: 'popover',
+    componentName: 'Popover',
+  },
+  {
+    sourceFolder: 'dialog/Dialog.vue',
+    targetFolder: 'dialog',
+    componentName: 'Dialog',
   }
 ]

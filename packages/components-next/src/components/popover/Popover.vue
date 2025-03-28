@@ -9,25 +9,28 @@ import PopoverRoot from '@/components/popover/parts/PopoverRoot.vue'
 import PopoverTrigger from '@/components/popover/parts/PopoverTrigger.vue'
 import type { PopoverProps } from '@/components/popover/popover.props'
 
-const props = withDefaults(defineProps<PopoverProps>(), {
-  id: null,
-  testId: null,
-  isArrowHidden: false,
-  isCloseButtonHidden: false,
-  classConfig: null,
-  popoverAlign: 'center',
-  popoverCollisionPaddingInPx: 10,
-  popoverContainerElement: null,
-  popoverOffsetInPx: 10,
-  popoverSide: 'top',
-  popoverWidth: null,
-})
+const props = withDefaults(defineProps<PopoverProps>(), {})
 
 const emit = defineEmits<{
   autoFocusOnClose: [event: Event]
   escapeKeyDown: [event: KeyboardEvent]
   focusOutside: [event: CustomEvent]
   interactOutside: [event: CustomEvent]
+}>()
+
+defineSlots<{
+  /**
+   * The content to display in the popover.
+   */
+  content: () => void
+  /**
+   * Override the default popover anchor and trigger.
+   */
+  default: () => void
+  /**
+   * The content that will trigger the popover. This should always be an interactive element.
+   */
+  trigger: () => void
 }>()
 
 const isOpen = defineModel<boolean>('isOpen', {

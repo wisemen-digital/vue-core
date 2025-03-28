@@ -31,6 +31,8 @@ export default defineConfig({
           { text: 'Router Link Button', link: '/components/router-link-button/router-link-button' },
           { text: 'Form Field', link: '/components/form-field/form-field' },
           { text: 'Text Field', link: '/components/text-field/text-field' },
+          { text: 'Popover', link: '/components/popover/popover' },
+          { text: 'Dialog', link: '/components/dialog/dialog' },
         ]
       }
     ],

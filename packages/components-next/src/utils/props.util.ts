@@ -55,11 +55,19 @@ export interface FormElement {
   label?: string | null
 }
 
-export interface CustomizableElement<TComponent extends keyof Components> {
+export interface CustomizableElement<
+  TComponent extends keyof Components,
+  TSubComponents extends {
+    name: string
+    component: keyof Components
+  }[] = [],
+> {
   /**
    * The class configuration of the component.
    */
-  classConfig?: ClassConfig<TComponent> | null
+  classConfig?: (ClassConfig<TComponent> & {
+    [K in TSubComponents[number]['name']]?: ClassConfig<Extract<TSubComponents[number], { name: K }>['component']>
+  }) | null
 }
 
 export type PropsToComputed<T> = NonUndefined<{

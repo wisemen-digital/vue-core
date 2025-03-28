@@ -17,7 +17,7 @@ import { Motion } from 'motion-v'
       scale: 1.1,
     }"
     :transition="{
-      duration: 0.5,
+      duration: 0.6,
       bounce: 0.4,
       type: 'spring',
       width: {
