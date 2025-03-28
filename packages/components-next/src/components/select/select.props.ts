@@ -1,5 +1,4 @@
 import type { AcceptableValue } from 'reka-ui'
-import type { Component } from 'vue'
 
 import type { GetComponentPropCustomValues } from '@/customClassVariants'
 import type { Icon } from '@/icons/icons'
@@ -121,11 +120,6 @@ export interface SelectProps<TValue extends SelectValue> extends
      * This is useful for optimizing performance when dealing with a large number of items.
      */
     isEnabled: boolean
-    /**
-     * The component to use for rendering each option in the virtualized list.
-     * If not provided, the default `SelectItem` component is used.
-     */
-    itemComponent?: Component
     /**
      * The items to display in the virtualized list.
      */

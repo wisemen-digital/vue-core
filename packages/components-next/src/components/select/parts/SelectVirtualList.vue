@@ -2,7 +2,6 @@
 import {
   ListboxVirtualizer as RekaListboxVirtualizer,
 } from 'reka-ui'
-import { type Component, computed } from 'vue'
 
 import SelectItem from '@/components/select/parts/SelectItem.vue'
 import { useInjectSelectContext } from '@/components/select/select.context'
@@ -12,11 +11,10 @@ const {
   virtualList,
   virtualListFilteredItems,
 } = useInjectSelectContext()
-
-const itemComponent = computed<Component>(() => virtualList.value?.itemComponent ?? SelectItem)
 </script>
 
 <template>
+  <!-- Without the div, the virtual list is bugged when using the item slot -->
   <RekaListboxVirtualizer
     v-if="virtualList !== null && virtualList.isEnabled"
     v-slot="{ option }"
@@ -25,11 +23,15 @@ const itemComponent = computed<Component>(() => virtualList.value?.itemComponent
     :estimate-size="virtualList.optionHeight ?? 39"
     :text-content="displayFn"
   >
-    <Component
-      :is="itemComponent"
-      :value="option"
-    >
-      {{ displayFn(option) }}
-    </Component>
+    <div class="w-full">
+      <slot
+        :item="option"
+        name="item"
+      >
+        <SelectItem :value="option">
+          {{ displayFn(option) }}
+        </SelectItem>
+      </slot>
+    </div>
   </RekaListboxVirtualizer>
 </template>

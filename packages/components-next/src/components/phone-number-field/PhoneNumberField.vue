@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// import i18nCountries from 'i18n-iso-countries'
 import type { CountryCode } from 'libphonenumber-js'
 import {
   AsYouType,
@@ -29,12 +28,8 @@ const props = withDefaults(defineProps<PhoneNumberFieldProps>(), {
   defaultCountryCode: 'BE',
 })
 
-// i18nCountries.registerLocale(i18nEn)
-
 const model = defineModel<string | null>({
-  default: null,
-  // TODO: required
-  required: false,
+  required: true,
 })
 
 const globalConfigContext = useInjectConfigContext()
@@ -134,6 +129,18 @@ function filterFn(option: CountryCode, searchTerm: string): boolean {
     }"
     type="tel"
   >
+    <template #label>
+      <slot name="label" />
+    </template>
+
+    <template #error>
+      <slot name="error" />
+    </template>
+
+    <template #hint>
+      <slot name="hint" />
+    </template>
+
     <template #left>
       <Select
         v-model="countryCodeModel"
@@ -146,7 +153,6 @@ function filterFn(option: CountryCode, searchTerm: string): boolean {
         :virtual-list="{
           isEnabled: true,
           items: countries,
-          itemComponent: PhoneNumberFieldSelectItem,
         }"
         :class-config="{
           root: 'h-8 ml-[0.18rem] rounded-xs border-none shadow-none !ring-0 not-disabled:hover:bg-primary-hover pr-xs focus-within:bg-tertiary',
@@ -166,6 +172,10 @@ function filterFn(option: CountryCode, searchTerm: string): boolean {
               class="object-cover rounded-xxs block h-3.5 w-5 shrink-0"
             >
           </SelectBaseSingle>
+        </template>
+
+        <template #virtual-list-item="{ item }">
+          <PhoneNumberFieldSelectItem :value="item" />
         </template>
       </Select>
 

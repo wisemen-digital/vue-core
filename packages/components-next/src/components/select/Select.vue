@@ -47,6 +47,18 @@ const id = props.id ?? useId()
     :label="props.label"
     :for="id"
   >
+    <template #label>
+      <slot name="label" />
+    </template>
+
+    <template #error>
+      <slot name="error" />
+    </template>
+
+    <template #hint>
+      <slot name="hint" />
+    </template>
+
     <SelectRoot
       v-bind="props"
       :id="id"
@@ -87,7 +99,14 @@ const id = props.id ?? useId()
           <SelectDropdownSearchInput />
 
           <SelectContent>
-            <SelectVirtualList />
+            <SelectVirtualList>
+              <template #item="{ item }">
+                <slot
+                  :item="item"
+                  name="virtual-list-item"
+                />
+              </template>
+            </SelectVirtualList>
 
             <slot />
 

@@ -35,6 +35,14 @@ const id = props.id ?? useId()
       <slot name="label" />
     </template>
 
+    <template #error>
+      <slot name="error" />
+    </template>
+
+    <template #hint>
+      <slot name="hint" />
+    </template>
+
     <TextFieldRoot
       v-bind="props"
       :id="id"

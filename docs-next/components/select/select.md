@@ -2,6 +2,8 @@
 
 Displays a list of options for the user to pick from.
 
+This component is build on top of the [Form Field](/components/form-field/form-field.html) component.
+
 <ComponentPreview name="select/examples/main" />
 
 ## Anatomy <badge type="warning">Unstable</badge>

@@ -35,15 +35,14 @@ function onAutoFocusOnClose(event: Event): void {
 <template>
   <PopoverRoot
     :is-open="isDropdownVisible && !isDropdownHidden"
-    :is-arrow-hidden="!isPopoverArrowVisible"
-    :align="popoverAlign"
+    :is-popover-arrow-hidden="!isPopoverArrowVisible"
     :popover-align="popoverAlign"
     :popover-collision-padding-in-px="popoverCollisionPaddingInPx"
     :popover-container-element="popoverContainerElement"
     :popover-offset-in-px="popoverOffsetInPx"
     :popover-side="popoverSide"
     :popover-width="popoverWidth"
-    :anchor-reference-element="popoverAnchorReferenceElement"
+    :popover-anchor-reference-element="popoverAnchorReferenceElement"
     @update:is-open="setIsDropdownVisible"
     @escape-key-down="onDropdownEscapeKeyDown"
     @interact-outside="onDropdownInteractOutside"

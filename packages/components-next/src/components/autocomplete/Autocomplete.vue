@@ -14,6 +14,7 @@ import Select from '@/components/select/Select.vue'
 const props = withDefaults(defineProps<AutocompleteProps<TValue>>(), {
   debounceTimeoutInMs: 300,
   iconRight: null,
+  itemComponent: null,
 })
 
 const emit = defineEmits<{
@@ -164,12 +165,34 @@ if (modelValue.value !== null) {
     @input="onInput"
     @update:is-open="onUpdateIsOpen"
   >
-    <SelectItem
+    <template #base>
+      <slot name="base" />
+    </template>
+
+    <template #left>
+      <slot name="left" />
+    </template>
+
+    <template #right>
+      <slot name="right" />
+    </template>
+
+    <template #loader>
+      <slot name="loader" />
+    </template>
+
+    <template
       v-for="(item, itemIndex) of delegatedItems"
       :key="itemIndex"
-      :value="item"
     >
-      {{ props.displayFn(item as any) }}
-    </SelectItem>
+      <slot
+        :item="item"
+        name="item"
+      >
+        <SelectItem :value="item">
+          {{ props.displayFn(item as any) }}
+        </SelectItem>
+      </slot>
+    </template>
   </Select>
 </template>

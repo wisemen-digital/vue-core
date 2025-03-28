@@ -37,6 +37,8 @@ export default defineConfig({
           { text: 'Router Link Tabs', link: '/components/router-link-tabs/router-link-tabs' },
           { text: 'Tooltip', link: '/components/tooltip/tooltip' },
           { text: 'Select', link: '/components/select/select' },
+          { text: 'Autocomplete', link: '/components/autocomplete/autocomplete' },
+          { text: 'Phone Number Field', link: '/components/phone-number-field/phone-number-field' },
         ]
       }
     ],
