@@ -1,6 +1,7 @@
 export * from '@/components/autocomplete'
 export * from '@/components/button'
 export * from '@/components/config-provider'
+export * from '@/components/date-picker'
 export * from '@/components/dialog'
 export * from '@/components/form-field'
 export * from '@/components/phone-number-field'
