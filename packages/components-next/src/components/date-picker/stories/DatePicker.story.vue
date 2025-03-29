@@ -2,6 +2,8 @@
 import { ref } from 'vue'
 
 import DatePicker from '@/components/date-picker/single/DatePicker.vue'
+import DatePickerDate from '@/components/date-picker/single/parts/DatePickerDate.vue'
+import Tooltip from '@/components/tooltip/Tooltip.vue'
 
 const inTwoWeeks = new Date(new Date().getTime() + 14 * 24 * 60 * 60 * 1000)
 const inTwoMonths = new Date(new Date().getTime() + 60 * 24 * 60 * 60 * 1000)
@@ -13,7 +15,6 @@ const today = new Date()
 
 <template>
   <Story title="DatePicker">
-    <!-- TODO: optie voorzien om bv. een tooltip te wrappen -->
     <div>
       <DatePicker
         v-model="value"
@@ -28,7 +29,26 @@ const today = new Date()
         :max-date="null"
         label="Example"
         class="w-84"
-      />
+      >
+        <template #date="{ date }">
+          <Tooltip
+            v-if="date.getDate() === 15"
+            :disable-close-on-trigger-click="true"
+          >
+            <template #trigger>
+              <DatePickerDate />
+            </template>
+
+            <template #content>
+              <div class="px-lg py-sm">
+                <p class="text-sm text-secondary max-w-40 text-center">
+                  This date is unavailable. Please select another date.
+                </p>
+              </div>
+            </template>
+          </Tooltip>
+        </template>
+      </DatePicker>
     </div>
   </Story>
 </template>

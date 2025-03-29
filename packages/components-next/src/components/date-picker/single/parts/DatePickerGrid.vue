@@ -6,7 +6,6 @@ import {
 import type { DateValue } from 'reka-ui'
 import {
   CalendarCell as RekaCalendarCell,
-  CalendarCellTrigger as RekaCalendarCellTrigger,
   CalendarGrid as RekaCalendarGrid,
   CalendarGridBody as RekaCalendarGridBody,
   CalendarGridHead as RekaCalendarGridHead,
@@ -15,7 +14,10 @@ import {
 } from 'reka-ui'
 
 import type { Grid } from '@/components/date-picker/shared/datePicker.type'
+import { dateValueToDate } from '@/components/date-picker/shared/datePicker.util'
 import { useInjectDatePickerContext } from '@/components/date-picker/single/datePicker.context'
+import DatePickerDate from '@/components/date-picker/single/parts/DatePickerDate.vue'
+import DatePickerDateProvider from '@/components/date-picker/single/parts/DatePickerDateProvider.vue'
 import { mergeClasses } from '@/customClassVariants'
 
 const props = defineProps<{
@@ -80,47 +82,17 @@ const {
                   :key="weekDate.toString()"
                   :date="weekDate"
                 >
-                  <RekaCalendarCellTrigger
-                    v-slot="{ today, selected }"
-                    :day="weekDate"
+                  <DatePickerDateProvider
+                    :date="weekDate"
                     :month="month.value"
-                    :class="style.date({
-                      class: mergeClasses(classConfig?.date, customClassConfig.date),
-                    })"
                   >
-                    <span class="z-10">
-                      {{ weekDate.day }}
-                    </span>
-
-                    <AnimatePresence>
-                      <Motion
-                        v-if="selected"
-                        :transition="{
-                          duration: 0.3,
-                          type: 'spring',
-                          bounce: 0.1,
-                        }"
-                        :initial="{
-                          opacity: 0,
-                        }"
-                        :animate="{
-                          opacity: 1,
-                        }"
-                        :exit="{
-                          opacity: 0,
-                        }"
-                        layout-id="selected"
-                        class="absolute size-full rounded-full bg-brand-solid"
-                      />
-                    </AnimatePresence>
-
-                    <div
-                      v-if="today"
-                      :class="style.todayIndicator({
-                        class: mergeClasses(customClassConfig.todayIndicator, classConfig?.todayIndicator),
-                      })"
-                    />
-                  </RekaCalendarCellTrigger>
+                    <slot
+                      :date="dateValueToDate(weekDate)"
+                      name="date"
+                    >
+                      <DatePickerDate />
+                    </slot>
+                  </DatePickerDateProvider>
                 </RekaCalendarCell>
               </RekaCalendarGridRow>
             </RekaCalendarGridBody>

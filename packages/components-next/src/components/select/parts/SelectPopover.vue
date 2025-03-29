@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import PopoverAnchor from '@/components/popover/parts/PopoverAnchor.vue'
+import PopoverArrow from '@/components/popover/parts/PopoverArrow.vue'
 import PopoverContent from '@/components/popover/parts/PopoverContent.vue'
 import PopoverInnerContent from '@/components/popover/parts/PopoverInnerContent.vue'
 import PopoverPortal from '@/components/popover/parts/PopoverPortal.vue'
@@ -13,6 +14,7 @@ const {
   isDropdownHidden,
   isDropdownVisible,
   isPopoverArrowVisible,
+  classConfig,
   popoverAlign,
   popoverAnchorReferenceElement,
   popoverCollisionPaddingInPx,
@@ -43,6 +45,7 @@ function onAutoFocusOnClose(event: Event): void {
     :popover-side="popoverSide"
     :popover-width="popoverWidth"
     :popover-anchor-reference-element="popoverAnchorReferenceElement"
+    :class-config="classConfig?.popover"
     @update:is-open="setIsDropdownVisible"
     @escape-key-down="onDropdownEscapeKeyDown"
     @interact-outside="onDropdownInteractOutside"
@@ -62,6 +65,8 @@ function onAutoFocusOnClose(event: Event): void {
           <PopoverInnerContent>
             <slot name="content" />
           </PopoverInnerContent>
+
+          <PopoverArrow />
         </SelectPopoverContentTransition>
       </PopoverContent>
     </PopoverPortal>

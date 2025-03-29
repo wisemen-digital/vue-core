@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { DatePickerProps } from '@/components/date-picker/single/datePicker.props'
+import DatePickerDate from '@/components/date-picker/single/parts/DatePickerDate.vue'
 import DatePickerGrid from '@/components/date-picker/single/parts/DatePickerGrid.vue'
 import DatePickerHeader from '@/components/date-picker/single/parts/DatePickerHeader.vue'
 import DatePickerRoot from '@/components/date-picker/single/parts/DatePickerRoot.vue'
@@ -27,10 +28,18 @@ const placeholderValue = defineModel<Date>('placeholderValue', {
     v-model:placeholder-value="placeholderValue"
   >
     <DatePickerHeader :grid="grid" />
-
     <DatePickerGrid
       :week-days="weekDays"
       :grid="grid"
-    />
+    >
+      <template #date="{ date }">
+        <slot
+          :date="date"
+          name="date"
+        >
+          <DatePickerDate />
+        </slot>
+      </template>
+    </DatePickerGrid>
   </DatePickerRoot>
 </template>

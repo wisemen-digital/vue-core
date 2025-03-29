@@ -21,7 +21,7 @@ const {
     <SelectPlaceholder />
 
     <slot v-if="modelValue !== null">
-      <span class="text-sm text-primary group-data-[is-disabled=true]/select:text-disabled">
+      <span>
         {{ displayFn(modelValue) }}
       </span>
 
