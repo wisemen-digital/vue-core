@@ -4,11 +4,8 @@ import type {
   PaginatedData,
   PaginationOptions,
 } from '@wisemen/vue-core'
-import {
-  computed,
-  type ComputedRef,
-  type MaybeRef,
-} from 'vue'
+import type { ComputedRef, MaybeRef } from 'vue'
+import { computed } from 'vue'
 
 import type { QueryKeys } from '@/types/queryKeys.type'
 
@@ -89,7 +86,7 @@ export function useInfiniteQuery<TResData, TFilters>(
     unknown,
     InfiniteData<PaginatedData<TResData>>,
     readonly unknown[],
-        number | unknown | null
+      number | unknown | null
   >({
     enabled: options.enabled,
     getNextPageParam: (lastPage: PaginatedData<TResData>): number | unknown | null => {

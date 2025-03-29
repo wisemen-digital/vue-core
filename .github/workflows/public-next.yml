@@ -1,0 +1,13 @@
+---
+name: Publish Docs
+
+on:
+  push:
+    branches: ['main']
+  workflow_dispatch:
+
+jobs:
+  publish-docs:
+    uses: wisemen-digital/devops-github-actions/.github/workflows/node-publish-docs.yml@main
+    with:
+      dist-path: docs/next/.vitepress/dist/

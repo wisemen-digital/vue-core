@@ -1,0 +1,20 @@
+<script setup lang="ts">
+import { 
+  useVcDialog, 
+  VcButton, 
+  VcDialogContainer
+} from '@wisemen/vue-core-components'
+
+const dialog = useVcDialog({
+  component: () => import('./Dialog.vue')
+})
+</script>
+
+<template>
+  <VcButton 
+    variant="secondary"
+    @click="dialog.open()"
+  >
+    Enable 2FA
+  </VcButton>
+</template>

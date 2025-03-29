@@ -13,8 +13,16 @@ export default defineConfig({
     lib: {
       name: 'vue-core',
       cssFileName: 'style',
-      entry: resolve(__dirname, 'src/index.ts'),
-      fileName: 'index',
+      entry: [
+        resolve(__dirname, 'src/index.ts'),
+      ],
+      fileName: (format, name) => {
+        if (format === 'es') {
+          return `${name}.js`
+        }
+
+        return `${name}.${format}`
+      },
     },
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled

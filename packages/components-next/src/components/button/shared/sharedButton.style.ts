@@ -1,0 +1,103 @@
+import { tv, type VariantProps } from 'tailwind-variants'
+
+import { StyleBuilder } from '@/utils/styleBuilder.util'
+
+// Do not use `enabled:` since this won't work for the router link button.
+
+export const createSharedButtonStyle = tv({
+  slots: {
+    root: new StyleBuilder()
+      .withBase('group/button outline-none whitespace-nowrap overflow-hidden relative')
+      .withRing('focus-visible:ring-2 focus-visible:ring-offset-1 ring-brand-600')
+      .withBorder('border border-solid')
+      .withBorderRadius('rounded-md')
+      .withShadow('shadow-button')
+      .withCursor('cursor-pointer disabled:cursor-not-allowed data-[loading=true]:cursor-not-allowed')
+      .withTransition('duration-100 data-[loading=false]:not-disabled:active:scale-99')
+      .build(),
+  },
+  variants: {
+    variant: {
+      'destructive-primary': {
+        root: new StyleBuilder()
+          .withColor('text-white disabled:text-fg-disabled')
+          .withBackgroundColor('bg-error-solid disabled:bg-disabled')
+          .withBorder('border-error-600 disabled:border-disabled-subtle')
+          .withRing('ring-error-600')
+          .withTransition('data-[loading=false]:not-disabled:hover:brightness-95 data-[loading=false]:not-disabled:active:brightness-90')
+          .build(),
+      },
+      'destructive-secondary': {
+        root: new StyleBuilder()
+          .withColor('text-error-primary disabled:text-fg-disabled')
+          .withBackgroundColor('bg-transparent data-[loading=false]:not-disabled:hover:bg-error-primary data-[loading=false]:not-disabled:active:brightness-98 data-[loading=true]:bg-error-primary')
+          .withBorder('border-error-subtle disabled:border-disabled-subtle')
+          .withRing('ring-error-600')
+          .build(),
+      },
+      'destructive-tertiary': {
+        root: new StyleBuilder()
+          .withColor('text-error-primary disabled:text-fg-disabled')
+          .withBackgroundColor('bg-transparent data-[loading=false]:not-disabled:hover:bg-error-primary data-[loading=false]:not-disabled:active:brightness-98 data-[loading=true]:bg-error-primary')
+          .withBorder('border-transparent')
+          .withShadow('shadow-none')
+          .withRing('ring-error-600')
+          .build(),
+      },
+      'primary': {
+        root: new StyleBuilder()
+          .withColor('text-white disabled:text-fg-disabled')
+          .withBackgroundColor('bg-brand-solid disabled:bg-disabled')
+          .withBorder('border-brand-600 disabled:border-disabled-subtle')
+          .withTransition('data-[loading=false]:not-disabled:hover:brightness-95 data-[loading=false]:not-disabled:active:brightness-90')
+          .build(),
+      },
+      'secondary': {
+        root: new StyleBuilder()
+          .withColor('text-secondary disabled:text-fg-disabled')
+          .withBackgroundColor('bg-transparent data-[loading=false]:not-disabled:hover:bg-primary-hover data-[loading=false]:not-disabled:active:brightness-98 data-[loading=true]:bg-primary-hover')
+          .withBorder('border-primary disabled:border-disabled-subtle')
+          .build(),
+      },
+      'tertiary': {
+        root: new StyleBuilder()
+          .withColor('text-tertiary disabled:text-fg-disabled')
+          .withBackgroundColor('bg-transparent data-[loading=false]:not-disabled:hover:bg-primary-hover data-[loading=false]:not-disabled:active:brightness-98 data-[loading=true]:bg-primary-hover')
+          .withBorder('border-transparent')
+          .withShadow('shadow-none')
+          .build(),
+      },
+    },
+    size: {
+      '2xl': {
+        root: new StyleBuilder()
+          .withHeight('min-w-15 h-15')
+          .withBorderRadius('rounded-lg')
+          .build(),
+      },
+      'lg': {
+        root: new StyleBuilder()
+          .withHeight('min-w-11 h-11')
+          .build(),
+      },
+      'md': {
+        root: new StyleBuilder()
+          .withHeight('min-w-10 h-10')
+          .build(),
+      },
+      'sm': {
+        root: new StyleBuilder()
+          .withHeight('min-w-9 h-9')
+          .build(),
+      },
+      'xl': {
+        root: new StyleBuilder()
+          .withHeight('min-w-12 h-12')
+          .build(),
+      },
+    },
+  },
+})
+
+export type SharedButtonStyle = VariantProps<typeof createSharedButtonStyle>
+export type CreateSharedButtonStyle = ReturnType<typeof createSharedButtonStyle>

@@ -1,3 +1,4 @@
 packages:
-  - docs
+  - docs/v1
+  - docs/next
   - 'packages/*'

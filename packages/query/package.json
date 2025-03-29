@@ -26,8 +26,6 @@
     "pub:release": "pnpm publish --access public",
     "gen:web-types": "vue-docgen-web-types",
     "test": "vitest --run",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
     "dev": "vite build --watch"
   },
   "dependencies": {
@@ -41,7 +39,7 @@
     "@vue/language-server": "2.2.8",
     "@vue/test-utils": "2.4.6",
     "@vue/tsconfig": "0.7.0",
-    "@wisemen/eslint-config-vue": "1.1.0",
+    "@wisemen/eslint-config-vue": "1.0.0-next.0",
     "@wisemen/vue-core": "1.0.0-alpha.41",
     "eslint": "9.23.0",
     "jsdom": "26.0.0",
