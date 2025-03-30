@@ -7,10 +7,8 @@ import {
 
 import { useProvideDialogContext } from '@/components/dialog/dialog.context'
 import type { DialogProps } from '@/components/dialog/dialog.props'
-import {
-  type CreateDialogStyle,
-  createDialogStyle,
-} from '@/components/dialog/dialog.style'
+import type { CreateDialogStyle } from '@/components/dialog/dialog.style'
+import { createDialogStyle } from '@/components/dialog/dialog.style'
 import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
 import { useComponentClassConfig } from '@/customClassVariants'
 import { toComputedRefs } from '@/utils/props.util'

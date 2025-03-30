@@ -6,10 +6,8 @@ import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
 import type { ButtonTabsValue } from '@/components/tabs/button/buttonTabs.props'
 import { useProvideTabsContext } from '@/components/tabs/shared/tabs.context'
 import type { TabsProps } from '@/components/tabs/shared/tabs.props'
-import {
-  type CreateTabsStyle,
-  createTabsStyle,
-} from '@/components/tabs/shared/tabs.style'
+import type { CreateTabsStyle } from '@/components/tabs/shared/tabs.style'
+import { createTabsStyle } from '@/components/tabs/shared/tabs.style'
 import { useComponentClassConfig } from '@/customClassVariants'
 import { toComputedRefs } from '@/utils/props.util'
 

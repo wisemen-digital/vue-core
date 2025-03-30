@@ -1,0 +1,5 @@
+import { z } from 'zod'
+
+export const <%= camelCase %>UuidSchema = z.string().uuid().brand('<%= pascalCase %>Uuid')
+
+export type <%= pascalCase %>Uuid = z.infer<typeof <%= camelCase %>UuidSchema>

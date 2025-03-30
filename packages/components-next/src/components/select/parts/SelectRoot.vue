@@ -1,6 +1,6 @@
 <script setup lang="ts" generic="TValue extends SelectValue">
+import type { AcceptableValue } from 'reka-ui'
 import {
-  type AcceptableValue,
   ListboxRoot as RekaListboxRoot,
   useFilter,
 } from 'reka-ui'
@@ -18,10 +18,8 @@ import type {
   SelectProps,
   SelectValue,
 } from '@/components/select/select.props'
-import {
-  type CreateSelectStyle,
-  createSelectStyle,
-} from '@/components/select/style/select.style'
+import type { CreateSelectStyle } from '@/components/select/style/select.style'
+import { createSelectStyle } from '@/components/select/style/select.style'
 import InteractableElement from '@/components/shared/InteractableElement.vue'
 import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
 import {

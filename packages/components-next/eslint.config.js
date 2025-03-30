@@ -20,4 +20,9 @@ export default [
   {
     ignores: [],
   },
+  {
+    rules: {
+      'unicorn/no-keyword-prefix': 'off',
+    },
+  },
 ]

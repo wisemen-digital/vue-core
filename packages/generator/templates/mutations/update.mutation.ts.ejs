@@ -1,0 +1,21 @@
+import type { UseMutationReturnType } from '@wisemen/vue-core-query'
+import { useMutation } from '@wisemen/vue-core-query'
+
+import { <%= pascalCase %>Service } from '@/modules/<%= kebabCase %>/api/services/<%= camelCase %>.service'
+import type { <%= pascalCase %>Uuid } from '@/models/<%= kebabCase %>/<%= camelCase %>Uuid.model'
+import type { <%= pascalCase %>UpdateForm } from '@/models/<%= kebabCase %>/update/<%= camelCase %>UpdateForm.model'
+
+interface Params {
+  uuid: <%= pascalCase %>Uuid
+}
+
+export function use<%= pascalCase %>UpdateMutation(): UseMutationReturnType<<%= pascalCase %>UpdateForm, void, Params> {
+  return useMutation<<%= pascalCase %>UpdateForm, void, Params>({
+    queryFn: async ({ body, params }) => {
+      await <%= pascalCase %>Service.update(params.uuid, body)
+    },
+    queryKeysToInvalidate: {
+      <%= camelCase %>Index: {},
+    },
+  })
+}

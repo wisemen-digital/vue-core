@@ -3,10 +3,8 @@ import { computed } from 'vue'
 
 import { useProvideButtonContext } from '@/components/button/default-button/button.context'
 import type { ButtonProps } from '@/components/button/default-button/button.props'
-import {
-  type CreateButtonStyle,
-  createButtonStyle,
-} from '@/components/button/default-button/button.style'
+import type { CreateButtonStyle } from '@/components/button/default-button/button.style'
+import { createButtonStyle } from '@/components/button/default-button/button.style'
 import type { ButtonEmits } from '@/components/button/shared/sharedButton.props'
 import InteractableElement from '@/components/shared/InteractableElement.vue'
 import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
