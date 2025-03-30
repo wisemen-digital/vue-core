@@ -1,12 +1,11 @@
 <script setup lang="ts">
+import type { VcPopoverProps } from '@wisemen/vue-core-components'
 import {
   VcButton,
   VcPopover,
 } from '@wisemen/vue-core-components'
 
-import type { PopoverProps } from '../../../../../packages/components-next/dist/components/popover/popover.props'
-
-const aligns: PopoverProps['popoverAlign'][] = [
+const aligns: VcPopoverProps['popoverAlign'][] = [
   'start',
   'center',
   'end',

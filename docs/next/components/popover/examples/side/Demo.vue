@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import type {
+  VcPopoverProps,
+} from '@wisemen/vue-core-components'
 import {
   VcButton,
   VcPopover,
-  VcPopoverProps
 } from '@wisemen/vue-core-components'
 
 const sides: VcPopoverProps['popoverSide'][] = [
