@@ -53,8 +53,8 @@ const fileTemplates: Record<TemplateType, FileTemplate[]> = {
   model: [
     { filename: 'Index.model.ts.ejs', outputFolder: 'index', templatePath: 'models/index' },
     { filename: 'IndexDto.model.ts.ejs', outputFolder: 'index', templatePath: 'models/index' },
-    { filename: 'IndexFiltersDto.model.ts.ejs', outputFolder: 'index', templatePath: 'models/index' },
-    { filename: 'IndexFilters.model.ts.ejs', outputFolder: 'index', templatePath: 'models/index' },
+    { filename: 'IndexFiltersDto.model.ts.ejs', outputFolder: 'filters', templatePath: 'models/filters' },
+    { filename: 'IndexFilters.model.ts.ejs', outputFolder: 'filters', templatePath: 'models/filters' },
     { filename: 'Detail.model.ts.ejs', outputFolder: 'detail', templatePath: 'models/detail' },
     { filename: 'DetailDto.model.ts.ejs', outputFolder: 'detail', templatePath: 'models/detail' },
     { filename: 'UpdateDto.model.ts.ejs', outputFolder: 'update', templatePath: 'models/update' },
