@@ -1,4 +1,4 @@
-import type { SharedDatePickerProps } from '@/components/date-picker/datePicker.props'
+import type { SharedDatePickerProps } from '@/components/date-picker/shared/sharedDatePicker.props'
 import type { GetComponentPropCustomValues } from '@/customClassVariants'
 import type { CustomizableElement } from '@/utils/props.util'
 
