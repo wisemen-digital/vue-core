@@ -4,8 +4,8 @@ import { VcFormField } from '@wisemen/vue-core-components'
 
 <template>
   <VcFormField
-    label="Label"
     :is-required="true"
+    label="Label"
   >
     /
   </VcFormField>

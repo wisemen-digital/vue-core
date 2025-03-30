@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { 
-  VcButton, 
+import {
+  VcButton,
   VcPopover,
 } from '@wisemen/vue-core-components'
 </script>

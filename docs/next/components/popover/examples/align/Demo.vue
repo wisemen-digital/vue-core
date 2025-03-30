@@ -1,22 +1,22 @@
 <script setup lang="ts">
-import { 
-  VcButton, 
+import type { VcPopoverProps } from '@wisemen/vue-core-components'
+import {
+  VcButton,
   VcPopover,
 } from '@wisemen/vue-core-components'
-import { PopoverProps } from '../../../../../packages/components-next/dist/components/popover/popover.props';
 
-const aligns: PopoverProps['popoverAlign'][] = [
+const aligns: VcPopoverProps['popoverAlign'][] = [
   'start',
   'center',
-  'end'
+  'end',
 ]
 </script>
 
 <template>
   <div class="grid grid-cols-3 gap-xl">
-    <VcPopover 
-      v-for="align of aligns" 
-      :key="align" 
+    <VcPopover
+      v-for="align of aligns"
+      :key="align"
       :popover-align="align"
     >
       <template #trigger>

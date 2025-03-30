@@ -1,9 +1,6 @@
 <script setup lang="ts">
-import {
-  VcSelect,
-  VcSelectItem,
-} from '@wisemen/vue-core-components'
-import { ref } from 'vue';
+import { VcSelect } from '@wisemen/vue-core-components'
+import { ref } from 'vue'
 
 const value = ref<string | null>(null)
 
@@ -19,17 +16,17 @@ const names = [
   'David Johnson',
   'Anna Smith',
   'Mark Williams',
-];
+]
 
-const extendedNames = ref<string[]>([]);
+const extendedNames = ref<string[]>([])
 
 while (extendedNames.value.length < 1000) {
-  extendedNames.value.push(...names);
+  extendedNames.value.push(...names)
 }
 </script>
 
 <template>
-  <VcSelect 
+  <VcSelect
     v-model="value"
     :display-fn="(name) => name"
     :virtual-list="{
