@@ -17,18 +17,16 @@ export const createDropdownMenuStyle = tv({
     content: new StyleBuilder()
       .withBase('data-[content-width=anchor-width]:w-(--reka-dropdown-menu-trigger-width) data-[content-width=available-width]:w-(--reka-dropdown-menu-content-available-width)')
       .withZIndex('z-40')
-      .build(),
-    group: new StyleBuilder()
-      .withPadding('p-xs')
-      .build(),
-    innerContent: new StyleBuilder()
       .withBackgroundColor('bg-primary')
       .withBorder('border border-solid border-secondary')
       .withBorderRadius('rounded-lg')
       .withBase('relative overflow-hidden')
-      .withSize('size-full')
+      .withSize('size-full min-w-52')
       .withBorderRadius('rounded-lg')
       .withShadow('shadow-lg')
+      .build(),
+    group: new StyleBuilder()
+      .withPadding('p-xs')
       .build(),
     item: new StyleBuilder()
       .withBase('group/dropdown-menu-item outline-none')
@@ -51,7 +49,11 @@ export const createDropdownMenuStyle = tv({
       .withFontSize('text-sm')
       .withTransition('duration-200')
       .build(),
-    label: new StyleBuilder().build(),
+    label: new StyleBuilder()
+      .withColor('text-tertiary')
+      .withFontSize('text-sm')
+      .withFontWeight('font-medium')
+      .build(),
     separator: new StyleBuilder()
       .withHeight('h-px')
       .withBackgroundColor('bg-quaternary')

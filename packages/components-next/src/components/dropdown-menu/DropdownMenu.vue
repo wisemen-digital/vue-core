@@ -3,7 +3,6 @@ import type { DropdownMenuProps } from '@/components/dropdown-menu/dropdownMenu.
 import DropdownMenuArrow from '@/components/dropdown-menu/parts/DropdownMenuArrow.vue'
 import DropdownMenuContent from '@/components/dropdown-menu/parts/DropdownMenuContent.vue'
 import DropdownMenuContentTransition from '@/components/dropdown-menu/parts/DropdownMenuContentTransition.vue'
-import DropdownMenuInnerContent from '@/components/dropdown-menu/parts/DropdownMenuInnerContent.vue'
 import DropdownMenuPortal from '@/components/dropdown-menu/parts/DropdownMenuPortal.vue'
 import DropdownMenuRoot from '@/components/dropdown-menu/parts/DropdownMenuRoot.vue'
 import DropdownMenuTrigger from '@/components/dropdown-menu/parts/DropdownMenuTrigger.vue'
@@ -39,9 +38,7 @@ const isOpen = defineModel<boolean>('isOpen', {
     <DropdownMenuPortal>
       <DropdownMenuContent>
         <DropdownMenuContentTransition>
-          <DropdownMenuInnerContent>
-            <slot name="content" />
-          </DropdownMenuInnerContent>
+          <slot name="content" />
 
           <DropdownMenuArrow />
         </DropdownMenuContentTransition>

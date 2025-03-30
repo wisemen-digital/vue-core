@@ -59,8 +59,8 @@ useProvideDropdownMenuItemContext(toComputedRefs(props))
         <RekaDropdownMenuSubContent
           :side-offset="6"
           :align-offset="-5"
-          :class="style.innerContent({
-            class: mergeClasses(customClassConfig.innerContent, classConfig?.innerContent, 'z-41'),
+          :class="style.content({
+            class: mergeClasses(customClassConfig.content, classConfig?.content),
           })"
           :as-child="true"
         >
