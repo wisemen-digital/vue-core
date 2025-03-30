@@ -48,6 +48,7 @@ export default defineConfig({
           { text: 'Phone Number Field', link: '/components/phone-number-field/phone-number-field' },
           { text: 'Date Picker', link: '/components/date-picker/date-picker' },
           { text: 'Dropdown Menu', link: '/components/dropdown-menu/dropdown-menu' },
+          { text: 'Textarea', link: '/components/textarea/textarea' },
         ],
       },
     ],
