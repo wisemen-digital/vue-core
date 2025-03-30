@@ -32,7 +32,8 @@
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "story:dev": "histoire dev",
     "story:build": "histoire build",
-    "story:preview": "histoire preview"
+    "story:preview": "histoire preview",
+    "prepare": "husky"
   },
   "peerDependencies": {
     "vue": "3.5.12",
@@ -42,9 +43,12 @@
     "tailwind-variants": "1.0.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.8.0",
+    "@commitlint/config-conventional": "^19.8.0",
     "@fontsource-variable/inter": "5.1.0",
     "@googlemaps/js-api-loader": "1.16.8",
     "@histoire/plugin-vue": "1.0.0-alpha.2",
+    "@internationalized/date": "3.5.4",
     "@tailwindcss/postcss": "4.0.0-beta.8",
     "@tailwindcss/vite": "4.0.11",
     "@tsconfig/node18": "18.2.4",
@@ -60,6 +64,7 @@
     "conventional-changelog": "6.0.0",
     "eslint": "9.4",
     "histoire": "1.0.0-alpha.2",
+    "husky": "^9.1.7",
     "jsdom": "24.1.0",
     "libphonenumber-js": "1.11.3",
     "maska": "3.0.0",

@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@internationalized/date": "3.5.4",
-    "@wisemen/vue-core": "workspace:*",
+    "@wisemen/vue-core": "1.0.0-alpha.41",
     "i18n-iso-countries": "7.11.2",
     "vue-router": "4.3.3"
   },
