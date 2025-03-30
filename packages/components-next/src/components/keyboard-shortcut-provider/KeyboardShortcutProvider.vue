@@ -49,7 +49,7 @@ function getFirstInteractiveDescendant(root: HTMLElement): HTMLElement | null {
 
 useKeyboardShortcut({
   isDisabled: computed<boolean>(() => props.isDisabled),
-  keys: props.keys,
+  keys: props.keyboardKeys,
   onTrigger: (event) => {
     if (wrapperRef.value === null) {
       return
@@ -83,6 +83,6 @@ useKeyboardShortcut({
 
 <template>
   <div ref="wrapperRef">
-    <slot :keys="props.keys" />
+    <slot :keys="props.keyboardKeys" />
   </div>
 </template>

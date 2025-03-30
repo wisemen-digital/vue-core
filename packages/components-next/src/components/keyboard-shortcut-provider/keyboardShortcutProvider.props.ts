@@ -4,7 +4,7 @@ import type {
 
 export interface KeyboardShortcutProviderProps {
   isDisabled?: boolean
-  keys: KeyboardKey[]
+  keyboardKeys: KeyboardKey[]
   preventDefault?: boolean
   stopPropagation?: boolean
 }
