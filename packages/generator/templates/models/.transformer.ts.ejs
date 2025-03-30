@@ -1,0 +1,50 @@
+import type { <%= pascalCase %>Uuid } from '@/models/<%= kebabCase %>/<%= camelCase %>Uuid.model'
+import type { <%= pascalCase %>IndexDto } from '@/models/<%= kebabCase %>/index/<%= camelCase %>IndexDto.model'
+import type { <%= pascalCase %>DetailDto } from '@/models/<%= kebabCase %>/detail/<%= camelCase %>DetailDto.model'
+import type { <%= pascalCase %>Index } from '@/models/<%= kebabCase %>/index/<%= camelCase %>Index.model'
+import type { <%= pascalCase %>Detail } from '@/models/<%= kebabCase %>/detail/<%= camelCase %>Detail.model'
+import type { <%= pascalCase %>IndexFiltersDto } from '@/models/<%= kebabCase %>/index/<%= camelCase %>IndexFiltersDto.model'
+import type { <%= pascalCase %>IndexFilters } from '@/models/<%= kebabCase %>/index/<%= camelCase %>IndexFilters.model'
+import type { <%= pascalCase %>CreateDto } from '@/models/<%= kebabCase %>/create/<%= camelCase %>CreateDto.model'
+import type { <%= pascalCase %>CreateForm } from '@/models/<%= kebabCase %>/create/<%= camelCase %>CreateForm.model'
+import type { <%= pascalCase %>UpdateDto } from '@/models/<%= kebabCase %>/update/<%= camelCase %>UpdateDto.model'
+import type { <%= pascalCase %>UpdateForm } from '@/models/<%= kebabCase %>/update/<%= camelCase %>UpdateForm.model'
+
+export class <%= pascalCase %>IndexTransformer {
+  static fromDto(dto: <%= pascalCase %>IndexDto): <%= pascalCase %>Index {
+    return {
+      uuid: dto.uuid as <%= pascalCase %>Uuid,
+    }
+  }
+}
+
+export class <%= pascalCase %>DetailTransformer {
+  static fromDto(dto: <%= pascalCase %>DetailDto): <%= pascalCase %>Detail {
+    return {
+      uuid: dto.uuid as <%= pascalCase %>Uuid,
+    }
+  }
+}
+
+export class <%= pascalCase %>IndexFiltersTransformer {
+  static toDto(filters?: <%= pascalCase %>IndexFilters): <%= pascalCase %>IndexFiltersDto | undefined {
+    return filters
+  }
+}
+
+
+export class <%= pascalCase %>CreateTransformer {
+  static toDto(form: <%= pascalCase %>CreateForm): <%= pascalCase %>CreateDto {
+    return {
+      value: form.value,
+    }
+  }
+}
+
+export class <%= pascalCase %>UpdateTransformer {
+  static toDto(form: <%= pascalCase %>UpdateForm): <%= pascalCase %>UpdateDto {
+    return {
+      value: form.value,
+    }
+  }
+}

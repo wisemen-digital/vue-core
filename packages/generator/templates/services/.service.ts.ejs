@@ -1,0 +1,75 @@
+import type {
+PaginatedData,
+PaginationOptions,
+} from '@wisemen/vue-core'
+import { PaginationParamsBuilder } from '@wisemen/vue-core'
+
+import type { <%= pascalCase %>Detail } from '@/models/<%= kebabCase %>/detail/<%= camelCase %>Detail.model'
+import type { <%= pascalCase %>Index } from '@/models/<%= kebabCase %>/index/<%= camelCase %>Index.model'
+import type { <%= pascalCase %>IndexFilters } from '@/models/<%= kebabCase %>/index/<%= camelCase %>IndexFilters.model'
+import {
+<%= pascalCase %>DetailTransformer,
+<%= pascalCase %>IndexFiltersTransformer,
+<%= pascalCase %>IndexTransformer,
+<%= pascalCase %>CreateTransformer,
+<%= pascalCase %>UpdateTransformer,
+} from '@/models/<%= kebabCase %>/<%= camelCase %>.transformer'
+import type { <%= pascalCase %>Uuid } from '@/models/<%= camelCase %>/<%= camelCase %>Uuid.model'
+
+import type { <%= pascalCase %>CreateForm } from '@/models/<%= kebabCase %>/create/<%= camelCase %>CreateForm.model'
+import type { <%= pascalCase %>UpdateForm } from '@/models/<%= kebabCase %>/update/<%= camelCase %>UpdateForm.model'
+import type { <%= pascalCase %>UpdateDto } from '@/models/<%= kebabCase %>/update/<%= camelCase %>UpdateDto.model'
+import type { <%= pascalCase %>CreateDto } from '@/models/<%= kebabCase %>/create/<%= camelCase %>CreateDto.model'
+
+export class <%= pascalCase %>Service {
+  static async getIndex(
+    paginationOptions: PaginationOptions<<%= pascalCase %>IndexFilters>
+  ): Promise<PaginatedData<<%= pascalCase %>Index>> {
+    const query = new PaginationParamsBuilder<<%= pascalCase %>IndexFilters>(paginationOptions)
+      .build(<%= pascalCase %>IndexFiltersTransformer.toDto)
+
+      const response = await REPLACE_ME({ 
+      query,
+      })
+
+    return {
+      data: response.data.items.map(<%= pascalCase %>IndexTransformer.fromDto),
+      meta: response.data.meta,
+    }
+  }
+
+  static async getDetail(uuid: <%= pascalCase %>Uuid): Promise<<%= pascalCase %>Detail> {
+    const response = await REPLACE_ME({
+      path: {
+          uuid,
+      },
+    })
+
+    return <%= pascalCase %>DetailTransformer.fromDto(response.data)
+  }
+
+  static async deleteByUuid(uuid: <%= pascalCase %>Uuid): Promise<void> {
+    await REPLACE_ME({
+      path: {
+        uuid,
+      },
+    })
+  }
+
+  static async update(uuid: <%= pascalCase %>Uuid, form: <%= pascalCase %>UpdateForm): Promise<void> {
+    await REPLACE_ME({
+      path: {
+        uuid,
+      },
+      body: <%= pascalCase %>UpdateTransformer.toDto(form),
+    })
+  }
+
+  static async create(form: <%= pascalCase %>CreateForm): Promise<<%= pascalCase %>Uuid> {
+    const response = await REPLACE_ME({
+      body: <%= pascalCase %>CreateTransformer.toDto(form),
+    })
+
+    return response.data.uuid as <%= pascalCase %>Uuid
+  }
+}

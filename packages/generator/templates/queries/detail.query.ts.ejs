@@ -1,0 +1,22 @@
+import type { UseQueryReturnType } from '@wisemen/vue-core-query'
+import { useQuery } from '@wisemen/vue-core-query'
+import type { ComputedRef } from 'vue'
+
+import type { <%= pascalCase %>Uuid } from '@/models/<%= camelCase %>/<%= camelCase %>Uuid.model'
+import type { <%= pascalCase %>Detail } from '@/models/<%= camelCase %>/detail/<%= camelCase %>Detail.model'
+import { <%= pascalCase %>Service } from '@/modules/<%= camelCase %>/api/services/<%= camelCase %>.service'
+
+export function use<%= pascalCase %>DetailQuery(
+<%= camelCase %>Uuid: ComputedRef<<%= pascalCase %>Uuid>,
+    ): UseQueryReturnType<<%= pascalCase %>Detail> {
+    return useQuery<<%= pascalCase %>Detail>({
+      queryFn: () => {
+        return <%= pascalCase %>Service.getDetail(<%= camelCase %>Uuid.value)
+      },
+      queryKey: {
+        <%= camelCase %>Detail: {
+      <%= camelCase %>Uuid,
+      },
+    },
+  })
+}

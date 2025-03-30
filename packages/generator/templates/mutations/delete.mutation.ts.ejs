@@ -1,0 +1,20 @@
+import type { UseMutationReturnType } from '@wisemen/vue-core-query'
+import { useMutation } from '@wisemen/vue-core-query'
+
+import type { <%= pascalCase %>Uuid } from '@/models/<%= kebabCase %>/<%= camelCase %>Uuid.model'
+import { <%= pascalCase %>Service } from '@/modules/<%= kebabCase %>/api/services/<%= camelCase %>.service'
+
+interface Params {
+  uuid: <%= pascalCase %>Uuid
+}
+
+export function use<%= pascalCase %>DeleteMutation(): UseMutationReturnType<void, void, Params> {
+  return useMutation<void, void, Params>({
+    queryFn: async ({ params }) => {
+      await <%= pascalCase %>Service.deleteByUuid(params.uuid)
+    },
+    queryKeysToInvalidate: {
+      <%= camelCase %>Index: {},
+    },
+  })
+}

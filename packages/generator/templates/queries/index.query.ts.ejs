@@ -1,0 +1,25 @@
+import type {
+PaginationOptions,
+} from '@wisemen/vue-core'
+import type { UseQueryReturnType } from '@wisemen/vue-core-query'
+import { useQuery } from '@wisemen/vue-core-query'
+import type { ComputedRef } from 'vue'
+
+import type { <%= pascalCase %>Index } from '@/models/<%= kebabCase %>/index/<%= camelCase %>Index.model'
+import type { <%= pascalCase %>IndexFilters } from '@/models/<%= kebabCase %>/index/<%= camelCase %>IndexFilters.model'
+import { <%= pascalCase %>Service } from '@/modules/<%= kebabCase %>/api/services/<%= camelCase %>.service'
+
+export function use<%= pascalCase %>IndexQuery(
+  paginationOptions: ComputedRef<PaginationOptions<<%= pascalCase %>IndexFilters>>,
+    ): UseQueryReturnType<<%= pascalCase %>Index> {
+    return useQuery<<%= pascalCase %>Index, <%= pascalCase %>IndexFilters>({
+      queryFn: () => {
+        return <%= pascalCase %>Service.getIndex(paginationOptions.value)
+      },
+      queryKey: {
+        <%= camelCase %>Index: {
+          paginationOptions,
+      },
+    },
+  })
+}

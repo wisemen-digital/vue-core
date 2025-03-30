@@ -1,0 +1,7 @@
+import { z } from 'zod'
+
+export const <%= camelCase %>CreateFormSchema = z.object({
+   value: z.string(),
+})
+
+export type <%= pascalCase %>CreateForm = z.infer<typeof <%= camelCase %>CreateFormSchema>
