@@ -23,12 +23,14 @@
     }
   },
   "bin": {
-    "vue-gen": "./dist/index.js"
+    "vue-gen": "./dist/index.mjs"
   },
   "files": [
-    "dist"
+    "dist",
+    "templates"
   ],
   "scripts": {
+    "build": "unbuild && pnpm pack",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "release": "bumpp && npm publish",
