@@ -13,6 +13,7 @@ import type { createPopoverStyle } from '@/components/popover/style/popover.styl
 import type { createSelectStyle } from '@/components/select/style/select.style'
 import type { createTabsStyle } from '@/components/tabs/shared/tabs.style'
 import type { createTextFieldStyle } from '@/components/text-field/textField.style'
+import type { createTextareaStyle } from '@/components/textarea/textarea.style'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import type { createTooltipStyle } from '@/components/tooltip/tooltip.style'
 
@@ -27,6 +28,7 @@ export interface Components {
   select: typeof createSelectStyle
   tabs: typeof createTabsStyle
   textField: typeof createTextFieldStyle
+  textarea: typeof createTextareaStyle
   tooltip: typeof createTooltipStyle
 }
 

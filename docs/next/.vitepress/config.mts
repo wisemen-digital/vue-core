@@ -47,6 +47,7 @@ export default defineConfig({
           { text: 'Autocomplete', link: '/components/autocomplete/autocomplete' },
           { text: 'Phone Number Field', link: '/components/phone-number-field/phone-number-field' },
           { text: 'Date Picker', link: '/components/date-picker/date-picker' },
+          { text: 'Textarea', link: '/components/textarea/textarea' },
         ],
       },
     ],
