@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { VcAutocomplete } from '@wisemen/vue-core-components'
+import { ref } from 'vue'
 
 const value = ref<string | null>(null)
 const items = ref<string[]>([])

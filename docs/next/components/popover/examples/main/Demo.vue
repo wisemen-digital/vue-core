@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { 
-  VcButton, 
+import {
+  VcButton,
   VcPopover,
   VcPopoverCloseButton,
-  VcTextField
+  VcTextField,
 } from '@wisemen/vue-core-components'
 </script>
 
@@ -21,7 +21,7 @@ import {
           Subscribe to our newsletter
         </p>
 
-        <VcTextField 
+        <VcTextField
           :model-value="null"
           label="Email"
           placeholder="example@example.com"

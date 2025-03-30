@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { 
-  VcButton, 
+import {
+  VcButton,
   VcPopover,
 } from '@wisemen/vue-core-components'
-import { PopoverProps } from '../../../../../packages/components-next/dist/components/popover/popover.props';
+
+import type { PopoverProps } from '../../../../../packages/components-next/dist/components/popover/popover.props'
 
 const sides: PopoverProps['popoverSide'][] = [
   'top',
@@ -15,9 +16,9 @@ const sides: PopoverProps['popoverSide'][] = [
 
 <template>
   <div class="grid grid-cols-2 gap-xl">
-    <VcPopover 
-      v-for="side of sides" 
-      :key="side" 
+    <VcPopover
+      v-for="side of sides"
+      :key="side"
       :popover-side="side"
     >
       <template #trigger>

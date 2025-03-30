@@ -82,10 +82,10 @@ export default function (md: MarkdownRenderer): void {
       const _dummyToken = new state.Token('', '', 0)
       const tokenArray: Array<typeof _dummyToken> = []
 
-      Object.entries(groupedFiles).forEach(([
+      for (const [
         key,
         value,
-      ]) => {
+      ] of Object.entries(groupedFiles)) {
         const templateStart = new state.Token('html_inline', '', 0)
 
         templateStart.content = `<template #${key}>`
@@ -119,7 +119,7 @@ export default function (md: MarkdownRenderer): void {
 
         templateEnd.content = '</template>'
         tokenArray.push(templateEnd)
-      })
+      }
 
       const endTag = new state.Token('html_inline', '', 0)
 

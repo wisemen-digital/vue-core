@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import { 
-  VcTooltip, 
-  VcButton 
-} from '@wisemen/vue-core-components'
+import { VcButton,
+  VcTooltip } from '@wisemen/vue-core-components'
 </script>
 
 <template>

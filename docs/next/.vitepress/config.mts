@@ -1,17 +1,18 @@
 import { defineConfig } from 'vitepress'
+
 import ComponentPreviewPlugin from './plugins/ComponentPreview'
 
 // @ts-expect-error
 if (typeof __VUE_PROD_DEVTOOLS__ === 'undefined') {
   // @ts-expect-error
-  globalThis.__VUE_PROD_DEVTOOLS__ = false;
+  globalThis.__VUE_PROD_DEVTOOLS__ = false
 }
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   base: '/vue-core/next',
-  title: "Vue Component Library",
-  description: "A modern, customizable, and accessible component library for Vue 3.",
+  title: 'Vue Component Library',
+  description: 'A modern, customizable, and accessible component library for Vue 3.',
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
@@ -28,7 +29,7 @@ export default defineConfig({
           { text: 'Icons', link: '/getting-started/icons' },
           { text: 'Customization', link: '/getting-started/customization' },
           { text: 'Composition', link: '/getting-started/composition' },
-        ]
+        ],
       },
       {
         text: 'Components',
@@ -47,17 +48,17 @@ export default defineConfig({
           { text: 'Autocomplete', link: '/components/autocomplete/autocomplete' },
           { text: 'Phone Number Field', link: '/components/phone-number-field/phone-number-field' },
           { text: 'Date Picker', link: '/components/date-picker/date-picker' },
-        ]
-      }
+        ],
+      },
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/wisemen-digital/vue-core/packages/components-next' }
-    ]
+      { icon: 'github', link: 'https://github.com/wisemen-digital/vue-core/packages/components-next' },
+    ],
   },
   markdown: {
     preConfig(md) {
       md.use(ComponentPreviewPlugin)
-    }
+    },
   },
 })

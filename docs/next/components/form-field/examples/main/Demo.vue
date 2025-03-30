@@ -4,14 +4,14 @@ import { VcFormField } from '@wisemen/vue-core-components'
 
 <template>
   <VcFormField
+    :is-required="true"
     label="Label"
     hint="This is a hint."
     for="input-id"
-    :is-required="true"
   >
-    <input 
+    <input
       id="input-id"
       class="border border-solid border-primary rounded-md p-xs"
-    />
+    >
   </VcFormField>
 </template>

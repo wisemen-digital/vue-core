@@ -3,7 +3,7 @@ import {
   VcSelect,
   VcSelectItem,
 } from '@wisemen/vue-core-components'
-import { ref } from 'vue';
+import { ref } from 'vue'
 
 const value = ref<string[]>([])
 
@@ -23,16 +23,16 @@ const names = [
 </script>
 
 <template>
-  <VcSelect 
+  <VcSelect
     v-model="value"
     :display-fn="(name) => name"
     placeholder="Select names"
     label="Names"
     class="w-72"
   >
-    <VcSelectItem 
-      v-for="name of names" 
-      :key="name" 
+    <VcSelectItem
+      v-for="name of names"
+      :key="name"
       :value="name"
     >
       {{ name }}

@@ -1,7 +1,14 @@
 <script setup lang="ts">
 import { VcDatePicker } from '@wisemen/vue-core-components'
+import { ref } from 'vue'
+
+const value = ref<Date | null>(null)
 </script>
 
 <template>
-  <VcDatePicker label="Example" class="w-84" />
+  <VcDatePicker
+    v-model="value"
+    label="Example"
+    class="w-84"
+  />
 </template>
