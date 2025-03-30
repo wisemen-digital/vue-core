@@ -89,8 +89,8 @@ const possiblePositions = computed<Position[]>(() => {
 
   return posList.length > 0
     ? Array.from(new Set([
-      props.position,
-    ].concat(posList)))
+        props.position,
+      ].concat(posList)))
     : [
         props.position,
       ]
@@ -140,7 +140,7 @@ function onBlur(event: any | FocusEvent): void {
 function onFocus(event: any | FocusEvent): void {
   const isNotDismissible
     = event.target instanceof HTMLElement
-    && event.target.dataset.dismissible === 'false'
+      && event.target.dataset.dismissible === 'false'
 
   if (isNotDismissible) {
     return
@@ -156,7 +156,7 @@ function onPointerDown(event: PointerEvent): void {
   if (event.target) {
     const isNotDismissible
       = event.target instanceof HTMLElement
-      && event.target.dataset.dismissible === 'false'
+        && event.target.dataset.dismissible === 'false'
 
     if (isNotDismissible) {
       return

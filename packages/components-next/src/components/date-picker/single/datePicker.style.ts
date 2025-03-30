@@ -1,4 +1,5 @@
-import { tv, type VariantProps } from 'tailwind-variants'
+import type { VariantProps } from 'tailwind-variants'
+import { tv } from 'tailwind-variants'
 
 import { createSharedDatePickerStyle } from '@/components/date-picker/shared/sharedDatePicker.style'
 

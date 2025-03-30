@@ -3,10 +3,8 @@ import { computed } from 'vue'
 
 import { useProvideIconButtonContext } from '@/components/button/icon-button/iconButton.context'
 import type { IconButtonProps } from '@/components/button/icon-button/iconButton.props'
-import {
-  type CreateIconButtonStyle,
-  createIconButtonStyle,
-} from '@/components/button/icon-button/iconButton.style'
+import type { CreateIconButtonStyle } from '@/components/button/icon-button/iconButton.style'
+import { createIconButtonStyle } from '@/components/button/icon-button/iconButton.style'
 import type { ButtonEmits } from '@/components/button/shared/sharedButton.props'
 import InteractableElement from '@/components/shared/InteractableElement.vue'
 import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'

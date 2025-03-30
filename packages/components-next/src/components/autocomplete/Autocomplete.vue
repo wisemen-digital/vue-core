@@ -58,7 +58,7 @@ const isDropdownVisible = computed<boolean>(() => {
     const isOnlyItemSelected = JSON.stringify(delegatedItems.value[0]) === JSON.stringify(modelValue.value)
     const doesSearchTermMatchOnlyItem
         = delegatedItems.value[0] !== null
-        && searchTerm.value === props.displayFn(delegatedItems.value[0] as any)
+          && searchTerm.value === props.displayFn(delegatedItems.value[0] as any)
 
     if (isOnlyItemSelected && !doesSearchTermMatchOnlyItem) {
       return false

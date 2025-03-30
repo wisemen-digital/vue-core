@@ -5,7 +5,7 @@ import {
 import type { DateValue } from 'reka-ui'
 
 export function dateToDateValue(date: Date): DateValue {
-  return new CalendarDate(date.getFullYear(), date.getMonth() + 1, date.getDate())
+  return new CalendarDate(date.getFullYear(), date.getMonth() + 1, date.getDate()) as unknown as DateValue
 }
 
 export function dateValueToDate(value: DateValue): Date {

@@ -5,8 +5,8 @@ import DatePicker from '@/components/date-picker/single/DatePicker.vue'
 import DatePickerDate from '@/components/date-picker/single/parts/DatePickerDate.vue'
 import Tooltip from '@/components/tooltip/Tooltip.vue'
 
-const inTwoWeeks = new Date(new Date().getTime() + 14 * 24 * 60 * 60 * 1000)
-const inTwoMonths = new Date(new Date().getTime() + 60 * 24 * 60 * 60 * 1000)
+const inTwoWeeks = new Date(Date.now() + 14 * 24 * 60 * 60 * 1000)
+const inTwoMonths = new Date(Date.now() + 60 * 24 * 60 * 60 * 1000)
 
 const value = ref<Date | null>(inTwoWeeks)
 
