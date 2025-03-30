@@ -8,6 +8,7 @@ import type { createIconButtonStyle } from '@/components/button/icon-button/icon
 import type { createRouterLinkButtonStyle } from '@/components/button/router-link-button/routerLinkButton.style'
 import type { createDatePickerStyle } from '@/components/date-picker/single/datePicker.style'
 import type { createDialogStyle } from '@/components/dialog/dialog.style'
+import type { createDropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style'
 import type { createFormFieldStyle } from '@/components/form-field/formField.style'
 import type { createPopoverStyle } from '@/components/popover/style/popover.style'
 import type { createSelectStyle } from '@/components/select/style/select.style'
@@ -20,6 +21,7 @@ export interface Components {
   button: typeof createButtonStyle
   datePicker: typeof createDatePickerStyle
   dialog: typeof createDialogStyle
+  dropdownMenu: typeof createDropdownMenuStyle
   formField: typeof createFormFieldStyle
   iconButton: typeof createIconButtonStyle
   popover: typeof createPopoverStyle
