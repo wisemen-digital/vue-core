@@ -58,5 +58,10 @@ export const components = [
     sourceFolder: 'date-picker/single/DatePicker.vue',
     targetFolder: 'date-picker',
     componentName: 'DatePicker',
+  },
+  {
+    sourceFolder: 'textarea/Textarea.vue',
+    targetFolder: 'textarea',
+    componentName: 'Textarea',
   }
 ]
