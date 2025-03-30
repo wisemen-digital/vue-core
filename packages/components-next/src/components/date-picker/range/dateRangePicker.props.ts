@@ -1,4 +1,4 @@
-import type { SharedDatePickerProps } from '@/components/date-picker/datePicker.props'
+import type { SharedDatePickerProps } from '@/components/date-picker/shared/sharedDatePicker.props'
 
 export interface DateRangePickerProps extends SharedDatePickerProps {
   /**
