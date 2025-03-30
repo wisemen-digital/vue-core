@@ -3,6 +3,7 @@ import type { DateValue } from 'reka-ui'
 import { CalendarRoot as RekaCalendarRoot } from 'reka-ui'
 import { computed } from 'vue'
 
+import type { Grid } from '@/components/date-picker/shared/datePicker.type'
 import {
   dateToDateValue,
   dateValueToDate,
@@ -113,8 +114,8 @@ useProvideDatePickerContext({
         weekday-format="short"
       >
         <slot
-          :week-days="weekDays"
-          :grid="grid"
+          :week-days="(weekDays as string[])"
+          :grid="(grid as Grid<DateValue>[])"
         />
       </RekaCalendarRoot>
     </InteractableElement>
