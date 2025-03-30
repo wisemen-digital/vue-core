@@ -64,8 +64,8 @@ const theme: typeof DefaultTheme = {
   Layout: DefaultTheme.Layout,
   enhanceApp(ctx) {
     ctx.app.use(i18nPlugin as any)
-    ctx.app.component('ComponentPreview', ComponentPreview)
-    ctx.app.component('BulletList', BulletList)
+    ctx.app.component('ComponentPreview', ComponentPreview as any)
+    ctx.app.component('BulletList', BulletList as any)
     DefaultTheme.enhanceApp(ctx)
 
     setupDefaultStyles()
