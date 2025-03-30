@@ -29,12 +29,9 @@
     "dist"
   ],
   "scripts": {
-    "build": "unbuild",
-    "dev": "unbuild --stub",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "release": "bumpp && npm publish",
-    "start": "esno src/index.ts",
     "test": "vitest --run",
     "typecheck": "tsc --noEmit"
   },
