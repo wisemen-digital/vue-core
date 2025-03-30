@@ -69,7 +69,7 @@ const yearValue = computed<number>({
   >
     <RekaCalendarHeader
       v-for="(month, index) of props.grid"
-      :key="month.value.toString()"
+      :key="index"
       :class="style.header({
         class: mergeClasses(classConfig?.header, customClassConfig.header),
       })"
@@ -80,7 +80,7 @@ const yearValue = computed<number>({
       >
         <IconButton
           :class-config="{
-            icon: 'group-hover/button:-translate-x-px group-active/button:-translate-x-0.5 duration-200',
+            icon: 'group-enabled/button:group-hover/button:-translate-x-px group-enabled/button:group-active/button:-translate-x-0.5 duration-200',
           }"
           icon="chevronLeft"
           label="Previous month"
@@ -150,7 +150,7 @@ const yearValue = computed<number>({
       >
         <IconButton
           :class-config="{
-            icon: 'group-hover/button:translate-x-px group-active/button:translate-x-0.5 duration-200',
+            icon: 'group-enabled/button:group-hover/button:translate-x-px group-enabled/button:group-active/button:translate-x-0.5 duration-200',
           }"
           icon="chevronRight"
           label="Next month"
