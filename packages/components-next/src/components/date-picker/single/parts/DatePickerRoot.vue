@@ -51,7 +51,7 @@ const delegatedModel = computed<DateValue | null>({
     return dateToDateValue(modelValue.value)
   },
   set: (value) => {
-    if (value === null) {
+    if (value === null || value === undefined) {
       modelValue.value = null
 
       return
