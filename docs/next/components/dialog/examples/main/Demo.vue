@@ -1,17 +1,16 @@
 <script setup lang="ts">
-import { 
-  useVcDialog, 
-  VcButton, 
-  VcDialogContainer
+import {
+  useVcDialog,
+  VcButton,
 } from '@wisemen/vue-core-components'
 
 const dialog = useVcDialog({
-  component: () => import('./Dialog.vue')
+  component: () => import('./Dialog.vue'),
 })
 </script>
 
 <template>
-  <VcButton 
+  <VcButton
     variant="secondary"
     @click="dialog.open()"
   >

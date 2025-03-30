@@ -1,4 +1,5 @@
-import { computed, type ComputedRef } from 'vue'
+import type { ComputedRef } from 'vue'
+import { computed } from 'vue'
 
 import type { ClassConfig, Components } from '@/customClassVariants'
 
@@ -70,11 +71,13 @@ export interface CustomizableElement<
   }) | null
 }
 
-export type PropsToComputed<T> = NonUndefined<{
-  [K in keyof T]: T[K] extends ((...args: any[]) => any)
+type IsFunction<T> = T extends (...args: any[]) => any ? true : false
+
+export type PropsToComputed<T> = {
+  [K in keyof Required<T>]: IsFunction<Exclude<T[K], undefined>> extends true
     ? T[K]
-    : NonUndefined<ComputedRef<NonUndefined<T[K]>>>
-}>
+    : ComputedRef<Exclude<T[K], undefined>>;
+}
 
 export function toComputedRefs<T>(props: T): PropsToComputed<T> {
   const computedRefs: Partial<PropsToComputed<T>> = {}

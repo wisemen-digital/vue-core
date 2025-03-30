@@ -1,6 +1,7 @@
-import { tv, type VariantProps } from 'tailwind-variants'
+import type { VariantProps } from 'tailwind-variants'
+import { tv } from 'tailwind-variants'
 
-import { StyleBuilder } from '@/utils/styleBuilder.util'
+import { StyleBuilder } from '@/utils/style-builder/styleBuilder.util'
 
 export const createSelectStyle = tv({
   slots: {
@@ -15,6 +16,8 @@ export const createSelectStyle = tv({
       .withSize('size-full')
       .build(),
     baseSingle: new StyleBuilder()
+      .withFontSize('text-sm')
+      .withColor('text-primary group-data-[is-disabled=true]/select:text-disabled')
       .withPadding('px-3 group-data-[has-icon-left=true]/select:pl-2 group-data-[has-icon-right=true]/select:pr-2')
       .withSize('w-full')
       .withFlex('flex items-center')

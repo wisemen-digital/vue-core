@@ -2,10 +2,8 @@
 import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
 
-import {
-  type CreateButtonStyle,
-  createButtonStyle,
-} from '@/components/button/default-button/button.style'
+import type { CreateButtonStyle } from '@/components/button/default-button/button.style'
+import { createButtonStyle } from '@/components/button/default-button/button.style'
 import { useProvideRouterLinkButtonContext } from '@/components/button/router-link-button/routerLinkButton.context'
 import type { RouterLinkButtonProps } from '@/components/button/router-link-button/routerLinkButton.props'
 import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'

@@ -53,5 +53,10 @@ export const components = [
     sourceFolder: 'select/Select.vue',
     targetFolder: 'select',
     componentName: 'Select',
+  },
+  {
+    sourceFolder: 'date-picker/single/DatePicker.vue',
+    targetFolder: 'date-picker',
+    componentName: 'DatePicker',
   }
 ]

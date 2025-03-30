@@ -31,6 +31,10 @@ export interface SelectProps<TValue extends SelectValue> extends
       name: 'dropdownSearchInput'
       component: 'textField'
     },
+    {
+      name: 'popover'
+      component: 'popover'
+    },
   ]> {
   /**
    * Controls the visibility of the dropdown.

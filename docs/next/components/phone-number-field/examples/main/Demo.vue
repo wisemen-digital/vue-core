@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { VcPhoneNumberField } from '@wisemen/vue-core-components'
+import { ref } from 'vue'
 
 const value = ref<string | null>(null)
 </script>
 
 <template>
-  <VcPhoneNumberField 
+  <VcPhoneNumberField
     v-model="value"
     class="w-72"
   />

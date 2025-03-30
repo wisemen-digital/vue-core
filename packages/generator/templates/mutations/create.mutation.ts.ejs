@@ -1,0 +1,16 @@
+import type { UseMutationReturnType } from '@wisemen/vue-core-query'
+import { useMutation } from '@wisemen/vue-core-query'
+
+import type { <%= pascalCase %>CreateForm } from '@/models/<%= kebabCase %>/create/<%= camelCase %>CreateForm.model'
+import { <%= pascalCase %>Service } from '@/modules/<%= kebabCase %>/api/services/<%= camelCase %>.service'
+
+export function use<%= pascalCase %>CreateMutation(): UseMutationReturnType<<%= pascalCase %>CreateForm, void> {
+  return useMutation<<%= pascalCase %>CreateForm, void>({
+    queryFn: async ({ body }) => {
+      await <%= pascalCase %>Service.create(body)
+    },
+    queryKeysToInvalidate: {
+      <%= camelCase %>Index: {},
+    },
+  })
+}

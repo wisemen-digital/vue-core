@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { VcAutocomplete } from '@wisemen/vue-core-components'
+import { ref } from 'vue'
 
 const value = ref<string | null>(null)
 const items = ref<string[]>([])
@@ -24,16 +24,14 @@ function onSearch(searchTerm: string): void {
 </script>
 
 <template>
-  <Story title="Autocomplete/Basic">
-    <VcAutocomplete
-      v-model="value"
-      :items="items"
-      :display-fn="(v) => v"
-      :is-loading="isFetchingItems"
-      icon-left="search"
-      class="w-72"
-      label="Autocomplete"
-      @search="onSearch"
-    />
-  </Story>
+  <VcAutocomplete
+    v-model="value"
+    :items="items"
+    :display-fn="(v) => v"
+    :is-loading="isFetchingItems"
+    icon-left="search"
+    class="w-72"
+    label="Autocomplete"
+    @search="onSearch"
+  />
 </template>

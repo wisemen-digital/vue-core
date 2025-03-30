@@ -5,10 +5,24 @@ export default [
   {
     rules: {
       '@intlify/vue-i18n/no-raw-text': 'off',
-      'vue/no-undef-components': 'off',
+      'vue/no-undef-components': [
+        'error',
+        {
+          ignorePatterns: [
+            // Histoire components
+            'Story',
+            'Variant',
+          ],
+        },
+      ],
     },
   },
   {
     ignores: [],
+  },
+  {
+    rules: {
+      'unicorn/no-keyword-prefix': 'off',
+    },
   },
 ]

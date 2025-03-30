@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { VcTextField } from '@wisemen/vue-core-components'
+import { ref } from 'vue'
 
 const value = ref<string>('')
 </script>
 
 <template>
-  <VcTextField 
+  <VcTextField
     v-model="value"
     label="Email"
     placeholder="example@example.com"
-    class="w-72" 
+    class="w-72"
   />
 </template>

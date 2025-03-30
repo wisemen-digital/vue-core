@@ -16,7 +16,7 @@
     },
     "resolveJsonModule": true,
     "types": [
-      "node",
+      "node"
     ],
     "allowJs": true,
     "strict": true,
@@ -46,9 +46,9 @@
     "./icons/**/*.vue",
     "docs/**/*.ts",
     "docs/**/*.vue",
-    "docs/**/*.md",
+    "docs/**/*.md"
   ],
   "vueCompilerOptions": {
-    "vitePressExtensions": [".md"],
-  },
+    "vitePressExtensions": [".md"]
+  }
 }

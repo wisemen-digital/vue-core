@@ -1,6 +1,6 @@
+import type { InjectionKey } from 'vue'
 import {
   inject,
-  type InjectionKey,
   provide,
 } from 'vue'
 
