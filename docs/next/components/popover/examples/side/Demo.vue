@@ -2,11 +2,10 @@
 import {
   VcButton,
   VcPopover,
+  VcPopoverProps
 } from '@wisemen/vue-core-components'
 
-import type { PopoverProps } from '../../../../../packages/components-next/dist/components/popover/popover.props'
-
-const sides: PopoverProps['popoverSide'][] = [
+const sides: VcPopoverProps['popoverSide'][] = [
   'top',
   'right',
   'bottom',
