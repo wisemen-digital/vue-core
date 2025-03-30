@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import {
-  AnimatePresence,
-  Motion,
-} from 'motion-v'
 import type { DateValue } from 'reka-ui'
 import {
   CalendarCell as RekaCalendarCell,
@@ -28,77 +24,56 @@ const props = defineProps<{
 const {
   classConfig,
   customClassConfig,
-  placeholderValue,
   style,
 } = useInjectDatePickerContext()
 </script>
 
 <template>
-  <div class="relative overflow-hidden">
-    <AnimatePresence mode="popLayout">
-      <Motion
-        :key="`${placeholderValue.getMonth()}${placeholderValue.getFullYear()}`"
-        :initial="{
-          opacity: 0,
-        }"
-        :animate="{
-          opacity: 1,
-        }"
-        :exit="{
-          opacity: 0,
-        }"
-        :transition="{
-          duration: 0.2,
-        }"
-      >
-        <div class="flex gap-xl">
-          <RekaCalendarGrid
-            v-for="month in props.grid"
-            :key="month.value.toString()"
-            class="w-full"
+  <div class="flex gap-xl">
+    <RekaCalendarGrid
+      v-for="month in props.grid"
+      :key="month.value.toString()"
+      class="w-full"
+    >
+      <RekaCalendarGridHead>
+        <RekaCalendarGridRow class="grid grid-cols-7">
+          <RekaCalendarHeadCell
+            v-for="day in props.weekDays"
+            :key="day"
+            :class="style.weekDayLabel({
+              class: mergeClasses(classConfig?.weekDayLabel, customClassConfig.weekDayLabel),
+            })"
           >
-            <RekaCalendarGridHead>
-              <RekaCalendarGridRow class="grid grid-cols-7">
-                <RekaCalendarHeadCell
-                  v-for="day in props.weekDays"
-                  :key="day"
-                  :class="style.weekDayLabel({
-                    class: mergeClasses(classConfig?.weekDayLabel, customClassConfig.weekDayLabel),
-                  })"
-                >
-                  {{ day }}
-                </RekaCalendarHeadCell>
-              </RekaCalendarGridRow>
-            </RekaCalendarGridHead>
+            {{ day }}
+          </RekaCalendarHeadCell>
+        </RekaCalendarGridRow>
+      </RekaCalendarGridHead>
 
-            <RekaCalendarGridBody class="flex flex-col gap-y-xs">
-              <RekaCalendarGridRow
-                v-for="weekDates in month.rows"
-                :key="weekDates.toString()"
-                class="grid grid-cols-7 items-center"
+      <RekaCalendarGridBody class="flex flex-col gap-y-xs">
+        <RekaCalendarGridRow
+          v-for="weekDates in month.rows"
+          :key="weekDates.toString()"
+          class="grid grid-cols-7 items-center"
+        >
+          <RekaCalendarCell
+            v-for="weekDate in weekDates"
+            :key="weekDate.toString()"
+            :date="weekDate"
+          >
+            <DatePickerDateProvider
+              :date="weekDate"
+              :month="month.value"
+            >
+              <slot
+                :date="dateValueToDate(weekDate)"
+                name="date"
               >
-                <RekaCalendarCell
-                  v-for="weekDate in weekDates"
-                  :key="weekDate.toString()"
-                  :date="weekDate"
-                >
-                  <DatePickerDateProvider
-                    :date="weekDate"
-                    :month="month.value"
-                  >
-                    <slot
-                      :date="dateValueToDate(weekDate)"
-                      name="date"
-                    >
-                      <DatePickerDate />
-                    </slot>
-                  </DatePickerDateProvider>
-                </RekaCalendarCell>
-              </RekaCalendarGridRow>
-            </RekaCalendarGridBody>
-          </RekaCalendarGrid>
-        </div>
-      </Motion>
-    </AnimatePresence>
+                <DatePickerDate />
+              </slot>
+            </DatePickerDateProvider>
+          </RekaCalendarCell>
+        </RekaCalendarGridRow>
+      </RekaCalendarGridBody>
+    </RekaCalendarGrid>
   </div>
 </template>
