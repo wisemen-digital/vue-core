@@ -161,15 +161,13 @@ export function useInfiniteQuery<TResData, TFilters>(
       const meta = infiniteQuery.data.value?.pages[0].meta ?? null
 
       if (meta !== null && 'next' in meta) {
-        const newVar: PaginatedData<TResData> = {
+        return {
           data,
           meta: {
             next: meta.next,
             total: data.length,
           },
         }
-
-        return newVar
       }
 
       return {
