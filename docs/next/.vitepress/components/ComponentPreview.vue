@@ -1,24 +1,122 @@
 <script setup lang="ts">
-import { 
-  VcThemeProvider, 
+import {
   VcConfigProvider,
   VcDialogContainer,
+  VcTabs,
+  VcTabsContent,
+  VcTabsItem,
+  VcThemeProvider,
 } from '@wisemen/vue-core-components'
+import { computed, ref } from 'vue'
+
+const props = defineProps<{
+  name: string
+  files?: string
+}>()
+
+type Tab = 'code' | 'preview'
+
+const parsedFiles = computed<string[]>(() => JSON.parse(decodeURIComponent(props.files ?? '')))
+
+const selectedTab = ref<Tab>('preview')
+const selectedFileTab = ref<string>('Demo.vue')
+
+const isDark = ref<boolean>(document.documentElement.classList.contains('dark'))
+
+const observer = new MutationObserver((mutations) => {
+  for (const mutation of mutations) {
+    if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+      const darkClass = document.documentElement.classList.contains('dark')
+
+      if (darkClass !== isDark.value) {
+        isDark.value = darkClass
+      }
+    }
+  }
+})
+
+observer.observe(document.documentElement, {
+  attributes: true,
+  attributeFilter: [
+    'class',
+  ],
+})
 </script>
 
 <template>
   <div class="relative mt-2xl">
-    <VcConfigProvider 
+    <VcConfigProvider
       locale="en-NL"
       teleport-target-selector="#teleport-target"
     >
-      <VcThemeProvider 
-        appearance="light" 
+      <VcThemeProvider
+        :appearance="isDark ? 'dark' : 'light'"
         class="vp-raw"
       >
-        <div class="vp-raw flex items-center justify-center p-20 border border-solid border-secondary rounded-xl bg-primary">
-          <slot />
-        </div>
+        <VcTabs
+          v-model="selectedTab"
+          :class-config="{
+            base: 'border-b border-secondary',
+          }"
+        >
+          <template #items>
+            <VcTabsItem value="preview">
+              Preview
+            </VcTabsItem>
+
+            <VcTabsItem value="code">
+              Code
+            </VcTabsItem>
+          </template>
+
+          <template #content>
+            <div class="mt-2xl">
+              <VcTabsContent value="preview">
+                <div class="vp-raw flex items-center justify-center p-20 border border-solid border-secondary rounded-xl bg-primary">
+                  <slot />
+                </div>
+              </VcTabsContent>
+
+              <VcTabsContent value="code">
+                <VcTabs
+                  v-model="selectedFileTab"
+                  variant="button-brand"
+                >
+                  <template
+                    v-if="parsedFiles.length > 1"
+                    #items
+                  >
+                    <VcTabsItem
+                      v-for="fileName of parsedFiles"
+                      :key="fileName"
+                      :value="fileName"
+                    >
+                      {{ fileName }}
+                    </VcTabsItem>
+                  </template>
+
+                  <template #content>
+                    <div
+                      :class="{
+                        'mt-2xl': parsedFiles.length > 1,
+                      }"
+                    >
+                      <VcTabsContent
+                        v-for="(fileName, fileIndex) of parsedFiles"
+                        :key="fileName"
+                        :value="fileName"
+                      >
+                        <div class="text-xs p-xl bg-secondary rounded-2xl overflow-auto max-h-100">
+                          <slot :name="fileIndex" />
+                        </div>
+                      </VcTabsContent>
+                    </div>
+                  </template>
+                </VcTabs>
+              </VcTabsContent>
+            </div>
+          </template>
+        </VcTabs>
 
         <div id="teleport-target" />
         <VcDialogContainer />

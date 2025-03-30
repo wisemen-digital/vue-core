@@ -1,9 +1,9 @@
 import './index.css'
 import '@wisemen/vue-core-components/style.css'
 
-import { createI18n } from 'vue-i18n'
+import ComponentPreview from '@docs/.vitepress/components/ComponentPreview.vue'
 import DefaultTheme from 'vitepress/theme'
-import ComponentPreview from '../components/ComponentPreview.vue'
+import { createI18n } from 'vue-i18n'
 
 export const i18nPlugin = createI18n({
   fallbackWarn: false,
@@ -17,8 +17,8 @@ export const i18nPlugin = createI18n({
       'component.select.search_input_placeholder': 'Search',
       'shared.close': 'Close',
       'shared.loading': 'Loading...',
-    }
-  }
+    },
+  },
 })
 
 const theme: typeof DefaultTheme = {

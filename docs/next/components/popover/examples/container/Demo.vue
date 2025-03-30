@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { 
-  VcButton, 
+import {
+  VcButton,
   VcPopover,
 } from '@wisemen/vue-core-components'
+import { ref } from 'vue'
 
 const popoverContainerElementRef = ref<HTMLElement | null>(null)
 </script>
@@ -11,9 +11,9 @@ const popoverContainerElementRef = ref<HTMLElement | null>(null)
 <template>
   <div class="relative">
     <VcPopover
+      :popover-container-element="popoverContainerElementRef"
       popover-side="bottom"
       popover-width="available-width"
-      :popover-container-element="popoverContainerElementRef"
     >
       <template #trigger>
         <VcButton variant="secondary">

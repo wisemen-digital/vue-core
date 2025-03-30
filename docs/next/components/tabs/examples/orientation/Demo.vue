@@ -1,17 +1,16 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-
+import type { VcTabsProps } from '@wisemen/vue-core-components'
 import {
   VcTabs,
-  VcTabsItem,
   VcTabsContent,
-  VcTabsProps,
+  VcTabsItem,
 } from '@wisemen/vue-core-components'
+import { ref } from 'vue'
 
 const selectedTab = ref<string>('profile')
 const orientations: VcTabsProps['orientation'][] = [
   'horizontal',
-  'vertical'
+  'vertical',
 ]
 </script>
 
@@ -20,8 +19,8 @@ const orientations: VcTabsProps['orientation'][] = [
     <VcTabs
       v-for="orientation of orientations"
       :key="orientation"
-      :orientation="orientation"
       v-model="selectedTab"
+      :orientation="orientation"
     >
       <template #items>
         <VcTabsItem value="profile">
@@ -40,15 +39,21 @@ const orientations: VcTabsProps['orientation'][] = [
       <template #content>
         <div class="mt-xl">
           <VcTabsContent value="profile">
-            <p class="text-sm font-semibold text-secondary">Profile</p>
+            <p class="text-sm font-semibold text-secondary">
+              Profile
+            </p>
           </VcTabsContent>
 
           <VcTabsContent value="settings">
-            <p class="text-sm font-semibold text-secondary">Settings</p>
+            <p class="text-sm font-semibold text-secondary">
+              Settings
+            </p>
           </VcTabsContent>
 
           <VcTabsContent value="billing">
-            <p class="text-sm font-semibold text-secondary">Billing</p>
+            <p class="text-sm font-semibold text-secondary">
+              Billing
+            </p>
           </VcTabsContent>
         </div>
       </template>

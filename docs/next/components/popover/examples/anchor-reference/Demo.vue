@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { 
-  VcButton, 
+import {
+  VcButton,
   VcPopover,
 } from '@wisemen/vue-core-components'
-import { ref } from 'vue';
+import { ref } from 'vue'
 
 const popoverAnchorRef = ref<HTMLElement | null>(null)
 </script>
