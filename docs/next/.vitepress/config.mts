@@ -1,10 +1,12 @@
+import { resolve } from 'node:path'
+
 import { defineConfig } from 'vitepress'
 
 import ComponentPreviewPlugin from './plugins/ComponentPreview'
 
-// @ts-expect-error
+// @ts-expect-error - Build fails
 if (typeof __VUE_PROD_DEVTOOLS__ === 'undefined') {
-  // @ts-expect-error
+  // @ts-expect-error - Build fails
   globalThis.__VUE_PROD_DEVTOOLS__ = false
 }
 
@@ -15,10 +17,7 @@ export default defineConfig({
   description: 'A modern, customizable, and accessible component library for Vue 3.',
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
-    nav: [
-      // { text: 'Home', link: '/' },
-      // { text: 'Examples', link: '/markdown-examples' }
-    ],
+    nav: [],
 
     sidebar: [
       {
@@ -59,6 +58,14 @@ export default defineConfig({
   markdown: {
     preConfig(md) {
       md.use(ComponentPreviewPlugin)
+    },
+  },
+  vite: {
+    resolve: {
+      alias: {
+        '@docs': resolve(__dirname, '../'),
+        '@': resolve(__dirname, '../../components/src'),
+      },
     },
   },
 })

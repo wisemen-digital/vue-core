@@ -30,6 +30,7 @@ function kebabCaseToCamelCase(str: string): string {
   return str.replace(/-([a-z])/g, (g) => g[1].toUpperCase()).replaceAll('/', '_')
 }
 
+// eslint-disable-next-line unicorn/no-anonymous-default-export
 export default function (md: MarkdownRenderer): void {
   md.core.ruler.after('inline', 'component-preview', (state) => {
     function insertComponentImport(importString: string): void {
