@@ -1,12 +1,12 @@
 import type { InfiniteData } from '@tanstack/vue-query'
 import { useInfiniteQuery as useTanstackInfiniteQuery } from '@tanstack/vue-query'
-import type { ComputedRef, MaybeRef } from 'vue'
-import { computed } from 'vue'
-
 import type {
   PaginatedData,
   PaginationOptions,
-} from '@/types/pagination.type'
+} from '@wisemen/vue-core'
+import type { ComputedRef, MaybeRef } from 'vue'
+import { computed } from 'vue'
+
 import type { QueryKeys } from '@/types/queryKeys.type'
 
 type NonOptionalKeys<T> = {
@@ -19,7 +19,7 @@ interface useInfiniteQueryOptions<TResData, TFilters> {
    * Pagination options to use in the query
    * @see UsePaginationReturnType
    */
-  paginationOptions: PaginationOptions<TFilters>
+  paginationOptions: ComputedRef<PaginationOptions<TFilters>>
   /**
    * Function that will be called when query is executed
    * @returns Promise with response data
@@ -110,21 +110,23 @@ export function useInfiniteQuery<TResData, TFilters>(
 
       return null
     },
-    initialPageParam: 'key' in options.paginationOptions.pagination
-      ? options.paginationOptions.pagination.key
-      : options.paginationOptions.pagination.offset,
+    initialPageParam: 'key' in options.paginationOptions.value.pagination
+      ? options.paginationOptions.value.pagination.key
+      : options.paginationOptions.value.pagination.offset,
     placeholderData: (data) => data,
     queryFn: async ({ pageParam }) => {
+      const pagination = options.paginationOptions.value.pagination
+
       return await options.queryFn({
-        ...options.paginationOptions,
-        pagination: 'key' in options.paginationOptions.pagination
+        ...options.paginationOptions.value,
+        pagination: 'key' in pagination
           ? {
               key: pageParam as unknown | null,
-              limit: options.paginationOptions.pagination.limit,
+              limit: pagination.limit,
               type: 'keyset',
             }
           : {
-              limit: options.paginationOptions.pagination.limit,
+              limit: pagination.limit,
               offset: pageParam as number,
               type: 'offset',
             },
@@ -159,15 +161,13 @@ export function useInfiniteQuery<TResData, TFilters>(
       const meta = infiniteQuery.data.value?.pages[0].meta ?? null
 
       if (meta !== null && 'next' in meta) {
-        const value: PaginatedData<TResData> = {
+        return {
           data,
           meta: {
             next: meta.next,
             total: data.length,
           },
         }
-
-        return value
       }
 
       return {
