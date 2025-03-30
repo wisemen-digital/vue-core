@@ -7,10 +7,8 @@ import { computed } from 'vue'
 
 import { useProvideTooltipContext } from '@/components/tooltip/tooltip.context'
 import type { TooltipProps } from '@/components/tooltip/tooltip.props'
-import {
-  type CreateTooltipStyle,
-  createTooltipStyle,
-} from '@/components/tooltip/tooltip.style'
+import type { CreateTooltipStyle } from '@/components/tooltip/tooltip.style'
+import { createTooltipStyle } from '@/components/tooltip/tooltip.style'
 import { useComponentClassConfig } from '@/customClassVariants'
 import { toComputedRefs } from '@/utils/props.util'
 

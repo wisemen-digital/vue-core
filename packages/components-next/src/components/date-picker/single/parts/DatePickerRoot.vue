@@ -10,10 +10,8 @@ import {
 } from '@/components/date-picker/shared/datePicker.util'
 import { useProvideDatePickerContext } from '@/components/date-picker/single/datePicker.context'
 import type { DatePickerProps } from '@/components/date-picker/single/datePicker.props'
-import {
-  type CreateDatePickerStyle,
-  createDatePickerStyle,
-} from '@/components/date-picker/single/datePicker.style'
+import type { CreateDatePickerStyle } from '@/components/date-picker/single/datePicker.style'
+import { createDatePickerStyle } from '@/components/date-picker/single/datePicker.style'
 import InteractableElement from '@/components/shared/InteractableElement.vue'
 import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
 import { useComponentClassConfig } from '@/customClassVariants'

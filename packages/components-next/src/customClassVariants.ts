@@ -1,6 +1,7 @@
 import { twMerge } from 'tailwind-merge'
 import type { VariantProps } from 'tailwind-variants'
-import { computed, type ComputedRef } from 'vue'
+import type { ComputedRef } from 'vue'
+import { computed } from 'vue'
 
 import type { createButtonStyle } from '@/components/button/default-button/button.style'
 import type { createIconButtonStyle } from '@/components/button/icon-button/iconButton.style'

@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import type { SelectItemSelectEvent } from 'reka-ui'
 import {
   ListboxItem as RekaListboxItem,
-  type SelectItemSelectEvent,
 } from 'reka-ui'
 import {
   onBeforeUnmount,

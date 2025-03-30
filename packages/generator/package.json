@@ -32,7 +32,6 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "release": "bumpp && npm publish",
-    "test": "vitest --run",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
