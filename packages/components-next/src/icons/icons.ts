@@ -8,6 +8,8 @@ export interface BaseIcons {
   chevronRight: Component
   chevronRightDouble: Component
   close: Component
+  eye: Component
+  eyeOff: Component
   plus: Component
   search: Component
   selectIconRight: Component
@@ -24,6 +26,8 @@ export const icons: BaseIcons = {
   chevronRight: import('@/icons/ChevronRightIcon.vue'),
   chevronRightDouble: import('@/icons/ChevronRightDoubleIcon.vue'),
   close: import('@/icons/CloseIcon.vue'),
+  eye: import('@/icons/EyeIcon.vue'),
+  eyeOff: import('@/icons/EyeOffIcon.vue'),
   plus: import('@/icons/PlusIcon.vue'),
   search: import('@/icons/SearchIcon.vue'),
   selectIconRight: import('@/icons/SelectIconRight.vue'),

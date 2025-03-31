@@ -55,6 +55,7 @@ export default defineConfig({
           { text: 'Checkbox', link: '/components/checkbox/checkbox' },
           { text: 'Checkbox Group', link: '/components/checkbox-group/checkbox-group' },
           { text: 'Radio Group', link: '/components/radio-group/radio-group' },
+          { text: 'Password Field', link: '/components/password-field/password-field' },
         ],
       },
     ],
