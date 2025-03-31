@@ -2,7 +2,6 @@
 import PopoverAnchor from '@/components/popover/parts/PopoverAnchor.vue'
 import PopoverArrow from '@/components/popover/parts/PopoverArrow.vue'
 import PopoverContent from '@/components/popover/parts/PopoverContent.vue'
-import PopoverInnerContent from '@/components/popover/parts/PopoverInnerContent.vue'
 import PopoverPortal from '@/components/popover/parts/PopoverPortal.vue'
 import PopoverRoot from '@/components/popover/parts/PopoverRoot.vue'
 import SelectPopoverContentTransition from '@/components/select/parts/SelectPopoverContentTransition.vue'
@@ -62,9 +61,7 @@ function onAutoFocusOnClose(event: Event): void {
     <PopoverPortal>
       <PopoverContent>
         <SelectPopoverContentTransition>
-          <PopoverInnerContent>
-            <slot name="content" />
-          </PopoverInnerContent>
+          <slot name="content" />
 
           <PopoverArrow />
         </SelectPopoverContentTransition>

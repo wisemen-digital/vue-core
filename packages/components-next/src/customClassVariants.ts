@@ -10,7 +10,7 @@ import type { createDatePickerStyle } from '@/components/date-picker/single/date
 import type { createDialogStyle } from '@/components/dialog/dialog.style'
 import type { createFormFieldStyle } from '@/components/form-field/formField.style'
 import type { createkeyboardKeyStyle } from '@/components/keyboard-key/keyboardKey.style'
-import type { createPopoverStyle } from '@/components/popover/style/popover.style'
+import type { createPopoverStyle } from '@/components/popover/popover.style'
 import type { createSelectStyle } from '@/components/select/style/select.style'
 import type { createTabsStyle } from '@/components/tabs/shared/tabs.style'
 import type { createTextFieldStyle } from '@/components/text-field/textField.style'

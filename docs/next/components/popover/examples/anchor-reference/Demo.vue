@@ -9,20 +9,22 @@ const popoverAnchorRef = ref<HTMLElement | null>(null)
 </script>
 
 <template>
-  <VcPopover :anchor-reference-element="popoverAnchorRef">
-    <template #trigger>
-      <VcButton variant="secondary">
-        Custom anchor reference
-      </VcButton>
-    </template>
+  <div class="relative">
+    <VcPopover :popover-anchor-reference-element="popoverAnchorRef">
+      <template #trigger>
+        <VcButton variant="secondary">
+          Custom anchor reference
+        </VcButton>
+      </template>
 
-    <template #content>
-      <div class="w-80 h-40" />
-    </template>
-  </VcPopover>
+      <template #content>
+        <div class="w-80 h-40" />
+      </template>
+    </VcPopover>
 
-  <div
-    ref="popoverAnchorRef"
-    class="absolute top-2 right-2 size-8 border border-dashed border-primary"
-  />
+    <div
+      ref="popoverAnchorRef"
+      class="absolute translate-x-20 top-2 right-2 size-8 border border-dashed border-primary"
+    />
+  </div>
 </template>
