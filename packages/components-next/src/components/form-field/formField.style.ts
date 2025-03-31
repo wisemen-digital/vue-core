@@ -33,7 +33,7 @@ export const createFormFieldStyle = tv({
       .build(),
     root: new StyleBuilder()
       .withBase('group/form-field')
-      .withGrid('data-[layout=horizontal]:grid data-[layout=horizontal]:grid-cols-[auto_auto] gap-x-md items-center')
+      .withGrid('data-[layout=horizontal]:grid data-[layout=horizontal]:grid-cols-[auto_auto] gap-x-md items-center justify-start')
       .build(),
   },
   variants: {
