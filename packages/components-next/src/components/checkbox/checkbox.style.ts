@@ -7,7 +7,7 @@ export const createCheckboxStyle = tv({
   slots: {
     indicator: new StyleBuilder()
       .withBase('block')
-      .withColor('text-primary-on-brand group-data-disabled/checkbox:text-disabled')
+      .withColor('text-primary-on-brand group-data-disabled/checkbox:text-fg-disabled-subtle')
       .withSize('size-3')
       .withZIndex('z-10')
       .build(),
