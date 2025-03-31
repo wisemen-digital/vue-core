@@ -13,13 +13,13 @@ export const createFormFieldStyle = tv({
       .withColor('text-error-primary')
       .withFontSize('text-sm')
       .withFontWeight('font-medium')
-      .withSpacing('group-data-[layout=vertical]/form-field:mt-sm')
+      .withSpacing('group-data-[layout=vertical]/form-field:mt-sm group-data-[layout=horizontal]/form-field:!mt-0')
       .build(),
     hint: new StyleBuilder()
       .withBase('inline-block')
       .withColor('text-tertiary')
       .withFontSize('text-sm')
-      .withSpacing('group-data-[layout=vertical]/form-field:mt-sm')
+      .withSpacing('group-data-[layout=vertical]/form-field:mt-sm group-data-[layout=horizontal]/form-field:!mt-0')
       .build(),
     label: new StyleBuilder()
       .withBase('inline-block')
@@ -29,7 +29,10 @@ export const createFormFieldStyle = tv({
       .build(),
     labelContainer: new StyleBuilder()
       .withBase('flex items-center justify-between')
-      .withSpacing('group-data-[layout=vertical]/form-field:mb-sm')
+      // Issue: When multiple nested groups have the same group name, the specificity of the styles is incorrect.
+      // This causes the styles of the first (parent) group to be applied to the nested groups
+      // instead of their intended styles. For now, we'll just use the ! flag to force the styles.
+      .withSpacing('group-data-[layout=vertical]/form-field:mb-sm group-data-[layout=horizontal]/form-field:!mb-0')
       .build(),
     root: new StyleBuilder()
       .withBase('group/form-field')

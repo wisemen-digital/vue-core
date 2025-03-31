@@ -53,6 +53,7 @@ export default defineConfig({
           { text: 'Keyboard Shortcut', link: '/components/keyboard-shortcut/keyboard-shortcut' },
           { text: 'Keyboard Shortcut Provider', link: '/components/keyboard-shortcut-provider/keyboard-shortcut-provider' },
           { text: 'Checkbox', link: '/components/checkbox/checkbox' },
+          { text: 'Checkbox Group', link: '/components/checkbox-group/checkbox-group' },
         ],
       },
     ],
