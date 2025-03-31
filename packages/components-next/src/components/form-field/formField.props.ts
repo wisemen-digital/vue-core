@@ -10,5 +10,12 @@ export interface FormFieldProps extends FormElement, CustomizableElement<'formFi
    * This is typically used to link the label to the corresponding input element.
    */
   for: string
+  /**
+   *
+   */
+  layout?: 'horizontal' | 'vertical'
+  /**
+   *
+   */
   variant?: GetComponentPropCustomValues<'formField', 'variant'> | null
 }
