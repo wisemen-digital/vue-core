@@ -4,8 +4,8 @@ import { computed } from 'vue'
 
 import { useProvidePopoverContext } from '@/components/popover/popover.context'
 import type { PopoverProps } from '@/components/popover/popover.props'
-import type { CreatePopoverStyle } from '@/components/popover/style/popover.style'
-import { createPopoverStyle } from '@/components/popover/style/popover.style'
+import type { CreatePopoverStyle } from '@/components/popover/popover.style'
+import { createPopoverStyle } from '@/components/popover/popover.style'
 import { useComponentClassConfig } from '@/customClassVariants'
 import { toComputedRefs } from '@/utils/props.util'
 

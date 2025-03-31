@@ -3,7 +3,7 @@ import type {
 } from 'vue'
 
 import type { PopoverProps } from '@/components/popover/popover.props'
-import type { CreatePopoverStyle } from '@/components/popover/style/popover.style'
+import type { CreatePopoverStyle } from '@/components/popover/popover.style'
 import { useContext } from '@/composables/context.composable'
 import type { ClassConfig } from '@/customClassVariants'
 import type { PropsToComputed } from '@/utils/props.util'
