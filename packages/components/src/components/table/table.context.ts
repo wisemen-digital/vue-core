@@ -22,7 +22,7 @@ interface TableContext {
   data: ComputedRef<PaginatedData<unknown> | null>
   expandedRowContent: ComputedRef<((row: unknown) => VNode) | null>
   gridColsStyle: ComputedRef<string>
-  pagination: ComputedRef<Pagination<unknown>>
+  pagination: ComputedRef<Pagination<never>>
   rowClass: ComputedRef<((row: unknown, rowIndex: number) => string) | null>
 }
 
