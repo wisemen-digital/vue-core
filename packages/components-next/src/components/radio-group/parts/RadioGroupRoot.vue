@@ -28,6 +28,7 @@ const modelValue = defineModel<AcceptableValue>({
   <PrimitiveElement
     :id="props.id"
     :test-id="props.testId"
+    :aria-invalid="props.errors.length > 0"
   >
     <InteractableElement :is-disabled="props.isDisabled">
       <RekaRadioGroupRoot v-model="modelValue">

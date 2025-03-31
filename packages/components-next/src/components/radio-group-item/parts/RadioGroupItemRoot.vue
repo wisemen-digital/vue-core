@@ -59,6 +59,8 @@ useProvideRadioGroupItemContext({
       :class="radioGroupItemStyle.root({
         class: mergeClasses(customClassConfig.root, props.classConfig?.root),
       })"
+      :aria-invalid="errors.length > 0"
+      :data-invalid="(errors.length > 0 && props.isTouched) || undefined"
     >
       <RekaRadioGroupItem
         :value="props.value"
