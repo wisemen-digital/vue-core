@@ -6,13 +6,13 @@ import { useInfiniteQuery } from '@wisemen/vue-core-query'
 import type { ComputedRef } from 'vue'
 
 import type { <%= pascalCase %>Index } from '@/models/<%= kebabCase %>/index/<%= camelCase %>Index.model'
-import type { <%= pascalCase %>IndexFilters } from '@/models/<%= kebabCase %>/filters/<%= camelCase %>IndexFilters.model'
+import type { <%= pascalCase %>IndexPagination } from '@/models/<%= kebabCase %>/pagination/<%= camelCase %>IndexPagination.model'
 import { <%= pascalCase %>Service } from '@/modules/<%= kebabCase %>/api/services/<%= camelCase %>.service'
 
 export function use<%= pascalCase %>IndexInfiniteQuery(
-  paginationOptions: ComputedRef<PaginationOptions<<%= pascalCase %>IndexFilters>>,
+  paginationOptions: ComputedRef<PaginationOptions<<%= pascalCase %>IndexPagination>>,
     ): UseInfiniteQueryReturnType<<%= pascalCase %>Index> {
-    return useInfiniteQuery<<%= pascalCase %>Index, <%= pascalCase %>IndexFilters>({
+    return useInfiniteQuery<<%= pascalCase %>Index, <%= pascalCase %>IndexPagination>({
       paginationOptions,
       queryFn: (options) => {
         return <%= pascalCase %>Service.getIndex(options)

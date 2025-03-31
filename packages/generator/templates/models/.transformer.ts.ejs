@@ -3,8 +3,8 @@ import type { <%= pascalCase %>IndexDto } from '@/models/<%= kebabCase %>/index/
 import type { <%= pascalCase %>DetailDto } from '@/models/<%= kebabCase %>/detail/<%= camelCase %>DetailDto.model'
 import type { <%= pascalCase %>Index } from '@/models/<%= kebabCase %>/index/<%= camelCase %>Index.model'
 import type { <%= pascalCase %>Detail } from '@/models/<%= kebabCase %>/detail/<%= camelCase %>Detail.model'
-import type { <%= pascalCase %>IndexFiltersDto } from '@/models/<%= kebabCase %>/filters/<%= camelCase %>IndexFiltersDto.model'
-import type { <%= pascalCase %>IndexFilters } from '@/models/<%= kebabCase %>/filters/<%= camelCase %>IndexFilters.model'
+import type { <%= pascalCase %>IndexPaginationDto } from '@/models/<%= kebabCase %>/pagination/<%= camelCase %>IndexPaginationDto.model'
+import type { <%= pascalCase %>IndexPagination } from '@/models/<%= kebabCase %>/pagination/<%= camelCase %>IndexPagination.model'
 import type { <%= pascalCase %>CreateDto } from '@/models/<%= kebabCase %>/create/<%= camelCase %>CreateDto.model'
 import type { <%= pascalCase %>CreateForm } from '@/models/<%= kebabCase %>/create/<%= camelCase %>CreateForm.model'
 import type { <%= pascalCase %>UpdateDto } from '@/models/<%= kebabCase %>/update/<%= camelCase %>UpdateDto.model'
@@ -26,9 +26,9 @@ export class <%= pascalCase %>DetailTransformer {
   }
 }
 
-export class <%= pascalCase %>IndexFiltersTransformer {
-  static toDto(filters?: <%= pascalCase %>IndexFilters): <%= pascalCase %>IndexFiltersDto | undefined {
-    return filters
+export class <%= pascalCase %>IndexPaginationTransformer {
+  static toDto(pagination?: <%= pascalCase %>IndexPagination): <%= pascalCase %>IndexPaginationDto | undefined {
+    return pagination
   }
 }
 

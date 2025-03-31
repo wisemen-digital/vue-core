@@ -6,10 +6,10 @@ import { PaginationParamsBuilder } from '@wisemen/vue-core'
 
 import type { <%= pascalCase %>Detail } from '@/models/<%= kebabCase %>/detail/<%= camelCase %>Detail.model'
 import type { <%= pascalCase %>Index } from '@/models/<%= kebabCase %>/index/<%= camelCase %>Index.model'
-import type { <%= pascalCase %>IndexFilters } from '@/models/<%= kebabCase %>/filters/<%= camelCase %>IndexFilters.model'
+import type { <%= pascalCase %>IndexPagination } from '@/models/<%= kebabCase %>/pagination/<%= camelCase %>IndexPagination.model'
 import {
 <%= pascalCase %>DetailTransformer,
-<%= pascalCase %>IndexFiltersTransformer,
+<%= pascalCase %>IndexPaginationTransformer,
 <%= pascalCase %>IndexTransformer,
 <%= pascalCase %>CreateTransformer,
 <%= pascalCase %>UpdateTransformer,
@@ -23,17 +23,17 @@ import type { <%= pascalCase %>CreateDto } from '@/models/<%= kebabCase %>/creat
 
 export class <%= pascalCase %>Service {
   static async getIndex(
-    paginationOptions: PaginationOptions<<%= pascalCase %>IndexFilters>
+    paginationOptions: PaginationOptions<<%= pascalCase %>IndexPagination>
   ): Promise<PaginatedData<<%= pascalCase %>Index>> {
-    const query = new PaginationParamsBuilder<<%= pascalCase %>IndexFilters>(paginationOptions)
-      .build(<%= pascalCase %>IndexFiltersTransformer.toDto)
+    const query = new PaginationParamsBuilder<<%= pascalCase %>IndexPagination>(paginationOptions)
+      .build(<%= pascalCase %>IndexPaginationTransformer.toDto)
 
       const response = await REPLACE_ME({ 
       query,
       })
 
     return {
-      data: response.data.items.map(<%= pascalCase %>IndexTransformer.fromDto),
+      data: response.data.items.map(<%= pascalCase %>IndexPagination.fromDto),
       meta: response.data.meta,
     }
   }
