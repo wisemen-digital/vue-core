@@ -85,6 +85,7 @@ export default defineConfig({
             { text: 'Checkbox', link: '/packages/components-next/components/checkbox/checkbox' },
             { text: 'Checkbox Group', link: '/packages/components-next/components/checkbox-group/checkbox-group' },
             { text: 'Password Field', link: '/packages/components-next/components/password-field/password-field' },
+            { text: 'Radio Group', link: '/packages/components-next/components/radio-group/radio-group' },
           ],
         },
       ],
