@@ -1,6 +1,7 @@
 import {
   getCurrentInstance,
   onBeforeUnmount,
+  onMounted,
 } from 'vue'
 
 import type {
@@ -34,7 +35,7 @@ export function useKeyboardShortcut(
 
   const {
     isDisabled,
-    element = document,
+    element = typeof window !== 'undefined' ? document : null, // Ensure element is only assigned in client-side
     keys,
     onTrigger,
   } = options
@@ -53,15 +54,12 @@ export function useKeyboardShortcut(
     if (e.shiftKey && e.key !== 'Shift') {
       pressedKeys.push('shift')
     }
-
     if (e.ctrlKey && e.key !== 'Control') {
       pressedKeys.push('ctrl')
     }
-
     if (e.altKey && e.key !== 'Alt') {
       pressedKeys.push('alt')
     }
-
     if (e.metaKey && e.key !== 'Meta') {
       pressedKeys.push('meta')
     }
@@ -74,6 +72,10 @@ export function useKeyboardShortcut(
   }
 
   function isInputFocused(): boolean {
+    if (typeof document === 'undefined') {
+      return false
+    }
+
     return document.activeElement instanceof HTMLInputElement
       || document.activeElement instanceof HTMLTextAreaElement
       || document.activeElement?.attributes.getNamedItem('contenteditable')?.value !== undefined
@@ -90,11 +92,7 @@ export function useKeyboardShortcut(
         ...pressedKeys,
       ]
 
-      const modifierIsPressed = pressedKeys.some(
-        (key) => key === 'ctrl' || key === 'shift' || key === 'alt' || key === 'meta',
-      )
-
-      if (modifierIsPressed) {
+      if (pressedKeys.some((key) => isModifierKey(key))) {
         return false
       }
 
@@ -108,26 +106,18 @@ export function useKeyboardShortcut(
   }
 
   function handleKeyDown(event: Event): void {
-    if (isDisabled?.value === true) {
-      return
-    }
-
-    if (shortcutMode === 'sequence' && isInputFocused()) {
+    if (isDisabled?.value === true || (shortcutMode === 'sequence' && isInputFocused())) {
       return
     }
 
     const keyboardEvent = event as KeyboardEvent
-
     const pressedKeys = getPressedKeys(keyboardEvent)
-    const isActive = isShortcutActive(pressedKeys)
 
-    if (isActive) {
+    if (isShortcutActive(pressedKeys)) {
       onTrigger(keyboardEvent)
     }
 
-    pressedKeys.forEach((key) => {
-      previouslyPressedKeys.push(key)
-    })
+    previouslyPressedKeys.push(...pressedKeys)
 
     setTimeout(() => {
       previouslyPressedKeys.splice(0, pressedKeys.length)
@@ -135,10 +125,16 @@ export function useKeyboardShortcut(
   }
 
   function unbind(): void {
-    element.removeEventListener('keydown', handleKeyDown)
+    if (element !== null) {
+      element.removeEventListener('keydown', handleKeyDown)
+    }
   }
 
-  element.addEventListener('keydown', handleKeyDown)
+  onMounted(() => {
+    if (element !== null) {
+      element.addEventListener('keydown', handleKeyDown)
+    }
+  })
 
   if (currentInstance !== null) {
     onBeforeUnmount(() => {
