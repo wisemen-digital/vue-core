@@ -10,6 +10,7 @@ export interface BaseIcons {
   close: Component
   eye: Component
   eyeOff: Component
+  minus: Component
   plus: Component
   search: Component
   selectIconRight: Component
@@ -28,6 +29,7 @@ export const icons: BaseIcons = {
   close: import('@/icons/CloseIcon.vue'),
   eye: import('@/icons/EyeIcon.vue'),
   eyeOff: import('@/icons/EyeOffIcon.vue'),
+  minus: import('@/icons/MinusIcon.vue'),
   plus: import('@/icons/PlusIcon.vue'),
   search: import('@/icons/SearchIcon.vue'),
   selectIconRight: import('@/icons/SelectIconRight.vue'),
