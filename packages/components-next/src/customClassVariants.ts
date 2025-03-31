@@ -9,6 +9,7 @@ import type { createRouterLinkButtonStyle } from '@/components/button/router-lin
 import type { createDatePickerStyle } from '@/components/date-picker/single/datePicker.style'
 import type { createDialogStyle } from '@/components/dialog/dialog.style'
 import type { createFormFieldStyle } from '@/components/form-field/formField.style'
+import type { createkeyboardKeyStyle } from '@/components/keyboard-key/keyboardKey.style'
 import type { createPopoverStyle } from '@/components/popover/popover.style'
 import type { createSelectStyle } from '@/components/select/style/select.style'
 import type { createTabsStyle } from '@/components/tabs/shared/tabs.style'
@@ -23,6 +24,7 @@ export interface Components {
   dialog: typeof createDialogStyle
   formField: typeof createFormFieldStyle
   iconButton: typeof createIconButtonStyle
+  keyboardKey: typeof createkeyboardKeyStyle
   popover: typeof createPopoverStyle
   routerLinkButton: typeof createRouterLinkButtonStyle
   select: typeof createSelectStyle

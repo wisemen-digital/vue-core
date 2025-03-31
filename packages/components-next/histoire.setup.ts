@@ -12,6 +12,7 @@ export const setupVue3 = defineSetupVue3(({ addWrapper, app }) => {
     messages: {
       'en-NL': {
         'component.button.loading_label': 'Loading...',
+        'component.keyboard_shortcut.then': 'then',
         'component.select.empty_text': 'No results found for "{searchTerm}"',
         'component.select.remove_value': 'Remove value',
         'component.select.search_input_placeholder': 'Search',
