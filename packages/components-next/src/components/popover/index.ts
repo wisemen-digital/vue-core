@@ -3,7 +3,6 @@ export { default as VcPopoverArrow } from '@/components/popover/parts/PopoverArr
 export { default as VcPopoverCloseButton } from '@/components/popover/parts/PopoverCloseButton.vue'
 export { default as VcPopoverContent } from '@/components/popover/parts/PopoverContent.vue'
 export { default as VcPopoverContentTransition } from '@/components/popover/parts/PopoverContentTransition.vue'
-export { default as VcPopoverInnerContent } from '@/components/popover/parts/PopoverInnerContent.vue'
 export { default as VcPopoverPortal } from '@/components/popover/parts/PopoverPortal.vue'
 export { default as VcPopoverRoot } from '@/components/popover/parts/PopoverRoot.vue'
 export { default as VcPopoverTrigger } from '@/components/popover/parts/PopoverTrigger.vue'

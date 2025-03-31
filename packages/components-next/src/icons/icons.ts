@@ -11,6 +11,8 @@ export interface BaseIcons {
   plus: Component
   search: Component
   selectIconRight: Component
+  stars: Component
+  translate: Component
 }
 
 export interface Icons extends BaseIcons {}
@@ -25,6 +27,8 @@ export const icons: BaseIcons = {
   plus: import('@/icons/PlusIcon.vue'),
   search: import('@/icons/SearchIcon.vue'),
   selectIconRight: import('@/icons/SelectIconRight.vue'),
+  stars: import('@/icons/StarsIcon.vue'),
+  translate: import('@/icons/TranslateIcon.vue'),
 }
 
 export function extendIcons(customIcons: Omit<Icons, keyof BaseIcons>): void {
