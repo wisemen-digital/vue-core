@@ -39,7 +39,7 @@ const {
 </script>
 
 <template>
-  <AnimatePresence>
+  <AnimatePresence :initial="false">
     <RekaCheckboxIndicator
       :class="style.indicator({
         class: mergeClasses(customClassConfig.indicator, classConfig?.indicator),
