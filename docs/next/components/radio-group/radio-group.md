@@ -8,6 +8,8 @@ This component is build on top of the [Form Field](/components/form-field/form-f
 
 ## Anatomy
 
+### Radio Group
+
 ```vue
 <script setup lang="ts">
 import {
@@ -20,8 +22,31 @@ import {
 <template>
   <FormField>
     <RadioGroupRoot>
-      <RadioGroupItem />
+      <slot />
     </RadioGroupRoot>
+  </FormField>
+</template>
+```
+
+### Radio Group Item
+
+```vue
+<script setup lang="ts">
+import {
+  FormField,
+  RadioGroupItemRoot,
+  RadioGroupItemIndicator,
+  RadioGroupItemIndicatorTransition,
+} from '@wisemen/vue-core-components'
+</script>
+
+<template>
+  <FormField>
+    <RadioGroupItemRoot>
+      <RadioGroupItemIndicator>
+        <RadioGroupItemIndicatorTransition />
+      </RadioGroupItemIndicator>
+    </RadioGroupItemRoot>
   </FormField>
 </template>
 ```
