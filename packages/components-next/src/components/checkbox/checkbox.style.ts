@@ -9,7 +9,6 @@ export const createCheckboxStyle = tv({
       .withBase('block')
       .withColor('text-primary-on-brand group-data-disabled/checkbox:text-fg-disabled-subtle')
       .withSize('size-3')
-      .withZIndex('z-10')
       .build(),
     root: new StyleBuilder()
       .withBase('group/checkbox relative overflow-hidden isolate outline-none')
