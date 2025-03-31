@@ -13,6 +13,7 @@ import type { createDropdownMenuStyle } from '@/components/dropdown-menu/dropdow
 import type { createFormFieldStyle } from '@/components/form-field/formField.style'
 import type { createkeyboardKeyStyle } from '@/components/keyboard-key/keyboardKey.style'
 import type { createPopoverStyle } from '@/components/popover/popover.style'
+import type { createRadioGroupItemStyle } from '@/components/radio-group-item/radioGroupItem.style'
 import type { createSelectStyle } from '@/components/select/style/select.style'
 import type { createTabsStyle } from '@/components/tabs/shared/tabs.style'
 import type { createTextFieldStyle } from '@/components/text-field/textField.style'
@@ -30,6 +31,7 @@ export interface Components {
   iconButton: typeof createIconButtonStyle
   keyboardKey: typeof createkeyboardKeyStyle
   popover: typeof createPopoverStyle
+  radioGroupItem: typeof createRadioGroupItemStyle
   routerLinkButton: typeof createRouterLinkButtonStyle
   select: typeof createSelectStyle
   tabs: typeof createTabsStyle
