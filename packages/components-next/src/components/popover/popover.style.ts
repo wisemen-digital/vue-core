@@ -16,9 +16,6 @@ export const createPopoverStyle = tv({
       .build(),
     content: new StyleBuilder()
       .withBase('data-[content-width=anchor-width]:w-(--reka-popover-trigger-width) data-[content-width=available-width]:w-(--reka-popover-content-available-width)')
-      .withZIndex('z-40')
-      .build(),
-    innerContent: new StyleBuilder()
       .withBackgroundColor('bg-primary')
       .withBorder('border border-solid border-secondary')
       .withBorderRadius('rounded-lg')
@@ -26,6 +23,7 @@ export const createPopoverStyle = tv({
       .withSize('size-full')
       .withBorderRadius('rounded-lg')
       .withShadow('shadow-lg')
+      .withZIndex('z-40')
       .build(),
   },
   variants: {
