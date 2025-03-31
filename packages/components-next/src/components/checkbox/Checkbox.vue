@@ -12,7 +12,7 @@ const props = defineProps<CheckboxProps>()
 const emit = defineEmits<CheckboxEmits>()
 
 const modelValue = defineModel<boolean>({
-  required: true,
+  required: false,
 })
 
 const id = props.id ?? useId()

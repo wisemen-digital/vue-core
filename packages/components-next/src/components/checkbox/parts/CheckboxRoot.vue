@@ -35,7 +35,7 @@ const props = withDefaults(defineProps<CheckboxProps>(), {
 const emit = defineEmits<CheckboxEmits>()
 
 const modelValue = defineModel<boolean>({
-  required: true,
+  required: false,
 })
 
 const delegatedModel = computed<boolean | 'indeterminate' | null>({
