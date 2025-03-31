@@ -16,7 +16,7 @@ export default defineConfig({
   base: '/vue-core',
   title: 'Vue Core',
   rewrites: {
-    'index.md': 'packages/main/index.md',
+    './index.md': 'packages/main/index.md',
   },
   description: 'The central repository of Wisemen for all internal Vue packages.',
   themeConfig: {

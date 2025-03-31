@@ -69,7 +69,6 @@
     "clsx": "2.1.1",
     "cpx": "1.5.0",
     "eslint": "9.4",
-    "i18n-iso-countries": "7.11.2",
     "jsdom": "24.1.0",
     "libphonenumber-js": "1.11.3",
     "maska": "3.0.0",

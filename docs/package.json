@@ -9,6 +9,7 @@
   "main": "index.js",
   "scripts": {
     "docs:dev": "vitepress dev",
+    "docs:build:debug": "DEBUG=\"vite:*\" vitepress build",
     "docs:build": "vitepress build",
     "docs:preview": "vitepress preview",
     "docs:gen": "vue-tsc --noEmit --project tsconfig.autogen.json && tsx scripts/autogen.ts",
