@@ -63,5 +63,5 @@ export const components = [
     sourceFolder: 'textarea/Textarea.vue',
     targetFolder: 'textarea',
     componentName: 'Textarea',
-  }
+  },
 ]
