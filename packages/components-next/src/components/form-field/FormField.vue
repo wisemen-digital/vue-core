@@ -6,25 +6,49 @@ import FormFieldHint from '@/components/form-field/parts/FormFieldHint.vue'
 import FormFieldLabel from '@/components/form-field/parts/FormFieldLabel.vue'
 import FormFieldRoot from '@/components/form-field/parts/FormFieldRoot.vue'
 
-const props = withDefaults(defineProps<FormFieldProps>(), {})
+const props = withDefaults(defineProps<FormFieldProps>(), {
+  layout: 'vertical',
+})
 
 defineSlots<FormFieldSlots>()
 </script>
 
 <template>
   <FormFieldRoot v-bind="props">
-    <slot name="label">
-      <FormFieldLabel />
-    </slot>
+    <template v-if="props.layout === 'vertical'">
+      <slot name="label">
+        <FormFieldLabel />
+      </slot>
 
-    <slot />
+      <slot />
 
-    <slot name="error">
-      <FormFieldError />
-    </slot>
+      <slot name="error">
+        <FormFieldError />
+      </slot>
 
-    <slot name="hint">
-      <FormFieldHint />
-    </slot>
+      <slot name="hint">
+        <FormFieldHint />
+      </slot>
+    </template>
+
+    <template v-if="props.layout === 'horizontal'">
+      <slot />
+
+      <slot name="label">
+        <FormFieldLabel />
+      </slot>
+
+      <span />
+
+      <div>
+        <slot name="error">
+          <FormFieldError />
+        </slot>
+
+        <slot name="hint">
+          <FormFieldHint />
+        </slot>
+      </div>
+    </template>
   </FormFieldRoot>
 </template>

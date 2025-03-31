@@ -5,7 +5,10 @@ import { useProvideFormFieldContext } from '@/components/form-field/formField.co
 import type { FormFieldProps } from '@/components/form-field/formField.props'
 import type { CreateFormFieldStyle } from '@/components/form-field/formField.style'
 import { createFormFieldStyle } from '@/components/form-field/formField.style'
-import { useComponentClassConfig } from '@/customClassVariants'
+import {
+  mergeClasses,
+  useComponentClassConfig,
+} from '@/customClassVariants'
 import { toComputedRefs } from '@/utils/props.util'
 
 const props = withDefaults(defineProps<FormFieldProps>(), {
@@ -18,6 +21,7 @@ const props = withDefaults(defineProps<FormFieldProps>(), {
   errors: () => [],
   hint: null,
   label: null,
+  layout: 'vertical',
   variant: null,
 })
 
@@ -37,7 +41,12 @@ useProvideFormFieldContext({
 </script>
 
 <template>
-  <div>
+  <div
+    :data-layout="props.layout"
+    :class="formFieldStyle.root({
+      class: mergeClasses(customClassConfig.root, props.classConfig?.root),
+    })"
+  >
     <slot />
   </div>
 </template>

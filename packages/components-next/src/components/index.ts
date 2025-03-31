@@ -1,5 +1,6 @@
 export * from '@/components/autocomplete'
 export * from '@/components/button'
+export * from '@/components/checkbox'
 export * from '@/components/config-provider'
 export * from '@/components/date-picker'
 export * from '@/components/dialog'
