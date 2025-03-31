@@ -2,7 +2,7 @@ import type { ComputedRef, Ref } from 'vue'
 
 import type { TextareaProps } from '@/components/textarea/textarea.props'
 import type { CreateTextareaStyle } from '@/components/textarea/textarea.style'
-import { useContext } from '@/composables/context.composable'
+import { useContext } from '@/composables/context/context.composable'
 import type { ClassConfig } from '@/customClassVariants'
 import type { PropsToComputed } from '@/utils/props.util'
 
