@@ -36,7 +36,6 @@ import {
   PopoverPortal,
   PopoverContent,
   PopoverContentTransition,
-  PopoverInnerContent,
   PopoverArrow,
 } from '@wisemen/vue-core-components'
 </script>
@@ -54,9 +53,7 @@ import {
     <PopoverPortal>
       <PopoverContent>
         <PopoverContentTransition>
-          <PopoverInnerContent>
-            <slot name="content" />
-          </PopoverInnerContent>
+          <slot name="content" />
 
           <PopoverArrow />
         </PopoverContentTransition>

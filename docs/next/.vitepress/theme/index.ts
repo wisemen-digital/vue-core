@@ -17,6 +17,7 @@ export const i18nPlugin = createI18n({
       'component.select.search_input_placeholder': 'Search',
       'shared.close': 'Close',
       'shared.loading': 'Loading...',
+      'component.keyboard_shortcut.then': 'then',
     },
   },
 })
