@@ -13,9 +13,9 @@ import { useInjectConfigContext } from '@/components/config-provider/config.cont
 import type { Grid } from '@/components/date-picker/shared/datePicker.type'
 import { getMonthName } from '@/components/date-picker/shared/datePicker.util'
 import { useInjectDatePickerContext } from '@/components/date-picker/single/datePicker.context'
+import NumberField from '@/components/number-field/NumberField.vue'
 import SelectItem from '@/components/select/parts/SelectItem.vue'
 import Select from '@/components/select/Select.vue'
-import TextField from '@/components/text-field/TextField.vue'
 import { mergeClasses } from '@/customClassVariants'
 
 const props = defineProps<{
@@ -132,14 +132,17 @@ const yearValue = computed<number>({
             </SelectItem>
           </Select>
 
-          <TextField
+          <NumberField
+            v-model="yearValue"
             :class-config="{
               root: 'h-8 shadow-none border-none !ring-0 hover:bg-primary-hover focus-within:bg-primary-hover',
               input: 'font-semibold px-sm',
             }"
-            :model-value="`${yearValue}`"
+            :format-options="{
+              useGrouping: false,
+            }"
+            :hide-controls="true"
             class="w-12 shrink-0"
-            @blur="(event) => yearValue = Number.parseInt((event.target as HTMLInputElement).value)"
           />
         </div>
       </RekaCalendarHeading>
