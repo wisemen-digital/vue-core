@@ -18,12 +18,16 @@
     "dev": "turbo run dev",
     "test": "pnpm run -r test",
     "type-check": "pnpm run -r type-check",
-    "precommit": "pnpm run -r lint --fix && pnpm run -r type-check && pnpm run -r test && pnpm run -r docs:gen"
+    "precommit": "pnpm run -r lint --fix && pnpm run -r type-check && pnpm run -r test && pnpm run -r docs:gen",
+    "prepare": "husky"
   },
   "devDependencies": {
-    "turbo": "2.4.4",
+    "@commitlint/cli": "^19.8.0",
+    "@commitlint/config-conventional": "^19.8.0",
+    "husky": "^9.1.7",
     "radix-vue": "1.9.9",
     "rimraf": "6.0.1",
+    "turbo": "2.4.4",
     "vitest": "3.0.9"
   }
 }

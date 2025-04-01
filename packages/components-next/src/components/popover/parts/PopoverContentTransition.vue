@@ -65,7 +65,23 @@ function transform(side: PopperSide): { x: number, y: number } {
       type: 'spring',
       bounce: 0.2,
     }"
-    class="data-[side=bottom]:origin-top data-[side=top]:origin-bottom data-[side=left]:origin-right data-[side=right]:origin-left"
+    class="
+      data-[side=bottom]:data-[align=start]:origin-top-left
+      data-[side=bottom]:data-[align=center]:origin-top
+      data-[side=bottom]:data-[align=end]:origin-top-right
+
+      data-[side=top]:data-[align=start]:origin-bottom-left
+      data-[side=top]:data-[align=center]:origin-bottom
+      data-[side=top]:data-[align=end]:origin-bottom-right
+
+      data-[side=left]:data-[align=start]:origin-top-right
+      data-[side=left]:data-[align=center]:origin-right
+      data-[side=left]:data-[align=end]:origin-bottom-right
+
+      data-[side=right]:data-[align=start]:origin-top-left
+      data-[side=right]:data-[align=center]:origin-left
+      data-[side=right]:data-[align=end]:origin-bottom-left
+    "
   >
     <slot />
   </Motion>
