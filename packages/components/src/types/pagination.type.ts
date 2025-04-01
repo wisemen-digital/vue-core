@@ -7,7 +7,7 @@ import type { SelectItem } from '@/types/select.type'
 
 export type PaginationSortOrder = 'asc' | 'desc'
 
-export interface PaginationSort<TSortKey extends string> {
+export interface PaginationSort<TSortKey extends string | undefined> {
   key: `${TSortKey}`
   order: PaginationSortOrder
 }
@@ -111,12 +111,19 @@ export interface PaginatedData<TSchema> {
   }
 }
 
-// Pagination composable types
-
-export interface BasePagination {
-  filter: Record<string, unknown>
-  sort: string
+export interface BasePagination<TSortAndFilter extends {
+  filter: Record<string, unknown> | undefined
+  sort: string | undefined
+} = {
+  filter: Record<string, unknown> | undefined
+  sort: string | undefined
+},
+> {
+  filter: TSortAndFilter['filter']
+  sort: TSortAndFilter['sort']
 }
+
+// Pagination composable types
 
 export interface UsePaginationProps<TPagination extends BasePagination> {
   /**
