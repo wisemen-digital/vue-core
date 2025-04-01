@@ -85,6 +85,8 @@ useProvideCheckboxContext({
   >
     <InteractableElement
       :is-disabled="isDisabled"
+      :data-invalid="(errors.length > 0 && props.isTouched) || undefined"
+      :aria-invalid="errors.length > 0"
       :class="checkboxStyle.root({
         class: mergeClasses(customClassConfig.root, props.classConfig?.root),
       })"

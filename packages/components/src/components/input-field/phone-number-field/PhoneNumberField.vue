@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { useElementSize } from '@vueuse/core'
-import i18nCountries from 'i18n-iso-countries'
-import i18nEn from 'i18n-iso-countries/langs/en.json'
 import type { CountryCode } from 'libphonenumber-js'
 import {
   AsYouType,
@@ -61,8 +59,6 @@ defineSlots<{
    */
   label: ({ label }: { label: string | null }) => void
 }>()
-
-i18nCountries.registerLocale(i18nEn)
 
 const model = defineModel<string | null>({
   required: true,
@@ -160,7 +156,7 @@ function getCountryFlagUrl(countryCode: CountryCode): string | null {
 }
 
 function getCountryName(countryCode: CountryCode): string | null {
-  return i18nCountries.getName(countryCode, globalConfigContext.locale.value, { select: 'official' }) ?? null
+  return new Intl.DisplayNames(globalConfigContext.locale.value, { type: 'region' }).of(countryCode) ?? countryCode
 }
 
 function filterFn(option: CountryCode, search: string): boolean {

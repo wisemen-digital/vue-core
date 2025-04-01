@@ -1,1 +1,0 @@
-# Icons <badge>To be documented</badge>
