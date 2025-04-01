@@ -85,6 +85,7 @@ export default defineConfig({
                 { text: 'Select', link: '/packages/components-next/components/select/select' },
                 { text: 'Text Field', link: '/packages/components-next/components/text-field/text-field' },
                 { text: 'Textarea', link: '/packages/components-next/components/textarea/textarea' },
+                { text: 'Time Field', link: '/packages/components-next/components/time-field/time-field' },
               ],
             },
             {
