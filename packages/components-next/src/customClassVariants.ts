@@ -21,6 +21,7 @@ import type { createTabsStyle } from '@/components/tabs/shared/tabs.style'
 import type { createTextFieldStyle } from '@/components/text-field/textField.style'
 import type { createTextareaStyle } from '@/components/textarea/textarea.style'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
+import type { createTimeFieldStyle } from '@/components/time-field/timeField.style'
 import type { createTooltipStyle } from '@/components/tooltip/tooltip.style'
 
 export interface Components {
@@ -41,6 +42,7 @@ export interface Components {
   tabs: typeof createTabsStyle
   textField: typeof createTextFieldStyle
   textarea: typeof createTextareaStyle
+  timeField: typeof createTimeFieldStyle
   tooltip: typeof createTooltipStyle
 }
 
