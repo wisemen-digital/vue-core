@@ -17,6 +17,7 @@ import type { createNumberFieldStyle } from '@/components/number-field/numberFie
 import type { createPopoverStyle } from '@/components/popover/popover.style'
 import type { createRadioGroupItemStyle } from '@/components/radio-group-item/radioGroupItem.style'
 import type { createSelectStyle } from '@/components/select/style/select.style'
+import type { createSwitchStyle } from '@/components/switch/switch.style'
 import type { createTabsStyle } from '@/components/tabs/shared/tabs.style'
 import type { createTextFieldStyle } from '@/components/text-field/textField.style'
 import type { createTextareaStyle } from '@/components/textarea/textarea.style'
@@ -39,6 +40,7 @@ export interface Components {
   radioGroupItem: typeof createRadioGroupItemStyle
   routerLinkButton: typeof createRouterLinkButtonStyle
   select: typeof createSelectStyle
+  switch: typeof createSwitchStyle
   tabs: typeof createTabsStyle
   textField: typeof createTextFieldStyle
   textarea: typeof createTextareaStyle

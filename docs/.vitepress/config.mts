@@ -83,6 +83,7 @@ export default defineConfig({
                 { text: 'Phone Number Field', link: '/packages/components-next/components/phone-number-field/phone-number-field' },
                 { text: 'Radio Group', link: '/packages/components-next/components/radio-group/radio-group' },
                 { text: 'Select', link: '/packages/components-next/components/select/select' },
+                { text: 'Switch', link: '/packages/components-next/components/switch/switch' },
                 { text: 'Text Field', link: '/packages/components-next/components/text-field/text-field' },
                 { text: 'Textarea', link: '/packages/components-next/components/textarea/textarea' },
                 { text: 'Time Field', link: '/packages/components-next/components/time-field/time-field' },
