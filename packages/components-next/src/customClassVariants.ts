@@ -7,6 +7,7 @@ import type { createButtonStyle } from '@/components/button/default-button/butto
 import type { createIconButtonStyle } from '@/components/button/icon-button/iconButton.style'
 import type { createRouterLinkButtonStyle } from '@/components/button/router-link-button/routerLinkButton.style'
 import type { createCheckboxStyle } from '@/components/checkbox/checkbox.style'
+import type { createDateFieldStyle } from '@/components/date-field/dateField.style'
 import type { createDatePickerStyle } from '@/components/date-picker/single/datePicker.style'
 import type { createDialogStyle } from '@/components/dialog/dialog.style'
 import type { createDropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style'
@@ -25,6 +26,7 @@ import type { createTooltipStyle } from '@/components/tooltip/tooltip.style'
 export interface Components {
   button: typeof createButtonStyle
   checkbox: typeof createCheckboxStyle
+  dateField: typeof createDateFieldStyle
   datePicker: typeof createDatePickerStyle
   dialog: typeof createDialogStyle
   dropdownMenu: typeof createDropdownMenuStyle

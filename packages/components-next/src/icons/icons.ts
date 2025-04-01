@@ -2,6 +2,7 @@ import type { Component } from 'vue'
 
 export interface BaseIcons {
 
+  calendarIcon: Component
   check: Component
   chevronLeft: Component
   chevronLeftDouble: Component
@@ -21,6 +22,7 @@ export interface BaseIcons {
 export interface Icons extends BaseIcons {}
 
 export const icons: BaseIcons = {
+  calendarIcon: import('@/icons/CalendarIcon.vue'),
   check: import('@/icons/CheckIcon.vue'),
   chevronLeft: import('@/icons/ChevronLeftIcon.vue'),
   chevronLeftDouble: import('@/icons/ChevronLeftDoubleIcon.vue'),
