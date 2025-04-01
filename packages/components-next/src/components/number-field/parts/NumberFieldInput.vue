@@ -29,7 +29,7 @@ const {
       :class="style.input({
         class: mergeClasses(customClassConfig.input, classConfig?.input),
       })"
-      :describedby="`${id}-error ${id}-hint`"
+      :aria-describedby="`${id}-error ${id}-hint`"
       :aria-busy="isLoading"
       :aria-invalid="errors.length > 0"
       :autocomplete="autocomplete"
