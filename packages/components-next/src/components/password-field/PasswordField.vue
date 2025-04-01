@@ -75,11 +75,11 @@ function togglePasswordVisibility(): void {
         :is-disabled="props.isDisabled"
         :class-config="{
           icon: 'size-4',
-          root: 'size-8 rounded-sm',
+          root: 'min-w-7 h-7 rounded-[0.3rem]',
         }"
         variant="tertiary"
         size="sm"
-        class="mr-[0.2rem]"
+        class="mr-[0.3rem]"
         @click="togglePasswordVisibility"
       />
     </template>
