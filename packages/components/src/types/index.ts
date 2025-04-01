@@ -14,6 +14,7 @@ export type {
   KeyboardShortcutConfig,
 } from './keyboard.type'
 export type {
+  BasePagination,
   DeepPartial,
   PaginatedData,
   Pagination,
@@ -21,7 +22,7 @@ export type {
   PaginationFilters,
   PaginationOptions,
   PaginationSortOrder,
-  UsePaginationOptions,
+  UsePaginationProps,
   UsePaginationReturnType,
 } from './pagination.type'
 export type { PopperProps } from './popper'

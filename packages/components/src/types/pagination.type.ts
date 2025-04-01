@@ -7,9 +7,9 @@ import type { SelectItem } from '@/types/select.type'
 
 export type PaginationSortOrder = 'asc' | 'desc'
 
-export interface PaginationSort {
-  direction: PaginationSortOrder
-  key: string
+export interface PaginationSort<TSortKey extends string | undefined> {
+  key: `${TSortKey}`
+  order: PaginationSortOrder
 }
 
 export type PaginationFilters<TFilters> = {
@@ -23,9 +23,9 @@ export interface PageChangeEvent {
 
 export type FilterChangeEvent<TFilters> = PaginationFilters<TFilters>
 
-export interface SortChangeEvent {
-  direction: PaginationSortOrder
-  key: string
+export interface SortChangeEvent<TSortKey> {
+  key: TSortKey
+  order: PaginationSortOrder
 }
 
 interface PaginationKeyset {
@@ -42,12 +42,12 @@ interface PaginationOffset {
 
 export type PaginationSet = PaginationKeyset | PaginationOffset
 
-export interface PaginationOptions<TFilters> {
-  filters?: PaginationFilters<TFilters>
+export interface PaginationOptions<TPagination extends BasePagination> {
+  filter?: PaginationFilters<TPagination['filter']>
   pagination: PaginationSet
   search?: string
-  sort?: PaginationSort | undefined
-  staticFilters?: PaginationFilters<TFilters>
+  sort?: PaginationSort<TPagination['sort']> | undefined
+  staticFilters?: PaginationFilters<TPagination['filter']>
 }
 
 interface PaginationFilterBase<TFilters> {
@@ -97,7 +97,7 @@ export type PaginationFilter<TFilters> =
   | PaginationFilterWithMultipleOptions<TFilters>
   | PaginationFilterWithSingleOption<TFilters>
 
-export type Pagination<TFilters> = UsePaginationReturnType<TFilters>
+export type Pagination<TPagination extends BasePagination> = UsePaginationReturnType<TPagination>
 
 export interface PaginatedData<TSchema> {
   data: TSchema[]
@@ -111,9 +111,21 @@ export interface PaginatedData<TSchema> {
   }
 }
 
+export interface BasePagination<TSortAndFilter extends {
+  filter: Record<string, unknown> | undefined
+  sort: string | undefined
+} = {
+  filter: Record<string, unknown> | undefined
+  sort: string | undefined
+},
+> {
+  filter: TSortAndFilter['filter']
+  sort: TSortAndFilter['sort']
+}
+
 // Pagination composable types
 
-export interface UsePaginationOptions<TFilters> {
+export interface UsePaginationProps<TPagination extends BasePagination> {
   /**
    * When enabled, the pagination state will be stored in the route query.
    */
@@ -127,28 +139,17 @@ export interface UsePaginationOptions<TFilters> {
    * These options can be reactive and will update the pagination state when changed.
    * @default null
    */
-  options?: MaybeRefOrGetter<DeepPartial<PaginationOptions<TFilters>>> | null
+  options?: MaybeRefOrGetter<DeepPartial<PaginationOptions<TPagination>>> | null
   type?: 'keyset' | 'offset'
 }
 
-export interface UsePaginationReturnType<TFilters> {
+export interface UsePaginationReturnType<TPagination extends BasePagination> {
   clearFilters: () => void
-  handleFilterChange: (event: FilterChangeEvent<TFilters>) => void
+  handleFilterChange: (event: FilterChangeEvent<TPagination['filter']>) => void
   handlePageChange: (event: PageChangeEvent) => void
   handleSearchChange: (value: string) => void
-  handleSortChange: (event: SortChangeEvent) => void
-  paginationOptions: ComputedRef<PaginationOptions<TFilters>>
-}
-
-// Local pagination composable types
-
-export interface UseLocalPaginationOptions<TSchema, TFilters> extends UsePaginationOptions<TFilters> {
-  items: MaybeRefOrGetter<TSchema[]>
-}
-
-export interface UseLocalPaginationReturnType<TSchema, TFilters> {
-  data: ComputedRef<PaginatedData<TSchema>>
-  pagination: UsePaginationReturnType<TFilters>
+  handleSortChange: (event: SortChangeEvent<TPagination['sort']>) => void
+  paginationOptions: ComputedRef<PaginationOptions<TPagination>>
 }
 
 export type DeepPartial<T> = {

@@ -1,13 +1,13 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="TPagination extends BasePagination">
 import { computed } from 'vue'
 
 import IconButton from '@/components/button/icon-button/IconButton.vue'
 import { injectTableContext } from '@/components/table/table.context'
 import type { Icon } from '@/icons/icons'
 import type {
+  BasePagination,
   PaginationOptions,
   PaginationSortOrder,
-  SortChangeEvent,
 } from '@/types/pagination.type'
 import type { TableColumn } from '@/types/table.type'
 
@@ -17,12 +17,12 @@ const props = defineProps<{
 
 const tableContext = injectTableContext()
 
-const paginationOptions = computed<PaginationOptions<unknown>>(
+const paginationOptions = computed<PaginationOptions<TPagination>>(
   () => tableContext.pagination.value.paginationOptions.value,
 )
 
 const currentSortDirection = computed<PaginationSortOrder | null>(() => {
-  return getCurrentSortDirection(paginationOptions.value.sort?.direction ?? null)
+  return getCurrentSortDirection(paginationOptions.value.sort?.order ?? null)
 })
 
 const isCurrentColumnBeingSorted = computed<boolean>(() => {
@@ -66,23 +66,23 @@ function handleSortChange(): void {
   //    - If the current sort direction is 'asc', change it to 'desc'
   if (isCurrentColumnBeingSorted.value && currentSortDirection.value === 'asc') {
     tableContext.pagination.value.handleSortChange({
-      direction: 'desc',
-      key: props.column.key,
+      key: props.column.key as never,
+      order: 'desc',
     })
 
     return
   }
   //    - If the current sort direction is 'desc', remove the sort
   if (isCurrentColumnBeingSorted.value && currentSortDirection.value === 'desc') {
-    tableContext.pagination.value.handleSortChange({} as SortChangeEvent)
+    tableContext.pagination.value.handleSortChange({} as never)
 
     return
   }
 
   // If column is not already sorted, sort it and set the current sort direction to 'asc'
   tableContext.pagination.value.handleSortChange({
-    direction: 'asc',
-    key: props.column.key,
+    key: props.column.key as never,
+    order: 'asc',
   })
 }
 </script>

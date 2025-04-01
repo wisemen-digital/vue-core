@@ -1,6 +1,5 @@
-import type {
-  PaginationOptions,
-} from '@/types'
+import type { PaginationOptions } from '@/types'
+import type { BasePagination } from '@/types/pagination.type'
 
 const DEFAULT_OFFSET = 0
 const DEFAULT_LIMIT = 20
@@ -23,33 +22,33 @@ interface PaginationSort<TSortKeys> {
   order: SortDirection
 }
 
-interface PaginationParams<TFilterSchema, TSortKeys> {
-  filter: TFilterSchema
+interface PaginationParams<TPagination extends BasePagination> {
+  filter: TPagination['filter']
   pagination: PaginationParamsSet
   search?: string
-  sort: PaginationSort<TSortKeys>[]
+  sort: PaginationSort<TPagination['sort']>[]
 }
 
-export interface PaginationOffsetParams<TFilterSchema, TSortKeys> extends PaginationParams<TFilterSchema, TSortKeys> {
+export interface PaginationOffsetParams<TPagination extends BasePagination> extends PaginationParams<TPagination> {
   pagination: {
     limit: number
     offset: number
   }
 }
 
-export interface PaginationKeysetParams<TFilterSchema, TSortKeys> extends PaginationParams<TFilterSchema, TSortKeys> {
+export interface PaginationKeysetParams<TPagination extends BasePagination> extends PaginationParams<TPagination> {
   pagination: {
     key?: never
     limit: number
   }
 }
 
-export class PaginationParamsBuilder<TFilterSchema, TSortKeys = Record<string, string>> {
-  private params: PaginationParams<TFilterSchema, TSortKeys>
+export class PaginationParamsBuilder<TPagination extends BasePagination> {
+  private params: PaginationParams<TPagination>
 
-  constructor(paginationOptions?: PaginationOptions<TFilterSchema>) {
+  constructor(paginationOptions?: PaginationOptions<TPagination>) {
     const allFilters = {
-      ...paginationOptions?.filters ?? {},
+      ...paginationOptions?.filter ?? {},
       ...paginationOptions?.staticFilters ?? {},
     }
 
@@ -58,24 +57,24 @@ export class PaginationParamsBuilder<TFilterSchema, TSortKeys = Record<string, s
     this.params = {
       pagination,
       search: paginationOptions?.search,
-    } as PaginationParams<TFilterSchema, TSortKeys>
+    } as PaginationParams<TPagination>
 
     Object.entries(allFilters).forEach(([
       key,
       value,
     ]) => {
-      this.withFilter(key as keyof TFilterSchema, value as TFilterSchema[keyof TFilterSchema])
+      this.withFilter(key as keyof TPagination['filter'], value as TPagination['filter'][keyof TPagination['filter']])
     })
 
     if (paginationOptions?.sort !== undefined) {
       this.withSort({
-        key: paginationOptions.sort.key as TSortKeys,
-        order: paginationOptions.sort.direction as SortDirection,
+        key: paginationOptions.sort.key as TPagination['sort'],
+        order: paginationOptions.sort.order as SortDirection,
       })
     }
   }
 
-  private getPaginationSet(paginationOptions?: PaginationOptions<TFilterSchema>): PaginationParamsSet {
+  private getPaginationSet(paginationOptions?: PaginationOptions<TPagination>): PaginationParamsSet {
     const limit = (paginationOptions?.pagination.limit ?? DEFAULT_LIMIT)
 
     if (paginationOptions === undefined) {
@@ -96,57 +95,57 @@ export class PaginationParamsBuilder<TFilterSchema, TSortKeys = Record<string, s
         }
   }
 
-  public build<TFilterSchemaDto, TSortKeys>(
-    transformer?: (filters: TFilterSchema) => TFilterSchemaDto,
-  ): PaginationOffsetParams<TFilterSchemaDto, TSortKeys> {
+  public build<TPaginationDto extends BasePagination>(
+    transformer?: (value: TPagination) => TPaginationDto,
+  ): PaginationOffsetParams<TPaginationDto> {
     const pagination = this.params.pagination
 
     return {
       ...this.params,
-      filter: transformer?.(this.params.filter as TFilterSchema) as TFilterSchemaDto,
+      filter: transformer?.(this.params as never).filter as TPaginationDto['filter'],
       pagination: {
         limit: pagination.limit,
         offset: 'offset' in pagination ? pagination.offset : DEFAULT_OFFSET,
       },
-      sort: this.params?.sort?.map((sort) => ({
-        key: sort.key as unknown as TSortKeys,
+      sort: (this.params?.sort?.map((sort) => ({
+        key: sort.key,
         order: sort.order,
-      })) ?? [],
+      })) ?? []) as unknown as PaginationSort<TPaginationDto['sort']>[],
     }
   }
 
-  public buildKeyset<TFilterSchemaDto, TSortKeys>(
-    transformer?: (filters: TFilterSchema) => TFilterSchemaDto,
-  ): PaginationKeysetParams<TFilterSchemaDto, TSortKeys> {
+  public buildKeyset<TPaginationDto extends BasePagination>(
+    transformer?: (value: TPagination) => TPaginationDto,
+  ): PaginationKeysetParams<TPaginationDto> {
     return {
       ...this.params,
-      filter: transformer?.(this.params.filter as TFilterSchema) as TFilterSchemaDto,
+      filter: transformer?.(this.params as never).filter as TPaginationDto['filter'],
       pagination: {
         key: (this.params.pagination as any).key,
         limit: this.params.pagination?.limit,
       },
-      sort: this.params?.sort?.map((sort) => ({
-        key: sort.key as unknown as TSortKeys,
+      sort: (this.params?.sort?.map((sort) => ({
+        key: sort.key,
         order: sort.order,
-      })) ?? [],
+      })) ?? []) as unknown as PaginationSort<TPaginationDto['sort']>[],
     }
   }
 
-  public withFilter<TKey extends keyof TFilterSchema>(
+  public withFilter<TKey extends keyof TPagination['filter']>(
     key: TKey,
-    value: TFilterSchema[TKey] | null | undefined,
-  ): PaginationParamsBuilder<TFilterSchema, TSortKeys> {
+    value: TPagination['filter'][TKey] | null | undefined,
+  ): PaginationParamsBuilder<TPagination> {
     if (value !== null && value !== '') {
       this.params.filter = {
         ...this.params.filter,
         [key]: value,
-      } as TFilterSchema
+      } as TPagination['filter']
     }
 
     return this
   }
 
-  public withKey(key: unknown | null): PaginationParamsBuilder<TFilterSchema, TSortKeys> {
+  public withKey(key: unknown | null): PaginationParamsBuilder<TPagination> {
     if ('offset' in this.params.pagination) {
       throw new Error('Cannot set key when using offset pagination')
     }
@@ -156,13 +155,13 @@ export class PaginationParamsBuilder<TFilterSchema, TSortKeys = Record<string, s
     return this
   }
 
-  public withLimit(limit: number): PaginationParamsBuilder<TFilterSchema, TSortKeys> {
+  public withLimit(limit: number): PaginationParamsBuilder<TPagination> {
     this.params.pagination.limit = limit
 
     return this
   }
 
-  public withOffset(offset: number): PaginationParamsBuilder<TFilterSchema, TSortKeys> {
+  public withOffset(offset: number): PaginationParamsBuilder<TPagination> {
     if ('key' in this.params.pagination) {
       throw new Error('Cannot set offset when using keyset pagination')
     }
@@ -174,16 +173,16 @@ export class PaginationParamsBuilder<TFilterSchema, TSortKeys = Record<string, s
     return this
   }
 
-  public withSearch(search: string): PaginationParamsBuilder<TFilterSchema, TSortKeys> {
+  public withSearch(search: string): PaginationParamsBuilder<TPagination> {
     this.params.search = search
 
     return this
   }
 
-  public withSort(sort: PaginationSort<TSortKeys>): PaginationParamsBuilder<TFilterSchema, TSortKeys> {
+  public withSort(sort: PaginationSort<TPagination['sort']>): PaginationParamsBuilder<TPagination> {
     this.params.sort = [
       {
-        key: sort.key as TSortKeys,
+        key: sort.key as TPagination['sort'],
         order: sort.order,
       },
     ]

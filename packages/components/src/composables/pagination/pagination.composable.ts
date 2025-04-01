@@ -8,26 +8,27 @@ import {
 
 import { injectConfigContext } from '@/components/config-provider/config.context'
 import type {
+  BasePagination,
   FilterChangeEvent,
   PageChangeEvent,
   PaginationFilters,
   PaginationOptions,
   SortChangeEvent,
-  UsePaginationOptions,
+  UsePaginationProps,
   UsePaginationReturnType,
 } from '@/types/pagination.type'
 import { base64Decode, base64Encode } from '@/utils/base64.util'
 
-export function usePagination<TFilters>({
+export function usePagination<TPagination extends BasePagination>({
   isRouteQueryEnabled,
   key: routeQueryKey,
   options = null,
   type = 'offset',
-}: UsePaginationOptions<TFilters>): UsePaginationReturnType<TFilters> {
+}: UsePaginationProps<TPagination>): UsePaginationReturnType<TPagination> {
   const globalConfigContext = injectConfigContext()
 
-  const DEFAULT_PAGINATION_OPTIONS: PaginationOptions<unknown> = {
-    filters: {} as PaginationFilters<unknown>,
+  const DEFAULT_PAGINATION_OPTIONS: PaginationOptions<TPagination> = {
+    filter: {} as PaginationFilters<TPagination['filter']>,
     pagination: type === 'offset'
       ? {
           limit: globalConfigContext.pagination?.limit ?? 20,
@@ -41,7 +42,7 @@ export function usePagination<TFilters>({
         },
     search: undefined,
     sort: undefined,
-    staticFilters: {} as PaginationFilters<unknown>,
+    staticFilters: {} as PaginationFilters<TPagination['filter']>,
   } as const
 
   if (isRouteQueryEnabled && routeQueryKey === undefined) {
@@ -49,21 +50,21 @@ export function usePagination<TFilters>({
   }
 
   const routeQuery = isRouteQueryEnabled ? useRouteQuery(routeQueryKey as string) : null
-  const paginationOptions = shallowRef<PaginationOptions<TFilters>>(getDefaultPaginationOptions())
+  const paginationOptions = shallowRef<PaginationOptions<TPagination>>(getDefaultPaginationOptions())
 
   function mergePaginationOptions(
-    userOptions: PaginationOptions<TFilters>,
-    currentOptions: PaginationOptions<TFilters>,
-  ): PaginationOptions<TFilters> {
+    userOptions: PaginationOptions<TPagination>,
+    currentOptions: PaginationOptions<TPagination>,
+  ): PaginationOptions<TPagination> {
     const mergedFilters = {
-      ...(currentOptions.filters ?? {}),
-      ...(userOptions.filters ?? {}),
-    } as PaginationFilters<TFilters>
+      ...(currentOptions.filter ?? {}),
+      ...(userOptions.filter ?? {}),
+    } as PaginationFilters<TPagination['filter']>
 
     const search = currentOptions.search ?? userOptions.search ?? ''
 
     return {
-      filters: mergedFilters,
+      filter: mergedFilters,
       pagination: {
         ...currentOptions.pagination,
         ...userOptions.pagination,
@@ -73,11 +74,11 @@ export function usePagination<TFilters>({
       staticFilters: {
         ...currentOptions.staticFilters,
         ...userOptions.staticFilters,
-      },
+      } as PaginationFilters<TPagination['filter']>,
     }
   }
 
-  function getRouteQueryPaginationOptions(): PaginationOptions<TFilters> | null {
+  function getRouteQueryPaginationOptions(): PaginationOptions<TPagination> | null {
     if (routeQuery === null) {
       return null
     }
@@ -91,7 +92,7 @@ export function usePagination<TFilters>({
     return JSON.parse(base64Decode(queryValue.toString()))
   }
 
-  function getDefaultPaginationOptions(): PaginationOptions<TFilters> {
+  function getDefaultPaginationOptions(): PaginationOptions<TPagination> {
     const routeQueryPaginationOptions = getRouteQueryPaginationOptions()
 
     if (routeQueryPaginationOptions !== null) {
@@ -100,12 +101,12 @@ export function usePagination<TFilters>({
 
     if (options !== null) {
       return mergePaginationOptions(
-        toValue(options as PaginationOptions<TFilters>),
-        DEFAULT_PAGINATION_OPTIONS as PaginationOptions<TFilters>,
+        toValue(options as PaginationOptions<TPagination>),
+        DEFAULT_PAGINATION_OPTIONS as PaginationOptions<TPagination>,
       )
     }
 
-    return structuredClone(DEFAULT_PAGINATION_OPTIONS as PaginationOptions<TFilters>)
+    return structuredClone(DEFAULT_PAGINATION_OPTIONS as PaginationOptions<TPagination>)
   }
 
   function handlePageChange(event: PageChangeEvent): void {
@@ -118,19 +119,19 @@ export function usePagination<TFilters>({
     }
   }
 
-  function handleFilterChange(event: FilterChangeEvent<TFilters>): void {
+  function handleFilterChange(event: FilterChangeEvent<TPagination['filter']>): void {
     const filtersWithoutUndefinedValues = Object.fromEntries(
       Object.entries({
-        ...paginationOptions.value.filters,
+        ...paginationOptions.value.filter,
         ...event,
       }).filter(([
         , value,
       ]) => value !== undefined),
-    ) as PaginationFilters<TFilters>
+    ) as PaginationFilters<TPagination['filter']>
 
     paginationOptions.value = {
       ...paginationOptions.value,
-      filters: filtersWithoutUndefinedValues,
+      filter: filtersWithoutUndefinedValues,
       pagination: type === 'offset'
         ? {
             ...paginationOptions.value.pagination,
@@ -163,17 +164,20 @@ export function usePagination<TFilters>({
     }
   }
 
-  function handleSortChange(event: SortChangeEvent): void {
+  function handleSortChange(event: SortChangeEvent<TPagination['sort']>): void {
     paginationOptions.value = {
       ...paginationOptions.value,
-      sort: event,
+      sort: {
+        key: event.key as `${TPagination['sort']}`,
+        order: event.order,
+      },
     }
   }
 
   function clearFilters(): void {
     paginationOptions.value = {
       ...paginationOptions.value,
-      filters: {} as PaginationFilters<TFilters>,
+      filter: {} as PaginationFilters<TPagination['filter']>,
       pagination: type === 'offset'
         ? {
             ...paginationOptions.value.pagination,
@@ -194,7 +198,7 @@ export function usePagination<TFilters>({
     }
 
     paginationOptions.value = mergePaginationOptions(
-      toValue(newOptions as PaginationOptions<TFilters>),
+      toValue(newOptions as PaginationOptions<TPagination>),
       paginationOptions.value,
     )
   })
@@ -215,6 +219,6 @@ export function usePagination<TFilters>({
     handlePageChange,
     handleSearchChange,
     handleSortChange,
-    paginationOptions: computed<PaginationOptions<TFilters>>(() => paginationOptions.value),
+    paginationOptions: computed<PaginationOptions<TPagination>>(() => paginationOptions.value),
   }
 }
