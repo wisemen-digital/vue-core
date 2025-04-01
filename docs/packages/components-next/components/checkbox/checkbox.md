@@ -35,3 +35,5 @@ import {
 ### Disabled
 
 <ComponentPreview name="checkbox/examples/disabled" />
+
+<!-- @include: ./checkbox-meta.md -->

@@ -45,3 +45,5 @@ import {
 ### Hide date picker
 
 <ComponentPreview name="date-field/examples/hide-date-picker" />
+
+<!-- @include: ./date-field-meta.md -->

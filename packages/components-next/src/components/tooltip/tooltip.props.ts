@@ -17,7 +17,7 @@ export interface TooltipProps extends PopperPropsWithArrowVisibleByDefault, Prim
    */
   delayDuration?: number
   /**
-   * When true, clicking on trigger won't close the tooltip.
+   * When true, clicking on trigger won’t close the tooltip.
    * @default false
    */
   disableCloseOnTriggerClick?: boolean

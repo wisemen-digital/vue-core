@@ -36,3 +36,5 @@ import {
   </DropdownMenuRoot>
 </template>
 ```
+
+<!-- @include: ./dropdown-menu-meta.md -->

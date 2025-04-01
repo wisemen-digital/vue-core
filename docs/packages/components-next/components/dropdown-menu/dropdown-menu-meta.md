@@ -4,7 +4,7 @@
   {
     'name': 'classConfig',
     'description': '<p>The class configuration of the component.</p>\n',
-    'type': '(ClassConfig<\'popover\'> & { closeButton?: ClassConfig<\'iconButton\'>; }) | null',
+    'type': '(ClassConfig<\'dropdownMenu\'> & {}) | null',
     'required': false,
     'default': 'null'
   },
@@ -14,6 +14,13 @@
     'type': 'string | null',
     'required': false,
     'default': 'null'
+  },
+  {
+    'name': 'isDisabled',
+    'description': '<p>Determines whether the element is disabled. When <code>true</code>, the element becomes non-interactive.</p>\n',
+    'type': 'boolean',
+    'required': false,
+    'default': 'false'
   },
   {
     'name': 'isPopoverArrowHidden',
@@ -82,32 +89,11 @@
     'name': 'variant',
     'description': '',
     'type': 'null',
-    'required': false,
-    'default': 'null'
+    'required': false
   }
 ]" />
 
 <EmitsTable :data="[
-  {
-    'name': 'autoFocusOnClose',
-    'description': '',
-    'type': '[event: Event]'
-  },
-  {
-    'name': 'escapeKeyDown',
-    'description': '',
-    'type': '[event: KeyboardEvent]'
-  },
-  {
-    'name': 'focusOutside',
-    'description': '',
-    'type': '[event: CustomEvent<any>]'
-  },
-  {
-    'name': 'interactOutside',
-    'description': '',
-    'type': '[event: CustomEvent<any>]'
-  },
   {
     'name': 'update:isOpen',
     'description': '',

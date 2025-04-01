@@ -9,7 +9,7 @@ import type {
 
 export interface SwitchProps extends PrimitiveElement, InteractableElement, FormElement, CustomizableElement<'switch'> {
   /**
-   * Defines the switch's size.
+   * Defines the switch’s size.
    * @default 'md'
    */
   size?: GetComponentPropCustomValues<'switch', 'size'> | SwitchStyle['size']

@@ -28,3 +28,5 @@ import {
 ### Disabled
 
 <ComponentPreview name="checkbox-group/examples/disabled" />
+
+<!-- @include: ./checkbox-group-meta.md -->
