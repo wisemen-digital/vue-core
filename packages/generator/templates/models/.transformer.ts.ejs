@@ -27,11 +27,13 @@ export class <%= pascalCase %>DetailTransformer {
 }
 
 export class <%= pascalCase %>IndexPaginationTransformer {
-  static toDto(pagination?: <%= pascalCase %>IndexPagination): <%= pascalCase %>IndexPaginationDto | undefined {
-    return pagination
+  static toDto(pagination: <%= pascalCase %>IndexPagination): <%= pascalCase %>IndexPaginationDto | undefined {
+    return {
+      filter: pagination.filter,
+      sort: pagination.sort
+    }
   }
 }
-
 
 export class <%= pascalCase %>CreateTransformer {
   static toDto(form: <%= pascalCase %>CreateForm): <%= pascalCase %>CreateDto {

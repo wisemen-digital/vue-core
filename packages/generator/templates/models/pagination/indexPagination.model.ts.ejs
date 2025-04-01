@@ -1,3 +1,6 @@
 import type { BasePagination } from '@wisemen/vue-core'
 
-export interface <%= pascalCase %>IndexPagination extends BasePagination {}
+export type <%= pascalCase %>IndexPagination = BasePagination<{
+  filter: undefined
+  sort: undefined
+}>()
