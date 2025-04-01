@@ -2,6 +2,7 @@ import { resolve } from 'node:path'
 
 import { defineConfig } from 'vitepress'
 
+import pkg from '../../packages/components-next/package.json'
 import ComponentPreviewPlugin from './plugins/ComponentPreview'
 import ComponentPreviewV1Plugin from './plugins/ComponentPreviewV1'
 
@@ -15,9 +16,6 @@ if (typeof __VUE_PROD_DEVTOOLS__ === 'undefined') {
 export default defineConfig({
   base: '/vue-core',
   title: 'Vue Core',
-  rewrites: {
-    './index.md': 'packages/main/index.md',
-  },
   description: 'The central repository of Wisemen for all internal Vue packages.',
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
@@ -26,12 +24,12 @@ export default defineConfig({
         text: 'Packages',
         items: [
           {
-            text: 'Components (v1)',
-            link: 'packages/components-v1/guide/getting-started',
+            text: `Components (${pkg.version})`,
+            link: 'packages/components-next/getting-started/installation',
           },
           {
-            text: 'Components (Next)',
-            link: 'packages/components-next/getting-started/installation',
+            text: 'Components v1',
+            link: 'packages/components-v1/guide/getting-started',
           },
         ],
       },
@@ -40,12 +38,12 @@ export default defineConfig({
     sidebar: {
       '/packages/main': [
         {
-          text: 'Components (v1)',
-          link: 'packages/components-v1/guide/getting-started',
+          text: `Components (${pkg.version})`,
+          link: 'packages/components-next/getting-started/installation',
         },
         {
-          text: 'Components (Next)',
-          link: 'packages/components-next/getting-started/installation',
+          text: 'Components v1',
+          link: 'packages/components-v1/guide/getting-started',
         },
       ],
 
