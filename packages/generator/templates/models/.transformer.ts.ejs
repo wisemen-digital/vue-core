@@ -30,7 +30,7 @@ export class <%= pascalCase %>IndexPaginationTransformer {
   static toDto(pagination: <%= pascalCase %>IndexPagination): <%= pascalCase %>IndexPaginationDto | undefined {
     return {
       filter: pagination.filter,
-      sort: pagination.sort
+      sort: pagination.sort,
     }
   }
 }

@@ -18,8 +18,6 @@ import type { <%= pascalCase %>Uuid } from '@/models/<%= camelCase %>/<%= camelC
 
 import type { <%= pascalCase %>CreateForm } from '@/models/<%= kebabCase %>/create/<%= camelCase %>CreateForm.model'
 import type { <%= pascalCase %>UpdateForm } from '@/models/<%= kebabCase %>/update/<%= camelCase %>UpdateForm.model'
-import type { <%= pascalCase %>UpdateDto } from '@/models/<%= kebabCase %>/update/<%= camelCase %>UpdateDto.model'
-import type { <%= pascalCase %>CreateDto } from '@/models/<%= kebabCase %>/create/<%= camelCase %>CreateDto.model'
 
 export class <%= pascalCase %>Service {
   static async getIndex(
@@ -33,7 +31,7 @@ export class <%= pascalCase %>Service {
       })
 
     return {
-      data: response.data.items.map(<%= pascalCase %>IndexPagination.fromDto),
+      data: response.data.items.map(<%= pascalCase %>IndexTransformer.fromDto),
       meta: response.data.meta,
     }
   }
