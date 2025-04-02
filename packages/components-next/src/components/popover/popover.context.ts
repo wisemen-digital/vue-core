@@ -1,6 +1,4 @@
-import type {
-  ComputedRef,
-} from 'vue'
+import type { ComputedRef } from 'vue'
 
 import type { PopoverProps } from '@/components/popover/popover.props'
 import type { CreatePopoverStyle } from '@/components/popover/popover.style'

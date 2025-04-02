@@ -5,10 +5,8 @@ import { computed } from 'vue'
 import { useProvideRadioGroupItemContext } from '@/components/radio-group-item/radioGroupItem.context'
 import type { RadioGroupItemEmits } from '@/components/radio-group-item/radioGroupItem.emits'
 import type { RadioGroupItemProps } from '@/components/radio-group-item/radioGroupItem.props'
-import {
-  type CreateRadioGroupItemStyle,
-  createRadioGroupItemStyle,
-} from '@/components/radio-group-item/radioGroupItem.style'
+import type { CreateRadioGroupItemStyle } from '@/components/radio-group-item/radioGroupItem.style'
+import { createRadioGroupItemStyle } from '@/components/radio-group-item/radioGroupItem.style'
 import InteractableElement from '@/components/shared/InteractableElement.vue'
 import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
 import {
@@ -34,13 +32,11 @@ const props = withDefaults(defineProps<RadioGroupItemProps>(), {
 
 const emit = defineEmits<RadioGroupItemEmits>()
 
-const radioGroupItemStyle = computed<CreateRadioGroupItemStyle>(() => createRadioGroupItemStyle({
-  variant: props.variant ?? undefined,
-}))
+const radioGroupItemStyle = computed<CreateRadioGroupItemStyle>(
+  () => createRadioGroupItemStyle({ variant: props.variant ?? undefined }),
+)
 
-const customClassConfig = useComponentClassConfig('radioGroupItem', {
-  variant: props.variant ?? undefined,
-})
+const customClassConfig = useComponentClassConfig('radioGroupItem', { variant: props.variant ?? undefined })
 
 useProvideRadioGroupItemContext({
   ...toComputedRefs(props),

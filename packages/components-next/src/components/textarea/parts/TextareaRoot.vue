@@ -4,10 +4,8 @@ import { computed } from 'vue'
 import { useProvideTextareaContext } from '@/components/textarea/textarea.context'
 import type { TextareaEmits } from '@/components/textarea/textarea.emits'
 import type { TextareaProps } from '@/components/textarea/textarea.props'
-import {
-  type CreateTextareaStyle,
-  createTextareaStyle,
-} from '@/components/textarea/textarea.style'
+import type { CreateTextareaStyle } from '@/components/textarea/textarea.style'
+import { createTextareaStyle } from '@/components/textarea/textarea.style'
 import {
   mergeClasses,
   useComponentClassConfig,
@@ -33,17 +31,11 @@ const props = withDefaults(defineProps<TextareaProps>(), {
 
 const emit = defineEmits<TextareaEmits>()
 
-const modelValue = defineModel<string | null>({
-  required: true,
-})
+const modelValue = defineModel<string | null>({ required: true })
 
-const textareaStyle = computed<CreateTextareaStyle>(() => createTextareaStyle({
-  variant: props.variant ?? undefined,
-}))
+const textareaStyle = computed<CreateTextareaStyle>(() => createTextareaStyle({ variant: props.variant ?? undefined }))
 
-const customClassConfig = useComponentClassConfig('textarea', {
-  variant: props.variant ?? undefined,
-})
+const customClassConfig = useComponentClassConfig('textarea', { variant: props.variant ?? undefined })
 
 function onBlur(event: FocusEvent): void {
   emit('blur', event)

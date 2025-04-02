@@ -25,13 +25,11 @@ const props = withDefaults(defineProps<FormFieldProps>(), {
   variant: null,
 })
 
-const formFieldStyle = computed<CreateFormFieldStyle>(() => createFormFieldStyle({
-  variant: props.variant ?? undefined,
-}))
+const formFieldStyle = computed<CreateFormFieldStyle>(
+  () => createFormFieldStyle({ variant: props.variant ?? undefined }),
+)
 
-const customClassConfig = useComponentClassConfig('formField', {
-  variant: props.variant ?? undefined,
-})
+const customClassConfig = useComponentClassConfig('formField', { variant: props.variant ?? undefined })
 
 useProvideFormFieldContext({
   ...toComputedRefs(props),

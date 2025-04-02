@@ -4,12 +4,12 @@ import {
   it,
   vi,
 } from 'vitest'
+import type { VNode } from 'vue'
 import {
   createApp,
   defineComponent,
   h,
   nextTick,
-  type VNode,
 } from 'vue'
 
 import { useContext } from '@/composables/context/context.composable'

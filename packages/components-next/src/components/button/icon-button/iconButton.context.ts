@@ -1,6 +1,4 @@
-import type {
-  ComputedRef,
-} from 'vue'
+import type { ComputedRef } from 'vue'
 
 import type { IconButtonProps } from '@/components/button/icon-button/iconButton.props'
 import type { CreateIconButtonStyle } from '@/components/button/icon-button/iconButton.style'

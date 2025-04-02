@@ -15,7 +15,8 @@ const motionRef = ref<InstanceType<any> | null>(null)
 
 const TRANSLATE_AMOUNT = 2
 
-function transform(side: PopperSide): { x: number, y: number } {
+function transform(side: PopperSide): { x: number
+  y: number } {
   switch (side) {
     case 'top':
       return {
@@ -65,7 +66,12 @@ function transform(side: PopperSide): { x: number, y: number } {
       type: 'spring',
       bounce: 0.2,
     }"
-    class="data-[side=bottom]:origin-top data-[side=top]:origin-bottom data-[side=left]:origin-right data-[side=right]:origin-left"
+    class="
+      data-[side=bottom]:origin-top
+      data-[side=left]:origin-right
+      data-[side=right]:origin-left
+      data-[side=top]:origin-bottom
+    "
   >
     <slot />
   </Motion>

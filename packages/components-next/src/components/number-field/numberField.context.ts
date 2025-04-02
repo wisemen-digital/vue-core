@@ -1,6 +1,4 @@
-import type {
-  ComputedRef,
-} from 'vue'
+import type { ComputedRef } from 'vue'
 
 import type { NumberFieldProps } from '@/components/number-field/numberField.props'
 import type { CreateNumberFieldStyle } from '@/components/number-field/numberField.style'

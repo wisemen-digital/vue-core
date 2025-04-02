@@ -26,9 +26,7 @@ export const createCheckboxStyle = tv({
       .withTransition('duration-300')
       .build(),
   },
-  variants: {
-    variant: {},
-  },
+  variants: { variant: {} },
 })
 
 export type CheckboxStyle = VariantProps<typeof createCheckboxStyle>

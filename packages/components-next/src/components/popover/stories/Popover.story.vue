@@ -13,7 +13,7 @@ import Popover from '@/components/popover/Popover.vue'
       </template>
 
       <template #content>
-        <div class="w-80 h-40" />
+        <div class="h-40 w-80" />
       </template>
     </Popover>
   </Story>

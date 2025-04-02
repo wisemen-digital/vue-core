@@ -1,6 +1,4 @@
-import type {
-  ComputedRef,
-} from 'vue'
+import type { ComputedRef } from 'vue'
 
 import type { TabsProps } from '@/components/tabs/shared/tabs.props'
 import type { CreateTabsStyle } from '@/components/tabs/shared/tabs.style'

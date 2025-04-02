@@ -63,12 +63,24 @@ import DropdownMenuSubMenu from '@/components/dropdown-menu/parts/DropdownMenuSu
                 label="Logout"
               >
                 <template #right>
-                  <div class="flex gap-xs text-xs">
-                    <span class="bg-error-primary group-data-highlighted/dropdown-menu-item:bg-error-secondary text-error-primary size-5 flex items-center justify-center rounded-xs duration-200">
+                  <div class="gap-xs flex text-xs">
+                    <span
+                      class="
+                        bg-error-primary text-error-primary flex size-5
+                        items-center justify-center rounded-xs duration-200
+                        group-data-highlighted/dropdown-menu-item:bg-error-secondary
+                      "
+                    >
                       ⌘
                     </span>
 
-                    <span class="bg-error-primary group-data-highlighted/dropdown-menu-item:bg-error-secondary text-error-primary size-5 flex items-center justify-center rounded-xs duration-200">
+                    <span
+                      class="
+                        bg-error-primary text-error-primary flex size-5
+                        items-center justify-center rounded-xs duration-200
+                        group-data-highlighted/dropdown-menu-item:bg-error-secondary
+                      "
+                    >
                       K
                     </span>
                   </div>

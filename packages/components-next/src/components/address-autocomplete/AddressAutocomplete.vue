@@ -25,9 +25,7 @@ const props = defineProps<AddressAutocompleteProps>()
 
 const emit = defineEmits<AddressAutocompleteEmits>()
 
-const modelValue = defineModel<Address | null>({
-  required: true,
-})
+const modelValue = defineModel<Address | null>({ required: true })
 
 const { googleMapsApiKey } = useInjectConfigContext()
 
@@ -62,9 +60,7 @@ async function onSearch(searchTerm: string): Promise<void> {
   isLoading.value = true
 
   try {
-    const results = await autocompleteService.fetchAutocompleteSuggestions({
-      input: searchTerm,
-    })
+    const results = await autocompleteService.fetchAutocompleteSuggestions({ input: searchTerm })
 
     addressResults.value = results.suggestions
       .filter((suggestion) => suggestion.placePrediction !== null)
@@ -134,7 +130,7 @@ onMounted(async () => {
     <template #item="{ value }">
       <SelectItem :value="value">
         <div class="overflow-hidden">
-          <p class="font-medium truncate">
+          <p class="truncate font-medium">
             {{ value.mainText }}
           </p>
 

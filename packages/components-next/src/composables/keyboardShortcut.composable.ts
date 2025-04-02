@@ -142,7 +142,5 @@ export function useKeyboardShortcut(
     })
   }
 
-  return {
-    unbind,
-  }
+  return { unbind }
 }

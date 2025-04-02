@@ -23,9 +23,7 @@ export const createRadioGroupItemStyle = tv({
       .withTransition('duration-300')
       .build(),
   },
-  variants: {
-    variant: {},
-  },
+  variants: { variant: {} },
 })
 
 export type RadioGroupItemStyle = VariantProps<typeof createRadioGroupItemStyle>

@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import {
+  computed,
+  ref,
+} from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import IconButton from '@/components/button/icon-button/IconButton.vue'
@@ -9,9 +12,7 @@ import type { Icon } from '@/icons/icons'
 
 const props = defineProps<PasswordFieldProps>()
 
-const modelValue = defineModel<string | null>({
-  required: true,
-})
+const modelValue = defineModel<string | null>({ required: true })
 
 const { t } = useI18n()
 

@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import {
-  type AcceptableValue,
-  CheckboxGroupRoot as RekaCheckboxGroupRoot,
-} from 'reka-ui'
+import type { AcceptableValue } from 'reka-ui'
+import { CheckboxGroupRoot as RekaCheckboxGroupRoot } from 'reka-ui'
 
 import type { CheckboxGroupProps } from '@/components/checkbox-group/checkboxGroup.props'
 import InteractableElement from '@/components/shared/InteractableElement.vue'
@@ -19,9 +17,7 @@ const props = withDefaults(defineProps<CheckboxGroupProps>(), {
   label: null,
 })
 
-const modelValue = defineModel<AcceptableValue[]>({
-  required: true,
-})
+const modelValue = defineModel<AcceptableValue[]>({ required: true })
 </script>
 
 <template>

@@ -36,13 +36,9 @@ const isOpen = defineModel<boolean>('isOpen', {
   required: false,
 })
 
-const popoverStyle = computed<CreatePopoverStyle>(() => createPopoverStyle({
-  variant: props.variant ?? undefined,
-}))
+const popoverStyle = computed<CreatePopoverStyle>(() => createPopoverStyle({ variant: props.variant ?? undefined }))
 
-const customClassConfig = useComponentClassConfig('popover', {
-  variant: props.variant ?? undefined,
-})
+const customClassConfig = useComponentClassConfig('popover', { variant: props.variant ?? undefined })
 
 function onContentEscapeKeyDown(event: KeyboardEvent): void {
   emit('escapeKeyDown', event)

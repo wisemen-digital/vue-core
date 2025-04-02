@@ -36,13 +36,9 @@ const isOpen = defineModel<boolean>('isOpen', {
   required: false,
 })
 
-const tooltipStyle = computed<CreateTooltipStyle>(() => createTooltipStyle({
-  variant: props.variant ?? undefined,
-}))
+const tooltipStyle = computed<CreateTooltipStyle>(() => createTooltipStyle({ variant: props.variant ?? undefined }))
 
-const customClassConfig = useComponentClassConfig('tooltip', {
-  variant: props.variant ?? undefined,
-})
+const customClassConfig = useComponentClassConfig('tooltip', { variant: props.variant ?? undefined })
 
 useProvideTooltipContext({
   ...toComputedRefs(props),

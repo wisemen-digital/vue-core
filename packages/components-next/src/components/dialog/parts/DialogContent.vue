@@ -7,9 +7,7 @@ import { useInjectDialogContext } from '@/components/dialog/dialog.context'
 import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
 import { mergeClasses } from '@/customClassVariants'
 
-defineOptions({
-  inheritAttrs: false,
-})
+defineOptions({ inheritAttrs: false })
 
 defineSlots<{
   /**

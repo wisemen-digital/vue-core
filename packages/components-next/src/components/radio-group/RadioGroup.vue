@@ -8,9 +8,7 @@ import type { RadioGroupProps } from '@/components/radio-group/radioGroup.props'
 
 const props = defineProps<RadioGroupProps>()
 
-const modelValue = defineModel<AcceptableValue>({
-  required: true,
-})
+const modelValue = defineModel<AcceptableValue>({ required: true })
 
 const id = props.id ?? useId()
 </script>

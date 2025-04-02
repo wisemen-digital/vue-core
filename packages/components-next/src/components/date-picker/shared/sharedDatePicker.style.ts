@@ -44,9 +44,7 @@ export const createSharedDatePickerStyle = tv({
       .withFlex('flex items-center justify-center')
       .build(),
   },
-  variants: {
-    variant: {},
-  },
+  variants: { variant: {} },
 })
 
 export type SharedDatePickerStyle = VariantProps<typeof createSharedDatePickerStyle>

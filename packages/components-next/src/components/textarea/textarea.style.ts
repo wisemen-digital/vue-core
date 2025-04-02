@@ -1,4 +1,5 @@
-import { tv, type VariantProps } from 'tailwind-variants'
+import type { VariantProps } from 'tailwind-variants'
+import { tv } from 'tailwind-variants'
 
 import { StyleBuilder } from '@/utils/style-builder/styleBuilder.util'
 
@@ -31,9 +32,7 @@ export const createTextareaStyle = tv({
       .withCursor('data-[disabled=true]:cursor-not-allowed')
       .build(),
   },
-  variants: {
-    variant: {},
-  },
+  variants: { variant: {} },
 })
 
 export type TextareaStyle = VariantProps<typeof createTextareaStyle>

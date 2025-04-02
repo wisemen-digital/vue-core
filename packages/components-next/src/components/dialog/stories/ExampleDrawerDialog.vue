@@ -47,7 +47,7 @@ const emit = defineEmits<{
       >
         <div class="p-2xl">
           <DialogTitle>
-            <h1 class="text-2xl font-semibold text-primary">
+            <h1 class="text-primary text-2xl font-semibold">
               Example drawer
             </h1>
           </DialogTitle>

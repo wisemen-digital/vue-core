@@ -63,9 +63,7 @@ export const createDropdownMenuStyle = tv({
       .withColor('text-quaternary')
       .build(),
   },
-  variants: {
-    variant: {},
-  },
+  variants: { variant: {} },
 })
 
 export type DropdownMenuStyle = VariantProps<typeof createDropdownMenuStyle>

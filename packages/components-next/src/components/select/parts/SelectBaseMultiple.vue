@@ -92,13 +92,16 @@ onMounted(() => {
         class: mergeClasses(customClassConfig.baseMultiple, classConfig?.baseMultiple),
       })"
       aria-hidden="true"
-      class="absolute invisible"
+      class="invisible absolute"
     >
       <div
         v-for="(value, valueIndex) of modelValueAsArray"
         :key="valueIndex"
         ref="tagRef"
-        class="flex items-center gap-sm text-sm pl-sm pr-xxs h-7 bg-secondary rounded-md border border-solid border-secondary whitespace-nowrap"
+        class="
+          gap-sm pl-sm pr-xxs bg-secondary border-secondary flex h-7
+          items-center rounded-md border border-solid text-sm whitespace-nowrap
+        "
       >
         {{ displayFn(value) }}
 
@@ -117,7 +120,10 @@ onMounted(() => {
     <div
       v-for="(value, valueIndex) of filteredModelValue"
       :key="valueIndex"
-      class="flex items-center gap-sm text-sm pl-sm pr-xxs h-7 bg-secondary rounded-md border border-solid border-secondary whitespace-nowrap"
+      class="
+        gap-sm pl-sm pr-xxs bg-secondary border-secondary flex h-7 items-center
+        rounded-md border border-solid text-sm whitespace-nowrap
+      "
     >
       {{ displayFn(value) }}
 
@@ -138,7 +144,7 @@ onMounted(() => {
       v-if="moreTagsCount > 0"
       ref="moreTagsCountRef"
     >
-      <span class="text-sm font-medium text-secondary pl-xs">
+      <span class="text-secondary pl-xs text-sm font-medium">
         +{{ moreTagsCount }}
       </span>
     </div>

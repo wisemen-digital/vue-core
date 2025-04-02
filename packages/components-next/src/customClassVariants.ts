@@ -42,8 +42,8 @@ export interface Components {
   select: typeof createSelectStyle
   switch: typeof createSwitchStyle
   tabs: typeof createTabsStyle
-  textField: typeof createTextFieldStyle
   textarea: typeof createTextareaStyle
+  textField: typeof createTextFieldStyle
   timeField: typeof createTimeFieldStyle
   tooltip: typeof createTooltipStyle
 }

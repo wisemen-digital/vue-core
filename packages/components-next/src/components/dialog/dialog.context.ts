@@ -1,6 +1,4 @@
-import type {
-  ComputedRef,
-} from 'vue'
+import type { ComputedRef } from 'vue'
 
 import type { DialogProps } from '@/components/dialog/dialog.props'
 import type { CreateDialogStyle } from '@/components/dialog/dialog.style'

@@ -4,10 +4,8 @@ import { computed } from 'vue'
 
 import { useProvideDropdownMenuContext } from '@/components/dropdown-menu/dropdownMenu.context'
 import type { DropdownMenuProps } from '@/components/dropdown-menu/dropdownMenu.props'
-import {
-  type CreateDropdownMenuStyle,
-  createDropdownMenuStyle,
-} from '@/components/dropdown-menu/dropdownMenu.style'
+import type { CreateDropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style'
+import { createDropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style'
 import InteractableElement from '@/components/shared/InteractableElement.vue'
 import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
 import { useComponentClassConfig } from '@/customClassVariants'
@@ -33,13 +31,11 @@ const isOpen = defineModel<boolean>('isOpen', {
   required: false,
 })
 
-const dropdownMenuStyle = computed<CreateDropdownMenuStyle>(() => createDropdownMenuStyle({
-  variant: props.variant ?? undefined,
-}))
+const dropdownMenuStyle = computed<CreateDropdownMenuStyle>(
+  () => createDropdownMenuStyle({ variant: props.variant ?? undefined }),
+)
 
-const customClassConfig = useComponentClassConfig('dropdownMenu', {
-  variant: props.variant ?? undefined,
-})
+const customClassConfig = useComponentClassConfig('dropdownMenu', { variant: props.variant ?? undefined })
 
 useProvideDropdownMenuContext({
   ...toComputedRefs(props),

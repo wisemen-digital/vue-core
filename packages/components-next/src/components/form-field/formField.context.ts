@@ -1,6 +1,4 @@
-import type {
-  ComputedRef,
-} from 'vue'
+import type { ComputedRef } from 'vue'
 
 import type { FormFieldProps } from '@/components/form-field/formField.props'
 import type { CreateFormFieldStyle } from '@/components/form-field/formField.style'

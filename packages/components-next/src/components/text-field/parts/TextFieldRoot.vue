@@ -2,7 +2,10 @@
 import { computed } from 'vue'
 
 import { useProvideTextFieldContext } from '@/components/text-field/textField.context'
-import type { TextFieldEmits, TextFieldProps } from '@/components/text-field/textField.props'
+import type {
+  TextFieldEmits,
+  TextFieldProps,
+} from '@/components/text-field/textField.props'
 import type { CreateTextFieldStyle } from '@/components/text-field/textField.style'
 import { createTextFieldStyle } from '@/components/text-field/textField.style'
 import {
@@ -33,17 +36,13 @@ const props = withDefaults(defineProps<TextFieldProps>(), {
 
 const emit = defineEmits<TextFieldEmits>()
 
-const modelValue = defineModel<TValue | null>({
-  required: true,
-})
+const modelValue = defineModel<TValue | null>({ required: true })
 
-const textFieldStyle = computed<CreateTextFieldStyle>(() => createTextFieldStyle({
-  variant: props.variant ?? undefined,
-}))
+const textFieldStyle = computed<CreateTextFieldStyle>(
+  () => createTextFieldStyle({ variant: props.variant ?? undefined }),
+)
 
-const customClassConfig = useComponentClassConfig('textField', {
-  variant: props.variant ?? undefined,
-})
+const customClassConfig = useComponentClassConfig('textField', { variant: props.variant ?? undefined })
 
 function onBlur(event: FocusEvent): void {
   emit('blur', event)

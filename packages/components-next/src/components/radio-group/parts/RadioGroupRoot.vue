@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import {
-  type AcceptableValue,
-  RadioGroupRoot as RekaRadioGroupRoot,
-} from 'reka-ui'
+import type { AcceptableValue } from 'reka-ui'
+import { RadioGroupRoot as RekaRadioGroupRoot } from 'reka-ui'
 
 import type { RadioGroupProps } from '@/components/radio-group/radioGroup.props'
 import InteractableElement from '@/components/shared/InteractableElement.vue'
@@ -19,9 +17,7 @@ const props = withDefaults(defineProps<RadioGroupProps>(), {
   label: null,
 })
 
-const modelValue = defineModel<AcceptableValue>({
-  required: true,
-})
+const modelValue = defineModel<AcceptableValue>({ required: true })
 </script>
 
 <template>

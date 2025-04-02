@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { AnimatePresence } from 'motion-v'
-import {
-  TooltipContent as RekaTooltipContent,
-} from 'reka-ui'
+import { TooltipContent as RekaTooltipContent } from 'reka-ui'
 
 import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
 import { useInjectTooltipContext } from '@/components/tooltip/tooltip.context'

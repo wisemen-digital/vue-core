@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import {
-  ListboxVirtualizer as RekaListboxVirtualizer,
-} from 'reka-ui'
+import { ListboxVirtualizer as RekaListboxVirtualizer } from 'reka-ui'
 
 import SelectItem from '@/components/select/parts/SelectItem.vue'
 import { useInjectSelectContext } from '@/components/select/select.context'

@@ -24,13 +24,9 @@ import SelectBaseSingle from '@/components/select/parts/SelectBaseSingle.vue'
 import Select from '@/components/select/Select.vue'
 import TextField from '@/components/text-field/TextField.vue'
 
-const props = withDefaults(defineProps<PhoneNumberFieldProps>(), {
-  defaultCountryCode: 'BE',
-})
+const props = withDefaults(defineProps<PhoneNumberFieldProps>(), { defaultCountryCode: 'BE' })
 
-const model = defineModel<string | null>({
-  required: true,
-})
+const model = defineModel<string | null>({ required: true })
 
 const globalConfigContext = useInjectConfigContext()
 
@@ -169,7 +165,7 @@ function filterFn(option: CountryCode, searchTerm: string): boolean {
               v-if="countryCodeModel !== null"
               :src="getCountryFlagUrl(countryCodeModel) ?? undefined"
               :alt="getCountryName(countryCodeModel, globalConfigContext.locale.value) ?? countryCodeModel"
-              class="object-cover rounded-xxs block h-3.5 w-5 shrink-0"
+              class="rounded-xxs block h-3.5 w-5 shrink-0 object-cover"
             >
           </SelectBaseSingle>
         </template>
@@ -179,7 +175,7 @@ function filterFn(option: CountryCode, searchTerm: string): boolean {
         </template>
       </Select>
 
-      <span class="text-sm text-placeholder pl-xs">
+      <span class="text-placeholder pl-xs text-sm">
         {{ dialCodeDisplayValue }}
       </span>
     </template>

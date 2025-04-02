@@ -50,9 +50,7 @@ export const createTextFieldStyle = tv({
       .withCursor('data-[is-disabled=true]:cursor-not-allowed')
       .build(),
   },
-  variants: {
-    variant: {},
-  },
+  variants: { variant: {} },
 })
 
 export type TextFieldStyle = VariantProps<typeof createTextFieldStyle>

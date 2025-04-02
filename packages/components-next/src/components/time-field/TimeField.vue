@@ -17,9 +17,7 @@ const emit = defineEmits<TimeFieldEmits>()
 
 defineSlots<TimeFieldSlots>()
 
-const modelValue = defineModel<string | null>({
-  required: true,
-})
+const modelValue = defineModel<string | null>({ required: true })
 
 const id = props.id ?? useId()
 </script>

@@ -28,9 +28,7 @@ export const createTooltipStyle = tv({
       .withShadow('shadow-lg')
       .build(),
   },
-  variants: {
-    variant: {},
-  },
+  variants: { variant: {} },
 })
 
 export type TooltipStyle = VariantProps<typeof createTooltipStyle>
