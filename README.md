@@ -1,6 +1,6 @@
 # Vue Core
 
-A powerful collection of essential packages driving multiple Wisemen frontend projects. Built for flexibility, performance, and seamless integration.
+A collection of packages for Wisemen frontend applications.
 
 ## Packages
 
