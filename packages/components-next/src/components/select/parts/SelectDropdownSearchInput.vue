@@ -24,7 +24,7 @@ const {
       <TextField
         v-model="searchTerm"
         :class-config="{
-          root: 'border-none shadow-none !ring-0 bg-secondary h-8 rounded-sm',
+          root: 'border-none shadow-none outline-none bg-secondary h-8 rounded-sm',
           iconLeft: 'ml-md',
           ...classConfig?.dropdownSearchInput,
         }"

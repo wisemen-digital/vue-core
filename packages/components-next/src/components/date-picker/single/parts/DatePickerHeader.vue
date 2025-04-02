@@ -113,7 +113,7 @@ const yearValue = computed<number>({
             v-model="monthValue"
             :icon-right="null"
             :class-config="{
-              root: 'h-8 shadow-none border-none !ring-0 hover:bg-primary-hover focus-within:bg-primary-hover',
+              root: 'h-8 shadow-none border-none outline-none hover:bg-primary-hover focus-within:bg-primary-hover',
               baseSingle: 'font-semibold px-sm',
               content: 'flex gap-xs grid grid-cols-1 [grid-template-columns:auto] sm:[grid-template-columns:repeat(auto-fit,minmax(6rem,1fr))]',
               popover: {
@@ -138,7 +138,7 @@ const yearValue = computed<number>({
           <NumberField
             v-model="yearValue"
             :class-config="{
-              root: 'h-8 shadow-none border-none !ring-0 hover:bg-primary-hover focus-within:bg-primary-hover',
+              root: 'h-8 shadow-none border-none outline-none hover:bg-primary-hover focus-within:bg-primary-hover',
               input: 'font-semibold px-sm',
             }"
             :format-options="{

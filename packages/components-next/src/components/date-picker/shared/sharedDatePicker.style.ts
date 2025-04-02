@@ -6,7 +6,7 @@ import { StyleBuilder } from '@/utils/style-builder/styleBuilder.util'
 export const createSharedDatePickerStyle = tv({
   slots: {
     date: new StyleBuilder()
-      .withBase('group/date relative select-none isolate outline-none')
+      .withBase('group/date relative select-none isolate')
       .withFlex('flex items-center justify-center')
       .withFontSize('text-sm')
       .withColor('text-secondary data-selected:text-primary-on-brand data-outside-view:text-disabled')
@@ -19,7 +19,7 @@ export const createSharedDatePickerStyle = tv({
       .withBorderRadius('rounded-full')
       .withSize('size-10')
       .withTransition('duration-200')
-      .withRing('focus-visible:ring-2 ring-brand-500 data-selected:ring-offset-1')
+      .withOutline('outline-brand-500 data-selected:outline-offset-2')
       .build(),
     header: new StyleBuilder()
       .withGrid('grid grid-cols-3 items-center')

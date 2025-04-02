@@ -9,19 +9,19 @@ export const createTextFieldStyle = tv({
       .withBase('shrink-0')
       .withSize('size-4.5')
       .withSpacing('ml-3')
-      .withColor('text-quaternary group-data-[is-disabled=true]/text-field:text-fg-disabled')
+      .withColor('text-quaternary group-data-disabled/text-field:text-fg-disabled')
       .build(),
     iconRight: new StyleBuilder()
       .withBase('shrink-0')
       .withSize('size-4.5')
       .withSpacing('mr-3')
-      .withColor('text-quaternary group-data-[is-disabled=true]/text-field:text-fg-disabled')
+      .withColor('text-quaternary group-data-disabled/text-field:text-fg-disabled')
       .build(),
     input: new StyleBuilder()
       .withBase('outline-none')
       .withSize('size-full')
       .withFontSize('text-sm')
-      .withPadding('px-3 group-data-[has-icon-left=true]/text-field:pl-2 group-data-[has-icon-right=true]/text-field:pr-2')
+      .withPadding('px-3 group-data-icon-left/text-field:pl-2 group-data-icon-right/text-field:pr-2')
       .withColor('text-primary disabled:text-disabled placeholder:text-placeholder')
       .withBackgroundColor('bg-transparent')
       .withCursor('disabled:cursor-not-allowed')
@@ -39,15 +39,15 @@ export const createTextFieldStyle = tv({
       // Default
       .withBorder('border border-solid border-primary focus-within:border-brand-500')
       // Disabled
-      .withBorder('data-[is-disabled=true]:border-disabled-subtle')
+      .withBorder('data-disabled:border-disabled-subtle')
       // Invalid
-      .withBorder('data-[is-invalid=true]:border-error data-[is-invalid=true]:focus-within:border-error')
-      .withBackgroundColor('bg-primary data-[is-disabled=true]:bg-disabled-subtle')
+      .withBorder('data-invalid:border-error data-invalid:focus-within:border-error')
+      .withBackgroundColor('bg-primary data-disabled:bg-disabled-subtle')
       .withBorderRadius('rounded-md')
       .withShadow('shadow-xs')
-      .withRing('ring-brand-500 focus-within:ring data-[is-invalid=true]:ring-error-500')
+      .withOutline('outline outline-transparent focus-within:outline-brand-500 data-invalid:outline-error-500')
       .withTransition('duration-200')
-      .withCursor('data-[is-disabled=true]:cursor-not-allowed')
+      .withCursor('data-disabled:cursor-not-allowed')
       .build(),
   },
   variants: { variant: {} },

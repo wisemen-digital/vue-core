@@ -301,9 +301,9 @@ useProvideSelectContext({
       :is-disabled="props.isDisabled"
       :aria-disabled="props.isLoading"
       :aria-busy="props.isLoading"
-      :data-has-icon-left="iconLeft !== null"
-      :data-has-icon-right="iconRight !== null"
-      :data-is-disabled="props.isDisabled"
+      :data-icon-left="iconLeft !== null || undefined"
+      :data-icon-right="iconRight !== null || undefined"
+      :data-disabled="props.isDisabled || undefined"
       @focusin="onRootFocusIn"
       @focusout="onRootFocusOut"
     >

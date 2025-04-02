@@ -60,8 +60,8 @@ useProvideTextareaContext({
     :class="textareaStyle.root({
       class: mergeClasses(customClassConfig.root, props.classConfig?.root),
     })"
-    :data-invalid="props.errors.length > 0 && props.isTouched"
-    :data-disabled="props.isDisabled"
+    :data-invalid="(props.errors.length > 0 && props.isTouched) || undefined"
+    :data-disabled="props.isDisabled || undefined"
     :data-resize="props.resize"
   >
     <slot />

@@ -13,6 +13,8 @@ const isChecked = ref<boolean>(false)
         v-model="isChecked"
         :is-disabled="false"
         :is-indeterminate="false"
+        :is-touched="true"
+        :errors="['Error, something went wrong']"
         label="Label"
         hint="Hint"
       />
