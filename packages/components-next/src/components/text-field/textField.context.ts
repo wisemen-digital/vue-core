@@ -5,7 +5,7 @@ import type {
 
 import type { TextFieldProps } from '@/components/text-field/textField.props'
 import type { CreateTextFieldStyle } from '@/components/text-field/textField.style'
-import { useContext } from '@/composables/context.composable'
+import { useContext } from '@/composables/context/context.composable'
 import type { ClassConfig } from '@/customClassVariants'
 import type { PropsToComputed } from '@/utils/props.util'
 
