@@ -5,7 +5,7 @@ import {
   injectThemeProviderContext,
   provideThemeProviderContext,
 } from '@/components/theme-provider/themeProvider.context'
-import type { Appearance } from '@/composables/appearance.composable'
+import type { Appearance } from '@/composables/appearance/appearance.composable'
 
 const props = withDefaults(defineProps<{
   /**

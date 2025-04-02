@@ -4,7 +4,7 @@ import type {
 
 import type { TooltipProps } from '@/components/tooltip/tooltip.props'
 import type { CreateTooltipStyle } from '@/components/tooltip/tooltip.style'
-import { useContext } from '@/composables/context.composable'
+import { useContext } from '@/composables/context/context.composable'
 import type { ClassConfig } from '@/customClassVariants'
 import type { PropsToComputed } from '@/utils/props.util'
 

@@ -4,7 +4,7 @@ import type {
 
 import type { NumberFieldProps } from '@/components/number-field/numberField.props'
 import type { CreateNumberFieldStyle } from '@/components/number-field/numberField.style'
-import { useContext } from '@/composables/context.composable'
+import { useContext } from '@/composables/context/context.composable'
 import type { ClassConfig } from '@/customClassVariants'
 import type { PropsToComputed } from '@/utils/props.util'
 

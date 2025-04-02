@@ -4,7 +4,7 @@ import { computed, ref } from 'vue'
 import ConfigProvider from '@/components/config-provider/ConfigProvider.vue'
 import DialogContainer from '@/components/dialog/DialogContainer.vue'
 import ThemeProvider from '@/components/theme-provider/ThemeProvider.vue'
-import { useAppearance } from '@/composables/appearance.composable'
+import { useAppearance } from '@/composables/appearance/appearance.composable'
 
 const appearance = useAppearance()
 
