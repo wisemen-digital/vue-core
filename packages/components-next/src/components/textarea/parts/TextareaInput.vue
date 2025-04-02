@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useTextareaAutosize } from '@vueuse/core'
 
-import InteractableElement from '@/components/shared/InteractableElement.vue'
+import FormControl from '@/components/shared/FormControl.vue'
 import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
 import { useInjectTextareaContext } from '@/components/textarea/textarea.context'
 import { mergeClasses } from '@/customClassVariants'
@@ -44,18 +44,19 @@ function onInput(event: InputEvent): void {
     :id="id"
     :test-id="testId"
   >
-    <InteractableElement
+    <FormControl
       :value="modelValue"
       :is-disabled="isDisabled"
+      :is-invalid="errors.length > 0"
+      :is-required="isRequired"
+      :described-by="`${id}-error ${id}-hint`"
+      :is-loading="false"
       :class="style.input({
         class: mergeClasses(customClassConfig.input, classConfig?.input),
       })"
-      :describedby="`${id}-error ${id}-hint`"
-      :aria-invalid="errors.length > 0"
       :autocomplete="autocomplete"
       :placeholder="placeholder"
       :spellcheck="isSpellCheckEnabled"
-      :required="isRequired"
       @focus="onFocus"
       @blur="onBlur"
       @input="onInput"
@@ -67,7 +68,7 @@ function onInput(event: InputEvent): void {
         ref="textarea"
       />
       <textarea v-else />
-    </InteractableElement>
+    </FormControl>
   </PrimitiveElement>
 </template>
 

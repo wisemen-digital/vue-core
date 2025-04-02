@@ -7,7 +7,7 @@ import type { CheckboxEmits } from '@/components/checkbox/checkbox.emits'
 import type { CheckboxProps } from '@/components/checkbox/checkbox.props'
 import type { CreateCheckboxStyle } from '@/components/checkbox/checkbox.style'
 import { createCheckboxStyle } from '@/components/checkbox/checkbox.style'
-import InteractableElement from '@/components/shared/InteractableElement.vue'
+import FormControl from '@/components/shared/FormControl.vue'
 import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
 import {
   mergeClasses,
@@ -75,22 +75,25 @@ useProvideCheckboxContext({
     :id="id"
     :test-id="testId"
   >
-    <InteractableElement
+    <FormControl
       :is-disabled="isDisabled"
-      :data-invalid="(errors.length > 0 && props.isTouched) || undefined"
-      :aria-invalid="errors.length > 0"
-      :class="checkboxStyle.root({
-        class: mergeClasses(customClassConfig.root, props.classConfig?.root),
-      })"
+      :is-invalid="errors.length > 0"
+      :is-required="isRequired"
+      :described-by="`${id}-error ${id}-hint`"
+      :is-loading="false"
     >
       <RekaCheckboxRoot
         v-model="delegatedModel"
         :value="props.value"
+        :data-invalid="(errors.length > 0 && props.isTouched) || undefined"
+        :class="checkboxStyle.root({
+          class: mergeClasses(customClassConfig.root, props.classConfig?.root),
+        })"
         @focus="emit('focus')"
         @blur="emit('blur')"
       >
         <slot />
       </RekaCheckboxRoot>
-    </InteractableElement>
+    </FormControl>
   </PrimitiveElement>
 </template>

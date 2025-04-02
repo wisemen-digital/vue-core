@@ -2,13 +2,16 @@
 import { NumberFieldInput as RekaNumberFieldInput } from 'reka-ui'
 
 import { useInjectNumberFieldContext } from '@/components/number-field/numberField.context'
+import FormControl from '@/components/shared/FormControl.vue'
 import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
 import { mergeClasses } from '@/customClassVariants'
 
 const {
   id,
   testId,
+  isDisabled,
   isLoading,
+  isRequired,
   autocomplete,
   classConfig,
   customClassConfig,
@@ -25,17 +28,22 @@ const {
     :id="id"
     :test-id="testId"
   >
-    <RekaNumberFieldInput
-      :class="style.input({
-        class: mergeClasses(customClassConfig.input, classConfig?.input),
-      })"
-      :aria-describedby="`${id}-error ${id}-hint`"
-      :aria-busy="isLoading"
-      :aria-invalid="errors.length > 0"
-      :autocomplete="autocomplete"
-      :placeholder="placeholder"
-      @focus="onFocus"
-      @blur="onBlur"
-    />
+    <FormControl
+      :is-disabled="isDisabled"
+      :is-loading="isLoading"
+      :is-invalid="errors.length > 0"
+      :described-by="`${id}-error ${id}-hint`"
+      :is-required="isRequired"
+    >
+      <RekaNumberFieldInput
+        :class="style.input({
+          class: mergeClasses(customClassConfig.input, classConfig?.input),
+        })"
+        :autocomplete="autocomplete"
+        :placeholder="placeholder"
+        @focus="onFocus"
+        @blur="onBlur"
+      />
+    </FormControl>
   </PrimitiveElement>
 </template>

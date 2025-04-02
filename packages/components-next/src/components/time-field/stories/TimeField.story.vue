@@ -13,6 +13,7 @@ const test = ref<string | null>(null)
       :is-disabled="false"
       :hide-date-picker="false"
       :show-two-months="false"
+      :is-required="true"
       :errors="['errors']"
       class="w-52"
       label="Date"

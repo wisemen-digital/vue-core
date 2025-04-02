@@ -2,7 +2,7 @@
 import { SwitchRoot as RekaSwitchRoot } from 'reka-ui'
 import { computed } from 'vue'
 
-import InteractableElement from '@/components/shared/InteractableElement.vue'
+import FormControl from '@/components/shared/FormControl.vue'
 import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
 import { useProvideSwitchContext } from '@/components/switch/switch.context'
 import type { SwitchEmits } from '@/components/switch/switch.emits'
@@ -55,21 +55,24 @@ useProvideSwitchContext({
     :id="id"
     :test-id="testId"
   >
-    <InteractableElement
+    <FormControl
       :is-disabled="isDisabled"
-      :data-invalid="(errors.length > 0 && props.isTouched) || undefined"
-      :aria-invalid="errors.length > 0"
-      :class="switchStyle.root({
-        class: mergeClasses(customClassConfig.root, props.classConfig?.root),
-      })"
+      :is-invalid="errors.length > 0"
+      :is-required="isRequired"
+      :described-by="`${id}-error ${id}-hint`"
+      :is-loading="false"
     >
       <RekaSwitchRoot
         v-model="modelValue"
+        :data-invalid="(errors.length > 0 && props.isTouched) || undefined"
+        :class="switchStyle.root({
+          class: mergeClasses(customClassConfig.root, props.classConfig?.root),
+        })"
         @focus="emit('focus')"
         @blur="emit('blur')"
       >
         <slot />
       </RekaSwitchRoot>
-    </InteractableElement>
+    </FormControl>
   </PrimitiveElement>
 </template>
