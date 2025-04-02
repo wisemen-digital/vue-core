@@ -17,7 +17,7 @@ export interface PopperProps {
    * Specifies the padding (in pixels) used when handling collision detection.
    * A larger value increases the spacing between the popper and the container edges.
    */
-  popoverCollisionPaddingInPx?: number
+  popoverCollisionPadding?: number
   /**
    * The HTML element in which the popper content should be rendered.
    * By default, the popper content is rendered inside the viewport.
@@ -26,7 +26,7 @@ export interface PopperProps {
   /**
    * The distance (in pixels) between the popper content and the trigger element.
    */
-  popoverOffsetInPx?: number
+  popoverOffset?: number
   /**
    * Defines which side the content should appear on.
    */

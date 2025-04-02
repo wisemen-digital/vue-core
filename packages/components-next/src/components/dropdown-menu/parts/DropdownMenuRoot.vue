@@ -21,9 +21,9 @@ const props = withDefaults(defineProps<DropdownMenuProps>(), {
   classConfig: null,
   popoverAlign: 'center',
   popoverAnchorReferenceElement: null,
-  popoverCollisionPaddingInPx: 10,
+  popoverCollisionPadding: 10,
   popoverContainerElement: null,
-  popoverOffsetInPx: 10,
+  popoverOffset: 10,
   popoverSide: 'bottom',
   popoverWidth: null,
 })
