@@ -4,7 +4,7 @@ import type {
 
 import type { TabsProps } from '@/components/tabs/shared/tabs.props'
 import type { CreateTabsStyle } from '@/components/tabs/shared/tabs.style'
-import { useContext } from '@/composables/context.composable'
+import { useContext } from '@/composables/context/context.composable'
 import type { ClassConfig } from '@/customClassVariants'
 import type { PropsToComputed } from '@/utils/props.util'
 

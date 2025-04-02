@@ -4,7 +4,7 @@ import type {
 
 import type { RouterLinkButtonProps } from '@/components/button/router-link-button/routerLinkButton.props'
 import type { CreateRouterLinkButtonStyle } from '@/components/button/router-link-button/routerLinkButton.style'
-import { useContext } from '@/composables/context.composable'
+import { useContext } from '@/composables/context/context.composable'
 import type { ClassConfig } from '@/customClassVariants'
 import type { PropsToComputed } from '@/utils/props.util'
 

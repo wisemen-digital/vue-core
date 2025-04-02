@@ -4,7 +4,7 @@ import type {
 
 import type { DropdownMenuProps } from '@/components/dropdown-menu/dropdownMenu.props'
 import type { CreateDropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style'
-import { useContext } from '@/composables/context.composable'
+import { useContext } from '@/composables/context/context.composable'
 import type { ClassConfig } from '@/customClassVariants'
 import type { PropsToComputed } from '@/utils/props.util'
 

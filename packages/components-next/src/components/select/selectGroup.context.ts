@@ -1,4 +1,4 @@
-import { useContext } from '@/composables/context.composable'
+import { useContext } from '@/composables/context/context.composable'
 
 interface SelectGroupContext {
   id: string

@@ -5,7 +5,7 @@ import type {
 
 import type { SelectProps, SelectValue } from '@/components/select/select.props'
 import type { CreateSelectStyle } from '@/components/select/style/select.style'
-import { useContext } from '@/composables/context.composable'
+import { useContext } from '@/composables/context/context.composable'
 import type { ClassConfig } from '@/customClassVariants'
 import type { PropsToComputed } from '@/utils/props.util'
 
