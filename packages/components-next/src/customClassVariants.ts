@@ -3,6 +3,7 @@ import type { VariantProps } from 'tailwind-variants'
 import type { ComputedRef } from 'vue'
 import { computed } from 'vue'
 
+import type { createAvatarStyle } from '@/components/avatar/avatar.style'
 import type { createButtonStyle } from '@/components/button/default-button/button.style'
 import type { createIconButtonStyle } from '@/components/button/icon-button/iconButton.style'
 import type { createRouterLinkButtonStyle } from '@/components/button/router-link-button/routerLinkButton.style'
@@ -26,6 +27,7 @@ import type { createTimeFieldStyle } from '@/components/time-field/timeField.sty
 import type { createTooltipStyle } from '@/components/tooltip/tooltip.style'
 
 export interface Components {
+  avatar: typeof createAvatarStyle
   button: typeof createButtonStyle
   checkbox: typeof createCheckboxStyle
   dateField: typeof createDateFieldStyle

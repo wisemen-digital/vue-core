@@ -10,6 +10,11 @@ export const components = [
     componentName: 'AddressAutocomplete',
   },
   {
+    sourceFolder: 'avatar/parts/AvatarRoot.vue',
+    targetFolder: 'avatar',
+    componentName: 'Avatar',
+  },
+  {
     sourceFolder: 'button/default-button/parts/ButtonRoot.vue',
     targetFolder: 'button',
     componentName: 'Button',

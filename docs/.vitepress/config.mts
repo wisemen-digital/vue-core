@@ -109,6 +109,12 @@ export default defineConfig({
                 { text: 'Keyboard Shortcut Provider', link: '/packages/components-next/components/keyboard-shortcut-provider/keyboard-shortcut-provider' },
               ],
             },
+            {
+              text: 'Miscellaneous',
+              items: [
+                { text: 'Avatar', link: '/packages/components-next/components/avatar/avatar' },
+              ],
+            },
           ],
         },
       ],
