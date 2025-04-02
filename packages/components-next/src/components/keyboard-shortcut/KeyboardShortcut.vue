@@ -6,7 +6,7 @@ import { useInjectConfigContext } from '@/components/config-provider/config.cont
 import KeyboardKey from '@/components/keyboard-key/KeyboardKey.vue'
 import type { KeyboardShortcutProps } from '@/components/keyboard-shortcut/keyboardShortcut.props'
 import type { KeyboardKey as KeyboardKeyType } from '@/types/keyboard.type'
-import { IS_MOBILE_DEVICE } from '@/utils/device.util'
+import { isMobileDevice } from '@/utils/device.util'
 
 const props = defineProps<KeyboardShortcutProps>()
 
@@ -24,7 +24,7 @@ const isSequence = computed<boolean>(() => {
 
 <template>
   <div
-    v-if="!areKeyboardShortcutHintsHidden && !IS_MOBILE_DEVICE"
+    v-if="!areKeyboardShortcutHintsHidden && !isMobileDevice()"
     class="flex items-center gap-x-1"
   >
     <template
