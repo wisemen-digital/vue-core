@@ -7,11 +7,11 @@ import { useQuery } from '@wisemen/vue-core-query'
 import type { ComputedRef } from 'vue'
 
 import type { <%= pascalCase %>Index } from '@/models/<%= kebabCase %>/index/<%= camelCase %>Index.model'
-import type { <%= pascalCase %>IndexFilters } from '@/models/<%= kebabCase %>/filters/<%= camelCase %>IndexFilters.model'
+import type { <%= pascalCase %>IndexPagination } from '@/models/<%= kebabCase %>/pagination/<%= camelCase %>IndexPagination.model'
 import { <%= pascalCase %>Service } from '@/modules/<%= kebabCase %>/api/services/<%= camelCase %>.service'
 
 export function use<%= pascalCase %>IndexQuery(
-  paginationOptions: ComputedRef<PaginationOptions<<%= pascalCase %>IndexFilters>>,
+  paginationOptions: ComputedRef<PaginationOptions<<%= pascalCase %>IndexPagination>>,
     ): UseQueryReturnType<PaginatedData<<%= pascalCase %>Index>> {
     return useQuery<PaginatedData<<%= pascalCase %>Index>>({
       queryFn: async () => {

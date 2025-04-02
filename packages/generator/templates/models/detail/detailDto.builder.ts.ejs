@@ -1,0 +1,11 @@
+import type { <%= pascalCase %>DetailDto } from './<%= pascalCase %>DetailDto.model'
+
+export class <%= pascalCase %>DetailDtoBuilder {
+  private readonly value: <%= pascalCase %>DetailDto = REPLACE_ME
+
+  constructor() {}
+
+  public build(): <%= pascalCase %>DetailDto {
+    return this.value
+  }
+}

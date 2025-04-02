@@ -15,6 +15,7 @@ import type { TooltipProps } from '@/components/tooltip/tooltip.props'
 import type {
   SelectValue,
 } from '@/types'
+import type { BasePagination } from '@/types/pagination.type'
 
 export type VcAutocompleteProps<TValue extends SelectValue> = AutocompleteProps<TValue>
 export type VcButtonProps = ButtonProps
@@ -27,7 +28,7 @@ export type VcPopoverProps = PopoverProps
 export type VcRouterLinkButtonProps = RouterLinkButtonProps
 export type VcSelectProps<TValue extends SelectValue> = SelectProps<TValue>
 export type VcSwitchProps = SwitchProps
-export type VcTableProps<TSchema, TFilters> = TableProps<TSchema, TFilters>
+export type VcTableProps<TSchema, TPagination extends BasePagination> = TableProps<TSchema, TPagination>
 export type VcTextFieldProps = TextFieldProps
 export type VcTooltipProps = TooltipProps
 
