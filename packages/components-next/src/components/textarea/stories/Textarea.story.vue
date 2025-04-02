@@ -7,6 +7,7 @@ import Textarea from '@/components/textarea/Textarea.vue'
     <Textarea
       :model-value="null"
       :class-config="{ }"
+      :is-required="true"
       label="Textarea"
       placeholder="Enter your text here..."
       hint="You can enter quite a lot of text here."

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import InteractableElement from '@/components/shared/InteractableElement.vue'
+import FormControl from '@/components/shared/FormControl.vue'
 import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
 import { useInjectTextFieldContext } from '@/components/text-field/textField.context'
 import { mergeClasses } from '@/customClassVariants'
@@ -33,20 +33,20 @@ function onInput(event: InputEvent): void {
     :id="id"
     :test-id="testId"
   >
-    <InteractableElement
+    <FormControl
       :value="modelValue"
+      :is-loading="isLoading"
       :is-disabled="isDisabled"
+      :is-invalid="errors.length > 0"
+      :is-required="isRequired"
+      :described-by="`${id}-error ${id}-hint`"
       :class="style.input({
         class: mergeClasses(customClassConfig.input, classConfig?.input),
       })"
-      :describedby="`${id}-error ${id}-hint`"
-      :aria-busy="isLoading"
-      :aria-invalid="errors.length > 0"
       :type="type"
       :autocomplete="autocomplete"
       :placeholder="placeholder"
       :spellcheck="isSpellCheckEnabled"
-      :required="isRequired"
       as="input"
       @focus="onFocus"
       @blur="onBlur"

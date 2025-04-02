@@ -117,6 +117,7 @@ useProvideDateFieldContext({
       :max-value="props.maxDate === null ? undefined : dateToDateValue(props.maxDate)"
       :is-date-unavailable="(dateValue) => props.isDateUnavailable(dateValueToDate(dateValue))"
       :locale="locale"
+      :is-invalid="props.errors.length > 0"
       :required="props.isRequired"
     >
       <!-- For some reason, the data- bindings don't work on the `RekaDateFieldRoot` component -->

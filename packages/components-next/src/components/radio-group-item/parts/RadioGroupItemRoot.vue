@@ -7,7 +7,7 @@ import type { RadioGroupItemEmits } from '@/components/radio-group-item/radioGro
 import type { RadioGroupItemProps } from '@/components/radio-group-item/radioGroupItem.props'
 import type { CreateRadioGroupItemStyle } from '@/components/radio-group-item/radioGroupItem.style'
 import { createRadioGroupItemStyle } from '@/components/radio-group-item/radioGroupItem.style'
-import InteractableElement from '@/components/shared/InteractableElement.vue'
+import FormControl from '@/components/shared/FormControl.vue'
 import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
 import {
   mergeClasses,
@@ -50,21 +50,24 @@ useProvideRadioGroupItemContext({
     :id="id"
     :test-id="testId"
   >
-    <InteractableElement
+    <FormControl
       :is-disabled="isDisabled"
-      :class="radioGroupItemStyle.root({
-        class: mergeClasses(customClassConfig.root, props.classConfig?.root),
-      })"
-      :aria-invalid="errors.length > 0"
-      :data-invalid="(errors.length > 0 && props.isTouched) || undefined"
+      :is-invalid="errors.length > 0"
+      :is-required="isRequired"
+      :described-by="`${id}-error ${id}-hint`"
+      :is-loading="false"
     >
       <RekaRadioGroupItem
         :value="props.value"
+        :data-invalid="(errors.length > 0 && props.isTouched) || undefined"
+        :class="radioGroupItemStyle.root({
+          class: mergeClasses(customClassConfig.root, props.classConfig?.root),
+        })"
         @focus="emit('focus')"
         @blur="emit('blur')"
       >
         <slot />
       </RekaRadioGroupItem>
-    </InteractableElement>
+    </FormControl>
   </PrimitiveElement>
 </template>

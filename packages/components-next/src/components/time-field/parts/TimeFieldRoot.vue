@@ -121,6 +121,7 @@ useProvideTimeFieldContext({
       v-model="delegatedModel"
       :locale="locale"
       :required="props.isRequired"
+      :is-invalid="props.errors.length > 0"
     >
       <!-- For some reason, the data- bindings don't work on the `RekaTimeFieldRoot` component -->
       <div
