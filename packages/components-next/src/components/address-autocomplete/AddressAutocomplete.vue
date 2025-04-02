@@ -4,7 +4,6 @@ import {
   computed,
   onMounted,
   ref,
-  watch,
 } from 'vue'
 
 import type { AddressAutocompleteEmits } from '@/components/address-autocomplete/addressAutocomplete.emits'
