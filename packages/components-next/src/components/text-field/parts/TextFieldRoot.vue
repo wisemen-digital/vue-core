@@ -67,10 +67,10 @@ useProvideTextFieldContext({
     :class="textFieldStyle.root({
       class: mergeClasses(customClassConfig.root, props.classConfig?.root),
     })"
-    :data-has-icon-left="props.iconLeft !== null"
-    :data-has-icon-right="props.iconRight !== null"
-    :data-is-invalid="props.errors.length > 0 && props.isTouched"
-    :data-is-disabled="props.isDisabled"
+    :data-icon-left="props.iconLeft !== null || undefined"
+    :data-icon-right="props.iconRight !== null || undefined"
+    :data-invalid="(props.errors.length > 0 && props.isTouched) || undefined"
+    :data-disabled="props.isDisabled || undefined"
   >
     <slot />
   </div>

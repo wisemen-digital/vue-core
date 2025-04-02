@@ -21,15 +21,15 @@ export const createTextareaStyle = tv({
       // Default
       .withBorder('border border-solid border-primary focus-within:border-brand-500')
       // Disabled
-      .withBorder('data-[disabled=true]:border-disabled-subtle')
+      .withBorder('data-disabled:border-disabled-subtle')
       // Invalid
-      .withBorder('data-[invalid=true]:border-error data-[invalid=true]:focus-within:border-error')
-      .withBackgroundColor('bg-primary data-[disabled=true]:bg-disabled-subtle')
+      .withBorder('data-invalid:border-error data-invalid:focus-within:border-error')
+      .withBackgroundColor('bg-primary data-disabled:bg-disabled-subtle')
       .withBorderRadius('rounded-md')
       .withShadow('shadow-xs')
-      .withRing('ring-brand-500 focus-within:ring data-[invalid=true]:ring-error-500')
+      .withOutline('outline outline-transparent focus-within:outline-brand-500 data-invalid:outline-error-500')
       .withTransition('duration-200')
-      .withCursor('data-[disabled=true]:cursor-not-allowed')
+      .withCursor('data-disabled:cursor-not-allowed')
       .build(),
   },
   variants: { variant: {} },

@@ -12,13 +12,13 @@ export const createRadioGroupItemStyle = tv({
       .withBorderRadius('rounded-full')
       .build(),
     root: new StyleBuilder()
-      .withBase('group/radio-group-item relative overflow-hidden isolate outline-none')
+      .withBase('group/radio-group-item relative overflow-hidden isolate')
       .withSize('size-4')
       .withFlex('flex items-center justify-center')
       .withBorder('border border-solid border-primary data-[state=checked]:border-brand-600 data-[state=checked]:disabled:border-disabled disabled:border-disabled data-invalid:data-[state=checked]:border-error data-invalid:data-[state=unchecked]:border-error')
       .withBorderRadius('rounded-full')
       .withBackgroundColor('data-[state=checked]:bg-brand-solid disabled:data-[state=checked]:bg-disabled-subtle disabled:bg-disabled-subtle data-invalid:data-[state=checked]:bg-error-solid')
-      .withRing('ring-offset-1 focus-visible:ring-2 ring-brand-600 data-invalid:ring-error-600')
+      .withOutline('outline-brand-600 outline-offset-3 data-invalid:outline-error-600')
       .withCursor('cursor-pointer disabled:cursor-not-allowed')
       .withTransition('duration-300')
       .build(),

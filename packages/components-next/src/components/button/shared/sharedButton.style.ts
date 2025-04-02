@@ -8,8 +8,8 @@ import { StyleBuilder } from '@/utils/style-builder/styleBuilder.util'
 export const createSharedButtonStyle = tv({
   slots: {
     root: new StyleBuilder()
-      .withBase('group/button outline-none whitespace-nowrap overflow-hidden relative')
-      .withRing('focus-visible:ring-2 focus-visible:ring-offset-1 ring-brand-600')
+      .withBase('group/button whitespace-nowrap overflow-hidden relative')
+      .withOutline('focus-visible:outline-2 outline-offset-2 outline-brand-600')
       .withBorder('border border-solid')
       .withBorderRadius('rounded-md')
       .withShadow('shadow-button')
@@ -24,7 +24,7 @@ export const createSharedButtonStyle = tv({
           .withColor('text-white disabled:text-fg-disabled')
           .withBackgroundColor('bg-error-solid disabled:bg-disabled')
           .withBorder('border-error-600 disabled:border-disabled-subtle')
-          .withRing('ring-error-600')
+          .withOutline('outline-error-600')
           .withTransition('data-[loading=false]:not-disabled:hover:brightness-95 data-[loading=false]:not-disabled:active:brightness-90')
           .build(),
       },
@@ -33,7 +33,7 @@ export const createSharedButtonStyle = tv({
           .withColor('text-error-primary disabled:text-fg-disabled')
           .withBackgroundColor('bg-transparent data-[loading=false]:not-disabled:hover:bg-error-primary data-[loading=false]:not-disabled:active:brightness-98 data-[loading=true]:bg-error-primary')
           .withBorder('border-error-subtle disabled:border-disabled-subtle')
-          .withRing('ring-error-600')
+          .withOutline('outline-error-600')
           .build(),
       },
       'destructive-tertiary': {
@@ -42,7 +42,7 @@ export const createSharedButtonStyle = tv({
           .withBackgroundColor('bg-transparent data-[loading=false]:not-disabled:hover:bg-error-primary data-[loading=false]:not-disabled:active:brightness-98 data-[loading=true]:bg-error-primary')
           .withBorder('border-transparent')
           .withShadow('shadow-none')
-          .withRing('ring-error-600')
+          .withOutline('outline-error-600')
           .build(),
       },
       'primary': {

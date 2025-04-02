@@ -151,7 +151,7 @@ function filterFn(option: CountryCode, searchTerm: string): boolean {
           items: countries,
         }"
         :class-config="{
-          root: 'h-8 ml-[0.18rem] rounded-xs border-none shadow-none !ring-0 not-disabled:hover:bg-primary-hover pr-xs focus-within:bg-tertiary',
+          root: 'h-8 ml-[0.18rem] rounded-xs border-none shadow-none outline-none not-disabled:hover:bg-primary-hover pr-xs focus-within:bg-tertiary',
           iconRight: 'mr-0 size-4',
           baseSingle: 'pr-0',
         }"

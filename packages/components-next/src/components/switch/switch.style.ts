@@ -6,7 +6,7 @@ import { StyleBuilder } from '@/utils/style-builder/styleBuilder.util'
 export const createSwitchStyle = tv({
   slots: {
     root: new StyleBuilder()
-      .withBase('group/switch relative overflow-hidden isolate outline-none')
+      .withBase('group/switch relative overflow-hidden isolate')
       .withPadding('px-xxs')
       .withBorder('border border-solid border-tertiary dark:border-primary data-[state=checked]:border-brand-600 data-[state=checked]:disabled:border-disabled-subtle disabled:border-disabled-subtle')
       // Error
@@ -15,7 +15,7 @@ export const createSwitchStyle = tv({
       .withBackgroundColor('bg-tertiary data-[state=checked]:bg-brand-solid disabled:data-[state=checked]:bg-disabled-subtle disabled:bg-disabled-subtle')
       // Error
       .withBackgroundColor('data-invalid:data-[state=checked]:bg-error-solid data-invalid:bg-error-primary')
-      .withRing('ring-offset-1 focus-visible:ring-2 ring-brand-600 data-invalid:ring-error-600')
+      .withOutline('outline-brand-600 outline-offset-3 data-invalid:outline-error-600')
       .withCursor('cursor-pointer disabled:cursor-not-allowed')
       .withTransition('duration-200')
       .build(),
