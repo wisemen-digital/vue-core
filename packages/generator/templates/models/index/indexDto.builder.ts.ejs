@@ -1,0 +1,11 @@
+import type { <%= pascalCase %>IndexDto } from './<%= pascalCase %>IndexDto.model'
+
+export class <%= pascalCase %>IndexDtoBuilder {
+  private readonly value: <%= pascalCase %>IndexDto = REPLACE_ME
+
+  constructor() {}
+
+  public build(): <%= pascalCase %>IndexDto {
+    return this.value
+  }
+}

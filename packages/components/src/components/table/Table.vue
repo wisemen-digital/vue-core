@@ -1,4 +1,4 @@
-<script setup lang="ts" generic="Tschema, TFilters">
+<script setup lang="ts" generic="Tschema, TPagination extends BasePagination">
 import { useInfiniteScroll } from '@vueuse/core'
 import {
   computed,
@@ -20,11 +20,15 @@ import TableHeader from '@/components/table/TableHeader.vue'
 import TableLoadingState from '@/components/table/TableLoadingState.vue'
 import TablePageCount from '@/components/table/TablePageCount.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
-import type { PaginatedData, Pagination } from '@/types/pagination.type'
+import type {
+  BasePagination,
+  PaginatedData,
+  Pagination,
+} from '@/types/pagination.type'
 import type { TableColumn } from '@/types/table.type'
 import { ThemeUtil } from '@/utils/theme.util'
 
-const props = withDefaults(defineProps<TableProps<Tschema, TFilters>>(), {
+const props = withDefaults(defineProps<TableProps<Tschema, TPagination>>(), {
   isFetching: false,
   isFirstColumnSticky: false,
   isLastColumnSticky: false,
@@ -93,8 +97,8 @@ const gridColsStyle = computed<string>(() => (
 ))
 
 const hasActiveFilters = computed<boolean>(
-  () => props.pagination.paginationOptions.value.filters !== undefined
-    && Object.keys(props.pagination.paginationOptions.value.filters).length > 0,
+  () => props.pagination.paginationOptions.value.filter !== undefined
+    && Object.keys(props.pagination.paginationOptions.value.filter).length > 0,
 )
 
 const hasActiveSearch = computed<boolean>(() => {
@@ -226,7 +230,7 @@ provideTableContext({
   expandedRowContent: computed<((row: unknown) => VNode) | null>(
     () => props.expandedRowContent as ((row: unknown) => VNode) | null),
   gridColsStyle,
-  pagination: computed<Pagination<unknown>>(() => props.pagination),
+  pagination: computed<Pagination<never>>(() => props.pagination as Pagination<never>),
   rowClass: computed<((row: unknown, rowIndex: number) => string) | null>(
     () => props.rowClass as ((row: unknown, rowIndex: number) => string) | null),
 })

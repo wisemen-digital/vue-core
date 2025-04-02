@@ -18,7 +18,7 @@ export const createRadioGroupItemStyle = tv({
       .withBorder('border border-solid border-primary data-[state=checked]:border-brand-600 data-[state=checked]:disabled:border-disabled disabled:border-disabled data-invalid:data-[state=checked]:border-error data-invalid:data-[state=unchecked]:border-error')
       .withBorderRadius('rounded-full')
       .withBackgroundColor('data-[state=checked]:bg-brand-solid disabled:data-[state=checked]:bg-disabled-subtle disabled:bg-disabled-subtle data-invalid:data-[state=checked]:bg-error-solid')
-      .withRing('ring-offset-1 focus-visible:ring-2 ring-brand-600')
+      .withRing('ring-offset-1 focus-visible:ring-2 ring-brand-600 data-invalid:ring-error-600')
       .withCursor('cursor-pointer disabled:cursor-not-allowed')
       .withTransition('duration-300')
       .build(),

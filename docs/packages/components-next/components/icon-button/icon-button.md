@@ -62,3 +62,5 @@ import {
 `root`, `icon`, `loader`
 
 <ComponentPreview name="icon-button/examples/customize" />
+
+<!-- @include: ./icon-button-meta.md -->

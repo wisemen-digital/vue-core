@@ -20,7 +20,7 @@ type CustomIcons = {
 }
 
 // Extend the `Icons` interface in `@wisemen/vue-core`
-declare module '@wisemen/vue-core' {
+declare module '@wisemen/vue-core-components' {
   interface Icons extends CustomIcons {}
 }
 ```
@@ -30,7 +30,7 @@ declare module '@wisemen/vue-core' {
 Once you've defined your custom icons, register them in your `main.ts` file to extend the existing icon set:
 
 ```ts
-import { extendIcons } from '@wisemen/vue-core'
+import { extendIcons } from '@wisemen/vue-core-cmponents'
 import { icons } from '@/icons/icons.ts'
 
 extendIcons(icons)

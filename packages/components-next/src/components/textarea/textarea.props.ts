@@ -24,11 +24,11 @@ export interface TextareaProps extends PrimitiveElement, InteractableElement, Fo
   placeholder?: string | null
   /**
    * Whether the textarea can be resized.
-   * - `'auto-vertical'`: The textarea will resize vertically depending on the content height.
-   * - `'both'`: The textarea can be resized vertically and horizontally.
-   * - `'horizontal'`: The textarea can be resized horizontally, but not vertically.
-   * - `'none'`: The textarea cannot be resized.
-   * - `'vertical'`: The textarea can be resized vertically, but not horizontally.
+   * - `’auto-vertical’`: The textarea will resize vertically depending on the content height.
+   * - `’both’`: The textarea can be resized vertically and horizontally.
+   * - `’horizontal’`: The textarea can be resized horizontally, but not vertically.
+   * - `’none’`: The textarea cannot be resized.
+   * - `’vertical’`: The textarea can be resized vertically, but not horizontally.
    * @default 'none'
    */
   resize?: 'auto-vertical' | 'both' | 'horizontal' | 'none' | 'vertical'

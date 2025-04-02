@@ -63,3 +63,5 @@ import {
 `root`, `input`, `iconLeft`, `iconRight`, `loader`
 
 <ComponentPreview name="text-field/examples/customize" />
+
+<!-- @include: ./text-field-meta.md -->

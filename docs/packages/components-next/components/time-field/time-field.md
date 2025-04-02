@@ -35,3 +35,5 @@ import {
 ### Disabled
 
 <ComponentPreview name="time-field/examples/disabled" />
+
+<!-- @include: ./time-field-meta.md -->

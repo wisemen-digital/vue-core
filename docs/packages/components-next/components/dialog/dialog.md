@@ -35,3 +35,5 @@ import {
   </VcDialogRoot>
 </template>
 ```
+
+<!-- @include: ./dialog-meta.md -->
