@@ -125,6 +125,9 @@ export class StyleBuilder {
     return this
   }
 
+  /**
+   * @deprecated Use `withOutline` instead.
+   */
   public withRing(ring: string): this {
     this.with(ring)
 
