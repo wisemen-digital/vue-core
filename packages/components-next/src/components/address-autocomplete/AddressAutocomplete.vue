@@ -4,6 +4,7 @@ import {
   computed,
   onMounted,
   ref,
+  watch,
 } from 'vue'
 
 import type { AddressAutocompleteEmits } from '@/components/address-autocomplete/addressAutocomplete.emits'
@@ -36,23 +37,12 @@ const addressResults = ref<FormattedAddress[]>([])
 
 let autocompleteService: typeof google.maps.places.AutocompleteSuggestion | null = null
 
-const selectedAddress = computed<FormattedAddress | null>({
-  get: () => {
-    if (modelValue.value === null) {
-      return null
-    }
+const selectedAddress = computed<FormattedAddress | null>(() => {
+  if (modelValue.value === null) {
+    return null
+  }
 
-    return addressToFormattedAddress(modelValue.value)
-  },
-  set: async (value) => {
-    if (value === null) {
-      modelValue.value = null
-
-      return
-    }
-
-    modelValue.value = await getAddressByPlaceId(value.placeId)
-  },
+  return addressToFormattedAddress(modelValue.value)
 })
 
 const autocompleteItems = computed<FormattedAddress[]>(() => (
@@ -96,6 +86,16 @@ async function onSearch(searchTerm: string): Promise<void> {
   isLoading.value = false
 }
 
+async function onUpdateModelValue(value: FormattedAddress | null): Promise<void> {
+  if (value === null) {
+    modelValue.value = null
+
+    return
+  }
+
+  modelValue.value = await getAddressByPlaceId(value.placeId)
+}
+
 async function createAutocompleteSuggestionService(
   apiKey: string,
 ): Promise<typeof google.maps.places.AutocompleteSuggestion> {
@@ -123,13 +123,14 @@ onMounted(async () => {
 <template>
   <Autocomplete
     v-bind="props"
-    v-model="selectedAddress"
+    :model-value="selectedAddress"
     :items="autocompleteItems"
     :is-loading="isLoading"
     :display-fn="(formattedAddress) => formattedAddressToString(formattedAddress)"
     @search="onSearch"
     @focus="emit('focus')"
     @blur="emit('blur')"
+    @update:model-value="onUpdateModelValue"
   >
     <template #item="{ value }">
       <SelectItem :value="value">
