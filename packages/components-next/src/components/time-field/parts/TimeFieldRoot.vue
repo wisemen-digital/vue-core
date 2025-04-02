@@ -122,7 +122,6 @@ useProvideTimeFieldContext({
 
 <template>
   <InteractableElement :is-disabled="props.isDisabled">
-    <!-- @vue-expect-error v-model error. Reka does not export the correct type -->
     <RekaTimeFieldRoot
       v-slot="{ segments }"
       v-model="delegatedModel"

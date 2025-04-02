@@ -5,6 +5,11 @@ export const components = [
     componentName: 'Autocomplete',
   },
   {
+    sourceFolder: 'address-autocomplete/AddressAutocomplete.vue',
+    targetFolder: 'address-autocomplete',
+    componentName: 'AddressAutocomplete',
+  },
+  {
     sourceFolder: 'button/default-button/parts/ButtonRoot.vue',
     targetFolder: 'button',
     componentName: 'Button',

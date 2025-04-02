@@ -12,7 +12,7 @@
       "@/*": ["src/*"]
     },
     "resolveJsonModule": true,
-    "types": ["node"],
+    "types": ["node", "@types/google.maps"],
     "strict": true,
     "noUncheckedIndexedAccess": true,
     "declaration": false,
