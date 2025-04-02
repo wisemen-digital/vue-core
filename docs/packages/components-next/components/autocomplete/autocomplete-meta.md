@@ -136,7 +136,7 @@
     'required': false
   },
   {
-    'name': 'popoverCollisionPaddingInPx',
+    'name': 'popoverCollisionPadding',
     'description': '<p>Specifies the padding (in pixels) used when handling collision detection.\nA larger value increases the spacing between the popper and the container edges.</p>\n',
     'type': 'number',
     'required': false
@@ -148,7 +148,7 @@
     'required': false
   },
   {
-    'name': 'popoverOffsetInPx',
+    'name': 'popoverOffset',
     'description': '<p>The distance (in pixels) between the popper content and the trigger element.</p>\n',
     'type': 'number',
     'required': false
