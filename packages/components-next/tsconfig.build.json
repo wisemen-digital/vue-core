@@ -12,7 +12,7 @@
       "@/*": ["src/*"]
     },
     "resolveJsonModule": true,
-    "types": ["@types/dom-view-transitions"],
+    "types": ["@types/google.maps"],
     "strict": true,
     "declaration": false,
     "outDir": "dist",

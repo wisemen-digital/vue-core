@@ -186,7 +186,7 @@ if (modelValue.value !== null) {
       :key="itemIndex"
     >
       <slot
-        :item="item"
+        :value="(item as NonNullable<TValue>)"
         name="item"
       >
         <SelectItem :value="item">
