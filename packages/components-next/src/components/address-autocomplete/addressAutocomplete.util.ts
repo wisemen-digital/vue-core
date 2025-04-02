@@ -1,6 +1,7 @@
 import type {
   Address,
   AddressComponentType,
+  FormattedAddress,
 } from '@/components/address-autocomplete/addressAutocomplete.type'
 
 function findAddressComponent(
@@ -37,4 +38,45 @@ export async function getAddressByPlaceId(placeId: string): Promise<Address> {
     street: findAddressComponent(place.addressComponents ?? [], 'route')?.longText ?? '',
     streetNumber: findAddressComponent(place.addressComponents ?? [], 'street_number')?.longText ?? '',
   }
+}
+
+export function addressToFormattedAddress(address: Address): FormattedAddress {
+  const mainTextParts = []
+  const secondaryTextParts = []
+
+  if (address.street !== '') {
+    mainTextParts.push(address.street)
+  }
+
+  if (address.streetNumber !== '') {
+    mainTextParts.push(address.streetNumber)
+  }
+
+  if (address.postalCode !== '') {
+    secondaryTextParts.push(address.postalCode)
+  }
+
+  if (address.city !== '') {
+    secondaryTextParts.push(address.city)
+  }
+
+  return {
+    placeId: '',
+    mainText: mainTextParts.join(' '),
+    secondaryText: secondaryTextParts.join(' '),
+  }
+}
+
+export function formattedAddressToString(formattedAddress: FormattedAddress): string {
+  const parts = []
+
+  if (formattedAddress.mainText !== '') {
+    parts.push(formattedAddress.mainText)
+  }
+
+  if (formattedAddress.secondaryText !== '') {
+    parts.push(formattedAddress.secondaryText)
+  }
+
+  return parts.join(', ')
 }

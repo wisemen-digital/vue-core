@@ -282,12 +282,6 @@ importers:
         specifier: 11.1.2
         version: 11.1.2(vue@3.5.12(typescript@5.6.3))
     devDependencies:
-      '@commitlint/cli':
-        specifier: ^19.8.0
-        version: 19.8.0(@types/node@20.14.2)(typescript@5.6.3)
-      '@commitlint/config-conventional':
-        specifier: ^19.8.0
-        version: 19.8.0
       '@fontsource-variable/inter':
         specifier: 5.1.0
         version: 5.1.0
@@ -358,8 +352,8 @@ importers:
         specifier: 3.0.0
         version: 3.0.0
       motion-v:
-        specifier: 0.13.1
-        version: 0.13.1(vue@3.5.12(typescript@5.6.3))
+        specifier: 1.0.0-beta.0
+        version: 1.0.0-beta.0(vue@3.5.12(typescript@5.6.3))
       postcss:
         specifier: 8.4.38
         version: 8.4.38
@@ -7394,6 +7388,11 @@ packages:
     peerDependencies:
       vue: '>=3.0.0'
 
+  motion-v@1.0.0-beta.0:
+    resolution: {integrity: sha512-7NF9gayHqnEoYUCZiBZi6iiZ4KBlOKfKlcnVAVULtP6V2GFszWI8CX1FWg49T7jgTnL7nBRhLTWFZ++cfji2mA==}
+    peerDependencies:
+      vue: '>=3.0.0'
+
   mri@1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
     engines: {node: '>=4'}
@@ -10638,19 +10637,6 @@ snapshots:
       style-mod: 4.1.2
       w3c-keyname: 2.2.8
 
-  '@commitlint/cli@19.8.0(@types/node@20.14.2)(typescript@5.6.3)':
-    dependencies:
-      '@commitlint/format': 19.8.0
-      '@commitlint/lint': 19.8.0
-      '@commitlint/load': 19.8.0(@types/node@20.14.2)(typescript@5.6.3)
-      '@commitlint/read': 19.8.0
-      '@commitlint/types': 19.8.0
-      tinyexec: 0.3.2
-      yargs: 17.7.2
-    transitivePeerDependencies:
-      - '@types/node'
-      - typescript
-
   '@commitlint/cli@19.8.0(@types/node@22.13.14)(typescript@5.8.2)':
     dependencies:
       '@commitlint/format': 19.8.0
@@ -10701,22 +10687,6 @@ snapshots:
       '@commitlint/parse': 19.8.0
       '@commitlint/rules': 19.8.0
       '@commitlint/types': 19.8.0
-
-  '@commitlint/load@19.8.0(@types/node@20.14.2)(typescript@5.6.3)':
-    dependencies:
-      '@commitlint/config-validator': 19.8.0
-      '@commitlint/execute-rule': 19.8.0
-      '@commitlint/resolve-extends': 19.8.0
-      '@commitlint/types': 19.8.0
-      chalk: 5.4.1
-      cosmiconfig: 9.0.0(typescript@5.6.3)
-      cosmiconfig-typescript-loader: 6.1.0(@types/node@20.14.2)(cosmiconfig@9.0.0(typescript@5.8.2))(typescript@5.6.3)
-      lodash.isplainobject: 4.0.6
-      lodash.merge: 4.6.2
-      lodash.uniq: 4.5.0
-    transitivePeerDependencies:
-      - '@types/node'
-      - typescript
 
   '@commitlint/load@19.8.0(@types/node@22.13.14)(typescript@5.8.2)':
     dependencies:
@@ -19199,13 +19169,6 @@ snapshots:
 
   core-util-is@1.0.3: {}
 
-  cosmiconfig-typescript-loader@6.1.0(@types/node@20.14.2)(cosmiconfig@9.0.0(typescript@5.8.2))(typescript@5.6.3):
-    dependencies:
-      '@types/node': 20.14.2
-      cosmiconfig: 9.0.0(typescript@5.8.2)
-      jiti: 2.4.2
-      typescript: 5.6.3
-
   cosmiconfig-typescript-loader@6.1.0(@types/node@22.13.14)(cosmiconfig@9.0.0(typescript@5.8.2))(typescript@5.8.2):
     dependencies:
       '@types/node': 22.13.14
@@ -23381,6 +23344,19 @@ snapshots:
       - react
       - react-dom
 
+  motion-v@1.0.0-beta.0(vue@3.5.12(typescript@5.6.3)):
+    dependencies:
+      '@vueuse/core': 10.11.0(vue@3.5.12(typescript@5.6.3))
+      framer-motion: 12.5.0
+      hey-listen: 1.0.8
+      motion-dom: 12.6.3
+      vue: 3.5.12(typescript@5.6.3)
+    transitivePeerDependencies:
+      - '@emotion/is-prop-valid'
+      - '@vue/composition-api'
+      - react
+      - react-dom
+
   mri@1.2.0: {}
 
   mrmime@2.0.1: {}
@@ -26567,7 +26543,7 @@ snapshots:
 
   typescript-eslint@8.29.0(eslint@9.14.0(jiti@2.4.2))(typescript@5.7.3):
     dependencies:
-      '@typescript-eslint/eslint-plugin': 8.29.0(@typescript-eslint/parser@8.29.0(eslint@9.14.0(jiti@2.4.2))(typescript@5.8.2))(eslint@9.14.0(jiti@2.4.2))(typescript@5.7.3)
+      '@typescript-eslint/eslint-plugin': 8.29.0(@typescript-eslint/parser@8.29.0(eslint@9.14.0(jiti@2.4.2))(typescript@5.6.3))(eslint@9.14.0(jiti@2.4.2))(typescript@5.7.3)
       '@typescript-eslint/parser': 8.29.0(eslint@9.14.0(jiti@2.4.2))(typescript@5.7.3)
       '@typescript-eslint/utils': 8.29.0(eslint@9.14.0(jiti@2.4.2))(typescript@5.7.3)
       eslint: 9.14.0(jiti@2.4.2)
@@ -26577,7 +26553,7 @@ snapshots:
 
   typescript-eslint@8.29.0(eslint@9.14.0(jiti@2.4.2))(typescript@5.8.2):
     dependencies:
-      '@typescript-eslint/eslint-plugin': 8.29.0(@typescript-eslint/parser@8.29.0(eslint@9.14.0(jiti@2.4.2))(typescript@5.8.2))(eslint@9.14.0(jiti@2.4.2))(typescript@5.8.2)
+      '@typescript-eslint/eslint-plugin': 8.29.0(@typescript-eslint/parser@8.29.0(eslint@9.14.0(jiti@2.4.2))(typescript@5.6.3))(eslint@9.14.0(jiti@2.4.2))(typescript@5.8.2)
       '@typescript-eslint/parser': 8.29.0(eslint@9.14.0(jiti@2.4.2))(typescript@5.8.2)
       '@typescript-eslint/utils': 8.29.0(eslint@9.14.0(jiti@2.4.2))(typescript@5.8.2)
       eslint: 9.14.0(jiti@2.4.2)

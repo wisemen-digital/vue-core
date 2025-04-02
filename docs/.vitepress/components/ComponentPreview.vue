@@ -48,6 +48,7 @@ observer.observe(document.documentElement, {
     <VcConfigProvider
       locale="en-NL"
       teleport-target-selector="#teleport-target"
+      google-maps-api-key="AIzaSyATX2fY3BZwaKeURsQhwpEVLmLRr27s4vw"
     >
       <VcThemeProvider
         :appearance="isDark ? 'dark' : 'light'"

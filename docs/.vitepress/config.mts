@@ -73,6 +73,7 @@ export default defineConfig({
               text: 'Forms & Inputs',
               items: [
                 { text: 'Autocomplete', link: '/packages/components-next/components/autocomplete/autocomplete' },
+                { text: 'Address Autocomplete', link: '/packages/components-next/components/address-autocomplete/address-autocomplete' },
                 { text: 'Checkbox Group', link: '/packages/components-next/components/checkbox-group/checkbox-group' },
                 { text: 'Checkbox', link: '/packages/components-next/components/checkbox/checkbox' },
                 { text: 'Date Field', link: '/packages/components-next/components/date-field/date-field' },

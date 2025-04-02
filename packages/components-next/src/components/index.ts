@@ -1,3 +1,4 @@
+export * from '@/components/address-autocomplete'
 export * from '@/components/autocomplete'
 export * from '@/components/button'
 export * from '@/components/checkbox'

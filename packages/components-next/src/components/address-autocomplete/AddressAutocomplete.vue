@@ -12,7 +12,11 @@ import type {
   Address,
   FormattedAddress,
 } from '@/components/address-autocomplete/addressAutocomplete.type'
-import { getAddressByPlaceId } from '@/components/address-autocomplete/addressAutocomplete.util'
+import {
+  addressToFormattedAddress,
+  formattedAddressToString,
+  getAddressByPlaceId,
+} from '@/components/address-autocomplete/addressAutocomplete.util'
 import Autocomplete from '@/components/autocomplete/Autocomplete.vue'
 import { useInjectConfigContext } from '@/components/config-provider/config.context'
 import SelectItem from '@/components/select/parts/SelectItem.vue'
@@ -38,11 +42,7 @@ const selectedAddress = computed<FormattedAddress | null>({
       return null
     }
 
-    return {
-      placeId: '',
-      mainText: `${modelValue.value.street} ${modelValue.value.streetNumber}`,
-      secondaryText: `${modelValue.value.postalCode} ${modelValue.value.city}`,
-    }
+    return addressToFormattedAddress(modelValue.value)
   },
   set: async (value) => {
     if (value === null) {
@@ -126,7 +126,7 @@ onMounted(async () => {
     v-model="selectedAddress"
     :items="autocompleteItems"
     :is-loading="isLoading"
-    :display-fn="(place) => `${place.mainText}, ${place.secondaryText}`"
+    :display-fn="(formattedAddress) => formattedAddressToString(formattedAddress)"
     @search="onSearch"
     @focus="emit('focus')"
     @blur="emit('blur')"
