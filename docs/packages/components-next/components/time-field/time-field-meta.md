@@ -11,7 +11,7 @@
   {
     'name': 'classConfig',
     'description': '<p>The class configuration of the component.</p>\n',
-    'type': '(ClassConfig<\'textField\'> & {}) | null',
+    'type': '(ClassConfig<\'timeField\'> & {}) | null',
     'required': false,
     'default': 'null'
   },
@@ -72,13 +72,6 @@
     'default': 'false'
   },
   {
-    'name': 'isSpellCheckEnabled',
-    'description': '<p>Whether the input is spell check enabled.</p>\n',
-    'type': 'boolean',
-    'required': false,
-    'default': 'false'
-  },
-  {
     'name': 'isTouched',
     'description': '<p>Whether the input is touched. Used to determine if an error should be shown.</p>\n',
     'type': 'boolean',
@@ -93,31 +86,11 @@
     'default': 'null'
   },
   {
-    'name': 'modelValue',
-    'description': '',
-    'type': 'string | null',
-    'required': true
-  },
-  {
-    'name': 'placeholder',
-    'description': '<p>The placeholder text of the input.</p>\n',
-    'type': 'string | null',
-    'required': false,
-    'default': 'null'
-  },
-  {
     'name': 'testId',
     'description': '<p>A unique identifier used for testing purposes. If set to <code>null</code>, no test ID will be applied.</p>\n',
     'type': 'string | null',
     'required': false,
     'default': 'null'
-  },
-  {
-    'name': 'type',
-    'description': '<p>The type of the input.</p>\n',
-    'type': '\'search\' | \'date\' | \'email\' | \'password\' | \'tel\' | \'text\' | \'time\' | \'url\'',
-    'required': false,
-    'default': '\'text\''
   },
   {
     'name': 'variant',
@@ -132,16 +105,24 @@
   {
     'name': 'blur',
     'description': '',
-    'type': 'FocusEvent'
+    'type': '[e: FocusEvent]'
   },
   {
     'name': 'focus',
     'description': '',
-    'type': 'FocusEvent'
+    'type': '[e: FocusEvent]'
   },
   {
     'name': 'update:modelValue',
     'description': '',
     'type': '[modelValue: string | null]'
+  }
+]" />
+
+<SlotsTable :data="[
+  {
+    'name': 'segments',
+    'description': '',
+    'type': '{ part: SegmentPart; value: string; }[]'
   }
 ]" />

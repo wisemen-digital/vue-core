@@ -4,7 +4,7 @@
   {
     'name': 'classConfig',
     'description': '<p>The class configuration of the component.</p>\n',
-    'type': '(ClassConfig<\'formField\'> & {}) | null',
+    'type': '(ClassConfig<\'switch\'> & {}) | null',
     'required': false,
     'default': 'null'
   },
@@ -16,17 +16,25 @@
     'default': '[]'
   },
   {
-    'name': 'for',
-    'description': '<p>The unique identifier of the associated form field.\nThis is typically used to link the label to the corresponding input element.</p>\n',
-    'type': 'string',
-    'required': true
-  },
-  {
     'name': 'hint',
     'description': '<p>The hint text of the input.</p>\n',
     'type': 'string | null',
     'required': false,
     'default': 'null'
+  },
+  {
+    'name': 'id',
+    'description': '<p>The id of the element. If set to <code>null</code>, no ID will be applied.</p>\n',
+    'type': 'string | null',
+    'required': false,
+    'default': 'null'
+  },
+  {
+    'name': 'isDisabled',
+    'description': '<p>Determines whether the element is disabled. When <code>true</code>, the element becomes non-interactive.</p>\n',
+    'type': 'boolean',
+    'required': false,
+    'default': 'false'
   },
   {
     'name': 'isRequired',
@@ -50,11 +58,18 @@
     'default': 'null'
   },
   {
-    'name': 'layout',
-    'description': '',
-    'type': '\'vertical\' | \'horizontal\'',
+    'name': 'size',
+    'description': '<p>Defines the switch’s size.</p>\n',
+    'type': '\'md\' | \'sm\'',
     'required': false,
-    'default': '\'vertical\''
+    'default': '\'md\''
+  },
+  {
+    'name': 'testId',
+    'description': '<p>A unique identifier used for testing purposes. If set to <code>null</code>, no test ID will be applied.</p>\n',
+    'type': 'string | null',
+    'required': false,
+    'default': 'null'
   },
   {
     'name': 'variant',
@@ -62,5 +77,23 @@
     'type': 'null',
     'required': false,
     'default': 'null'
+  }
+]" />
+
+<EmitsTable :data="[
+  {
+    'name': 'blur',
+    'description': '',
+    'type': '[]'
+  },
+  {
+    'name': 'focus',
+    'description': '',
+    'type': '[]'
+  },
+  {
+    'name': 'update:modelValue',
+    'description': '',
+    'type': '[modelValue: boolean]'
   }
 ]" />

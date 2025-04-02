@@ -29,3 +29,5 @@ import {
 ## Examples
 
 <ComponentPreview name="switch/examples/disabled" />
+
+<!-- @include: ./switch-meta.md -->

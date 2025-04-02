@@ -4,8 +4,6 @@ An element that triggers an action or event when clicked.
 
 <ComponentPreview name="button/examples/main" />
 
-<!-- todo: @include: ./button-meta.md -->
-
 ## Usage
 ```vue
 <script setup lang="ts">
@@ -72,3 +70,5 @@ import {
 `root`, `content`, `iconLeft`, `iconRight`, `loader`
 
 <ComponentPreview name="button/examples/customize" />
+
+<!-- @include: ./button-meta.md -->

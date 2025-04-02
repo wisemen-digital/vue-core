@@ -52,3 +52,5 @@ import {
 ### Format options
 
 <ComponentPreview name="number-field/examples/format-options" />
+
+<!-- @include: ./number-field-meta.md -->

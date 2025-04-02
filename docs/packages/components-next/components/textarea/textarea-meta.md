@@ -11,7 +11,7 @@
   {
     'name': 'classConfig',
     'description': '<p>The class configuration of the component.</p>\n',
-    'type': '(ClassConfig<\'textField\'> & {}) | null',
+    'type': '(ClassConfig<\'textarea\'> & {}) | null',
     'required': false,
     'default': 'null'
   },
@@ -30,20 +30,6 @@
     'default': 'null'
   },
   {
-    'name': 'iconLeft',
-    'description': '<p>The icon displayed on the left side of the input. If set to null, no icon will be shown.</p>\n',
-    'type': 'keyof Icons | null',
-    'required': false,
-    'default': 'null'
-  },
-  {
-    'name': 'iconRight',
-    'description': '<p>The icon displayed on the right side of the input. If set to null, no icon will be shown.</p>\n',
-    'type': 'keyof Icons | null',
-    'required': false,
-    'default': 'null'
-  },
-  {
     'name': 'id',
     'description': '<p>The id of the element. If set to <code>null</code>, no ID will be applied.</p>\n',
     'type': 'string | null',
@@ -53,13 +39,6 @@
   {
     'name': 'isDisabled',
     'description': '<p>Determines whether the element is disabled. When <code>true</code>, the element becomes non-interactive.</p>\n',
-    'type': 'boolean',
-    'required': false,
-    'default': 'false'
-  },
-  {
-    'name': 'isLoading',
-    'description': '<p>Whether the input is loading.</p>\n',
     'type': 'boolean',
     'required': false,
     'default': 'false'
@@ -93,12 +72,6 @@
     'default': 'null'
   },
   {
-    'name': 'modelValue',
-    'description': '',
-    'type': 'string | null',
-    'required': true
-  },
-  {
     'name': 'placeholder',
     'description': '<p>The placeholder text of the input.</p>\n',
     'type': 'string | null',
@@ -106,18 +79,18 @@
     'default': 'null'
   },
   {
+    'name': 'resize',
+    'description': '<p>Whether the textarea can be resized.</p>\n<ul>\n<li><code>’auto-vertical’</code>: The textarea will resize vertically depending on the content height.</li>\n<li><code>’both’</code>: The textarea can be resized vertically and horizontally.</li>\n<li><code>’horizontal’</code>: The textarea can be resized horizontally, but not vertically.</li>\n<li><code>’none’</code>: The textarea cannot be resized.</li>\n<li><code>’vertical’</code>: The textarea can be resized vertically, but not horizontally.</li>\n</ul>\n',
+    'type': '\'vertical\' | \'horizontal\' | \'none\' | \'auto-vertical\' | \'both\'',
+    'required': false,
+    'default': '\'none\''
+  },
+  {
     'name': 'testId',
     'description': '<p>A unique identifier used for testing purposes. If set to <code>null</code>, no test ID will be applied.</p>\n',
     'type': 'string | null',
     'required': false,
     'default': 'null'
-  },
-  {
-    'name': 'type',
-    'description': '<p>The type of the input.</p>\n',
-    'type': '\'search\' | \'date\' | \'email\' | \'password\' | \'tel\' | \'text\' | \'time\' | \'url\'',
-    'required': false,
-    'default': '\'text\''
   },
   {
     'name': 'variant',
@@ -132,12 +105,12 @@
   {
     'name': 'blur',
     'description': '',
-    'type': 'FocusEvent'
+    'type': '[e: FocusEvent]'
   },
   {
     'name': 'focus',
     'description': '',
-    'type': 'FocusEvent'
+    'type': '[e: FocusEvent]'
   },
   {
     'name': 'update:modelValue',

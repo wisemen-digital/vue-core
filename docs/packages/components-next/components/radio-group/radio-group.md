@@ -56,3 +56,5 @@ import {
 ### Disabled
 
 <ComponentPreview name="radio-group/examples/disabled" />
+
+<!-- @include: ./radio-group-meta.md -->

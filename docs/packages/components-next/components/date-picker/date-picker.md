@@ -53,3 +53,5 @@ import {
 ### Customize
 
 <ComponentPreview name="date-picker/examples/customize" />
+
+<!-- @include: ./date-picker-meta.md -->

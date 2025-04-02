@@ -6,7 +6,7 @@ import type {
 
 export interface SharedDatePickerProps extends PrimitiveElement, InteractableElement, SharedDateProps {
   /**
-   * Whether the calendar should focus on the selected day, today's date,
+   * Whether the calendar should focus on the selected day, today’s date,
    * or the first day of the month when mounted.
    * @default false
    */

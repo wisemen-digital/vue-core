@@ -10,7 +10,7 @@ export interface SharedButtonProps extends PrimitiveElement, InteractableElement
    */
   isLoading?: boolean
   /**
-   * Specifies the button's type attribute.
+   * Specifies the button’s type attribute.
    * @default 'button'
    */
   type?: 'button' | 'reset' | 'submit'

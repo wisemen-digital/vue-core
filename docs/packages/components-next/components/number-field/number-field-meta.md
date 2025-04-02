@@ -11,7 +11,7 @@
   {
     'name': 'classConfig',
     'description': '<p>The class configuration of the component.</p>\n',
-    'type': '(ClassConfig<\'textField\'> & {}) | null',
+    'type': '(ClassConfig<\'numberField\'> & { increment?: ClassConfig<\'iconButton\'>; decrement?: ClassConfig<\'iconButton\'>; }) | null',
     'required': false,
     'default': 'null'
   },
@@ -21,6 +21,20 @@
     'type': 'string[]',
     'required': false,
     'default': '[]'
+  },
+  {
+    'name': 'formatOptions',
+    'description': '<p>Specifies formatting options for the number input, using <code>Intl.NumberFormatOptions</code>.\nThis controls how the number is displayed (e.g., decimal places, currency, or percentage).\nWhen <code>null</code>, no formatting is applied.</p>\n',
+    'type': 'NumberFormatOptions | null',
+    'required': false,
+    'default': 'null'
+  },
+  {
+    'name': 'hideControls',
+    'description': '<p>Determines whether the number input should display increment and decrement controls.\nWhen <code>true</code>, buttons for increasing and decreasing the value will be hidden.</p>\n',
+    'type': 'boolean',
+    'required': false,
+    'default': 'false'
   },
   {
     'name': 'hint',
@@ -72,13 +86,6 @@
     'default': 'false'
   },
   {
-    'name': 'isSpellCheckEnabled',
-    'description': '<p>Whether the input is spell check enabled.</p>\n',
-    'type': 'boolean',
-    'required': false,
-    'default': 'false'
-  },
-  {
     'name': 'isTouched',
     'description': '<p>Whether the input is touched. Used to determine if an error should be shown.</p>\n',
     'type': 'boolean',
@@ -93,10 +100,18 @@
     'default': 'null'
   },
   {
-    'name': 'modelValue',
-    'description': '',
-    'type': 'string | null',
-    'required': true
+    'name': 'max',
+    'description': '<p>The maximum value of the number input.</p>\n',
+    'type': 'number | null',
+    'required': false,
+    'default': 'null'
+  },
+  {
+    'name': 'min',
+    'description': '<p>The minimum value of the number input.</p>\n',
+    'type': 'number | null',
+    'required': false,
+    'default': 'null'
   },
   {
     'name': 'placeholder',
@@ -106,18 +121,18 @@
     'default': 'null'
   },
   {
+    'name': 'step',
+    'description': '<p>Defines the increment and decrement step for the number input.\nThis determines how much the value changes when using controls or arrow keys.</p>\n',
+    'type': 'number',
+    'required': false,
+    'default': '1'
+  },
+  {
     'name': 'testId',
     'description': '<p>A unique identifier used for testing purposes. If set to <code>null</code>, no test ID will be applied.</p>\n',
     'type': 'string | null',
     'required': false,
     'default': 'null'
-  },
-  {
-    'name': 'type',
-    'description': '<p>The type of the input.</p>\n',
-    'type': '\'search\' | \'date\' | \'email\' | \'password\' | \'tel\' | \'text\' | \'time\' | \'url\'',
-    'required': false,
-    'default': '\'text\''
   },
   {
     'name': 'variant',
@@ -132,16 +147,16 @@
   {
     'name': 'blur',
     'description': '',
-    'type': 'FocusEvent'
+    'type': '[e: FocusEvent]'
   },
   {
     'name': 'focus',
     'description': '',
-    'type': 'FocusEvent'
+    'type': '[e: FocusEvent]'
   },
   {
     'name': 'update:modelValue',
     'description': '',
-    'type': '[modelValue: string | null]'
+    'type': '[modelValue: number | null]'
   }
 ]" />

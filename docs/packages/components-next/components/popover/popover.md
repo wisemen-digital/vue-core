@@ -92,3 +92,5 @@ import {
 ### Anchor reference
 
 <ComponentPreview name="popover/examples/anchor-reference" />
+
+<!-- @include: ./popover-meta.md -->
