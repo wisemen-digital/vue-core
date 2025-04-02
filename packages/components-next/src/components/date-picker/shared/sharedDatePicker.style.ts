@@ -19,7 +19,7 @@ export const createSharedDatePickerStyle = tv({
       .withBorderRadius('rounded-full')
       .withSize('size-10')
       .withTransition('duration-200')
-      .withOutline('outline-brand-500 data-selected:outline-offset-1 data-selected:outline-offset-2')
+      .withOutline('outline-brand-500 data-selected:outline-offset-2')
       .build(),
     header: new StyleBuilder()
       .withGrid('grid grid-cols-3 items-center')
