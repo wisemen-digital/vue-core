@@ -1,2 +1,2 @@
-export * from '@/composables/appearance.composable'
+export * from '@/composables/appearance/appearance.composable'
 export * from '@/composables/keyboardShortcut.composable'

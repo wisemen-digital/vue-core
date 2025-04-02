@@ -2,7 +2,7 @@ import type {
   ComputedRef,
 } from 'vue'
 
-import { useContext } from '@/composables/context.composable'
+import { useContext } from '@/composables/context/context.composable'
 
 interface ConfigContext {
   areKeyboardShortcutHintsHidden: ComputedRef<boolean>

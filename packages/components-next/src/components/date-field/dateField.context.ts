@@ -5,7 +5,7 @@ import type {
 
 import type { DateFieldProps } from '@/components/date-field/dateField.props'
 import type { CreateDateFieldStyle } from '@/components/date-field/dateField.style'
-import { useContext } from '@/composables/context.composable'
+import { useContext } from '@/composables/context/context.composable'
 import type { ClassConfig } from '@/customClassVariants'
 import type { PropsToComputed } from '@/utils/props.util'
 

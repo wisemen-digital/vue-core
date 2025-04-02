@@ -2,7 +2,7 @@ import type { ComputedRef } from 'vue'
 
 import type { CheckboxProps } from '@/components/checkbox/checkbox.props'
 import type { CreateCheckboxStyle } from '@/components/checkbox/checkbox.style'
-import { useContext } from '@/composables/context.composable'
+import { useContext } from '@/composables/context/context.composable'
 import type { ClassConfig } from '@/customClassVariants'
 import type { PropsToComputed } from '@/utils/props.util'
 
