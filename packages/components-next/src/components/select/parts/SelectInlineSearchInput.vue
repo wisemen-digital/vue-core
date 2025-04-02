@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import {
+  onMounted,
+  ref,
+} from 'vue'
 
 import SelectSearchInput from '@/components/select/parts/SelectSearchInput.vue'
 import { useInjectSelectContext } from '@/components/select/select.context'

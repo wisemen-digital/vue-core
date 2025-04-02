@@ -1,6 +1,4 @@
-import type {
-  ComputedRef,
-} from 'vue'
+import type { ComputedRef } from 'vue'
 
 import { useContext } from '@/composables/context/context.composable'
 

@@ -8,12 +8,11 @@ import {
 } from 'vitest'
 import { ref } from 'vue'
 
-import { type Appearance, useAppearance } from '@/composables'
+import type { Appearance } from '@/composables'
+import { useAppearance } from '@/composables'
 
 vi.mock('@vueuse/core', () => {
-  return {
-    useStorage: vi.fn(),
-  }
+  return { useStorage: vi.fn() }
 })
 
 describe('useAppearance', () => {

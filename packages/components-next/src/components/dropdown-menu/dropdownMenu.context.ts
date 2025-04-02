@@ -1,6 +1,4 @@
-import type {
-  ComputedRef,
-} from 'vue'
+import type { ComputedRef } from 'vue'
 
 import type { DropdownMenuProps } from '@/components/dropdown-menu/dropdownMenu.props'
 import type { CreateDropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style'

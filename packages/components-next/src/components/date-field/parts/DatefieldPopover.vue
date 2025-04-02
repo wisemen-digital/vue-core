@@ -40,7 +40,7 @@ const {
     </template>
 
     <template #content>
-      <div class="min-w-92 p-lg">
+      <div class="p-lg min-w-92">
         <DatePicker
           v-model="modelValue"
           :focus-on-mount="true"

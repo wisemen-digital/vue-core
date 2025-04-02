@@ -26,9 +26,7 @@ export const createPopoverStyle = tv({
       .withZIndex('z-40')
       .build(),
   },
-  variants: {
-    variant: {},
-  },
+  variants: { variant: {} },
 })
 
 export type PopoverStyle = VariantProps<typeof createPopoverStyle>

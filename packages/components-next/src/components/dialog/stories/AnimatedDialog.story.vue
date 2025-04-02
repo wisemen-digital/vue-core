@@ -8,9 +8,7 @@ import Button from '@/components/button/default-button/Button.vue'
 import ButtonIconLeft from '@/components/button/default-button/parts/ButtonIconLeft.vue'
 import { useDialog } from '@/components/dialog/dialog.composable'
 
-const dialog = useDialog({
-  component: () => import('@/components/dialog/stories/AnimatedDialog.vue'),
-})
+const dialog = useDialog({ component: () => import('@/components/dialog/stories/AnimatedDialog.vue') })
 </script>
 
 <template>

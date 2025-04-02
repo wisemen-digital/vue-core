@@ -5,7 +5,9 @@ import { createI18n } from 'vue-i18n'
 
 import StoryWrapper from './src/StoryWrapper.vue'
 
-export const setupVue3 = defineSetupVue3(({ addWrapper, app }) => {
+export const setupVue3 = defineSetupVue3(({
+  addWrapper, app,
+}) => {
   const i18n = createI18n({
     legacy: false,
     locale: 'en-NL',

@@ -26,9 +26,7 @@ defineSlots<{
   items: () => void
 }>()
 
-const model = defineModel<ButtonTabsValue>({
-  required: true,
-})
+const model = defineModel<ButtonTabsValue>({ required: true })
 </script>
 
 <template>

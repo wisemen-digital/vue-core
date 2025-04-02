@@ -36,17 +36,11 @@ defineSlots<{
   default: () => void
 }>()
 
-const isOpen = defineModel<boolean>('isOpen', {
-  default: false,
-})
+const isOpen = defineModel<boolean>('isOpen', { default: false })
 
-const dialogStyle = computed<CreateDialogStyle>(() => createDialogStyle({
-  variant: props.variant ?? undefined,
-}))
+const dialogStyle = computed<CreateDialogStyle>(() => createDialogStyle({ variant: props.variant ?? undefined }))
 
-const customClassConfig = useComponentClassConfig('dialog', {
-  variant: props.variant ?? undefined,
-})
+const customClassConfig = useComponentClassConfig('dialog', { variant: props.variant ?? undefined })
 
 watch(isOpen, (isOpen) => {
   if (!isOpen) {

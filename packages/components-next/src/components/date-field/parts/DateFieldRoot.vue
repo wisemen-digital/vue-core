@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { DateFieldRoot as RekaDateFieldRoot, type DateValue } from 'reka-ui'
+import type { DateValue } from 'reka-ui'
+import { DateFieldRoot as RekaDateFieldRoot } from 'reka-ui'
 import {
   computed,
   ref,
@@ -9,10 +10,8 @@ import { useInjectConfigContext } from '@/components/config-provider/config.cont
 import { useProvideDateFieldContext } from '@/components/date-field/dateField.context'
 import type { DateFieldEmits } from '@/components/date-field/dateField.emits'
 import type { DateFieldProps } from '@/components/date-field/dateField.props'
-import {
-  type CreateDateFieldStyle,
-  createDateFieldStyle,
-} from '@/components/date-field/dateField.style'
+import type { CreateDateFieldStyle } from '@/components/date-field/dateField.style'
+import { createDateFieldStyle } from '@/components/date-field/dateField.style'
 import {
   dateToDateValue,
   dateValueToDate,
@@ -51,9 +50,7 @@ const props = withDefaults(defineProps<DateFieldProps>(), {
 
 const emit = defineEmits<DateFieldEmits>()
 
-const modelValue = defineModel<Date | null>({
-  required: true,
-})
+const modelValue = defineModel<Date | null>({ required: true })
 
 const delegatedModel = computed<DateValue | null>({
   get: () => {
@@ -78,13 +75,11 @@ const { locale } = useInjectConfigContext()
 
 const isFocused = ref<boolean>(false)
 
-const dateFieldStyle = computed<CreateDateFieldStyle>(() => createDateFieldStyle({
-  variant: props.variant ?? undefined,
-}))
+const dateFieldStyle = computed<CreateDateFieldStyle>(
+  () => createDateFieldStyle({ variant: props.variant ?? undefined }),
+)
 
-const customClassConfig = useComponentClassConfig('dateField', {
-  variant: props.variant ?? undefined,
-})
+const customClassConfig = useComponentClassConfig('dateField', { variant: props.variant ?? undefined })
 
 function onFocus(event: FocusEvent): void {
   isFocused.value = true

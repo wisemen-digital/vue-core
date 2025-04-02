@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { AnimatePresence } from 'motion-v'
-import {
-  PopoverContent as RekaPopoverContent,
-} from 'reka-ui'
+import { PopoverContent as RekaPopoverContent } from 'reka-ui'
 
 import { useInjectPopoverContext } from '@/components/popover/popover.context'
 import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'

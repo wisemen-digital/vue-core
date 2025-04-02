@@ -14,7 +14,7 @@ import Textarea from '@/components/textarea/Textarea.vue'
       class="w-96"
     >
     <template #bottom>
-      <div class="pt-0 p-lg">
+      <div class="p-lg pt-0">
         hier
       </div>
     </template>

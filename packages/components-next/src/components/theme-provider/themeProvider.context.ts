@@ -1,4 +1,7 @@
-import type { ComputedRef, InjectionKey } from 'vue'
+import type {
+  ComputedRef,
+  InjectionKey,
+} from 'vue'
 import {
   computed,
   inject,

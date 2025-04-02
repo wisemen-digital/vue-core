@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import type { Variant } from 'motion-v'
 import {
   AnimatePresence,
   motion,
-  type Variant,
 } from 'motion-v'
 import { CheckboxIndicator as RekaCheckboxIndicator } from 'reka-ui'
 
@@ -18,9 +18,7 @@ const draw: Record<string, Variant> = {
     opacity: 1,
     pathLength: 1,
     transition: {
-      opacity: {
-        duration: 0.01,
-      },
+      opacity: { duration: 0.01 },
       pathLength: {
         bounce: 0,
         duration: 0.5,

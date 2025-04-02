@@ -1,7 +1,10 @@
 import type { ComputedRef } from 'vue'
 import { computed } from 'vue'
 
-import type { ClassConfig, Components } from '@/customClassVariants'
+import type {
+  ClassConfig,
+  Components,
+} from '@/customClassVariants'
 
 export type NonUndefined<T> = {
   [K in keyof T]-?: Exclude<T[K], undefined>;

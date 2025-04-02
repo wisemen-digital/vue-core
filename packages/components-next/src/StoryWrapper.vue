@@ -1,8 +1,12 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import {
+  computed,
+  ref,
+} from 'vue'
 
 import ConfigProvider from '@/components/config-provider/ConfigProvider.vue'
 import DialogContainer from '@/components/dialog/DialogContainer.vue'
+import Switch from '@/components/switch/Switch.vue'
 import ThemeProvider from '@/components/theme-provider/ThemeProvider.vue'
 import { useAppearance } from '@/composables/appearance/appearance.composable'
 
@@ -26,15 +30,19 @@ const activeDialogCount = ref<number>(0)
       <ThemeProvider :appearance="appearance">
         <div
           :class="{
-            'scale-98 rounded-xl overflow-hidden': activeDialogCount > 0,
+            'scale-98 overflow-hidden rounded-xl': activeDialogCount > 0,
           }"
-          class="h-screen flex items-center justify-center gap-lg bg-primary duration-200"
+          class="
+            gap-lg bg-primary flex h-screen items-center justify-center
+            duration-200
+          "
         >
           <div class="absolute top-4 right-4">
-            <input
+            <Switch
               v-model="isDark"
               type="checkbox"
-            >
+              label="Dark mode"
+            />
           </div>
 
           <slot />

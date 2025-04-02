@@ -1,6 +1,4 @@
-import type {
-  KeyboardKey,
-} from '@/types/keyboard.type'
+import type { KeyboardKey } from '@/types/keyboard.type'
 
 export interface KeyboardShortcutProviderProps {
   isDisabled?: boolean

@@ -5,10 +5,8 @@ import { computed } from 'vue'
 import { useProvideCheckboxContext } from '@/components/checkbox/checkbox.context'
 import type { CheckboxEmits } from '@/components/checkbox/checkbox.emits'
 import type { CheckboxProps } from '@/components/checkbox/checkbox.props'
-import {
-  type CreateCheckboxStyle,
-  createCheckboxStyle,
-} from '@/components/checkbox/checkbox.style'
+import type { CreateCheckboxStyle } from '@/components/checkbox/checkbox.style'
+import { createCheckboxStyle } from '@/components/checkbox/checkbox.style'
 import InteractableElement from '@/components/shared/InteractableElement.vue'
 import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
 import {
@@ -34,9 +32,7 @@ const props = withDefaults(defineProps<CheckboxProps>(), {
 
 const emit = defineEmits<CheckboxEmits>()
 
-const modelValue = defineModel<boolean>({
-  required: false,
-})
+const modelValue = defineModel<boolean>({ required: false })
 
 const delegatedModel = computed<boolean | 'indeterminate' | null>({
   get() {
@@ -63,13 +59,9 @@ const delegatedModel = computed<boolean | 'indeterminate' | null>({
   },
 })
 
-const checkboxStyle = computed<CreateCheckboxStyle>(() => createCheckboxStyle({
-  variant: props.variant ?? undefined,
-}))
+const checkboxStyle = computed<CreateCheckboxStyle>(() => createCheckboxStyle({ variant: props.variant ?? undefined }))
 
-const customClassConfig = useComponentClassConfig('checkbox', {
-  variant: props.variant ?? undefined,
-})
+const customClassConfig = useComponentClassConfig('checkbox', { variant: props.variant ?? undefined })
 
 useProvideCheckboxContext({
   ...toComputedRefs(props),

@@ -13,7 +13,10 @@ import SelectPopover from '@/components/select/parts/SelectPopover.vue'
 import SelectRoot from '@/components/select/parts/SelectRoot.vue'
 import SelectVirtualList from '@/components/select/parts/SelectVirtualList.vue'
 import type { SelectEmits } from '@/components/select/select.emits'
-import type { SelectProps, SelectValue as SelectValueType } from '@/components/select/select.props'
+import type {
+  SelectProps,
+  SelectValue as SelectValueType,
+} from '@/components/select/select.props'
 
 const props = withDefaults(defineProps<SelectProps<TValue>>(), {
   // Vue automatically defaults boolean props to false, even if no value is provided
@@ -22,13 +25,9 @@ const props = withDefaults(defineProps<SelectProps<TValue>>(), {
 
 const emit = defineEmits<SelectEmits>()
 
-const modelValue = defineModel<TValue>({
-  required: true,
-})
+const modelValue = defineModel<TValue>({ required: true })
 
-const searchTerm = defineModel<string>('searchTerm', {
-  required: false,
-})
+const searchTerm = defineModel<string>('searchTerm', { required: false })
 
 const isOpen = defineModel<boolean>('isOpen', {
   default: false,

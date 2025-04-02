@@ -6,9 +6,7 @@ import FormFieldHint from '@/components/form-field/parts/FormFieldHint.vue'
 import FormFieldLabel from '@/components/form-field/parts/FormFieldLabel.vue'
 import FormFieldRoot from '@/components/form-field/parts/FormFieldRoot.vue'
 
-const props = withDefaults(defineProps<FormFieldProps>(), {
-  layout: 'vertical',
-})
+const props = withDefaults(defineProps<FormFieldProps>(), { layout: 'vertical' })
 
 defineSlots<FormFieldSlots>()
 </script>

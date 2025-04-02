@@ -7,10 +7,8 @@ import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
 import { useProvideSwitchContext } from '@/components/switch/switch.context'
 import type { SwitchEmits } from '@/components/switch/switch.emits'
 import type { SwitchProps } from '@/components/switch/switch.props'
-import {
-  type CreateSwitchStyle,
-  createSwitchStyle,
-} from '@/components/switch/switch.style'
+import type { CreateSwitchStyle } from '@/components/switch/switch.style'
+import { createSwitchStyle } from '@/components/switch/switch.style'
 import {
   mergeClasses,
   useComponentClassConfig,
@@ -33,9 +31,7 @@ const props = withDefaults(defineProps<SwitchProps>(), {
 
 const emit = defineEmits<SwitchEmits>()
 
-const modelValue = defineModel<boolean>({
-  required: true,
-})
+const modelValue = defineModel<boolean>({ required: true })
 
 const switchStyle = computed<CreateSwitchStyle>(() => createSwitchStyle({
   size: props.size,

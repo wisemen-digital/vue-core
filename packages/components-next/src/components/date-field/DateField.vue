@@ -17,9 +17,7 @@ const emit = defineEmits<DateFieldEmits>()
 
 defineSlots<DateFieldSlots>()
 
-const modelValue = defineModel<Date | null>({
-  required: true,
-})
+const modelValue = defineModel<Date | null>({ required: true })
 
 const id = props.id ?? useId()
 </script>

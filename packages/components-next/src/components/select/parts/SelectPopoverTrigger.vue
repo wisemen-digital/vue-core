@@ -6,7 +6,9 @@ import { useInjectSelectContext } from '@/components/select/select.context'
 import InteractableElement from '@/components/shared/InteractableElement.vue'
 
 const {
+  id,
   isDisabled,
+  isDropdownVisible,
   filter,
   setIsDropdownVisible,
 } = useInjectSelectContext()
@@ -29,6 +31,8 @@ function openDropdown(): void {
     <PopoverTrigger>
       <button
         :tabindex="isTriggerFocusable ? 0 : -1"
+        :aria-expanded="isDropdownVisible"
+        :aria-controls="`${id}-content`"
         :class="{
           'cursor-not-allowed': isDisabled,
         }"

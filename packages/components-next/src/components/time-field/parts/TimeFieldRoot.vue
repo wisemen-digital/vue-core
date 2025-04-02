@@ -11,10 +11,8 @@ import InteractableElement from '@/components/shared/InteractableElement.vue'
 import { useProvideTimeFieldContext } from '@/components/time-field/timeField.context'
 import type { TimeFieldEmits } from '@/components/time-field/timeField.emits'
 import type { TimeFieldProps } from '@/components/time-field/timeField.props'
-import {
-  type CreateTimeFieldStyle,
-  createTimeFieldStyle,
-} from '@/components/time-field/timeField.style'
+import type { CreateTimeFieldStyle } from '@/components/time-field/timeField.style'
+import { createTimeFieldStyle } from '@/components/time-field/timeField.style'
 import {
   mergeClasses,
   useComponentClassConfig,
@@ -48,14 +46,12 @@ const props = withDefaults(defineProps<TimeFieldProps>(), {
 
 const emit = defineEmits<TimeFieldEmits>()
 
-const modelValue = defineModel<string | null>({
-  required: true,
-})
+const modelValue = defineModel<string | null>({ required: true })
 
 const delegatedModel = computed<TimeValue | undefined>({
   get: () => {
     if (modelValue.value === null) {
-      return undefined
+      return
     }
 
     const [
@@ -85,13 +81,11 @@ const { locale } = useInjectConfigContext()
 
 const isFocused = ref<boolean>(false)
 
-const timeFieldStyle = computed<CreateTimeFieldStyle>(() => createTimeFieldStyle({
-  variant: props.variant ?? undefined,
-}))
+const timeFieldStyle = computed<CreateTimeFieldStyle>(
+  () => createTimeFieldStyle({ variant: props.variant ?? undefined }),
+)
 
-const customClassConfig = useComponentClassConfig('timeField', {
-  variant: props.variant ?? undefined,
-})
+const customClassConfig = useComponentClassConfig('timeField', { variant: props.variant ?? undefined })
 
 function onFocus(event: FocusEvent): void {
   isFocused.value = true

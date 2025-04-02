@@ -22,15 +22,15 @@ const isSmall = ref<boolean>(false)
     <AnimateSize>
       <div
         :class="{
-          'max-w-80 max-h-40': isSmall,
-          'max-w-140 max-h-80': !isSmall,
+          'max-h-40 max-w-80': isSmall,
+          'max-h-80 max-w-140': !isSmall,
         }"
-        class=" w-[90vw] h-[90vh] p-2xl"
+        class="p-2xl h-[90vh] w-[90vw]"
       >
         <DialogCloseButton class="!absolute top-2 right-2" />
 
         <DialogTitle>
-          <h1 class="text-2xl font-semibold text-primary">
+          <h1 class="text-primary text-2xl font-semibold">
             Example dialog
           </h1>
         </DialogTitle>

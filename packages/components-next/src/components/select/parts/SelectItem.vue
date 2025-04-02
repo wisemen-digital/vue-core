@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import type { SelectItemSelectEvent } from 'reka-ui'
-import {
-  ListboxItem as RekaListboxItem,
-} from 'reka-ui'
+import { ListboxItem as RekaListboxItem } from 'reka-ui'
 import {
   onBeforeUnmount,
   onMounted,
@@ -15,9 +13,7 @@ import type { SelectItemProps } from '@/components/select/select.props'
 import { useInjectSelectGroupContext } from '@/components/select/selectGroup.context'
 import { mergeClasses } from '@/customClassVariants'
 
-const props = withDefaults(defineProps<SelectItemProps>(), {
-  isDisabled: false,
-})
+const props = withDefaults(defineProps<SelectItemProps>(), { isDisabled: false })
 
 const {
   allGroups,

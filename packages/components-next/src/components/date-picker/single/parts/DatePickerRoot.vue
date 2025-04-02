@@ -31,9 +31,7 @@ const props = withDefaults(defineProps<DatePickerProps>(), {
   variant: null,
 })
 
-const modelValue = defineModel<Date | null>({
-  required: true,
-})
+const modelValue = defineModel<Date | null>({ required: true })
 
 const placeholderValue = defineModel<Date>('placeholderValue', {
   default: new Date(),
@@ -68,13 +66,11 @@ const delegetedPlaceholderValue = computed<DateValue>({
   },
 })
 
-const datePickerStyle = computed<CreateDatePickerStyle>(() => createDatePickerStyle({
-  variant: props.variant ?? undefined,
-}))
+const datePickerStyle = computed<CreateDatePickerStyle>(
+  () => createDatePickerStyle({ variant: props.variant ?? undefined }),
+)
 
-const customClassConfig = useComponentClassConfig('datePicker', {
-  variant: props.variant ?? undefined,
-})
+const customClassConfig = useComponentClassConfig('datePicker', { variant: props.variant ?? undefined })
 
 useProvideDatePickerContext({
   ...toComputedRefs(props),

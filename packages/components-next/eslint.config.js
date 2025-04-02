@@ -15,14 +15,10 @@ export default [
           ],
         },
       ],
+      'vuejs-accessibility/form-control-has-label': 'off',
+      'vuejs-accessibility/label-has-for': 'off',
     },
   },
-  {
-    ignores: [],
-  },
-  {
-    rules: {
-      'unicorn/no-keyword-prefix': 'off',
-    },
-  },
+  { ignores: [] },
+  { rules: { 'unicorn/no-keyword-prefix': 'off' } },
 ]

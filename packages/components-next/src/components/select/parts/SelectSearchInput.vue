@@ -12,8 +12,7 @@ const props = withDefaults(defineProps<{
 })
 
 const {
-  searchTerm,
-  setIsDropdownVisible,
+  searchTerm, setIsDropdownVisible,
 } = useInjectSelectContext()
 
 function openDropdown(): void {
@@ -26,7 +25,7 @@ function openDropdown(): void {
     v-model="searchTerm"
     :placeholder="props.placeholder"
     :as-child="props.asChild"
-    class="outline-none bg-transparent text-sm"
+    class="bg-transparent text-sm outline-none"
     @input="openDropdown"
     @keydown.up.down.prevent="openDropdown"
   >

@@ -1,6 +1,4 @@
-import type {
-  ComputedRef,
-} from 'vue'
+import type { ComputedRef } from 'vue'
 
 import type { TooltipProps } from '@/components/tooltip/tooltip.props'
 import type { CreateTooltipStyle } from '@/components/tooltip/tooltip.style'

@@ -20,9 +20,7 @@ const props = withDefaults(defineProps<TabsProps>(), {
   variant: 'underline',
 })
 
-const model = defineModel<ButtonTabsValue>({
-  required: true,
-})
+const model = defineModel<ButtonTabsValue>({ required: true })
 
 const delegatedModel = computed<string>({
   get: () => JSON.stringify(model.value),
@@ -31,13 +29,9 @@ const delegatedModel = computed<string>({
   },
 })
 
-const tabsStyle = computed<CreateTabsStyle>(() => createTabsStyle({
-  variant: props.variant,
-}))
+const tabsStyle = computed<CreateTabsStyle>(() => createTabsStyle({ variant: props.variant }))
 
-const customClassConfig = useComponentClassConfig('tabs', {
-  variant: props.variant,
-})
+const customClassConfig = useComponentClassConfig('tabs', { variant: props.variant })
 
 useProvideTabsContext({
   ...toComputedRefs(props),

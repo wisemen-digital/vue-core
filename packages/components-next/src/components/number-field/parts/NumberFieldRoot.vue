@@ -6,10 +6,8 @@ import { useInjectConfigContext } from '@/components/config-provider/config.cont
 import { useProvideNumberFieldContext } from '@/components/number-field/numberField.context'
 import type { NumberFieldEmits } from '@/components/number-field/numberField.emits'
 import type { NumberFieldProps } from '@/components/number-field/numberField.props'
-import {
-  type CreateNumberFieldStyle,
-  createNumberFieldStyle,
-} from '@/components/number-field/numberField.style'
+import type { CreateNumberFieldStyle } from '@/components/number-field/numberField.style'
+import { createNumberFieldStyle } from '@/components/number-field/numberField.style'
 import InteractableElement from '@/components/shared/InteractableElement.vue'
 import {
   mergeClasses,
@@ -42,9 +40,7 @@ const props = withDefaults(defineProps<NumberFieldProps>(), {
 
 const emit = defineEmits<NumberFieldEmits>()
 
-const modelValue = defineModel<number | null>({
-  required: true,
-})
+const modelValue = defineModel<number | null>({ required: true })
 
 const delegatedModel = computed<number | undefined>({
   get: () => modelValue.value ?? undefined,
@@ -61,13 +57,11 @@ const delegatedModel = computed<number | undefined>({
 
 const { locale } = useInjectConfigContext()
 
-const numberFieldStyle = computed<CreateNumberFieldStyle>(() => createNumberFieldStyle({
-  variant: props.variant ?? undefined,
-}))
+const numberFieldStyle = computed<CreateNumberFieldStyle>(
+  () => createNumberFieldStyle({ variant: props.variant ?? undefined }),
+)
 
-const customClassConfig = useComponentClassConfig('numberField', {
-  variant: props.variant ?? undefined,
-})
+const customClassConfig = useComponentClassConfig('numberField', { variant: props.variant ?? undefined })
 
 function onBlur(event: FocusEvent): void {
   emit('blur', event)

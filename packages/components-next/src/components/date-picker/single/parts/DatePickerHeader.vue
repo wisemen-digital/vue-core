@@ -6,7 +6,10 @@ import {
   CalendarNext as RekaCalendarNext,
   CalendarPrev as RekaCalendarPrev,
 } from 'reka-ui'
-import { computed, nextTick } from 'vue'
+import {
+  computed,
+  nextTick,
+} from 'vue'
 
 import IconButton from '@/components/button/icon-button/IconButton.vue'
 import { useInjectConfigContext } from '@/components/config-provider/config.context'
@@ -97,14 +100,14 @@ const yearValue = computed<number>({
           v-if="showTwoMonths"
           class="text-center"
         >
-          <span class="font-semibold text-primary text-sm whitespace-nowrap">
+          <span class="text-primary text-sm font-semibold whitespace-nowrap">
             {{ getMonthName(month.value.month - 1, locale, 'long') }} {{ month.value.year }}
           </span>
         </div>
 
         <div
           v-else
-          class="flex items-center justify-center gap-xxs"
+          class="gap-xxs flex items-center justify-center"
         >
           <Select
             v-model="monthValue"

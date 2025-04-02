@@ -7,6 +7,7 @@ import {
 import {
   computed,
   ref,
+  useId,
   watch,
 } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -61,9 +62,7 @@ const props = withDefaults(defineProps<SelectProps<TValue>>(), {
 
 const emit = defineEmits<SelectEmits>()
 
-const modelValue = defineModel<TValue>({
-  required: true,
-})
+const modelValue = defineModel<TValue>({ required: true })
 
 const searchTerm = defineModel<string>('searchTerm', {
   default: '',
@@ -76,6 +75,8 @@ const isDropdownVisible = defineModel<boolean>('isOpen', {
 })
 
 const { t } = useI18n()
+
+const id = props.id ?? useId()
 
 const rootRef = ref<InstanceType<typeof InteractableElement> | null>(null)
 
@@ -94,13 +95,9 @@ const hasInteractedWithInlineSearchInput = ref<boolean>(false)
 
 const { contains } = useFilter()
 
-const selectStyle = computed<CreateSelectStyle>(() => createSelectStyle({
-  variant: props.variant ?? undefined,
-}))
+const selectStyle = computed<CreateSelectStyle>(() => createSelectStyle({ variant: props.variant ?? undefined }))
 
-const customClassConfig = useComponentClassConfig('select', {
-  variant: props.variant ?? undefined,
-})
+const customClassConfig = useComponentClassConfig('select', { variant: props.variant ?? undefined })
 
 const isMultiple = computed<boolean>(() => Array.isArray(modelValue.value))
 
@@ -268,6 +265,7 @@ watch(isDropdownVisible, (isDropdownVisible) => {
 
 useProvideSelectContext({
   ...toComputedRefs(props),
+  id: computed<string>(() => id),
   hasInlineSearchInput,
   hasInteractedWithInlineSearchInput,
   hasScrolledInDropdownContent,

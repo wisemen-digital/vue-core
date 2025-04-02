@@ -15,7 +15,7 @@ const {
 <template>
   <div
     v-if="filter !== null && filter.isEnabled && !filter.isInline"
-    class="relative p-xs pb-0"
+    class="p-xs relative pb-0"
   >
     <SelectSearchInput
       :placeholder="searchInputPlaceholder"
@@ -34,7 +34,10 @@ const {
 
     <div
       v-if="hasScrolledInDropdownContent"
-      class="absolute bottom-0 w-full translate-y-full z-10 h-4 bg-gradient-to-b from-primary to-transparent pointer-events-none"
+      class="
+        from-primary pointer-events-none absolute bottom-0 z-10 h-4 w-full
+        translate-y-full bg-gradient-to-b to-transparent
+      "
     />
   </div>
 </template>

@@ -1,6 +1,4 @@
-import type {
-  ComputedRef,
-} from 'vue'
+import type { ComputedRef } from 'vue'
 
 import type { RouterLinkButtonProps } from '@/components/button/router-link-button/routerLinkButton.props'
 import type { CreateRouterLinkButtonStyle } from '@/components/button/router-link-button/routerLinkButton.style'

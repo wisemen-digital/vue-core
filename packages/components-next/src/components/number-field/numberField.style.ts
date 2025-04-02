@@ -50,9 +50,7 @@ export const createNumberFieldStyle = tv({
       .withCursor('data-disabled:cursor-not-allowed')
       .build(),
   },
-  variants: {
-    variant: {},
-  },
+  variants: { variant: {} },
 })
 
 export type NumberFieldStyle = VariantProps<typeof createNumberFieldStyle>

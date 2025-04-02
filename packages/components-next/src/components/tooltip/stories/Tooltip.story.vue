@@ -13,7 +13,7 @@ import Tooltip from '@/components/tooltip/Tooltip.vue'
       </template>
 
       <template #content>
-        <div class="text-sm px-md py-xs">
+        <div class="px-md py-xs text-sm">
           <span class="text-primary">Tooltip content</span>
         </div>
       </template>

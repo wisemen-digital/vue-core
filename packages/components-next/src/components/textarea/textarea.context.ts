@@ -1,4 +1,7 @@
-import type { ComputedRef, Ref } from 'vue'
+import type {
+  ComputedRef,
+  Ref,
+} from 'vue'
 
 import type { TextareaProps } from '@/components/textarea/textarea.props'
 import type { CreateTextareaStyle } from '@/components/textarea/textarea.style'
