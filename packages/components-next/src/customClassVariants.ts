@@ -3,27 +3,27 @@ import type { VariantProps } from 'tailwind-variants'
 import type { ComputedRef } from 'vue'
 import { computed } from 'vue'
 
-import type { createButtonStyle } from '@/components/button/default-button/button.style'
-import type { createIconButtonStyle } from '@/components/button/icon-button/iconButton.style'
-import type { createRouterLinkButtonStyle } from '@/components/button/router-link-button/routerLinkButton.style'
-import type { createCheckboxStyle } from '@/components/checkbox/checkbox.style'
-import type { createDateFieldStyle } from '@/components/date-field/dateField.style'
-import type { createDatePickerStyle } from '@/components/date-picker/single/datePicker.style'
-import type { createDialogStyle } from '@/components/dialog/dialog.style'
-import type { createDropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style'
-import type { createFormFieldStyle } from '@/components/form-field/formField.style'
-import type { createkeyboardKeyStyle } from '@/components/keyboard-key/keyboardKey.style'
-import type { createNumberFieldStyle } from '@/components/number-field/numberField.style'
-import type { createPopoverStyle } from '@/components/popover/popover.style'
-import type { createRadioGroupItemStyle } from '@/components/radio-group-item/radioGroupItem.style'
-import type { createSelectStyle } from '@/components/select/style/select.style'
-import type { createSwitchStyle } from '@/components/switch/switch.style'
-import type { createTabsStyle } from '@/components/tabs/shared/tabs.style'
-import type { createTextFieldStyle } from '@/components/text-field/textField.style'
-import type { createTextareaStyle } from '@/components/textarea/textarea.style'
+import { createButtonStyle } from '@/components/button/default-button/button.style'
+import { createIconButtonStyle } from '@/components/button/icon-button/iconButton.style'
+import { createRouterLinkButtonStyle } from '@/components/button/router-link-button/routerLinkButton.style'
+import { createCheckboxStyle } from '@/components/checkbox/checkbox.style'
+import { createDateFieldStyle } from '@/components/date-field/dateField.style'
+import { createDatePickerStyle } from '@/components/date-picker/single/datePicker.style'
+import { createDialogStyle } from '@/components/dialog/dialog.style'
+import { createDropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style'
+import { createFormFieldStyle } from '@/components/form-field/formField.style'
+import { createkeyboardKeyStyle } from '@/components/keyboard-key/keyboardKey.style'
+import { createNumberFieldStyle } from '@/components/number-field/numberField.style'
+import { createPopoverStyle } from '@/components/popover/popover.style'
+import { createRadioGroupItemStyle } from '@/components/radio-group-item/radioGroupItem.style'
+import { createSelectStyle } from '@/components/select/style/select.style'
+import { createSwitchStyle } from '@/components/switch/switch.style'
+import { createTabsStyle } from '@/components/tabs/shared/tabs.style'
+import { createTextFieldStyle } from '@/components/text-field/textField.style'
+import { createTextareaStyle } from '@/components/textarea/textarea.style'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
-import type { createTimeFieldStyle } from '@/components/time-field/timeField.style'
-import type { createTooltipStyle } from '@/components/tooltip/tooltip.style'
+import { createTimeFieldStyle } from '@/components/time-field/timeField.style'
+import { createTooltipStyle } from '@/components/tooltip/tooltip.style'
 
 export interface Components {
   button: typeof createButtonStyle
@@ -48,6 +48,29 @@ export interface Components {
   tooltip: typeof createTooltipStyle
 }
 
+const components = {
+  button: createButtonStyle,
+  checkbox: createCheckboxStyle,
+  dateField: createDateFieldStyle,
+  datePicker: createDatePickerStyle,
+  dialog: createDialogStyle,
+  dropdownMenu: createDropdownMenuStyle,
+  formField: createFormFieldStyle,
+  iconButton: createIconButtonStyle,
+  keyboardKey: createkeyboardKeyStyle,
+  numberField: createNumberFieldStyle,
+  popover: createPopoverStyle,
+  radioGroupItem: createRadioGroupItemStyle,
+  routerLinkButton: createRouterLinkButtonStyle,
+  select: createSelectStyle,
+  switch: createSwitchStyle,
+  tabs: createTabsStyle,
+  textField: createTextFieldStyle,
+  textarea: createTextareaStyle,
+  timeField: createTimeFieldStyle,
+  tooltip: createTooltipStyle,
+}
+
 export interface ComponentVariants {}
 
 export type GetComponentPropCustomValues<
@@ -69,6 +92,7 @@ export interface ClassVariant<
     [K in keyof Components[TComponent]['slots']]?: string
   }
   target?: {
+    extends?: VariantProps<Components[TComponent]>[TTargetProp]
     prop: TTargetProp
     value: TTargetPropValue | VariantProps<Components[TComponent]>[TTargetProp]
   }
@@ -125,10 +149,13 @@ export function useComponentClassConfig<
   const themeContext = injectThemeProviderContext()
 
   return computed<ClassConfig<TComponent, TTargetPropValue, TTarget>>(
-    () => getComponentClassConfig(component, themeContext.theme.value, {
-      variant: themeContext.theme.value,
-      ...target,
-    }),
+    () => getComponentClassConfig(
+      component,
+      themeContext.theme.value,
+      {
+        ...target,
+      },
+    ),
   )
 }
 
@@ -155,9 +182,31 @@ export function getComponentClassConfig<
     return variant.target === undefined || target[variant.target.prop as keyof typeof target] === variant.target.value
   })
 
+  const targetVariantExtends = targetVariants
+    .filter((variant) => {
+      if (variant.target === undefined) {
+        return false
+      }
+
+      const { extends: extendsVariant } = variant.target
+
+      return extendsVariant !== undefined
+    })
+    .map((variant) => {
+      const prop = variant.target!.prop!
+      const extendsVariant = variant.target!.extends!
+
+      const result = components[component].variants[prop][extendsVariant]
+
+      return result
+    })
+
   const configs = targetVariants.map((variant) => variant.config)
 
-  const merged = configs.reduce((acc, obj) => {
+  const merged = [
+    targetVariantExtends,
+    configs,
+  ].flat().reduce((acc, obj) => {
     for (const key in obj) {
       if (key in acc) {
         acc[key] += ` ${obj[key]}`
