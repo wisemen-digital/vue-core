@@ -45,7 +45,7 @@ export const createDropdownMenuStyle = tv({
       .withTransition('duration-200')
       .build(),
     itemLabel: new StyleBuilder()
-      .withColor('text-secondary group-data-disabled/dropdown-menu-item:text-disabled group-data-destructive/dropdown-menu-item:text-error-primary')
+      .withColor('text-secondary font-medium group-data-disabled/dropdown-menu-item:text-disabled group-data-destructive/dropdown-menu-item:text-error-primary')
       .withFontSize('text-sm')
       .withTransition('duration-200')
       .build(),
