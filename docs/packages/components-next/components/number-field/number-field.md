@@ -37,6 +37,10 @@ import {
 
 <ComponentPreview name="number-field/examples/disabled" />
 
+### Error
+
+<ComponentPreview name="number-field/examples/error" />
+
 ### Min and max
 
 <ComponentPreview name="number-field/examples/min-max" />

@@ -77,7 +77,6 @@ export default defineConfig({
                 { text: 'Checkbox Group', link: '/packages/components-next/components/checkbox-group/checkbox-group' },
                 { text: 'Checkbox', link: '/packages/components-next/components/checkbox/checkbox' },
                 { text: 'Date Field', link: '/packages/components-next/components/date-field/date-field' },
-                { text: 'Date Picker', link: '/packages/components-next/components/date-picker/date-picker' },
                 { text: 'Form Field', link: '/packages/components-next/components/form-field/form-field' },
                 { text: 'Number Field', link: '/packages/components-next/components/number-field/number-field' },
                 { text: 'Password Field', link: '/packages/components-next/components/password-field/password-field' },
@@ -113,6 +112,7 @@ export default defineConfig({
               text: 'Miscellaneous',
               items: [
                 { text: 'Avatar', link: '/packages/components-next/components/avatar/avatar' },
+                { text: 'Date Picker', link: '/packages/components-next/components/date-picker/date-picker' },
               ],
             },
           ],
