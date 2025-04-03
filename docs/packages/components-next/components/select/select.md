@@ -62,6 +62,10 @@ import {
 
 <ComponentPreview name="select/examples/disabled" />
 
+### Error
+
+<ComponentPreview name="select/examples/error" />
+
 ### Loading
 
 <ComponentPreview name="select/examples/loading" />

@@ -30,6 +30,10 @@ import {
 
 <ComponentPreview name="textarea/examples/disabled" />
 
+### Error
+
+<ComponentPreview name="textarea/examples/error" />
+
 ### Resize
 
 <ComponentPreview name="textarea/examples/resize" />

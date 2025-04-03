@@ -38,6 +38,10 @@ import {
 
 <ComponentPreview name="date-field/examples/disabled" />
 
+### Error
+
+<ComponentPreview name="date-field/examples/error" />
+
 ### Show two months
 
 <ComponentPreview name="date-field/examples/show-two-months" />

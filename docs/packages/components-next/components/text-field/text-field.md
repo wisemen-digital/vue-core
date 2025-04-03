@@ -50,6 +50,10 @@ import {
 
 <ComponentPreview name="text-field/examples/disabled" />
 
+### Error
+
+<ComponentPreview name="text-field/examples/error" />
+
 ### Loading
 
 <ComponentPreview name="text-field/examples/loading" />
