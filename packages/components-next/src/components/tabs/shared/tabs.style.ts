@@ -17,7 +17,7 @@ export const createTabsStyle = tv({
       .withTransition('duration-200')
       .build(),
     item: new StyleBuilder()
-      .withBase('relative data-[orientation=vertical]:text-left')
+      .withBase('group/tabs-item relative data-[orientation=vertical]:text-left')
       .withFontSize('text-sm')
       .withFontWeight('font-semibold')
       .withTransition('duration-200')
