@@ -1,14 +1,16 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="TValue extends AcceptableValue">
 import type { AcceptableValue } from 'reka-ui'
 import { useId } from 'vue'
 
 import FormField from '@/components/form-field/FormField.vue'
 import RadioGroupRoot from '@/components/radio-group/parts/RadioGroupRoot.vue'
+import type { RadioGroupEmits } from '@/components/radio-group/radioGroup.emits'
 import type { RadioGroupProps } from '@/components/radio-group/radioGroup.props'
 
 const props = defineProps<RadioGroupProps>()
+const emit = defineEmits<RadioGroupEmits>()
 
-const modelValue = defineModel<AcceptableValue>({ required: true })
+const modelValue = defineModel<TValue>({ required: true })
 
 const id = props.id ?? useId()
 </script>
@@ -38,6 +40,7 @@ const id = props.id ?? useId()
       v-bind="props"
       :id="id"
       v-model="modelValue"
+      @blur="emit('blur')"
     >
       <slot />
     </RadioGroupRoot>
