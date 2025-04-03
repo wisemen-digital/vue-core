@@ -1,2 +1,2 @@
-export type { IconProps as VcIconNextProps } from './icon.props'
-export { default as VcIconNext } from './Icon.vue'
+export type { IconProps as VcIconProps } from '@/components/icon/icon.props'
+export { default as VcIcon } from '@/components/icon/Icon.vue'
