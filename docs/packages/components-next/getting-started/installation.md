@@ -10,8 +10,8 @@ pnpm install @wisemen/vue-core-components
 
 ## 2. Import style
 
-In your `main.ts` file, import the style:
+In your main css file, import the style:
 
-```ts
-import '@wisemen/vue-core-components/style.css'
+```css
+@import '@wisemen/vue-core-components/style.css' layer(base);
 ```

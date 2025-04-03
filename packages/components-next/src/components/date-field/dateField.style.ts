@@ -52,7 +52,7 @@ export const createDateFieldStyle = tv({
       .withBackgroundColor('bg-primary data-disabled:bg-disabled-subtle')
       .withBorderRadius('rounded-md')
       .withShadow('shadow-xs')
-      .withOutline('outline outline-transparent focus-within:outline-brand-500 data-invalid:outline-error-500')
+      .withOutline('outline outline-transparent focus-within:outline-brand-500 focus-within:data-invalid:outline-error-500')
       .withTransition('duration-200')
       .withCursor('data-disabled:cursor-not-allowed')
       .build(),

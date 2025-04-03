@@ -93,11 +93,11 @@ export const createSelectStyle = tv({
       // Disabled
       .withBorder('data-disabled:border-disabled-subtle')
       // Invalid
-      .withBorder('data-[is-invalid=true]:border-error data-[is-invalid=true]:focus-within:border-error')
+      .withBorder('data-invalid:border-error data-invalid:focus-within:border-error')
       .withBackgroundColor('bg-primary data-disabled:bg-disabled-subtle')
       .withBorderRadius('rounded-md')
       .withShadow('shadow-xs')
-      .withOutline('outline outline-transparent focus-within:outline-brand-500 data-invalid:outline-error-500')
+      .withOutline('outline outline-transparent focus-within:outline-brand-500 focus-within:data-invalid:outline-error-500')
       .withTransition('duration-200')
       .withCursor('data-disabled:cursor-not-allowed')
       .build(),
