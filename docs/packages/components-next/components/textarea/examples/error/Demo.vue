@@ -8,7 +8,7 @@ const value = ref<string>('')
 <template>
   <VcTextarea
     v-model="value"
-    :errors="value.length < 1 ? ['This field is required.'] : []"
+    :errors="value.length === 0 ? ['This field is required.'] : []"
     :is-touched="true"
     label="Message"
     placeholder="Enter your message here"
