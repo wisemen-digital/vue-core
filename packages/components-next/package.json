@@ -2,6 +2,7 @@
   "name": "@wisemen/vue-core-components",
   "type": "module",
   "version": "1.0.0-alpha.0",
+  "private": false,
   "license": "MIT",
   "sideEffects": false,
   "exports": {
