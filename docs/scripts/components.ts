@@ -83,7 +83,12 @@ export const components = [
     targetFolder: 'radio-group',
     componentName: 'RadioGroup',
   },
-  // TODO: select
+  // Sselect
+  {
+    sourceFolder: 'select/parts/SelectRoot.vue',
+    targetFolder: 'select',
+    componentName: 'Select',
+  },
   // Switch
   {
     sourceFolder: 'switch/parts/SwitchRoot.vue',

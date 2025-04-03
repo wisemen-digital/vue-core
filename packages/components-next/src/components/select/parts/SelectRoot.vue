@@ -263,6 +263,8 @@ watch(isDropdownVisible, (isDropdownVisible) => {
   }
 })
 
+watch(modelValue, resetSearchTerm, { immediate: true })
+
 useProvideSelectContext({
   ...toComputedRefs(props),
   id: computed<string>(() => id),

@@ -34,7 +34,7 @@ const isSequence = computed<boolean>(() => {
       <KeyboardKey :keyboard-key="keyboardKey" />
 
       <template v-if="index < props.keyboardKeys.length - 1 && isSequence">
-        <span class="text-tertiary text-xs font-normal">
+        <span class="text-tertiary font-regular text-xs">
           {{ t('component.keyboard_shortcut.then') }}
         </span>
       </template>

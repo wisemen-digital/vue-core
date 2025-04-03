@@ -58,16 +58,3 @@
     'default': 'null'
   }
 ]" />
-
-<EmitsTable :data="[
-  {
-    'name': 'close',
-    'description': '',
-    'type': '[]'
-  },
-  {
-    'name': 'update:isOpen',
-    'description': '',
-    'type': '[isOpen: boolean]'
-  }
-]" />

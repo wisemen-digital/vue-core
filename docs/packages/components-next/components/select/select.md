@@ -93,3 +93,5 @@ import {
 ### Customize value <badge type="warning">Unstable</badge>
 
 <ComponentPreview name="select/examples/customize-value" />
+
+<!-- @include: ./select-meta.md -->

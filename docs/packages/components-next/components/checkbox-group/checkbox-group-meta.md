@@ -51,18 +51,16 @@
     'default': 'null'
   },
   {
+    'name': 'modelValue',
+    'description': '',
+    'type': 'AcceptableValue[]',
+    'required': true
+  },
+  {
     'name': 'testId',
     'description': '<p>A unique identifier used for testing purposes. If set to <code>null</code>, no test ID will be applied.</p>\n',
     'type': 'string | null',
     'required': false,
     'default': 'null'
-  }
-]" />
-
-<EmitsTable :data="[
-  {
-    'name': 'update:modelValue',
-    'description': '',
-    'type': '[modelValue: AcceptableValue[]]'
   }
 ]" />

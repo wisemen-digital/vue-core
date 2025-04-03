@@ -9,7 +9,7 @@ export interface PopperProps {
   popoverAlign?: PopperAlign
   /**
    * The HTML element that serves as the anchor point for the popover.
-   * If set to `null`, the popover will not be anchored to the trigger element.
+   * If set to `null`, the popover will be anchored to the trigger element.
    * @default null
    */
   popoverAnchorReferenceElement?: HTMLElement | null

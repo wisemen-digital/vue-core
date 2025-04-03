@@ -36,11 +36,3 @@
     'default': '\'underline\''
   }
 ]" />
-
-<EmitsTable :data="[
-  {
-    'name': 'update:modelValue',
-    'description': '',
-    'type': '[modelValue: ButtonTabsValue]'
-  }
-]" />
