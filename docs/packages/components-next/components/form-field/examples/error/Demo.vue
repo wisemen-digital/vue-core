@@ -4,9 +4,10 @@ import { VcFormField } from '@wisemen/vue-core-components'
 
 <template>
   <VcFormField
-    :errors="['This is an error message.']"
+    error-message="This field is required."
     :is-touched="true"
     label="Label"
+    for=""
   >
     /
   </VcFormField>

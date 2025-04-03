@@ -43,10 +43,10 @@ export interface FormElement {
    */
   isTouched?: boolean
   /**
-   * The errors associated with the input.
-   * @default []
+   * The error associated with the input.
+   * @default null
    */
-  errors?: string[]
+  errorMessage?: string | null
   /**
    * The hint text of the input.
    * @default null
