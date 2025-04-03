@@ -32,7 +32,7 @@ defineSlots<{
 
 const themeContext = injectThemeProviderContext()
 
-const appearanceComputed = computed<Appearance>(() => (
+const computedAppearance = computed<Appearance>(() => (
   props.appearance ?? themeContext.appearance.value ?? 'light'
 ))
 
@@ -41,13 +41,13 @@ const theme = computed<string>(
 )
 
 provideThemeProviderContext({
-  appearance: appearanceComputed,
+  appearance: computedAppearance,
   theme,
 })
 </script>
 
 <template>
-  <div :class="[theme, appearance]">
+  <div :class="[theme, computedAppearance]">
     <slot />
   </div>
 </template>
