@@ -31,7 +31,7 @@
   },
   {
     'name': 'popoverAnchorReferenceElement',
-    'description': '<p>The HTML element that serves as the anchor point for the popover.\nIf set to <code>null</code>, the popover will not be anchored to the trigger element.</p>\n',
+    'description': '<p>The HTML element that serves as the anchor point for the popover.\nIf set to <code>null</code>, the popover will be anchored to the trigger element.</p>\n',
     'type': 'HTMLElement | null',
     'required': false,
     'default': 'null'
@@ -84,33 +84,5 @@
     'type': 'null',
     'required': false,
     'default': 'null'
-  }
-]" />
-
-<EmitsTable :data="[
-  {
-    'name': 'autoFocusOnClose',
-    'description': '',
-    'type': '[event: Event]'
-  },
-  {
-    'name': 'escapeKeyDown',
-    'description': '',
-    'type': '[event: KeyboardEvent]'
-  },
-  {
-    'name': 'focusOutside',
-    'description': '',
-    'type': '[event: CustomEvent<any>]'
-  },
-  {
-    'name': 'interactOutside',
-    'description': '',
-    'type': '[event: CustomEvent<any>]'
-  },
-  {
-    'name': 'update:isOpen',
-    'description': '',
-    'type': '[isOpen: boolean]'
   }
 ]" />

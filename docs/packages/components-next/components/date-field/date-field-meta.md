@@ -143,32 +143,6 @@
   }
 ]" />
 
-<EmitsTable :data="[
-  {
-    'name': 'blur',
-    'description': '',
-    'type': '[e: FocusEvent]'
-  },
-  {
-    'name': 'focus',
-    'description': '',
-    'type': '[e: FocusEvent]'
-  },
-  {
-    'name': 'update:modelValue',
-    'description': '',
-    'type': '[modelValue: Date | null]'
-  }
-]" />
-
-<SlotsTable :data="[
-  {
-    'name': 'segments',
-    'description': '',
-    'type': '{ part: SegmentPart; value: string; }[]'
-  }
-]" />
-
 <MethodsTable :data="[
   {
     'name': 'isDateDisabled',

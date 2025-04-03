@@ -92,32 +92,6 @@
   }
 ]" />
 
-<EmitsTable :data="[
-  {
-    'name': 'update:modelValue',
-    'description': '',
-    'type': '[modelValue: Date | null]'
-  },
-  {
-    'name': 'update:placeholderValue',
-    'description': '',
-    'type': '[placeholderValue: Date]'
-  }
-]" />
-
-<SlotsTable :data="[
-  {
-    'name': 'weekDays',
-    'description': '',
-    'type': 'string[]'
-  },
-  {
-    'name': 'grid',
-    'description': '',
-    'type': 'Grid<DateValue>'
-  }
-]" />
-
 <MethodsTable :data="[
   {
     'name': 'isDateDisabled',

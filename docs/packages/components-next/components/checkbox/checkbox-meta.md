@@ -86,21 +86,3 @@
     'default': 'null'
   }
 ]" />
-
-<EmitsTable :data="[
-  {
-    'name': 'blur',
-    'description': '',
-    'type': '[]'
-  },
-  {
-    'name': 'focus',
-    'description': '',
-    'type': '[]'
-  },
-  {
-    'name': 'update:modelValue',
-    'description': '',
-    'type': '[modelValue: boolean]'
-  }
-]" />

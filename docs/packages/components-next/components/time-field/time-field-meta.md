@@ -100,29 +100,3 @@
     'default': 'null'
   }
 ]" />
-
-<EmitsTable :data="[
-  {
-    'name': 'blur',
-    'description': '',
-    'type': '[e: FocusEvent]'
-  },
-  {
-    'name': 'focus',
-    'description': '',
-    'type': '[e: FocusEvent]'
-  },
-  {
-    'name': 'update:modelValue',
-    'description': '',
-    'type': '[modelValue: string | null]'
-  }
-]" />
-
-<SlotsTable :data="[
-  {
-    'name': 'segments',
-    'description': '',
-    'type': '{ part: SegmentPart; value: string; }[]'
-  }
-]" />

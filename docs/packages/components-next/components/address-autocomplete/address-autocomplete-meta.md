@@ -105,7 +105,7 @@
   },
   {
     'name': 'popoverAnchorReferenceElement',
-    'description': '<p>The HTML element that serves as the anchor point for the popover.\nIf set to <code>null</code>, the popover will not be anchored to the trigger element.</p>\n',
+    'description': '<p>The HTML element that serves as the anchor point for the popover.\nIf set to <code>null</code>, the popover will be anchored to the trigger element.</p>\n',
     'type': 'HTMLElement | null',
     'required': false
   },
@@ -162,28 +162,5 @@
     'description': '',
     'type': 'null',
     'required': false
-  }
-]" />
-
-<EmitsTable :data="[
-  {
-    'name': 'blur',
-    'description': '',
-    'type': '[]'
-  },
-  {
-    'name': 'error',
-    'description': '',
-    'type': '[error: unknown]'
-  },
-  {
-    'name': 'focus',
-    'description': '',
-    'type': '[]'
-  },
-  {
-    'name': 'update:modelValue',
-    'description': '',
-    'type': '[modelValue: Address | null]'
   }
 ]" />
