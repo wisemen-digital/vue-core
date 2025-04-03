@@ -40,7 +40,7 @@ export const createDropdownMenuStyle = tv({
       .build(),
     itemIcon: new StyleBuilder()
       .withSize('size-4')
-      .withColor('text-secondary group-data-disabled/dropdown-menu-item:text-disabled')
+      .withColor('text-secondary group-data-disabled/dropdown-menu-item:text-disabled group-data-destructive/dropdown-menu-item:text-error-primary')
       .withSpacing('mr-md')
       .withTransition('duration-200')
       .build(),
