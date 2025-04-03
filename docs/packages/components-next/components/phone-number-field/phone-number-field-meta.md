@@ -105,11 +105,3 @@
     'required': false
   }
 ]" />
-
-<EmitsTable :data="[
-  {
-    'name': 'update:modelValue',
-    'description': '',
-    'type': '[modelValue: string | null]'
-  }
-]" />

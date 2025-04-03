@@ -72,21 +72,3 @@
     'default': '\'primary\''
   }
 ]" />
-
-<EmitsTable :data="[
-  {
-    'name': 'blur',
-    'description': '',
-    'type': '[e: FocusEvent]'
-  },
-  {
-    'name': 'click',
-    'description': '',
-    'type': '[e: MouseEvent]'
-  },
-  {
-    'name': 'focus',
-    'description': '',
-    'type': '[e: FocusEvent]'
-  }
-]" />

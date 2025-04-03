@@ -139,32 +139,32 @@ function parseMeta(meta: ComponentMeta) {
     })
     .sort((a, b) => a.name.localeCompare(b.name))
 
-  const events = meta.events
-    .map((event) => {
-      const { name, type } = event
-      return ({
-        name,
-        description: md.render((eventDescriptionMap.get(name) ?? '').replace(/^[ \t]+/gm, '')),
-        type: type.replace(/\s*\|\s*undefined/g, ''),
-      })
-    })
-    .sort((a, b) => a.name.localeCompare(b.name))
+  // const events = meta.events
+  //   .map((event) => {
+  //     const { name, type } = event
+  //     return ({
+  //       name,
+  //       description: md.render((eventDescriptionMap.get(name) ?? '').replace(/^[ \t]+/gm, '')),
+  //       type: type.replace(/\s*\|\s*undefined/g, ''),
+  //     })
+  //   })
+  //   .sort((a, b) => a.name.localeCompare(b.name))
 
-  const defaultSlot = meta.slots?.[0]
-  const slots: { name: string, description: string, type: string }[] = []
+  // const defaultSlot = meta.slots?.[0]
+  // const slots: { name: string, description: string, type: string }[] = []
 
-  if (defaultSlot && defaultSlot.type !== '{}') {
-    const schema = defaultSlot.schema
-    if (typeof schema === 'object' && schema.schema) {
-      Object.values(schema.schema).forEach((childMeta: PropertyMeta) => {
-        slots.push({
-          name: childMeta.name,
-          description: md.render(childMeta.description),
-          type: parseTypeFromSchema(childMeta.schema),
-        })
-      })
-    }
-  }
+  // if (defaultSlot && defaultSlot.type !== '{}') {
+  //   const schema = defaultSlot.schema
+  //   if (typeof schema === 'object' && schema.schema) {
+  //     Object.values(schema.schema).forEach((childMeta: PropertyMeta) => {
+  //       slots.push({
+  //         name: childMeta.name,
+  //         description: md.render(childMeta.description),
+  //         type: parseTypeFromSchema(childMeta.schema),
+  //       })
+  //     })
+  //   }
+  // }
 
   // exposed method
   const methods = meta.exposed
@@ -177,8 +177,8 @@ function parseMeta(meta: ComponentMeta) {
 
   return {
     props,
-    events,
-    slots,
+    events: [],
+    slots: [],
     methods,
   }
 }
