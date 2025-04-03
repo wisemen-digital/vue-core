@@ -60,6 +60,7 @@ import DropdownMenuSubMenu from '@/components/dropdown-menu/parts/DropdownMenuSu
             <DropdownMenuGroup>
               <DropdownMenuItem
                 :is-destructive="true"
+                icon="calendarIcon"
                 label="Logout"
               >
                 <template #right>
