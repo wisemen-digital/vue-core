@@ -8,7 +8,7 @@ const value = ref<string>('')
 <template>
   <VcTextField
     v-model="value"
-    :errors="value.length === 0 ? ['This field is required.'] : []"
+    :error-message="value.length > 0 ? null : 'This field is required.'"
     :is-touched="true"
     label="Email"
     placeholder="example@example.com"

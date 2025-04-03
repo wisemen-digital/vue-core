@@ -8,7 +8,7 @@ const value = ref<string | null>(null)
 <template>
   <VcTimeField
     v-model="value"
-    :errors="value === null ? ['This field is required.'] : []"
+    :error-message="value !== null ? null : 'This field is required.'"
     :is-touched="true"
     class="w-52"
     label="Time"

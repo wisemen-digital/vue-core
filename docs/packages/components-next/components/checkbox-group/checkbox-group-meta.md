@@ -2,11 +2,10 @@
 
 <PropsTable :data="[
   {
-    'name': 'errors',
-    'description': '<p>The errors associated with the input.</p>\n',
-    'type': 'string[]',
-    'required': false,
-    'default': '[]'
+    'name': 'errorMessage',
+    'description': '<p>The error associated with the input.</p>\n',
+    'type': 'string | null',
+    'required': false
   },
   {
     'name': 'hint',

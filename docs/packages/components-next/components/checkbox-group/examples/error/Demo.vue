@@ -12,7 +12,7 @@ const value = ref<string[]>([])
   <VcCheckboxGroup
     v-model="value"
     :is-touched="true"
-    :errors="value.length > 0 ? [] : ['This field is required.']"
+    :error-message="value.length > 0 ? null : 'This field is required.'"
     label="Fruits"
   >
     <VcCheckbox

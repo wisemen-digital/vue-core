@@ -41,7 +41,7 @@ useFocusOut(
   <PrimitiveElement
     :id="props.id"
     :test-id="props.testId"
-    :aria-invalid="props.errors.length > 0"
+    :aria-invalid="props.errorMessage !== null"
   >
     <InteractableElement :is-disabled="props.isDisabled">
       <RekaRadioGroupRoot
