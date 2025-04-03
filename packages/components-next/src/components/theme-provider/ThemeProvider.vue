@@ -36,19 +36,9 @@ const appearanceComputed = computed<Appearance>(() => (
   props.appearance ?? themeContext.appearance.value ?? 'light'
 ))
 
-const theme = computed<string>(() =>
-  props.theme ?? themeContext.theme.value)
-
-// TODO: computed
-function getClasses(theme: string, appearance: Appearance): string {
-  const classes = [
-    theme,
-  ]
-
-  classes.push(appearance)
-
-  return classes.join(' ')
-}
+const theme = computed<string>(
+  () => props.theme ?? themeContext.theme.value,
+)
 
 provideThemeProviderContext({
   appearance: appearanceComputed,
@@ -57,7 +47,7 @@ provideThemeProviderContext({
 </script>
 
 <template>
-  <div :class="getClasses(theme, appearanceComputed)">
+  <div :class="[theme, appearance]">
     <slot />
   </div>
 </template>
