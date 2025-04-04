@@ -30,6 +30,7 @@
     "eslint": "9.4.0",
     "fast-glob": "3.3.2",
     "markdown-it": "14.1.0",
+    "motion-v": "1.0.0-beta.0",
     "postcss": "8.4.38",
     "postcss-prefix-selector": "1.16.1",
     "tailwindcss": "4.0.17",
