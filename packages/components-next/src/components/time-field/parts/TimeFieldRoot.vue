@@ -121,12 +121,12 @@ useProvideTimeFieldContext({
       v-model="delegatedModel"
       :locale="locale"
       :required="props.isRequired"
-      :is-invalid="props.errors.length > 0"
+      :is-invalid="props.errorMessage !== null"
     >
       <!-- For some reason, the data- bindings don't work on the `RekaTimeFieldRoot` component -->
       <div
         :data-icon-left="props.iconLeft !== null || undefined"
-        :data-invalid="(props.errors.length > 0 && props.isTouched) || undefined"
+        :data-invalid="(props.errorMessage !== null && props.isTouched) || undefined"
         :data-disabled="props.isDisabled || undefined"
         :class="timeFieldStyle.root({
           class: mergeClasses(customClassConfig.root, props.classConfig?.root),

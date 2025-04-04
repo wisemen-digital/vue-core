@@ -69,7 +69,7 @@ useProvideTextFieldContext({
     })"
     :data-icon-left="props.iconLeft !== null || undefined"
     :data-icon-right="props.iconRight !== null || undefined"
-    :data-invalid="(props.errors.length > 0 && props.isTouched) || undefined"
+    :data-invalid="(props.errorMessage !== null && props.isTouched) || undefined"
     :data-disabled="props.isDisabled || undefined"
   >
     <slot />

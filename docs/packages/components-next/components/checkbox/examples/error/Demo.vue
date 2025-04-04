@@ -9,7 +9,7 @@ const value = ref<boolean>(false)
   <VcCheckbox
     v-model="value"
     :is-touched="true"
-    :errors="value ? [] : ['This field is required.']"
+    :error-message="value ? null : 'This field is required.'"
     label="I agree with the terms and conditions."
   />
 </template>

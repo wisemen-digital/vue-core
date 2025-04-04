@@ -34,12 +34,14 @@ export default defineConfig({
         'zod',
         'reka-ui',
         'i18n-iso-countries',
+        'motion-v',
       ],
       output: {
         // Provide global variables to use in the UMD build
         // for externalized deps
         globals: {
           'i18n-iso-countries': 'i18nCountries',
+          'motion-v': 'MotionV',
           'reka-ui': 'RekaUI',
           'vue': 'Vue',
           'vue-i18n': 'VueI18n',

@@ -11,7 +11,7 @@ const value = ref<string | null>(null)
 <template>
   <VcRadioGroup
     v-model="value"
-    :errors="value === null ? ['This field is required.'] : []"
+    :error-message="value !== null ? null : 'This field is required.'"
     :is-touched="true"
     label="Select a fruit"
   >

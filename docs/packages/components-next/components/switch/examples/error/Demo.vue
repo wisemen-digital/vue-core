@@ -8,7 +8,7 @@ const value = ref<boolean>(false)
 <template>
   <VcSwitch
     v-model="value"
-    :errors="value === false ? ['This field is required.'] : []"
+    :error-message="value ? null : 'This field is required.'"
     :is-touched="true"
     label="I agree with the terms and conditions."
   />

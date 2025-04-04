@@ -117,13 +117,13 @@ useProvideDateFieldContext({
       :max-value="props.maxDate === null ? undefined : dateToDateValue(props.maxDate)"
       :is-date-unavailable="(dateValue) => props.isDateUnavailable(dateValueToDate(dateValue))"
       :locale="locale"
-      :is-invalid="props.errors.length > 0"
+      :is-invalid="props.errorMessage !== null"
       :required="props.isRequired"
     >
       <!-- For some reason, the data- bindings don't work on the `RekaDateFieldRoot` component -->
       <div
         :data-icon-left="props.iconLeft !== null || undefined"
-        :data-invalid="(props.errors.length > 0 && props.isTouched) || undefined"
+        :data-invalid="(props.errorMessage !== null && props.isTouched) || undefined"
         :data-disabled="props.isDisabled || undefined"
         :class="dateFieldStyle.root({
           class: mergeClasses(customClassConfig.root, props.classConfig?.root),
