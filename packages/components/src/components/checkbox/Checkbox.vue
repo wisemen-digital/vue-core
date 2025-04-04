@@ -170,7 +170,10 @@ provideCheckboxContext({
       ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.appearance.value),
     ]"
     :value="props.value ?? undefined"
-    class="checkbox-default input-field-label-default input-field-error-default input-field-hint-default"
+    class="
+      checkbox-default input-field-label-default input-field-error-default
+      input-field-hint-default
+    "
     @update:model-value="onUpdateModelValue"
     @focus="onFocus"
     @blur="onBlur"
@@ -186,7 +189,10 @@ provideCheckboxContext({
     v-else
     :style="props.styleConfig"
     :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.appearance.value)"
-    class="grid grid-cols-[min-content_auto] items-center checkbox-default input-field-label-default input-field-error-default input-field-hint-default"
+    class="
+      checkbox-default input-field-label-default input-field-error-default
+      input-field-hint-default grid grid-cols-[min-content_auto] items-center
+    "
   >
     <CheckboxRoot
       :id="inputId"

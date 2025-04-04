@@ -1,9 +1,12 @@
-import { useMutation as useTanstackQueryMutation, useQueryClient } from '@tanstack/vue-query'
 import {
-  computed,
-  type ComputedRef,
-  type UnwrapRef,
+  useMutation as useTanstackQueryMutation,
+  useQueryClient,
+} from '@tanstack/vue-query'
+import type {
+  ComputedRef,
+  UnwrapRef,
 } from 'vue'
+import { computed } from 'vue'
 
 import type { QueryKeys } from '@/types/queryKeys.type'
 
@@ -13,7 +16,8 @@ type RequestParams<TReqData, TParams> = TReqData extends void
     : { params: TParams }
   : TParams extends void
     ? { body: TReqData }
-    : { body: TReqData, params: TParams }
+    : { body: TReqData
+        params: TParams }
 
 interface UseMutationOptions<TParams, TReqData, TResData> {
   /**

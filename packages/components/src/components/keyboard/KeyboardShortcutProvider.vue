@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import {
+  computed,
+  ref,
+} from 'vue'
 
 import { useKeyboardShortcut } from '@/composables/keyboard-shortcut/keyboardShortcut.composable'
 import type { KeyboardShortcutConfig } from '@/types/keyboard.type'

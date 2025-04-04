@@ -20,9 +20,7 @@ export function setupDefaultIconStyles(): void {
 
   defineStyleConfig({
     colorScheme: '*',
-    config: {
-      '--icon-size': '0.875rem',
-    },
+    config: { '--icon-size': '0.875rem' },
     theme: '*',
     variant: 'sm',
     component: 'icon',
@@ -30,9 +28,7 @@ export function setupDefaultIconStyles(): void {
 
   defineStyleConfig({
     colorScheme: '*',
-    config: {
-      '--icon-size': '0.75rem',
-    },
+    config: { '--icon-size': '0.75rem' },
     theme: '*',
     variant: 'xs',
     component: 'icon',
@@ -40,9 +36,7 @@ export function setupDefaultIconStyles(): void {
 
   defineStyleConfig({
     colorScheme: '*',
-    config: {
-      '--icon-size': '1.125rem',
-    },
+    config: { '--icon-size': '1.125rem' },
     theme: '*',
     variant: 'lg',
     component: 'icon',
@@ -50,9 +44,7 @@ export function setupDefaultIconStyles(): void {
 
   defineStyleConfig({
     colorScheme: '*',
-    config: {
-      '--icon-size': '1.5rem',
-    },
+    config: { '--icon-size': '1.5rem' },
     theme: '*',
     variant: 'xl',
     component: 'icon',
@@ -60,9 +52,7 @@ export function setupDefaultIconStyles(): void {
 
   defineStyleConfig({
     colorScheme: '*',
-    config: {
-      '--icon-size': '100%',
-    },
+    config: { '--icon-size': '100%' },
     theme: '*',
     variant: 'full',
     component: 'icon',

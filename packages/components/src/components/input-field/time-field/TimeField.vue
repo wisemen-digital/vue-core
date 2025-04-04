@@ -55,14 +55,12 @@ defineSlots<{
   'right': () => null
 }>()
 
-const model = defineModel<TValue | null>({
-  required: true,
-})
+const model = defineModel<TValue | null>({ required: true })
 
 const delegatedModel = computed<Time | undefined>({
   get: () => {
     if (model.value === null) {
-      return undefined
+      return
     }
 
     const [
@@ -259,7 +257,11 @@ function onBlur(): void {
           <TimeFieldInput
             v-else
             :part="item.part"
-            class="rounded-xs px-0.5 text-primary outline-none duration-200 focus:bg-quaternary data-[placeholder]:text-placeholder"
+            class="
+              text-primary rounded-xs px-0.5 duration-200 outline-none
+              focus:bg-quaternary
+              data-[placeholder]:text-placeholder
+            "
             @focus="onFocus"
             @blur="onBlur"
           >

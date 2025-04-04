@@ -36,9 +36,7 @@ defineSlots<{
   'item-right': ({ item }: { item: TabItem<TMeta> }) => void
 }>()
 
-const model = defineModel<TabItem<TMeta>>({
-  required: true,
-})
+const model = defineModel<TabItem<TMeta>>({ required: true })
 
 const themeProviderContext = injectThemeProviderContext()
 

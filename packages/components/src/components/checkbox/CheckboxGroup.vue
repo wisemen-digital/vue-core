@@ -1,6 +1,6 @@
 <script setup lang="ts" generic="TValue extends AcceptableValue">
+import type { AcceptableValue } from 'reka-ui'
 import {
-  type AcceptableValue,
   CheckboxGroupRoot,
   useId,
 } from 'reka-ui'
@@ -23,9 +23,7 @@ const props = withDefaults(defineProps<CheckboxGroupProps>(), {
 
 defineSlots<FormElementSlots>()
 
-const model = defineModel<TValue[]>({
-  required: true,
-})
+const model = defineModel<TValue[]>({ required: true })
 
 const inputId = props.id ?? useId()
 </script>

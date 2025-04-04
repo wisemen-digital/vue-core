@@ -20,7 +20,10 @@ function camelCaseToKebabCase(str: string): string {
   return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
 }
 
-function getComponentSelector({ componentName, variant }: { componentName: string, variant: string }): string {
+function getComponentSelector({
+  componentName, variant,
+}: { componentName: string
+  variant: string }): string {
   return `.${componentName}-${variant}`
 }
 
@@ -30,7 +33,10 @@ function getSelector(
   colorScheme: ColorScheme,
   theme: string,
 ): string {
-  let selector = getComponentSelector({ componentName, variant })
+  let selector = getComponentSelector({
+    componentName,
+    variant,
+  })
 
   if (colorScheme !== '*') {
     selector = `${selector}.${colorScheme === 'dark' ? 'dark' : 'light'}`
@@ -58,7 +64,10 @@ function getSystemStyleNode(payload: {
     theme,
     variant,
   } = payload
-  let selector = `${getComponentSelector({ componentName, variant })}.system`
+  let selector = `${getComponentSelector({
+    componentName,
+    variant,
+  })}.system`
 
   if (theme !== '*') {
     selector = `${selector}.${theme}`

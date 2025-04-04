@@ -1,5 +1,5 @@
+import type { Ref } from 'vue'
 import {
-  type Ref,
   ref,
   watchEffect,
 } from 'vue'
@@ -17,7 +17,5 @@ export function useIsDocumentHidden(): { isDocumentHidden: Ref<boolean> } {
     return (): void => window.removeEventListener('visibilitychange', callback)
   })
 
-  return {
-    isDocumentHidden,
-  }
+  return { isDocumentHidden }
 }

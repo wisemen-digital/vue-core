@@ -1,7 +1,5 @@
 import type { OAuth2Tokens } from '../apiClient'
-import type {
-  TokensStrategy,
-} from './tokensStrategy.type'
+import type { TokensStrategy } from './tokensStrategy.type'
 
 export class LocalStorageTokensStrategy implements TokensStrategy {
   private CODE_VERIFIER_KEY = 'code_verifier'

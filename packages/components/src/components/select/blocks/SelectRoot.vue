@@ -1,11 +1,9 @@
 <script setup lang="ts" generic="TValue extends SelectValue">
-import {
-  type AcceptableValue,
-  ListboxRoot,
-} from 'reka-ui'
+import type { AcceptableValue } from 'reka-ui'
+import { ListboxRoot } from 'reka-ui'
+import type { Ref } from 'vue'
 import {
   computed,
-  type Ref,
   ref,
   useId,
   watch,
@@ -25,7 +23,10 @@ import type {
   PopperSide,
   PopperWidth,
 } from '@/types/popper'
-import type { SelectItem, SelectValue } from '@/types/select.type'
+import type {
+  SelectItem,
+  SelectValue,
+} from '@/types/select.type'
 import { ThemeUtil } from '@/utils/theme.util'
 
 const props = withDefaults(defineProps<SelectProps<TValue>>(), {
@@ -64,9 +65,7 @@ const emit = defineEmits<{
   select: [value: TValue]
 }>()
 
-const model = defineModel<TValue | null>({
-  required: true,
-})
+const model = defineModel<TValue | null>({ required: true })
 
 const delegatedModel = computed<TValue | undefined>({
   get: () => model.value ?? undefined,
@@ -104,28 +103,37 @@ const filteredItems = computed<SelectItem<TValue extends Array<infer U> ? U : TV
     searchTerm: string,
   ): SelectItem<TValue>[] {
     return items.reduce((acc: SelectItem<TValue>[], item: SelectItem<TValue>) => {
-      if (item.type === 'option') {
-        const isOptionValid = filterFn !== null
-          ? filterFn(item.value, searchTerm)
-          : true
+      switch (item.type) {
+        case 'option': {
+          const isOptionValid = filterFn !== null
+            ? filterFn(item.value, searchTerm)
+            : true
 
-        if (isOptionValid) {
+          if (isOptionValid) {
+            acc.push(item)
+          }
+
+          break
+        }
+        case 'group': {
+          const filteredGroupItems = filterItems(item.items, filterFn, searchTerm)
+          const hasValidOptions = filteredGroupItems.some((groupItem) => groupItem.type === 'option')
+
+          if (hasValidOptions) {
+            acc.push({
+              ...item,
+              items: filteredGroupItems,
+            })
+          }
+
+          break
+        }
+        case 'separator': {
           acc.push(item)
-        }
-      }
-      else if (item.type === 'group') {
-        const filteredGroupItems = filterItems(item.items, filterFn, searchTerm)
-        const hasValidOptions = filteredGroupItems.some((groupItem) => groupItem.type === 'option')
 
-        if (hasValidOptions) {
-          acc.push({
-            ...item,
-            items: filteredGroupItems,
-          })
+          break
         }
-      }
-      else if (item.type === 'separator') {
-        acc.push(item)
+      // No default
       }
 
       return acc

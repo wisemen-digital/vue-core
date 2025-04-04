@@ -6,9 +6,7 @@ import { RouterLink } from 'vue-router'
 import { dropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style'
 import Icon from '@/components/icon/Icon.vue'
 import KeyboardShortcut from '@/components/keyboard/KeyboardShortcut.vue'
-import type {
-  DropdownMenuRoute,
-} from '@/types/dropdownMenu.type'
+import type { DropdownMenuRoute } from '@/types/dropdownMenu.type'
 
 const props = defineProps<{
   item: DropdownMenuRoute
@@ -16,13 +14,9 @@ const props = defineProps<{
 
 const style = dropdownMenuStyle()
 
-const itemClasses = computed<string>(() => style.item({
-  isDestructive: props.item.isDestructive,
-}))
+const itemClasses = computed<string>(() => style.item({ isDestructive: props.item.isDestructive }))
 
-const itemIconClasses = computed<string>(() => style.itemIcon({
-  isDestructive: props.item.isDestructive,
-}))
+const itemIconClasses = computed<string>(() => style.itemIcon({ isDestructive: props.item.isDestructive }))
 </script>
 
 <template>

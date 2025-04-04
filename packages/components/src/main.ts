@@ -11,16 +11,10 @@ const i18n = createI18n({
   locale: 'en',
   messages: {
     en: {
-      shared: {
-        close: 'Close',
-      },
+      shared: { close: 'Close' },
       component: {
-        address_autocomplete: {
-          failed_to_fetch: 'Failed to fetch predictions.',
-        },
-        keyboard_shortcut: {
-          then: 'then',
-        },
+        address_autocomplete: { failed_to_fetch: 'Failed to fetch predictions.' },
+        keyboard_shortcut: { then: 'then' },
         number_field: {
           decrement: 'Decrement',
           increment: 'Increment',
@@ -44,9 +38,7 @@ const i18n = createI18n({
           },
           page_count: '{startIndex} - {endIndex} of {totalItems}',
         },
-        tag: {
-          remove: 'Remove',
-        },
+        tag: { remove: 'Remove' },
       },
     },
   },

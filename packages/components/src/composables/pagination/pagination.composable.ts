@@ -17,7 +17,10 @@ import type {
   UsePaginationProps,
   UsePaginationReturnType,
 } from '@/types/pagination.type'
-import { base64Decode, base64Encode } from '@/utils/base64.util'
+import {
+  base64Decode,
+  base64Encode,
+} from '@/utils/base64.util'
 
 export function usePagination<TPagination extends BasePagination>({
   isRouteQueryEnabled,
@@ -57,8 +60,8 @@ export function usePagination<TPagination extends BasePagination>({
     currentOptions: PaginationOptions<TPagination>,
   ): PaginationOptions<TPagination> {
     const mergedFilters = {
-      ...(currentOptions.filter ?? {}),
-      ...(userOptions.filter ?? {}),
+      ...currentOptions.filter,
+      ...userOptions.filter,
     } as PaginationFilters<TPagination['filter']>
 
     const search = currentOptions.search ?? userOptions.search ?? ''

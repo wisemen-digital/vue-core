@@ -2,7 +2,10 @@
 import SelectGroup from '@/components/select/blocks/items/SelectGroup.vue'
 import SelectOption from '@/components/select/blocks/items/SelectOption.vue'
 import SelectSeparator from '@/components/select/blocks/items/SelectSeparator.vue'
-import type { SelectItem, SelectValue } from '@/types/select.type'
+import type {
+  SelectItem,
+  SelectValue,
+} from '@/types/select.type'
 
 const props = defineProps<{
   item: SelectItem<TValue extends Array<infer U> ? U : TValue>

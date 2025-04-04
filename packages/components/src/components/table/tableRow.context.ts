@@ -1,8 +1,10 @@
+import type {
+  InjectionKey,
+  Ref,
+} from 'vue'
 import {
   inject,
-  type InjectionKey,
   provide,
-  type Ref,
 } from 'vue'
 
 interface TableRowContext {

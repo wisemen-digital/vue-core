@@ -1,10 +1,12 @@
 import type { AcceptableValue } from 'reka-ui'
+import type {
+  ComputedRef,
+  InjectionKey,
+  Ref,
+} from 'vue'
 import {
-  type ComputedRef,
   inject,
-  type InjectionKey,
   provide,
-  type Ref,
 } from 'vue'
 
 interface RadioGroupItemContext {

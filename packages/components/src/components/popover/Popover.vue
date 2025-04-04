@@ -5,7 +5,10 @@ import {
   PopoverPortal,
   PopoverRoot,
 } from 'reka-ui'
-import { computed, useAttrs } from 'vue'
+import {
+  computed,
+  useAttrs,
+} from 'vue'
 
 import { injectConfigContext } from '@/components/config-provider/config.context'
 import type { PopoverProps } from '@/components/popover/popover.props'
@@ -53,9 +56,7 @@ const configContext = injectConfigContext()
 
 const popoverStyle = usePopoverStyle()
 
-const contentClasses = computed<string>(() => popoverStyle.content({
-  width: props.popoverWidth ?? '',
-}))
+const contentClasses = computed<string>(() => popoverStyle.content({ width: props.popoverWidth ?? '' }))
 const arrowBoxClasses = computed<string>(() => popoverStyle.arrowBox())
 const arrowClasses = computed<string>(() => popoverStyle.arrow())
 </script>
@@ -94,7 +95,12 @@ const arrowClasses = computed<string>(() => popoverStyle.arrow())
         <!-- Without this relative div, the arrow is a bit glitchy -->
         <div class="relative size-full">
           <!-- Since we can't apply `overflow-hidden` on the parent div, we need another wrapper -->
-          <div class="relative size-full overflow-hidden rounded-popover-border-radius-default">
+          <div
+            class="
+              rounded-popover-border-radius-default relative size-full
+              overflow-hidden
+            "
+          >
             <slot name="content" />
           </div>
 

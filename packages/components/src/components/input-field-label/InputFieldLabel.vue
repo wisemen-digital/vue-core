@@ -20,9 +20,7 @@ const props = withDefaults(defineProps<{
    * The label to be displayed.
    */
   label: string | null
-} & Stylable<'inputFieldLabel'>>(), {
-  styleConfig: null,
-})
+} & Stylable<'inputFieldLabel'>>(), { styleConfig: null })
 
 const themeProviderContext = injectThemeProviderContext()
 

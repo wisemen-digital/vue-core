@@ -58,7 +58,10 @@ defineSlots<{
   /**
    * Can be used to render a custom hint and error message.
    */
-  'bottom': ({ errors, hint }: { errors: string[], hint: string | null }) => void
+  'bottom': ({
+    errors, hint,
+  }: { errors: string[]
+    hint: string | null }) => void
   /**
    * Can be used to render a custom error message.
    */
@@ -93,9 +96,7 @@ defineSlots<{
   'right': () => null
 }>()
 
-const model = defineModel<number | null>({
-  required: true,
-})
+const model = defineModel<number | null>({ required: true })
 
 const computedModel = computed<number | undefined>({
   get: () => model.value ?? undefined,
@@ -115,8 +116,12 @@ const globalConfigContext = injectConfigContext()
 
 const { t } = useI18n()
 
-const { currentElement: decrementButtonEl, forwardRef: decrementForwardRef } = useForwardExpose()
-const { currentElement: incrementButtonEl, forwardRef: incrementForwardRef } = useForwardExpose()
+const {
+  currentElement: decrementButtonEl, forwardRef: decrementForwardRef,
+} = useForwardExpose()
+const {
+  currentElement: incrementButtonEl, forwardRef: incrementForwardRef,
+} = useForwardExpose()
 
 const isDecrementButtonDisabled = ref<boolean>(false)
 const isIncrementButtonDisabled = ref<boolean>(false)

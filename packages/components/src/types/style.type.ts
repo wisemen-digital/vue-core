@@ -8,9 +8,7 @@ import type { IconStyleConfig } from '@/components/icon/iconStyle.config'
 import type { TextareaStyleConfig } from '@/components/input-field/text-area/textareaStyle.config'
 import type { TextFieldStyleConfig } from '@/components/input-field/text-field/textFieldStyle.config'
 import type { InputFieldErrorStyleConfig } from '@/components/input-field-error/inputFieldErrorStyle.config'
-import type {
-  InputFieldHintStyleConfig,
-} from '@/components/input-field-hint/inputFieldHintStyle.config'
+import type { InputFieldHintStyleConfig } from '@/components/input-field-hint/inputFieldHintStyle.config'
 import type { InputFieldLabelStyleConfig } from '@/components/input-field-label/inputFieldLabelStyle.config'
 import type { PopoverStyleConfig } from '@/components/popover/popoverStyle.config'
 import type { RadioGroupItemStyleConfig } from '@/components/radio-group/radioGroupItemStyle.config'
@@ -134,12 +132,12 @@ export interface ComponentStyleConfigRegistry {
     config: TagStyleConfig
     variants: ['default']
   }
-  textField: {
-    config: TextFieldStyleConfig
-    variants: ['default']
-  }
   textarea: {
     config: TextareaStyleConfig
+    variants: ['default']
+  }
+  textField: {
+    config: TextFieldStyleConfig
     variants: ['default']
   }
   tooltip: {

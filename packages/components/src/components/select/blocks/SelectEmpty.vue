@@ -11,7 +11,13 @@ const { t } = useI18n()
 <template>
   <div v-if="selectContext.isEmpty.value">
     <slot :search-term="selectContext.searchTerm.value">
-      <span class="block px-(--select-option-padding-x-default) py-(--select-option-padding-y-default) text-(length:--text-sm) text-tertiary">
+      <span
+        class="
+          text-tertiary block px-(--select-option-padding-x-default)
+          py-(--select-option-padding-y-default)
+          text-(length:--text-sm)
+        "
+      >
         {{ t('component.select.empty_text', { searchTerm: selectContext.searchTerm.value }) }}
       </span>
     </slot>

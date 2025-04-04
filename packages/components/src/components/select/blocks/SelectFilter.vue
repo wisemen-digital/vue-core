@@ -31,7 +31,10 @@ const hasDefaultSlot = computed<boolean>(() => slots.default !== undefined)
 
   <div
     v-else-if="selectContext.hasFilter.value"
-    class="px-(--select-dropdown-padding-x-default) pt-(--select-dropdown-padding-y-default)"
+    class="
+      px-(--select-dropdown-padding-x-default)
+      pt-(--select-dropdown-padding-y-default)
+    "
   >
     <ListboxFilter
       :as-child="true"

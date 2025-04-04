@@ -9,7 +9,7 @@ setupDefaultStyles()
 <template>
   <ConfigProvider locale="en-US">
     <ThemeProvider>
-      <div class="h-screen flex items-center justify-center" />
+      <div class="flex h-screen items-center justify-center" />
     </ThemeProvider>
   </ConfigProvider>
 </template>
