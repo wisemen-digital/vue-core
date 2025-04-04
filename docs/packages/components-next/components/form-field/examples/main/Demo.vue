@@ -11,7 +11,7 @@ import { VcFormField } from '@wisemen/vue-core-components'
   >
     <input
       id="input-id"
-      class="border border-solid border-primary rounded-md p-xs"
+      class="border-primary p-xs rounded-md border border-solid"
     >
   </VcFormField>
 </template>

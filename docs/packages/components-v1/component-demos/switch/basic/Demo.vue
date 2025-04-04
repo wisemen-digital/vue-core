@@ -13,7 +13,7 @@ const model2 = ref<boolean>(false)
       label="I want to receive marketing emails"
       hint="You can unsubscribe at any time."
     />
-    <div class="w-72 border-t border-primary my-3" />
+    <div class="border-primary my-3 w-72 border-t" />
     <VcSwitch
       v-model="model2"
       label="You can also use a smaller switch"

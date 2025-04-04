@@ -4,9 +4,7 @@ import {
   VcButton,
 } from '@wisemen/vue-core-components'
 
-const dialog = useVcDialog({
-  component: () => import('./Drawer.vue'),
-})
+const dialog = useVcDialog({ component: () => import('./Drawer.vue') })
 </script>
 
 <template>

@@ -9,10 +9,15 @@ import {
 </script>
 
 <template>
-  <VcDialog class="max-w-[90vw] w-120 max-h-[90vh] p-3xl pt-5xl">
+  <VcDialog class="p-3xl pt-5xl max-h-[90vh] w-120 max-w-[90vw]">
     <div class="flex justify-center">
-      <div class="p-lg border border-solid border-primary rounded-2xl shadow-button bg-secondary">
-        <div class="size-20 text-tertiary">
+      <div
+        class="
+          p-lg border-primary shadow-button bg-secondary rounded-2xl border
+          border-solid
+        "
+      >
+        <div class="text-tertiary size-20">
           <svg
             width="100%"
             height="100%"
@@ -33,18 +38,22 @@ import {
     </div>
 
     <VcDialogTitle>
-      <h1 class="text-xl font-semibold text-primary text-center mt-3xl">
+      <h1 class="text-primary mt-3xl text-center text-xl font-semibold">
         Enable two-factor authentication
       </h1>
     </VcDialogTitle>
 
     <VcDialogDescription>
-      <p class="text-secondary text-center mt-xl">
+      <p class="text-secondary mt-xl text-center">
         For more security, we recommend enabling two-factor authentication.
       </p>
     </VcDialogDescription>
 
-    <div class="mt-3xl pt-3xl flex justify-between border-t border-solid border-tertiary">
+    <div
+      class="
+        mt-3xl pt-3xl border-tertiary flex justify-between border-t border-solid
+      "
+    >
       <VcDialogCloseButton>
         <VcButton
           :class-config="{

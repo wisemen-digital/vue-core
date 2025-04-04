@@ -35,12 +35,13 @@ const names = [
     <template #base>
       <VcSelectBase>
         <VcSelectBaseSingle>
-          <div class="flex justify-between items-center w-full">
-            <span class="font-semibold text-sm text-secondary">
+          <div class="flex w-full items-center justify-between">
+            <span class="text-secondary text-sm font-semibold">
               {{ value }}
             </span>
 
             <img
+              :alt="value!"
               src="https://xsgames.co/randomusers/avatar.php?g=male"
               class="size-5 rounded-full"
             >

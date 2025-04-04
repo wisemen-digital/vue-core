@@ -6,7 +6,7 @@ import {
 </script>
 
 <template>
-  <div class="grid grid-cols-2 gap-md">
+  <div class="gap-md grid grid-cols-2">
     <VcPopover popover-width="anchor-width">
       <template #trigger>
         <VcButton variant="secondary">

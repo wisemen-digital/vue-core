@@ -13,7 +13,7 @@ const aligns: VcPopoverProps['popoverAlign'][] = [
 </script>
 
 <template>
-  <div class="grid grid-cols-3 gap-xl">
+  <div class="gap-xl grid grid-cols-3">
     <VcPopover
       v-for="align of aligns"
       :key="align"
@@ -26,7 +26,7 @@ const aligns: VcPopoverProps['popoverAlign'][] = [
       </template>
 
       <template #content>
-        <div class="w-96 h-40" />
+        <div class="h-40 w-96" />
       </template>
     </VcPopover>
   </div>

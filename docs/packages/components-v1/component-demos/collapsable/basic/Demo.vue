@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { VcButton, VcCollapsable } from '@wisemen/vue-core'
+import {
+  VcButton,
+  VcCollapsable,
+} from '@wisemen/vue-core'
 import { ref } from 'vue'
 
 const isCollapsed = ref<boolean>(false)
@@ -18,7 +21,7 @@ const isCollapsed = ref<boolean>(false)
         <p class="text-sm">
           A very nice content
         </p>
-        <div class="bg-secondary rounded-sm w-full h-20" />
+        <div class="bg-secondary h-20 w-full rounded-sm" />
       </div>
     </VcCollapsable>
   </div>

@@ -15,7 +15,7 @@ const orientations: VcTabsProps['orientation'][] = [
 </script>
 
 <template>
-  <div class="flex flex-col gap-8xl items-start">
+  <div class="gap-8xl flex flex-col items-start">
     <VcTabs
       v-for="orientation of orientations"
       :key="orientation"
@@ -39,19 +39,19 @@ const orientations: VcTabsProps['orientation'][] = [
       <template #content>
         <div class="mt-xl">
           <VcTabsContent value="profile">
-            <p class="text-sm font-semibold text-secondary">
+            <p class="text-secondary text-sm font-semibold">
               Profile
             </p>
           </VcTabsContent>
 
           <VcTabsContent value="settings">
-            <p class="text-sm font-semibold text-secondary">
+            <p class="text-secondary text-sm font-semibold">
               Settings
             </p>
           </VcTabsContent>
 
           <VcTabsContent value="billing">
-            <p class="text-sm font-semibold text-secondary">
+            <p class="text-secondary text-sm font-semibold">
               Billing
             </p>
           </VcTabsContent>

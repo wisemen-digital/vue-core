@@ -15,7 +15,7 @@ const model = ref<Date>(new Date())
             'bg-brand-solid': date.toLocaleDateString() === new Date().toLocaleDateString(),
             'bg-white': date.toLocaleDateString() !== new Date().toLocaleDateString(),
           }"
-          class="absolute w-4 h-px bottom-2 rounded-full"
+          class="absolute bottom-2 h-px w-4 rounded-full"
         />
       </template>
     </VcCalendar>
@@ -26,7 +26,7 @@ const model = ref<Date>(new Date())
       <div
         v-for="item in 3"
         :key="item"
-        class="bg-secondary rounded-sm w-full h-20 mb-2"
+        class="bg-secondary mb-2 h-20 w-full rounded-sm"
       />
     </div>
   </div>

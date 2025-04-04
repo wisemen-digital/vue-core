@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import type { DropdownMenuItem } from '@wisemen/vue-core'
-import { VcButton, VcDropdownMenu } from '@wisemen/vue-core'
+import {
+  VcButton,
+  VcDropdownMenu,
+} from '@wisemen/vue-core'
 
 const items: DropdownMenuItem[] = [
   {
@@ -11,9 +14,7 @@ const items: DropdownMenuItem[] = [
       alert('Item 1 selected')
     },
   },
-  {
-    type: 'separator',
-  },
+  { type: 'separator' },
   {
     type: 'subMenu',
     label: 'Sub menu',
@@ -28,9 +29,7 @@ const items: DropdownMenuItem[] = [
       },
     ],
   },
-  {
-    type: 'separator',
-  },
+  { type: 'separator' },
   {
     type: 'group',
     label: 'Group 1',

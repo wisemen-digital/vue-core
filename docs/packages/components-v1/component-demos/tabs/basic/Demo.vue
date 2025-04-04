@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import type { TabItem } from '@wisemen/vue-core'
-import { VcTabs, VcTabsContent } from '@wisemen/vue-core'
+import {
+  VcTabs,
+  VcTabsContent,
+} from '@wisemen/vue-core'
 import { ref } from 'vue'
 
 const tabs: TabItem[] = [

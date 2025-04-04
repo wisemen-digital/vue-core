@@ -7,7 +7,10 @@ import {
   VcTabsItem,
   VcThemeProvider,
 } from '@wisemen/vue-core-components'
-import { computed, ref } from 'vue'
+import {
+  computed,
+  ref,
+} from 'vue'
 
 const props = defineProps<{
   name: string
@@ -44,7 +47,7 @@ observer.observe(document.documentElement, {
 </script>
 
 <template>
-  <div class="relative mt-2xl">
+  <div class="mt-2xl relative">
     <VcConfigProvider
       locale="en-NL"
       teleport-target-selector="#teleport-target"
@@ -73,7 +76,12 @@ observer.observe(document.documentElement, {
           <template #content>
             <div class="mt-2xl">
               <VcTabsContent value="preview">
-                <div class="vp-raw flex items-center justify-center p-20 border border-solid border-secondary rounded-xl bg-primary">
+                <div
+                  class="
+                    vp-raw border-secondary bg-primary flex items-center
+                    justify-center rounded-xl border border-solid p-20
+                  "
+                >
                   <slot />
                 </div>
               </VcTabsContent>
@@ -107,7 +115,12 @@ observer.observe(document.documentElement, {
                         :key="fileName"
                         :value="fileName"
                       >
-                        <div class="text-xs p-xl bg-secondary rounded-2xl overflow-auto max-h-100">
+                        <div
+                          class="
+                            p-xl bg-secondary max-h-100 overflow-auto
+                            rounded-2xl text-xs
+                          "
+                        >
                           <slot :name="fileIndex" />
                         </div>
                       </VcTabsContent>

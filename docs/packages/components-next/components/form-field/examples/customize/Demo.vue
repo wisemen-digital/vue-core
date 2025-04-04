@@ -10,9 +10,7 @@ defineComponentVariant({
     prop: 'variant',
     value: 'custom',
   },
-  config: {
-    label: 'text-red-500',
-  },
+  config: { label: 'text-red-500' },
 })
 </script>
 

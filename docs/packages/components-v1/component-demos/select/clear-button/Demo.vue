@@ -63,7 +63,7 @@ function onClearAll(): void {
     class="w-72"
   >
     <template #content-top>
-      <div class="mt-1 pl-3 pr-1 flex items-center justify-between">
+      <div class="mt-1 flex items-center justify-between pr-1 pl-3">
         <span class="text-sm font-medium">
           Fruits
         </span>

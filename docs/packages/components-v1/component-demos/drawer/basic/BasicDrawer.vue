@@ -10,7 +10,7 @@ import {
 
 <template>
   <VcDrawer>
-    <div class="py-2 px-3">
+    <div class="px-3 py-2">
       <VcDrawerTitle>
         <p>
           Drawer Title

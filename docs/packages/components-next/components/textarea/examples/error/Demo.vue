@@ -12,6 +12,6 @@ const value = ref<string>('')
     :is-touched="true"
     label="Message"
     placeholder="Enter your message here"
-    class="max-w-96 w-full"
+    class="w-full max-w-96"
   />
 </template>

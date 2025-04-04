@@ -15,7 +15,7 @@ import { VcTooltip } from '@wisemen/vue-core'
     </template>
 
     <template #content>
-      <div class="py-2 px-3">
+      <div class="px-3 py-2">
         <p>Here is the explanation</p>
       </div>
     </template>

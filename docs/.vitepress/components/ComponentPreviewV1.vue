@@ -8,7 +8,10 @@ import {
   VcTabs,
   VcThemeProvider,
 } from '@wisemen/vue-core'
-import { computed, ref } from 'vue'
+import {
+  computed,
+  ref,
+} from 'vue'
 
 const props = defineProps<{
   name: string
@@ -88,7 +91,13 @@ observer.observe(document.documentElement, {
         <div>
           <VcCollapsable2>
             <div v-if="!showCode">
-              <div class="vp-raw flex items-center justify-center rounded-lg border border-solid border-gray-100 p-16 dark:border-black dark:bg-gray-950">
+              <div
+                class="
+                  vp-raw flex items-center justify-center rounded-lg border
+                  border-solid border-gray-100 p-16
+                  dark:border-black dark:bg-gray-950
+                "
+              >
                 <VcConfigProvider
                   locale="nl-US"
                   teleport-target-selector="#teleport-target"
