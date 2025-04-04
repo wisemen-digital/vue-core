@@ -49,6 +49,15 @@ export default defineConfig({
 
       'packages/components-next': [
         {
+          text: `Version ${pkg.version}`,
+          items: [
+            {
+              text: 'Changelog',
+              link: '/packages/components-next/changelog',
+            },
+          ],
+        },
+        {
           text: 'Getting started',
           items: [
             {
@@ -70,10 +79,6 @@ export default defineConfig({
             {
               text: 'Composition',
               link: '/packages/components-next/getting-started/composition',
-            },
-            {
-              text: 'Changelog',
-              link: 'https://github.com/wisemen-digital/vue-core/releases',
             },
           ],
         },
