@@ -63,6 +63,9 @@ importers:
       markdown-it:
         specifier: 14.1.0
         version: 14.1.0
+      motion-v:
+        specifier: 1.0.0-beta.0
+        version: 1.0.0-beta.0(vue@3.5.12(typescript@5.7.3))
       postcss:
         specifier: 8.4.38
         version: 8.4.38
@@ -15949,7 +15952,7 @@ snapshots:
   '@typescript-eslint/eslint-plugin@8.29.0(@typescript-eslint/parser@8.29.0(eslint@9.4.0)(typescript@5.6.3))(eslint@9.4.0)(typescript@5.6.3)':
     dependencies:
       '@eslint-community/regexpp': 4.12.1
-      '@typescript-eslint/parser': 8.29.0(eslint@9.4.0)(typescript@5.6.3)
+      '@typescript-eslint/parser': 8.29.0(eslint@9.4.0)(typescript@5.8.2)
       '@typescript-eslint/scope-manager': 8.29.0
       '@typescript-eslint/type-utils': 8.29.0(eslint@9.4.0)(typescript@5.6.3)
       '@typescript-eslint/utils': 8.29.0(eslint@9.4.0)(typescript@5.6.3)
@@ -15966,7 +15969,7 @@ snapshots:
   '@typescript-eslint/eslint-plugin@8.29.0(@typescript-eslint/parser@8.29.0(eslint@9.4.0)(typescript@5.6.3))(eslint@9.4.0)(typescript@5.8.2)':
     dependencies:
       '@eslint-community/regexpp': 4.12.1
-      '@typescript-eslint/parser': 8.29.0(eslint@9.4.0)(typescript@5.6.3)
+      '@typescript-eslint/parser': 8.29.0(eslint@9.4.0)(typescript@5.8.2)
       '@typescript-eslint/scope-manager': 8.29.0
       '@typescript-eslint/type-utils': 8.29.0(eslint@9.4.0)(typescript@5.8.2)
       '@typescript-eslint/utils': 8.29.0(eslint@9.4.0)(typescript@5.8.2)
@@ -16985,6 +16988,16 @@ snapshots:
       - '@vue/composition-api'
       - vue
 
+  '@vueuse/core@10.11.0(vue@3.5.12(typescript@5.7.3))':
+    dependencies:
+      '@types/web-bluetooth': 0.0.20
+      '@vueuse/metadata': 10.11.0
+      '@vueuse/shared': 10.11.0(vue@3.5.12(typescript@5.7.3))
+      vue-demi: 0.14.10(vue@3.5.12(typescript@5.7.3))
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+
   '@vueuse/core@10.11.0(vue@3.5.13(typescript@5.8.2))':
     dependencies:
       '@types/web-bluetooth': 0.0.20
@@ -17051,6 +17064,13 @@ snapshots:
   '@vueuse/shared@10.11.0(vue@3.5.12(typescript@5.6.3))':
     dependencies:
       vue-demi: 0.14.10(vue@3.5.12(typescript@5.6.3))
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+
+  '@vueuse/shared@10.11.0(vue@3.5.12(typescript@5.7.3))':
+    dependencies:
+      vue-demi: 0.14.10(vue@3.5.12(typescript@5.7.3))
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
@@ -22131,6 +22151,19 @@ snapshots:
       - react
       - react-dom
 
+  motion-v@1.0.0-beta.0(vue@3.5.12(typescript@5.7.3)):
+    dependencies:
+      '@vueuse/core': 10.11.0(vue@3.5.12(typescript@5.7.3))
+      framer-motion: 12.5.0
+      hey-listen: 1.0.8
+      motion-dom: 12.6.3
+      vue: 3.5.12(typescript@5.7.3)
+    transitivePeerDependencies:
+      - '@emotion/is-prop-valid'
+      - '@vue/composition-api'
+      - react
+      - react-dom
+
   mri@1.2.0: {}
 
   mrmime@2.0.1: {}
@@ -25033,7 +25066,7 @@ snapshots:
 
   typescript-eslint@8.29.0(eslint@9.14.0(jiti@2.4.2))(typescript@5.7.3):
     dependencies:
-      '@typescript-eslint/eslint-plugin': 8.29.0(@typescript-eslint/parser@8.29.0(eslint@9.14.0(jiti@2.4.2))(typescript@5.6.3))(eslint@9.14.0(jiti@2.4.2))(typescript@5.7.3)
+      '@typescript-eslint/eslint-plugin': 8.29.0(@typescript-eslint/parser@8.29.0(eslint@9.14.0(jiti@2.4.2))(typescript@5.8.2))(eslint@9.14.0(jiti@2.4.2))(typescript@5.7.3)
       '@typescript-eslint/parser': 8.29.0(eslint@9.14.0(jiti@2.4.2))(typescript@5.7.3)
       '@typescript-eslint/utils': 8.29.0(eslint@9.14.0(jiti@2.4.2))(typescript@5.7.3)
       eslint: 9.14.0(jiti@2.4.2)
@@ -25043,7 +25076,7 @@ snapshots:
 
   typescript-eslint@8.29.0(eslint@9.14.0(jiti@2.4.2))(typescript@5.8.2):
     dependencies:
-      '@typescript-eslint/eslint-plugin': 8.29.0(@typescript-eslint/parser@8.29.0(eslint@9.14.0(jiti@2.4.2))(typescript@5.6.3))(eslint@9.14.0(jiti@2.4.2))(typescript@5.8.2)
+      '@typescript-eslint/eslint-plugin': 8.29.0(@typescript-eslint/parser@8.29.0(eslint@9.14.0(jiti@2.4.2))(typescript@5.8.2))(eslint@9.14.0(jiti@2.4.2))(typescript@5.8.2)
       '@typescript-eslint/parser': 8.29.0(eslint@9.14.0(jiti@2.4.2))(typescript@5.8.2)
       '@typescript-eslint/utils': 8.29.0(eslint@9.14.0(jiti@2.4.2))(typescript@5.8.2)
       eslint: 9.14.0(jiti@2.4.2)
@@ -25969,6 +26002,10 @@ snapshots:
   vue-demi@0.14.10(vue@3.5.12(typescript@5.6.3)):
     dependencies:
       vue: 3.5.12(typescript@5.6.3)
+
+  vue-demi@0.14.10(vue@3.5.12(typescript@5.7.3)):
+    dependencies:
+      vue: 3.5.12(typescript@5.7.3)
 
   vue-demi@0.14.10(vue@3.5.13(typescript@5.8.2)):
     dependencies:
