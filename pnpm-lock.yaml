@@ -367,8 +367,8 @@ importers:
         specifier: 8.4.38
         version: 8.4.38
       reka-ui:
-        specifier: 2.1.1
-        version: 2.1.1(typescript@5.6.3)(vue@3.5.12(typescript@5.6.3))
+        specifier: 2.2.0
+        version: 2.2.0(typescript@5.6.3)(vue@3.5.12(typescript@5.6.3))
       sass:
         specifier: 1.77.5
         version: 1.77.5
@@ -7991,8 +7991,8 @@ packages:
     peerDependencies:
       vue: '>= 3.2.0'
 
-  reka-ui@2.1.1:
-    resolution: {integrity: sha512-awvpQ041LPXAvf2uRVFwedsyz9SwsuoWlRql1fg4XimUCxEI2GOfHo6FIdL44dSPb/eG/gWbdGhoGHLlbX5gPA==}
+  reka-ui@2.2.0:
+    resolution: {integrity: sha512-eeRrLI4LwJ6dkdwks6KFNKGs0+beqZlHO3JMHen7THDTh+yJ5Z0KNwONmOhhV/0hZC2uJCEExgG60QPzGstkQg==}
     peerDependencies:
       vue: '>= 3.2.0'
 
@@ -23841,7 +23841,7 @@ snapshots:
       - '@vue/composition-api'
       - typescript
 
-  reka-ui@2.1.1(typescript@5.6.3)(vue@3.5.12(typescript@5.6.3)):
+  reka-ui@2.2.0(typescript@5.6.3)(vue@3.5.12(typescript@5.6.3)):
     dependencies:
       '@floating-ui/dom': 1.6.13
       '@floating-ui/vue': 1.1.6(vue@3.5.12(typescript@5.6.3))
@@ -25066,7 +25066,7 @@ snapshots:
 
   typescript-eslint@8.29.0(eslint@9.14.0(jiti@2.4.2))(typescript@5.7.3):
     dependencies:
-      '@typescript-eslint/eslint-plugin': 8.29.0(@typescript-eslint/parser@8.29.0(eslint@9.14.0(jiti@2.4.2))(typescript@5.8.2))(eslint@9.14.0(jiti@2.4.2))(typescript@5.7.3)
+      '@typescript-eslint/eslint-plugin': 8.29.0(@typescript-eslint/parser@8.29.0(eslint@9.14.0(jiti@2.4.2))(typescript@5.6.3))(eslint@9.14.0(jiti@2.4.2))(typescript@5.7.3)
       '@typescript-eslint/parser': 8.29.0(eslint@9.14.0(jiti@2.4.2))(typescript@5.7.3)
       '@typescript-eslint/utils': 8.29.0(eslint@9.14.0(jiti@2.4.2))(typescript@5.7.3)
       eslint: 9.14.0(jiti@2.4.2)
@@ -25076,7 +25076,7 @@ snapshots:
 
   typescript-eslint@8.29.0(eslint@9.14.0(jiti@2.4.2))(typescript@5.8.2):
     dependencies:
-      '@typescript-eslint/eslint-plugin': 8.29.0(@typescript-eslint/parser@8.29.0(eslint@9.14.0(jiti@2.4.2))(typescript@5.8.2))(eslint@9.14.0(jiti@2.4.2))(typescript@5.8.2)
+      '@typescript-eslint/eslint-plugin': 8.29.0(@typescript-eslint/parser@8.29.0(eslint@9.14.0(jiti@2.4.2))(typescript@5.6.3))(eslint@9.14.0(jiti@2.4.2))(typescript@5.8.2)
       '@typescript-eslint/parser': 8.29.0(eslint@9.14.0(jiti@2.4.2))(typescript@5.8.2)
       '@typescript-eslint/utils': 8.29.0(eslint@9.14.0(jiti@2.4.2))(typescript@5.8.2)
       eslint: 9.14.0(jiti@2.4.2)
