@@ -1,7 +1,10 @@
 {
   "name": "@wisemen/vue-core-components",
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0",
   "private": false,
   "license": "MIT",
   "sideEffects": false,
