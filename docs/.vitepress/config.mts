@@ -56,6 +56,7 @@ export default defineConfig({
             { text: 'Icons', link: '/packages/components-next/getting-started/icons' },
             { text: 'Customization', link: '/packages/components-next/getting-started/customization' },
             { text: 'Composition', link: '/packages/components-next/getting-started/composition' },
+            { text: 'Changelog', link: 'https://github.com/wisemen-digital/vue-core/releases' }
           ],
         },
         {
