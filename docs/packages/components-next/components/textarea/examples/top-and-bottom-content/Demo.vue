@@ -13,10 +13,10 @@ const value = ref<string>('')
     v-model="value"
     label="Message"
     placeholder="Enter your message here"
-    class="max-w-96 w-full"
+    class="w-full max-w-96"
   >
     <template #top>
-      <div class="border-b border-solid border-primary p-sm flex gap-md">
+      <div class="border-primary p-sm gap-md flex border-b border-solid">
         <VcButton
           size="sm"
           icon-left="stars"

@@ -14,10 +14,10 @@ import {
       overlay: 'bg-brand-950/15 backdrop-blur-none',
       content: 'shadow-sm shadow-brand-500/2',
     }"
-    class="max-w-[90vw] w-120 max-h-[90vh] min-h-80 p-3xl"
+    class="p-3xl max-h-[90vh] min-h-80 w-120 max-w-[90vw]"
   >
     <VcDialogTitle>
-      <h1 class="text-2xl text-primary font-bold">
+      <h1 class="text-primary text-2xl font-bold">
         Overlay
       </h1>
     </VcDialogTitle>

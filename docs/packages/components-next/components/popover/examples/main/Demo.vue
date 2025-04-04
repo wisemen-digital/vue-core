@@ -16,8 +16,8 @@ import {
     </template>
 
     <template #content>
-      <div class="w-96 p-3xl pb-2xl">
-        <p class="text-md font-semibold text-primary">
+      <div class="p-3xl pb-2xl w-96">
+        <p class="text-md text-primary font-semibold">
           Subscribe to our newsletter
         </p>
 
@@ -28,7 +28,7 @@ import {
           class="mt-xl"
         />
 
-        <div class="flex justify-between mt-3xl">
+        <div class="mt-3xl flex justify-between">
           <VcPopoverCloseButton>
             <VcButton variant="tertiary">
               Cancel

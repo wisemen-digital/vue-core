@@ -1,13 +1,18 @@
 <script setup lang="ts">
-import type { PaginatedData,
-  TableColumn } from '@wisemen/vue-core'
+import type {
+  PaginatedData,
+  TableColumn,
+} from '@wisemen/vue-core'
 import {
   usePagination,
   VcTable,
   VcTableCell,
 } from '@wisemen/vue-core'
 import type { VNode } from 'vue'
-import { computed, h } from 'vue'
+import {
+  computed,
+  h,
+} from 'vue'
 
 interface Filters {}
 interface Index {
@@ -25,12 +30,12 @@ const columns = computed<TableColumn<Index>[]>(() => [
   {
     cell: (row: Index): VNode => h(
       VcTableCell,
+      { isPrimaryCell: true },
       {
-        isPrimaryCell: true,
+        default: () => [
+          h('p', null, row.name),
+        ],
       },
-      { default: () => [
-        h('p', null, row.name),
-      ] },
     ),
     headerLabel: 'Name',
     key: 'name',
@@ -50,8 +55,14 @@ const columns = computed<TableColumn<Index>[]>(() => [
 
 const data: PaginatedData<Index> = {
   data: [
-    { name: 'John Doe', age: 30 },
-    { name: 'Jane Doe', age: 25 },
+    {
+      name: 'John Doe',
+      age: 30,
+    },
+    {
+      name: 'Jane Doe',
+      age: 25,
+    },
   ],
   meta: {
     total: 2,

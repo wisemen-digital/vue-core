@@ -26,12 +26,21 @@ const value = ref<string>('')
     class="w-72"
   >
     <template #right>
-      <div class="flex gap-xs text-xs mr-md group-focus-within/text-field:scale-95 duration-200">
-        <span class="bg-tertiary size-5 flex items-center justify-center rounded-xs">
+      <div
+        class="
+          gap-xs mr-md flex text-xs duration-200
+          group-focus-within/text-field:scale-95
+        "
+      >
+        <span
+          class="bg-tertiary flex size-5 items-center justify-center rounded-xs"
+        >
           ⌘
         </span>
 
-        <span class="bg-tertiary size-5 flex items-center justify-center rounded-xs">
+        <span
+          class="bg-tertiary flex size-5 items-center justify-center rounded-xs"
+        >
           K
         </span>
       </div>

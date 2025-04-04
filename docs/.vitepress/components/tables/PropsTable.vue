@@ -63,19 +63,24 @@ function sortProps(props: PropDef[]): PropDef[] {
       Props
     </h2>
 
-    <div class="grid grid-cols-[1fr_2fr_1fr] overflow-auto border border-solid border-secondary rounded-lg gap-x-2xl mt-3xl">
-      <div class="col-span-full grid grid-cols-subgrid bg-secondary">
-        <div class="p-lg text-primary font-semibold text-sm min-w-32">
+    <div
+      class="
+        border-secondary gap-x-2xl mt-3xl grid grid-cols-[1fr_2fr_1fr]
+        overflow-auto rounded-lg border border-solid
+      "
+    >
+      <div class="bg-secondary col-span-full grid grid-cols-subgrid">
+        <div class="p-lg text-primary min-w-32 text-sm font-semibold">
           Prop
         </div>
-        <div class="p-lg text-primary font-semibold text-sm">
+        <div class="p-lg text-primary text-sm font-semibold">
           Description
         </div>
 
         <!-- <div class="p-lg text-primary font-semibold text-sm">
           Type
         </div> -->
-        <div class="p-lg text-primary font-semibold text-sm">
+        <div class="p-lg text-primary text-sm font-semibold">
           Default
         </div>
       </div>
@@ -83,9 +88,13 @@ function sortProps(props: PropDef[]): PropDef[] {
       <div
         v-for="(prop, index) of sortProps(props.data)"
         :key="index"
-        class="text-sm col-span-full grid grid-cols-subgrid border-b last:border-none border-secondary items-start py-md"
+        class="
+          border-secondary py-md col-span-full grid grid-cols-subgrid
+          items-start border-b text-sm
+          last:border-none
+        "
       >
-        <div class="p-lg font-medium text-secondary truncate">
+        <div class="p-lg text-secondary truncate font-medium">
           {{ prop.name }} {{ prop.required ? '*' : '' }}
         </div>
 

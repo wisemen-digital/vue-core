@@ -31,19 +31,19 @@ const selectedTab = ref<string>('profile')
     <template #content>
       <div class="mt-xl">
         <VcTabsContent value="profile">
-          <p class="text-sm font-semibold text-secondary">
+          <p class="text-secondary text-sm font-semibold">
             Profile
           </p>
         </VcTabsContent>
 
         <VcTabsContent value="settings">
-          <p class="text-sm font-semibold text-secondary">
+          <p class="text-secondary text-sm font-semibold">
             Settings
           </p>
         </VcTabsContent>
 
         <VcTabsContent value="billing">
-          <p class="text-sm font-semibold text-secondary">
+          <p class="text-secondary text-sm font-semibold">
             Billing
           </p>
         </VcTabsContent>

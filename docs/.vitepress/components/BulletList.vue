@@ -28,14 +28,14 @@ const theme = useData()
       <li
         v-for="item of props.items"
         :key="item.description"
-        class="text-sm list-none"
+        class="list-none text-sm"
       >
         <div
           :class="{
-            'bg-success-primary dark:bg-success-900 text-success-primary dark:text-success-200': item.variant === 'good',
-            'bg-error-primary dark:bg-error-900 text-error-primary dark:text-error-200': item.variant === 'bad',
+            'bg-success-primary text-success-primary dark:bg-success-900 dark:text-success-200': item.variant === 'good',
+            'bg-error-primary text-error-primary dark:bg-error-900 dark:text-error-200': item.variant === 'bad',
           }"
-          class="mr-2 rounded-full p-1 inline-block translate-y-1.5"
+          class="mr-2 inline-block translate-y-1.5 rounded-full p-1"
         >
           <VcIcon
             v-if="item.variant === 'good'"

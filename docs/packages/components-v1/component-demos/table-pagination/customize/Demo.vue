@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import type { PaginatedData,
-  TableColumn } from '@wisemen/vue-core'
+import type {
+  PaginatedData,
+  TableColumn,
+} from '@wisemen/vue-core'
 import {
   usePagination,
   VcButton,
@@ -11,7 +13,10 @@ import {
   VcTablePaginationPrevPage,
 } from '@wisemen/vue-core'
 import type { VNode } from 'vue'
-import { computed, h } from 'vue'
+import {
+  computed,
+  h,
+} from 'vue'
 
 interface Filters {}
 interface Index {
@@ -26,9 +31,11 @@ const pagination = usePagination<Filters>({
 
 const columns = computed<TableColumn<Index>[]>(() => [
   {
-    cell: (row: Index): VNode => h(VcTableCell, null, { default: () => [
-      h('p', null, row.name),
-    ] }),
+    cell: (row: Index): VNode => h(VcTableCell, null, {
+      default: () => [
+        h('p', null, row.name),
+      ],
+    }),
     headerLabel: 'Name',
     key: 'name',
     width: '30rem',
@@ -69,7 +76,7 @@ const data: PaginatedData<Index> = {
             <VcButton
               :is-disabled="isFirstPage"
               variant="tertiary"
-              class="border border-solid border-primary rounded-full"
+              class="border-primary rounded-full border border-solid"
             >
               PREV
             </VcButton>
@@ -78,7 +85,12 @@ const data: PaginatedData<Index> = {
 
         <VcTablePaginationPages :items="items">
           <template #item="{ page }">
-            <VcButton class="rounded-full size-10 hover:bg-purple-700">
+            <VcButton
+              class="
+                size-10 rounded-full
+                hover:bg-purple-700
+              "
+            >
               {{ page }}
             </VcButton>
           </template>
@@ -88,7 +100,7 @@ const data: PaginatedData<Index> = {
           <template #default="{ isLastPage }">
             <VcButton
               :is-disabled="isLastPage"
-              class="border border-solid border-primary rounded-full"
+              class="border-primary rounded-full border border-solid"
             >
               NEXT
             </VcButton>

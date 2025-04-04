@@ -1,7 +1,10 @@
 /* eslint-disable regexp/no-super-linear-backtracking */
 /* eslint-disable ts/explicit-function-return-type */
 import { readdirSync } from 'node:fs'
-import { dirname, resolve } from 'node:path'
+import {
+  dirname,
+  resolve,
+} from 'node:path'
 
 import type {
   MarkdownEnv,
@@ -23,7 +26,14 @@ function rawPathToToken(rawPath: string) {
 
   const title = rawTitle || filepath.split('/').pop() || ''
 
-  return { filepath, extension, region, lines, lang, title }
+  return {
+    filepath,
+    extension,
+    region,
+    lines,
+    lang,
+    title,
+  }
 }
 
 function kebabCaseToCamelCase(str: string): string {
@@ -61,11 +71,16 @@ export default function (md: MarkdownRenderer): void {
 
       const index = state.tokens.findIndex((i) => i.content.match(regex))
 
-      const { realPath, path: _path } = state.env as MarkdownEnv
+      const {
+        realPath, path: _path,
+      } = state.env as MarkdownEnv
 
       const childFiles = readdirSync(
         resolve(dirname(realPath ?? _path), pathName),
-        { withFileTypes: false, recursive: true },
+        {
+          withFileTypes: false,
+          recursive: true,
+        },
       )
       const groupedFiles = childFiles.reduce((prev, curr) => {
         if (typeof curr !== 'string') {
