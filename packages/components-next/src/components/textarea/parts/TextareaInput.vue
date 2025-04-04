@@ -15,7 +15,7 @@ const {
   autocomplete,
   classConfig,
   customClassConfig,
-  errors,
+  errorMessage,
   modelValue,
   placeholder,
   resize,
@@ -47,7 +47,7 @@ function onInput(event: InputEvent): void {
     <FormControl
       :value="modelValue"
       :is-disabled="isDisabled"
-      :is-invalid="errors.length > 0"
+      :is-invalid="errorMessage !== null"
       :is-required="isRequired"
       :described-by="`${id}-error ${id}-hint`"
       :is-loading="false"

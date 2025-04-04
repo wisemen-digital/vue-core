@@ -14,7 +14,7 @@ const {
   autocomplete,
   classConfig,
   customClassConfig,
-  errors,
+  errorMessage,
   modelValue,
   placeholder,
   style,
@@ -37,7 +37,7 @@ function onInput(event: InputEvent): void {
       :value="modelValue"
       :is-loading="isLoading"
       :is-disabled="isDisabled"
-      :is-invalid="errors.length > 0"
+      :is-invalid="errorMessage !== null"
       :is-required="isRequired"
       :described-by="`${id}-error ${id}-hint`"
       :class="style.input({

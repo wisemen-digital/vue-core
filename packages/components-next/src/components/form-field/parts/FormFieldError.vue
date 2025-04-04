@@ -14,7 +14,7 @@ const {
   isTouched,
   classConfig,
   customClassConfig,
-  errors,
+  errorMessage,
   for: forId,
   style,
 } = useInjectFormFieldContext()
@@ -23,7 +23,7 @@ const {
 <template>
   <AnimatePresence :initial="false">
     <Motion
-      v-if="errors.length > 0 && isTouched"
+      v-if="errorMessage !== null && isTouched"
       :initial="{
         height: 0,
         opacity: 0,
@@ -49,7 +49,7 @@ const {
           aria-live="assertive"
           role="alert"
         >
-          {{ errors[0] }}
+          {{ errorMessage }}
         </span>
       </div>
     </Motion>

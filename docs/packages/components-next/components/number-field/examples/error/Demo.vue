@@ -9,7 +9,7 @@ const value = ref<number | null>(null)
   <VcNumberField
     v-model="value"
     :min="0"
-    :errors="value === null ? ['This field is required.'] : []"
+    :error-message="value !== null ? null : 'This field is required.'"
     :is-touched="true"
     placeholder="Enter your age"
     label="Age"

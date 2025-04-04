@@ -25,7 +25,7 @@ const id = props.id ?? useId()
 
 <template>
   <FormField
-    :errors="props.errors"
+    :error-message="props.errorMessage"
     :hint="props.hint"
     :is-required="props.isRequired"
     :is-touched="props.isTouched"

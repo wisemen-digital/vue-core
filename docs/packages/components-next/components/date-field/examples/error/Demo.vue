@@ -8,7 +8,7 @@ const value = ref<Date | null>(null)
 <template>
   <VcDateField
     v-model="value"
-    :errors="value === null ? ['This field is required.'] : []"
+    :error-message="value !== null ? null : 'This field is required.'"
     :is-touched="true"
     class="w-52"
     label="Select a date"

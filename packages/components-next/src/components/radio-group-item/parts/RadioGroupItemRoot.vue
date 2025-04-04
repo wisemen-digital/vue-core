@@ -52,14 +52,14 @@ useProvideRadioGroupItemContext({
   >
     <FormControl
       :is-disabled="isDisabled"
-      :is-invalid="errors.length > 0"
+      :is-invalid="errorMessage !== null"
       :is-required="isRequired"
       :described-by="`${id}-error ${id}-hint`"
       :is-loading="false"
     >
       <RekaRadioGroupItem
         :value="props.value"
-        :data-invalid="(errors.length > 0 && props.isTouched) || undefined"
+        :data-invalid="(errorMessage !== null && props.isTouched) || undefined"
         :class="radioGroupItemStyle.root({
           class: mergeClasses(customClassConfig.root, props.classConfig?.root),
         })"

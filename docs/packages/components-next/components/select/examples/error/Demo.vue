@@ -16,7 +16,7 @@ const names = [
   <VcSelect
     v-model="value"
     :display-fn="(name) => name"
-    :errors="value === null ? ['This field is required.'] : []"
+    :error-message="value !== null ? null : 'This field is required.'"
     :is-touched="true"
     placeholder="Select a name"
     label="Name"

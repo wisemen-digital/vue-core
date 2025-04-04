@@ -15,7 +15,7 @@ const {
   autocomplete,
   classConfig,
   customClassConfig,
-  errors,
+  errorMessage,
   placeholder,
   style,
   onBlur,
@@ -31,7 +31,7 @@ const {
     <FormControl
       :is-disabled="isDisabled"
       :is-loading="isLoading"
-      :is-invalid="errors.length > 0"
+      :is-invalid="errorMessage !== null"
       :described-by="`${id}-error ${id}-hint`"
       :is-required="isRequired"
     >

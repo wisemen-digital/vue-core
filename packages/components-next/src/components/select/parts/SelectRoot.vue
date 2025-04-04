@@ -302,7 +302,7 @@ useProvideSelectContext({
       :is-disabled="props.isDisabled"
       :aria-disabled="props.isLoading"
       :aria-busy="props.isLoading"
-      :data-invalid="(props.errors.length > 0 && props.isTouched) || undefined"
+      :data-invalid="(props.errorMessage !== null && props.isTouched) || undefined"
       :data-icon-left="iconLeft !== null || undefined"
       :data-icon-right="iconRight !== null || undefined"
       :data-disabled="props.isDisabled || undefined"

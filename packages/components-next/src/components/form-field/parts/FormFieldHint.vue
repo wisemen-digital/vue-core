@@ -11,13 +11,13 @@ const {
   isTouched,
   classConfig,
   customClassConfig,
-  errors,
+  errorMessage,
   for: forId,
   hint,
   style,
 } = useInjectFormFieldContext()
 
-const isErrorVisible = computed<boolean>(() => isTouched.value && errors.value.length > 0)
+const isErrorVisible = computed<boolean>(() => isTouched.value && errorMessage.value !== null)
 </script>
 
 <template>
