@@ -6,7 +6,7 @@ import {
 </script>
 
 <template>
-  <VcPopover :is-arrow-hidden="true">
+  <VcPopover :is-popover-arrow-hidden="true">
     <template #trigger>
       <VcButton variant="secondary">
         No arrow
