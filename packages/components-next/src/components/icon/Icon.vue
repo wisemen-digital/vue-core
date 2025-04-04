@@ -6,7 +6,7 @@ const props = defineProps<IconProps>()
 </script>
 
 <template>
-  <div>
+  <div aria-hidden="true">
     <Suspense>
       <AsyncIcon :icon="props.icon" />
     </Suspense>
