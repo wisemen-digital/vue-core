@@ -11,23 +11,18 @@ import { Motion } from 'motion-v'
     :animate="{
       opacity: 1,
       scale: 1,
+      transition: {
+        duration: 0.6,
+        bounce: 0.4,
+        type: 'spring',
+      },
     }"
     :exit="{
       opacity: 0,
       scale: 1.1,
-    }"
-    :transition="{
-      duration: 0.6,
-      bounce: 0.4,
-      type: 'spring',
-      width: {
-        bounce: 0.2,
-        duration: 0.5,
-        type: 'spring',
-      },
-      height: {
-        bounce: 0.2,
-        duration: 0.5,
+      transition: {
+        duration: 0.3,
+        bounce: 0,
         type: 'spring',
       },
     }"
