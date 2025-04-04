@@ -66,12 +66,7 @@ function transform(side: PopperSide): { x: number
       type: 'spring',
       bounce: 0.2,
     }"
-    class="
-      data-[side=bottom]:origin-top
-      data-[side=left]:origin-right
-      data-[side=right]:origin-left
-      data-[side=top]:origin-bottom
-    "
+    class="origin-(--reka-popover-content-transform-origin)"
   >
     <slot />
   </Motion>
