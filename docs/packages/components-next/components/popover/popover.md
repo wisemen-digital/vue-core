@@ -85,7 +85,7 @@ import {
 
 <ComponentPreview name="popover/examples/width" />
 
-### Arrow
+### No arrow
 
 <ComponentPreview name="popover/examples/arrow" />
 
