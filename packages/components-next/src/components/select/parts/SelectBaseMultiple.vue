@@ -1,7 +1,12 @@
 <script setup lang="ts">
 import type { AcceptableValue } from 'reka-ui'
 import {
+  RovingFocusGroup as RekaRovingFocusGroup,
+  RovingFocusItem as RekaRovingFocusItem,
+} from 'reka-ui'
+import {
   computed,
+  onBeforeUnmount,
   onMounted,
   ref,
 } from 'vue'
@@ -22,7 +27,7 @@ const {
 
 const { t } = useI18n()
 
-const tagContainerRef = ref<HTMLDivElement | null>(null)
+const tagContainerRef = ref<InstanceType<typeof RekaRovingFocusGroup> | null>(null)
 const tagContainerWidth = ref<number>(0)
 const tagRef = ref<HTMLDivElement[]>([])
 const moreTagsCountRef = ref<HTMLDivElement | null>(null)
@@ -70,19 +75,29 @@ onMounted(() => {
   }
 
   resizeObserver = new ResizeObserver(() => {
-    tagContainerWidth.value = tagContainerRef.value?.getBoundingClientRect().width ?? 0
+    tagContainerWidth.value = tagContainerRef.value?.$el.getBoundingClientRect().width ?? 0
   })
 
-  resizeObserver.observe(tagContainerRef.value)
+  resizeObserver.observe(tagContainerRef.value.$el)
+})
+
+onBeforeUnmount(() => {
+  if (resizeObserver === null || tagContainerRef.value === null) {
+    return
+  }
+
+  resizeObserver.unobserve(tagContainerRef.value.$el)
+  resizeObserver.disconnect()
 })
 </script>
 
 <template>
-  <div
+  <RekaRovingFocusGroup
     ref="tagContainerRef"
     :class="style.baseMultiple({
       class: mergeClasses(customClassConfig.baseMultiple, classConfig?.baseMultiple),
     })"
+    orientation="horizontal"
   >
     <SelectPlaceholder class="pl-md" />
 
@@ -127,17 +142,19 @@ onMounted(() => {
     >
       {{ displayFn(value) }}
 
-      <IconButton
-        :label="t('component.select.remove_value')"
-        :class-config="{
-          root: 'size-6 min-w-auto rounded-sm',
-          icon: 'size-3',
-        }"
-        variant="tertiary"
-        icon="close"
-        class="z-10"
-        @click="onRemoveValue(value)"
-      />
+      <RekaRovingFocusItem :as-child="true">
+        <IconButton
+          :label="t('component.select.remove_value')"
+          :class-config="{
+            root: 'size-6 min-w-auto rounded-sm',
+            icon: 'size-3',
+          }"
+          variant="tertiary"
+          icon="close"
+          class="z-10"
+          @click="onRemoveValue(value)"
+        />
+      </RekaRovingFocusItem>
     </div>
 
     <div
@@ -148,5 +165,5 @@ onMounted(() => {
         +{{ moreTagsCount }}
       </span>
     </div>
-  </div>
+  </RekaRovingFocusGroup>
 </template>
