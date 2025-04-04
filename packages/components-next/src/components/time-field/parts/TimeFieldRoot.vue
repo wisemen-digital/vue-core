@@ -33,7 +33,7 @@ const props = withDefaults(defineProps<TimeFieldProps>(), {
   allowDeselect: false,
   autocomplete: 'off',
   classConfig: null,
-  errors: () => [],
+  errorMessage: null,
   hideDatePicker: false,
   hint: null,
   iconLeft: null,

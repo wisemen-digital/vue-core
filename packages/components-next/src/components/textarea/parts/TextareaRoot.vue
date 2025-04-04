@@ -21,7 +21,7 @@ const props = withDefaults(defineProps<TextareaProps>(), {
   isTouched: false,
   autocomplete: 'off',
   classConfig: null,
-  errors: () => [],
+  errorMessage: null,
   hint: null,
   label: null,
   placeholder: null,

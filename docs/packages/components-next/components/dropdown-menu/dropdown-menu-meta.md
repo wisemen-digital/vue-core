@@ -37,6 +37,13 @@
     'default': '\'center\''
   },
   {
+    'name': 'popoverAlignOffset',
+    'description': '<p>An offset in pixels from the start or end alignment options.</p>\n',
+    'type': 'number',
+    'required': false,
+    'default': '0'
+  },
+  {
     'name': 'popoverAnchorReferenceElement',
     'description': '<p>The HTML element that serves as the anchor point for the popover.\nIf set to <code>null</code>, the popover will be anchored to the trigger element.</p>\n',
     'type': 'HTMLElement | null',
@@ -58,18 +65,18 @@
     'default': 'null'
   },
   {
-    'name': 'popoverOffset',
-    'description': '<p>The distance (in pixels) between the popper content and the trigger element.</p>\n',
-    'type': 'number',
-    'required': false,
-    'default': '10'
-  },
-  {
     'name': 'popoverSide',
     'description': '<p>Defines which side the content should appear on.</p>\n',
     'type': '\'bottom\' | \'left\' | \'right\' | \'top\'',
     'required': false,
     'default': '\'bottom\''
+  },
+  {
+    'name': 'popoverSideOffset',
+    'description': '<p>The distance in pixels between the popper content and the trigger element.</p>\n',
+    'type': 'number',
+    'required': false,
+    'default': '10'
   },
   {
     'name': 'popoverWidth',
@@ -89,6 +96,7 @@
     'name': 'variant',
     'description': '',
     'type': 'null',
-    'required': false
+    'required': false,
+    'default': 'null'
   }
 ]" />

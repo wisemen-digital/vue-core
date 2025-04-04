@@ -23,7 +23,7 @@ const props = withDefaults(defineProps<CheckboxProps>(), {
   isRequired: false,
   isTouched: false,
   classConfig: null,
-  errors: () => [],
+  errorMessage: null,
   hint: null,
   label: null,
   value: null,

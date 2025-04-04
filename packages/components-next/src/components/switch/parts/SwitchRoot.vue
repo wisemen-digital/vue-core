@@ -22,7 +22,7 @@ const props = withDefaults(defineProps<SwitchProps>(), {
   isRequired: false,
   isTouched: false,
   classConfig: null,
-  errors: () => [],
+  errorMessage: null,
   hint: null,
   label: null,
   size: 'md',

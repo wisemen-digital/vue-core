@@ -13,10 +13,11 @@ const {
   classConfig,
   customClassConfig,
   popoverAlign,
+  popoverAlignOffset,
   popoverCollisionPadding,
   popoverContainerElement,
-  popoverOffset,
   popoverSide,
+  popoverSideOffset,
   popoverWidth,
   style,
 } = useInjectTooltipContext()
@@ -34,11 +35,11 @@ const {
         :as-child="true"
         :data-content-width="popoverWidth"
         :align="popoverAlign"
-        :align-offset="popoverOffset"
+        :align-offset="popoverAlignOffset"
         :collision-padding="popoverCollisionPadding"
         :collision-boundary="popoverContainerElement"
         :side="popoverSide"
-        :side-offset="popoverOffset"
+        :side-offset="popoverSideOffset"
         :class="style.content({
           class: mergeClasses(customClassConfig?.content, classConfig?.content),
         })"

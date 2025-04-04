@@ -8,6 +8,10 @@ export interface PopperProps {
    */
   popoverAlign?: PopperAlign
   /**
+   * An offset in pixels from the start or end alignment options.
+   */
+  popoverAlignOffset?: number
+  /**
    * The HTML element that serves as the anchor point for the popover.
    * If set to `null`, the popover will be anchored to the trigger element.
    * @default null
@@ -24,13 +28,13 @@ export interface PopperProps {
    */
   popoverContainerElement?: HTMLElement | null
   /**
-   * The distance (in pixels) between the popper content and the trigger element.
-   */
-  popoverOffset?: number
-  /**
    * Defines which side the content should appear on.
    */
   popoverSide?: PopperSide
+  /**
+   * The distance in pixels between the popper content and the trigger element.
+   */
+  popoverSideOffset?: number
   /**
    * Determines the width of the popper content.
    * - `anchor-width`: Matches the width of the trigger element.

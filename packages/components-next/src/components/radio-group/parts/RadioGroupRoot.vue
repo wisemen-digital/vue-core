@@ -18,7 +18,7 @@ const props = withDefaults(defineProps<RadioGroupProps>(), {
   isDisabled: false,
   isRequired: false,
   isTouched: false,
-  errors: () => [],
+  errorMessage: null,
   hint: null,
   label: null,
 })

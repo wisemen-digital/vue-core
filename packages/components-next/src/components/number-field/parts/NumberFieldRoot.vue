@@ -24,7 +24,7 @@ const props = withDefaults(defineProps<NumberFieldProps>(), {
   isTouched: false,
   autocomplete: 'off',
   classConfig: null,
-  errors: () => [],
+  errorMessage: null,
   formatOptions: null,
   hideControls: false,
   hint: null,

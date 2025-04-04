@@ -6,7 +6,7 @@ import {
 </script>
 
 <template>
-  <VcPopover :popover-offset-in-px="50">
+  <VcPopover :popover-side-offset-in-px="50">
     <template #trigger>
       <VcButton variant="secondary">
         Offset
