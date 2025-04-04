@@ -18,7 +18,7 @@ const props = withDefaults(defineProps<CheckboxGroupProps>(), {
   isDisabled: false,
   isRequired: false,
   isTouched: false,
-  errors: () => [],
+  errorMessage: null,
   hint: null,
   label: null,
 })

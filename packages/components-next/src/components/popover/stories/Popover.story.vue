@@ -5,7 +5,7 @@ import Popover from '@/components/popover/Popover.vue'
 
 <template>
   <Story title="Popover">
-    <Popover>
+    <Popover popover-align="end">
       <template #trigger>
         <Button>
           Label

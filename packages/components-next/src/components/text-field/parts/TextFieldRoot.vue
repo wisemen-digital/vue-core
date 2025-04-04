@@ -24,7 +24,7 @@ const props = withDefaults(defineProps<TextFieldProps>(), {
   isTouched: false,
   autocomplete: 'off',
   classConfig: null,
-  errors: () => [],
+  errorMessage: null,
   hint: null,
   iconLeft: null,
   iconRight: null,

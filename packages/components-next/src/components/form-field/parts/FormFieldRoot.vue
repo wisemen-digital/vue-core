@@ -18,7 +18,7 @@ const props = withDefaults(defineProps<FormFieldProps>(), {
   isRequired: false,
   isTouched: false,
   classConfig: null,
-  errors: () => [],
+  errorMessage: null,
   hint: null,
   label: null,
   layout: 'vertical',

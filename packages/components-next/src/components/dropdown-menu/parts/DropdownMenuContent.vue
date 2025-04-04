@@ -10,10 +10,12 @@ const {
   classConfig,
   customClassConfig,
   popoverAlign,
+  popoverAlignOffset,
+  popoverAnchorReferenceElement,
   popoverCollisionPadding,
   popoverContainerElement,
-  popoverOffset,
   popoverSide,
+  popoverSideOffset,
   popoverWidth,
   style,
 } = useInjectDropdownMenuContext()
@@ -27,10 +29,12 @@ const {
       :as-child="true"
       :data-content-width="popoverWidth"
       :align="popoverAlign"
+      :reference="popoverAnchorReferenceElement ?? undefined"
+      :align-offset="popoverAlignOffset"
       :collision-padding="popoverCollisionPadding"
       :collision-boundary="popoverContainerElement"
       :side="popoverSide"
-      :side-offset="popoverOffset"
+      :side-offset="popoverSideOffset"
       :class="style.content({
         class: mergeClasses(customClassConfig.content, classConfig?.content),
       })"

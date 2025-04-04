@@ -18,12 +18,14 @@ const props = withDefaults(defineProps<DropdownMenuProps>(), {
   isPopoverArrowHidden: false,
   classConfig: null,
   popoverAlign: 'center',
+  popoverAlignOffset: 0,
   popoverAnchorReferenceElement: null,
   popoverCollisionPadding: 10,
   popoverContainerElement: null,
-  popoverOffset: 10,
   popoverSide: 'bottom',
+  popoverSideOffset: 10,
   popoverWidth: null,
+  variant: null,
 })
 
 const isOpen = defineModel<boolean>('isOpen', {

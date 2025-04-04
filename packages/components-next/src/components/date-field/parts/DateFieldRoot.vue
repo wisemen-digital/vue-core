@@ -37,7 +37,7 @@ const props = withDefaults(defineProps<DateFieldProps>(), {
   allowDeselect: false,
   autocomplete: 'off',
   classConfig: null,
-  errors: () => [],
+  errorMessage: null,
   hideDatePicker: false,
   hint: null,
   iconLeft: null,

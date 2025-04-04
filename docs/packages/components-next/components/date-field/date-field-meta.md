@@ -26,7 +26,8 @@
     'name': 'errorMessage',
     'description': '<p>The error associated with the input.</p>\n',
     'type': 'string | null',
-    'required': false
+    'required': false,
+    'default': 'null'
   },
   {
     'name': 'hideDatePicker',

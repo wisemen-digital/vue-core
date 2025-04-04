@@ -13,10 +13,11 @@ const {
   classConfig,
   customClassConfig,
   popoverAlign,
+  popoverAlignOffset,
   popoverCollisionPadding,
   popoverContainerElement,
-  popoverOffset,
   popoverSide,
+  popoverSideOffset,
   popoverWidth,
   style,
   onAutoFocusOnClose,
@@ -40,8 +41,9 @@ const {
         :align="popoverAlign"
         :collision-padding="popoverCollisionPadding"
         :collision-boundary="popoverContainerElement"
+        :align-offset="popoverAlignOffset"
         :side="popoverSide"
-        :side-offset="popoverOffset"
+        :side-offset="popoverSideOffset"
         :class="style.content({
           class: mergeClasses(customClassConfig.content, classConfig?.content),
         })"

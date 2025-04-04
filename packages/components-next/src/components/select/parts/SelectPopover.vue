@@ -15,11 +15,12 @@ const {
   isPopoverArrowVisible,
   classConfig,
   popoverAlign,
+  popoverAlignOffset,
   popoverAnchorReferenceElement,
   popoverCollisionPadding,
   popoverContainerElement,
-  popoverOffset,
   popoverSide,
+  popoverSideOffset,
   popoverWidth,
   setIsDropdownVisible,
   onDropdownEscapeKeyDown,
@@ -38,9 +39,10 @@ function onAutoFocusOnClose(event: Event): void {
     :is-open="isDropdownVisible && !isDropdownHidden"
     :is-popover-arrow-hidden="!isPopoverArrowVisible"
     :popover-align="popoverAlign"
+    :popover-align-offset="popoverAlignOffset"
     :popover-collision-padding="popoverCollisionPadding"
     :popover-container-element="popoverContainerElement"
-    :popover-offset="popoverOffset"
+    :popover-side-offset="popoverSideOffset"
     :popover-side="popoverSide"
     :popover-width="popoverWidth"
     :popover-anchor-reference-element="popoverAnchorReferenceElement"
