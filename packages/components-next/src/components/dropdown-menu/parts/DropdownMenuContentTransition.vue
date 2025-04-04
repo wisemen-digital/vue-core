@@ -66,7 +66,7 @@ function transform(side: PopperSide): { x: number
       type: 'spring',
       bounce: 0.2,
     }"
-    class="origin-(--reka-popover-content-transform-origin)"
+    class="origin-(--reka-dropdown-menu-content-transform-origin)"
   >
     <slot />
   </Motion>
