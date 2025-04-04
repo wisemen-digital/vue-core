@@ -50,7 +50,10 @@ export interface FormElementSlots {
   /**
    * Can be used to render a custom hint and error message.
    */
-  bottom: ({ errors, hint }: { errors: string[], hint: string | null }) => void
+  bottom: ({
+    errors, hint,
+  }: { errors: string[]
+    hint: string | null }) => void
   /**
    * The content slot.
    */
@@ -66,5 +69,11 @@ export interface FormElementSlots {
   /**
    * Can be used to render a custom label.
    */
-  label: ({ inputId, isRequired, label }: { inputId: string, isRequired: boolean, label: string | null }) => void
+  label: ({
+    inputId,
+    isRequired,
+    label,
+  }: { inputId: string
+    isRequired: boolean
+    label: string | null }) => void
 }

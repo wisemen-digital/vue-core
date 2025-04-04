@@ -6,7 +6,10 @@ import {
   TabsTrigger,
 } from 'reka-ui'
 import { computed } from 'vue'
-import { RouterLink, useRoute } from 'vue-router'
+import {
+  RouterLink,
+  useRoute,
+} from 'vue-router'
 
 import { useTabsStyle } from '@/components/tabs/tabs.style'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'

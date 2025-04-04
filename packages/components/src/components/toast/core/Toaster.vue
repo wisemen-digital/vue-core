@@ -1,3 +1,4 @@
+<!-- eslint-disable unicorn/no-nested-ternary -->
 <!-- eslint-disable no-nested-ternary -->
 <script lang="ts" setup>
 import {
@@ -170,7 +171,12 @@ watchEffect((onInvalidate) => {
   const unsubscribe = ToastState.subscribe((toast) => {
     if ((toast as ToastToDismiss).dismiss) {
       toasts.value = toasts.value.map((t) =>
-        t.id === toast.id ? { ...t, delete: true } : t)
+        t.id === toast.id
+          ? {
+              ...t,
+              delete: true,
+            }
+          : t)
 
       return
     }

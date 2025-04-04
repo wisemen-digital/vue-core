@@ -1,5 +1,5 @@
 {
-  "name": "@wisemen/vue-core",
+  "name": "@wisemen/vue-core-monorepo",
   "type": "module",
   "version": "0.0.0",
   "author": "Wisemen",
@@ -14,19 +14,23 @@
     "docs:build": "pnpm run -r build && pnpm run -r docs:build",
     "pub:release": "cd packages/components && pnpm pub:release --no-git-checks",
     "pub:release-query": "cd packages/query && pnpm pub:release --no-git-checks",
-    "lint": "pnpm run -r lint",
+    "lint": "turbo run lint",
     "dev": "turbo run dev",
-    "test": "pnpm run -r test",
-    "type-check": "pnpm run -r type-check",
-    "precommit": "pnpm run -r lint --fix && pnpm run -r type-check && pnpm run -r test && pnpm run -r docs:gen",
+    "test": "turbo run test",
+    "lint:fix": "turbo run lint:fix",
+    "type-check": "turbo run type-check",
+    "precommit": "pnpm run lint --fix && pnpm run type-check && pnpm run test && pnpm run -r docs:gen",
     "prepare": "husky"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.0",
     "@commitlint/config-conventional": "^19.8.0",
-    "husky": "^9.1.7",
-    "rimraf": "6.0.1",
-    "turbo": "2.4.4",
-    "vitest": "3.0.9"
+    "husky": "catalog:",
+    "rimraf": "catalog:",
+    "turbo": "catalog:",
+    "vitest": "catalog:"
+  },
+  "dependencies": {
+    "@changesets/cli": "^2.28.1"
   }
 }

@@ -4,7 +4,10 @@ import type {
   PaginatedData,
   PaginationOptions,
 } from '@wisemen/vue-core'
-import type { ComputedRef, MaybeRef } from 'vue'
+import type {
+  ComputedRef,
+  MaybeRef,
+} from 'vue'
 import { computed } from 'vue'
 
 import type { QueryKeys } from '@/types/queryKeys.type'

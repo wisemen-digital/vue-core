@@ -29,7 +29,10 @@ class Observer {
       type?: ToastTypes
     },
   ) => {
-    const { message, ...rest } = data
+    const {
+      message,
+      ...rest
+    } = data
     const id
       = typeof data.id === 'number' || (data.id && data.id?.length > 0)
         ? data.id
@@ -42,7 +45,12 @@ class Observer {
     if (alreadyExists) {
       this.toasts = this.toasts.map((toast) => {
         if (toast.id === id) {
-          this.publish({ ...toast, ...data, id, title: message })
+          this.publish({
+            ...toast,
+            ...data,
+            id,
+            title: message,
+          })
 
           return {
             ...toast,
@@ -57,7 +65,12 @@ class Observer {
       })
     }
     else {
-      this.addToast({ title: message, ...rest, id, dismissible })
+      this.addToast({
+        title: message,
+        ...rest,
+        id,
+        dismissible,
+      })
     }
 
     return id
@@ -68,38 +81,67 @@ class Observer {
   custom = (component: Component, data?: ExternalToast) => {
     const id = data?.id || toastsCounter++
 
-    this.publish({ id, component, ...data })
+    this.publish({
+      id,
+      component,
+      ...data,
+    })
 
     return id
   }
 
   dismiss = (id?: number | string) => {
     if (!id) {
-      this.toasts.forEach((toast) => {
-        this.subscribers.forEach((subscriber) =>
-          subscriber({ id: toast.id, dismiss: true }))
-      })
+      for (const toast of this.toasts) {
+        for (const subscriber of this.subscribers) {
+          subscriber({
+            id: toast.id,
+            dismiss: true,
+          })
+        }
+      }
     }
 
-    this.subscribers.forEach((subscriber) => subscriber({ id, dismiss: true }))
+    for (const subscriber of this.subscribers) {
+      subscriber({
+        id,
+        dismiss: true,
+      })
+    }
 
     return id
   }
 
   error = (message: string | Component, data?: ExternalToast) => {
-    return this.create({ ...data, message, type: 'error' })
+    return this.create({
+      ...data,
+      message,
+      type: 'error',
+    })
   }
 
   info = (message: string | Component, data?: ExternalToast) => {
-    return this.create({ ...data, message, type: 'info' })
+    return this.create({
+      ...data,
+      message,
+      type: 'info',
+    })
   }
 
   loading = (message: string | Component, data?: ExternalToast) => {
-    return this.create({ ...data, message, type: 'loading' })
+    return this.create({
+      ...data,
+      message,
+      type: 'loading',
+    })
   }
 
   message = (message: string | Component, data?: ExternalToast) => {
-    return this.create({ ...data, message, type: 'default' })
+    return this.create({
+      ...data,
+      message,
+      type: 'default',
+    })
   }
 
   promise = <ToastData>(
@@ -147,7 +189,12 @@ class Observer {
             ? data.description(`HTTP error! status: ${response.status}`)
             : data.description
 
-        this.create({ id, description, message, type: 'error' })
+        this.create({
+          id,
+          description,
+          message,
+          type: 'error',
+        })
       }
       else if (data.success !== undefined) {
         shouldDismiss = false
@@ -161,7 +208,12 @@ class Observer {
             ? data.description(promiseData)
             : data.description
 
-        this.create({ id, description, message, type: 'success' })
+        this.create({
+          id,
+          description,
+          message,
+          type: 'success',
+        })
       }
     })
       .catch((error) => {
@@ -175,7 +227,12 @@ class Observer {
               ? data.description(error)
               : data.description
 
-          this.create({ id, description, message, type: 'error' })
+          this.create({
+            id,
+            description,
+            message,
+            type: 'error',
+          })
         }
       })
       .finally(() => {
@@ -192,7 +249,9 @@ class Observer {
   }
 
   publish = (data: ToastT) => {
-    this.subscribers.forEach((subscriber) => subscriber(data))
+    for (const subscriber of this.subscribers) {
+      subscriber(data)
+    }
   }
 
   // We use arrow functions to maintain the correct `this` reference
@@ -209,13 +268,21 @@ class Observer {
   subscribers: Array<(toast: ExternalToast | ToastToDismiss) => void>
 
   success = (message: string | Component, data?: ExternalToast) => {
-    return this.create({ ...data, message, type: 'success' })
+    return this.create({
+      ...data,
+      message,
+      type: 'success',
+    })
   }
 
   toasts: Array<ToastT | ToastToDismiss>
 
   warning = (message: string | Component, data?: ExternalToast) => {
-    return this.create({ ...data, message, type: 'warning' })
+    return this.create({
+      ...data,
+      message,
+      type: 'warning',
+    })
   }
 
   constructor() {

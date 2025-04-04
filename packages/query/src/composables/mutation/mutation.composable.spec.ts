@@ -1,11 +1,15 @@
 import type { QueryClient } from '@tanstack/vue-query'
-import { useQueryClient, VueQueryPlugin } from '@tanstack/vue-query'
+import {
+  useQueryClient,
+  VueQueryPlugin,
+} from '@tanstack/vue-query'
 import {
   describe,
   expect,
   it,
 } from 'vitest'
-import { type App, createApp } from 'vue'
+import type { App } from 'vue'
+import { createApp } from 'vue'
 
 import { useMutation } from '@/composables/mutation/mutation.composable'
 import { useQuery } from '@/composables/query/query.composable'
@@ -47,16 +51,12 @@ describe('useMutation', () => {
 
           return Promise.resolve('')
         },
-        queryKey: {
-          test: {},
-        },
+        queryKey: { test: {} },
       })
 
       const mutation = useMutation({
         queryFn: () => Promise.resolve(''),
-        queryKeysToInvalidate: {
-          test: {},
-        },
+        queryKeysToInvalidate: { test: {} },
       })
 
       await mutation.execute()
@@ -79,20 +79,14 @@ describe('useMutation', () => {
         queryKey: {
           test: {
             id: 1,
-            obj: {
-              randomKey: 'randomValue',
-            },
+            obj: { randomKey: 'randomValue' },
           },
         },
       })
 
       const mutation1 = useMutation({
         queryFn: () => Promise.resolve(''),
-        queryKeysToInvalidate: {
-          test: {
-            id: () => 1,
-          },
-        },
+        queryKeysToInvalidate: { test: { id: () => 1 } },
       })
 
       const mutation2 = useMutation({
@@ -100,20 +94,14 @@ describe('useMutation', () => {
         queryKeysToInvalidate: {
           test: {
             id: () => 1,
-            obj: () => ({
-              randomKey: 'randomValue',
-            }),
+            obj: () => ({ randomKey: 'randomValue' }),
           },
         },
       })
 
       const mutation3 = useMutation({
         queryFn: () => Promise.resolve(''),
-        queryKeysToInvalidate: {
-          test: {
-            id: () => 2,
-          },
-        },
+        queryKeysToInvalidate: { test: { id: () => 2 } },
       })
 
       // + 1 because query key does match

@@ -484,9 +484,7 @@ export function setupDefaultIconButtonStyles(): void {
   // Size SM
   defineStyleConfig({
     colorScheme: '*',
-    config: {
-      '--icon-button-size-default': '2.25rem',
-    },
+    config: { '--icon-button-size-default': '2.25rem' },
     theme: '*',
     variant: 'sm',
     component: 'iconButton',
@@ -495,9 +493,7 @@ export function setupDefaultIconButtonStyles(): void {
   // Size LG
   defineStyleConfig({
     colorScheme: '*',
-    config: {
-      '--icon-button-size-default': '2.75rem',
-    },
+    config: { '--icon-button-size-default': '2.75rem' },
     theme: '*',
     variant: 'lg',
     component: 'iconButton',
@@ -506,9 +502,7 @@ export function setupDefaultIconButtonStyles(): void {
   // Size XL
   defineStyleConfig({
     colorScheme: '*',
-    config: {
-      '--icon-button-size-default': '3rem',
-    },
+    config: { '--icon-button-size-default': '3rem' },
     theme: '*',
     variant: 'xl',
     component: 'iconButton',
@@ -517,9 +511,7 @@ export function setupDefaultIconButtonStyles(): void {
   // Size 2XL
   defineStyleConfig({
     colorScheme: '*',
-    config: {
-      '--icon-button-size-default': '3.5rem',
-    },
+    config: { '--icon-button-size-default': '3.5rem' },
     theme: '*',
     variant: '2xl',
     component: 'iconButton',

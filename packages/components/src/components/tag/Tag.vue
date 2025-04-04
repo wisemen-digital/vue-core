@@ -25,13 +25,9 @@ const themeProviderContext = injectThemeProviderContext()
 
 const tagStyle = useTagStyle()
 
-const tagBoxClasses = computed<string>(() => tagStyle.tagBox({
-  isDisabled: props.isDisabled,
-}))
+const tagBoxClasses = computed<string>(() => tagStyle.tagBox({ isDisabled: props.isDisabled }))
 
-const tagContentClasses = computed<string>(() => tagStyle.tagContent({
-  isDisabled: props.isDisabled,
-}))
+const tagContentClasses = computed<string>(() => tagStyle.tagContent({ isDisabled: props.isDisabled }))
 
 provideTagContext({
   isDisabled: computed<boolean>(() => props.isDisabled),

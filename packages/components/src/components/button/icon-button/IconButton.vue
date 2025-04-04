@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { computed, useAttrs } from 'vue'
+import {
+  computed,
+  useAttrs,
+} from 'vue'
 
 import type { ButtonProps } from '@/components/button/button/button.props'
 import { useIconButton } from '@/components/button/icon-button/iconButton.composable'

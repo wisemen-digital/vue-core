@@ -13,9 +13,7 @@ function setIsOpen(value: boolean): void {
 
 watch(selectContext.modelValue, (value) => {
   selectContext.searchTerm.value = selectContext.displayFn(value)
-}, {
-  immediate: true,
-})
+}, { immediate: true })
 </script>
 
 <template>

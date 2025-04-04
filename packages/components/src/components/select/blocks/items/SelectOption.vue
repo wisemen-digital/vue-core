@@ -11,15 +11,16 @@ import { injectSelectContext } from '@/components/select/select.context'
 import { useSelectStyle } from '@/components/select/select.style'
 import { provideSelectOptionContext } from '@/components/select/selectOption.context'
 import { useElementAttributeObserver } from '@/composables/element-attribute-observer/elementAttributeObserver.composable'
-import type { SelectOption, SelectValue } from '@/types/select.type'
+import type {
+  SelectOption,
+  SelectValue,
+} from '@/types/select.type'
 import type { StyleConfig } from '@/types/style.type'
 
 const props = withDefaults(defineProps<{
   item: SelectOption<TValue extends Array<infer U> ? U : TValue>
   styleConfig?: StyleConfig<'selectOption'> | null
-}>(), {
-  styleConfig: null,
-})
+}>(), { styleConfig: null })
 
 const selectContext = injectSelectContext()
 const attrs = useAttrs()
@@ -47,9 +48,7 @@ function onSelect(): void {
   }
 }
 
-provideSelectOptionContext({
-  isSelected: computed<boolean>(() => isSelected.value),
-})
+provideSelectOptionContext({ isSelected: computed<boolean>(() => isSelected.value) })
 </script>
 
 <template>

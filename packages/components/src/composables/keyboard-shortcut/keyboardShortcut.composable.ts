@@ -117,9 +117,9 @@ export function useKeyboardShortcut(
       onTrigger(keyboardEvent)
     }
 
-    pressedKeys.forEach((key) => {
+    for (const key of pressedKeys) {
       previouslyPressedKeys.push(key)
-    })
+    }
 
     setTimeout(() => {
       previouslyPressedKeys.splice(0, pressedKeys.length)
@@ -138,7 +138,5 @@ export function useKeyboardShortcut(
     })
   }
 
-  return {
-    unbind,
-  }
+  return { unbind }
 }

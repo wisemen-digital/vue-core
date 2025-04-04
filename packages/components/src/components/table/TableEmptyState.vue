@@ -22,21 +22,26 @@ const { t } = useI18n()
     :style="{
       gridTemplateColumns: tableContext.gridColsStyle.value,
     }"
-    class="relative grid min-h-60 h-full overflow-hidden"
+    class="relative grid h-full min-h-60 overflow-hidden"
   >
     <TableHeader />
 
-    <div class="absolute left-1/2 top-1/2 mx-auto mt-4 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center p-4xl text-center">
+    <div
+      class="
+        p-4xl absolute top-1/2 left-1/2 mx-auto mt-4 flex -translate-x-1/2
+        -translate-y-1/2 flex-col items-center justify-center text-center
+      "
+    >
       <Icon
         icon="tableNoData"
         class="text-primary size-8"
       />
 
-      <h3 class="py-md font-semibold text-primary">
+      <h3 class="py-md text-primary font-semibold">
         {{ t('component.table.no_results.title') }}
       </h3>
 
-      <p class="mx-auto max-w-md text-sm text-tertiary">
+      <p class="text-tertiary mx-auto max-w-md text-sm">
         {{ t('component.table.no_results.description') }}
       </p>
 
@@ -51,17 +56,22 @@ const { t } = useI18n()
     }"
     class="relative grid overflow-hidden"
   >
-    <div class="absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center text-center">
+    <div
+      class="
+        absolute top-1/2 left-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2
+        flex-col items-center text-center
+      "
+    >
       <Icon
         icon="tableNoData"
         class="text-primary size-8"
       />
 
-      <h3 class="py-md font-semibold text-primary">
+      <h3 class="py-md text-primary font-semibold">
         {{ t('component.table.no_data.title') }}
       </h3>
 
-      <p class="mx-auto max-w-xs text-sm text-tertiary">
+      <p class="text-tertiary mx-auto max-w-xs text-sm">
         {{ t('component.table.no_data.description') }}
       </p>
 
@@ -73,7 +83,10 @@ const { t } = useI18n()
     <div
       v-for="i in 40"
       :key="i"
-      class="col-span-full grid grid-cols-subgrid odd:bg-secondary"
+      class="
+        odd:bg-secondary
+        col-span-full grid grid-cols-subgrid
+      "
     >
       <div
         v-for="column of tableContext.columns.value"

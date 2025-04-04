@@ -91,9 +91,7 @@ const debounceSearch = useDebounceFn(async (value: string) => {
     predictions.value = await fetchPredictions(value)
   }
   catch {
-    toast.error({
-      message: t('component.address_autocomplete.failed_to_fetch'),
-    })
+    toast.error({ message: t('component.address_autocomplete.failed_to_fetch') })
   }
 
   isLoading.value = false
@@ -119,9 +117,7 @@ async function fetchPredictions(searchTerm: string): Promise<AutocompletePredict
     return response.predictions
   }
   catch {
-    toast.error({
-      message: t('component.address_autocomplete.failed_to_fetch'),
-    })
+    toast.error({ message: t('component.address_autocomplete.failed_to_fetch') })
   }
 
   return []
@@ -225,9 +221,7 @@ watch(() => props.modelValue, (value) => {
     id: '',
     label: formatAddressObjectToString(value),
   }
-}, {
-  immediate: true,
-})
+}, { immediate: true })
 
 onMounted(async () => {
   const { googleMapsApiKey } = globalConfigContext

@@ -1,7 +1,7 @@
 <script setup lang="ts" generic="TValue extends Date">
+import type { DateValue } from '@internationalized/date'
 import {
   CalendarDate,
-  type DateValue,
   getLocalTimeZone,
 } from '@internationalized/date'
 import {
@@ -65,7 +65,10 @@ defineSlots<{
   /**
    * Can be used to render a custom hint and error message.
    */
-  'bottom': ({ errors, hint }: { errors: string[], hint: string | null }) => void
+  'bottom': ({
+    errors, hint,
+  }: { errors: string[]
+    hint: string | null }) => void
   /**
    * Can be used to add content to each date.
    */
@@ -104,9 +107,7 @@ defineSlots<{
   'right': () => null
 }>()
 
-const model = defineModel<TValue | null>({
-  required: true,
-})
+const model = defineModel<TValue | null>({ required: true })
 
 const delegatedModel = computed<DateValue | undefined>({
   get: () => {
@@ -305,7 +306,11 @@ function onBlur(): void {
             <DateFieldInput
               v-else
               :part="item.part"
-              class="rounded-xs px-0.5 text-primary outline-none duration-200 focus:bg-quaternary data-[placeholder]:text-placeholder"
+              class="
+                text-primary rounded-xs px-0.5 duration-200 outline-none
+                focus:bg-quaternary
+                data-[placeholder]:text-placeholder
+              "
               @focus="onFocus"
               @blur="onBlur"
             >
@@ -358,7 +363,7 @@ function onBlur(): void {
       </div>
 
       <template #content>
-        <div class="p-4 w-80">
+        <div class="w-80 p-4">
           <Calendar
             v-model="model"
             :are-year-arrows-hidden="props.areYearArrowsHidden"

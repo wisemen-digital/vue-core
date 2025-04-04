@@ -140,7 +140,10 @@ provideRadioGroupItemContext({
     :value="props.value"
     :style="props.styleConfig"
     :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.appearance.value)"
-    class="group outline-none radio-group-item-default input-field-label-default input-field-error-default input-field-hint-default"
+    class="
+      group radio-group-item-default input-field-label-default
+      input-field-error-default input-field-hint-default outline-none
+    "
     @focus="onFocus"
     @blur="onBlur"
     @mouseenter="onMouseEnter"
@@ -153,7 +156,11 @@ provideRadioGroupItemContext({
     v-else
     :style="props.styleConfig"
     :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.appearance.value)"
-    class="radio-group-item-default input-field-label-default input-field-error-default input-field-hint-default grid grid-cols-[min-content_auto] items-center"
+    class="
+      radio-group-item-default input-field-label-default
+      input-field-error-default input-field-hint-default grid
+      grid-cols-[min-content_auto] items-center
+    "
   >
     <RadioGroupItem
       :id="inputId"

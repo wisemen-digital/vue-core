@@ -91,9 +91,7 @@ export const useSwitchStyle = tv({
     },
     size: {
       default: {},
-      sm: {
-        base: 'switch-sm',
-      },
+      sm: { base: 'switch-sm' },
     },
   },
 })

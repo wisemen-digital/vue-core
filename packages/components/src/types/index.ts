@@ -36,4 +36,6 @@ export type {
   SelectValue,
 } from './select.type'
 export type { TableColumn } from './table.type'
-export type { RouteTabItem, TabItem } from './tabs.type'
+export type {
+  RouteTabItem, TabItem,
+} from './tabs.type'

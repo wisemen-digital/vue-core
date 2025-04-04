@@ -6,7 +6,10 @@ import {
 import { computed } from 'vue'
 
 import { useSelectStyle } from '@/components/select/select.style'
-import type { SelectGroup, SelectValue } from '@/types/select.type'
+import type {
+  SelectGroup,
+  SelectValue,
+} from '@/types/select.type'
 
 const props = defineProps<{
   item: SelectGroup<TValue>

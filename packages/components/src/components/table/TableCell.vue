@@ -5,9 +5,7 @@ const props = withDefaults(defineProps<{
    * @default false
    */
   isPrimaryCell?: boolean
-}>(), {
-  isPrimaryCell: false,
-})
+}>(), { isPrimaryCell: false })
 
 defineSlots<{
   /**
@@ -20,9 +18,9 @@ defineSlots<{
 <template>
   <div
     :class="[
-      props.isPrimaryCell ? 'font-medium text-primary' : 'text-tertiary',
+      props.isPrimaryCell ? 'text-primary font-medium' : 'text-tertiary',
     ]"
-    class="flex h-full items-center whitespace-nowrap px-3xl py-xl text-sm"
+    class="px-3xl py-xl flex h-full items-center text-sm whitespace-nowrap"
   >
     <slot />
   </div>

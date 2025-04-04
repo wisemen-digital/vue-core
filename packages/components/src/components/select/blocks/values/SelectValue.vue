@@ -5,9 +5,7 @@ import { injectSelectContext } from '@/components/select/select.context'
 
 const props = withDefaults(defineProps<{
   hasValueSlot?: boolean
-}>(), {
-  hasValueSlot: false,
-})
+}>(), { hasValueSlot: false })
 
 const selectContext = injectSelectContext()
 </script>

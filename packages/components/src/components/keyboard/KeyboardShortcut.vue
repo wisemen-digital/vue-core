@@ -15,9 +15,7 @@ const props = withDefaults(defineProps<{
    * The keyboard key(s) to display
    */
   keyboardKeys: KeyboardKeyType[]
-}>(), {
-  keyboardClasses: null,
-})
+}>(), { keyboardClasses: null })
 
 const { t } = useI18n()
 
@@ -47,7 +45,7 @@ const isSequence = computed<boolean>(() => {
       />
 
       <template v-if="index < props.keyboardKeys.length - 1 && isSequence">
-        <span class="text-xs font-regular">
+        <span class="font-regular text-xs">
           {{ t('component.keyboard_shortcut.then') }}
         </span>
       </template>

@@ -88,36 +88,20 @@ const filters: Filter<string>[] = [
       // 'Medium',
       // 'Low',
       // 'None',
-      {
-        value: 'High',
-      },
-      {
-        value: 'Medium',
-      },
-      {
-        value: 'Low',
-      },
-      {
-        value: 'None',
-      },
+      { value: 'High' },
+      { value: 'Medium' },
+      { value: 'Low' },
+      { value: 'None' },
     ],
     type: 'multiselect',
   },
   {
     label: 'Label',
     options: [
-      {
-        value: 'Bug',
-      },
-      {
-        value: 'Feature',
-      },
-      {
-        value: 'Improvement',
-      },
-      {
-        value: 'Reopened',
-      },
+      { value: 'Bug' },
+      { value: 'Feature' },
+      { value: 'Improvement' },
+      { value: 'Reopened' },
     ],
     type: 'multiselect',
   },
@@ -240,17 +224,20 @@ watch(isOpen, (isOpen) => {
         :multiple="true"
         class="select-default"
       >
-        <div class="flex flex-col border-b border-solid border-primary">
+        <div class="border-primary flex flex-col border-b border-solid">
           <div
             v-if="false"
-            class="flex items-center gap-x-1 border-b border-solid border-primary px-select-dropdown-padding-x-default py-2.5"
+            class="
+              border-primary px-select-dropdown-padding-x-default flex
+              items-center gap-x-1 border-b border-solid py-2.5
+            "
           >
             <Icon
               v-if="selectedFilterLabel !== null"
               icon="chevronLeft"
             />
 
-            <span class="text-sm font-medium text-secondary">
+            <span class="text-secondary text-sm font-medium">
               Filters
             </span>
           </div>
@@ -259,7 +246,10 @@ watch(isOpen, (isOpen) => {
             <ListboxFilter
               v-model="search"
               placeholder="Search"
-              class="w-full bg-transparent px-select-option-padding-x-default py-2.5 text-sm outline-none"
+              class="
+                px-select-option-padding-x-default w-full bg-transparent py-2.5
+                text-sm outline-none
+              "
             />
           </div>
         </div>

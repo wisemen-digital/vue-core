@@ -78,9 +78,7 @@ describe('createHttpZodClient', () => {
 
   describe('post method', () => {
     it('should send body and return parsed data if response matches schema', async () => {
-      const requestBody = {
-        some: 'data',
-      }
+      const requestBody = { some: 'data' }
       const responseData = {
         id: 1,
         name: 'test',
@@ -231,9 +229,7 @@ describe('createHttpZodClient', () => {
     it('should return undefined if responseSchema is not provided', async () => {
       mockAxiosMethod('delete', {})
 
-      const result = await client.delete({
-        url: '/test-delete',
-      })
+      const result = await client.delete({ url: '/test-delete' })
 
       expect(result).toBeUndefined()
       expect(mockOnZodError).not.toHaveBeenCalled()

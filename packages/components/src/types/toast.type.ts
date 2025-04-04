@@ -1,6 +1,4 @@
-import type {
-  MaybeRef,
-} from 'vue'
+import type { MaybeRef } from 'vue'
 
 import type { Icon } from '@/icons/icons'
 

@@ -5,7 +5,10 @@ import {
   SwitchThumb,
   useId,
 } from 'reka-ui'
-import { computed, ref } from 'vue'
+import {
+  computed,
+  ref,
+} from 'vue'
 
 import Collapsable from '@/components/collapsable/Collapsable.vue'
 import Icon from '@/components/icon/Icon.vue'
@@ -54,9 +57,7 @@ defineSlots<{
   hint: () => null
 }>()
 
-const model = defineModel<boolean>({
-  required: true,
-})
+const model = defineModel<boolean>({ required: true })
 
 const themeProviderContext = injectThemeProviderContext()
 
@@ -150,7 +151,10 @@ function onBlur(e: Event): void {
   <div
     :style="props.styleConfig"
     :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.appearance.value)"
-    class="switch-default input-field-label-default input-field-hint-default input-field-error-default"
+    class="
+      switch-default input-field-label-default input-field-hint-default
+      input-field-error-default
+    "
   >
     <div class="grid grid-cols-[min-content_auto] items-center">
       <SwitchRoot
