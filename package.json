@@ -29,7 +29,8 @@
     "rimraf": "catalog:",
     "turbo": "catalog:",
     "vitest": "catalog:"
+  },
+  "dependencies": {
+    "@changesets/cli": "^2.28.1"
   }
 }
-
-
