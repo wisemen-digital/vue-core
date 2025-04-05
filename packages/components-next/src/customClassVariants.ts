@@ -32,6 +32,7 @@ export interface Components {
   checkbox: typeof createCheckboxStyle
   dateField: typeof createDateFieldStyle
   datePicker: typeof createDatePickerStyle
+  dateRangePicker: typeof createDatePickerStyle
   dialog: typeof createDialogStyle
   dropdownMenu: typeof createDropdownMenuStyle
   formField: typeof createFormFieldStyle
