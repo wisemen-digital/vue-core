@@ -13,7 +13,7 @@ import type { createDatePickerStyle } from '@/components/date-picker/single/date
 import type { createDialogStyle } from '@/components/dialog/dialog.style'
 import type { createDropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style'
 import type { createFormFieldStyle } from '@/components/form-field/formField.style'
-import type { createkeyboardKeyStyle } from '@/components/keyboard-key/keyboardKey.style'
+import type { createKeyboardKeyStyle } from '@/components/keyboard-key/keyboardKey.style'
 import type { createNumberFieldStyle } from '@/components/number-field/numberField.style'
 import type { createPopoverStyle } from '@/components/popover/popover.style'
 import type { createRadioGroupItemStyle } from '@/components/radio-group-item/radioGroupItem.style'
@@ -36,7 +36,7 @@ export interface Components {
   dropdownMenu: typeof createDropdownMenuStyle
   formField: typeof createFormFieldStyle
   iconButton: typeof createIconButtonStyle
-  keyboardKey: typeof createkeyboardKeyStyle
+  keyboardKey: typeof createKeyboardKeyStyle
   numberField: typeof createNumberFieldStyle
   popover: typeof createPopoverStyle
   radioGroupItem: typeof createRadioGroupItemStyle
