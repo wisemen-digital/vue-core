@@ -3,7 +3,7 @@ import { tv } from 'tailwind-variants'
 
 import { StyleBuilder } from '@/utils/style-builder/styleBuilder.util'
 
-export const createkeyboardKeyStyle = tv({
+export const createKeyboardKeyStyle = tv({
   slots: {
     key: new StyleBuilder()
       .withBase('text-center font-sans capitalize')
@@ -20,5 +20,5 @@ export const createkeyboardKeyStyle = tv({
   variants: { variant: {} },
 })
 
-export type keyboardKeyStyle = VariantProps<typeof createkeyboardKeyStyle>
-export type CreatekeyboardKeyStyle = ReturnType<typeof createkeyboardKeyStyle>
+export type keyboardKeyStyle = VariantProps<typeof createKeyboardKeyStyle>
+export type CreatekeyboardKeyStyle = ReturnType<typeof createKeyboardKeyStyle>

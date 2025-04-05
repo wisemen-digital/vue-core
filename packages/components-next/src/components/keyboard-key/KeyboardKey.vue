@@ -3,7 +3,7 @@ import { computed } from 'vue'
 
 import type { KeyboardKeyProps } from '@/components/keyboard-key/keyboardKey.props'
 import type { CreatekeyboardKeyStyle } from '@/components/keyboard-key/keyboardKey.style'
-import { createkeyboardKeyStyle } from '@/components/keyboard-key/keyboardKey.style'
+import { createKeyboardKeyStyle } from '@/components/keyboard-key/keyboardKey.style'
 import {
   mergeClasses,
   useComponentClassConfig,
@@ -114,7 +114,7 @@ const windowsKeyMap = new Map<KeyboardKey, string>([
 ])
 
 const keyboardKeyStyle = computed<CreatekeyboardKeyStyle>(
-  () => createkeyboardKeyStyle({ variant: props.variant ?? undefined }),
+  () => createKeyboardKeyStyle({ variant: props.variant ?? undefined }),
 )
 
 const customClassConfig = useComponentClassConfig('keyboardKey', { variant: props.variant ?? undefined })
