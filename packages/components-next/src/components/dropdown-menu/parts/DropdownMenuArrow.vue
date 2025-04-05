@@ -16,7 +16,7 @@ const {
   <RekaDropdownMenuArrow
     v-if="!isPopoverArrowHidden"
     as="div"
-    class="relative -mb-4 h-4 w-10 -translate-y-px overflow-hidden"
+    class="relative -mb-4 h-4 w-8 overflow-hidden"
   >
     <div
       :class="style.arrow({

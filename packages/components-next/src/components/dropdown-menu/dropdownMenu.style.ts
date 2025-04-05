@@ -20,7 +20,7 @@ export const createDropdownMenuStyle = tv({
       .withBackgroundColor('bg-primary')
       .withBorder('border border-solid border-secondary')
       .withBorderRadius('rounded-lg')
-      .withBase('relative overflow-hidden')
+      .withBase('relative')
       .withSize('size-full min-w-52')
       .withBorderRadius('rounded-lg')
       .withShadow('shadow-lg')
