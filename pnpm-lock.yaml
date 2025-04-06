@@ -94,8 +94,8 @@ catalogs:
       specifier: 3.5.13
       version: 3.5.13
     vue-i18n:
-      specifier: 9.14.3
-      version: 9.14.3
+      specifier: 9.14.4
+      version: 9.14.4
     vue-router:
       specifier: 4.5.0
       version: 4.5.0
@@ -207,7 +207,7 @@ importers:
         version: 4.16.0
       vitepress:
         specifier: 1.6.3
-        version: 1.6.3(@algolia/client-search@5.23.1)(@types/node@20.14.2)(axios@1.8.2)(change-case@5.4.4)(fuse.js@7.1.0)(lightningcss@1.29.3)(postcss@8.4.38)(sass@1.77.5)(search-insights@2.17.3)(typescript@5.8.2)
+        version: 1.6.3(@algolia/client-search@5.23.1)(@types/node@20.14.2)(axios@1.8.3)(change-case@5.4.4)(fuse.js@7.1.0)(lightningcss@1.29.3)(postcss@8.4.38)(sass@1.77.5)(search-insights@2.17.3)(typescript@5.8.2)
       vue:
         specifier: 3.5.12
         version: 3.5.12(typescript@5.8.2)
@@ -215,8 +215,8 @@ importers:
         specifier: 2.0.24
         version: 2.0.24(typescript@5.8.2)
       vue-i18n:
-        specifier: 9.14.3
-        version: 9.14.3(vue@3.5.12(typescript@5.8.2))
+        specifier: 9.14.4
+        version: 9.14.4(vue@3.5.12(typescript@5.8.2))
       vue-tsc:
         specifier: 2.0.21
         version: 2.0.21(typescript@5.8.2)
@@ -276,8 +276,8 @@ importers:
         specifier: 9.0.2
         version: 9.0.2(vue@3.5.12(typescript@5.8.2))
       axios:
-        specifier: 1.8.2
-        version: 1.8.2
+        specifier: 1.8.3
+        version: 1.8.3
       conventional-changelog:
         specifier: 6.0.0
         version: 6.0.0(conventional-commits-filter@5.0.0)
@@ -407,7 +407,7 @@ importers:
         version: 3.5.13(typescript@5.8.2)
       vue-i18n:
         specifier: 'catalog:'
-        version: 9.14.3(vue@3.5.13(typescript@5.8.2))
+        version: 9.14.4(vue@3.5.13(typescript@5.8.2))
     devDependencies:
       '@fontsource-variable/inter':
         specifier: 'catalog:'
@@ -634,8 +634,8 @@ importers:
   packages/zod-http-client:
     dependencies:
       axios:
-        specifier: 1.8.2
-        version: 1.8.2
+        specifier: 1.8.3
+        version: 1.8.3
       zod:
         specifier: 'catalog:'
         version: 3.24.2
@@ -1828,8 +1828,8 @@ packages:
     resolution: {integrity: sha512-nmG512G8QOABsserleechwHGZxzKSAlggGf9hQX0nltvSwyKNVuB/4o6iFeG2OnjXK253r8p8eSDOZf8PgFdWw==}
     engines: {node: '>= 16'}
 
-  '@intlify/core-base@9.14.3':
-    resolution: {integrity: sha512-nbJ7pKTlXFnaXPblyfiH6awAx1C0PWNNuqXAR74yRwgi5A/Re/8/5fErLY0pv4R8+EHj3ZaThMHdnuC/5OBa6g==}
+  '@intlify/core-base@9.14.4':
+    resolution: {integrity: sha512-vtZCt7NqWhKEtHa3SD/322DlgP5uR9MqWxnE0y8Q0tjDs9H5Lxhss+b5wv8rmuXRoHKLESNgw9d+EN9ybBbj9g==}
     engines: {node: '>= 16'}
 
   '@intlify/eslint-plugin-vue-i18n@4.0.0':
@@ -1849,8 +1849,8 @@ packages:
     resolution: {integrity: sha512-T/xbNDzi+Yv0Qn2Dfz2CWCAJiwNgU5d95EhhAEf4YmOgjCKktpfpiUSmLcBvK1CtLpPQ85AMMQk/2NCcXnNj1g==}
     engines: {node: '>= 16'}
 
-  '@intlify/message-compiler@9.14.3':
-    resolution: {integrity: sha512-ANwC226BQdd+MpJ36rOYkChSESfPwu3Ss2Faw0RHTOknYLoHTX6V6e/JjIKVDMbzs0/H/df/rO6yU0SPiWHqNg==}
+  '@intlify/message-compiler@9.14.4':
+    resolution: {integrity: sha512-vcyCLiVRN628U38c3PbahrhbbXrckrM9zpy0KZVlDk2Z0OnGwv8uQNNXP3twwGtfLsCf4gu3ci6FMIZnPaqZsw==}
     engines: {node: '>= 16'}
 
   '@intlify/shared@10.0.4':
@@ -1861,8 +1861,8 @@ packages:
     resolution: {integrity: sha512-dF2iMMy8P9uKVHV/20LA1ulFLL+MKSbfMiixSmn6fpwqzvix38OIc7ebgnFbBqElvghZCW9ACtzKTGKsTGTWGA==}
     engines: {node: '>= 16'}
 
-  '@intlify/shared@9.14.3':
-    resolution: {integrity: sha512-hJXz9LA5VG7qNE00t50bdzDv8Z4q9fpcL81wj4y4duKavrv0KM8YNLTwXNEFINHjTsfrG9TXvPuEjVaAvZ7yWg==}
+  '@intlify/shared@9.14.4':
+    resolution: {integrity: sha512-P9zv6i1WvMc9qDBWvIgKkymjY2ptIiQ065PjDv7z7fDqH3J/HBRBN5IoiR46r/ujRcU7hCuSIZWvCAFCyuOYZA==}
     engines: {node: '>= 16'}
 
   '@isaacs/cliui@8.0.2':
@@ -3210,8 +3210,8 @@ packages:
   axios@1.7.3:
     resolution: {integrity: sha512-Ar7ND9pU99eJ9GpoGQKhKf58GpUOgnzuaB7ueNQ5BMi0p+LZ5oaEnfF999fAArcTIBwXTCHAmGcHOZJaWPq9Nw==}
 
-  axios@1.8.2:
-    resolution: {integrity: sha512-ls4GYBm5aig9vWx8AWDSGLpnpDQRtWAfrjU+EuytuODrFBkqesN2RkOQCBzrA1RQNHw1SmRMSDDDSwzNAYQ6Rg==}
+  axios@1.8.3:
+    resolution: {integrity: sha512-iP4DebzoNlP/YN2dpwCgb8zoCmhtkajzS48JvwmkSkXvPI3DHc7m+XYL5tGnSlJtR6nImXZmdCuN5aP8dh1d8A==}
 
   babel-runtime@6.26.0:
     resolution: {integrity: sha512-ITKNuq2wKlW1fJg9sSW52eepoYgZBggvOAHC0u/CYu/qxQ9EVzThCgR69BnSXLHjy2f7SY5zaQ4yt7H9ZVxY2g==}
@@ -7161,8 +7161,8 @@ packages:
     peerDependencies:
       vue: ^3.0.0
 
-  vue-i18n@9.14.3:
-    resolution: {integrity: sha512-C+E0KE8ihKjdYCQx8oUkXX+8tBItrYNMnGJuzEPevBARQFUN2tKez6ZVOvBrWH0+KT5wEk3vOWjNk7ygb2u9ig==}
+  vue-i18n@9.14.4:
+    resolution: {integrity: sha512-B934C8yUyWLT0EMud3DySrwSUJI7ZNiWYsEEz2gknTthqKiG4dzWE/WSa8AzCuSQzwBEv4HtG1jZDhgzPfWSKQ==}
     engines: {node: '>= 16'}
     peerDependencies:
       vue: ^3.0.0
@@ -8592,10 +8592,10 @@ snapshots:
       '@intlify/message-compiler': 11.1.2
       '@intlify/shared': 11.1.2
 
-  '@intlify/core-base@9.14.3':
+  '@intlify/core-base@9.14.4':
     dependencies:
-      '@intlify/message-compiler': 9.14.3
-      '@intlify/shared': 9.14.3
+      '@intlify/message-compiler': 9.14.4
+      '@intlify/shared': 9.14.4
 
   '@intlify/eslint-plugin-vue-i18n@4.0.0(eslint@9.23.0(jiti@2.4.2))(jsonc-eslint-parser@2.4.0)(vue-eslint-parser@9.4.3(eslint@9.23.0(jiti@2.4.2)))(yaml-eslint-parser@1.3.0)':
     dependencies:
@@ -8657,16 +8657,16 @@ snapshots:
       '@intlify/shared': 11.1.2
       source-map-js: 1.2.1
 
-  '@intlify/message-compiler@9.14.3':
+  '@intlify/message-compiler@9.14.4':
     dependencies:
-      '@intlify/shared': 9.14.3
+      '@intlify/shared': 9.14.4
       source-map-js: 1.2.1
 
   '@intlify/shared@10.0.4': {}
 
   '@intlify/shared@11.1.2': {}
 
-  '@intlify/shared@9.14.3': {}
+  '@intlify/shared@9.14.4': {}
 
   '@isaacs/cliui@8.0.2':
     dependencies:
@@ -9984,13 +9984,13 @@ snapshots:
       '@vueuse/shared': 13.0.0(vue@3.5.13(typescript@5.8.2))
       vue: 3.5.13(typescript@5.8.2)
 
-  '@vueuse/integrations@12.8.2(axios@1.8.2)(change-case@5.4.4)(focus-trap@7.6.4)(fuse.js@7.1.0)(typescript@5.8.2)':
+  '@vueuse/integrations@12.8.2(axios@1.8.3)(change-case@5.4.4)(focus-trap@7.6.4)(fuse.js@7.1.0)(typescript@5.8.2)':
     dependencies:
       '@vueuse/core': 12.8.2(typescript@5.8.2)
       '@vueuse/shared': 12.8.2(typescript@5.8.2)
       vue: 3.5.13(typescript@5.8.2)
     optionalDependencies:
-      axios: 1.8.2
+      axios: 1.8.3
       change-case: 5.4.4
       focus-trap: 7.6.4
       fuse.js: 7.1.0
@@ -10344,7 +10344,7 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  axios@1.8.2:
+  axios@1.8.3:
     dependencies:
       follow-redirects: 1.15.9
       form-data: 4.0.2
@@ -14945,7 +14945,7 @@ snapshots:
       tsx: 4.19.3
       yaml: 2.7.1
 
-  vitepress@1.6.3(@algolia/client-search@5.23.1)(@types/node@20.14.2)(axios@1.8.2)(change-case@5.4.4)(fuse.js@7.1.0)(lightningcss@1.29.3)(postcss@8.4.38)(sass@1.77.5)(search-insights@2.17.3)(typescript@5.8.2):
+  vitepress@1.6.3(@algolia/client-search@5.23.1)(@types/node@20.14.2)(axios@1.8.3)(change-case@5.4.4)(fuse.js@7.1.0)(lightningcss@1.29.3)(postcss@8.4.38)(sass@1.77.5)(search-insights@2.17.3)(typescript@5.8.2):
     dependencies:
       '@docsearch/css': 3.8.2
       '@docsearch/js': 3.8.2(@algolia/client-search@5.23.1)(search-insights@2.17.3)
@@ -14958,7 +14958,7 @@ snapshots:
       '@vue/devtools-api': 7.7.2
       '@vue/shared': 3.5.13
       '@vueuse/core': 12.8.2(typescript@5.8.2)
-      '@vueuse/integrations': 12.8.2(axios@1.8.2)(change-case@5.4.4)(focus-trap@7.6.4)(fuse.js@7.1.0)(typescript@5.8.2)
+      '@vueuse/integrations': 12.8.2(axios@1.8.3)(change-case@5.4.4)(focus-trap@7.6.4)(fuse.js@7.1.0)(typescript@5.8.2)
       focus-trap: 7.6.4
       mark.js: 8.11.1
       minisearch: 7.1.2
@@ -15273,17 +15273,17 @@ snapshots:
       '@vue/devtools-api': 6.6.4
       vue: 3.5.13(typescript@5.8.2)
 
-  vue-i18n@9.14.3(vue@3.5.12(typescript@5.8.2)):
+  vue-i18n@9.14.4(vue@3.5.12(typescript@5.8.2)):
     dependencies:
-      '@intlify/core-base': 9.14.3
-      '@intlify/shared': 9.14.3
+      '@intlify/core-base': 9.14.4
+      '@intlify/shared': 9.14.4
       '@vue/devtools-api': 6.6.4
       vue: 3.5.12(typescript@5.8.2)
 
-  vue-i18n@9.14.3(vue@3.5.13(typescript@5.8.2)):
+  vue-i18n@9.14.4(vue@3.5.13(typescript@5.8.2)):
     dependencies:
-      '@intlify/core-base': 9.14.3
-      '@intlify/shared': 9.14.3
+      '@intlify/core-base': 9.14.4
+      '@intlify/shared': 9.14.4
       '@vue/devtools-api': 6.6.4
       vue: 3.5.13(typescript@5.8.2)
 

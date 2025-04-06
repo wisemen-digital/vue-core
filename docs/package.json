@@ -46,7 +46,7 @@
     "vitepress": "1.6.3",
     "vue": "3.5.12",
     "vue-component-meta": "2.0.24",
-    "vue-i18n": "9.14.3",
+    "vue-i18n": "9.14.4",
     "vue-tsc": "2.0.21"
   }
 }
