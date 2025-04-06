@@ -56,6 +56,11 @@ export interface SelectProps<TValue extends SelectValue> extends
    */
   isSearchTermControlled?: boolean
   /**
+   * Whether to clear the search term when an item is selected.
+   * @default false
+   */
+  clearSearchTermOnSelect?: boolean
+  /**
    * A function that determines how selected options are displayed in the input field.
    * It receives the selected option as an argument and should return a string representation.
    */
