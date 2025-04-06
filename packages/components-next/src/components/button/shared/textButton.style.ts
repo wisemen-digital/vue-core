@@ -45,6 +45,7 @@ export const createTextButtonStyle = tv({
         root: new StyleBuilder()
           .withPadding('px-5.5')
           .withFontSize('text-lg')
+          .withSize('min-w-15')
           .build(),
       },
       'lg': {
@@ -62,6 +63,7 @@ export const createTextButtonStyle = tv({
         root: new StyleBuilder()
           .withPadding('px-xl')
           .withFontSize('text-md')
+          .withSize('min-w-11')
           .build(),
       },
       'md': {
@@ -79,6 +81,7 @@ export const createTextButtonStyle = tv({
         root: new StyleBuilder()
           .withPadding('px-3.5')
           .withFontSize('text-sm')
+          .withSize('min-w-10')
           .build(),
       },
       'sm': {
@@ -96,6 +99,7 @@ export const createTextButtonStyle = tv({
         root: new StyleBuilder()
           .withPadding('px-lg')
           .withFontSize('text-sm')
+          .withSize('min-w-9')
           .build(),
       },
       'xl': {
@@ -113,6 +117,7 @@ export const createTextButtonStyle = tv({
         root: new StyleBuilder()
           .withPadding('px-4.5')
           .withFontSize('text-md')
+          .withSize('min-w-12')
           .build(),
       },
     },

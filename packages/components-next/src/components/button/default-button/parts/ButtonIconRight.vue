@@ -4,7 +4,6 @@ import Icon from '@/components/icon/Icon.vue'
 import { mergeClasses } from '@/customClassVariants'
 
 const {
-  isLoading,
   classConfig,
   customClassConfig,
   iconRight,
@@ -14,7 +13,7 @@ const {
 
 <template>
   <Icon
-    v-if="iconRight !== null && !isLoading"
+    v-if="iconRight !== null"
     :icon="iconRight"
     :class="style.iconRight({
       class: mergeClasses(customClassConfig.iconRight, classConfig?.iconRight),

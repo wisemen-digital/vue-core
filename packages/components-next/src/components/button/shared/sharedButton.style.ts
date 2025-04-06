@@ -72,28 +72,28 @@ export const createSharedButtonStyle = tv({
     size: {
       '2xl': {
         root: new StyleBuilder()
-          .withHeight('min-w-15 h-15')
+          .withHeight('h-15')
           .withBorderRadius('rounded-lg')
           .build(),
       },
       'lg': {
         root: new StyleBuilder()
-          .withHeight('min-w-11 h-11')
+          .withHeight('h-11')
           .build(),
       },
       'md': {
         root: new StyleBuilder()
-          .withHeight('min-w-10 h-10')
+          .withHeight('h-10')
           .build(),
       },
       'sm': {
         root: new StyleBuilder()
-          .withHeight('min-w-9 h-9')
+          .withHeight('h-9')
           .build(),
       },
       'xl': {
         root: new StyleBuilder()
-          .withHeight('min-w-12 h-12')
+          .withHeight('h-12')
           .build(),
       },
     },

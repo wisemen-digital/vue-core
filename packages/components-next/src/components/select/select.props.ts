@@ -141,7 +141,7 @@ export interface SelectProps<TValue extends SelectValue> extends
   } | null
 }
 
-export interface SelectItemProps {
+export interface SelectItemProps extends PrimitiveElement {
   /**
    * Whether the option is disabled. If `true`, the option cannot be selected.
    * @default false
