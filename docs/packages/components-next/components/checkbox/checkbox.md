@@ -40,4 +40,8 @@ import {
 
 <ComponentPreview name="checkbox/examples/error" />
 
+### Customize
+
+<ComponentPreview name="checkbox/examples/customize" />
+
 <!-- @include: ./checkbox-meta.md -->
