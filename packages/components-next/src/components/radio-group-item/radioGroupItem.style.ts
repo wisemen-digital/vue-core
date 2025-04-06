@@ -18,7 +18,6 @@ export const createRadioGroupItemStyle = tv({
       .withBorderRadius('rounded-full')
       .withBackgroundColor('group-data-[state=checked]/radio-group-item:bg-brand-solid group-disabled/radio-group-item:group-data-[state=checked]/radio-group-item:bg-disabled-subtle group-disabled/radio-group-item:bg-disabled-subtle group-data-invalid/radio-group-item:group-data-[state=checked]/radio-group-item:bg-error-solid')
       .withOutline('outline-2 outline-transparent group-focus-visible/radio-group-item:outline-brand-600 outline-offset-1 group-focus-visible/radio-group-item:group-data-invalid/radio-group-item:outline-error-600')
-      .withCursor('cursor-pointer group-disabled/radio-group-item:cursor-not-allowed')
       .withTransition('duration-300')
       .build(),
     indicator: new StyleBuilder()
@@ -30,6 +29,7 @@ export const createRadioGroupItemStyle = tv({
     root: new StyleBuilder()
       .withBase('group/radio-group-item')
       .withOutline('outline-none')
+      .withCursor('cursor-pointer disabled:cursor-not-allowed')
       .build(),
   },
   variants: { variant: {} },
