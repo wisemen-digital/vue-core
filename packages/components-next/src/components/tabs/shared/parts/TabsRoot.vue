@@ -3,7 +3,6 @@ import { TabsRoot as RekaTabsRoot } from 'reka-ui'
 import { computed } from 'vue'
 
 import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
-import type { ButtonTabsValue } from '@/components/tabs/button/buttonTabs.props'
 import { useProvideTabsContext } from '@/components/tabs/shared/tabs.context'
 import type { TabsProps } from '@/components/tabs/shared/tabs.props'
 import type { CreateTabsStyle } from '@/components/tabs/shared/tabs.style'
@@ -20,14 +19,7 @@ const props = withDefaults(defineProps<TabsProps>(), {
   variant: 'underline',
 })
 
-const model = defineModel<ButtonTabsValue>({ required: true })
-
-const delegatedModel = computed<string>({
-  get: () => JSON.stringify(model.value),
-  set: (value) => {
-    model.value = JSON.parse(value)
-  },
-})
+const modelValue = defineModel<string>({ required: true })
 
 const tabsStyle = computed<CreateTabsStyle>(() => createTabsStyle({ variant: props.variant }))
 
@@ -46,7 +38,7 @@ useProvideTabsContext({
     :test-id="props.testId"
   >
     <RekaTabsRoot
-      v-model="delegatedModel"
+      v-model="modelValue"
       :orientation="props.orientation"
     >
       <slot />

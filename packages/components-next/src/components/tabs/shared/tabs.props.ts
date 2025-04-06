@@ -1,5 +1,6 @@
 import type { TabsStyle } from '@/components/tabs/shared/tabs.style'
 import type { GetComponentPropCustomValues } from '@/customClassVariants'
+import type { Routes } from '@/types/routes.type'
 import type {
   CustomizableElement,
   PrimitiveElement,

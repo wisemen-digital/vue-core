@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { ButtonTabsValue } from '@/components/tabs/button/buttonTabs.props'
 import TabsBase from '@/components/tabs/shared/parts/TabsBase.vue'
 import TabsIndicator from '@/components/tabs/shared/parts/TabsIndicator.vue'
 import TabsList from '@/components/tabs/shared/parts/TabsList.vue'
@@ -26,13 +25,13 @@ defineSlots<{
   items: () => void
 }>()
 
-const model = defineModel<ButtonTabsValue>({ required: true })
+const modelValue = defineModel<string>({ required: true })
 </script>
 
 <template>
   <TabsRoot
     v-bind="props"
-    v-model="model"
+    v-model="modelValue"
   >
     <TabsBase>
       <TabsList>
