@@ -89,7 +89,12 @@ export function defineComponentVariant<
 >(
   classVariant: ClassVariant<TComponent, TTarget, TTargetPropValue>,
 ): ClassVariant<TComponent, TTarget, TTargetPropValue> {
-  const existingVariant = customClassVariants.find(
+  const componentCustomVariants = customClassVariants.filter((variant) => {
+    return variant.component === classVariant.component
+      && (variant.theme === classVariant.theme || variant.theme === undefined)
+  })
+
+  const existingVariant = componentCustomVariants.find(
     (variant) => variant.target?.prop === classVariant.target?.prop
       && variant.target?.value === classVariant.target?.value,
   ) ?? null
