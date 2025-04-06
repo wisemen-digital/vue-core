@@ -45,7 +45,7 @@ export const createTabsStyle = tv({
           .build(),
         item: new StyleBuilder()
           .withOutline('outline-2 outline-transparent focus-visible:outline-fg-brand-primary-alt')
-          .withColor('data-[state=active]:text-secondary data-[state=inactive]:text-quaternary enabled:data-[state=inactive]:hover:text-tertiary disabled:opacity-75')
+          .withColor('data-[state=active]:text-secondary data-[state=inactive]:text-quaternary not-disabled:data-[state=inactive]:hover:text-tertiary disabled:opacity-75')
           .withSpacing('py-md px-lg')
           .withBorderRadius('rounded-sm')
           .build(),
@@ -60,7 +60,7 @@ export const createTabsStyle = tv({
           .withBackgroundColor('bg-brand-primary-alt')
           .build(),
         item: new StyleBuilder()
-          .withColor('data-[state=active]:text-brand-secondary data-[state=inactive]:text-quaternary enabled:data-[state=inactive]:hover:text-tertiary disabled:opacity-75')
+          .withColor('data-[state=active]:text-brand-secondary data-[state=inactive]:text-quaternary not-disabled:data-[state=inactive]:hover:text-tertiary disabled:opacity-75')
           .withOutline('outline-2 outline-transparent focus-visible:outline-fg-brand-primary-alt')
           .withBorderRadius('rounded-sm')
           .withSpacing('py-md px-lg')
@@ -81,7 +81,7 @@ export const createTabsStyle = tv({
           .withBorderRadius('rounded-md')
           .withOutline('outline-2 outline-transparent focus-visible:outline-fg-brand-primary-alt')
           .withColor('data-[state=active]:text-brand-secondary data-[state=inactive]:text-quaternary disabled:opacity-75')
-          .withBackgroundColor('enabled:hover:bg-primary-hover enabled:data-[state=active]:hover:bg-brand-primary-alt')
+          .withBackgroundColor('not-disabled:hover:bg-primary-hover not-disabled:data-[state=active]:hover:bg-brand-primary-alt')
           .build(),
         list: new StyleBuilder()
           .withSpacing('gap-lg')
