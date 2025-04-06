@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<{
     :id="props.id"
     :as-child="props.as === null"
     :as="props.as ?? undefined"
-    :test-id="props.testId"
+    :data-test-id="props.testId"
   >
     <slot />
   </Primitive>
