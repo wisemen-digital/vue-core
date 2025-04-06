@@ -13,14 +13,14 @@ This component is build on top of the [Form Field](/packages/components-next/com
 import {
   FormField,
   CheckboxRoot,
-  CheckboxIndicator,
+  CheckboxControl,
 } from '@wisemen/vue-core-components'
 </script>
 
 <template>
   <FormField>
     <CheckboxRoot>
-      <CheckboxIndicator />
+      <CheckboxControl />
     </CheckboxRoot>
   </FormField>
 </template>
