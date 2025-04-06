@@ -216,7 +216,7 @@ function onRootFocusOut(): void {
   setTimeout(() => {
     const isFocusInsideRoot = rootRef.value?.$el.contains(document.activeElement)
 
-    if (!isFocusInsideRoot && !isDropdownVisible.value) {
+    if (!isFocusInsideRoot && (!isDropdownVisible.value || props.isDropdownHidden)) {
       hasSelectRootFocusIn.value = false
 
       onBlur()
