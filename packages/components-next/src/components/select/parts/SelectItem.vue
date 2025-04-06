@@ -11,9 +11,14 @@ import SelectItemIndicator from '@/components/select/parts/SelectItemIndicator.v
 import { useInjectSelectContext } from '@/components/select/select.context'
 import type { SelectItemProps } from '@/components/select/select.props'
 import { useInjectSelectGroupContext } from '@/components/select/selectGroup.context'
+import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
 import { mergeClasses } from '@/customClassVariants'
 
-const props = withDefaults(defineProps<SelectItemProps>(), { isDisabled: false })
+const props = withDefaults(defineProps<SelectItemProps>(), {
+  id: null,
+  testId: null,
+  isDisabled: false,
+})
 
 const {
   allGroups,
@@ -84,17 +89,22 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <RekaListboxItem
+  <PrimitiveElement
     v-if="filteredItems.has(id) || virtualList?.isEnabled"
-    :value="props.value"
-    :disabled="props.isDisabled"
-    :class="style.item({ class: mergeClasses(customClassConfig.item, classConfig?.item) })"
-    @select="onSelect"
+    :id="props.id"
+    :test-id="props.testId"
   >
-    <slot />
+    <RekaListboxItem
+      :value="props.value"
+      :disabled="props.isDisabled"
+      :class="style.item({ class: mergeClasses(customClassConfig.item, classConfig?.item) })"
+      @select="onSelect"
+    >
+      <slot />
 
-    <slot name="indicator">
-      <SelectItemIndicator />
-    </slot>
-  </RekaListboxItem>
+      <slot name="indicator">
+        <SelectItemIndicator />
+      </slot>
+    </RekaListboxItem>
+  </PrimitiveElement>
 </template>
