@@ -8,6 +8,12 @@
     'required': false
   },
   {
+    'name': 'clearSearchTermOnSelect',
+    'description': '<p>Whether to clear the search term when an item is selected.</p>\n',
+    'type': 'boolean',
+    'required': false
+  },
+  {
     'name': 'debounceTimeoutInMs',
     'description': '<p>The debounce timeout in milliseconds.</p>\n',
     'type': 'number',

@@ -89,6 +89,7 @@ onBeforeUnmount(() => {
       duration: 0.3,
     }"
     tabindex="-1"
+    class="overflow-hidden"
   >
     <div ref="listboxContentWrapperRef">
       <RekaListboxContent

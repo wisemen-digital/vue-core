@@ -40,6 +40,7 @@ const props = withDefaults(defineProps<SelectProps<TValue>>(), {
   isSearchTermControlled: false,
   isTouched: false,
   classConfig: null,
+  clearSearchTermOnSelect: false,
   errorMessage: null,
   filter: null,
   hint: null,
@@ -175,7 +176,11 @@ function setIsDropdownVisible(value: boolean): void {
 }
 
 function resetSearchTerm(): void {
-  if (isMultiple.value || !hasInlineSearchInput.value || modelValue.value === null) {
+  if (isMultiple.value
+    || !hasInlineSearchInput.value
+    || modelValue.value === null
+    || props.clearSearchTermOnSelect
+  ) {
     searchTerm.value = ''
 
     return

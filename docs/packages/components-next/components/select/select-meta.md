@@ -9,6 +9,13 @@
     'default': 'null'
   },
   {
+    'name': 'clearSearchTermOnSelect',
+    'description': '<p>Whether to clear the search term when an item is selected.</p>\n',
+    'type': 'boolean',
+    'required': false,
+    'default': 'false'
+  },
+  {
     'name': 'displayFn',
     'description': '<p>A function that determines how selected options are displayed in the input field.\nIt receives the selected option as an argument and should return a string representation.</p>\n',
     'type': 'SelectDisplayFn<SelectValue>',
