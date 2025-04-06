@@ -23,6 +23,9 @@ export const createIconButtonStyle = tv({
         loader: new StyleBuilder()
           .withSize('size-6')
           .build(),
+        root: new StyleBuilder()
+          .withSize('w-15')
+          .build(),
       },
       'lg': {
         icon: new StyleBuilder()
@@ -30,6 +33,9 @@ export const createIconButtonStyle = tv({
           .build(),
         loader: new StyleBuilder()
           .withSize('size-5')
+          .build(),
+        root: new StyleBuilder()
+          .withSize('w-11')
           .build(),
       },
       'md': {
@@ -39,6 +45,9 @@ export const createIconButtonStyle = tv({
         loader: new StyleBuilder()
           .withSize('size-5')
           .build(),
+        root: new StyleBuilder()
+          .withSize('w-10')
+          .build(),
       },
       'sm': {
         icon: new StyleBuilder()
@@ -47,6 +56,9 @@ export const createIconButtonStyle = tv({
         loader: new StyleBuilder()
           .withSize('size-4')
           .build(),
+        root: new StyleBuilder()
+          .withSize('w-9')
+          .build(),
       },
       'xl': {
         icon: new StyleBuilder()
@@ -54,6 +66,9 @@ export const createIconButtonStyle = tv({
           .build(),
         loader: new StyleBuilder()
           .withSize('size-5')
+          .build(),
+        root: new StyleBuilder()
+          .withSize('w-12')
           .build(),
       },
     },
