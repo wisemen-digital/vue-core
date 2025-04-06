@@ -92,10 +92,6 @@ function onBlur(): void {
   }
 }
 
-function onInput(): void {
-  modelValue.value = null as TValue
-}
-
 function onUpdateIsOpen(isOpen: boolean): void {
   if (!isOpen) {
     delegatedItems.value = []
@@ -127,23 +123,6 @@ watch(searchTerm, (searchTerm) => {
 watch(() => props.items, (newItems) => {
   delegatedItems.value = newItems
 })
-
-watch(modelValue, (modelValue) => {
-  if (modelValue === null) {
-    return
-  }
-
-  if (modelValue === null) {
-    searchTerm.value = ''
-  }
-  else {
-    updateSearchTermWithValue(modelValue)
-  }
-})
-
-if (modelValue.value !== null) {
-  updateSearchTermWithValue(modelValue.value)
-}
 </script>
 
 <template>
@@ -160,7 +139,6 @@ if (modelValue.value !== null) {
     :is-loading="props.isLoading || isDebouncing"
     @blur="onBlur"
     @focus="onFocus"
-    @input="onInput"
     @update:is-open="onUpdateIsOpen"
   >
     <template #base>
