@@ -1,4 +1,5 @@
 import type { TextButtonProps } from '@/components/button/shared/textButton.props'
+import type { Routes } from '@/types/routes.type'
 
 export interface RouterLinkButtonProps extends Omit<TextButtonProps, 'isDisabled' | 'isLoading' | 'type'> {
   /**

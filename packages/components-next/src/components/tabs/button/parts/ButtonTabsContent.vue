@@ -24,7 +24,7 @@ const {
     :test-id="props.testId"
   >
     <RekaTabsContent
-      :value="JSON.stringify(props.value)"
+      :value="props.value"
       :class="style.content({
         class: mergeClasses(customClassConfig.content, classConfig?.content),
       })"

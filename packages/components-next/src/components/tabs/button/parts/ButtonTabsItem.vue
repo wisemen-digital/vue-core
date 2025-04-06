@@ -27,7 +27,7 @@ const {
   >
     <InteractableElement :is-disabled="props.isDisabled">
       <RekaTabsTrigger
-        :value="JSON.stringify(props.value)"
+        :value="props.value"
         :class="style.item({
           class: mergeClasses(customClassConfig.item, classConfig?.item),
         })"
