@@ -24,7 +24,7 @@
   ],
   "scripts": {
     "prerelease": "pnpm version prerelease --preid=alpha",
-    "build": "pnpm type-check && pnpm build-only && npm pack",
+    "build": "pnpm type-check && pnpm build-only && pnpm pack",
     "precommit": "pnpm type-check && test:unit && pnpm build-only",
     "build-only": "vite build",
     "type-check": "vue-tsc -p tsconfig.check.json --noEmit",
