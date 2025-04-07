@@ -10,10 +10,10 @@ export const createKeyboardKeyStyle = tv({
       .withBackgroundColor('dark:bg-secondary')
       .withFontSize('text-[0.6875rem]')
       .withColor('text-tertiary')
-      .withSize('size-5')
+      .withSize('h-5 min-w-5')
+      .withPadding('px-xs')
       .withFlex('flex items-center justify-center')
       .withBorderRadius('rounded-xs')
-      .withPadding('p-xs')
       .withShadow('shadow-keyboard-key')
       .build(),
   },
