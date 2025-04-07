@@ -20,7 +20,7 @@ const items = Array.from(Array.from({ length: 2000 }), (_, i) => `${i + 1}`)
         :display-fn="(v) => v"
         :filter="{
           isEnabled: true,
-          isInline: false,
+          isInline: true,
         }"
         class="w-72"
       >

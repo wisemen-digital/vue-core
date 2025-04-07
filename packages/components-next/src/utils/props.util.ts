@@ -10,12 +10,7 @@ export type NonUndefined<T> = {
   [K in keyof T]-?: Exclude<T[K], undefined>;
 }
 
-export interface PrimitiveElement {
-  /**
-   * The id of the element. If set to `null`, no ID will be applied.
-   * @default null
-   */
-  id?: string | null
+export interface TestId {
   /**
    * A unique identifier used for testing purposes. If set to `null`, no test ID will be applied.
    * @default null
@@ -32,6 +27,11 @@ export interface InteractableElement {
 }
 
 export interface FormElement {
+  /**
+   * The id of the element. If set to `null`, no ID will be applied.
+   * @default null
+   */
+  id?: string | null
   /**
    * Whether the input is required.
    * @default false

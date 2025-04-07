@@ -21,8 +21,9 @@ import type {
 } from '@/components/select/select.props'
 import type { CreateSelectStyle } from '@/components/select/style/select.style'
 import { createSelectStyle } from '@/components/select/style/select.style'
-import InteractableElement from '@/components/shared/InteractableElement.vue'
-import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
+import FormControl from '@/components/shared/FormControl.vue'
+import type InteractableElement from '@/components/shared/InteractableElement.vue'
+import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 import {
   mergeClasses,
   useComponentClassConfig,
@@ -299,15 +300,15 @@ useProvideSelectContext({
 </script>
 
 <template>
-  <PrimitiveElement
-    :id="props.id"
-    :test-id="props.testId"
-  >
-    <InteractableElement
+  <TestIdProvider :test-id="props.testId">
+    <FormControl
+      :id="props.id"
       ref="rootRef"
       :is-disabled="props.isDisabled"
-      :aria-disabled="props.isLoading"
-      :aria-busy="props.isLoading"
+      :is-invalid="props.errorMessage !== null"
+      :is-loading="props.isLoading"
+      :is-required="props.isRequired"
+      :described-by="`${id}-error ${id}-hint`"
       :data-invalid="(props.errorMessage !== null && props.isTouched) || undefined"
       :data-icon-left="iconLeft !== null || undefined"
       :data-icon-right="iconRight !== null || undefined"
@@ -325,6 +326,6 @@ useProvideSelectContext({
       >
         <slot />
       </RekaListboxRoot>
-    </InteractableElement>
-  </PrimitiveElement>
+    </FormControl>
+  </TestIdProvider>
 </template>

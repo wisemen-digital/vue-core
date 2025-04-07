@@ -4,7 +4,7 @@ import { DialogContent as RekaDialogContent } from 'reka-ui'
 import { useAttrs } from 'vue'
 
 import { useInjectDialogContext } from '@/components/dialog/dialog.context'
-import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
+import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 import { mergeClasses } from '@/customClassVariants'
 
 defineOptions({ inheritAttrs: false })
@@ -17,7 +17,6 @@ defineSlots<{
 }>()
 
 const {
-  id,
   testId,
   isOpen,
   classConfig,
@@ -45,9 +44,8 @@ function onInteractOutside(event: CustomEvent): void {
 
 <template>
   <AnimatePresence>
-    <PrimitiveElement
+    <TestIdProvider
       v-if="isOpen"
-      :id="id"
       :test-id="testId"
     >
       <RekaDialogContent
@@ -63,6 +61,6 @@ function onInteractOutside(event: CustomEvent): void {
       >
         <slot />
       </RekaDialogContent>
-    </PrimitiveElement>
+    </TestIdProvider>
   </AnimatePresence>
 </template>

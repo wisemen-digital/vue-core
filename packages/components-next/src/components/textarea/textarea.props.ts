@@ -3,10 +3,10 @@ import type {
   CustomizableElement,
   FormElement,
   InteractableElement,
-  PrimitiveElement,
+  TestId,
 } from '@/utils/props.util'
 
-export interface TextareaProps extends PrimitiveElement, InteractableElement, FormElement, CustomizableElement<'textarea'> {
+export interface TextareaProps extends TestId, InteractableElement, FormElement, CustomizableElement<'textarea'> {
   /**
    * Whether the input is spell check enabled.
    * @default false

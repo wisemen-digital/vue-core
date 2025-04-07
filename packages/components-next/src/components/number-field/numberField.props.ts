@@ -4,10 +4,10 @@ import type {
   CustomizableElement,
   FormElement,
   InteractableElement,
-  PrimitiveElement,
+  TestId,
 } from '@/utils/props.util'
 
-export interface NumberFieldProps extends PrimitiveElement, InteractableElement, FormElement, CustomizableElement<'numberField', [
+export interface NumberFieldProps extends TestId, InteractableElement, FormElement, CustomizableElement<'numberField', [
   {
     name: 'increment'
     component: 'iconButton'

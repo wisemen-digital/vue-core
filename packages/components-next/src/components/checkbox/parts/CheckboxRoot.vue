@@ -8,7 +8,7 @@ import type { CheckboxProps } from '@/components/checkbox/checkbox.props'
 import type { CreateCheckboxStyle } from '@/components/checkbox/checkbox.style'
 import { createCheckboxStyle } from '@/components/checkbox/checkbox.style'
 import FormControl from '@/components/shared/FormControl.vue'
-import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
+import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 import {
   mergeClasses,
   useComponentClassConfig,
@@ -71,11 +71,9 @@ useProvideCheckboxContext({
 </script>
 
 <template>
-  <PrimitiveElement
-    :id="id"
-    :test-id="testId"
-  >
+  <TestIdProvider :test-id="testId">
     <FormControl
+      :id="id"
       :is-disabled="isDisabled"
       :is-invalid="errorMessage !== null"
       :is-required="isRequired"
@@ -95,5 +93,5 @@ useProvideCheckboxContext({
         <slot />
       </RekaCheckboxRoot>
     </FormControl>
-  </PrimitiveElement>
+  </TestIdProvider>
 </template>

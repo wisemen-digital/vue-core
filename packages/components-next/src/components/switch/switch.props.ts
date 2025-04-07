@@ -4,10 +4,10 @@ import type {
   CustomizableElement,
   FormElement,
   InteractableElement,
-  PrimitiveElement,
+  TestId,
 } from '@/utils/props.util'
 
-export interface SwitchProps extends PrimitiveElement, InteractableElement, FormElement, CustomizableElement<'switch'> {
+export interface SwitchProps extends TestId, InteractableElement, FormElement, CustomizableElement<'switch'> {
   /**
    * Defines the switch’s size.
    * @default 'md'

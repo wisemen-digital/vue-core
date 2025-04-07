@@ -8,7 +8,7 @@ import type { RadioGroupItemProps } from '@/components/radio-group-item/radioGro
 import type { CreateRadioGroupItemStyle } from '@/components/radio-group-item/radioGroupItem.style'
 import { createRadioGroupItemStyle } from '@/components/radio-group-item/radioGroupItem.style'
 import FormControl from '@/components/shared/FormControl.vue'
-import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
+import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 import {
   mergeClasses,
   useComponentClassConfig,
@@ -46,11 +46,9 @@ useProvideRadioGroupItemContext({
 </script>
 
 <template>
-  <PrimitiveElement
-    :id="id"
-    :test-id="testId"
-  >
+  <TestIdProvider :test-id="testId">
     <FormControl
+      :id="id"
       :is-disabled="isDisabled"
       :is-invalid="errorMessage !== null"
       :is-required="isRequired"
@@ -69,5 +67,5 @@ useProvideRadioGroupItemContext({
         <slot />
       </RekaRadioGroupItem>
     </FormControl>
-  </PrimitiveElement>
+  </TestIdProvider>
 </template>

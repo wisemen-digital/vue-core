@@ -1,10 +1,10 @@
 import type { GetComponentPropCustomValues } from '@/customClassVariants'
 import type {
   CustomizableElement,
-  PrimitiveElement,
+  TestId,
 } from '@/utils/props.util'
 
-export interface DialogProps extends PrimitiveElement, CustomizableElement<'dialog', [
+export interface DialogProps extends TestId, CustomizableElement<'dialog', [
   {
     name: 'closeButton'
     component: 'iconButton'

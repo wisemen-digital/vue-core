@@ -7,7 +7,7 @@ import type { DropdownMenuProps } from '@/components/dropdown-menu/dropdownMenu.
 import type { CreateDropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style'
 import { createDropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style'
 import InteractableElement from '@/components/shared/InteractableElement.vue'
-import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
+import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 import { useComponentClassConfig } from '@/customClassVariants'
 import { toComputedRefs } from '@/utils/props.util'
 
@@ -48,14 +48,11 @@ useProvideDropdownMenuContext({
 </script>
 
 <template>
-  <PrimitiveElement
-    :id="id"
-    :test-id="testId"
-  >
+  <TestIdProvider :test-id="testId">
     <InteractableElement :is-disabled="isDisabled">
       <RekaDropdownMenuRoot v-model:open="isOpen">
         <slot />
       </RekaDropdownMenuRoot>
     </InteractableElement>
-  </PrimitiveElement>
+  </TestIdProvider>
 </template>

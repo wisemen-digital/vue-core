@@ -4,10 +4,10 @@ import type { PopperPropsWithArrowVisibleByDefault } from '@/types/popperProps.t
 import type {
   CustomizableElement,
   InteractableElement,
-  PrimitiveElement,
+  TestId,
 } from '@/utils/props.util'
 
-export interface DropdownMenuProps extends PrimitiveElement,
+export interface DropdownMenuProps extends TestId,
   InteractableElement,
   PopperPropsWithArrowVisibleByDefault,
   CustomizableElement<'dropdownMenu'> {
@@ -17,7 +17,7 @@ export interface DropdownMenuProps extends PrimitiveElement,
   variant?: GetComponentPropCustomValues<'dropdownMenu', 'variant'> | null
 }
 
-export interface DropdownMenuItemProps extends PrimitiveElement, InteractableElement {
+export interface DropdownMenuItemProps extends TestId, InteractableElement {
   /**
    * Whether the item is destructive or dangerous.
    * @default false

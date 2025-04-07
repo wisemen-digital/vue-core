@@ -111,6 +111,7 @@ useProvideDateFieldContext({
 <template>
   <InteractableElement :is-disabled="props.isDisabled">
     <RekaDateFieldRoot
+      :id="props.id ?? undefined"
       v-slot="{ segments }"
       v-model="delegatedModel"
       :min-value="props.minDate === null ? undefined : dateToDateValue(props.minDate)"

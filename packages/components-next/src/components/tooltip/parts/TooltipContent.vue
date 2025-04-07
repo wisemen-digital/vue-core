@@ -2,12 +2,11 @@
 import { AnimatePresence } from 'motion-v'
 import { TooltipContent as RekaTooltipContent } from 'reka-ui'
 
-import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
+import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 import { useInjectTooltipContext } from '@/components/tooltip/tooltip.context'
 import { mergeClasses } from '@/customClassVariants'
 
 const {
-  id,
   testId,
   isOpen,
   classConfig,
@@ -25,9 +24,8 @@ const {
 
 <template>
   <AnimatePresence>
-    <PrimitiveElement
+    <TestIdProvider
       v-if="isOpen"
-      :id="id"
       :test-id="testId"
     >
       <RekaTooltipContent
@@ -47,6 +45,6 @@ const {
       >
         <slot />
       </RekaTooltipContent>
-    </PrimitiveElement>
+    </TestIdProvider>
   </AnimatePresence>
 </template>

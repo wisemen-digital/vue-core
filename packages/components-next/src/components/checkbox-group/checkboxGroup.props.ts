@@ -1,7 +1,7 @@
 import type {
   FormElement,
   InteractableElement,
-  PrimitiveElement,
+  TestId,
 } from '@/utils/props.util'
 
-export interface CheckboxGroupProps extends PrimitiveElement, InteractableElement, FormElement {}
+export interface CheckboxGroupProps extends TestId, InteractableElement, FormElement {}

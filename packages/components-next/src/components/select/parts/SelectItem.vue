@@ -11,11 +11,10 @@ import SelectItemIndicator from '@/components/select/parts/SelectItemIndicator.v
 import { useInjectSelectContext } from '@/components/select/select.context'
 import type { SelectItemProps } from '@/components/select/select.props'
 import { useInjectSelectGroupContext } from '@/components/select/selectGroup.context'
-import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
+import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 import { mergeClasses } from '@/customClassVariants'
 
 const props = withDefaults(defineProps<SelectItemProps>(), {
-  id: null,
   testId: null,
   isDisabled: false,
 })
@@ -89,9 +88,8 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <PrimitiveElement
+  <TestIdProvider
     v-if="filteredItems.has(id) || virtualList?.isEnabled"
-    :id="props.id"
     :test-id="props.testId"
   >
     <RekaListboxItem
@@ -106,5 +104,5 @@ onBeforeUnmount(() => {
         <SelectItemIndicator />
       </slot>
     </RekaListboxItem>
-  </PrimitiveElement>
+  </TestIdProvider>
 </template>

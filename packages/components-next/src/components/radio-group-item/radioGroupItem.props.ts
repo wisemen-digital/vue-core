@@ -5,12 +5,12 @@ import type {
   CustomizableElement,
   FormElement,
   InteractableElement,
-  PrimitiveElement,
+  TestId,
 } from '@/utils/props.util'
 
 export type RadioGroupItemValue = AcceptableValue
 
-export interface RadioGroupItemProps extends PrimitiveElement, InteractableElement, FormElement, CustomizableElement<'radioGroupItem'> {
+export interface RadioGroupItemProps extends TestId, InteractableElement, FormElement, CustomizableElement<'radioGroupItem'> {
   /**
    * The value of the radio group item.
    */

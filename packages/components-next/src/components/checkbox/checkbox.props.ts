@@ -5,12 +5,12 @@ import type {
   CustomizableElement,
   FormElement,
   InteractableElement,
-  PrimitiveElement,
+  TestId,
 } from '@/utils/props.util'
 
 export type CheckboxValue = AcceptableValue
 
-export interface CheckboxProps extends PrimitiveElement, InteractableElement, FormElement, CustomizableElement<'checkbox'> {
+export interface CheckboxProps extends TestId, InteractableElement, FormElement, CustomizableElement<'checkbox'> {
   /**
    * Whether the checkbox is indeterminate.
    * @default false

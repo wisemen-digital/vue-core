@@ -13,7 +13,7 @@ import type { DatePickerProps } from '@/components/date-picker/single/datePicker
 import type { CreateDatePickerStyle } from '@/components/date-picker/single/datePicker.style'
 import { createDatePickerStyle } from '@/components/date-picker/single/datePicker.style'
 import InteractableElement from '@/components/shared/InteractableElement.vue'
-import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
+import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 import { useComponentClassConfig } from '@/customClassVariants'
 import { toComputedRefs } from '@/utils/props.util'
 
@@ -82,10 +82,7 @@ useProvideDatePickerContext({
 </script>
 
 <template>
-  <PrimitiveElement
-    :id="props.id ?? null"
-    :test-id="props.testId ?? null"
-  >
+  <TestIdProvider :test-id="props.testId ?? null">
     <InteractableElement :is-disabled="props.isDisabled">
       <RekaCalendarRoot
         v-slot="{ weekDays, grid }"
@@ -113,5 +110,5 @@ useProvideDatePickerContext({
         />
       </RekaCalendarRoot>
     </InteractableElement>
-  </PrimitiveElement>
+  </TestIdProvider>
 </template>
