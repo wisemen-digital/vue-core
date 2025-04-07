@@ -78,7 +78,7 @@ const value = ref<boolean>(true)
               preferences.
             </span>
           </Motion>
-        </animatepresence>
+        </AnimatePresence>
       </div>
     </div>
   </VcCheckboxRoot>
