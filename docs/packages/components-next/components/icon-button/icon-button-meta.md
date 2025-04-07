@@ -15,13 +15,6 @@
     'required': true
   },
   {
-    'name': 'id',
-    'description': '<p>The id of the element. If set to <code>null</code>, no ID will be applied.</p>\n',
-    'type': 'string | null',
-    'required': false,
-    'default': 'null'
-  },
-  {
     'name': 'isDisabled',
     'description': '<p>Determines whether the element is disabled. When <code>true</code>, the element becomes non-interactive.</p>\n',
     'type': 'boolean',

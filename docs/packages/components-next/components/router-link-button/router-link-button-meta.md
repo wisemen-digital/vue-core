@@ -23,13 +23,6 @@
     'default': 'null'
   },
   {
-    'name': 'id',
-    'description': '<p>The id of the element. If set to <code>null</code>, no ID will be applied.</p>\n',
-    'type': 'string | null',
-    'required': false,
-    'default': 'null'
-  },
-  {
     'name': 'size',
     'description': '<p>Defines the button’s size.</p>\n',
     'type': '\'md\' | \'2xl\' | \'lg\' | \'sm\' | \'xl\'',
@@ -46,7 +39,7 @@
   {
     'name': 'to',
     'description': '<p>The route to navigate to when the button is clicked.</p>\n',
-    'type': 'Routes',
+    'type': 'any',
     'required': true
   },
   {

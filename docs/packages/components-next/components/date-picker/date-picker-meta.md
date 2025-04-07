@@ -22,13 +22,6 @@
     'default': 'false'
   },
   {
-    'name': 'id',
-    'description': '<p>The id of the element. If set to <code>null</code>, no ID will be applied.</p>\n',
-    'type': 'string | null',
-    'required': false,
-    'default': 'null'
-  },
-  {
     'name': 'isDateDisabled',
     'description': '<p>A function to determine whether a specific date should be disabled.</p>\n<p>A date that is restricted by rules or settings, such as blackout dates, min/max date limits,\nor days that should never be selectable (e.g., weekends in a work calendar).\nThese dates are predefined as unselectable, regardless of external availability.</p>\n',
     'type': '((date: Date) => boolean)',

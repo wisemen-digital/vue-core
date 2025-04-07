@@ -8,13 +8,6 @@
     'required': false
   },
   {
-    'name': 'id',
-    'description': '<p>The id of the element. If set to <code>null</code>, no ID will be applied.</p>\n',
-    'type': 'string | null',
-    'required': false,
-    'default': 'null'
-  },
-  {
     'name': 'name',
     'description': '<p>The name of the user or entity represented by the avatar.\nThis is used for accessibility and as a fallback if no image is provided.</p>\n',
     'type': 'string',
