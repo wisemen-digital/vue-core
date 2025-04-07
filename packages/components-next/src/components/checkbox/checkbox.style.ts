@@ -16,8 +16,7 @@ export const createCheckboxStyle = tv({
       .withBackgroundColor('group-data-[state=checked]/checkbox:bg-brand-solid group-disabled/checkbox:group-data-[state=checked]/checkbox:bg-disabled-subtle group-disabled/checkbox:bg-disabled-subtle')
       // Error
       .withBackgroundColor('group-data-invalid/checkbox:group-data-[state=checked]/checkbox:bg-error-solid')
-      .withOutline('outline-2 outline-transparent group-focus-visible/checkbox:outline-brand-600 outline-offset-3 group-focus-visible/checkbox:group-data-invalid/checkbox:outline-error-600')
-      .withCursor('cursor-pointer group-disabled/checkbox:cursor-not-allowed')
+      .withOutline('outline-2 outline-transparent group-focus-visible/checkbox:outline-brand-600 outline-offset-1 group-focus-visible/checkbox:group-data-invalid/checkbox:outline-error-600')
       .withTransition('duration-300')
       .build(),
     indicator: new StyleBuilder()
@@ -27,6 +26,7 @@ export const createCheckboxStyle = tv({
       .build(),
     root: new StyleBuilder()
       .withBase('group/checkbox outline-none')
+      .withCursor('cursor-pointer disabled:cursor-not-allowed')
       .build(),
   },
   variants: { variant: {} },
