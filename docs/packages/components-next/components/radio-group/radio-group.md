@@ -58,4 +58,8 @@ import {
 
 <ComponentPreview name="radio-group/examples/error" />
 
+### Customize
+
+<ComponentPreview name="radio-group/examples/customize" />
+
 <!-- @include: ./radio-group-meta.md -->
