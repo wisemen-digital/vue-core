@@ -16,7 +16,7 @@ export const createTextareaStyle = tv({
       .build(),
     root: new StyleBuilder()
       .withBase('group/textarea overflow-hidden')
-      .withSize('data-[resize=none]:size-full data-[resize=vertical]:size-full data-[resize=auto-vertical]:size-full data-[resize=horizontal]:h-full data-[resize=both]:h-full')
+      .withSize('data-[resize=none]:w-full data-[resize=vertical]:w-full data-[resize=auto-vertical]:w-full h-fit')
       .withFlex('inline-flex flex-col')
       // Default
       .withBorder('border border-solid border-primary focus-within:border-brand-500')
