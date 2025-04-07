@@ -1,7 +1,10 @@
 <script setup lang="ts">
-import SelectSearchInput from '@/components/select/parts/SelectSearchInput.vue'
+import { ListboxFilter as RekaListboxFilter } from 'reka-ui'
+
 import { useInjectSelectContext } from '@/components/select/select.context'
-import TextField from '@/components/text-field/TextField.vue'
+import TextFieldIconLeft from '@/components/text-field/parts/TextFieldIconLeft.vue'
+import TextFieldInput from '@/components/text-field/parts/TextFieldInput.vue'
+import TextFieldRoot from '@/components/text-field/parts/TextFieldRoot.vue'
 
 const {
   hasScrolledInDropdownContent,
@@ -17,20 +20,23 @@ const {
     v-if="filter !== null && filter.isEnabled && !filter.isInline"
     class="p-xs relative pb-0"
   >
-    <SelectSearchInput
+    <TextFieldRoot
+      v-model="searchTerm"
       :placeholder="searchInputPlaceholder"
-      :as-child="true"
+      :class-config="{
+        root: 'border-none shadow-none outline-none bg-secondary h-8 rounded-sm',
+        iconLeft: 'ml-md',
+        ...classConfig?.dropdownSearchInput,
+      }"
     >
-      <TextField
-        v-model="searchTerm"
-        :class-config="{
-          root: 'border-none shadow-none outline-none bg-secondary h-8 rounded-sm',
-          iconLeft: 'ml-md',
-          ...classConfig?.dropdownSearchInput,
-        }"
-        icon-left="search"
-      />
-    </SelectSearchInput>
+      <TextFieldIconLeft />
+
+      <RekaListboxFilter
+        :as-child="true"
+      >
+        <TextFieldInput />
+      </RekaListboxFilter>
+    </TextFieldRoot>
 
     <div
       v-if="hasScrolledInDropdownContent"

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import FormControl from '@/components/shared/FormControl.vue'
-import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
+import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 import { useInjectTextFieldContext } from '@/components/text-field/textField.context'
 import { mergeClasses } from '@/customClassVariants'
 
@@ -29,11 +29,9 @@ function onInput(event: InputEvent): void {
 </script>
 
 <template>
-  <PrimitiveElement
-    :id="id"
-    :test-id="testId"
-  >
+  <TestIdProvider :test-id="testId">
     <FormControl
+      :id="id"
       :value="modelValue"
       :is-loading="isLoading"
       :is-disabled="isDisabled"
@@ -52,5 +50,5 @@ function onInput(event: InputEvent): void {
       @blur="onBlur"
       @input="onInput"
     />
-  </PrimitiveElement>
+  </TestIdProvider>
 </template>

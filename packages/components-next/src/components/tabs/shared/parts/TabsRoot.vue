@@ -2,7 +2,7 @@
 import { TabsRoot as RekaTabsRoot } from 'reka-ui'
 import { computed } from 'vue'
 
-import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
+import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 import { useProvideTabsContext } from '@/components/tabs/shared/tabs.context'
 import type { TabsProps } from '@/components/tabs/shared/tabs.props'
 import type { CreateTabsStyle } from '@/components/tabs/shared/tabs.style'
@@ -11,7 +11,6 @@ import { useComponentClassConfig } from '@/customClassVariants'
 import { toComputedRefs } from '@/utils/props.util'
 
 const props = withDefaults(defineProps<TabsProps>(), {
-  id: null,
   testId: null,
   isDisabled: false,
   classConfig: null,
@@ -33,15 +32,12 @@ useProvideTabsContext({
 </script>
 
 <template>
-  <PrimitiveElement
-    :id="props.id"
-    :test-id="props.testId"
-  >
+  <TestIdProvider :test-id="props.testId">
     <RekaTabsRoot
       v-model="modelValue"
       :orientation="props.orientation"
     >
       <slot />
     </RekaTabsRoot>
-  </PrimitiveElement>
+  </TestIdProvider>
 </template>

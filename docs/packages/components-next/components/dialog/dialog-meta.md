@@ -16,13 +16,6 @@
     'default': 'false'
   },
   {
-    'name': 'id',
-    'description': '<p>The id of the element. If set to <code>null</code>, no ID will be applied.</p>\n',
-    'type': 'string | null',
-    'required': false,
-    'default': 'null'
-  },
-  {
     'name': 'preventClickOutside',
     'description': '<p>Prevent clicks outside the dialog content to close the dialog.</p>\n',
     'type': 'boolean',

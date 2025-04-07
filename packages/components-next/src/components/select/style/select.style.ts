@@ -53,11 +53,15 @@ export const createSelectStyle = tv({
       .withColor('text-quaternary group-data-disabled/select:text-fg-disabled')
       .build(),
     inlineSearchInput: new StyleBuilder()
+      .withOutline('outline-none')
       .withBase('z-10')
       .withSize('size-full')
+      .withFontSize('text-sm')
       .withColor('text-primary')
+      .withBackgroundColor('bg-transparent')
       .withPadding('px-3 group-data-icon-left/select:pl-2 group-data-icon-right/select:pr-2')
       .withCursor('disabled:cursor-not-allowed')
+
       .build(),
     item: new StyleBuilder()
       .withBase('outline-none')

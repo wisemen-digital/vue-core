@@ -29,6 +29,13 @@
     'default': 'null'
   },
   {
+    'name': 'id',
+    'description': '<p>The id of the element. If set to <code>null</code>, no ID will be applied.</p>\n',
+    'type': 'string | null',
+    'required': false,
+    'default': 'null'
+  },
+  {
     'name': 'isRequired',
     'description': '<p>Whether the input is required.</p>\n',
     'type': 'boolean',

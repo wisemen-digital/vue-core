@@ -7,7 +7,7 @@ import type { CreateButtonStyle } from '@/components/button/default-button/butto
 import { createButtonStyle } from '@/components/button/default-button/button.style'
 import type { ButtonEmits } from '@/components/button/shared/sharedButton.props'
 import InteractableElement from '@/components/shared/InteractableElement.vue'
-import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
+import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 import {
   mergeClasses,
   useComponentClassConfig,
@@ -55,10 +55,7 @@ useProvideButtonContext({
 </script>
 
 <template>
-  <PrimitiveElement
-    :id="props.id"
-    :test-id="props.testId"
-  >
+  <TestIdProvider :test-id="props.testId">
     <InteractableElement
       :is-disabled="props.isDisabled"
       :aria-disabled="props.isLoading"
@@ -73,5 +70,5 @@ useProvideButtonContext({
     >
       <slot />
     </InteractableElement>
-  </PrimitiveElement>
+  </TestIdProvider>
 </template>

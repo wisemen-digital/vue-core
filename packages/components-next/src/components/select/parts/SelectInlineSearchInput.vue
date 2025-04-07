@@ -1,10 +1,10 @@
 <script setup lang="ts">
+import { ListboxFilter as RekaListboxFilter } from 'reka-ui'
 import {
   onMounted,
   ref,
 } from 'vue'
 
-import SelectSearchInput from '@/components/select/parts/SelectSearchInput.vue'
 import { useInjectSelectContext } from '@/components/select/select.context'
 import { mergeClasses } from '@/customClassVariants'
 
@@ -16,13 +16,19 @@ const {
   inlinesearchInputElementRef,
   placeholder,
   searchInputPlaceholder,
+  setIsDropdownVisible,
   style,
 } = useInjectSelectContext()
 
-const listboxFilterRef = ref<InstanceType<typeof SelectSearchInput>>()
+const listboxFilterRef = ref<InstanceType<typeof RekaListboxFilter>>()
 
 function onInput(): void {
   hasInteractedWithInlineSearchInput.value = true
+  openDropdown()
+}
+
+function openDropdown(): void {
+  setIsDropdownVisible(true)
 }
 
 onMounted(() => {
@@ -31,7 +37,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <SelectSearchInput
+  <RekaListboxFilter
     ref="listboxFilterRef"
     :disabled="isDisabled"
     :class="style.inlineSearchInput({
@@ -42,5 +48,6 @@ onMounted(() => {
     role="combobox"
     autocomplete="false"
     @input="onInput"
+    @keydown.up.down.prevent="openDropdown"
   />
 </template>

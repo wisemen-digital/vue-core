@@ -4,10 +4,10 @@ import type {
   CustomizableElement,
   FormElement,
   InteractableElement,
-  PrimitiveElement,
+  TestId,
 } from '@/utils/props.util'
 
-export interface TextFieldProps extends PrimitiveElement, InteractableElement, FormElement, CustomizableElement<'textField'> {
+export interface TextFieldProps extends TestId, InteractableElement, FormElement, CustomizableElement<'textField'> {
   /**
    * Whether the input is loading.
    * @default false

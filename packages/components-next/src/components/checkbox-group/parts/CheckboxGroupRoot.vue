@@ -9,7 +9,7 @@ import {
 import type { CheckboxGroupEmits } from '@/components/checkbox-group/checkboxGroup.emits'
 import type { CheckboxGroupProps } from '@/components/checkbox-group/checkboxGroup.props'
 import InteractableElement from '@/components/shared/InteractableElement.vue'
-import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
+import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 import { useFocusOut } from '@/composables/focus-out/focusOut.composable'
 
 const props = withDefaults(defineProps<CheckboxGroupProps>(), {
@@ -38,10 +38,7 @@ useFocusOut(
 </script>
 
 <template>
-  <PrimitiveElement
-    :id="props.id"
-    :test-id="props.testId"
-  >
+  <TestIdProvider :test-id="props.testId">
     <InteractableElement :is-disabled="props.isDisabled">
       <RekaCheckboxGroupRoot
         ref="checkboxGroupRootRef"
@@ -51,5 +48,5 @@ useFocusOut(
         <slot />
       </RekaCheckboxGroupRoot>
     </InteractableElement>
-  </PrimitiveElement>
+  </TestIdProvider>
 </template>

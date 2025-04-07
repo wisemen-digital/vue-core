@@ -5,10 +5,10 @@ import type {
   CustomizableElement,
   FormElement,
   InteractableElement,
-  PrimitiveElement,
+  TestId,
 } from '@/utils/props.util'
 
-export interface DateFieldProps extends PrimitiveElement, InteractableElement, FormElement, SharedDateProps, CustomizableElement<'dateField', [
+export interface DateFieldProps extends TestId, InteractableElement, FormElement, SharedDateProps, CustomizableElement<'dateField', [
   {
     name: 'datePicker'
     component: 'datePicker'

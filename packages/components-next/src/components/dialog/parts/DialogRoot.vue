@@ -9,7 +9,7 @@ import { useProvideDialogContext } from '@/components/dialog/dialog.context'
 import type { DialogProps } from '@/components/dialog/dialog.props'
 import type { CreateDialogStyle } from '@/components/dialog/dialog.style'
 import { createDialogStyle } from '@/components/dialog/dialog.style'
-import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
+import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 import { useComponentClassConfig } from '@/customClassVariants'
 import { toComputedRefs } from '@/utils/props.util'
 
@@ -57,15 +57,12 @@ useProvideDialogContext({
 </script>
 
 <template>
-  <PrimitiveElement
-    :id="props.id"
-    :test-id="props.testId"
-  >
+  <TestIdProvider :test-id="props.testId">
     <RekaDialogRoot
       v-model:open="isOpen"
       :modal="!props.hideOverlay"
     >
       <slot />
     </RekaDialogRoot>
-  </PrimitiveElement>
+  </TestIdProvider>
 </template>

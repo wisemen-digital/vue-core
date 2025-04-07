@@ -3,7 +3,7 @@ import { SwitchRoot as RekaSwitchRoot } from 'reka-ui'
 import { computed } from 'vue'
 
 import FormControl from '@/components/shared/FormControl.vue'
-import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
+import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 import { useProvideSwitchContext } from '@/components/switch/switch.context'
 import type { SwitchEmits } from '@/components/switch/switch.emits'
 import type { SwitchProps } from '@/components/switch/switch.props'
@@ -51,11 +51,9 @@ useProvideSwitchContext({
 </script>
 
 <template>
-  <PrimitiveElement
-    :id="id"
-    :test-id="testId"
-  >
+  <TestIdProvider :test-id="testId">
     <FormControl
+      :id="id"
       :is-disabled="isDisabled"
       :is-invalid="errorMessage !== null"
       :is-required="isRequired"
@@ -74,5 +72,5 @@ useProvideSwitchContext({
         <slot />
       </RekaSwitchRoot>
     </FormControl>
-  </PrimitiveElement>
+  </TestIdProvider>
 </template>

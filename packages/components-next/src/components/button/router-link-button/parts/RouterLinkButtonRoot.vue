@@ -6,7 +6,7 @@ import type { CreateButtonStyle } from '@/components/button/default-button/butto
 import { createButtonStyle } from '@/components/button/default-button/button.style'
 import { useProvideRouterLinkButtonContext } from '@/components/button/router-link-button/routerLinkButton.context'
 import type { RouterLinkButtonProps } from '@/components/button/router-link-button/routerLinkButton.props'
-import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
+import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 import {
   mergeClasses,
   useComponentClassConfig,
@@ -42,10 +42,7 @@ useProvideRouterLinkButtonContext({
 </script>
 
 <template>
-  <PrimitiveElement
-    :id="props.id"
-    :test-id="props.testId"
-  >
+  <TestIdProvider :test-id="props.testId">
     <RouterLink
       :class="buttonStyle.root({
         class: mergeClasses(customClassConfig.root, props.classConfig?.root),
@@ -55,5 +52,5 @@ useProvideRouterLinkButtonContext({
     >
       <slot />
     </RouterLink>
-  </PrimitiveElement>
+  </TestIdProvider>
 </template>

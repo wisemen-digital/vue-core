@@ -7,7 +7,8 @@ import {
 } from 'vue'
 
 import { useInjectConfigContext } from '@/components/config-provider/config.context'
-import InteractableElement from '@/components/shared/InteractableElement.vue'
+import FormControl from '@/components/shared/FormControl.vue'
+import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 import { useProvideTimeFieldContext } from '@/components/time-field/timeField.context'
 import type { TimeFieldEmits } from '@/components/time-field/timeField.emits'
 import type { TimeFieldProps } from '@/components/time-field/timeField.props'
@@ -115,25 +116,35 @@ useProvideTimeFieldContext({
 </script>
 
 <template>
-  <InteractableElement :is-disabled="props.isDisabled">
-    <RekaTimeFieldRoot
-      v-slot="{ segments }"
-      v-model="delegatedModel"
-      :locale="locale"
-      :required="props.isRequired"
-      :is-invalid="props.errorMessage !== null"
+  <TestIdProvider :test-id="props.testId">
+    <FormControl
+      :id="props.id"
+      :value="modelValue"
+      :is-loading="isLoading"
+      :is-disabled="isDisabled"
+      :is-invalid="errorMessage !== null"
+      :is-required="isRequired"
+      :described-by="`${id}-error ${id}-hint`"
     >
-      <!-- For some reason, the data- bindings don't work on the `RekaTimeFieldRoot` component -->
-      <div
-        :data-icon-left="props.iconLeft !== null || undefined"
-        :data-invalid="(props.errorMessage !== null && props.isTouched) || undefined"
-        :data-disabled="props.isDisabled || undefined"
-        :class="timeFieldStyle.root({
-          class: mergeClasses(customClassConfig.root, props.classConfig?.root),
-        })"
+      <RekaTimeFieldRoot
+        v-slot="{ segments }"
+        v-model="delegatedModel"
+        :locale="locale"
+        :required="props.isRequired"
+        :is-invalid="props.errorMessage !== null"
       >
-        <slot :segments="segments" />
-      </div>
-    </RekaTimeFieldRoot>
-  </InteractableElement>
+        <!-- For some reason, the data- bindings don't work on the `RekaTimeFieldRoot` component -->
+        <div
+          :data-icon-left="props.iconLeft !== null || undefined"
+          :data-invalid="(props.errorMessage !== null && props.isTouched) || undefined"
+          :data-disabled="props.isDisabled || undefined"
+          :class="timeFieldStyle.root({
+            class: mergeClasses(customClassConfig.root, props.classConfig?.root),
+          })"
+        >
+          <slot :segments="segments" />
+        </div>
+      </RekaTimeFieldRoot>
+    </FormControl>
+  </TestIdProvider>
 </template>

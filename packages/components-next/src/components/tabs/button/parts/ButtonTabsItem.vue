@@ -2,13 +2,12 @@
 import { TabsTrigger as RekaTabsTrigger } from 'reka-ui'
 
 import InteractableElement from '@/components/shared/InteractableElement.vue'
-import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
+import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 import type { ButtonTabsItemProps } from '@/components/tabs/button/buttonTabs.props'
 import { useInjectTabsContext } from '@/components/tabs/shared/tabs.context'
 import { mergeClasses } from '@/customClassVariants'
 
 const props = withDefaults(defineProps<ButtonTabsItemProps>(), {
-  id: null,
   testId: null,
   isDisabled: false,
 })
@@ -21,10 +20,7 @@ const {
 </script>
 
 <template>
-  <PrimitiveElement
-    :id="props.id"
-    :test-id="props.testId"
-  >
+  <TestIdProvider :test-id="props.testId">
     <InteractableElement :is-disabled="props.isDisabled">
       <RekaTabsTrigger
         :value="props.value"
@@ -35,5 +31,5 @@ const {
         <slot />
       </RekaTabsTrigger>
     </InteractableElement>
-  </PrimitiveElement>
+  </TestIdProvider>
 </template>

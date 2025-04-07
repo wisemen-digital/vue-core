@@ -1,15 +1,12 @@
 <script setup lang="ts">
 import { TabsContent as RekaTabsContent } from 'reka-ui'
 
-import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
+import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 import type { ButtonTabsContentProps } from '@/components/tabs/button/buttonTabs.props'
 import { useInjectTabsContext } from '@/components/tabs/shared/tabs.context'
 import { mergeClasses } from '@/customClassVariants'
 
-const props = withDefaults(defineProps<ButtonTabsContentProps>(), {
-  id: null,
-  testId: null,
-})
+const props = withDefaults(defineProps<ButtonTabsContentProps>(), { testId: null })
 
 const {
   classConfig,
@@ -19,10 +16,7 @@ const {
 </script>
 
 <template>
-  <PrimitiveElement
-    :id="props.id"
-    :test-id="props.testId"
-  >
+  <TestIdProvider :test-id="props.testId">
     <RekaTabsContent
       :value="props.value"
       :class="style.content({
@@ -31,5 +25,5 @@ const {
     >
       <slot />
     </RekaTabsContent>
-  </PrimitiveElement>
+  </TestIdProvider>
 </template>

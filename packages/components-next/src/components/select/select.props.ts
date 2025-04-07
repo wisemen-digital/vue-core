@@ -7,7 +7,7 @@ import type {
   CustomizableElement,
   FormElement,
   InteractableElement,
-  PrimitiveElement,
+  TestId,
 } from '@/utils/props.util'
 
 export type SelectValue = AcceptableValue | AcceptableValue[]
@@ -22,7 +22,7 @@ export type SelectDisplayFn<TValue extends SelectValue> = (
 ) => string
 
 export interface SelectProps<TValue extends SelectValue> extends
-  PrimitiveElement,
+  TestId,
   InteractableElement,
   FormElement,
   PopperPropsWithArrowHiddenByDefault,
@@ -141,7 +141,7 @@ export interface SelectProps<TValue extends SelectValue> extends
   } | null
 }
 
-export interface SelectItemProps extends PrimitiveElement {
+export interface SelectItemProps extends TestId {
   /**
    * Whether the option is disabled. If `true`, the option cannot be selected.
    * @default false

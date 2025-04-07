@@ -2,10 +2,10 @@ import type { GetComponentPropCustomValues } from '@/customClassVariants'
 import type { PopperPropsWithArrowVisibleByDefault } from '@/types/popperProps.type'
 import type {
   CustomizableElement,
-  PrimitiveElement,
+  TestId,
 } from '@/utils/props.util'
 
-export interface TooltipProps extends PopperPropsWithArrowVisibleByDefault, PrimitiveElement, CustomizableElement<'tooltip'> {
+export interface TooltipProps extends PopperPropsWithArrowVisibleByDefault, TestId, CustomizableElement<'tooltip'> {
   /**
    * When true, the tooltip will be hidden.
    * @default false

@@ -2,7 +2,7 @@
 import { useTextareaAutosize } from '@vueuse/core'
 
 import FormControl from '@/components/shared/FormControl.vue'
-import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
+import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 import { useInjectTextareaContext } from '@/components/textarea/textarea.context'
 import { mergeClasses } from '@/customClassVariants'
 
@@ -40,11 +40,9 @@ function onInput(event: InputEvent): void {
 </script>
 
 <template>
-  <PrimitiveElement
-    :id="id"
-    :test-id="testId"
-  >
+  <TestIdProvider :test-id="testId">
     <FormControl
+      :id="id"
       :value="modelValue"
       :is-disabled="isDisabled"
       :is-invalid="errorMessage !== null"
@@ -69,7 +67,7 @@ function onInput(event: InputEvent): void {
       />
       <textarea v-else />
     </FormControl>
-  </PrimitiveElement>
+  </TestIdProvider>
 </template>
 
 <style>
