@@ -14,7 +14,6 @@ export const createKeyboardKeyStyle = tv({
       .withPadding('px-xs')
       .withFlex('flex items-center justify-center')
       .withBorderRadius('rounded-xs')
-      .withPadding('p-xs')
       .withShadow('shadow-keyboard-key')
       .build(),
   },
