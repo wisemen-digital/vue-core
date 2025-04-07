@@ -14,7 +14,6 @@ import Select from '@/components/select/Select.vue'
 const props = withDefaults(defineProps<AutocompleteProps<TValue>>(), {
   debounceTimeoutInMs: 300,
   iconRight: null,
-  itemComponent: null,
 })
 
 const emit = defineEmits<{
@@ -76,22 +75,6 @@ const debounceSearch = useDebounceFn((searchTerm: string | null) => {
   emit('search', searchTerm)
 }, props.debounceTimeoutInMs)
 
-function updateSearchTermWithValue(value: TValue): void {
-  searchTerm.value = props.displayFn(value as any)
-}
-
-function onFocus(): void {}
-
-function onBlur(): void {
-  if (modelValue.value === null) {
-    // TODO: should this be reset?
-    // searchTerm.value = ''
-  }
-  else {
-    updateSearchTermWithValue(modelValue.value)
-  }
-}
-
 function onUpdateIsOpen(isOpen: boolean): void {
   if (!isOpen) {
     delegatedItems.value = []
@@ -137,8 +120,6 @@ watch(() => props.items, (newItems) => {
     }"
     :is-dropdown-hidden="!isDropdownVisible"
     :is-loading="props.isLoading || isDebouncing"
-    @blur="onBlur"
-    @focus="onFocus"
     @update:is-open="onUpdateIsOpen"
   >
     <template #base>
