@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
 
+import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 import Subgrid from '@/components/table/parts/Subgrid.vue'
 import TableCellLayout from '@/components/table/parts/TableCellLayout.vue'
 import { useInjectTableContext } from '@/components/table/table.context'
@@ -57,7 +58,9 @@ const {
       :key="column.key"
       :column="column"
     >
-      <Component :is="column.cell(props.data)" />
+      <TestIdProvider :test-id="column.testId ?? null">
+        <Component :is="column.cell(props.data)" />
+      </TestIdProvider>
     </TableCellLayout>
   </Subgrid>
 </template>
