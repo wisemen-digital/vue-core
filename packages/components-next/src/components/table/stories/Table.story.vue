@@ -54,7 +54,6 @@ const columns = computed<TableColumn<User>[]>(() => [
 const data = ref<PaginatedData<User> | null>(null)
 
 const isLoading = ref<boolean>(true)
-const isFetching = ref<boolean>(false)
 
 setTimeout(() => {
   isLoading.value = false
