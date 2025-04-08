@@ -6,6 +6,7 @@ import {
   DropdownMenuSubTrigger as RekaDropdownMenuSubTrigger,
 } from 'reka-ui'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectDropdownMenuContext } from '@/components/dropdown-menu/dropdownMenu.context'
 import type { DropdownMenuItemProps } from '@/components/dropdown-menu/dropdownMenu.props'
 import { useProvideDropdownMenuItemContext } from '@/components/dropdown-menu/dropdownMenuItem.context'
@@ -14,7 +15,6 @@ import DropdownMenuItemLabel from '@/components/dropdown-menu/parts/DropdownMenu
 import DropdownMenuPortal from '@/components/dropdown-menu/parts/DropdownMenuPortal.vue'
 import DropdownMenuSubMenuTransition from '@/components/dropdown-menu/parts/DropdownMenuSubMenuTransition.vue'
 import Icon from '@/components/icon/Icon.vue'
-import { mergeClasses } from '@/customClassVariants'
 import { toComputedRefs } from '@/utils/props.util'
 
 const props = withDefaults(defineProps<DropdownMenuItemProps>(), {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import Icon from '@/components/icon/Icon.vue'
 import { useInjectTimeFieldContext } from '@/components/time-field/timeField.context'
-import { mergeClasses } from '@/customClassVariants'
 
 const {
   classConfig,

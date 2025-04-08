@@ -1,10 +1,12 @@
+import type {
+  CustomizableElement,
+  GetComponentProp,
+} from '@/class-variant/classVariant.type'
 import type { SharedDatePickerProps } from '@/components/date-picker/shared/sharedDatePicker.props'
-import type { GetComponentPropCustomValues } from '@/customClassVariants'
-import type { CustomizableElement } from '@/utils/props.util'
 
 export interface DatePickerProps extends SharedDatePickerProps, CustomizableElement<'datePicker'> {
   /**
-   *
+   * Defines the visual style of the date picker.
    */
-  variant?: GetComponentPropCustomValues<'datePicker', 'variant'> | null
+  variant?: GetComponentProp<'datePicker', 'variant'> | null
 }

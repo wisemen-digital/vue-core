@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useId } from 'vue'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectSelectContext } from '@/components/select/select.context'
 import { useInjectSelectGroupContext } from '@/components/select/selectGroup.context'
-import { mergeClasses } from '@/customClassVariants'
 
 const {
   classConfig,

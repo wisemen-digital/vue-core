@@ -2,8 +2,8 @@
 import { AnimatePresence } from 'motion-v'
 import { DropdownMenuContent as RekaDropdownMenuContent } from 'reka-ui'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectDropdownMenuContext } from '@/components/dropdown-menu/dropdownMenu.context'
-import { mergeClasses } from '@/customClassVariants'
 
 const {
   isOpen,

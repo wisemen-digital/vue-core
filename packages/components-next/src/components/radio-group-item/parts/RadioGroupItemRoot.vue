@@ -2,6 +2,11 @@
 import { RadioGroupItem as RekaRadioGroupItem } from 'reka-ui'
 import { computed } from 'vue'
 
+import type { CustomComponentVariant } from '@/class-variant/classVariant.type'
+import {
+  getCustomComponentVariant,
+  mergeClasses,
+} from '@/class-variant/customClassVariants'
 import { useProvideRadioGroupItemContext } from '@/components/radio-group-item/radioGroupItem.context'
 import type { RadioGroupItemEmits } from '@/components/radio-group-item/radioGroupItem.emits'
 import type { RadioGroupItemProps } from '@/components/radio-group-item/radioGroupItem.props'
@@ -9,10 +14,7 @@ import type { CreateRadioGroupItemStyle } from '@/components/radio-group-item/ra
 import { createRadioGroupItemStyle } from '@/components/radio-group-item/radioGroupItem.style'
 import FormControl from '@/components/shared/FormControl.vue'
 import TestIdProvider from '@/components/shared/TestIdProvider.vue'
-import {
-  mergeClasses,
-  useComponentClassConfig,
-} from '@/customClassVariants'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { toComputedRefs } from '@/utils/props.util'
 
 const props = withDefaults(defineProps<RadioGroupItemProps>(), {
@@ -32,11 +34,15 @@ const props = withDefaults(defineProps<RadioGroupItemProps>(), {
 
 const emit = defineEmits<RadioGroupItemEmits>()
 
+const { theme } = injectThemeProviderContext()
+
 const radioGroupItemStyle = computed<CreateRadioGroupItemStyle>(
   () => createRadioGroupItemStyle({ variant: props.variant ?? undefined }),
 )
 
-const customClassConfig = useComponentClassConfig('radioGroupItem', { variant: props.variant ?? undefined })
+const customClassConfig = computed<CustomComponentVariant<'radioGroupItem'>>(
+  () => getCustomComponentVariant('radioGroupItem', theme.value, { variant: props.variant }),
+)
 
 useProvideRadioGroupItemContext({
   ...toComputedRefs(props),

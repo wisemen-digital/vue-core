@@ -2,6 +2,11 @@
 import { NumberFieldRoot as RekaNumberFieldRoot } from 'reka-ui'
 import { computed } from 'vue'
 
+import type { ResolvedClassConfig } from '@/class-variant/classVariant.type'
+import {
+  getCustomComponentVariant,
+  mergeClasses,
+} from '@/class-variant/customClassVariants'
 import { useInjectConfigContext } from '@/components/config-provider/config.context'
 import { useProvideNumberFieldContext } from '@/components/number-field/numberField.context'
 import type { NumberFieldEmits } from '@/components/number-field/numberField.emits'
@@ -9,10 +14,7 @@ import type { NumberFieldProps } from '@/components/number-field/numberField.pro
 import type { CreateNumberFieldStyle } from '@/components/number-field/numberField.style'
 import { createNumberFieldStyle } from '@/components/number-field/numberField.style'
 import InteractableElement from '@/components/shared/InteractableElement.vue'
-import {
-  mergeClasses,
-  useComponentClassConfig,
-} from '@/customClassVariants'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { toComputedRefs } from '@/utils/props.util'
 
 const props = withDefaults(defineProps<NumberFieldProps>(), {
@@ -56,12 +58,15 @@ const delegatedModel = computed<number | undefined>({
 })
 
 const { locale } = useInjectConfigContext()
+const { theme } = injectThemeProviderContext()
 
 const numberFieldStyle = computed<CreateNumberFieldStyle>(
   () => createNumberFieldStyle({ variant: props.variant ?? undefined }),
 )
 
-const customClassConfig = useComponentClassConfig('numberField', { variant: props.variant ?? undefined })
+const customClassConfig = computed<ResolvedClassConfig<'numberField'>>(
+  () => getCustomComponentVariant('numberField', theme.value, { variant: props.variant }),
+)
 
 function onBlur(event: FocusEvent): void {
   emit('blur', event)

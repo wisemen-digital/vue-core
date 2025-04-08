@@ -6,8 +6,8 @@ import {
 } from 'motion-v'
 import { CheckboxIndicator as RekaCheckboxIndicator } from 'reka-ui'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectCheckboxContext } from '@/components/checkbox/checkbox.context'
-import { mergeClasses } from '@/customClassVariants'
 
 const draw: Record<string, Variant> = {
   hidden: {

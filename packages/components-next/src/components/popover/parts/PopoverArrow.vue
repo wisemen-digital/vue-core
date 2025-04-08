@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { PopoverArrow as RekaPopoverArrow } from 'reka-ui'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectPopoverContext } from '@/components/popover/popover.context'
-import { mergeClasses } from '@/customClassVariants'
 
 const {
   isPopoverArrowHidden,

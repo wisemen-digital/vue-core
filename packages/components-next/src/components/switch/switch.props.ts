@@ -1,7 +1,8 @@
-import type { SwitchStyle } from '@/components/switch/switch.style'
-import type { GetComponentPropCustomValues } from '@/customClassVariants'
 import type {
   CustomizableElement,
+  GetComponentProp,
+} from '@/class-variant/classVariant.type'
+import type {
   FormElement,
   InteractableElement,
   TestId,
@@ -9,12 +10,12 @@ import type {
 
 export interface SwitchProps extends TestId, InteractableElement, FormElement, CustomizableElement<'switch'> {
   /**
-   * Defines the switch’s size.
+   * Defines the size of the switch.
    * @default 'md'
    */
-  size?: GetComponentPropCustomValues<'switch', 'size'> | SwitchStyle['size']
+  size?: GetComponentProp<'switch', 'size'>
   /**
-   *
+   * Defines the visual style of the switch.
    */
-  variant?: GetComponentPropCustomValues<'switch', 'variant'> | null
+  variant?: GetComponentProp<'switch', 'variant'> | null
 }

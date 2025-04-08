@@ -12,10 +12,10 @@ import {
 } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import IconButton from '@/components/button/icon-button/IconButton.vue'
 import SelectPlaceholder from '@/components/select/parts/SelectPlaceholder.vue'
 import { useInjectSelectContext } from '@/components/select/select.context'
-import { mergeClasses } from '@/customClassVariants'
 
 const {
   classConfig,

@@ -3,6 +3,8 @@ import type { DateValue } from 'reka-ui'
 import { CalendarRoot as RekaCalendarRoot } from 'reka-ui'
 import { computed } from 'vue'
 
+import type { ResolvedClassConfig } from '@/class-variant/classVariant.type'
+import { getCustomComponentVariant } from '@/class-variant/customClassVariants'
 import type { Grid } from '@/components/date-picker/shared/datePicker.type'
 import {
   dateToDateValue,
@@ -14,7 +16,7 @@ import type { CreateDatePickerStyle } from '@/components/date-picker/single/date
 import { createDatePickerStyle } from '@/components/date-picker/single/datePicker.style'
 import InteractableElement from '@/components/shared/InteractableElement.vue'
 import TestIdProvider from '@/components/shared/TestIdProvider.vue'
-import { useComponentClassConfig } from '@/customClassVariants'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { toComputedRefs } from '@/utils/props.util'
 
 const props = withDefaults(defineProps<DatePickerProps>(), {
@@ -66,11 +68,15 @@ const delegetedPlaceholderValue = computed<DateValue>({
   },
 })
 
+const { theme } = injectThemeProviderContext()
+
 const datePickerStyle = computed<CreateDatePickerStyle>(
   () => createDatePickerStyle({ variant: props.variant ?? undefined }),
 )
 
-const customClassConfig = useComponentClassConfig('datePicker', { variant: props.variant ?? undefined })
+const customClassConfig = computed<ResolvedClassConfig<'datePicker'>>(
+  () => getCustomComponentVariant('datePicker', theme.value, { variant: props.variant }),
+)
 
 useProvideDatePickerContext({
   ...toComputedRefs(props),

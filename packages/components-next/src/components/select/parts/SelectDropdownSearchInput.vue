@@ -9,6 +9,7 @@ import TextFieldRoot from '@/components/text-field/parts/TextFieldRoot.vue'
 const {
   hasScrolledInDropdownContent,
   classConfig,
+  customClassConfig,
   filter,
   searchInputPlaceholder,
   searchTerm,
@@ -26,6 +27,7 @@ const {
       :class-config="{
         root: 'border-none shadow-none outline-none bg-secondary h-8 rounded-sm',
         iconLeft: 'ml-md',
+        ...customClassConfig?.dropdownSearchInput,
         ...classConfig?.dropdownSearchInput,
       }"
     >

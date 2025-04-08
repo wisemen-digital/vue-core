@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import SelectPlaceholder from '@/components/select/parts/SelectPlaceholder.vue'
 import { useInjectSelectContext } from '@/components/select/select.context'
-import { mergeClasses } from '@/customClassVariants'
 
 const {
   classConfig,

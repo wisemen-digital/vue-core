@@ -2,6 +2,7 @@
 import { DropdownMenuItem as RekaDropdownMenuItem } from 'reka-ui'
 import { useAttrs } from 'vue'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectDropdownMenuContext } from '@/components/dropdown-menu/dropdownMenu.context'
 import type { DropdownMenuItemProps } from '@/components/dropdown-menu/dropdownMenu.props'
 import { useProvideDropdownMenuItemContext } from '@/components/dropdown-menu/dropdownMenuItem.context'
@@ -9,7 +10,6 @@ import DropdownMenuItemIcon from '@/components/dropdown-menu/parts/DropdownMenuI
 import DropdownMenuItemLabel from '@/components/dropdown-menu/parts/DropdownMenuItemLabel.vue'
 import InteractableElement from '@/components/shared/InteractableElement.vue'
 import TestIdProvider from '@/components/shared/TestIdProvider.vue'
-import { mergeClasses } from '@/customClassVariants'
 import { toComputedRefs } from '@/utils/props.util'
 
 const props = withDefaults(defineProps<DropdownMenuItemProps>(), {

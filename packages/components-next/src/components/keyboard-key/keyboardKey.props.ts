@@ -1,6 +1,8 @@
-import type { GetComponentPropCustomValues } from '@/customClassVariants'
+import type {
+  CustomizableElement,
+  GetComponentProp,
+} from '@/class-variant/classVariant.type'
 import type { KeyboardKey } from '@/types/keyboard.type'
-import type { CustomizableElement } from '@/utils/props.util'
 
 export interface KeyboardKeyProps extends CustomizableElement<'keyboardKey'> {
   /**
@@ -8,7 +10,7 @@ export interface KeyboardKeyProps extends CustomizableElement<'keyboardKey'> {
    */
   keyboardKey: KeyboardKey
   /**
-   *
+   * Defines the visual style of the keyboard key.
    */
-  variant?: GetComponentPropCustomValues<'keyboardKey', 'variant'> | null
+  variant?: GetComponentProp<'keyboardKey', 'variant'> | null
 }

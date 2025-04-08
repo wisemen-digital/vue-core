@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectTableContext } from '@/components/table/table.context'
-import { mergeClasses } from '@/customClassVariants'
 
 const props = withDefaults(defineProps<{
   /**

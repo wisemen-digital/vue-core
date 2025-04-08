@@ -5,7 +5,9 @@ import { useI18n } from 'vue-i18n'
 import IconButton from '@/components/button/icon-button/IconButton.vue'
 import { useInjectPopoverContext } from '@/components/popover/popover.context'
 
-const { classConfig } = useInjectPopoverContext()
+const {
+  classConfig, customClassConfig,
+} = useInjectPopoverContext()
 
 const { t } = useI18n()
 </script>
@@ -15,7 +17,10 @@ const { t } = useI18n()
     <slot>
       <IconButton
         :label="t('shared.close')"
-        :class-config="classConfig?.closeButton"
+        :class-config="{
+          ...customClassConfig?.closeButton,
+          ...classConfig?.closeButton,
+        }"
         icon="close"
         variant="tertiary"
         size="sm"

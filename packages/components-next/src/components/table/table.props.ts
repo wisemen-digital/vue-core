@@ -1,12 +1,14 @@
+import type {
+  CustomizableElement,
+  GetComponentProp,
+} from '@/class-variant/classVariant.type'
 import type { TableColumn } from '@/components/table/table.type'
 import type {
   BasePagination,
   PaginatedData,
   Pagination,
 } from '@/composables/pagination/pagination.type'
-import type { GetComponentPropCustomValues } from '@/customClassVariants'
 import type { Routes } from '@/types/routes.type'
-import type { CustomizableElement } from '@/utils/props.util'
 
 interface LinkAction<TSchema> {
   label: (data: TSchema) => string
@@ -23,12 +25,7 @@ interface ButtonAction<TSchema> {
 
 type RowAction<TSchema> = ButtonAction<TSchema> | LinkAction<TSchema>
 
-export interface TableProps<TSchema, TPagination extends BasePagination> extends CustomizableElement<'table', [
-  {
-    name: 'headerCellButton'
-    component: 'button'
-  },
-]> {
+export interface TableProps<TSchema, TPagination extends BasePagination> extends CustomizableElement<'table'> {
   /**
    * Makes the first column sticky (fixed) when horizontally scrolling.
    * @default false
@@ -62,7 +59,7 @@ export interface TableProps<TSchema, TPagination extends BasePagination> extends
    */
   rowAction?: RowAction<TSchema> | null
   /**
-   *
+   * Defines the visual style of the table.
    */
-  variant?: GetComponentPropCustomValues<'table', 'variant'> | null
+  variant?: GetComponentProp<'table', 'variant'> | null
 }

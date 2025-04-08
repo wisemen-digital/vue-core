@@ -1,8 +1,9 @@
-import type { IconButtonStyle } from '@/components/button/icon-button/iconButton.style'
+import type {
+  CustomizableElement,
+  GetComponentProp,
+} from '@/class-variant/classVariant.type'
 import type { SharedButtonProps } from '@/components/button/shared/sharedButton.props'
-import type { GetComponentPropCustomValues } from '@/customClassVariants'
 import type { Icon } from '@/icons/icons'
-import type { CustomizableElement } from '@/utils/props.util'
 
 export interface IconButtonProps extends SharedButtonProps, CustomizableElement<'iconButton'> {
   /**
@@ -17,10 +18,10 @@ export interface IconButtonProps extends SharedButtonProps, CustomizableElement<
    * Defines the button’s size.
    * @default 'md'
    */
-  size?: GetComponentPropCustomValues<'iconButton', 'size'> | IconButtonStyle['size']
+  size?: GetComponentProp<'iconButton', 'size'>
   /**
    * Defines the visual style of the button.
    * @default 'primary'
    */
-  variant?: GetComponentPropCustomValues<'iconButton', 'variant'> | IconButtonStyle['variant']
+  variant?: GetComponentProp<'iconButton', 'variant'>
 }

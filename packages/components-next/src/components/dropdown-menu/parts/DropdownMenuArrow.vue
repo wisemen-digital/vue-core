@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { DropdownMenuArrow as RekaDropdownMenuArrow } from 'reka-ui'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectDropdownMenuContext } from '@/components/dropdown-menu/dropdownMenu.context'
-import { mergeClasses } from '@/customClassVariants'
 
 const {
   isPopoverArrowHidden,

@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { useAttrs } from 'vue'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectDropdownMenuContext } from '@/components/dropdown-menu/dropdownMenu.context'
 import { useInjectDropdownMenuItemContext } from '@/components/dropdown-menu/dropdownMenuItem.context'
 import Icon from '@/components/icon/Icon.vue'
-import { mergeClasses } from '@/customClassVariants'
 
 const {
   classConfig,

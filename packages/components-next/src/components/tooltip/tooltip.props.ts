@@ -1,9 +1,9 @@
-import type { GetComponentPropCustomValues } from '@/customClassVariants'
-import type { PopperPropsWithArrowVisibleByDefault } from '@/types/popperProps.type'
 import type {
   CustomizableElement,
-  TestId,
-} from '@/utils/props.util'
+  GetComponentProp,
+} from '@/class-variant/classVariant.type'
+import type { PopperPropsWithArrowVisibleByDefault } from '@/types/popperProps.type'
+import type { TestId } from '@/utils/props.util'
 
 export interface TooltipProps extends PopperPropsWithArrowVisibleByDefault, TestId, CustomizableElement<'tooltip'> {
   /**
@@ -27,7 +27,7 @@ export interface TooltipProps extends PopperPropsWithArrowVisibleByDefault, Test
    */
   disableHoverableContent?: boolean
   /**
-   *
+   * Defines the visual style of the tooltip.
    */
-  variant?: GetComponentPropCustomValues<'tooltip', 'variant'> | null
+  variant?: GetComponentProp<'tooltip', 'variant'> | null
 }

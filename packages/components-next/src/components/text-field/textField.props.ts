@@ -1,7 +1,9 @@
-import type { GetComponentPropCustomValues } from '@/customClassVariants'
-import type { Icon } from '@/icons/icons'
 import type {
   CustomizableElement,
+  GetComponentProp,
+} from '@/class-variant/classVariant.type'
+import type { Icon } from '@/icons/icons'
+import type {
   FormElement,
   InteractableElement,
   TestId,
@@ -44,9 +46,9 @@ export interface TextFieldProps extends TestId, InteractableElement, FormElement
    */
   type?: 'date' | 'email' | 'password' | 'search' | 'tel' | 'text' | 'time' | 'url'
   /**
-   *
+   * Defines the visual style of the input.
    */
-  variant?: GetComponentPropCustomValues<'textField', 'variant'> | null
+  variant?: GetComponentProp<'textField', 'variant'> | null
 }
 
 export interface TextFieldEmits {
