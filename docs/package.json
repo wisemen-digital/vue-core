@@ -40,7 +40,7 @@
     "vitepress": "1.6.3",
     "vue": "catalog:",
     "vue-component-meta": "2.0.24",
-    "vue-i18n": "9.14.4",
+    "vue-i18n": "10.0.6",
     "vue-tsc": "2.0.21"
   }
 }
