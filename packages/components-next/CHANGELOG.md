@@ -1,5 +1,11 @@
 # @wisemen/vue-core-components
 
+## 1.2.0
+
+### Minor Changes
+
+- [6c86f3b](https://github.com/wisemen-digital/vue-core/commit/6c86f3b): Added new `Table` component for rendering structured data in rows and columns.
+
 ## 1.1.0
 
 ### Minor Changes
@@ -58,4 +64,3 @@
 - [40e4f29](https://github.com/wisemen-digital/vue-core/commit/40e4f29): Fix transition origin in `DropdownMenu`
 - [5c18ab9](https://github.com/wisemen-digital/vue-core/commit/5c18ab9): Fix "No arrow" example in `Popover` docs
 - [2e1c80a](https://github.com/wisemen-digital/vue-core/commit/2e1c80a): Fix `isDestructive` icon color in `DropdownMenu`
-
