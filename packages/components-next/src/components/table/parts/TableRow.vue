@@ -32,14 +32,6 @@ const {
     ]"
     role="row"
   >
-    <TableCellLayout
-      v-for="column of columns"
-      :key="column.key"
-      :column="column"
-    >
-      <Component :is="column.cell(props.data)" />
-    </TableCellLayout>
-
     <RouterLink
       v-if="rowAction !== null && rowAction.type === 'link'"
       :to="rowAction.to(data)"
@@ -59,5 +51,13 @@ const {
         {{ rowAction.label(data) }}
       </span>
     </button>
+
+    <TableCellLayout
+      v-for="column of columns"
+      :key="column.key"
+      :column="column"
+    >
+      <Component :is="column.cell(props.data)" />
+    </TableCellLayout>
   </Subgrid>
 </template>
