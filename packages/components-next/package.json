@@ -76,6 +76,7 @@
     "vite": "catalog:",
     "vite-plugin-dts": "catalog:",
     "vitest": "catalog:",
+    "vue": "catalog:",
     "vue-router": "catalog:",
     "vue-tsc": "catalog:"
   }

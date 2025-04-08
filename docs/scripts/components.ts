@@ -107,6 +107,12 @@ export const components = [
     targetFolder: 'textarea',
     componentName: 'Textarea',
   },
+  // Table
+  {
+    sourceFolder: 'table/parts/TableRoot.vue',
+    targetFolder: 'table',
+    componentName: 'Table',
+  },
   // Time Field
   {
     sourceFolder: 'time-field/parts/TimeFieldRoot.vue',

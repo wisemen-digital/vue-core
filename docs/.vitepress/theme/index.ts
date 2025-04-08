@@ -23,6 +23,12 @@ export const i18nPlugin = createI18n({
       'shared.close': 'Close',
       'shared.loading': 'Loading...',
       'component.keyboard_shortcut.then': 'then',
+      'component.table.clear_filter': 'Clear filter|Clear filters',
+      'component.table.no_data.description': 'There is currently no data available.',
+      'component.table.no_data.title': 'No data available',
+      'component.table.no_results.description': 'We couldn\'t find any results for your search. Please try again with different criteria.',
+      'component.table.no_results.title': 'We couldn\'t find any results',
+      'component.table.results_may_be_hidden': 'Some results may be hidden because of {count} active filter|Some results may be hidden because of {count} active filters',
     },
   },
 })
