@@ -59,6 +59,7 @@
     "@vue/test-utils": "catalog:",
     "@vue/tsconfig": "catalog:",
     "@vueuse/core": "catalog:",
+    "@vueuse/router": "catalog:",
     "@wisemen/eslint-config-vue": "catalog:",
     "eslint": "catalog:",
     "globals": "^16.0.0",
@@ -75,6 +76,7 @@
     "vite": "catalog:",
     "vite-plugin-dts": "catalog:",
     "vitest": "catalog:",
+    "vue": "catalog:",
     "vue-router": "catalog:",
     "vue-tsc": "catalog:"
   }

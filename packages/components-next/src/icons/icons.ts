@@ -2,6 +2,10 @@ import type { Component } from 'vue'
 
 export interface BaseIcons {
 
+  arrowDown: Component
+  arrowLeft: Component
+  arrowRight: Component
+  arrowUp: Component
   calendarIcon: Component
   check: Component
   chevronLeft: Component
@@ -16,12 +20,17 @@ export interface BaseIcons {
   search: Component
   selectIconRight: Component
   stars: Component
+  switchVertical: Component
   translate: Component
 }
 
 export interface Icons extends BaseIcons {}
 
 export const icons: BaseIcons = {
+  arrowDown: import('@/icons/ArrowDownIcon.vue'),
+  arrowLeft: import('@/icons/ArrowLeftIcon.vue'),
+  arrowRight: import('@/icons/ArrowRightIcon.vue'),
+  arrowUp: import('@/icons/ArrowUpIcon.vue'),
   calendarIcon: import('@/icons/CalendarIcon.vue'),
   check: import('@/icons/CheckIcon.vue'),
   chevronLeft: import('@/icons/ChevronLeftIcon.vue'),
@@ -36,6 +45,7 @@ export const icons: BaseIcons = {
   search: import('@/icons/SearchIcon.vue'),
   selectIconRight: import('@/icons/SelectIconRight.vue'),
   stars: import('@/icons/StarsIcon.vue'),
+  switchVertical: import('@/icons/SwitchVerticalIcon.vue'),
   translate: import('@/icons/TranslateIcon.vue'),
 }
 

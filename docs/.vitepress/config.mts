@@ -187,6 +187,10 @@ export default defineConfig({
                   link: '/packages/components-next/components/router-link-tabs/router-link-tabs',
                 },
                 {
+                  text: 'Table',
+                  link: '/packages/components-next/components/table/table',
+                },
+                {
                   text: 'Tabs',
                   link: '/packages/components-next/components/tabs/tabs',
                 },
