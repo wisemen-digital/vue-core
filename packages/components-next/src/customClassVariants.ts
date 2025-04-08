@@ -26,6 +26,7 @@ import type { createTextFieldStyle } from '@/components/text-field/textField.sty
 import type { createTextareaStyle } from '@/components/textarea/textarea.style'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import type { createTimeFieldStyle } from '@/components/time-field/timeField.style'
+import type { createToastStyle } from '@/components/toast/toast.style'
 import type { createTooltipStyle } from '@/components/tooltip/tooltip.style'
 
 export interface Components {
@@ -51,6 +52,7 @@ export interface Components {
   textarea: typeof createTextareaStyle
   textField: typeof createTextFieldStyle
   timeField: typeof createTimeFieldStyle
+  toast: typeof createToastStyle
   tooltip: typeof createTooltipStyle
 }
 

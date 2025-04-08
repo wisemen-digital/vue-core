@@ -228,6 +228,10 @@ export default defineConfig({
                   text: 'Date Picker',
                   link: '/packages/components-next/components/date-picker/date-picker',
                 },
+                {
+                  text: 'Toast',
+                  link: '/packages/components-next/components/toast/toast',
+                },
               ],
             },
           ],
