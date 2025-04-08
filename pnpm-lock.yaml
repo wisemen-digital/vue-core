@@ -94,8 +94,8 @@ catalogs:
       specifier: 3.5.13
       version: 3.5.13
     vue-i18n:
-      specifier: 9.14.4
-      version: 9.14.4
+      specifier: 11.1.2
+      version: 11.1.2
     vue-router:
       specifier: 4.5.0
       version: 4.5.0
@@ -407,7 +407,7 @@ importers:
         version: 3.5.13(typescript@5.8.2)
       vue-i18n:
         specifier: 'catalog:'
-        version: 9.14.4(vue@3.5.13(typescript@5.8.2))
+        version: 11.1.2(vue@3.5.13(typescript@5.8.2))
     devDependencies:
       '@fontsource-variable/inter':
         specifier: 'catalog:'
@@ -445,6 +445,9 @@ importers:
       '@vueuse/core':
         specifier: 'catalog:'
         version: 13.0.0(vue@3.5.13(typescript@5.8.2))
+      '@vueuse/router':
+        specifier: 'catalog:'
+        version: 13.0.0(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
       '@wisemen/eslint-config-vue':
         specifier: 'catalog:'
         version: 1.2.0-beta.1(@typescript-eslint/eslint-plugin@8.29.0(@typescript-eslint/parser@8.29.0(eslint@9.23.0(jiti@2.4.2))(typescript@5.8.2))(eslint@9.23.0(jiti@2.4.2))(typescript@5.8.2))(@typescript-eslint/utils@8.29.0(eslint@9.23.0(jiti@2.4.2))(typescript@5.8.2))(@vue/compiler-sfc@3.5.13)(eslint@9.23.0(jiti@2.4.2))(jsonc-eslint-parser@2.4.0)(tailwindcss@4.1.2)(typescript@5.8.2)(vitest@3.1.1(@types/debug@4.1.12)(@types/node@22.14.0)(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.29.3)(sass@1.77.5)(tsx@4.19.3)(yaml@2.7.1))(vue-eslint-parser@9.4.3(eslint@9.23.0(jiti@2.4.2)))(yaml-eslint-parser@1.3.0)
@@ -10009,6 +10012,12 @@ snapshots:
       vue: 3.5.12(typescript@5.8.2)
       vue-router: 4.5.0(vue@3.5.12(typescript@5.8.2))
 
+  '@vueuse/router@13.0.0(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))':
+    dependencies:
+      '@vueuse/shared': 13.0.0(vue@3.5.13(typescript@5.8.2))
+      vue: 3.5.13(typescript@5.8.2)
+      vue-router: 4.5.0(vue@3.5.13(typescript@5.8.2))
+
   '@vueuse/shared@10.11.0(vue@3.5.12(typescript@5.8.2))':
     dependencies:
       vue-demi: 0.14.10(vue@3.5.12(typescript@5.8.2))
@@ -15279,13 +15288,6 @@ snapshots:
       '@intlify/shared': 9.14.4
       '@vue/devtools-api': 6.6.4
       vue: 3.5.12(typescript@5.8.2)
-
-  vue-i18n@9.14.4(vue@3.5.13(typescript@5.8.2)):
-    dependencies:
-      '@intlify/core-base': 9.14.4
-      '@intlify/shared': 9.14.4
-      '@vue/devtools-api': 6.6.4
-      vue: 3.5.13(typescript@5.8.2)
 
   vue-inbrowser-compiler-independent-utils@4.71.1(vue@3.5.13(typescript@5.8.2)):
     dependencies:
