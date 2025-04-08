@@ -3,8 +3,8 @@
 <PropsTable :data="[
   {
     'name': 'classConfig',
-    'description': '<p>The class configuration of the component.</p>\n',
-    'type': '(ClassConfig<\'table\'> & {}) | null',
+    'description': '',
+    'type': 'ResolvedClassConfig<\'table\'> | null',
     'required': false,
     'default': 'null'
   },
@@ -29,7 +29,7 @@
   },
   {
     'name': 'isLastColumnSticky',
-    'description': '<p>Makes the last column sticky when horizontally scrolling.</p>\n',
+    'description': '<p>Makes the last column sticky (fixed) when horizontally scrolling.</p>\n',
     'type': 'boolean',
     'required': false,
     'default': 'false'
@@ -42,7 +42,7 @@
   },
   {
     'name': 'pagination',
-    'description': '<p>Pagination object used for managing current page, size, and total count.</p>\n',
+    'description': '<p>Pagination object</p>\n',
     'type': 'Pagination<BasePagination<{ filter: Record<string, unknown>; sort: string; }>>',
     'required': true
   },
@@ -55,7 +55,7 @@
   },
   {
     'name': 'variant',
-    'description': '',
+    'description': '<p>Defines the visual style of the table.</p>\n',
     'type': 'null',
     'required': false,
     'default': 'null'

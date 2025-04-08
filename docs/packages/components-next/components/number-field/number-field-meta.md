@@ -10,8 +10,8 @@
   },
   {
     'name': 'classConfig',
-    'description': '<p>The class configuration of the component.</p>\n',
-    'type': '(ClassConfig<\'numberField\'> & { increment?: ClassConfig<\'iconButton\'>; decrement?: ClassConfig<\'iconButton\'>; }) | null',
+    'description': '',
+    'type': 'ResolvedClassConfig<\'numberField\'> | null',
     'required': false,
     'default': 'null'
   },
@@ -136,7 +136,7 @@
   },
   {
     'name': 'variant',
-    'description': '',
+    'description': '<p>Defines the visual style of the number input.</p>\n',
     'type': 'null',
     'required': false,
     'default': 'null'

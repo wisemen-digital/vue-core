@@ -10,8 +10,8 @@
   },
   {
     'name': 'classConfig',
-    'description': '<p>The class configuration of the component.</p>\n',
-    'type': '(ClassConfig<\'datePicker\'> & {}) | null',
+    'description': '',
+    'type': 'ResolvedClassConfig<\'datePicker\'> | null',
     'required': false
   },
   {
@@ -78,7 +78,7 @@
   },
   {
     'name': 'variant',
-    'description': '',
+    'description': '<p>Defines the visual style of the date picker.</p>\n',
     'type': 'null',
     'required': false,
     'default': 'null'

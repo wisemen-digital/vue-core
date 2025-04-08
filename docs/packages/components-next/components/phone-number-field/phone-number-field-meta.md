@@ -9,8 +9,8 @@
   },
   {
     'name': 'classConfig',
-    'description': '<p>The class configuration of the component.</p>\n',
-    'type': '(ClassConfig<\'textField\'> & {}) | null',
+    'description': '',
+    'type': 'ResolvedClassConfig<\'textField\'> | null',
     'required': false
   },
   {
@@ -100,7 +100,7 @@
   },
   {
     'name': 'variant',
-    'description': '',
+    'description': '<p>Defines the visual style of the input.</p>\n',
     'type': 'null',
     'required': false
   }

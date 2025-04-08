@@ -3,8 +3,8 @@
 <PropsTable :data="[
   {
     'name': 'classConfig',
-    'description': '<p>The class configuration of the component.</p>\n',
-    'type': '(ClassConfig<\'dialog\'> & { closeButton?: ClassConfig<\'iconButton\'>; }) | null',
+    'description': '',
+    'type': 'ResolvedClassConfig<\'dialog\'> | null',
     'required': false,
     'default': 'null'
   },
@@ -45,7 +45,7 @@
   },
   {
     'name': 'variant',
-    'description': '',
+    'description': '<p>Defines the visual style of the dialog.</p>\n',
     'type': 'null',
     'required': false,
     'default': 'null'

@@ -3,8 +3,8 @@
 <PropsTable :data="[
   {
     'name': 'classConfig',
-    'description': '<p>The class configuration of the component.</p>\n',
-    'type': '(ClassConfig<\'tabs\'> & {}) | null',
+    'description': '',
+    'type': 'ResolvedClassConfig<\'tabs\'> | null',
     'required': false,
     'default': 'null'
   },

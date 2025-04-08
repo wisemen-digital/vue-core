@@ -10,8 +10,8 @@
   },
   {
     'name': 'classConfig',
-    'description': '<p>The class configuration of the component.</p>\n',
-    'type': '(ClassConfig<\'textarea\'> & {}) | null',
+    'description': '',
+    'type': 'ResolvedClassConfig<\'textarea\'> | null',
     'required': false,
     'default': 'null'
   },
@@ -94,7 +94,7 @@
   },
   {
     'name': 'variant',
-    'description': '',
+    'description': '<p>Defines the visual style of the textarea.</p>\n',
     'type': 'null',
     'required': false,
     'default': 'null'

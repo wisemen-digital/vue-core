@@ -17,8 +17,8 @@
   },
   {
     'name': 'classConfig',
-    'description': '<p>The class configuration of the component.</p>\n',
-    'type': '(ClassConfig<\'dateField\'> & { datePicker?: ClassConfig<\'datePicker\'>; }) | null',
+    'description': '',
+    'type': 'ResolvedClassConfig<\'dateField\'> | null',
     'required': false,
     'default': 'null'
   },
@@ -136,7 +136,7 @@
   },
   {
     'name': 'variant',
-    'description': '',
+    'description': '<p>Defines the visual style of the date field.</p>\n',
     'type': 'null',
     'required': false,
     'default': 'null'
