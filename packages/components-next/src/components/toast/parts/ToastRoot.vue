@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 
 import { useProvideToastContext } from '@/components/toast/toast.context'
+import type { ToastEmits } from '@/components/toast/toast.emits'
 import type { ToastProps } from '@/components/toast/toast.props'
 import type { CreateToastStyle } from '@/components/toast/toast.style'
 import { createToastStyle } from '@/components/toast/toast.style'
@@ -15,12 +16,14 @@ const props = withDefaults(defineProps<ToastProps>(), {
   preview: null,
 })
 
+const emit = defineEmits<ToastEmits>()
+
 const toastStyle = computed<CreateToastStyle>(() => createToastStyle({}))
 
 const customClassConfig = useComponentClassConfig('toast', {})
 
 function onClose(): void {
-  //
+  emit('closeToast')
 }
 
 useProvideToastContext({
@@ -32,16 +35,12 @@ useProvideToastContext({
 </script>
 
 <template>
-  <li
+  <div
     :class="toastStyle.root({
       class: customClassConfig.root,
     })"
     :data-type="type"
-    role="alert"
-    tabindex="0"
-    aria-atomic="true"
-    aria-live="assertive"
   >
     <slot />
-  </li>
+  </div>
 </template>

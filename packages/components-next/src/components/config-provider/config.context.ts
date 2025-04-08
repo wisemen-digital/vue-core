@@ -1,5 +1,6 @@
 import type { ComputedRef } from 'vue'
 
+import type { ToastPosition } from '@/components/toast/toast.composable'
 import { useContext } from '@/composables/context/context.composable'
 
 interface ConfigContext {
@@ -10,6 +11,7 @@ interface ConfigContext {
     limit?: number
   }
   teleportTargetSelector: string
+  toastPosition?: ToastPosition
 }
 
 export const [

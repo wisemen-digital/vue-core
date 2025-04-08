@@ -22,13 +22,13 @@ export const createToastStyle = tv({
       .build(),
     icon: new StyleBuilder()
       .withSize('size-5')
-      .withColor('group-data-[type=success]/toast:text-success-primary group-data-[type=error]/toast:text-error-primary group-data-[type=warning]/toast:text-warning-primary group-data-[type=info]/toast:text-fg-brand-primary')
+      .withColor('group-data-[type=success]/toast:text-success-primary group-data-[type=error]/toast:text-error-primary group-data-[type=info]/toast:text-fg-brand-primary')
       .build(),
     root: new StyleBuilder()
       .withBase('group/toast relative')
-      .withGrid('grid grid-cols-[auto_auto] items-start gap-lg')
-      .withSize('w-full max-w-100')
-      .withBorder('border border-solid border-primary')
+      .withGrid('grid grid-cols-[auto_1fr] items-start gap-lg')
+      .withSize('w-100')
+      .withBorder('border border-solid border-secondary')
       .withBorderRadius('rounded-xl')
       .withBackgroundColor('bg-primary dark:bg-secondary')
       .withPadding('p-xl')

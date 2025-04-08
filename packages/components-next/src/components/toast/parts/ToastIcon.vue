@@ -23,9 +23,6 @@ const delegatedIcon = computed<IconType | null>(() => {
   if (type.value === 'error') {
     return 'alertCircle'
   }
-  if (type.value === 'warning') {
-    return 'alertCircle'
-  }
 
   return 'infoCircle'
 })

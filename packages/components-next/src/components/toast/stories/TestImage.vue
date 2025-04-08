@@ -6,6 +6,6 @@
   <img
     src="https://thispersondoesnotexist.com"
     alt=""
-    class="mt-xs size-10 rounded-md"
+    class="mt-sm size-8 rounded-md"
   >
 </template>
