@@ -1,47 +1,40 @@
 <script setup lang="ts">
-import {
-  ListboxContent,
-  ListboxFilter,
-  ListboxItem,
-  ListboxRoot,
-} from 'reka-ui'
-
-import Popover from '@/components/popover/Popover.vue'
+import FormFieldLabel from '@/components/form-field/parts/FormFieldLabel.vue'
+import TextField from '@/components/text-field/TextField.vue'
 import { defineComponentVariant } from '@/customClassVariants'
 
 defineComponentVariant({
   config: {},
-  target: {
-    prop: 'size',
-    value: 'super-large',
-  },
+  // target: {
+  //   prop: 'size',
+  //   value: 'super-large',
+  // },
   component: 'button',
+})
+
+defineComponentVariant({
+  config: { root: 'bg-secondary border-none shadow-none' },
+  target: {
+    prop: 'variant',
+    value: 'leander',
+  },
+  component: 'textField',
 })
 </script>
 
 <template>
   <Story title="Playground">
-    <ListboxRoot>
-      <Popover>
-        <template #trigger>
-          <button class="rounded bg-blue-500 p-2 text-white">
-            Open Listbox
-          </button>
-        </template>
-
-        <template #content>
-          <ListboxFilter />
-
-          <ListboxContent>
-            <ListboxItem value="1">
-              One
-            </ListboxItem>
-            <ListboxItem value="2">
-              Two
-            </ListboxItem>
-          </ListboxContent>
-        </template>
-      </Popover>
-    </ListboxRoot>
+    <TextField
+      :model-value="null"
+      label="Yeeeet"
+    >
+      <template #label>
+        <FormFieldLabel>
+          <template #right>
+            trailing
+          </template>
+        </FormFieldLabel>
+      </template>
+    </TextField>
   </Story>
 </template>
