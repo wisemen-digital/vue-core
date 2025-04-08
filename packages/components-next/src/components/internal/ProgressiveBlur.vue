@@ -63,7 +63,7 @@
 
 .progressive-blur-container > .blur-filter:nth-child(7) {
   z-index: 10;
-  background-filter: blur(64px);
+  backdrop-filter: blur(64px);
   mask: linear-gradient(rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1) 100%)
 }
 
