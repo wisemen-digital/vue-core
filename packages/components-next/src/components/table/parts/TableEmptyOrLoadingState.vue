@@ -24,7 +24,7 @@ const {
 
 const { t } = useI18n()
 
-const ROW_COUNT = 20
+const ROW_COUNT = 10
 </script>
 
 <template>

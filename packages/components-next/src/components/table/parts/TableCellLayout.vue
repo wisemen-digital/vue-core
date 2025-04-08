@@ -40,7 +40,7 @@ const isLastColumn = computed<boolean>(() => (
       'border-r-secondary': isFirstColumn && isFirstColumnSticky && isScrolledHorizontally,
       'border-l-secondary': isLastColumn && isLastColumnSticky && !hasReachedHorizontalEnd,
     }"
-    class="relative"
+    class="relative duration-200"
   >
     <slot />
   </Primitive>

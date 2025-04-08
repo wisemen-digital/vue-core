@@ -36,7 +36,7 @@ export const createTableStyle = tv({
       .build(),
     row: new StyleBuilder()
       .withBase('group/row relative')
-      .withBackgroundColor('bg-primary')
+      .withBackgroundColor('bg-primary [&:has(:focus-visible)]:bg-secondary')
       .withBorder('border-b border-solid border-b-secondary')
       .build(),
   },

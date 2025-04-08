@@ -43,6 +43,7 @@ const {
   setTableScrollContainerRef,
 } = useTable({
   columns: computed<TableColumn<TSchema>[]>(() => props.columns),
+  rowCount: computed<number>(() => props.data?.data.length ?? 0),
   onNextPage: () => {
     emit('nextPage')
   },

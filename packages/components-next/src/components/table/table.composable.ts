@@ -5,12 +5,14 @@ import {
   onBeforeUnmount,
   onMounted,
   ref,
+  watch,
 } from 'vue'
 
 import type { TableColumn } from '@/components/table/table.type'
 
 interface UseTableOptions {
   columns: ComputedRef<TableColumn<any>[]>
+  rowCount: ComputedRef<number>
   onNextPage: () => void
 }
 
@@ -26,7 +28,9 @@ const DEFAULT_INFINITE_SCROLL_DISTANCE = 100
 
 export function useTable(
   {
-    columns, onNextPage,
+    columns,
+    rowCount,
+    onNextPage,
   }: UseTableOptions,
 ): UseTable {
   const tableScrollContainerRef = ref<HTMLElement | null>(null)
@@ -57,9 +61,13 @@ export function useTable(
     }
 
     isScrolledHorizontally.value = el.scrollLeft > 0
-    hasReachedHorizontalEnd.value = el.scrollLeft + el.clientWidth >= el.scrollWidth
+    hasReachedHorizontalEnd.value = el.scrollLeft + el.clientWidth >= el.scrollWidth - 1
     hasVerticalOverflow.value = el.scrollHeight > el.clientHeight
   }
+
+  watch(rowCount, () => {
+    setTimeout(updateScrollState)
+  })
 
   onMounted(() => {
     if (tableScrollContainerRef.value === null) {

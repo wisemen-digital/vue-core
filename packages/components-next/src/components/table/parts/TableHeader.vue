@@ -13,13 +13,13 @@ const {
 </script>
 
 <template>
-  <Subgrid role="rowgroup">
-    <Subgrid
-      :class="style.header({
-        class: mergeClasses(classConfig?.header, customClassConfig?.header),
-      })"
-      role="row"
-    >
+  <Subgrid
+    :class="style.header({
+      class: mergeClasses(classConfig?.header, customClassConfig?.header),
+    })"
+    role="rowgroup"
+  >
+    <Subgrid role="row">
       <template
         v-for="column of columns"
         :key="column.key"

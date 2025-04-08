@@ -106,7 +106,9 @@ function onSortChange(): void {
 
       <Button
         :class-config="{
-          root: 'p-0 px-0 h-auto !bg-transparent min-w-auto !text-secondary rounded-sm',
+          root: 'p-0 px-0 h-auto !bg-transparent min-w-auto rounded-sm !text-secondary',
+          iconRight: isCurrentColumnBeingSorted ? 'text-secondary' : 'text-disabled',
+          ...classConfig?.headerCellButton,
         }"
         :icon-right="sortIcon"
         :is-disabled="!props.column.isSortable"
