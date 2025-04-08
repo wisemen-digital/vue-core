@@ -6,6 +6,7 @@ export {
   type ComponentVariants,
   defineComponentVariant,
 } from './customClassVariants'
+export { PaginationParamsBuilder } from '@/utils/paginationParamsBuilder.util'
 
 // Icons
 export type {
