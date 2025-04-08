@@ -10,7 +10,7 @@
   },
   {
     'name': 'classConfig',
-    'description': '',
+    'description': '<p>The class configuration for the component. This allows customizating the default styles\nby overriding them with custom values.</p>\n',
     'type': 'ResolvedClassConfig<\'numberField\'> | null',
     'required': false,
     'default': 'null'

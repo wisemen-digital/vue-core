@@ -179,6 +179,10 @@ export type ResolvedClassConfig<TComponent extends keyof ComponentMap> = {
 }
 
 export interface CustomizableElement<TComponent extends keyof ComponentMap> {
+  /**
+   * The class configuration for the component. This allows customizating the default styles
+   * by overriding them with custom values.
+   */
   classConfig?: ResolvedClassConfig<TComponent> | null
 }
 
