@@ -94,8 +94,8 @@ catalogs:
       specifier: 3.5.13
       version: 3.5.13
     vue-i18n:
-      specifier: 10.0.6
-      version: 10.0.6
+      specifier: 11.1.2
+      version: 11.1.2
     vue-router:
       specifier: 4.5.0
       version: 4.5.0
@@ -386,7 +386,7 @@ importers:
         version: 1.0.0(tailwindcss@4.1.2)
       vue-i18n:
         specifier: 'catalog:'
-        version: 10.0.6(vue@3.5.13(typescript@5.8.2))
+        version: 11.1.2(vue@3.5.13(typescript@5.8.2))
     devDependencies:
       '@fontsource-variable/inter':
         specifier: 'catalog:'
@@ -508,6 +508,9 @@ importers:
       inquirer:
         specifier: 12.5.0
         version: 12.5.0(@types/node@22.14.0)
+      zod:
+        specifier: 'catalog:'
+        version: 3.24.2
     devDependencies:
       '@types/ejs':
         specifier: 3.1.5
