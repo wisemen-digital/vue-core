@@ -65,9 +65,7 @@ export interface ComponentMap {
   }
   iconButton: {
     style: typeof createIconButtonStyle
-    children: {
-      avatar: 'avatar'
-    }
+    children: {}
   }
   keyboardKey: {
     style: typeof createKeyboardKeyStyle
