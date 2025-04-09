@@ -23,10 +23,12 @@ interface FileTemplate {
 }
 
 enum TemplateType {
+  COMPONENT = 'componet',
   MODEL = 'model',
   MUTATION = 'mutation',
   QUERY = 'query',
   SERVICE = 'service',
+  VIEW = 'view',
 }
 
 function getOutputFolder(type: string, kebabCase: string, folder: string): string {
@@ -79,6 +81,17 @@ const fileTemplates: Record<TemplateType, FileTemplate[]> = {
   service: [
     {
       filename: '.service.ts.ejs', outputFolder: 'api/services', templatePath: 'services',
+    },
+  ],
+  view: [
+    {
+      filename: 'OverviewView.vue.ejs', filename: 'DetailView.vue.ejs', outputFolder: 'overview/views',
+      outputFolder: 'detail/views', templatePath: 'views/overview', templatePath: 'views/detail',
+    },
+  ],
+  component: [
+    {
+      filename: 'OverviewTable.vue.ejs', outputFolder: 'overview/components', templatePath: 'components/overview',
     },
   ],
 }
