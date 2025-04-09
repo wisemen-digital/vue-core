@@ -2,8 +2,8 @@
 import { DropdownMenuGroup as RekaDropdownMenuGroup } from 'reka-ui'
 import { useAttrs } from 'vue'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectDropdownMenuContext } from '@/components/dropdown-menu/dropdownMenu.context'
-import { mergeClasses } from '@/customClassVariants'
 
 const {
   classConfig,

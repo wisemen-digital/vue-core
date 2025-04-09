@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { DropdownMenuArrow as RekaDropdownMenuArrow } from 'reka-ui'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectDropdownMenuContext } from '@/components/dropdown-menu/dropdownMenu.context'
-import { mergeClasses } from '@/customClassVariants'
 
 const {
   isPopoverArrowHidden,
@@ -16,7 +16,7 @@ const {
   <RekaDropdownMenuArrow
     v-if="!isPopoverArrowHidden"
     as="div"
-    class="relative -mb-4 h-4 w-10 overflow-hidden -translate-y-px"
+    class="relative -mb-4 h-4 w-8 overflow-hidden"
   >
     <div
       :class="style.arrow({

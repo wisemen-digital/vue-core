@@ -1,21 +1,21 @@
 <script setup lang="ts">
 import type { SelectItemSelectEvent } from 'reka-ui'
-import {
-  ListboxItem as RekaListboxItem,
-} from 'reka-ui'
+import { ListboxItem as RekaListboxItem } from 'reka-ui'
 import {
   onBeforeUnmount,
   onMounted,
   useId,
 } from 'vue'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import SelectItemIndicator from '@/components/select/parts/SelectItemIndicator.vue'
 import { useInjectSelectContext } from '@/components/select/select.context'
 import type { SelectItemProps } from '@/components/select/select.props'
 import { useInjectSelectGroupContext } from '@/components/select/selectGroup.context'
-import { mergeClasses } from '@/customClassVariants'
+import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 
 const props = withDefaults(defineProps<SelectItemProps>(), {
+  testId: null,
   isDisabled: false,
 })
 
@@ -88,17 +88,21 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <RekaListboxItem
+  <TestIdProvider
     v-if="filteredItems.has(id) || virtualList?.isEnabled"
-    :value="props.value"
-    :disabled="props.isDisabled"
-    :class="style.item({ class: mergeClasses(customClassConfig.item, classConfig?.item) })"
-    @select="onSelect"
+    :test-id="props.testId"
   >
-    <slot />
+    <RekaListboxItem
+      :value="props.value"
+      :disabled="props.isDisabled"
+      :class="style.item({ class: mergeClasses(customClassConfig.item, classConfig?.item) })"
+      @select="onSelect"
+    >
+      <slot />
 
-    <slot name="indicator">
-      <SelectItemIndicator />
-    </slot>
-  </RekaListboxItem>
+      <slot name="indicator">
+        <SelectItemIndicator />
+      </slot>
+    </RekaListboxItem>
+  </TestIdProvider>
 </template>

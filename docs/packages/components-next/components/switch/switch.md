@@ -28,4 +28,12 @@ import {
 
 ## Examples
 
+### Disabled
+
 <ComponentPreview name="switch/examples/disabled" />
+
+### Error
+
+<ComponentPreview name="switch/examples/error" />
+
+<!-- @include: ./switch-meta.md -->

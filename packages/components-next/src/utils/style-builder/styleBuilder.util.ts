@@ -107,6 +107,12 @@ export class StyleBuilder {
     return this
   }
 
+  public withOutline(outline: string): this {
+    this.with(outline)
+
+    return this
+  }
+
   public withPadding(padding: string): this {
     this.with(padding)
 
@@ -119,6 +125,9 @@ export class StyleBuilder {
     return this
   }
 
+  /**
+   * @deprecated Use `withOutline` instead.
+   */
   public withRing(ring: string): this {
     this.with(ring)
 

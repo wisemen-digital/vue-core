@@ -1,12 +1,17 @@
+import type {
+  ComputedRef,
+  InjectionKey,
+  VNode,
+} from 'vue'
 import {
-  type ComputedRef,
   inject,
-  type InjectionKey,
   provide,
-  type VNode,
 } from 'vue'
 
-import type { PaginatedData, Pagination } from '@/types/pagination.type'
+import type {
+  PaginatedData,
+  Pagination,
+} from '@/types/pagination.type'
 import type { TableColumn } from '@/types/table.type'
 
 export type TableRowComponent = ((data: unknown) => VNode | null) | null

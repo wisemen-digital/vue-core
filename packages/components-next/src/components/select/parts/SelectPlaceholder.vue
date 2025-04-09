@@ -3,7 +3,9 @@ import { computed } from 'vue'
 
 import { useInjectSelectContext } from '@/components/select/select.context'
 
-const { modelValue, placeholder } = useInjectSelectContext()
+const {
+  modelValue, placeholder,
+} = useInjectSelectContext()
 
 const isPlaceholderVisible = computed<boolean>(() => {
   if (Array.isArray(modelValue.value)) {
@@ -17,7 +19,7 @@ const isPlaceholderVisible = computed<boolean>(() => {
 <template>
   <span
     v-if="isPlaceholderVisible"
-    class="text-sm text-placeholder"
+    class="text-placeholder text-sm"
   >
     {{ placeholder }}
   </span>

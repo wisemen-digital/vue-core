@@ -6,7 +6,7 @@ import {
 </script>
 
 <template>
-  <VcPopover :is-arrow-hidden="true">
+  <VcPopover :is-popover-arrow-hidden="true">
     <template #trigger>
       <VcButton variant="secondary">
         No arrow
@@ -14,7 +14,7 @@ import {
     </template>
 
     <template #content>
-      <div class="w-80 h-40" />
+      <div class="h-40 w-80" />
     </template>
   </VcPopover>
 </template>

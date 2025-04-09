@@ -6,8 +6,12 @@ import {
   CalendarNext as RekaCalendarNext,
   CalendarPrev as RekaCalendarPrev,
 } from 'reka-ui'
-import { computed, nextTick } from 'vue'
+import {
+  computed,
+  nextTick,
+} from 'vue'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import IconButton from '@/components/button/icon-button/IconButton.vue'
 import { useInjectConfigContext } from '@/components/config-provider/config.context'
 import type { Grid } from '@/components/date-picker/shared/datePicker.type'
@@ -16,7 +20,6 @@ import { useInjectDatePickerContext } from '@/components/date-picker/single/date
 import NumberField from '@/components/number-field/NumberField.vue'
 import SelectItem from '@/components/select/parts/SelectItem.vue'
 import Select from '@/components/select/Select.vue'
-import { mergeClasses } from '@/customClassVariants'
 
 const props = defineProps<{
   grid: Grid<DateValue>[]
@@ -97,20 +100,20 @@ const yearValue = computed<number>({
           v-if="showTwoMonths"
           class="text-center"
         >
-          <span class="font-semibold text-primary text-sm whitespace-nowrap">
+          <span class="text-primary text-sm font-semibold whitespace-nowrap">
             {{ getMonthName(month.value.month - 1, locale, 'long') }} {{ month.value.year }}
           </span>
         </div>
 
         <div
           v-else
-          class="flex items-center justify-center gap-xxs"
+          class="gap-xxs flex items-center justify-center"
         >
           <Select
             v-model="monthValue"
             :icon-right="null"
             :class-config="{
-              root: 'h-8 shadow-none border-none !ring-0 hover:bg-primary-hover focus-within:bg-primary-hover',
+              root: 'h-8 shadow-none border-none outline-none hover:bg-primary-hover focus-within:bg-primary-hover',
               baseSingle: 'font-semibold px-sm',
               content: 'flex gap-xs grid grid-cols-1 [grid-template-columns:auto] sm:[grid-template-columns:repeat(auto-fit,minmax(6rem,1fr))]',
               popover: {
@@ -135,7 +138,7 @@ const yearValue = computed<number>({
           <NumberField
             v-model="yearValue"
             :class-config="{
-              root: 'h-8 shadow-none border-none !ring-0 hover:bg-primary-hover focus-within:bg-primary-hover',
+              root: 'h-8 shadow-none border-none outline-none hover:bg-primary-hover focus-within:bg-primary-hover',
               input: 'font-semibold px-sm',
             }"
             :format-options="{

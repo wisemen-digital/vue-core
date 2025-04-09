@@ -31,20 +31,17 @@ export default defineConfig({
         'vue',
         'vue-i18n',
         'vue-router',
-        'zod',
-        'reka-ui',
         'i18n-iso-countries',
+        'motion-v',
       ],
       output: {
         // Provide global variables to use in the UMD build
         // for externalized deps
         globals: {
-          'i18n-iso-countries': 'i18nCountries',
-          'reka-ui': 'RekaUI',
+          'motion-v': 'MotionV',
           'vue': 'Vue',
           'vue-i18n': 'VueI18n',
           'vue-router': 'VueRouter',
-          'zod': 'Zod',
         },
       },
     },
@@ -61,14 +58,6 @@ export default defineConfig({
       tsconfigPath: 'tsconfig.build.json',
     }),
   ],
-  resolve: {
-    alias: {
-      '@': resolve(projectRootDir, 'src'),
-    },
-  },
-  server: {
-    fs: {
-      strict: false,
-    },
-  },
+  resolve: { alias: { '@': resolve(projectRootDir, 'src') } },
+  server: { fs: { strict: false } },
 })

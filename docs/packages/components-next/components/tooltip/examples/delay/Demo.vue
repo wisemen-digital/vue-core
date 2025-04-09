@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { VcButton,
-  VcTooltip } from '@wisemen/vue-core-components'
+import {
+  VcButton,
+  VcTooltip,
+} from '@wisemen/vue-core-components'
 </script>
 
 <template>
@@ -12,7 +14,7 @@ import { VcButton,
     </template>
 
     <template #content>
-      <p class="text-sm font-semibold text-primary py-xs px-lg">
+      <p class="text-primary py-xs px-lg text-sm font-semibold">
         Extra information about the action.
       </p>
     </template>

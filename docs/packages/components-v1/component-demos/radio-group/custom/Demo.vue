@@ -39,15 +39,31 @@ const items = [
         :key="item.label"
         :value="item.value"
         :is-disabled="item.isDisabled"
-        class="relative flex flex-col cursor-pointer disabled:cursor-not-allowed duration-200 disabled:bg-disabled-subtle disabled:border-disabled text-left p-4 data-[state=checked]:border-brand-primary-500 border border-solid border-secondary rounded-lg"
+        class="
+          disabled:bg-disabled-subtle disabled:border-disabled
+          disabled:cursor-not-allowed
+          data-[state=checked]:border-brand-primary-500
+          border-secondary relative flex cursor-pointer flex-col rounded-lg
+          border border-solid p-4 text-left duration-200
+        "
       >
         <VcRadioGroupItemIndicator class="absolute top-1 right-1 scale-75" />
 
-        <span class="text-sm font-medium text-primary group-disabled:text-disabled">
+        <span
+          class="
+            text-primary text-sm font-medium
+            group-disabled:text-disabled
+          "
+        >
           {{ item.label }}
         </span>
 
-        <p class="text-xs leading-5 text-tertiary group-disabled:text-disabled">
+        <p
+          class="
+            text-tertiary text-xs leading-5
+            group-disabled:text-disabled
+          "
+        >
           {{ item.description }}
         </p>
       </VcRadioGroupItem>

@@ -6,7 +6,7 @@ const value = ref<string>('')
 </script>
 
 <template>
-  <div class="flex flex-col gap-8xl w-full">
+  <div class="gap-8xl flex w-full flex-col">
     <VcTextarea
       v-model="value"
       resize="vertical"

@@ -1,245 +1,284 @@
-import { join, parse, resolve } from 'path'
-import { components } from './components'
-import { ComponentMeta, createChecker  } from 'vue-component-meta'
-import { fileURLToPath } from 'node:url'
-import { existsSync, mkdirSync, writeFileSync, readFileSync } from 'node:fs'
+import { join, parse, resolve } from 'node:path'
+import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
+import fg from 'fast-glob'
 import MarkdownIt from 'markdown-it'
+import type { ComponentMeta, MetaCheckerOptions, PropertyMeta, PropertyMetaSchema } from 'vue-component-meta'
+import { createChecker } from 'vue-component-meta'
+import { babelParse, parse as sfcParse } from 'vue/compiler-sfc'
+import _traverse from '@babel/traverse'
+import { fileURLToPath } from 'node:url'
 
-interface Component {
-  sourceFolder: string
-  targetFolder: string
-  componentName: string
-}
-
-interface ParsedMeta {
-  props: any[]
-  events: any[]
-  slots: any[]
-  // interfaces?: InterfaceMeta[]
-}
-
-// interface InterfaceMeta {
-//   name: string
-//   content: string
-// }
-
-const __dirname = fileURLToPath(new URL('.', import.meta.url))
-const md = new MarkdownIt()
-
-const tsconfigChecker = createChecker(
-  resolve(__dirname, '../../packages/components-next/tsconfig.app.json'),
-  {
-    forceUseTs: true,
-    printer: { newLine: 1 },
-  },
-)
+import { components } from './components'
 
 function toKebabCase(str: string): string {
   return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
 }
 
-function toCamelCase(str: string): string {
-  return str.replace(/^([A-Z])/, (match) => match.toLowerCase());
+// @ts-expect-error ignore
+const traverse = _traverse.default as typeof _traverse
+const __dirname = fileURLToPath(new URL('.', import.meta.url))
+
+const md = new MarkdownIt()
+
+const checkerOptions: MetaCheckerOptions = {
+  forceUseTs: true,
+  printer: { newLine: 1 },
 }
 
-function parseMeta(meta: ComponentMeta): ParsedMeta {
+const tsconfigChecker = createChecker(
+  resolve(__dirname, '../../packages/components-next/tsconfig.app.json'),
+  checkerOptions,
+)
+
+const eventDescriptionMap = new Map<string, string>()
+const depTree = new Map<string, string[]>()
+let prevDeps: string[] = []
+
+const allComponents = fg.sync(['src/**/*.vue', '!src/**/story/*.vue', '!src/**/*.story.vue'], {
+  cwd: resolve(__dirname, '../../packages/components-next'),
+  absolute: true,
+})
+
+const listOfComponents = Object.values(components).flatMap(i => i)
+// const primitiveComponents = allComponents.filter(i => listOfComponents.includes(parse(i).name))
+
+// 1. Generate all the dependencies for each components
+allComponents.forEach((i) => {
+  // generateDependencies(i)
+})
+
+// 2. Generate component meta
+components.forEach((component) => {
+  // const dir = parse(component.).dir.split('/').at(-1) ?? ''
+  // const flattenDeps = [dir, ...getDependencies(dir)]
+  // if (!arraysAreEqual(prevDeps, flattenDeps)) {
+  //   flattenDeps.forEach((dep) => {
+  //     getEventFromComponentPath(dep)
+  //   })
+  //   prevDeps = flattenDeps
+  // }
+
+  const componentSourceFolder = resolve(__dirname, '../../packages/components-next/src/components', component.sourceFolder)
+
+  const componentName = parse(componentSourceFolder).name
+
+  const meta = parseMeta(tsconfigChecker.getComponentMeta(componentSourceFolder))
+
+  const metaDirPath = resolve(__dirname, '../packages/components-next/components/', component.targetFolder)
+  // if meta dir doesn't exist create
+  if (!existsSync(metaDirPath))
+    mkdirSync(metaDirPath)
+
+  const metaMdFilePath = join(metaDirPath, `${toKebabCase(component.componentName)}-meta.md`)
+
+  let parsedString = '<!-- This file was automatic generated. Do not edit it manually -->\n\n'
+  if (meta.props.length)
+    parsedString += `<PropsTable :data="${JSON.stringify(meta.props, null, 2).replace(/"/g, '\'')}" />\n`
+
+  if (meta.events.length)
+    parsedString += `\n<EmitsTable :data="${JSON.stringify(meta.events, null, 2).replace(/"/g, '\'')}" />\n`
+
+  if (meta.slots.length)
+    parsedString += `\n<SlotsTable :data="${JSON.stringify(meta.slots, null, 2).replace(/"/g, '\'')}" />\n`
+
+  if (meta.methods.length)
+    parsedString += `\n<MethodsTable :data="${JSON.stringify(meta.methods, null, 2).replace(/"/g, '\'')}" />\n`
+
+  writeFileSync(metaMdFilePath, parsedString)
+})
+
+function parseTypeFromSchema(schema: PropertyMetaSchema): string {
+  if (typeof schema === 'object' && (schema.kind === 'enum' || schema.kind === 'array')) {
+    const isFlatEnum = schema.schema?.every(val => typeof val === 'string')
+    const enumValue = schema?.schema?.filter(i => i !== 'undefined') ?? []
+
+    if (isFlatEnum && /^[A-Z]/.test(schema.type))
+      return enumValue.join(' | ')
+    else if (typeof schema.schema?.[0] === 'object' && schema.schema?.[0].kind === 'enum')
+      return schema.schema.map((s: PropertyMetaSchema) => parseTypeFromSchema(s)).join(' | ')
+    else
+      return schema.type
+  }
+  else if (typeof schema === 'object' && schema.kind === 'object') {
+    return schema.type
+  }
+  else if (typeof schema === 'string') {
+    return schema
+  }
+  else {
+    return ''
+  }
+}
+
+// Utilities
+function parseMeta(meta: ComponentMeta) {
   const props = meta.props
-    .filter((prop: any) => !prop.global)
-    .map((prop: any) => {
+  // Exclude global props
+    .filter(prop => !prop.global)
+    .map((prop) => {
       let defaultValue = prop.default
       let type = prop.type
       const { name, description, required } = prop
-      
+
+      if (name === 'as')
+        defaultValue = defaultValue ?? '"div"'
+
       if (defaultValue === 'undefined')
         defaultValue = undefined
 
+      if (!type.includes('AcceptableValue'))
+        type = parseTypeFromSchema(prop.schema) || type
+
       return ({
         name,
-        description: description,
-        type: type.replace(/\s*\|\s*undefined/g, '').replace('unknown', 'T'),
+        description: md.render(description),
+        type: type.replace(/\s*\|\s*undefined/g, ''),
         required,
         default: defaultValue ?? undefined,
       })
     })
-    .sort((a: { name: string }, b: { name: string }) => a.name.localeCompare(b.name))
+    .sort((a, b) => a.name.localeCompare(b.name))
 
-  const events = meta.events
-    .map((event: any) => {
-      const { name } = event
-      const type = event.type.replace(/\s*\|\s*undefined/g, '').replace('unknown', 'T').replace(/\</g, '\\<').replace(/\>/g, '\\>')
-      return ({
-        name,
-        description: md.render((event.description ?? '').replace(/^[ \t]+/gm, '')),
-        type: type
-      })
-    })
-    .sort((a: { name: string }, b: { name: string }) => a.name.localeCompare(b.name))
+  // const events = meta.events
+  //   .map((event) => {
+  //     const { name, type } = event
+  //     return ({
+  //       name,
+  //       description: md.render((eventDescriptionMap.get(name) ?? '').replace(/^[ \t]+/gm, '')),
+  //       type: type.replace(/\s*\|\s*undefined/g, ''),
+  //     })
+  //   })
+  //   .sort((a, b) => a.name.localeCompare(b.name))
 
-  const slots = meta.slots
-    .map((slot: any) => {
-      const { name, type, description } = slot
+  // const defaultSlot = meta.slots?.[0]
+  // const slots: { name: string, description: string, type: string }[] = []
 
-      const descriptionString = description ?? ''
+  // if (defaultSlot && defaultSlot.type !== '{}') {
+  //   const schema = defaultSlot.schema
+  //   if (typeof schema === 'object' && schema.schema) {
+  //     Object.values(schema.schema).forEach((childMeta: PropertyMeta) => {
+  //       slots.push({
+  //         name: childMeta.name,
+  //         description: md.render(childMeta.description),
+  //         type: parseTypeFromSchema(childMeta.schema),
+  //       })
+  //     })
+  //   }
+  // }
 
-      return ({
-        name,
-        description: descriptionString.replace(/^[ \t]+/gm, ''),
-        type: type === 'any' ? '-' : type.replace(/\s*\|\s*undefined/g, '').replace('unknown', 'T'),
-      })
-    })
-    .sort((a: { name: string }, b: { name: string }) => a.name.localeCompare(b.name))
+  // exposed method
+  const methods = meta.exposed
+    .filter(expose => typeof expose.schema === 'object' && expose.schema.kind === 'event')
+    .map(expose => ({
+      name: expose.name,
+      description: md.render(expose.description),
+      type: expose.type,
+    }))
 
   return {
     props,
-    events,
-    slots,
+    events: [],
+    slots: [],
+    methods,
   }
 }
 
-function generateMeta(meta: ParsedMeta): string {
-  let parsedString = `<!-- This file is automatically generated, do not edit manually. -->\n`
+function getEventFromComponentPath(dir: string) {
+  const files = readdirSync(resolve(__dirname, '../../packages/components-next/src', dir), { withFileTypes: true }).filter(file => file.name.includes('.vue'))
 
-  if (meta.props.length > 0) {
-    parsedString += '\n## Props\n\n'
-    parsedString += '| Prop | Type | Description | Default |\n'
-    parsedString += '| ---- | ---- | ----------- | ------- |\n'
+  files.forEach((file) => {
+    const { name, path } = file
+    const source = readFileSync(join(path, name), { encoding: 'utf8' })
+    const { descriptor } = sfcParse(source, {
+      filename: name,
+    })
 
-    // Sort props by required first, then alphabetically
-    meta.props.sort((a, b) => {
-      if (a.required && !b.required) {
-        return -1
+    const code = descriptor.script?.content
+    if (code) {
+      const result = babelParse(code, {
+        sourceType: 'module',
+        plugins: ['typescript'],
+      })
+
+      for (const node of result.program.body) {
+        if (node.type === 'ExportNamedDeclaration' && node.loc) {
+          if (node.declaration?.type === 'TSTypeAliasDeclaration') {
+            if (node.declaration.typeAnnotation.type === 'TSTypeLiteral') {
+              node.declaration.typeAnnotation.members.forEach((member) => {
+                if (member.type === 'TSPropertySignature' && member.key.type === 'StringLiteral' && member.leadingComments?.[0].loc) {
+                  const key = member.key.value
+                  const description = member.leadingComments?.[0].value.replaceAll('*', '').trim()
+                  eventDescriptionMap.set(key, description)
+                }
+                else if (member.type === 'TSPropertySignature' && member.key.type === 'Identifier' && member.leadingComments?.[0].loc) {
+                  const key = member.key.name
+                  const description = member.leadingComments?.[0].value.replaceAll('*', '').trim()
+                  eventDescriptionMap.set(key, description)
+                }
+              })
+            }
+            else if (node.declaration.typeAnnotation.type === 'TSIntersectionType') {
+              const literalType = node.declaration.typeAnnotation.types.find(t => t.type === 'TSTypeLiteral')
+              if (literalType?.type === 'TSTypeLiteral') {
+                literalType.members.forEach((member) => {
+                  if (member.type === 'TSPropertySignature' && member.key.type === 'StringLiteral' && member.leadingComments?.[0].loc) {
+                    const key = member.key.value
+                    const description = member.leadingComments?.[0].value.replaceAll('*', '').trim()
+                    eventDescriptionMap.set(key, description)
+                  }
+                  else if (member.type === 'TSPropertySignature' && member.key.type === 'Identifier' && member.leadingComments?.[0].loc) {
+                    const key = member.key.name
+                    const description = member.leadingComments?.[0].value.replaceAll('*', '').trim()
+                    eventDescriptionMap.set(key, description)
+                  }
+                })
+              }
+            }
+          }
+        }
       }
-
-      if (!a.required && b.required) {
-        return 1
-      }
-
-      return a.name.localeCompare(b.name)
-    })
-
-    meta.props.forEach((prop: { 
-      name: string; 
-      type: string; 
-      description: string; 
-      required: boolean;
-      default?: string;
-    }) => {
-      // const name = `${prop.name}${prop.required ? '*' : ''}`
-      const name = prop.required ? `**${prop.name}***` : prop.name
-      const type = `\`${prop.type.replace(/\|/g, '\\|')}\``
-      const defaultValue = prop.default === undefined ? '' : `\`${prop.default}\``
-      parsedString += `| ${name} | ${type} | ${prop.description} | ${defaultValue} |\n`
-    })
-
-    parsedString += '\n'
-  }
-
-  if (meta.slots.length > 0) {
-    parsedString += '\n## Slots\n\n'
-    parsedString += '| Slot | Slot Props | Description |\n'
-    parsedString += '| --------- | ---- | ----------- |\n'
-    meta.slots.forEach((slot: {
-      name: string;
-      type: string;
-      description: string;
-    }) => {
-      const name = slot.name
-      const type = `\`${slot.type.replace(/\|/g, '\\|')}\``
-      const description = slot.description
-
-      parsedString += `| ${name} | ${type} | ${description} |\n`
-    })
-    
-    parsedString += '\n'
-  }
-
-  if (meta.events.length > 0) {
-    parsedString += '\n## Events\n\n'
-    parsedString += '| Event name | Type | Description |\n'
-    parsedString += '| ---------- | ---- | ----------- |\n'
-    meta.events.forEach((event: { name: string; type: string; description: string }) => {
-      parsedString += `| \`${event.name}\` | ${event.type.replace(/\|/g, '\\|')} | ${event.description} |\n`
-    })
-
-    parsedString += '\n'
-  }
-
-  return parsedString
-}
-
-function generateEmptyDocWithMeta(component: Component): void {
-  const componentNameKebabCase = toKebabCase(component.componentName)
-
-  const targetDirPath = resolve(__dirname, `../components-next/${component.targetFolder}`)
-
-  if (!existsSync(targetDirPath))
-    mkdirSync(targetDirPath)
-
-  const componentMdFilePath = join(targetDirPath, `${componentNameKebabCase}.md`)
-
-  // Check if md file already exists
-  if (existsSync(componentMdFilePath)) {
-    return
-  }
-
-  const template = `---
-sidebar: auto
----
-
-# ${componentNameKebabCase.split('-').map(word => word[0].toUpperCase() + word.slice(1)).join(' ')}
-
-<!-- @include: ./${componentNameKebabCase}-meta.md -->
-`
-
-  writeFileSync(componentMdFilePath, template, 'utf8')
-}
-
-function formatCodeString(code: string): string {
-  let indentLevel = 0
-
-  return code
-    // Add line breaks after semicolons and curly braces
-    .replace(/;/g, ';\n')
-    .replace(/{/g, '{\n')
-    .replace(/}/g, '\n}')
-    // Add indentation for nested structures
-    .split('\n')
-    .reduce((formatted, line) => {
-      if (line.includes('}')) indentLevel--;
-      formatted += '  '.repeat(indentLevel) + line.trim() + '\n';
-      if (line.includes('{')) indentLevel++;
-      return formatted;
-    }, '')
-    .trim();
-}
-
-function generateDocs(components: Component[]): void {
-  components.forEach((component) => {    
-    try {
-      const sourcePath = resolve(__dirname, `../../packages/components-next/src/components/${component.sourceFolder}`)
-      const componentMeta = tsconfigChecker.getComponentMeta(sourcePath)
-
-      const componentNameKebabCase = toKebabCase(component.componentName)
-      const componentNameCamelCase = toCamelCase(component.componentName)
-      const componentPath = component.sourceFolder.slice(0, component.sourceFolder.lastIndexOf("/"))
-
-      const targetDirPath = resolve(__dirname, `../components/${component.targetFolder}`)
-
-      if (!existsSync(targetDirPath)) {
-        mkdirSync(targetDirPath)
-      }
-
-      const metaMdFilePath = join(targetDirPath, `${componentNameKebabCase}-meta.md`)
-
-      const parsedMeta = generateMeta(parseMeta(componentMeta))
-
-      writeFileSync(metaMdFilePath, parsedMeta, 'utf8')
-    } catch(error) {
-      console.log(`Error while generating docs for ${component.componentName}:`, error)
     }
-
-    console.groupEnd()
   })
 }
 
-generateDocs(components)
+function generateDependencies(componentPath: string) {
+  const { name: componentName, dir: componentDir } = parse(componentPath)
+  const dir = componentDir.split('/').at(-1) ?? ''
+
+  const source = readFileSync(componentPath, { encoding: 'utf8' })
+  const { descriptor } = sfcParse(source, {
+    filename: componentName,
+  })
+
+  const code = descriptor.script?.content
+  if (code) {
+    const result = babelParse(code, {
+      sourceType: 'module',
+      plugins: ['typescript'],
+    })
+
+    traverse(result, {
+      ImportDeclaration: (path) => {
+        const value = path.node.source.value.split('/').at(-1)
+        if (value && value.match(/^[A-Z]/) && !value.includes('vue')) {
+          const prev = depTree.get(dir) ?? []
+          depTree.set(dir, [...new Set([...prev, value])])
+        }
+      },
+    })
+  }
+}
+
+function getDependencies(dir: string, list = new Set<string>()) {
+  const deps = depTree.get(dir)
+
+  deps?.forEach((dep) => {
+    list.add(dep)
+    getDependencies(dep, list)
+  })
+  return Array.from(list)
+}
+
+function arraysAreEqual<T>(arr1: T[], arr2: T[]): boolean {
+  return arr1.length === arr2.length && arr1.every((value, index) => value === arr2[index])
+}

@@ -5,7 +5,10 @@ import SelectItem from '@/components/select/parts/SelectItem.vue'
 import Select from '@/components/select/Select.vue'
 
 const value = ref<string | null>(null)
-const arrayValue = ref<string[]>([])
+const arrayValue = ref<string[]>([
+  'First item',
+  'Second item',
+])
 const items = Array.from(Array.from({ length: 2000 }), (_, i) => `${i + 1}`)
 </script>
 
@@ -17,7 +20,7 @@ const items = Array.from(Array.from({ length: 2000 }), (_, i) => `${i + 1}`)
         :display-fn="(v) => v"
         :filter="{
           isEnabled: true,
-          isInline: false,
+          isInline: true,
         }"
         class="w-72"
       >

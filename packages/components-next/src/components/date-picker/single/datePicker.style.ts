@@ -12,9 +12,7 @@ export const createDatePickerStyle = tv({
     todayIndicator: '',
     weekDayLabel: '',
   },
-  variants: {
-    variant: {},
-  },
+  variants: { variant: {} },
 })
 
 export type DatePickerStyle = VariantProps<typeof createDatePickerStyle>

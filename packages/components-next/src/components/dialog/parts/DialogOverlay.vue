@@ -2,8 +2,8 @@
 import { AnimatePresence } from 'motion-v'
 import { DialogOverlay as RekaDialogOverlay } from 'reka-ui'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectDialogContext } from '@/components/dialog/dialog.context'
-import { mergeClasses } from '@/customClassVariants'
 
 const {
   isOpen,

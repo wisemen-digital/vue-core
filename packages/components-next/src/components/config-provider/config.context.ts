@@ -1,8 +1,7 @@
-import type {
-  ComputedRef,
-} from 'vue'
+import type { ComputedRef } from 'vue'
 
-import { useContext } from '@/composables/context.composable'
+import type { ToastPosition } from '@/components/toast/toast.composable'
+import { useContext } from '@/composables/context/context.composable'
 
 interface ConfigContext {
   areKeyboardShortcutHintsHidden: ComputedRef<boolean>
@@ -12,6 +11,7 @@ interface ConfigContext {
     limit?: number
   }
   teleportTargetSelector: string
+  toastPosition?: ToastPosition
 }
 
 export const [

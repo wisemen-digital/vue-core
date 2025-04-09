@@ -11,16 +11,14 @@ const props = defineProps<SwitchProps>()
 
 const emit = defineEmits<SwitchEmits>()
 
-const modelValue = defineModel<boolean>({
-  required: true,
-})
+const modelValue = defineModel<boolean>({ required: true })
 
 const id = props.id ?? useId()
 </script>
 
 <template>
   <FormField
-    :errors="props.errors"
+    :error-message="props.errorMessage"
     :hint="props.hint"
     :is-required="props.isRequired"
     :is-touched="props.isTouched"

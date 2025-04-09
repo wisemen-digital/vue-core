@@ -25,32 +25,34 @@
     "type-check": "vue-tsc --build --force",
     "pub:release": "pnpm publish --access public",
     "gen:web-types": "vue-docgen-web-types",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "test": "vitest --run",
     "dev": "vite build --watch"
   },
   "dependencies": {
-    "@tanstack/vue-query": "5.69.0"
+    "@tanstack/vue-query": "catalog:"
   },
   "devDependencies": {
     "@tsconfig/node18": "18.2.4",
-    "@types/node": "22.13.14",
     "@types/dom-view-transitions": "1.0.6",
-    "@vitejs/plugin-vue": "5.2.3",
+    "@types/node": "catalog:",
+    "@vitejs/plugin-vue": "catalog:",
     "@vue/language-server": "2.2.8",
-    "@vue/test-utils": "2.4.6",
-    "@vue/tsconfig": "0.7.0",
-    "@wisemen/eslint-config-vue": "1.0.0-next.0",
+    "@vue/test-utils": "catalog:",
+    "@vue/tsconfig": "catalog:",
+    "@wisemen/eslint-config-vue": "catalog:",
     "@wisemen/vue-core": "1.0.0-alpha.41",
-    "eslint": "9.23.0",
-    "jsdom": "26.0.0",
+    "eslint": "catalog:",
+    "jsdom": "catalog:",
     "minimist": "1.2.8",
-    "typescript": "5.8.2",
-    "vite": "6.2.3",
-    "vite-plugin-dts": "4.5.3",
-    "vitest": "3.0.9",
-    "vue": "3.5.13",
+    "typescript": "catalog:",
+    "vite": "catalog:",
+    "vite-plugin-dts": "catalog:",
+    "vitest": "catalog:",
+    "vue": "catalog:",
     "vue-component-type-helpers": "2.2.8",
     "vue-docgen-web-types": "0.1.8",
-    "vue-tsc": "2.2.8"
+    "vue-tsc": "catalog:"
   }
 }

@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import type {
-  VcPopoverProps,
-} from '@wisemen/vue-core-components'
+import type { VcPopoverProps } from '@wisemen/vue-core-components'
 import {
   VcButton,
   VcPopover,
@@ -16,7 +14,7 @@ const sides: VcPopoverProps['popoverSide'][] = [
 </script>
 
 <template>
-  <div class="grid grid-cols-2 gap-xl">
+  <div class="gap-xl grid grid-cols-2">
     <VcPopover
       v-for="side of sides"
       :key="side"
@@ -29,7 +27,7 @@ const sides: VcPopoverProps['popoverSide'][] = [
       </template>
 
       <template #content>
-        <div class="w-96 h-40" />
+        <div class="h-40 w-96" />
       </template>
     </VcPopover>
   </div>

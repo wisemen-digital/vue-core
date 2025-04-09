@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { VcButton, VcPopover } from '@wisemen/vue-core'
+import {
+  VcButton,
+  VcPopover,
+} from '@wisemen/vue-core'
 </script>
 
 <template>
@@ -8,8 +11,13 @@ import { VcButton, VcPopover } from '@wisemen/vue-core'
     popover-side="top"
   >
     <template #trigger>
-      <div class="flex flex-col border border-primary p-3 rounded-md hover:bg-primary-hover cursor-pointer">
-        <p class="font-semibold text-lg">
+      <div
+        class="
+          border-primary flex cursor-pointer flex-col rounded-md border p-3
+          hover:bg-primary-hover
+        "
+      >
+        <p class="text-lg font-semibold">
           Meeting: Sprint planning
         </p>
         <p>1pm - 2pm</p>
@@ -17,8 +25,8 @@ import { VcButton, VcPopover } from '@wisemen/vue-core'
     </template>
 
     <template #content>
-      <div class="py-3 px-4">
-        <h4 class="font-semibold text-xl">
+      <div class="px-4 py-3">
+        <h4 class="text-xl font-semibold">
           Meeting: Sprint planning
         </h4>
         <div class="my-4">

@@ -1,11 +1,15 @@
 <script setup lang="ts">
-import SelectSearchInput from '@/components/select/parts/SelectSearchInput.vue'
+import { ListboxFilter as RekaListboxFilter } from 'reka-ui'
+
 import { useInjectSelectContext } from '@/components/select/select.context'
-import TextField from '@/components/text-field/TextField.vue'
+import TextFieldIconLeft from '@/components/text-field/parts/TextFieldIconLeft.vue'
+import TextFieldInput from '@/components/text-field/parts/TextFieldInput.vue'
+import TextFieldRoot from '@/components/text-field/parts/TextFieldRoot.vue'
 
 const {
   hasScrolledInDropdownContent,
   classConfig,
+  customClassConfig,
   filter,
   searchInputPlaceholder,
   searchTerm,
@@ -15,26 +19,33 @@ const {
 <template>
   <div
     v-if="filter !== null && filter.isEnabled && !filter.isInline"
-    class="relative p-xs pb-0"
+    class="p-xs relative pb-0"
   >
-    <SelectSearchInput
+    <TextFieldRoot
+      v-model="searchTerm"
       :placeholder="searchInputPlaceholder"
-      :as-child="true"
+      :class-config="{
+        root: 'border-none shadow-none outline-none bg-secondary h-8 rounded-sm',
+        iconLeft: 'ml-md',
+        ...customClassConfig?.dropdownSearchInput,
+        ...classConfig?.dropdownSearchInput,
+      }"
     >
-      <TextField
-        v-model="searchTerm"
-        :class-config="{
-          root: 'border-none shadow-none !ring-0 bg-secondary h-8 rounded-sm',
-          iconLeft: 'ml-md',
-          ...classConfig?.dropdownSearchInput,
-        }"
-        icon-left="search"
-      />
-    </SelectSearchInput>
+      <TextFieldIconLeft />
+
+      <RekaListboxFilter
+        :as-child="true"
+      >
+        <TextFieldInput />
+      </RekaListboxFilter>
+    </TextFieldRoot>
 
     <div
       v-if="hasScrolledInDropdownContent"
-      class="absolute bottom-0 w-full translate-y-full z-10 h-4 bg-gradient-to-b from-primary to-transparent pointer-events-none"
+      class="
+        from-primary pointer-events-none absolute bottom-0 z-10 h-4 w-full
+        translate-y-full bg-gradient-to-b to-transparent
+      "
     />
   </div>
 </template>

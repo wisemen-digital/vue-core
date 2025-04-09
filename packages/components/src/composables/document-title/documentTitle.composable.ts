@@ -31,9 +31,7 @@ export function useDocumentTitle(): UseDocumentTitleReturnType {
   function setDocumentTitle(title: MaybeRefOrGetter<string>): void {
     watch(() => toValue(title), (newTitle) => {
       documentTitle.value = newTitle
-    }, {
-      immediate: true,
-    })
+    }, { immediate: true })
   }
 
   watch(
@@ -41,9 +39,7 @@ export function useDocumentTitle(): UseDocumentTitleReturnType {
     (documentTitle) => {
       document.title = template.value.replace('{title}', documentTitle)
     },
-    {
-      immediate: true,
-    },
+    { immediate: true },
   )
 
   return {

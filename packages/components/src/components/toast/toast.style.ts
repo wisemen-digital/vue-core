@@ -12,19 +12,28 @@ export const toastStyle = tv({
     variant: {
       error: {
         action: 'ring-error-500',
-        closeButton: 'ring-error-500 hover:bg-error-100',
+        closeButton: `
+          ring-error-500
+          hover:bg-error-100
+        `,
         container: 'border-error-200 bg-error-50 text-error-600',
         iconContainer: 'bg-error-100',
       },
       info: {
         action: 'ring-fg-primary',
-        closeButton: 'ring-fg-primary hover:bg-secondary-hover',
+        closeButton: `
+          ring-fg-primary
+          hover:bg-secondary-hover
+        `,
         container: 'border-secondary bg-secondary text-secondary',
         iconContainer: 'bg-tertiary',
       },
       success: {
         action: 'ring-success-500',
-        closeButton: 'ring-success-500 hover:bg-success-100',
+        closeButton: `
+          ring-success-500
+          hover:bg-success-100
+        `,
         container: 'border-success-200 bg-success-50 text-success-600',
         iconContainer: 'bg-success-100',
       },

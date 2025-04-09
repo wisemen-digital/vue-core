@@ -6,9 +6,7 @@ const props = withDefaults(defineProps<{
    * The duration of the transition in milliseconds.
    */
   durationInMs?: number
-}>(), {
-  durationInMs: 250,
-})
+}>(), { durationInMs: 250 })
 
 defineSlots<{
   /** Content of the transition */

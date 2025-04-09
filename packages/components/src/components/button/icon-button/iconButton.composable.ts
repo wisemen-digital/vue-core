@@ -1,6 +1,6 @@
+import type { ComputedRef } from 'vue'
 import {
   computed,
-  type ComputedRef,
   ref,
 } from 'vue'
 

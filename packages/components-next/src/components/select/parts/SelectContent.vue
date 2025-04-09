@@ -11,10 +11,11 @@ import {
   ref,
 } from 'vue'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectSelectContext } from '@/components/select/select.context'
-import { mergeClasses } from '@/customClassVariants'
 
 const {
+  id,
   hasScrolledInDropdownContent,
   classConfig,
   customClassConfig,
@@ -88,9 +89,11 @@ onBeforeUnmount(() => {
       duration: 0.3,
     }"
     tabindex="-1"
+    class="overflow-hidden"
   >
     <div ref="listboxContentWrapperRef">
       <RekaListboxContent
+        :id="`${id}-content`"
         ref="listboxContentRef"
         :class="style.content({
           class: mergeClasses(customClassConfig.content, classConfig?.content),

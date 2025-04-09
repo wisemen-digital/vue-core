@@ -1,12 +1,16 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="TValue extends AcceptableValue">
+import type { AcceptableValue } from 'reka-ui'
+import { RadioGroupRoot as RekaRadioGroupRoot } from 'reka-ui'
 import {
-  type AcceptableValue,
-  RadioGroupRoot as RekaRadioGroupRoot,
-} from 'reka-ui'
+  computed,
+  ref,
+} from 'vue'
 
+import type { RadioGroupEmits } from '@/components/radio-group/radioGroup.emits'
 import type { RadioGroupProps } from '@/components/radio-group/radioGroup.props'
 import InteractableElement from '@/components/shared/InteractableElement.vue'
-import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
+import TestIdProvider from '@/components/shared/TestIdProvider.vue'
+import { useFocusOut } from '@/composables/focus-out/focusOut.composable'
 
 const props = withDefaults(defineProps<RadioGroupProps>(), {
   id: null,
@@ -14,26 +18,36 @@ const props = withDefaults(defineProps<RadioGroupProps>(), {
   isDisabled: false,
   isRequired: false,
   isTouched: false,
-  errors: () => [],
+  errorMessage: null,
   hint: null,
   label: null,
 })
 
-const modelValue = defineModel<AcceptableValue>({
-  required: true,
-})
+const emit = defineEmits<RadioGroupEmits>()
+
+const modelValue = defineModel<TValue>({ required: true })
+
+const radioGroupRootRef = ref<InstanceType<typeof RekaRadioGroupRoot> | null>(null)
+
+useFocusOut(
+  computed<HTMLElement | null>(() => radioGroupRootRef.value?.$el ?? null),
+  () => {
+    emit('blur')
+  },
+)
 </script>
 
 <template>
-  <PrimitiveElement
-    :id="props.id"
-    :test-id="props.testId"
-    :aria-invalid="props.errors.length > 0"
-  >
+  <TestIdProvider :test-id="props.testId">
     <InteractableElement :is-disabled="props.isDisabled">
-      <RekaRadioGroupRoot v-model="modelValue">
+      <RekaRadioGroupRoot
+        :id="props.id"
+        ref="radioGroupRootRef"
+        v-model="modelValue"
+        :aria-invalid="props.errorMessage !== null"
+      >
         <slot />
       </RekaRadioGroupRoot>
     </InteractableElement>
-  </PrimitiveElement>
+  </TestIdProvider>
 </template>

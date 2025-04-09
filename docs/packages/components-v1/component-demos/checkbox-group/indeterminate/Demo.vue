@@ -3,7 +3,10 @@ import {
   VcCheckbox,
   VcCheckboxGroup,
 } from '@wisemen/vue-core'
-import { computed, ref } from 'vue'
+import {
+  computed,
+  ref,
+} from 'vue'
 
 const selectedItems = ref<string[]>([
   'Apple',

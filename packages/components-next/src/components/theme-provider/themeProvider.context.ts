@@ -1,11 +1,14 @@
-import type { ComputedRef, InjectionKey } from 'vue'
+import type {
+  ComputedRef,
+  InjectionKey,
+} from 'vue'
 import {
   computed,
   inject,
   provide,
 } from 'vue'
 
-import type { Appearance } from '@/composables/appearance.composable'
+import type { Appearance } from '@/composables/appearance/appearance.composable'
 
 interface ThemeProviderContext {
   appearance: ComputedRef<Appearance>

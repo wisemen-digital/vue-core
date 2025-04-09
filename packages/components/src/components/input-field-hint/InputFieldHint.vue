@@ -20,9 +20,7 @@ const props = withDefaults(defineProps<{
    * @default null
    */
   styleConfig?: StyleConfig<'inputFieldHint'> | null
-}>(), {
-  styleConfig: null,
-})
+}>(), { styleConfig: null })
 
 const themeProviderContext = injectThemeProviderContext()
 

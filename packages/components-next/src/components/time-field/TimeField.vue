@@ -17,16 +17,14 @@ const emit = defineEmits<TimeFieldEmits>()
 
 defineSlots<TimeFieldSlots>()
 
-const modelValue = defineModel<string | null>({
-  required: true,
-})
+const modelValue = defineModel<string | null>({ required: true })
 
 const id = props.id ?? useId()
 </script>
 
 <template>
   <FormField
-    :errors="props.errors"
+    :error-message="props.errorMessage"
     :hint="props.hint"
     :is-required="props.isRequired"
     :is-touched="props.isTouched"

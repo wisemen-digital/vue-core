@@ -1,13 +1,15 @@
 import type { AcceptableValue } from 'reka-ui'
 
-import type { GetComponentPropCustomValues } from '@/customClassVariants'
+import type {
+  CustomizableElement,
+  GetComponentProp,
+} from '@/class-variant/classVariant.type'
 import type { Icon } from '@/icons/icons'
 import type { PopperPropsWithArrowHiddenByDefault } from '@/types/popperProps.type'
 import type {
-  CustomizableElement,
   FormElement,
   InteractableElement,
-  PrimitiveElement,
+  TestId,
 } from '@/utils/props.util'
 
 export type SelectValue = AcceptableValue | AcceptableValue[]
@@ -22,20 +24,11 @@ export type SelectDisplayFn<TValue extends SelectValue> = (
 ) => string
 
 export interface SelectProps<TValue extends SelectValue> extends
-  PrimitiveElement,
+  TestId,
   InteractableElement,
   FormElement,
   PopperPropsWithArrowHiddenByDefault,
-  CustomizableElement<'select', [
-    {
-      name: 'dropdownSearchInput'
-      component: 'textField'
-    },
-    {
-      name: 'popover'
-      component: 'popover'
-    },
-  ]> {
+  CustomizableElement<'select'> {
   /**
    * Controls the visibility of the dropdown.
    * When set to `true`, the dropdown remains hidden.
@@ -55,6 +48,11 @@ export interface SelectProps<TValue extends SelectValue> extends
    * @default false
    */
   isSearchTermControlled?: boolean
+  /**
+   * Whether to clear the search term when an item is selected.
+   * @default false
+   */
+  clearSearchTermOnSelect?: boolean
   /**
    * A function that determines how selected options are displayed in the input field.
    * It receives the selected option as an argument and should return a string representation.
@@ -111,9 +109,9 @@ export interface SelectProps<TValue extends SelectValue> extends
    */
   searchInputPlaceholder?: string | null
   /**
-   *
+   * Defines the visual style of the select component.
    */
-  variant?: GetComponentPropCustomValues<'select', 'variant'> | null
+  variant?: GetComponentProp<'select', 'variant'> | null
   /**
    * Configuration for enabling a virtualized list when displaying large sets of options.
    * @default null
@@ -136,7 +134,7 @@ export interface SelectProps<TValue extends SelectValue> extends
   } | null
 }
 
-export interface SelectItemProps {
+export interface SelectItemProps extends TestId {
   /**
    * Whether the option is disabled. If `true`, the option cannot be selected.
    * @default false

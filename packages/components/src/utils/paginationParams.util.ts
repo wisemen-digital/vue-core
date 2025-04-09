@@ -48,8 +48,8 @@ export class PaginationParamsBuilder<TPagination extends BasePagination> {
 
   constructor(paginationOptions?: PaginationOptions<TPagination>) {
     const allFilters = {
-      ...paginationOptions?.filter ?? {},
-      ...paginationOptions?.staticFilters ?? {},
+      ...paginationOptions?.filter,
+      ...paginationOptions?.staticFilters,
     }
 
     const pagination = this.getPaginationSet(paginationOptions)
@@ -59,12 +59,12 @@ export class PaginationParamsBuilder<TPagination extends BasePagination> {
       search: paginationOptions?.search,
     } as PaginationParams<TPagination>
 
-    Object.entries(allFilters).forEach(([
+    for (const [
       key,
       value,
-    ]) => {
+    ] of Object.entries(allFilters)) {
       this.withFilter(key as keyof TPagination['filter'], value as TPagination['filter'][keyof TPagination['filter']])
-    })
+    }
 
     if (paginationOptions?.sort !== undefined) {
       this.withSort({

@@ -1,8 +1,6 @@
 <script setup lang="ts" generic="TValue extends AcceptableValue">
-import {
-  type AcceptableValue,
-  RadioGroupRoot,
-} from 'reka-ui'
+import type { AcceptableValue } from 'reka-ui'
+import { RadioGroupRoot } from 'reka-ui'
 import { useId } from 'vue'
 
 import InputField from '@/components/input-field/InputField.vue'
@@ -23,9 +21,7 @@ const props = withDefaults(defineProps<RadioGroupProps>(), {
 
 defineSlots<FormElementSlots>()
 
-const model = defineModel<TValue>({
-  required: true,
-})
+const model = defineModel<TValue>({ required: true })
 
 const inputId = props.id ?? useId()
 </script>

@@ -17,7 +17,7 @@ export const createTabsStyle = tv({
       .withTransition('duration-200')
       .build(),
     item: new StyleBuilder()
-      .withBase('relative outline-none data-[orientation=vertical]:text-left')
+      .withBase('group/tabs-item relative data-[orientation=vertical]:text-left')
       .withFontSize('text-sm')
       .withFontWeight('font-semibold')
       .withTransition('duration-200')
@@ -44,8 +44,8 @@ export const createTabsStyle = tv({
           .withShadow('shadow-xs')
           .build(),
         item: new StyleBuilder()
-          .withRing('focus-visible:ring-2 ring-offset-2 ring-fg-brand-primary-alt')
-          .withColor('data-[state=active]:text-secondary data-[state=inactive]:text-quaternary enabled:data-[state=inactive]:hover:text-tertiary disabled:opacity-75')
+          .withOutline('outline-2 outline-transparent focus-visible:outline-fg-brand-primary-alt')
+          .withColor('data-[state=active]:text-secondary data-[state=inactive]:text-quaternary not-disabled:data-[state=inactive]:hover:text-tertiary disabled:opacity-75')
           .withSpacing('py-md px-lg')
           .withBorderRadius('rounded-sm')
           .build(),
@@ -60,8 +60,8 @@ export const createTabsStyle = tv({
           .withBackgroundColor('bg-brand-primary-alt')
           .build(),
         item: new StyleBuilder()
-          .withColor('data-[state=active]:text-brand-secondary data-[state=inactive]:text-quaternary enabled:data-[state=inactive]:hover:text-tertiary disabled:opacity-75')
-          .withRing('focus-visible:ring-2 ring-offset-2 ring-fg-brand-primary-alt')
+          .withColor('data-[state=active]:text-brand-secondary data-[state=inactive]:text-quaternary not-disabled:data-[state=inactive]:hover:text-tertiary disabled:opacity-75')
+          .withOutline('outline-2 outline-transparent focus-visible:outline-fg-brand-primary-alt')
           .withBorderRadius('rounded-sm')
           .withSpacing('py-md px-lg')
           .build(),
@@ -79,9 +79,9 @@ export const createTabsStyle = tv({
           .withPadding('px-md py-sm')
           .withMargin('group-data-[orientation=horizontal]:my-sm group-data-[orientation=vertical]:mx-sm')
           .withBorderRadius('rounded-md')
-          .withRing('focus-visible:ring-2 ring-offset-2 ring-fg-brand-primary-alt')
+          .withOutline('outline-2 outline-transparent focus-visible:outline-fg-brand-primary-alt')
           .withColor('data-[state=active]:text-brand-secondary data-[state=inactive]:text-quaternary disabled:opacity-75')
-          .withBackgroundColor('enabled:hover:bg-primary-hover enabled:data-[state=active]:hover:bg-brand-primary-alt')
+          .withBackgroundColor('not-disabled:hover:bg-primary-hover not-disabled:data-[state=active]:hover:bg-brand-primary-alt')
           .build(),
         list: new StyleBuilder()
           .withSpacing('gap-lg')

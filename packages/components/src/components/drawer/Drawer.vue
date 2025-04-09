@@ -31,9 +31,7 @@ defineSlots<{
   default: () => void
 }>()
 
-const isOpen = defineModel<boolean>('isOpen', {
-  default: false,
-})
+const isOpen = defineModel<boolean>('isOpen', { default: false })
 
 const attrs = useAttrs()
 

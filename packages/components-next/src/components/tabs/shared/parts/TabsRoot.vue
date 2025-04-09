@@ -2,17 +2,17 @@
 import { TabsRoot as RekaTabsRoot } from 'reka-ui'
 import { computed } from 'vue'
 
-import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
-import type { ButtonTabsValue } from '@/components/tabs/button/buttonTabs.props'
+import type { CustomComponentVariant } from '@/class-variant/classVariant.type'
+import { getCustomComponentVariant } from '@/class-variant/customClassVariants'
+import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 import { useProvideTabsContext } from '@/components/tabs/shared/tabs.context'
 import type { TabsProps } from '@/components/tabs/shared/tabs.props'
 import type { CreateTabsStyle } from '@/components/tabs/shared/tabs.style'
 import { createTabsStyle } from '@/components/tabs/shared/tabs.style'
-import { useComponentClassConfig } from '@/customClassVariants'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { toComputedRefs } from '@/utils/props.util'
 
 const props = withDefaults(defineProps<TabsProps>(), {
-  id: null,
   testId: null,
   isDisabled: false,
   classConfig: null,
@@ -20,24 +20,15 @@ const props = withDefaults(defineProps<TabsProps>(), {
   variant: 'underline',
 })
 
-const model = defineModel<ButtonTabsValue>({
-  required: true,
-})
+const modelValue = defineModel<string>({ required: true })
 
-const delegatedModel = computed<string>({
-  get: () => JSON.stringify(model.value),
-  set: (value) => {
-    model.value = JSON.parse(value)
-  },
-})
+const { theme } = injectThemeProviderContext()
 
-const tabsStyle = computed<CreateTabsStyle>(() => createTabsStyle({
-  variant: props.variant,
-}))
+const tabsStyle = computed<CreateTabsStyle>(() => createTabsStyle({ variant: props.variant }))
 
-const customClassConfig = useComponentClassConfig('tabs', {
-  variant: props.variant,
-})
+const customClassConfig = computed<CustomComponentVariant<'tabs'>>(
+  () => getCustomComponentVariant('tabs', theme.value, { variant: props.variant }),
+)
 
 useProvideTabsContext({
   ...toComputedRefs(props),
@@ -47,15 +38,12 @@ useProvideTabsContext({
 </script>
 
 <template>
-  <PrimitiveElement
-    :id="props.id"
-    :test-id="props.testId"
-  >
+  <TestIdProvider :test-id="props.testId">
     <RekaTabsRoot
-      v-model="delegatedModel"
+      v-model="modelValue"
       :orientation="props.orientation"
     >
       <slot />
     </RekaTabsRoot>
-  </PrimitiveElement>
+  </TestIdProvider>
 </template>

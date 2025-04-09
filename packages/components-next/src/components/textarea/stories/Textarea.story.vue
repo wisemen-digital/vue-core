@@ -7,6 +7,7 @@ import Textarea from '@/components/textarea/Textarea.vue'
     <Textarea
       :model-value="null"
       :class-config="{ }"
+      :is-required="true"
       label="Textarea"
       placeholder="Enter your text here..."
       hint="You can enter quite a lot of text here."
@@ -14,7 +15,7 @@ import Textarea from '@/components/textarea/Textarea.vue'
       class="w-96"
     >
     <template #bottom>
-      <div class="pt-0 p-lg">
+      <div class="p-lg pt-0">
         hier
       </div>
     </template>

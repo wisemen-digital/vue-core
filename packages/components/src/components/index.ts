@@ -12,9 +12,7 @@ import type { SelectProps } from '@/components/select/select.props'
 import type { SwitchProps } from '@/components/switch/switch.props'
 import type { TableProps } from '@/components/table/table.props'
 import type { TooltipProps } from '@/components/tooltip/tooltip.props'
-import type {
-  SelectValue,
-} from '@/types'
+import type { SelectValue } from '@/types'
 import type { BasePagination } from '@/types/pagination.type'
 
 export type VcAutocompleteProps<TValue extends SelectValue> = AutocompleteProps<TValue>
@@ -170,7 +168,9 @@ export { default as VcTag } from '@/components/tag/Tag.vue'
 export { default as VcTagRemoveButton } from '@/components/tag/TagRemoveButton.vue'
 
 // Theme Provider
-export { injectThemeProviderContext, provideThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
+export {
+  injectThemeProviderContext, provideThemeProviderContext,
+} from '@/components/theme-provider/themeProvider.context'
 export { default as VcThemeProvider } from '@/components/theme-provider/ThemeProvider.vue'
 
 // Toast

@@ -7,7 +7,10 @@ import TextFieldIconRight from '@/components/text-field/parts/TextFieldIconRight
 import TextFieldInput from '@/components/text-field/parts/TextFieldInput.vue'
 import TextFieldLoader from '@/components/text-field/parts/TextFieldLoader.vue'
 import TextFieldRoot from '@/components/text-field/parts/TextFieldRoot.vue'
-import type { TextFieldEmits, TextFieldProps } from '@/components/text-field/textField.props'
+import type {
+  TextFieldEmits,
+  TextFieldProps,
+} from '@/components/text-field/textField.props'
 import type { TextFieldSlots } from '@/components/text-field/textField.slots'
 
 const props = defineProps<TextFieldProps>()
@@ -15,16 +18,14 @@ const emit = defineEmits<TextFieldEmits>()
 
 defineSlots<TextFieldSlots>()
 
-const modelValue = defineModel<TValue | null>({
-  required: true,
-})
+const modelValue = defineModel<TValue | null>({ required: true })
 
 const id = props.id ?? useId()
 </script>
 
 <template>
   <FormField
-    :errors="props.errors"
+    :error-message="props.errorMessage"
     :hint="props.hint"
     :is-required="props.isRequired"
     :is-touched="props.isTouched"

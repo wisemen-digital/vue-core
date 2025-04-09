@@ -2,10 +2,10 @@
 import { TabsTrigger as RekaTabsTrigger } from 'reka-ui'
 import { RouterLink } from 'vue-router'
 
-import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
+import { mergeClasses } from '@/class-variant/customClassVariants'
+import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 import { useInjectTabsContext } from '@/components/tabs/shared/tabs.context'
 import type { RouterLinkTabsItemProps } from '@/components/tabs/shared/tabs.props'
-import { mergeClasses } from '@/customClassVariants'
 
 const props = withDefaults(defineProps<RouterLinkTabsItemProps>(), {
   id: null,
@@ -21,10 +21,7 @@ const {
 </script>
 
 <template>
-  <PrimitiveElement
-    :id="props.id"
-    :test-id="props.testId"
-  >
+  <TestIdProvider :test-id="props.testId">
     <RekaTabsTrigger
       :as-child="true"
       :value="(props.to.name as string)"
@@ -36,5 +33,5 @@ const {
         <slot />
       </RouterLink>
     </RekaTabsTrigger>
-  </PrimitiveElement>
+  </TestIdProvider>
 </template>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import type { DateValue } from '@internationalized/date'
 import {
   CalendarDate,
-  type DateValue,
   getLocalTimeZone,
 } from '@internationalized/date'
 import { useElementSize } from '@vueuse/core'
@@ -46,9 +46,7 @@ defineSlots<{
   date: ({ date }: { date: Date }) => void
 }>()
 
-const model = defineModel<Date | null>({
-  required: true,
-})
+const model = defineModel<Date | null>({ required: true })
 
 const delegatedModel = computed<DateValue | null>({
   get: () => {
@@ -226,7 +224,7 @@ watch(placeholderYear, () => {
                 <CalendarHeadCell
                   v-for="day in weekDays"
                   :key="day"
-                  class="text-sm font-medium text-quaternary"
+                  class="text-quaternary text-sm font-medium"
                 >
                   {{ day }}
                 </CalendarHeadCell>
@@ -249,29 +247,25 @@ watch(placeholderYear, () => {
                     :day="weekDate"
                     :month="month.value"
                     class="
-                    overflow-hidden
-                    cursor-pointer flex size-8 items-center justify-center rounded-full text-center text-sm text-tertiary outline-none
-                    duration-100
-                    focus:bg-brand-secondary
-                    focus:text-brand-primary
-                    focus-visible:ring-brand-primary-500
-                    focus-visible:ring-2
-                    ring-offset-1
-                    group
-                    data-[selected]:bg-brand-solid
-                    data-[selected]:text-primary-on-brand
-                    data-[selected]:focus-visible:ring-2
-                    data-[selected]:data-[unavailable]:text-primary-on-brand
-                    data-[today]:bg-secondary-hover
-                    data-[today]:text-primary
-                    data-[today]:focus:bg-brand-secondary
-                    data-[today]:focus:text-brand-primary
-                    data-[disabled]:text-disabled
-                    data-[unavailable]:text-disabled
-                    data-[unavailable]:pointer-events-none
-                    data-[unavailable]:line-through
-                    data-[outside-view]:text-disabled
-                  "
+                      text-tertiary group flex size-8 cursor-pointer
+                      items-center justify-center overflow-hidden rounded-full
+                      text-center text-sm ring-offset-1 duration-100
+                      outline-none
+                      focus:bg-brand-secondary focus:text-brand-primary
+                      focus-visible:ring-brand-primary-500 focus-visible:ring-2
+                      data-[selected]:bg-brand-solid
+                      data-[selected]:text-primary-on-brand
+                      data-[selected]:data-[unavailable]:text-primary-on-brand
+                      data-[selected]:focus-visible:ring-2
+                      data-[today]:bg-secondary-hover data-[today]:text-primary
+                      data-[today]:focus:bg-brand-secondary
+                      data-[today]:focus:text-brand-primary
+                      data-[disabled]:text-disabled
+                      data-[unavailable]:text-disabled
+                      data-[unavailable]:pointer-events-none
+                      data-[unavailable]:line-through
+                      data-[outside-view]:text-disabled
+                    "
                   >
                     {{ new Date(weekDate).getDate() }}
 
@@ -389,7 +383,10 @@ watch(placeholderYear, () => {
               :class="{
                 'bg-secondary-hover': placeholderMonth === monthIndex,
               }"
-              class="block cursor-pointer rounded-md p-2 text-center text-sm text-tertiary"
+              class="
+                text-tertiary block cursor-pointer rounded-md p-2 text-center
+                text-sm
+              "
               @click="onSelectMonth"
             >
               {{ getMonthName(monthIndex, 'short') }}
@@ -421,7 +418,10 @@ watch(placeholderYear, () => {
               :class="{
                 'bg-secondary-hover': placeholderYear === year,
               }"
-              class="block cursor-pointer rounded-md p-2 text-center text-sm text-tertiary"
+              class="
+                text-tertiary block cursor-pointer rounded-md p-2 text-center
+                text-sm
+              "
               @click="onSelectYear"
             >
               {{ year }}

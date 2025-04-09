@@ -8,8 +8,8 @@ import { StyleBuilder } from '@/utils/style-builder/styleBuilder.util'
 export const createSharedButtonStyle = tv({
   slots: {
     root: new StyleBuilder()
-      .withBase('group/button outline-none whitespace-nowrap overflow-hidden relative')
-      .withRing('focus-visible:ring-2 focus-visible:ring-offset-1 ring-brand-600')
+      .withBase('group/button whitespace-nowrap overflow-hidden relative')
+      .withOutline('focus-visible:outline-2 outline-offset-2 outline-brand-600')
       .withBorder('border border-solid')
       .withBorderRadius('rounded-md')
       .withShadow('shadow-button')
@@ -24,7 +24,7 @@ export const createSharedButtonStyle = tv({
           .withColor('text-white disabled:text-fg-disabled')
           .withBackgroundColor('bg-error-solid disabled:bg-disabled')
           .withBorder('border-error-600 disabled:border-disabled-subtle')
-          .withRing('ring-error-600')
+          .withOutline('outline-error-600')
           .withTransition('data-[loading=false]:not-disabled:hover:brightness-95 data-[loading=false]:not-disabled:active:brightness-90')
           .build(),
       },
@@ -33,7 +33,7 @@ export const createSharedButtonStyle = tv({
           .withColor('text-error-primary disabled:text-fg-disabled')
           .withBackgroundColor('bg-transparent data-[loading=false]:not-disabled:hover:bg-error-primary data-[loading=false]:not-disabled:active:brightness-98 data-[loading=true]:bg-error-primary')
           .withBorder('border-error-subtle disabled:border-disabled-subtle')
-          .withRing('ring-error-600')
+          .withOutline('outline-error-600')
           .build(),
       },
       'destructive-tertiary': {
@@ -42,7 +42,7 @@ export const createSharedButtonStyle = tv({
           .withBackgroundColor('bg-transparent data-[loading=false]:not-disabled:hover:bg-error-primary data-[loading=false]:not-disabled:active:brightness-98 data-[loading=true]:bg-error-primary')
           .withBorder('border-transparent')
           .withShadow('shadow-none')
-          .withRing('ring-error-600')
+          .withOutline('outline-error-600')
           .build(),
       },
       'primary': {
@@ -72,28 +72,28 @@ export const createSharedButtonStyle = tv({
     size: {
       '2xl': {
         root: new StyleBuilder()
-          .withHeight('min-w-15 h-15')
+          .withHeight('h-15')
           .withBorderRadius('rounded-lg')
           .build(),
       },
       'lg': {
         root: new StyleBuilder()
-          .withHeight('min-w-11 h-11')
+          .withHeight('h-11')
           .build(),
       },
       'md': {
         root: new StyleBuilder()
-          .withHeight('min-w-10 h-10')
+          .withHeight('h-10')
           .build(),
       },
       'sm': {
         root: new StyleBuilder()
-          .withHeight('min-w-9 h-9')
+          .withHeight('h-9')
           .build(),
       },
       'xl': {
         root: new StyleBuilder()
-          .withHeight('min-w-12 h-12')
+          .withHeight('h-12')
           .build(),
       },
     },

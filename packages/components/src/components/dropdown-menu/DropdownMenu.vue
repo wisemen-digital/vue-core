@@ -1,3 +1,4 @@
+<!-- eslint-disable unicorn/consistent-destructuring -->
 <script setup lang="ts">
 import {
   DropdownMenuArrow,
@@ -88,13 +89,13 @@ const arrowBoxClasses = computed<string>(() => style.arrowBox())
 function getAllItems(items: DropdownMenuItemType[]): DropdownMenuItemType[] {
   const allItems: DropdownMenuItemType[] = []
 
-  items.forEach((item) => {
+  for (const item of items) {
     allItems.push(item)
 
     if (item.type === 'group' || item.type === 'subMenu') {
       allItems.push(...getAllItems(item.items))
     }
-  })
+  }
 
   return allItems
 }
@@ -112,17 +113,17 @@ onMounted(() => {
   watch(
     () => props.items,
     () => {
-      keyboardShortcutsUnbindFns.forEach((unbind) => {
+      for (const unbind of keyboardShortcutsUnbindFns) {
         unbind()
-      })
+      }
 
       keyboardShortcutsUnbindFns = []
 
-      itemsWithKeyboardShortcuts.value.forEach((item) => {
+      for (const item of itemsWithKeyboardShortcuts.value) {
         const { keyboardKeys } = item
 
         if (keyboardKeys === undefined) {
-          return
+          continue
         }
 
         // Shortcut for when the dropdown trigger is focused.
@@ -163,18 +164,16 @@ onMounted(() => {
         })
 
         keyboardShortcutsUnbindFns.push(shortcut.unbind, globalShortcut.unbind)
-      })
+      }
     },
-    {
-      immediate: true,
-    },
+    { immediate: true },
   )
 })
 
 onBeforeUnmount(() => {
-  keyboardShortcutsUnbindFns.forEach((unbind) => {
+  for (const unbind of keyboardShortcutsUnbindFns) {
     unbind()
-  })
+  }
 })
 </script>
 

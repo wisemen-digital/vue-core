@@ -38,6 +38,10 @@ import {
 
 <ComponentPreview name="date-field/examples/disabled" />
 
+### Error
+
+<ComponentPreview name="date-field/examples/error" />
+
 ### Show two months
 
 <ComponentPreview name="date-field/examples/show-two-months" />
@@ -45,3 +49,5 @@ import {
 ### Hide date picker
 
 <ComponentPreview name="date-field/examples/hide-date-picker" />
+
+<!-- @include: ./date-field-meta.md -->

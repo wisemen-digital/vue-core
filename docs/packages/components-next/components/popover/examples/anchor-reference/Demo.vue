@@ -18,13 +18,16 @@ const popoverAnchorRef = ref<HTMLElement | null>(null)
       </template>
 
       <template #content>
-        <div class="w-80 h-40" />
+        <div class="h-40 w-80" />
       </template>
     </VcPopover>
 
     <div
       ref="popoverAnchorRef"
-      class="absolute translate-x-20 top-2 right-2 size-8 border border-dashed border-primary"
+      class="
+        border-primary absolute top-2 right-2 size-8 translate-x-20 border
+        border-dashed
+      "
     />
   </div>
 </template>

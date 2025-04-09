@@ -1,24 +1,22 @@
 <script setup lang="ts">
 import { AnimatePresence } from 'motion-v'
-import {
-  TooltipContent as RekaTooltipContent,
-} from 'reka-ui'
+import { TooltipContent as RekaTooltipContent } from 'reka-ui'
 
-import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
+import { mergeClasses } from '@/class-variant/customClassVariants'
+import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 import { useInjectTooltipContext } from '@/components/tooltip/tooltip.context'
-import { mergeClasses } from '@/customClassVariants'
 
 const {
-  id,
   testId,
   isOpen,
   classConfig,
   customClassConfig,
   popoverAlign,
-  popoverCollisionPaddingInPx,
+  popoverAlignOffset,
+  popoverCollisionPadding,
   popoverContainerElement,
-  popoverOffsetInPx,
   popoverSide,
+  popoverSideOffset,
   popoverWidth,
   style,
 } = useInjectTooltipContext()
@@ -26,9 +24,8 @@ const {
 
 <template>
   <AnimatePresence>
-    <PrimitiveElement
+    <TestIdProvider
       v-if="isOpen"
-      :id="id"
       :test-id="testId"
     >
       <RekaTooltipContent
@@ -36,11 +33,11 @@ const {
         :as-child="true"
         :data-content-width="popoverWidth"
         :align="popoverAlign"
-        :align-offset="popoverOffsetInPx"
-        :collision-padding="popoverCollisionPaddingInPx"
+        :align-offset="popoverAlignOffset"
+        :collision-padding="popoverCollisionPadding"
         :collision-boundary="popoverContainerElement"
         :side="popoverSide"
-        :side-offset="popoverOffsetInPx"
+        :side-offset="popoverSideOffset"
         :class="style.content({
           class: mergeClasses(customClassConfig?.content, classConfig?.content),
         })"
@@ -48,6 +45,6 @@ const {
       >
         <slot />
       </RekaTooltipContent>
-    </PrimitiveElement>
+    </TestIdProvider>
   </AnimatePresence>
 </template>

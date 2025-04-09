@@ -35,3 +35,23 @@ import {
   </VcDialogRoot>
 </template>
 ```
+
+## Examples
+
+### Prevent click outside
+
+<ComponentPreview name="dialog/examples/prevent-click-outside" />
+
+### Prevent escape key
+
+<ComponentPreview name="dialog/examples/prevent-esc" />
+
+### Custom overlay
+
+<ComponentPreview name="dialog/examples/custom-overlay" />
+
+### Drawer
+
+<ComponentPreview name="dialog/examples/drawer" />
+
+<!-- @include: ./dialog-meta.md -->

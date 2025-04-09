@@ -1,18 +1,11 @@
 import type { ComputedRef } from 'vue'
 import { computed } from 'vue'
 
-import type { ClassConfig, Components } from '@/customClassVariants'
-
 export type NonUndefined<T> = {
   [K in keyof T]-?: Exclude<T[K], undefined>;
 }
 
-export interface PrimitiveElement {
-  /**
-   * The id of the element. If set to `null`, no ID will be applied.
-   * @default null
-   */
-  id?: string | null
+export interface TestId {
   /**
    * A unique identifier used for testing purposes. If set to `null`, no test ID will be applied.
    * @default null
@@ -30,6 +23,11 @@ export interface InteractableElement {
 
 export interface FormElement {
   /**
+   * The id of the element. If set to `null`, no ID will be applied.
+   * @default null
+   */
+  id?: string | null
+  /**
    * Whether the input is required.
    * @default false
    */
@@ -40,10 +38,10 @@ export interface FormElement {
    */
   isTouched?: boolean
   /**
-   * The errors associated with the input.
-   * @default []
+   * The error associated with the input.
+   * @default null
    */
-  errors?: string[]
+  errorMessage?: string | null
   /**
    * The hint text of the input.
    * @default null
@@ -54,21 +52,6 @@ export interface FormElement {
    * @default null
    */
   label?: string | null
-}
-
-export interface CustomizableElement<
-  TComponent extends keyof Components,
-  TSubComponents extends {
-    name: string
-    component: keyof Components
-  }[] = [],
-> {
-  /**
-   * The class configuration of the component.
-   */
-  classConfig?: (ClassConfig<TComponent> & {
-    [K in TSubComponents[number]['name']]?: ClassConfig<Extract<TSubComponents[number], { name: K }>['component']>
-  }) | null
 }
 
 type IsFunction<T> = T extends (...args: any[]) => any ? true : false

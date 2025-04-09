@@ -39,3 +39,5 @@ import {
 ### Orientation
 
 <ComponentPreview name="tabs/examples/orientation" />
+
+<!-- @include: ./tabs-meta.md -->

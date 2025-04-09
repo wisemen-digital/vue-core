@@ -12,9 +12,7 @@ const props = withDefaults(defineProps<{
    * @default false
    */
   shouldPreventClickOutside?: boolean
-}>(), {
-  shouldPreventClickOutside: false,
-})
+}>(), { shouldPreventClickOutside: false })
 
 defineSlots<{
   /**

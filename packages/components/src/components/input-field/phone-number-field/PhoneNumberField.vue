@@ -45,7 +45,10 @@ defineSlots<{
   /**
    * Can be used to render a custom hint and error message.
    */
-  bottom: ({ errors, hint }: { errors: string[], hint: string | null }) => void
+  bottom: ({
+    errors, hint,
+  }: { errors: string[]
+    hint: string | null }) => void
   /**
    * Can be used to render a custom error message.
    */
@@ -60,9 +63,7 @@ defineSlots<{
   label: ({ label }: { label: string | null }) => void
 }>()
 
-const model = defineModel<string | null>({
-  required: true,
-})
+const model = defineModel<string | null>({ required: true })
 
 const globalConfigContext = injectConfigContext()
 
@@ -265,7 +266,7 @@ watch(countryCodeModel, () => {
           <img
             :src="getCountryFlagUrl(value) ?? undefined"
             :alt="getCountryName(value) ?? undefined"
-            class="h-3 w-5 shrink-0 rounded-xxs object-cover"
+            class="rounded-xxs h-3 w-5 shrink-0 object-cover"
           >
         </template>
 
@@ -274,7 +275,7 @@ watch(countryCodeModel, () => {
             <img
               :src="getCountryFlagUrl(item.value) ?? undefined"
               :alt="getCountryName(item.value) ?? undefined"
-              class="h-3 w-5 rounded-xxs object-cover"
+              class="rounded-xxs h-3 w-5 object-cover"
             >
 
             <div class="flex w-full items-center overflow-hidden pr-4">
@@ -282,7 +283,7 @@ watch(countryCodeModel, () => {
                 {{ getCountryName(item.value) ?? item.value }}
               </span>
 
-              <span class="translate-y-px text-xs text-secondary">
+              <span class="text-secondary translate-y-px text-xs">
                 (+{{ getCountryCallingCode(item.value) }})
               </span>
             </div>
@@ -290,7 +291,12 @@ watch(countryCodeModel, () => {
         </template>
       </Select>
 
-      <span class="ml-sm text-(length:--text-field-font-size-default) text-placeholder">
+      <span
+        class="
+          ml-sm text-placeholder
+          text-(length:--text-field-font-size-default)
+        "
+      >
         {{ dialCodeDisplayValue }}
       </span>
     </template>

@@ -1,4 +1,5 @@
-import { computed, type ComputedRef } from 'vue'
+import type { ComputedRef } from 'vue'
+import { computed } from 'vue'
 
 interface AriaDescribedByOptions {
   id: string

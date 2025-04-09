@@ -9,11 +9,7 @@ export default defineConfig({
   plugins: [
     vuePlugin(),
   ],
-  resolve: {
-    alias: {
-      '@': resolve(projectRootDir, 'src'),
-    },
-  },
+  resolve: { alias: { '@': resolve(projectRootDir, 'src') } },
   test: {
     environment: 'jsdom',
     setupFiles: './vitest.setup.ts',

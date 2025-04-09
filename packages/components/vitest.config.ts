@@ -49,9 +49,5 @@ export default defineConfig({
       tsconfigPath: 'tsconfig.build.json',
     }),
   ],
-  resolve: {
-    alias: {
-      '@': resolve(projectRootDir, 'src'),
-    },
-  },
+  resolve: { alias: { '@': resolve(projectRootDir, 'src') } },
 })

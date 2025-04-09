@@ -1,7 +1,7 @@
 import { useEventListener } from '@vueuse/core'
+import type { ComputedRef } from 'vue'
 import {
   computed,
-  type ComputedRef,
   ref,
 } from 'vue'
 

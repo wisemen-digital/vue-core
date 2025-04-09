@@ -1,11 +1,11 @@
-import type { TabsStyle } from '@/components/tabs/shared/tabs.style'
-import type { GetComponentPropCustomValues } from '@/customClassVariants'
 import type {
   CustomizableElement,
-  PrimitiveElement,
-} from '@/utils/props.util'
+  GetComponentProp,
+} from '@/class-variant/classVariant.type'
+import type { Routes } from '@/types/routes.type'
+import type { TestId } from '@/utils/props.util'
 
-export interface TabsProps extends PrimitiveElement, CustomizableElement<'tabs'> {
+export interface TabsProps extends TestId, CustomizableElement<'tabs'> {
   /**
    * Defines the orientation of the tabs.
    * @default 'horizontal'
@@ -15,10 +15,10 @@ export interface TabsProps extends PrimitiveElement, CustomizableElement<'tabs'>
    * Defines the visual style of the tabs.
    * @default 'underline'
    */
-  variant?: GetComponentPropCustomValues<'tabs', 'variant'> | TabsStyle['variant']
+  variant?: GetComponentProp<'tabs', 'variant'>
 }
 
-export interface RouterLinkTabsItemProps extends PrimitiveElement {
+export interface RouterLinkTabsItemProps extends TestId {
   /**
    * The route to navigate to when the tab is clicked.
    */

@@ -3,13 +3,11 @@ import {
   AnimatePresence,
   Motion,
 } from 'motion-v'
-import {
-  CalendarCellTrigger as RekaCalendarCellTrigger,
-} from 'reka-ui'
+import { CalendarCellTrigger as RekaCalendarCellTrigger } from 'reka-ui'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectDatePickerDateContext } from '@/components/date-picker/shared/datePickerDate.context'
 import { useInjectDatePickerContext } from '@/components/date-picker/single/datePicker.context'
-import { mergeClasses } from '@/customClassVariants'
 
 const {
   classConfig,
@@ -17,7 +15,9 @@ const {
   style,
 } = useInjectDatePickerContext()
 
-const { date, month } = useInjectDatePickerDateContext()
+const {
+  date, month,
+} = useInjectDatePickerDateContext()
 </script>
 
 <template>
@@ -53,7 +53,7 @@ const { date, month } = useInjectDatePickerDateContext()
           opacity: 0,
         }"
         layout-id="selected"
-        class="absolute size-full rounded-full bg-brand-solid"
+        class="bg-brand-solid absolute size-full rounded-full"
       />
     </AnimatePresence>
 

@@ -3,7 +3,7 @@ import { useId } from 'vue'
 
 import type { CheckboxEmits } from '@/components/checkbox/checkbox.emits'
 import type { CheckboxProps } from '@/components/checkbox/checkbox.props'
-import CheckboxIndicator from '@/components/checkbox/parts/CheckboxIndicator.vue'
+import CheckboxControl from '@/components/checkbox/parts/CheckboxControl.vue'
 import CheckboxRoot from '@/components/checkbox/parts/CheckboxRoot.vue'
 import FormField from '@/components/form-field/FormField.vue'
 
@@ -11,16 +11,14 @@ const props = defineProps<CheckboxProps>()
 
 const emit = defineEmits<CheckboxEmits>()
 
-const modelValue = defineModel<boolean>({
-  required: false,
-})
+const modelValue = defineModel<boolean>({ required: false })
 
 const id = props.id ?? useId()
 </script>
 
 <template>
   <FormField
-    :errors="props.errors"
+    :error-message="props.errorMessage"
     :hint="props.hint"
     :is-required="props.isRequired"
     :is-touched="props.isTouched"
@@ -47,7 +45,9 @@ const id = props.id ?? useId()
       @blur="emit('blur')"
       @focus="emit('focus')"
     >
-      <CheckboxIndicator />
+      <slot>
+        <CheckboxControl />
+      </slot>
     </CheckboxRoot>
   </FormField>
 </template>

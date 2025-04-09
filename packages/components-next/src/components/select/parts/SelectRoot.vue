@@ -7,10 +7,16 @@ import {
 import {
   computed,
   ref,
+  useId,
   watch,
 } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import type { ResolvedClassConfig } from '@/class-variant/classVariant.type'
+import {
+  getCustomComponentVariant,
+  mergeClasses,
+} from '@/class-variant/customClassVariants'
 import { useProvideSelectContext } from '@/components/select/select.context'
 import type { SelectEmits } from '@/components/select/select.emits'
 import type {
@@ -20,12 +26,10 @@ import type {
 } from '@/components/select/select.props'
 import type { CreateSelectStyle } from '@/components/select/style/select.style'
 import { createSelectStyle } from '@/components/select/style/select.style'
-import InteractableElement from '@/components/shared/InteractableElement.vue'
-import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
-import {
-  mergeClasses,
-  useComponentClassConfig,
-} from '@/customClassVariants'
+import FormControl from '@/components/shared/FormControl.vue'
+import type InteractableElement from '@/components/shared/InteractableElement.vue'
+import TestIdProvider from '@/components/shared/TestIdProvider.vue'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { toComputedRefs } from '@/utils/props.util'
 
 const props = withDefaults(defineProps<SelectProps<TValue>>(), {
@@ -39,7 +43,8 @@ const props = withDefaults(defineProps<SelectProps<TValue>>(), {
   isSearchTermControlled: false,
   isTouched: false,
   classConfig: null,
-  errors: () => [],
+  clearSearchTermOnSelect: false,
+  errorMessage: null,
   filter: null,
   hint: null,
   iconLeft: null,
@@ -47,11 +52,12 @@ const props = withDefaults(defineProps<SelectProps<TValue>>(), {
   label: null,
   placeholder: null,
   popoverAlign: 'center',
+  popoverAlignOffset: 0,
   popoverAnchorReferenceElement: null,
-  popoverCollisionPaddingInPx: 0,
+  popoverCollisionPadding: 0,
   popoverContainerElement: null,
-  popoverOffsetInPx: 6,
   popoverSide: 'bottom',
+  popoverSideOffset: 6,
   popoverWidth: 'anchor-width',
   remainOpenOnSelect: null,
   searchInputPlaceholder: null,
@@ -61,9 +67,7 @@ const props = withDefaults(defineProps<SelectProps<TValue>>(), {
 
 const emit = defineEmits<SelectEmits>()
 
-const modelValue = defineModel<TValue>({
-  required: true,
-})
+const modelValue = defineModel<TValue>({ required: true })
 
 const searchTerm = defineModel<string>('searchTerm', {
   default: '',
@@ -75,7 +79,11 @@ const isDropdownVisible = defineModel<boolean>('isOpen', {
   required: false,
 })
 
+const { theme } = injectThemeProviderContext()
+
 const { t } = useI18n()
+
+const id = props.id ?? useId()
 
 const rootRef = ref<InstanceType<typeof InteractableElement> | null>(null)
 
@@ -94,13 +102,11 @@ const hasInteractedWithInlineSearchInput = ref<boolean>(false)
 
 const { contains } = useFilter()
 
-const selectStyle = computed<CreateSelectStyle>(() => createSelectStyle({
-  variant: props.variant ?? undefined,
-}))
+const selectStyle = computed<CreateSelectStyle>(() => createSelectStyle({ variant: props.variant ?? undefined }))
 
-const customClassConfig = useComponentClassConfig('select', {
-  variant: props.variant ?? undefined,
-})
+const customClassConfig = computed<ResolvedClassConfig<'select'>>(
+  () => getCustomComponentVariant('select', theme.value, { variant: props.variant }),
+)
 
 const isMultiple = computed<boolean>(() => Array.isArray(modelValue.value))
 
@@ -177,7 +183,11 @@ function setIsDropdownVisible(value: boolean): void {
 }
 
 function resetSearchTerm(): void {
-  if (isMultiple.value || !hasInlineSearchInput.value || modelValue.value === null) {
+  if (isMultiple.value
+    || !hasInlineSearchInput.value
+    || modelValue.value === null
+    || props.clearSearchTermOnSelect
+  ) {
     searchTerm.value = ''
 
     return
@@ -218,7 +228,7 @@ function onRootFocusOut(): void {
   setTimeout(() => {
     const isFocusInsideRoot = rootRef.value?.$el.contains(document.activeElement)
 
-    if (!isFocusInsideRoot && !isDropdownVisible.value) {
+    if (!isFocusInsideRoot && (!isDropdownVisible.value || props.isDropdownHidden)) {
       hasSelectRootFocusIn.value = false
 
       onBlur()
@@ -266,8 +276,11 @@ watch(isDropdownVisible, (isDropdownVisible) => {
   }
 })
 
+watch(modelValue, resetSearchTerm, { immediate: true })
+
 useProvideSelectContext({
   ...toComputedRefs(props),
+  id: computed<string>(() => id),
   hasInlineSearchInput,
   hasInteractedWithInlineSearchInput,
   hasScrolledInDropdownContent,
@@ -293,19 +306,19 @@ useProvideSelectContext({
 </script>
 
 <template>
-  <PrimitiveElement
-    :id="props.id"
-    :test-id="props.testId"
-  >
-    <!-- TODO: data-is-invalid -->
-    <InteractableElement
+  <TestIdProvider :test-id="props.testId">
+    <FormControl
+      :id="props.id"
       ref="rootRef"
       :is-disabled="props.isDisabled"
-      :aria-disabled="props.isLoading"
-      :aria-busy="props.isLoading"
-      :data-has-icon-left="iconLeft !== null"
-      :data-has-icon-right="iconRight !== null"
-      :data-is-disabled="props.isDisabled"
+      :is-invalid="props.errorMessage !== null"
+      :is-loading="props.isLoading"
+      :is-required="props.isRequired"
+      :described-by="`${id}-error ${id}-hint`"
+      :data-invalid="(props.errorMessage !== null && props.isTouched) || undefined"
+      :data-icon-left="iconLeft !== null || undefined"
+      :data-icon-right="iconRight !== null || undefined"
+      :data-disabled="props.isDisabled || undefined"
       @focusin="onRootFocusIn"
       @focusout="onRootFocusOut"
     >
@@ -319,6 +332,6 @@ useProvideSelectContext({
       >
         <slot />
       </RekaListboxRoot>
-    </InteractableElement>
-  </PrimitiveElement>
+    </FormControl>
+  </TestIdProvider>
 </template>

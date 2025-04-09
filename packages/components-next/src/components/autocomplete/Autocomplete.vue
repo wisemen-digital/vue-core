@@ -14,16 +14,13 @@ import Select from '@/components/select/Select.vue'
 const props = withDefaults(defineProps<AutocompleteProps<TValue>>(), {
   debounceTimeoutInMs: 300,
   iconRight: null,
-  itemComponent: null,
 })
 
 const emit = defineEmits<{
   search: [searchTerm: string]
 }>()
 
-const modelValue = defineModel<TValue>({
-  required: true,
-})
+const modelValue = defineModel<TValue>({ required: true })
 
 const searchTerm = ref<string>('')
 const isDebouncing = ref<boolean>(false)
@@ -78,26 +75,6 @@ const debounceSearch = useDebounceFn((searchTerm: string | null) => {
   emit('search', searchTerm)
 }, props.debounceTimeoutInMs)
 
-function updateSearchTermWithValue(value: TValue): void {
-  searchTerm.value = props.displayFn(value as any)
-}
-
-function onFocus(): void {}
-
-function onBlur(): void {
-  if (modelValue.value === null) {
-    // TODO: should this be reset?
-    // searchTerm.value = ''
-  }
-  else {
-    updateSearchTermWithValue(modelValue.value)
-  }
-}
-
-function onInput(): void {
-  modelValue.value = null as TValue
-}
-
 function onUpdateIsOpen(isOpen: boolean): void {
   if (!isOpen) {
     delegatedItems.value = []
@@ -129,23 +106,6 @@ watch(searchTerm, (searchTerm) => {
 watch(() => props.items, (newItems) => {
   delegatedItems.value = newItems
 })
-
-watch(modelValue, (modelValue) => {
-  if (modelValue === null) {
-    return
-  }
-
-  if (modelValue === null) {
-    searchTerm.value = ''
-  }
-  else {
-    updateSearchTermWithValue(modelValue)
-  }
-})
-
-if (modelValue.value !== null) {
-  updateSearchTermWithValue(modelValue.value)
-}
 </script>
 
 <template>
@@ -160,9 +120,6 @@ if (modelValue.value !== null) {
     }"
     :is-dropdown-hidden="!isDropdownVisible"
     :is-loading="props.isLoading || isDebouncing"
-    @blur="onBlur"
-    @focus="onFocus"
-    @input="onInput"
     @update:is-open="onUpdateIsOpen"
   >
     <template #base>
@@ -186,7 +143,7 @@ if (modelValue.value !== null) {
       :key="itemIndex"
     >
       <slot
-        :item="item"
+        :value="(item as NonNullable<TValue>)"
         name="item"
       >
         <SelectItem :value="item">

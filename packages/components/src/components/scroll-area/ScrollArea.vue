@@ -6,8 +6,8 @@ import {
   ScrollAreaThumb,
   ScrollAreaViewport,
 } from 'reka-ui'
+import type { Component } from 'vue'
 import {
-  type Component,
   onMounted,
   ref,
 } from 'vue'
@@ -63,7 +63,10 @@ onMounted(() => {
           'overscroll-none': !props.isOverscrollEnabled,
         },
       ]"
-      class="w-full h-full outline-hidden focus-visible:inset-ring-2 inset-ring-brand-primary-500 duration-200"
+      class="
+        inset-ring-brand-primary-500 h-full w-full outline-hidden duration-200
+        focus-visible:inset-ring-2
+      "
       @scroll="emit('scroll', $event)"
     >
       <slot />
@@ -77,9 +80,13 @@ onMounted(() => {
     >
       <ScrollAreaScrollbar
         orientation="vertical"
-        class="select-none z-20 touch-none data-[orientation=vertical]:w-1 data-[orientation=horizontal]:h-1"
+        class="
+          z-20 touch-none select-none
+          data-[orientation=horizontal]:h-1
+          data-[orientation=vertical]:w-1
+        "
       >
-        <ScrollAreaThumb class="bg-gray-400 rounded-full cursor-pointer" />
+        <ScrollAreaThumb class="cursor-pointer rounded-full bg-gray-400" />
       </ScrollAreaScrollbar>
     </Transition>
 
@@ -91,9 +98,13 @@ onMounted(() => {
     >
       <ScrollAreaScrollbar
         orientation="horizontal"
-        class="select-none z-20 touch-none data-[orientation=vertical]:w-1 data-[orientation=horizontal]:h-1"
+        class="
+          z-20 touch-none select-none
+          data-[orientation=horizontal]:h-1
+          data-[orientation=vertical]:w-1
+        "
       >
-        <ScrollAreaThumb class="bg-gray-400 rounded-full cursor-pointer !h-full" />
+        <ScrollAreaThumb class="!h-full cursor-pointer rounded-full bg-gray-400" />
       </ScrollAreaScrollbar>
     </Transition>
 

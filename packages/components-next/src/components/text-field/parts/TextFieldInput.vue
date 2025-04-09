@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import InteractableElement from '@/components/shared/InteractableElement.vue'
-import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
+import { mergeClasses } from '@/class-variant/customClassVariants'
+import FormControl from '@/components/shared/FormControl.vue'
+import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 import { useInjectTextFieldContext } from '@/components/text-field/textField.context'
-import { mergeClasses } from '@/customClassVariants'
 
 const {
   id,
@@ -14,7 +14,7 @@ const {
   autocomplete,
   classConfig,
   customClassConfig,
-  errors,
+  errorMessage,
   modelValue,
   placeholder,
   style,
@@ -29,28 +29,26 @@ function onInput(event: InputEvent): void {
 </script>
 
 <template>
-  <PrimitiveElement
-    :id="id"
-    :test-id="testId"
-  >
-    <InteractableElement
+  <TestIdProvider :test-id="testId">
+    <FormControl
+      :id="id"
       :value="modelValue"
+      :is-loading="isLoading"
       :is-disabled="isDisabled"
+      :is-invalid="errorMessage !== null"
+      :is-required="isRequired"
+      :described-by="`${id}-error ${id}-hint`"
       :class="style.input({
         class: mergeClasses(customClassConfig.input, classConfig?.input),
       })"
-      :describedby="`${id}-error ${id}-hint`"
-      :aria-busy="isLoading"
-      :aria-invalid="errors.length > 0"
       :type="type"
       :autocomplete="autocomplete"
       :placeholder="placeholder"
       :spellcheck="isSpellCheckEnabled"
-      :required="isRequired"
       as="input"
       @focus="onFocus"
       @blur="onBlur"
       @input="onInput"
     />
-  </PrimitiveElement>
+  </TestIdProvider>
 </template>

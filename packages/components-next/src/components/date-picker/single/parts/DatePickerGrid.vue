@@ -9,12 +9,12 @@ import {
   CalendarHeadCell as RekaCalendarHeadCell,
 } from 'reka-ui'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import type { Grid } from '@/components/date-picker/shared/datePicker.type'
 import { dateValueToDate } from '@/components/date-picker/shared/datePicker.util'
 import { useInjectDatePickerContext } from '@/components/date-picker/single/datePicker.context'
 import DatePickerDate from '@/components/date-picker/single/parts/DatePickerDate.vue'
 import DatePickerDateProvider from '@/components/date-picker/single/parts/DatePickerDateProvider.vue'
-import { mergeClasses } from '@/customClassVariants'
 
 const props = defineProps<{
   grid: Grid<DateValue>[]
@@ -29,7 +29,7 @@ const {
 </script>
 
 <template>
-  <div class="flex gap-xl">
+  <div class="gap-xl flex">
     <RekaCalendarGrid
       v-for="month in props.grid"
       :key="month.value.toString()"
@@ -49,7 +49,7 @@ const {
         </RekaCalendarGridRow>
       </RekaCalendarGridHead>
 
-      <RekaCalendarGridBody class="flex flex-col gap-y-xs">
+      <RekaCalendarGridBody class="gap-y-xs flex flex-col">
         <RekaCalendarGridRow
           v-for="weekDates in month.rows"
           :key="weekDates.toString()"

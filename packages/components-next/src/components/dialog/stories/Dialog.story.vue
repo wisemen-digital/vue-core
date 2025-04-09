@@ -2,9 +2,7 @@
 import Button from '@/components/button/default-button/Button.vue'
 import { useDialog } from '@/components/dialog/dialog.composable'
 
-const dialog = useDialog({
-  component: () => import('@/components/dialog/stories/ExampleDialog.vue'),
-})
+const dialog = useDialog({ component: () => import('@/components/dialog/stories/ExampleDialog.vue') })
 </script>
 
 <template>

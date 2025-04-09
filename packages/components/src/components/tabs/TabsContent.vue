@@ -19,7 +19,10 @@ defineSlots<{
 <template>
   <TabsContent
     :value="props.value"
-    class="rounded-md outline-none ring-brand-primary-500 ring-offset-1 duration-200 focus-visible:ring"
+    class="
+      ring-brand-primary-500 rounded-md ring-offset-1 duration-200 outline-none
+      focus-visible:ring
+    "
   >
     <slot />
   </TabsContent>

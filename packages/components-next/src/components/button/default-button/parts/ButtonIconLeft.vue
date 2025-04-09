@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectButtonContext } from '@/components/button/default-button/button.context'
 import Icon from '@/components/icon/Icon.vue'
-import { mergeClasses } from '@/customClassVariants'
 
 const {
   classConfig,

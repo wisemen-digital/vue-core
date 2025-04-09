@@ -3,14 +3,14 @@ import type {
   Ref,
 } from 'vue'
 
+import type { ResolvedClassConfig } from '@/class-variant/classVariant.type'
 import type { DateFieldProps } from '@/components/date-field/dateField.props'
 import type { CreateDateFieldStyle } from '@/components/date-field/dateField.style'
-import { useContext } from '@/composables/context.composable'
-import type { ClassConfig } from '@/customClassVariants'
+import { useContext } from '@/composables/context/context.composable'
 import type { PropsToComputed } from '@/utils/props.util'
 
 interface DateFieldContext extends PropsToComputed<DateFieldProps> {
-  customClassConfig: ComputedRef<ClassConfig<'dateField'>>
+  customClassConfig: ComputedRef<ResolvedClassConfig<'dateField'>>
   modelValue: Ref<Date | null>
   style: ComputedRef<CreateDateFieldStyle>
   onBlur: (event: FocusEvent) => void

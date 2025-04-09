@@ -62,6 +62,10 @@ import {
 
 <ComponentPreview name="select/examples/disabled" />
 
+### Error
+
+<ComponentPreview name="select/examples/error" />
+
 ### Loading
 
 <ComponentPreview name="select/examples/loading" />
@@ -93,3 +97,5 @@ import {
 ### Customize value <badge type="warning">Unstable</badge>
 
 <ComponentPreview name="select/examples/customize-value" />
+
+<!-- @include: ./select-meta.md -->

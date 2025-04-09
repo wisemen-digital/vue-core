@@ -5,12 +5,14 @@ import {
   watch,
 } from 'vue'
 
+import type { ResolvedClassConfig } from '@/class-variant/classVariant.type'
+import { getCustomComponentVariant } from '@/class-variant/customClassVariants'
 import { useProvideDialogContext } from '@/components/dialog/dialog.context'
 import type { DialogProps } from '@/components/dialog/dialog.props'
 import type { CreateDialogStyle } from '@/components/dialog/dialog.style'
 import { createDialogStyle } from '@/components/dialog/dialog.style'
-import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
-import { useComponentClassConfig } from '@/customClassVariants'
+import TestIdProvider from '@/components/shared/TestIdProvider.vue'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { toComputedRefs } from '@/utils/props.util'
 
 const props = withDefaults(defineProps<DialogProps>(), {
@@ -36,17 +38,15 @@ defineSlots<{
   default: () => void
 }>()
 
-const isOpen = defineModel<boolean>('isOpen', {
-  default: false,
-})
+const isOpen = defineModel<boolean>('isOpen', { default: false })
 
-const dialogStyle = computed<CreateDialogStyle>(() => createDialogStyle({
-  variant: props.variant ?? undefined,
-}))
+const { theme } = injectThemeProviderContext()
 
-const customClassConfig = useComponentClassConfig('dialog', {
-  variant: props.variant ?? undefined,
-})
+const dialogStyle = computed<CreateDialogStyle>(() => createDialogStyle({ variant: props.variant ?? undefined }))
+
+const customClassConfig = computed<ResolvedClassConfig<'dialog'>>(
+  () => getCustomComponentVariant('dialog', theme.value, { variant: props.variant }),
+)
 
 watch(isOpen, (isOpen) => {
   if (!isOpen) {
@@ -63,15 +63,12 @@ useProvideDialogContext({
 </script>
 
 <template>
-  <PrimitiveElement
-    :id="props.id"
-    :test-id="props.testId"
-  >
+  <TestIdProvider :test-id="props.testId">
     <RekaDialogRoot
       v-model:open="isOpen"
       :modal="!props.hideOverlay"
     >
       <slot />
     </RekaDialogRoot>
-  </PrimitiveElement>
+  </TestIdProvider>
 </template>

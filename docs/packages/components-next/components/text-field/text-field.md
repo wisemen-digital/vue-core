@@ -50,6 +50,10 @@ import {
 
 <ComponentPreview name="text-field/examples/disabled" />
 
+### Error
+
+<ComponentPreview name="text-field/examples/error" />
+
 ### Loading
 
 <ComponentPreview name="text-field/examples/loading" />
@@ -63,3 +67,5 @@ import {
 `root`, `input`, `iconLeft`, `iconRight`, `loader`
 
 <ComponentPreview name="text-field/examples/customize" />
+
+<!-- @include: ./text-field-meta.md -->

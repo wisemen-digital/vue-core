@@ -7,7 +7,7 @@ const percentValue = ref<number | null>(0)
 </script>
 
 <template>
-  <div class="flex flex-col gap-y-lg">
+  <div class="gap-y-lg flex flex-col">
     <VcNumberField
       v-model="currencyValue"
       :format-options="{

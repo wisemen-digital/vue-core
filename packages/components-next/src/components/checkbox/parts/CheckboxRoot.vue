@@ -2,19 +2,19 @@
 import { CheckboxRoot as RekaCheckboxRoot } from 'reka-ui'
 import { computed } from 'vue'
 
+import type { ResolvedClassConfig } from '@/class-variant/classVariant.type'
+import {
+  getCustomComponentVariant,
+  mergeClasses,
+} from '@/class-variant/customClassVariants'
 import { useProvideCheckboxContext } from '@/components/checkbox/checkbox.context'
 import type { CheckboxEmits } from '@/components/checkbox/checkbox.emits'
 import type { CheckboxProps } from '@/components/checkbox/checkbox.props'
-import {
-  type CreateCheckboxStyle,
-  createCheckboxStyle,
-} from '@/components/checkbox/checkbox.style'
-import InteractableElement from '@/components/shared/InteractableElement.vue'
-import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
-import {
-  mergeClasses,
-  useComponentClassConfig,
-} from '@/customClassVariants'
+import type { CreateCheckboxStyle } from '@/components/checkbox/checkbox.style'
+import { createCheckboxStyle } from '@/components/checkbox/checkbox.style'
+import FormControl from '@/components/shared/FormControl.vue'
+import TestIdProvider from '@/components/shared/TestIdProvider.vue'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { toComputedRefs } from '@/utils/props.util'
 
 const props = withDefaults(defineProps<CheckboxProps>(), {
@@ -25,7 +25,7 @@ const props = withDefaults(defineProps<CheckboxProps>(), {
   isRequired: false,
   isTouched: false,
   classConfig: null,
-  errors: () => [],
+  errorMessage: null,
   hint: null,
   label: null,
   value: null,
@@ -34,9 +34,7 @@ const props = withDefaults(defineProps<CheckboxProps>(), {
 
 const emit = defineEmits<CheckboxEmits>()
 
-const modelValue = defineModel<boolean>({
-  required: false,
-})
+const modelValue = defineModel<boolean>({ required: false })
 
 const delegatedModel = computed<boolean | 'indeterminate' | null>({
   get() {
@@ -63,13 +61,13 @@ const delegatedModel = computed<boolean | 'indeterminate' | null>({
   },
 })
 
-const checkboxStyle = computed<CreateCheckboxStyle>(() => createCheckboxStyle({
-  variant: props.variant ?? undefined,
-}))
+const { theme } = injectThemeProviderContext()
 
-const customClassConfig = useComponentClassConfig('checkbox', {
-  variant: props.variant ?? undefined,
-})
+const checkboxStyle = computed<CreateCheckboxStyle>(() => createCheckboxStyle({ variant: props.variant ?? undefined }))
+
+const customClassConfig = computed<ResolvedClassConfig<'checkbox'>>(
+  () => getCustomComponentVariant('checkbox', theme.value, { variant: props.variant }),
+)
 
 useProvideCheckboxContext({
   ...toComputedRefs(props),
@@ -79,26 +77,27 @@ useProvideCheckboxContext({
 </script>
 
 <template>
-  <PrimitiveElement
-    :id="id"
-    :test-id="testId"
-  >
-    <InteractableElement
+  <TestIdProvider :test-id="testId">
+    <FormControl
+      :id="id"
       :is-disabled="isDisabled"
-      :data-invalid="(errors.length > 0 && props.isTouched) || undefined"
-      :aria-invalid="errors.length > 0"
-      :class="checkboxStyle.root({
-        class: mergeClasses(customClassConfig.root, props.classConfig?.root),
-      })"
+      :is-invalid="errorMessage !== null"
+      :is-required="isRequired"
+      :described-by="`${id}-error ${id}-hint`"
+      :is-loading="false"
     >
       <RekaCheckboxRoot
         v-model="delegatedModel"
         :value="props.value"
+        :data-invalid="(errorMessage !== null && props.isTouched) || undefined"
+        :class="checkboxStyle.root({
+          class: mergeClasses(customClassConfig.root, props.classConfig?.root),
+        })"
         @focus="emit('focus')"
         @blur="emit('blur')"
       >
         <slot />
       </RekaCheckboxRoot>
-    </InteractableElement>
-  </PrimitiveElement>
+    </FormControl>
+  </TestIdProvider>
 </template>

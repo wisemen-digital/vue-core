@@ -30,6 +30,10 @@ import {
 
 <ComponentPreview name="textarea/examples/disabled" />
 
+### Error
+
+<ComponentPreview name="textarea/examples/error" />
+
 ### Resize
 
 <ComponentPreview name="textarea/examples/resize" />
@@ -37,3 +41,5 @@ import {
 ### Top and bottom content
 
 <ComponentPreview name="textarea/examples/top-and-bottom-content" />
+
+<!-- @include: ./textarea-meta.md -->

@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { VcButton, VcSpinner } from '@wisemen/vue-core'
+import {
+  VcButton,
+  VcSpinner,
+} from '@wisemen/vue-core'
 </script>
 
 <template>

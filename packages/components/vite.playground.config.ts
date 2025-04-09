@@ -12,9 +12,5 @@ export default defineConfig({
     tailwindcss(),
     vue(),
   ],
-  resolve: {
-    alias: {
-      '@': resolve(projectRootDir, 'src'),
-    },
-  },
+  resolve: { alias: { '@': resolve(projectRootDir, 'src') } },
 })

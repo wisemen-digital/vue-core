@@ -11,14 +11,14 @@ export const createSelectStyle = tv({
       .withSize('size-full')
       .build(),
     baseMultiple: new StyleBuilder()
-      .withPadding('px-xs group-data-[has-icon-left=true]/select:pl-2 group-data-[has-icon-right=true]/select:pr-2')
+      .withPadding('px-xs group-data-icon-left/select:pl-2 group-data-icon-right/select:pr-2')
       .withFlex('flex items-center gap-xs')
       .withSize('size-full')
       .build(),
     baseSingle: new StyleBuilder()
       .withFontSize('text-sm')
-      .withColor('text-primary group-data-[is-disabled=true]/select:text-disabled')
-      .withPadding('px-3 group-data-[has-icon-left=true]/select:pl-2 group-data-[has-icon-right=true]/select:pr-2')
+      .withColor('text-primary group-data-disabled/select:text-disabled')
+      .withPadding('px-3 group-data-icon-left/select:pl-2 group-data-icon-right/select:pr-2')
       .withSize('w-full')
       .withFlex('flex items-center')
       .build(),
@@ -44,20 +44,24 @@ export const createSelectStyle = tv({
       .withBase('shrink-0')
       .withSize('size-4.5')
       .withSpacing('ml-3')
-      .withColor('text-quaternary group-data-[is-disabled=true]/select:text-fg-disabled')
+      .withColor('text-quaternary group-data-disabled/select:text-fg-disabled')
       .build(),
     iconRight: new StyleBuilder()
       .withBase('shrink-0')
       .withSize('size-4.5')
       .withSpacing('mr-3')
-      .withColor('text-quaternary group-data-[is-disabled=true]/select:text-fg-disabled')
+      .withColor('text-quaternary group-data-disabled/select:text-fg-disabled')
       .build(),
     inlineSearchInput: new StyleBuilder()
+      .withOutline('outline-none')
       .withBase('z-10')
       .withSize('size-full')
+      .withFontSize('text-sm')
       .withColor('text-primary')
-      .withPadding('px-3 group-data-[has-icon-left=true]/select:pl-2 group-data-[has-icon-right=true]/select:pr-2')
+      .withBackgroundColor('bg-transparent')
+      .withPadding('px-3 group-data-icon-left/select:pl-2 group-data-icon-right/select:pr-2')
       .withCursor('disabled:cursor-not-allowed')
+
       .build(),
     item: new StyleBuilder()
       .withBase('outline-none')
@@ -91,15 +95,15 @@ export const createSelectStyle = tv({
       // Default
       .withBorder('border border-solid border-primary focus-within:border-brand-500')
       // Disabled
-      .withBorder('data-[is-disabled=true]:border-disabled-subtle')
+      .withBorder('data-disabled:border-disabled-subtle')
       // Invalid
-      .withBorder('data-[is-invalid=true]:border-error data-[is-invalid=true]:focus-within:border-error')
-      .withBackgroundColor('bg-primary data-[is-disabled=true]:bg-disabled-subtle')
+      .withBorder('data-invalid:border-error data-invalid:focus-within:border-error')
+      .withBackgroundColor('bg-primary data-disabled:bg-disabled-subtle')
       .withBorderRadius('rounded-md')
       .withShadow('shadow-xs')
-      .withRing('ring-brand-500 focus-within:ring data-[is-invalid=true]:ring-error-500')
+      .withOutline('outline outline-transparent focus-within:outline-brand-500 focus-within:data-invalid:outline-error-500')
       .withTransition('duration-200')
-      .withCursor('data-[is-disabled=true]:cursor-not-allowed')
+      .withCursor('data-disabled:cursor-not-allowed')
       .build(),
     searchInput: '',
     separator: new StyleBuilder()
@@ -108,9 +112,7 @@ export const createSelectStyle = tv({
       .withSpacing('my-xs')
       .build(),
   },
-  variants: {
-    variant: {},
-  },
+  variants: { variant: {} },
 })
 
 export type SelectStyle = VariantProps<typeof createSelectStyle>

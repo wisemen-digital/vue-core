@@ -1,13 +1,13 @@
 import type { ComputedRef } from 'vue'
 
+import type { ResolvedClassConfig } from '@/class-variant/classVariant.type'
 import type { RadioGroupItemProps } from '@/components/radio-group-item/radioGroupItem.props'
 import type { CreateRadioGroupItemStyle } from '@/components/radio-group-item/radioGroupItem.style'
-import { useContext } from '@/composables/context.composable'
-import type { ClassConfig } from '@/customClassVariants'
+import { useContext } from '@/composables/context/context.composable'
 import type { PropsToComputed } from '@/utils/props.util'
 
 interface RadioGroupItemContext extends PropsToComputed<RadioGroupItemProps> {
-  customClassConfig: ComputedRef<ClassConfig<'radioGroupItem'>>
+  customClassConfig: ComputedRef<ResolvedClassConfig<'radioGroupItem'>>
   style: ComputedRef<CreateRadioGroupItemStyle>
 }
 

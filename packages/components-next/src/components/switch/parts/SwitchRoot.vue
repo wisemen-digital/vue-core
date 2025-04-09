@@ -2,19 +2,19 @@
 import { SwitchRoot as RekaSwitchRoot } from 'reka-ui'
 import { computed } from 'vue'
 
-import InteractableElement from '@/components/shared/InteractableElement.vue'
-import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
+import type { ResolvedClassConfig } from '@/class-variant/classVariant.type'
+import {
+  getCustomComponentVariant,
+  mergeClasses,
+} from '@/class-variant/customClassVariants'
+import FormControl from '@/components/shared/FormControl.vue'
+import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 import { useProvideSwitchContext } from '@/components/switch/switch.context'
 import type { SwitchEmits } from '@/components/switch/switch.emits'
 import type { SwitchProps } from '@/components/switch/switch.props'
-import {
-  type CreateSwitchStyle,
-  createSwitchStyle,
-} from '@/components/switch/switch.style'
-import {
-  mergeClasses,
-  useComponentClassConfig,
-} from '@/customClassVariants'
+import type { CreateSwitchStyle } from '@/components/switch/switch.style'
+import { createSwitchStyle } from '@/components/switch/switch.style'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { toComputedRefs } from '@/utils/props.util'
 
 const props = withDefaults(defineProps<SwitchProps>(), {
@@ -24,7 +24,7 @@ const props = withDefaults(defineProps<SwitchProps>(), {
   isRequired: false,
   isTouched: false,
   classConfig: null,
-  errors: () => [],
+  errorMessage: null,
   hint: null,
   label: null,
   size: 'md',
@@ -33,19 +33,21 @@ const props = withDefaults(defineProps<SwitchProps>(), {
 
 const emit = defineEmits<SwitchEmits>()
 
-const modelValue = defineModel<boolean>({
-  required: true,
-})
+const modelValue = defineModel<boolean>({ required: true })
+
+const { theme } = injectThemeProviderContext()
 
 const switchStyle = computed<CreateSwitchStyle>(() => createSwitchStyle({
   size: props.size,
   variant: props.variant ?? undefined,
 }))
 
-const customClassConfig = useComponentClassConfig('switch', {
-  size: props.size,
-  variant: props.variant ?? undefined,
-})
+const customClassConfig = computed<ResolvedClassConfig<'switch'>>(
+  () => getCustomComponentVariant('switch', theme.value, {
+    size: props.size,
+    variant: props.variant,
+  }),
+)
 
 useProvideSwitchContext({
   ...toComputedRefs(props),
@@ -55,25 +57,26 @@ useProvideSwitchContext({
 </script>
 
 <template>
-  <PrimitiveElement
-    :id="id"
-    :test-id="testId"
-  >
-    <InteractableElement
+  <TestIdProvider :test-id="testId">
+    <FormControl
+      :id="id"
       :is-disabled="isDisabled"
-      :data-invalid="(errors.length > 0 && props.isTouched) || undefined"
-      :aria-invalid="errors.length > 0"
-      :class="switchStyle.root({
-        class: mergeClasses(customClassConfig.root, props.classConfig?.root),
-      })"
+      :is-invalid="errorMessage !== null"
+      :is-required="isRequired"
+      :described-by="`${id}-error ${id}-hint`"
+      :is-loading="false"
     >
       <RekaSwitchRoot
         v-model="modelValue"
+        :data-invalid="(errorMessage !== null && props.isTouched) || undefined"
+        :class="switchStyle.root({
+          class: mergeClasses(customClassConfig.root, props.classConfig?.root),
+        })"
         @focus="emit('focus')"
         @blur="emit('blur')"
       >
         <slot />
       </RekaSwitchRoot>
-    </InteractableElement>
-  </PrimitiveElement>
+    </FormControl>
+  </TestIdProvider>
 </template>

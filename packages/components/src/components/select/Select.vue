@@ -59,7 +59,10 @@ defineSlots<{
   /**
    * Can be used to render a custom hint and error message.
    */
-  'bottom': ({ errors, hint }: { errors: string[], hint: string | null }) => void
+  'bottom': ({
+    errors, hint,
+  }: { errors: string[]
+    hint: string | null }) => void
   /**
    * Can be used to add other content to the top of the dropdown.
    */
@@ -138,9 +141,7 @@ defineSlots<{
   'value': ({ value }: { value: TValue }) => void
 }>()
 
-const model = defineModel<TValue | null>({
-  required: true,
-})
+const model = defineModel<TValue | null>({ required: true })
 
 const attrs = useAttrs()
 const slots = useSlots()

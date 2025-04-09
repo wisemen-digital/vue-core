@@ -35,17 +35,14 @@ import {
 import {
   FormField,
   RadioGroupItemRoot,
-  RadioGroupItemIndicator,
-  RadioGroupItemIndicatorTransition,
+  RadioGroupItemControl,
 } from '@wisemen/vue-core-components'
 </script>
 
 <template>
   <FormField>
     <RadioGroupItemRoot>
-      <RadioGroupItemIndicator>
-        <RadioGroupItemIndicatorTransition />
-      </RadioGroupItemIndicator>
+      <RadioGroupItemControl />
     </RadioGroupItemRoot>
   </FormField>
 </template>
@@ -56,3 +53,13 @@ import {
 ### Disabled
 
 <ComponentPreview name="radio-group/examples/disabled" />
+
+### Error
+
+<ComponentPreview name="radio-group/examples/error" />
+
+### Customize
+
+<ComponentPreview name="radio-group/examples/customize" />
+
+<!-- @include: ./radio-group-meta.md -->

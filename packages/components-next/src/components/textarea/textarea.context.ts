@@ -1,13 +1,16 @@
-import type { ComputedRef, Ref } from 'vue'
+import type {
+  ComputedRef,
+  Ref,
+} from 'vue'
 
+import type { ResolvedClassConfig } from '@/class-variant/classVariant.type'
 import type { TextareaProps } from '@/components/textarea/textarea.props'
 import type { CreateTextareaStyle } from '@/components/textarea/textarea.style'
-import { useContext } from '@/composables/context.composable'
-import type { ClassConfig } from '@/customClassVariants'
+import { useContext } from '@/composables/context/context.composable'
 import type { PropsToComputed } from '@/utils/props.util'
 
 interface TextareaContext extends PropsToComputed<TextareaProps> {
-  customClassConfig: ComputedRef<ClassConfig<'textarea'>>
+  customClassConfig: ComputedRef<ResolvedClassConfig<'textarea'>>
   modelValue: Ref<string | null>
   style: ComputedRef<CreateTextareaStyle>
   onBlur: (event: FocusEvent) => void

@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { useTextareaAutosize } from '@vueuse/core'
 
-import InteractableElement from '@/components/shared/InteractableElement.vue'
-import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
+import { mergeClasses } from '@/class-variant/customClassVariants'
+import FormControl from '@/components/shared/FormControl.vue'
+import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 import { useInjectTextareaContext } from '@/components/textarea/textarea.context'
-import { mergeClasses } from '@/customClassVariants'
 
 const {
   id,
@@ -15,7 +15,7 @@ const {
   autocomplete,
   classConfig,
   customClassConfig,
-  errors,
+  errorMessage,
   modelValue,
   placeholder,
   resize,
@@ -40,22 +40,21 @@ function onInput(event: InputEvent): void {
 </script>
 
 <template>
-  <PrimitiveElement
-    :id="id"
-    :test-id="testId"
-  >
-    <InteractableElement
+  <TestIdProvider :test-id="testId">
+    <FormControl
+      :id="id"
       :value="modelValue"
       :is-disabled="isDisabled"
+      :is-invalid="errorMessage !== null"
+      :is-required="isRequired"
+      :described-by="`${id}-error ${id}-hint`"
+      :is-loading="false"
       :class="style.input({
         class: mergeClasses(customClassConfig.input, classConfig?.input),
       })"
-      :describedby="`${id}-error ${id}-hint`"
-      :aria-invalid="errors.length > 0"
       :autocomplete="autocomplete"
       :placeholder="placeholder"
       :spellcheck="isSpellCheckEnabled"
-      :required="isRequired"
       @focus="onFocus"
       @blur="onBlur"
       @input="onInput"
@@ -67,8 +66,8 @@ function onInput(event: InputEvent): void {
         ref="textarea"
       />
       <textarea v-else />
-    </InteractableElement>
-  </PrimitiveElement>
+    </FormControl>
+  </TestIdProvider>
 </template>
 
 <style>

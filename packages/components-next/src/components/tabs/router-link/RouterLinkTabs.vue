@@ -19,10 +19,6 @@ const props = withDefaults(defineProps<TabsProps>(), {
 
 defineSlots<{
   /**
-   * Slot for the tabs content.
-   */
-  content: () => void
-  /**
    * Slot for the tabs items.
    */
   items: () => void

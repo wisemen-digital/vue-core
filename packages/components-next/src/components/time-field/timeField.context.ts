@@ -3,14 +3,14 @@ import type {
   Ref,
 } from 'vue'
 
+import type { ResolvedClassConfig } from '@/class-variant/classVariant.type'
 import type { TimeFieldProps } from '@/components/time-field/timeField.props'
 import type { CreateTimeFieldStyle } from '@/components/time-field/timeField.style'
-import { useContext } from '@/composables/context.composable'
-import type { ClassConfig } from '@/customClassVariants'
+import { useContext } from '@/composables/context/context.composable'
 import type { PropsToComputed } from '@/utils/props.util'
 
 interface TimeFieldContext extends PropsToComputed<TimeFieldProps> {
-  customClassConfig: ComputedRef<ClassConfig<'timeField'>>
+  customClassConfig: ComputedRef<ResolvedClassConfig<'timeField'>>
   modelValue: Ref<string | null>
   style: ComputedRef<CreateTimeFieldStyle>
   onBlur: (event: FocusEvent) => void

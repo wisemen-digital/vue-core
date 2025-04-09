@@ -57,3 +57,5 @@ import {
 ### Disabled
 
 <ComponentPreview name="tooltip/examples/disabled" />
+
+<!-- @include: ./tooltip-meta.md -->

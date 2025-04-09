@@ -26,12 +26,13 @@ const countryCallingCode = computed<string>(() => getCountryCallingCode(props.va
 
 <template>
   <SelectItem :value="props.value">
-    <div class="flex items-center gap-md">
-      <div class="h-3 w-5 rounded-xxs overflow-hidden">
+    <div class="gap-md flex items-center">
+      <div class="rounded-xxs h-3 w-5 overflow-hidden">
         <img
           v-if="countryFlagImageUrl !== null"
           :src="countryFlagImageUrl"
-          class="object-cover size-full"
+          :alt="countryName ?? countryCallingCode"
+          class="size-full object-cover"
         >
       </div>
 

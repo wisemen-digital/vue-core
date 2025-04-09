@@ -53,34 +53,116 @@ function getOutputFolder(type: string, kebabCase: string, folder: string): strin
 
 const fileTemplates: Record<TemplateType, FileTemplate[]> = {
   model: [
-    { filename: 'Index.model.ts.ejs', outputFolder: 'index', templatePath: 'models/index' },
-    { filename: 'IndexDto.model.ts.ejs', outputFolder: 'index', templatePath: 'models/index' },
-    { filename: 'IndexDto.builder.ts.ejs', outputFolder: 'index', templatePath: 'models/index' },
-    { filename: 'IndexPaginationDto.model.ts.ejs', outputFolder: 'pagination', templatePath: 'models/pagination' },
-    { filename: 'IndexPagination.model.ts.ejs', outputFolder: 'pagination', templatePath: 'models/pagination' },
-    { filename: 'Detail.model.ts.ejs', outputFolder: 'detail', templatePath: 'models/detail' },
-    { filename: 'DetailDto.model.ts.ejs', outputFolder: 'detail', templatePath: 'models/detail' },
-    { filename: 'DetailDto.builder.ts.ejs', outputFolder: 'detail', templatePath: 'models/detail' },
-    { filename: 'UpdateDto.model.ts.ejs', outputFolder: 'update', templatePath: 'models/update' },
-    { filename: 'UpdateForm.model.ts.ejs', outputFolder: 'update', templatePath: 'models/update' },
-    { filename: 'CreateForm.model.ts.ejs', outputFolder: 'create', templatePath: 'models/create' },
-    { filename: 'CreateDto.model.ts.ejs', outputFolder: 'create', templatePath: 'models/create' },
-    { filename: 'Uuid.model.ts.ejs', outputFolder: '', templatePath: 'models' },
-    { filename: '.transformer.ts.ejs', outputFolder: '', templatePath: 'models' },
+    {
+      filename: 'Index.model.ts.ejs',
+      outputFolder: 'index',
+      templatePath: 'models/index',
+    },
+    {
+      filename: 'IndexDto.model.ts.ejs',
+      outputFolder: 'index',
+      templatePath: 'models/index',
+    },
+    {
+      filename: 'IndexDto.builder.ts.ejs',
+      outputFolder: 'index',
+      templatePath: 'models/index',
+    },
+    {
+      filename: 'IndexPaginationDto.model.ts.ejs',
+      outputFolder: 'pagination',
+      templatePath: 'models/pagination',
+    },
+    {
+      filename: 'IndexPagination.model.ts.ejs',
+      outputFolder: 'pagination',
+      templatePath: 'models/pagination',
+    },
+    {
+      filename: 'Detail.model.ts.ejs',
+      outputFolder: 'detail',
+      templatePath: 'models/detail',
+    },
+    {
+      filename: 'DetailDto.model.ts.ejs',
+      outputFolder: 'detail',
+      templatePath: 'models/detail',
+    },
+    {
+      filename: 'DetailDto.builder.ts.ejs',
+      outputFolder: 'detail',
+      templatePath: 'models/detail',
+    },
+    {
+      filename: 'UpdateDto.model.ts.ejs',
+      outputFolder: 'update',
+      templatePath: 'models/update',
+    },
+    {
+      filename: 'UpdateForm.model.ts.ejs',
+      outputFolder: 'update',
+      templatePath: 'models/update',
+    },
+    {
+      filename: 'CreateForm.model.ts.ejs',
+      outputFolder: 'create',
+      templatePath: 'models/create',
+    },
+    {
+      filename: 'CreateDto.model.ts.ejs',
+      outputFolder: 'create',
+      templatePath: 'models/create',
+    },
+    {
+      filename: 'Uuid.model.ts.ejs',
+      outputFolder: '',
+      templatePath: 'models',
+    },
+    {
+      filename: '.transformer.ts.ejs',
+      outputFolder: '',
+      templatePath: 'models',
+    },
   ],
   mutation: [
-    { filename: 'Create.mutation.ts.ejs', outputFolder: 'api/mutations', templatePath: 'mutations' },
-    { filename: 'Update.mutation.ts.ejs', outputFolder: 'api/mutations', templatePath: 'mutations' },
-    { filename: 'Delete.mutation.ts.ejs', outputFolder: 'api/mutations', templatePath: 'mutations' },
+    {
+      filename: 'Create.mutation.ts.ejs',
+      outputFolder: 'api/mutations',
+      templatePath: 'mutations',
+    },
+    {
+      filename: 'Update.mutation.ts.ejs',
+      outputFolder: 'api/mutations',
+      templatePath: 'mutations',
+    },
+    {
+      filename: 'Delete.mutation.ts.ejs',
+      outputFolder: 'api/mutations',
+      templatePath: 'mutations',
+    },
   ],
   query: [
-    { filename: 'Index.query.ts.ejs', outputFolder: 'api/queries', templatePath: 'queries' },
-    { filename: 'IndexInfinite.query.ts.ejs', outputFolder: 'api/queries', templatePath: 'queries' },
-    { filename: 'Detail.query.ts.ejs', outputFolder: 'api/queries', templatePath: 'queries' },
+    {
+      filename: 'Index.query.ts.ejs',
+      outputFolder: 'api/queries',
+      templatePath: 'queries',
+    },
+    {
+      filename: 'IndexInfinite.query.ts.ejs',
+      outputFolder: 'api/queries',
+      templatePath: 'queries',
+    },
+    {
+      filename: 'Detail.query.ts.ejs',
+      outputFolder: 'api/queries',
+      templatePath: 'queries',
+    },
   ],
   service: [
     {
-      filename: '.service.ts.ejs', outputFolder: 'api/services', templatePath: 'services',
+      filename: '.service.ts.ejs',
+      outputFolder: 'api/services',
+      templatePath: 'services',
     },
   ],
   view: [

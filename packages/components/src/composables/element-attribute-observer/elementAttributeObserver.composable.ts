@@ -1,5 +1,5 @@
+import type { ComputedRef } from 'vue'
 import {
-  type ComputedRef,
   onMounted,
   onUnmounted,
 } from 'vue'
@@ -21,13 +21,13 @@ export function useElementAttributeObserver(options: UseElementAttributeObserver
     options.onChange(options.element.value!.getAttribute(options.attribute) ?? null)
 
     observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
+      for (const mutation of mutations) {
         if (mutation.type === 'attributes') {
           if (mutation.attributeName === options.attribute) {
             options.onChange(options.element.value!.getAttribute(options.attribute) ?? null)
           }
         }
-      })
+      }
     })
 
     observer.observe(options.element.value, {

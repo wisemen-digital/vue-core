@@ -1,18 +1,21 @@
 <script setup lang="ts">
 import { NumberFieldInput as RekaNumberFieldInput } from 'reka-ui'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectNumberFieldContext } from '@/components/number-field/numberField.context'
-import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
-import { mergeClasses } from '@/customClassVariants'
+import FormControl from '@/components/shared/FormControl.vue'
+import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 
 const {
   id,
   testId,
+  isDisabled,
   isLoading,
+  isRequired,
   autocomplete,
   classConfig,
   customClassConfig,
-  errors,
+  errorMessage,
   placeholder,
   style,
   onBlur,
@@ -21,21 +24,24 @@ const {
 </script>
 
 <template>
-  <PrimitiveElement
-    :id="id"
-    :test-id="testId"
-  >
-    <RekaNumberFieldInput
-      :class="style.input({
-        class: mergeClasses(customClassConfig.input, classConfig?.input),
-      })"
-      :aria-describedby="`${id}-error ${id}-hint`"
-      :aria-busy="isLoading"
-      :aria-invalid="errors.length > 0"
-      :autocomplete="autocomplete"
-      :placeholder="placeholder"
-      @focus="onFocus"
-      @blur="onBlur"
-    />
-  </PrimitiveElement>
+  <TestIdProvider :test-id="testId">
+    <FormControl
+      :id="id"
+      :is-disabled="isDisabled"
+      :is-loading="isLoading"
+      :is-invalid="errorMessage !== null"
+      :described-by="`${id}-error ${id}-hint`"
+      :is-required="isRequired"
+    >
+      <RekaNumberFieldInput
+        :class="style.input({
+          class: mergeClasses(customClassConfig.input, classConfig?.input),
+        })"
+        :autocomplete="autocomplete"
+        :placeholder="placeholder"
+        @focus="onFocus"
+        @blur="onBlur"
+      />
+    </FormControl>
+  </TestIdProvider>
 </template>

@@ -16,7 +16,7 @@ const variants: VcTabsProps['variant'][] = [
 </script>
 
 <template>
-  <div class="flex flex-col gap-8xl">
+  <div class="gap-8xl flex flex-col">
     <VcTabs
       v-for="variant of variants"
       :key="variant"
@@ -40,19 +40,19 @@ const variants: VcTabsProps['variant'][] = [
       <template #content>
         <div class="mt-xl">
           <VcTabsContent value="profile">
-            <p class="text-sm font-semibold text-secondary">
+            <p class="text-secondary text-sm font-semibold">
               Profile
             </p>
           </VcTabsContent>
 
           <VcTabsContent value="settings">
-            <p class="text-sm font-semibold text-secondary">
+            <p class="text-secondary text-sm font-semibold">
               Settings
             </p>
           </VcTabsContent>
 
           <VcTabsContent value="billing">
-            <p class="text-sm font-semibold text-secondary">
+            <p class="text-secondary text-sm font-semibold">
               Billing
             </p>
           </VcTabsContent>

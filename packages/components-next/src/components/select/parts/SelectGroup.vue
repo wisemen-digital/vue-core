@@ -6,9 +6,9 @@ import {
   useId,
 } from 'vue'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectSelectContext } from '@/components/select/select.context'
 import { useProvideSelectGroupContext } from '@/components/select/selectGroup.context'
-import { mergeClasses } from '@/customClassVariants'
 
 const {
   allGroups,

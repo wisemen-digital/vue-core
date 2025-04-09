@@ -20,7 +20,7 @@ export const createDropdownMenuStyle = tv({
       .withBackgroundColor('bg-primary')
       .withBorder('border border-solid border-secondary')
       .withBorderRadius('rounded-lg')
-      .withBase('relative overflow-hidden')
+      .withBase('relative')
       .withSize('size-full min-w-52')
       .withBorderRadius('rounded-lg')
       .withShadow('shadow-lg')
@@ -40,12 +40,12 @@ export const createDropdownMenuStyle = tv({
       .build(),
     itemIcon: new StyleBuilder()
       .withSize('size-4')
-      .withColor('text-secondary group-data-disabled/dropdown-menu-item:text-disabled')
+      .withColor('text-secondary group-data-disabled/dropdown-menu-item:text-disabled group-data-destructive/dropdown-menu-item:text-error-primary')
       .withSpacing('mr-md')
       .withTransition('duration-200')
       .build(),
     itemLabel: new StyleBuilder()
-      .withColor('text-secondary group-data-disabled/dropdown-menu-item:text-disabled group-data-destructive/dropdown-menu-item:text-error-primary')
+      .withColor('text-secondary font-medium group-data-disabled/dropdown-menu-item:text-disabled group-data-destructive/dropdown-menu-item:text-error-primary')
       .withFontSize('text-sm')
       .withTransition('duration-200')
       .build(),
@@ -63,9 +63,7 @@ export const createDropdownMenuStyle = tv({
       .withColor('text-quaternary')
       .build(),
   },
-  variants: {
-    variant: {},
-  },
+  variants: { variant: {} },
 })
 
 export type DropdownMenuStyle = VariantProps<typeof createDropdownMenuStyle>

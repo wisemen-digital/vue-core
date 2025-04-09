@@ -4,9 +4,7 @@ import {
   VcButton,
 } from '@wisemen/vue-core-components'
 
-const dialog = useVcDialog({
-  component: () => import('./Dialog.vue'),
-})
+const dialog = useVcDialog({ component: () => import('./Dialog.vue') })
 </script>
 
 <template>

@@ -1,16 +1,21 @@
 <script setup lang="ts">
 import type { AcceptableValue } from 'reka-ui'
 import {
+  RovingFocusGroup as RekaRovingFocusGroup,
+  RovingFocusItem as RekaRovingFocusItem,
+} from 'reka-ui'
+import {
   computed,
+  onBeforeUnmount,
   onMounted,
   ref,
 } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import IconButton from '@/components/button/icon-button/IconButton.vue'
 import SelectPlaceholder from '@/components/select/parts/SelectPlaceholder.vue'
 import { useInjectSelectContext } from '@/components/select/select.context'
-import { mergeClasses } from '@/customClassVariants'
 
 const {
   classConfig,
@@ -22,7 +27,7 @@ const {
 
 const { t } = useI18n()
 
-const tagContainerRef = ref<HTMLDivElement | null>(null)
+const tagContainerRef = ref<InstanceType<typeof RekaRovingFocusGroup> | null>(null)
 const tagContainerWidth = ref<number>(0)
 const tagRef = ref<HTMLDivElement[]>([])
 const moreTagsCountRef = ref<HTMLDivElement | null>(null)
@@ -70,19 +75,29 @@ onMounted(() => {
   }
 
   resizeObserver = new ResizeObserver(() => {
-    tagContainerWidth.value = tagContainerRef.value?.getBoundingClientRect().width ?? 0
+    tagContainerWidth.value = tagContainerRef.value?.$el.getBoundingClientRect().width ?? 0
   })
 
-  resizeObserver.observe(tagContainerRef.value)
+  resizeObserver.observe(tagContainerRef.value.$el)
+})
+
+onBeforeUnmount(() => {
+  if (resizeObserver === null || tagContainerRef.value === null) {
+    return
+  }
+
+  resizeObserver.unobserve(tagContainerRef.value.$el)
+  resizeObserver.disconnect()
 })
 </script>
 
 <template>
-  <div
+  <RekaRovingFocusGroup
     ref="tagContainerRef"
     :class="style.baseMultiple({
       class: mergeClasses(customClassConfig.baseMultiple, classConfig?.baseMultiple),
     })"
+    orientation="horizontal"
   >
     <SelectPlaceholder class="pl-md" />
 
@@ -92,13 +107,16 @@ onMounted(() => {
         class: mergeClasses(customClassConfig.baseMultiple, classConfig?.baseMultiple),
       })"
       aria-hidden="true"
-      class="absolute invisible"
+      class="invisible absolute"
     >
       <div
         v-for="(value, valueIndex) of modelValueAsArray"
         :key="valueIndex"
         ref="tagRef"
-        class="flex items-center gap-sm text-sm pl-sm pr-xxs h-7 bg-secondary rounded-md border border-solid border-secondary whitespace-nowrap"
+        class="
+          gap-sm pl-sm pr-xxs bg-secondary border-secondary flex h-7
+          items-center rounded-md border border-solid text-sm whitespace-nowrap
+        "
       >
         {{ displayFn(value) }}
 
@@ -117,30 +135,35 @@ onMounted(() => {
     <div
       v-for="(value, valueIndex) of filteredModelValue"
       :key="valueIndex"
-      class="flex items-center gap-sm text-sm pl-sm pr-xxs h-7 bg-secondary rounded-md border border-solid border-secondary whitespace-nowrap"
+      class="
+        gap-sm pl-sm pr-xxs bg-secondary border-secondary flex h-7 items-center
+        rounded-md border border-solid text-sm whitespace-nowrap
+      "
     >
       {{ displayFn(value) }}
 
-      <IconButton
-        :label="t('component.select.remove_value')"
-        :class-config="{
-          root: 'size-6 min-w-auto rounded-sm',
-          icon: 'size-3',
-        }"
-        variant="tertiary"
-        icon="close"
-        class="z-10"
-        @click="onRemoveValue(value)"
-      />
+      <RekaRovingFocusItem :as-child="true">
+        <IconButton
+          :label="t('component.select.remove_value')"
+          :class-config="{
+            root: 'size-6 min-w-auto rounded-sm',
+            icon: 'size-3',
+          }"
+          variant="tertiary"
+          icon="close"
+          class="z-10"
+          @click="onRemoveValue(value)"
+        />
+      </RekaRovingFocusItem>
     </div>
 
     <div
       v-if="moreTagsCount > 0"
       ref="moreTagsCountRef"
     >
-      <span class="text-sm font-medium text-secondary pl-xs">
+      <span class="text-secondary pl-xs text-sm font-medium">
         +{{ moreTagsCount }}
       </span>
     </div>
-  </div>
+  </RekaRovingFocusGroup>
 </template>

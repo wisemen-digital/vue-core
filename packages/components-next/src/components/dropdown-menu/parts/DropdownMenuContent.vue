@@ -2,18 +2,20 @@
 import { AnimatePresence } from 'motion-v'
 import { DropdownMenuContent as RekaDropdownMenuContent } from 'reka-ui'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectDropdownMenuContext } from '@/components/dropdown-menu/dropdownMenu.context'
-import { mergeClasses } from '@/customClassVariants'
 
 const {
   isOpen,
   classConfig,
   customClassConfig,
   popoverAlign,
-  popoverCollisionPaddingInPx,
+  popoverAlignOffset,
+  popoverAnchorReferenceElement,
+  popoverCollisionPadding,
   popoverContainerElement,
-  popoverOffsetInPx,
   popoverSide,
+  popoverSideOffset,
   popoverWidth,
   style,
 } = useInjectDropdownMenuContext()
@@ -27,10 +29,12 @@ const {
       :as-child="true"
       :data-content-width="popoverWidth"
       :align="popoverAlign"
-      :collision-padding="popoverCollisionPaddingInPx"
+      :reference="popoverAnchorReferenceElement ?? undefined"
+      :align-offset="popoverAlignOffset"
+      :collision-padding="popoverCollisionPadding"
       :collision-boundary="popoverContainerElement"
       :side="popoverSide"
-      :side-offset="popoverOffsetInPx"
+      :side-offset="popoverSideOffset"
       :class="style.content({
         class: mergeClasses(customClassConfig.content, classConfig?.content),
       })"

@@ -5,7 +5,7 @@ import {
   injectThemeProviderContext,
   provideThemeProviderContext,
 } from '@/components/theme-provider/themeProvider.context'
-import type { Appearance } from '@/composables/appearance.composable'
+import type { Appearance } from '@/composables/appearance/appearance.composable'
 
 const props = withDefaults(defineProps<{
   /**
@@ -32,32 +32,22 @@ defineSlots<{
 
 const themeContext = injectThemeProviderContext()
 
-const appearanceComputed = computed<Appearance>(() => (
+const computedAppearance = computed<Appearance>(() => (
   props.appearance ?? themeContext.appearance.value ?? 'light'
 ))
 
-const theme = computed<string>(() =>
-  props.theme ?? themeContext.theme.value)
-
-// TODO: computed
-function getClasses(theme: string, appearance: Appearance): string {
-  const classes = [
-    theme,
-  ]
-
-  classes.push(appearance)
-
-  return classes.join(' ')
-}
+const theme = computed<string>(
+  () => props.theme ?? themeContext.theme.value,
+)
 
 provideThemeProviderContext({
-  appearance: appearanceComputed,
+  appearance: computedAppearance,
   theme,
 })
 </script>
 
 <template>
-  <div :class="getClasses(theme, appearanceComputed)">
+  <div :class="[theme, computedAppearance]">
     <slot />
   </div>
 </template>

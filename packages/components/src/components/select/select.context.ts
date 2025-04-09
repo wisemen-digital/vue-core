@@ -1,9 +1,11 @@
+import type {
+  ComputedRef,
+  InjectionKey,
+  Ref,
+} from 'vue'
 import {
-  type ComputedRef,
   inject,
-  type InjectionKey,
   provide,
-  type Ref,
 } from 'vue'
 
 import type {
@@ -12,7 +14,10 @@ import type {
 } from '@/components/select/select.props'
 import type { DarkModeValue } from '@/composables/dark-mode/darkMode.composable'
 import type { Icon } from '@/icons/icons'
-import type { SelectItem, SelectValue } from '@/types'
+import type {
+  SelectItem,
+  SelectValue,
+} from '@/types'
 import type {
   PopperAlign,
   PopperSide,

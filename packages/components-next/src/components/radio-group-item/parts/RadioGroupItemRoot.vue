@@ -2,19 +2,19 @@
 import { RadioGroupItem as RekaRadioGroupItem } from 'reka-ui'
 import { computed } from 'vue'
 
+import type { CustomComponentVariant } from '@/class-variant/classVariant.type'
+import {
+  getCustomComponentVariant,
+  mergeClasses,
+} from '@/class-variant/customClassVariants'
 import { useProvideRadioGroupItemContext } from '@/components/radio-group-item/radioGroupItem.context'
 import type { RadioGroupItemEmits } from '@/components/radio-group-item/radioGroupItem.emits'
 import type { RadioGroupItemProps } from '@/components/radio-group-item/radioGroupItem.props'
-import {
-  type CreateRadioGroupItemStyle,
-  createRadioGroupItemStyle,
-} from '@/components/radio-group-item/radioGroupItem.style'
-import InteractableElement from '@/components/shared/InteractableElement.vue'
-import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
-import {
-  mergeClasses,
-  useComponentClassConfig,
-} from '@/customClassVariants'
+import type { CreateRadioGroupItemStyle } from '@/components/radio-group-item/radioGroupItem.style'
+import { createRadioGroupItemStyle } from '@/components/radio-group-item/radioGroupItem.style'
+import FormControl from '@/components/shared/FormControl.vue'
+import TestIdProvider from '@/components/shared/TestIdProvider.vue'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { toComputedRefs } from '@/utils/props.util'
 
 const props = withDefaults(defineProps<RadioGroupItemProps>(), {
@@ -25,7 +25,7 @@ const props = withDefaults(defineProps<RadioGroupItemProps>(), {
   isRequired: false,
   isTouched: false,
   classConfig: null,
-  errors: () => [],
+  errorMessage: null,
   hint: null,
   label: null,
   value: null,
@@ -34,13 +34,15 @@ const props = withDefaults(defineProps<RadioGroupItemProps>(), {
 
 const emit = defineEmits<RadioGroupItemEmits>()
 
-const radioGroupItemStyle = computed<CreateRadioGroupItemStyle>(() => createRadioGroupItemStyle({
-  variant: props.variant ?? undefined,
-}))
+const { theme } = injectThemeProviderContext()
 
-const customClassConfig = useComponentClassConfig('radioGroupItem', {
-  variant: props.variant ?? undefined,
-})
+const radioGroupItemStyle = computed<CreateRadioGroupItemStyle>(
+  () => createRadioGroupItemStyle({ variant: props.variant ?? undefined }),
+)
+
+const customClassConfig = computed<CustomComponentVariant<'radioGroupItem'>>(
+  () => getCustomComponentVariant('radioGroupItem', theme.value, { variant: props.variant }),
+)
 
 useProvideRadioGroupItemContext({
   ...toComputedRefs(props),
@@ -50,25 +52,26 @@ useProvideRadioGroupItemContext({
 </script>
 
 <template>
-  <PrimitiveElement
-    :id="id"
-    :test-id="testId"
-  >
-    <InteractableElement
+  <TestIdProvider :test-id="testId">
+    <FormControl
+      :id="id"
       :is-disabled="isDisabled"
-      :class="radioGroupItemStyle.root({
-        class: mergeClasses(customClassConfig.root, props.classConfig?.root),
-      })"
-      :aria-invalid="errors.length > 0"
-      :data-invalid="(errors.length > 0 && props.isTouched) || undefined"
+      :is-invalid="errorMessage !== null"
+      :is-required="isRequired"
+      :described-by="`${id}-error ${id}-hint`"
+      :is-loading="false"
     >
       <RekaRadioGroupItem
         :value="props.value"
+        :data-invalid="(errorMessage !== null && props.isTouched) || undefined"
+        :class="radioGroupItemStyle.root({
+          class: mergeClasses(customClassConfig.root, props.classConfig?.root),
+        })"
         @focus="emit('focus')"
         @blur="emit('blur')"
       >
         <slot />
       </RekaRadioGroupItem>
-    </InteractableElement>
-  </PrimitiveElement>
+    </FormControl>
+  </TestIdProvider>
 </template>

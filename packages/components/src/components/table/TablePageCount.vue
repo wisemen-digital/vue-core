@@ -8,7 +8,9 @@ import type { PaginationSet } from '@/types/pagination.type'
 
 const tableContext = injectTableContext()
 
-const { n, t } = useI18n()
+const {
+  n, t,
+} = useI18n()
 
 const pagination = computed<PaginationSet>(() => tableContext.pagination.value.paginationOptions.value.pagination)
 

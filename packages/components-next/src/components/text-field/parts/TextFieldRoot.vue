@@ -1,14 +1,19 @@
 <script setup lang="ts" generic="TValue extends string">
 import { computed } from 'vue'
 
+import type { ResolvedClassConfig } from '@/class-variant/classVariant.type'
+import {
+  getCustomComponentVariant,
+  mergeClasses,
+} from '@/class-variant/customClassVariants'
 import { useProvideTextFieldContext } from '@/components/text-field/textField.context'
-import type { TextFieldEmits, TextFieldProps } from '@/components/text-field/textField.props'
+import type {
+  TextFieldEmits,
+  TextFieldProps,
+} from '@/components/text-field/textField.props'
 import type { CreateTextFieldStyle } from '@/components/text-field/textField.style'
 import { createTextFieldStyle } from '@/components/text-field/textField.style'
-import {
-  mergeClasses,
-  useComponentClassConfig,
-} from '@/customClassVariants'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { toComputedRefs } from '@/utils/props.util'
 
 const props = withDefaults(defineProps<TextFieldProps>(), {
@@ -21,7 +26,7 @@ const props = withDefaults(defineProps<TextFieldProps>(), {
   isTouched: false,
   autocomplete: 'off',
   classConfig: null,
-  errors: () => [],
+  errorMessage: null,
   hint: null,
   iconLeft: null,
   iconRight: null,
@@ -33,17 +38,17 @@ const props = withDefaults(defineProps<TextFieldProps>(), {
 
 const emit = defineEmits<TextFieldEmits>()
 
-const modelValue = defineModel<TValue | null>({
-  required: true,
-})
+const modelValue = defineModel<TValue | null>({ required: true })
 
-const textFieldStyle = computed<CreateTextFieldStyle>(() => createTextFieldStyle({
-  variant: props.variant ?? undefined,
-}))
+const { theme } = injectThemeProviderContext()
 
-const customClassConfig = useComponentClassConfig('textField', {
-  variant: props.variant ?? undefined,
-})
+const textFieldStyle = computed<CreateTextFieldStyle>(
+  () => createTextFieldStyle({ variant: props.variant ?? undefined }),
+)
+
+const customClassConfig = computed<ResolvedClassConfig<'textField'>>(
+  () => getCustomComponentVariant('textField', theme.value, { variant: props.variant }),
+)
 
 function onBlur(event: FocusEvent): void {
   emit('blur', event)
@@ -68,10 +73,10 @@ useProvideTextFieldContext({
     :class="textFieldStyle.root({
       class: mergeClasses(customClassConfig.root, props.classConfig?.root),
     })"
-    :data-has-icon-left="props.iconLeft !== null"
-    :data-has-icon-right="props.iconRight !== null"
-    :data-is-invalid="props.errors.length > 0 && props.isTouched"
-    :data-is-disabled="props.isDisabled"
+    :data-icon-left="props.iconLeft !== null || undefined"
+    :data-icon-right="props.iconRight !== null || undefined"
+    :data-invalid="(props.errorMessage !== null && props.isTouched) || undefined"
+    :data-disabled="props.isDisabled || undefined"
   >
     <slot />
   </div>

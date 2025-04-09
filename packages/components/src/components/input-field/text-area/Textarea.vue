@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { useTextareaAutosize } from '@vueuse/core'
 import { useId } from 'reka-ui'
-import { computed, ref } from 'vue'
+import {
+  computed,
+  ref,
+} from 'vue'
 
 import InputField from '@/components/input-field/InputField.vue'
 import type { TextareaProps } from '@/components/input-field/text-area/textarea.props'
@@ -35,7 +38,10 @@ defineSlots<{
   /**
    * Can be used to render a custom hint and error message.
    */
-  bottom: ({ errors, hint }: { errors: string[], hint: string | null }) => void
+  bottom: ({
+    errors, hint,
+  }: { errors: string[]
+    hint: string | null }) => void
   /**
    * Can be used to render a custom error message.
    */
@@ -50,9 +56,7 @@ defineSlots<{
   label: ({ label }: { label: string | null }) => void
 }>()
 
-const model = defineModel<string | null>({
-  required: true,
-})
+const model = defineModel<string | null>({ required: true })
 
 const themeProviderContext = injectThemeProviderContext()
 

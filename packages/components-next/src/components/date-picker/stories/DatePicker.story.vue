@@ -41,7 +41,7 @@ const today = new Date()
 
             <template #content>
               <div class="px-lg py-sm">
-                <p class="text-sm text-secondary max-w-40 text-center">
+                <p class="text-secondary max-w-40 text-center text-sm">
                   This date is unavailable. Please select another date.
                 </p>
               </div>

@@ -1,8 +1,8 @@
-import type { GetComponentPropCustomValues } from '@/customClassVariants'
 import type {
   CustomizableElement,
-  FormElement,
-} from '@/utils/props.util'
+  GetComponentProp,
+} from '@/class-variant/classVariant.type'
+import type { FormElement } from '@/utils/props.util'
 
 export interface FormFieldProps extends FormElement, CustomizableElement<'formField'> {
   /**
@@ -15,7 +15,7 @@ export interface FormFieldProps extends FormElement, CustomizableElement<'formFi
    */
   layout?: 'horizontal' | 'vertical'
   /**
-   *
+   * Defines the visual style of the form field.
    */
-  variant?: GetComponentPropCustomValues<'formField', 'variant'> | null
+  variant?: GetComponentProp<'formField', 'variant'> | null
 }

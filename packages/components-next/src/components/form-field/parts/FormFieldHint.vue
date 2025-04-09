@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectFormFieldContext } from '@/components/form-field/formField.context'
 import type { FormFieldLabelSlots } from '@/components/form-field/formField.slots'
-import { mergeClasses } from '@/customClassVariants'
 
 defineSlots<FormFieldLabelSlots>()
 
@@ -11,13 +11,13 @@ const {
   isTouched,
   classConfig,
   customClassConfig,
-  errors,
+  errorMessage,
   for: forId,
   hint,
   style,
 } = useInjectFormFieldContext()
 
-const isErrorVisible = computed<boolean>(() => isTouched.value && errors.value.length > 0)
+const isErrorVisible = computed<boolean>(() => isTouched.value && errorMessage.value !== null)
 </script>
 
 <template>

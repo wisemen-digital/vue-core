@@ -1,24 +1,22 @@
 <script setup lang="ts">
 import { AnimatePresence } from 'motion-v'
-import {
-  PopoverContent as RekaPopoverContent,
-} from 'reka-ui'
+import { PopoverContent as RekaPopoverContent } from 'reka-ui'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectPopoverContext } from '@/components/popover/popover.context'
-import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
-import { mergeClasses } from '@/customClassVariants'
+import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 
 const {
-  id,
   testId,
   isOpen,
   classConfig,
   customClassConfig,
   popoverAlign,
-  popoverCollisionPaddingInPx,
+  popoverAlignOffset,
+  popoverCollisionPadding,
   popoverContainerElement,
-  popoverOffsetInPx,
   popoverSide,
+  popoverSideOffset,
   popoverWidth,
   style,
   onAutoFocusOnClose,
@@ -30,9 +28,8 @@ const {
 
 <template>
   <AnimatePresence>
-    <PrimitiveElement
+    <TestIdProvider
       v-if="isOpen"
-      :id="id"
       :test-id="testId"
     >
       <RekaPopoverContent
@@ -40,10 +37,11 @@ const {
         :as-child="true"
         :data-content-width="popoverWidth"
         :align="popoverAlign"
-        :collision-padding="popoverCollisionPaddingInPx"
+        :collision-padding="popoverCollisionPadding"
         :collision-boundary="popoverContainerElement"
+        :align-offset="popoverAlignOffset"
         :side="popoverSide"
-        :side-offset="popoverOffsetInPx"
+        :side-offset="popoverSideOffset"
         :class="style.content({
           class: mergeClasses(customClassConfig.content, classConfig?.content),
         })"
@@ -55,6 +53,6 @@ const {
       >
         <slot />
       </RekaPopoverContent>
-    </PrimitiveElement>
+    </TestIdProvider>
   </AnimatePresence>
 </template>
