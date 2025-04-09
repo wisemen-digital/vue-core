@@ -34,7 +34,7 @@ const isLastColumn = computed<boolean>(() => (
   <Primitive
     :as-child="false"
     :class="{
-      'sticky z-10 border-transparent': (isFirstColumn && isFirstColumnSticky) || (isLastColumn && isLastColumnSticky),
+      'sticky z-4 border-transparent': (isFirstColumn && isFirstColumnSticky) || (isLastColumn && isLastColumnSticky),
       'left-0 border-r': isFirstColumn && isFirstColumnSticky,
       'right-0 border-l': isLastColumn && isLastColumnSticky,
       'border-r-secondary': isFirstColumn && isFirstColumnSticky && isScrolledHorizontally,

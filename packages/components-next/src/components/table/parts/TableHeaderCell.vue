@@ -100,6 +100,7 @@ function onSortChange(): void {
       class: mergeClasses(classConfig?.headerCell, customClassConfig?.headerCell),
     })"
     role="columnheader"
+    class="sticky"
   >
     <div>
       <slot name="left" />
