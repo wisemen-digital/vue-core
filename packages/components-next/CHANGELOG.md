@@ -1,5 +1,11 @@
 # @wisemen/vue-core-components
 
+## 1.3.1
+
+### Patch Changes
+
+- f905f32: Types: export `AcceptableValue`
+
 ## 1.3.0
 
 ### Minor Changes
