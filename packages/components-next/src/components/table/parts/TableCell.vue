@@ -8,10 +8,7 @@ const props = withDefaults(defineProps<{
    * @default false
    */
   isPrimaryCell?: boolean
-}>(), {
-  isInteractive: false,
-  isPrimaryCell: false,
-})
+}>(), { isPrimaryCell: false })
 
 const {
   classConfig,

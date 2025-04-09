@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router'
-
 import { mergeClasses } from '@/class-variant/customClassVariants'
 import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 import Subgrid from '@/components/table/parts/Subgrid.vue'
 import TableCellLayout from '@/components/table/parts/TableCellLayout.vue'
+import TableRowAction from '@/components/table/parts/TableRowAction.vue'
 import { useInjectTableContext } from '@/components/table/table.context'
 
 const props = defineProps<{
@@ -13,10 +12,10 @@ const props = defineProps<{
 
 const {
   hasVerticalOverflow,
+  isFirstColumnSticky,
   classConfig,
   columns,
   customClassConfig,
-  rowAction,
   style,
 } = useInjectTableContext()
 </script>
@@ -33,34 +32,35 @@ const {
     ]"
     role="row"
   >
-    <RouterLink
-      v-if="rowAction !== null && rowAction.type === 'link'"
-      :to="rowAction.to(data)"
-      class="absolute inset-0 cursor-pointer outline-none"
-    >
-      <span class="sr-only">
-        {{ rowAction.label(data) }}
-      </span>
-    </RouterLink>
-
-    <button
-      v-if="rowAction !== null && rowAction.type === 'button'"
-      class="absolute inset-0 cursor-pointer outline-none"
-      @click="rowAction.onClick(data)"
-    >
-      <span class="sr-only">
-        {{ rowAction.label(data) }}
-      </span>
-    </button>
+    <TableRowAction
+      :is-focusable="true"
+      :data="props.data"
+    />
 
     <TableCellLayout
-      v-for="column of columns"
+      v-for="(column, columnIndex) of columns"
       :key="column.key"
       :column="column"
     >
       <TestIdProvider :test-id="column.testId ?? null">
         <Component :is="column.cell(props.data)" />
       </TestIdProvider>
+
+      <!--
+        Sticky columns need a z-index (e.g., 1) to appear above regular cells.
+        Interactive rows then require a higher z-index (e.g., 2) to sit above sticky columns.
+        However, any interactive elements inside those rows need an even higher z-index (>2),
+        which causes them to render on top of the sticky column as well.
+        This creates a visual overflow issue, and due to stacking context limitations,
+        there's no clean solution—so we use this workaround.
+
+        The fix is to render the action again in the sticky column but make it non-interactive for screen readers.
+      -->
+      <TableRowAction
+        v-if="columnIndex === 0 && isFirstColumnSticky"
+        :is-focusable="false"
+        :data="props.data"
+      />
     </TableCellLayout>
   </Subgrid>
 </template>

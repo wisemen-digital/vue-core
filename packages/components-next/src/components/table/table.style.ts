@@ -6,7 +6,7 @@ import { StyleBuilder } from '@/utils/style-builder/styleBuilder.util'
 export const createTableStyle = tv({
   slots: {
     cell: new StyleBuilder()
-      .withBase('group/cell whitespace-nowrap')
+      .withBase('group/cell whitespace-nowrap relative')
       .withBackgroundColor('bg-primary group-[&:has(:focus-visible)]/row:bg-secondary')
       .withColor('text-tertiary data-primary-cell:text-primary')
       .withFontWeight('data-primary-cell:font-semibold')
@@ -21,7 +21,7 @@ export const createTableStyle = tv({
       .build(),
     header: new StyleBuilder()
       .withBase('sticky top-0')
-      .withZIndex('z-20')
+      .withZIndex('z-5')
       .withBorder('border-b border-solid border-b-secondary')
       .build(),
     headerCell: new StyleBuilder()
@@ -29,7 +29,7 @@ export const createTableStyle = tv({
       .withPadding('py-lg px-3xl')
       .build(),
     root: new StyleBuilder()
-      .withBase('overflow-hidden')
+      .withBase('overflow-hidden isolate')
       .withBorder('border border-solid border-secondary')
       .withFlex('flex flex-col')
       .withBorderRadius('rounded-lg')
