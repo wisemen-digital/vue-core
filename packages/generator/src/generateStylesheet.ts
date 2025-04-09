@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /* eslint-disable node/prefer-global/process,no-console */
 import { execSync } from 'node:child_process'
 import fs from 'node:fs/promises'
