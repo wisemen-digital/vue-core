@@ -1,5 +1,17 @@
 # @wisemen/vue-core-components
 
+## 1.3.0
+
+### Minor Changes
+
+- 6519b41: Added new `Toast` component for showing temporary notifications such as success, error, or informational messages.
+
+### Patch Changes
+
+- 309220f: Table: Interactive elements inside rows now work as expected, even when a row action is defined.
+- 5b98726: Refactored internal types to allow better customization of nested components.
+- 6ab9cc6: Added `PaginationParamsBuilder` utility to simplify generating pagination-related query parameters.
+
 ## 1.2.0
 
 ### Minor Changes
