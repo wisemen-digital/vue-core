@@ -1,8 +1,10 @@
 import type { AcceptableValue } from 'reka-ui'
 
-import type { GetComponentPropCustomValues } from '@/customClassVariants'
 import type {
   CustomizableElement,
+  GetComponentProp,
+} from '@/class-variant/classVariant.type'
+import type {
   FormElement,
   InteractableElement,
   TestId,
@@ -22,7 +24,7 @@ export interface CheckboxProps extends TestId, InteractableElement, FormElement,
    */
   value?: CheckboxValue
   /**
-   *
+   * Defines the visual style of the checkbox.
    */
-  variant?: GetComponentPropCustomValues<'checkbox', 'variant'> | null
+  variant?: GetComponentProp<'checkbox', 'variant'> | null
 }

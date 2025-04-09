@@ -7,12 +7,12 @@ import {
   useId,
 } from 'vue'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import SelectItemIndicator from '@/components/select/parts/SelectItemIndicator.vue'
 import { useInjectSelectContext } from '@/components/select/select.context'
 import type { SelectItemProps } from '@/components/select/select.props'
 import { useInjectSelectGroupContext } from '@/components/select/selectGroup.context'
 import TestIdProvider from '@/components/shared/TestIdProvider.vue'
-import { mergeClasses } from '@/customClassVariants'
 
 const props = withDefaults(defineProps<SelectItemProps>(), {
   testId: null,

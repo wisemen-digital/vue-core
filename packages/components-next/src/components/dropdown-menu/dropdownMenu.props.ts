@@ -1,8 +1,10 @@
-import type { GetComponentPropCustomValues } from '@/customClassVariants'
+import type {
+  CustomizableElement,
+  GetComponentProp,
+} from '@/class-variant/classVariant.type'
 import type { Icon } from '@/icons/icons'
 import type { PopperPropsWithArrowVisibleByDefault } from '@/types/popperProps.type'
 import type {
-  CustomizableElement,
   InteractableElement,
   TestId,
 } from '@/utils/props.util'
@@ -12,9 +14,9 @@ export interface DropdownMenuProps extends TestId,
   PopperPropsWithArrowVisibleByDefault,
   CustomizableElement<'dropdownMenu'> {
   /**
-   *
+   * Defines the visual style of the dropdown menu.
    */
-  variant?: GetComponentPropCustomValues<'dropdownMenu', 'variant'> | null
+  variant?: GetComponentProp<'dropdownMenu', 'variant'> | null
 }
 
 export interface DropdownMenuItemProps extends TestId, InteractableElement {

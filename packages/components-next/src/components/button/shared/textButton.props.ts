@@ -1,8 +1,6 @@
+import type { CustomizableElement } from '@/class-variant/classVariant.type'
 import type { SharedButtonProps } from '@/components/button/shared/sharedButton.props'
-import type { TextButtonStyle } from '@/components/button/shared/textButton.style'
-import type { GetComponentPropCustomValues } from '@/customClassVariants'
 import type { Icon } from '@/icons/icons'
-import type { CustomizableElement } from '@/utils/props.util'
 
 export interface TextButtonProps extends SharedButtonProps, CustomizableElement<'button'> {
   /**
@@ -15,14 +13,5 @@ export interface TextButtonProps extends SharedButtonProps, CustomizableElement<
    * @default null
    */
   iconRight?: Icon | null
-  /**
-   * Defines the button’s size.
-   * @default 'md'
-   */
-  size?: GetComponentPropCustomValues<'button', 'size'> | TextButtonStyle['size']
-  /**
-   * Defines the visual style of the button.
-   * @default 'primary'
-   */
-  variant?: GetComponentPropCustomValues<'button', 'variant'> | TextButtonStyle['variant']
+
 }

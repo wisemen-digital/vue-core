@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectFormFieldContext } from '@/components/form-field/formField.context'
 import type { FormFieldLabelSlots } from '@/components/form-field/formField.slots'
-import { mergeClasses } from '@/customClassVariants'
 
 defineSlots<FormFieldLabelSlots>()
 

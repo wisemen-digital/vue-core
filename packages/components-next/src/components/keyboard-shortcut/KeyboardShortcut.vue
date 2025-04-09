@@ -2,21 +2,25 @@
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import type { ResolvedClassConfig } from '@/class-variant/classVariant.type'
+import {
+  getCustomComponentVariant,
+  mergeClasses,
+} from '@/class-variant/customClassVariants'
 import { useInjectConfigContext } from '@/components/config-provider/config.context'
 import KeyboardKey from '@/components/keyboard-key/KeyboardKey.vue'
 import type { KeyboardShortcutProps } from '@/components/keyboard-shortcut/keyboardShortcut.props'
 import type { CreatekeyboardShortcutStyle } from '@/components/keyboard-shortcut/keyboardShortcut.style'
 import { createkeyboardShortcutStyle } from '@/components/keyboard-shortcut/keyboardShortcut.style'
-import {
-  mergeClasses,
-  useComponentClassConfig,
-} from '@/customClassVariants'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import type { KeyboardKey as KeyboardKeyType } from '@/types/keyboard.type'
 import { isMobileDevice } from '@/utils/device.util'
 
 const props = withDefaults(defineProps<KeyboardShortcutProps>(), { classConfig: null })
 
 const { areKeyboardShortcutHintsHidden } = useInjectConfigContext()
+const { theme } = injectThemeProviderContext()
+
 const { t } = useI18n()
 
 function isModifier(key: KeyboardKeyType): boolean {
@@ -31,7 +35,9 @@ const keyboardShortcutStyle = computed<CreatekeyboardShortcutStyle>(
   () => createkeyboardShortcutStyle(),
 )
 
-const customClassConfig = useComponentClassConfig('keyboardShortcut', {})
+const customClassConfig = computed<ResolvedClassConfig<'keyboardShortcut'>>(
+  () => getCustomComponentVariant('keyboardShortcut', theme.value, { variant: props.variant }),
+)
 </script>
 
 <template>
@@ -47,7 +53,10 @@ const customClassConfig = useComponentClassConfig('keyboardShortcut', {})
     >
       <KeyboardKey
         :keyboard-key="keyboardKey"
-        :class-config="props.classConfig?.keyboardKey"
+        :class-config="{
+          ...customClassConfig.keyboardKey,
+          ...props.classConfig?.keyboardKey,
+        }"
       />
 
       <template v-if="index < props.keyboardKeys.length - 1 && isSequence">

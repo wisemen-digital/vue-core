@@ -2,10 +2,9 @@ import '@/styles/index.css'
 
 export * from './components'
 export * from './composables'
-export {
-  type ComponentVariants,
-  defineComponentVariant,
-} from './customClassVariants'
+export type { ComponentVariants } from '@/class-variant/classVariant.type'
+export { defineComponentVariant } from '@/class-variant/customClassVariants'
+export { PaginationParamsBuilder } from '@/utils/paginationParamsBuilder.util'
 
 // Icons
 export type {

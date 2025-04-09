@@ -5,9 +5,9 @@ import {
 } from 'motion-v'
 import { CalendarCellTrigger as RekaCalendarCellTrigger } from 'reka-ui'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectDatePickerDateContext } from '@/components/date-picker/shared/datePickerDate.context'
 import { useInjectDatePickerContext } from '@/components/date-picker/single/datePicker.context'
-import { mergeClasses } from '@/customClassVariants'
 
 const {
   classConfig,

@@ -3,13 +3,13 @@ import type {
   Ref,
 } from 'vue'
 
+import type { ResolvedClassConfig } from '@/class-variant/classVariant.type'
 import type {
   SelectProps,
   SelectValue,
 } from '@/components/select/select.props'
 import type { CreateSelectStyle } from '@/components/select/style/select.style'
 import { useContext } from '@/composables/context/context.composable'
-import type { ClassConfig } from '@/customClassVariants'
 import type { PropsToComputed } from '@/utils/props.util'
 
 interface SelectContext extends PropsToComputed<SelectProps<any>> {
@@ -20,7 +20,7 @@ interface SelectContext extends PropsToComputed<SelectProps<any>> {
   isMultiple: ComputedRef<boolean>
   allGroups: Ref<Map<string, Set<string>>>
   allItems: Ref<Map<string, unknown>>
-  customClassConfig: ComputedRef<ClassConfig<'select'>>
+  customClassConfig: ComputedRef<ResolvedClassConfig<'select'>>
   filteredGroups: ComputedRef<Map<string, Set<string>>>
   filteredItems: ComputedRef<Map<string, unknown>>
   inlinesearchInputElementRef: Ref<HTMLInputElement | null>

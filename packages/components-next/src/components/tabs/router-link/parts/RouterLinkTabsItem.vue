@@ -2,10 +2,10 @@
 import { TabsTrigger as RekaTabsTrigger } from 'reka-ui'
 import { RouterLink } from 'vue-router'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 import { useInjectTabsContext } from '@/components/tabs/shared/tabs.context'
 import type { RouterLinkTabsItemProps } from '@/components/tabs/shared/tabs.props'
-import { mergeClasses } from '@/customClassVariants'
 
 const props = withDefaults(defineProps<RouterLinkTabsItemProps>(), {
   id: null,

@@ -1,11 +1,11 @@
 <script setup lang="ts" generic="TMeta">
 import { TabsTrigger as RekaTabsTrigger } from 'reka-ui'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import InteractableElement from '@/components/shared/InteractableElement.vue'
 import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 import type { ButtonTabsItemProps } from '@/components/tabs/button/buttonTabs.props'
 import { useInjectTabsContext } from '@/components/tabs/shared/tabs.context'
-import { mergeClasses } from '@/customClassVariants'
 
 const props = withDefaults(defineProps<ButtonTabsItemProps>(), {
   testId: null,

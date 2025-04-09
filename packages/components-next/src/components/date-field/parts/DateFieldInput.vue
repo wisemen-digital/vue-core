@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { DateFieldInput as RekaDateFieldInput } from 'reka-ui'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectDateFieldContext } from '@/components/date-field/dateField.context'
 import type { DateFieldSegment } from '@/components/date-field/dateField.type'
 import TestIdProvider from '@/components/shared/TestIdProvider.vue'
-import { mergeClasses } from '@/customClassVariants'
 
 const props = defineProps<{
   segments: DateFieldSegment[]

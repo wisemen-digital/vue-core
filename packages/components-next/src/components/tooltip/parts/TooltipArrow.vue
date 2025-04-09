@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { TooltipArrow as RekaTooltipArrow } from 'reka-ui'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectTooltipContext } from '@/components/tooltip/tooltip.context'
-import { mergeClasses } from '@/customClassVariants'
 
 const {
   isPopoverArrowHidden,

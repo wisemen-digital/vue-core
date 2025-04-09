@@ -1,6 +1,8 @@
-import type { GetComponentPropCustomValues } from '@/customClassVariants'
 import type {
   CustomizableElement,
+  GetComponentProp,
+} from '@/class-variant/classVariant.type'
+import type {
   FormElement,
   InteractableElement,
   TestId,
@@ -33,7 +35,7 @@ export interface TextareaProps extends TestId, InteractableElement, FormElement,
    */
   resize?: 'auto-vertical' | 'both' | 'horizontal' | 'none' | 'vertical'
   /**
-   *
+   * Defines the visual style of the textarea.
    */
-  variant?: GetComponentPropCustomValues<'textField', 'variant'> | null
+  variant?: GetComponentProp<'textField', 'variant'> | null
 }

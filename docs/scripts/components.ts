@@ -119,6 +119,12 @@ export const components = [
     targetFolder: 'time-field',
     componentName: 'TimeField',
   },
+  // Toast
+  {
+    sourceFolder: 'toast/parts/ToastRoot.vue',
+    targetFolder: 'toast',
+    componentName: 'Toast',
+  },
   // Tooltip
   {
     sourceFolder: 'tooltip/parts/TooltipRoot.vue',

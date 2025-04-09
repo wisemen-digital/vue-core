@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectTooltipContext } from '@/components/tooltip/tooltip.context'
-import { mergeClasses } from '@/customClassVariants'
 
 const {
   classConfig,

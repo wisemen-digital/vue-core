@@ -3,8 +3,8 @@
 <PropsTable :data="[
   {
     'name': 'classConfig',
-    'description': '<p>The class configuration of the component.</p>\n',
-    'type': '(ClassConfig<\'select\'> & { dropdownSearchInput?: ClassConfig<\'textField\'>; popover?: ClassConfig<\'popover\'>; }) | null',
+    'description': '<p>The class configuration for the component. This allows customizating the default styles\nby overriding them with custom values.</p>\n',
+    'type': 'ResolvedClassConfig<\'select\'> | null',
     'required': false
   },
   {
@@ -171,7 +171,7 @@
   },
   {
     'name': 'variant',
-    'description': '',
+    'description': '<p>Defines the visual style of the select component.</p>\n',
     'type': 'null',
     'required': false
   }

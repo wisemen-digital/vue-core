@@ -3,8 +3,8 @@
 <PropsTable :data="[
   {
     'name': 'classConfig',
-    'description': '<p>The class configuration of the component.</p>\n',
-    'type': '(ClassConfig<\'dropdownMenu\'> & {}) | null',
+    'description': '<p>The class configuration for the component. This allows customizating the default styles\nby overriding them with custom values.</p>\n',
+    'type': 'ResolvedClassConfig<\'dropdownMenu\'> | null',
     'required': false,
     'default': 'null'
   },
@@ -87,7 +87,7 @@
   },
   {
     'name': 'variant',
-    'description': '',
+    'description': '<p>Defines the visual style of the dropdown menu.</p>\n',
     'type': 'null',
     'required': false,
     'default': 'null'

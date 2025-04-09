@@ -4,9 +4,9 @@ import {
   Motion,
 } from 'motion-v'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectFormFieldContext } from '@/components/form-field/formField.context'
 import type { FormFieldLabelSlots } from '@/components/form-field/formField.slots'
-import { mergeClasses } from '@/customClassVariants'
 
 defineSlots<FormFieldLabelSlots>()
 

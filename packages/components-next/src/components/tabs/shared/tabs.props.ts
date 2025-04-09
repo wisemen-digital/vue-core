@@ -1,10 +1,9 @@
-import type { TabsStyle } from '@/components/tabs/shared/tabs.style'
-import type { GetComponentPropCustomValues } from '@/customClassVariants'
-import type { Routes } from '@/types/routes.type'
 import type {
   CustomizableElement,
-  TestId,
-} from '@/utils/props.util'
+  GetComponentProp,
+} from '@/class-variant/classVariant.type'
+import type { Routes } from '@/types/routes.type'
+import type { TestId } from '@/utils/props.util'
 
 export interface TabsProps extends TestId, CustomizableElement<'tabs'> {
   /**
@@ -16,7 +15,7 @@ export interface TabsProps extends TestId, CustomizableElement<'tabs'> {
    * Defines the visual style of the tabs.
    * @default 'underline'
    */
-  variant?: GetComponentPropCustomValues<'tabs', 'variant'> | TabsStyle['variant']
+  variant?: GetComponentProp<'tabs', 'variant'>
 }
 
 export interface RouterLinkTabsItemProps extends TestId {

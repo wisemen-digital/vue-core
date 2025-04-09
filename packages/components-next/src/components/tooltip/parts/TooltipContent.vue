@@ -2,9 +2,9 @@
 import { AnimatePresence } from 'motion-v'
 import { TooltipContent as RekaTooltipContent } from 'reka-ui'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 import { useInjectTooltipContext } from '@/components/tooltip/tooltip.context'
-import { mergeClasses } from '@/customClassVariants'
 
 const {
   testId,

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectNumberFieldContext } from '@/components/number-field/numberField.context'
 import Spinner from '@/components/spinner/Spinner.vue'
-import { mergeClasses } from '@/customClassVariants'
 
 const {
   isLoading,

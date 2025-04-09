@@ -12,6 +12,7 @@ const {
   isDisabled,
   allowDeselect,
   classConfig,
+  customClassConfig,
   hideDatePicker,
   label,
   modelValue,
@@ -51,7 +52,10 @@ const {
           :min-date="minDate"
           :show-two-months="showTwoMonths"
           :label="label ?? ''"
-          :class-config="classConfig?.datePicker"
+          :class-config="{
+            ...customClassConfig.datePicker,
+            ...classConfig?.datePicker,
+          }"
         />
       </div>
     </template>

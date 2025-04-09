@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import Button from '@/components/button/default-button/Button.vue'
 import Icon from '@/components/icon/Icon.vue'
 import ProgressiveBlur from '@/components/internal/ProgressiveBlur.vue'
@@ -8,7 +9,6 @@ import Subgrid from '@/components/table/parts/Subgrid.vue'
 import TableCellLayout from '@/components/table/parts/TableCellLayout.vue'
 import TableHeader from '@/components/table/parts/TableHeader.vue'
 import { useInjectTableContext } from '@/components/table/table.context'
-import { mergeClasses } from '@/customClassVariants'
 
 const {
   isEmpty,

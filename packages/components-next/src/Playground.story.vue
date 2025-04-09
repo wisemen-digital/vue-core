@@ -1,40 +1,15 @@
 <script setup lang="ts">
-import FormFieldLabel from '@/components/form-field/parts/FormFieldLabel.vue'
-import TextField from '@/components/text-field/TextField.vue'
-import { defineComponentVariant } from '@/customClassVariants'
+import { defineComponentVariant } from '@/class-variant/customClassVariants'
+import KeyboardShortcut from '@/components/keyboard-shortcut/KeyboardShortcut.vue'
 
 defineComponentVariant({
-  config: {},
-  // target: {
-  //   prop: 'size',
-  //   value: 'super-large',
-  // },
-  component: 'button',
-})
-
-defineComponentVariant({
-  config: { root: 'bg-secondary border-none shadow-none' },
-  target: {
-    prop: 'variant',
-    value: 'leander',
-  },
-  component: 'textField',
+  config: { keyboardKey: { key: 'scale-400' } },
+  component: 'keyboardShortcut',
 })
 </script>
 
 <template>
   <Story title="Playground">
-    <TextField
-      :model-value="null"
-      label="Yeeeet"
-    >
-      <template #label>
-        <FormFieldLabel>
-          <template #right>
-            trailing
-          </template>
-        </FormFieldLabel>
-      </template>
-    </TextField>
+    <KeyboardShortcut :keyboard-keys="['meta', ',']" />
   </Story>
 </template>

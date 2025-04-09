@@ -2,15 +2,17 @@
 import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
 
+import type { ResolvedClassConfig } from '@/class-variant/classVariant.type'
+import {
+  getCustomComponentVariant,
+  mergeClasses,
+} from '@/class-variant/customClassVariants'
 import type { CreateButtonStyle } from '@/components/button/default-button/button.style'
 import { createButtonStyle } from '@/components/button/default-button/button.style'
 import { useProvideRouterLinkButtonContext } from '@/components/button/router-link-button/routerLinkButton.context'
 import type { RouterLinkButtonProps } from '@/components/button/router-link-button/routerLinkButton.props'
 import TestIdProvider from '@/components/shared/TestIdProvider.vue'
-import {
-  mergeClasses,
-  useComponentClassConfig,
-} from '@/customClassVariants'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { toComputedRefs } from '@/utils/props.util'
 
 const props = withDefaults(defineProps<RouterLinkButtonProps>(), {
@@ -24,15 +26,19 @@ const props = withDefaults(defineProps<RouterLinkButtonProps>(), {
   variant: 'primary',
 })
 
+const { theme } = injectThemeProviderContext()
+
 const buttonStyle = computed<CreateButtonStyle>(() => createButtonStyle({
   size: props.size,
   variant: props.variant,
 }))
 
-const customClassConfig = useComponentClassConfig('routerLinkButton', {
-  size: props.size,
-  variant: props.variant,
-})
+const customClassConfig = computed<ResolvedClassConfig<'routerLinkButton'>>(
+  () => getCustomComponentVariant('routerLinkButton', theme.value, {
+    size: props.size,
+    variant: props.variant,
+  }),
+)
 
 useProvideRouterLinkButtonContext({
   ...toComputedRefs(props),

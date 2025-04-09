@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { NumberFieldInput as RekaNumberFieldInput } from 'reka-ui'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectNumberFieldContext } from '@/components/number-field/numberField.context'
 import FormControl from '@/components/shared/FormControl.vue'
 import TestIdProvider from '@/components/shared/TestIdProvider.vue'
-import { mergeClasses } from '@/customClassVariants'
 
 const {
   id,

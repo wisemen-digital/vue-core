@@ -1,8 +1,8 @@
-import type { GetComponentPropCustomValues } from '@/customClassVariants'
 import type {
   CustomizableElement,
-  TestId,
-} from '@/utils/props.util'
+  GetComponentProp,
+} from '@/class-variant/classVariant.type'
+import type { TestId } from '@/utils/props.util'
 
 export interface AvatarProps extends TestId, CustomizableElement<'avatar'> {
   /**
@@ -16,7 +16,7 @@ export interface AvatarProps extends TestId, CustomizableElement<'avatar'> {
    */
   src?: string | null
   /**
-   *
+   * Defines the visual style of the avatar.
    */
-  variant?: GetComponentPropCustomValues<'avatar', 'variant'> | null
+  variant?: GetComponentProp<'avatar', 'variant'> | null
 }

@@ -3,9 +3,9 @@ import { AnimatePresence } from 'motion-v'
 import { DialogContent as RekaDialogContent } from 'reka-ui'
 import { useAttrs } from 'vue'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectDialogContext } from '@/components/dialog/dialog.context'
 import TestIdProvider from '@/components/shared/TestIdProvider.vue'
-import { mergeClasses } from '@/customClassVariants'
 
 defineOptions({ inheritAttrs: false })
 

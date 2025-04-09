@@ -11,6 +11,7 @@ import {
   nextTick,
 } from 'vue'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import IconButton from '@/components/button/icon-button/IconButton.vue'
 import { useInjectConfigContext } from '@/components/config-provider/config.context'
 import type { Grid } from '@/components/date-picker/shared/datePicker.type'
@@ -19,7 +20,6 @@ import { useInjectDatePickerContext } from '@/components/date-picker/single/date
 import NumberField from '@/components/number-field/NumberField.vue'
 import SelectItem from '@/components/select/parts/SelectItem.vue'
 import Select from '@/components/select/Select.vue'
-import { mergeClasses } from '@/customClassVariants'
 
 const props = defineProps<{
   grid: Grid<DateValue>[]

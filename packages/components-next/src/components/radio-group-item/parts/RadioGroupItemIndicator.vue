@@ -2,8 +2,8 @@
 import { AnimatePresence } from 'motion-v'
 import { RadioGroupIndicator as RekaRadioGroupIndicator } from 'reka-ui'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectRadioGroupItemContext } from '@/components/radio-group-item/radioGroupItem.context'
-import { mergeClasses } from '@/customClassVariants'
 
 const {
   classConfig,

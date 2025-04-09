@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { useTextareaAutosize } from '@vueuse/core'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import FormControl from '@/components/shared/FormControl.vue'
 import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 import { useInjectTextareaContext } from '@/components/textarea/textarea.context'
-import { mergeClasses } from '@/customClassVariants'
 
 const {
   id,

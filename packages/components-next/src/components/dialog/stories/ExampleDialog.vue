@@ -15,7 +15,6 @@ const isSmall = ref<boolean>(false)
   <Dialog
     :class-config="{
       closeButton: {
-        root: 'scale-150',
       },
     }"
   >
