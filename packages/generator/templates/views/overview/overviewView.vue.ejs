@@ -1,0 +1,37 @@
+<script setup lang="ts">
+import {
+  useDocumentTitle,
+  usePagination,
+} from '@wisemen/vue-core'
+import { useI18n } from 'vue-i18n'
+
+import AppTablePage from '@/components/layout/AppTablePage.vue'
+import type { <%= pascalCase %>IndexPagination } from '@/models/<%= kebabCase %>/index/<%= camelCase %>IndexPagination.model.ts'
+import { use<%= pascalCase %>IndexQuery } from '@/modules/<%= kebabCase %>/api/queries/<%= camelCase %>InfiniteIndex.query'
+import <%= pascalCase %>OverviewTable from '@/modules/<%= kebabCase %>/features/overview/components/<%= pascalCase %>OverviewTable.vue'
+
+const i18n = useI18n()
+
+const documentTitle = useDocumentTitle()
+
+documentTitle.set(REPLACE_ME_WITH_TITLE)
+
+const pagination = usePagination<<%= pascalCase %>IndexPagination>({
+  isRouteQueryEnabled: true,
+  key: '<%= camelCase %>Index',
+})
+
+const <%= camelCase %>IndexQuery = use<%= camelCase %>IndexInfiniteQuery(pagination.paginationOptions)
+</script>
+
+<template>
+  <AppTablePage :title="REPLACE_ME_WITH_TITLE">
+    <<%= pascalCase %>OverviewTable
+      :data="<%= camelCase %>IndexQuery.data.value"
+      :on-next="<%= camelCase %>IndexQuery.getNextPage"
+      :is-loading="<%= camelCase %>IndexQuery.isLoading.value"
+      :pagination="pagination"
+      :error="<%= camelCase %>IndexQuery.error.value"
+    />
+  </AppTablePage>
+</template>

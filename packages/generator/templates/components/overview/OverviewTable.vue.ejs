@@ -1,0 +1,61 @@
+<script setup lang="ts">
+import type {
+  PaginatedData,
+  Pagination,
+  TableColumn,
+} from '@wisemen/vue-core'
+import { VcTable } from '@wisemen/vue-core'
+import type { VNode } from 'vue'
+import {
+  computed,
+  h,
+} from 'vue'
+import { useI18n } from 'vue-i18n'
+
+import AppErrorState from '@/components/app/error-state/AppErrorState.vue'
+import AppGroup from '@/components/app/group/AppGroup.vue'
+import type { <%= PascalCase %>Index } from '@/models/<%= kebabCase %>/index/<%= camelCase %>Index.model.ts'
+import type { <%= PascalCase %>IndexPagination } from '@/models/<%= kebabCase %>/index/<%= camelCase %>indexPagination.model.ts'
+
+const props = defineProps<{
+  isLoading: boolean
+  data: PaginatedData<<%= PascalCase %>Index> | null
+  error: unknown | null
+  pagination: Pagination<<%= PascalCase %>IndexPagination>
+  onNext: () => Promise<void>
+}>()
+
+const i18n = useI18n()
+
+const columns = computed<TableColumn<<%= PascalCase %>Index>[]>(() => [
+  {
+    isSortable: true,
+    cell: (<%= camelCase %>): VNode => h('div', { <%= camelCase %>.uuid }),
+    headerLabel: i18n.t('REPLACE_ME'),
+    key: 'uuid',
+  },
+])
+</script>
+
+<template>
+  <AppGroup
+      v-if="props.error !== null"
+      justify="center"
+      align="center"
+      class="size-full flex-1"
+  >
+    <AppErrorState :error="props.error" />
+  </AppGroup>
+
+  <VcTable
+      v-else
+      :columns="columns"
+      :data="props.data"
+      :infinite-scroll="{
+      onNext: props.onNext,
+    }"
+      :is-first-column-sticky="true"
+      :is-loading="props.isLoading"
+      :pagination="props.pagination"
+  />
+</template>
