@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { AvatarImage as RekaAvatarImage } from 'reka-ui'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectAvatarContext } from '@/components/avatar/avatar.context'
-import { mergeClasses } from '@/customClassVariants'
 
 const {
   name,

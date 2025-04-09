@@ -2,9 +2,9 @@
 import { AnimatePresence } from 'motion-v'
 import { PopoverContent as RekaPopoverContent } from 'reka-ui'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectPopoverContext } from '@/components/popover/popover.context'
 import TestIdProvider from '@/components/shared/TestIdProvider.vue'
-import { mergeClasses } from '@/customClassVariants'
 
 const {
   testId,

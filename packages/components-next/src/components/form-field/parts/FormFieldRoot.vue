@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
+import type { ResolvedClassConfig } from '@/class-variant/classVariant.type'
+import {
+  getCustomComponentVariant,
+  mergeClasses,
+} from '@/class-variant/customClassVariants'
 import { useProvideFormFieldContext } from '@/components/form-field/formField.context'
 import type { FormFieldProps } from '@/components/form-field/formField.props'
 import type { CreateFormFieldStyle } from '@/components/form-field/formField.style'
 import { createFormFieldStyle } from '@/components/form-field/formField.style'
-import {
-  mergeClasses,
-  useComponentClassConfig,
-} from '@/customClassVariants'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { toComputedRefs } from '@/utils/props.util'
 
 const props = withDefaults(defineProps<FormFieldProps>(), {
@@ -25,11 +27,15 @@ const props = withDefaults(defineProps<FormFieldProps>(), {
   variant: null,
 })
 
+const { theme } = injectThemeProviderContext()
+
 const formFieldStyle = computed<CreateFormFieldStyle>(
   () => createFormFieldStyle({ variant: props.variant ?? undefined }),
 )
 
-const customClassConfig = useComponentClassConfig('formField', { variant: props.variant ?? undefined })
+const customClassConfig = computed<ResolvedClassConfig<'formField'>>(
+  () => getCustomComponentVariant('formField', theme.value, { variant: props.variant }),
+)
 
 useProvideFormFieldContext({
   ...toComputedRefs(props),

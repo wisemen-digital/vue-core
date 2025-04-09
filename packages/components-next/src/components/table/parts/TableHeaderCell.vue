@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import Button from '@/components/button/default-button/Button.vue'
 import TableCellLayout from '@/components/table/parts/TableCellLayout.vue'
 import { useInjectTableContext } from '@/components/table/table.context'
@@ -9,7 +10,6 @@ import type {
   PaginationOptions,
   PaginationSortOrder,
 } from '@/composables/pagination/pagination.type'
-import { mergeClasses } from '@/customClassVariants'
 import type { Icon } from '@/icons/icons'
 
 const props = defineProps<{
@@ -108,6 +108,7 @@ function onSortChange(): void {
         :class-config="{
           root: 'p-0 px-0 h-auto !bg-transparent min-w-auto rounded-sm !text-secondary',
           iconRight: isCurrentColumnBeingSorted ? 'text-secondary' : 'text-disabled',
+          ...customClassConfig?.headerCellButton,
           ...classConfig?.headerCellButton,
         }"
         :icon-right="sortIcon"

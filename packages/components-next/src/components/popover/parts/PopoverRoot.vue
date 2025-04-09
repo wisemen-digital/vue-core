@@ -2,11 +2,13 @@
 import { PopoverRoot as RekaPopoverRoot } from 'reka-ui'
 import { computed } from 'vue'
 
+import type { ResolvedClassConfig } from '@/class-variant/classVariant.type'
+import { getCustomComponentVariant } from '@/class-variant/customClassVariants'
 import { useProvidePopoverContext } from '@/components/popover/popover.context'
 import type { PopoverProps } from '@/components/popover/popover.props'
 import type { CreatePopoverStyle } from '@/components/popover/popover.style'
 import { createPopoverStyle } from '@/components/popover/popover.style'
-import { useComponentClassConfig } from '@/customClassVariants'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { toComputedRefs } from '@/utils/props.util'
 
 const props = withDefaults(defineProps<PopoverProps>(), {
@@ -37,9 +39,13 @@ const isOpen = defineModel<boolean>('isOpen', {
   required: false,
 })
 
+const { theme } = injectThemeProviderContext()
+
 const popoverStyle = computed<CreatePopoverStyle>(() => createPopoverStyle({ variant: props.variant ?? undefined }))
 
-const customClassConfig = useComponentClassConfig('popover', { variant: props.variant ?? undefined })
+const customClassConfig = computed<ResolvedClassConfig<'popover'>>(
+  () => getCustomComponentVariant('popover', theme.value, { variant: props.variant }),
+)
 
 function onContentEscapeKeyDown(event: KeyboardEvent): void {
   emit('escapeKeyDown', event)

@@ -1,18 +1,13 @@
-import type { GetComponentPropCustomValues } from '@/customClassVariants'
-import type { PopperPropsWithArrowVisibleByDefault } from '@/types/popperProps.type'
 import type {
   CustomizableElement,
-  TestId,
-} from '@/utils/props.util'
+  GetComponentProp,
+} from '@/class-variant/classVariant.type'
+import type { PopperPropsWithArrowVisibleByDefault } from '@/types/popperProps.type'
+import type { TestId } from '@/utils/props.util'
 
-export interface PopoverProps extends TestId, PopperPropsWithArrowVisibleByDefault, CustomizableElement<'popover', [
-  {
-    name: 'closeButton'
-    component: 'iconButton'
-  },
-]> {
+export interface PopoverProps extends TestId, PopperPropsWithArrowVisibleByDefault, CustomizableElement<'popover'> {
   /**
-   *
+   * Defines the visual style of the popover.
    */
-  variant?: GetComponentPropCustomValues<'popover', 'variant'> | null
+  variant?: GetComponentProp<'popover', 'variant'> | null
 }

@@ -12,6 +12,11 @@ import {
 } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import type { ResolvedClassConfig } from '@/class-variant/classVariant.type'
+import {
+  getCustomComponentVariant,
+  mergeClasses,
+} from '@/class-variant/customClassVariants'
 import { useProvideSelectContext } from '@/components/select/select.context'
 import type { SelectEmits } from '@/components/select/select.emits'
 import type {
@@ -24,10 +29,7 @@ import { createSelectStyle } from '@/components/select/style/select.style'
 import FormControl from '@/components/shared/FormControl.vue'
 import type InteractableElement from '@/components/shared/InteractableElement.vue'
 import TestIdProvider from '@/components/shared/TestIdProvider.vue'
-import {
-  mergeClasses,
-  useComponentClassConfig,
-} from '@/customClassVariants'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { toComputedRefs } from '@/utils/props.util'
 
 const props = withDefaults(defineProps<SelectProps<TValue>>(), {
@@ -77,6 +79,8 @@ const isDropdownVisible = defineModel<boolean>('isOpen', {
   required: false,
 })
 
+const { theme } = injectThemeProviderContext()
+
 const { t } = useI18n()
 
 const id = props.id ?? useId()
@@ -100,7 +104,9 @@ const { contains } = useFilter()
 
 const selectStyle = computed<CreateSelectStyle>(() => createSelectStyle({ variant: props.variant ?? undefined }))
 
-const customClassConfig = useComponentClassConfig('select', { variant: props.variant ?? undefined })
+const customClassConfig = computed<ResolvedClassConfig<'select'>>(
+  () => getCustomComponentVariant('select', theme.value, { variant: props.variant }),
+)
 
 const isMultiple = computed<boolean>(() => Array.isArray(modelValue.value))
 

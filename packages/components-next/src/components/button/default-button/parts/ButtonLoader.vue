@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectButtonContext } from '@/components/button/default-button/button.context'
 import Spinner from '@/components/spinner/Spinner.vue'
-import { mergeClasses } from '@/customClassVariants'
 
 const { t } = useI18n()
 

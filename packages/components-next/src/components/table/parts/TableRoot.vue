@@ -1,6 +1,11 @@
 <script setup lang="ts" generic="TSchema, TPagination extends BasePagination">
 import { computed } from 'vue'
 
+import type { CustomComponentVariant } from '@/class-variant/classVariant.type'
+import {
+  getCustomComponentVariant,
+  mergeClasses,
+} from '@/class-variant/customClassVariants'
 import { useTable } from '@/components/table/table.composable'
 import { useProvideTableContext } from '@/components/table/table.context'
 import type { TableEmits } from '@/components/table/table.emits'
@@ -8,11 +13,8 @@ import type { TableProps } from '@/components/table/table.props'
 import type { CreateTableStyle } from '@/components/table/table.style'
 import { createTableStyle } from '@/components/table/table.style'
 import type { TableColumn } from '@/components/table/table.type'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import type { BasePagination } from '@/composables/pagination/pagination.type'
-import {
-  mergeClasses,
-  useComponentClassConfig,
-} from '@/customClassVariants'
 import { toComputedRefs } from '@/utils/props.util'
 
 const props = withDefaults(defineProps<TableProps<TSchema, TPagination>>(), {
@@ -34,6 +36,8 @@ if (isMaxWidthDefinedForAllColumns) {
     'All columns have a maxWidth defined. This can restrict the table from expanding to fill available space, potentially causing layout issues. Consider leaving at least one column without a maxWidth to allow flexible sizing.',
   )
 }
+
+const { theme } = injectThemeProviderContext()
 
 const {
   hasReachedHorizontalEnd,
@@ -75,7 +79,9 @@ const isEmpty = computed<boolean>(() => {
 
 const tableStyle = computed<CreateTableStyle>(() => createTableStyle({ variant: props.variant ?? undefined }))
 
-const customClassConfig = useComponentClassConfig('table', { variant: props.variant ?? undefined })
+const customClassConfig = computed<CustomComponentVariant<'table'>>(
+  () => getCustomComponentVariant('table', theme.value, { variant: props.variant }),
+)
 
 function onClearFiltersAndSearch(): void {
   props.pagination.clearFilters()

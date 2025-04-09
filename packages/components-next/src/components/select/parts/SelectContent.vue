@@ -11,8 +11,8 @@ import {
   ref,
 } from 'vue'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectSelectContext } from '@/components/select/select.context'
-import { mergeClasses } from '@/customClassVariants'
 
 const {
   id,

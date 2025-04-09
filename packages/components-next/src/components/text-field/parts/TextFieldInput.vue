@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import FormControl from '@/components/shared/FormControl.vue'
 import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 import { useInjectTextFieldContext } from '@/components/text-field/textField.context'
-import { mergeClasses } from '@/customClassVariants'
 
 const {
   id,

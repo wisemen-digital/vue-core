@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { TimeFieldInput as RekaTimeFieldInput } from 'reka-ui'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import type { DateFieldSegment } from '@/components/date-field/dateField.type'
 import { useInjectTimeFieldContext } from '@/components/time-field/timeField.context'
-import { mergeClasses } from '@/customClassVariants'
 
 const props = defineProps<{
   segments: DateFieldSegment[]

@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 import Subgrid from '@/components/table/parts/Subgrid.vue'
 import TableCellLayout from '@/components/table/parts/TableCellLayout.vue'
 import { useInjectTableContext } from '@/components/table/table.context'
-import { mergeClasses } from '@/customClassVariants'
 
 const props = defineProps<{
   data: any

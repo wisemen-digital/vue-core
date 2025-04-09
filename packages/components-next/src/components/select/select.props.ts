@@ -1,10 +1,12 @@
 import type { AcceptableValue } from 'reka-ui'
 
-import type { GetComponentPropCustomValues } from '@/customClassVariants'
+import type {
+  CustomizableElement,
+  GetComponentProp,
+} from '@/class-variant/classVariant.type'
 import type { Icon } from '@/icons/icons'
 import type { PopperPropsWithArrowHiddenByDefault } from '@/types/popperProps.type'
 import type {
-  CustomizableElement,
   FormElement,
   InteractableElement,
   TestId,
@@ -26,16 +28,7 @@ export interface SelectProps<TValue extends SelectValue> extends
   InteractableElement,
   FormElement,
   PopperPropsWithArrowHiddenByDefault,
-  CustomizableElement<'select', [
-    {
-      name: 'dropdownSearchInput'
-      component: 'textField'
-    },
-    {
-      name: 'popover'
-      component: 'popover'
-    },
-  ]> {
+  CustomizableElement<'select'> {
   /**
    * Controls the visibility of the dropdown.
    * When set to `true`, the dropdown remains hidden.
@@ -116,9 +109,9 @@ export interface SelectProps<TValue extends SelectValue> extends
    */
   searchInputPlaceholder?: string | null
   /**
-   *
+   * Defines the visual style of the select component.
    */
-  variant?: GetComponentPropCustomValues<'select', 'variant'> | null
+  variant?: GetComponentProp<'select', 'variant'> | null
   /**
    * Configuration for enabling a virtualized list when displaying large sets of options.
    * @default null

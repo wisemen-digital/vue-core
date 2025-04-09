@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { SwitchThumb as RekaSwitchThumb } from 'reka-ui'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectSwitchContext } from '@/components/switch/switch.context'
-import { mergeClasses } from '@/customClassVariants'
 
 const {
   classConfig,

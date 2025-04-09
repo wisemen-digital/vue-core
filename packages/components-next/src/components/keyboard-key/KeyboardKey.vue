@@ -1,19 +1,23 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
+import type { ResolvedClassConfig } from '@/class-variant/classVariant.type'
+import {
+  getCustomComponentVariant,
+  mergeClasses,
+} from '@/class-variant/customClassVariants'
 import type { KeyboardKeyProps } from '@/components/keyboard-key/keyboardKey.props'
 import type { CreatekeyboardKeyStyle } from '@/components/keyboard-key/keyboardKey.style'
 import { createKeyboardKeyStyle } from '@/components/keyboard-key/keyboardKey.style'
-import {
-  mergeClasses,
-  useComponentClassConfig,
-} from '@/customClassVariants'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import type { KeyboardKey } from '@/types/keyboard.type'
 
 const props = withDefaults(defineProps<KeyboardKeyProps>(), {
   classConfig: null,
   variant: null,
 })
+
+const { theme } = injectThemeProviderContext()
 
 const isWindows = computed<boolean>(() => (
   /windows/i.test(navigator.userAgent)
@@ -117,7 +121,9 @@ const keyboardKeyStyle = computed<CreatekeyboardKeyStyle>(
   () => createKeyboardKeyStyle({ variant: props.variant ?? undefined }),
 )
 
-const customClassConfig = useComponentClassConfig('keyboardKey', { variant: props.variant ?? undefined })
+const customClassConfig = computed<ResolvedClassConfig<'keyboardKey'>>(
+  () => getCustomComponentVariant('keyboardKey', theme.value, { variant: props.variant }),
+)
 
 const keyboardKey = computed<string>(() => {
   const map = isWindows.value ? windowsKeyMap : macKeyMap

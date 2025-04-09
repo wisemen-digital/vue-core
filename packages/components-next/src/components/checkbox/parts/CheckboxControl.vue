@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectCheckboxContext } from '@/components/checkbox/checkbox.context'
 import CheckboxIndicator from '@/components/checkbox/parts/CheckboxIndicator.vue'
-import { mergeClasses } from '@/customClassVariants'
 
 const {
   classConfig,
