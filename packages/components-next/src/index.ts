@@ -5,6 +5,7 @@ export * from './composables'
 export type { ComponentVariants } from '@/class-variant/classVariant.type'
 export { defineComponentVariant } from '@/class-variant/customClassVariants'
 export { PaginationParamsBuilder } from '@/utils/paginationParamsBuilder.util'
+export type { AcceptableValue } from 'reka-ui'
 
 // Icons
 export type {
