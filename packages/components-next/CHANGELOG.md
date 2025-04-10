@@ -1,5 +1,18 @@
 # @wisemen/vue-core-components
 
+## 1.4.0
+
+### Minor Changes
+
+- 0fbfbb6: Added new `Badge` component.
+- 1c961d3: Added new `DateRangePicker` component
+- 9f53a58: Added new `DateRangeField` component
+
+### Patch Changes
+
+- 6695ac8: Table: fixed accessibility issue by moving `aria-sort` to the column header
+- ed99288: Dialog: export `DialogPortal` component
+
 ## 1.3.1
 
 ### Patch Changes
