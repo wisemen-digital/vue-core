@@ -6,4 +6,30 @@ This component is build on top of [Form Field](/packages/components-next/compone
 
 <ComponentPreview name="date-range-field/examples/main" />
 
+## Anatomy
+
+```vue
+<script setup lang="ts">
+import {
+  VcFormField,
+  VcDateRangeFieldRoot,
+  VcDateRangeFieldIconLeft,
+  VcDateRangeFieldInput,
+  VcDateRangeFieldLoader,
+  VcDateRangefieldPopover,
+} from '@wisemen/vue-core-components'
+</script>
+
+<template>
+  <VcFormField>
+    <VcDateRangeFieldRoot>
+      <VcDateRangeFieldIconLeft />
+      <VcDateRangeFieldInput />
+      <VcDateRangeFieldLoader />
+      <VcDateRangeFieldPopover />
+    </VcDateRangeFieldRoot>
+  </VcFormField>
+</template>
+```
+
 <!-- @include: ./date-range-field-meta.md -->
