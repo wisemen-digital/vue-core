@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import type { DateRangeValue } from '@/components/date-picker/range/dateRangePicker.context'
 import type { DateRangePickerProps } from '@/components/date-picker/range/dateRangePicker.props'
 import DateRangePickerDate from '@/components/date-picker/range/parts/DateRangePickerDate.vue'
 import DateRangePickerGrid from '@/components/date-picker/range/parts/DateRangePickerGrid.vue'
 import DateRangePickerHeader from '@/components/date-picker/range/parts/DateRangePickerHeader.vue'
 import DateRangePickerRoot from '@/components/date-picker/range/parts/DateRangePickerRoot.vue'
+import type { DateRange } from '@/types/dateRange.type'
 
 const props = defineProps<DateRangePickerProps>()
 
-const modelValue = defineModel<DateRangeValue>({ required: true })
+const modelValue = defineModel<DateRange>({ required: true })
 
 /**
  * The placeholder date, which is used to determine what month to display when no date is selected.

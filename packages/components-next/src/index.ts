@@ -13,4 +13,5 @@ export type {
   Icons,
 } from '@/icons/icons'
 export { extendIcons } from '@/icons/icons'
+export type { DateRange } from '@/types/dateRange.type'
 export type { Routes } from '@/types/routes.type'

@@ -52,6 +52,12 @@ export const components = [
     targetFolder: 'date-field',
     componentName: 'DateField',
   },
+  // Date Range Field
+  {
+    sourceFolder: 'date-range-field/parts/DateRangeFieldRoot.vue',
+    targetFolder: 'date-range-field',
+    componentName: 'DateRangeField',
+  },
   // Date picker
   {
     sourceFolder: 'date-picker/single/parts/DatePickerRoot.vue',

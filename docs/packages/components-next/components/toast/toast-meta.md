@@ -44,7 +44,7 @@
   {
     'name': 'type',
     'description': '<p>The type of toast. This will determine the icon and color of the toast.</p>\n',
-    'type': '\'error\' | \'info\' | \'success\'',
+    'type': '\'error\' | \'success\' | \'info\'',
     'required': true
   }
 ]" />

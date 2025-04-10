@@ -9,6 +9,12 @@
     'default': 'null'
   },
   {
+    'name': 'color',
+    'description': '<p>The color of the badge.</p>\n',
+    'type': '\'error\' | \'brand\' | \'gray\' | \'success\' | \'warning\'',
+    'required': true
+  },
+  {
     'name': 'icon',
     'description': '<p>An icon to be displayed in the left side of badge.</p>\n',
     'type': 'keyof Icons | null',
@@ -39,7 +45,7 @@
   {
     'name': 'variant',
     'description': '<p>The visual style of the badge.</p>\n',
-    'type': '\'error\' | \'brand\' | \'success\' | \'warning\'',
+    'type': '\'outline\' | \'solid\' | \'translucent\'',
     'required': true
   }
 ]" />
