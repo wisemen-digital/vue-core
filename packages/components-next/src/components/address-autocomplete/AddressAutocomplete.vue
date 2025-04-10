@@ -63,7 +63,7 @@ async function onSearch(searchTerm: string): Promise<void> {
 
   try {
     // Since google does not know the "street number/bus number" format,
-    // we need explicitely add the word "bus" after the /
+    // we need explicitly add the word "bus" after the /
     // E.g. Street 23/11 => Street 23/bus 11
     let formattedAddress = searchTerm
 
