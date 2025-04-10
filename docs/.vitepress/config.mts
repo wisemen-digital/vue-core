@@ -229,6 +229,10 @@ export default defineConfig({
                   link: '/packages/components-next/components/date-picker/date-picker',
                 },
                 {
+                  text: 'Date Range Picker',
+                  link: '/packages/components-next/components/date-range-picker/date-range-picker',
+                },
+                {
                   text: 'Toast',
                   link: '/packages/components-next/components/toast/toast',
                 },

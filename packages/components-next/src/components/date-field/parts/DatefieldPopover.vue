@@ -23,6 +23,7 @@ const {
 <template>
   <Popover
     v-if="!hideDatePicker"
+    :is-popover-arrow-hidden="true"
     popover-align="end"
   >
     <template #trigger>
@@ -41,7 +42,7 @@ const {
     </template>
 
     <template #content>
-      <div class="p-lg min-w-92">
+      <div class="p-lg">
         <DatePicker
           v-model="modelValue"
           :focus-on-mount="true"

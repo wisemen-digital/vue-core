@@ -28,7 +28,6 @@ const today = new Date()
         :focus-on-mount="false"
         :max-date="null"
         label="Example"
-        class="w-84"
       >
         <template #date="{ date }">
           <Tooltip

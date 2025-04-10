@@ -7,6 +7,7 @@ import type { createIconButtonStyle } from '@/components/button/icon-button/icon
 import type { createRouterLinkButtonStyle } from '@/components/button/router-link-button/routerLinkButton.style'
 import type { createCheckboxStyle } from '@/components/checkbox/checkbox.style'
 import type { createDateFieldStyle } from '@/components/date-field/dateField.style'
+import type { createDateRangePickerStyle } from '@/components/date-picker/range/dateRangePicker.style'
 import type { createDatePickerStyle } from '@/components/date-picker/single/datePicker.style'
 import type { createDialogStyle } from '@/components/dialog/dialog.style'
 import type { createDropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style'
@@ -47,6 +48,10 @@ export interface ComponentMap {
   }
   datePicker: {
     style: typeof createDatePickerStyle
+    children: {}
+  }
+  dateRangePicker: {
+    style: typeof createDateRangePickerStyle
     children: {}
   }
   dialog: {

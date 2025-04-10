@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import {
-  AnimatePresence,
-  Motion,
-} from 'motion-v'
 import { CalendarCellTrigger as RekaCalendarCellTrigger } from 'reka-ui'
 
 import { mergeClasses } from '@/class-variant/customClassVariants'
@@ -22,7 +18,7 @@ const {
 
 <template>
   <RekaCalendarCellTrigger
-    v-slot="{ today, selected }"
+    v-slot="{ today }"
     :day="date"
     :month="month"
     :class="style.date({
@@ -30,32 +26,8 @@ const {
     })"
   >
     <slot :day="date.day">
-      <span class="z-10">
-        {{ date.day }}
-      </span>
+      {{ date.day }}
     </slot>
-
-    <AnimatePresence>
-      <Motion
-        v-if="selected"
-        :transition="{
-          duration: 0.3,
-          type: 'spring',
-          bounce: 0.1,
-        }"
-        :initial="{
-          opacity: 0,
-        }"
-        :animate="{
-          opacity: 1,
-        }"
-        :exit="{
-          opacity: 0,
-        }"
-        layout-id="selected"
-        class="bg-brand-solid absolute size-full rounded-full"
-      />
-    </AnimatePresence>
 
     <div
       v-if="today"

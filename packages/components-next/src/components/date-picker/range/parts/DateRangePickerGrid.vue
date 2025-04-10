@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import type { DateValue } from 'reka-ui'
 import {
-  CalendarCell as RekaCalendarCell,
-  CalendarGrid as RekaCalendarGrid,
-  CalendarGridBody as RekaCalendarGridBody,
-  CalendarGridHead as RekaCalendarGridHead,
-  CalendarGridRow as RekaCalendarGridRow,
-  CalendarHeadCell as RekaCalendarHeadCell,
+  RangeCalendarCell as RekaRangeCalendarCell,
+  RangeCalendarGrid as RekaRangeCalendarGrid,
+  RangeCalendarGridBody as RekaRangeCalendarGridBody,
+  RangeCalendarGridHead as RekaRangeCalendarGridHead,
+  RangeCalendarGridRow as RekaRangeCalendarGridRow,
+  RangeCalendarHeadCell as RekaRangeCalendarHeadCell,
 } from 'reka-ui'
 
 import { mergeClasses } from '@/class-variant/customClassVariants'
+import { useInjectDateRangePickerContext } from '@/components/date-picker/range/dateRangePicker.context'
 import type { Grid } from '@/components/date-picker/shared/datePicker.type'
 import { dateValueToDate } from '@/components/date-picker/shared/datePicker.util'
-import { useInjectDatePickerContext } from '@/components/date-picker/single/datePicker.context'
 import DatePickerDate from '@/components/date-picker/single/parts/DatePickerDate.vue'
 import DatePickerDateProvider from '@/components/date-picker/single/parts/DatePickerDateProvider.vue'
 
@@ -25,7 +25,7 @@ const {
   classConfig,
   customClassConfig,
   style,
-} = useInjectDatePickerContext()
+} = useInjectDateRangePickerContext()
 </script>
 
 <template>
@@ -45,18 +45,18 @@ const {
         })"
       />
 
-      <RekaCalendarGrid
+      <RekaRangeCalendarGrid
         :class="style.grid({
           class: mergeClasses(classConfig?.grid, customClassConfig.grid),
         })"
       >
-        <RekaCalendarGridHead>
-          <RekaCalendarGridRow
+        <RekaRangeCalendarGridHead>
+          <RekaRangeCalendarGridRow
             :class="style.gridRow({
               class: mergeClasses(classConfig?.gridRow, customClassConfig.gridRow),
             })"
           >
-            <RekaCalendarHeadCell
+            <RekaRangeCalendarHeadCell
               v-for="day in props.weekDays"
               :key="day"
               :class="style.weekDayLabel({
@@ -64,23 +64,23 @@ const {
               })"
             >
               {{ day }}
-            </RekaCalendarHeadCell>
-          </RekaCalendarGridRow>
-        </RekaCalendarGridHead>
+            </RekaRangeCalendarHeadCell>
+          </RekaRangeCalendarGridRow>
+        </RekaRangeCalendarGridHead>
 
-        <RekaCalendarGridBody
+        <RekaRangeCalendarGridBody
           :class="style.gridBody({
             class: mergeClasses(classConfig?.gridBody, customClassConfig.gridBody),
           })"
         >
-          <RekaCalendarGridRow
+          <RekaRangeCalendarGridRow
             v-for="weekDates in month.rows"
             :key="weekDates.toString()"
             :class="style.gridRow({
               class: mergeClasses(classConfig?.gridRow, customClassConfig.gridRow),
             })"
           >
-            <RekaCalendarCell
+            <RekaRangeCalendarCell
               v-for="weekDate in weekDates"
               :key="weekDate.toString()"
               :date="weekDate"
@@ -96,10 +96,10 @@ const {
                   <DatePickerDate />
                 </slot>
               </DatePickerDateProvider>
-            </RekaCalendarCell>
-          </RekaCalendarGridRow>
-        </RekaCalendarGridBody>
-      </RekaCalendarGrid>
+            </RekaRangeCalendarCell>
+          </RekaRangeCalendarGridRow>
+        </RekaRangeCalendarGridBody>
+      </RekaRangeCalendarGrid>
     </template>
   </div>
 </template>
