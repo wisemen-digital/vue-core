@@ -87,6 +87,7 @@ const arrowClasses = computed<string>(() => tooltipStyle.arrow())
           :hide-when-detached="true"
           sticky="always"
           class="tooltip-default"
+          position-strategy="absolute"
           position="popper"
         >
           <!-- Without this relative div, the arrow is a bit glitchy -->
