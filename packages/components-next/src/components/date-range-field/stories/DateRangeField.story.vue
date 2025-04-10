@@ -1,9 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-
 import DateRangeField from '@/components/date-range-field/DateRangeField.vue'
-
-const test = ref<Date | null>(null)
 </script>
 
 <template>
