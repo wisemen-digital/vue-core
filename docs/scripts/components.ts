@@ -50,8 +50,14 @@ export const components = [
   // Date picker
   {
     sourceFolder: 'date-picker/single/parts/DatePickerRoot.vue',
-    targetFolder: 'date-picker',
+    targetFolder: 'date-range-picker',
     componentName: 'DatePicker',
+  },
+  // Date Range picker
+  {
+    sourceFolder: 'date-picker/range/parts/DateRangePickerRoot.vue',
+    targetFolder: 'date-range-picker',
+    componentName: 'DateRangePicker',
   },
   // Form Field
   {
