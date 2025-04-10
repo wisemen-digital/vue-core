@@ -28,9 +28,8 @@ const {
     })"
     :data-first-day-of-week="date.toDate(getLocalTimeZone()).getDay() === 1 || undefined"
     :data-last-day-of-week="date.toDate(getLocalTimeZone()).getDay() === 0 || undefined"
-    :data-first-day-of-month="date.toDate(getLocalTimeZone()).getDate() === 1 || undefined"
-    :data-last-day-of-month="date.toDate(getLocalTimeZone()).getDate()
-      === getDaysInMonth(date.month - 1, date.year) || undefined"
+    :data-first-day-of-month="date.day === 1 || undefined"
+    :data-last-day-of-month="date.day === getDaysInMonth(date.month, date.year) || undefined"
   >
     <div
       :class="style.innerDate({

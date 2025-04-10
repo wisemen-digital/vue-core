@@ -18,6 +18,6 @@ export function getMonthName(month: number, locale: string, format: 'long' | 'sh
 }
 
 // 0-based
-export function getDaysInMonth(year: number, month: number): number {
+export function getDaysInMonth(month: number, year: number): number {
   return new Date(year, month, 0).getDate()
 }
