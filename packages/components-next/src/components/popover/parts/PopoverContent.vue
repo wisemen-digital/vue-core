@@ -45,6 +45,7 @@ const {
         :class="style.content({
           class: mergeClasses(customClassConfig.content, classConfig?.content),
         })"
+        position-strategy="absolute"
         sticky="always"
         @escape-key-down="onContentEscapeKeyDown"
         @focus-outside="onContentFocusOutside"
