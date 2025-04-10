@@ -99,6 +99,7 @@ function onSortChange(): void {
     :class="style.headerCell({
       class: mergeClasses(classConfig?.headerCell, customClassConfig?.headerCell),
     })"
+    :aria-sort="ariaSort"
     role="columnheader"
     class="sticky"
   >
@@ -114,7 +115,6 @@ function onSortChange(): void {
         }"
         :icon-right="sortIcon"
         :is-disabled="!props.column.isSortable"
-        :aria-sort="ariaSort"
         variant="tertiary"
         @click="onSortChange"
       >
