@@ -4,7 +4,8 @@ import { VcBadge } from '@wisemen/vue-core-components'
 
 <template>
   <VcBadge
-    variant="brand"
+    color="brand"
+    variant="translucent"
     icon="checkCircle"
   >
     Badge

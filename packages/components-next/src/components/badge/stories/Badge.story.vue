@@ -6,7 +6,8 @@ import Badge from '@/components/badge/Badge.vue'
   <Story title="Badge">
     <Badge
       :is-removable="true"
-      variant="brand"
+      variant="outline"
+      color="brand"
       size="sm"
       icon="checkCircle"
     >
@@ -15,7 +16,8 @@ import Badge from '@/components/badge/Badge.vue'
 
     <Badge
       :is-removable="true"
-      variant="brand"
+      variant="translucent"
+      color="brand"
       size="md"
       icon="checkCircle"
     >
@@ -24,31 +26,10 @@ import Badge from '@/components/badge/Badge.vue'
 
     <Badge
       :is-removable="true"
-      variant="brand"
+      variant="solid"
+      color="brand"
       size="lg"
       icon="checkCircle"
-    >
-      Label
-    </Badge>
-
-    <Badge
-      :is-removable="true"
-      variant="success"
-      icon="checkCircle"
-    >
-      Label
-    </Badge>
-
-    <Badge
-      variant="warning"
-      icon="alertCircle"
-    >
-      Label
-    </Badge>
-
-    <Badge
-      variant="error"
-      icon="alertCircle"
     >
       Label
     </Badge>

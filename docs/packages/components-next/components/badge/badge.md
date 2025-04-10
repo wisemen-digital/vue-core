@@ -30,6 +30,10 @@ import {
 
 <ComponentPreview name="badge/examples/variant" />
 
+### Color
+
+<ComponentPreview name="badge/examples/color" />
+
 ### Size
 
 <ComponentPreview name="badge/examples/size" />

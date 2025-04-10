@@ -5,7 +5,8 @@ import { VcBadge } from '@wisemen/vue-core-components'
 <template>
   <VcBadge
     :is-removable="true"
-    variant="brand"
+    variant="translucent"
+    color="brand"
     @remove="console.log('Remove')"
   >
     Badge

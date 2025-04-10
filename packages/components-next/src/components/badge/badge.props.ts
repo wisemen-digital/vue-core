@@ -12,6 +12,10 @@ export interface BadgeProps extends TestId, CustomizableElement<'badge'> {
    */
   isRemovable?: boolean
   /**
+   * The color of the badge.
+   */
+  color: GetComponentProp<'badge', 'color'>
+  /**
    * An icon to be displayed in the left side of badge.
    * @default null
    */

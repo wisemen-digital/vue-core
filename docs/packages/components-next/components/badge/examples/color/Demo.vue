@@ -2,20 +2,21 @@
 import type { VcBadgeProps } from '@wisemen/vue-core-components'
 import { VcBadge } from '@wisemen/vue-core-components'
 
-const sizes: VcBadgeProps['size'][] = [
-  'sm',
-  'md',
-  'lg',
+const colors: VcBadgeProps['color'][] = [
+  'brand',
+  'success',
+  'warning',
+  'error',
+  'gray',
 ]
 </script>
 
 <template>
-  <div class="gap-x-md flex items-center">
+  <div class="gap-x-md flex">
     <VcBadge
-      v-for="size of sizes"
-      :key="size"
-      :size="size"
-      color="brand"
+      v-for="color of colors"
+      :key="color"
+      :color="color"
       variant="translucent"
     >
       Badge

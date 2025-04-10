@@ -28,12 +28,14 @@ const emit = defineEmits<BadgeEmits>()
 const { theme } = injectThemeProviderContext()
 
 const badgeStyle = computed<CreateBadgeStyle>(() => createBadgeStyle({
+  color: props.color,
   size: props.size,
-  variant: props.variant ?? undefined,
+  variant: props.variant,
 }))
 
 const customClassConfig = computed<ResolvedClassConfig<'badge'>>(
   () => getCustomComponentVariant('badge', theme.value, {
+    color: props.color,
     size: props.size,
     variant: props.variant,
   }),
@@ -59,6 +61,7 @@ useProvideBadgeContext({
       })"
       :data-icon="props.icon !== null || undefined"
       :data-removable="props.isRemovable || undefined"
+      :data-variant="props.variant"
     >
       <slot />
     </div>

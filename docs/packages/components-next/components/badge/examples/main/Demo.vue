@@ -3,7 +3,10 @@ import { VcBadge } from '@wisemen/vue-core-components'
 </script>
 
 <template>
-  <VcBadge variant="brand">
+  <VcBadge
+    color="brand"
+    variant="translucent"
+  >
     Badge
   </VcBadge>
 </template>
