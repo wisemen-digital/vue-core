@@ -29,19 +29,33 @@ const {
 </script>
 
 <template>
-  <div class="gap-xl flex">
+  <div
+    :class="style.gridContainer({
+      class: mergeClasses(classConfig?.gridContainer, customClassConfig.gridContainer),
+    })"
+  >
     <template
       v-for="(month, monthIndex) in props.grid"
       :key="month.value.toString()"
     >
       <div
         v-if="monthIndex !== 0"
-        class="bg-tertiary w-px"
+        :class="style.monthSeparator({
+          class: mergeClasses(classConfig?.monthSeparator, customClassConfig.monthSeparator),
+        })"
       />
 
-      <RekaRangeCalendarGrid class="w-70">
+      <RekaRangeCalendarGrid
+        :class="style.grid({
+          class: mergeClasses(classConfig?.grid, customClassConfig.grid),
+        })"
+      >
         <RekaRangeCalendarGridHead>
-          <RekaRangeCalendarGridRow class="grid grid-cols-7">
+          <RekaRangeCalendarGridRow
+            :class="style.gridRow({
+              class: mergeClasses(classConfig?.gridRow, customClassConfig.gridRow),
+            })"
+          >
             <RekaRangeCalendarHeadCell
               v-for="day in props.weekDays"
               :key="day"
@@ -54,11 +68,17 @@ const {
           </RekaRangeCalendarGridRow>
         </RekaRangeCalendarGridHead>
 
-        <RekaRangeCalendarGridBody class="gap-y-xs flex flex-col">
+        <RekaRangeCalendarGridBody
+          :class="style.gridBody({
+            class: mergeClasses(classConfig?.gridBody, customClassConfig.gridBody),
+          })"
+        >
           <RekaRangeCalendarGridRow
             v-for="weekDates in month.rows"
             :key="weekDates.toString()"
-            class="grid grid-cols-7 items-center"
+            :class="style.gridRow({
+              class: mergeClasses(classConfig?.gridRow, customClassConfig.gridRow),
+            })"
           >
             <RekaRangeCalendarCell
               v-for="weekDate in weekDates"

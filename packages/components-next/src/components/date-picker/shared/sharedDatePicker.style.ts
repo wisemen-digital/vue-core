@@ -9,17 +9,21 @@ export const createSharedDatePickerStyle = tv({
       .withBase('group/date relative select-none isolate')
       .withFlex('flex items-center justify-center')
       .withFontSize('text-sm')
-      .withColor('text-secondary data-selected:text-primary-on-brand data-outside-view:text-disabled')
-      // Disabled
-      .withColor('data-disabled:text-disabled')
-      // Unavailable
-      .withColor('data-unavailable:text-disabled')
-      .withBackgroundColor('not-data-disabled:hover:bg-tertiary')
       .withCursor('cursor-pointer data-disabled:cursor-not-allowed')
-      .withBorderRadius('rounded-full')
       .withSize('size-10')
-      .withTransition('duration-200')
       .withOutline('outline-brand-500 data-selected:outline-offset-2')
+      .build(),
+    grid: new StyleBuilder()
+      .withSize('w-70')
+      .build(),
+    gridBody: new StyleBuilder()
+      .withFlex('flex flex-col gap-y-xs')
+      .build(),
+    gridContainer: new StyleBuilder()
+      .withBase('flex gap-xl')
+      .build(),
+    gridRow: new StyleBuilder()
+      .withBase('grid grid-cols-7 items-center')
       .build(),
     header: new StyleBuilder()
       .withGrid('grid grid-cols-[1fr_auto_1fr] items-center')
@@ -29,12 +33,14 @@ export const createSharedDatePickerStyle = tv({
       .withFlex('flex justify-between gap-xl')
       .withMargin('mb-lg')
       .build(),
+    monthSeparator: new StyleBuilder()
+      .withSize('w-px')
+      .withBackgroundColor('bg-tertiary')
+      .build(),
     todayIndicator: new StyleBuilder()
       .withBase('absolute bottom-1 left-1/2 -translate-x-1/2')
       .withSize('size-1')
       .withBorderRadius('rounded-full')
-      .withBackgroundColor('bg-brand-solid group-data-selected/date:bg-white')
-      .withTransition('duration-200')
       .build(),
     weekDayLabel: new StyleBuilder()
       .withFontWeight('font-medium')
@@ -43,6 +49,7 @@ export const createSharedDatePickerStyle = tv({
       .withSize('size-10')
       .withFlex('flex items-center justify-center')
       .build(),
+
   },
   variants: { variant: {} },
 })

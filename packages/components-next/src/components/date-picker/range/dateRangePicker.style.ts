@@ -1,10 +1,11 @@
 import type { VariantProps } from 'tailwind-variants'
 import { tv } from 'tailwind-variants'
 
+import { createSharedDatePickerStyle } from '@/components/date-picker/shared/sharedDatePicker.style'
 import { StyleBuilder } from '@/utils/style-builder/styleBuilder.util'
 
 export const createDateRangePickerStyle = tv({
-  // extend: createSharedDatePickerStyle,
+  extend: createSharedDatePickerStyle,
   slots: {
     innerDate: new StyleBuilder()
       .withSize('size-full')
@@ -14,6 +15,7 @@ export const createDateRangePickerStyle = tv({
       // Highlighted (start, end) | Selected (start, end)
       .withBackgroundColor('group-data-highlighted-start/date:bg-brand-solid group-data-highlighted-end/date:bg-brand-solid group-data-selection-start/date:bg-brand-solid group-data-selection-end/date:bg-brand-solid')
       // Hover TODO: find out why not- doesn't work
+      // TODO: got it!!! (not selected)
       .withBackgroundColor('not-group-data-selected/date:group-hover/date:bg-brand-primary')
 
       .build(),
@@ -40,26 +42,11 @@ export const createDateRangePickerStyle = tv({
       .withSize('size-10')
       .withOutline('outline-brand-500 data-selected:outline-offset-2')
       .build(),
-    header: new StyleBuilder()
-      .withGrid('grid grid-cols-[1fr_auto_1fr] items-center')
-      .withSize('size-full')
-      .build(),
-    headerContainer: new StyleBuilder()
-      .withFlex('flex justify-between gap-xl')
-      .withMargin('mb-lg')
-      .build(),
     todayIndicator: new StyleBuilder()
       .withBase('absolute bottom-1 left-1/2 -translate-x-1/2')
       .withSize('size-1')
       .withBorderRadius('rounded-full')
       .withBackgroundColor('bg-brand-solid group-data-selection-start/date:bg-white group-data-selection-end/date:bg-white group-data-highlighted-start/date:bg-white group-data-highlighted-end/date:bg-white')
-      .build(),
-    weekDayLabel: new StyleBuilder()
-      .withFontWeight('font-medium')
-      .withColor('text-secondary')
-      .withFontSize('text-sm')
-      .withSize('size-10')
-      .withFlex('flex items-center justify-center')
       .build(),
   },
   variants: { variant: {} },

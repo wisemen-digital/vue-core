@@ -18,6 +18,8 @@ const value = ref<DateRangeValue>({
           from: null,
           until: null,
         }"
+        :allow-non-continuous-selection="true"
+        :is-date-disabled="(date) => date.getDate() === 15"
         :show-two-months="true"
         label=""
       />

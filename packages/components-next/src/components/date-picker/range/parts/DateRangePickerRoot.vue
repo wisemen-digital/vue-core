@@ -106,6 +106,7 @@ useProvideDateRangePickerContext({
         :prevent-deselect="!props.allowDeselect"
         :fixed-weeks="true"
         :number-of-months="props.showTwoMonths ? 2 : 1"
+        :allow-non-contiguous-ranges="props.allowNonContinuousSelection"
         :is-date-unavailable="(value: DateValue) => props.isDateUnavailable(dateValueToDate(value))"
         :is-date-disabled="(value: DateValue) => props.isDateDisabled(dateValueToDate(value))"
         :calendar-label="props.label"
@@ -117,7 +118,6 @@ useProvideDateRangePickerContext({
           ? undefined
           : dateToDateValue(props.maxDate)"
         weekday-format="short"
-        class="flex flex-col"
       >
         <slot
           :week-days="(weekDays as string[])"

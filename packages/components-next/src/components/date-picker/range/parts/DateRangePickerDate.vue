@@ -38,9 +38,7 @@ const {
       })"
     >
       <slot :day="date.day">
-        <span class="z-10">
-          {{ date.day }}
-        </span>
+        {{ date.day }}
       </slot>
     </div>
 
