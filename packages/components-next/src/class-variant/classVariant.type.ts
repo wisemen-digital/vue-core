@@ -2,6 +2,7 @@
 import type { VariantProps } from 'tailwind-variants'
 
 import type { createAvatarStyle } from '@/components/avatar/avatar.style'
+import type { createBadgeStyle } from '@/components/badge/badge.style'
 import type { createButtonStyle } from '@/components/button/default-button/button.style'
 import type { createIconButtonStyle } from '@/components/button/icon-button/iconButton.style'
 import type { createRouterLinkButtonStyle } from '@/components/button/router-link-button/routerLinkButton.style'
@@ -31,6 +32,12 @@ export interface ComponentMap {
   avatar: {
     style: typeof createAvatarStyle
     children: {}
+  }
+  badge: {
+    style: typeof createBadgeStyle
+    children: {
+      removeButton: 'iconButton'
+    }
   }
   button: {
     style: typeof createButtonStyle

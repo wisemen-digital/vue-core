@@ -15,6 +15,11 @@ export const components = [
     componentName: 'Avatar',
   },
   {
+    sourceFolder: 'badge/parts/BadgeRoot.vue',
+    targetFolder: 'badge',
+    componentName: 'Badge',
+  },
+  {
     sourceFolder: 'button/default-button/parts/ButtonRoot.vue',
     targetFolder: 'button',
     componentName: 'Button',
