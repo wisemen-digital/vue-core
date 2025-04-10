@@ -33,7 +33,7 @@ const {
     <RekaCalendarGrid
       v-for="month in props.grid"
       :key="month.value.toString()"
-      class="w-full"
+      class="w-70"
     >
       <RekaCalendarGridHead>
         <RekaCalendarGridRow class="grid grid-cols-7">

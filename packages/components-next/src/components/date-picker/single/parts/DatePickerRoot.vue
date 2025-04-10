@@ -88,7 +88,7 @@ useProvideDatePickerContext({
 </script>
 
 <template>
-  <TestIdProvider :test-id="props.testId ?? null">
+  <TestIdProvider :test-id="props.testId">
     <InteractableElement :is-disabled="props.isDisabled">
       <RekaCalendarRoot
         v-slot="{ weekDays, grid }"

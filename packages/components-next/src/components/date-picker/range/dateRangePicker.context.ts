@@ -3,21 +3,21 @@ import type {
   Ref,
 } from 'vue'
 
-import { useContext } from '@/composables/context/context.composable'
-import type { ClassConfig } from '@/customClassVariants'
-import type { PropsToComputed } from '@/utils/props.util'
+import type { ResolvedClassConfig } from '@/class-variant/classVariant.type'
 import type { DateRangePickerProps } from '@/components/date-picker/range/dateRangePicker.props'
 import type { CreateDateRangePickerStyle } from '@/components/date-picker/range/dateRangePicker.style'
+import { useContext } from '@/composables/context/context.composable'
+import type { PropsToComputed } from '@/utils/props.util'
 
-export type DateRangeValue = {
+export interface DateRangeValue {
   from: Date | null
   until: Date | null
 }
 
 interface DateRangePickerContext extends PropsToComputed<DateRangePickerProps> {
-  customClassConfig: ComputedRef<ClassConfig<'dateRangePicker'>>
+  customClassConfig: ComputedRef<ResolvedClassConfig<'dateRangePicker'>>
   modelValue: Ref<DateRangeValue>
-  placeholderValue: Ref<DateRangeValue>
+  placeholderValue: Ref<Date>
   style: ComputedRef<CreateDateRangePickerStyle>
 
 }

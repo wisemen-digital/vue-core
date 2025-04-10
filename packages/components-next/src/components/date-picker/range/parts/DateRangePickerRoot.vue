@@ -3,6 +3,8 @@ import type { DateValue } from 'reka-ui'
 import { RangeCalendarRoot as RekaRangeCalendarRoot } from 'reka-ui'
 import { computed } from 'vue'
 
+import type { ResolvedClassConfig } from '@/class-variant/classVariant.type'
+import { getCustomComponentVariant } from '@/class-variant/customClassVariants'
 import type { DateRangeValue } from '@/components/date-picker/range/dateRangePicker.context'
 import { useProvideDateRangePickerContext } from '@/components/date-picker/range/dateRangePicker.context'
 import type { DateRangePickerProps } from '@/components/date-picker/range/dateRangePicker.props'
@@ -14,8 +16,8 @@ import {
   dateValueToDate,
 } from '@/components/date-picker/shared/datePicker.util'
 import InteractableElement from '@/components/shared/InteractableElement.vue'
-import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
-import { useComponentClassConfig } from '@/customClassVariants'
+import TestIdProvider from '@/components/shared/TestIdProvider.vue'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { toComputedRefs } from '@/utils/props.util'
 
 const props = withDefaults(defineProps<DateRangePickerProps>(), {
@@ -35,7 +37,7 @@ const props = withDefaults(defineProps<DateRangePickerProps>(), {
 
 const modelValue = defineModel<DateRangeValue>({ required: true })
 
-const placeholderValue = defineModel<DateRangeValue>('placeholderValue', {
+const placeholderValue = defineModel<Date>('placeholderValue', {
   default: new Date(),
   required: false,
 })
@@ -60,39 +62,29 @@ const delegatedModel = computed<{ end: DateValue | undefined
       modelValue.value.until = null
     }
     else {
-      console.log('set end', dateValueToDate(value.end))
       modelValue.value.until = dateValueToDate(value.end)
     }
   },
 })
 
-// const delegetedPlaceholderValue = computed<{ from: DateValue | undefined, until: DateValue | undefined }>({
-//   get: () => {
-//     return {
-//       from: placeholderValue.value.from === null ? undefined : dateToDateValue(placeholderValue.value.from),
-//       until: placeholderValue.value.until === null ? undefined : dateToDateValue(placeholderValue.value.until),
-//     }
-//   },
-//   set: (value) => {
-//     if (value.from === undefined || value.from === null) {
-//       placeholderValue.value.from = null
-//     } else {
-//       placeholderValue.value.from = dateValueToDate(value.from)
-//     }
+const delegetedPlaceholderValue = computed<DateValue>({
+  get: () => {
+    return dateToDateValue(placeholderValue.value)
+  },
+  set: (value) => {
+    placeholderValue.value = dateValueToDate(value)
+  },
+})
 
-//     if (value.until === undefined || value.until === null) {
-//       placeholderValue.value.until = null
-//     } else {
-//       placeholderValue.value.until = dateValueToDate(value.until)
-//     }
-//   },
-// })
+const { theme } = injectThemeProviderContext()
 
 const dateRangePickerStyle = computed<CreateDateRangePickerStyle>(
   () => createDateRangePickerStyle({ variant: props.variant ?? undefined }),
 )
 
-const customClassConfig = useComponentClassConfig('dateRangePicker', { variant: props.variant ?? undefined })
+const customClassConfig = computed<ResolvedClassConfig<'dateRangePicker'>>(
+  () => getCustomComponentVariant('dateRangePicker', theme.value, { variant: props.variant }),
+)
 
 useProvideDateRangePickerContext({
   ...toComputedRefs(props),
@@ -104,15 +96,12 @@ useProvideDateRangePickerContext({
 </script>
 
 <template>
-  <PrimitiveElement
-    :id="props.id ?? null"
-    :test-id="props.testId ?? null"
-  >
+  <TestIdProvider :test-id="props.testId">
     <InteractableElement :is-disabled="props.isDisabled">
-      <!--     TODO:    v-model:placeholder="delegetedPlaceholderValue" -->
       <RekaRangeCalendarRoot
         v-slot="{ weekDays, grid }"
         v-model="delegatedModel"
+        v-model:placeholder="delegetedPlaceholderValue"
         :week-starts-on="1"
         :prevent-deselect="!props.allowDeselect"
         :fixed-weeks="true"
@@ -128,6 +117,7 @@ useProvideDateRangePickerContext({
           ? undefined
           : dateToDateValue(props.maxDate)"
         weekday-format="short"
+        class="flex flex-col"
       >
         <slot
           :week-days="(weekDays as string[])"
@@ -135,5 +125,5 @@ useProvideDateRangePickerContext({
         />
       </RekaRangeCalendarRoot>
     </InteractableElement>
-  </PrimitiveElement>
+  </TestIdProvider>
 </template>

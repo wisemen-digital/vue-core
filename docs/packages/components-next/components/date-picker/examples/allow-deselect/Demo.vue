@@ -10,6 +10,5 @@ const value = ref<Date | null>(null)
     v-model="value"
     :allow-deselect="true"
     label="Example"
-    class="w-84"
   />
 </template>

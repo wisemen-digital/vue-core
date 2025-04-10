@@ -6,8 +6,12 @@ import {
   RangeCalendarNext as RekaRangeCalendarNext,
   RangeCalendarPrev as RekaRangeCalendarPrev,
 } from 'reka-ui'
-import { computed } from 'vue'
+import {
+  computed,
+  nextTick,
+} from 'vue'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import IconButton from '@/components/button/icon-button/IconButton.vue'
 import { useInjectConfigContext } from '@/components/config-provider/config.context'
 import { useInjectDateRangePickerContext } from '@/components/date-picker/range/dateRangePicker.context'
@@ -16,7 +20,6 @@ import { getMonthName } from '@/components/date-picker/shared/datePicker.util'
 import NumberField from '@/components/number-field/NumberField.vue'
 import SelectItem from '@/components/select/parts/SelectItem.vue'
 import Select from '@/components/select/Select.vue'
-import { mergeClasses } from '@/customClassVariants'
 
 const props = defineProps<{
   grid: Grid<DateValue>[]
@@ -33,31 +36,30 @@ const {
 } = useInjectDateRangePickerContext()
 
 const monthValue = computed<number>({
-  get: () => 1,
+  get: () => placeholderValue.value.getMonth(),
   set: async (value) => {
     // Without nextTick, an stack overflow occurs for some weird reason
     // Took me about 2 hours to figure this out
-    // await nextTick()
+    await nextTick()
 
-    // placeholderValue.value = new Date(
-    //   placeholderValue.value.getFullYear(),
-    //   value,
-    //   placeholderValue.value.getDate(),
-    // )
+    placeholderValue.value = new Date(
+      placeholderValue.value.getFullYear(),
+      value,
+      placeholderValue.value.getDate(),
+    )
   },
 })
 
 const yearValue = computed<number>({
   get: () => {
-    // return placeholderValue.value.getFullYear()
-    return 2025
+    return placeholderValue.value.getFullYear()
   },
   set: (value) => {
-    // placeholderValue.value = new Date(
-    //   value,
-    //   placeholderValue.value.getMonth(),
-    //   placeholderValue.value.getDate(),
-    // )
+    placeholderValue.value = new Date(
+      value,
+      placeholderValue.value.getMonth(),
+      placeholderValue.value.getDate(),
+    )
   },
 })
 </script>
@@ -67,6 +69,7 @@ const yearValue = computed<number>({
     :class="style.headerContainer({
       class: mergeClasses(classConfig?.headerContainer, customClassConfig.headerContainer),
     })"
+    class="flex"
   >
     <RekaRangeCalendarHeader
       v-for="(month, index) of props.grid"

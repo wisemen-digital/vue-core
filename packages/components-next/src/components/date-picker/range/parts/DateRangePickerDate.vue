@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import { getLocalTimeZone } from '@internationalized/date'
 import { RangeCalendarCellTrigger as RekaRangeCalendarCellTrigger } from 'reka-ui'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectDateRangePickerContext } from '@/components/date-picker/range/dateRangePicker.context'
+import { getDaysInMonth } from '@/components/date-picker/shared/datePicker.util'
 import { useInjectDatePickerDateContext } from '@/components/date-picker/shared/datePickerDate.context'
-import { mergeClasses } from '@/customClassVariants'
 
 const {
   classConfig,
@@ -24,12 +26,23 @@ const {
     :class="style.date({
       class: mergeClasses(classConfig?.date, customClassConfig.date),
     })"
+    :data-first-day-of-week="date.toDate(getLocalTimeZone()).getDay() === 1 || undefined"
+    :data-last-day-of-week="date.toDate(getLocalTimeZone()).getDay() === 0 || undefined"
+    :data-first-day-of-month="date.toDate(getLocalTimeZone()).getDate() === 1 || undefined"
+    :data-last-day-of-month="date.toDate(getLocalTimeZone()).getDate()
+      === getDaysInMonth(date.month - 1, date.year) || undefined"
   >
-    <slot :day="date.day">
-      <span class="z-10">
-        {{ date.day }}
-      </span>
-    </slot>
+    <div
+      :class="style.innerDate({
+        class: mergeClasses(classConfig?.innerDate, customClassConfig.innerDate),
+      })"
+    >
+      <slot :day="date.day">
+        <span class="z-10">
+          {{ date.day }}
+        </span>
+      </slot>
+    </div>
 
     <div
       v-if="today"

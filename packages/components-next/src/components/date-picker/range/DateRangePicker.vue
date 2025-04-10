@@ -15,7 +15,6 @@ const modelValue = defineModel<DateRangeValue>({ required: true })
  * This updates as the user navigates the calendar and can be used to programmatically control the calendar view
  */
 const placeholderValue = defineModel<Date>('placeholderValue', { required: false })
-//     v-model:placeholder-value="placeholderValue"
 </script>
 
 <template>
@@ -23,6 +22,7 @@ const placeholderValue = defineModel<Date>('placeholderValue', { required: false
     v-slot="{ grid, weekDays }"
     v-bind="props"
     v-model="modelValue"
+    v-model:placeholder-value="placeholderValue"
   >
     <DateRangePickerHeader :grid="grid" />
     <DateRangePickerGrid

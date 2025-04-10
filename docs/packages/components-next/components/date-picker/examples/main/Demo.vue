@@ -14,7 +14,6 @@ const value = ref<Date | null>(null)
     v-model="value"
     :is-date-unavailable="(date) => date.getDate() === 15"
     label="Example"
-    class="w-84"
   >
     <template #date="{ date }">
       <VcTooltip

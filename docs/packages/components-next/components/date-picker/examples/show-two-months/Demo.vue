@@ -10,6 +10,5 @@ const value = ref<Date | null>(null)
     v-model="value"
     :show-two-months="true"
     label="Example"
-    class="w-172"
   />
 </template>

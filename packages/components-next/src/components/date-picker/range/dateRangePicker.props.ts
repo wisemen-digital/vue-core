@@ -1,6 +1,8 @@
+import type {
+  CustomizableElement,
+  GetComponentProp,
+} from '@/class-variant/classVariant.type'
 import type { SharedDatePickerProps } from '@/components/date-picker/shared/sharedDatePicker.props'
-import type { GetComponentPropCustomValues } from '@/customClassVariants'
-import type { CustomizableElement } from '@/utils/props.util'
 
 export interface DateRangePickerProps extends SharedDatePickerProps, CustomizableElement<'dateRangePicker'> {
   /**
@@ -10,7 +12,7 @@ export interface DateRangePickerProps extends SharedDatePickerProps, Customizabl
    */
   allowNonContinuousSelection?: boolean
   /**
-   * 
+   * The visual style of the date range picker.
    */
-  variant?: GetComponentPropCustomValues<'dateRangePicker', 'variant'> | null
+  variant?: GetComponentProp<'dateRangePicker', 'variant'> | null
 }

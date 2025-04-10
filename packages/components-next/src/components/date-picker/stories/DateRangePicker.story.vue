@@ -12,12 +12,15 @@ const value = ref<DateRangeValue>({
 
 <template>
   <Story title="DateRangePicker">
-    <DateRangePicker
-      :model-value="{
-        from: null,
-        until: null,
-      }"
-      label=""
-    />
+    <div class="flex">
+      <DateRangePicker
+        :model-value="{
+          from: null,
+          until: null,
+        }"
+        :show-two-months="true"
+        label=""
+      />
+    </div>
   </Story>
 </template>

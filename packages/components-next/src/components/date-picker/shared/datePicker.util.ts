@@ -16,3 +16,8 @@ export function dateValueToDate(value: DateValue): Date {
 export function getMonthName(month: number, locale: string, format: 'long' | 'short'): string {
   return new Intl.DateTimeFormat(locale, { month: format }).format(new Date(1, month))
 }
+
+// 0-based
+export function getDaysInMonth(year: number, month: number): number {
+  return new Date(year, month, 0).getDate()
+}

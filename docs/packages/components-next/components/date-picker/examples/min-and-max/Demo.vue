@@ -15,6 +15,5 @@ const value = ref<Date | null>(null)
     :min-date="twoWeeksAgo"
     :max-date="twoWeeksFromNow"
     label="Example"
-    class="w-84"
   />
 </template>
