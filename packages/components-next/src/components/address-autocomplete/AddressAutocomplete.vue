@@ -136,7 +136,7 @@ onMounted(async () => {
 <template>
   <Autocomplete
     v-bind="props"
-    :model-value="selectedAddress ?? tempAddress"
+    :model-value="tempAddress || selectedAddress"
     :items="autocompleteItems"
     :is-loading="isLoading"
     :display-fn="(formattedAddress) => formattedAddressToString(formattedAddress)"
