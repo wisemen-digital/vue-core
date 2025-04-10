@@ -2,17 +2,19 @@
 import { CheckboxRoot as RekaCheckboxRoot } from 'reka-ui'
 import { computed } from 'vue'
 
+import type { ResolvedClassConfig } from '@/class-variant/classVariant.type'
+import {
+  getCustomComponentVariant,
+  mergeClasses,
+} from '@/class-variant/customClassVariants'
 import { useProvideCheckboxContext } from '@/components/checkbox/checkbox.context'
 import type { CheckboxEmits } from '@/components/checkbox/checkbox.emits'
 import type { CheckboxProps } from '@/components/checkbox/checkbox.props'
 import type { CreateCheckboxStyle } from '@/components/checkbox/checkbox.style'
 import { createCheckboxStyle } from '@/components/checkbox/checkbox.style'
 import FormControl from '@/components/shared/FormControl.vue'
-import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
-import {
-  mergeClasses,
-  useComponentClassConfig,
-} from '@/customClassVariants'
+import TestIdProvider from '@/components/shared/TestIdProvider.vue'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { toComputedRefs } from '@/utils/props.util'
 
 const props = withDefaults(defineProps<CheckboxProps>(), {
@@ -59,9 +61,13 @@ const delegatedModel = computed<boolean | 'indeterminate' | null>({
   },
 })
 
+const { theme } = injectThemeProviderContext()
+
 const checkboxStyle = computed<CreateCheckboxStyle>(() => createCheckboxStyle({ variant: props.variant ?? undefined }))
 
-const customClassConfig = useComponentClassConfig('checkbox', { variant: props.variant ?? undefined })
+const customClassConfig = computed<ResolvedClassConfig<'checkbox'>>(
+  () => getCustomComponentVariant('checkbox', theme.value, { variant: props.variant }),
+)
 
 useProvideCheckboxContext({
   ...toComputedRefs(props),
@@ -71,11 +77,9 @@ useProvideCheckboxContext({
 </script>
 
 <template>
-  <PrimitiveElement
-    :id="id"
-    :test-id="testId"
-  >
+  <TestIdProvider :test-id="testId">
     <FormControl
+      :id="id"
       :is-disabled="isDisabled"
       :is-invalid="errorMessage !== null"
       :is-required="isRequired"
@@ -95,5 +99,5 @@ useProvideCheckboxContext({
         <slot />
       </RekaCheckboxRoot>
     </FormControl>
-  </PrimitiveElement>
+  </TestIdProvider>
 </template>

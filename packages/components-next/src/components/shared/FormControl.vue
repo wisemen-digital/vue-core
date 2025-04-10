@@ -4,6 +4,7 @@ import { Primitive } from 'reka-ui'
 import InteractableElement from '@/components/shared/InteractableElement.vue'
 
 const props = withDefaults(defineProps<{
+  id: string | null
   isDisabled: boolean
   isInvalid: boolean
   isLoading: boolean
@@ -15,6 +16,7 @@ const props = withDefaults(defineProps<{
 
 <template>
   <Primitive
+    :id="props.id"
     :as="props.as ?? undefined"
     :as-child="props.as === null"
     :aria-invalid="props.isInvalid"

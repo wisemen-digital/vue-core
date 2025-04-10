@@ -8,6 +8,7 @@ import { useInjectNumberFieldContext } from '@/components/number-field/numberFie
 const {
   isDisabled,
   classConfig,
+  customClassConfig,
   hideControls,
 } = useInjectNumberFieldContext()
 
@@ -25,6 +26,7 @@ const { t } = useI18n()
       :class-config="{
         icon: 'size-4',
         root: 'min-w-7 h-7 rounded-[0.3rem] ml-[0.3rem]',
+        ...customClassConfig?.decrement,
         ...classConfig?.decrement,
       }"
       icon="minus"

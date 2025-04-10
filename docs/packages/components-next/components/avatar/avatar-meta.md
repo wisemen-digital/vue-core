@@ -3,14 +3,8 @@
 <PropsTable :data="[
   {
     'name': 'classConfig',
-    'description': '<p>The class configuration of the component.</p>\n',
-    'type': '(ClassConfig<\'avatar\'> & {}) | null',
-    'required': false
-  },
-  {
-    'name': 'id',
-    'description': '<p>The id of the element. If set to <code>null</code>, no ID will be applied.</p>\n',
-    'type': 'string | null',
+    'description': '<p>The class configuration for the component. This allows customizating the default styles\nby overriding them with custom values.</p>\n',
+    'type': 'ResolvedClassConfig<\'avatar\'> | null',
     'required': false,
     'default': 'null'
   },
@@ -36,8 +30,9 @@
   },
   {
     'name': 'variant',
-    'description': '',
+    'description': '<p>Defines the visual style of the avatar.</p>\n',
     'type': 'null',
-    'required': false
+    'required': false,
+    'default': 'null'
   }
 ]" />

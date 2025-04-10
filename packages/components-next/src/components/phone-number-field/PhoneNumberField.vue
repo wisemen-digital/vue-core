@@ -167,6 +167,10 @@ function filterFn(option: CountryCode, searchTerm: string): boolean {
               :alt="getCountryName(countryCodeModel, globalConfigContext.locale.value) ?? countryCodeModel"
               class="rounded-xxs block h-3.5 w-5 shrink-0 object-cover"
             >
+
+            <span class="sr-only">
+              {{ getCountryName(countryCodeModel, globalConfigContext.locale.value) ?? countryCodeModel }}
+            </span>
           </SelectBaseSingle>
         </template>
 

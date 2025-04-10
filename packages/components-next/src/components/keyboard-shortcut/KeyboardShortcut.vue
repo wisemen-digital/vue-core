@@ -2,15 +2,25 @@
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import type { ResolvedClassConfig } from '@/class-variant/classVariant.type'
+import {
+  getCustomComponentVariant,
+  mergeClasses,
+} from '@/class-variant/customClassVariants'
 import { useInjectConfigContext } from '@/components/config-provider/config.context'
 import KeyboardKey from '@/components/keyboard-key/KeyboardKey.vue'
 import type { KeyboardShortcutProps } from '@/components/keyboard-shortcut/keyboardShortcut.props'
+import type { CreatekeyboardShortcutStyle } from '@/components/keyboard-shortcut/keyboardShortcut.style'
+import { createkeyboardShortcutStyle } from '@/components/keyboard-shortcut/keyboardShortcut.style'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import type { KeyboardKey as KeyboardKeyType } from '@/types/keyboard.type'
 import { isMobileDevice } from '@/utils/device.util'
 
-const props = defineProps<KeyboardShortcutProps>()
+const props = withDefaults(defineProps<KeyboardShortcutProps>(), { classConfig: null })
 
 const { areKeyboardShortcutHintsHidden } = useInjectConfigContext()
+const { theme } = injectThemeProviderContext()
+
 const { t } = useI18n()
 
 function isModifier(key: KeyboardKeyType): boolean {
@@ -20,21 +30,41 @@ function isModifier(key: KeyboardKeyType): boolean {
 const isSequence = computed<boolean>(() => {
   return !props.keyboardKeys.some((keyboardKey) => isModifier(keyboardKey))
 })
+
+const keyboardShortcutStyle = computed<CreatekeyboardShortcutStyle>(
+  () => createkeyboardShortcutStyle(),
+)
+
+const customClassConfig = computed<ResolvedClassConfig<'keyboardShortcut'>>(
+  () => getCustomComponentVariant('keyboardShortcut', theme.value, { variant: props.variant }),
+)
 </script>
 
 <template>
   <div
     v-if="!areKeyboardShortcutHintsHidden && !isMobileDevice()"
-    class="flex items-center gap-x-1"
+    :class="keyboardShortcutStyle.root({
+      class: mergeClasses(customClassConfig.root, props.classConfig?.root),
+    })"
   >
     <template
       v-for="(keyboardKey, index) of keyboardKeys"
       :key="index"
     >
-      <KeyboardKey :keyboard-key="keyboardKey" />
+      <KeyboardKey
+        :keyboard-key="keyboardKey"
+        :class-config="{
+          ...customClassConfig.keyboardKey,
+          ...props.classConfig?.keyboardKey,
+        }"
+      />
 
       <template v-if="index < props.keyboardKeys.length - 1 && isSequence">
-        <span class="text-tertiary font-regular text-xs">
+        <span
+          :class="keyboardShortcutStyle.thenLabel({
+            class: mergeClasses(customClassConfig.thenLabel, props.classConfig?.thenLabel),
+          })"
+        >
           {{ t('component.keyboard_shortcut.then') }}
         </span>
       </template>

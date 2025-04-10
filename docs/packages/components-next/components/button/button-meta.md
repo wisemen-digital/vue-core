@@ -3,8 +3,8 @@
 <PropsTable :data="[
   {
     'name': 'classConfig',
-    'description': '<p>The class configuration of the component.</p>\n',
-    'type': '(ClassConfig<\'button\'> & {}) | null',
+    'description': '<p>The class configuration for the component. This allows customizating the default styles\nby overriding them with custom values.</p>\n',
+    'type': 'ResolvedClassConfig<\'button\'> | null',
     'required': false,
     'default': 'null'
   },
@@ -19,13 +19,6 @@
     'name': 'iconRight',
     'description': '<p>The icon displayed on the right side of the button text. If set to null, no right icon will be shown.</p>\n',
     'type': 'keyof Icons | null',
-    'required': false,
-    'default': 'null'
-  },
-  {
-    'name': 'id',
-    'description': '<p>The id of the element. If set to <code>null</code>, no ID will be applied.</p>\n',
-    'type': 'string | null',
     'required': false,
     'default': 'null'
   },

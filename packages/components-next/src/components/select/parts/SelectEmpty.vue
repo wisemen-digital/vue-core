@@ -2,8 +2,8 @@
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectSelectContext } from '@/components/select/select.context'
-import { mergeClasses } from '@/customClassVariants'
 
 const { t } = useI18n()
 

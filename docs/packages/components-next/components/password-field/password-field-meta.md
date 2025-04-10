@@ -9,8 +9,8 @@
   },
   {
     'name': 'classConfig',
-    'description': '<p>The class configuration of the component.</p>\n',
-    'type': '(ClassConfig<\'textField\'> & {}) | null',
+    'description': '<p>The class configuration for the component. This allows customizating the default styles\nby overriding them with custom values.</p>\n',
+    'type': 'ResolvedClassConfig<\'textField\'> | null',
     'required': false
   },
   {
@@ -93,7 +93,7 @@
   },
   {
     'name': 'variant',
-    'description': '',
+    'description': '<p>Defines the visual style of the input.</p>\n',
     'type': 'null',
     'required': false
   }

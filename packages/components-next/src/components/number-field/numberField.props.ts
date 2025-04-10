@@ -1,22 +1,15 @@
-import type { GetComponentPropCustomValues } from '@/customClassVariants'
-import type { Icon } from '@/icons/icons'
 import type {
   CustomizableElement,
+  GetComponentProp,
+} from '@/class-variant/classVariant.type'
+import type { Icon } from '@/icons/icons'
+import type {
   FormElement,
   InteractableElement,
-  PrimitiveElement,
+  TestId,
 } from '@/utils/props.util'
 
-export interface NumberFieldProps extends PrimitiveElement, InteractableElement, FormElement, CustomizableElement<'numberField', [
-  {
-    name: 'increment'
-    component: 'iconButton'
-  },
-  {
-    name: 'decrement'
-    component: 'iconButton'
-  },
-]> {
+export interface NumberFieldProps extends TestId, InteractableElement, FormElement, CustomizableElement<'numberField'> {
   /**
    * Whether the input is loading.
    * @default false
@@ -72,7 +65,7 @@ export interface NumberFieldProps extends PrimitiveElement, InteractableElement,
    */
   step?: number
   /**
-   *
+   * Defines the visual style of the number input.
    */
-  variant?: GetComponentPropCustomValues<'textField', 'variant'> | null
+  variant?: GetComponentProp<'numberField', 'variant'> | null
 }

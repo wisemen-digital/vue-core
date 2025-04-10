@@ -2,11 +2,9 @@
 import { Primitive } from 'reka-ui'
 
 const props = withDefaults(defineProps<{
-  id: string | null
   testId: string | null
   as?: string | null
 }>(), {
-  id: null,
   testId: null,
   as: null,
 })
@@ -14,10 +12,9 @@ const props = withDefaults(defineProps<{
 
 <template>
   <Primitive
-    :id="props.id"
     :as-child="props.as === null"
     :as="props.as ?? undefined"
-    :test-id="props.testId"
+    :data-test-id="props.testId"
   >
     <slot />
   </Primitive>

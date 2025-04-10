@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 
 import { useProvideConfigContext } from '@/components/config-provider/config.context'
+import type { ToastPosition } from '@/components/toast/toast.composable'
 
 const props = defineProps<{
   /**
@@ -29,6 +30,11 @@ const props = defineProps<{
    * @default 'body'
    */
   teleportTargetSelector?: string
+  /**
+   * The position of the toast notifications.
+   * @default 'bottom-right'
+   */
+  toastPosition?: ToastPosition
 }>()
 
 defineSlots<{
@@ -44,6 +50,7 @@ useProvideConfigContext({
   locale: computed<string>(() => props.locale),
   pagination: { limit: props.pagination?.limit },
   teleportTargetSelector: props.teleportTargetSelector ?? 'body',
+  toastPosition: props.toastPosition,
 })
 </script>
 

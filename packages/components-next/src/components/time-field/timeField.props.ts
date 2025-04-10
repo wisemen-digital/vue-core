@@ -1,13 +1,15 @@
-import type { GetComponentPropCustomValues } from '@/customClassVariants'
-import type { Icon } from '@/icons/icons'
 import type {
   CustomizableElement,
+  GetComponentProp,
+} from '@/class-variant/classVariant.type'
+import type { Icon } from '@/icons/icons'
+import type {
   FormElement,
   InteractableElement,
-  PrimitiveElement,
+  TestId,
 } from '@/utils/props.util'
 
-export interface TimeFieldProps extends PrimitiveElement, InteractableElement, FormElement, CustomizableElement<'timeField'> {
+export interface TimeFieldProps extends TestId, InteractableElement, FormElement, CustomizableElement<'timeField'> {
   /**
    * Whether the input is loading.
    * @default false
@@ -29,7 +31,7 @@ export interface TimeFieldProps extends PrimitiveElement, InteractableElement, F
    */
   iconRight?: Icon | null
   /**
-   *
+   * Defines the visual style of the time field.
    */
-  variant?: GetComponentPropCustomValues<'timeField', 'variant'> | null
+  variant?: GetComponentProp<'timeField', 'variant'> | null
 }

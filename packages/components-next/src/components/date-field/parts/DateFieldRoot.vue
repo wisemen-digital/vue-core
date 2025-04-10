@@ -6,6 +6,11 @@ import {
   ref,
 } from 'vue'
 
+import type { ResolvedClassConfig } from '@/class-variant/classVariant.type'
+import {
+  getCustomComponentVariant,
+  mergeClasses,
+} from '@/class-variant/customClassVariants'
 import { useInjectConfigContext } from '@/components/config-provider/config.context'
 import { useProvideDateFieldContext } from '@/components/date-field/dateField.context'
 import type { DateFieldEmits } from '@/components/date-field/dateField.emits'
@@ -17,10 +22,7 @@ import {
   dateValueToDate,
 } from '@/components/date-picker/shared/datePicker.util'
 import InteractableElement from '@/components/shared/InteractableElement.vue'
-import {
-  mergeClasses,
-  useComponentClassConfig,
-} from '@/customClassVariants'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { toComputedRefs } from '@/utils/props.util'
 
 const props = withDefaults(defineProps<DateFieldProps>(), {
@@ -72,6 +74,7 @@ const delegatedModel = computed<DateValue | null>({
 })
 
 const { locale } = useInjectConfigContext()
+const { theme } = injectThemeProviderContext()
 
 const isFocused = ref<boolean>(false)
 
@@ -79,7 +82,9 @@ const dateFieldStyle = computed<CreateDateFieldStyle>(
   () => createDateFieldStyle({ variant: props.variant ?? undefined }),
 )
 
-const customClassConfig = useComponentClassConfig('dateField', { variant: props.variant ?? undefined })
+const customClassConfig = computed<ResolvedClassConfig<'dateField'>>(
+  () => getCustomComponentVariant('dateField', theme.value, { variant: props.variant }),
+)
 
 function onFocus(event: FocusEvent): void {
   isFocused.value = true
@@ -111,6 +116,7 @@ useProvideDateFieldContext({
 <template>
   <InteractableElement :is-disabled="props.isDisabled">
     <RekaDateFieldRoot
+      :id="props.id ?? undefined"
       v-slot="{ segments }"
       v-model="delegatedModel"
       :min-value="props.minDate === null ? undefined : dateToDateValue(props.minDate)"

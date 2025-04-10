@@ -187,6 +187,10 @@ export default defineConfig({
                   link: '/packages/components-next/components/router-link-tabs/router-link-tabs',
                 },
                 {
+                  text: 'Table',
+                  link: '/packages/components-next/components/table/table',
+                },
+                {
                   text: 'Tabs',
                   link: '/packages/components-next/components/tabs/tabs',
                 },
@@ -223,6 +227,10 @@ export default defineConfig({
                 {
                   text: 'Date Picker',
                   link: '/packages/components-next/components/date-picker/date-picker',
+                },
+                {
+                  text: 'Toast',
+                  link: '/packages/components-next/components/toast/toast',
                 },
               ],
             },

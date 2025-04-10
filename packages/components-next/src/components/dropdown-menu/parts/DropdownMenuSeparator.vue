@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { DropdownMenuSeparator as RekaDropdownMenuSeparator } from 'reka-ui'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectDropdownMenuContext } from '@/components/dropdown-menu/dropdownMenu.context'
-import { mergeClasses } from '@/customClassVariants'
 
 const {
   classConfig,

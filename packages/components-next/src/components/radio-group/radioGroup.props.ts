@@ -1,7 +1,7 @@
 import type {
   FormElement,
   InteractableElement,
-  PrimitiveElement,
+  TestId,
 } from '@/utils/props.util'
 
-export interface RadioGroupProps extends PrimitiveElement, InteractableElement, FormElement {}
+export interface RadioGroupProps extends TestId, InteractableElement, FormElement {}

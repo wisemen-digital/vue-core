@@ -1,22 +1,24 @@
 import type { AcceptableValue } from 'reka-ui'
 
-import type { GetComponentPropCustomValues } from '@/customClassVariants'
 import type {
   CustomizableElement,
+  GetComponentProp,
+} from '@/class-variant/classVariant.type'
+import type {
   FormElement,
   InteractableElement,
-  PrimitiveElement,
+  TestId,
 } from '@/utils/props.util'
 
 export type RadioGroupItemValue = AcceptableValue
 
-export interface RadioGroupItemProps extends PrimitiveElement, InteractableElement, FormElement, CustomizableElement<'radioGroupItem'> {
+export interface RadioGroupItemProps extends TestId, InteractableElement, FormElement, CustomizableElement<'radioGroupItem'> {
   /**
    * The value of the radio group item.
    */
   value: RadioGroupItemValue
   /**
-   *
+   * Defines the visual style of the radio group item.
    */
-  variant?: GetComponentPropCustomValues<'radioGroupItem', 'variant'> | null
+  variant?: GetComponentProp<'radioGroupItem', 'variant'> | null
 }

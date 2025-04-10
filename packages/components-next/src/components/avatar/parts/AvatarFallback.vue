@@ -2,8 +2,8 @@
 import { AvatarFallback as RekaAvatarFallback } from 'reka-ui'
 import { computed } from 'vue'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectAvatarContext } from '@/components/avatar/avatar.context'
-import { mergeClasses } from '@/customClassVariants'
 
 const {
   name,

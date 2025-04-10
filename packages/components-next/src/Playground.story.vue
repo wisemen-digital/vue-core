@@ -1,16 +1,15 @@
 <script setup lang="ts">
-import { defineComponentVariant } from '@/customClassVariants'
+import { defineComponentVariant } from '@/class-variant/customClassVariants'
+import KeyboardShortcut from '@/components/keyboard-shortcut/KeyboardShortcut.vue'
 
 defineComponentVariant({
-  config: {},
-  target: {
-    prop: 'size',
-    value: 'super-large',
-  },
-  component: 'button',
+  config: { keyboardKey: { key: 'scale-400' } },
+  component: 'keyboardShortcut',
 })
 </script>
 
 <template>
-  <Story title="Playground" />
+  <Story title="Playground">
+    <KeyboardShortcut :keyboard-keys="['meta', ',']" />
+  </Story>
 </template>

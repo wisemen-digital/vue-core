@@ -1,15 +1,17 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
+import type { CustomComponentVariant } from '@/class-variant/classVariant.type'
+import {
+  getCustomComponentVariant,
+  mergeClasses,
+} from '@/class-variant/customClassVariants'
 import { useProvideTextareaContext } from '@/components/textarea/textarea.context'
 import type { TextareaEmits } from '@/components/textarea/textarea.emits'
 import type { TextareaProps } from '@/components/textarea/textarea.props'
 import type { CreateTextareaStyle } from '@/components/textarea/textarea.style'
 import { createTextareaStyle } from '@/components/textarea/textarea.style'
-import {
-  mergeClasses,
-  useComponentClassConfig,
-} from '@/customClassVariants'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { toComputedRefs } from '@/utils/props.util'
 
 const props = withDefaults(defineProps<TextareaProps>(), {
@@ -33,9 +35,13 @@ const emit = defineEmits<TextareaEmits>()
 
 const modelValue = defineModel<string | null>({ required: true })
 
+const { theme } = injectThemeProviderContext()
+
 const textareaStyle = computed<CreateTextareaStyle>(() => createTextareaStyle({ variant: props.variant ?? undefined }))
 
-const customClassConfig = useComponentClassConfig('textarea', { variant: props.variant ?? undefined })
+const customClassConfig = computed<CustomComponentVariant<'textarea'>>(
+  () => getCustomComponentVariant('textarea', theme.value, { variant: props.variant }),
+)
 
 function onBlur(event: FocusEvent): void {
   emit('blur', event)

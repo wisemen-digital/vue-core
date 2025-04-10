@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { NumberFieldInput as RekaNumberFieldInput } from 'reka-ui'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectNumberFieldContext } from '@/components/number-field/numberField.context'
 import FormControl from '@/components/shared/FormControl.vue'
-import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
-import { mergeClasses } from '@/customClassVariants'
+import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 
 const {
   id,
@@ -24,11 +24,9 @@ const {
 </script>
 
 <template>
-  <PrimitiveElement
-    :id="id"
-    :test-id="testId"
-  >
+  <TestIdProvider :test-id="testId">
     <FormControl
+      :id="id"
       :is-disabled="isDisabled"
       :is-loading="isLoading"
       :is-invalid="errorMessage !== null"
@@ -45,5 +43,5 @@ const {
         @blur="onBlur"
       />
     </FormControl>
-  </PrimitiveElement>
+  </TestIdProvider>
 </template>

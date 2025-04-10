@@ -1,19 +1,16 @@
-import type { GetComponentPropCustomValues } from '@/customClassVariants'
+import type {
+  CustomizableElement,
+  GetComponentProp,
+} from '@/class-variant/classVariant.type'
 import type { Icon } from '@/icons/icons'
 import type { SharedDateProps } from '@/types/shareDateProps.type'
 import type {
-  CustomizableElement,
   FormElement,
   InteractableElement,
-  PrimitiveElement,
+  TestId,
 } from '@/utils/props.util'
 
-export interface DateFieldProps extends PrimitiveElement, InteractableElement, FormElement, SharedDateProps, CustomizableElement<'dateField', [
-  {
-    name: 'datePicker'
-    component: 'datePicker'
-  },
-]> {
+export interface DateFieldProps extends TestId, InteractableElement, FormElement, SharedDateProps, CustomizableElement<'dateField'> {
   /**
    * Whether the input is loading.
    * @default false
@@ -36,7 +33,7 @@ export interface DateFieldProps extends PrimitiveElement, InteractableElement, F
    */
   iconLeft?: Icon | null
   /**
-   *
+   * Defines the visual style of the date field.
    */
-  variant?: GetComponentPropCustomValues<'dateField', 'variant'> | null
+  variant?: GetComponentProp<'dateField', 'variant'> | null
 }

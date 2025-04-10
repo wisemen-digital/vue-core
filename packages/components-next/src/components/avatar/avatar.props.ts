@@ -1,10 +1,10 @@
-import type { GetComponentPropCustomValues } from '@/customClassVariants'
 import type {
   CustomizableElement,
-  PrimitiveElement,
-} from '@/utils/props.util'
+  GetComponentProp,
+} from '@/class-variant/classVariant.type'
+import type { TestId } from '@/utils/props.util'
 
-export interface AvatarProps extends PrimitiveElement, CustomizableElement<'avatar'> {
+export interface AvatarProps extends TestId, CustomizableElement<'avatar'> {
   /**
    * The name of the user or entity represented by the avatar.
    * This is used for accessibility and as a fallback if no image is provided.
@@ -16,7 +16,7 @@ export interface AvatarProps extends PrimitiveElement, CustomizableElement<'avat
    */
   src?: string | null
   /**
-   *
+   * Defines the visual style of the avatar.
    */
-  variant?: GetComponentPropCustomValues<'avatar', 'variant'> | null
+  variant?: GetComponentProp<'avatar', 'variant'> | null
 }

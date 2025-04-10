@@ -9,7 +9,7 @@ import {
 import type { RadioGroupEmits } from '@/components/radio-group/radioGroup.emits'
 import type { RadioGroupProps } from '@/components/radio-group/radioGroup.props'
 import InteractableElement from '@/components/shared/InteractableElement.vue'
-import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
+import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 import { useFocusOut } from '@/composables/focus-out/focusOut.composable'
 
 const props = withDefaults(defineProps<RadioGroupProps>(), {
@@ -38,18 +38,16 @@ useFocusOut(
 </script>
 
 <template>
-  <PrimitiveElement
-    :id="props.id"
-    :test-id="props.testId"
-    :aria-invalid="props.errorMessage !== null"
-  >
+  <TestIdProvider :test-id="props.testId">
     <InteractableElement :is-disabled="props.isDisabled">
       <RekaRadioGroupRoot
+        :id="props.id"
         ref="radioGroupRootRef"
         v-model="modelValue"
+        :aria-invalid="props.errorMessage !== null"
       >
         <slot />
       </RekaRadioGroupRoot>
     </InteractableElement>
-  </PrimitiveElement>
+  </TestIdProvider>
 </template>

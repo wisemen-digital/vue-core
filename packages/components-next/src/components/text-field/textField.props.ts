@@ -1,13 +1,15 @@
-import type { GetComponentPropCustomValues } from '@/customClassVariants'
-import type { Icon } from '@/icons/icons'
 import type {
   CustomizableElement,
+  GetComponentProp,
+} from '@/class-variant/classVariant.type'
+import type { Icon } from '@/icons/icons'
+import type {
   FormElement,
   InteractableElement,
-  PrimitiveElement,
+  TestId,
 } from '@/utils/props.util'
 
-export interface TextFieldProps extends PrimitiveElement, InteractableElement, FormElement, CustomizableElement<'textField'> {
+export interface TextFieldProps extends TestId, InteractableElement, FormElement, CustomizableElement<'textField'> {
   /**
    * Whether the input is loading.
    * @default false
@@ -44,9 +46,9 @@ export interface TextFieldProps extends PrimitiveElement, InteractableElement, F
    */
   type?: 'date' | 'email' | 'password' | 'search' | 'tel' | 'text' | 'time' | 'url'
   /**
-   *
+   * Defines the visual style of the input.
    */
-  variant?: GetComponentPropCustomValues<'textField', 'variant'> | null
+  variant?: GetComponentProp<'textField', 'variant'> | null
 }
 
 export interface TextFieldEmits {

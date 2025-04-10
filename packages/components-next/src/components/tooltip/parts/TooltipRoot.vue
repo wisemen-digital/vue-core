@@ -5,11 +5,13 @@ import {
 } from 'reka-ui'
 import { computed } from 'vue'
 
+import type { CustomComponentVariant } from '@/class-variant/classVariant.type'
+import { getCustomComponentVariant } from '@/class-variant/customClassVariants'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { useProvideTooltipContext } from '@/components/tooltip/tooltip.context'
 import type { TooltipProps } from '@/components/tooltip/tooltip.props'
 import type { CreateTooltipStyle } from '@/components/tooltip/tooltip.style'
 import { createTooltipStyle } from '@/components/tooltip/tooltip.style'
-import { useComponentClassConfig } from '@/customClassVariants'
 import { toComputedRefs } from '@/utils/props.util'
 
 const props = withDefaults(defineProps<TooltipProps>(), {
@@ -38,9 +40,13 @@ const isOpen = defineModel<boolean>('isOpen', {
   required: false,
 })
 
+const { theme } = injectThemeProviderContext()
+
 const tooltipStyle = computed<CreateTooltipStyle>(() => createTooltipStyle({ variant: props.variant ?? undefined }))
 
-const customClassConfig = useComponentClassConfig('tooltip', { variant: props.variant ?? undefined })
+const customClassConfig = computed<CustomComponentVariant<'tooltip'>>(
+  () => getCustomComponentVariant('tooltip', theme.value, { variant: props.variant }),
+)
 
 useProvideTooltipContext({
   ...toComputedRefs(props),

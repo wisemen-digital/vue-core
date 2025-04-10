@@ -3,8 +3,8 @@
 <PropsTable :data="[
   {
     'name': 'classConfig',
-    'description': '<p>The class configuration of the component.</p>\n',
-    'type': '(ClassConfig<\'formField\'> & {}) | null',
+    'description': '<p>The class configuration for the component. This allows customizating the default styles\nby overriding them with custom values.</p>\n',
+    'type': 'ResolvedClassConfig<\'formField\'> | null',
     'required': false,
     'default': 'null'
   },
@@ -24,6 +24,13 @@
   {
     'name': 'hint',
     'description': '<p>The hint text of the input.</p>\n',
+    'type': 'string | null',
+    'required': false,
+    'default': 'null'
+  },
+  {
+    'name': 'id',
+    'description': '<p>The id of the element. If set to <code>null</code>, no ID will be applied.</p>\n',
     'type': 'string | null',
     'required': false,
     'default': 'null'
@@ -58,7 +65,7 @@
   },
   {
     'name': 'variant',
-    'description': '',
+    'description': '<p>Defines the visual style of the form field.</p>\n',
     'type': 'null',
     'required': false,
     'default': 'null'

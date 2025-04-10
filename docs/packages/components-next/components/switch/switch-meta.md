@@ -3,8 +3,8 @@
 <PropsTable :data="[
   {
     'name': 'classConfig',
-    'description': '<p>The class configuration of the component.</p>\n',
-    'type': '(ClassConfig<\'switch\'> & {}) | null',
+    'description': '<p>The class configuration for the component. This allows customizating the default styles\nby overriding them with custom values.</p>\n',
+    'type': 'ResolvedClassConfig<\'switch\'> | null',
     'required': false,
     'default': 'null'
   },
@@ -59,7 +59,7 @@
   },
   {
     'name': 'size',
-    'description': '<p>Defines the switch’s size.</p>\n',
+    'description': '<p>Defines the size of the switch.</p>\n',
     'type': '\'md\' | \'sm\'',
     'required': false,
     'default': '\'md\''
@@ -73,7 +73,7 @@
   },
   {
     'name': 'variant',
-    'description': '',
+    'description': '<p>Defines the visual style of the switch.</p>\n',
     'type': 'null',
     'required': false,
     'default': 'null'

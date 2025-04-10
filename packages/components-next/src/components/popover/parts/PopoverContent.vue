@@ -2,12 +2,11 @@
 import { AnimatePresence } from 'motion-v'
 import { PopoverContent as RekaPopoverContent } from 'reka-ui'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectPopoverContext } from '@/components/popover/popover.context'
-import PrimitiveElement from '@/components/shared/PrimitiveElement.vue'
-import { mergeClasses } from '@/customClassVariants'
+import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 
 const {
-  id,
   testId,
   isOpen,
   classConfig,
@@ -29,9 +28,8 @@ const {
 
 <template>
   <AnimatePresence>
-    <PrimitiveElement
+    <TestIdProvider
       v-if="isOpen"
-      :id="id"
       :test-id="testId"
     >
       <RekaPopoverContent
@@ -55,6 +53,6 @@ const {
       >
         <slot />
       </RekaPopoverContent>
-    </PrimitiveElement>
+    </TestIdProvider>
   </AnimatePresence>
 </template>

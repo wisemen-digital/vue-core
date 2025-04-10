@@ -1,12 +1,14 @@
-import type { GetComponentPropCustomValues } from '@/customClassVariants'
 import type {
   CustomizableElement,
+  GetComponentProp,
+} from '@/class-variant/classVariant.type'
+import type {
   FormElement,
   InteractableElement,
-  PrimitiveElement,
+  TestId,
 } from '@/utils/props.util'
 
-export interface TextareaProps extends PrimitiveElement, InteractableElement, FormElement, CustomizableElement<'textarea'> {
+export interface TextareaProps extends TestId, InteractableElement, FormElement, CustomizableElement<'textarea'> {
   /**
    * Whether the input is spell check enabled.
    * @default false
@@ -33,7 +35,7 @@ export interface TextareaProps extends PrimitiveElement, InteractableElement, Fo
    */
   resize?: 'auto-vertical' | 'both' | 'horizontal' | 'none' | 'vertical'
   /**
-   *
+   * Defines the visual style of the textarea.
    */
-  variant?: GetComponentPropCustomValues<'textField', 'variant'> | null
+  variant?: GetComponentProp<'textField', 'variant'> | null
 }

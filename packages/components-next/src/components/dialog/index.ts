@@ -8,5 +8,6 @@ export { default as VcDialogContentTransition } from '@/components/dialog/parts/
 export { default as VcDialogDescription } from '@/components/dialog/parts/DialogDescription.vue'
 export { default as VcDialogOverlay } from '@/components/dialog/parts/DialogOverlay.vue'
 export { default as VcDialogOverlayTransition } from '@/components/dialog/parts/DialogOverlayTransition.vue'
+export { default as VcDialogPortal } from '@/components/dialog/parts/DialogPortal.vue'
 export { default as VcDialogRoot } from '@/components/dialog/parts/DialogRoot.vue'
 export { default as VcDialogTitle } from '@/components/dialog/parts/DialogTitle.vue'

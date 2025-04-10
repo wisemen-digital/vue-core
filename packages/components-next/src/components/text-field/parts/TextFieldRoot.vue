@@ -1,6 +1,11 @@
 <script setup lang="ts" generic="TValue extends string">
 import { computed } from 'vue'
 
+import type { ResolvedClassConfig } from '@/class-variant/classVariant.type'
+import {
+  getCustomComponentVariant,
+  mergeClasses,
+} from '@/class-variant/customClassVariants'
 import { useProvideTextFieldContext } from '@/components/text-field/textField.context'
 import type {
   TextFieldEmits,
@@ -8,10 +13,7 @@ import type {
 } from '@/components/text-field/textField.props'
 import type { CreateTextFieldStyle } from '@/components/text-field/textField.style'
 import { createTextFieldStyle } from '@/components/text-field/textField.style'
-import {
-  mergeClasses,
-  useComponentClassConfig,
-} from '@/customClassVariants'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { toComputedRefs } from '@/utils/props.util'
 
 const props = withDefaults(defineProps<TextFieldProps>(), {
@@ -38,11 +40,15 @@ const emit = defineEmits<TextFieldEmits>()
 
 const modelValue = defineModel<TValue | null>({ required: true })
 
+const { theme } = injectThemeProviderContext()
+
 const textFieldStyle = computed<CreateTextFieldStyle>(
   () => createTextFieldStyle({ variant: props.variant ?? undefined }),
 )
 
-const customClassConfig = useComponentClassConfig('textField', { variant: props.variant ?? undefined })
+const customClassConfig = computed<ResolvedClassConfig<'textField'>>(
+  () => getCustomComponentVariant('textField', theme.value, { variant: props.variant }),
+)
 
 function onBlur(event: FocusEvent): void {
   emit('blur', event)

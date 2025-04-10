@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectTabsContext } from '@/components/tabs/shared/tabs.context'
-import { mergeClasses } from '@/customClassVariants'
 
 const {
   classConfig,
