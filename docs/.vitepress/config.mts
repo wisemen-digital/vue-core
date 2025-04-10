@@ -126,6 +126,10 @@ export default defineConfig({
                   link: '/packages/components-next/components/date-field/date-field',
                 },
                 {
+                  text: 'Date Range Field',
+                  link: '/packages/components-next/components/date-range-field/date-range-field',
+                },
+                {
                   text: 'Form Field',
                   link: '/packages/components-next/components/form-field/form-field',
                 },

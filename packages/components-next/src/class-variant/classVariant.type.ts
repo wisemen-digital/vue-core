@@ -10,6 +10,7 @@ import type { createCheckboxStyle } from '@/components/checkbox/checkbox.style'
 import type { createDateFieldStyle } from '@/components/date-field/dateField.style'
 import type { createDateRangePickerStyle } from '@/components/date-picker/range/dateRangePicker.style'
 import type { createDatePickerStyle } from '@/components/date-picker/single/datePicker.style'
+import type { createDateRangeFieldStyle } from '@/components/date-range-field/dateRangeField.style'
 import type { createDialogStyle } from '@/components/dialog/dialog.style'
 import type { createDropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style'
 import type { createFormFieldStyle } from '@/components/form-field/formField.style'
@@ -56,6 +57,12 @@ export interface ComponentMap {
   datePicker: {
     style: typeof createDatePickerStyle
     children: {}
+  }
+  dateRangeField: {
+    style: typeof createDateRangeFieldStyle
+    children: {
+      datePicker: 'dateRangePicker'
+    }
   }
   dateRangePicker: {
     style: typeof createDateRangePickerStyle

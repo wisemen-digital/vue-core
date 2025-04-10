@@ -5,7 +5,6 @@ import { computed } from 'vue'
 
 import type { ResolvedClassConfig } from '@/class-variant/classVariant.type'
 import { getCustomComponentVariant } from '@/class-variant/customClassVariants'
-import type { DateRangeValue } from '@/components/date-picker/range/dateRangePicker.context'
 import { useProvideDateRangePickerContext } from '@/components/date-picker/range/dateRangePicker.context'
 import type { DateRangePickerProps } from '@/components/date-picker/range/dateRangePicker.props'
 import type { CreateDateRangePickerStyle } from '@/components/date-picker/range/dateRangePicker.style'
@@ -18,6 +17,7 @@ import {
 import InteractableElement from '@/components/shared/InteractableElement.vue'
 import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
+import type { DateRange } from '@/types/dateRange.type'
 import { toComputedRefs } from '@/utils/props.util'
 
 const props = withDefaults(defineProps<DateRangePickerProps>(), {
@@ -35,7 +35,7 @@ const props = withDefaults(defineProps<DateRangePickerProps>(), {
   variant: null,
 })
 
-const modelValue = defineModel<DateRangeValue>({ required: true })
+const modelValue = defineModel<DateRange>({ required: true })
 
 const placeholderValue = defineModel<Date>('placeholderValue', {
   default: new Date(),
