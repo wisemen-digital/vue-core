@@ -225,6 +225,10 @@ export default defineConfig({
                   link: '/packages/components-next/components/avatar/avatar',
                 },
                 {
+                  text: 'Badge',
+                  link: '/packages/components-next/components/badge/badge',
+                },
+                {
                   text: 'Date Picker',
                   link: '/packages/components-next/components/date-picker/date-picker',
                 },
