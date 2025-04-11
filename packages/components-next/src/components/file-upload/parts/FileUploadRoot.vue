@@ -20,7 +20,6 @@ import { toComputedRefs } from '@/utils/props.util'
 const props = withDefaults(defineProps<FileUploadProps>(), {
   isDisabled: false,
   isValidFile: null,
-  maxFileSizeInMb: null,
 })
 
 const modelValue = defineModel<FileInfo[] | (FileInfo | null)>({ required: true })
