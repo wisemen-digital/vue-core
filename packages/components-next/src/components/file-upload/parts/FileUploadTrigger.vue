@@ -21,16 +21,20 @@ fileDialog.onChange((fileList) => {
 
   onFilesSelected(Array.from(fileList))
 })
+
+function openFileDialog(): void {
+  fileDialog.open({
+    accept: accept.value.join(', '),
+    multiple: isMultiple.value,
+  })
+}
 </script>
 
 <template>
   <InteractableElement :is-disabled="isDisabled">
     <Primitive
       :as-child="true"
-      @click="fileDialog.open({
-        multiple: isMultiple,
-        accept: accept.join(', '),
-      })"
+      @click="openFileDialog"
     >
       <slot />
     </Primitive>
