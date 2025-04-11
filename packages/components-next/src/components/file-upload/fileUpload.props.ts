@@ -12,7 +12,7 @@ export interface FileUploadProps extends InteractableElement {
    * @returns A boolean indicating whether the file is valid or not.
    * @default null - No validation is performed.
    */
-  isValidFile: ((file: File) => boolean) | null
+  isValidFile?: ((file: File) => boolean) | null
   /**
    * A unique file type specifier is a string that describes a type of file that may be selected by the user
    *

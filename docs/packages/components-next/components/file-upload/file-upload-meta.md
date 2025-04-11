@@ -24,7 +24,7 @@
     'name': 'isValidFile',
     'description': '<p>A validator function that checks if a file is valid for upload.\nThis function is called before uploading a file to ensure that it meets the required criteria.</p>\n',
     'type': '((file: File) => boolean) | null',
-    'required': true
+    'required': false
   }
 ]" />
 
