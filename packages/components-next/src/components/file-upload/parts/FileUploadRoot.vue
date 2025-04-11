@@ -62,7 +62,11 @@ const sortedFileUploadItems = computed<FileUploadItem[]>(() => {
 })
 
 function onFilesSelected(files: File[]): void {
-  internalFiles.value.push(...files.map((file, fileIndex) => {
+  const validFiles = props.isValidFile === null
+    ? files
+    : files.filter((file) => props.isValidFile!(file))
+
+  internalFiles.value.push(...validFiles.map((file, fileIndex) => {
     return mapFileToUploadItem(file, fileIndex + delegatedModelValue.value.length)
   }))
 }
