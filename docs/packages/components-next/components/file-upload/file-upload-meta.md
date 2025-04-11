@@ -21,16 +21,9 @@
     'default': 'false'
   },
   {
-    'name': 'maxFileSizeInMb',
-    'description': '<p>The maximum allowed file size in megabytes (MB).</p>\n<p>If provided, files larger than this limit will be rejected during selection.\nUseful for enforcing client-side validation before attempting an upload.</p>\n',
-    'type': 'number | null',
-    'required': false,
-    'default': 'null'
-  },
-  {
-    'name': 'testId',
-    'description': '<p>A unique identifier used for testing purposes. If set to <code>null</code>, no test ID will be applied.</p>\n',
-    'type': 'string | null',
+    'name': 'isValidFile',
+    'description': '<p>A validator function that checks if a file is valid for upload.\nThis function is called before uploading a file to ensure that it meets the required criteria.</p>\n',
+    'type': '((file: File) => boolean) | null',
     'required': false,
     'default': 'null'
   }

@@ -6,6 +6,14 @@ import type { InteractableElement } from '@/utils/props.util'
 
 export interface FileUploadProps extends InteractableElement {
   /**
+   * A validator function that checks if a file is valid for upload.
+   * This function is called before uploading a file to ensure that it meets the required criteria.
+   * @param file - The file to be validated.
+   * @returns A boolean indicating whether the file is valid or not.
+   * @default null - No validation is performed.
+   */
+  isValidFile?: ((file: File) => boolean) | null
+  /**
    * A unique file type specifier is a string that describes a type of file that may be selected by the user
    *
    * A valid case-insensitive filename extension, starting with a period (".") character.
@@ -29,15 +37,6 @@ export interface FileUploadProps extends InteractableElement {
    * @returns A promise that resolves to a `FileInfo` object containing upload metadata.
    */
   getFileInfo: (name: string, mimeType: string) => Promise<FileInfo>
-  /**
-   * The maximum allowed file size in megabytes (MB).
-   *
-   * If provided, files larger than this limit will be rejected during selection.
-   * Useful for enforcing client-side validation before attempting an upload.
-   *
-   * @default null (no limit)
-   */
-  maxFileSizeInMb?: number | null
 }
 
 export interface FileUploadItemProps {
