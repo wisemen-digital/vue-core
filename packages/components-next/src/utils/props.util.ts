@@ -66,6 +66,12 @@ export function toComputedRefs<T>(props: T): PropsToComputed<T> {
   const computedRefs: Partial<PropsToComputed<T>> = {}
 
   for (const key in props) {
+    if (typeof props[key] === 'function') {
+      computedRefs[key] = props[key] as any
+
+      continue
+    }
+
     computedRefs[key] = computed<any>(
       () => props[key as keyof T] as T[Extract<keyof T, string>],
     ) as any

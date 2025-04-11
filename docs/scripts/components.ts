@@ -70,6 +70,12 @@ export const components = [
     targetFolder: 'date-range-picker',
     componentName: 'DateRangePicker',
   },
+  // File upload
+  {
+    sourceFolder: 'file-upload/parts/FileUploadRoot.vue',
+    targetFolder: 'file-upload',
+    componentName: 'FileUpload',
+  },
   // Form Field
   {
     sourceFolder: 'form-field/parts/FormFieldRoot.vue',
