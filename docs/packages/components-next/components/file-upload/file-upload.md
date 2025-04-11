@@ -21,7 +21,7 @@ import {
 
     <FileUploadItem
       v-for="item in items"
-      :key="item.id"
+      :key="item.key"
       :item="item"
     >
       <FileUploadItemReplace />
