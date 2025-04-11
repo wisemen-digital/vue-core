@@ -130,6 +130,10 @@ export default defineConfig({
                   link: '/packages/components-next/components/date-range-field/date-range-field',
                 },
                 {
+                  text: 'File Upload',
+                  link: '/packages/components-next/components/file-upload/file-upload',
+                },
+                {
                   text: 'Form Field',
                   link: '/packages/components-next/components/form-field/form-field',
                 },

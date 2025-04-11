@@ -115,7 +115,7 @@
   {
     'name': 'type',
     'description': '<p>The type of the input.</p>\n',
-    'type': '\'search\' | \'date\' | \'email\' | \'password\' | \'tel\' | \'text\' | \'time\' | \'url\'',
+    'type': '\'search\' | \'date\' | \'url\' | \'text\' | \'email\' | \'password\' | \'tel\' | \'time\'',
     'required': false,
     'default': '\'text\''
   },
