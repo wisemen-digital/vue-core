@@ -1,4 +1,4 @@
-export type AddressComponentType = 'country' | 'locality' | 'postal_code' | 'route' | 'street_number'
+export type AddressComponentType = 'country' | 'locality' | 'postal_code' | 'route' | 'street_number' | 'subpremise'
 
 export interface FormattedAddress {
   placeId: string

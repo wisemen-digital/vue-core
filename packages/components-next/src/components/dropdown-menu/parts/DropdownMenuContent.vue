@@ -38,6 +38,7 @@ const {
       :class="style.content({
         class: mergeClasses(customClassConfig.content, classConfig?.content),
       })"
+      position-strategy="absolute"
       sticky="always"
     >
       <slot />

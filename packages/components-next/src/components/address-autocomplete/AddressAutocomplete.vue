@@ -34,6 +34,8 @@ const addressResults = ref<FormattedAddress[]>([])
 
 let autocompleteService: typeof google.maps.places.AutocompleteSuggestion | null = null
 
+const tempAddress = ref<FormattedAddress | null>(null)
+
 const selectedAddress = computed<FormattedAddress | null>(() => {
   if (modelValue.value === null) {
     return null
@@ -60,7 +62,21 @@ async function onSearch(searchTerm: string): Promise<void> {
   isLoading.value = true
 
   try {
-    const results = await autocompleteService.fetchAutocompleteSuggestions({ input: searchTerm })
+    // Since google does not know the "street number/bus number" format,
+    // we need explicitly add the word "bus" after the /
+    // E.g. Street 23/11 => Street 23/bus 11
+    let formattedAddress = searchTerm
+
+    const regex = /\/\s*(\d+)/
+    const match = searchTerm.match(regex)
+
+    if (match !== null && match[1] !== undefined) {
+      const busNumber = match[1]
+
+      formattedAddress = formattedAddress.replace(regex, `/bus ${busNumber}`)
+    }
+
+    const results = await autocompleteService.fetchAutocompleteSuggestions({ input: formattedAddress })
 
     addressResults.value = results.suggestions
       .filter((suggestion) => suggestion.placePrediction !== null)
@@ -88,7 +104,9 @@ async function onUpdateModelValue(value: FormattedAddress | null): Promise<void>
     return
   }
 
+  tempAddress.value = value
   modelValue.value = await getAddressByPlaceId(value.placeId)
+  tempAddress.value = null
 }
 
 async function createAutocompleteSuggestionService(
@@ -118,7 +136,7 @@ onMounted(async () => {
 <template>
   <Autocomplete
     v-bind="props"
-    :model-value="selectedAddress"
+    :model-value="tempAddress || selectedAddress"
     :items="autocompleteItems"
     :is-loading="isLoading"
     :display-fn="(formattedAddress) => formattedAddressToString(formattedAddress)"
