@@ -8,6 +8,7 @@ export { default as VcButtonLoader } from '@/components/button/default-button/pa
 export { default as VcButtonRoot } from '@/components/button/default-button/parts/ButtonRoot.vue'
 
 // Router Link Button
+export { default as VcRouterLinkButtonContent } from '@/components/button/router-link-button/parts/RouterLinkButtonContent.vue'
 export { default as VcRouterLinkButtonIconLeft } from '@/components/button/router-link-button/parts/RouterLinkButtonIconLeft.vue'
 export { default as VcRouterLinkButtonIconRight } from '@/components/button/router-link-button/parts/RouterLinkButtonIconRight.vue'
 export { default as VcRouterLinkButtonRoot } from '@/components/button/router-link-button/parts/RouterLinkButtonRoot.vue'

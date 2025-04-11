@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import RouterLinkButtonContent from '@/components/button/router-link-button/parts/RouterLinkButtonContent.vue'
 import RouterLinkButtonIconLeft from '@/components/button/router-link-button/parts/RouterLinkButtonIconLeft.vue'
 import RouterLinkButtonIconRight from '@/components/button/router-link-button/parts/RouterLinkButtonIconRight.vue'
 import RouterLinkButtonRoot from '@/components/button/router-link-button/parts/RouterLinkButtonRoot.vue'
@@ -28,14 +29,16 @@ defineSlots<{
 
 <template>
   <RouterLinkButtonRoot v-bind="props">
-    <slot name="icon-left">
-      <RouterLinkButtonIconLeft />
-    </slot>
+    <RouterLinkButtonContent>
+      <slot name="icon-left">
+        <RouterLinkButtonIconLeft />
+      </slot>
 
-    <slot />
+      <slot />
 
-    <slot name="icon-right">
-      <RouterLinkButtonIconRight />
-    </slot>
+      <slot name="icon-right">
+        <RouterLinkButtonIconRight />
+      </slot>
+    </RouterLinkButtonContent>
   </RouterLinkButtonRoot>
 </template>
