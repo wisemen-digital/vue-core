@@ -19,7 +19,7 @@ import { toComputedRefs } from '@/utils/props.util'
 
 const props = withDefaults(defineProps<FileUploadProps>(), {
   isDisabled: false,
-  maxFileSizeInMb: null,
+  isValidFile: null,
 })
 
 const modelValue = defineModel<FileInfo[] | (FileInfo | null)>({ required: true })
@@ -62,7 +62,11 @@ const sortedFileUploadItems = computed<FileUploadItem[]>(() => {
 })
 
 function onFilesSelected(files: File[]): void {
-  internalFiles.value.push(...files.map((file, fileIndex) => {
+  const validFiles = props.isValidFile === null
+    ? files
+    : files.filter((file) => props.isValidFile!(file))
+
+  internalFiles.value.push(...validFiles.map((file, fileIndex) => {
     return mapFileToUploadItem(file, fileIndex + delegatedModelValue.value.length)
   }))
 }
