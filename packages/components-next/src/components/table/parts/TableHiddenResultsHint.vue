@@ -5,7 +5,6 @@ import Button from '@/components/button/default-button/Button.vue'
 import { useInjectTableContext } from '@/components/table/table.context'
 
 const {
-  hasVerticalOverflow,
   isEmpty,
   isLoading,
   activeFilterCount,
@@ -18,12 +17,9 @@ const { t } = useI18n()
 <template>
   <div
     v-if="activeFilterCount > 0 && !isLoading && !isEmpty"
-    :class="{
-      'border-t-secondary border-t border-solid': hasVerticalOverflow,
-    }"
     class="
-      py-xl gap-x-lg sticky left-0 col-span-full flex items-center
-      justify-center
+      py-xl gap-x-lg border-t-secondary sticky left-0 col-span-full flex
+      items-center justify-center border-t border-solid
     "
   >
     <span class="text-tertiary text-xs">
