@@ -59,7 +59,7 @@ function sortProps(props: PropDef[]): PropDef[] {
 
 <template>
   <VcThemeProvider :appearance="isDark ? 'dark' : 'light'">
-    <h2>
+    <h2 id="props">
       Props
     </h2>
 
