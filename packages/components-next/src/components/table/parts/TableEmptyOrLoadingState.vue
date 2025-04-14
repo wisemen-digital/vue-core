@@ -35,11 +35,6 @@ const ROW_COUNT = 10
   >
     <TableHeader />
 
-    <ProgressiveBlur
-      v-if="isEmpty"
-      class="absolute inset-0 z-11"
-    />
-
     <div
       v-if="isEmpty"
       class="
@@ -88,9 +83,13 @@ const ROW_COUNT = 10
       </slot>
     </div>
 
-    <Subgrid
-      class="overflow-hidden mask-b-from-0% mask-b-to-75%"
-    >
+    <Subgrid class="relative overflow-hidden mask-b-from-0% mask-b-to-75%">
+      <ProgressiveBlur
+        v-if="isEmpty"
+        side="bottom"
+        class="inset-0 z-5"
+      />
+
       <template
         v-for="rowIndex of ROW_COUNT"
         :key="rowIndex"
@@ -105,7 +104,7 @@ const ROW_COUNT = 10
                 class: mergeClasses(classConfig?.cellSkeleton, customClassConfig?.cellSkeleton),
               })"
             >
-              <div class="bg-tertiary h-4 max-w-64 rounded-md" />
+              <div class="bg-tertiary h-4 rounded-md" />
             </div>
           </TableCellLayout>
         </div>
