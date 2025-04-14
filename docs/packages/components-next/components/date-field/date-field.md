@@ -10,6 +10,7 @@ This component is build on top of [Form Field](/packages/components-next/compone
 ```vue
 <script setup lang="ts">
 import { VcDateField } from '@wisemen/vue-core-components'
+import { ref } from 'vue'
 
 const value = ref<Date | null>(null)
 </script>

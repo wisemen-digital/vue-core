@@ -10,6 +10,7 @@ This component is build on top of the [Form Field](/packages/components-next/com
 ```vue
 <script setup lang="ts">
 import { VcCheckbox } from '@wisemen/vue-core-components'
+import { ref } from 'vue'
 
 const value = ref<boolean>(true)
 </script>

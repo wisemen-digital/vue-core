@@ -10,6 +10,7 @@ This component is build on top of the [Autocomplete](/packages/components-next/c
 ```vue
 <script setup lang="ts">
 import { VcAddressAutocomplete } from '@wisemen/vue-core-components'
+import { ref } from 'vue'
 
 const address = ref<Address | null>(null)
 </script>
