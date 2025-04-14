@@ -14,6 +14,7 @@ const {
   isDropdownVisible,
   isPopoverArrowVisible,
   classConfig,
+  customClassConfig,
   popoverAlign,
   popoverAlignOffset,
   popoverAnchorReferenceElement,
@@ -46,7 +47,10 @@ function onAutoFocusOnClose(event: Event): void {
     :popover-side="popoverSide"
     :popover-width="popoverWidth"
     :popover-anchor-reference-element="popoverAnchorReferenceElement"
-    :class-config="classConfig?.popover"
+    :class-config="{
+      ...customClassConfig.popover,
+      ...classConfig?.popover,
+    }"
     @update:is-open="setIsDropdownVisible"
     @escape-key-down="onDropdownEscapeKeyDown"
     @interact-outside="onDropdownInteractOutside"
