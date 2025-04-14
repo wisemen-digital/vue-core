@@ -1,5 +1,27 @@
 # @wisemen/vue-core-components
 
+## 1.5.0
+
+### 🔥 New Features
+
+- Introduced the `FileUpload` component for uploading files directly to S3.
+
+### ✨ Improvements
+
+- **Select**: Updated dropdown transitions to be smoother and less abrupt.
+- **AddressAutocomplete**: Added support for `bus` prop.
+- **Table**: Refined the empty state appearance by softening blur.
+- Moved `vue-sonner` to dependencies to ensure type availability.
+
+### 🐞 Bug Fixes
+
+- **Select**: Fixed issue where `class-config` prop classes weren’t applied to `SelectPopover`.
+- **AddressAutocomplete**: Resolved a delay where the selected value took longer than expected to appear.
+- **Table**:
+  - Fixed duplicate borders when content wasn’t scrollable.
+  - Fixed missing borders when columns were sticky.
+- **RouterLinkButton**: Resolved layout issues.
+
 ## 1.4.0
 
 ### 🔥 New Features
