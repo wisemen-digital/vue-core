@@ -13,7 +13,7 @@ const side = computed<PopperSide>(() => attrs['data-side'] as PopperSide)
 
 const motionRef = ref<InstanceType<any> | null>(null)
 
-const TRANSLATE_AMOUNT = 2
+const TRANSLATE_AMOUNT = 4
 
 function transform(side: PopperSide): { x: number
   y: number } {
@@ -47,7 +47,7 @@ function transform(side: PopperSide): { x: number
     ref="motionRef"
     :initial="{
       opacity: 0,
-      scale: 0.95,
+      scale: 1,
       ...transform(side),
     }"
     :animate="{
@@ -58,13 +58,13 @@ function transform(side: PopperSide): { x: number
     }"
     :exit="{
       opacity: 0,
-      scale: 0.95,
+      scale: 1,
       ...transform(side),
     }"
     :transition="{
-      duration: 0.4,
+      duration: 0.3,
       type: 'spring',
-      bounce: 0.2,
+      bounce: 0,
     }"
     class="origin-(--reka-popover-content-transform-origin)"
   >
