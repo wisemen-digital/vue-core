@@ -6,6 +6,27 @@ This component is build on top of the [Form Field](/packages/components-next/com
 
 <ComponentPreview name="checkbox-group/examples/main" />
 
+## Usage
+```vue
+<script setup lang="ts">
+import { VcCheckboxGroup } from '@wisemen/vue-core-components'
+
+const value = ref<string[]>([])
+</script>
+
+<template>
+  <VcCheckboxGroup
+    v-model="value"
+    label="Fruits"
+  >
+    <VcCheckbox
+      value="apple"
+      label="Apple"
+    />
+  </VcCheckboxGroup>
+</template>
+```
+
 ## Anatomy
 
 ```vue

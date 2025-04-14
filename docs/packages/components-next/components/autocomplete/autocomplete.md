@@ -6,6 +6,32 @@ This component is build on top of the [Select](/packages/components-next/compone
 
 <ComponentPreview name="autocomplete/examples/main" />
 
+## Usage
+```vue
+<script setup lang="ts">
+import { VcAutocomplete } from '@wisemen/vue-core-components'
+
+const value = ref<string | null>(null)
+const items = ref<string[]>([])
+const isFetchingItems = ref<boolean>(false)
+
+function onSearch(searchTerm: string): void {
+  ...
+}
+</script>
+
+<template>
+  <VcAutocomplete
+    v-model="value"
+    :items="items"
+    :display-fn="(v) => v"
+    :is-loading="isFetchingItems"
+    label="Autocomplete"
+    @search="onSearch"
+  />
+</template>
+```
+
 ## Examples
 
 ### Clear search term on select

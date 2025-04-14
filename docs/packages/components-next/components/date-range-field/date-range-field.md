@@ -6,6 +6,26 @@ This component is build on top of [Form Field](/packages/components-next/compone
 
 <ComponentPreview name="date-range-field/examples/main" />
 
+## Usage
+```vue
+<script setup lang="ts">
+import { VcDateRangeField } from '@wisemen/vue-core-components'
+
+const value = ref<DateRange>({
+  from: null,
+  until: null,
+})
+</script>
+
+<template>
+  <VcDateRangeField
+    v-model="value"
+    :show-two-months="true"
+    label="Select a date"
+  />
+</template>
+```
+
 ## Anatomy
 
 ```vue

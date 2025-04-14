@@ -6,6 +6,22 @@ This component is build on top of [Form Field](/packages/components-next/compone
 
 <ComponentPreview name="date-field/examples/main" />
 
+## Usage
+```vue
+<script setup lang="ts">
+import { VcDateField } from '@wisemen/vue-core-components'
+
+const value = ref<Date | null>(null)
+</script>
+
+<template>
+  <VcDateField
+    v-model="value"
+    label="Select a date"
+  />
+</template>
+```
+
 ## Anatomy
 
 ```vue
