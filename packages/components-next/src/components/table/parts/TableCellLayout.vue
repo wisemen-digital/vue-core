@@ -32,14 +32,19 @@ const isLastColumn = computed<boolean>(() => (
 
 <template>
   <Primitive
-    :as-child="false"
-    :class="{
-      'sticky z-4 border-transparent': (isFirstColumn && isFirstColumnSticky) || (isLastColumn && isLastColumnSticky),
-      'left-0 border-r': isFirstColumn && isFirstColumnSticky,
-      'right-0 border-l': isLastColumn && isLastColumnSticky,
-      'border-r-secondary': isFirstColumn && isFirstColumnSticky && isScrolledHorizontally,
-      'border-l-secondary': isLastColumn && isLastColumnSticky && !hasReachedHorizontalEnd,
-    }"
+    :class="[
+      {
+        'sticky z-4': (isFirstColumn && isFirstColumnSticky) || (isLastColumn && isLastColumnSticky),
+        'left-0 border-r': isFirstColumn && isFirstColumnSticky,
+        'right-0 border-l': isLastColumn && isLastColumnSticky,
+      },
+      isFirstColumn && isFirstColumnSticky && isScrolledHorizontally
+        ? 'border-r-secondary'
+        : 'border-r-transparent',
+      isLastColumn && isLastColumnSticky && hasReachedHorizontalEnd
+        ? 'border-l-transparent'
+        : 'border-l-secondary',
+    ]"
     class="relative duration-200"
   >
     <slot />
