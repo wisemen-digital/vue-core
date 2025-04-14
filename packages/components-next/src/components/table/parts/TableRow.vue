@@ -11,7 +11,6 @@ const props = defineProps<{
 }>()
 
 const {
-  hasVerticalOverflow,
   isFirstColumnSticky,
   classConfig,
   columns,
@@ -26,10 +25,8 @@ const {
       style.row({
         class: mergeClasses(classConfig?.row, customClassConfig?.row),
       }),
-      {
-        'last:border-b-0': hasVerticalOverflow,
-      },
     ]"
+    class="last:border-b-0"
     role="row"
   >
     <TableRowAction
