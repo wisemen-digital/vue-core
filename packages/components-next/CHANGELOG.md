@@ -1,5 +1,11 @@
 # @wisemen/vue-core-components
 
+## 1.5.1
+
+### 🐞 Bug Fixes
+
+- Resolved an issue where styles were broken due to Tailwind not being properly imported.
+
 ## 1.5.0
 
 ### 🔥 New Features
