@@ -50,4 +50,12 @@ import {
 
 <ComponentPreview name="date-field/examples/hide-date-picker" />
 
+### Customize
+
+`iconLeft`, `iconRight`, `input`, `inputs`, `loader`, `root`
+
+`datePicker` includes these sub-parts: `date`, `grid`, `gridBody`, `gridContainer`, `gridRow`, `header`, `headerContainer`, `monthSeparator`, `todayIndicator`, `weekDayLabel`,
+
+<ComponentPreview name="date-field/examples/customize" />
+
 <!-- @include: ./date-field-meta.md -->
