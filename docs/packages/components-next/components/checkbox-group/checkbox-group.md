@@ -33,4 +33,9 @@ import {
 
 <ComponentPreview name="checkbox-group/examples/error" />
 
+### Customize
+Customize the `root` of the CheckboxGroup or additional parts for singular <a href="/vue-core/packages/components-next/components/checkbox/checkbox.html#customize">Checkboxes</a>
+
+<ComponentPreview name="checkbox-group/examples/customize" />`
+
 <!-- @include: ./checkbox-group-meta.md -->

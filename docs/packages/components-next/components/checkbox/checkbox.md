@@ -42,6 +42,8 @@ import {
 
 ### Customize
 
+`root`, `control`, `indicator`
+
 <ComponentPreview name="checkbox/examples/customize" />
 
 <!-- @include: ./checkbox-meta.md -->
