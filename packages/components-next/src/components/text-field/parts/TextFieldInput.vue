@@ -45,10 +45,11 @@ function onInput(event: InputEvent): void {
       :autocomplete="autocomplete"
       :placeholder="placeholder"
       :spellcheck="isSpellCheckEnabled"
-      as="input"
       @focus="onFocus"
       @blur="onBlur"
       @input="onInput"
-    />
+    >
+      <input>
+    </FormControl>
   </TestIdProvider>
 </template>
