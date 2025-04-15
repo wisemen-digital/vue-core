@@ -1,5 +1,17 @@
 # @wisemen/vue-core-components
 
+## 1.5.2
+
+### ✨ Improvements
+
+- **TimeField**: Changed the `modelValue` type from `string` to a generic `T extends string` for improved flexibility.
+- **TextField**: Prefixed component exports with `Vc` to maintain naming consistency.
+- **Dialog**: Exported `VcDialogTriggerProps` type.
+
+### 🐞 Bug Fixes
+
+- **TextField**: Fixed issue where the input remained enabled even when `isDisabled` was set to `true`.
+
 ## 1.5.1
 
 ### 🐞 Bug Fixes

@@ -1,5 +1,6 @@
 export { useDialog as useVcDialog } from '@/components/dialog/dialog.composable'
 export type { DialogProps as VcDialogProps } from '@/components/dialog/dialog.props'
+export type { DialogTriggerProps as VcDialogTriggerProps } from '@/components/dialog/dialog.type'
 export { default as VcDialog } from '@/components/dialog/Dialog.vue'
 export { default as VcDialogContainer } from '@/components/dialog/DialogContainer.vue'
 export { default as VcDialogCloseButton } from '@/components/dialog/parts/DialogCloseButton.vue'

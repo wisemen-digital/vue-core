@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="TValue extends string">
 import { Time as TimeValue } from '@internationalized/date'
 import { TimeFieldRoot as RekaTimeFieldRoot } from 'reka-ui'
 import {
@@ -49,7 +49,7 @@ const props = withDefaults(defineProps<TimeFieldProps>(), {
 
 const emit = defineEmits<TimeFieldEmits>()
 
-const modelValue = defineModel<string | null>({ required: true })
+const modelValue = defineModel<TValue | null>({ required: true })
 
 const delegatedModel = computed<TimeValue | undefined>({
   get: () => {
@@ -76,7 +76,7 @@ const delegatedModel = computed<TimeValue | undefined>({
 
     const updatedValue = `${value.hour.toString().padStart(2, '0')}:${value.minute.toString().padStart(2, '0')}`
 
-    modelValue.value = updatedValue
+    modelValue.value = updatedValue as TValue
   },
 })
 
