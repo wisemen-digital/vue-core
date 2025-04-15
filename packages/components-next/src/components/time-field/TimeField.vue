@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="TValue extends string">
 import { useId } from 'vue'
 
 import FormField from '@/components/form-field/FormField.vue'
@@ -17,7 +17,7 @@ const emit = defineEmits<TimeFieldEmits>()
 
 defineSlots<TimeFieldSlots>()
 
-const modelValue = defineModel<string | null>({ required: true })
+const modelValue = defineModel<TValue | null>({ required: true })
 
 const id = props.id ?? useId()
 </script>
