@@ -2,6 +2,7 @@ import type { Component } from 'vue'
 
 export const icons = {
   expand: import('./ExpandIcon.vue'),
+  fontSize: import('./FontSizeIcon.vue'),
   shrink: import('./ShrinkIcon.vue'),
 } satisfies Record<string, Component>
 

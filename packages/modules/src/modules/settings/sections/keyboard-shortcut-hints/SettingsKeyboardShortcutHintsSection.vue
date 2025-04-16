@@ -56,7 +56,7 @@ const label = computed<string>(() => {
             :keyboard-keys="['meta', 'k']"
             :class-config="{
               keyboardKey: {
-                key: 'bg-secondary text-tertiary',
+                key: 'bg-secondary text-tertiary shadow-none',
               },
             }"
             class="ml-md"

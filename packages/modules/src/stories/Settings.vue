@@ -11,9 +11,8 @@ import { useKeyboardShortcutHintsSection } from '@/modules/settings/sections/key
 import type { SettingsConfig } from '@/modules/settings/settings.type'
 import Settings from '@/modules/settings/Settings.vue'
 import SettingsDialog from '@/modules/settings/SettingsDialog.vue'
-import GeneralSettings from '@/stories/GeneralSettings.vue'
 
-const initialDefaultSettingsState = ref({
+const initialDefaultSettingsState = ref<any>({
   appearance: 'dark',
   enableKeyboardShortcutHints: true,
   fontSize: 'default',
@@ -33,15 +32,15 @@ const config: SettingsConfig = {
             useAppearanceSection(),
             useFontSizeSection(),
             useKeyboardShortcutHintsSection(),
-            {
-              id: 'profile',
-              title: 'Profile picture',
-              description: 'Change your profile picture',
-              tags: [
-                'profile image',
-              ],
-              component: () => h(GeneralSettings),
-            },
+            // {
+            //   id: 'profile',
+            //   title: 'Profile picture',
+            //   description: 'Change your profile picture',
+            //   tags: [
+            //     'profile image',
+            //   ],
+            //   component: () => h(GeneralSettings),
+            // },
           ],
         },
         {

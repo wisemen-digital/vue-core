@@ -23,7 +23,7 @@ const defaultSettingsState = defineModel<DefaultSettings>('defaultSettingsState'
       <SettingsSidebarContent />
     </SettingsSidebar>
 
-    <div class="flex flex-col overflow-hidden">
+    <div class="bg-primary flex flex-col overflow-hidden">
       <SettingsHeader />
       <SettingsContent />
     </div>

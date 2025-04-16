@@ -1,14 +1,22 @@
 <script setup lang="ts">
 import type { VcKeyboardShortcutProps } from '@wisemen/vue-core-components'
 import {
+  VcIconButton,
   VcKeyboardShortcut,
   VcKeyboardShortcutProvider,
   VcTextFieldIconLeft,
   VcTextFieldInput,
   VcTextFieldRoot,
 } from '@wisemen/vue-core-components'
+import {
+  AnimatePresence,
+  Motion,
+} from 'motion-v'
 import { ListboxFilter } from 'reka-ui'
-import { useId } from 'vue'
+import {
+  computed,
+  useId,
+} from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import { useInjectSettingsContext } from '@/modules/settings/settings.context'
@@ -22,6 +30,12 @@ const SHORTCUT_KEYS: VcKeyboardShortcutProps['keyboardKeys'] = [
   'meta',
   'f',
 ]
+
+function onClearSearchTerm(): void {
+  searchTerm.value = ''
+}
+
+const hasSearchTerm = computed<boolean>(() => searchTerm.value.trim().length > 0)
 </script>
 
 <template>
@@ -48,16 +62,42 @@ const SHORTCUT_KEYS: VcKeyboardShortcutProps['keyboardKeys'] = [
         <VcTextFieldInput />
       </ListboxFilter>
 
-      <VcKeyboardShortcut
-        v-if="false"
-        :keyboard-keys="SHORTCUT_KEYS"
-        :class-config="{
-          keyboardKey: {
-            key: 'bg-tertiary',
-          },
+      <Motion
+        :layout="true"
+        :data-has-search="hasSearchTerm"
+        :transition="{
+          type: 'spring',
+          bounce: 0.2,
+          duration: 0.2,
         }"
-        class="mr-md"
-      />
+      >
+        <AnimatePresence>
+          <VcIconButton
+            v-if="hasSearchTerm"
+            :label="t('module.settings.search.clear.label')"
+            :class-config="{
+              icon: 'size-4',
+              root: 'size-7 shrink-0 rounded-[0.3rem]',
+            }"
+            class="mr-sm"
+            icon="close"
+            size="sm"
+            variant="tertiary"
+            @click="onClearSearchTerm"
+          />
+
+          <VcKeyboardShortcut
+            v-else
+            :keyboard-keys="SHORTCUT_KEYS"
+            :class-config="{
+              keyboardKey: {
+                key: 'bg-secondary shadow-none',
+              },
+            }"
+            class="mr-md"
+          />
+        </AnimatePresence>
+      </Motion>
     </VcTextFieldRoot>
   </VcKeyboardShortcutProvider>
 </template>

@@ -37,6 +37,7 @@ const value = useDefaultSetting('fontSize')
         :id="id"
         v-model="value"
         :display-fn="(v) => t(`module.settings.section.font_size.option.${v}`)"
+        icon-left="fontSize"
         class="max-w-72"
       >
         <VcSelectItem
