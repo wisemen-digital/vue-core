@@ -1,10 +1,15 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectSelectContext } from '@/components/select/select.context'
 
 const {
-  modelValue, placeholder,
+  classConfig,
+  customClassConfig,
+  modelValue,
+  placeholder,
+  style,
 } = useInjectSelectContext()
 
 const isPlaceholderVisible = computed<boolean>(() => {
@@ -19,7 +24,9 @@ const isPlaceholderVisible = computed<boolean>(() => {
 <template>
   <span
     v-if="isPlaceholderVisible"
-    class="text-placeholder text-sm"
+    :class="style.placeholder({
+      class: mergeClasses(customClassConfig.placeholder, classConfig?.placeholder),
+    })"
   >
     {{ placeholder }}
   </span>

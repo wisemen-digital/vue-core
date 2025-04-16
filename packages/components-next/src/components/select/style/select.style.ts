@@ -88,6 +88,10 @@ export const createSelectStyle = tv({
       .withSize('size-4')
       .withColor('text-quaternary')
       .build(),
+    placeholder: new StyleBuilder()
+      .withColor('text-placeholder')
+      .withFontSize('text-sm')
+      .build(),
     root: new StyleBuilder()
       .withBase('relative group/select overflow-hidden')
       .withFlex('flex items-center')
