@@ -321,6 +321,7 @@ useProvideSelectContext({
       :data-disabled="props.isDisabled || undefined"
       @focusin="onRootFocusIn"
       @focusout="onRootFocusOut"
+      @entry-focus.prevent
     >
       <RekaListboxRoot
         v-model="modelValue"
