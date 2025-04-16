@@ -18,7 +18,7 @@ export const setupVue3 = defineSetupVue3(({
         'module.settings.navigation.forward.label': 'Forward',
         'module.settings.search.placeholder': 'Search...',
         'module.settings.section.appearance.description': 'Customize the overall look and feel of the app.',
-        'module.settings.section.appearance.option.dark_mode': 'Light mode',
+        'module.settings.section.appearance.option.dark_mode': 'Dark mode',
         'module.settings.section.appearance.option.light_mode': 'Light mode',
         'module.settings.section.appearance.option.system_preference': 'System preference',
         'module.settings.section.appearance.title': 'Appearance',

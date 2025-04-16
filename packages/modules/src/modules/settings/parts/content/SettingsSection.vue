@@ -1,13 +1,11 @@
 <script setup lang="ts">
 import TextHighlight from '@/modules/settings/components/TextHighlight.vue'
-import { useInjectSettingsContext } from '@/modules/settings/settings.context'
 import { useInjectSettingsSectionContext } from '@/modules/settings/settingsSection.context'
 
 const props = withDefaults(defineProps<{
   isSingleColumnLayout?: boolean
 }>(), { isSingleColumnLayout: false })
 
-const { searchTerm } = useInjectSettingsContext()
 const { section } = useInjectSettingsSectionContext()
 </script>
 
@@ -22,17 +20,11 @@ const { section } = useInjectSettingsSectionContext()
     <div>
       <!-- eslint-disable-next-line vuejs-accessibility/heading-has-content -->
       <h2 class="text-secondary text-sm font-semibold">
-        <TextHighlight
-          :text="section.title"
-          :search-term="searchTerm"
-        />
+        <TextHighlight :text="section.title" />
       </h2>
 
       <p class="text-tertiary mt-xs text-sm">
-        <TextHighlight
-          :text="section.description"
-          :search-term="searchTerm"
-        />
+        <TextHighlight :text="section.description" />
       </p>
     </div>
 

@@ -3,20 +3,20 @@ import { VcIcon } from '@wisemen/vue-core-components'
 import { ListboxItem } from 'reka-ui'
 
 import TextHighlight from '@/modules/settings/components/TextHighlight.vue'
-import { useInjectSettingsContext } from '@/modules/settings/settings.context'
 import type { SettingsView } from '@/modules/settings/settings.type'
 
 const props = defineProps<{
   view: SettingsView
 }>()
-
-const { searchTerm } = useInjectSettingsContext()
 </script>
 
 <template>
   <ListboxItem
     :as-child="true"
-    :value="props.view.id"
+    :value="{
+      type: 'view',
+      id: props.view.id,
+    }"
   >
     <li
       class="
@@ -49,10 +49,7 @@ const { searchTerm } = useInjectSettingsContext()
           group-data-[state=checked]/sidebar-item:font-semibold
         "
       >
-        <TextHighlight
-          :search-term="searchTerm"
-          :text="props.view.title"
-        />
+        <TextHighlight :text="props.view.title" />
       </span>
     </li>
   </ListboxItem>

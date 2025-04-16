@@ -7,19 +7,17 @@ import { useInjectSettingsContext } from '@/modules/settings/settings.context'
 import type { SettingsSection } from '@/modules/settings/settings.type'
 
 const {
-  activeViewOrSectionId, activeView,
+  activeItem, activeView,
 } = useInjectSettingsContext()
 
 const filteredSections = computed<SettingsSection[]>(() => {
-  const filteredSections = activeView.value.sections.filter((section) => {
-    return section.id === activeViewOrSectionId.value
-  })
-
-  if (filteredSections.length === 0) {
-    return activeView.value.sections
+  if (activeItem.value.type === 'section') {
+    return activeView.value.sections.filter((section) => {
+      return section.id === activeItem.value.id
+    })
   }
 
-  return filteredSections
+  return activeView.value.sections
 })
 
 const hiddenSectionCount = computed<number>(() => {

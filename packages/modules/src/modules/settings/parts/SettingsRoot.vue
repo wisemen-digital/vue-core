@@ -21,32 +21,29 @@ const defaultSettingsState = defineModel<DefaultSettings>('defaultSettingsState'
 const searchTerm = ref<string>('')
 
 const {
-  activeViewOrSectionId,
+  activeItem,
   canGoBack,
   canGoForward,
   goBack,
   goForward,
-  onSelectViewOrSection,
-} = useSettingsHistory(props.config.categories[0]!.views[0]!.id)
+  onShowItem,
+  onShowSection,
+  onShowView,
+} = useSettingsHistory({
+  id: props.config.categories[0]!.views[0]!.id,
+  type: 'view',
+})
 
 const activeView = computed<SettingsView>(() => {
   const views = props.config.categories.flatMap((category) => category.views)
 
-  const activeView = views.find((view) => view.id === activeViewOrSectionId.value) ?? null
-
-  if (activeView === null) {
-    const match = views.find((view) => view.sections.some(
-      (section) => section.id === activeViewOrSectionId.value,
-    )) ?? null
-
-    if (match === null) {
-      throw new Error('No view or section found with the given ID')
-    }
-
-    return match
+  if (activeItem.value.type === 'view') {
+    return views.find((view) => view.id === activeItem.value.id)!
   }
 
-  return activeView
+  return views.find((view) => view.sections.some(
+    (section) => section.id === activeItem.value.id,
+  ))!
 })
 
 const filteredCategories = computed<SettingsCategory[]>(() => {
@@ -96,7 +93,7 @@ const filteredCategories = computed<SettingsCategory[]>(() => {
 })
 
 useProvideSettingsContext({
-  activeViewOrSectionId,
+  activeItem,
   activeView,
   canGoBack,
   canGoForward,
@@ -106,7 +103,9 @@ useProvideSettingsContext({
   goBack,
   goForward,
   searchTerm,
-  onSelectViewOrSection,
+  onShowItem,
+  onShowSection,
+  onShowView,
 })
 </script>
 

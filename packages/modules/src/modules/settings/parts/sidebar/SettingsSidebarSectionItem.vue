@@ -2,20 +2,20 @@
 import { ListboxItem } from 'reka-ui'
 
 import TextHighlight from '@/modules/settings/components/TextHighlight.vue'
-import { useInjectSettingsContext } from '@/modules/settings/settings.context'
 import type { SettingsSection } from '@/modules/settings/settings.type'
 
 const props = defineProps<{
   section: SettingsSection
 }>()
-
-const { searchTerm } = useInjectSettingsContext()
 </script>
 
 <template>
   <ListboxItem
     :as-child="true"
-    :value="props.section.id"
+    :value="{
+      type: 'section',
+      id: props.section.id,
+    }"
   >
     <li
       class="
@@ -34,10 +34,7 @@ const { searchTerm } = useInjectSettingsContext()
           group-data-[state=checked]/sidebar-item:font-semibold
         "
       >
-        <TextHighlight
-          :search-term="searchTerm"
-          :text="props.section.title"
-        />
+        <TextHighlight :text="props.section.title" />
       </span>
     </li>
   </ListboxItem>

@@ -3,13 +3,16 @@ import type { HighlightWords } from 'highlight-words'
 import highlightWords from 'highlight-words'
 import { computed } from 'vue'
 
+import { useInjectSettingsContext } from '@/modules/settings/settings.context'
+
 const props = defineProps<{
-  searchTerm: string
   text: string
 }>()
 
+const { searchTerm } = useInjectSettingsContext()
+
 const chunks = computed<HighlightWords.Chunk[]>(() => highlightWords({
-  query: props.searchTerm,
+  query: searchTerm.value,
   text: props.text,
 }))
 </script>

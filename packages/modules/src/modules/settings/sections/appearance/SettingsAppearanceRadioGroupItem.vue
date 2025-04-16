@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { VcRadioGroupItemRoot } from '@wisemen/vue-core-components'
 
+import TextHighlight from '@/modules/settings/components/TextHighlight.vue'
+
 const props = defineProps<{
   label: string
   value: string
@@ -30,7 +32,7 @@ const props = defineProps<{
     </div>
 
     <label class="text-primary mt-md inline-block truncate text-sm font-medium">
-      {{ props.label }}
+      <TextHighlight :text="props.label" />
     </label>
   </VcRadioGroupItemRoot>
 </template>

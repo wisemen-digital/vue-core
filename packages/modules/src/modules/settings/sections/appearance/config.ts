@@ -11,7 +11,11 @@ export function useAppearanceSection(): SettingsSection {
     id: 'appearance',
     title: t('module.settings.section.appearance.title'),
     description: t('module.settings.section.appearance.description'),
-    tags: [],
+    tags: [
+      'module.settings.section.appearance.option.light_mode',
+      'module.settings.section.appearance.option.dark_mode',
+      'module.settings.section.appearance.option.system_preference',
+    ],
     component: () => h(SettingsAppearanceSection),
   }
 }
