@@ -1,5 +1,22 @@
 # @wisemen/vue-core-components
 
+## 1.5.3
+
+### 🐞 Bug Fixes
+
+- **Select**: Fixed an issue where opening the dropdown caused abrupt and incorrect scrolling.
+- **Popper Components**: Ensured slot content is correctly wrapped in a `ThemeProvider` when rendered via a portal.
+
+### ✨ Improvements
+
+- **Select**: The `placeholder` is now fully customizable.
+
+### ⚠️ Deprecations
+
+- `useAppearance` has been deprecated.  
+  → Please switch to using `useStorage` directly in your project.  
+  This composable will be **removed in the next major release**.
+
 ## 1.5.2
 
 ### ✨ Improvements
