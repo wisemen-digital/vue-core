@@ -11,6 +11,7 @@ const value = ref<string | null>(null)
     <TextField
       v-model="value"
       :is-required="true"
+      :is-disabled="true"
       hint="You can type anything"
       icon-left="search"
       label="Text field"
