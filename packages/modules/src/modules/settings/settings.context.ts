@@ -13,6 +13,7 @@ import type {
 import type { SettingsHistory } from '@/modules/settings/settingsHistory.composable'
 
 interface SettingsContext extends SettingsHistory {
+  isSidebarVisible: Ref<boolean>
   activeView: ComputedRef<SettingsView>
   config: ComputedRef<SettingsConfig>
   defaultSettingsState: Ref<DefaultSettings>

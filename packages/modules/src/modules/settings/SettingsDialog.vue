@@ -38,7 +38,8 @@ useProvideSettingsDialogContext({ isExpanded })
             bounce: 0,
           }"
           class="
-            max-h-[95dvh] min-h-[95dvh] max-w-[97dvw] min-w-[97dvw]
+            max-h-[calc(100dvh-2rem)] min-h-[calc(100dvh-2rem)]
+            max-w-[calc(100dvw-2rem)] min-w-[calc(100dvw-2rem)]
             md:min-h-full md:min-w-full
           "
         >

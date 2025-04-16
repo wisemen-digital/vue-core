@@ -19,6 +19,7 @@ const props = defineProps<SettingsProps>()
 const defaultSettingsState = defineModel<DefaultSettings>('defaultSettingsState', { required: true })
 
 const searchTerm = ref<string>('')
+const isSidebarVisible = ref<boolean>(false)
 
 const {
   activeItem,
@@ -59,8 +60,9 @@ const filteredCategories = computed<SettingsCategory[]>(() => {
         .map((view) => {
           const matchingSections = view.sections.filter((section) => {
             const titleMatch = section.title.toLowerCase().includes(searchTerm.value.toLowerCase())
-            const descriptionMatch = section.description?.toLowerCase()
-              .includes(searchTerm.value.toLowerCase()) ?? false
+            const descriptionMatch = section.description.toLowerCase()
+              .includes(searchTerm.value.toLowerCase())
+
             const tagsMatch = section.tags.some((tag) =>
               tag.toLowerCase().includes(searchTerm.value.toLowerCase()))
 
@@ -93,6 +95,7 @@ const filteredCategories = computed<SettingsCategory[]>(() => {
 })
 
 useProvideSettingsContext({
+  isSidebarVisible,
   activeItem,
   activeView,
   canGoBack,

@@ -12,11 +12,11 @@ const { t } = useI18n()
 
 useKeyboardShortcut({
   keys: [
-    'meta',
-    'enter',
+    'f',
   ],
   onTrigger: (e) => {
     e.stopImmediatePropagation()
+    isExpanded.value = !isExpanded.value
   },
 })
 </script>
