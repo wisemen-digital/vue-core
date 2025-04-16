@@ -2,6 +2,7 @@ import type { Icon } from '@wisemen/vue-core-components'
 import type { Component } from 'vue'
 
 export interface SettingsSection {
+  id: string
   title: string
   description: string
   tags: string[]

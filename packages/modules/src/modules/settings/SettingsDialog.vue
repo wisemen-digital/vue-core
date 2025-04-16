@@ -23,18 +23,24 @@ useProvideSettingsDialogContext({ isExpanded })
     <VcDialogContent>
       <LayoutStackItem>
         <Motion
-          :data-is-expanded="isExpanded"
-          :initial="false"
+          :initial="{
+            // Settings the initial state to `initial: false` breaks Motion animations inside the dialog
+            width: isExpanded ? '97dvw' : '60rem',
+            height: isExpanded ? '95dvh' : '40rem',
+          }"
           :animate="{
-            width: isExpanded ? '98vw' : '60rem',
-            height: isExpanded ? '98vh' : '40rem',
+            width: isExpanded ? '97dvw' : '60rem',
+            height: isExpanded ? '95dvh' : '40rem',
           }"
           :transition="{
             duration: 0.4,
             type: 'spring',
             bounce: 0,
           }"
-          class="max-h-[98vh] max-w-[98vw]"
+          class="
+            max-h-[95dvh] min-h-[95dvh] max-w-[97dvw] min-w-[97dvw]
+            md:min-h-full md:min-w-full
+          "
         >
           <VcDialogTitle class="sr-only">
             <h1>

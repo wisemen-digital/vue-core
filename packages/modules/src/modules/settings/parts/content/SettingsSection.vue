@@ -15,13 +15,13 @@ const { section } = useInjectSettingsSectionContext()
   <section
     :class="{
       '@6xl/settings:grid-cols-[1fr_1.5fr]': props.isSingleColumnLayout,
-      'grid-cols-[1fr_1.5fr]': !props.isSingleColumnLayout,
+      '@2xl/settings:grid-cols-[1fr_1.5fr]': !props.isSingleColumnLayout,
     }"
     class="p-4xl gap-x-4xl gap-y-2xl grid"
   >
     <div>
       <!-- eslint-disable-next-line vuejs-accessibility/heading-has-content -->
-      <h2 class="text-secondary text-sm font-medium">
+      <h2 class="text-secondary text-sm font-semibold">
         <TextHighlight
           :text="section.title"
           :search-term="searchTerm"

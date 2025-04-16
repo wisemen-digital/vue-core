@@ -1,8 +1,5 @@
-import type { SettingsConfig } from '@/modules/settings/types/settings.type'
-
-type SettingsMode = 'dialog' | 'inline'
+import type { SettingsConfig } from '@/modules/settings/settings.type'
 
 export interface SettingsProps {
   config: SettingsConfig
-  mode: SettingsMode
 }

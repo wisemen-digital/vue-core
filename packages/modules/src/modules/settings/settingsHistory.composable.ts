@@ -6,17 +6,17 @@ import {
 } from 'vue'
 
 export interface SettingsHistory {
-  activeViewId: ComputedRef<string>
+  activeViewOrSectionId: ComputedRef<string>
   canGoBack: ComputedRef<boolean>
   canGoForward: ComputedRef<boolean>
   goBack: () => void
   goForward: () => void
-  onChangeView: (viewId: string) => void
+  onSelectViewOrSection: (viewOrSectionId: string) => void
 }
 
 export function useSettingsHistory(defaultViewId: string): SettingsHistory {
-  const activeViewId = ref<string>(defaultViewId)
-  const history = useRefHistory<string>(activeViewId)
+  const activeViewOrSectionId = ref<string>(defaultViewId)
+  const history = useRefHistory<string>(activeViewOrSectionId)
 
   function goBack(): void {
     history.undo()
@@ -26,16 +26,16 @@ export function useSettingsHistory(defaultViewId: string): SettingsHistory {
     history.redo()
   }
 
-  function onChangeView(viewId: string): void {
-    activeViewId.value = viewId
+  function onSelectViewOrSection(viewOrSectionId: string): void {
+    activeViewOrSectionId.value = viewOrSectionId
   }
 
   return {
-    activeViewId: computed<string>(() => activeViewId.value),
+    activeViewOrSectionId: computed<string>(() => activeViewOrSectionId.value),
     canGoBack: computed<boolean>(() => history.canUndo.value),
     canGoForward: computed<boolean>(() => history.canRedo.value),
     goBack,
     goForward,
-    onChangeView,
+    onSelectViewOrSection,
   }
 }

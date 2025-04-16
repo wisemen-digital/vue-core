@@ -41,7 +41,9 @@
             Dashboard
           </span>
 
-          <div class="bg-quaternary h-2.5 w-8 rounded-2xl" />
+          <slot name="action">
+            <div class="bg-quaternary h-2.5 w-8 rounded-2xl" />
+          </slot>
         </div>
 
         <div class="mt-md bg-tertiary h-28 w-full rounded-xl" />

@@ -33,11 +33,13 @@ export default defineConfig({
         'vue-router',
         'i18n-iso-countries',
         'motion-v',
+        '@wisemen/vue-core-components',
       ],
       output: {
         // Provide global variables to use in the UMD build
         // for externalized deps
         globals: {
+          '@wisemen/vue-core-components': 'VueCoreComponents',
           'motion-v': 'MotionV',
           'vue': 'Vue',
           'vue-i18n': 'VueI18n',

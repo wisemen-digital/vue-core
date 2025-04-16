@@ -4,19 +4,20 @@ import { ListboxRoot } from 'reka-ui'
 import { useInjectSettingsContext } from '@/modules/settings/settings.context'
 
 const {
-  activeViewId, onChangeView,
+  activeViewOrSectionId, onSelectViewOrSection,
 } = useInjectSettingsContext()
 </script>
 
 <template>
   <ListboxRoot
-    :model-value="activeViewId"
+    :model-value="activeViewOrSectionId"
     selection-behavior="replace"
     class="
-      border-secondary p-3xl gap-y-3xl bg-secondary-subtle flex w-72 flex-col
+      border-secondary p-3xl gap-y-3xl bg-secondary-subtle hidden w-72 flex-col
       border-r border-solid
+      @3xl/settings:flex
     "
-    @update:model-value="(id) => onChangeView(id as string)"
+    @update:model-value="(id) => onSelectViewOrSection(id as string)"
   >
     <slot />
   </ListboxRoot>

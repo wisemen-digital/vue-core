@@ -3,10 +3,13 @@ import { ListboxContent } from 'reka-ui'
 
 import SettingsSidebarCategory from '@/modules/settings/parts/sidebar/SettingsSidebarCategory.vue'
 import SettingsSidebarNoResults from '@/modules/settings/parts/sidebar/SettingsSidebarNoResults.vue'
+import SettingsSidebarSectionItem from '@/modules/settings/parts/sidebar/SettingsSidebarSectionItem.vue'
 import SettingsSidebarViewItem from '@/modules/settings/parts/sidebar/SettingsSidebarViewItem.vue'
 import { useInjectSettingsContext } from '@/modules/settings/settings.context'
 
-const { filteredCategories } = useInjectSettingsContext()
+const {
+  filteredCategories, searchTerm,
+} = useInjectSettingsContext()
 </script>
 
 <template>
@@ -16,11 +19,23 @@ const { filteredCategories } = useInjectSettingsContext()
       :key="category.title"
       :label="category.title"
     >
-      <SettingsSidebarViewItem
-        v-for="item of category.views"
-        :key="item.id"
-        :view="item"
-      />
+      <template
+        v-for="view of category.views"
+        :key="view.id"
+      >
+        <SettingsSidebarViewItem :view="view" />
+
+        <ul
+          v-if="searchTerm.trim().length > 0 && view.sections.length > 0"
+          class="-mt-xxs gap-y-xxs flex flex-col pl-[2.3rem]"
+        >
+          <SettingsSidebarSectionItem
+            v-for="section of view.sections"
+            :key="section.title"
+            :section="section"
+          />
+        </ul>
+      </template>
     </SettingsSidebarCategory>
 
     <SettingsSidebarNoResults />

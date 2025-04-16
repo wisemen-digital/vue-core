@@ -14,15 +14,22 @@ const props = defineProps<{
   >
     <div
       class="
-        group-data-[state=checked]/radio-group-item:border-brand-500
-        relative h-30 overflow-hidden rounded-xl border-2 border-solid
-        border-transparent duration-200
+        border-secondary relative h-30 overflow-hidden rounded-xl border
+        border-solid outline-2 outline-offset-1 outline-transparent duration-500
+        group-data-[state=checked]/radio-group-item:outline-brand-500
       "
     >
-      <slot />
+      <div
+        class="
+          h-full duration-500
+          group-data-[state=checked]/radio-group-item:scale-103
+        "
+      >
+        <slot />
+      </div>
     </div>
 
-    <label class="text-primary mt-md inline-block text-sm font-medium">
+    <label class="text-primary mt-md inline-block truncate text-sm font-medium">
       {{ props.label }}
     </label>
   </VcRadioGroupItemRoot>

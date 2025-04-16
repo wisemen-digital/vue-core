@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { VcIconButton } from '@wisemen/vue-core-components'
+import { useI18n } from 'vue-i18n'
 
 import { useInjectSettingsContext } from '@/modules/settings/settings.context'
 
@@ -9,6 +10,8 @@ const {
   goBack,
   goForward,
 } = useInjectSettingsContext()
+
+const { t } = useI18n()
 </script>
 
 <template>
@@ -18,8 +21,8 @@ const {
       :class-config="{
         root: 'w-7',
       }"
+      :label="t('module.settings.back.label')"
       icon="chevronLeft"
-      label="Back"
       variant="tertiary"
       size="sm"
       @click="goBack"
@@ -30,8 +33,8 @@ const {
       :class-config="{
         root: 'w-7',
       }"
+      :label="t('module.settings.forward.label')"
       icon="chevronRight"
-      label="Forward"
       variant="tertiary"
       size="sm"
       @click="goForward"

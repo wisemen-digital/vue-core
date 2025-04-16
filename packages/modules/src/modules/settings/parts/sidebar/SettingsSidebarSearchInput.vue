@@ -8,10 +8,15 @@ import {
   VcTextFieldRoot,
 } from '@wisemen/vue-core-components'
 import { ListboxFilter } from 'reka-ui'
+import { useId } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import { useInjectSettingsContext } from '@/modules/settings/settings.context'
 
 const { searchTerm } = useInjectSettingsContext()
+
+const { t } = useI18n()
+const id = useId()
 
 const SHORTCUT_KEYS: VcKeyboardShortcutProps['keyboardKeys'] = [
   'meta',
@@ -24,10 +29,18 @@ const SHORTCUT_KEYS: VcKeyboardShortcutProps['keyboardKeys'] = [
     :keyboard-keys="SHORTCUT_KEYS"
     :prevent-default="true"
   >
+    <label
+      :for="id"
+      class="sr-only"
+    >
+      {{ t('module.settings.search.placeholder') }}
+    </label>
+
     <VcTextFieldRoot
+      :id="id"
       v-model="searchTerm"
+      :placeholder="t('module.settings.search.placeholder')"
       icon-left="search"
-      placeholder="Search..."
     >
       <VcTextFieldIconLeft />
 

@@ -4,7 +4,7 @@ import { ListboxItem } from 'reka-ui'
 
 import TextHighlight from '@/modules/settings/components/TextHighlight.vue'
 import { useInjectSettingsContext } from '@/modules/settings/settings.context'
-import type { SettingsView } from '@/modules/settings/types/settings.type'
+import type { SettingsView } from '@/modules/settings/settings.type'
 
 const props = defineProps<{
   view: SettingsView

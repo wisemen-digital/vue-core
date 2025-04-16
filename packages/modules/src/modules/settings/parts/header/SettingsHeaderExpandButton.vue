@@ -3,10 +3,12 @@ import {
   useKeyboardShortcut,
   VcIconButton,
 } from '@wisemen/vue-core-components'
+import { useI18n } from 'vue-i18n'
 
 import { useInjectSettingsDialogContext } from '@/modules/settings/settingsDialog.context'
 
 const { isExpanded } = useInjectSettingsDialogContext()
+const { t } = useI18n()
 
 useKeyboardShortcut({
   keys: [
@@ -15,7 +17,6 @@ useKeyboardShortcut({
   ],
   onTrigger: (e) => {
     e.stopImmediatePropagation()
-    isExpanded.value = !isExpanded.value
   },
 })
 </script>
@@ -23,9 +24,13 @@ useKeyboardShortcut({
 <template>
   <VcIconButton
     :icon="isExpanded ? 'shrink' : 'expand'"
+    :label="isExpanded ? t('module.settings.shrink.label') : t('module.settings.expand.label')"
     variant="tertiary"
-    label="Expand"
     size="sm"
+    class="
+      hidden
+      @3xl/settings:flex
+    "
     @click="isExpanded = !isExpanded"
   />
 </template>
