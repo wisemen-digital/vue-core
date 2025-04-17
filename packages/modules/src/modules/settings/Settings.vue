@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { DefaultSettings } from '@/modules/settings/defaultSetting.composable'
+import type { DefaultPreferences } from '@/modules/settings/default-preferences/defaultPreferences'
 import SettingsContent from '@/modules/settings/parts/content/SettingsContent.vue'
 import SettingsHeader from '@/modules/settings/parts/header/SettingsHeader.vue'
 import SettingsRoot from '@/modules/settings/parts/SettingsRoot.vue'
@@ -10,13 +10,13 @@ import type { SettingsProps } from '@/modules/settings/settings.props'
 
 const props = defineProps<SettingsProps>()
 
-const defaultSettingsState = defineModel<DefaultSettings>('defaultSettingsState', { required: true })
+const defaultPreferences = defineModel<DefaultPreferences>('defaultPreferences', { required: true })
 </script>
 
 <template>
   <SettingsRoot
     v-bind="props"
-    v-model:default-settings-state="defaultSettingsState"
+    v-model:default-preferences="defaultPreferences"
   >
     <SettingsSidebar>
       <SettingsSidebarSearchInput />
@@ -24,7 +24,11 @@ const defaultSettingsState = defineModel<DefaultSettings>('defaultSettingsState'
     </SettingsSidebar>
 
     <div class="bg-primary flex flex-col overflow-hidden">
-      <SettingsHeader />
+      <SettingsHeader>
+        <template #header-right>
+          <slot name="header-right" />
+        </template>
+      </SettingsHeader>
       <SettingsContent />
     </div>
   </SettingsRoot>

@@ -4,7 +4,7 @@ import {
   ref,
 } from 'vue'
 
-import type { DefaultSettings } from '@/modules/settings/defaultSetting.composable'
+import type { DefaultPreferences } from '@/modules/settings/default-preferences/defaultPreferences'
 import { useProvideSettingsContext } from '@/modules/settings/settings.context'
 import type { SettingsProps } from '@/modules/settings/settings.props'
 import type {
@@ -16,7 +16,7 @@ import { useSettingsHistory } from '@/modules/settings/settingsHistory.composabl
 
 const props = defineProps<SettingsProps>()
 
-const defaultSettingsState = defineModel<DefaultSettings>('defaultSettingsState', { required: true })
+const defaultPreferences = defineModel<DefaultPreferences>('defaultPreferences', { required: true })
 
 const searchTerm = ref<string>('')
 const isSidebarVisible = ref<boolean>(false)
@@ -101,7 +101,7 @@ useProvideSettingsContext({
   canGoBack,
   canGoForward,
   config: computed<SettingsConfig>(() => props.config),
-  defaultSettingsState,
+  defaultPreferencesState: defaultPreferences,
   filteredCategories,
   goBack,
   goForward,

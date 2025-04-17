@@ -6,13 +6,13 @@ import {
 import { useId } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import { useDefaultSetting } from '@/modules/settings/defaultSetting.composable'
+import SettingsAppearanceMiniDashboard from '@/modules/settings/default-preferences/appearance/SettingsAppearanceMiniDashboard.vue'
+import SettingsAppearanceRadioGroupItem from '@/modules/settings/default-preferences/appearance/SettingsAppearanceRadioGroupItem.vue'
+import { useDefaultPreference } from '@/modules/settings/default-preferences/defaultPreferences'
 import SettingsSection from '@/modules/settings/parts/content/SettingsSection.vue'
-import SettingsAppearanceMiniDashboard from '@/modules/settings/sections/appearance/SettingsAppearanceMiniDashboard.vue'
-import SettingsAppearanceRadioGroupItem from '@/modules/settings/sections/appearance/SettingsAppearanceRadioGroupItem.vue'
 
 const { t } = useI18n()
-const value = useDefaultSetting('appearance')
+const value = useDefaultPreference('appearance')
 
 const id = useId()
 </script>

@@ -4,10 +4,13 @@ import {
   ref,
 } from 'vue'
 
+import {
+  useAppearanceSetting,
+  useFontSizeSetting,
+  useHighContrastSetting,
+  useKeyboardShortcutHintsSetting,
+} from '@/modules/settings/default-preferences/index'
 import SettingsSection from '@/modules/settings/parts/content/SettingsSection.vue'
-import { useAppearanceSection } from '@/modules/settings/sections/appearance/config'
-import { useFontSizeSection } from '@/modules/settings/sections/font-size/config'
-import { useKeyboardShortcutHintsSection } from '@/modules/settings/sections/keyboard-shortcut-hints/config'
 import type { SettingsConfig } from '@/modules/settings/settings.type'
 import Settings from '@/modules/settings/Settings.vue'
 import SettingsDialog from '@/modules/settings/SettingsDialog.vue'
@@ -29,18 +32,10 @@ const config: SettingsConfig = {
           description: 'Manage your account settings like profile picture, name, email, ...',
           icon: 'stars',
           sections: [
-            useAppearanceSection(),
-            useFontSizeSection(),
-            useKeyboardShortcutHintsSection(),
-            // {
-            //   id: 'profile',
-            //   title: 'Profile picture',
-            //   description: 'Change your profile picture',
-            //   tags: [
-            //     'profile image',
-            //   ],
-            //   component: () => h(GeneralSettings),
-            // },
+            useAppearanceSetting(),
+            useFontSizeSetting(),
+            useKeyboardShortcutHintsSetting(),
+            useHighContrastSetting(),
           ],
         },
         {
@@ -50,7 +45,7 @@ const config: SettingsConfig = {
           icon: 'search',
           sections: [
             {
-              id: 'notifications',
+              id: 'notifications2',
               title: 'Notifications',
               description: 'Manage your notifications',
               tags: [
@@ -64,18 +59,13 @@ const config: SettingsConfig = {
     },
   ],
 }
-
-function onDefaultSettingChanged(key: string, value: unknown): void {
-  console.log(key, value)
-}
 </script>
 
 <template>
   <SettingsDialog>
     <Settings
-      v-model:default-settings-state="initialDefaultSettingsState"
+      v-model:default-preferences="initialDefaultSettingsState"
       :config="config"
-      @default-setting-changed="onDefaultSettingChanged"
     />
   </SettingsDialog>
 </template>

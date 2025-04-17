@@ -4,7 +4,7 @@ import type {
 } from 'vue'
 
 import { useContext } from '@/composables/context.composable'
-import type { DefaultSettings } from '@/modules/settings/defaultSetting.composable'
+import type { DefaultPreferences } from '@/modules/settings/default-preferences/defaultPreferences'
 import type {
   SettingsCategory,
   SettingsConfig,
@@ -16,7 +16,7 @@ interface SettingsContext extends SettingsHistory {
   isSidebarVisible: Ref<boolean>
   activeView: ComputedRef<SettingsView>
   config: ComputedRef<SettingsConfig>
-  defaultSettingsState: Ref<DefaultSettings>
+  defaultPreferencesState: Ref<DefaultPreferences>
   filteredCategories: ComputedRef<SettingsCategory[]>
   searchTerm: Ref<string>
 }

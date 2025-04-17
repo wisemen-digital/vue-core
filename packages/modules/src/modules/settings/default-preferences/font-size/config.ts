@@ -1,10 +1,10 @@
 import { h } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import SettingsFontSizeSection from '@/modules/settings/sections/font-size/SettingsFontSizeSection.vue'
+import SettingsFontSizeSection from '@/modules/settings/default-preferences/font-size/SettingsFontSizeSection.vue'
 import type { SettingsSection } from '@/modules/settings/settings.type'
 
-export function useFontSizeSection(): SettingsSection {
+export function useFontSizeSetting(): SettingsSection {
   const { t } = useI18n()
 
   return {

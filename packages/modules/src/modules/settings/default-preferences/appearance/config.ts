@@ -1,10 +1,10 @@
 import { h } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import SettingsAppearanceSection from '@/modules/settings/sections/appearance/SettingsAppearanceSection.vue'
+import SettingsAppearanceSection from '@/modules/settings/default-preferences/appearance/SettingsAppearanceSection.vue'
 import type { SettingsSection } from '@/modules/settings/settings.type'
 
-export function useAppearanceSection(): SettingsSection {
+export function useAppearanceSetting(): SettingsSection {
   const { t } = useI18n()
 
   return {

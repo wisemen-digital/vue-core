@@ -13,9 +13,9 @@ export const setupVue3 = defineSetupVue3(({
     locale: 'en-NL',
     messages: {
       'en-NL': {
+        'module.settings.back.label': 'Back',
         'module.settings.expand.label': 'Expand settings view',
-        'module.settings.navigation.back.label': 'Back',
-        'module.settings.navigation.forward.label': 'Forward',
+        'module.settings.forward.label': 'Forward',
         'module.settings.no_results': 'No results found for "{searchTerm}".',
         'module.settings.search.clear.label': 'Clear search term',
         'module.settings.search.placeholder': 'Quick search',
@@ -31,6 +31,10 @@ export const setupVue3 = defineSetupVue3(({
         'module.settings.section.font_size.option.small': 'Small',
         'module.settings.section.font_size.option.smaller': 'Smaller',
         'module.settings.section.font_size.title': 'Font size',
+        'module.settings.section.high_contrast.description': 'Enhance visibility and reduce eye strain with high contrast mode.',
+        'module.settings.section.high_contrast.disabled.label': 'High contrast mode is disabled',
+        'module.settings.section.high_contrast.enabled.label': 'High contrast mode is enabled',
+        'module.settings.section.high_contrast.title': 'High contrast',
         'module.settings.section.keyboard_shortcut_hints.description': 'Toggle hints for keyboard shortcuts to help you navigate the app more efficiently.',
         'module.settings.section.keyboard_shortcut_hints.disabled.label': 'Keyboard shortcut hints are hidden',
         'module.settings.section.keyboard_shortcut_hints.enabled.label': 'Keyboard shortcut hints are visible',

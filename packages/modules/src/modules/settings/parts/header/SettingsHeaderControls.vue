@@ -19,7 +19,7 @@ const { t } = useI18n()
     <VcIconButton
       :is-disabled="!canGoBack"
       :class-config="{
-        root: 'w-7',
+        root: 'w-7 rounded-md',
       }"
       :label="t('module.settings.back.label')"
       icon="chevronLeft"
@@ -31,7 +31,7 @@ const { t } = useI18n()
     <VcIconButton
       :is-disabled="!canGoForward"
       :class-config="{
-        root: 'w-7',
+        root: 'w-7 rounded-md',
       }"
       :label="t('module.settings.forward.label')"
       icon="chevronRight"

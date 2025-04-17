@@ -6,7 +6,7 @@ import {
 import { useId } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import { useDefaultSetting } from '@/modules/settings/defaultSetting.composable'
+import { useDefaultPreference } from '@/modules/settings/default-preferences/defaultPreferences'
 import SettingsSection from '@/modules/settings/parts/content/SettingsSection.vue'
 
 const { t } = useI18n()
@@ -20,7 +20,7 @@ const options = [
   'larger',
 ] as const
 
-const value = useDefaultSetting('fontSize')
+const value = useDefaultPreference('fontSize')
 </script>
 
 <template>

@@ -8,8 +8,18 @@ import SettingsSidebarViewItem from '@/modules/settings/parts/sidebar/SettingsSi
 import { useInjectSettingsContext } from '@/modules/settings/settings.context'
 
 const {
-  filteredCategories, searchTerm,
+  config,
+  filteredCategories,
+  searchTerm,
 } = useInjectSettingsContext()
+
+function viewHasMultipleSections(viewId: string): boolean {
+  const views = config.value.categories
+    .flatMap((category) => category.views)
+    .find((view) => view.id === viewId)!
+
+  return views.sections.length > 1
+}
 </script>
 
 <template>
@@ -25,8 +35,12 @@ const {
       >
         <SettingsSidebarViewItem :view="view" />
 
+        <!-- When a view only has a single section even without filtering -->
+        <!-- There's no need to show its views -->
         <ul
-          v-if="searchTerm.trim().length > 0 && view.sections.length > 0"
+          v-if="searchTerm.trim().length > 0
+            && viewHasMultipleSections(view.id)
+            && view.sections.length > 0"
           class="-mt-xxs gap-y-xxs flex flex-col pl-[2.3rem]"
         >
           <SettingsSidebarSectionItem

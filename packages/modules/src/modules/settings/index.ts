@@ -1,6 +1,6 @@
-export type { DefaultSettings } from '@/modules/settings/defaultSetting.composable'
+export type { DefaultPreferences } from '@/modules/settings/default-preferences/defaultPreferences'
+export * from '@/modules/settings/default-preferences/index'
 export { default as VcSettingsSection } from '@/modules/settings/parts/content/SettingsSection.vue'
-export * from '@/modules/settings/sections/index'
 export type {
   SettingsCategory,
   SettingsConfig,

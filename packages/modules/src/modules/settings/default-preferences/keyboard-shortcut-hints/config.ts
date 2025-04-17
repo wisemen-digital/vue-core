@@ -1,10 +1,10 @@
 import { h } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import SettingsKeyboardShortcutHintsSection from '@/modules/settings/sections/keyboard-shortcut-hints/SettingsKeyboardShortcutHintsSection.vue'
+import SettingsKeyboardShortcutHintsSection from '@/modules/settings/default-preferences/keyboard-shortcut-hints/SettingsKeyboardShortcutHintsSection.vue'
 import type { SettingsSection } from '@/modules/settings/settings.type'
 
-export function useKeyboardShortcutHintsSection(): SettingsSection {
+export function useKeyboardShortcutHintsSetting(): SettingsSection {
   const { t } = useI18n()
 
   return {

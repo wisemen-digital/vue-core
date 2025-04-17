@@ -23,6 +23,7 @@ const { activeView } = useInjectSettingsContext()
     </div>
 
     <div class="gap-x-xs flex items-center">
+      <slot name="header-right" />
       <SettingsHeaderExpandButton />
       <SettingsHeaderCloseButton />
     </div>
