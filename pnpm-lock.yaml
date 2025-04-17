@@ -557,9 +557,6 @@ importers:
 
   packages/modules:
     dependencies:
-      '@wisemen/vue-core-components':
-        specifier: workspace:*
-        version: link:../components-next
       motion-v:
         specifier: 'catalog:'
         version: 1.0.0-beta.2(vue@3.5.13(typescript@5.8.2))
@@ -609,6 +606,9 @@ importers:
       '@wisemen/eslint-config-vue':
         specifier: 'catalog:'
         version: 1.2.0-beta.1(@typescript-eslint/eslint-plugin@8.29.0(@typescript-eslint/parser@8.29.0(eslint@9.23.0(jiti@2.4.2))(typescript@5.8.2))(eslint@9.23.0(jiti@2.4.2))(typescript@5.8.2))(@typescript-eslint/utils@8.29.0(eslint@9.23.0(jiti@2.4.2))(typescript@5.8.2))(@vue/compiler-sfc@3.5.13)(eslint@9.23.0(jiti@2.4.2))(jsonc-eslint-parser@2.4.0)(tailwindcss@4.1.2)(typescript@5.8.2)(vitest@3.1.1(@types/debug@4.1.12)(@types/node@22.14.0)(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.29.3)(sass@1.77.5)(tsx@4.19.3)(yaml@2.7.1))(vue-eslint-parser@9.4.3(eslint@9.23.0(jiti@2.4.2)))(yaml-eslint-parser@1.3.0)
+      '@wisemen/vue-core-components':
+        specifier: workspace:*
+        version: link:../components-next
       eslint:
         specifier: 'catalog:'
         version: 9.23.0(jiti@2.4.2)

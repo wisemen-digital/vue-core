@@ -16,6 +16,8 @@ export const setupVue3 = defineSetupVue3(({
         'module.settings.back.label': 'Back',
         'module.settings.expand.label': 'Expand settings view',
         'module.settings.forward.label': 'Forward',
+        'module.settings.maximize.label': 'Maximize',
+        'module.settings.minimize.label': 'Minimize',
         'module.settings.no_results': 'No results found for "{searchTerm}".',
         'module.settings.search.clear.label': 'Clear search term',
         'module.settings.search.placeholder': 'Quick search',
@@ -43,7 +45,6 @@ export const setupVue3 = defineSetupVue3(({
         'module.settings.section.keyboard_shortcut_hints.title': 'Keyboard shortcut hints',
         'module.settings.settings_are_hidden.label': '{count} setting in "{viewName}" is currently hidden. | {count} settings in "{viewName}" are currently hidden.',
         'module.settings.settings_are_hidden.show_all.label': 'Show all settings',
-        'module.settings.shrink.label': 'Shrink settings view',
       },
     },
   })

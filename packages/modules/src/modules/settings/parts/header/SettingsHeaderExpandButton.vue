@@ -24,7 +24,7 @@ useKeyboardShortcut({
 <template>
   <VcIconButton
     :icon="isExpanded ? 'shrink' : 'expand'"
-    :label="isExpanded ? t('module.settings.shrink.label') : t('module.settings.expand.label')"
+    :label="isExpanded ? t('module.settings.minimize.label') : t('module.settings.maximize.label')"
     variant="tertiary"
     size="sm"
     class="

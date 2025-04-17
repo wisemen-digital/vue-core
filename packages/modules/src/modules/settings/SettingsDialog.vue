@@ -24,7 +24,7 @@ useProvideSettingsDialogContext({ isExpanded })
       <LayoutStackItem>
         <Motion
           :initial="{
-            // Settings the initial state to `initial: false` breaks Motion animations inside the dialog
+            // Setting the initial state to `initial: false` breaks Motion animations inside the dialog
             width: isExpanded ? '97dvw' : '60rem',
             height: isExpanded ? '95dvh' : '40rem',
           }"
