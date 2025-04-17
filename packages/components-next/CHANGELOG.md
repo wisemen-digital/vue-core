@@ -1,5 +1,11 @@
 # @wisemen/vue-core-components
 
+## 1.5.4
+
+### 🐞 Bug Fixes
+
+- **Dialog**: Fixed a regression where `VcDialogTriggerProps` was no longer being exported.
+
 ## 1.5.3
 
 ### 🐞 Bug Fixes
