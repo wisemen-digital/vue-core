@@ -20,7 +20,7 @@
     "lint:fix": "turbo run lint:fix",
     "type-check": "turbo run type-check",
     "precommit": "pnpm run lint --fix && pnpm run type-check && pnpm run test && pnpm run -r docs:gen",
-    "prepare": "husky"
+    "prepare": "husky && pnpm run -r build"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.0",

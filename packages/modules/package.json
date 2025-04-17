@@ -59,7 +59,6 @@
     "@vueuse/core": "catalog:",
     "@vueuse/router": "catalog:",
     "@wisemen/eslint-config-vue": "catalog:",
-    "@wisemen/vue-core-components": "workspace:*",
     "eslint": "catalog:",
     "globals": "^16.0.0",
     "highlight-words": "^2.0.0",
