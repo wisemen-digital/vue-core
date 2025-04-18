@@ -4,7 +4,7 @@ packages:
 
 catalog:
   "vue": "3.5.13"
-  "motion-v": "1.0.0-beta.0"
+  "motion-v": "1.0.0-beta.2"
   "vue-i18n": "11.1.2"
   "@fontsource-variable/inter": "5.2.5"
   "@vueuse/core": "13.0.0"
