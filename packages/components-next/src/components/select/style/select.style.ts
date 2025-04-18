@@ -11,7 +11,7 @@ export const createSelectStyle = tv({
       .withSize('size-full')
       .build(),
     baseMultiple: new StyleBuilder()
-      .withPadding('px-xs group-data-icon-left/select:pl-2 group-data-icon-right/select:pr-2')
+      .withPadding('px-sm group-data-icon-left/select:pl-2 group-data-icon-right/select:pr-2')
       .withFlex('flex items-center gap-xs')
       .withSize('size-full')
       .build(),
