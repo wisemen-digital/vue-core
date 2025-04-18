@@ -9,17 +9,20 @@ export const createFormFieldStyle = tv({
       .withColor('text-error-primary')
       .build(),
     error: new StyleBuilder()
-      .withBase('inline-block')
+      .withFlex('flex items-center gap-x-md')
       .withColor('text-error-primary')
       .withFontSize('text-sm')
       .withFontWeight('font-medium')
-      .withSpacing('group-data-[layout=vertical]/form-field:mt-sm group-data-[layout=horizontal]/form-field:!mt-0')
+      .withSpacing('group-data-[layout=vertical]/form-field:pt-sm group-data-[layout=horizontal]/form-field:!pt-0')
+      .build(),
+    errorIcon: new StyleBuilder()
+      .withSize('size-4')
       .build(),
     hint: new StyleBuilder()
       .withBase('inline-block')
       .withColor('text-tertiary')
       .withFontSize('text-sm')
-      .withSpacing('group-data-[layout=vertical]/form-field:mt-sm group-data-[layout=horizontal]/form-field:!mt-0')
+      .withSpacing('group-data-[layout=vertical]/form-field:pt-sm group-data-[layout=horizontal]/form-field:!pt-0')
       .build(),
     label: new StyleBuilder()
       .withBase('inline-block')
@@ -32,7 +35,7 @@ export const createFormFieldStyle = tv({
       // Issue: When multiple nested groups have the same group name, the specificity of the styles is incorrect.
       // This causes the styles of the first (parent) group to be applied to the nested groups
       // instead of their intended styles. For now, we'll just use the ! flag to force the styles.
-      .withSpacing('group-data-[layout=vertical]/form-field:mb-sm group-data-[layout=horizontal]/form-field:!mb-0')
+      .withSpacing('group-data-[layout=vertical]/form-field:pb-sm group-data-[layout=horizontal]/form-field:!pb-0')
       .build(),
     root: new StyleBuilder()
       .withBase('group/form-field')
