@@ -7,6 +7,7 @@ import {
 import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectFormFieldContext } from '@/components/form-field/formField.context'
 import type { FormFieldLabelSlots } from '@/components/form-field/formField.slots'
+import Icon from '@/components/icon/Icon.vue'
 
 defineSlots<FormFieldLabelSlots>()
 
@@ -41,16 +42,26 @@ const {
       }"
     >
       <div>
-        <span
-          :id="`${forId}-error`"
+        <div
           :class="style.error({
             class: mergeClasses(customClassConfig.error, classConfig?.error),
           })"
-          aria-live="assertive"
-          role="alert"
         >
-          {{ errorMessage }}
-        </span>
+          <Icon
+            :class="style.errorIcon({
+              class: mergeClasses(customClassConfig.errorIcon, classConfig?.errorIcon),
+            })"
+            icon="alertTriangle"
+          />
+
+          <span
+            :id="`${forId}-error`"
+            aria-live="assertive"
+            role="alert"
+          >
+            {{ errorMessage }}
+          </span>
+        </div>
       </div>
     </Motion>
   </AnimatePresence>

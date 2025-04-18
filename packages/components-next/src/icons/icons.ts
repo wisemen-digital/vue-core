@@ -3,6 +3,7 @@ import type { Component } from 'vue'
 export interface BaseIcons {
 
   alertCircle: Component
+  alertTriangle: Component
   arrowDown: Component
   arrowLeft: Component
   arrowRight: Component
@@ -31,6 +32,7 @@ export interface Icons extends BaseIcons {}
 
 export const icons: BaseIcons = {
   alertCircle: import('@/icons/AlertCircleIcon.vue'),
+  alertTriangle: import('@/icons/AlertTriangleIcon.vue'),
   arrowDown: import('@/icons/ArrowDownIcon.vue'),
   arrowLeft: import('@/icons/ArrowLeftIcon.vue'),
   arrowRight: import('@/icons/ArrowRightIcon.vue'),
