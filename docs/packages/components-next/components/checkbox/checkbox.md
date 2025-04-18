@@ -6,6 +6,23 @@ This component is build on top of the [Form Field](/packages/components-next/com
 
 <ComponentPreview name="checkbox/examples/main" />
 
+## Usage
+```vue
+<script setup lang="ts">
+import { VcCheckbox } from '@wisemen/vue-core-components'
+import { ref } from 'vue'
+
+const value = ref<boolean>(true)
+</script>
+
+<template>
+  <VcCheckbox
+    v-model="value"
+    label="Receive updates and special offers"
+  />
+</template>
+```
+
 ## Anatomy
 
 ```vue
@@ -41,6 +58,8 @@ import {
 <ComponentPreview name="checkbox/examples/error" />
 
 ### Customize
+
+`root`, `control`, `indicator`
 
 <ComponentPreview name="checkbox/examples/customize" />
 

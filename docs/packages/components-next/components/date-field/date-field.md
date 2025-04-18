@@ -6,6 +6,23 @@ This component is build on top of [Form Field](/packages/components-next/compone
 
 <ComponentPreview name="date-field/examples/main" />
 
+## Usage
+```vue
+<script setup lang="ts">
+import { VcDateField } from '@wisemen/vue-core-components'
+import { ref } from 'vue'
+
+const value = ref<Date | null>(null)
+</script>
+
+<template>
+  <VcDateField
+    v-model="value"
+    label="Select a date"
+  />
+</template>
+```
+
 ## Anatomy
 
 ```vue
@@ -49,5 +66,13 @@ import {
 ### Hide date picker
 
 <ComponentPreview name="date-field/examples/hide-date-picker" />
+
+### Customize
+
+`iconLeft`, `iconRight`, `input`, `inputs`, `loader`, `root`
+
+`datePicker` includes these sub-parts: `date`, `grid`, `gridBody`, `gridContainer`, `gridRow`, `header`, `headerContainer`, `monthSeparator`, `todayIndicator`, `weekDayLabel`,
+
+<ComponentPreview name="date-field/examples/customize" />
 
 <!-- @include: ./date-field-meta.md -->
