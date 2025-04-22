@@ -1,5 +1,13 @@
 # @wisemen/vue-core-components
 
+## 1.5.5
+
+### ✨ Improvements
+
+- **FormField**: Added an icon to error messages for improved visual feedback.
+- **DateField**, **DateRangeField**: Updated `modelValue` to extend from `Date`, allowing for better type inference and consistency.
+- **Table**: `TableHeaderCell` is now wrapped in a context provider, removing the need to manually pass the `column` prop.
+
 ## 1.5.4
 
 ### 🐞 Bug Fixes
