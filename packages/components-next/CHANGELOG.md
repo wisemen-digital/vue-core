@@ -1,5 +1,11 @@
 # @wisemen/vue-core-components
 
+## 1.5.6
+
+### 🐞 Bug Fixes
+
+- **build**: Fix issue with the latest deployment.
+
 ## 1.5.5
 
 ### ✨ Improvements
