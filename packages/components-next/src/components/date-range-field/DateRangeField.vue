@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="TValue extends Date">
 import { useId } from 'vue'
 
 import type { DateRangeFieldEmits } from '@/components/date-range-field/dateRangeField.emits'
@@ -18,7 +18,7 @@ const emit = defineEmits<DateRangeFieldEmits>()
 
 defineSlots<DateRangeFieldSlots>()
 
-const modelValue = defineModel<DateRange>({ required: true })
+const modelValue = defineModel<DateRange<TValue>>({ required: true })
 
 const id = props.id ?? useId()
 </script>

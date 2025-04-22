@@ -1,4 +1,4 @@
-export interface DateRange {
-  from: Date | null
-  until: Date | null
+export interface DateRange<TValue extends Date> {
+  from: TValue | null
+  until: TValue | null
 }
