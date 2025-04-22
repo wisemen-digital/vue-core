@@ -1,5 +1,12 @@
 # @wisemen/vue-core-modules
 
+## 0.0.3
+
+### Patch Changes
+
+- Updated dependencies
+  - @wisemen/vue-core-components@1.5.6
+
 ## 0.0.2
 
 ### Patch Changes
