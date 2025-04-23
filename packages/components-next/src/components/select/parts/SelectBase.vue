@@ -22,7 +22,16 @@ const {
   >
     <slot>
       <SelectBaseInlineSearch v-if="hasInlineSearchInput" />
-      <SelectBaseMultiple v-else-if="isMultiple" />
+
+      <SelectBaseMultiple v-else-if="isMultiple">
+        <template #badge="{ value }">
+          <slot
+            :value="value"
+            name="badge"
+          />
+        </template>
+      </SelectBaseMultiple>
+
       <SelectBaseSingle v-else />
     </slot>
   </div>

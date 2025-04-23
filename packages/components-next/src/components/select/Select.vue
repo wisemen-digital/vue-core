@@ -80,7 +80,14 @@ const id = props.id ?? useId()
           </slot>
 
           <slot name="base">
-            <SelectBase />
+            <SelectBase>
+              <template #badge="{ value }">
+                <slot
+                  :value="value"
+                  name="badge"
+                />
+              </template>
+            </SelectBase>
           </slot>
 
           <slot name="icon-right">

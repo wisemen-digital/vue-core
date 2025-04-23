@@ -22,7 +22,7 @@ const {
 
 const tagContainerRef = ref<HTMLElement | null>(null)
 const tagContainerWidth = ref<number>(0)
-const tagRef = ref<InstanceType<typeof Badge>[]>([])
+const badgeWrapperRef = ref<HTMLElement[]>([])
 const moreTagsCountRef = ref<HTMLDivElement | null>(null)
 
 let resizeObserver: ResizeObserver | null = null
@@ -37,14 +37,14 @@ const filteredModelValue = computed<AcceptableValue[]>(() => {
   }
 
   return modelValueAsArray.value.filter((value, index) => {
-    if (tagRef.value[index] === undefined) {
+    if (badgeWrapperRef.value[index] === undefined) {
       return false
     }
 
-    const tagWidth = tagRef.value[index].$el.getBoundingClientRect().width
+    const tagWidth = badgeWrapperRef.value[index].getBoundingClientRect().width
     const moreTagsCountWidth = moreTagsCountRef.value?.getBoundingClientRect().width ?? 0
-    const previousTagsWidth = tagRef.value.slice(0, index).reduce((sum, tag) => {
-      return sum + tag.$el.getBoundingClientRect().width
+    const previousTagsWidth = badgeWrapperRef.value.slice(0, index).reduce((sum, tag) => {
+      return sum + tag.getBoundingClientRect().width
     }, 0)
 
     // TODO: this 10 is a hack, find a better way to calculate the width of the tags
@@ -95,31 +95,48 @@ onBeforeUnmount(() => {
       aria-hidden="true"
       class="invisible absolute"
     >
-      <Badge
+      <template
         v-for="(value, valueIndex) of modelValueAsArray"
         :key="valueIndex"
-        ref="tagRef"
-        :class-config="{ root: 'rounded-md' }"
-        color="gray"
-        variant="translucent"
       >
-        <div class="whitespace-nowrap">
-          {{ displayFn(value) }}
+        <div ref="badgeWrapperRef">
+          <slot
+            :value="value"
+            name="badge"
+          >
+            <Badge
+              :class-config="{ root: 'rounded-md' }"
+              color="gray"
+              variant="translucent"
+            >
+              <div class="whitespace-nowrap">
+                {{ displayFn(value) }}
+              </div>
+            </Badge>
+          </slot>
         </div>
-      </Badge>
+      </template>
     </div>
 
-    <Badge
+    <template
       v-for="(value, valueIndex) of filteredModelValue"
       :key="valueIndex"
-      :class-config="{ root: 'rounded-md' }"
-      color="gray"
-      variant="translucent"
     >
-      <div class="whitespace-nowrap">
-        {{ displayFn(value) }}
-      </div>
-    </Badge>
+      <slot
+        :value="value"
+        name="badge"
+      >
+        <Badge
+          :class-config="{ root: 'rounded-md' }"
+          color="gray"
+          variant="translucent"
+        >
+          <div class="whitespace-nowrap">
+            {{ displayFn(value) }}
+          </div>
+        </Badge>
+      </slot>
+    </template>
 
     <div
       v-if="moreTagsCount > 0"
