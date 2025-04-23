@@ -21,7 +21,7 @@ const {
     <SelectPlaceholder />
 
     <slot v-if="modelValue !== null">
-      <span>
+      <span class="truncate">
         {{ displayFn(modelValue) }}
       </span>
 
