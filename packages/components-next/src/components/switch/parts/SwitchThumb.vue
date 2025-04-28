@@ -16,5 +16,7 @@ const {
     :class="style.thumb({
       class: mergeClasses(customClassConfig.thumb, classConfig?.thumb),
     })"
-  />
+  >
+    <slot />
+  </RekaSwitchThumb>
 </template>

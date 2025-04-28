@@ -26,6 +26,8 @@ const props = withDefaults(defineProps<SwitchProps>(), {
   classConfig: null,
   errorMessage: null,
   hint: null,
+  iconChecked: null,
+  iconUnchecked: null,
   label: null,
   size: 'md',
   variant: null,
@@ -51,6 +53,7 @@ const customClassConfig = computed<ResolvedClassConfig<'switch'>>(
 
 useProvideSwitchContext({
   ...toComputedRefs(props),
+  isChecked: computed<boolean>(() => modelValue.value),
   customClassConfig,
   style: switchStyle,
 })

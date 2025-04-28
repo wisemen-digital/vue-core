@@ -4,6 +4,7 @@ import { useId } from 'vue'
 import FormField from '@/components/form-field/FormField.vue'
 import SwitchRoot from '@/components/switch/parts/SwitchRoot.vue'
 import SwitchThumb from '@/components/switch/parts/SwitchThumb.vue'
+import SwitchThumbIcon from '@/components/switch/parts/SwitchThumbIcon.vue'
 import type { SwitchEmits } from '@/components/switch/switch.emits'
 import type { SwitchProps } from '@/components/switch/switch.props'
 
@@ -45,7 +46,9 @@ const id = props.id ?? useId()
       @blur="emit('blur')"
       @focus="emit('focus')"
     >
-      <SwitchThumb />
+      <SwitchThumb>
+        <SwitchThumbIcon />
+      </SwitchThumb>
     </SwitchRoot>
   </FormField>
 </template>

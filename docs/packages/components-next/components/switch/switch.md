@@ -36,4 +36,8 @@ import {
 
 <ComponentPreview name="switch/examples/error" />
 
+### Icon
+
+<ComponentPreview name="switch/examples/icon" />
+
 <!-- @include: ./switch-meta.md -->

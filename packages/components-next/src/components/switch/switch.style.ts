@@ -20,11 +20,15 @@ export const createSwitchStyle = tv({
       .withTransition('duration-200')
       .build(),
     thumb: new StyleBuilder()
-      .withBase('block')
+      .withBase('block overflow-hidden')
+      .withFlex('flex items-center justify-center')
       .withBackgroundColor('bg-white')
       .withBorderRadius('rounded-full')
       .withShadow('shadow-xs')
       .withTransition('duration-200')
+      .build(),
+    thumbIcon: new StyleBuilder()
+      .withColor('text-gray-800 group-data-[state=checked]/switch:text-brand-600')
       .build(),
   },
   variants: {
@@ -37,6 +41,9 @@ export const createSwitchStyle = tv({
         thumb: new StyleBuilder()
           .withSize('size-5 data-[state=checked]:translate-x-[1.15rem]')
           .build(),
+        thumbIcon: new StyleBuilder()
+          .withSize('size-3.5')
+          .build(),
       },
       sm: {
         root: new StyleBuilder()
@@ -44,6 +51,9 @@ export const createSwitchStyle = tv({
           .build(),
         thumb: new StyleBuilder()
           .withSize('size-4 data-[state=checked]:translate-x-[0.9rem]')
+          .build(),
+        thumbIcon: new StyleBuilder()
+          .withSize('size-3')
           .build(),
       },
     },
