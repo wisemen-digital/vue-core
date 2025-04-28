@@ -9,24 +9,31 @@ A set of layered sections of content, known as tab panels, that are displayed on
 ```vue
 <script setup lang="ts">
 import {
-  TabsRoot,
-  TabsBase,
-  TabsList,
-  TabsIndicator,
+  VcTabsRoot,
+  VcTabsBase,
+  VcTabsList,
+  VcTabsIndicator,
 } from '@wisemen/vue-core-components'
 </script>
 
 <template>
-  <TabsRoot>
-    <TabsBase>
-      <TabsList>
-        <slot name="items" />
-        <TabsIndicator />
-      </TabsList>
-    </TabsBase>
+  <VcTabsRoot>
+    <VcTabsBase>
+      <VcTabsScrollToLeftButton />
+
+      <VcTabsScrollContainer>
+        <VcTabsList>
+          <slot name="items" />
+
+          <VcTabsIndicator />
+        </VcTabsList>
+      </VcTabsScrollContainer>
+
+      <VcTabsScrollToRightButton />
+    </VcTabsBase>
 
     <slot name="content" />
-  </TabsRoot>
+  </VcTabsRoot>
 </template>
 ```
 
@@ -41,3 +48,5 @@ import {
 <ComponentPreview name="tabs/examples/orientation" />
 
 <!-- @include: ./tabs-meta.md -->
+
+<ClassConfig />

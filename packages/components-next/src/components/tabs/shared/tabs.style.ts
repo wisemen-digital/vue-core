@@ -6,6 +6,7 @@ import { StyleBuilder } from '@/utils/style-builder/styleBuilder.util'
 export const createTabsStyle = tv({
   slots: {
     base: new StyleBuilder()
+      .withBase('relative isolate')
       .build(),
     content: new StyleBuilder()
       .withBase('outline-none')
@@ -17,7 +18,7 @@ export const createTabsStyle = tv({
       .withTransition('duration-200')
       .build(),
     item: new StyleBuilder()
-      .withBase('group/tabs-item relative data-[orientation=vertical]:text-left')
+      .withBase('group/tabs-item relative data-[orientation=vertical]:text-left whitespace-nowrap')
       .withFontSize('text-sm')
       .withFontWeight('font-semibold')
       .withTransition('duration-200')
@@ -26,6 +27,9 @@ export const createTabsStyle = tv({
       .build(),
     list: new StyleBuilder()
       .withBase('group relative flex data-[orientation=vertical]:flex-col')
+      .build(),
+    scrollContainer: new StyleBuilder()
+      .withBase('overflow-x-auto no-scrollbar scroll-smooth')
       .build(),
   },
   variants: {

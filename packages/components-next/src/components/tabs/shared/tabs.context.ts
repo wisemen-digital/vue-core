@@ -7,7 +7,13 @@ import { useContext } from '@/composables/context/context.composable'
 import type { PropsToComputed } from '@/utils/props.util'
 
 interface TabsContext extends PropsToComputed<TabsProps> {
+  hasHorizontalOverflow: ComputedRef<boolean>
+  hasReachedHorizontalEnd: ComputedRef<boolean>
+  isScrolledHorizontally: ComputedRef<boolean>
   customClassConfig: ComputedRef<ResolvedClassConfig<'tabs'>>
+  scrollToLeft: () => void
+  scrollToRight: () => void
+  setScrollContainerRef: (ref: HTMLElement) => void
   style: ComputedRef<CreateTabsStyle>
 }
 

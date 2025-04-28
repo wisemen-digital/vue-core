@@ -136,7 +136,9 @@ export interface ComponentMap {
   }
   tabs: {
     style: typeof createTabsStyle
-    children: {}
+    children: {
+      scrollButton: 'iconButton'
+    }
   }
   textarea: {
     style: typeof createTextareaStyle
