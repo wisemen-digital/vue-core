@@ -5,16 +5,12 @@ import { mergeClasses } from '@/class-variant/customClassVariants'
 import Button from '@/components/button/default-button/Button.vue'
 import TableCellLayout from '@/components/table/parts/TableCellLayout.vue'
 import { useInjectTableContext } from '@/components/table/table.context'
-import type { TableColumn } from '@/components/table/table.type'
+import { useInjectTableHeaderCellContext } from '@/components/table/tableHeaderCell.context'
 import type {
   PaginationOptions,
   PaginationSortOrder,
 } from '@/composables/pagination/pagination.type'
 import type { Icon } from '@/icons/icons'
-
-const props = defineProps<{
-  column: TableColumn<any>
-}>()
 
 const {
   classConfig,
@@ -22,6 +18,8 @@ const {
   pagination,
   style,
 } = useInjectTableContext()
+
+const { column } = useInjectTableHeaderCellContext()
 
 const paginationOptions = computed<PaginationOptions<any>>(
   () => pagination.value.paginationOptions.value,
@@ -32,11 +30,11 @@ const currentSortDirection = computed<PaginationSortOrder | null>(() => {
 })
 
 const isCurrentColumnBeingSorted = computed<boolean>(() => {
-  return props.column.key === paginationOptions.value.sort?.key
+  return column.value.key === paginationOptions.value.sort?.key
 })
 
 const sortIcon = computed<Icon | null>(() => {
-  if (!props.column.isSortable) {
+  if (!column.value.isSortable) {
     return null
   }
 
@@ -52,7 +50,7 @@ const sortIcon = computed<Icon | null>(() => {
 })
 
 const ariaSort = computed<'ascending' | 'descending' | 'none'>(() => {
-  if (!props.column.isSortable || !isCurrentColumnBeingSorted.value) {
+  if (!column.value.isSortable || !isCurrentColumnBeingSorted.value) {
     return 'none'
   }
 
@@ -72,7 +70,7 @@ function onSortChange(): void {
   //    - If the current sort direction is 'asc', change it to 'desc'
   if (isCurrentColumnBeingSorted.value && currentSortDirection.value === 'asc') {
     pagination.value.handleSortChange({
-      key: props.column.key as never,
+      key: column.value.key as never,
       order: 'desc',
     })
 
@@ -87,7 +85,7 @@ function onSortChange(): void {
 
   // If column is not already sorted, sort it and set the current sort direction to 'asc'
   pagination.value.handleSortChange({
-    key: props.column.key as never,
+    key: column.value.key as never,
     order: 'asc',
   })
 }
@@ -95,7 +93,7 @@ function onSortChange(): void {
 
 <template>
   <TableCellLayout
-    :column="props.column"
+    :column="column"
     :class="style.headerCell({
       class: mergeClasses(classConfig?.headerCell, customClassConfig?.headerCell),
     })"
@@ -114,11 +112,11 @@ function onSortChange(): void {
           ...classConfig?.headerCellButton,
         }"
         :icon-right="sortIcon"
-        :is-disabled="!props.column.isSortable"
+        :is-disabled="!column.isSortable"
         variant="tertiary"
         @click="onSortChange"
       >
-        {{ props.column.headerLabel }}
+        {{ column.headerLabel }}
       </Button>
 
       <slot name="right" />

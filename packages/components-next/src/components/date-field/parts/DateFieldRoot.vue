@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="TValue extends Date">
 import type { DateValue } from 'reka-ui'
 import { DateFieldRoot as RekaDateFieldRoot } from 'reka-ui'
 import {
@@ -52,7 +52,7 @@ const props = withDefaults(defineProps<DateFieldProps>(), {
 
 const emit = defineEmits<DateFieldEmits>()
 
-const modelValue = defineModel<Date | null>({ required: true })
+const modelValue = defineModel<TValue | null>({ required: true })
 
 const delegatedModel = computed<DateValue | null>({
   get: () => {
@@ -69,7 +69,7 @@ const delegatedModel = computed<DateValue | null>({
       return
     }
 
-    modelValue.value = dateValueToDate(value)
+    modelValue.value = dateValueToDate(value) as TValue
   },
 })
 

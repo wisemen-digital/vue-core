@@ -52,8 +52,8 @@ catalogs:
       specifier: 26.0.0
       version: 26.0.0
     motion-v:
-      specifier: 1.0.0-beta.0
-      version: 1.0.0-beta.0
+      specifier: 1.0.0-beta.2
+      version: 1.0.0-beta.2
     reka-ui:
       specifier: 2.2.0
       version: 2.2.0
@@ -171,7 +171,7 @@ importers:
         version: 14.1.0
       motion-v:
         specifier: 'catalog:'
-        version: 1.0.0-beta.0(vue@3.5.13(typescript@5.8.2))
+        version: 1.0.0-beta.2(vue@3.5.13(typescript@5.8.2))
       postcss:
         specifier: 8.4.38
         version: 8.4.38
@@ -271,7 +271,7 @@ importers:
         version: 6.1.4
       motion-v:
         specifier: 'catalog:'
-        version: 1.0.0-beta.0(vue@3.5.12(typescript@5.8.2))
+        version: 1.0.0-beta.2(vue@3.5.12(typescript@5.8.2))
       postcss:
         specifier: 8.4.38
         version: 8.4.38
@@ -380,7 +380,7 @@ importers:
     dependencies:
       motion-v:
         specifier: 'catalog:'
-        version: 1.0.0-beta.0(vue@3.5.13(typescript@5.8.2))
+        version: 1.0.0-beta.2(vue@3.5.13(typescript@5.8.2))
       tailwind-variants:
         specifier: 'catalog:'
         version: 1.0.0(tailwindcss@4.1.2)
@@ -554,6 +554,124 @@ importers:
       vitest:
         specifier: 'catalog:'
         version: 3.1.1(@types/debug@4.1.12)(@types/node@22.14.0)(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.29.3)(sass@1.77.5)(tsx@4.19.3)(yaml@2.7.1)
+
+  packages/modules:
+    dependencies:
+      '@wisemen/vue-core-components':
+        specifier: workspace:*
+        version: link:../components-next
+      motion-v:
+        specifier: 'catalog:'
+        version: 1.0.0-beta.2(vue@3.5.13(typescript@5.8.2))
+      vue-i18n:
+        specifier: 'catalog:'
+        version: 11.1.2(vue@3.5.13(typescript@5.8.2))
+    devDependencies:
+      '@fontsource-variable/inter':
+        specifier: 'catalog:'
+        version: 5.2.5
+      '@googlemaps/js-api-loader':
+        specifier: 1.16.8
+        version: 1.16.8
+      '@histoire/plugin-vue':
+        specifier: 1.0.0-alpha.2
+        version: 1.0.0-alpha.2(histoire@1.0.0-alpha.2(@types/node@22.14.0)(lightningcss@1.29.3)(sass@1.77.5)(vite@6.2.5(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.3)(sass@1.77.5)(tsx@4.19.3)(yaml@2.7.1)))(vite@6.2.5(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.3)(sass@1.77.5)(tsx@4.19.3)(yaml@2.7.1))(vue@3.5.13(typescript@5.8.2))
+      '@internationalized/date':
+        specifier: 3.5.4
+        version: 3.5.4
+      '@tailwindcss/vite':
+        specifier: 'catalog:'
+        version: 4.1.2(vite@6.2.5(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.3)(sass@1.77.5)(tsx@4.19.3)(yaml@2.7.1))
+      '@tsconfig/node18':
+        specifier: 18.2.4
+        version: 18.2.4
+      '@types/google.maps':
+        specifier: 3.58.1
+        version: 3.58.1
+      '@types/node':
+        specifier: 'catalog:'
+        version: 22.14.0
+      '@vitejs/plugin-vue':
+        specifier: 'catalog:'
+        version: 5.2.3(vite@6.2.5(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.3)(sass@1.77.5)(tsx@4.19.3)(yaml@2.7.1))(vue@3.5.13(typescript@5.8.2))
+      '@vue/test-utils':
+        specifier: 'catalog:'
+        version: 2.4.6
+      '@vue/tsconfig':
+        specifier: 'catalog:'
+        version: 0.7.0(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2))
+      '@vueuse/core':
+        specifier: 'catalog:'
+        version: 13.0.0(vue@3.5.13(typescript@5.8.2))
+      '@vueuse/router':
+        specifier: 'catalog:'
+        version: 13.0.0(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
+      '@wisemen/eslint-config-vue':
+        specifier: 'catalog:'
+        version: 1.2.0-beta.1(@typescript-eslint/eslint-plugin@8.29.0(@typescript-eslint/parser@8.29.0(eslint@9.23.0(jiti@2.4.2))(typescript@5.8.2))(eslint@9.23.0(jiti@2.4.2))(typescript@5.8.2))(@typescript-eslint/utils@8.29.0(eslint@9.23.0(jiti@2.4.2))(typescript@5.8.2))(@vue/compiler-sfc@3.5.13)(eslint@9.23.0(jiti@2.4.2))(jsonc-eslint-parser@2.4.0)(tailwindcss@4.1.2)(typescript@5.8.2)(vitest@3.1.1(@types/debug@4.1.12)(@types/node@22.14.0)(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.29.3)(sass@1.77.5)(tsx@4.19.3)(yaml@2.7.1))(vue-eslint-parser@9.4.3(eslint@9.23.0(jiti@2.4.2)))(yaml-eslint-parser@1.3.0)
+      eslint:
+        specifier: 'catalog:'
+        version: 9.23.0(jiti@2.4.2)
+      globals:
+        specifier: ^16.0.0
+        version: 16.0.0
+      highlight-words:
+        specifier: ^2.0.0
+        version: 2.0.0
+      histoire:
+        specifier: 1.0.0-alpha.2
+        version: 1.0.0-alpha.2(@types/node@22.14.0)(lightningcss@1.29.3)(sass@1.77.5)(vite@6.2.5(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.3)(sass@1.77.5)(tsx@4.19.3)(yaml@2.7.1))
+      husky:
+        specifier: 'catalog:'
+        version: 9.1.7
+      jsdom:
+        specifier: 'catalog:'
+        version: 26.0.0
+      libphonenumber-js:
+        specifier: 1.11.3
+        version: 1.11.3
+      maska:
+        specifier: 3.0.0
+        version: 3.0.0
+      reka-ui:
+        specifier: 'catalog:'
+        version: 2.2.0(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2))
+      sass:
+        specifier: 1.77.5
+        version: 1.77.5
+      tailwind-merge:
+        specifier: 'catalog:'
+        version: 3.1.0
+      tailwind-variants:
+        specifier: 'catalog:'
+        version: 1.0.0(tailwindcss@4.1.2)
+      tailwindcss:
+        specifier: 'catalog:'
+        version: 4.1.2
+      typescript:
+        specifier: 'catalog:'
+        version: 5.8.2
+      vite:
+        specifier: 'catalog:'
+        version: 6.2.5(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.3)(sass@1.77.5)(tsx@4.19.3)(yaml@2.7.1)
+      vite-plugin-dts:
+        specifier: 'catalog:'
+        version: 4.5.3(@types/node@22.14.0)(rollup@4.39.0)(typescript@5.8.2)(vite@6.2.5(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.3)(sass@1.77.5)(tsx@4.19.3)(yaml@2.7.1))
+      vitest:
+        specifier: 'catalog:'
+        version: 3.1.1(@types/debug@4.1.12)(@types/node@22.14.0)(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.29.3)(sass@1.77.5)(tsx@4.19.3)(yaml@2.7.1)
+      vue:
+        specifier: 'catalog:'
+        version: 3.5.13(typescript@5.8.2)
+      vue-highlight-words:
+        specifier: ^3.0.1
+        version: 3.0.1(vue@3.5.13(typescript@5.8.2))
+      vue-router:
+        specifier: 'catalog:'
+        version: 4.5.0(vue@3.5.13(typescript@5.8.2))
+      vue-tsc:
+        specifier: 'catalog:'
+        version: 2.2.8(typescript@5.8.2)
 
   packages/query:
     dependencies:
@@ -4527,6 +4645,13 @@ packages:
   hey-listen@1.0.8:
     resolution: {integrity: sha512-COpmrF2NOg4TBWUJ5UVyaCU2A88wEMkUPK4hNqyCkqHbxT92BbvfjoSozkAIIm6XhicGlJHhFdullInrdhwU8Q==}
 
+  highlight-words-core@1.2.3:
+    resolution: {integrity: sha512-m1O9HW3/GNHxzSIXWw1wCNXXsgLlxrP0OI6+ycGUhiUHkikqW3OrwVHz+lxeNBe5yqLESdIcj8PowHQ2zLvUvQ==}
+
+  highlight-words@2.0.0:
+    resolution: {integrity: sha512-If5n+IhSBRXTScE7wl16VPmd+44Vy7kof24EdqhjsZsDuHikpv1OCagVcJFpB4fS4UPUniedlWqrjIO8vWOsIQ==}
+    engines: {node: '>= 20', npm: '>= 9'}
+
   histoire@1.0.0-alpha.2:
     resolution: {integrity: sha512-W0u5svVoFq6cCoO7CwRMpqVecp260riENpFJEb2pLyurDBFNU4vVyskTnxm5MGwMf4+sjjWp5WXPBvJ22Mxglg==}
     hasBin: true
@@ -5453,8 +5578,8 @@ packages:
     peerDependencies:
       vue: '>=3.0.0'
 
-  motion-v@1.0.0-beta.0:
-    resolution: {integrity: sha512-7NF9gayHqnEoYUCZiBZi6iiZ4KBlOKfKlcnVAVULtP6V2GFszWI8CX1FWg49T7jgTnL7nBRhLTWFZ++cfji2mA==}
+  motion-v@1.0.0-beta.2:
+    resolution: {integrity: sha512-NjG110Jf2zqdKulV20eMizXo2lutMGdrusqQ8oYdhTZGNLgKcbcxcS/ZF3ibj3C6oKmyhO8twwAW2FZmWmjVrA==}
     peerDependencies:
       vue: '>=3.0.0'
 
@@ -7110,6 +7235,11 @@ packages:
     engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: '>=6.0.0'
+
+  vue-highlight-words@3.0.1:
+    resolution: {integrity: sha512-t6L0+KRaMzX5RVubWl6Sog+Aa+U0kHsbUlDIrln1VfajR2SEg+zQYfXov8UmX3MLNOfd6cv7MCM6LclqNlW4ww==}
+    peerDependencies:
+      vue: ^3.0.0
 
   vue-i18n@10.0.4:
     resolution: {integrity: sha512-1xkzVxqBLk2ZFOmeI+B5r1J7aD/WtNJ4j9k2mcFcQo5BnOmHBmD7z4/oZohh96AAaRZ4Q7mNQvxc9h+aT+Md3w==}
@@ -11821,6 +11951,10 @@ snapshots:
 
   hey-listen@1.0.8: {}
 
+  highlight-words-core@1.2.3: {}
+
+  highlight-words@2.0.0: {}
+
   histoire@1.0.0-alpha.2(@types/node@22.14.0)(lightningcss@1.29.3)(sass@1.77.5)(vite@6.2.5(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.3)(sass@1.77.5)(tsx@4.19.3)(yaml@2.7.1)):
     dependencies:
       '@akryum/tinypool': 0.3.1
@@ -12919,7 +13053,7 @@ snapshots:
       - react
       - react-dom
 
-  motion-v@1.0.0-beta.0(vue@3.5.12(typescript@5.8.2)):
+  motion-v@1.0.0-beta.2(vue@3.5.12(typescript@5.8.2)):
     dependencies:
       '@vueuse/core': 10.11.0(vue@3.5.12(typescript@5.8.2))
       framer-motion: 12.5.0
@@ -12932,7 +13066,7 @@ snapshots:
       - react
       - react-dom
 
-  motion-v@1.0.0-beta.0(vue@3.5.13(typescript@5.8.2)):
+  motion-v@1.0.0-beta.2(vue@3.5.13(typescript@5.8.2)):
     dependencies:
       '@vueuse/core': 10.11.0(vue@3.5.13(typescript@5.8.2))
       framer-motion: 12.5.0
@@ -14830,6 +14964,11 @@ snapshots:
       semver: 7.7.1
     transitivePeerDependencies:
       - supports-color
+
+  vue-highlight-words@3.0.1(vue@3.5.13(typescript@5.8.2)):
+    dependencies:
+      highlight-words-core: 1.2.3
+      vue: 3.5.13(typescript@5.8.2)
 
   vue-i18n@10.0.4(vue@3.5.12(typescript@5.8.2)):
     dependencies:
