@@ -83,7 +83,7 @@ export function useTabs(): UseTabs {
 
   onMounted(() => {
     if (scrollContainerRef.value === null) {
-      throw new Error('Table scroll container ref is null')
+      throw new Error('Scroll container ref is null')
     }
 
     updateScrollState()
