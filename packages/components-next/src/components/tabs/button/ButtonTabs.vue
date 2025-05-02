@@ -3,6 +3,9 @@ import TabsBase from '@/components/tabs/shared/parts/TabsBase.vue'
 import TabsIndicator from '@/components/tabs/shared/parts/TabsIndicator.vue'
 import TabsList from '@/components/tabs/shared/parts/TabsList.vue'
 import TabsRoot from '@/components/tabs/shared/parts/TabsRoot.vue'
+import TabsScrollContainer from '@/components/tabs/shared/parts/TabsScrollContainer.vue'
+import TabsScrollToLeftButton from '@/components/tabs/shared/parts/TabsScrollToLeftButton.vue'
+import TabsScrollToRightButton from '@/components/tabs/shared/parts/TabsScrollToRightButton.vue'
 import type { TabsProps } from '@/components/tabs/shared/tabs.props'
 
 const props = withDefaults(defineProps<TabsProps>(), {
@@ -34,11 +37,17 @@ const modelValue = defineModel<string>({ required: true })
     v-model="modelValue"
   >
     <TabsBase>
-      <TabsList>
-        <slot name="items" />
+      <TabsScrollToLeftButton />
 
-        <TabsIndicator />
-      </TabsList>
+      <TabsScrollContainer>
+        <TabsList>
+          <slot name="items" />
+
+          <TabsIndicator />
+        </TabsList>
+      </TabsScrollContainer>
+
+      <TabsScrollToRightButton />
     </TabsBase>
 
     <slot name="content" />
