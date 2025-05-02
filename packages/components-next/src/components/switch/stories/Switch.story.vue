@@ -15,6 +15,7 @@ const value = ref<boolean>(true)
       size="sm"
       label="Label"
       hint="This is a switch."
+      icon-checked="check"
     />
   </Story>
 </template>
