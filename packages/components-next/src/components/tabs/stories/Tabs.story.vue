@@ -69,7 +69,6 @@ const selectedTab = ref<string>('tab5')
       </div>
 
       <ButtonTabs
-        v-if="true"
         v-model="selectedTab"
         orientation="vertical"
       >
