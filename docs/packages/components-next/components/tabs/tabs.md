@@ -47,6 +47,10 @@ import {
 
 <ComponentPreview name="tabs/examples/orientation" />
 
+### Overflow
+
+<ComponentPreview name="tabs/examples/overflow" />
+
 <!-- @include: ./tabs-meta.md -->
 
 <ClassConfig />
