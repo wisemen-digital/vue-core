@@ -16,6 +16,14 @@ const value = useDefaultPreference('enableKeyboardShortcutHints')
 
 const label = computed<string>(() => {
   if (value.value) {
+    return t('module.settings.enabled')
+  }
+
+  return t('module.settings.disabled')
+})
+
+const hint = computed<string>(() => {
+  if (value.value) {
     return t('module.settings.section.keyboard_shortcut_hints.enabled.label')
   }
 
@@ -40,9 +48,11 @@ const label = computed<string>(() => {
         <VcSwitch
           v-model="value"
           :label="label"
+          :hint="hint"
         />
 
         <VcButton
+          v-if="false"
           variant="secondary"
           size="sm"
           class="mt-2xl"
