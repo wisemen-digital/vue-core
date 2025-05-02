@@ -46,6 +46,7 @@ const { t } = useI18n()
           }"
           :label="t('component.tabs.scroll_to_left')"
           size="sm"
+          tabindex="-1"
           icon="chevronLeft"
           variant="secondary"
           @click="scrollToLeft"

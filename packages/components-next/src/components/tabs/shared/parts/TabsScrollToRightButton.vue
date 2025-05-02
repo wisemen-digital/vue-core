@@ -48,6 +48,7 @@ const { t } = useI18n()
           size="sm"
           icon="chevronRight"
           variant="secondary"
+          tabindex="-1"
           @click="scrollToRight"
         />
       </div>
