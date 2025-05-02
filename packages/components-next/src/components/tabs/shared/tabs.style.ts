@@ -6,7 +6,7 @@ import { StyleBuilder } from '@/utils/style-builder/styleBuilder.util'
 export const createTabsStyle = tv({
   slots: {
     base: new StyleBuilder()
-      .withBase('relative isolate')
+      .withBase('relative isolate overflow-hidden')
       .build(),
     content: new StyleBuilder()
       .withBase('outline-none')
@@ -39,7 +39,6 @@ export const createTabsStyle = tv({
           .withBackgroundColor('bg-secondary-alt')
           .withBorder('border border-secondary')
           .withBorderRadius('rounded-lg')
-          .withSpacing('p-xs')
           .build(),
         indicator: new StyleBuilder()
           .withBackgroundColor('bg-primary-alt')
@@ -55,6 +54,9 @@ export const createTabsStyle = tv({
           .build(),
         list: new StyleBuilder()
           .withSpacing('gap-xs')
+          .build(),
+        scrollContainer: new StyleBuilder()
+          .withSpacing('p-xs')
           .build(),
       },
       'button-brand': {
