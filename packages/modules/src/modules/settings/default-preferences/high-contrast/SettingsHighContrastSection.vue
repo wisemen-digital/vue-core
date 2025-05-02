@@ -11,6 +11,14 @@ const value = useDefaultPreference('enableHighContrast')
 
 const label = computed<string>(() => {
   if (value.value) {
+    return t('module.settings.enabled')
+  }
+
+  return t('module.settings.disabled')
+})
+
+const hint = computed<string>(() => {
+  if (value.value) {
     return t('module.settings.section.high_contrast.enabled.label')
   }
 
@@ -23,6 +31,7 @@ const label = computed<string>(() => {
     <VcSwitch
       v-model="value"
       :label="label"
+      :hint="hint"
     />
   </SettingsSection>
 </template>
