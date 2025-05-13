@@ -72,7 +72,7 @@ const inputModel = computed<string | null>({
     return formattedNumber.replace(`+${dialCode}`, '').trim()
   },
   set: (value) => {
-    if (value === null) {
+    if (value === null || value === '') {
       model.value = null
 
       return
