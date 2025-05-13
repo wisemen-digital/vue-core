@@ -1,5 +1,23 @@
 # @wisemen/vue-core-components
 
+## 1.6.0
+
+### 🔥 New Features
+
+- **Tabs**: Added horizontal scrolling with navigation arrows when content overflows.
+- **Switch**: Introduced `iconChecked` and `iconUnchecked` props for customizing switch icons.
+
+### ✨ Improvements
+
+- **Select**:
+  - Added a `badge` slot to allow custom badge implementations.
+  - Truncated long values to prevent overflow.
+- **PhoneNumberField**: Now sets `modelValue` to `null` when the input is empty.
+
+### 🐞 Bug Fixes
+
+- **Toast**: Fixed an issue where interacting with a toast while a dialog was open would unintentionally close the dialog.
+
 ## 1.5.6
 
 ### 🐞 Bug Fixes
