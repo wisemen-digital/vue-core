@@ -23,6 +23,7 @@ const {
       :class="style.overlay({
         class: mergeClasses(customClassConfig.overlay, classConfig?.overlay),
       })"
+      data-dialog-overlay
     >
       <slot />
     </RekaDialogOverlay>
