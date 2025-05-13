@@ -39,6 +39,13 @@ function onInteractOutside(event: CustomEvent): void {
   if (preventClickOutside.value) {
     event.preventDefault()
   }
+
+  const target = event.target as HTMLElement
+  const isOverlay = target.attributes.getNamedItem('data-dialog-overlay') !== null
+
+  if (!isOverlay) {
+    event.preventDefault()
+  }
 }
 </script>
 

@@ -25,7 +25,7 @@ export const createToastStyle = tv({
       .withColor('group-data-[type=success]/toast:text-success-primary group-data-[type=error]/toast:text-error-primary group-data-[type=info]/toast:text-fg-brand-primary')
       .build(),
     root: new StyleBuilder()
-      .withBase('group/toast relative')
+      .withBase('group/toast relative pointer-events-auto')
       .withGrid('grid grid-cols-[auto_1fr] items-start gap-lg')
       .withSize('w-100')
       .withBorder('border border-solid border-secondary')
