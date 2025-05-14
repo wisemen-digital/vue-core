@@ -127,6 +127,12 @@
     'required': true
   },
   {
+    'name': 'placeholderValue',
+    'description': '',
+    'type': 'Date | null',
+    'required': false
+  },
+  {
     'name': 'showTwoMonths',
     'description': '<p>Whether the calendar should display two months instead of one.</p>\n',
     'type': 'boolean',
