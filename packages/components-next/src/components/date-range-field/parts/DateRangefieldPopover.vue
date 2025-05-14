@@ -17,6 +17,7 @@ const {
   hideDatePicker,
   label,
   modelValue,
+  placeholderValue,
   showTwoMonths,
 } = useInjectDateRangeFieldContext()
 </script>
@@ -48,6 +49,7 @@ const {
           v-model="modelValue"
           :focus-on-mount="true"
           :allow-deselect="allowDeselect"
+          :placeholder-value="placeholderValue"
           :is-date-disabled="isDateDisabled"
           :allow-non-continuous-selection="allowNonContinuousSelection"
           :is-date-unavailable="isDateUnavailable"

@@ -12,6 +12,7 @@ import type { PropsToComputed } from '@/utils/props.util'
 interface DateFieldContext extends PropsToComputed<DateFieldProps> {
   customClassConfig: ComputedRef<ResolvedClassConfig<'dateField'>>
   modelValue: Ref<Date | null>
+  placeholderValue: ComputedRef<Date>
   style: ComputedRef<CreateDateFieldStyle>
   onBlur: (event: FocusEvent) => void
   onFocus: (event: FocusEvent) => void

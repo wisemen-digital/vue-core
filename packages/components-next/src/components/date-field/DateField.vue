@@ -18,6 +18,7 @@ const emit = defineEmits<DateFieldEmits>()
 defineSlots<DateFieldSlots>()
 
 const modelValue = defineModel<TValue | null>({ required: true })
+const placeholderValue = defineModel<TValue | null>('placeholderValue', { required: false })
 
 const id = props.id ?? useId()
 </script>
@@ -48,6 +49,7 @@ const id = props.id ?? useId()
       :id="id"
       v-slot="{ segments }"
       v-model="modelValue"
+      v-model:placeholder-value="placeholderValue"
       @blur="emit('blur', $event)"
       @focus="emit('focus', $event)"
     >

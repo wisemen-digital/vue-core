@@ -20,6 +20,8 @@ defineSlots<DateRangeFieldSlots>()
 
 const modelValue = defineModel<DateRange<TValue>>({ required: true })
 
+const placeholderValue = defineModel<Date>('placeholderValue', { required: false })
+
 const id = props.id ?? useId()
 </script>
 
@@ -49,6 +51,7 @@ const id = props.id ?? useId()
       :id="id"
       v-slot="{ segments }"
       v-model="modelValue"
+      v-model:placeholder-value="placeholderValue"
       @blur="emit('blur', $event)"
       @focus="emit('focus', $event)"
     >

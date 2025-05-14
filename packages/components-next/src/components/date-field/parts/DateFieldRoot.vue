@@ -53,6 +53,7 @@ const props = withDefaults(defineProps<DateFieldProps>(), {
 const emit = defineEmits<DateFieldEmits>()
 
 const modelValue = defineModel<TValue | null>({ required: true })
+const placeholderValue = defineModel<TValue | null>('placeholderValue', { required: false })
 
 const delegatedModel = computed<DateValue | null>({
   get: () => {
@@ -107,6 +108,7 @@ useProvideDateFieldContext({
   ...toComputedRefs(props),
   customClassConfig,
   modelValue,
+  placeholderValue: computed<Date>(() => placeholderValue.value ?? modelValue.value ?? new Date()),
   style: dateFieldStyle,
   onBlur,
   onFocus,

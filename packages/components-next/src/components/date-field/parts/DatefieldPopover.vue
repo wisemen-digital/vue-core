@@ -16,6 +16,7 @@ const {
   hideDatePicker,
   label,
   modelValue,
+  placeholderValue,
   showTwoMonths,
 } = useInjectDateFieldContext()
 </script>
@@ -49,6 +50,7 @@ const {
           :allow-deselect="allowDeselect"
           :is-date-disabled="isDateDisabled"
           :is-date-unavailable="isDateUnavailable"
+          :placeholder-value="placeholderValue"
           :max-date="maxDate"
           :min-date="minDate"
           :show-two-months="showTwoMonths"
