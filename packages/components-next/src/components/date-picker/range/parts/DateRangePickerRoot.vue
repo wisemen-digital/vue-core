@@ -5,6 +5,7 @@ import { computed } from 'vue'
 
 import type { ResolvedClassConfig } from '@/class-variant/classVariant.type'
 import { getCustomComponentVariant } from '@/class-variant/customClassVariants'
+import { useInjectConfigContext } from '@/components/config-provider/config.context'
 import { useProvideDateRangePickerContext } from '@/components/date-picker/range/dateRangePicker.context'
 import type { DateRangePickerProps } from '@/components/date-picker/range/dateRangePicker.props'
 import type { CreateDateRangePickerStyle } from '@/components/date-picker/range/dateRangePicker.style'
@@ -77,6 +78,7 @@ const delegetedPlaceholderValue = computed<DateValue>({
 })
 
 const { theme } = injectThemeProviderContext()
+const { locale } = useInjectConfigContext()
 
 const dateRangePickerStyle = computed<CreateDateRangePickerStyle>(
   () => createDateRangePickerStyle({ variant: props.variant ?? undefined }),
@@ -110,6 +112,7 @@ useProvideDateRangePickerContext({
         :is-date-unavailable="(value: DateValue) => props.isDateUnavailable(dateValueToDate(value))"
         :is-date-disabled="(value: DateValue) => props.isDateDisabled(dateValueToDate(value))"
         :calendar-label="props.label"
+        :locale="locale"
         :initial-focus="props.focusOnMount"
         :min-value="props.minDate === null
           ? undefined

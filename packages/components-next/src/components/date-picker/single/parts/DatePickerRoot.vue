@@ -5,6 +5,7 @@ import { computed } from 'vue'
 
 import type { ResolvedClassConfig } from '@/class-variant/classVariant.type'
 import { getCustomComponentVariant } from '@/class-variant/customClassVariants'
+import { useInjectConfigContext } from '@/components/config-provider/config.context'
 import type { Grid } from '@/components/date-picker/shared/datePicker.type'
 import {
   dateToDateValue,
@@ -39,6 +40,8 @@ const placeholderValue = defineModel<Date>('placeholderValue', {
   default: new Date(),
   required: false,
 })
+
+const { locale } = useInjectConfigContext()
 
 const delegatedModel = computed<DateValue | null>({
   get: () => {
@@ -102,6 +105,7 @@ useProvideDatePickerContext({
         :is-date-disabled="(value: DateValue) => props.isDateDisabled(dateValueToDate(value))"
         :calendar-label="props.label"
         :initial-focus="props.focusOnMount"
+        :locale="locale"
         :min-value="props.minDate === null
           ? null
           : dateToDateValue(props.minDate)"
