@@ -94,7 +94,7 @@ useProvideDatePickerContext({
         v-slot="{ weekDays, grid }"
         v-model="delegatedModel"
         v-model:placeholder="delegatedPlaceholderValue"
-        :week-starts-on="1"
+        :week-starts-on="0"
         :prevent-deselect="!props.allowDeselect"
         :fixed-weeks="true"
         :number-of-months="props.showTwoMonths ? 2 : 1"
