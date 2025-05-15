@@ -138,18 +138,23 @@ watch(() => props.items, (newItems) => {
       <slot name="loader" />
     </template>
 
-    <template
-      v-for="(item, itemIndex) of delegatedItems"
-      :key="itemIndex"
+    <slot
+      :items="delegatedItems"
+      name="items"
     >
-      <slot
-        :value="(item as NonNullable<TValue>)"
-        name="item"
+      <template
+        v-for="(item, itemIndex) of delegatedItems"
+        :key="itemIndex"
       >
-        <SelectItem :value="item">
-          {{ props.displayFn(item as any) }}
-        </SelectItem>
-      </slot>
-    </template>
+        <slot
+          :value="(item as NonNullable<TValue>)"
+          name="item"
+        >
+          <SelectItem :value="item">
+            {{ props.displayFn(item as any) }}
+          </SelectItem>
+        </slot>
+      </template>
+    </slot>
   </Select>
 </template>
