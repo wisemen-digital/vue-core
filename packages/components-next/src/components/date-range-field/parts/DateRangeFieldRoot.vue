@@ -54,6 +54,7 @@ const props = withDefaults(defineProps<DateRangeFieldProps>(), {
 const emit = defineEmits<DateRangeFieldEmits>()
 
 const modelValue = defineModel<DateRange<TValue>>({ required: true })
+const placeholderValue = defineModel<Date>('placeholderValue', { required: false })
 
 const delegatedModel = computed<{ end: DateValue | undefined
   start: DateValue | undefined }>({
@@ -114,6 +115,7 @@ useProvideDateRangeFieldContext({
   ...toComputedRefs(props),
   customClassConfig,
   modelValue,
+  placeholderValue: computed<Date>(() => placeholderValue.value ?? modelValue.value.from ?? new Date()),
   style: dateRangeFieldStyle,
   onBlur,
   onFocus,

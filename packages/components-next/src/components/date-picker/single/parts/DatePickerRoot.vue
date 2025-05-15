@@ -35,10 +35,7 @@ const props = withDefaults(defineProps<DatePickerProps>(), {
 
 const modelValue = defineModel<Date | null>({ required: true })
 
-const placeholderValue = defineModel<Date>('placeholderValue', {
-  default: new Date(),
-  required: false,
-})
+const placeholderValue = defineModel<Date>('placeholderValue', { required: false })
 
 const delegatedModel = computed<DateValue | null>({
   get: () => {
@@ -59,9 +56,9 @@ const delegatedModel = computed<DateValue | null>({
   },
 })
 
-const delegetedPlaceholderValue = computed<DateValue>({
+const delegatedPlaceholderValue = computed<DateValue>({
   get: () => {
-    return dateToDateValue(placeholderValue.value)
+    return dateToDateValue(placeholderValue.value ?? modelValue.value ?? new Date())
   },
   set: (value) => {
     placeholderValue.value = dateValueToDate(value)
@@ -82,7 +79,7 @@ useProvideDatePickerContext({
   ...toComputedRefs(props),
   customClassConfig,
   modelValue,
-  placeholderValue,
+  placeholderValue: computed<Date>(() => dateValueToDate(delegatedPlaceholderValue.value)),
   style: datePickerStyle,
 })
 </script>
@@ -93,7 +90,7 @@ useProvideDatePickerContext({
       <RekaCalendarRoot
         v-slot="{ weekDays, grid }"
         v-model="delegatedModel"
-        v-model:placeholder="delegetedPlaceholderValue"
+        v-model:placeholder="delegatedPlaceholderValue"
         :week-starts-on="1"
         :prevent-deselect="!props.allowDeselect"
         :fixed-weeks="true"

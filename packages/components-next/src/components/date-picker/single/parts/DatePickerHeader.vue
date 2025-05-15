@@ -115,7 +115,7 @@ const yearValue = computed<number>({
             :class-config="{
               root: 'h-8 shadow-none border-none outline-none hover:bg-primary-hover focus-within:bg-primary-hover',
               baseSingle: 'font-semibold px-sm',
-              content: 'flex gap-xs grid grid-cols-1 [grid-template-columns:auto] sm:[grid-template-columns:repeat(auto-fit,minmax(6rem,1fr))]',
+              content: 'gap-xs grid [grid-template-columns:auto] sm:[grid-template-columns:repeat(auto-fit,minmax(6rem,1fr))]',
               popover: {
                 content: 'min-w-60',
               },

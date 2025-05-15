@@ -37,10 +37,7 @@ const props = withDefaults(defineProps<DateRangePickerProps>(), {
 
 const modelValue = defineModel<DateRange>({ required: true })
 
-const placeholderValue = defineModel<Date>('placeholderValue', {
-  default: new Date(),
-  required: false,
-})
+const placeholderValue = defineModel<Date>('placeholderValue', { required: false })
 
 const delegatedModel = computed<{ end: DateValue | undefined
   start: DateValue | undefined }>({
@@ -67,9 +64,9 @@ const delegatedModel = computed<{ end: DateValue | undefined
   },
 })
 
-const delegetedPlaceholderValue = computed<DateValue>({
+const delegatedPlaceholderValue = computed<DateValue>({
   get: () => {
-    return dateToDateValue(placeholderValue.value)
+    return dateToDateValue(placeholderValue.value ?? modelValue.value.from ?? new Date())
   },
   set: (value) => {
     placeholderValue.value = dateValueToDate(value)
@@ -90,7 +87,7 @@ useProvideDateRangePickerContext({
   ...toComputedRefs(props),
   customClassConfig,
   modelValue,
-  placeholderValue,
+  placeholderValue: computed<Date>(() => dateValueToDate(delegatedPlaceholderValue.value)),
   style: dateRangePickerStyle,
 })
 </script>
@@ -101,7 +98,7 @@ useProvideDateRangePickerContext({
       <RekaRangeCalendarRoot
         v-slot="{ weekDays, grid }"
         v-model="delegatedModel"
-        v-model:placeholder="delegetedPlaceholderValue"
+        v-model:placeholder="delegatedPlaceholderValue"
         :week-starts-on="1"
         :prevent-deselect="!props.allowDeselect"
         :fixed-weeks="true"
