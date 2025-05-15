@@ -1,5 +1,19 @@
 # @wisemen/vue-core-components
 
+## 1.7.0
+
+### 🔥 New Features
+
+- **Autocomplete**: Added an `items` slot to support more advanced customization.
+
+### ✨ Improvements
+
+- **DatePicker**, **DateRangePicker**: Now properly forward the `locale` prop for localized formats.
+
+### 🐞 Bug Fixes
+
+- **DateField**, **DateRangeField**: Fixed the `placeholderValue` prop to behave as expected.
+
 ## 1.6.0
 
 ### 🔥 New Features
