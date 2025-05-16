@@ -1,9 +1,10 @@
 import type { InfiniteData } from '@tanstack/vue-query'
 import { useInfiniteQuery as useTanstackInfiniteQuery } from '@tanstack/vue-query'
 import type {
+  BasePagination,
   PaginatedData,
   PaginationOptions,
-} from '@wisemen/vue-core'
+} from '@wisemen/vue-core-components'
 import type {
   ComputedRef,
   MaybeRef,
@@ -16,18 +17,18 @@ type NonOptionalKeys<T> = {
   [K in keyof T]-?: T[K]
 }
 
-interface useInfiniteQueryOptions<TResData, TFilters> {
+interface useInfiniteQueryOptions<TResData, TPagination extends BasePagination> {
   enabled?: ComputedRef<boolean>
   /**
    * Pagination options to use in the query
    * @see UsePaginationReturnType
    */
-  paginationOptions: ComputedRef<PaginationOptions<TFilters>>
+  paginationOptions: ComputedRef<PaginationOptions<TPagination>>
   /**
    * Function that will be called when query is executed
    * @returns Promise with response data
    */
-  queryFn: (options: PaginationOptions<TFilters>) => Promise<PaginatedData<TResData>>
+  queryFn: (options: PaginationOptions<TPagination>) => Promise<PaginatedData<TResData>>
   /**
    * Query key associated with the query
    */
@@ -81,8 +82,8 @@ export interface UseInfiniteQueryReturnType<TResData> {
   refetch: () => Promise<void>
 }
 
-export function useInfiniteQuery<TResData, TFilters>(
-  options: useInfiniteQueryOptions<TResData, TFilters>,
+export function useInfiniteQuery<TResData, TPagination extends BasePagination>(
+  options: useInfiniteQueryOptions<TResData, TPagination>,
 ): UseInfiniteQueryReturnType<TResData> {
   const infiniteQuery = useTanstackInfiniteQuery<
     PaginatedData<TResData>,
