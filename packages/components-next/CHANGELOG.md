@@ -1,5 +1,16 @@
 # @wisemen/vue-core-components
 
+## 1.7.1
+
+### ✨ Improvements
+
+- **Table**: Added a background color to the empty and loading state.
+- **Spinner**: Migrated styles to Tailwind, so there's no longer a need to import a separate stylesheet.
+
+### 🐞 Bug Fixes
+
+- **DatePicker**, **DateRangePicker**: Fixed an issue where the calendar incorrectly started on Tuesday instead of Monday.
+
 ## 1.7.0
 
 ### 🔥 New Features
