@@ -329,7 +329,7 @@
   --font-weight-bold: 700;
 
   /* ------------------------------------------------------------------------ */
-  /* SHADOWS                                                                   */
+  /* SHADOWS                                                                  */
   /* ------------------------------------------------------------------------ */
 
   --shadow-*: initial;
@@ -345,5 +345,33 @@
     0px 0px 0px 0.909px rgba(10, 13, 18, 0.18) inset, 
     0px -1.818px 0px 0px rgba(10, 13, 18, 0.05) inset, 
     0px 0.909px 1.818px 0px rgba(10, 13, 18, 0.05); 
+
+  /* ------------------------------------------------------------------------ */
+  /* ANIMATIONS                                                               */
+  /* ------------------------------------------------------------------------ */
+
+  --animate-spinner: loading-spinner-rotate 2s linear infinite;
+  --animate-spinner-path: loading-spinner-path 1.5s ease-in-out infinite;
+
+  @keyframes loading-spinner-rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes loading-spinner-path {
+    0% {
+      stroke-dasharray: 1, 200;
+      stroke-dashoffset: 0;
+    }
+    50% {
+      stroke-dasharray: 89, 200;
+      stroke-dashoffset: -35px;
+    }
+    100% {
+      stroke-dasharray: 89, 200;
+      stroke-dashoffset: -124px;
+    }
+  }
 }
 
