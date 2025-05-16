@@ -31,7 +31,7 @@ const ROW_COUNT = 10
   <div
     v-if="isEmpty || isLoading"
     :style="{ gridTemplateColumns }"
-    class="relative grid overflow-hidden"
+    class="bg-primary relative grid overflow-hidden"
   >
     <TableHeader />
 
