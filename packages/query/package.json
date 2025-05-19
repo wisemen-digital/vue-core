@@ -43,7 +43,7 @@
     "@vue/tsconfig": "catalog:",
     "@wisemen/eslint-config-vue": "catalog:",
     "@wisemen/vue-core": "1.0.0-alpha.41",
-    "@wisemen/vue-core-components": "1.7.1",
+    "@wisemen/vue-core-components": "1.7.2",
     "eslint": "catalog:",
     "jsdom": "catalog:",
     "minimist": "1.2.8",
