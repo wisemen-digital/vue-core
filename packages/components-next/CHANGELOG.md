@@ -1,5 +1,11 @@
 # @wisemen/vue-core-components
 
+## 1.7.2
+
+### 🐞 Bug Fixes
+
+- **DatePicker**, **DateRangePicker**: Fixed a reactivity issue that caused the placeholder value to not work correctly.
+
 ## 1.7.1
 
 ### ✨ Improvements
