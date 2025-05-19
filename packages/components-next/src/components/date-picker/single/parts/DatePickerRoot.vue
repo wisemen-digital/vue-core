@@ -82,7 +82,12 @@ useProvideDatePickerContext({
   ...toComputedRefs(props),
   customClassConfig,
   modelValue,
-  placeholderValue: computed<Date>(() => dateValueToDate(delegatedPlaceholderValue.value)),
+  placeholderValue: computed<Date>({
+    get: () => dateValueToDate(delegatedPlaceholderValue.value),
+    set: (value) => {
+      delegatedPlaceholderValue.value = dateToDateValue(value)
+    },
+  }),
   style: datePickerStyle,
 })
 </script>

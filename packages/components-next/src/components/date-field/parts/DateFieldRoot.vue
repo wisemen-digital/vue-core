@@ -74,6 +74,15 @@ const delegatedModel = computed<DateValue | null>({
   },
 })
 
+const delegatedPlaceholderValue = computed<Date>({
+  get: () => {
+    return placeholderValue.value ?? modelValue.value ?? new Date()
+  },
+  set: (value) => {
+    placeholderValue.value = value as TValue
+  },
+})
+
 const { locale } = useInjectConfigContext()
 const { theme } = injectThemeProviderContext()
 
@@ -108,7 +117,7 @@ useProvideDateFieldContext({
   ...toComputedRefs(props),
   customClassConfig,
   modelValue,
-  placeholderValue: computed<Date>(() => placeholderValue.value ?? modelValue.value ?? new Date()),
+  placeholderValue: delegatedPlaceholderValue,
   style: dateFieldStyle,
   onBlur,
   onFocus,
