@@ -10,6 +10,13 @@ import type { TooltipProps } from '@/components/tooltip/tooltip.props'
 
 const props = defineProps<TooltipProps>()
 
+const emit = defineEmits<{
+  autoFocusOnClose: [event: Event]
+  escapeKeyDown: [event: KeyboardEvent]
+  focusOutside: [event: CustomEvent]
+  interactOutside: [event: CustomEvent]
+}>()
+
 const isOpen = defineModel<boolean>('isOpen', {
   default: false,
   required: false,
@@ -20,6 +27,10 @@ const isOpen = defineModel<boolean>('isOpen', {
   <TooltipRoot
     v-bind="props"
     v-model="isOpen"
+    @escape-key-down="emit('escapeKeyDown', $event)"
+    @focus-outside="emit('focusOutside', $event)"
+    @interact-outside="emit('interactOutside', $event)"
+    @auto-focus-on-close="emit('autoFocusOnClose', $event)"
   >
     <TooltipTrigger>
       <slot name="trigger" />

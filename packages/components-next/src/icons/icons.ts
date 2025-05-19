@@ -18,9 +18,17 @@ export interface BaseIcons {
   close: Component
   eye: Component
   eyeOff: Component
+  heading1: Component
+  heading2: Component
+  heading3: Component
   infoCircle: Component
+  link: Component
+  list: Component
   minus: Component
+  orderedList: Component
+  pilcrow: Component
   plus: Component
+  quote: Component
   search: Component
   selectIconRight: Component
   stars: Component
@@ -47,9 +55,17 @@ export const icons: BaseIcons = {
   close: import('@/icons/CloseIcon.vue'),
   eye: import('@/icons/EyeIcon.vue'),
   eyeOff: import('@/icons/EyeOffIcon.vue'),
+  heading1: import('@/icons/Heading1Icon.vue'),
+  heading2: import('@/icons/Heading2Icon.vue'),
+  heading3: import('@/icons/Heading3Icon.vue'),
   infoCircle: import('@/icons/InfoCircleIcon.vue'),
+  link: import('@/icons/LinkIcon.vue'),
+  list: import('@/icons/ListIcon.vue'),
   minus: import('@/icons/MinusIcon.vue'),
+  orderedList: import('@/icons/OrderedListIcon.vue'),
+  pilcrow: import('@/icons/PilcrowIcon.vue'),
   plus: import('@/icons/PlusIcon.vue'),
+  quote: import('@/icons/QuoteIcon.vue'),
   search: import('@/icons/SearchIcon.vue'),
   selectIconRight: import('@/icons/SelectIconRight.vue'),
   stars: import('@/icons/StarsIcon.vue'),

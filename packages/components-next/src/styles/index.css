@@ -2,7 +2,9 @@
 @import './core/colors.css';
 @import './core/tokens.css';
 
+
 @import 'tailwindcss';
+@plugin "@tailwindcss/typography";
 @variant dark (&:where(.dark, .dark *));
 @utility no-scrollbar {
   &::-webkit-scrollbar {

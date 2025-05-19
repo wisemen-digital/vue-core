@@ -10,6 +10,10 @@ interface TooltipContext extends PropsToComputed<TooltipProps> {
   isOpen: ComputedRef<boolean>
   customClassConfig: ComputedRef<ResolvedClassConfig<'tooltip'>>
   style: ComputedRef<CreateTooltipStyle>
+  onAutoFocusOnClose: (event: Event) => void
+  onContentEscapeKeyDown: (event: KeyboardEvent) => void
+  onContentFocusOutside: (event: CustomEvent) => void
+  onContentInteractOutside: (event: CustomEvent) => void
 }
 
 export const [

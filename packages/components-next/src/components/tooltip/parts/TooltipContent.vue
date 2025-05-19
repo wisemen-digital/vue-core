@@ -19,6 +19,10 @@ const {
   popoverSideOffset,
   popoverWidth,
   style,
+  onAutoFocusOnClose,
+  onContentEscapeKeyDown,
+  onContentFocusOutside,
+  onContentInteractOutside,
 } = useInjectTooltipContext()
 </script>
 
@@ -43,6 +47,10 @@ const {
         })"
         position-strategy="absolute"
         sticky="always"
+        @escape-key-down="onContentEscapeKeyDown"
+        @focus-outside="onContentFocusOutside"
+        @interact-outside="onContentInteractOutside"
+        @close-auto-focus="onAutoFocusOnClose"
       >
         <slot />
       </RekaTooltipContent>

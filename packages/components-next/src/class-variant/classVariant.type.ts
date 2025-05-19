@@ -23,6 +23,7 @@ import type { createSelectStyle } from '@/components/select/style/select.style'
 import type { createSwitchStyle } from '@/components/switch/switch.style'
 import type { createTableStyle } from '@/components/table/table.style'
 import type { createTabsStyle } from '@/components/tabs/shared/tabs.style'
+import type { createTextEditorStyle } from '@/components/text-editor/textEditor.style'
 import type { createTextFieldStyle } from '@/components/text-field/textField.style'
 import type { createTextareaStyle } from '@/components/textarea/textarea.style'
 import type { createTimeFieldStyle } from '@/components/time-field/timeField.style'
@@ -142,6 +143,10 @@ export interface ComponentMap {
   }
   textarea: {
     style: typeof createTextareaStyle
+    children: {}
+  }
+  textEditor: {
+    style: typeof createTextEditorStyle
     children: {}
   }
   textField: {

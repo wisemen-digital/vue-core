@@ -24,7 +24,6 @@ const activeDialogCount = ref<number>(0)
   <div>
     <ConfigProvider
       locale="en-NL"
-      teleport-target-selector="#teleport-target"
       google-maps-api-key="AIzaSyATX2fY3BZwaKeURsQhwpEVLmLRr27s4vw"
     >
       <ThemeProvider :appearance="appearance">
