@@ -2,6 +2,7 @@
 import { useLocalStorage } from '@vueuse/core'
 import {
   VcDialogContent,
+  VcDialogContentTransition,
   VcDialogDescription,
   VcDialogOverlay,
   VcDialogOverlayTransition,
@@ -12,7 +13,6 @@ import { Motion } from 'motion-v'
 import { useI18n } from 'vue-i18n'
 
 import { useProvideSettingsDialogContext } from '@/modules/settings/settingsDialog.context'
-import LayoutStackItem from '@/modules/stacked-layout/parts/LayoutStackItem.vue'
 
 const isExpanded = useLocalStorage<boolean>('is-dialog-expanded', false)
 
@@ -24,7 +24,7 @@ useProvideSettingsDialogContext({ isExpanded })
 <template>
   <VcDialogRoot>
     <VcDialogContent>
-      <LayoutStackItem>
+      <VcDialogContentTransition>
         <Motion
           :initial="{
             // Setting the initial state to `initial: false` breaks Motion animations inside the dialog
@@ -60,7 +60,7 @@ useProvideSettingsDialogContext({ isExpanded })
 
           <slot />
         </Motion>
-      </LayoutStackItem>
+      </VcDialogContentTransition>
     </VcDialogContent>
 
     <VcDialogOverlay>

@@ -21,7 +21,7 @@ const initialDefaultSettingsState = ref<any>({
   fontSize: 'default',
 })
 
-const config: SettingsConfig = {
+const config = {
   categories: [
     {
       title: 'General',
@@ -58,7 +58,7 @@ const config: SettingsConfig = {
       ],
     },
   ],
-}
+} as const satisfies SettingsConfig
 </script>
 
 <template>
@@ -66,6 +66,7 @@ const config: SettingsConfig = {
     <Settings
       v-model:default-preferences="initialDefaultSettingsState"
       :config="config"
+      active-view="notifications"
     />
   </SettingsDialog>
 </template>
