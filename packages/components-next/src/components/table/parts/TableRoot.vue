@@ -53,6 +53,29 @@ const {
   },
 })
 
+function isValueEmpty(value: any): boolean {
+  if (value == null) {
+    return true
+  }
+  if (typeof value === 'boolean') {
+    return !value
+  }
+  if (typeof value === 'string') {
+    return value.trim().length === 0
+  }
+  if (Array.isArray(value)) {
+    return value.length === 0
+  }
+  if (value instanceof Map || value instanceof Set) {
+    return value.size === 0
+  }
+  if (typeof value === 'object') {
+    return Object.keys(value).length === 0
+  }
+
+  return false
+}
+
 const activeFilterCount = computed<number>(() => {
   const {
     filter, search,
@@ -60,17 +83,23 @@ const activeFilterCount = computed<number>(() => {
 
   const hasActiveSearch = search !== undefined && search.length > 0
 
-  let activeFilterCount = 0
+  let count = 0
 
   if (hasActiveSearch) {
-    activeFilterCount += 1
+    count += 1
   }
 
   if (filter === undefined) {
-    return activeFilterCount
+    return count
   }
 
-  return Object.keys(filter).length + activeFilterCount
+  const nonEmptyFilters = Object.entries(filter).filter(([
+    , value,
+  ]) => !isValueEmpty(value))
+
+  count += nonEmptyFilters.length
+
+  return count
 })
 
 const isEmpty = computed<boolean>(() => {
