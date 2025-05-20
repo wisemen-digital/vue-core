@@ -3,43 +3,46 @@ import {
   VcConfigProvider,
   VcSelect,
   VcSelectItem,
-  VcThemeProvider
-} from '@wisemen/vue-core-components';
+  VcThemeProvider,
+} from '@wisemen/vue-core-components'
 import {
   computed,
   reactive,
   ref,
-} from 'vue';
+} from 'vue'
 
 interface VariantModel {
   [key: string]: {
-    value: string
     options: string[]
+    value: string
   }
-} 
-
-interface Props<T extends Record<string, any>, U extends (...args: any[]) => Record<string, string>> {
-  styleFunction: U;
 }
 
+interface Props<U extends (...args: any[]) => Record<string, string>> {
+  styleFunction: U
+}
 
-const props = defineProps<Props<any, any>>();
+const props = defineProps<Props<any>>()
 
 const { variants } = props.styleFunction
 const variantModels = reactive<VariantModel>({})
 
 const style = computed<any>(() => {
-  const activeVariants: Record<string, string> = {};
+  const activeVariants: Record<string, string> = {}
+
   for (const variantName in variantModels) {
-    activeVariants[variantName] = variantModels[variantName].value;
+    activeVariants[variantName] = variantModels[variantName].value
   }
-  return props.styleFunction(activeVariants);
-});
+
+  return props.styleFunction(activeVariants)
+})
 
 for (const variant in variants) {
   const options = Object.keys(variants[variant as keyof typeof variants])
 
-  if (options.length === 0) continue
+  if (options.length === 0) {
+    continue
+  }
   
   variantModels[variant] = {
     value: options[0],
