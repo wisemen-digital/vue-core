@@ -83,23 +83,23 @@ const activeFilterCount = computed<number>(() => {
 
   const hasActiveSearch = search !== undefined && search.length > 0
 
-  let activeFilterCount = 0
+  let count = 0
 
   if (hasActiveSearch) {
-    activeFilterCount += 1
+    count += 1
   }
 
   if (filter === undefined) {
-    return activeFilterCount
+    return count
   }
 
   const nonEmptyFilters = Object.entries(filter).filter(([
     , value,
   ]) => !isValueEmpty(value))
 
-  activeFilterCount += nonEmptyFilters.length
+  count += nonEmptyFilters.length
 
-  return activeFilterCount
+  return count
 })
 
 const isEmpty = computed<boolean>(() => {
