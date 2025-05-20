@@ -7,3 +7,4 @@ export type {
   SelectItemProps as VcSelectItemProps, SelectProps as VcSelectProps,
 } from '@/components/select/select.props'
 export { default as VcSelect } from '@/components/select/Select.vue'
+export { createSelectStyle } from '@/components/select/style/select.style'

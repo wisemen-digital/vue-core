@@ -10,11 +10,13 @@ export const components: ComponentConfig[] = [
     sourceFolder: 'autocomplete/Autocomplete.vue',
     targetFolder: 'autocomplete',
     componentName: 'Autocomplete',
+    styleFunctionName: 'createSelectStyle',
   },
   {
     sourceFolder: 'address-autocomplete/AddressAutocomplete.vue',
     targetFolder: 'address-autocomplete',
     componentName: 'AddressAutocomplete',
+    styleFunctionName: 'createSelectStyle',
   },
   {
     sourceFolder: 'avatar/parts/AvatarRoot.vue',
