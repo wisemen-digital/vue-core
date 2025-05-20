@@ -1,5 +1,18 @@
 # @wisemen/vue-core-modules
 
+## 2.1.0
+
+### 🔥 New Features
+
+- **SettingsModule**: Added an `activeView` prop, allowing external control over the currently active view.
+
+### Patch Changes
+
+- Updated dependencies [85054f8]
+- Updated dependencies [57528d6]
+- Updated dependencies [a14b657]
+  - @wisemen/vue-core-components@1.7.3
+
 ## 2.0.2
 
 ### Patch Changes
