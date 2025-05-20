@@ -1,5 +1,9 @@
-import type { SettingsConfig } from '@/modules/settings/settings.type'
+import type {
+  SettingsConfig,
+  ViewIdFromConfig,
+} from '@/modules/settings/settings.type'
 
-export interface SettingsProps {
-  config: SettingsConfig
+export interface SettingsProps<TConfig extends SettingsConfig> {
+  activeView?: ViewIdFromConfig<TConfig>
+  config: TConfig
 }

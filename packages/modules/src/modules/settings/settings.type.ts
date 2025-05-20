@@ -25,3 +25,6 @@ export interface SettingsCategory {
 export interface SettingsConfig {
   categories: SettingsCategory[]
 }
+
+export type ViewIdFromConfig<T extends SettingsConfig> =
+  T['categories'][number]['views'][number]['id']

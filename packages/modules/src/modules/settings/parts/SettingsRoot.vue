@@ -2,6 +2,7 @@
 import {
   computed,
   ref,
+  watch,
 } from 'vue'
 
 import type { DefaultPreferences } from '@/modules/settings/default-preferences/defaultPreferences'
@@ -14,7 +15,11 @@ import type {
 } from '@/modules/settings/settings.type'
 import { useSettingsHistory } from '@/modules/settings/settingsHistory.composable'
 
-const props = defineProps<SettingsProps>()
+const props = defineProps<SettingsProps<SettingsConfig>>()
+
+const emit = defineEmits<{
+  'update:activeView': [viewId: string]
+}>()
 
 const defaultPreferences = defineModel<DefaultPreferences>('defaultPreferences', { required: true })
 
@@ -31,7 +36,7 @@ const {
   onShowSection,
   onShowView,
 } = useSettingsHistory({
-  id: props.config.categories[0]!.views[0]!.id,
+  id: props.activeView ?? props.config.categories[0]!.views[0]!.id,
   type: 'view',
 })
 
@@ -45,6 +50,13 @@ const activeView = computed<SettingsView>(() => {
   return views.find((view) => view.sections.some(
     (section) => section.id === activeItem.value.id,
   ))!
+})
+
+const activeViewId = computed<string>({
+  get: () => activeView.value.id,
+  set: (id: string) => {
+    onShowView(id)
+  },
 })
 
 const filteredCategories = computed<SettingsCategory[]>(() => {
@@ -92,6 +104,10 @@ const filteredCategories = computed<SettingsCategory[]>(() => {
     .filter((category) => category.views.length > 0)
 
   return categoriesWithMatchingItems as SettingsCategory[]
+})
+
+watch(activeViewId, (viewId) => {
+  emit('update:activeView', viewId)
 })
 
 useProvideSettingsContext({
