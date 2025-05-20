@@ -36,11 +36,13 @@ export const components: ComponentConfig[] = [
     sourceFolder: 'button/icon-button/parts/IconButtonRoot.vue',
     targetFolder: 'icon-button',
     componentName: 'IconButton',
+    styleFunctionName: 'createIconButtonStyle',
   },
   {
     sourceFolder: 'button/router-link-button/parts/RouterLinkButtonRoot.vue',
     targetFolder: 'router-link-button',
     componentName: 'RouterLinkButton',
+    styleFunctionName: 'createRouterLinkButtonStyle',
   },
   // Checkbox group
   {

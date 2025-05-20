@@ -14,10 +14,12 @@ export { default as VcRouterLinkButtonIconLeft } from '@/components/button/route
 export { default as VcRouterLinkButtonIconRight } from '@/components/button/router-link-button/parts/RouterLinkButtonIconRight.vue'
 export { default as VcRouterLinkButtonRoot } from '@/components/button/router-link-button/parts/RouterLinkButtonRoot.vue'
 export type { RouterLinkButtonProps as VcRouterLinkButtonProps } from '@/components/button/router-link-button/routerLinkButton.props'
+export { createRouterLinkButtonStyle } from '@/components/button/router-link-button/routerLinkButton.style'
 export { default as VcRouterLinkButton } from '@/components/button/router-link-button/RouterLinkButton.vue'
 
 // Icon Button
 export type { IconButtonProps as VcIconButtonProps } from '@/components/button/icon-button/iconButton.props'
+export { createIconButtonStyle } from '@/components/button/icon-button/iconButton.style'
 export { default as VcIconButton } from '@/components/button/icon-button/IconButton.vue'
 export { default as VcIconButtonIcon } from '@/components/button/icon-button/parts/IconButtonIcon.vue'
 export { default as VcIconButtonLoader } from '@/components/button/icon-button/parts/IconButtonLoader.vue'
