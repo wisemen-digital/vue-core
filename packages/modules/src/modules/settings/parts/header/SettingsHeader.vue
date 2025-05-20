@@ -17,9 +17,9 @@ const { activeView } = useInjectSettingsContext()
     <div class="flex items-center">
       <SettingsHeaderControls />
 
-      <h1 class="text-primary ml-md text-lg font-semibold">
+      <h2 class="text-primary ml-md text-lg font-semibold">
         {{ activeView.title }}
-      </h1>
+      </h2>
     </div>
 
     <div class="gap-x-xs flex items-center">
