@@ -31,7 +31,7 @@
   {
     'name': 'size',
     'description': '<p>The size of the badge.</p>\n',
-    'type': '\'md\' | \'lg\' | \'sm\'',
+    'type': '\'lg\' | \'md\' | \'sm\'',
     'required': false,
     'default': '\'md\''
   },

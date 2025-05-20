@@ -707,8 +707,8 @@ importers:
         specifier: 1.0.0-alpha.41
         version: 1.0.0-alpha.41(typescript@5.8.2)(vite@6.2.5(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.30.1)(sass@1.77.5)(tsx@4.19.4)(yaml@2.8.0))(vue@3.5.13(typescript@5.8.2))
       '@wisemen/vue-core-components':
-        specifier: 1.7.2
-        version: 1.7.2(motion-v@1.0.0-beta.2(vue@3.5.13(typescript@5.8.2)))(tailwindcss@4.1.2)(vue@3.5.13(typescript@5.8.2))
+        specifier: 1.7.3
+        version: 1.7.3(motion-v@1.0.0-beta.2(vue@3.5.13(typescript@5.8.2)))(tailwindcss@4.1.2)(vue@3.5.13(typescript@5.8.2))
       eslint:
         specifier: 'catalog:'
         version: 9.23.0(jiti@2.4.2)
@@ -3001,8 +3001,8 @@ packages:
     peerDependencies:
       eslint: ^9.23.0
 
-  '@wisemen/vue-core-components@1.7.2':
-    resolution: {integrity: sha512-ccFtuigISd2pOfG3H1Ve//FO+3JhP1ro2Ihq7BHZr2Qd2+4amK1ckUCGhRLRFWGG+tWbpIZuYMrZN5md0rD8Xg==}
+  '@wisemen/vue-core-components@1.7.3':
+    resolution: {integrity: sha512-O0++a63iXApKLIClPHrQJQi819NIJ7BxIgvh9GX6X6KqROkejaEfGEEsSGXE9dPm7+1Z8QHBzN4piAxNSrRqzQ==}
     peerDependencies:
       motion-v: 1.0.0-beta.2
       vue: 3.5.13
@@ -10048,7 +10048,7 @@ snapshots:
       - vue-eslint-parser
       - yaml-eslint-parser
 
-  '@wisemen/vue-core-components@1.7.2(motion-v@1.0.0-beta.2(vue@3.5.13(typescript@5.8.2)))(tailwindcss@4.1.2)(vue@3.5.13(typescript@5.8.2))':
+  '@wisemen/vue-core-components@1.7.3(motion-v@1.0.0-beta.2(vue@3.5.13(typescript@5.8.2)))(tailwindcss@4.1.2)(vue@3.5.13(typescript@5.8.2))':
     dependencies:
       motion-v: 1.0.0-beta.2(vue@3.5.13(typescript@5.8.2))
       tailwind-variants: 1.0.0(tailwindcss@4.1.2)

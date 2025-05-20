@@ -1,4 +1,11 @@
-export const components = [
+type ComponentConfig = {
+  sourceFolder: string;
+  targetFolder: string;
+  componentName: string;
+  styleFunctionName?: string;
+}
+
+export const components: ComponentConfig[] = [
   {
     sourceFolder: 'autocomplete/Autocomplete.vue',
     targetFolder: 'autocomplete',
@@ -23,6 +30,7 @@ export const components = [
     sourceFolder: 'button/default-button/parts/ButtonRoot.vue',
     targetFolder: 'button',
     componentName: 'Button',
+    styleFunctionName: 'createButtonStyle',
   },
   {
     sourceFolder: 'button/icon-button/parts/IconButtonRoot.vue',

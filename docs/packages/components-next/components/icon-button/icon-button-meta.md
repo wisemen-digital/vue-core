@@ -37,7 +37,7 @@
   {
     'name': 'size',
     'description': '<p>Defines the button’s size.</p>\n',
-    'type': '\'md\' | \'lg\' | \'sm\' | \'2xl\' | \'xl\'',
+    'type': '\'lg\' | \'md\' | \'sm\' | \'2xl\' | \'xl\'',
     'required': false,
     'default': '\'md\''
   },

@@ -1,5 +1,6 @@
 // Button
 export type { ButtonProps as VcButtonProps } from '@/components/button/default-button/button.props'
+export { createButtonStyle } from '@/components/button/default-button/button.style'
 export { default as VcButton } from '@/components/button/default-button/Button.vue'
 export { default as VcButtonContent } from '@/components/button/default-button/parts/ButtonContent.vue'
 export { default as VcButtonIconLeft } from '@/components/button/default-button/parts/ButtonIconLeft.vue'

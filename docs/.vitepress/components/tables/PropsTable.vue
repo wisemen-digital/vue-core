@@ -59,14 +59,14 @@ function sortProps(props: PropDef[]): PropDef[] {
 
 <template>
   <VcThemeProvider :appearance="isDark ? 'dark' : 'light'">
-    <h2>
+    <h2 id="props">
       Props
     </h2>
 
     <div
       class="
         border-secondary gap-x-2xl mt-3xl grid grid-cols-[1fr_2fr_1fr]
-        overflow-auto rounded-lg border border-solid
+        overflow-auto rounded-lg border border-solid max-h-[30rem]
       "
     >
       <div class="bg-secondary col-span-full grid grid-cols-subgrid">
