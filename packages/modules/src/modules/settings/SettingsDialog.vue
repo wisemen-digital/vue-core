@@ -9,11 +9,14 @@ import {
   VcDialogTitle,
 } from '@wisemen/vue-core-components'
 import { Motion } from 'motion-v'
+import { useI18n } from 'vue-i18n'
 
 import { useProvideSettingsDialogContext } from '@/modules/settings/settingsDialog.context'
 import LayoutStackItem from '@/modules/stacked-layout/parts/LayoutStackItem.vue'
 
 const isExpanded = useLocalStorage<boolean>('is-dialog-expanded', false)
+
+const { t } = useI18n()
 
 useProvideSettingsDialogContext({ isExpanded })
 </script>
@@ -45,14 +48,14 @@ useProvideSettingsDialogContext({ isExpanded })
         >
           <VcDialogTitle class="sr-only">
             <h1>
-              Settings
+              {{ t('module.settings.title') }}
             </h1>
           </VcDialogTitle>
 
           <VcDialogDescription class="sr-only">
-            <h1>
-              Manage your application settings, preferences and more.
-            </h1>
+            <p>
+              {{ t('module.settings.description') }}
+            </p>
           </VcDialogDescription>
 
           <slot />
