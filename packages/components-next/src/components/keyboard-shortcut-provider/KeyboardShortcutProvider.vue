@@ -50,6 +50,20 @@ function getFirstInteractiveDescendant(root: HTMLElement): HTMLElement | null {
   return null
 }
 
+function parentHasAriaHidden(element: HTMLElement): boolean {
+  let parent = element.parentElement
+
+  while (parent) {
+    if (parent.hasAttribute('aria-hidden')) {
+      return parent.getAttribute('aria-hidden') === 'true'
+    }
+
+    parent = parent.parentElement
+  }
+
+  return false
+}
+
 useKeyboardShortcut({
   isDisabled: computed<boolean>(() => props.isDisabled),
   keys: props.keyboardKeys,
@@ -60,6 +74,10 @@ useKeyboardShortcut({
 
     const firstInteractiveElement = getFirstInteractiveDescendant(wrapperRef.value)
 
+    if (firstInteractiveElement === null) {
+      return
+    }
+
     if (props.preventDefault ?? false) {
       event.preventDefault()
     }
@@ -68,7 +86,9 @@ useKeyboardShortcut({
       event.stopPropagation()
     }
 
-    if (firstInteractiveElement === null) {
+    const isAriaHidden = parentHasAriaHidden(firstInteractiveElement)
+
+    if (isAriaHidden) {
       return
     }
 
