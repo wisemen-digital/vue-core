@@ -14,6 +14,7 @@ export const setupVue3 = defineSetupVue3(({
     messages: {
       'en-NL': {
         'module.settings.back.label': 'Back',
+        'module.settings.description': 'Manage your app settings.',
         'module.settings.disabled': 'Disabled',
         'module.settings.enabled': 'Enabled',
         'module.settings.expand.label': 'Expand settings view',
@@ -47,6 +48,7 @@ export const setupVue3 = defineSetupVue3(({
         'module.settings.section.keyboard_shortcut_hints.title': 'Keyboard shortcut hints',
         'module.settings.settings_are_hidden.label': '{count} setting in "{viewName}" is currently hidden. | {count} settings in "{viewName}" are currently hidden.',
         'module.settings.settings_are_hidden.show_all.label': 'Show all settings',
+        'module.settings.title': 'Settings',
       },
     },
   })
