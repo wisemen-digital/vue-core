@@ -12,13 +12,14 @@ import type {
   SettingsCategory,
   SettingsConfig,
   SettingsView,
+  ViewIdFromConfig,
 } from '@/modules/settings/settings.type'
 import { useSettingsHistory } from '@/modules/settings/settingsHistory.composable'
 
 const props = defineProps<SettingsProps<SettingsConfig>>()
 
 const emit = defineEmits<{
-  'update:activeView': [viewId: string]
+  'update:activeView': [viewId: ViewIdFromConfig<SettingsConfig>]
 }>()
 
 const defaultPreferences = defineModel<DefaultPreferences>('defaultPreferences', { required: true })

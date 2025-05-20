@@ -7,9 +7,16 @@ import SettingsSidebar from '@/modules/settings/parts/sidebar/SettingsSidebar.vu
 import SettingsSidebarContent from '@/modules/settings/parts/sidebar/SettingsSidebarContent.vue'
 import SettingsSidebarSearchInput from '@/modules/settings/parts/sidebar/SettingsSidebarSearchInput.vue'
 import type { SettingsProps } from '@/modules/settings/settings.props'
-import type { SettingsConfig } from '@/modules/settings/settings.type'
+import type {
+  SettingsConfig,
+  ViewIdFromConfig,
+} from '@/modules/settings/settings.type'
 
 const props = defineProps<SettingsProps<TConfig>>()
+
+const emit = defineEmits<{
+  'update:activeView': [viewId: ViewIdFromConfig<SettingsConfig>]
+}>()
 
 const defaultPreferences = defineModel<DefaultPreferences>('defaultPreferences', { required: true })
 </script>
@@ -18,6 +25,7 @@ const defaultPreferences = defineModel<DefaultPreferences>('defaultPreferences',
   <SettingsRoot
     v-bind="props"
     v-model:default-preferences="defaultPreferences"
+    @update:active-view="emit('update:activeView', $event)"
   >
     <SettingsSidebar>
       <SettingsSidebarSearchInput />
