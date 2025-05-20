@@ -1,18 +1,15 @@
 <script setup lang="ts">
 import {
-  createButtonStyle,
   VcConfigProvider,
   VcSelect,
   VcSelectItem,
-  VcThemeProvider,
+  VcThemeProvider
 } from '@wisemen/vue-core-components';
 import {
   computed,
   reactive,
   ref,
 } from 'vue';
-
-const { variants } = createButtonStyle
 
 interface VariantModel {
   [key: string]: {
@@ -25,8 +22,10 @@ interface Props<T extends Record<string, any>, U extends (...args: any[]) => Rec
   styleFunction: U;
 }
 
+
 const props = defineProps<Props<any, any>>();
 
+const { variants } = props.styleFunction
 const variantModels = reactive<VariantModel>({})
 
 const style = computed<any>(() => {
@@ -40,6 +39,8 @@ const style = computed<any>(() => {
 for (const variant in variants) {
   const options = Object.keys(variants[variant as keyof typeof variants])
 
+  if (options.length === 0) continue
+  
   variantModels[variant] = {
     value: options[0],
     options,
