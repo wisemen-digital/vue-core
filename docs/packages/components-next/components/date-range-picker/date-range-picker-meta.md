@@ -91,3 +91,16 @@
     'default': 'null'
   }
 ]" />
+
+<MethodsTable :data="[
+  {
+    'name': 'isDateDisabled',
+    'description': '<p>A function to determine whether a specific date should be disabled.</p>\n<p>A date that is restricted by rules or settings, such as blackout dates, min/max date limits,\nor days that should never be selectable (e.g., weekends in a work calendar).\nThese dates are predefined as unselectable, regardless of external availability.</p>\n',
+    'type': '(date: Date) => boolean'
+  },
+  {
+    'name': 'isDateUnavailable',
+    'description': '<p>A function to determine whether a specific date is unavailable.</p>\n<p>A date that is not selectable because it is already booked, occupied, or reserved based on external data\n(e.g., a hotel booking system showing fully booked days). The user sees these dates but cannot pick them.</p>\n',
+    'type': '(date: Date) => boolean'
+  }
+]" />

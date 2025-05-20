@@ -6,6 +6,7 @@ import BulletList from '@docs/.vitepress/components/BulletList.vue'
 import ClassConfig from '@docs/.vitepress/components/ClassConfig.vue'
 import ComponentPreview from '@docs/.vitepress/components/ComponentPreview.vue'
 import ComponentPreviewV1 from '@docs/.vitepress/components/ComponentPreviewV1.vue'
+import MethodsTable from '@docs/.vitepress/components/tables/MethodsTable.vue'
 import PropsTable from '@docs/.vitepress/components/tables/PropsTable.vue'
 import { setupDefaultStyles } from '@wisemen/vue-core'
 import DefaultTheme from 'vitepress/theme'
@@ -43,6 +44,7 @@ const theme: typeof DefaultTheme = {
     ctx.app.component('ClassConfig', ClassConfig)
     ctx.app.component('BulletList', BulletList)
     ctx.app.component('PropsTable', PropsTable)
+    ctx.app.component('MethodsTable', MethodsTable)
     DefaultTheme.enhanceApp(ctx)
 
     setupDefaultStyles()

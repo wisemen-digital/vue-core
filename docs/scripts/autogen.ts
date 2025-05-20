@@ -46,6 +46,9 @@ components.forEach((component) => {
   if (meta.props.length)
     parsedString += `<PropsTable :data="${JSON.stringify(meta.props, null, 2).replace(/"/g, '\'')}" />\n`
 
+  if (meta.methods.length)
+    parsedString += `\n<MethodsTable :data="${JSON.stringify(meta.methods, null, 2).replace(/"/g, '\'')}" />\n`
+  
   if (component.styleFunctionName) {
     parsedString += `\n\n<ClassConfig :style-function="${component.styleFunctionName}" />\n\n`;
   }
@@ -57,8 +60,6 @@ components.forEach((component) => {
   // if (meta.slots.length)
   //   parsedString += `\n<SlotsTable :data="${JSON.stringify(meta.slots, null, 2).replace(/"/g, '\'')}" />\n`
 
-  // if (meta.methods.length)
-  //   parsedString += `\n<MethodsTable :data="${JSON.stringify(meta.methods, null, 2).replace(/"/g, '\'')}" />\n`
 
   writeFileSync(metaMdFilePath, parsedString)
 })
