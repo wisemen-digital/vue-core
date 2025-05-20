@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { Component } from 'vue'
 import {
   h,
   ref,
@@ -51,7 +52,7 @@ const config = {
               tags: [
                 'hahahah',
               ],
-              component: () => h(SettingsSection, 'helemaal custom'),
+              component: (): Component => h(SettingsSection, 'helemaal custom'),
             },
           ],
         },
