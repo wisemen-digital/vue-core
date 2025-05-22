@@ -8,6 +8,7 @@ export interface DefaultPreferences {
   enableHighContrast: boolean
   enableKeyboardShortcutHints: boolean
   fontSize: 'default' | 'large' | 'larger' | 'small' | 'smaller'
+  language: string
 }
 
 export function useDefaultPreference<
@@ -16,7 +17,7 @@ export function useDefaultPreference<
   const { defaultPreferencesState } = useInjectSettingsContext()
 
   const value = computed<DefaultPreferences[TKey]>({
-    get: () => defaultPreferencesState.value[key],
+    get: () => defaultPreferencesState.value[key] ?? null,
     set: (newValue) => {
       defaultPreferencesState.value[key] = newValue
     },
