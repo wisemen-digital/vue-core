@@ -11,6 +11,7 @@ import {
   useHighContrastSetting,
   useKeyboardShortcutHintsSetting,
 } from '@/modules/settings/default-preferences/index'
+import { useLanguageSetting } from '@/modules/settings/default-preferences/language/config'
 import SettingsSection from '@/modules/settings/parts/content/SettingsSection.vue'
 import type { SettingsConfig } from '@/modules/settings/settings.type'
 import Settings from '@/modules/settings/Settings.vue'
@@ -20,6 +21,7 @@ const initialDefaultSettingsState = ref<any>({
   appearance: 'dark',
   enableKeyboardShortcutHints: true,
   fontSize: 'default',
+  language: 'en-US',
 })
 
 const config = {
@@ -34,6 +36,7 @@ const config = {
           icon: 'stars',
           sections: [
             useAppearanceSetting(),
+            useLanguageSetting(),
             useFontSizeSetting(),
             useKeyboardShortcutHintsSetting(),
             useHighContrastSetting(),
@@ -67,7 +70,6 @@ const config = {
     <Settings
       v-model:default-preferences="initialDefaultSettingsState"
       :config="config"
-      active-view="notifications"
     />
   </SettingsDialog>
 </template>
