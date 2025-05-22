@@ -46,6 +46,8 @@ export const setupVue3 = defineSetupVue3(({
         'module.settings.section.keyboard_shortcut_hints.example': 'Example',
         'module.settings.section.keyboard_shortcut_hints.not_available_on_mobile': 'Keyboard shortcuts aren\'t available on mobile or tablet devices. To change this setting, open the app on a desktop.',
         'module.settings.section.keyboard_shortcut_hints.title': 'Keyboard shortcut hints',
+        'module.settings.section.language.description': 'Select your preferred language for the app.',
+        'module.settings.section.language.title': 'Language',
         'module.settings.settings_are_hidden.label': '{count} setting in "{viewName}" is currently hidden. | {count} settings in "{viewName}" are currently hidden.',
         'module.settings.settings_are_hidden.show_all.label': 'Show all settings',
         'module.settings.title': 'Settings',
