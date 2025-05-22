@@ -17,9 +17,7 @@ const value = useDefaultPreference('language')
 function getLocaleName(locale: string): string {
   const [
     language,
-  ] = locale.split('-') ?? [
-    locale,
-  ]
+  ] = locale.split('-')
 
   const displayNames = new Intl.DisplayNames([
     activeLocale.value,

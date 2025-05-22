@@ -17,7 +17,7 @@ export function useDefaultPreference<
   const { defaultPreferencesState } = useInjectSettingsContext()
 
   const value = computed<DefaultPreferences[TKey]>({
-    get: () => defaultPreferencesState.value[key] ?? null,
+    get: () => defaultPreferencesState.value[key],
     set: (newValue) => {
       defaultPreferencesState.value[key] = newValue
     },
