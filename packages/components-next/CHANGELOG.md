@@ -1,5 +1,16 @@
 # @wisemen/vue-core-components
 
+## 1.7.3
+
+### ✨ Improvements
+
+- **Table**: Exported internal component parts to allow more granular customization.
+- **KeyboardShortcutProvider**: Now automatically disables shortcuts when any parent element has `aria-hidden`, improving accessibility behavior.
+
+### 🐞 Bug Fixes
+
+- **Table**: Fixed an issue in the calculation of the active filter count, ensuring accurate display.
+
 ## 1.7.2
 
 ### 🐞 Bug Fixes
