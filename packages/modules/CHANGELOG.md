@@ -1,5 +1,11 @@
 # @wisemen/vue-core-modules
 
+## 2.2.1
+
+### 🐞 Bug Fixes
+
+- **SettingsModule**: Fixed a release issue 
+
 ## 2.2.0
 
 ### 🔥 New Features
