@@ -41,7 +41,6 @@ describe('button Component', () => {
       },
     })
 
-    // Expect the custom icon to be present
     expect(wrapper.find('[data-test-id="custom-left-icon"]').exists()).toBeTruthy()
     expect(wrapper.text()).toContain('✨')
   })
