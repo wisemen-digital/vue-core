@@ -185,7 +185,7 @@ export type GetComponentProp<
   ? TVariant extends CustomClassVariant<TComponent, TProp, infer TTargetPropValue>
     ? TTargetPropValue
     : never
-  : never) | GetComponentProps<TComponent>[TProp]
+  : never) | string | GetComponentProps<TComponent>[TProp]
 
 export type ResolvedClassConfig<TComponent extends keyof ComponentMap> = {
   [KSlot in keyof GetComponentSlots<TComponent>]?: string
