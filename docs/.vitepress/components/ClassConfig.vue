@@ -43,7 +43,7 @@ for (const variant in variants) {
   if (options.length === 0) {
     continue
   }
-  
+
   variantModels[variant] = {
     value: options[0],
     options,
@@ -101,8 +101,8 @@ observer.observe(document.documentElement, {
 
       <div
         class="
-          border-secondary gap-x-2xl mt-3xl grid grid-cols-[1fr_2fr] max-h-[30rem]
-          overflow-auto rounded-lg border border-solid
+          border-secondary gap-x-2xl mt-3xl grid max-h-[30rem]
+          grid-cols-[1fr_2fr] overflow-auto rounded-lg border border-solid
         "
       >
         <div class="bg-secondary col-span-full grid grid-cols-subgrid">
