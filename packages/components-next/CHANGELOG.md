@@ -1,5 +1,12 @@
 # @wisemen/vue-core-components
 
+## 1.8.0
+
+### 🔥 New Features
+
+- **LayoutStack**: Introduced `LayoutStackRoot` and `LayoutStackItem` components to enable animated stacking of elements.
+
+
 ## 1.7.3
 
 ### ✨ Improvements
