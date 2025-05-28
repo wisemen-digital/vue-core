@@ -381,6 +381,9 @@ importers:
       motion-v:
         specifier: 'catalog:'
         version: 1.0.0-beta.2(vue@3.5.14(typescript@5.8.3))
+      reka-ui:
+        specifier: 'catalog:'
+        version: 2.2.0(typescript@5.8.3)(vue@3.5.14(typescript@5.8.3))
       tailwind-variants:
         specifier: 'catalog:'
         version: 1.0.0(tailwindcss@4.1.7)
@@ -454,9 +457,6 @@ importers:
       maska:
         specifier: 3.0.0
         version: 3.0.0
-      reka-ui:
-        specifier: 'catalog:'
-        version: 2.2.0(typescript@5.8.3)(vue@3.5.14(typescript@5.8.3))
       sass:
         specifier: 1.77.5
         version: 1.77.5
