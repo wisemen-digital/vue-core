@@ -678,6 +678,9 @@ importers:
       '@tanstack/vue-query':
         specifier: 'catalog:'
         version: 5.76.0(vue@3.5.14(typescript@5.8.3))
+      '@wisemen/vue-core-components':
+        specifier: workspace:*
+        version: link:../components-next
     devDependencies:
       '@tsconfig/node18':
         specifier: 18.2.4
@@ -706,9 +709,6 @@ importers:
       '@wisemen/vue-core':
         specifier: 1.0.0-alpha.41
         version: 1.0.0-alpha.41(typescript@5.8.3)(vite@6.3.5(@types/node@22.15.21)(jiti@2.4.2)(lightningcss@1.30.1)(sass@1.77.5)(tsx@4.19.4)(yaml@2.8.0))(vue-i18n@11.1.3(vue@3.5.14(typescript@5.8.3)))(vue@3.5.14(typescript@5.8.3))
-      '@wisemen/vue-core-components':
-        specifier: workspace:*
-        version: link:../components-next
       eslint:
         specifier: 'catalog:'
         version: 9.27.0(jiti@2.4.2)
