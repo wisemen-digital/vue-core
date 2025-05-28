@@ -18,6 +18,13 @@ type NonOptionalKeys<T> = {
 }
 
 interface useInfiniteQueryOptions<TResData, TPagination extends BasePagination> {
+  /**
+   * Whether to enable debug mode
+   */
+  isDebug?: boolean
+  /**
+   * Whether the query is enabled
+   */
   enabled?: ComputedRef<boolean>
   /**
    * Pagination options to use in the query
@@ -85,6 +92,8 @@ export interface UseInfiniteQueryReturnType<TResData> {
 export function useInfiniteQuery<TResData, TPagination extends BasePagination>(
   options: useInfiniteQueryOptions<TResData, TPagination>,
 ): UseInfiniteQueryReturnType<TResData> {
+  const isDebug = options.isDebug ?? false
+
   const infiniteQuery = useTanstackInfiniteQuery<
     PaginatedData<TResData>,
     unknown,
@@ -139,17 +148,20 @@ export function useInfiniteQuery<TResData, TPagination extends BasePagination>(
     queryKey: getQueryKey(),
   })
 
-  function getQueryKey(): string[] {
+  function getQueryKey(): unknown[] {
     const [
       queryKey,
       params,
     ] = Object.entries(options.queryKey)[0]
 
-    const paramValues = Object.values(params as Record<string, MaybeRef<unknown>>)
+    if (isDebug) {
+      // eslint-disable-next-line no-console
+      console.log(`Create query with key ${queryKey}`, params)
+    }
 
     return [
       queryKey,
-      ...paramValues as string[],
+      params,
     ]
   }
 

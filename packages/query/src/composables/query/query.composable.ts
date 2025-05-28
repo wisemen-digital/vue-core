@@ -20,10 +20,14 @@ export interface UseQueryOptions<TResData> {
   staleTime?: number
   /**
    * Whether to enable debug mode
+   * When enabled, the query key and parameters will be logged to the console
+   * @default false
    */
   isDebug?: boolean
   /**
    * Whether the query is enabled
+   * If false, the query will not be executed
+   * @default true
    */
   isEnabled?: MaybeRef<boolean>
   /**
