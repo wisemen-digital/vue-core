@@ -33,12 +33,14 @@ export default defineConfig({
         'vue-router',
         'i18n-iso-countries',
         'motion-v',
+        'reka-ui',
       ],
       output: {
         // Provide global variables to use in the UMD build
         // for externalized deps
         globals: {
           'motion-v': 'MotionV',
+          'reka-ui': 'RekaUI',
           'vue': 'Vue',
           'vue-i18n': 'VueI18n',
           'vue-router': 'VueRouter',
