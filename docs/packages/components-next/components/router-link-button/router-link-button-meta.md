@@ -1,5 +1,9 @@
 <!-- This file was automatic generated. Do not edit it manually -->
 
+<script setup>
+import { createRouterLinkButtonStyle } from "@wisemen/vue-core-components";
+</script>
+
 <PropsTable :data="[
   {
     'name': 'classConfig',
@@ -25,7 +29,7 @@
   {
     'name': 'size',
     'description': '<p>Defines the button’s size.</p>\n',
-    'type': '\'md\' | \'lg\' | \'sm\' | \'2xl\' | \'xl\'',
+    'type': '\'lg\' | \'md\' | \'sm\' | \'2xl\' | \'xl\'',
     'required': false,
     'default': '\'md\''
   },
@@ -50,3 +54,7 @@
     'default': '\'primary\''
   }
 ]" />
+
+
+<ClassConfig :style-function="createRouterLinkButtonStyle" />
+

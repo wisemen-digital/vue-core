@@ -6,4 +6,23 @@ This component is build on top of the [Autocomplete](/packages/components-next/c
 
 <ComponentPreview name="address-autocomplete/examples/main" />
 
+## Anatomy
+
+```vue
+<script setup lang="ts">
+import {
+  Autocomplete,
+  SelectItem,
+} from '@wisemen/vue-core-components'
+</script>
+
+<template>
+  <Autocomplete>
+    <template #item>
+      <SelectItem />
+    </template>
+  </Autocomplete>
+</template>
+```
+
 <!-- @include: ./address-autocomplete-meta.md -->
