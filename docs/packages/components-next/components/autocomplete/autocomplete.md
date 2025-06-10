@@ -6,10 +6,39 @@ This component is build on top of the [Select](/packages/components-next/compone
 
 <ComponentPreview name="autocomplete/examples/main" />
 
+## Anatomy
+
+```vue
+<script setup lang="ts">
+import {
+  Select,
+  SelectItem,
+} from '@wisemen/vue-core-components'
+</script>
+
+<template>
+  <Select>
+    <template #base>
+      </template>
+    <template #left>
+      </template>
+    <template #right>
+      </template>
+    <template #loader>
+      </template>
+
+    <template #items>
+      <template #item>
+          <SelectItem />
+        </template>
+    </template>
+  </Select>
+</template>
+```
+
+<!-- @include: ./autocomplete-meta.md -->
+
 ## Examples
 
 ### Clear search term on select
-
 <ComponentPreview name="autocomplete/examples/clear-search-term-on-select" />
-
-<!-- @include: ./autocomplete-meta.md -->

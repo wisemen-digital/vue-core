@@ -1,13 +1,22 @@
-export const components = [
+type ComponentConfig = {
+  sourceFolder: string;
+  targetFolder: string;
+  componentName: string;
+  styleFunctionName?: string;
+}
+
+export const components: ComponentConfig[] = [
   {
     sourceFolder: 'autocomplete/Autocomplete.vue',
     targetFolder: 'autocomplete',
     componentName: 'Autocomplete',
+    styleFunctionName: 'createSelectStyle',
   },
   {
     sourceFolder: 'address-autocomplete/AddressAutocomplete.vue',
     targetFolder: 'address-autocomplete',
     componentName: 'AddressAutocomplete',
+    styleFunctionName: 'createSelectStyle',
   },
   {
     sourceFolder: 'avatar/parts/AvatarRoot.vue',
@@ -23,16 +32,19 @@ export const components = [
     sourceFolder: 'button/default-button/parts/ButtonRoot.vue',
     targetFolder: 'button',
     componentName: 'Button',
+    styleFunctionName: 'createButtonStyle',
   },
   {
     sourceFolder: 'button/icon-button/parts/IconButtonRoot.vue',
     targetFolder: 'icon-button',
     componentName: 'IconButton',
+    styleFunctionName: 'createIconButtonStyle',
   },
   {
     sourceFolder: 'button/router-link-button/parts/RouterLinkButtonRoot.vue',
     targetFolder: 'router-link-button',
     componentName: 'RouterLinkButton',
+    styleFunctionName: 'createRouterLinkButtonStyle',
   },
   // Checkbox group
   {

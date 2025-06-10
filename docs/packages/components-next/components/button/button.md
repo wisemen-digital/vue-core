@@ -1,21 +1,9 @@
+
 # Button
 
 An element that triggers an action or event when clicked.
 
 <ComponentPreview name="button/examples/main" />
-
-## Usage
-```vue
-<script setup lang="ts">
-import { VcButton } from '@wisemen/vue-core-components'
-</script>
-
-<template>
-  <VcButton>
-    Button label
-  </VcButton>
-</template>
-```
 
 ## Anatomy
 
@@ -43,32 +31,21 @@ import {
 </template>
 ```
 
+<!-- @include: ./button-meta.md -->
+
 ## Examples
 
 ### Variant
-
 <ComponentPreview name="button/examples/variant" />
 
 ### Size
-
 <ComponentPreview name="button/examples/size" />
 
 ### Disabled
-
 <ComponentPreview name="button/examples/disabled" />
 
 ### Icons
-
 <ComponentPreview name="button/examples/icons" />
 
 ### Loading
-
 <ComponentPreview name="button/examples/loading" />
-
-### Customize
-
-`root`, `content`, `iconLeft`, `iconRight`, `loader`
-
-<ComponentPreview name="button/examples/customize" />
-
-<!-- @include: ./button-meta.md -->

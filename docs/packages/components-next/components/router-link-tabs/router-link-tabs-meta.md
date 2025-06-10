@@ -12,7 +12,8 @@
     'name': 'orientation',
     'description': '<p>Defines the orientation of the tabs.</p>\n',
     'type': '\'vertical\' | \'horizontal\'',
-    'required': false
+    'required': false,
+    'default': '\'horizontal\''
   },
   {
     'name': 'testId',
