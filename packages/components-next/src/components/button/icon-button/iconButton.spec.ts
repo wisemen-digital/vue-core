@@ -19,7 +19,7 @@ describe('icon Button', () => {
     expect(wrapper.exists()).toBeTruthy()
   })
 
-  it('should emit click event when clicked', () => {
+  it('should emit click event when clicked', async () => {
     const wrapper = mount(IconButton, {
       props: {
         icon: 'alertCircle',
@@ -27,12 +27,12 @@ describe('icon Button', () => {
       },
     })
 
-    wrapper.trigger('click')
+    await wrapper.trigger('click')
 
     expect(wrapper.emitted()).toHaveProperty('click')
   })
 
-  it('should not emit events when disabled', () => {
+  it('should not emit events when disabled', async () => {
     const wrapper = mount(IconButton, {
       props: {
         isDisabled: true,
@@ -41,7 +41,7 @@ describe('icon Button', () => {
       },
     })
 
-    wrapper.trigger('click')
+    await wrapper.trigger('click')
 
     expect(wrapper.emitted()).not.toHaveProperty('click')
   })
