@@ -9,13 +9,31 @@ import FormField from './FormField.vue'
 
 describe('form field Component', () => {
   it('renders the label when passed as a prop', () => {
-    const wrapper = mount(FormField, { props: { label: 'Username' } })
+    const wrapper = mount(FormField, {
+      props: {
+        for: '',
+        label: 'Username',
+      },
+    })
 
     expect(wrapper.text()).toContain('Username')
   })
 
   it('renders slot content', () => {
-    const wrapper = mount(FormField, { slots: { default: '<input type="text" />' } })
+    const wrapper = mount(FormField, {
+      props: {
+        for: '',
+        label: 'Username',
+      },
+      slots: {
+        default: [
+          '<input type="text" />',
+        ],
+        error: [],
+        hint: [],
+        label: [],
+      },
+    })
 
     expect(wrapper.find('input[type="text"]').exists()).toBeTruthy()
   })
@@ -25,6 +43,7 @@ describe('form field Component', () => {
       props: {
         isTouched: true,
         errorMessage: 'this is an error message',
+        for: '',
       },
     })
 

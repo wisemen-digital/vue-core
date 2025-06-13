@@ -5,7 +5,7 @@ import {
   it,
 } from 'vitest'
 
-import Checkbox from './checkbox.vue'
+import { VcCheckbox as Checkbox } from '@/components/checkbox'
 
 describe('checkbox Component', () => {
   it('renders the checkbox input', () => {
