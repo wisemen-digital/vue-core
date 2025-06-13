@@ -16,7 +16,8 @@
     },
     "resolveJsonModule": true,
     "types": [
-      "node"
+      "node",
+      "vitest",
     ],
     "allowJs": true,
     "strict": true,

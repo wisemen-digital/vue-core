@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`variant default > renders the variant correctly 1`] = `[Function]`;
+
+exports[`variant destructive-primary > renders the variant correctly 1`] = `[Function]`;
+
+exports[`variant destructive-secondary > renders the variant correctly 1`] = `[Function]`;
+
+exports[`variant destructive-tertiary > renders the variant correctly 1`] = `[Function]`;
+
+exports[`variant secondary-color > renders the variant correctly 1`] = `[Function]`;
+
+exports[`variant tertiary-color > renders the variant correctly 1`] = `[Function]`;
