@@ -65,6 +65,7 @@ const props = defineProps<{
           />
         </template>
 
+        <!-- @vue-expect-error error -->
         <template #group-label="{ label }">
           <slot
             :label="label"
@@ -99,6 +100,7 @@ const props = defineProps<{
           />
         </template>
 
+        <!-- @vue-expect-error error -->
         <template #group-label="{ label }">
           <slot
             :label="label"

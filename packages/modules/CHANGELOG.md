@@ -1,5 +1,27 @@
 # @wisemen/vue-core-modules
 
+## 2.3.0
+
+### 🔥 New Features
+
+- **SettingsModule**: Added `language` as a default preference, allowing language selection to be part of the user's initial settings.
+
+### 🔗 Dependency Updates
+
+- Upgraded to `@wisemen/vue-core-components@1.8.0`
+
+## 2.2.1
+
+### 🐞 Bug Fixes
+
+- **SettingsModule**: Fixed a release issue
+
+## 2.2.0
+
+### 🔥 New Features
+
+- **SettingsModule**: Added `language` as a default preference, enabling users to set their preferred interface language out of the box.
+
 ## 2.1.0
 
 ### 🔥 New Features

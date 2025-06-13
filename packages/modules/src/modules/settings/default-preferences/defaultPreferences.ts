@@ -8,6 +8,7 @@ export interface DefaultPreferences {
   enableHighContrast: boolean
   enableKeyboardShortcutHints: boolean
   fontSize: 'default' | 'large' | 'larger' | 'small' | 'smaller'
+  language: string
 }
 
 export function useDefaultPreference<
