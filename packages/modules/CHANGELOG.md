@@ -1,5 +1,11 @@
 # @wisemen/vue-core-modules
 
+## 2.3.1
+
+### 🐞 Bug Fixes
+
+- **SettingsModule**: Fixed issues with sidebar and content scroll behavior to ensure a smoother and more consistent layout experience.
+
 ## 2.3.0
 
 ### 🔥 New Features
