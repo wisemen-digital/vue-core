@@ -23,7 +23,9 @@ function viewHasMultipleSections(viewId: string): boolean {
 </script>
 
 <template>
-  <ListboxContent class="gap-y-xl flex flex-col">
+  <ListboxContent
+    class="gap-y-xl px-3xl flex h-full flex-col overflow-auto"
+  >
     <SettingsSidebarCategory
       v-for="category of filteredCategories"
       :key="category.title"
