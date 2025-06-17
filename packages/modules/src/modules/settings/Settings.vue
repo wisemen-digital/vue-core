@@ -32,7 +32,7 @@ const defaultPreferences = defineModel<DefaultPreferences>('defaultPreferences',
       <SettingsSidebarContent />
     </SettingsSidebar>
 
-    <div class="bg-primary flex flex-col overflow-hidden">
+    <div class="bg-primary flex w-full flex-col overflow-hidden">
       <SettingsHeader>
         <template #header-right>
           <slot name="header-right" />

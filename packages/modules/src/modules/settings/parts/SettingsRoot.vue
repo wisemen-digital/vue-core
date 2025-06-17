@@ -133,8 +133,8 @@ useProvideSettingsContext({
   <div class="@container/settings h-full">
     <div
       class="
-        grid h-full
-        @3xl/settings:grid-cols-[auto_1fr]
+        h-full
+        @3xl/settings:flex
       "
     >
       <slot />
