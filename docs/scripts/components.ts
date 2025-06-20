@@ -65,6 +65,7 @@ export const components: ComponentConfig[] = [
     sourceFolder: 'date-field/parts/DateFieldRoot.vue',
     targetFolder: 'date-field',
     componentName: 'DateField',
+    styleFunctionName: 'createDateFieldStyle',
   },
   // Date Range Field
   {

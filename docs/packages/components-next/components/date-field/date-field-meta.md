@@ -1,5 +1,9 @@
 <!-- This file was automatic generated. Do not edit it manually -->
 
+<script setup>
+import { createDateFieldStyle } from "@wisemen/vue-core-components";
+</script>
+
 <PropsTable :data="[
   {
     'name': 'allowDeselect',
@@ -154,3 +158,7 @@
     'default': 'null'
   }
 ]" />
+
+
+<ClassConfig :style-function="createDateFieldStyle" />
+
