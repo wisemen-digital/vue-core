@@ -111,6 +111,7 @@ export const components: ComponentConfig[] = [
     sourceFolder: 'password-field/PasswordField.vue',
     targetFolder: 'password-field',
     componentName: 'PasswordField',
+    styleFunctionName: 'createTextFieldStyle',
   },
   // Phone Number Field
   {
