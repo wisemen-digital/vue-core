@@ -36,7 +36,7 @@ export interface FileUploadProps extends InteractableElement {
    * @param mimeType - The MIME type of the file to be uploaded.
    * @returns A promise that resolves to a `FileInfo` object containing upload metadata.
    */
-  getFileInfo: (name: string, mimeType: string) => Promise<FileInfo>
+  getFileInfo: (name: string, mimeType: string) => Promise<Pick<FileInfo, 'url' | 'uuid'>>
 }
 
 export interface FileUploadItemProps {
