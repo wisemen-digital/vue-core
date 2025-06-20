@@ -58,6 +58,7 @@ export const components: ComponentConfig[] = [
     sourceFolder: 'checkbox/parts/CheckboxRoot.vue',
     targetFolder: 'checkbox',
     componentName: 'Checkbox',
+    styleFunctionName: 'createFormFieldStyle',
   },
   // Date Field
   {

@@ -26,6 +26,8 @@ import {
 </template>
 ```
 
+<!-- @include: ./checkbox-meta.md -->
+
 ## Examples
 
 ### Indeterminate
@@ -43,5 +45,3 @@ import {
 ### Customize
 
 <ComponentPreview name="checkbox/examples/customize" />
-
-<!-- @include: ./checkbox-meta.md -->
