@@ -7,6 +7,7 @@ import { VcFormField } from '@wisemen/vue-core-components'
     :is-required="true"
     label="Label"
     hint="This is a hint."
+    for="custom-field"
   >
     /
   </VcFormField>

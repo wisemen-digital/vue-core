@@ -97,6 +97,7 @@ export const components: ComponentConfig[] = [
     sourceFolder: 'form-field/parts/FormFieldRoot.vue',
     targetFolder: 'form-field',
     componentName: 'FormField',
+    styleFunctionName: 'createFormFieldStyle',
   },
   // Number Field
   {

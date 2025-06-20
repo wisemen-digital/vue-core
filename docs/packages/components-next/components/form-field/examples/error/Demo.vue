@@ -7,7 +7,7 @@ import { VcFormField } from '@wisemen/vue-core-components'
     :is-touched="true"
     error-message="This field is required."
     label="Label"
-    for=""
+    for="custom-field"
   >
     /
   </VcFormField>

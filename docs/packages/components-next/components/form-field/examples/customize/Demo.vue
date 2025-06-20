@@ -19,11 +19,14 @@ defineComponentVariant({
     :is-required="true"
     :class-config="{
       label: 'text-xl font-bold',
-      asterisk: 'text-green-500',
+      asterisk: 'text-success-600',
     }"
-    label="Label"
-    variant="custom"
+    for="custom-field"
+    label="Custom color field"
   >
-    /
+    <input
+      id="custom-field"
+      type="color"
+    >
   </VcFormField>
 </template>
