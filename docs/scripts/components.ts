@@ -104,6 +104,7 @@ export const components: ComponentConfig[] = [
     sourceFolder: 'number-field/parts/NumberFieldRoot.vue',
     targetFolder: 'number-field',
     componentName: 'NumberField',
+    styleFunctionName: 'createNumberFieldStyle',
   },
   // Password Field
   {
