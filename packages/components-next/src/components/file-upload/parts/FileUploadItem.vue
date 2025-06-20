@@ -22,7 +22,7 @@ const {
   onUpdateProgress,
 } = useInjectFileUploadContext()
 
-async function getFileInfoData(): Promise<FileInfo | null> {
+async function getFileInfoData(): Promise<Pick<FileInfo, 'url' | 'uuid'> | null> {
   const {
     name, mimeType,
   } = props.item
