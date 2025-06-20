@@ -33,3 +33,17 @@ import {
 ```
 
 <!-- @include: ./date-range-field-meta.md -->
+
+## Examples
+
+### Disabled
+
+<ComponentPreview name="date-range-field/examples/disabled" />
+
+### Error
+
+<ComponentPreview name="date-range-field/examples/error" />
+
+### Non-continuous rangge
+
+<ComponentPreview name="date-range-field/examples/non-continuous-range" />

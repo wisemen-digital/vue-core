@@ -72,6 +72,7 @@ export const components: ComponentConfig[] = [
     sourceFolder: 'date-range-field/parts/DateRangeFieldRoot.vue',
     targetFolder: 'date-range-field',
     componentName: 'DateRangeField',
+    styleFunctionName: 'createDateRangeFieldStyle',
   },
   // Date picker
   {
