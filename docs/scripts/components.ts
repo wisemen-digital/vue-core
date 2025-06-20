@@ -51,6 +51,7 @@ export const components: ComponentConfig[] = [
     sourceFolder: 'checkbox-group/parts/CheckboxGroupRoot.vue',
     targetFolder: 'checkbox-group',
     componentName: 'CheckboxGroup',
+    styleFunctionName: 'createFormFieldStyle',
   },
   // Checkbox
   {
