@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ListboxContent } from 'reka-ui'
+import { toValue } from 'vue'
 
 import SettingsSidebarCategory from '@/modules/settings/parts/sidebar/SettingsSidebarCategory.vue'
 import SettingsSidebarNoResults from '@/modules/settings/parts/sidebar/SettingsSidebarNoResults.vue'
@@ -28,8 +29,8 @@ function viewHasMultipleSections(viewId: string): boolean {
   >
     <SettingsSidebarCategory
       v-for="category of filteredCategories"
-      :key="category.title"
-      :label="category.title"
+      :key="toValue(category.title)"
+      :label="toValue(category.title)"
     >
       <template
         v-for="view of category.views"
@@ -47,7 +48,7 @@ function viewHasMultipleSections(viewId: string): boolean {
         >
           <SettingsSidebarSectionItem
             v-for="section of view.sections"
-            :key="section.title"
+            :key="toValue(section.title)"
             :section="section"
           />
         </ul>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Component } from 'vue'
 import {
+  computed,
   h,
   ref,
 } from 'vue'
@@ -50,6 +51,40 @@ const config = {
           sections: [
             {
               id: 'notifications2',
+              title: computed<string>(() => 'Notifications'),
+              description: computed<string>(() => 'Manage your notifications'),
+              tags: [
+                'hahahah',
+              ],
+              component: (): Component => h(SettingsSection, 'helemaal custom'),
+            },
+          ],
+        },
+        {
+          id: 'notifications2',
+          title: 'Notifications',
+          description: 'Manage your notifications settings',
+          icon: 'search',
+          sections: [
+            {
+              id: 'notifications4',
+              title: 'Notifications',
+              description: 'Manage your notifications',
+              tags: [
+                'hahahah',
+              ],
+              component: (): Component => h(SettingsSection, 'helemaal custom'),
+            },
+          ],
+        },
+        {
+          id: 'notifications8',
+          title: 'Notifications',
+          description: 'Manage your notifications settings',
+          icon: 'search',
+          sections: [
+            {
+              id: 'notifications23',
               title: 'Notifications',
               description: 'Manage your notifications',
               tags: [
@@ -60,6 +95,30 @@ const config = {
           ],
         },
       ],
+    },
+    {
+      title: 'Something',
+      views: [],
+    },
+    {
+      title: 'AHAHAH',
+      views: [],
+    },
+    {
+      title: 'sjdkskdksjskj',
+      views: [],
+    },
+    {
+      title: 'sjdkskdksjskj',
+      views: [],
+    },
+    {
+      title: 'sjdkskdksjskj',
+      views: [],
+    },
+    {
+      title: 'sjdkskdksjskj',
+      views: [],
     },
   ],
 } as const satisfies SettingsConfig

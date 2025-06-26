@@ -1,4 +1,7 @@
-import { h } from 'vue'
+import {
+  computed,
+  h,
+} from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import SettingsLanguageSection from '@/modules/settings/default-preferences/language/SettingsLanguageSection.vue'
@@ -9,8 +12,8 @@ export function useLanguageSetting(): SettingsSection {
 
   return {
     id: 'language',
-    title: t('module.settings.section.language.title'),
-    description: t('module.settings.section.language.description'),
+    title: computed<string>(() => t('module.settings.section.language.title')),
+    description: computed<string>(() => t('module.settings.section.language.description')),
     tags: [],
     component: () => h(SettingsLanguageSection),
   }
