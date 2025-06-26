@@ -1,4 +1,7 @@
-import { h } from 'vue'
+import {
+  computed,
+  h,
+} from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import SettingsFontSizeSection from '@/modules/settings/default-preferences/font-size/SettingsFontSizeSection.vue'
@@ -9,8 +12,8 @@ export function useFontSizeSetting(): SettingsSection {
 
   return {
     id: 'font-size',
-    title: t('module.settings.section.font_size.title'),
-    description: t('module.settings.section.font_size.description'),
+    title: computed<string>(() => t('module.settings.section.font_size.title')),
+    description: computed<string>(() => t('module.settings.section.font_size.description')),
     tags: [],
     component: () => h(SettingsFontSizeSection),
   }

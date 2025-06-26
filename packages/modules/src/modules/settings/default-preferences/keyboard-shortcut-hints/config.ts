@@ -1,4 +1,7 @@
-import { h } from 'vue'
+import {
+  computed,
+  h,
+} from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import SettingsKeyboardShortcutHintsSection from '@/modules/settings/default-preferences/keyboard-shortcut-hints/SettingsKeyboardShortcutHintsSection.vue'
@@ -9,8 +12,8 @@ export function useKeyboardShortcutHintsSetting(): SettingsSection {
 
   return {
     id: 'keyboard-shortcut-hints',
-    title: t('module.settings.section.keyboard_shortcut_hints.title'),
-    description: t('module.settings.section.keyboard_shortcut_hints.description'),
+    title: computed<string>(() => t('module.settings.section.keyboard_shortcut_hints.title')),
+    description: computed<string>(() => t('module.settings.section.keyboard_shortcut_hints.description')),
     tags: [],
     component: () => h(SettingsKeyboardShortcutHintsSection),
   }
