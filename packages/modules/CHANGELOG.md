@@ -1,5 +1,15 @@
 # @wisemen/vue-core-modules
 
+## 2.3.2
+
+### 🐞 Bug Fixes
+
+- **SettingsModule**: Fixed an issue where translations were not reactive, ensuring UI updates correctly when the language changes.
+
+### 🔗 Dependency Updates
+
+- Updated to `@wisemen/vue-core-components@1.9.0`
+
 ## 2.3.1
 
 ### 🐞 Bug Fixes

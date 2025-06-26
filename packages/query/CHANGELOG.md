@@ -1,5 +1,11 @@
 # @wisemen/vue-core-query
 
+## 0.0.38
+
+### 🔗 Dependency Updates
+
+- Updated to `@wisemen/vue-core-components@1.9.0`
+
 ## 0.0.37
 
 ### 🐞 Bug Fixes
