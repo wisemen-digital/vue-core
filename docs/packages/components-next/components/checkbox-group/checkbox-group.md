@@ -23,7 +23,13 @@ import {
 </template>
 ```
 
+<!-- @include: ./checkbox-group-meta.md -->
+
 ## Examples
+
+### Hint
+
+<ComponentPreview name="checkbox-group/examples/hint" />
 
 ### Disabled
 
@@ -33,4 +39,3 @@ import {
 
 <ComponentPreview name="checkbox-group/examples/error" />
 
-<!-- @include: ./checkbox-group-meta.md -->

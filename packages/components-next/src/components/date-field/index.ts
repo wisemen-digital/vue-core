@@ -1,4 +1,5 @@
 export type { DateFieldProps as VcDateFieldProps } from '@/components/date-field/dateField.props'
+export { createDateFieldStyle } from '@/components/date-field/dateField.style'
 export { default as VcDateField } from '@/components/date-field/DateField.vue'
 export { default as VcDateFieldIconLeft } from '@/components/date-field/parts/DateFieldIconLeft.vue'
 export { default as VcDateFieldInput } from '@/components/date-field/parts/DateFieldInput.vue'

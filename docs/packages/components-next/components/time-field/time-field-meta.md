@@ -1,5 +1,9 @@
 <!-- This file was automatic generated. Do not edit it manually -->
 
+<script setup>
+import { createFormFieldStyle } from "@wisemen/vue-core-components";
+</script>
+
 <PropsTable :data="[
   {
     'name': 'autocomplete',
@@ -106,3 +110,7 @@
     'default': 'null'
   }
 ]" />
+
+
+<ClassConfig :style-function="createFormFieldStyle" />
+

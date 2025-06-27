@@ -2,6 +2,8 @@
 
 An unstyled component for uploading files to S3.
 
+<ComponentPreview name="file-upload/examples/main" />
+
 ## Anatomy
 
 ```vue

@@ -10,6 +10,8 @@ An input field for entering numbers.
 <script setup lang="ts">
 import {
   VcNumberFieldRoot,
+  VcNumberFieldDecrement,
+  VcNumberFieldIncrement,
   VcNumberFieldInput,
   VcNumberFieldLoader,
   VcNumberFieldIconLeft,
@@ -30,6 +32,8 @@ import {
   </VcFormField>
 </template>
 ```
+
+<!-- @include: ./number-field-meta.md -->
 
 ## Examples
 
@@ -56,5 +60,3 @@ import {
 ### Format options
 
 <ComponentPreview name="number-field/examples/format-options" />
-
-<!-- @include: ./number-field-meta.md -->

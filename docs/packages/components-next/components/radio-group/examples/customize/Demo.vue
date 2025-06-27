@@ -45,14 +45,14 @@ const options = [
         </div>
 
         <div class="flex flex-col items-start">
-          <span
+          <p
             class="
-              text-primary block text-left text-sm font-medium duration-200
-              group-data-[state=checked]/radio-group-item:text-brand-secondary
+              text-secondary block text-left text-sm font-medium duration-200
+              group-data-[state=checked]/radio-group-item:text-brand-400
             "
           >
             {{ option.label }}
-          </span>
+          </p>
 
           <p
             class="

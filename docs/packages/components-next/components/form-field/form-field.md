@@ -4,21 +4,6 @@ A wrapper component for form elements.
 
 <ComponentPreview name="form-field/examples/main" />
 
-<!-- todo: @include: ./form-field-meta.md -->
-
-## Usage
-```vue
-<script setup lang="ts">
-import { VcFormField } from '@wisemen/vue-core-components'
-</script>
-
-<template>
-  <VcFormField for="some-id">
-    <SomeInput id="some-id" />
-  </VcFormField>
-</template>
-```
-
 ## Anatomy
 
 ```vue
@@ -41,11 +26,9 @@ import {
 </template>
 ```
 
+<!-- @include: ./form-field-meta.md -->
+
 ## Examples
-
-### Label
-
-<ComponentPreview name="form-field/examples/label" />
 
 ### Error
 
@@ -57,8 +40,4 @@ import {
 
 ### Customize
 
-`root`, `labelContainer`, `label`, `asterisk`, `error`, `hint`
-
 <ComponentPreview name="form-field/examples/customize" />
-
-<!-- @include: ./form-field-meta.md -->

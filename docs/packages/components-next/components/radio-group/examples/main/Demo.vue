@@ -14,19 +14,21 @@ const value = ref<string | null>(null)
     label="Select a fruit"
   >
     <VcRadioGroupItem
-      value="apple"
-      label="Apple"
-    />
-
-    <VcRadioGroupItem
       value="banana"
       label="Banana"
-      hint="Mmmmmm..."
+      hint="It's yellow"
     />
 
     <VcRadioGroupItem
       value="orange"
       label="Orange"
+      hint="It's orange"
+    />
+
+    <VcRadioGroupItem
+      value="apple"
+      label="Apple"
+      hint="It's red, sometimes."
     />
   </VcRadioGroup>
 </template>

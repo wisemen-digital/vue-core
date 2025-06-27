@@ -51,24 +51,28 @@ export const components: ComponentConfig[] = [
     sourceFolder: 'checkbox-group/parts/CheckboxGroupRoot.vue',
     targetFolder: 'checkbox-group',
     componentName: 'CheckboxGroup',
+    styleFunctionName: 'createFormFieldStyle',
   },
   // Checkbox
   {
     sourceFolder: 'checkbox/parts/CheckboxRoot.vue',
     targetFolder: 'checkbox',
     componentName: 'Checkbox',
+    styleFunctionName: 'createFormFieldStyle',
   },
   // Date Field
   {
     sourceFolder: 'date-field/parts/DateFieldRoot.vue',
     targetFolder: 'date-field',
     componentName: 'DateField',
+    styleFunctionName: 'createDateFieldStyle',
   },
   // Date Range Field
   {
     sourceFolder: 'date-range-field/parts/DateRangeFieldRoot.vue',
     targetFolder: 'date-range-field',
     componentName: 'DateRangeField',
+    styleFunctionName: 'createDateRangeFieldStyle',
   },
   // Date picker
   {
@@ -93,54 +97,63 @@ export const components: ComponentConfig[] = [
     sourceFolder: 'form-field/parts/FormFieldRoot.vue',
     targetFolder: 'form-field',
     componentName: 'FormField',
+    styleFunctionName: 'createFormFieldStyle',
   },
   // Number Field
   {
     sourceFolder: 'number-field/parts/NumberFieldRoot.vue',
     targetFolder: 'number-field',
     componentName: 'NumberField',
+    styleFunctionName: 'createNumberFieldStyle',
   },
   // Password Field
   {
     sourceFolder: 'password-field/PasswordField.vue',
     targetFolder: 'password-field',
     componentName: 'PasswordField',
+    styleFunctionName: 'createTextFieldStyle',
   },
   // Phone Number Field
   {
     sourceFolder: 'phone-number-field/PhoneNumberField.vue',
     targetFolder: 'phone-number-field',
     componentName: 'PhoneNumberField',
+    styleFunctionName: 'createTextFieldStyle',
   },
   // Radio group
   {
     sourceFolder: 'radio-group/parts/RadioGroupRoot.vue',
     targetFolder: 'radio-group',
     componentName: 'RadioGroup',
+    styleFunctionName: 'createFormFieldStyle',
   },
   // Sselect
   {
     sourceFolder: 'select/parts/SelectRoot.vue',
     targetFolder: 'select',
     componentName: 'Select',
+    styleFunctionName: 'createSelectStyle',
   },
   // Switch
   {
     sourceFolder: 'switch/parts/SwitchRoot.vue',
     targetFolder: 'switch',
     componentName: 'Switch',
+    styleFunctionName: 'createFormFieldStyle',
   },
   // Text Field
   {
     sourceFolder: 'text-field/parts/TextFieldRoot.vue',
     targetFolder: 'text-field',
     componentName: 'TextField',
+    styleFunctionName: 'createTextFieldStyle',
   },
   // Textarea
   {
     sourceFolder: 'textarea/parts/TextareaRoot.vue',
     targetFolder: 'textarea',
     componentName: 'Textarea',
+    styleFunctionName: 'createFormFieldStyle',
   },
   // Table
   {
@@ -153,6 +166,7 @@ export const components: ComponentConfig[] = [
     sourceFolder: 'time-field/parts/TimeFieldRoot.vue',
     targetFolder: 'time-field',
     componentName: 'TimeField',
+    styleFunctionName: 'createFormFieldStyle',
   },
   // Toast
   {

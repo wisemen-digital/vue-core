@@ -87,64 +87,66 @@ onBeforeUnmount(() => {
   >
     <SelectPlaceholder class="pl-sm" />
 
-    <!-- Used to calculate the width of the tags -->
-    <div
-      :class="style.baseMultiple({
-        class: mergeClasses(customClassConfig.baseMultiple, classConfig?.baseMultiple),
-      })"
-      aria-hidden="true"
-      class="invisible absolute"
-    >
+    <slot v-if="modelValueAsArray.length > 0">
+      <!-- Used to calculate the width of the tags -->
+      <div
+        :class="style.baseMultiple({
+          class: mergeClasses(customClassConfig.baseMultiple, classConfig?.baseMultiple),
+        })"
+        aria-hidden="true"
+        class="invisible absolute"
+      >
+        <template
+          v-for="(value, valueIndex) of modelValueAsArray"
+          :key="valueIndex"
+        >
+          <div ref="badgeWrapperRef">
+            <slot
+              :value="value"
+              name="badge"
+            >
+              <Badge
+                :class-config="{ root: 'rounded-md' }"
+                color="gray"
+                variant="translucent"
+              >
+                <div class="whitespace-nowrap">
+                  {{ displayFn(value) }}
+                </div>
+              </Badge>
+            </slot>
+          </div>
+        </template>
+      </div>
+
       <template
-        v-for="(value, valueIndex) of modelValueAsArray"
+        v-for="(value, valueIndex) of filteredModelValue"
         :key="valueIndex"
       >
-        <div ref="badgeWrapperRef">
-          <slot
-            :value="value"
-            name="badge"
-          >
-            <Badge
-              :class-config="{ root: 'rounded-md' }"
-              color="gray"
-              variant="translucent"
-            >
-              <div class="whitespace-nowrap">
-                {{ displayFn(value) }}
-              </div>
-            </Badge>
-          </slot>
-        </div>
-      </template>
-    </div>
-
-    <template
-      v-for="(value, valueIndex) of filteredModelValue"
-      :key="valueIndex"
-    >
-      <slot
-        :value="value"
-        name="badge"
-      >
-        <Badge
-          :class-config="{ root: 'rounded-md' }"
-          color="gray"
-          variant="translucent"
+        <slot
+          :value="value"
+          name="badge"
         >
-          <div class="whitespace-nowrap">
-            {{ displayFn(value) }}
-          </div>
-        </Badge>
-      </slot>
-    </template>
+          <Badge
+            :class-config="{ root: 'rounded-md' }"
+            color="gray"
+            variant="translucent"
+          >
+            <div class="whitespace-nowrap">
+              {{ displayFn(value) }}
+            </div>
+          </Badge>
+        </slot>
+      </template>
 
-    <div
-      v-if="moreTagsCount > 0"
-      ref="moreTagsCountRef"
-    >
-      <span class="text-secondary pl-xs text-sm font-medium">
-        +{{ moreTagsCount }}
-      </span>
-    </div>
+      <div
+        v-if="moreTagsCount > 0"
+        ref="moreTagsCountRef"
+      >
+        <span class="text-secondary pl-xs text-sm font-medium">
+          +{{ moreTagsCount }}
+        </span>
+      </div>
+    </slot>
   </div>
 </template>
