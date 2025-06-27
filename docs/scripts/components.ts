@@ -150,6 +150,7 @@ export const components: ComponentConfig[] = [
     sourceFolder: 'textarea/parts/TextareaRoot.vue',
     targetFolder: 'textarea',
     componentName: 'Textarea',
+    styleFunctionName: 'createFormFieldStyle',
   },
   // Table
   {
@@ -162,6 +163,7 @@ export const components: ComponentConfig[] = [
     sourceFolder: 'time-field/parts/TimeFieldRoot.vue',
     targetFolder: 'time-field',
     componentName: 'TimeField',
+    styleFunctionName: 'createFormFieldStyle',
   },
   // Toast
   {
