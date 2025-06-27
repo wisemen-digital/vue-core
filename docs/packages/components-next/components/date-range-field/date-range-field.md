@@ -44,6 +44,6 @@ import {
 
 <ComponentPreview name="date-range-field/examples/error" />
 
-### Non-continuous rangge
+### Non-continuous range
 
 <ComponentPreview name="date-range-field/examples/non-continuous-range" />

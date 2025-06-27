@@ -118,6 +118,7 @@ export const components: ComponentConfig[] = [
     sourceFolder: 'phone-number-field/PhoneNumberField.vue',
     targetFolder: 'phone-number-field',
     componentName: 'PhoneNumberField',
+    styleFunctionName: 'createTextFieldStyle',
   },
   // Radio group
   {
