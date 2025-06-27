@@ -138,6 +138,7 @@ export const components: ComponentConfig[] = [
     sourceFolder: 'switch/parts/SwitchRoot.vue',
     targetFolder: 'switch',
     componentName: 'Switch',
+    styleFunctionName: 'createFormFieldStyle',
   },
   // Text Field
   {

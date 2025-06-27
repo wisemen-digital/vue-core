@@ -2,7 +2,7 @@
 
 A group of radio buttons.
 
-This component is build on top of the [Form Field](/packages/components-next/components/form-field/form-field.html) component.
+This component is built on top of the [Form Field](/packages/components-next/components/form-field/form-field.html) component.
 
 <ComponentPreview name="radio-group/examples/main" />
 
@@ -13,17 +13,17 @@ This component is build on top of the [Form Field](/packages/components-next/com
 ```vue
 <script setup lang="ts">
 import {
-  FormField,
-  RadioGroupRoot,
+  VcFormField,
+  VcRadioGroupRoot,
 } from '@wisemen/vue-core-components'
 </script>
 
 <template>
-  <FormField>
-    <RadioGroupRoot>
+  <VcFormField>
+    <VcRadioGroupRoot>
       <slot />
-    </RadioGroupRoot>
-  </FormField>
+    </VcRadioGroupRoot>
+  </VcFormField>
 </template>
 ```
 
@@ -32,18 +32,18 @@ import {
 ```vue
 <script setup lang="ts">
 import {
-  FormField,
-  RadioGroupItemRoot,
-  RadioGroupItemControl,
+  VcFormField,
+  VcRadioGroupItemRoot,
+  VcRadioGroupItemControl,
 } from '@wisemen/vue-core-components'
 </script>
 
 <template>
-  <FormField>
-    <RadioGroupItemRoot>
-      <RadioGroupItemControl />
-    </RadioGroupItemRoot>
-  </FormField>
+  <VcFormField>
+    <VcRadioGroupItemRoot>
+      <VcRadioGroupItemControl />
+    </VcRadioGroupItemRoot>
+  </VcFormField>
 </template>
 ```
 
