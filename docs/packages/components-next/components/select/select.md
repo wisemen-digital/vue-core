@@ -1,60 +1,73 @@
 # Select
 
-Displays a list of options for the user to pick from.
+Displays a list of options for the user to pick from. Depending on the type of your model, the user will be able to select one or multiple values
 
 This component is build on top of the [Form Field](/packages/components-next/components/form-field/form-field.html) component.
 
 <ComponentPreview name="select/examples/main" />
 
-## Anatomy <badge type="warning">Unstable</badge>
+## Anatomy
 
-API may change before stable release. As a result, some components are not yet exported.
-
+### VcSelect
 ```vue
 <script setup lang="ts">
+// Only those components can be imported
 import {
-  SelectRoot,
-  SelectPopover,
-  SelectIconLeft,
-  SelectBase,
-  SelectIconRight,
-  SelectLoader,
-  SelectDropdownSearchInput,
-  SelectContent,
-  SelectVirtualList,
-  SelectEmpty,
+  VcFormField,
+  VcSelectBase,
+  VcSelectBaseSingle,
+  VcSelectBaseMultiple,
 } from '@wisemen/vue-core-components'
 </script>
 
 <template>
-  <FormField>
-    <SelectRoot>
-      <SelectPopover>
+  <VcFormField>
+    <VcSelectRoot>
+      <VcSelectPopover>
         <template #anchor>
           <slot name="anchor" />
         </template>
 
         <template #inline-content>
           <SelectIconLeft />
-          <SelectBase />
+          <VcSelectBase>
+            <VcSelectBaseSingle /> OR <VcSelectBaseMultiple />
+          </VcSelectBase>
           <SelectIconRight />
           <SelectLoader />
         </template>
 
         <template #content>
           <SelectDropdownSearchInput />
-
           <SelectContent>
             <SelectVirtualList />
             <slot />
             <SelectEmpty />
           </SelectContent>
         </template>
-      </SelectPopover>
-    </SelectRoot>
-  </FormField>
+      </VcSelectPopover>
+    </VcSelectRoot>
+  </VcFormField>
 </template>
 ```
+
+### VcSelectItem
+```vue
+<script setup lang="ts">
+import {
+  VcSelectItem,
+  VcSelectItemIndicator,
+} from '@wisemen/vue-core-components'
+</script>
+
+<template>
+  <VcSelectItem>
+    <VcSelectItemIndicator />
+  </VcSelectItem>
+</template>
+```
+
+<!-- @include: ./select-meta.md -->
 
 ## Examples
 
@@ -74,17 +87,9 @@ import {
 
 <ComponentPreview name="select/examples/multiple" />
 
-### Icons
-
-<ComponentPreview name="select/examples/icons" />
-
-### Filter
+### Filters
 
 <ComponentPreview name="select/examples/filter" />
-
-### Inline filter
-
-<ComponentPreview name="select/examples/inline-filter" />
 
 ### Remain open on select
 
@@ -94,8 +99,6 @@ import {
 
 <ComponentPreview name="select/examples/virtual-list" />
 
-### Customize value <badge type="warning">Unstable</badge>
+### Customize value
 
-<ComponentPreview name="select/examples/customize-value" />
-
-<!-- @include: ./select-meta.md -->
+<ComponentPreview name="select/examples/customize" />

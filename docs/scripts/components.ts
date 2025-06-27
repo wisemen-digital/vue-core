@@ -132,6 +132,7 @@ export const components: ComponentConfig[] = [
     sourceFolder: 'select/parts/SelectRoot.vue',
     targetFolder: 'select',
     componentName: 'Select',
+    styleFunctionName: 'createSelectStyle',
   },
   // Switch
   {
