@@ -6,20 +6,20 @@ import { Motion } from 'motion-v'
   <Motion
     :initial="{
       opacity: 0,
-      scale: 1.1,
+      y: '5rem',
     }"
     :animate="{
       opacity: 1,
-      scale: 1,
+      y: 0,
       transition: {
         duration: 0.6,
-        bounce: 0.4,
+        bounce: 0,
         type: 'spring',
       },
     }"
     :exit="{
       opacity: 0,
-      scale: 1.1,
+      y: '5rem',
       transition: {
         duration: 0.3,
         bounce: 0,

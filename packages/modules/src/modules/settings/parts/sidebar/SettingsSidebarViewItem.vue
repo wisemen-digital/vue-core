@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { VcIcon } from '@wisemen/vue-core-components'
 import { ListboxItem } from 'reka-ui'
-import { computed } from 'vue'
+import {
+  computed,
+  toValue,
+} from 'vue'
 
 import TextHighlight from '@/modules/settings/components/TextHighlight.vue'
 import { useInjectSettingsContext } from '@/modules/settings/settings.context'
@@ -65,7 +68,7 @@ const isSectionOfViewActive = computed<boolean>(() => {
           group-data-[state=checked]/sidebar-item:font-semibold
         "
       >
-        <TextHighlight :text="props.view.title" />
+        <TextHighlight :text="toValue(props.view.title)" />
       </span>
     </li>
   </ListboxItem>

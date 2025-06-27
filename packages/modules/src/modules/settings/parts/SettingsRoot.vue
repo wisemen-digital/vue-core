@@ -2,6 +2,7 @@
 import {
   computed,
   ref,
+  toValue,
   watch,
 } from 'vue'
 
@@ -72,18 +73,18 @@ const filteredCategories = computed<SettingsCategory[]>(() => {
       const filteredViews = category.views
         .map((view) => {
           const matchingSections = view.sections.filter((section) => {
-            const titleMatch = section.title.toLowerCase().includes(searchTerm.value.toLowerCase())
-            const descriptionMatch = section.description.toLowerCase()
-              .includes(searchTerm.value.toLowerCase())
+            const titleMatch = toValue(section.title).toLowerCase().includes(searchTerm.value.toLowerCase())
+            const descriptionMatch = toValue(section.description).toLowerCase().includes(searchTerm.value.toLowerCase())
 
-            const tagsMatch = section.tags.some((tag) =>
+            const tagsMatch = toValue(section.tags).some((tag) =>
               tag.toLowerCase().includes(searchTerm.value.toLowerCase()))
 
             return titleMatch || descriptionMatch || tagsMatch
           })
 
-          const isViewTitleMatch = view.title.toLowerCase().includes(searchTerm.value.toLowerCase())
-          const isViewDescriptionMatch = view.description?.toLowerCase()
+          const isViewTitleMatch = toValue(view.title).toLowerCase().includes(searchTerm.value.toLowerCase())
+          const isViewDescriptionMatch = toValue(view.description)
+            ?.toLowerCase()
             .includes(searchTerm.value.toLowerCase()) ?? false
 
           if (isViewTitleMatch || isViewDescriptionMatch || matchingSections.length > 0) {

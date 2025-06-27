@@ -35,7 +35,6 @@ const {
   addToStack,
   getDepth,
   removeFromStack,
-  stack,
 } = useInjectLayoutStackContext()
 
 const layoutId = useId()
@@ -58,7 +57,8 @@ const y = computed<number>(() => {
     return 0
   }
 
-  return -depth.value * (height.value / 16)
+  // return -depth.value * (height.value / 20)
+  return -depth.value * 50
 })
 
 onMounted(() => {
@@ -76,30 +76,18 @@ onBeforeUnmount(() => {
   <Motion
     ref="layoutStackItemRef"
     :initial="{
-      y: stack.length > 1 ? '20%' : undefined,
-      scale: stack.length === 1 ? 1.1 : undefined,
+      y: '20%',
       opacity: 0,
     }"
     :exit="{
       opacity: 0,
-      y: stack.length > 1 ? '20%' : undefined,
-      scale: stack.length === 1 ? 1.1 : undefined,
-      transition: stack.length === 1 ? {
-        duration: 0.3,
-        bounce: 0,
-        type: 'spring',
-      } : undefined,
+      y: '20%',
     }"
     :animate="{
       y,
       scale,
       filter: `brightness(${1 - depth * 0.1}) blur(${depth}px)`,
       opacity: depth > props.maxDepth ? 0 : 1,
-      transition: stack.length === 1 && !hasFinishedEntering ? {
-        duration: 0.6,
-        bounce: 0.4,
-        type: 'spring',
-      } : undefined,
     }"
     :transition="{
       duration: 0.6,

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ListboxItem } from 'reka-ui'
+import { toValue } from 'vue'
 
 import TextHighlight from '@/modules/settings/components/TextHighlight.vue'
 import type { SettingsSection } from '@/modules/settings/settings.type'
@@ -34,7 +35,7 @@ const props = defineProps<{
           group-data-[state=checked]/sidebar-item:font-semibold
         "
       >
-        <TextHighlight :text="props.section.title" />
+        <TextHighlight :text="toValue(props.section.title)" />
       </span>
     </li>
   </ListboxItem>

@@ -29,7 +29,7 @@ const hiddenSectionCount = computed<number>(() => {
   <div class="pb-2xl h-full overflow-auto">
     <SettingsSectionProvider
       v-for="section of filteredSections"
-      :key="section.title"
+      :key="section.id"
       :section="section"
     >
       <Component :is="section.component()" />

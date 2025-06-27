@@ -1,11 +1,21 @@
 # @wisemen/vue-core-components
 
+## 1.9.0
+
+### 🔥 New Features
+
+- **Dialog**: Updated enter and leave transitions for a smoother animation experience.
+
+### 🐞 Bug Fixes
+
+- **Dialog**: Removed an unintended border when in light mode.
+- **FileUpload**: Cleaned up the `getFileInfo` type by stripping unused properties.
+
 ## 1.8.0
 
 ### 🔥 New Features
 
 - **LayoutStack**: Introduced `LayoutStackRoot` and `LayoutStackItem` components to enable animated stacking of elements.
-
 
 ## 1.7.3
 

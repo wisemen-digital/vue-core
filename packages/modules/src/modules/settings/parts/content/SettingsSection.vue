@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { toValue } from 'vue'
+
 import TextHighlight from '@/modules/settings/components/TextHighlight.vue'
 import { useInjectSettingsSectionContext } from '@/modules/settings/settingsSection.context'
 
@@ -20,11 +22,11 @@ const { section } = useInjectSettingsSectionContext()
     <div>
       <!-- eslint-disable-next-line vuejs-accessibility/heading-has-content -->
       <h2 class="text-secondary text-sm font-semibold">
-        <TextHighlight :text="section.title" />
+        <TextHighlight :text="toValue(section.title)" />
       </h2>
 
       <p class="text-tertiary mt-xs text-sm">
-        <TextHighlight :text="section.description" />
+        <TextHighlight :text="toValue(section.description)" />
       </p>
     </div>
 

@@ -1,4 +1,7 @@
-import { h } from 'vue'
+import {
+  computed,
+  h,
+} from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import SettingsHighContrastSection from '@/modules/settings/default-preferences/high-contrast/SettingsHighContrastSection.vue'
@@ -9,8 +12,8 @@ export function useHighContrastSetting(): SettingsSection {
 
   return {
     id: 'high-contrast',
-    title: t('module.settings.section.high_contrast.title'),
-    description: t('module.settings.section.high_contrast.description'),
+    title: computed<string>(() => t('module.settings.section.high_contrast.title')),
+    description: computed<string>(() => t('module.settings.section.high_contrast.description')),
     tags: [],
     component: () => h(SettingsHighContrastSection),
   }
