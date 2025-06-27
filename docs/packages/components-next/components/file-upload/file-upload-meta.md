@@ -10,7 +10,7 @@
   {
     'name': 'getFileInfo',
     'description': '<p>Prepares a file for upload by retrieving upload metadata from the backend.</p>\n<p>This function is typically used before uploading a file to an external storage service\nlike Amazon S3. It returns the necessary information such as a pre-signed upload URL,\nfile UUID, and MIME type.</p>\n',
-    'type': '(name: string, mimeType: string) => Promise<FileInfo>',
+    'type': '(name: string, mimeType: string) => Promise<Pick<FileInfo, \'url\' | \'uuid\'>>',
     'required': true
   },
   {
@@ -33,6 +33,6 @@
   {
     'name': 'getFileInfo',
     'description': '<p>Prepares a file for upload by retrieving upload metadata from the backend.</p>\n<p>This function is typically used before uploading a file to an external storage service\nlike Amazon S3. It returns the necessary information such as a pre-signed upload URL,\nfile UUID, and MIME type.</p>\n',
-    'type': '(name: string, mimeType: string) => Promise<FileInfo>'
+    'type': '(name: string, mimeType: string) => Promise<Pick<FileInfo, \'url\' | \'uuid\'>>'
   }
 ]" />

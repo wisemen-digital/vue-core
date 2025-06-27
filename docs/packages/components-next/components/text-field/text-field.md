@@ -1,23 +1,10 @@
 # Text Field
 
-A text field is a component that allows users to input text.
+A component that allows users to input text.
 
-This component is build on top of the [Form Field](/packages/components-next/components/form-field/form-field.html) component.
+This component is built on top of the [Form Field](/packages/components-next/components/form-field/form-field.html) component.
 
 <ComponentPreview name="text-field/examples/main" />
-
-## Usage
-```vue
-<script setup lang="ts">
-import { VcTextField } from '@wisemen/vue-core-components'
-
-const value = ref<string>('')
-</script>
-
-<template>
-  <VcTextField v-model="value" />
-</template>
-```
 
 ## Anatomy
 
@@ -44,6 +31,8 @@ import {
 </template>
 ```
 
+<!-- @include: ./text-field-meta.md -->
+
 ## Examples
 
 ### Disabled
@@ -61,11 +50,3 @@ import {
 ### Icons
 
 <ComponentPreview name="text-field/examples/icons" />
-
-### Customize
-
-`root`, `input`, `iconLeft`, `iconRight`, `loader`
-
-<ComponentPreview name="text-field/examples/customize" />
-
-<!-- @include: ./text-field-meta.md -->

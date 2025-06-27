@@ -143,6 +143,7 @@ export const components: ComponentConfig[] = [
     sourceFolder: 'text-field/parts/TextFieldRoot.vue',
     targetFolder: 'text-field',
     componentName: 'TextField',
+    styleFunctionName: 'createTextFieldStyle',
   },
   // Textarea
   {
