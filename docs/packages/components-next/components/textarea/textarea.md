@@ -1,6 +1,7 @@
 # Textarea
 
 A component that allows the user to enter large amounts of text.
+
 This component is built on top of the [Form Field](/packages/components-next/components/form-field/form-field.html) component.
 
 <ComponentPreview name="textarea/examples/main" />

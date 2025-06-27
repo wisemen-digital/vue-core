@@ -1,6 +1,7 @@
 # Time Field
 
 A component that allows the user to enter time.
+
 This component is build on top of the [Form Field](/packages/components-next/components/form-field/form-field.html) component.
 
 <ComponentPreview name="time-field/examples/main" />

@@ -125,6 +125,7 @@ export const components: ComponentConfig[] = [
     sourceFolder: 'radio-group/parts/RadioGroupRoot.vue',
     targetFolder: 'radio-group',
     componentName: 'RadioGroup',
+    styleFunctionName: 'createFormFieldStyle',
   },
   // Sselect
   {

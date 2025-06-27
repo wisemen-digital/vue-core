@@ -15,7 +15,6 @@ This component is build on top of the [Form Field](/packages/components-next/com
 import {
   FormField,
   RadioGroupRoot,
-  RadioGroupItem,
 } from '@wisemen/vue-core-components'
 </script>
 
@@ -48,6 +47,8 @@ import {
 </template>
 ```
 
+<!-- @include: ./radio-group-meta.md -->
+
 ## Examples
 
 ### Disabled
@@ -61,5 +62,3 @@ import {
 ### Customize
 
 <ComponentPreview name="radio-group/examples/customize" />
-
-<!-- @include: ./radio-group-meta.md -->
