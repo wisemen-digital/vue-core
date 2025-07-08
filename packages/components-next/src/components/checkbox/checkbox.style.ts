@@ -26,6 +26,7 @@ export const createCheckboxStyle = tv({
       .build(),
     root: new StyleBuilder()
       .withBase('group/checkbox outline-none')
+      .withFlex('flex items-center justify-start')
       .withCursor('cursor-pointer disabled:cursor-not-allowed')
       .build(),
   },
