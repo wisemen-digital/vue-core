@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 
+import { mergeClasses } from '@/class-variant/customClassVariants'
 import Button from '@/components/button/default-button/Button.vue'
 import { useInjectTableContext } from '@/components/table/table.context'
 
@@ -8,6 +9,9 @@ const {
   isEmpty,
   isLoading,
   activeFilterCount,
+  classConfig,
+  customClassConfig,
+  style,
   onClearFiltersAndSearch,
 } = useInjectTableContext()
 
@@ -17,10 +21,9 @@ const { t } = useI18n()
 <template>
   <div
     v-if="activeFilterCount > 0 && !isLoading && !isEmpty"
-    class="
-      py-xl gap-x-lg border-t-secondary sticky left-0 col-span-full flex
-      items-center justify-center border-t border-solid
-    "
+    :class="style.hiddenResultsHint({
+      class: mergeClasses(classConfig?.hiddenResultsHint, customClassConfig?.hiddenResultsHint),
+    })"
   >
     <span class="text-tertiary text-xs">
       {{
