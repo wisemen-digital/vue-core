@@ -1,5 +1,19 @@
 # @wisemen/vue-core-components
 
+## 1.10.0
+
+### 🔥 New Features
+
+- Improved customization support across components:
+  - Exposed `hiddenResultsHint` in `classConfig` for more granular styling.
+  - Added `data-first-column`, `data-last-column`, and `data-sticky` attributes to enhance layout control and state targeting.
+
+### 🐞 Bug Fixes
+
+- **Checkbox**: Fixed a layout shift bug that could affect alignment during rendering.
+- **useKeyboardShortcut**: Improved support for the `Escape` key when used as a modifier.
+- **Textarea**: Fixed the type definition for the `variant` prop to prevent TypeScript errors.
+
 ## 1.9.0
 
 ### 🔥 New Features
