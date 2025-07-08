@@ -37,5 +37,5 @@ export interface TextareaProps extends TestId, InteractableElement, FormElement,
   /**
    * Defines the visual style of the textarea.
    */
-  variant?: GetComponentProp<'textField', 'variant'> | null
+  variant?: GetComponentProp<'textarea', 'variant'> | null
 }
