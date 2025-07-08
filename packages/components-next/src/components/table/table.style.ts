@@ -28,6 +28,12 @@ export const createTableStyle = tv({
       .withBackgroundColor('bg-secondary')
       .withPadding('py-lg px-3xl')
       .build(),
+    hiddenResultsHint: new StyleBuilder()
+      .withBase('sticky left-0 col-span-full')
+      .withBorder('border-t border-solid border-t-secondary')
+      .withPadding('py-xl')
+      .withFlex('gap-x-lg flex items-center justify-center')
+      .build(),
     root: new StyleBuilder()
       .withBase('overflow-hidden isolate')
       .withBorder('border border-solid border-secondary')

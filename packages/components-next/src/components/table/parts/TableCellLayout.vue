@@ -45,7 +45,10 @@ const isLastColumn = computed<boolean>(() => (
         ? 'border-l-transparent'
         : 'border-l-secondary',
     ]"
-    class="relative duration-200"
+    :data-first-column="isFirstColumn || undefined"
+    :data-last-column="isLastColumn || undefined"
+    :data-sticky="isFirstColumnSticky || isLastColumnSticky || undefined"
+    class="group/table-cell-layout relative duration-200"
   >
     <slot />
   </Primitive>
