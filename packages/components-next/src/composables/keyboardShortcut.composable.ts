@@ -40,12 +40,12 @@ export function useKeyboardShortcut(
     onTrigger,
   } = options
 
-  const shortcutMode = keys.some(isModifierKey)
+  const shortcutMode = keys.some(isModifierKeyOrEscapeKey)
     ? 'combination'
     : 'sequence'
 
-  function isModifierKey(key: KeyboardKey): boolean {
-    return key === 'ctrl' || key === 'shift' || key === 'alt' || key === 'meta'
+  function isModifierKeyOrEscapeKey(key: KeyboardKey): boolean {
+    return key === 'ctrl' || key === 'shift' || key === 'alt' || key === 'meta' || key === 'escape'
   }
 
   function getPressedKeys(e: KeyboardEvent): KeyboardKey[] {
@@ -92,7 +92,7 @@ export function useKeyboardShortcut(
         ...pressedKeys,
       ]
 
-      if (pressedKeys.some((key) => isModifierKey(key))) {
+      if (pressedKeys.some((key) => isModifierKeyOrEscapeKey(key))) {
         return false
       }
 
