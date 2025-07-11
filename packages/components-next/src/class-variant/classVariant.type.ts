@@ -17,6 +17,7 @@ import type { createFormFieldStyle } from '@/components/form-field/formField.sty
 import type { createKeyboardKeyStyle } from '@/components/keyboard-key/keyboardKey.style'
 import type { createkeyboardShortcutStyle } from '@/components/keyboard-shortcut/keyboardShortcut.style'
 import type { createNumberFieldStyle } from '@/components/number-field/numberField.style'
+import type { createPhoneNumberFieldStyle } from '@/components/phone-number-field/phoneNumberField.style'
 import type { createPopoverStyle } from '@/components/popover/popover.style'
 import type { createRadioGroupItemStyle } from '@/components/radio-group-item/radioGroupItem.style'
 import type { createSelectStyle } from '@/components/select/style/select.style'
@@ -101,6 +102,13 @@ export interface ComponentMap {
     children: {
       decrement: 'iconButton'
       increment: 'iconButton'
+    }
+  }
+  phoneNumberField: {
+    style: typeof createPhoneNumberFieldStyle
+    children: {
+      input: 'textField'
+      select: 'select'
     }
   }
   popover: {
