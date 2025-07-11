@@ -1,5 +1,12 @@
 # @wisemen/vue-core-components
 
+## 1.11.0
+
+### 🔥 New Features
+
+- **PhoneNumberField**: Added support for `class-config` prop, allowing full customization.
+
+
 ## 1.10.0
 
 ### 🔥 New Features
