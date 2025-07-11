@@ -13,22 +13,35 @@ import {
   ref,
 } from 'vue'
 
+import type { ResolvedClassConfig } from '@/class-variant/classVariant.type'
+import {
+  getCustomComponentVariant,
+  mergeClasses,
+} from '@/class-variant/customClassVariants'
 import { useInjectConfigContext } from '@/components/config-provider/config.context'
 import {
   getCountryFlagUrl,
   getCountryName,
 } from '@/components/phone-number-field/phoneNumber.util'
 import type { PhoneNumberFieldProps } from '@/components/phone-number-field/phoneNumberField.props'
+import type { CreatePhoneNumberFieldStyle } from '@/components/phone-number-field/phoneNumberField.style'
+import { createPhoneNumberFieldStyle } from '@/components/phone-number-field/phoneNumberField.style'
 import PhoneNumberFieldSelectItem from '@/components/phone-number-field/PhoneNumberFieldSelectItem.vue'
 import SelectBaseSingle from '@/components/select/parts/SelectBaseSingle.vue'
 import Select from '@/components/select/Select.vue'
 import TextField from '@/components/text-field/TextField.vue'
+import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 
-const props = withDefaults(defineProps<PhoneNumberFieldProps>(), { defaultCountryCode: 'BE' })
+const props = withDefaults(defineProps<PhoneNumberFieldProps>(), {
+  classConfig: null,
+  defaultCountryCode: 'BE',
+  variant: null,
+})
 
 const model = defineModel<string | null>({ required: true })
 
 const globalConfigContext = useInjectConfigContext()
+const { theme } = injectThemeProviderContext()
 
 const phoneNumberFieldRef = ref<InstanceType<any> | null>(null)
 const phoneNumberFieldEl = computed<HTMLElement | null>(() => phoneNumberFieldRef.value?.$el ?? null)
@@ -105,6 +118,14 @@ const inputModel = computed<string | null>({
   },
 })
 
+const phoneNumberFieldStyle = computed<CreatePhoneNumberFieldStyle>(
+  () => createPhoneNumberFieldStyle({ variant: props.variant ?? undefined }),
+)
+
+const customClassConfig = computed<ResolvedClassConfig<'phoneNumberField'>>(
+  () => getCustomComponentVariant('phoneNumberField', theme.value, { variant: props.variant }),
+)
+
 const dialCodeDisplayValue = computed<string>(() => `+${getCountryCallingCode(countryCodeModel.value)}`)
 
 function filterFn(option: CountryCode, searchTerm: string): boolean {
@@ -122,6 +143,8 @@ function filterFn(option: CountryCode, searchTerm: string): boolean {
     v-model="inputModel"
     :class-config="{
       input: 'pl-sm',
+      ...customClassConfig?.input,
+      ...props.classConfig?.input,
     }"
     type="tel"
   >
@@ -154,6 +177,7 @@ function filterFn(option: CountryCode, searchTerm: string): boolean {
           root: 'h-8 ml-[0.18rem] rounded-xs border-none shadow-none outline-none not-disabled:hover:bg-primary-hover pr-xs focus-within:bg-tertiary',
           iconRight: 'mr-0 size-4',
           baseSingle: 'pr-0',
+          ...props.classConfig?.select,
         }"
         :is-disabled="props.isDisabled"
         class="shrink-0"
@@ -165,7 +189,9 @@ function filterFn(option: CountryCode, searchTerm: string): boolean {
               v-if="countryCodeModel !== null"
               :src="getCountryFlagUrl(countryCodeModel) ?? undefined"
               :alt="getCountryName(countryCodeModel, globalConfigContext.locale.value) ?? countryCodeModel"
-              class="rounded-xxs block h-3.5 w-5 shrink-0 object-cover"
+              :class="phoneNumberFieldStyle.countryFlag({
+                class: mergeClasses(customClassConfig.countryFlag, props.classConfig?.countryFlag),
+              })"
             >
 
             <span class="sr-only">
@@ -179,7 +205,11 @@ function filterFn(option: CountryCode, searchTerm: string): boolean {
         </template>
       </Select>
 
-      <span class="text-placeholder pl-xs text-sm">
+      <span
+        :class="phoneNumberFieldStyle.dialCode({
+          class: mergeClasses(customClassConfig.dialCode, props.classConfig?.dialCode),
+        })"
+      >
         {{ dialCodeDisplayValue }}
       </span>
     </template>
