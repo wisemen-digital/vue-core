@@ -10,14 +10,15 @@ This component is build on top of the [Select](/packages/components-next/compone
 
 ```vue
 <script setup lang="ts">
+// Only those components can be imported
 import {
-  Select,
-  SelectItem,
+  VcSelect,
+  VcSelectItem,
 } from '@wisemen/vue-core-components'
 </script>
 
 <template>
-  <Select>
+  <VcSelect>
     <template #base>
       </template>
     <template #left>
@@ -29,10 +30,10 @@ import {
 
     <template #items>
       <template #item>
-          <SelectItem />
+          <VcSelectItem />
         </template>
     </template>
-  </Select>
+  </VcSelect>
 </template>
 ```
 
@@ -42,3 +43,6 @@ import {
 
 ### Clear search term on select
 <ComponentPreview name="autocomplete/examples/clear-search-term-on-select" />
+
+### With popover props
+<ComponentPreview name="autocomplete/examples/popover-props" />

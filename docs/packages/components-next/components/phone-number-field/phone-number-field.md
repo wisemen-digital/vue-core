@@ -30,6 +30,11 @@ import {
 
 ## Examples
 
-### Error
+### Disabled
+<ComponentPreview name="phone-number-field/examples/disabled" />
 
+### Error
 <ComponentPreview name="phone-number-field/examples/error" />
+
+### Default country code
+<ComponentPreview name="phone-number-field/examples/default-country" />

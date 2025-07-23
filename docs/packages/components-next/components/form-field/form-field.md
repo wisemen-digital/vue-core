@@ -17,12 +17,12 @@ import {
 </script>
 
 <template>
-  <FormFieldRoot>
-    <FormFieldLabel />
+  <VcFormFieldRoot>
+    <VcFormFieldLabel />
     <slot />
-    <FormFieldError />
-    <FormFieldHint />
-  </FormFieldRoot>
+    <VcFormFieldError />
+    <VcFormFieldHint />
+  </VcFormFieldRoot>
 </template>
 ```
 

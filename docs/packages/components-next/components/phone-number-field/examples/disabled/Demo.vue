@@ -8,9 +8,7 @@ const value = ref<string | null>(null)
 <template>
   <VcPhoneNumberField
     v-model="value"
-    :is-required="true"
-    :error-message="value === null ? 'This field is required' : undefined"
-    :is-touched="true"
+    :is-disabled="true"
     class="w-72"
     label="Phone number"
   />

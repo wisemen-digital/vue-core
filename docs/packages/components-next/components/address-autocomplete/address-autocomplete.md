@@ -11,17 +11,17 @@ This component is build on top of the [Autocomplete](/packages/components-next/c
 ```vue
 <script setup lang="ts">
 import {
-  Autocomplete,
-  SelectItem,
+  VcAutocomplete,
+  VcSelectItem,
 } from '@wisemen/vue-core-components'
 </script>
 
 <template>
-  <Autocomplete>
+  <VcAutocomplete>
     <template #item>
-      <SelectItem />
+      <VcSelectItem />
     </template>
-  </Autocomplete>
+  </VcAutocomplete>
 </template>
 ```
 
