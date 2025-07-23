@@ -12,3 +12,4 @@ export { default as VcDialogOverlayTransition } from '@/components/dialog/parts/
 export { default as VcDialogPortal } from '@/components/dialog/parts/DialogPortal.vue'
 export { default as VcDialogRoot } from '@/components/dialog/parts/DialogRoot.vue'
 export { default as VcDialogTitle } from '@/components/dialog/parts/DialogTitle.vue'
+export { createDialogStyle } from '@/components/dialog/dialog.style'

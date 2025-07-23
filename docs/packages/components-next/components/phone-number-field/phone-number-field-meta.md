@@ -14,8 +14,9 @@ import { createTextFieldStyle } from "@wisemen/vue-core-components";
   {
     'name': 'classConfig',
     'description': '<p>The class configuration for the component. This allows customizating the default styles\nby overriding them with custom values.</p>\n',
-    'type': 'ResolvedClassConfig<\'textField\'> | null',
-    'required': false
+    'type': 'ResolvedClassConfig<\'phoneNumberField\'> | null',
+    'required': false,
+    'default': 'null'
   },
   {
     'name': 'defaultCountryCode',
@@ -106,7 +107,8 @@ import { createTextFieldStyle } from "@wisemen/vue-core-components";
     'name': 'variant',
     'description': '<p>Defines the visual style of the input.</p>\n',
     'type': 'null',
-    'required': false
+    'required': false,
+    'default': 'null'
   }
 ]" />
 

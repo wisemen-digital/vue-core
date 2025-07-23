@@ -185,12 +185,14 @@ export const components: ComponentConfig[] = [
     sourceFolder: 'dialog/parts/DialogRoot.vue',
     targetFolder: 'dialog',
     componentName: 'Dialog',
+    styleFunctionName: 'createDialogStyle',
   },
   // Dropdown Menu
   {
     sourceFolder: 'dropdown-menu/parts/DropdownMenuRoot.vue',
     targetFolder: 'dropdown-menu',
     componentName: 'DropdownMenu',
+    styleFunctionName: 'createDropdownMenuStyle',
   },
   // Popover
   {

@@ -36,6 +36,8 @@ import {
 </template>
 ```
 
+<!-- @include: ./dialog-meta.md -->
+
 ## Examples
 
 ### Prevent click outside
@@ -53,5 +55,3 @@ import {
 ### Drawer
 
 <ComponentPreview name="dialog/examples/drawer" />
-
-<!-- @include: ./dialog-meta.md -->

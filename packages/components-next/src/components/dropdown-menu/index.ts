@@ -16,3 +16,4 @@ export { default as VcDropdownMenuSeparator } from '@/components/dropdown-menu/p
 export { default as VcDropdownMenuSubMenu } from '@/components/dropdown-menu/parts/DropdownMenuSubMenu.vue'
 export { default as VcDropdownMenuSubMenuTransition } from '@/components/dropdown-menu/parts/DropdownMenuSubMenuTransition.vue'
 export { default as VcDropdownMenuTrigger } from '@/components/dropdown-menu/parts/DropdownMenuTrigger.vue'
+export { createDropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style'
