@@ -21,6 +21,7 @@ export function mapFileToUploadItem(file: File, order: number, status = FileUplo
 export function mapFileInfoToFileUploadItem(fileInfo: FileInfo, status: FileUploadStatus): FileUploadItem {
   return {
     ...fileInfo,
+    isSyncedWithModelValue: true,
     status,
   } as FileUploadItem
 }
