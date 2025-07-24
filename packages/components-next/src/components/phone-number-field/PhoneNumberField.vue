@@ -5,6 +5,7 @@ import {
   formatIncompletePhoneNumber,
   getCountries,
   getCountryCallingCode,
+  parsePhoneNumberFromString,
   validatePhoneNumberLength,
 } from 'libphonenumber-js'
 import {
@@ -46,7 +47,7 @@ const { theme } = injectThemeProviderContext()
 const phoneNumberFieldRef = ref<InstanceType<any> | null>(null)
 const phoneNumberFieldEl = computed<HTMLElement | null>(() => phoneNumberFieldRef.value?.$el ?? null)
 
-const countryCode = ref<CountryCode>(props.defaultCountryCode)
+const countryCode = ref<CountryCode>(getDefaultCountryCode())
 const countries = getCountries()
 
 const countryCodeModel = computed<CountryCode>({
@@ -127,6 +128,22 @@ const customClassConfig = computed<ResolvedClassConfig<'phoneNumberField'>>(
 )
 
 const dialCodeDisplayValue = computed<string>(() => `+${getCountryCallingCode(countryCodeModel.value)}`)
+
+function getDefaultCountryCode(): CountryCode {
+  if (model.value === null) {
+    return props.defaultCountryCode
+  }
+
+  const parsedPhoneNumber = parsePhoneNumberFromString(model.value) ?? null
+
+  if (parsedPhoneNumber === null || parsedPhoneNumber.country === undefined) {
+    console.warn(`Invalid phone number format: ${model.value}. Defaulting to ${props.defaultCountryCode}.`)
+
+    return props.defaultCountryCode
+  }
+
+  return parsedPhoneNumber.country ?? props.defaultCountryCode
+}
 
 function filterFn(option: CountryCode, searchTerm: string): boolean {
   const optionName = getCountryName(option, globalConfigContext.locale.value) ?? ''
