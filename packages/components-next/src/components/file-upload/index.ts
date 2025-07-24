@@ -8,8 +8,8 @@ export type {
   FileUploadItemPending,
   FileUploadItemSuccess,
   FileUploadItemUploading,
-  FileUploadStatus,
 } from '@/components/file-upload/fileUpload.type'
+export { FileUploadStatus } from '@/components/file-upload/fileUpload.type'
 export { default as VcFileUploadItem } from '@/components/file-upload/parts/FileUploadItem.vue'
 export { default as VcFileUploadItemRemove } from '@/components/file-upload/parts/FileUploadItemRemove.vue'
 export { default as VcFileUploadItemReplace } from '@/components/file-upload/parts/FileUploadItemReplace.vue'
