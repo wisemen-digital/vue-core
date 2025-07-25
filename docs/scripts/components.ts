@@ -180,6 +180,7 @@ export const components: ComponentConfig[] = [
     sourceFolder: 'tooltip/parts/TooltipRoot.vue',
     targetFolder: 'tooltip',
     componentName: 'Tooltip',
+    styleFunctionName: 'createTooltipStyle',
   },
   // Dialog
   {
