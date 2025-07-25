@@ -22,6 +22,7 @@ export const components: ComponentConfig[] = [
     sourceFolder: 'avatar/parts/AvatarRoot.vue',
     targetFolder: 'avatar',
     componentName: 'Avatar',
+    styleFunctionName: 'createAvatarStyle',
   },
   {
     sourceFolder: 'badge/parts/BadgeRoot.vue',
