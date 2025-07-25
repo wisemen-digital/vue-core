@@ -160,6 +160,7 @@ export const components: ComponentConfig[] = [
     sourceFolder: 'table/parts/TableRoot.vue',
     targetFolder: 'table',
     componentName: 'Table',
+    styleFunctionName: 'createTableStyle',
   },
   // Time Field
   {
