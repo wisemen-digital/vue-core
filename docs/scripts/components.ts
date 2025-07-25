@@ -178,6 +178,7 @@ export const components: ComponentConfig[] = [
     sourceFolder: 'toast/parts/ToastRoot.vue',
     targetFolder: 'toast',
     componentName: 'Toast',
+    styleFunctionName: 'createToastStyle',
   },
   // Tooltip
   {
