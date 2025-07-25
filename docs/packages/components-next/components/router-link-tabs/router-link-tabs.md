@@ -35,5 +35,5 @@ import {
 
 ## Examples
 
-### Variants
+### Variant
 <ComponentPreview name="router-link-tabs/examples/variant" />

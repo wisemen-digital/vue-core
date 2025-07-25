@@ -2,6 +2,9 @@
 
 A set of layered sections of content, known as tab panels, that are displayed one at a time.
 
+> ⚠️ Warning: In this component, you HAVE to use the content slot and the VcTabsContent component.
+> This ensures that your tab trigger is linked to its correct content, for accessibility reasons.
+
 <ComponentPreview name="tabs/examples/main" />
 
 ## Anatomy
@@ -19,23 +22,19 @@ import {
 <template>
   <VcTabsRoot>
     <VcTabsBase>
-      <VcTabsScrollToLeftButton />
+      <VcTabsList>
+        <slot name="items" />
 
-      <VcTabsScrollContainer>
-        <VcTabsList>
-          <slot name="items" />
-
-          <VcTabsIndicator />
-        </VcTabsList>
-      </VcTabsScrollContainer>
-
-      <VcTabsScrollToRightButton />
+        <VcTabsIndicator />
+      </VcTabsList>
     </VcTabsBase>
 
     <slot name="content" />
   </VcTabsRoot>
 </template>
 ```
+
+<!-- @include: ./tabs-meta.md -->
 
 ## Examples
 
@@ -50,7 +49,3 @@ import {
 ### Overflow
 
 <ComponentPreview name="tabs/examples/overflow" />
-
-<!-- @include: ./tabs-meta.md -->
-
-<ClassConfig />
