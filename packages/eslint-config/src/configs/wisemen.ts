@@ -1,0 +1,19 @@
+import eslintPluginWisemen from '@wisemen/eslint-plugin-vue'
+
+import type { LintConfig } from '#types/lint.type.ts'
+
+export const wisemenConfig: LintConfig = {
+  plugins: {
+    'eslint-plugin-wisemen': eslintPluginWisemen,
+  },
+  rules: {
+    'eslint-plugin-wisemen/explicit-function-return-type-with-regex': [
+      'error',
+      {
+        allowedRegexes: [
+          '^use[A-Z]',
+        ],
+      },
+    ],
+  },
+}

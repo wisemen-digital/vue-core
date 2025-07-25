@@ -1,0 +1,56 @@
+# Compiled output
+dist
+node_modules
+/typesense-data
+.typesense/
+.postgres
+_build
+
+# Logs
+logs
+*.log
+lerna-debug.log*
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Tests
+/coverage
+/.nyc_output
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.c9/
+.classpath
+.fleet
+.idea
+.project
+.settings/
+.DS_Store
+*.launch
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sublime-workspace
+*.sw?
+
+# Local env files
+.env
+.env.*
+!.env.test
+!.env.example
+
+# Certificates
+*.pem
+
+# Testings
+createFiles.ts
+performance
+test.vue
+test.ts
