@@ -4,12 +4,12 @@ packages:
 
 catalog:
   "vue": "3.5.14"
-  "motion-v": "1.0.0-beta.2"
+  "motion-v": "1.6.1"
   "vue-i18n": "11.1.3"
   "@fontsource-variable/inter": "5.2.5"
   "@vueuse/core": "13.2.0"
   "@vueuse/router": "13.2.0"
-  "@wisemen/eslint-config-vue": "/Users/robbe/work/packages/vue-core/packages/eslint-config/wisemen-eslint-config-vue-1.7.0-beta.0.tgz"
+  "@wisemen/eslint-config-vue": "1.7.0"
   "eslint": "9.31.0"
   "husky": "^9.1.7"
   "reka-ui": "2.2.0"
