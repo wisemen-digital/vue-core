@@ -79,14 +79,16 @@ export const components: ComponentConfig[] = [
   // Date picker
   {
     sourceFolder: 'date-picker/single/parts/DatePickerRoot.vue',
-    targetFolder: 'date-range-picker',
+    targetFolder: 'date-picker',
     componentName: 'DatePicker',
+    styleFunctionName: 'createDatePickerStyle',
   },
   // Date Range picker
   {
     sourceFolder: 'date-picker/range/parts/DateRangePickerRoot.vue',
     targetFolder: 'date-range-picker',
     componentName: 'DateRangePicker',
+    styleFunctionName: 'createDateRangePickerStyle',
   },
   // File upload
   {

@@ -9,24 +9,26 @@ A component for selecting a date.
 ```vue
 <script setup lang="ts">
 import {
-  DatePickerRoot,
-  DatePickerHeader,
-  DatePickerGrid,
-  DatePickerDate,
+  VcDatePickerRoot,
+  VcDatePickerHeader,
+  VcDatePickerGrid,
+  VcDatePickerDate,
 } from '@wisemen/vue-core-components'
 </script>
 
 <template>
-  <DatePickerRoot>
-    <DatePickerHeader />
-    <DatePickerGrid>
+  <VcDatePickerRoot>
+    <VcDatePickerHeader />
+    <VcDatePickerGrid>
       <template #date>
-        <DatePickerDate />
+        <VcDatePickerDate />
       </template>
-    </DatePickerGrid>
-  </DatePickerRoot>
+    </VcDatePickerGrid>
+  </VcDatePickerRoot>
 </template>
 ```
+
+<!-- @include: ./date-picker-meta.md -->
 
 ## Examples
 
@@ -53,5 +55,3 @@ import {
 ### Customize
 
 <ComponentPreview name="date-picker/examples/customize" />
-
-<!-- @include: ./date-picker-meta.md -->

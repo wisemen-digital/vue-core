@@ -1,5 +1,9 @@
 <!-- This file was automatic generated. Do not edit it manually -->
 
+<script setup>
+import { createDateRangePickerStyle } from "@wisemen/vue-core-components";
+</script>
+
 <PropsTable :data="[
   {
     'name': 'allowDeselect',
@@ -104,3 +108,7 @@
     'type': '(date: Date) => boolean'
   }
 ]" />
+
+
+<ClassConfig :style-function="createDateRangePickerStyle" />
+
