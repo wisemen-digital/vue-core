@@ -222,6 +222,7 @@ export const components: ComponentConfig[] = [
     sourceFolder: 'keyboard-key/KeyboardKey.vue',
     targetFolder: 'keyboard-key',
     componentName: 'KeyboardKey',
+    styleFunctionName: 'createKeyboardKeyStyle',
   },
   // Keyboard shortcut
   {
