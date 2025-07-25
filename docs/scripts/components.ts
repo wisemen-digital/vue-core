@@ -28,6 +28,7 @@ export const components: ComponentConfig[] = [
     sourceFolder: 'badge/parts/BadgeRoot.vue',
     targetFolder: 'badge',
     componentName: 'Badge',
+    styleFunctionName: 'createBadgeStyle',
   },
   {
     sourceFolder: 'button/default-button/parts/ButtonRoot.vue',
