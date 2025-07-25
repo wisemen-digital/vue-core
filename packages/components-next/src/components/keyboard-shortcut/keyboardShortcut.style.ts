@@ -3,7 +3,7 @@ import { tv } from 'tailwind-variants'
 
 import { StyleBuilder } from '@/utils/style-builder/styleBuilder.util'
 
-export const createkeyboardShortcutStyle = tv({
+export const createKeyboardShortcutStyle = tv({
   slots: {
     root: new StyleBuilder()
       .withFlex('flex items-center gap-x-1')
@@ -17,5 +17,5 @@ export const createkeyboardShortcutStyle = tv({
   variants: { variant: {} },
 })
 
-export type keyboardShortcutStyle = VariantProps<typeof createkeyboardShortcutStyle>
-export type CreatekeyboardShortcutStyle = ReturnType<typeof createkeyboardShortcutStyle>
+export type keyboardShortcutStyle = VariantProps<typeof createKeyboardShortcutStyle>
+export type CreateKeyboardShortcutStyle = ReturnType<typeof createKeyboardShortcutStyle>

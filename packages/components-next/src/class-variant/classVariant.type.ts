@@ -15,7 +15,7 @@ import type { createDialogStyle } from '@/components/dialog/dialog.style'
 import type { createDropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style'
 import type { createFormFieldStyle } from '@/components/form-field/formField.style'
 import type { createKeyboardKeyStyle } from '@/components/keyboard-key/keyboardKey.style'
-import type { createkeyboardShortcutStyle } from '@/components/keyboard-shortcut/keyboardShortcut.style'
+import type { createKeyboardShortcutStyle } from '@/components/keyboard-shortcut/keyboardShortcut.style'
 import type { createNumberFieldStyle } from '@/components/number-field/numberField.style'
 import type { createPhoneNumberFieldStyle } from '@/components/phone-number-field/phoneNumberField.style'
 import type { createPopoverStyle } from '@/components/popover/popover.style'
@@ -92,7 +92,7 @@ export interface ComponentMap {
     children: {}
   }
   keyboardShortcut: {
-    style: typeof createkeyboardShortcutStyle
+    style: typeof createKeyboardShortcutStyle
     children: {
       keyboardKey: 'keyboardKey'
     }

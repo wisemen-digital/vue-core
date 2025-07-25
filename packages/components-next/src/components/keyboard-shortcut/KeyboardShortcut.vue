@@ -10,8 +10,8 @@ import {
 import { useInjectConfigContext } from '@/components/config-provider/config.context'
 import KeyboardKey from '@/components/keyboard-key/KeyboardKey.vue'
 import type { KeyboardShortcutProps } from '@/components/keyboard-shortcut/keyboardShortcut.props'
-import type { CreatekeyboardShortcutStyle } from '@/components/keyboard-shortcut/keyboardShortcut.style'
-import { createkeyboardShortcutStyle } from '@/components/keyboard-shortcut/keyboardShortcut.style'
+import type { CreateKeyboardShortcutStyle } from '@/components/keyboard-shortcut/keyboardShortcut.style'
+import { createKeyboardShortcutStyle } from '@/components/keyboard-shortcut/keyboardShortcut.style'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import type { KeyboardKey as KeyboardKeyType } from '@/types/keyboard.type'
 import { isMobileDevice } from '@/utils/device.util'
@@ -31,8 +31,8 @@ const isSequence = computed<boolean>(() => {
   return !props.keyboardKeys.some((keyboardKey) => isModifier(keyboardKey))
 })
 
-const keyboardShortcutStyle = computed<CreatekeyboardShortcutStyle>(
-  () => createkeyboardShortcutStyle(),
+const keyboardShortcutStyle = computed<CreateKeyboardShortcutStyle>(
+  () => createKeyboardShortcutStyle(),
 )
 
 const customClassConfig = computed<ResolvedClassConfig<'keyboardShortcut'>>(
