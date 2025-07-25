@@ -4,64 +4,45 @@ A popover is a floating element that displays information or content in a non-in
 
 <ComponentPreview name="popover/examples/main" />
 
-## Usage
-```vue
-<script setup lang="ts">
-import { VcPopover, VcButton } from '@wisemen/vue-core-components'
-</script>
-
-<template>
-  <VcPopover>
-    <template #trigger>
-      <VcButton>
-        <!-- ... -->
-      </VcButton>
-    </template>
-
-    <template #content>
-      <!-- ... -->
-    </template>
-  </VcPopover>
-</template>
-```
-
 ## Anatomy
 
 ```vue
 <script setup lang="ts">
 import {
-  PopoverRoot,
-  PopoverAnchor,
-  PopoverTrigger,
-  PopoverPortal,
-  PopoverContent,
-  PopoverContentTransition,
-  PopoverArrow,
+  VcPopoverRoot,
+  VcPopoverAnchor,
+  VcPopoverTrigger,
+  VcPopoverPortal,
+  VcPopoverContent,
+  VcPopoverContentTransition,
+  VcPopoverArrow,
 } from '@wisemen/vue-core-components'
 </script>
 
 <template>
-  <PopoverRoot>
+  <VcPopoverRoot>
     <slot>
-      <PopoverAnchor>
-        <PopoverTrigger>
+      <VcPopoverAnchor>
+        <VcPopoverTrigger>
           <slot name="trigger" />
-        </PopoverTrigger>
-      </PopoverAnchor>
+        </VcPopoverTrigger>
+      </VcPopoverAnchor>
     </slot>
 
-    <PopoverPortal>
-      <PopoverContent>
-        <PopoverContentTransition>
+    <VcPopoverPortal>
+      <VcPopoverContent>
+        <VcPopoverContentTransition>
           <slot name="content" />
 
-          <PopoverArrow />
-        </PopoverContentTransition>
-      </PopoverContent>
-    </PopoverPortal>
-  </PopoverRoot>
+          <VcPopoverArrow />
+        </VcPopoverContentTransition>
+      </VcPopoverContent>
+    </VcPopoverPortal>
+  </VcPopoverRoot>
 </template>
 ```
+
+<!-- @include: ./popover-meta.md -->
 
 ## Examples
 
@@ -92,5 +73,3 @@ import {
 ### Anchor reference
 
 <ComponentPreview name="popover/examples/anchor-reference" />
-
-<!-- @include: ./popover-meta.md -->

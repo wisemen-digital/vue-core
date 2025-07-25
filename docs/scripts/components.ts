@@ -199,18 +199,21 @@ export const components: ComponentConfig[] = [
     sourceFolder: 'popover/parts/PopoverRoot.vue',
     targetFolder: 'popover',
     componentName: 'Popover',
+    styleFunctionName: 'createPopoverStyle',
   },
   // Router link tabs
   {
     sourceFolder: 'tabs/shared/parts/TabsRoot.vue',
     targetFolder: 'router-link-tabs',
     componentName: 'RouterLinkTabs',
+    styleFunctionName: 'createTabsStyle',
   },
   // Tabs
   {
     sourceFolder: 'tabs/shared/parts/TabsRoot.vue',
     targetFolder: 'tabs',
     componentName: 'Tabs',
+    styleFunctionName: 'createTabsStyle',
   },
   // Keyboard key
   {
