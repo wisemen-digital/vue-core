@@ -8,7 +8,9 @@ import SettingsKeyboardShortcutHintsSection from '@/modules/settings/default-pre
 import type { SettingsSection } from '@/modules/settings/settings.type'
 
 export function useKeyboardShortcutHintsSetting(): SettingsSection {
-  const { t } = useI18n()
+  const {
+    t,
+  } = useI18n()
 
   return {
     id: 'keyboard-shortcut-hints',

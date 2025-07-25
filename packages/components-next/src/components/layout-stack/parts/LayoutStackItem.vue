@@ -24,7 +24,9 @@ const props = withDefaults(defineProps<{
    * @default 2
    */
   maxDepth?: number
-}>(), { maxDepth: 2 })
+}>(), {
+  maxDepth: 2,
+})
 
 const layoutStackItemRef = ref<InstanceType<any> | null>(null)
 const {

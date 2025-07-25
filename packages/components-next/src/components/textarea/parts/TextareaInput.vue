@@ -24,7 +24,9 @@ const {
   onFocus,
 } = useInjectTextareaContext()
 
-const { textarea } = useTextareaAutosize({
+const {
+  textarea,
+} = useTextareaAutosize({
   watch: () => {
     if (resize.value === 'auto-vertical') {
       return modelValue.value

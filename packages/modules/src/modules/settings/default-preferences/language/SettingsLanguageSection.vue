@@ -21,7 +21,9 @@ function getLocaleName(locale: string): string {
 
   const displayNames = new Intl.DisplayNames([
     activeLocale.value,
-  ], { type: 'language' })
+  ], {
+    type: 'language',
+  })
 
   return displayNames.of(language!) ?? locale
 }

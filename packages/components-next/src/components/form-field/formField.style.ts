@@ -42,7 +42,9 @@ export const createFormFieldStyle = tv({
       .withGrid('data-[layout=horizontal]:grid data-[layout=horizontal]:grid-cols-[auto_auto] gap-x-md items-center justify-start')
       .build(),
   },
-  variants: { variant: {} },
+  variants: {
+    variant: {},
+  },
 })
 
 export type FormFieldStyle = VariantProps<typeof createFormFieldStyle>

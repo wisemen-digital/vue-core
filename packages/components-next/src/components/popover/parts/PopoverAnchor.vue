@@ -3,7 +3,9 @@ import { PopoverAnchor as RekaPopoverAnchor } from 'reka-ui'
 
 import { useInjectPopoverContext } from '@/components/popover/popover.context'
 
-const { popoverAnchorReferenceElement } = useInjectPopoverContext()
+const {
+  popoverAnchorReferenceElement,
+} = useInjectPopoverContext()
 </script>
 
 <template>

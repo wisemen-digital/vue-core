@@ -16,9 +16,13 @@ import { useProvideSettingsDialogContext } from '@/modules/settings/settingsDial
 
 const isExpanded = useLocalStorage<boolean>('is-dialog-expanded', false)
 
-const { t } = useI18n()
+const {
+  t,
+} = useI18n()
 
-useProvideSettingsDialogContext({ isExpanded })
+useProvideSettingsDialogContext({
+  isExpanded,
+})
 </script>
 
 <template>

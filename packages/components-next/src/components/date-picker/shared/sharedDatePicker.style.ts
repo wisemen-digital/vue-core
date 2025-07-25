@@ -51,7 +51,9 @@ export const createSharedDatePickerStyle = tv({
       .build(),
 
   },
-  variants: { variant: {} },
+  variants: {
+    variant: {},
+  },
 })
 
 export type SharedDatePickerStyle = VariantProps<typeof createSharedDatePickerStyle>

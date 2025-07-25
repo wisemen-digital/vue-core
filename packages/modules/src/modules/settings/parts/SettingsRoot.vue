@@ -23,7 +23,9 @@ const emit = defineEmits<{
   'update:activeView': [viewId: ViewIdFromConfig<SettingsConfig>]
 }>()
 
-const defaultPreferences = defineModel<DefaultPreferences>('defaultPreferences', { required: true })
+const defaultPreferences = defineModel<DefaultPreferences>('defaultPreferences', {
+  required: true,
+})
 
 const searchTerm = ref<string>('')
 const isSidebarVisible = ref<boolean>(false)

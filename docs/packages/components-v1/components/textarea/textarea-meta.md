@@ -18,7 +18,6 @@
 | styleConfig | `Partial<TextareaStyleConfig> \| null` | The style config of the component. | `null` |
 | testId | `string \| null` | The test id of the input. | `null` |
 
-
 ## Slots
 
 | Slot | Slot Props | Description |
@@ -28,7 +27,6 @@
 | hint | `{ hint: string \| null; }` | Can be used to render a custom hint message. |
 | label | `{ label: string \| null; }` | Can be used to render a custom label. |
 
-
 ## Events
 
 | Event name | Type | Description |
@@ -36,7 +34,6 @@
 | `blur` | [] |  |
 | `focus` | [] |  |
 | `update:modelValue` | [modelValue: string \| null] |  |
-
 
 ## Style configuration
 
@@ -102,4 +99,3 @@ export interface TextareaStyleConfig  {
   '--textarea-text-color-hover': string
 }
 ```
-

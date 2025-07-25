@@ -17,16 +17,21 @@ const {
   scrollToRight,
 } = useInjectTabsContext()
 
-const { t } = useI18n()
+const {
+  t,
+} = useI18n()
 </script>
 
 <template>
   <AnimatePresence :initial="false">
     <Motion
       v-if="!hasReachedHorizontalEnd && hasHorizontalOverflow && orientation === 'horizontal'"
-      :initial="{ opacity: 0, x: 8 }"
-      :animate="{ opacity: 1, x: 0 }"
-      :exit="{ opacity: 0, x: 8 }"
+      :initial="{ opacity: 0,
+                  x: 8 }"
+      :animate="{ opacity: 1,
+                  x: 0 }"
+      :exit="{ opacity: 0,
+               x: 8 }"
       :as-child="true"
       :transition="{
         duration: 0.1,
@@ -34,8 +39,8 @@ const { t } = useI18n()
     >
       <div
         class="
-          from-primary px-md absolute top-0 right-0 z-20 flex h-full
-          items-center bg-gradient-to-l to-transparent
+          absolute top-0 right-0 z-20 flex h-full items-center bg-gradient-to-l
+          from-primary to-transparent px-md
         "
       >
         <IconButton

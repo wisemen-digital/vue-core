@@ -15,7 +15,6 @@
 | label | `string \| null` | The label of the input. | `null` |
 | testId | `string \| null` | The test id of the input. | `null` |
 
-
 ## Slots
 
 | Slot | Slot Props | Description |
@@ -26,10 +25,8 @@
 | hint | `{ hint: string \| null; }` | Can be used to render a custom hint message. |
 | label | `{ inputId: string; isRequired: boolean; label: string \| null; }` | Can be used to render a custom label. |
 
-
 ## Events
 
 | Event name | Type | Description |
 | ---------- | ---- | ----------- |
 | `update:modelValue` | [modelValue: AcceptableValue[]] |  |
-

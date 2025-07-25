@@ -1,6 +1,6 @@
 import simpleImportSort from 'eslint-plugin-simple-import-sort'
 
-import type { LintConfig } from '#types/lint.type.ts'
+import type { LintConfig } from '@/types/lint.type.ts'
 
 export const simpleSortConfig: LintConfig = {
   name: 'simple-import-sort',

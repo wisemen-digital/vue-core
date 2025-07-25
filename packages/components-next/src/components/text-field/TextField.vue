@@ -18,7 +18,9 @@ const emit = defineEmits<TextFieldEmits>()
 
 defineSlots<TextFieldSlots>()
 
-const modelValue = defineModel<TValue | null>({ required: true })
+const modelValue = defineModel<TValue | null>({
+  required: true,
+})
 
 const id = props.id ?? useId()
 </script>

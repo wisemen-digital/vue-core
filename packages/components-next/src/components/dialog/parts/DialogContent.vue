@@ -7,7 +7,9 @@ import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectDialogContext } from '@/components/dialog/dialog.context'
 import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 
-defineOptions({ inheritAttrs: false })
+defineOptions({
+  inheritAttrs: false,
+})
 
 defineSlots<{
   /**

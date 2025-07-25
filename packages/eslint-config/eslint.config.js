@@ -1,38 +1,19 @@
-import antfu from '@antfu/eslint-config'
+/* eslint-disable antfu/no-import-dist */
 import globals from 'globals'
 
-import { a11yConfig } from '#configs/a11y.ts'
-import { baseConfig } from '#configs/base.ts'
-import { compatConfig } from '#configs/compatLint.ts'
-import { i18nConfig } from '#configs/i18n.ts'
-import { modulesConfig } from '#configs/modules.ts'
-import { pathConfig } from '#configs/path.ts'
-import { perfectionistConfig } from '#configs/perfectionist.ts'
-import { simpleSortConfig } from '#configs/simpleSort.ts'
-import { spacingConfig } from '#configs/spacing.ts'
-import { tailwindConfig } from '#configs/tailwind.ts'
-import { unicornConfig } from '#configs/unicorn.ts'
-import { vitestConfig } from '#configs/vitest.ts'
-import { wisemenConfig } from '#configs/wisemen.ts'
+import eslintVueConfig from './dist/index.js'
 
-export default antfu(
-  baseConfig,
-  spacingConfig,
-  perfectionistConfig,
-  unicornConfig,
-  a11yConfig,
-  ...compatConfig,
-  simpleSortConfig,
-  vitestConfig,
-  wisemenConfig,
-  i18nConfig,
-  tailwindConfig,
-  modulesConfig,
-  pathConfig,
+export default [
+  ...(await eslintVueConfig),
+  {
+    rules: {
+      'project-structure/independent-modules': 'off',
+    },
+  },
   {
     settings: {
       'import/extensions': [
-        '.ts',
+        '.js',
       ],
       'vue-i18n': {
         localeDir: '#configs/locales/*.json',
@@ -48,7 +29,9 @@ export default antfu(
       globals: {
         ...globals.browser,
       },
+
       sourceType: 'module',
     },
   },
-)
+
+]

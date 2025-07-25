@@ -8,7 +8,9 @@ const props = defineProps<{
   section: SettingsSection
 }>()
 
-useProvideSettingsSectionContext({ section: computed<SettingsSection>(() => props.section) })
+useProvideSettingsSectionContext({
+  section: computed<SettingsSection>(() => props.section),
+})
 </script>
 
 <template>

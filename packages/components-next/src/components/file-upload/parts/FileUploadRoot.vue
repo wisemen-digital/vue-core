@@ -22,7 +22,9 @@ const props = withDefaults(defineProps<FileUploadProps>(), {
   isValidFile: null,
 })
 
-const modelValue = defineModel<FileInfo[] | (FileInfo | null)>({ required: true })
+const modelValue = defineModel<FileInfo[] | (FileInfo | null)>({
+  required: true,
+})
 
 const isMultiple = computed<boolean>(() => Array.isArray(modelValue.value))
 

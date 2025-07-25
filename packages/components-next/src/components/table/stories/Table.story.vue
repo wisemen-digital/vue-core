@@ -20,7 +20,9 @@ interface User {
 
 const columns = computed<TableColumn<User>[]>(() => [
   {
-    cell: (data): VNode => h(IdCell, { id: data.id }),
+    cell: (data): VNode => h(IdCell, {
+      id: data.id,
+    }),
     headerLabel: 'ID',
     key: 'id',
   },
@@ -31,7 +33,9 @@ const columns = computed<TableColumn<User>[]>(() => [
     width: '15rem',
   },
   {
-    cell: (): VNode => h(IdCell, { id: 'DEZE' }),
+    cell: (): VNode => h(IdCell, {
+      id: 'DEZE',
+    }),
     headerLabel: 'Custom',
     key: 'iets',
     width: '10rem',
@@ -174,7 +178,7 @@ const pagination = usePagination({
 
 <template>
   <Story title="Table">
-    <div class="px-4xl flex h-[500px] flex-col overflow-hidden">
+    <div class="flex h-[500px] flex-col overflow-hidden px-4xl">
       <Table
         :columns="columns"
         :is-loading="isLoading"

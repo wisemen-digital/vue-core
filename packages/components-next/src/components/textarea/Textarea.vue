@@ -14,7 +14,9 @@ const emit = defineEmits<TextareaEmits>()
 
 defineSlots<TextareaSlots>()
 
-const modelValue = defineModel<TValue | null>({ required: true })
+const modelValue = defineModel<TValue | null>({
+  required: true,
+})
 
 const id = props.id ?? useId()
 </script>

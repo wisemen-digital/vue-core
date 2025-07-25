@@ -16,7 +16,9 @@ defineSlots<{
   /**
    * Use this to render your own pagination controls.
    */
-  default: ({ items }: { items: ({ type: 'ellipsis' } | { type: 'page'
+  default: ({
+    items,
+  }: { items: ({ type: 'ellipsis' } | { type: 'page'
     value: number })[] }) => void
 }>()
 
@@ -56,7 +58,7 @@ function onPageChange(page: number): void {
     <SkeletonItem
       v-if="tableContext.isLoading.value"
       :should-shimmer="true"
-      class="h-4 w-20 rounded"
+      class="rounded h-4 w-20"
     />
 
     <PaginationList

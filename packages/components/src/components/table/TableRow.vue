@@ -26,7 +26,9 @@ const _expandableComponent = computed<Component | null>(() => {
   return tableContext.expandedRowContent.value(props.row)
 })
 
-provideTableRowContext({ isExpanded })
+provideTableRowContext({
+  isExpanded,
+})
 </script>
 
 <template>
@@ -44,14 +46,14 @@ provideTableRowContext({ isExpanded })
           {
             'first:sticky first:left-0 first:z-10 first:border-r first:border-solid': tableContext.isFirstColumnSticky.value,
             'last:sticky last:right-0 last:z-10 last:border-l last:border-solid': tableContext.isLastColumnSticky.value,
-            'first:shadow-table-sticky-left-column first:border-r-(--table-row-border-color-default)': tableContext.isScrolledToRight.value && tableContext.isFirstColumnSticky.value,
-            'last:shadow-table-sticky-right-column last:border-l-(--table-row-border-color-default)': !tableContext.hasReachedHorizontalScrollEnd.value && tableContext.isLastColumnSticky.value,
+            'first:border-r-(--table-row-border-color-default) first:shadow-table-sticky-left-column': tableContext.isScrolledToRight.value && tableContext.isFirstColumnSticky.value,
+            'last:border-l-(--table-row-border-color-default) last:shadow-table-sticky-right-column': !tableContext.hasReachedHorizontalScrollEnd.value && tableContext.isLastColumnSticky.value,
             'border-b-(--table-row-border-color-default)': props.rowIndex !== tableContext.data.value!.data.length - 1 || !tableContext.canScrollVertically.value,
           },
         ]"
         role="cell"
         class="
-          bg-primary overflow-hidden border border-solid border-transparent
+          overflow-hidden border border-solid border-transparent bg-primary
           duration-200
         "
       >

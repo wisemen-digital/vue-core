@@ -91,7 +91,7 @@ function handleSortChange(): void {
   <div
     :aria-sort="ariaSort"
     role="columnheader"
-    class="px-3xl py-lg flex h-full items-center"
+    class="flex h-full items-center px-3xl py-lg"
   >
     <slot name="left" />
 
@@ -100,8 +100,8 @@ function handleSortChange(): void {
         class="
           text-(length:--table-header-label-font-size-default)
           font-(--table-header-label-font-weight-default) whitespace-nowrap
-          select-none
           text-(color:--table-header-label-text-color-default)
+          select-none
         "
       >
         <slot name="label">

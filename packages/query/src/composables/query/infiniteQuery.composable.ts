@@ -127,7 +127,9 @@ export function useInfiniteQuery<TResData, TPagination extends BasePagination>(
       ? options.paginationOptions.value.pagination.key
       : options.paginationOptions.value.pagination.offset,
     placeholderData: (data) => data,
-    queryFn: async ({ pageParam }) => {
+    queryFn: async ({
+      pageParam,
+    }) => {
       const pagination = options.paginationOptions.value.pagination
 
       return await options.queryFn({

@@ -11,7 +11,9 @@ import SettingsAppearanceRadioGroupItem from '@/modules/settings/default-prefere
 import { useDefaultPreference } from '@/modules/settings/default-preferences/defaultPreferences'
 import SettingsSection from '@/modules/settings/parts/content/SettingsSection.vue'
 
-const { t } = useI18n()
+const {
+  t,
+} = useI18n()
 const value = useDefaultPreference('appearance')
 
 const id = useId()
@@ -33,7 +35,7 @@ const id = useId()
       >
         <div
           class="
-            gap-xl grid
+            grid gap-xl
             @lg/settings:grid-cols-3
           "
         >
@@ -43,7 +45,7 @@ const id = useId()
           >
             <VcThemeProvider
               appearance="light"
-              class="bg-secondary relative h-30"
+              class="relative h-30 bg-secondary"
             >
               <SettingsAppearanceMiniDashboard
                 class="absolute top-1/6 left-1/10"
@@ -57,7 +59,7 @@ const id = useId()
           >
             <VcThemeProvider
               appearance="dark"
-              class="bg-secondary relative h-30"
+              class="relative h-30 bg-secondary"
             >
               <SettingsAppearanceMiniDashboard
                 class="absolute top-1/6 left-1/10"
@@ -73,7 +75,7 @@ const id = useId()
               appearance="light"
               class="relative z-2 h-full w-1/2 overflow-clip"
             >
-              <div class="bg-secondary relative h-full overflow-hidden">
+              <div class="relative h-full overflow-hidden bg-secondary">
                 <SettingsAppearanceMiniDashboard
                   class="absolute top-1/6 left-1/5"
                 />
@@ -86,7 +88,7 @@ const id = useId()
             >
               <div
                 class="
-                  bg-secondary relative h-full overflow-hidden rounded-l-xl
+                  relative h-full overflow-hidden rounded-l-xl bg-secondary
                 "
               >
                 <SettingsAppearanceMiniDashboard
@@ -95,7 +97,7 @@ const id = useId()
               </div>
             </VcThemeProvider>
 
-            <label class="text-primary mt-md inline-block text-sm font-medium">
+            <label class="mt-md inline-block text-sm font-medium text-primary">
               System preferences
             </label>
           </SettingsAppearanceRadioGroupItem>

@@ -19,7 +19,9 @@ const {
   style,
 } = useInjectTableContext()
 
-const { column } = useInjectTableHeaderCellContext()
+const {
+  column,
+} = useInjectTableHeaderCellContext()
 
 const paginationOptions = computed<PaginationOptions<any>>(
   () => pagination.value.paginationOptions.value,

@@ -5,4 +5,3 @@
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
 | default | `{ isLastPage: boolean; }` | Use this to render your own pagination control for the navigation to the last page. |
-

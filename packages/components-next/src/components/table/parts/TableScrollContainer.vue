@@ -6,7 +6,9 @@ import {
 
 import { useInjectTableContext } from '@/components/table/table.context'
 
-const { setTableScrollContainerRef } = useInjectTableContext()
+const {
+  setTableScrollContainerRef,
+} = useInjectTableContext()
 
 const tableScrollContainerRef = ref<HTMLElement | null>(null)
 

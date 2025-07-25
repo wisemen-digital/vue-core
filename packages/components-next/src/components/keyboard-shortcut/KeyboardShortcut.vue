@@ -16,12 +16,20 @@ import { injectThemeProviderContext } from '@/components/theme-provider/themePro
 import type { KeyboardKey as KeyboardKeyType } from '@/types/keyboard.type'
 import { isMobileDevice } from '@/utils/device.util'
 
-const props = withDefaults(defineProps<KeyboardShortcutProps>(), { classConfig: null })
+const props = withDefaults(defineProps<KeyboardShortcutProps>(), {
+  classConfig: null,
+})
 
-const { areKeyboardShortcutHintsHidden } = useInjectConfigContext()
-const { theme } = injectThemeProviderContext()
+const {
+  areKeyboardShortcutHintsHidden,
+} = useInjectConfigContext()
+const {
+  theme,
+} = injectThemeProviderContext()
 
-const { t } = useI18n()
+const {
+  t,
+} = useI18n()
 
 function isModifier(key: KeyboardKeyType): boolean {
   return key === 'ctrl' || key === 'shift' || key === 'alt' || key === 'meta'
@@ -36,7 +44,9 @@ const keyboardShortcutStyle = computed<CreatekeyboardShortcutStyle>(
 )
 
 const customClassConfig = computed<ResolvedClassConfig<'keyboardShortcut'>>(
-  () => getCustomComponentVariant('keyboardShortcut', theme.value, { variant: props.variant }),
+  () => getCustomComponentVariant('keyboardShortcut', theme.value, {
+    variant: props.variant,
+  }),
 )
 </script>
 

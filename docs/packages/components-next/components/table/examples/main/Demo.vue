@@ -89,13 +89,17 @@ const fakePaginatedData = ref<PaginatedData<User> | null>(null)
 
 const isLoading = ref<boolean>(true)
 
-const pagination = usePagination({ isRouteQueryEnabled: false })
+const pagination = usePagination({
+  isRouteQueryEnabled: false,
+})
 
 const columns = computed<TableColumn<User>[]>(() => [
   {
     key: 'id',
     headerLabel: 'ID',
-    cell: (data): VNode => h(VcTableCell, { class: 'justify-center' }, () => data.id),
+    cell: (data): VNode => h(VcTableCell, {
+      class: 'justify-center',
+    }, () => data.id),
   },
   {
     key: 'firstName',

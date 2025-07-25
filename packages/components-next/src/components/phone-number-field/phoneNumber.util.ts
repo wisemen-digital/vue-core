@@ -5,5 +5,7 @@ export function getCountryFlagUrl(countryCode: CountryCode): string | null {
 }
 
 export function getCountryName(countryCode: CountryCode, locale: string): string | null {
-  return new Intl.DisplayNames(locale, { type: 'region' }).of(countryCode) ?? countryCode
+  return new Intl.DisplayNames(locale, {
+    type: 'region',
+  }).of(countryCode) ?? countryCode
 }

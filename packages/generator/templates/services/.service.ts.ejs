@@ -26,7 +26,7 @@ export class <%= pascalCase %>Service {
     const query = new PaginationParamsBuilder<<%= pascalCase %>IndexPagination>(paginationOptions)
       .build(<%= pascalCase %>IndexPaginationTransformer.toDto)
 
-      const response = await REPLACE_ME({ 
+      const response = await REPLACE_ME({
       query,
       })
 

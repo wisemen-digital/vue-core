@@ -6,17 +6,14 @@
 | ---- | ---- | ----------- | ------- |
 | isDisabled | `boolean` | Whether the toggle is disabled. | `false` |
 
-
 ## Slots
 
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
 | default | `{ isToggled: boolean; isDisabled: boolean; }` |  |
 
-
 ## Events
 
 | Event name | Type | Description |
 | ---------- | ---- | ----------- |
 | `update:modelValue` | [modelValue: boolean] |  |
-

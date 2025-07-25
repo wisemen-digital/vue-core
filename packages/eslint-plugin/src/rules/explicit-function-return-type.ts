@@ -1,3 +1,4 @@
+/* eslint-disable eslint-plugin-wisemen/explicit-function-return-type-with-regex */
 /* eslint-disable max-depth */
 /* eslint-disable check-file/filename-naming-convention */
 import type { TSESTree } from '@typescript-eslint/utils'
@@ -29,10 +30,10 @@ export type Options = [
 ]
 export type MessageIds = 'missingReturnType'
 
-type FunctionNode =
-  | TSESTree.ArrowFunctionExpression
-  | TSESTree.FunctionDeclaration
-  | TSESTree.FunctionExpression
+type FunctionNode
+  = | TSESTree.ArrowFunctionExpression
+    | TSESTree.FunctionDeclaration
+    | TSESTree.FunctionExpression
 
 export default createRule<Options, MessageIds>({
   name: 'explicit-function-return-type',
@@ -167,7 +168,9 @@ export default createRule<Options, MessageIds>({
       description:
         'Require explicit return types on functions and class methods',
     },
-    messages: { missingReturnType: 'Missing return type on function.' },
+    messages: {
+      missingReturnType: 'Missing return type on function.',
+    },
     schema: [
       {
         additionalProperties: false,
@@ -186,13 +189,17 @@ export default createRule<Options, MessageIds>({
             description:
               'An array of function/method names that will not have their arguments or return values checked.',
 
-            items: { type: 'string' },
+            items: {
+              type: 'string',
+            },
             type: 'array',
           },
           allowedRegexes: {
             description:
               'An array of Regexes that will not have their arguments or return values checked.',
-            items: { type: 'string' },
+            items: {
+              type: 'string',
+            },
             type: 'array',
           },
 

@@ -61,7 +61,11 @@ describe('button Component', () => {
   })
 
   it('renders the default loader when `loading` prop is true and no custom loader slot is provided', () => {
-    const wrapper = mount(Button, { props: { loading: true } })
+    const wrapper = mount(Button, {
+      props: {
+        loading: true,
+      },
+    })
 
     // Expect the default ButtonLoader mock to be present without using a test id
     expect(wrapper.find('.animate-spinner').exists()).toBeTruthy()
@@ -70,7 +74,9 @@ describe('button Component', () => {
   it('renders custom content in the "loader" slot when `loading` prop is true', () => {
     const customLoaderContent = '<div data-test-id="custom-loader">Custom Loading Indicator</div>'
     const wrapper = mount(Button, {
-      props: { loading: true },
+      props: {
+        loading: true,
+      },
       slots: {
         'default': () => null,
         'icon-left': () => null,

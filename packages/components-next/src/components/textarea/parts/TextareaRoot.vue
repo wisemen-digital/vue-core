@@ -33,14 +33,22 @@ const props = withDefaults(defineProps<TextareaProps>(), {
 
 const emit = defineEmits<TextareaEmits>()
 
-const modelValue = defineModel<string | null>({ required: true })
+const modelValue = defineModel<string | null>({
+  required: true,
+})
 
-const { theme } = injectThemeProviderContext()
+const {
+  theme,
+} = injectThemeProviderContext()
 
-const textareaStyle = computed<CreateTextareaStyle>(() => createTextareaStyle({ variant: props.variant ?? undefined }))
+const textareaStyle = computed<CreateTextareaStyle>(() => createTextareaStyle({
+  variant: props.variant ?? undefined,
+}))
 
 const customClassConfig = computed<CustomComponentVariant<'textarea'>>(
-  () => getCustomComponentVariant('textarea', theme.value, { variant: props.variant }),
+  () => getCustomComponentVariant('textarea', theme.value, {
+    variant: props.variant,
+  }),
 )
 
 function onBlur(event: FocusEvent): void {

@@ -61,11 +61,15 @@ export interface FormElementSlots {
   /**
    * Can be used to render a custom error message.
    */
-  error: ({ errors }: { errors: string[] }) => void
+  error: ({
+    errors,
+  }: { errors: string[] }) => void
   /**
    * Can be used to render a custom hint message.
    */
-  hint: ({ hint }: { hint: string | null }) => void
+  hint: ({
+    hint,
+  }: { hint: string | null }) => void
   /**
    * Can be used to render a custom label.
    */

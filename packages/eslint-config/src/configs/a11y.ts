@@ -1,6 +1,6 @@
 import pluginVueA11y from 'eslint-plugin-vuejs-accessibility'
 
-import type { LintConfig } from '#types/lint.type.ts'
+import type { LintConfig } from '@/types/lint.type.ts'
 
 export const a11yConfig: LintConfig = [
   ...pluginVueA11y.configs['flat/recommended'],

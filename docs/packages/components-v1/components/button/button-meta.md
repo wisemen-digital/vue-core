@@ -14,7 +14,6 @@
 | type | `"button" \| "reset" \| "submit"` | The type of the button. | `"button"` |
 | variant | `"default" \| "destructive-primary" \| "destructive-secondary" \| "destructive-tertiary" \| "secondary" \| "secondary-color" \| "tertiary" \| "tertiary-color"` | The variant of the button. | `"default"` |
 
-
 ## Slots
 
 | Slot | Slot Props | Description |
@@ -24,13 +23,11 @@
 | icon-right | `{ iconRight: keyof Icons; }` | The content to display on the right side of the button. |
 | loader | `-` | The content to display when the button is loading. |
 
-
 ## Events
 
 | Event name | Type | Description |
 | ---------- | ---- | ----------- |
 | `click` | [event: Event] |  |
-
 
 ## Style configuration
 
@@ -89,4 +86,3 @@ export interface ButtonStyleConfig extends BaseStyleConfig {
   '--button-text-color-hover': string
 }
 ```
-

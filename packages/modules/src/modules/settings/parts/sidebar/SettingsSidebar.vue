@@ -14,8 +14,8 @@ const {
     :model-value="activeItem"
     selection-behavior="replace"
     class="
-      border-secondary gap-y-3xl bg-secondary-subtle hidden w-72 shrink-0
-      flex-col border-r border-solid
+      hidden w-72 shrink-0 flex-col gap-y-3xl border-r border-solid
+      border-secondary bg-secondary-subtle
       @3xl/settings:flex
     "
     @update:model-value="(item) => onShowItem(item as HistoryItem)"

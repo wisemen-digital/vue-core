@@ -8,7 +8,9 @@ import SettingsLanguageSection from '@/modules/settings/default-preferences/lang
 import type { SettingsSection } from '@/modules/settings/settings.type'
 
 export function useLanguageSetting(): SettingsSection {
-  const { t } = useI18n()
+  const {
+    t,
+  } = useI18n()
 
   return {
     id: 'language',

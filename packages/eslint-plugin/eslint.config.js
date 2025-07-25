@@ -15,5 +15,9 @@ export default [
   },
 
   ...(await eslintVueConfig),
-  { rules: { 'ts/explicit-function-return-type': 'off' } },
+  {
+    rules: {
+      'ts/explicit-function-return-type': 'off',
+    },
+  },
 ]

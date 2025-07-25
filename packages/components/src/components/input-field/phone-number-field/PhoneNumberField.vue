@@ -52,18 +52,26 @@ defineSlots<{
   /**
    * Can be used to render a custom error message.
    */
-  error: ({ errors }: { errors: string[] }) => void
+  error: ({
+    errors,
+  }: { errors: string[] }) => void
   /**
    * Can be used to render a custom hint message.
    */
-  hint: ({ hint }: { hint: string | null }) => void
+  hint: ({
+    hint,
+  }: { hint: string | null }) => void
   /**
    * Can be used to render a custom label.
    */
-  label: ({ label }: { label: string | null }) => void
+  label: ({
+    label,
+  }: { label: string | null }) => void
 }>()
 
-const model = defineModel<string | null>({ required: true })
+const model = defineModel<string | null>({
+  required: true,
+})
 
 const globalConfigContext = injectConfigContext()
 
@@ -157,7 +165,9 @@ function getCountryFlagUrl(countryCode: CountryCode): string | null {
 }
 
 function getCountryName(countryCode: CountryCode): string | null {
-  return new Intl.DisplayNames(globalConfigContext.locale.value, { type: 'region' }).of(countryCode) ?? countryCode
+  return new Intl.DisplayNames(globalConfigContext.locale.value, {
+    type: 'region',
+  }).of(countryCode) ?? countryCode
 }
 
 function filterFn(option: CountryCode, search: string): boolean {
@@ -266,7 +276,7 @@ watch(countryCodeModel, () => {
           <img
             :src="getCountryFlagUrl(value) ?? undefined"
             :alt="getCountryName(value) ?? undefined"
-            class="rounded-xxs h-3 w-5 shrink-0 object-cover"
+            class="h-3 w-5 shrink-0 rounded-xxs object-cover"
           >
         </template>
 
@@ -275,7 +285,7 @@ watch(countryCodeModel, () => {
             <img
               :src="getCountryFlagUrl(item.value) ?? undefined"
               :alt="getCountryName(item.value) ?? undefined"
-              class="rounded-xxs h-3 w-5 object-cover"
+              class="h-3 w-5 rounded-xxs object-cover"
             >
 
             <div class="flex w-full items-center overflow-hidden pr-4">
@@ -283,7 +293,7 @@ watch(countryCodeModel, () => {
                 {{ getCountryName(item.value) ?? item.value }}
               </span>
 
-              <span class="text-secondary translate-y-px text-xs">
+              <span class="translate-y-px text-xs text-secondary">
                 (+{{ getCountryCallingCode(item.value) }})
               </span>
             </div>
@@ -293,8 +303,9 @@ watch(countryCodeModel, () => {
 
       <span
         class="
-          ml-sm text-placeholder
+          ml-sm
           text-(length:--text-field-font-size-default)
+          text-placeholder
         "
       >
         {{ dialCodeDisplayValue }}

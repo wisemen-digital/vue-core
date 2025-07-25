@@ -63,7 +63,7 @@ A component that displays the indicator of the checkbox.
 ## Checkbox Indicator Example
 
 ### Basic usage
-If you want your checkbox to have a special design, you can customize the rendering of the checkbox content. 
+If you want your checkbox to have a special design, you can customize the rendering of the checkbox content.
 You can use the VcCheckboxIndicator to render the state of the checkbox
 
 <ComponentPreviewV1 name="checkbox-indicator/simple" />

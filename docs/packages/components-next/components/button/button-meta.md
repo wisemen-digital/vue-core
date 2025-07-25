@@ -70,6 +70,4 @@ import { createButtonStyle } from "@wisemen/vue-core-components";
   }
 ]" />
 
-
 <ClassConfig :style-function="createButtonStyle" />
-

@@ -3,7 +3,11 @@ import { defineComponentVariant } from '@/class-variant/customClassVariants'
 import KeyboardShortcut from '@/components/keyboard-shortcut/KeyboardShortcut.vue'
 
 defineComponentVariant({
-  config: { keyboardKey: { key: 'scale-400' } },
+  config: {
+    keyboardKey: {
+      key: 'scale-400',
+    },
+  },
   component: 'keyboardShortcut',
 })
 </script>

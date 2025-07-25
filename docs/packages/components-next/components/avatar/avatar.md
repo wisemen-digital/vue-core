@@ -15,7 +15,6 @@ import {
 } from '@wisemen/vue-core-components'
 </script>
 
-
 <template>
   <VcAvatarRoot>
     <VcAvatarImage />

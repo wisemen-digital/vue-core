@@ -38,14 +38,22 @@ defineSlots<{
   default: () => void
 }>()
 
-const isOpen = defineModel<boolean>('isOpen', { default: false })
+const isOpen = defineModel<boolean>('isOpen', {
+  default: false,
+})
 
-const { theme } = injectThemeProviderContext()
+const {
+  theme,
+} = injectThemeProviderContext()
 
-const dialogStyle = computed<CreateDialogStyle>(() => createDialogStyle({ variant: props.variant ?? undefined }))
+const dialogStyle = computed<CreateDialogStyle>(() => createDialogStyle({
+  variant: props.variant ?? undefined,
+}))
 
 const customClassConfig = computed<ResolvedClassConfig<'dialog'>>(
-  () => getCustomComponentVariant('dialog', theme.value, { variant: props.variant }),
+  () => getCustomComponentVariant('dialog', theme.value, {
+    variant: props.variant,
+  }),
 )
 
 watch(isOpen, (isOpen) => {

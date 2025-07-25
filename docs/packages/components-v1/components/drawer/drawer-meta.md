@@ -11,13 +11,11 @@
 | testId | `string` | The test id of the drawer. |  |
 | transitionClasses | `{ enterActive?: string; enterFrom?: string; enterTo?: string; leaveActive?: string; leaveFrom?: string; leaveTo?: string; } \| null` | The transition classes to apply to the drawer | `null` |
 
-
 ## Slots
 
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
 | default | `-` | The content to display in the drawer. |
-
 
 ## Events
 
@@ -25,7 +23,6 @@
 | ---------- | ---- | ----------- |
 | `close` | [] |  |
 | `update:isOpen` | [isOpen: boolean] |  |
-
 
 ## Style configuration
 
@@ -43,4 +40,3 @@ export interface DrawerStyleConfig  {
   '--drawer-shadow-default': string
 }
 ```
-

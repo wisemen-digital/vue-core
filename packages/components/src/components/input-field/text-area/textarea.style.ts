@@ -68,11 +68,21 @@ export const textareaStyle = tv({
       },
     },
     resizeMode: {
-      'auto-vertical': { textarea: 'resize-none' },
-      'both': { textarea: 'resize' },
-      'horizontal': { textarea: 'resize-x' },
-      'none': { textarea: 'resize-none' },
-      'vertical': { textarea: 'resize-y' },
+      'auto-vertical': {
+        textarea: 'resize-none',
+      },
+      'both': {
+        textarea: 'resize',
+      },
+      'horizontal': {
+        textarea: 'resize-x',
+      },
+      'none': {
+        textarea: 'resize-none',
+      },
+      'vertical': {
+        textarea: 'resize-y',
+      },
     },
   },
 })

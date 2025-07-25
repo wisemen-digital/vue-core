@@ -116,7 +116,9 @@ export const createSelectStyle = tv({
       .withSpacing('my-xs')
       .build(),
   },
-  variants: { variant: {} },
+  variants: {
+    variant: {},
+  },
 })
 
 export type SelectStyle = VariantProps<typeof createSelectStyle>

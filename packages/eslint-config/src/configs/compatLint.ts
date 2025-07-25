@@ -1,6 +1,6 @@
 import { FlatCompat } from '@eslint/eslintrc'
 
-import type { LintConfig } from '#types/lint.type.ts'
+import type { LintConfig } from '@/types/lint.type.ts'
 
 const compat = new FlatCompat()
 

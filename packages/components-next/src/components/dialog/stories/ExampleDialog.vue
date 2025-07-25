@@ -24,12 +24,12 @@ const isSmall = ref<boolean>(false)
           'max-h-40 max-w-80': isSmall,
           'max-h-80 max-w-140': !isSmall,
         }"
-        class="p-2xl h-[90vh] w-[90vw]"
+        class="h-[90vh] w-[90vw] p-2xl"
       >
         <DialogCloseButton class="!absolute top-2 right-2" />
 
         <DialogTitle>
-          <h1 class="text-primary text-2xl font-semibold">
+          <h1 class="text-2xl font-semibold text-primary">
             Example dialog
           </h1>
         </DialogTitle>

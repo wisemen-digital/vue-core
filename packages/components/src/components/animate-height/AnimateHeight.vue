@@ -4,7 +4,9 @@ import { Motion } from 'motion-v'
 import { ref } from 'vue'
 
 const el = ref<HTMLDivElement | null>(null)
-const { height } = useElementSize(el)
+const {
+  height,
+} = useElementSize(el)
 </script>
 
 <template>

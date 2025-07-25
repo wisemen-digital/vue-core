@@ -46,7 +46,7 @@ const dropdownContentClasses = computed<string>(() => style.dropdownContent())
 
       <Icon
         icon="chevronRight"
-        class="text-tertiary ml-auto size-4"
+        class="ml-auto size-4 text-tertiary"
       />
     </DropdownMenuSubTrigger>
 

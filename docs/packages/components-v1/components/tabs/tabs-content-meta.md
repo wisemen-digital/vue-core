@@ -6,10 +6,8 @@
 | ---- | ---- | ----------- | ------- |
 | **value*** | `string` | A unique value that associates the content with a trigger. |  |
 
-
 ## Slots
 
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
 | default | `-` | The content to display in the tab. |
-

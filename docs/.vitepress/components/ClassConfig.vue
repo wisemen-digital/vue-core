@@ -24,7 +24,9 @@ interface Props<U extends (...args: any[]) => Record<string, string>> {
 
 const props = defineProps<Props<any>>()
 
-const { variants } = props.styleFunction
+const {
+  variants,
+} = props.styleFunction
 const variantModels = reactive<VariantModel>({})
 
 const style = computed<any>(() => {

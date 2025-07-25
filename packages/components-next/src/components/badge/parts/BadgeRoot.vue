@@ -25,7 +25,9 @@ const props = withDefaults(defineProps<BadgeProps>(), {
 
 const emit = defineEmits<BadgeEmits>()
 
-const { theme } = injectThemeProviderContext()
+const {
+  theme,
+} = injectThemeProviderContext()
 
 const badgeStyle = computed<CreateBadgeStyle>(() => createBadgeStyle({
   color: props.color,

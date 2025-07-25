@@ -20,7 +20,7 @@ import DialogTitle from '@/components/dialog/parts/DialogTitle.vue'
         }"
         layout-id="dialog-content"
       >
-        <div class="p-2xl h-[90vh] max-h-60 w-[90vw] max-w-120">
+        <div class="h-[90vh] max-h-60 w-[90vw] max-w-120 p-2xl">
           <div class="absolute top-2 right-2">
             <DialogCloseButton />
           </div>
@@ -35,7 +35,7 @@ import DialogTitle from '@/components/dialog/parts/DialogTitle.vue'
             class="inline-block"
           >
             <DialogTitle>
-              <h1 class="text-primary text-2xl font-semibold">
+              <h1 class="text-2xl font-semibold text-primary">
                 Example dialog
               </h1>
             </DialogTitle>

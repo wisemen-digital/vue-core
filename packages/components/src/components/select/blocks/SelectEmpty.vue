@@ -5,7 +5,9 @@ import { injectSelectContext } from '@/components/select/select.context'
 
 const selectContext = injectSelectContext()
 
-const { t } = useI18n()
+const {
+  t,
+} = useI18n()
 </script>
 
 <template>
@@ -13,9 +15,10 @@ const { t } = useI18n()
     <slot :search-term="selectContext.searchTerm.value">
       <span
         class="
-          text-tertiary block px-(--select-option-padding-x-default)
+          block px-(--select-option-padding-x-default)
           py-(--select-option-padding-y-default)
           text-(length:--text-sm)
+          text-tertiary
         "
       >
         {{ t('component.select.empty_text', { searchTerm: selectContext.searchTerm.value }) }}

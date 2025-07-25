@@ -18,7 +18,9 @@ export const createDialogStyle = tv({
       .withZIndex('z-39')
       .build(),
   },
-  variants: { variant: {} },
+  variants: {
+    variant: {},
+  },
 })
 
 export type DialogStyle = VariantProps<typeof createDialogStyle>

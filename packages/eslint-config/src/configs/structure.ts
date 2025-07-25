@@ -4,7 +4,7 @@ import {
   projectStructurePlugin,
 } from 'eslint-plugin-project-structure'
 
-import type { LintConfig } from '#types/lint.type.ts'
+import type { LintConfig } from '@/types/lint.type.ts'
 
 const API_FOLDER = {
   name: 'api',

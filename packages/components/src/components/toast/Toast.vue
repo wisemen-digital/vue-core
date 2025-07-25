@@ -29,15 +29,23 @@ const emit = defineEmits<{
 const themeProviderContext = injectThemeProviderContext()
 const style = toastStyle()
 
-const containerClasses = computed<string>(() => style.container({ variant: props.type }))
+const containerClasses = computed<string>(() => style.container({
+  variant: props.type,
+}))
 
-const iconContainerClasses = computed<string>(() => style.iconContainer({ variant: props.type }))
+const iconContainerClasses = computed<string>(() => style.iconContainer({
+  variant: props.type,
+}))
 
 const messageClasses = computed<string>(() => style.message())
 
-const actionClasses = computed<string>(() => style.action({ variant: props.type }))
+const actionClasses = computed<string>(() => style.action({
+  variant: props.type,
+}))
 
-const closeButtonClasses = computed<string>(() => style.closeButton({ variant: props.type }))
+const closeButtonClasses = computed<string>(() => style.closeButton({
+  variant: props.type,
+}))
 
 const defaultIcon = computed<IconType>(() => {
   if (props.type === 'success') {

@@ -39,21 +39,45 @@ export const useButtonStyle = tv({
   },
   variants: {
     variant: {
-      'default': { base: 'button-primary' },
-      'destructive-primary': { base: 'button-destructive-primary' },
-      'destructive-secondary': { base: 'button-destructive-secondary' },
-      'destructive-tertiary': { base: 'button-destructive-tertiary' },
-      'secondary': { base: 'button-secondary-gray' },
-      'secondary-color': { base: 'button-secondary-color' },
-      'tertiary': { base: 'button-tertiary-gray' },
-      'tertiary-color': { base: 'button-tertiary-color' },
+      'default': {
+        base: 'button-primary',
+      },
+      'destructive-primary': {
+        base: 'button-destructive-primary',
+      },
+      'destructive-secondary': {
+        base: 'button-destructive-secondary',
+      },
+      'destructive-tertiary': {
+        base: 'button-destructive-tertiary',
+      },
+      'secondary': {
+        base: 'button-secondary-gray',
+      },
+      'secondary-color': {
+        base: 'button-secondary-color',
+      },
+      'tertiary': {
+        base: 'button-tertiary-gray',
+      },
+      'tertiary-color': {
+        base: 'button-tertiary-color',
+      },
     },
     size: {
-      '2xl': { base: 'button-2xl' },
+      '2xl': {
+        base: 'button-2xl',
+      },
       'default': {},
-      'lg': { base: 'button-lg' },
-      'sm': { base: 'button-sm' },
-      'xl': { base: 'button-xl' },
+      'lg': {
+        base: 'button-lg',
+      },
+      'sm': {
+        base: 'button-sm',
+      },
+      'xl': {
+        base: 'button-xl',
+      },
     },
     isDisabled: {
       true: {

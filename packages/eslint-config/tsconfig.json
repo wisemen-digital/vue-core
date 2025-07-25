@@ -4,16 +4,18 @@
     "jsx": "preserve",
     "jsxImportSource": "vue",
     "useDefineForClassFields": true,
+    "baseUrl": ".",
     "module": "ESNext",
     "moduleResolution": "bundler",
+    "paths": {
+      "@/*": ["src/*"]
+    },
     "resolveJsonModule": true,
     "types": [],
     "allowImportingTsExtensions": true,
     "allowJs": true,
     "strict": true,
     "noImplicitThis": true,
-    "baseUrl": ".",
-
     "noEmit": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
@@ -23,7 +25,7 @@
     "skipLibCheck": true
   },
   "include": [
-    "src/**/*.ts",
+    "**/*.ts"
   ],
   "exclude": [
     "node_modules",

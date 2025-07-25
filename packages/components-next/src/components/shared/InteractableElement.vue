@@ -5,7 +5,6 @@ const props = withDefaults(defineProps<{
   isDisabled: boolean
   as?: string | null
 }>(), {
-  isDisabled: false,
   as: null,
 })
 </script>

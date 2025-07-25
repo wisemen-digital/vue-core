@@ -24,9 +24,13 @@ const props = withDefaults(defineProps<TabsProps>(), {
   variant: 'underline',
 })
 
-const modelValue = defineModel<string>({ required: true })
+const modelValue = defineModel<string>({
+  required: true,
+})
 
-const { theme } = injectThemeProviderContext()
+const {
+  theme,
+} = injectThemeProviderContext()
 
 const {
   hasHorizontalOverflow,
@@ -38,10 +42,14 @@ const {
   setScrollContainerRef,
 } = useTabs()
 
-const tabsStyle = computed<CreateTabsStyle>(() => createTabsStyle({ variant: props.variant }))
+const tabsStyle = computed<CreateTabsStyle>(() => createTabsStyle({
+  variant: props.variant,
+}))
 
 const customClassConfig = computed<CustomComponentVariant<'tabs'>>(
-  () => getCustomComponentVariant('tabs', theme.value, { variant: props.variant }),
+  () => getCustomComponentVariant('tabs', theme.value, {
+    variant: props.variant,
+  }),
 )
 
 onMounted(() => {

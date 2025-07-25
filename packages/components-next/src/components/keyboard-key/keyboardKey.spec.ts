@@ -15,7 +15,9 @@ import type { KeyboardKey } from '@/types/keyboard.type'
 let userAgentSpy: ReturnType<typeof vi.spyOn>
 
 function mountComponent(props: KeyboardKeyProps): ReturnType<typeof mount> {
-  return mount(KeyboardKeyComponent, { props })
+  return mount(KeyboardKeyComponent, {
+    props,
+  })
 }
 
 function setupOsMocks(isWindowsEnvironment: boolean): void {
@@ -42,7 +44,9 @@ describe('keyboardKey.vue (Basic Functionality)', () => {
   it('renders a <kbd> element', () => {
     setupOsMocks(false)
 
-    const wrapper = mountComponent({ keyboardKey: 'a' })
+    const wrapper = mountComponent({
+      keyboardKey: 'a',
+    })
 
     expect(wrapper.find('kbd').exists()).toBeTruthy()
   })
@@ -97,7 +101,9 @@ describe('keyboardKey.vue (Basic Functionality)', () => {
     }) => {
       setupOsMocks(true)
 
-      const wrapper = mountComponent({ keyboardKey: input })
+      const wrapper = mountComponent({
+        keyboardKey: input,
+      })
 
       expect(wrapper.text()).toBe(expected)
     })
@@ -151,7 +157,9 @@ describe('keyboardKey.vue (Basic Functionality)', () => {
     }) => {
       setupOsMocks(false)
 
-      const wrapper = mountComponent({ keyboardKey: input })
+      const wrapper = mountComponent({
+        keyboardKey: input,
+      })
 
       expect(wrapper.text()).toBe(expected)
     })

@@ -1,20 +1,20 @@
 import antfu from '@antfu/eslint-config'
 import globals from 'globals'
 
-import { a11yConfig } from '#configs/a11y.ts'
-import { baseConfig } from '#configs/base.ts'
-import { compatConfig } from '#configs/compatLint.ts'
-import { i18nConfig } from '#configs/i18n.ts'
-import { modulesConfig } from '#configs/modules.ts'
-import { pathConfig } from '#configs/path.ts'
-import { perfectionistConfig } from '#configs/perfectionist.ts'
-import { simpleSortConfig } from '#configs/simpleSort.ts'
-import { spacingConfig } from '#configs/spacing.ts'
-import { projectStructureConfig } from '#configs/structure.ts'
-import { tailwindConfig } from '#configs/tailwind.ts'
-import { unicornConfig } from '#configs/unicorn.ts'
-import { vitestConfig } from '#configs/vitest.ts'
-import { wisemenConfig } from '#configs/wisemen.ts'
+import { a11yConfig } from './configs/a11y.ts'
+import { baseConfig } from './configs/base.ts'
+import { compatConfig } from './configs/compatLint.ts'
+import { i18nConfig } from './configs/i18n.ts'
+import { modulesConfig } from './configs/modules.ts'
+import { pathConfig } from './configs/path.ts'
+import { perfectionistConfig } from './configs/perfectionist.ts'
+import { simpleSortConfig } from './configs/simpleSort.ts'
+import { spacingConfig } from './configs/spacing.ts'
+import { projectStructureConfig } from './configs/structure.ts'
+import { tailwindConfig } from './configs/tailwind.ts'
+import { unicornConfig } from './configs/unicorn.ts'
+import { vitestConfig } from './configs/vitest.ts'
+import { wisemenConfig } from './configs/wisemen.ts'
 
 export default antfu(
   baseConfig,
@@ -31,12 +31,22 @@ export default antfu(
   pathConfig,
   wisemenConfig,
   {
+    rules: {
+      'vue/object-property-newline': [
+        'error',
+        {
+          allowAllPropertiesOnSameLine: false,
+        },
+      ],
+    },
+  },
+  {
     settings: {
       'import/extensions': [
         '.ts',
       ],
       'vue-i18n': {
-        localeDir: './src/locales/*.json',
+        localeDir: './src/locales/*.tson',
         messageSyntaxVersion: '^9.0.0',
       },
     },
@@ -50,5 +60,6 @@ export default antfu(
       },
       sourceType: 'module',
     },
+
   },
 ).prepend(projectStructureConfig)

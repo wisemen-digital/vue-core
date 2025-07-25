@@ -21,7 +21,9 @@ const props = withDefaults(defineProps<RadioGroupProps>(), {
 
 defineSlots<FormElementSlots>()
 
-const model = defineModel<TValue>({ required: true })
+const model = defineModel<TValue>({
+  required: true,
+})
 
 const inputId = props.id ?? useId()
 </script>

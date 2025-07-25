@@ -57,7 +57,9 @@ defineSlots<{
   hint: () => null
 }>()
 
-const model = defineModel<boolean>({ required: true })
+const model = defineModel<boolean>({
+  required: true,
+})
 
 const themeProviderContext = injectThemeProviderContext()
 

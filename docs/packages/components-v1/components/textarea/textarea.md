@@ -21,7 +21,6 @@
 
 <!-- @include: ./textarea-meta.md -->
 
-
 ## Examples
 
 ### Basic usage

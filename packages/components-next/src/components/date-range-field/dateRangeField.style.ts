@@ -61,7 +61,9 @@ export const createDateRangeFieldStyle = tv({
       .withSpacing('px-sm')
       .build(),
   },
-  variants: { variant: {} },
+  variants: {
+    variant: {},
+  },
 })
 
 export type DateRangeFieldStyle = VariantProps<typeof createDateRangeFieldStyle>

@@ -142,6 +142,13 @@ export const baseConfig: OptionsConfig & Omit<TypedFlatConfigItem, 'files'> = {
     'vue/no-undef-components': [
       'error',
     ],
+    'vue/object-property-newline': [
+      'error',
+      {
+        allowAllPropertiesOnSameLine: false,
+        allowMultiplePropertiesPerLine: true,
+      },
+    ],
   },
   stylistic: {
     indent: 2, // 4, or 'tab'

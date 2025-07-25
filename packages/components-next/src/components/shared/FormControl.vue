@@ -11,7 +11,9 @@ const props = withDefaults(defineProps<{
   isRequired: boolean
   as?: string | null
   describedBy: string
-}>(), { as: null })
+}>(), {
+  as: null,
+})
 </script>
 
 <template>

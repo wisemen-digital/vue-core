@@ -1,6 +1,6 @@
 import eslintPluginBetterTailwindcss from 'eslint-plugin-better-tailwindcss'
 
-import type { LintConfig } from '#types/lint.type.ts'
+import type { LintConfig } from '@/types/lint.type.ts'
 
 export const tailwindConfig: LintConfig = [
   {

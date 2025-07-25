@@ -14,7 +14,9 @@ export interface DefaultPreferences {
 export function useDefaultPreference<
   TKey extends keyof DefaultPreferences,
 >(key: TKey): ComputedRef<DefaultPreferences[TKey]> {
-  const { defaultPreferencesState } = useInjectSettingsContext()
+  const {
+    defaultPreferencesState,
+  } = useInjectSettingsContext()
 
   const value = computed<DefaultPreferences[TKey]>({
     get: () => defaultPreferencesState.value[key],

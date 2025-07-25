@@ -4,7 +4,9 @@ import TableHeaderCell from '@/components/table/TableHeaderCell.vue'
 
 const props = withDefaults(defineProps<{
   areStickyColumnsDisabled?: boolean
-}>(), { areStickyColumnsDisabled: false })
+}>(), {
+  areStickyColumnsDisabled: false,
+})
 
 const tableContext = injectTableContext()
 </script>
@@ -23,8 +25,8 @@ const tableContext = injectTableContext()
       :class="{
         'first:sticky first:left-0 first:z-10 first:border-r first:border-solid first:border-transparent': tableContext.isFirstColumnSticky.value && !props.areStickyColumnsDisabled,
         'last:sticky last:right-0 last:z-10 last:border-l last:border-solid last:border-transparent': tableContext.isLastColumnSticky.value && !props.areStickyColumnsDisabled,
-        'first:shadow-table-sticky-left-column first:border-r-(--table-row-border-color-default)': tableContext.isScrolledToRight.value && tableContext.isFirstColumnSticky.value,
-        'last:shadow-table-sticky-right-column last:border-l-(--table-row-border-color-default)': !tableContext.hasReachedHorizontalScrollEnd.value && tableContext.isLastColumnSticky.value,
+        'first:border-r-(--table-row-border-color-default) first:shadow-table-sticky-left-column': tableContext.isScrolledToRight.value && tableContext.isFirstColumnSticky.value,
+        'last:border-l-(--table-row-border-color-default) last:shadow-table-sticky-right-column': !tableContext.hasReachedHorizontalScrollEnd.value && tableContext.isLastColumnSticky.value,
       }"
       class="overflow-hidden bg-(--table-header-bg-color-default) duration-200"
     >

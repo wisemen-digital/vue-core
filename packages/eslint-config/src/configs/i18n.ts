@@ -1,6 +1,6 @@
 import vueI18n from '@intlify/eslint-plugin-vue-i18n'
 
-import type { LintConfig } from '#types/lint.type.ts'
+import type { LintConfig } from '@/types/lint.type.ts'
 
 export const i18nConfig: LintConfig = {
   name: 'vue-i18n',

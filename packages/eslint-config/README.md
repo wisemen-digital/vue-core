@@ -2,7 +2,6 @@
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)]() [![npm version](https://img.shields.io/npm/v/@appwise/eslint-config-vue.svg?style=flat)](https://www.npmjs.com/package/@appwise/eslint-config-vue) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://reactjs.org/docs/how-to-contribute.html#your-first-pull-request)
 
-
 Every project uses the same eslint config, so we can easily maintain the same code style.
 This also ensures that all our projects are consistent and that we don't lose time on code style.
 Uses the new Flat Config - [Read more about it](https://eslint.org/docs/latest/use/configure/configuration-files-new)
@@ -54,7 +53,7 @@ export default [
 ```
 
 4. Enable Flatconfig in VSCode
-```json  
+```json
 "eslint.experimental.useFlatConfig": true
 ```
 
@@ -64,7 +63,6 @@ export default [
 - [no-console](https://eslint.org/docs/rules/no-console): We don't want to have any `console.log` statements in our code.
 - [no-semicolons](https://eslint.org/docs/rules/semi): We don't use semicolons at the end of a line.
 - [no-trailing-commas](https://eslint.org/docs/rules/no-comma-dangle): We don't use trailing commas.
-
 
 ## Want to contribute?
 

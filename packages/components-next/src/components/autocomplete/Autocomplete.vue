@@ -20,7 +20,9 @@ const emit = defineEmits<{
   search: [searchTerm: string]
 }>()
 
-const modelValue = defineModel<TValue>({ required: true })
+const modelValue = defineModel<TValue>({
+  required: true,
+})
 
 const searchTerm = ref<string>('')
 const isDebouncing = ref<boolean>(false)

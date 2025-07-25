@@ -19,7 +19,7 @@ const {
 <template>
   <div
     v-if="filter !== null && filter.isEnabled && !filter.isInline"
-    class="p-xs relative pb-0"
+    class="relative p-xs pb-0"
   >
     <TextFieldRoot
       v-model="searchTerm"
@@ -43,8 +43,8 @@ const {
     <div
       v-if="hasScrolledInDropdownContent"
       class="
-        from-primary pointer-events-none absolute bottom-0 z-10 h-4 w-full
-        translate-y-full bg-gradient-to-b to-transparent
+        pointer-events-none absolute bottom-0 z-10 h-4 w-full translate-y-full
+        bg-gradient-to-b from-primary to-transparent
       "
     />
   </div>

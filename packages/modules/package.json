@@ -60,7 +60,7 @@
     "@vueuse/router": "catalog:",
     "@wisemen/eslint-config-vue": "catalog:",
     "eslint": "catalog:",
-    "globals": "^16.0.0",
+    "globals": "^16.3.0",
     "highlight-words": "^2.0.0",
     "histoire": "1.0.0-alpha.2",
     "husky": "catalog:",

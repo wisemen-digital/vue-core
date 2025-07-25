@@ -11,7 +11,6 @@
 | **isTouched*** | `boolean` | Whether the input is touched. Used to determine if an error should be shown. |  |
 | **label*** | `string \| null` | The label of the input. |  |
 
-
 ## Slots
 
 | Slot | Slot Props | Description |
@@ -21,4 +20,3 @@
 | error | `{ errors: string[]; }` | Can be used to render a custom error message. |
 | hint | `{ hint: string \| null; }` | Can be used to render a custom hint message. |
 | label | `{ inputId: string; isRequired: boolean; label: string \| null; }` | Can be used to render a custom label. |
-

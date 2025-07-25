@@ -12,9 +12,13 @@ import type { Icon } from '@/icons/icons'
 
 const props = defineProps<PasswordFieldProps>()
 
-const modelValue = defineModel<string | null>({ required: true })
+const modelValue = defineModel<string | null>({
+  required: true,
+})
 
-const { t } = useI18n()
+const {
+  t,
+} = useI18n()
 
 const isPasswordVisible = ref<boolean>(false)
 

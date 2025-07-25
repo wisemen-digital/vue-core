@@ -36,11 +36,15 @@ defineSlots<{
   /**
    * The content to display on the left side of the button.
    */
-  'icon-left': ({ iconLeft }: { iconLeft: keyof Icons }) => void
+  'icon-left': ({
+    iconLeft,
+  }: { iconLeft: keyof Icons }) => void
   /**
    * The content to display on the right side of the button.
    */
-  'icon-right': ({ iconRight }: { iconRight: keyof Icons }) => void
+  'icon-right': ({
+    iconRight,
+  }: { iconRight: keyof Icons }) => void
   /**
    * The content to display when the button is loading.
    */

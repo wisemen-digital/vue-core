@@ -7,8 +7,12 @@ import { useI18n } from 'vue-i18n'
 
 import { useInjectSettingsDialogContext } from '@/modules/settings/settingsDialog.context'
 
-const { isExpanded } = useInjectSettingsDialogContext()
-const { t } = useI18n()
+const {
+  isExpanded,
+} = useInjectSettingsDialogContext()
+const {
+  t,
+} = useI18n()
 
 useKeyboardShortcut({
   keys: [

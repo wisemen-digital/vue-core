@@ -8,13 +8,17 @@ import type { DateRange } from '@/types/dateRange.type'
 
 const props = defineProps<DateRangePickerProps>()
 
-const modelValue = defineModel<DateRange>({ required: true })
+const modelValue = defineModel<DateRange>({
+  required: true,
+})
 
 /**
  * The placeholder date, which is used to determine what month to display when no date is selected.
  * This updates as the user navigates the calendar and can be used to programmatically control the calendar view
  */
-const placeholderValue = defineModel<Date>('placeholderValue', { required: false })
+const placeholderValue = defineModel<Date>('placeholderValue', {
+  required: false,
+})
 </script>
 
 <template>

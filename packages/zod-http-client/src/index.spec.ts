@@ -28,7 +28,9 @@ const testSchema = z.object({
 
 // Utility function to create mocked responses
 function mockAxiosMethod(method: 'delete' | 'get' | 'patch' | 'post' | 'put', data: any): void {
-  vi.spyOn(mockAxios, method).mockResolvedValueOnce({ data })
+  vi.spyOn(mockAxios, method).mockResolvedValueOnce({
+    data,
+  })
 }
 
 describe('createHttpZodClient', () => {
@@ -78,7 +80,9 @@ describe('createHttpZodClient', () => {
 
   describe('post method', () => {
     it('should send body and return parsed data if response matches schema', async () => {
-      const requestBody = { some: 'data' }
+      const requestBody = {
+        some: 'data',
+      }
       const responseData = {
         id: 1,
         name: 'test',
@@ -106,7 +110,9 @@ describe('createHttpZodClient', () => {
       mockAxiosMethod('post', responseData)
 
       const result = await client.post({
-        body: { data: 'test' },
+        body: {
+          data: 'test',
+        },
         responseSchema: testSchema,
         url: '/test-post-error',
       })
@@ -130,7 +136,9 @@ describe('createHttpZodClient', () => {
       mockAxiosMethod('patch', responseData)
 
       const result = await client.patch({
-        body: { name: 'updated' },
+        body: {
+          name: 'updated',
+        },
         responseSchema: testSchema,
         url: '/test-patch',
       })
@@ -148,7 +156,9 @@ describe('createHttpZodClient', () => {
       mockAxiosMethod('patch', responseData)
 
       const result = await client.patch({
-        body: { name: 'wrong' },
+        body: {
+          name: 'wrong',
+        },
         responseSchema: testSchema,
         url: '/test-patch-error',
       })
@@ -172,7 +182,9 @@ describe('createHttpZodClient', () => {
       mockAxiosMethod('put', responseData)
 
       const result = await client.put({
-        body: { name: 'put-name' },
+        body: {
+          name: 'put-name',
+        },
         responseSchema: testSchema,
         url: '/test-put',
       })
@@ -190,7 +202,9 @@ describe('createHttpZodClient', () => {
       mockAxiosMethod('put', responseData)
 
       const result = await client.put({
-        body: { name: 'wrong' },
+        body: {
+          name: 'wrong',
+        },
         responseSchema: testSchema,
         url: '/test-put-error',
       })
@@ -229,7 +243,9 @@ describe('createHttpZodClient', () => {
     it('should return undefined if responseSchema is not provided', async () => {
       mockAxiosMethod('delete', {})
 
-      const result = await client.delete({ url: '/test-delete' })
+      const result = await client.delete({
+        url: '/test-delete',
+      })
 
       expect(result).toBeUndefined()
       expect(mockOnZodError).not.toHaveBeenCalled()

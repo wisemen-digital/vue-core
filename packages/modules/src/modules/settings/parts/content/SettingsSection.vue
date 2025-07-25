@@ -6,9 +6,13 @@ import { useInjectSettingsSectionContext } from '@/modules/settings/settingsSect
 
 const props = withDefaults(defineProps<{
   isSingleColumnLayout?: boolean
-}>(), { isSingleColumnLayout: false })
+}>(), {
+  isSingleColumnLayout: false,
+})
 
-const { section } = useInjectSettingsSectionContext()
+const {
+  section,
+} = useInjectSettingsSectionContext()
 </script>
 
 <template>
@@ -17,15 +21,15 @@ const { section } = useInjectSettingsSectionContext()
       '@6xl/settings:grid-cols-[1fr_1.5fr]': props.isSingleColumnLayout,
       '@2xl/settings:grid-cols-[1fr_1.5fr]': !props.isSingleColumnLayout,
     }"
-    class="p-4xl gap-x-4xl gap-y-2xl grid"
+    class="grid gap-x-4xl gap-y-2xl p-4xl"
   >
     <div>
       <!-- eslint-disable-next-line vuejs-accessibility/heading-has-content -->
-      <h2 class="text-secondary text-sm font-semibold">
+      <h2 class="text-sm font-semibold text-secondary">
         <TextHighlight :text="toValue(section.title)" />
       </h2>
 
-      <p class="text-tertiary mt-xs text-sm">
+      <p class="mt-xs text-sm text-tertiary">
         <TextHighlight :text="toValue(section.description)" />
       </p>
     </div>

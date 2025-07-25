@@ -69,6 +69,4 @@ import { createFormFieldStyle } from "@wisemen/vue-core-components";
   }
 ]" />
 
-
 <ClassConfig :style-function="createFormFieldStyle" />
-

@@ -39,12 +39,18 @@ const isOpen = defineModel<boolean>('isOpen', {
   required: false,
 })
 
-const { theme } = injectThemeProviderContext()
+const {
+  theme,
+} = injectThemeProviderContext()
 
-const popoverStyle = computed<CreatePopoverStyle>(() => createPopoverStyle({ variant: props.variant ?? undefined }))
+const popoverStyle = computed<CreatePopoverStyle>(() => createPopoverStyle({
+  variant: props.variant ?? undefined,
+}))
 
 const customClassConfig = computed<ResolvedClassConfig<'popover'>>(
-  () => getCustomComponentVariant('popover', theme.value, { variant: props.variant }),
+  () => getCustomComponentVariant('popover', theme.value, {
+    variant: props.variant,
+  }),
 )
 
 function onContentEscapeKeyDown(event: KeyboardEvent): void {

@@ -38,16 +38,24 @@ const props = withDefaults(defineProps<TextFieldProps>(), {
 
 const emit = defineEmits<TextFieldEmits>()
 
-const modelValue = defineModel<TValue | null>({ required: true })
+const modelValue = defineModel<TValue | null>({
+  required: true,
+})
 
-const { theme } = injectThemeProviderContext()
+const {
+  theme,
+} = injectThemeProviderContext()
 
 const textFieldStyle = computed<CreateTextFieldStyle>(
-  () => createTextFieldStyle({ variant: props.variant ?? undefined }),
+  () => createTextFieldStyle({
+    variant: props.variant ?? undefined,
+  }),
 )
 
 const customClassConfig = computed<ResolvedClassConfig<'textField'>>(
-  () => getCustomComponentVariant('textField', theme.value, { variant: props.variant }),
+  () => getCustomComponentVariant('textField', theme.value, {
+    variant: props.variant,
+  }),
 )
 
 function onBlur(event: FocusEvent): void {

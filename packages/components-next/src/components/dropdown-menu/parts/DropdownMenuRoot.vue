@@ -35,14 +35,20 @@ const isOpen = defineModel<boolean>('isOpen', {
   required: false,
 })
 
-const { theme } = injectThemeProviderContext()
+const {
+  theme,
+} = injectThemeProviderContext()
 
 const dropdownMenuStyle = computed<CreateDropdownMenuStyle>(
-  () => createDropdownMenuStyle({ variant: props.variant ?? undefined }),
+  () => createDropdownMenuStyle({
+    variant: props.variant ?? undefined,
+  }),
 )
 
 const customClassConfig = computed<ResolvedClassConfig<'dropdownMenu'>>(
-  () => getCustomComponentVariant('dropdownMenu', theme.value, { variant: props.variant }),
+  () => getCustomComponentVariant('dropdownMenu', theme.value, {
+    variant: props.variant,
+  }),
 )
 
 useProvideDropdownMenuContext({

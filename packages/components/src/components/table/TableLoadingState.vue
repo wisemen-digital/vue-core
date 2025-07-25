@@ -7,7 +7,9 @@ import { NumberUtil } from '@/utils/number.util'
 
 const props = withDefaults(defineProps<{
   hideHeader?: boolean
-}>(), { hideHeader: false })
+}>(), {
+  hideHeader: false,
+})
 
 const tableContext = injectTableContext()
 </script>
