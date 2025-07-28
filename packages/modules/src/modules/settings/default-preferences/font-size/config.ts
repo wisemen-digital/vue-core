@@ -8,7 +8,9 @@ import SettingsFontSizeSection from '@/modules/settings/default-preferences/font
 import type { SettingsSection } from '@/modules/settings/settings.type'
 
 export function useFontSizeSetting(): SettingsSection {
-  const { t } = useI18n()
+  const {
+    t,
+  } = useI18n()
 
   return {
     id: 'font-size',

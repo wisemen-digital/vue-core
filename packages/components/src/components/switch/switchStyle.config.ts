@@ -118,7 +118,9 @@ export function setupDefaultSwitchStyles(): void {
 
   defineStyleConfig({
     colorScheme: '*',
-    config: { '--switch-thumb-size-default': '1rem' },
+    config: {
+      '--switch-thumb-size-default': '1rem',
+    },
     theme: '*',
     variant: 'sm',
     component: 'switch',

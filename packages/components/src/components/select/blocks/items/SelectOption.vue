@@ -20,7 +20,9 @@ import type { StyleConfig } from '@/types/style.type'
 const props = withDefaults(defineProps<{
   item: SelectOption<TValue extends Array<infer U> ? U : TValue>
   styleConfig?: StyleConfig<'selectOption'> | null
-}>(), { styleConfig: null })
+}>(), {
+  styleConfig: null,
+})
 
 const selectContext = injectSelectContext()
 const attrs = useAttrs()
@@ -48,7 +50,9 @@ function onSelect(): void {
   }
 }
 
-provideSelectOptionContext({ isSelected: computed<boolean>(() => isSelected.value) })
+provideSelectOptionContext({
+  isSelected: computed<boolean>(() => isSelected.value),
+})
 </script>
 
 <template>

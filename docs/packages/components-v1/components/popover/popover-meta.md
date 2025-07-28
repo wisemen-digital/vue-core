@@ -14,7 +14,6 @@
 | styleConfig | `Partial<PopoverStyleConfig> \| null` | The style config of the component. | `null` |
 | testId | `string \| null` | The test id of the popover. | `null` |
 
-
 ## Slots
 
 | Slot | Slot Props | Description |
@@ -23,13 +22,11 @@
 | default | `-` | Use this to render your own trigger. Import VcPopoverTrigger for the trigger to work. |
 | trigger | `-` | The content that will trigger the popover. |
 
-
 ## Events
 
 | Event name | Type | Description |
 | ---------- | ---- | ----------- |
 | `update:isOpen` | [isOpen: boolean] |  |
-
 
 ## Style configuration
 
@@ -47,4 +44,3 @@ export interface PopoverStyleConfig  {
   '--popover-shadow-default': string
 }
 ```
-

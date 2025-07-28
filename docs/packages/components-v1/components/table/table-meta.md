@@ -17,7 +17,6 @@
 | styleConfig | `Partial<TableStyleConfig> \| null` | The style config of the component. | `null` |
 | variant | `"default" \| "borderless"` | The variant of the table | `"default"` |
 
-
 ## Slots
 
 | Slot | Slot Props | Description |
@@ -29,7 +28,6 @@
 | page-count | `-` | Use this to render your own page count in the table bottom. |
 | pagination | `{ items: ({ type: "ellipsis"; } \| { type: "page"; value: number; })[]; }` | Use this to render your own pagination in the table bottom. |
 | top | `-` | Use this to add content to the top of the table. |
-
 
 ## Style configuration
 
@@ -49,4 +47,3 @@ export interface TableStyleConfig  {
   '--table-row-border-color-default': string
 }
 ```
-

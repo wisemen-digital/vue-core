@@ -5,4 +5,3 @@
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
 | **items*** | `BreadcrumbItem[]` | The items to display in the breadcrumb. |  |
-

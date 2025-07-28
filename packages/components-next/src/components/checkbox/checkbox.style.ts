@@ -30,7 +30,9 @@ export const createCheckboxStyle = tv({
       .withCursor('cursor-pointer disabled:cursor-not-allowed')
       .build(),
   },
-  variants: { variant: {} },
+  variants: {
+    variant: {},
+  },
 })
 
 export type CheckboxStyle = VariantProps<typeof createCheckboxStyle>

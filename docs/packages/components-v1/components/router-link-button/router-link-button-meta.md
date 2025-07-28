@@ -12,7 +12,6 @@
 | styleConfig | `Partial<ButtonStyleConfig> \| null` | The style config of the component. | `null` |
 | variant | `"default" \| "destructive-primary" \| "destructive-secondary" \| "destructive-tertiary" \| "secondary" \| "secondary-color" \| "tertiary" \| "tertiary-color"` | The variant of the button. | `"default"` |
 
-
 ## Slots
 
 | Slot | Slot Props | Description |
@@ -21,4 +20,3 @@
 | icon-left | `{ iconLeft: keyof Icons; }` | The content to display on the left side of the button. |
 | icon-right | `{ iconRight: keyof Icons; }` | The content to display on the right side of the button. |
 | loader | `-` | The content to display when the button is loading. |
-

@@ -1,3 +1,4 @@
+/* eslint-disable style/operator-linebreak */
 import type {
   Component,
   Ref,
@@ -10,20 +11,20 @@ export interface DialogTriggerProps {
   'data-state': boolean
 }
 
-export type IgnoredKeys =
-  | '__v_isVNode'
-  | 'class'
-  | 'key'
-  | 'onVnodeBeforeMount'
-  | 'onVnodeBeforeUnmount'
-  | 'onVnodeBeforeUpdate'
-  | 'onVnodeMounted'
-  | 'onVnodeUnmounted'
-  | 'onVnodeUpdated'
-  | 'ref'
-  | 'ref_for'
-  | 'ref_key'
-  | 'style'
+export type IgnoredKeys
+  = | '__v_isVNode'
+    | 'class'
+    | 'key'
+    | 'onVnodeBeforeMount'
+    | 'onVnodeBeforeUnmount'
+    | 'onVnodeBeforeUpdate'
+    | 'onVnodeMounted'
+    | 'onVnodeUnmounted'
+    | 'onVnodeUpdated'
+    | 'ref'
+    | 'ref_for'
+    | 'ref_key'
+    | 'style'
 
 type PickKeys<T extends object, TValue extends null | undefined> = NonNullable<
   { [K in keyof T]: TValue extends T[K] ? K : never }[keyof T]

@@ -29,7 +29,9 @@ const props = withDefaults(defineProps<IconButtonProps>(), {
 
 const emit = defineEmits<ButtonEmits>()
 
-const { theme } = injectThemeProviderContext()
+const {
+  theme,
+} = injectThemeProviderContext()
 
 const buttonStyle = computed<CreateIconButtonStyle>(() => createIconButtonStyle({
   size: props.size,

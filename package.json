@@ -15,22 +15,23 @@
     "pub:release": "cd packages/components && pnpm pub:release --no-git-checks",
     "pub:release-query": "cd packages/query && pnpm pub:release --no-git-checks",
     "lint": "turbo run lint",
+    "cleanup": "pnpm -r cleanup",
     "dev": "turbo run dev",
     "test": "turbo run test",
     "lint:fix": "turbo run lint:fix",
     "type-check": "turbo run type-check",
     "precommit": "pnpm run lint --fix && pnpm run type-check && pnpm run test && pnpm run -r docs:gen",
-    "prepare": "husky && pnpm run -r build"
+    "prepare": "husky install && pnpm run build"  
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.8.0",
-    "@commitlint/config-conventional": "^19.8.0",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
     "husky": "catalog:",
     "rimraf": "catalog:",
     "turbo": "catalog:",
     "vitest": "catalog:"
   },
   "dependencies": {
-    "@changesets/cli": "^2.28.1"
+    "@changesets/cli": "^2.29.5"
   }
 }

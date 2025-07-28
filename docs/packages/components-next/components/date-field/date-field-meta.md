@@ -159,6 +159,4 @@ import { createDateFieldStyle } from "@wisemen/vue-core-components";
   }
 ]" />
 
-
 <ClassConfig :style-function="createDateFieldStyle" />
-

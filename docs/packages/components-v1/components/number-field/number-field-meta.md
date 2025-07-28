@@ -27,7 +27,6 @@
 | styleConfig | `Partial<TextFieldStyleConfig> \| null` | The style config of the component. | `null` |
 | testId | `string \| null` | The test id of the input. | `null` |
 
-
 ## Slots
 
 | Slot | Slot Props | Description |
@@ -42,7 +41,6 @@
 | loader | `-` | Can be used to render a custom loader. |
 | right | `-` | The content to display on the right side. (Will show under the calendar icon) |
 
-
 ## Events
 
 | Event name | Type | Description |
@@ -50,4 +48,3 @@
 | `blur` | [] |  |
 | `focus` | [] |  |
 | `update:modelValue` | [modelValue: number \| null] |  |
-

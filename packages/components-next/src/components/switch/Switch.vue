@@ -12,7 +12,9 @@ const props = defineProps<SwitchProps>()
 
 const emit = defineEmits<SwitchEmits>()
 
-const modelValue = defineModel<boolean>({ required: true })
+const modelValue = defineModel<boolean>({
+  required: true,
+})
 
 const id = props.id ?? useId()
 </script>

@@ -65,11 +65,15 @@ defineSlots<{
   /**
    * Can be used to render a custom error message.
    */
-  'error': ({ errors }: { errors: string[] }) => void
+  'error': ({
+    errors,
+  }: { errors: string[] }) => void
   /**
    * Can be used to render a custom hint message.
    */
-  'hint': ({ hint }: { hint: string | null }) => void
+  'hint': ({
+    hint,
+  }: { hint: string | null }) => void
   /**
    * The content to display on the left side.
    */
@@ -81,7 +85,9 @@ defineSlots<{
   /**
    * Can be used to render a custom label.
    */
-  'label': ({ label }: { label: string | null }) => void
+  'label': ({
+    label,
+  }: { label: string | null }) => void
   /**
    * The content to display on the left side. (Will show under the iconLeft slot)
    */
@@ -96,7 +102,9 @@ defineSlots<{
   'right': () => null
 }>()
 
-const model = defineModel<number | null>({ required: true })
+const model = defineModel<number | null>({
+  required: true,
+})
 
 const computedModel = computed<number | undefined>({
   get: () => model.value ?? undefined,
@@ -114,7 +122,9 @@ const computedModel = computed<number | undefined>({
 const themeProviderContext = injectThemeProviderContext()
 const globalConfigContext = injectConfigContext()
 
-const { t } = useI18n()
+const {
+  t,
+} = useI18n()
 
 const {
   currentElement: decrementButtonEl, forwardRef: decrementForwardRef,

@@ -90,12 +90,12 @@ export interface PaginationFilterNumber<TFilters> extends PaginationFilterBase<T
   type: 'number'
 }
 
-export type PaginationFilter<TFilters> =
-  | PaginationFilterBoolean<TFilters>
-  | PaginationFilterNumber<TFilters>
-  | PaginationFilterText<TFilters>
-  | PaginationFilterWithMultipleOptions<TFilters>
-  | PaginationFilterWithSingleOption<TFilters>
+export type PaginationFilter<TFilters>
+  = | PaginationFilterBoolean<TFilters>
+    | PaginationFilterNumber<TFilters>
+    | PaginationFilterText<TFilters>
+    | PaginationFilterWithMultipleOptions<TFilters>
+    | PaginationFilterWithSingleOption<TFilters>
 
 export type Pagination<TPagination extends BasePagination> = UsePaginationReturnType<TPagination>
 

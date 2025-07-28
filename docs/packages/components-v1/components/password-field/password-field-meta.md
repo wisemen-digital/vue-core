@@ -21,7 +21,6 @@
 | styleConfig | `Partial<TextFieldStyleConfig> \| null` | The style config of the component. |  |
 | testId | `string \| null` | The test id of the input. |  |
 
-
 ## Slots
 
 | Slot | Slot Props | Description |
@@ -31,10 +30,8 @@
 | hint | `{ hint: string \| null; }` | Can be used to render a custom hint message. |
 | label | `{ label: string \| null; }` | Can be used to render a custom label. |
 
-
 ## Events
 
 | Event name | Type | Description |
 | ---------- | ---- | ----------- |
 | `update:modelValue` | [modelValue: string \| null] |  |
-

@@ -34,7 +34,9 @@ const props = withDefaults(defineProps<CheckboxProps>(), {
 
 const emit = defineEmits<CheckboxEmits>()
 
-const modelValue = defineModel<boolean>({ required: false })
+const modelValue = defineModel<boolean>({
+  required: false,
+})
 
 const delegatedModel = computed<boolean | 'indeterminate' | null>({
   get() {
@@ -61,12 +63,18 @@ const delegatedModel = computed<boolean | 'indeterminate' | null>({
   },
 })
 
-const { theme } = injectThemeProviderContext()
+const {
+  theme,
+} = injectThemeProviderContext()
 
-const checkboxStyle = computed<CreateCheckboxStyle>(() => createCheckboxStyle({ variant: props.variant ?? undefined }))
+const checkboxStyle = computed<CreateCheckboxStyle>(() => createCheckboxStyle({
+  variant: props.variant ?? undefined,
+}))
 
 const customClassConfig = computed<ResolvedClassConfig<'checkbox'>>(
-  () => getCustomComponentVariant('checkbox', theme.value, { variant: props.variant }),
+  () => getCustomComponentVariant('checkbox', theme.value, {
+    variant: props.variant,
+  }),
 )
 
 useProvideCheckboxContext({

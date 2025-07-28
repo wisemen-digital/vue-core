@@ -24,7 +24,9 @@ import type {
 export const dialogs = ref<Dialog[]>([]) as Ref<Dialog[]>
 
 export function useDialogContainer(): UseDialogContainerReturnType {
-  return { dialogs }
+  return {
+    dialogs,
+  }
 }
 
 function removeDialogFromContainer(id: string): void {

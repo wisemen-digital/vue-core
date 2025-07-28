@@ -207,6 +207,4 @@ import { createSelectStyle } from "@wisemen/vue-core-components";
   }
 ]" />
 
-
 <ClassConfig :style-function="createSelectStyle" />
-

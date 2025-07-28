@@ -29,7 +29,6 @@ A component that displays a list of options for the user to pick from, triggered
   ]"
 /> -->
 
-
 ## Import
 
 ```ts
@@ -69,7 +68,7 @@ You can customize the display of the selected value by using the #value slot, al
 
 <ComponentPreviewV1 name="select/custom-value" />
 
-### With a filter 
+### With a filter
 When providing a filter function, the select component will display a search input in the dropdown.
 
 <ComponentPreviewV1 name="select/with-search" />

@@ -17,7 +17,6 @@
 | popoverWidth | `PopperWidth \| null` | The width of the popper. | `null` |
 | styleConfig | `Partial<TooltipStyleConfig> \| null` | The style config of the component. | `null` |
 
-
 ## Slots
 
 | Slot | Slot Props | Description |
@@ -25,7 +24,6 @@
 | content | `-` | The content to display in the tooltip. |
 | default | `-` | Use this to render your own trigger. Import VcTooltipTrigger for the trigger to work. |
 | trigger | `-` | The content that will trigger the tooltip. |
-
 
 ## Style configuration
 
@@ -42,4 +40,3 @@ export interface TooltipStyleConfig  {
   '--tooltip-text-color-default': string
 }
 ```
-

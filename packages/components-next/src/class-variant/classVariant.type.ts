@@ -175,8 +175,8 @@ export interface ComponentMap {
  */
 export interface ComponentVariants {}
 
-export type GetComponentSlots<TComponent extends keyof ComponentMap> =
-  ReturnType<ComponentMap[TComponent]['style']>
+export type GetComponentSlots<TComponent extends keyof ComponentMap>
+  = ReturnType<ComponentMap[TComponent]['style']>
 
 export type GetComponentProps<TComponent extends keyof ComponentMap> = {
   [K in keyof VariantProps<ComponentMap[TComponent]['style']>]: VariantProps<ComponentMap[TComponent]['style']>[K] extends undefined

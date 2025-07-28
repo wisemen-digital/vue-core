@@ -18,7 +18,6 @@
 | styleConfig | `Partial<SwitchStyleConfig> \| null` | The style config of the component. | `null` |
 | testId | `string \| null` | The test id of the input. | `null` |
 
-
 ## Slots
 
 | Slot | Slot Props | Description |
@@ -27,7 +26,6 @@
 | error | `-` | Can be used to render your own errors. |
 | hint | `-` | Can be used to render your own hint. |
 
-
 ## Events
 
 | Event name | Type | Description |
@@ -35,7 +33,6 @@
 | `blur` | [event: Event] |  |
 | `focus` | [event: Event] |  |
 | `update:modelValue` | [modelValue: boolean] |  |
-
 
 ## Style configuration
 
@@ -90,4 +87,3 @@ export interface SwitchStyleConfig extends BaseStyleConfig {
   '--switch-thumb-size-default': string
 }
 ```
-

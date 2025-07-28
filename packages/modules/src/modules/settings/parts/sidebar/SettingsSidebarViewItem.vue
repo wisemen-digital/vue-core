@@ -14,7 +14,9 @@ const props = defineProps<{
   view: SettingsView
 }>()
 
-const { activeItem } = useInjectSettingsContext()
+const {
+  activeItem,
+} = useInjectSettingsContext()
 
 const isSectionOfViewActive = computed<boolean>(() => {
   return props.view.sections.some((section) => section.id === activeItem.value.id)
@@ -32,28 +34,28 @@ const isSectionOfViewActive = computed<boolean>(() => {
   >
     <li
       class="
-        group/sidebar-item gap-x-lg p-xs text-secondary flex cursor-pointer
-        items-center rounded-xl duration-200 outline-none
+        group/sidebar-item flex cursor-pointer items-center gap-x-lg rounded-xl
+        p-xs text-secondary duration-200 outline-none
+        data-active-section:bg-brand-50 data-active-section:text-brand-900
         not-data-active-section:not-data-[state=checked]:data-highlighted:bg-tertiary
+        data-active-section:data-highlighted:brightness-102
         data-[state=checked]:bg-brand-50 data-[state=checked]:text-brand-900
         data-[state=checked]:data-highlighted:brightness-102
-        dark:data-[state=checked]:text-brand-100
-        dark:data-[state=checked]:bg-brand-950
-        dark:data-active-section:text-brand-100
         dark:data-active-section:bg-brand-950
+        dark:data-active-section:text-brand-100
         dark:data-active-section:data-highlighted:brightness-90
+        dark:data-[state=checked]:bg-brand-950
+        dark:data-[state=checked]:text-brand-100
         dark:data-[state=checked]:data-highlighted:brightness-90
-        data-active-section:bg-brand-50 data-active-section:text-brand-900
-        data-active-section:data-highlighted:brightness-102
       "
     >
       <div
         class="
-          p-md shrink-0 rounded-md duration-200
-          group-data-[state=checked]/sidebar-item:bg-brand-100
-          dark:group-data-[state=checked]/sidebar-item:bg-brand-900
-          dark:group-data-active-section/sidebar-item:bg-brand-900
+          shrink-0 rounded-md p-md duration-200
           group-data-active-section/sidebar-item:bg-brand-100
+          group-data-[state=checked]/sidebar-item:bg-brand-100
+          dark:group-data-active-section/sidebar-item:bg-brand-900
+          dark:group-data-[state=checked]/sidebar-item:bg-brand-900
         "
       >
         <VcIcon

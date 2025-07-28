@@ -4,7 +4,6 @@ import {
   provide,
 } from 'vue'
 
-// eslint-disable-next-line ts/explicit-function-return-type
 export function useContext<TContext>(contextName: string) {
   const contextKey: InjectionKey<TContext> = Symbol(contextName)
 

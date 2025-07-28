@@ -5,6 +5,7 @@ import {
   formatIncompletePhoneNumber,
   getCountries,
   getCountryCallingCode,
+  parsePhoneNumberFromString,
   validatePhoneNumberLength,
 } from 'libphonenumber-js'
 import {
@@ -38,15 +39,19 @@ const props = withDefaults(defineProps<PhoneNumberFieldProps>(), {
   variant: null,
 })
 
-const model = defineModel<string | null>({ required: true })
+const model = defineModel<string | null>({
+  required: true,
+})
 
 const globalConfigContext = useInjectConfigContext()
-const { theme } = injectThemeProviderContext()
+const {
+  theme,
+} = injectThemeProviderContext()
 
 const phoneNumberFieldRef = ref<InstanceType<any> | null>(null)
 const phoneNumberFieldEl = computed<HTMLElement | null>(() => phoneNumberFieldRef.value?.$el ?? null)
 
-const countryCode = ref<CountryCode>(props.defaultCountryCode)
+const countryCode = ref<CountryCode>(getDefaultCountryCode())
 const countries = getCountries()
 
 const countryCodeModel = computed<CountryCode>({
@@ -119,14 +124,34 @@ const inputModel = computed<string | null>({
 })
 
 const phoneNumberFieldStyle = computed<CreatePhoneNumberFieldStyle>(
-  () => createPhoneNumberFieldStyle({ variant: props.variant ?? undefined }),
+  () => createPhoneNumberFieldStyle({
+    variant: props.variant ?? undefined,
+  }),
 )
 
 const customClassConfig = computed<ResolvedClassConfig<'phoneNumberField'>>(
-  () => getCustomComponentVariant('phoneNumberField', theme.value, { variant: props.variant }),
+  () => getCustomComponentVariant('phoneNumberField', theme.value, {
+    variant: props.variant,
+  }),
 )
 
 const dialCodeDisplayValue = computed<string>(() => `+${getCountryCallingCode(countryCodeModel.value)}`)
+
+function getDefaultCountryCode(): CountryCode {
+  if (model.value === null) {
+    return props.defaultCountryCode
+  }
+
+  const parsedPhoneNumber = parsePhoneNumberFromString(model.value) ?? null
+
+  if (parsedPhoneNumber === null || parsedPhoneNumber.country === undefined) {
+    console.warn(`Invalid phone number format: ${model.value}. Defaulting to ${props.defaultCountryCode}.`)
+
+    return props.defaultCountryCode
+  }
+
+  return parsedPhoneNumber.country ?? props.defaultCountryCode
+}
 
 function filterFn(option: CountryCode, searchTerm: string): boolean {
   const optionName = getCountryName(option, globalConfigContext.locale.value) ?? ''

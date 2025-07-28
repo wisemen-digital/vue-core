@@ -8,7 +8,6 @@
 | **inputId*** | `string` | The id of the related input field. |  |
 | styleConfig | `Partial<{ config: InputFieldHintStyleConfig; variants: ["default"]; }> \| null` | The style configuration for the error message. | `null` |
 
-
 ## Style configuration
 
 The following interfaces are defined in the component’s style configuration file:
@@ -23,4 +22,3 @@ export interface InputFieldHintStyleConfig  {
   '--input-field-hint-text-color-default': string
 }
 ```
-

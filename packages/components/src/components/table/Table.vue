@@ -62,7 +62,9 @@ defineSlots<{
   /**
    * Use this to render your own pagination in the table bottom.
    */
-  'pagination': ({ items }: { items: ({ type: 'ellipsis' } | { type: 'page'
+  'pagination': ({
+    items,
+  }: { items: ({ type: 'ellipsis' } | { type: 'page'
     value: number })[] }) => void
   /**
    * Use this to add content to the top of the table.
@@ -188,7 +190,9 @@ useInfiniteScroll(
 
     await props.infiniteScroll.onNext()
   },
-  { distance: props.infiniteScroll?.distance },
+  {
+    distance: props.infiniteScroll?.distance,
+  },
 )
 
 watch(() => props.data, () => {
@@ -197,7 +201,9 @@ watch(() => props.data, () => {
   }
 
   handleTableResize(scrollContainerRef.value)
-}, { flush: 'post' })
+}, {
+  flush: 'post',
+})
 
 onMounted(() => {
   const tableContainerEl = scrollContainerRef.value
@@ -248,7 +254,7 @@ provideTableContext({
   >
     <div
       v-if="hasTopSlot"
-      class="border-secondary border-b border-solid"
+      class="border-b border-solid border-secondary"
     >
       <slot name="top" />
     </div>

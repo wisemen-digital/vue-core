@@ -6,11 +6,9 @@
 | ---- | ---- | ----------- | ------- |
 | **hasActiveFilters*** | `boolean` |  |  |
 
-
 ## Slots
 
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
 | empty-state-no-data-actions | `{}` |  |
 | empty-state-no-results-actions | `{}` |  |
-

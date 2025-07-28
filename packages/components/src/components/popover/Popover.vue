@@ -56,7 +56,9 @@ const configContext = injectConfigContext()
 
 const popoverStyle = usePopoverStyle()
 
-const contentClasses = computed<string>(() => popoverStyle.content({ width: props.popoverWidth ?? '' }))
+const contentClasses = computed<string>(() => popoverStyle.content({
+  width: props.popoverWidth ?? '',
+}))
 const arrowBoxClasses = computed<string>(() => popoverStyle.arrowBox())
 const arrowClasses = computed<string>(() => popoverStyle.arrow())
 </script>

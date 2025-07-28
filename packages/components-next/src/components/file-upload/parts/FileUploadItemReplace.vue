@@ -12,7 +12,9 @@ const {
   accept,
 } = useInjectFileUploadContext()
 
-const { onReplace } = useInjectFileUploadItemContext()
+const {
+  onReplace,
+} = useInjectFileUploadItemContext()
 
 const fileDialog = useFileDialog()
 

@@ -3,7 +3,9 @@ import { Primitive } from 'reka-ui'
 
 import { useInjectFileUploadItemContext } from '@/components/file-upload/fileUploadItem.context'
 
-const { onCancel } = useInjectFileUploadItemContext()
+const {
+  onCancel,
+} = useInjectFileUploadItemContext()
 </script>
 
 <template>

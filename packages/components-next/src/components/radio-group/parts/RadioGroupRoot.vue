@@ -25,7 +25,9 @@ const props = withDefaults(defineProps<RadioGroupProps>(), {
 
 const emit = defineEmits<RadioGroupEmits>()
 
-const modelValue = defineModel<TValue>({ required: true })
+const modelValue = defineModel<TValue>({
+  required: true,
+})
 
 const radioGroupRootRef = ref<InstanceType<typeof RekaRadioGroupRoot> | null>(null)
 

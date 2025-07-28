@@ -14,7 +14,9 @@ export const createKeyboardShortcutStyle = tv({
       .withColor('text-tertiary')
       .build(),
   },
-  variants: { variant: {} },
+  variants: {
+    variant: {},
+  },
 })
 
 export type keyboardShortcutStyle = VariantProps<typeof createKeyboardShortcutStyle>

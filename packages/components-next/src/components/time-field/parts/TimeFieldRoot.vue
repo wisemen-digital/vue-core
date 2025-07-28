@@ -49,7 +49,9 @@ const props = withDefaults(defineProps<TimeFieldProps>(), {
 
 const emit = defineEmits<TimeFieldEmits>()
 
-const modelValue = defineModel<TValue | null>({ required: true })
+const modelValue = defineModel<TValue | null>({
+  required: true,
+})
 
 const delegatedModel = computed<TimeValue | undefined>({
   get: () => {
@@ -80,17 +82,25 @@ const delegatedModel = computed<TimeValue | undefined>({
   },
 })
 
-const { locale } = useInjectConfigContext()
-const { theme } = injectThemeProviderContext()
+const {
+  locale,
+} = useInjectConfigContext()
+const {
+  theme,
+} = injectThemeProviderContext()
 
 const isFocused = ref<boolean>(false)
 
 const timeFieldStyle = computed<CreateTimeFieldStyle>(
-  () => createTimeFieldStyle({ variant: props.variant ?? undefined }),
+  () => createTimeFieldStyle({
+    variant: props.variant ?? undefined,
+  }),
 )
 
 const customClassConfig = computed<CustomComponentVariant<'timeField'>>(
-  () => getCustomComponentVariant('timeField', theme.value, { variant: props.variant }),
+  () => getCustomComponentVariant('timeField', theme.value, {
+    variant: props.variant,
+  }),
 )
 
 function onFocus(event: FocusEvent): void {

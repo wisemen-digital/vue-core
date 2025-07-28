@@ -103,6 +103,4 @@ import { createTextFieldStyle } from "@wisemen/vue-core-components";
   }
 ]" />
 
-
 <ClassConfig :style-function="createTextFieldStyle" />
-

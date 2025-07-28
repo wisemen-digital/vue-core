@@ -8,7 +8,9 @@ import {
 
 import LayoutStackItem from '@/modules/stacked-layout/parts/LayoutStackItem.vue'
 
-const dialog = useVcDialog({ component: () => import('./NestedDialog2.vue') })
+const dialog = useVcDialog({
+  component: () => import('./NestedDialog2.vue'),
+})
 </script>
 
 <template>

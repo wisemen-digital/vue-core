@@ -5,7 +5,9 @@ import { useI18n } from 'vue-i18n'
 import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectSelectContext } from '@/components/select/select.context'
 
-const { t } = useI18n()
+const {
+  t,
+} = useI18n()
 
 const {
   classConfig,

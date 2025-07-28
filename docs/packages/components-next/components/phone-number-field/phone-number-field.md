@@ -6,7 +6,6 @@ This component is built on top of the [Text Field](/packages/components-next/com
 
 <ComponentPreview name="phone-number-field/examples/main" />
 
-
 ## Anatomy
 
 ```vue

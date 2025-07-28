@@ -74,7 +74,7 @@ You can customize the theme by overriding the default theme configuration in you
   --gray-800: #252B37;
   --gray-900: #181D27;
   --gray-950: #0A0D12;
-  
+
   --black: #000000;
   --white: #ffffff;
 }

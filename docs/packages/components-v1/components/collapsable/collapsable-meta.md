@@ -6,10 +6,8 @@
 | ---- | ---- | ----------- | ------- |
 | durationInMs | `number` | The duration of the transition in milliseconds. | `250` |
 
-
 ## Slots
 
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
 | default | `-` | Content of the transition |
-

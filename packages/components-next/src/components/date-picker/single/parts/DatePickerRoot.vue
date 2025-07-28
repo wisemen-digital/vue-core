@@ -34,11 +34,17 @@ const props = withDefaults(defineProps<DatePickerProps>(), {
   variant: null,
 })
 
-const modelValue = defineModel<Date | null>({ required: true })
+const modelValue = defineModel<Date | null>({
+  required: true,
+})
 
-const placeholderValue = defineModel<Date>('placeholderValue', { required: false })
+const placeholderValue = defineModel<Date>('placeholderValue', {
+  required: false,
+})
 
-const { locale } = useInjectConfigContext()
+const {
+  locale,
+} = useInjectConfigContext()
 
 const delegatedModel = computed<DateValue | null>({
   get: () => {
@@ -68,14 +74,20 @@ const delegatedPlaceholderValue = computed<DateValue>({
   },
 })
 
-const { theme } = injectThemeProviderContext()
+const {
+  theme,
+} = injectThemeProviderContext()
 
 const datePickerStyle = computed<CreateDatePickerStyle>(
-  () => createDatePickerStyle({ variant: props.variant ?? undefined }),
+  () => createDatePickerStyle({
+    variant: props.variant ?? undefined,
+  }),
 )
 
 const customClassConfig = computed<ResolvedClassConfig<'datePicker'>>(
-  () => getCustomComponentVariant('datePicker', theme.value, { variant: props.variant }),
+  () => getCustomComponentVariant('datePicker', theme.value, {
+    variant: props.variant,
+  }),
 )
 
 useProvideDatePickerContext({

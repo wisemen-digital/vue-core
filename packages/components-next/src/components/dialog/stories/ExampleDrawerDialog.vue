@@ -22,9 +22,12 @@ const emit = defineEmits<{
   >
     <DialogContent>
       <Motion
-        :initial="{ opacity: 0, x: '100%' }"
-        :animate="{ opacity: 1, x: 0 }"
-        :exit="{ opacity: 0, x: '100%' }"
+        :initial="{ opacity: 0,
+                    x: '100%' }"
+        :animate="{ opacity: 1,
+                    x: 0 }"
+        :exit="{ opacity: 0,
+                 x: '100%' }"
         :transition="{
           duration: 0.5,
           type: 'spring',
@@ -47,7 +50,7 @@ const emit = defineEmits<{
       >
         <div class="p-2xl">
           <DialogTitle>
-            <h1 class="text-primary text-2xl font-semibold">
+            <h1 class="text-2xl font-semibold text-primary">
               Example drawer
             </h1>
           </DialogTitle>

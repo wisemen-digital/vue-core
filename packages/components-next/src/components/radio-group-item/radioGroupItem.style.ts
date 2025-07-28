@@ -32,7 +32,9 @@ export const createRadioGroupItemStyle = tv({
       .withCursor('cursor-pointer disabled:cursor-not-allowed')
       .build(),
   },
-  variants: { variant: {} },
+  variants: {
+    variant: {},
+  },
 })
 
 export type RadioGroupItemStyle = VariantProps<typeof createRadioGroupItemStyle>

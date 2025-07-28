@@ -8,7 +8,9 @@ import SettingsHighContrastSection from '@/modules/settings/default-preferences/
 import type { SettingsSection } from '@/modules/settings/settings.type'
 
 export function useHighContrastSetting(): SettingsSection {
-  const { t } = useI18n()
+  const {
+    t,
+  } = useI18n()
 
   return {
     id: 'high-contrast',

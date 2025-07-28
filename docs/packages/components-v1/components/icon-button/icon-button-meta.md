@@ -14,20 +14,17 @@
 | type | `"button" \| "reset" \| "submit"` | The type of the button. | `"button"` |
 | variant | `"default" \| "destructive-primary" \| "destructive-secondary" \| "destructive-tertiary" \| "secondary" \| "secondary-color" \| "tertiary" \| "tertiary-color"` | The variant of the button. | `"default"` |
 
-
 ## Slots
 
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
 | loader | `-` | The content to display in the button. |
 
-
 ## Events
 
 | Event name | Type | Description |
 | ---------- | ---- | ----------- |
 | `click` | [event: Event] |  |
-
 
 ## Style configuration
 
@@ -78,4 +75,3 @@ export interface IconButtonStyleConfig  {
   '--icon-button-tooltip-text-color-default': string
 }
 ```
-

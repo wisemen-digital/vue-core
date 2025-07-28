@@ -45,18 +45,26 @@ defineSlots<{
   /**
    * Can be used to render a custom error message.
    */
-  error: ({ errors }: { errors: string[] }) => void
+  error: ({
+    errors,
+  }: { errors: string[] }) => void
   /**
    * Can be used to render a custom hint message.
    */
-  hint: ({ hint }: { hint: string | null }) => void
+  hint: ({
+    hint,
+  }: { hint: string | null }) => void
   /**
    * Can be used to render a custom label.
    */
-  label: ({ label }: { label: string | null }) => void
+  label: ({
+    label,
+  }: { label: string | null }) => void
 }>()
 
-const model = defineModel<string | null>({ required: true })
+const model = defineModel<string | null>({
+  required: true,
+})
 
 const themeProviderContext = injectThemeProviderContext()
 
@@ -83,7 +91,9 @@ const textareaClasses = computed<string>(() => style.textarea({
   resizeMode: props.resize,
 }))
 
-const { textarea } = useTextareaAutosize({
+const {
+  textarea,
+} = useTextareaAutosize({
   watch: () => {
     if (props.resize === 'auto-vertical') {
       return model.value

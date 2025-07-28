@@ -20,13 +20,13 @@ const props = defineProps<{
   >
     <li
       class="
-        group/sidebar-item gap-x-lg py-xs px-md text-secondary flex
-        cursor-pointer items-center rounded-lg duration-200 outline-none
+        group/sidebar-item flex cursor-pointer items-center gap-x-lg rounded-lg
+        px-md py-xs text-secondary duration-200 outline-none
         data-highlighted:bg-tertiary
-        dark:data-[state=checked]:text-brand-100
-        dark:data-[state=checked]:data-highlighted:brightness-90
         data-[state=checked]:bg-tertiary
         data-[state=checked]:data-highlighted:brightness-102
+        dark:data-[state=checked]:text-brand-100
+        dark:data-[state=checked]:data-highlighted:brightness-90
       "
     >
       <span

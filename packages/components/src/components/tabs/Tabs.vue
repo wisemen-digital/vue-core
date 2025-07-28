@@ -29,14 +29,20 @@ defineSlots<{
   /**
    * Use this to add content to the left of the tab label.
    */
-  'item-left': ({ item }: { item: TabItem<TMeta> }) => void
+  'item-left': ({
+    item,
+  }: { item: TabItem<TMeta> }) => void
   /**
    * Use this to add content to the right of the tab label.
    */
-  'item-right': ({ item }: { item: TabItem<TMeta> }) => void
+  'item-right': ({
+    item,
+  }: { item: TabItem<TMeta> }) => void
 }>()
 
-const model = defineModel<TabItem<TMeta>>({ required: true })
+const model = defineModel<TabItem<TMeta>>({
+  required: true,
+})
 
 const themeProviderContext = injectThemeProviderContext()
 

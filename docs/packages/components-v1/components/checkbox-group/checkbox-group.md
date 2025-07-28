@@ -35,8 +35,8 @@ A group of checkboxes.
 
 ```ts
 import {
-  VcCheckboxGroup, 
-  VcCheckbox, 
+  VcCheckboxGroup,
+  VcCheckbox,
   VcCheckboxIndicator
 } from '@wisemen/vue-core'
 ```

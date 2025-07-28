@@ -26,7 +26,9 @@ const props = withDefaults(defineProps<RouterLinkButtonProps>(), {
   variant: 'primary',
 })
 
-const { theme } = injectThemeProviderContext()
+const {
+  theme,
+} = injectThemeProviderContext()
 
 const buttonStyle = computed<CreateButtonStyle>(() => createButtonStyle({
   size: props.size,

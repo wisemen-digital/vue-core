@@ -14,9 +14,13 @@ const props = defineProps<{
 
 const style = dropdownMenuStyle()
 
-const itemClasses = computed<string>(() => style.item({ isDestructive: props.item.isDestructive }))
+const itemClasses = computed<string>(() => style.item({
+  isDestructive: props.item.isDestructive,
+}))
 
-const itemIconClasses = computed<string>(() => style.itemIcon({ isDestructive: props.item.isDestructive }))
+const itemIconClasses = computed<string>(() => style.itemIcon({
+  isDestructive: props.item.isDestructive,
+}))
 </script>
 
 <template>

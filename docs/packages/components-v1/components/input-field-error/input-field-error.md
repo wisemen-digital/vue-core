@@ -2,7 +2,6 @@
 
 A wrapper for your input errors. Use the style configs to customize all errors overall in your project.
 
-
 ## Import
 
 ```ts

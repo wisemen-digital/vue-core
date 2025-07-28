@@ -27,7 +27,9 @@ watch(
   async () => {
     await setIcon()
   },
-  { immediate: true },
+  {
+    immediate: true,
+  },
 )
 
 await setIcon()

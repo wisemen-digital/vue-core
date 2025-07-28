@@ -8,17 +8,14 @@
 | defaultPlaceholderDate | `Date` | The default placeholder date of the calendar. Will only be used when `modelValue` is `null`. | `new Date()` |
 | isDateDisabled | `((date: Date) => boolean)` | A function that returns whether or not a date is disabled. | `false` |
 
-
 ## Slots
 
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
 | date | `{ date: Date; }` | Additional content in the date cell |
 
-
 ## Events
 
 | Event name | Type | Description |
 | ---------- | ---- | ----------- |
 | `update:modelValue` | [modelValue: Date \| null] |  |
-

@@ -43,10 +43,14 @@ defineSlots<{
   /**
    * Additional content in the date cell
    */
-  date: ({ date }: { date: Date }) => void
+  date: ({
+    date,
+  }: { date: Date }) => void
 }>()
 
-const model = defineModel<Date | null>({ required: true })
+const model = defineModel<Date | null>({
+  required: true,
+})
 
 const delegatedModel = computed<DateValue | null>({
   get: () => {
@@ -71,7 +75,9 @@ const themeProviderContext = injectThemeProviderContext()
 const globalConfigContext = injectConfigContext()
 
 const calendarContentRef = ref<HTMLElement | null>(null)
-const { height } = useElementSize(calendarContentRef)
+const {
+  height,
+} = useElementSize(calendarContentRef)
 
 const placeholder = ref<DateValue>(dateToDateValue(model.value ?? props.defaultPlaceholderDate))
 
@@ -86,7 +92,9 @@ const placeholderYear = computed<number>({
       return
     }
 
-    delegatedModel.value = delegatedModel.value.set({ year: value })
+    delegatedModel.value = delegatedModel.value.set({
+      year: value,
+    })
   },
 })
 
@@ -97,7 +105,9 @@ const placeholderMonth = computed<number>({
       return
     }
 
-    delegatedModel.value = delegatedModel.value.set({ month: value })
+    delegatedModel.value = delegatedModel.value.set({
+      month: value,
+    })
   },
 })
 
@@ -105,8 +115,12 @@ const years = computed<number[]>(() => {
   const currentYear = now.getFullYear()
 
   return [
-    ...Array.from({ length: 100 }, (_, i) => currentYear - i),
-    ...Array.from({ length: 100 }, (_, i) => currentYear + (i + 1)),
+    ...Array.from({
+      length: 100,
+    }, (_, i) => currentYear - i),
+    ...Array.from({
+      length: 100,
+    }, (_, i) => currentYear + (i + 1)),
   ].sort((a, b) => a - b) // Sort in ascending order
 })
 
@@ -115,7 +129,9 @@ function dateToDateValue(date: Date): DateValue {
 }
 
 function getMonthName(month: number, format: 'long' | 'short'): string {
-  return new Intl.DateTimeFormat(globalConfigContext.locale.value, { month: format }).format(new Date(1, month - 1))
+  return new Intl.DateTimeFormat(globalConfigContext.locale.value, {
+    month: format,
+  }).format(new Date(1, month - 1))
 }
 
 function onShowDayView(): void {
@@ -156,10 +172,14 @@ function onSelectYear(): void {
 
 function pagingFunc(date: any, sign: -1 | 1): any {
   if (sign === -1) {
-    return date.subtract({ years: 1 })
+    return date.subtract({
+      years: 1,
+    })
   }
 
-  return date.add({ years: 1 })
+  return date.add({
+    years: 1,
+  })
 }
 
 watch(placeholderYear, () => {
@@ -224,7 +244,7 @@ watch(placeholderYear, () => {
                 <CalendarHeadCell
                   v-for="day in weekDays"
                   :key="day"
-                  class="text-quaternary text-sm font-medium"
+                  class="text-sm font-medium text-quaternary"
                 >
                   {{ day }}
                 </CalendarHeadCell>
@@ -247,24 +267,24 @@ watch(placeholderYear, () => {
                     :day="weekDate"
                     :month="month.value"
                     class="
-                      text-tertiary group flex size-8 cursor-pointer
-                      items-center justify-center overflow-hidden rounded-full
-                      text-center text-sm ring-offset-1 duration-100
+                      group flex size-8 cursor-pointer items-center
+                      justify-center overflow-hidden rounded-full text-center
+                      text-sm text-tertiary ring-offset-1 duration-100
                       outline-none
-                      focus:bg-brand-secondary focus:text-brand-primary
                       focus-visible:ring-brand-primary-500 focus-visible:ring-2
+                      focus:bg-brand-secondary focus:text-brand-primary
+                      data-[disabled]:text-disabled
+                      data-[outside-view]:text-disabled
                       data-[selected]:bg-brand-solid
                       data-[selected]:text-primary-on-brand
-                      data-[selected]:data-[unavailable]:text-primary-on-brand
                       data-[selected]:focus-visible:ring-2
                       data-[today]:bg-secondary-hover data-[today]:text-primary
                       data-[today]:focus:bg-brand-secondary
                       data-[today]:focus:text-brand-primary
-                      data-[disabled]:text-disabled
-                      data-[unavailable]:text-disabled
                       data-[unavailable]:pointer-events-none
+                      data-[unavailable]:text-disabled
                       data-[unavailable]:line-through
-                      data-[outside-view]:text-disabled
+                      data-[selected]:data-[unavailable]:text-primary-on-brand
                     "
                   >
                     {{ new Date(weekDate).getDate() }}
@@ -384,8 +404,8 @@ watch(placeholderYear, () => {
                 'bg-secondary-hover': placeholderMonth === monthIndex,
               }"
               class="
-                text-tertiary block cursor-pointer rounded-md p-2 text-center
-                text-sm
+                block cursor-pointer rounded-md p-2 text-center text-sm
+                text-tertiary
               "
               @click="onSelectMonth"
             >
@@ -419,8 +439,8 @@ watch(placeholderYear, () => {
                 'bg-secondary-hover': placeholderYear === year,
               }"
               class="
-                text-tertiary block cursor-pointer rounded-md p-2 text-center
-                text-sm
+                block cursor-pointer rounded-md p-2 text-center text-sm
+                text-tertiary
               "
               @click="onSelectYear"
             >

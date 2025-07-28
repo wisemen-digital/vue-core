@@ -10,7 +10,9 @@ import { injectThemeProviderContext } from '@/components/theme-provider/themePro
 import { icons } from '@/icons/icons'
 import { ThemeUtil } from '@/utils/theme.util'
 
-const props = withDefaults(defineProps<IconProps>(), { styleConfig: null })
+const props = withDefaults(defineProps<IconProps>(), {
+  styleConfig: null,
+})
 
 const themeProviderContext = injectThemeProviderContext()
 const svgComponent = shallowRef<Component | null>(null)
@@ -27,7 +29,9 @@ watch(
   async () => {
     await setIcon()
   },
-  { immediate: true },
+  {
+    immediate: true,
+  },
 )
 
 await setIcon()

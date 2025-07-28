@@ -5,7 +5,7 @@
     class="animate-spinner"
   >
     <circle
-      class="animate-spinner-path size-full"
+      class="size-full animate-spinner-path"
       cx="100%"
       cy="100%"
       fill="none"

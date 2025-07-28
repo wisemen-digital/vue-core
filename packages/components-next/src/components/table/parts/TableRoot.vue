@@ -37,7 +37,9 @@ if (isMaxWidthDefinedForAllColumns) {
   )
 }
 
-const { theme } = injectThemeProviderContext()
+const {
+  theme,
+} = injectThemeProviderContext()
 
 const {
   hasReachedHorizontalEnd,
@@ -106,10 +108,14 @@ const isEmpty = computed<boolean>(() => {
   return props.data !== null && props.data.meta.total === 0 && !props.isLoading
 })
 
-const tableStyle = computed<CreateTableStyle>(() => createTableStyle({ variant: props.variant ?? undefined }))
+const tableStyle = computed<CreateTableStyle>(() => createTableStyle({
+  variant: props.variant ?? undefined,
+}))
 
 const customClassConfig = computed<CustomComponentVariant<'table'>>(
-  () => getCustomComponentVariant('table', theme.value, { variant: props.variant }),
+  () => getCustomComponentVariant('table', theme.value, {
+    variant: props.variant,
+  }),
 )
 
 function onClearFiltersAndSearch(): void {

@@ -25,7 +25,7 @@ function viewHasMultipleSections(viewId: string): boolean {
 
 <template>
   <ListboxContent
-    class="gap-y-xl px-3xl flex h-full flex-col overflow-auto"
+    class="flex h-full flex-col gap-y-xl overflow-auto px-3xl"
   >
     <SettingsSidebarCategory
       v-for="category of filteredCategories"
@@ -44,7 +44,7 @@ function viewHasMultipleSections(viewId: string): boolean {
           v-if="searchTerm.trim().length > 0
             && viewHasMultipleSections(view.id)
             && view.sections.length > 0"
-          class="-mt-xxs gap-y-xxs flex flex-col pl-[2.3rem]"
+          class="-mt-xxs flex flex-col gap-y-xxs pl-[2.3rem]"
         >
           <SettingsSidebarSectionItem
             v-for="section of view.sections"

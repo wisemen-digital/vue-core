@@ -41,7 +41,9 @@ describe('useContext', () => {
       },
     })
 
-    const { cleanup } = await mountComponent(Parent)
+    const {
+      cleanup,
+    } = await mountComponent(Parent)
 
     expect(injectedValue).toBe(testValue)
 
@@ -84,7 +86,9 @@ describe('useContext', () => {
       },
     })
 
-    const { cleanup } = await mountComponent(Parent)
+    const {
+      cleanup,
+    } = await mountComponent(Parent)
 
     expect(injectedValue1).toBe(value1)
     expect(injectedValue2).toBe(value2)
@@ -108,7 +112,9 @@ describe('useContext', () => {
       },
     })
 
-    const { cleanup } = await mountComponent(component)
+    const {
+      cleanup,
+    } = await mountComponent(component)
 
     expect(result).toBe(fallbackValue)
 
@@ -140,7 +146,9 @@ describe('useContext', () => {
       },
     })
 
-    const { cleanup } = await mountComponent(TestComponent)
+    const {
+      cleanup,
+    } = await mountComponent(TestComponent)
 
     expect(errorThrown).toBeTruthy()
 
@@ -195,7 +203,9 @@ describe('useContext', () => {
       },
     })
 
-    const { cleanup } = await mountComponent(Parent)
+    const {
+      cleanup,
+    } = await mountComponent(Parent)
 
     expect(middleInjectedValue).toBe(parentValue)
     expect(childInjectedValue).toBe(childValue)

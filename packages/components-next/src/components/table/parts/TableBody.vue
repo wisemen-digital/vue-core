@@ -3,7 +3,9 @@ import Subgrid from '@/components/table/parts/Subgrid.vue'
 import TableRow from '@/components/table/parts/TableRow.vue'
 import { useInjectTableContext } from '@/components/table/table.context'
 
-const { data } = useInjectTableContext()
+const {
+  data,
+} = useInjectTableContext()
 </script>
 
 <template>

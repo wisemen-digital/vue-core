@@ -42,7 +42,9 @@ provideConfigContext({
   areKeyboardShortcutHintsHidden: computed<boolean>(() => props.areKeyboardShortcutHintsHidden ?? false),
   googleMapsApiKey: props.googleMapsApiKey ?? null,
   locale: computed<string>(() => props.locale),
-  pagination: { limit: props.pagination?.limit },
+  pagination: {
+    limit: props.pagination?.limit,
+  },
   teleportTargetSelector: props.teleportTargetSelector ?? 'body',
 })
 </script>

@@ -70,7 +70,9 @@ export function createHttpZodClient(
       url,
     } = options
 
-    const { data } = await axios.get(url, config)
+    const {
+      data,
+    } = await axios.get(url, config)
 
     try {
       return responseSchema.parse(data)
@@ -98,7 +100,9 @@ export function createHttpZodClient(
       url,
     } = options
 
-    const { data } = await axios.patch(url, body, config)
+    const {
+      data,
+    } = await axios.patch(url, body, config)
 
     try {
       return responseSchema.parse(data)
@@ -126,7 +130,9 @@ export function createHttpZodClient(
       url,
     } = options
 
-    const { data } = await axios.post(url, body, config)
+    const {
+      data,
+    } = await axios.post(url, body, config)
 
     try {
       return responseSchema.parse(data)
@@ -154,7 +160,9 @@ export function createHttpZodClient(
       url,
     } = options
 
-    const { data } = await axios.put(url, body, config)
+    const {
+      data,
+    } = await axios.put(url, body, config)
 
     try {
       return responseSchema.parse(data)
@@ -182,7 +190,9 @@ export function createHttpZodClient(
       url,
     } = options
 
-    const { data } = await axios.delete(url, {
+    const {
+      data,
+    } = await axios.delete(url, {
       ...config,
       data: body,
     })

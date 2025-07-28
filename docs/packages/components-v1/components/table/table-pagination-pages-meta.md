@@ -6,10 +6,8 @@
 | ---- | ---- | ----------- | ------- |
 | **items*** | `({ type: "ellipsis"; } \| { type: "page"; value: number; })[]` | The items to render in the pagination. |  |
 
-
 ## Slots
 
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
 | item | `{ page: string; }` | Use this to render your own pagination controls. |
-

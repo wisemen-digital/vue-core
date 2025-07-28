@@ -42,7 +42,7 @@ const endIndex = computed<number>(() => (
 
   <span
     v-else
-    class="text-tertiary text-sm"
+    class="text-sm text-tertiary"
   >
     {{
       t('component.table.page_count', {

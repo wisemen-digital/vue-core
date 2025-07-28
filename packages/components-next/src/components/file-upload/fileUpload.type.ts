@@ -40,8 +40,8 @@ export interface FileUploadItemError extends BaseFileUploadItem {
   status: FileUploadStatus.ERROR
 }
 
-export type FileUploadItem =
-  | FileUploadItemError
-  | FileUploadItemPending
-  | FileUploadItemSuccess
-  | FileUploadItemUploading
+export type FileUploadItem
+  = | FileUploadItemError
+    | FileUploadItemPending
+    | FileUploadItemSuccess
+    | FileUploadItemUploading

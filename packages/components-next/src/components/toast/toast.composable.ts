@@ -19,7 +19,9 @@ interface UseToastReturnType {
 }
 
 export function useToast(): UseToastReturnType {
-  const { toastPosition } = useInjectConfigContext()
+  const {
+    toastPosition,
+  } = useInjectConfigContext()
 
   function showErrorToast(toast: ToastOptions): void {
     toastState.custom(h(Toast, {

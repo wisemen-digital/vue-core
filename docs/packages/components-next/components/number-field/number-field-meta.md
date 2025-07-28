@@ -147,6 +147,4 @@ import { createNumberFieldStyle } from "@wisemen/vue-core-components";
   }
 ]" />
 
-
 <ClassConfig :style-function="createNumberFieldStyle" />
-

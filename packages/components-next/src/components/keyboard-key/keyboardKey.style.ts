@@ -17,7 +17,9 @@ export const createKeyboardKeyStyle = tv({
       .withShadow('shadow-keyboard-key')
       .build(),
   },
-  variants: { variant: {} },
+  variants: {
+    variant: {},
+  },
 })
 
 export type keyboardKeyStyle = VariantProps<typeof createKeyboardKeyStyle>

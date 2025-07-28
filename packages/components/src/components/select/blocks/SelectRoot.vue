@@ -65,7 +65,9 @@ const emit = defineEmits<{
   select: [value: TValue]
 }>()
 
-const model = defineModel<TValue | null>({ required: true })
+const model = defineModel<TValue | null>({
+  required: true,
+})
 
 const delegatedModel = computed<TValue | undefined>({
   get: () => model.value ?? undefined,
@@ -85,7 +87,9 @@ const isOpen = defineModel<boolean>('isOpen', {
 })
 
 const themeProviderContext = injectThemeProviderContext()
-const { t } = useI18n()
+const {
+  t,
+} = useI18n()
 
 const inputId = props.id ?? useId()
 
