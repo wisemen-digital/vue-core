@@ -53,6 +53,4 @@ import { createToastStyle } from "@wisemen/vue-core-components";
   }
 ]" />
 
-
 <ClassConfig :style-function="createToastStyle" />
-

@@ -102,6 +102,4 @@ import { createDatePickerStyle } from "@wisemen/vue-core-components";
   }
 ]" />
 
-
 <ClassConfig :style-function="createDatePickerStyle" />
-

@@ -56,6 +56,4 @@ import { createDialogStyle } from "@wisemen/vue-core-components";
   }
 ]" />
 
-
 <ClassConfig :style-function="createDialogStyle" />
-

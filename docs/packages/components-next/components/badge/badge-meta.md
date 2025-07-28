@@ -54,6 +54,4 @@ import { createBadgeStyle } from "@wisemen/vue-core-components";
   }
 ]" />
 
-
 <ClassConfig :style-function="createBadgeStyle" />
-

@@ -98,6 +98,4 @@ import { createDropdownMenuStyle } from "@wisemen/vue-core-components";
   }
 ]" />
 
-
 <ClassConfig :style-function="createDropdownMenuStyle" />
-

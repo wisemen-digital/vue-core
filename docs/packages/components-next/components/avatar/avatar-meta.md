@@ -41,6 +41,4 @@ import { createAvatarStyle } from "@wisemen/vue-core-components";
   }
 ]" />
 
-
 <ClassConfig :style-function="createAvatarStyle" />
-

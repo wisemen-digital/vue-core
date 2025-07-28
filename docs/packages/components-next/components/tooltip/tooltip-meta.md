@@ -119,6 +119,4 @@ import { createTooltipStyle } from "@wisemen/vue-core-components";
   }
 ]" />
 
-
 <ClassConfig :style-function="createTooltipStyle" />
-

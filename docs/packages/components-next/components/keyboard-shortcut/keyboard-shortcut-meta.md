@@ -26,6 +26,4 @@ import { createKeyboardShortcutStyle } from "@wisemen/vue-core-components";
   }
 ]" />
 
-
 <ClassConfig :style-function="createKeyboardShortcutStyle" />
-

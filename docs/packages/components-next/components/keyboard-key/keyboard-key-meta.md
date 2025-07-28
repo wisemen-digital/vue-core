@@ -27,6 +27,4 @@ import { createKeyboardKeyStyle } from "@wisemen/vue-core-components";
   }
 ]" />
 
-
 <ClassConfig :style-function="createKeyboardKeyStyle" />
-

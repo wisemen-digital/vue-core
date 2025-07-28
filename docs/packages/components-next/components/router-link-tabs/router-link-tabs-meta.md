@@ -35,6 +35,4 @@ import { createTabsStyle } from "@wisemen/vue-core-components";
   }
 ]" />
 
-
 <ClassConfig :style-function="createTabsStyle" />
-
