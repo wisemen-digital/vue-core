@@ -18,6 +18,7 @@
     "pub:next": "pnpm publish --no-git-checks --access public --tag next",
     "pub:release": "pnpm publish --access public",
     "eslint": "eslint . --fix",
+    "cleanup": "rimraf dist/ node_modules/ .turbo/",
     "build": " tsdown --clean --dts",
     "lint": "eslint .",
     "eslint-stats": "eslint . --stats -f json",

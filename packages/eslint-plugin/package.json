@@ -31,7 +31,7 @@
   "scripts": {
     "build": "tsdown",
     "pub:release": "pnpm publish --access public",
-    "clean": "rimraf dist/ coverage/",
+    "cleanup": "rimraf dist/ node_modules/ .turbo/",
     "lint": "pnpm eslint --fix .",
     "test": "pnpm test",
     "typecheck": "pnpm tsc"

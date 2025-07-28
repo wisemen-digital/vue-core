@@ -32,6 +32,7 @@
     "test:unit": "vitest --run",
     "test": "vitest --run",
     "lint": "eslint .",
+    "cleanup": "rimraf dist/ node_modules/ .turbo/",
     "lint:fix": "eslint . --fix",
     "story:dev": "histoire dev",
     "story:build": "histoire build",
