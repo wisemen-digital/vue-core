@@ -18,9 +18,13 @@ const emit = defineEmits<DateRangeFieldEmits>()
 
 defineSlots<DateRangeFieldSlots>()
 
-const modelValue = defineModel<DateRange<TValue>>({ required: true })
+const modelValue = defineModel<DateRange<TValue>>({
+  required: true,
+})
 
-const placeholderValue = defineModel<Date>('placeholderValue', { required: false })
+const placeholderValue = defineModel<Date>('placeholderValue', {
+  required: false,
+})
 
 const id = props.id ?? useId()
 </script>

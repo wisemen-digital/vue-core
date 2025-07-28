@@ -67,7 +67,9 @@ const props = withDefaults(defineProps<SelectProps<TValue>>(), {
 
 const emit = defineEmits<SelectEmits>()
 
-const modelValue = defineModel<TValue>({ required: true })
+const modelValue = defineModel<TValue>({
+  required: true,
+})
 
 const searchTerm = defineModel<string>('searchTerm', {
   default: '',
@@ -79,9 +81,13 @@ const isDropdownVisible = defineModel<boolean>('isOpen', {
   required: false,
 })
 
-const { theme } = injectThemeProviderContext()
+const {
+  theme,
+} = injectThemeProviderContext()
 
-const { t } = useI18n()
+const {
+  t,
+} = useI18n()
 
 const id = props.id ?? useId()
 
@@ -100,12 +106,18 @@ const inlinesearchInputElementRef = ref<HTMLInputElement | null>(null)
 // However, when the dropdown is first opened, all options should be displayed, even if a search term is entered.
 const hasInteractedWithInlineSearchInput = ref<boolean>(false)
 
-const { contains } = useFilter()
+const {
+  contains,
+} = useFilter()
 
-const selectStyle = computed<CreateSelectStyle>(() => createSelectStyle({ variant: props.variant ?? undefined }))
+const selectStyle = computed<CreateSelectStyle>(() => createSelectStyle({
+  variant: props.variant ?? undefined,
+}))
 
 const customClassConfig = computed<ResolvedClassConfig<'select'>>(
-  () => getCustomComponentVariant('select', theme.value, { variant: props.variant }),
+  () => getCustomComponentVariant('select', theme.value, {
+    variant: props.variant,
+  }),
 )
 
 const isMultiple = computed<boolean>(() => Array.isArray(modelValue.value))
@@ -276,7 +288,9 @@ watch(isDropdownVisible, (isDropdownVisible) => {
   }
 })
 
-watch(modelValue, resetSearchTerm, { immediate: true })
+watch(modelValue, resetSearchTerm, {
+  immediate: true,
+})
 
 useProvideSelectContext({
   ...toComputedRefs(props),

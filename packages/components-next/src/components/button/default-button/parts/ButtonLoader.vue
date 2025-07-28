@@ -5,7 +5,9 @@ import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectButtonContext } from '@/components/button/default-button/button.context'
 import Spinner from '@/components/spinner/Spinner.vue'
 
-const { t } = useI18n()
+const {
+  t,
+} = useI18n()
 
 const {
   classConfig,

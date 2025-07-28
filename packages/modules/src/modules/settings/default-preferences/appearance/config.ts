@@ -8,7 +8,9 @@ import SettingsAppearanceSection from '@/modules/settings/default-preferences/ap
 import type { SettingsSection } from '@/modules/settings/settings.type'
 
 export function useAppearanceSetting(): SettingsSection {
-  const { t } = useI18n()
+  const {
+    t,
+  } = useI18n()
 
   return {
     id: 'appearance',

@@ -143,7 +143,7 @@ onBeforeUnmount(() => {
         v-if="moreTagsCount > 0"
         ref="moreTagsCountRef"
       >
-        <span class="text-secondary pl-xs text-sm font-medium">
+        <span class="pl-xs text-sm font-medium text-secondary">
           +{{ moreTagsCount }}
         </span>
       </div>

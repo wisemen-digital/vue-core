@@ -13,7 +13,9 @@ const props = defineProps<{
 
 const tableContext = injectTableContext()
 
-const { t } = useI18n()
+const {
+  t,
+} = useI18n()
 </script>
 
 <template>
@@ -28,20 +30,20 @@ const { t } = useI18n()
 
     <div
       class="
-        p-4xl absolute top-1/2 left-1/2 mx-auto mt-4 flex -translate-x-1/2
-        -translate-y-1/2 flex-col items-center justify-center text-center
+        absolute top-1/2 left-1/2 mx-auto mt-4 flex -translate-x-1/2
+        -translate-y-1/2 flex-col items-center justify-center p-4xl text-center
       "
     >
       <Icon
         icon="tableNoData"
-        class="text-primary size-8"
+        class="size-8 text-primary"
       />
 
-      <h3 class="py-md text-primary font-semibold">
+      <h3 class="py-md font-semibold text-primary">
         {{ t('component.table.no_results.title') }}
       </h3>
 
-      <p class="text-tertiary mx-auto max-w-md text-sm">
+      <p class="mx-auto max-w-md text-sm text-tertiary">
         {{ t('component.table.no_results.description') }}
       </p>
 
@@ -64,14 +66,14 @@ const { t } = useI18n()
     >
       <Icon
         icon="tableNoData"
-        class="text-primary size-8"
+        class="size-8 text-primary"
       />
 
-      <h3 class="py-md text-primary font-semibold">
+      <h3 class="py-md font-semibold text-primary">
         {{ t('component.table.no_data.title') }}
       </h3>
 
-      <p class="text-tertiary mx-auto max-w-xs text-sm">
+      <p class="mx-auto max-w-xs text-sm text-tertiary">
         {{ t('component.table.no_data.description') }}
       </p>
 
@@ -84,8 +86,8 @@ const { t } = useI18n()
       v-for="i in 40"
       :key="i"
       class="
-        odd:bg-secondary
         col-span-full grid grid-cols-subgrid
+        odd:bg-secondary
       "
     >
       <div

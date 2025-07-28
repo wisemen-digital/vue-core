@@ -9,7 +9,6 @@
 | **label*** | `string \| null` | The label to be displayed. |  |
 | styleConfig | `Partial<InputFieldLabelStyleConfig> \| null` | The style config of the component. | `null` |
 
-
 ## Style configuration
 
 The following interfaces are defined in the component’s style configuration file:
@@ -25,4 +24,3 @@ export interface InputFieldLabelStyleConfig  {
   '--input-field-label-text-color-default': string
 }
 ```
-

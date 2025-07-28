@@ -35,9 +35,13 @@ const props = withDefaults(defineProps<SwitchProps>(), {
 
 const emit = defineEmits<SwitchEmits>()
 
-const modelValue = defineModel<boolean>({ required: true })
+const modelValue = defineModel<boolean>({
+  required: true,
+})
 
-const { theme } = injectThemeProviderContext()
+const {
+  theme,
+} = injectThemeProviderContext()
 
 const switchStyle = computed<CreateSwitchStyle>(() => createSwitchStyle({
   size: props.size,

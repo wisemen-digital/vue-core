@@ -67,7 +67,9 @@ onMounted(() => {
     return
   }
 
-  const { id: groupId } = selectGroupContext
+  const {
+    id: groupId,
+  } = selectGroupContext
 
   const group = allGroups.value.get(groupId) ?? null
 

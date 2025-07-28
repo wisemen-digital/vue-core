@@ -23,7 +23,9 @@ const props = withDefaults(defineProps<CheckboxGroupProps>(), {
 
 defineSlots<FormElementSlots>()
 
-const model = defineModel<TValue[]>({ required: true })
+const model = defineModel<TValue[]>({
+  required: true,
+})
 
 const inputId = props.id ?? useId()
 </script>

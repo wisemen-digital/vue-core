@@ -12,7 +12,9 @@ const {
   style,
 } = useInjectDropdownMenuContext()
 
-const { icon } = useInjectDropdownMenuItemContext()
+const {
+  icon,
+} = useInjectDropdownMenuItemContext()
 
 const attrs = useAttrs()
 </script>

@@ -34,14 +34,20 @@ const props = withDefaults(defineProps<RadioGroupItemProps>(), {
 
 const emit = defineEmits<RadioGroupItemEmits>()
 
-const { theme } = injectThemeProviderContext()
+const {
+  theme,
+} = injectThemeProviderContext()
 
 const radioGroupItemStyle = computed<CreateRadioGroupItemStyle>(
-  () => createRadioGroupItemStyle({ variant: props.variant ?? undefined }),
+  () => createRadioGroupItemStyle({
+    variant: props.variant ?? undefined,
+  }),
 )
 
 const customClassConfig = computed<CustomComponentVariant<'radioGroupItem'>>(
-  () => getCustomComponentVariant('radioGroupItem', theme.value, { variant: props.variant }),
+  () => getCustomComponentVariant('radioGroupItem', theme.value, {
+    variant: props.variant,
+  }),
 )
 
 useProvideRadioGroupItemContext({

@@ -23,7 +23,9 @@ export default defineConfig({
       output: {
         // Provide global variables to use in the UMD build
         // for externalized deps
-        globals: { vue: 'Vue' },
+        globals: {
+          vue: 'Vue',
+        },
       },
     },
   },
@@ -39,5 +41,9 @@ export default defineConfig({
       tsconfigPath: 'tsconfig.build.json',
     }),
   ],
-  resolve: { alias: { '@': resolve(projectRootDir, 'src') } },
+  resolve: {
+    alias: {
+      '@': resolve(projectRootDir, 'src'),
+    },
+  },
 })

@@ -4,7 +4,9 @@ import { ref } from 'vue'
 
 const props = withDefaults(defineProps<{
   durationInMs?: number
-}>(), { durationInMs: 250 })
+}>(), {
+  durationInMs: 250,
+})
 
 const containerRef = ref<HTMLElement | null>(null)
 

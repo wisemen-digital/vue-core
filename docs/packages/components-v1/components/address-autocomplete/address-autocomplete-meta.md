@@ -30,7 +30,6 @@ If set to true, an option matching the search term will be automatically selecte
 | styleConfig | `Partial<SelectStyleConfig> \| null` | The style config of the component. |  |
 | testId | `string \| null` | The test id of the input. |  |
 
-
 ## Slots
 
 | Slot | Slot Props | Description |
@@ -41,11 +40,9 @@ If set to true, an option matching the search term will be automatically selecte
 | hint | `{}` |  |
 | label | `{}` |  |
 
-
 ## Events
 
 | Event name | Type | Description |
 | ---------- | ---- | ----------- |
 | `blur` | [] |  |
 | `update:modelValue` | [value: Address] |  |
-

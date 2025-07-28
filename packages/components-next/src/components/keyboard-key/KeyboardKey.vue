@@ -17,7 +17,9 @@ const props = withDefaults(defineProps<KeyboardKeyProps>(), {
   variant: null,
 })
 
-const { theme } = injectThemeProviderContext()
+const {
+  theme,
+} = injectThemeProviderContext()
 
 const isWindows = computed<boolean>(() => (
   /windows/i.test(navigator.userAgent)
@@ -118,11 +120,15 @@ const windowsKeyMap = new Map<KeyboardKey, string>([
 ])
 
 const keyboardKeyStyle = computed<CreatekeyboardKeyStyle>(
-  () => createKeyboardKeyStyle({ variant: props.variant ?? undefined }),
+  () => createKeyboardKeyStyle({
+    variant: props.variant ?? undefined,
+  }),
 )
 
 const customClassConfig = computed<ResolvedClassConfig<'keyboardKey'>>(
-  () => getCustomComponentVariant('keyboardKey', theme.value, { variant: props.variant }),
+  () => getCustomComponentVariant('keyboardKey', theme.value, {
+    variant: props.variant,
+  }),
 )
 
 const keyboardKey = computed<string>(() => {

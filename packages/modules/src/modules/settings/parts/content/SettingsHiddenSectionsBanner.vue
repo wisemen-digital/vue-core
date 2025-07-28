@@ -16,7 +16,9 @@ const {
   activeView, onShowView,
 } = useInjectSettingsContext()
 
-const { t } = useI18n()
+const {
+  t,
+} = useI18n()
 
 function onShowAll(): void {
   onShowView(activeView.value.id)
@@ -24,9 +26,10 @@ function onShowAll(): void {
 </script>
 
 <template>
-  <div class="gap-x-md mt-2xl flex items-center justify-center">
-    <p class="text-tertiary text-xs">
-      {{ t('module.settings.settings_are_hidden.label', { count: props.hiddenSectionCount, viewName: activeView.title }) }}
+  <div class="mt-2xl flex items-center justify-center gap-x-md">
+    <p class="text-xs text-tertiary">
+      {{ t('module.settings.settings_are_hidden.label', { count: props.hiddenSectionCount,
+                                                          viewName: activeView.title }) }}
     </p>
 
     <VcKeyboardShortcutProvider :keyboard-keys="['a']">

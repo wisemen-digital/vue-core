@@ -36,6 +36,7 @@
     "build": "unbuild && pnpm pack",
     "lint": "eslint .",
     "type-check": "tsc --noEmit",
+    "cleanup": "rimraf dist/ node_modules/ .turbo/",
     "lint:fix": "eslint . --fix",
     "release": "bumpp && npm publish",
     "typecheck": "tsc --noEmit"

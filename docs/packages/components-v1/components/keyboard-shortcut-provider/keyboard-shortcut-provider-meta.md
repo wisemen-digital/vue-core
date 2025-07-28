@@ -6,10 +6,8 @@
 | ---- | ---- | ----------- | ------- |
 | **config*** | `KeyboardShortcutConfig` | The keyboard shortcut configuration |  |
 
-
 ## Slots
 
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
 | default | `{ keys: KeyboardKey[]; }` |  |
-

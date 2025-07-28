@@ -46,7 +46,9 @@ export const createTableStyle = tv({
       .withBorder('border-b border-solid border-b-secondary')
       .build(),
   },
-  variants: { variant: {} },
+  variants: {
+    variant: {},
+  },
 })
 
 export type TableStyle = VariantProps<typeof createTableStyle>

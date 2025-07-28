@@ -81,7 +81,9 @@ async function uploadFile(): Promise<void> {
   const {
     uuid, url,
   } = fileInfo
-  const { file } = props.item as FileUploadItemPending
+  const {
+    file,
+  } = props.item as FileUploadItemPending
 
   uploadToS3(uuid, url, file)
 }

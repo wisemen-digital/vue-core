@@ -30,7 +30,9 @@ defineSlots<{
   default: () => void
 }>()
 
-const isOpen = defineModel<boolean>('isOpen', { default: false })
+const isOpen = defineModel<boolean>('isOpen', {
+  default: false,
+})
 
 const attrs = useAttrs()
 
@@ -254,10 +256,8 @@ watch(isActuallyOpen, () => {
 }
 
 ::view-transition-old(dialog),
-::view-transition-new(dialog)
-::view-transition-old(dialog-leave),
-::view-transition-new(dialog-leave)
-{
+::view-transition-new(dialog) ::view-transition-old(dialog-leave),
+::view-transition-new(dialog-leave) {
   height: 100%;
   width: 100%;
   object-fit: fill;

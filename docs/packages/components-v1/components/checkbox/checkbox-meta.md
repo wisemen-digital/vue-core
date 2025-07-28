@@ -17,7 +17,6 @@
 | testId | `string \| null` | The test id of the input. | `null` |
 | value | `AcceptableValue` | The value of the checkbox. Only used when the checkbox is in a group. | `null` |
 
-
 ## Slots
 
 | Slot | Slot Props | Description |
@@ -28,7 +27,6 @@
 | hint | `{ hint: string \| null; }` | Can be used to render a custom hint message. |
 | label | `{ inputId: string; isRequired: boolean; label: string \| null; }` | Can be used to render a custom label. |
 
-
 ## Events
 
 | Event name | Type | Description |
@@ -36,7 +34,6 @@
 | `blur` | [] |  |
 | `focus` | [] |  |
 | `update:modelValue` | [modelValue: boolean] |  |
-
 
 ## Style configuration
 
@@ -104,4 +101,3 @@ export interface CheckboxStyleConfig extends BaseStyleConfig {
   '--checkbox-size-default': string
 }
 ```
-

@@ -68,6 +68,4 @@ import { createIconButtonStyle } from "@wisemen/vue-core-components";
   }
 ]" />
 
-
 <ClassConfig :style-function="createIconButtonStyle" />
-

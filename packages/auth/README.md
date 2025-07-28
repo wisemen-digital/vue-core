@@ -10,7 +10,6 @@ pnpm add @wisemen/vue-core-oauth-client
 
 ## Usage
 
-
 ### OAuth2VueClient
 Create a new file `auth.lib.ts` and add the following code:
 
@@ -32,8 +31,6 @@ export const oAuthClient = new OAuth2VueClient({
 })
 ```
 
-
-
 ### ZitadelClient
 
 Create a new file `auth.lib.ts` and add the following code:
@@ -53,7 +50,7 @@ export const oAuthClient = new ZitadelClient({
   clientId: AUTH_CLIENT_ID,
   organizationId: AUTH_ORGANIZATION_ID,
   fetchStrategy: new AxiosFetchStrategy(axios),
-  tokensStrategy: new LocalStorageTokensStrategy(), // Optional, defaults to localStorage 
+  tokensStrategy: new LocalStorageTokensStrategy(), // Optional, defaults to localStorage
   baseUrl: AUTH_BASE_URL,
   loginRedirectUri: `${window.location.origin}/auth/callback`,
   offline: CURRENT_ENVIRONMENT === 'e2e',

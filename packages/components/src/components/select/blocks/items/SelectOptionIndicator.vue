@@ -19,7 +19,7 @@ const optionIndicatorClasses = computed<string>(() => selectStyle.optionIndicato
   <template v-if="selectContext.isMultiple.value">
     <div
       v-if="!selectOptionContext.isSelected.value"
-      class="border-primary rounded-xs border border-solid"
+      class="rounded-xs border border-solid border-primary"
     >
       <slot>
         <Icon
@@ -31,14 +31,14 @@ const optionIndicatorClasses = computed<string>(() => selectStyle.optionIndicato
     </div>
 
     <ListboxItemIndicator
-      class="border-brand-alt bg-brand-solid rounded-xs border border-solid"
+      class="rounded-xs border border-solid border-brand-alt bg-brand-solid"
     >
       <div>
         <slot>
           <Icon
             :class="optionIndicatorClasses"
             icon="check"
-            class="text-primary-on-brand scale-90"
+            class="scale-90 text-primary-on-brand"
           />
         </slot>
       </div>

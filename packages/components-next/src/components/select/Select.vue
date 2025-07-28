@@ -25,9 +25,13 @@ const props = withDefaults(defineProps<SelectProps<TValue>>(), {
 
 const emit = defineEmits<SelectEmits>()
 
-const modelValue = defineModel<TValue>({ required: true })
+const modelValue = defineModel<TValue>({
+  required: true,
+})
 
-const searchTerm = defineModel<string>('searchTerm', { required: false })
+const searchTerm = defineModel<string>('searchTerm', {
+  required: false,
+})
 
 const isOpen = defineModel<boolean>('isOpen', {
   default: false,

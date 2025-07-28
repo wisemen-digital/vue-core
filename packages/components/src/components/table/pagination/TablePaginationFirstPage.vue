@@ -10,7 +10,9 @@ defineSlots<{
   /**
    * Use this to render your own pagination control for the return to the 1st page.
    */
-  default: ({ isFirstPage }: { isFirstPage: boolean }) => void
+  default: ({
+    isFirstPage,
+  }: { isFirstPage: boolean }) => void
 }>()
 
 const tableContext = injectTableContext()

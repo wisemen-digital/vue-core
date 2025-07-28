@@ -31,7 +31,9 @@ export function useElementAttributeObserverNext<TDefaultValue extends string | n
       ],
       attributes: true,
     })
-  }, { immediate: true })
+  }, {
+    immediate: true,
+  })
 
   return computed<TDefaultValue>(() => attributeValue.value)
 }

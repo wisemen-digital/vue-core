@@ -57,7 +57,9 @@ export const createDateFieldStyle = tv({
       .withCursor('data-disabled:cursor-not-allowed')
       .build(),
   },
-  variants: { variant: {} },
+  variants: {
+    variant: {},
+  },
 })
 
 export type DateFieldStyle = VariantProps<typeof createDateFieldStyle>

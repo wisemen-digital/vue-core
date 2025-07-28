@@ -22,14 +22,20 @@ const props = withDefaults(defineProps<AvatarProps>(), {
   variant: null,
 })
 
-const { theme } = injectThemeProviderContext()
+const {
+  theme,
+} = injectThemeProviderContext()
 
 const avatarStyle = computed<CreateAvatarStyle>(
-  () => createAvatarStyle({ variant: props.variant ?? undefined }),
+  () => createAvatarStyle({
+    variant: props.variant ?? undefined,
+  }),
 )
 
 const customClassConfig = computed<ResolvedClassConfig<'avatar'>>(
-  () => getCustomComponentVariant('avatar', theme.value, { variant: props.variant }),
+  () => getCustomComponentVariant('avatar', theme.value, {
+    variant: props.variant,
+  }),
 )
 
 useProvideAvatarContext({

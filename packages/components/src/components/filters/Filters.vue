@@ -88,20 +88,36 @@ const filters: Filter<string>[] = [
       // 'Medium',
       // 'Low',
       // 'None',
-      { value: 'High' },
-      { value: 'Medium' },
-      { value: 'Low' },
-      { value: 'None' },
+      {
+        value: 'High',
+      },
+      {
+        value: 'Medium',
+      },
+      {
+        value: 'Low',
+      },
+      {
+        value: 'None',
+      },
     ],
     type: 'multiselect',
   },
   {
     label: 'Label',
     options: [
-      { value: 'Bug' },
-      { value: 'Feature' },
-      { value: 'Improvement' },
-      { value: 'Reopened' },
+      {
+        value: 'Bug',
+      },
+      {
+        value: 'Feature',
+      },
+      {
+        value: 'Improvement',
+      },
+      {
+        value: 'Reopened',
+      },
     ],
     type: 'multiselect',
   },
@@ -224,12 +240,12 @@ watch(isOpen, (isOpen) => {
         :multiple="true"
         class="select-default"
       >
-        <div class="border-primary flex flex-col border-b border-solid">
+        <div class="flex flex-col border-b border-solid border-primary">
           <div
             v-if="false"
             class="
-              border-primary px-select-dropdown-padding-x-default flex
-              items-center gap-x-1 border-b border-solid py-2.5
+              px-select-dropdown-padding-x-default flex items-center gap-x-1
+              border-b border-solid border-primary py-2.5
             "
           >
             <Icon
@@ -237,7 +253,7 @@ watch(isOpen, (isOpen) => {
               icon="chevronLeft"
             />
 
-            <span class="text-secondary text-sm font-medium">
+            <span class="text-sm font-medium text-secondary">
               Filters
             </span>
           </div>

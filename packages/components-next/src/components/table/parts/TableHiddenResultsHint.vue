@@ -15,7 +15,9 @@ const {
   onClearFiltersAndSearch,
 } = useInjectTableContext()
 
-const { t } = useI18n()
+const {
+  t,
+} = useI18n()
 </script>
 
 <template>
@@ -25,7 +27,7 @@ const { t } = useI18n()
       class: mergeClasses(classConfig?.hiddenResultsHint, customClassConfig?.hiddenResultsHint),
     })"
   >
-    <span class="text-tertiary text-xs">
+    <span class="text-xs text-tertiary">
       {{
         t('component.table.results_may_be_hidden', {
           count: activeFilterCount,

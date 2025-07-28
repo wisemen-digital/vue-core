@@ -9,7 +9,9 @@ const props = defineProps<{
   text: string
 }>()
 
-const { searchTerm } = useInjectSettingsContext()
+const {
+  searchTerm,
+} = useInjectSettingsContext()
 
 const chunks = computed<HighlightWords.Chunk[]>(() => highlightWords({
   query: searchTerm.value,

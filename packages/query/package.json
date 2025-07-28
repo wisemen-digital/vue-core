@@ -29,6 +29,7 @@
     "pub:release": "pnpm publish --access public",
     "gen:web-types": "vue-docgen-web-types",
     "lint": "eslint .",
+    "cleanup": "rimraf dist/ node_modules/ .turbo/",
     "lint:fix": "eslint . --fix",
     "test": "vitest --run",
     "dev": "vite build --watch"

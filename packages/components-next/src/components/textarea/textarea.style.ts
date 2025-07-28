@@ -32,7 +32,9 @@ export const createTextareaStyle = tv({
       .withCursor('data-disabled:cursor-not-allowed')
       .build(),
   },
-  variants: { variant: {} },
+  variants: {
+    variant: {},
+  },
 })
 
 export type TextareaStyle = VariantProps<typeof createTextareaStyle>

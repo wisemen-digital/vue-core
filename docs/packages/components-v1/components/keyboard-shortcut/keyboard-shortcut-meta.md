@@ -6,4 +6,3 @@
 | ---- | ---- | ----------- | ------- |
 | **keyboardKeys*** | `KeyboardKey[]` | The keyboard key(s) to display |  |
 | keyboardClasses | `string \| null` | Keyboard classes | `null` |
-

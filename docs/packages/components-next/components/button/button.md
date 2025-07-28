@@ -1,4 +1,3 @@
-
 # Button
 
 An element that triggers an action or event when clicked.

@@ -36,9 +36,13 @@ const props = withDefaults(defineProps<DateRangePickerProps>(), {
   variant: null,
 })
 
-const modelValue = defineModel<DateRange>({ required: true })
+const modelValue = defineModel<DateRange>({
+  required: true,
+})
 
-const placeholderValue = defineModel<Date>('placeholderValue', { required: false })
+const placeholderValue = defineModel<Date>('placeholderValue', {
+  required: false,
+})
 
 const delegatedModel = computed<{ end: DateValue | undefined
   start: DateValue | undefined }>({
@@ -74,15 +78,23 @@ const delegatedPlaceholderValue = computed<DateValue>({
   },
 })
 
-const { theme } = injectThemeProviderContext()
-const { locale } = useInjectConfigContext()
+const {
+  theme,
+} = injectThemeProviderContext()
+const {
+  locale,
+} = useInjectConfigContext()
 
 const dateRangePickerStyle = computed<CreateDateRangePickerStyle>(
-  () => createDateRangePickerStyle({ variant: props.variant ?? undefined }),
+  () => createDateRangePickerStyle({
+    variant: props.variant ?? undefined,
+  }),
 )
 
 const customClassConfig = computed<ResolvedClassConfig<'dateRangePicker'>>(
-  () => getCustomComponentVariant('dateRangePicker', theme.value, { variant: props.variant }),
+  () => getCustomComponentVariant('dateRangePicker', theme.value, {
+    variant: props.variant,
+  }),
 )
 
 useProvideDateRangePickerContext({

@@ -39,7 +39,9 @@ describe('textarea Component', () => {
 
   it('renders label slot content', () => {
     const wrapper = mount(Textarea, {
-      props: { modelValue: '' },
+      props: {
+        modelValue: '',
+      },
       slots: {
         bottom: [],
         default: [],

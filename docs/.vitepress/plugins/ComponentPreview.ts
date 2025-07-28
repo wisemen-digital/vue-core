@@ -1,5 +1,6 @@
+/* eslint-disable eslint-plugin-wisemen/explicit-function-return-type-with-regex */
 /* eslint-disable regexp/no-super-linear-backtracking */
-/* eslint-disable ts/explicit-function-return-type */
+
 import { readdirSync } from 'node:fs'
 import {
   dirname,

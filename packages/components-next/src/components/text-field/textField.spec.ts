@@ -39,7 +39,9 @@ describe('textField Component', () => {
 
   it('renders label slot content', () => {
     const wrapper = mount(TextField, {
-      props: { modelValue: '' },
+      props: {
+        modelValue: '',
+      },
       slots: {
         default: [],
         error: [],

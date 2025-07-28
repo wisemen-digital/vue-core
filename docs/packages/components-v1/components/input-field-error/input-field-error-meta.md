@@ -8,7 +8,6 @@
 | errors | `string[]` | The errors related to the input field. | `[]` |
 | styleConfig | `Partial<{ config: InputFieldErrorStyleConfig; variants: ["default"]; }> \| null` | The style configuration for the error message. | `null` |
 
-
 ## Style configuration
 
 The following interfaces are defined in the component’s style configuration file:
@@ -23,4 +22,3 @@ export interface InputFieldErrorStyleConfig  {
   '--input-field-error-text-color-default': string
 }
 ```
-

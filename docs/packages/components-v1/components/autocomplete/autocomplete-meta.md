@@ -34,7 +34,6 @@ If set to true, an option matching the search term will be automatically selecte
 | styleConfig | `Partial<SelectStyleConfig> \| null` | The style config of the component. | `null` |
 | testId | `string \| null` | The test id of the input. | `null` |
 
-
 ## Slots
 
 | Slot | Slot Props | Description |
@@ -51,7 +50,6 @@ If set to true, an option matching the search term will be automatically selecte
 | right | `{}` |  |
 | separator | `{}` |  |
 
-
 ## Events
 
 | Event name | Type | Description |
@@ -61,4 +59,3 @@ If set to true, an option matching the search term will be automatically selecte
 | `search` | [searchTerm: string] |  |
 | `update:isOpen` | [isOpen: boolean] |  |
 | `update:modelValue` | [modelValue: SelectValue] |  |
-

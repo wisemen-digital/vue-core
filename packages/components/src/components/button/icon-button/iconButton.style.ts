@@ -31,21 +31,45 @@ export const useIconButtonStyle = tv({
   },
   variants: {
     variant: {
-      'default': { base: 'icon-button-primary' },
-      'destructive-primary': { base: 'icon-button-destructive-primary' },
-      'destructive-secondary': { base: 'icon-button-destructive-secondary' },
-      'destructive-tertiary': { base: 'icon-button-destructive-tertiary' },
-      'secondary': { base: 'icon-button-secondary-gray' },
-      'secondary-color': { base: 'icon-button-secondary-color' },
-      'tertiary': { base: 'icon-button-tertiary-gray' },
-      'tertiary-color': { base: 'icon-button-tertiary-color' },
+      'default': {
+        base: 'icon-button-primary',
+      },
+      'destructive-primary': {
+        base: 'icon-button-destructive-primary',
+      },
+      'destructive-secondary': {
+        base: 'icon-button-destructive-secondary',
+      },
+      'destructive-tertiary': {
+        base: 'icon-button-destructive-tertiary',
+      },
+      'secondary': {
+        base: 'icon-button-secondary-gray',
+      },
+      'secondary-color': {
+        base: 'icon-button-secondary-color',
+      },
+      'tertiary': {
+        base: 'icon-button-tertiary-gray',
+      },
+      'tertiary-color': {
+        base: 'icon-button-tertiary-color',
+      },
     },
     size: {
-      '2xl': { base: 'icon-button-2xl' },
+      '2xl': {
+        base: 'icon-button-2xl',
+      },
       'default': {},
-      'lg': { base: 'icon-button-lg' },
-      'sm': { base: 'icon-button-sm' },
-      'xl': { base: 'icon-button-xl' },
+      'lg': {
+        base: 'icon-button-lg',
+      },
+      'sm': {
+        base: 'icon-button-sm',
+      },
+      'xl': {
+        base: 'icon-button-xl',
+      },
     },
     isDisabled: {
       true: {

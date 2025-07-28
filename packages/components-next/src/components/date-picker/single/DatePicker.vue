@@ -7,13 +7,17 @@ import DatePickerRoot from '@/components/date-picker/single/parts/DatePickerRoot
 
 const props = defineProps<DatePickerProps>()
 
-const modelValue = defineModel<Date | null>({ required: true })
+const modelValue = defineModel<Date | null>({
+  required: true,
+})
 
 /**
  * The placeholder date, which is used to determine what month to display when no date is selected.
  * This updates as the user navigates the calendar and can be used to programmatically control the calendar view
  */
-const placeholderValue = defineModel<Date>('placeholderValue', { required: false })
+const placeholderValue = defineModel<Date>('placeholderValue', {
+  required: false,
+})
 </script>
 
 <template>

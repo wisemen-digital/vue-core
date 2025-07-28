@@ -1,4 +1,4 @@
-# Table 
+# Table
 
 ## Import
 
@@ -22,7 +22,6 @@ import { VcTableCell } from '@wisemen/vue-core'
 
 <!-- @include: ./table-cell-meta.md -->
 
-
 ## Examples
 
 ### Basic usage
@@ -33,6 +32,5 @@ The most basic usage of the table component.
 ### Borderless with primary cells
 Borderless variant.
 Also using isPrimary on VcTableCell.
-
 
 <ComponentPreviewV1 name="table/borderless" />

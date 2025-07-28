@@ -6,7 +6,9 @@ import {
 
 import SettingsSection from '@/modules/settings/parts/content/SettingsSection.vue'
 
-const dialog = useVcDialog({ component: () => import('./NestedDialog.vue') })
+const dialog = useVcDialog({
+  component: () => import('./NestedDialog.vue'),
+})
 </script>
 
 <template>

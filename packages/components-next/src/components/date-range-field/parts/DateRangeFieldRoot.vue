@@ -53,8 +53,12 @@ const props = withDefaults(defineProps<DateRangeFieldProps>(), {
 
 const emit = defineEmits<DateRangeFieldEmits>()
 
-const modelValue = defineModel<DateRange<TValue>>({ required: true })
-const placeholderValue = defineModel<Date>('placeholderValue', { required: false })
+const modelValue = defineModel<DateRange<TValue>>({
+  required: true,
+})
+const placeholderValue = defineModel<Date>('placeholderValue', {
+  required: false,
+})
 
 const delegatedModel = computed<{ end: DateValue | undefined
   start: DateValue | undefined }>({
@@ -90,17 +94,25 @@ const delegatedPlaceholderValue = computed<Date>({
   },
 })
 
-const { locale } = useInjectConfigContext()
-const { theme } = injectThemeProviderContext()
+const {
+  locale,
+} = useInjectConfigContext()
+const {
+  theme,
+} = injectThemeProviderContext()
 
 const isFocused = ref<boolean>(false)
 
 const dateRangeFieldStyle = computed<CreateDateRangeFieldStyle>(
-  () => createDateRangeFieldStyle({ variant: props.variant ?? undefined }),
+  () => createDateRangeFieldStyle({
+    variant: props.variant ?? undefined,
+  }),
 )
 
 const customClassConfig = computed<ResolvedClassConfig<'dateRangeField'>>(
-  () => getCustomComponentVariant('dateRangeField', theme.value, { variant: props.variant }),
+  () => getCustomComponentVariant('dateRangeField', theme.value, {
+    variant: props.variant,
+  }),
 )
 
 function onFocus(event: FocusEvent): void {

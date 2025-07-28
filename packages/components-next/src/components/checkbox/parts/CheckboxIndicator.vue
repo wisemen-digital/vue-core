@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Variant } from 'motion-v'
+import type { VariantType } from 'motion-v'
 import {
   AnimatePresence,
   motion,
@@ -9,7 +9,7 @@ import { CheckboxIndicator as RekaCheckboxIndicator } from 'reka-ui'
 import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectCheckboxContext } from '@/components/checkbox/checkbox.context'
 
-const draw: Record<string, Variant> = {
+const draw: Record<string, VariantType> = {
   hidden: {
     opacity: 0,
     pathLength: 0,
@@ -18,7 +18,9 @@ const draw: Record<string, Variant> = {
     opacity: 1,
     pathLength: 1,
     transition: {
-      opacity: { duration: 0.01 },
+      opacity: {
+        duration: 0.01,
+      },
       pathLength: {
         bounce: 0,
         duration: 0.5,

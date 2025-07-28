@@ -55,6 +55,4 @@ import { createRouterLinkButtonStyle } from "@wisemen/vue-core-components";
   }
 ]" />
 
-
 <ClassConfig :style-function="createRouterLinkButtonStyle" />
-

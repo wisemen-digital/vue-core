@@ -16,7 +16,9 @@ function onSearch(searchTerm: string): void {
   isFetchingItems.value = true
 
   setTimeout(() => {
-    items.value = Array.from(Array.from({ length: 10 }), (_, i) => `${searchTerm} ${i + 1}`)
+    items.value = Array.from(Array.from({
+      length: 10,
+    }), (_, i) => `${searchTerm} ${i + 1}`)
 
     isFetchingItems.value = false
   }, 200)

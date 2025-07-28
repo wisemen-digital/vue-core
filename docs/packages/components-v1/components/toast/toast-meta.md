@@ -8,10 +8,8 @@
 | items* | `TabItem[]` | All the tabs to be rendered. |  |
 | tab* | `TabItem` |  |  |
 
-
 ## Events
 
 | Event name | Type | Description |
 | ---------- | ---- | ----------- |
 | `closeToast` | [] |  |
-

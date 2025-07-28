@@ -4,7 +4,9 @@ import { computed } from 'vue'
 
 import { useInjectDialogContext } from '@/components/dialog/dialog.context'
 
-const { teleportTargetId } = useInjectDialogContext()
+const {
+  teleportTargetId,
+} = useInjectDialogContext()
 
 const teleportTarget = computed<string | null>(() => {
   if (teleportTargetId.value === null) {

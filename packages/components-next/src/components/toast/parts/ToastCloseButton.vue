@@ -4,9 +4,13 @@ import { useI18n } from 'vue-i18n'
 import IconButton from '@/components/button/icon-button/IconButton.vue'
 import { useInjectToastContext } from '@/components/toast/toast.context'
 
-const { onClose } = useInjectToastContext()
+const {
+  onClose,
+} = useInjectToastContext()
 
-const { t } = useI18n()
+const {
+  t,
+} = useI18n()
 </script>
 
 <template>

@@ -8,7 +8,6 @@ import { useDrawer } from '@wisemen/vue-core'
 
 <!-- @include: ./drawer-meta.md -->
 
-
 <br>
 <br>
 

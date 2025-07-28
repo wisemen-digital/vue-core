@@ -24,7 +24,6 @@
 | testId | `string \| null` | The test id of the input. | `null` |
 | type | `"date" \| "search" \| "email" \| "password" \| "tel" \| "text" \| "time" \| "url"` | The type of the input. | `"text"` |
 
-
 ## Slots
 
 | Slot | Slot Props | Description |
@@ -39,7 +38,6 @@
 | loader | `-` | Can be used to render a custom loader. |
 | right | `-` | The content to display on the right side. (Will show above the icon-right slot) |
 
-
 ## Events
 
 | Event name | Type | Description |
@@ -47,7 +45,6 @@
 | `blur` | [] |  |
 | `focus` | [] |  |
 | `update:modelValue` | [modelValue: string \| null] |  |
-
 
 ## Style configuration
 
@@ -126,4 +123,3 @@ export interface TextFieldStyleConfig  {
   '--text-field-with-icon-right-padding-right-default': string
 }
 ```
-

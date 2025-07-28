@@ -27,14 +27,20 @@ const props = withDefaults(defineProps<FormFieldProps>(), {
   variant: null,
 })
 
-const { theme } = injectThemeProviderContext()
+const {
+  theme,
+} = injectThemeProviderContext()
 
 const formFieldStyle = computed<CreateFormFieldStyle>(
-  () => createFormFieldStyle({ variant: props.variant ?? undefined }),
+  () => createFormFieldStyle({
+    variant: props.variant ?? undefined,
+  }),
 )
 
 const customClassConfig = computed<ResolvedClassConfig<'formField'>>(
-  () => getCustomComponentVariant('formField', theme.value, { variant: props.variant }),
+  () => getCustomComponentVariant('formField', theme.value, {
+    variant: props.variant,
+  }),
 )
 
 useProvideFormFieldContext({

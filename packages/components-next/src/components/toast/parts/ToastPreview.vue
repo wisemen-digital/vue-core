@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { useInjectToastContext } from '@/components/toast/toast.context'
 
-const { preview } = useInjectToastContext()
+const {
+  preview,
+} = useInjectToastContext()
 </script>
 
 <template>

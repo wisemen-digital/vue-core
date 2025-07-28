@@ -5,7 +5,9 @@ import IconButton from '@/components/button/icon-button/IconButton.vue'
 import { injectTagContext } from '@/components/tag/tag.context'
 
 const tagContext = injectTagContext()
-const { t } = useI18n()
+const {
+  t,
+} = useI18n()
 </script>
 
 <template>

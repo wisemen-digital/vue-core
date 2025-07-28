@@ -20,7 +20,9 @@ const props = withDefaults(defineProps<ToastProps>(), {
 
 const emit = defineEmits<ToastEmits>()
 
-const { theme } = injectThemeProviderContext()
+const {
+  theme,
+} = injectThemeProviderContext()
 
 const toastStyle = computed<CreateToastStyle>(() => createToastStyle({}))
 

@@ -3,7 +3,9 @@ import { TooltipTrigger as RekaTooltipTrigger } from 'reka-ui'
 
 import { useInjectTooltipContext } from '@/components/tooltip/tooltip.context'
 
-const { popoverAnchorReferenceElement } = useInjectTooltipContext()
+const {
+  popoverAnchorReferenceElement,
+} = useInjectTooltipContext()
 </script>
 
 <template>

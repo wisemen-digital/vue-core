@@ -121,7 +121,9 @@ const hotkeyLabel = props.hotkey
   .replace(/Digit/g, '')
 
 function removeToast(toast: ToastT): void {
-  toasts.value = toasts.value.filter(({ id }) => id !== toast.id)
+  toasts.value = toasts.value.filter(({
+    id,
+  }) => id !== toast.id)
 }
 
 function onBlur(event: any | FocusEvent): void {
@@ -132,7 +134,9 @@ function onBlur(event: any | FocusEvent): void {
     isFocusWithinRef.value = false
 
     if (lastFocusedElementRef.value) {
-      lastFocusedElementRef.value.focus({ preventScroll: true })
+      lastFocusedElementRef.value.focus({
+        preventScroll: true,
+      })
       lastFocusedElementRef.value = null
     }
   }
@@ -239,7 +243,9 @@ watch(
 
     window
       .matchMedia('(prefers-color-scheme: dark)')
-      .addEventListener('change', ({ matches }) => {
+      .addEventListener('change', ({
+        matches,
+      }) => {
         if (matches) {
           actualTheme.value = 'dark'
         }
@@ -256,7 +262,9 @@ watch(
     if (listRef.value) {
       return (): void => {
         if (lastFocusedElementRef.value) {
-          lastFocusedElementRef.value.focus({ preventScroll: true })
+          lastFocusedElementRef.value.focus({
+            preventScroll: true,
+          })
           lastFocusedElementRef.value = null
           isFocusWithinRef.value = false
         }

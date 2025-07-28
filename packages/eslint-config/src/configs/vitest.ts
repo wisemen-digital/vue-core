@@ -1,0 +1,60 @@
+import type { LintConfig } from '@/types/lint.type.ts'
+
+export const vitestConfig: LintConfig = {
+  name: 'vitest',
+  files: [
+    '**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts}',
+  ], // or any other pattern
+  rules: {
+    'test/consistent-test-filename': [
+      'error',
+      {
+        pattern: '.*\\.(test|spec)\\.[tj]sx?$',
+      },
+    ],
+    'test/consistent-test-it': 'error',
+    'test/expect-expect': 'error',
+    'test/max-nested-describe': [
+      'error',
+      {
+        max: 3,
+      },
+    ],
+    'test/no-alias-methods': 'error',
+    'test/no-commented-out-tests': 'error',
+    'test/no-conditional-expect': 'error',
+    'test/no-conditional-in-test': 'error',
+    'test/no-conditional-tests': 'error',
+    'test/no-disabled-tests': 'error',
+    'test/no-duplicate-hooks': 'error',
+    'test/no-focused-tests': 'error',
+    'test/no-identical-title': 'error',
+    'test/no-import-node-test': 'error',
+    'test/no-interpolation-in-snapshots': 'error',
+    'test/no-large-snapshots': 'error',
+    'test/no-standalone-expect': 'error',
+    'test/no-test-prefixes': 'error',
+    'test/no-test-return-statement': 'error',
+    'test/prefer-called-with': 'error',
+    'test/prefer-comparison-matcher': 'error',
+    'test/prefer-each': 'error',
+    'test/prefer-expect-resolves': 'error',
+    'test/prefer-hooks-in-order': 'error',
+    'test/prefer-hooks-on-top': 'error',
+    'test/prefer-lowercase-title': 'error',
+    'test/prefer-mock-promise-shorthand': 'error',
+    'test/prefer-to-be': 'error',
+    'test/prefer-to-be-falsy': 'error',
+    'test/prefer-to-be-object': 'error',
+    'test/prefer-to-be-truthy': 'error',
+    'test/prefer-to-contain': 'error',
+    'test/prefer-to-have-length': 'error',
+    'test/prefer-todo': 'error',
+    'test/require-local-test-context-for-concurrent-snapshots': 'error',
+    'test/require-to-throw-message': 'error',
+    'test/require-top-level-describe': 'error',
+    'test/valid-describe-callback': 'error',
+    'test/valid-expect': 'error',
+    'test/valid-title': 'error',
+  },
+}

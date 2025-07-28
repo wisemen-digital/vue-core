@@ -33,7 +33,7 @@ const activeDialogCount = ref<number>(0)
             'scale-98 overflow-hidden rounded-xl': activeDialogCount > 0,
           }"
           class="
-            gap-lg bg-primary flex h-screen items-center justify-center
+            flex h-screen items-center justify-center gap-lg bg-primary
             duration-200
           "
         >

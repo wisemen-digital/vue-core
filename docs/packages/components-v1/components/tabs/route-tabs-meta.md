@@ -7,7 +7,6 @@
 | **items*** | `RouteTabItem<T>[]` |  |  |
 | styleConfig | `Partial<TabsStyleConfig> \| null` | The style config of the component. |  |
 
-
 ## Slots
 
 | Slot | Slot Props | Description |
@@ -15,4 +14,3 @@
 | default | `{}` |  |
 | item-left | `{ item: RouteTabItem<T>; }` |  |
 | item-right | `{ item: RouteTabItem<T>; }` |  |
-

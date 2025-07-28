@@ -25,7 +25,9 @@ const props = withDefaults(defineProps<CheckboxGroupProps>(), {
 
 const emit = defineEmits<CheckboxGroupEmits>()
 
-const modelValue = defineModel<TValue[]>({ required: true })
+const modelValue = defineModel<TValue[]>({
+  required: true,
+})
 
 const checkboxGroupRootRef = ref<InstanceType<any> | null>(null)
 

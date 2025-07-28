@@ -2,7 +2,6 @@
 
 A wrapper for your input hints. Use the style configs to customize all hints overall in your project.
 
-
 ## Import
 
 ```ts

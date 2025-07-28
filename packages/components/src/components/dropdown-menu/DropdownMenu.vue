@@ -56,15 +56,21 @@ defineSlots<{
   /**
    * Can be used to render the label of a group.
    */
-  'group-label': ({ label }: { label: any }) => void
+  'group-label': ({
+    label,
+  }: { label: any }) => void
   /**
    * Can be used to render the content for each option.
    */
-  'option-content': ({ item }: { item: DropdownMenuItemType }) => void
+  'option-content': ({
+    item,
+  }: { item: DropdownMenuItemType }) => void
   /**
    * Can be used to render the label of sub menu trigger.
    */
-  'sub-menu-trigger-content': ({ label }: { label: any }) => void
+  'sub-menu-trigger-content': ({
+    label,
+  }: { label: any }) => void
   /**
    * The content that will trigger the dropdown.
    */
@@ -120,7 +126,9 @@ onMounted(() => {
       keyboardShortcutsUnbindFns = []
 
       for (const item of itemsWithKeyboardShortcuts.value) {
-        const { keyboardKeys } = item
+        const {
+          keyboardKeys,
+        } = item
 
         if (keyboardKeys === undefined) {
           continue
@@ -166,7 +174,9 @@ onMounted(() => {
         keyboardShortcutsUnbindFns.push(shortcut.unbind, globalShortcut.unbind)
       }
     },
-    { immediate: true },
+    {
+      immediate: true,
+    },
   )
 })
 

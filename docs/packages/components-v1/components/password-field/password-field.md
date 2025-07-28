@@ -21,7 +21,6 @@ import { VcPasswordField } from '@wisemen/vue-core'
 
 <!-- @include: ./password-field-meta.md -->
 
-
 ## Style configuration
 
 See <a href="/vue-core/components/text-field/text-field.html#style-configuration">Text Field Style configuration</a>
