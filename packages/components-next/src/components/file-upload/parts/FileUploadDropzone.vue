@@ -20,7 +20,9 @@ const {
 const dropzoneRef = ref<InstanceType<any> | null>(null)
 const dropzoneEl = computed<HTMLElement | null>(() => dropzoneRef.value?.$el ?? null)
 
-const { isOverDropZone } = useDropZone(dropzoneEl, {
+const {
+  isOverDropZone,
+} = useDropZone(dropzoneEl, {
   multiple: isMultiple.value,
   onDrop: (files) => {
     if (files !== null && files.length > 0) {
