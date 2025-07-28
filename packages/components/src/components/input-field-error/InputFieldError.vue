@@ -22,7 +22,6 @@ const props = withDefaults(defineProps<{
    */
   styleConfig?: StyleConfig<'inputFieldError'> | null
 }>(), {
-  errors: () => [],
   styleConfig: null,
 })
 
