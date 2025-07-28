@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+
+import { BlurhashUtil } from '@/components/file-upload/blurhash.util'
 import { useInjectFileUploadContext } from '@/components/file-upload/fileUpload.context'
 import type {
-  FileInfo,
+  FileUploadInfo,
   FileUploadItem,
   FileUploadItemPending,
 } from '@/components/file-upload/fileUpload.type'
@@ -13,6 +16,7 @@ const props = defineProps<{
 }>()
 
 const {
+  confirmUpload,
   getFileInfo,
   onError,
   onRemoveFileUploadItem,
@@ -22,7 +26,7 @@ const {
   onUpdateProgress,
 } = useInjectFileUploadContext()
 
-async function getFileInfoData(): Promise<Pick<FileInfo, 'url' | 'uuid'> | null> {
+async function getFileInfoData(): Promise<FileUploadInfo | null> {
   const {
     name, mimeType,
   } = props.item
@@ -79,13 +83,15 @@ async function uploadFile(): Promise<void> {
   }
 
   const {
-    uuid, url,
+    uuid, uploadUrl,
   } = fileInfo
   const {
     file,
   } = props.item as FileUploadItemPending
 
-  uploadToS3(uuid, url, file)
+  await uploadToS3(uuid, uploadUrl, file)
+
+  void confirmUpload(uuid, await BlurhashUtil.encode(file))
 }
 
 function onCancel(): void {}
@@ -95,6 +101,7 @@ if (props.item.status === FileUploadStatus.PENDING) {
 }
 
 useProvideFileUploadItemContext({
+  item: computed<FileUploadItem>(() => props.item),
   onCancel,
   onRemove: () => onRemoveFileUploadItem(props.item),
   onReplace: (file) => onReplaceFileUploadItem(props.item, file),
@@ -102,5 +109,8 @@ useProvideFileUploadItemContext({
 </script>
 
 <template>
-  <slot />
+  <slot
+    :on-remove="() => onRemoveFileUploadItem(props.item)"
+    :on-replace="(file: File) => onReplaceFileUploadItem(props.item, file)"
+  />
 </template>

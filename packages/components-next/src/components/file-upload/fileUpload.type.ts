@@ -1,9 +1,15 @@
 export interface FileInfo {
   uuid: string
   name: string
+  blurHash: string | null
   mimeType: string
   order: number
-  url: string
+  url: string | null
+}
+
+export interface FileUploadInfo {
+  uuid: string
+  uploadUrl: string
 }
 
 export enum FileUploadStatus {
@@ -13,11 +19,15 @@ export enum FileUploadStatus {
   UPLOADING = 'UPLOADING', // Upload in progress
 }
 
-interface BaseFileUploadItem extends FileInfo {
+interface BaseFileUploadItem {
+  uuid: string
   isSyncedWithModelValue: boolean
+  name: string
   // We need a stable key since the uuid can change after `getFileInfo`
   key: string
-  url: string
+  mimeType: string
+  order: number
+  url: string | null
 }
 
 export interface FileUploadItemPending extends BaseFileUploadItem {
@@ -32,6 +42,7 @@ export interface FileUploadItemUploading extends BaseFileUploadItem {
 }
 
 export interface FileUploadItemSuccess extends BaseFileUploadItem {
+  blurHash: string | null
   status: FileUploadStatus.SUCCESS
 }
 
