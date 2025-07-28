@@ -64,6 +64,7 @@
     "@vueuse/core": "catalog:",
     "@vueuse/router": "catalog:",
     "@wisemen/eslint-config-vue": "catalog:",
+    "blurhash": "2.0.5",
     "eslint": "catalog:",
     "globals": "^16.3.0",
     "histoire": "1.0.0-alpha.2",
