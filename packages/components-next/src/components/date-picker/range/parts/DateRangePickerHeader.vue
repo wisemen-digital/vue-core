@@ -25,7 +25,9 @@ const props = defineProps<{
   grid: Grid<DateValue>[]
 }>()
 
-const { locale } = useInjectConfigContext()
+const {
+  locale,
+} = useInjectConfigContext()
 
 const {
   classConfig,
@@ -101,14 +103,14 @@ const yearValue = computed<number>({
           v-if="showTwoMonths"
           class="text-center"
         >
-          <span class="text-primary text-sm font-semibold whitespace-nowrap">
+          <span class="text-sm font-semibold whitespace-nowrap text-primary">
             {{ getMonthName(month.value.month - 1, locale, 'long') }} {{ month.value.year }}
           </span>
         </div>
 
         <div
           v-else
-          class="gap-xxs flex items-center justify-center"
+          class="flex items-center justify-center gap-xxs"
         >
           <Select
             v-model="monthValue"

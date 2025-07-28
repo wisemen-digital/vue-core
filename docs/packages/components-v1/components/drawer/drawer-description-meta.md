@@ -5,4 +5,3 @@
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
 | default | `-` | Use to indicate the description of the drawer. |
-

@@ -1,5 +1,4 @@
-/* eslint-disable ts/explicit-function-return-type */
-
+/* eslint-disable eslint-plugin-wisemen/explicit-function-return-type-with-regex */
 import type { Component } from 'vue'
 
 import type {

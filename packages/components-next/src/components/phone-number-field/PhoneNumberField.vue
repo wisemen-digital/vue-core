@@ -39,10 +39,14 @@ const props = withDefaults(defineProps<PhoneNumberFieldProps>(), {
   variant: null,
 })
 
-const model = defineModel<string | null>({ required: true })
+const model = defineModel<string | null>({
+  required: true,
+})
 
 const globalConfigContext = useInjectConfigContext()
-const { theme } = injectThemeProviderContext()
+const {
+  theme,
+} = injectThemeProviderContext()
 
 const phoneNumberFieldRef = ref<InstanceType<any> | null>(null)
 const phoneNumberFieldEl = computed<HTMLElement | null>(() => phoneNumberFieldRef.value?.$el ?? null)
@@ -120,11 +124,15 @@ const inputModel = computed<string | null>({
 })
 
 const phoneNumberFieldStyle = computed<CreatePhoneNumberFieldStyle>(
-  () => createPhoneNumberFieldStyle({ variant: props.variant ?? undefined }),
+  () => createPhoneNumberFieldStyle({
+    variant: props.variant ?? undefined,
+  }),
 )
 
 const customClassConfig = computed<ResolvedClassConfig<'phoneNumberField'>>(
-  () => getCustomComponentVariant('phoneNumberField', theme.value, { variant: props.variant }),
+  () => getCustomComponentVariant('phoneNumberField', theme.value, {
+    variant: props.variant,
+  }),
 )
 
 const dialCodeDisplayValue = computed<string>(() => `+${getCountryCallingCode(countryCodeModel.value)}`)

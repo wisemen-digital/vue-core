@@ -54,7 +54,9 @@ const emit = defineEmits<{
   search: [searchTerm: string]
 }>()
 
-const model = defineModel<TValue | null>({ required: true })
+const model = defineModel<TValue | null>({
+  required: true,
+})
 
 const isOpen = defineModel<boolean>('isOpen', {
   default: false,

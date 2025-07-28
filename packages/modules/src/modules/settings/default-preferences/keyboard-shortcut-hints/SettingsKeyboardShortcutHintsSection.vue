@@ -11,7 +11,9 @@ import { useDefaultPreference } from '@/modules/settings/default-preferences/def
 import SettingsSection from '@/modules/settings/parts/content/SettingsSection.vue'
 import { isMobileDevice } from '@/utils/device.util'
 
-const { t } = useI18n()
+const {
+  t,
+} = useI18n()
 const value = useDefaultPreference('enableKeyboardShortcutHints')
 
 const label = computed<string>(() => {
@@ -37,8 +39,8 @@ const hint = computed<string>(() => {
       <p
         v-if="isMobileDevice()"
         class="
-          py-sm px-md bg-brand-primary text-brand-primary rounded-md text-sm
-          font-medium
+          rounded-md bg-brand-primary px-md py-sm text-sm font-medium
+          text-brand-primary
         "
       >
         {{ t('module.settings.section.keyboard_shortcut_hints.not_available_on_mobile') }}

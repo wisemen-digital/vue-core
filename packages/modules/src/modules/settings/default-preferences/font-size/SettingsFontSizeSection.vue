@@ -9,7 +9,9 @@ import { useI18n } from 'vue-i18n'
 import { useDefaultPreference } from '@/modules/settings/default-preferences/defaultPreferences'
 import SettingsSection from '@/modules/settings/parts/content/SettingsSection.vue'
 
-const { t } = useI18n()
+const {
+  t,
+} = useI18n()
 const id = useId()
 
 const options = [

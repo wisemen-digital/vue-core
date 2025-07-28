@@ -46,7 +46,9 @@ export const createDateRangePickerStyle = tv({
       .withBackgroundColor('bg-brand-solid group-data-selection-start/date:bg-white group-data-selection-end/date:bg-white group-data-highlighted-start/date:bg-white group-data-highlighted-end/date:bg-white')
       .build(),
   },
-  variants: { variant: {} },
+  variants: {
+    variant: {},
+  },
 })
 
 export type DateRangePickerStyle = VariantProps<typeof createDateRangePickerStyle>

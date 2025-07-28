@@ -16,8 +16,9 @@ const props = defineProps<{
   >
     <div
       class="
-        border-secondary relative h-30 overflow-hidden rounded-xl border
-        border-solid outline-2 outline-offset-1 outline-transparent duration-500
+        relative h-30 overflow-hidden rounded-xl border border-solid
+        border-secondary outline-2 outline-offset-1 outline-transparent
+        duration-500
         group-data-[state=checked]/radio-group-item:outline-brand-500
       "
     >
@@ -31,7 +32,7 @@ const props = defineProps<{
       </div>
     </div>
 
-    <label class="text-primary mt-md inline-block truncate text-sm font-medium">
+    <label class="mt-md inline-block truncate text-sm font-medium text-primary">
       <TextHighlight :text="props.label" />
     </label>
   </VcRadioGroupItemRoot>

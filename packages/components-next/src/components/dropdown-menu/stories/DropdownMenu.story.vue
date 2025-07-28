@@ -64,11 +64,11 @@ import DropdownMenuSubMenu from '@/components/dropdown-menu/parts/DropdownMenuSu
                 label="Logout"
               >
                 <template #right>
-                  <div class="gap-xs flex text-xs">
+                  <div class="flex gap-xs text-xs">
                     <span
                       class="
-                        bg-error-primary text-error-primary flex size-5
-                        items-center justify-center rounded-xs duration-200
+                        flex size-5 items-center justify-center rounded-xs
+                        bg-error-primary text-error-primary duration-200
                         group-data-highlighted/dropdown-menu-item:bg-error-secondary
                       "
                     >
@@ -77,8 +77,8 @@ import DropdownMenuSubMenu from '@/components/dropdown-menu/parts/DropdownMenuSu
 
                     <span
                       class="
-                        bg-error-primary text-error-primary flex size-5
-                        items-center justify-center rounded-xs duration-200
+                        flex size-5 items-center justify-center rounded-xs
+                        bg-error-primary text-error-primary duration-200
                         group-data-highlighted/dropdown-menu-item:bg-error-secondary
                       "
                     >

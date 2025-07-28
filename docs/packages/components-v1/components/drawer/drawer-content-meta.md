@@ -6,10 +6,8 @@
 | ---- | ---- | ----------- | ------- |
 | **shouldPreventClickOutside*** | `boolean` |  |  |
 
-
 ## Slots
 
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
 | default | `-` | Use to indicate the main content of the drawer. |
-

@@ -40,12 +40,18 @@ const isOpen = defineModel<boolean>('isOpen', {
   required: false,
 })
 
-const { theme } = injectThemeProviderContext()
+const {
+  theme,
+} = injectThemeProviderContext()
 
-const tooltipStyle = computed<CreateTooltipStyle>(() => createTooltipStyle({ variant: props.variant ?? undefined }))
+const tooltipStyle = computed<CreateTooltipStyle>(() => createTooltipStyle({
+  variant: props.variant ?? undefined,
+}))
 
 const customClassConfig = computed<CustomComponentVariant<'tooltip'>>(
-  () => getCustomComponentVariant('tooltip', theme.value, { variant: props.variant }),
+  () => getCustomComponentVariant('tooltip', theme.value, {
+    variant: props.variant,
+  }),
 )
 
 useProvideTooltipContext({

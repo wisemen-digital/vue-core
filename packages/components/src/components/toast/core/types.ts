@@ -3,15 +3,15 @@ import type {
   CSSProperties,
 } from 'vue'
 
-export type ToastTypes =
-  | 'action'
-  | 'default'
-  | 'error'
-  | 'info'
-  | 'loading'
-  | 'normal'
-  | 'success'
-  | 'warning'
+export type ToastTypes
+  = | 'action'
+    | 'default'
+    | 'error'
+    | 'info'
+    | 'loading'
+    | 'normal'
+    | 'success'
+    | 'warning'
 
 export type PromiseT<Data = any> = (() => Promise<Data>) | Promise<Data>
 
@@ -86,13 +86,13 @@ export interface ToastT<T extends Component = Component> {
   onDismiss?: (toast: ToastT) => void
 }
 
-export type Position =
-  | 'bottom-center'
-  | 'bottom-left'
-  | 'bottom-right'
-  | 'top-center'
-  | 'top-left'
-  | 'top-right'
+export type Position
+  = | 'bottom-center'
+    | 'bottom-left'
+    | 'bottom-right'
+    | 'top-center'
+    | 'top-left'
+    | 'top-right'
 
 export interface HeightT {
   toastId: number | string

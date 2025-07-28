@@ -8,14 +8,14 @@ const props = defineProps<{
   <div>
     <span
       class="
-        text-quaternary bg-secondary-subtle pb-xxs sticky top-0 z-20
-        inline-block w-full text-xs font-bold uppercase
+        sticky top-0 z-20 inline-block w-full bg-secondary-subtle pb-xxs text-xs
+        font-bold text-quaternary uppercase
       "
     >
       {{ props.label }}
     </span>
 
-    <ul class="gap-y-sm mt-md flex flex-col">
+    <ul class="mt-md flex flex-col gap-y-sm">
       <slot />
     </ul>
   </div>

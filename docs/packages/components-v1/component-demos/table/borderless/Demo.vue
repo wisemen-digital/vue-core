@@ -30,7 +30,9 @@ const columns = computed<TableColumn<Index>[]>(() => [
   {
     cell: (row: Index): VNode => h(
       VcTableCell,
-      { isPrimaryCell: true },
+      {
+        isPrimaryCell: true,
+      },
       {
         default: () => [
           h('p', null, row.name),
@@ -45,7 +47,9 @@ const columns = computed<TableColumn<Index>[]>(() => [
     cell: (row: Index): VNode => h(
       VcTableCell,
       null,
-      { default: () => `${row.age} years old` },
+      {
+        default: () => `${row.age} years old`,
+      },
     ),
     headerLabel: 'Age',
     key: 'name',

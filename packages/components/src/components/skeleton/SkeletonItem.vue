@@ -25,7 +25,7 @@ const themeProviderContext = injectThemeProviderContext()
   <div
     :aria-busy="true"
     :class="ThemeUtil.getClasses(themeProviderContext.theme.value, themeProviderContext.appearance.value)"
-    class="bg-secondary-subtle relative overflow-hidden rounded"
+    class="rounded relative overflow-hidden bg-secondary-subtle"
     role="status"
     aria-live="polite"
   >
@@ -35,7 +35,7 @@ const themeProviderContext = injectThemeProviderContext()
         animationDelay: `${props.animationDelayInMs}ms`,
       }"
       class="
-        animate-shimmer absolute inset-0 -translate-x-full bg-gradient-to-r
+        absolute inset-0 -translate-x-full animate-shimmer bg-gradient-to-r
         from-transparent via-white/60 to-transparent
         dark:via-black/30
       "

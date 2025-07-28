@@ -25,9 +25,13 @@ const props = defineProps<AddressAutocompleteProps>()
 
 const emit = defineEmits<AddressAutocompleteEmits>()
 
-const modelValue = defineModel<Address | null>({ required: true })
+const modelValue = defineModel<Address | null>({
+  required: true,
+})
 
-const { googleMapsApiKey } = useInjectConfigContext()
+const {
+  googleMapsApiKey,
+} = useInjectConfigContext()
 
 const isLoading = ref<boolean>(false)
 const addressResults = ref<FormattedAddress[]>([])
@@ -76,7 +80,9 @@ async function onSearch(searchTerm: string): Promise<void> {
       formattedAddress = formattedAddress.replace(regex, `/bus ${busNumber}`)
     }
 
-    const results = await autocompleteService.fetchAutocompleteSuggestions({ input: formattedAddress })
+    const results = await autocompleteService.fetchAutocompleteSuggestions({
+      input: formattedAddress,
+    })
 
     addressResults.value = results.suggestions
       .filter((suggestion) => suggestion.placePrediction !== null)
@@ -119,7 +125,9 @@ async function createAutocompleteSuggestionService(
     ],
   })
 
-  const { AutocompleteSuggestion } = await loader.importLibrary('places')
+  const {
+    AutocompleteSuggestion,
+  } = await loader.importLibrary('places')
 
   return AutocompleteSuggestion
 }

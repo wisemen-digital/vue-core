@@ -8,7 +8,9 @@ const props = defineProps<{
   column: TableColumn<any>
 }>()
 
-useProvideTableHeaderCellContext({ column: computed<TableColumn<any>>(() => props.column) })
+useProvideTableHeaderCellContext({
+  column: computed<TableColumn<any>>(() => props.column),
+})
 </script>
 
 <template>

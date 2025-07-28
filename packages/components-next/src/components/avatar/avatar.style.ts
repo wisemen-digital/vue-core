@@ -22,7 +22,9 @@ export const createAvatarStyle = tv({
       .withBorderRadius('rounded-full')
       .build(),
   },
-  variants: { variant: {} },
+  variants: {
+    variant: {},
+  },
 })
 
 export type AvatarStyle = VariantProps<typeof createAvatarStyle>

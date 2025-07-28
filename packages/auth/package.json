@@ -27,6 +27,7 @@
   ],
   "scripts": {
     "build": "unbuild",
+    "cleanup": "rimraf dist/ node_modules/ .turbo/",
     "dev": "unbuild --stub",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",

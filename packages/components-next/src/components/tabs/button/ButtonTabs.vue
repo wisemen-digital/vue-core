@@ -28,7 +28,9 @@ defineSlots<{
   items: () => void
 }>()
 
-const modelValue = defineModel<string>({ required: true })
+const modelValue = defineModel<string>({
+  required: true,
+})
 </script>
 
 <template>

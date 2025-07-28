@@ -15,14 +15,22 @@ describe('checkbox Component', () => {
   })
 
   it('accepts a checked prop', () => {
-    const wrapper = mount(Checkbox, { props: { modelValue: true } })
+    const wrapper = mount(Checkbox, {
+      props: {
+        modelValue: true,
+      },
+    })
     const checkboxButton = wrapper.find('button[role="checkbox"]')
 
     expect(checkboxButton.attributes('aria-checked')).toBe('true')
   })
 
   it('emits update:modelValue when clicked', async () => {
-    const wrapper = mount(Checkbox, { props: { modelValue: false } })
+    const wrapper = mount(Checkbox, {
+      props: {
+        modelValue: false,
+      },
+    })
     const checkboxButton = wrapper.find('button[role="checkbox"]')
 
     await checkboxButton.trigger('click')

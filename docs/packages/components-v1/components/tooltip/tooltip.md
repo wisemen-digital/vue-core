@@ -27,7 +27,6 @@ import { VcTooltip } from '@wisemen/vue-core'
 
 <!-- @include: ./tooltip-meta.md -->
 
-
 ## Examples
 
 ### Basic usage

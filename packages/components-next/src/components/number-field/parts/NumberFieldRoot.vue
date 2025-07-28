@@ -42,7 +42,9 @@ const props = withDefaults(defineProps<NumberFieldProps>(), {
 
 const emit = defineEmits<NumberFieldEmits>()
 
-const modelValue = defineModel<number | null>({ required: true })
+const modelValue = defineModel<number | null>({
+  required: true,
+})
 
 const delegatedModel = computed<number | undefined>({
   get: () => modelValue.value ?? undefined,
@@ -57,15 +59,23 @@ const delegatedModel = computed<number | undefined>({
   },
 })
 
-const { locale } = useInjectConfigContext()
-const { theme } = injectThemeProviderContext()
+const {
+  locale,
+} = useInjectConfigContext()
+const {
+  theme,
+} = injectThemeProviderContext()
 
 const numberFieldStyle = computed<CreateNumberFieldStyle>(
-  () => createNumberFieldStyle({ variant: props.variant ?? undefined }),
+  () => createNumberFieldStyle({
+    variant: props.variant ?? undefined,
+  }),
 )
 
 const customClassConfig = computed<ResolvedClassConfig<'numberField'>>(
-  () => getCustomComponentVariant('numberField', theme.value, { variant: props.variant }),
+  () => getCustomComponentVariant('numberField', theme.value, {
+    variant: props.variant,
+  }),
 )
 
 function onBlur(event: FocusEvent): void {

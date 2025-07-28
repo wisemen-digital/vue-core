@@ -8,7 +8,6 @@
 | **modelValue*** | `TabItem<T>` |  |  |
 | styleConfig | `Partial<TabsStyleConfig> \| null` | The style config of the component. |  |
 
-
 ## Slots
 
 | Slot | Slot Props | Description |
@@ -18,13 +17,11 @@ Wrap each content with VcTabsContent and set the value prop to the tab value for
 | item-left | `{ item: TabItem<T>; }` | Use this to add content to the left of the tab label. |
 | item-right | `{ item: TabItem<T>; }` | Use this to add content to the right of the tab label. |
 
-
 ## Events
 
 | Event name | Type | Description |
 | ---------- | ---- | ----------- |
 | `update:modelValue` | [modelValue: TabItem\<T\>] |  |
-
 
 ## Style configuration
 
@@ -69,4 +66,3 @@ export interface TabsStyleConfig  {
   '--tabs-item-text-color-hover': string
 }
 ```
-

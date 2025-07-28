@@ -28,14 +28,20 @@ const isLoading = ref<boolean>(true)
 
 const pagination = usePagination({
   isRouteQueryEnabled: false,
-  options: { filter: { search: 'Example' } },
+  options: {
+    filter: {
+      search: 'Example',
+    },
+  },
 })
 
 const columns = computed<TableColumn<User>[]>(() => [
   {
     key: 'id',
     headerLabel: 'ID',
-    cell: (data): VNode => h(VcTableCell, { class: 'justify-center' }, () => data.id),
+    cell: (data): VNode => h(VcTableCell, {
+      class: 'justify-center',
+    }, () => data.id),
   },
   {
     key: 'firstName',

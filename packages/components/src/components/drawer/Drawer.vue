@@ -31,7 +31,9 @@ defineSlots<{
   default: () => void
 }>()
 
-const isOpen = defineModel<boolean>('isOpen', { default: false })
+const isOpen = defineModel<boolean>('isOpen', {
+  default: false,
+})
 
 const attrs = useAttrs()
 
@@ -257,10 +259,8 @@ watch(isActuallyOpen, () => {
 }
 
 ::view-transition-old(drawer),
-::view-transition-new(drawer)
-::view-transition-old(drawer-leave),
-::view-transition-new(drawer-leave)
-{
+::view-transition-new(drawer) ::view-transition-old(drawer-leave),
+::view-transition-new(drawer-leave) {
   height: 100%;
   width: 100%;
   object-fit: fill;

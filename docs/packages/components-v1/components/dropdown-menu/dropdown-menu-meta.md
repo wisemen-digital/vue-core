@@ -15,7 +15,6 @@
 | popoverWidth | `PopperWidth \| null` | The width of the popper. | `"available-width"` |
 | styleConfig | `Partial<DropdownMenuStyleConfig> \| null` | The style config of the component. | `null` |
 
-
 ## Slots
 
 | Slot | Slot Props | Description |
@@ -27,7 +26,6 @@
 | option-content | `{ item: DropdownMenuItem; }` | Can be used to render the content for each option. |
 | sub-menu-trigger-content | `{ label: any; }` | Can be used to render the label of sub menu trigger. |
 | trigger | `-` | The content that will trigger the dropdown. |
-
 
 ## Style configuration
 
@@ -89,4 +87,3 @@ export interface DropdownMenuStyleConfig  {
   '--dropdown-menu-shadow-default': string
 }
 ```
-

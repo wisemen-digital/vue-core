@@ -47,7 +47,6 @@ defineStyleConfig({
 })
 ```
 
-
 ## Prop-Based Customization
 
 You can also customize a component by providing a `style-config` prop directly to it. This approach is useful when the customization is minimal and does not require creating a separate configuration with `defineStyleConfig`. This allows for inline and scoped styling on a per-instance basis.
@@ -56,7 +55,7 @@ You can also customize a component by providing a `style-config` prop directly t
 
 ```vue
 <template>
-  <Button 
+  <Button
     :style-config="{
       '--button-bg-color-default': 'var(--bg-primary)',
       '--button-border-radius-default': 'var(--radius-md)',
@@ -66,7 +65,6 @@ You can also customize a component by providing a `style-config` prop directly t
   </AppButton>
 </template>
 ```
-
 
 ## Examples & recommanded structure
 1. Create your custom style.

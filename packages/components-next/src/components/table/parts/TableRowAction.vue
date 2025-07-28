@@ -8,7 +8,9 @@ const props = defineProps<{
   data: any
 }>()
 
-const { rowAction } = useInjectTableContext()
+const {
+  rowAction,
+} = useInjectTableContext()
 </script>
 
 <template>

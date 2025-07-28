@@ -40,8 +40,12 @@ const columns = computed<TableColumn<Index>[]>(() => [
 
 const data: PaginatedData<Index> = {
   data: [
-    { name: 'John Doe' },
-    { name: 'Jane Doe' },
+    {
+      name: 'John Doe',
+    },
+    {
+      name: 'Jane Doe',
+    },
   ],
   meta: {
     total: 2,

@@ -7,9 +7,13 @@ const props = withDefaults(defineProps<{
    * @default false
    */
   isDisabled?: boolean
-}>(), { isDisabled: false })
+}>(), {
+  isDisabled: false,
+})
 
-const isToggledModel = defineModel<boolean>({ required: true })
+const isToggledModel = defineModel<boolean>({
+  required: true,
+})
 
 function onToggle(): void {
   isToggledModel.value = !isToggledModel.value

@@ -57,7 +57,9 @@ export class ApiClient {
         refresh_token: refreshToken,
         scope: this.options.scopes?.join(' ') ?? '',
       }),
-      headers: new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' }),
+      headers: new Headers({
+        'Content-Type': 'application/x-www-form-urlencoded',
+      }),
       method: 'POST',
     })
 
@@ -136,7 +138,11 @@ export class ApiClient {
   async getUserInfo(): Promise<ZitadelUser> {
     const accessToken = await this.getAccessToken()
 
-    const response = await fetch(`${this.getBaseUrl()}/oidc/v1/userinfo`, { headers: new Headers({ Authorization: `Bearer ${accessToken}` }) })
+    const response = await fetch(`${this.getBaseUrl()}/oidc/v1/userinfo`, {
+      headers: new Headers({
+        Authorization: `Bearer ${accessToken}`,
+      }),
+    })
 
     return await response.json() as ZitadelUser
   }
@@ -166,7 +172,9 @@ export class ApiClient {
         grant_type: 'authorization_code',
         redirect_uri: this.options.redirectUri,
       }),
-      headers: new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' }),
+      headers: new Headers({
+        'Content-Type': 'application/x-www-form-urlencoded',
+      }),
       method: 'POST',
     })
 

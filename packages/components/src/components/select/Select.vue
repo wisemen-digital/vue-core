@@ -74,11 +74,15 @@ defineSlots<{
   /**
    * Can be used to render content when no results are found.
    */
-  'empty': ({ searchTerm }: { searchTerm: string }) => void
+  'empty': ({
+    searchTerm,
+  }: { searchTerm: string }) => void
   /**
    * Can be used to render a custom error message.
    */
-  'error': ({ errors }: { errors: string[] }) => void
+  'error': ({
+    errors,
+  }: { errors: string[] }) => void
   /**
    * Can be used to render the filter. Only rendered when `filterFn` is provided.
    */
@@ -86,11 +90,15 @@ defineSlots<{
   /**
    * Can be used to render the label of a group.
    */
-  'group-label': ({ label }: { label: any }) => void
+  'group-label': ({
+    label,
+  }: { label: any }) => void
   /**
    * Can be used to render a custom hint message.
    */
-  'hint': ({ hint }: { hint: string | null }) => void
+  'hint': ({
+    hint,
+  }: { hint: string | null }) => void
   /**
    * The icon to the left of the input.
    */
@@ -102,7 +110,9 @@ defineSlots<{
   /**
    * Can be used to render a custom label.
    */
-  'label': ({ label }: { label: string | null }) => void
+  'label': ({
+    label,
+  }: { label: string | null }) => void
   /**
    * The content to display on the left side.
    */
@@ -114,15 +124,21 @@ defineSlots<{
   /**
    * Can be used to replace the entire option with custom content.
    */
-  'option': ({ item }: { item: SelectItem<TValue> }) => void
+  'option': ({
+    item,
+  }: { item: SelectItem<TValue> }) => void
   /**
    * Can be used to render the content for each option.
    */
-  'option-content': ({ item }: { item: SelectOption<TValue> }) => void
+  'option-content': ({
+    item,
+  }: { item: SelectOption<TValue> }) => void
   /**
    * Can be used to render a custom indicator for each option.
    */
-  'option-indicator': ({ item }: { item: SelectItem<TValue> }) => void
+  'option-indicator': ({
+    item,
+  }: { item: SelectItem<TValue> }) => void
   /**
    * The content to display on the right side.
    */
@@ -134,14 +150,20 @@ defineSlots<{
   /**
    * Only when you want to select multiple values: use to render a custom tag per selected item.
    */
-  'tag': ({ value }: { value: TValue }) => void
+  'tag': ({
+    value,
+  }: { value: TValue }) => void
   /**
    * Can be used to render the selected value(s).
    */
-  'value': ({ value }: { value: TValue }) => void
+  'value': ({
+    value,
+  }: { value: TValue }) => void
 }>()
 
-const model = defineModel<TValue | null>({ required: true })
+const model = defineModel<TValue | null>({
+  required: true,
+})
 
 const attrs = useAttrs()
 const slots = useSlots()

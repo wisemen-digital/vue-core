@@ -36,7 +36,6 @@
 | virtualList | `{ optionHeight: number; } \| null` | Whether the select should use a virtual list.
 When enabled, items must be restricted to the option type | `null` |
 
-
 ## Slots
 
 | Slot | Slot Props | Description |
@@ -62,7 +61,6 @@ When enabled, items must be restricted to the option type | `null` |
 | tag | `{ value: SelectValue; }` | Only when you want to select multiple values: use to render a custom tag per selected item. |
 | value | `{ value: SelectValue; }` | Can be used to render the selected value(s). |
 
-
 ## Events
 
 | Event name | Type | Description |
@@ -71,7 +69,6 @@ When enabled, items must be restricted to the option type | `null` |
 | `focus` | [] |  |
 | `select` | [value: SelectValue] |  |
 | `update:modelValue` | [modelValue: SelectValue] |  |
-
 
 ## Style configuration
 
@@ -195,4 +192,3 @@ export interface SelectStyleConfig extends SelectOptionStyleConfig {
   '--select-with-icon-right-padding-right-default': string
 }
 ```
-

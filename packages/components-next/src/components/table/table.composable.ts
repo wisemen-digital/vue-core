@@ -42,7 +42,9 @@ export function useTable(
   useInfiniteScroll(
     computed<HTMLElement | null>(() => tableScrollContainerRef.value),
     onNextPage,
-    { distance: DEFAULT_INFINITE_SCROLL_DISTANCE },
+    {
+      distance: DEFAULT_INFINITE_SCROLL_DISTANCE,
+    },
   )
 
   const gridTemplateColumns = computed<string>(() => (

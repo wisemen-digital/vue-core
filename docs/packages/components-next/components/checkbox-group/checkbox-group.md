@@ -38,4 +38,3 @@ import {
 ### Error
 
 <ComponentPreview name="checkbox-group/examples/error" />
-

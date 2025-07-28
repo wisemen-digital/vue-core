@@ -10,10 +10,8 @@
 | pagination | `{ limit?: number; }` | Define the default pagination limit used in the usePagination composable. |  |
 | teleportTargetSelector | `string` | The selector for the teleport target. |  |
 
-
 ## Slots
 
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
 | default | `-` | Wrap your application in this component to provide configuration to all components. |
-

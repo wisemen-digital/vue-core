@@ -29,7 +29,6 @@ import { VcNumberField } from '@wisemen/vue-core'
 
 <!-- @include: ./number-field-meta.md -->
 
-
 ## Style configuration
 
 See <a href="/vue-core/components/text-field/text-field.html#style-configuration">Text Field Style configuration</a>

@@ -7,7 +7,9 @@ const emit = defineEmits<{
   'update:activeDialogCount': [count: number]
 }>()
 
-const { dialogs } = useDialogContainer()
+const {
+  dialogs,
+} = useDialogContainer()
 
 watch(dialogs, (dialogs) => {
   const activeDialogs = dialogs.filter((dialog) => dialog.isOpen)

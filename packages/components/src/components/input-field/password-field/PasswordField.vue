@@ -37,22 +37,32 @@ defineSlots<{
   /**
    * Can be used to render a custom error message.
    */
-  error: ({ errors }: { errors: string[] }) => void
+  error: ({
+    errors,
+  }: { errors: string[] }) => void
   /**
    * Can be used to render a custom hint message.
    */
-  hint: ({ hint }: { hint: string | null }) => void
+  hint: ({
+    hint,
+  }: { hint: string | null }) => void
   /**
    * Can be used to render a custom label.
    */
-  label: ({ label }: { label: string | null }) => void
+  label: ({
+    label,
+  }: { label: string | null }) => void
 }>()
 
-const model = defineModel<string | null>({ required: true })
+const model = defineModel<string | null>({
+  required: true,
+})
 
 const isPasswordVisible = ref<boolean>(false)
 
-const { t } = useI18n()
+const {
+  t,
+} = useI18n()
 
 const inputType = computed<'password' | 'text'>(
   () => isPasswordVisible.value ? 'text' : 'password',

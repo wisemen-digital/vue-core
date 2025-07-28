@@ -58,7 +58,7 @@ import { VcRadioGroupItem } from '@wisemen/vue-core'
 # Radio Group Item Indicator
 
 The default indicator for a radio group item. <br>
-If you want your radio item to have a special design, you can customize the rendering of the radio content. 
+If you want your radio item to have a special design, you can customize the rendering of the radio content.
 You can use the VcRadioGroupItemIndicator to render the state
 
 ## Indicator Import

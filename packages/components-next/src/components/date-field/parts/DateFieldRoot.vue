@@ -52,8 +52,12 @@ const props = withDefaults(defineProps<DateFieldProps>(), {
 
 const emit = defineEmits<DateFieldEmits>()
 
-const modelValue = defineModel<TValue | null>({ required: true })
-const placeholderValue = defineModel<TValue | null>('placeholderValue', { required: false })
+const modelValue = defineModel<TValue | null>({
+  required: true,
+})
+const placeholderValue = defineModel<TValue | null>('placeholderValue', {
+  required: false,
+})
 
 const delegatedModel = computed<DateValue | null>({
   get: () => {
@@ -83,17 +87,25 @@ const delegatedPlaceholderValue = computed<Date>({
   },
 })
 
-const { locale } = useInjectConfigContext()
-const { theme } = injectThemeProviderContext()
+const {
+  locale,
+} = useInjectConfigContext()
+const {
+  theme,
+} = injectThemeProviderContext()
 
 const isFocused = ref<boolean>(false)
 
 const dateFieldStyle = computed<CreateDateFieldStyle>(
-  () => createDateFieldStyle({ variant: props.variant ?? undefined }),
+  () => createDateFieldStyle({
+    variant: props.variant ?? undefined,
+  }),
 )
 
 const customClassConfig = computed<ResolvedClassConfig<'dateField'>>(
-  () => getCustomComponentVariant('dateField', theme.value, { variant: props.variant }),
+  () => getCustomComponentVariant('dateField', theme.value, {
+    variant: props.variant,
+  }),
 )
 
 function onFocus(event: FocusEvent): void {

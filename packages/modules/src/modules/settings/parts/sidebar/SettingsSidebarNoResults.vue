@@ -7,13 +7,15 @@ const {
   filteredCategories, searchTerm,
 } = useInjectSettingsContext()
 
-const { t } = useI18n()
+const {
+  t,
+} = useI18n()
 </script>
 
 <template>
   <p
     v-if="filteredCategories.length === 0"
-    class="text-tertiary text-sm break-words"
+    class="text-sm break-words text-tertiary"
   >
     {{ t('module.settings.no_results', { searchTerm }) }}
   </p>

@@ -25,6 +25,7 @@
     "build-deprecated": "pnpm type-check && pnpm build-only && npm pack && cpx web-types.json dist/web-types.json",
     "precommit": "pnpm type-check && test:unit && pnpm build-only",
     "build-only": "vite build",
+    "cleanup": "rimraf dist/ node_modules/ .turbo/",
     "type-check": "vue-tsc -p tsconfig.check.json --noEmit",
     "pub:release": "pnpm publish --access public",
     "gen:web-types": "vue-docgen-web-types",

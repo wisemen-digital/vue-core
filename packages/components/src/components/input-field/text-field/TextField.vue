@@ -52,11 +52,15 @@ defineSlots<{
   /**
    * Can be used to render a custom error message.
    */
-  'error': ({ errors }: { errors: string[] }) => void
+  'error': ({
+    errors,
+  }: { errors: string[] }) => void
   /**
    * Can be used to render a custom hint message.
    */
-  'hint': ({ hint }: { hint: string | null }) => void
+  'hint': ({
+    hint,
+  }: { hint: string | null }) => void
   /**
    * The content to display on the left side.
    */
@@ -68,7 +72,9 @@ defineSlots<{
   /**
    * Can be used to render a custom label.
    */
-  'label': ({ label }: { label: string | null }) => void
+  'label': ({
+    label,
+  }: { label: string | null }) => void
   /**
    * The content to display on the left side. (Will show under the icon-left slot)
    */
@@ -83,7 +89,9 @@ defineSlots<{
   'right': () => null
 }>()
 
-const model = defineModel<TValue | null>({ required: true })
+const model = defineModel<TValue | null>({
+  required: true,
+})
 
 const themeProviderContext = injectThemeProviderContext()
 const textFieldStyle = useTextFieldStyle()

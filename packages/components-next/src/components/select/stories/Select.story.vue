@@ -9,7 +9,9 @@ const arrayValue = ref<string[]>([
   'First item',
   'Second item',
 ])
-const items = Array.from(Array.from({ length: 2000 }), (_, i) => `${i + 1}`)
+const items = Array.from(Array.from({
+  length: 2000,
+}), (_, i) => `${i + 1}`)
 </script>
 
 <template>

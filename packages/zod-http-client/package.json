@@ -33,6 +33,7 @@
     "prepublishOnly": "nr build",
     "release": "bumpp && npm publish",
     "start": "esno src/index.ts",
+    "cleanup": "rimraf dist/ node_modules/ .turbo/",
     "test": "vitest --run",
     "type-check": "tsc --noEmit"
   },

@@ -24,10 +24,14 @@ defineSlots<{
   /**
    * Use this to render your own pagination controls.
    */
-  item: ({ page }: { page: string }) => void
+  item: ({
+    page,
+  }: { page: string }) => void
 }>()
 
-const { n } = useI18n()
+const {
+  n,
+} = useI18n()
 
 const paginationListItemRef = ref<InstanceType<typeof PaginationListItem> | null>(null)
 </script>
@@ -49,9 +53,9 @@ const paginationListItemRef = ref<InstanceType<typeof PaginationListItem> | null
           variant="tertiary"
           size="sm"
           class="
-            data-[selected]:bg-primary-hover
-            data-[selected]:border-(--bg-primary-hover)
             min-w-9
+            data-[selected]:border-(--bg-primary-hover)
+            data-[selected]:bg-primary-hover
           "
         >
           {{ n(page.value) }}

@@ -12,7 +12,9 @@ function findAddressComponent(
 }
 
 export async function getAddressByPlaceId(placeId: string): Promise<Address> {
-  const place = new google.maps.places.Place({ id: placeId })
+  const place = new google.maps.places.Place({
+    id: placeId,
+  })
 
   await place.fetchFields({
     fields: [

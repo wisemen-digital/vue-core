@@ -21,9 +21,13 @@ import { useI18n } from 'vue-i18n'
 
 import { useInjectSettingsContext } from '@/modules/settings/settings.context'
 
-const { searchTerm } = useInjectSettingsContext()
+const {
+  searchTerm,
+} = useInjectSettingsContext()
 
-const { t } = useI18n()
+const {
+  t,
+} = useI18n()
 const id = useId()
 
 const SHORTCUT_KEYS: VcKeyboardShortcutProps['keyboardKeys'] = [

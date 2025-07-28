@@ -65,7 +65,9 @@ const model = computed<Address | null>({
 
 const globalConfigContext = injectConfigContext()
 
-const { t } = useI18n()
+const {
+  t,
+} = useI18n()
 const toast = useToast()
 
 const isLoading = ref<boolean>(false)
@@ -91,7 +93,9 @@ const debounceSearch = useDebounceFn(async (value: string) => {
     predictions.value = await fetchPredictions(value)
   }
   catch {
-    toast.error({ message: t('component.address_autocomplete.failed_to_fetch') })
+    toast.error({
+      message: t('component.address_autocomplete.failed_to_fetch'),
+    })
   }
 
   isLoading.value = false
@@ -117,7 +121,9 @@ async function fetchPredictions(searchTerm: string): Promise<AutocompletePredict
     return response.predictions
   }
   catch {
-    toast.error({ message: t('component.address_autocomplete.failed_to_fetch') })
+    toast.error({
+      message: t('component.address_autocomplete.failed_to_fetch'),
+    })
   }
 
   return []
@@ -166,7 +172,9 @@ async function getAddressFormByPlaceId(placeId: string): Promise<Address> {
   const placesService = new google.maps.places.PlacesService(document.createElement('div'))
 
   const place = await new Promise((resolve: (value: PlaceResult) => void) => {
-    placesService.getDetails({ placeId }, (place, status) => {
+    placesService.getDetails({
+      placeId,
+    }, (place, status) => {
       if (place === null) {
         throw new Error('Place not found')
       }
@@ -221,10 +229,14 @@ watch(() => props.modelValue, (value) => {
     id: '',
     label: formatAddressObjectToString(value),
   }
-}, { immediate: true })
+}, {
+  immediate: true,
+})
 
 onMounted(async () => {
-  const { googleMapsApiKey } = globalConfigContext
+  const {
+    googleMapsApiKey,
+  } = globalConfigContext
 
   if (googleMapsApiKey === null) {
     loader = null

@@ -19,7 +19,6 @@ Expanded calendar component
   ]"
 />
 
-
 ## Import
 
 ```ts

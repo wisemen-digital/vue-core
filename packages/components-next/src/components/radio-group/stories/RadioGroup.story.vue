@@ -13,7 +13,7 @@ const value = ref<string | null>(null)
       v-model="value"
       label="Group"
     >
-      <div class="gap-y-md flex flex-col">
+      <div class="flex flex-col gap-y-md">
         <RadioGroupItem
           value="1"
           label="Option 1"

@@ -22,7 +22,9 @@ const {
   onClearFiltersAndSearch,
 } = useInjectTableContext()
 
-const { t } = useI18n()
+const {
+  t,
+} = useI18n()
 
 const ROW_COUNT = 10
 </script>
@@ -31,7 +33,7 @@ const ROW_COUNT = 10
   <div
     v-if="isEmpty || isLoading"
     :style="{ gridTemplateColumns }"
-    class="bg-primary relative grid overflow-hidden"
+    class="relative grid overflow-hidden bg-primary"
   >
     <TableHeader />
 
@@ -48,10 +50,10 @@ const ROW_COUNT = 10
       >
         <Icon
           icon="search"
-          class="text-secondary mx-auto size-6"
+          class="mx-auto size-6 text-secondary"
         />
 
-        <p class="text-primary mt-xl text-lg font-semibold">
+        <p class="mt-xl text-lg font-semibold text-primary">
           <template v-if="activeFilterCount > 0">
             {{ t('component.table.no_results.title') }}
           </template>
@@ -61,7 +63,7 @@ const ROW_COUNT = 10
           </template>
         </p>
 
-        <p class="text-secondary pb-xl pt-md mx-auto max-w-92 text-sm">
+        <p class="mx-auto max-w-92 pt-md pb-xl text-sm text-secondary">
           <template v-if="activeFilterCount > 0">
             {{ t('component.table.no_results.description') }}
           </template>
@@ -104,7 +106,7 @@ const ROW_COUNT = 10
                 class: mergeClasses(classConfig?.cellSkeleton, customClassConfig?.cellSkeleton),
               })"
             >
-              <div class="bg-tertiary h-4 rounded-md" />
+              <div class="h-4 rounded-md bg-tertiary" />
             </div>
           </TableCellLayout>
         </div>

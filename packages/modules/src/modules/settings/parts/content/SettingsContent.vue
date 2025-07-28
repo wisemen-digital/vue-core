@@ -26,7 +26,7 @@ const hiddenSectionCount = computed<number>(() => {
 </script>
 
 <template>
-  <div class="pb-2xl h-full overflow-auto">
+  <div class="h-full overflow-auto pb-2xl">
     <SettingsSectionProvider
       v-for="section of filteredSections"
       :key="section.id"
@@ -40,7 +40,7 @@ const hiddenSectionCount = computed<number>(() => {
           last:hidden
         "
       >
-        <div class="bg-quaternary h-px w-full" />
+        <div class="h-px w-full bg-quaternary" />
       </div>
     </SettingsSectionProvider>
 

@@ -6,7 +6,9 @@ import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 import type { ButtonTabsContentProps } from '@/components/tabs/button/buttonTabs.props'
 import { useInjectTabsContext } from '@/components/tabs/shared/tabs.context'
 
-const props = withDefaults(defineProps<ButtonTabsContentProps>(), { testId: null })
+const props = withDefaults(defineProps<ButtonTabsContentProps>(), {
+  testId: null,
+})
 
 const {
   classConfig,

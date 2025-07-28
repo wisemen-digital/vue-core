@@ -18,7 +18,9 @@ const emit = defineEmits<{
   'update:activeView': [viewId: ViewIdFromConfig<SettingsConfig>]
 }>()
 
-const defaultPreferences = defineModel<DefaultPreferences>('defaultPreferences', { required: true })
+const defaultPreferences = defineModel<DefaultPreferences>('defaultPreferences', {
+  required: true,
+})
 </script>
 
 <template>
@@ -32,7 +34,7 @@ const defaultPreferences = defineModel<DefaultPreferences>('defaultPreferences',
       <SettingsSidebarContent />
     </SettingsSidebar>
 
-    <div class="bg-primary flex w-full flex-col overflow-hidden">
+    <div class="flex w-full flex-col overflow-hidden bg-primary">
       <SettingsHeader>
         <template #header-right>
           <slot name="header-right" />

@@ -10,13 +10,11 @@
 | styleConfig | `Partial<DialogStyleConfig> \| null` | The style config of the component. | `null` |
 | testId | `string` | The test id of the dialog. |  |
 
-
 ## Slots
 
 | Slot | Slot Props | Description |
 | --------- | ---- | ----------- |
 | default | `-` | The content to display in the dialog. |
-
 
 ## Events
 
@@ -24,7 +22,6 @@
 | ---------- | ---- | ----------- |
 | `close` | [] |  |
 | `update:isOpen` | [isOpen: boolean] |  |
-
 
 ## Style configuration
 
@@ -40,4 +37,3 @@ export interface DialogStyleConfig  {
   '--dialog-shadow-default': string
 }
 ```
-

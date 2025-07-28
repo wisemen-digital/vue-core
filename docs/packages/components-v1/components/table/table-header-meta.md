@@ -5,4 +5,3 @@
 | Prop | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
 | areStickyColumnsDisabled | `boolean` |  | `false` |
-

@@ -5,6 +5,7 @@ export default [
   {
     rules: {
       '@intlify/vue-i18n/no-raw-text': 'off',
+      'project-structure/independent-modules': 'off',
       'vue/no-undef-components': [
         'error',
         {
@@ -19,6 +20,16 @@ export default [
       'vuejs-accessibility/label-has-for': 'off',
     },
   },
-  { ignores: [] },
-  { rules: { 'unicorn/no-keyword-prefix': 'off' } },
+  {
+    settings: {
+      'better-tailwindcss': {
+        entryPoint: 'src/styles/index.css',
+      },
+    },
+  },
+  {
+    rules: {
+      'unicorn/no-keyword-prefix': 'off',
+    },
+  },
 ]

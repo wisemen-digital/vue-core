@@ -10,7 +10,9 @@ import FormField from '@/components/form-field/FormField.vue'
 const props = defineProps<CheckboxGroupProps>()
 const emit = defineEmits<CheckboxGroupEmits>()
 
-const modelValue = defineModel<TValue[]>({ required: true })
+const modelValue = defineModel<TValue[]>({
+  required: true,
+})
 
 const id = props.id ?? useId()
 </script>

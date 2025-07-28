@@ -5,7 +5,6 @@ const props = withDefaults(defineProps<{
   testId: string | null
   as?: string | null
 }>(), {
-  testId: null,
   as: null,
 })
 </script>

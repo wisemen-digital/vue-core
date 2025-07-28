@@ -12,7 +12,9 @@ const {
   style,
 } = useInjectTimeFieldContext()
 
-const { t } = useI18n()
+const {
+  t,
+} = useI18n()
 </script>
 
 <template>

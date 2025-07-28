@@ -4,7 +4,9 @@ import {
   VcButton,
 } from '@wisemen/vue-core'
 
-const dialog = useDialog({ component: () => import('./BasicDialog.vue') })
+const dialog = useDialog({
+  component: () => import('./BasicDialog.vue'),
+})
 
 async function onClick(): Promise<void> {
   await dialog.open()

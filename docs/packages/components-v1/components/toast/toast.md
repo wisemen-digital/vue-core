@@ -15,7 +15,6 @@
   ]"
 />
 
-
 ## Import
 
 ```ts
@@ -23,7 +22,6 @@ import { useToast } from '@wisemen/vue-core'
 ```
 
 <!-- @include: ./toast-meta.md -->
-
 
 ## Examples
 
