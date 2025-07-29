@@ -37,13 +37,11 @@ export interface OAuth2VueClientOptions {
   * The URL to redirect to after logout
   */
   postLogoutRedirectUri: string
-
   /*
   * The scopes to request from the OAuth2 server
   * Default: ['openid', 'profile', 'email', 'offline_access', `urn:zitadel:iam:org:id:${organizationId}`]
   */
   scopes?: string[]
-
   /*
   * The tokens strategy to use
   * Default: localStorageStrategy

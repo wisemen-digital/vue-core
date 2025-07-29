@@ -89,7 +89,7 @@ export class ZitadelClient {
     return `${this.options.baseUrl}/oauth/v2/authorize?${searchParams.toString()}`
   }
 
-  public async getLoginUrl(): Promise<string> {
+  public async getLoginUrl(redirectUrl?: string): Promise<string> {
     const searchParams = new URLSearchParams()
 
     const codes = await pkceChallenge()
@@ -102,6 +102,7 @@ export class ZitadelClient {
     searchParams.append('redirect_uri', this.options.loginRedirectUri)
     searchParams.append('response_type', 'code')
     searchParams.append('prompt', 'login')
+    searchParams.append('state', redirectUrl ?? '')
     searchParams.append('scope', scopes.join(' '))
     searchParams.append('code_challenge', codes.code_challenge)
     searchParams.append('code_challenge_method', 'S256')
