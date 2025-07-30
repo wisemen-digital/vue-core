@@ -22,9 +22,19 @@ export interface OAuth2VueClientOptions {
   */
   organizationId: string
   /*
+    * The paths that are allowed to be accessed for redirects
+    * If not set, all paths are allowed
+   */
+  allowedPaths?: string[]
+  /*
   * The base URL of the OAuth2 server
   */
   baseUrl: string
+  /*
+    * The paths that are blocked for redirects
+    * If not set, no paths are blocked
+     */
+  blockedPaths?: string[]
   /*
   * The URL to redirect to after login
   */
@@ -37,13 +47,11 @@ export interface OAuth2VueClientOptions {
   * The URL to redirect to after logout
   */
   postLogoutRedirectUri: string
-
   /*
   * The scopes to request from the OAuth2 server
   * Default: ['openid', 'profile', 'email', 'offline_access', `urn:zitadel:iam:org:id:${organizationId}`]
   */
   scopes?: string[]
-
   /*
   * The tokens strategy to use
   * Default: localStorageStrategy
