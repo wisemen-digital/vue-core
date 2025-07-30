@@ -1,6 +1,7 @@
 import pkceChallenge from 'pkce-challenge'
 
 import { ApiClient } from './apiClient'
+import { RedirectValidator } from './redirectValidator'
 import { LocalStorageTokensStrategy } from './tokens-strategy/localStorage.tokensStrategy'
 import type { TokensStrategy } from './tokens-strategy/tokensStrategy.type'
 import type {
@@ -11,12 +12,21 @@ import type {
 export class ZitadelClient {
   private client: ApiClient | null = null
   private readonly offline: boolean
+  private redirectValidator: RedirectValidator
   private tokensStrategy: TokensStrategy
 
   constructor(private readonly options: OAuth2VueClientOptions) {
     this.offline = options.offline ?? false
 
     this.tokensStrategy = this.options.tokensStrategy ?? new LocalStorageTokensStrategy()
+
+    this.redirectValidator = new RedirectValidator(
+      {
+        allowedPaths: this.options.allowedPaths ?? [],
+        blockedPaths: this.options.blockedPaths ?? [],
+      },
+    )
+
     this.client = new ApiClient(
       {
         clientId: this.options.clientId,
@@ -102,7 +112,13 @@ export class ZitadelClient {
     searchParams.append('redirect_uri', this.options.loginRedirectUri)
     searchParams.append('response_type', 'code')
     searchParams.append('prompt', 'login')
-    searchParams.append('state', redirectUrl ?? '')
+
+    if (redirectUrl !== undefined) {
+      const safeRedirectUrl = this.sanitizeRedirectUrl(redirectUrl)
+
+      searchParams.append('state', safeRedirectUrl)
+    }
+
     searchParams.append('scope', scopes.join(' '))
     searchParams.append('code_challenge', codes.code_challenge)
     searchParams.append('code_challenge_method', 'S256')
@@ -208,5 +224,9 @@ export class ZitadelClient {
   public logout(): void {
     this.client?.clearTokens()
     this.client = null
+  }
+
+  public sanitizeRedirectUrl(redirectUrl: string, fallbackUrl?: string): string {
+    return this.redirectValidator.sanitizeRedirectUrl(redirectUrl, fallbackUrl)
   }
 }
