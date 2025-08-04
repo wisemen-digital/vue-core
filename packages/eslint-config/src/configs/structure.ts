@@ -206,7 +206,7 @@ const MOCKS_FOLDER = {
   ],
 }
 
-const MODELS_FILE_NAMING = '{camelCase}.model.ts|{camelCase}.builder.ts|{camelCase}.transformer.ts|{camelCase}.util.ts|{camelCase}.util.spec.ts|{camelCase}.util.test.ts'
+const MODELS_FILE_NAMING = '{camelCase}.model.ts|{camelCase}.builder.ts|{camelCase}.transformer.ts|{camelCase}.util.ts|{camelCase}.util.spec.ts|{camelCase}.util.test.ts|{camelCase}.props.ts'
 const MODELS_FOLDER = {
   name: 'models',
   children: [
