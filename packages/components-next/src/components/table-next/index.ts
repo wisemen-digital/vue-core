@@ -1,0 +1,7 @@
+export { default as VcTableBodyNext } from './parts/TableBody.vue'
+export { default as VcTableBodyRowNext } from './parts/TableBodyRow.vue'
+export { default as VcTableBodyRowCellNext } from './parts/TableBodyRowCell.vue'
+export { default as VcTableContentNext } from './parts/TableContent.vue'
+export { default as VcTableHeaderNext } from './parts/TableHeader.vue'
+export { default as VcTableHeaderCellNext } from './parts/TableHeaderCell.vue'
+export { default as VcTableRootNext } from './parts/TableRoot.vue'

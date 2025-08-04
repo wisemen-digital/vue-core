@@ -16,29 +16,24 @@ const motionRef = ref<InstanceType<any> | null>(null)
 const TRANSLATE_AMOUNT = 12
 
 function transform(side: PopperSide): {
-  x: number
-  y: number
+  transform: string
 } {
   switch (side) {
     case 'top':
       return {
-        x: 0,
-        y: TRANSLATE_AMOUNT,
+        transform: `translateY(${TRANSLATE_AMOUNT}px) scale(0)`,
       }
     case 'bottom':
       return {
-        x: 0,
-        y: -TRANSLATE_AMOUNT,
+        transform: `translateY(-${TRANSLATE_AMOUNT}px) scale(0)`,
       }
     case 'left':
       return {
-        x: TRANSLATE_AMOUNT,
-        y: 0,
+        transform: `translateX(${TRANSLATE_AMOUNT}px) scale(0)`,
       }
     case 'right':
       return {
-        x: -TRANSLATE_AMOUNT,
-        y: 0,
+        transform: `translateX(-${TRANSLATE_AMOUNT}px) scale(0)`,
       }
   }
 }
@@ -49,18 +44,14 @@ function transform(side: PopperSide): {
     ref="motionRef"
     :initial="{
       opacity: 0,
-      scale: 0,
       ...transform(side),
     }"
     :animate="{
       opacity: 1,
-      scale: 1,
-      x: 0,
-      y: 0,
+      transform: 'translate(0, 0) scale(1)',
     }"
     :exit="{
       opacity: 0,
-      scale: 0,
       ...transform(side),
     }"
     :transition="{
