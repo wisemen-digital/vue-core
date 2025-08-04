@@ -29,7 +29,7 @@ export function useToast(): UseToastReturnType {
       ...toast,
       type: 'error',
     }), {
-      duration: autoCloseToast.value ? AUTO_CLOSE_TOAST_DURATION : PERMANENT_TOAST_DURATION,
+      duration: PERMANENT_TOAST_DURATION,
       position: toastPosition,
     })
   }
