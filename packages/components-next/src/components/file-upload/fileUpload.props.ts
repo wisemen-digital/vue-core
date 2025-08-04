@@ -1,5 +1,5 @@
 import type {
-  FileInfo,
+  FileUploadInfo,
   FileUploadItem,
 } from '@/components/file-upload/fileUpload.type'
 import type { InteractableElement } from '@/utils/props.util'
@@ -26,6 +26,14 @@ export interface FileUploadProps extends InteractableElement {
    */
   accept: string[]
   /**
+   * Confirms the upload of a file. In the case of a image, a blur hash can be provided to
+   * generate a placeholder while the image is being uploaded.
+   *
+   * @param blurHash - The blur hash of the image, or `null` if not applicable.
+   * @returns A promise that resolves when the upload is confirmed.
+   */
+  confirmUpload: (uuid: string, blurHash: string | null) => Promise<void>
+  /**
    * Prepares a file for upload by retrieving upload metadata from the backend.
    *
    * This function is typically used before uploading a file to an external storage service
@@ -36,7 +44,7 @@ export interface FileUploadProps extends InteractableElement {
    * @param mimeType - The MIME type of the file to be uploaded.
    * @returns A promise that resolves to a `FileInfo` object containing upload metadata.
    */
-  getFileInfo: (name: string, mimeType: string) => Promise<Pick<FileInfo, 'url' | 'uuid'>>
+  getFileInfo: (name: string, mimeType: string) => Promise<FileUploadInfo>
 }
 
 export interface FileUploadItemProps {
