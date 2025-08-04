@@ -1,3 +1,7 @@
+## [1.7.2] (2025-08-04)
+- **Project structure:** Allow .props.ts files in components folder to tightly couple it. (I did it wrong previously, so this is a fix for that)
+
+
 ## [1.7.1] (2025-08-04)
 - **Project structure:** Allow .props.ts files in models folder to tightly couple it.
 
