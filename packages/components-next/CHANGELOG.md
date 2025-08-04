@@ -1,11 +1,29 @@
 # @wisemen/vue-core-components
 
+## 1.12.0
+
+### ⚠️ Breaking Changes
+
+- **FileUpload**: Some type interfaces have changed.
+
+### 🚀 Minor Changes
+
+- **FileUpload**: Introduced new `VcFileUploadDropzone` component and fixed multiple bugs to improve reliability and usability.
+
+### 🐞 Patch Fixes
+
+- **FileUpload**:
+  - Fixed enum export issue (previously exported as a type).
+  - Resolved a bug where the internal state and the bound value could get out of sync, resulting in duplicated file entries.
+
+- **PhoneNumberField**:
+  - Fixed issue where the country code was ignored when using an initial value.
+
 ## 1.11.0
 
 ### 🔥 New Features
 
 - **PhoneNumberField**: Added support for `class-config` prop, allowing full customization.
-
 
 ## 1.10.0
 

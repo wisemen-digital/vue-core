@@ -1,5 +1,11 @@
 ## 1.1.0
 
+## 2.1.0
+
+### Minor Changes
+
+- 7214bf6: add support for redirectUrl
+
 ### Major Changes
 
 - Extracted logic that saves tokens to localStorage to a separate strategy
@@ -11,4 +17,3 @@
 
 - Created a new `new AxiosFetchStrategy(axiosInstance)` function that can be used to create a `FetchStrategy` that uses axios
 - Created a new `new LocalStorageTokensStrategy()` function that can be used to create a `TokensStrategy` that uses localStorage
-
