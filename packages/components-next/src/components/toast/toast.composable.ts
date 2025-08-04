@@ -29,7 +29,7 @@ export function useToast(): UseToastReturnType {
       ...toast,
       type: 'error',
     }), {
-      duration: autoCloseToast ? AUTO_CLOSE_TOAST_DURATION : PERMANENT_TOAST_DURATION,
+      duration: autoCloseToast.value ? AUTO_CLOSE_TOAST_DURATION : PERMANENT_TOAST_DURATION,
       position: toastPosition,
     })
   }
@@ -39,7 +39,7 @@ export function useToast(): UseToastReturnType {
       ...toast,
       type: 'info',
     }), {
-      duration: autoCloseToast ? AUTO_CLOSE_TOAST_DURATION : PERMANENT_TOAST_DURATION,
+      duration: autoCloseToast.value ? AUTO_CLOSE_TOAST_DURATION : PERMANENT_TOAST_DURATION,
       position: toastPosition,
     })
   }
@@ -49,7 +49,7 @@ export function useToast(): UseToastReturnType {
       ...toast,
       type: 'success',
     }), {
-      duration: autoCloseToast ? AUTO_CLOSE_TOAST_DURATION : PERMANENT_TOAST_DURATION,
+      duration: autoCloseToast.value ? AUTO_CLOSE_TOAST_DURATION : PERMANENT_TOAST_DURATION,
       position: toastPosition,
     })
   }
