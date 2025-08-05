@@ -2,6 +2,13 @@
 
 A window overlaid on either the primary window or another dialog window, rendering the content underneath inert.
 
+You will also need to add this in your App.vue
+```vue
+// import { VcDialogContainer } from '@wisemen/vue-core-components'
+
+<VcDialogContainer />
+```
+
 <ComponentPreview name="dialog/examples/main" />
 
 ## Anatomy
@@ -36,6 +43,8 @@ import {
 </template>
 ```
 
+<!-- @include: ./dialog-meta.md -->
+
 ## Examples
 
 ### Prevent click outside
@@ -53,5 +62,3 @@ import {
 ### Drawer
 
 <ComponentPreview name="dialog/examples/drawer" />
-
-<!-- @include: ./dialog-meta.md -->

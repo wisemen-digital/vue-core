@@ -6,4 +6,5 @@ export { default as VcTooltipPortal } from '@/components/tooltip/parts/TooltipPo
 export { default as VcTooltipRoot } from '@/components/tooltip/parts/TooltipRoot.vue'
 export { default as VcTooltipTrigger } from '@/components/tooltip/parts/TooltipTrigger.vue'
 export type { TooltipProps as VcTooltipProps } from '@/components/tooltip/tooltip.props'
+export { createTooltipStyle } from '@/components/tooltip/tooltip.style'
 export { default as VcTooltip } from '@/components/tooltip/Tooltip.vue'

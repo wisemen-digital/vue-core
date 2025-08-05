@@ -15,26 +15,50 @@ import {
   VcDropdownMenuContent,
   VcDropdownMenuContentTransition,
   VcDropdownMenuArrow,
+  VcDropdownMenuSeparator,
+  VcDropdownMenuGroup,
+  VcDropdownMenuItem,
 } from '@wisemen/vue-core-components'
 </script>
 
 <template>
-  <DropdownMenuRoot>
-    <DropdownMenuTrigger>
+  <VcDropdownMenuRoot>
+    <VcDropdownMenuTrigger>
       <slot name="trigger" />
-    </DropdownMenuTrigger>
+    </VcDropdownMenuTrigger>
 
-    <DropdownMenuPortal>
-      <DropdownMenuContent>
-        <DropdownMenuContentTransition>
-          <slot name="content" />
-
-          <DropdownMenuArrow />
-        </DropdownMenuContentTransition>
-      </DropdownMenuContent>
-    </DropdownMenuPortal>
-  </DropdownMenuRoot>
+    <VcDropdownMenuPortal>
+      <VcDropdownMenuContent>
+        <VcDropdownMenuContentTransition>
+          <slot name="content">
+            <VcDropdownMenuGroup>
+              <VcDropdownMenuItem />
+            </VcDropdownMenuGroup>
+            <VcDropdownMenuSubMenu>
+              ...
+            </VcDropdownMenuSubMenu>
+            <VcDropdownMenuSeparator />
+          </slot>
+          <VcDropdownMenuArrow />
+        </VcDropdownMenuContentTransition>
+      </VcDropdownMenuContent>
+    </VcDropdownMenuPortal>
+  </VcDropdownMenuRoot>
 </template>
 ```
 
 <!-- @include: ./dropdown-menu-meta.md -->
+
+## Examples
+
+### Disabled option
+<ComponentPreview name="dropdown-menu/examples/disabled" />
+
+### Action on select
+<ComponentPreview name="dropdown-menu/examples/on-select" />
+
+### Popover props
+<ComponentPreview name="dropdown-menu/examples/popover-props" />
+
+### Customize the items
+<ComponentPreview name="dropdown-menu/examples/customize-item" />

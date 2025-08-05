@@ -7,21 +7,21 @@ Displays a RouterLink element from vue-router
 ```vue
 <script setup lang="ts">
 import {
-  RouterLinkButtonRoot,
-  RouterLinkButtonContent,
-  RouterLinkButtonIconLeft,
-  RouterLinkButtonIconRight,
+  VcRouterLinkButtonRoot,
+  VcRouterLinkButtonContent,
+  VcRouterLinkButtonIconLeft,
+  VcRouterLinkButtonIconRight,
 } from '@wisemen/vue-core-components'
 </script>
 
 <template>
-  <RouterLinkButtonRoot>
-    <RouterLinkButtonContent>
-      <RouterLinkButtonIconLeft />
+  <VcRouterLinkButtonRoot>
+    <VcRouterLinkButtonContent>
+      <VcRouterLinkButtonIconLeft />
       <slot />
-      <RouterLinkButtonIconRight />
-    </RouterLinkButtonContent>
-  </RouterLinkButtonRoot>
+      <VcRouterLinkButtonIconRight />
+    </VcRouterLinkButtonContent>
+  </VcRouterLinkButtonRoot>
 </template>
 ```
 

@@ -9,36 +9,38 @@ A floating element that displays information related to an element when the user
 ```vue
 <script setup lang="ts">
 import {
-  TooltipRoot,
-  TooltipTrigger,
-  TooltipPortal,
-  TooltipContent,
-  TooltipContentTransition,
-  TooltipInnerContent,
-  TooltipArrow,
+  VcTooltipRoot,
+  VcTooltipTrigger,
+  VcTooltipPortal,
+  VcTooltipContent,
+  VcTooltipContentTransition,
+  VcTooltipInnerContent,
+  VcTooltipArrow,
 } from '@wisemen/vue-core-components'
 </script>
 
 <template>
-  <TooltipRoot>
-    <TooltipTrigger>
+  <VcTooltipRoot>
+    <VcTooltipTrigger>
       <slot name="trigger" />
-    </TooltipTrigger>
+    </VcTooltipTrigger>
 
-    <TooltipPortal>
-      <TooltipContent>
-        <TooltipContentTransition>
-          <TooltipInnerContent>
+    <VcTooltipPortal>
+      <VcTooltipContent>
+        <VcTooltipContentTransition>
+          <VcTooltipInnerContent>
             <slot name="content" />
-          </TooltipInnerContent>
+          </VcTooltipInnerContent>
 
-          <TooltipArrow />
-        </TooltipContentTransition>
+          <VcTooltipArrow />
+        </VcTooltipContentTransition>
       </TooltipContent>
-    </TooltipPortal>
-  </TooltipRoot>
+    </VcTooltipPortal>
+  </VcTooltipRoot>
 </template>
 ```
+
+<!-- @include: ./tooltip-meta.md -->
 
 ## Examples
 
@@ -57,5 +59,3 @@ import {
 ### Disabled
 
 <ComponentPreview name="tooltip/examples/disabled" />
-
-<!-- @include: ./tooltip-meta.md -->

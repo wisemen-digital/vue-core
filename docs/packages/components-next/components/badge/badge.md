@@ -24,6 +24,8 @@ import {
 </template>
 ```
 
+<!-- @include: ./badge-meta.md -->
+
 ## Examples
 
 ### Variant
@@ -45,5 +47,3 @@ import {
 ### Removable
 
 <ComponentPreview name="badge/examples/removable" />
-
-<!-- @include: ./badge-meta.md -->

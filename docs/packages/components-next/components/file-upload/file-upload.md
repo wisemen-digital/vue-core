@@ -9,27 +9,27 @@ An unstyled component for uploading files to S3.
 ```vue
 <script setup lang="ts">
 import {
-  FileUploadRoot,
-  FileUploadTrigger,
-  FileUploadItem,
-  FileUploadItemReplace,
-  FileUploadItemRemove,
+  VcFileUploadRoot,
+  VcFileUploadTrigger,
+  VcFileUploadItem,
+  VcFileUploadItemReplace,
+  VcFileUploadItemRemove,
 } from '@wisemen/vue-core-components'
 </script>
 
 <template>
-  <FileUploadRoot v-slot="{ items }">
-    <FileUploadTrigger />
+  <VcFileUploadRoot v-slot="{ items }">
+    <VcFileUploadTrigger />
 
-    <FileUploadItem
+    <VcFileUploadItem
       v-for="item in items"
       :key="item.key"
       :item="item"
     >
-      <FileUploadItemReplace />
-      <FileUploadItemRemove />
-    </FileUploadItem>
-  </FileUploadRoot>
+      <VcFileUploadItemReplace />
+      <VcFileUploadItemRemove />
+    </VcFileUploadItem>
+  </VcFileUploadRoot>
 </template>
 ```
 

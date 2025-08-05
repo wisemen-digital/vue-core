@@ -6,6 +6,7 @@ import {
   VcTabsContent,
   VcTabsItem,
   VcThemeProvider,
+  VcToastContainer,
 } from '@wisemen/vue-core-components'
 import {
   computed,
@@ -134,6 +135,7 @@ observer.observe(document.documentElement, {
 
         <div id="teleport-target" />
         <VcDialogContainer />
+        <VcToastContainer />
       </VcThemeProvider>
     </VcConfigProvider>
   </div>

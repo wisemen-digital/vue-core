@@ -1,4 +1,5 @@
 export type { BadgeProps as VcBadgeProps } from '@/components/badge/badge.props'
+export { createBadgeStyle } from '@/components/badge/badge.style'
 export { default as VcBadge } from '@/components/badge/Badge.vue'
 export { default as VcBadgeIcon } from '@/components/badge/parts/BadgeIcon.vue'
 export { default as VcBadgeRemoveButton } from '@/components/badge/parts/BadgeRemoveButton.vue'

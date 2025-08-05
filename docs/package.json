@@ -41,6 +41,7 @@
     "vue": "catalog:",
     "vue-component-meta": "2.0.24",
     "vue-i18n": "10.0.6",
+    "vue-router": "4.5.1",
     "vue-tsc": "2.0.21"
   }
 }

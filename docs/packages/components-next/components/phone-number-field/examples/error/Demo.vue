@@ -8,10 +8,10 @@ const value = ref<string | null>(null)
 <template>
   <VcPhoneNumberField
     v-model="value"
+    :is-required="true"
     :error-message="value === null ? 'This field is required' : undefined"
     :is-touched="true"
     class="w-72"
-    default-country-code="FR"
-    label="French phone number"
+    label="Phone number"
   />
 </template>

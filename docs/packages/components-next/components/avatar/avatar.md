@@ -23,10 +23,12 @@ import {
 </template>
 ```
 
+<!-- @include: ./avatar-meta.md -->
+
 ## Examples
 
 ### Initials
-
 <ComponentPreview name="avatar/examples/initials" />
 
-<!-- @include: ./avatar-meta.md -->
+### Customize
+<ComponentPreview name="avatar/examples/customize" />

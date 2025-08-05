@@ -1,5 +1,9 @@
 <!-- This file was automatic generated. Do not edit it manually -->
 
+<script setup>
+import { createToastStyle } from "@wisemen/vue-core-components";
+</script>
+
 <PropsTable :data="[
   {
     'name': 'actions',
@@ -48,3 +52,5 @@
     'required': true
   }
 ]" />
+
+<ClassConfig :style-function="createToastStyle" />
