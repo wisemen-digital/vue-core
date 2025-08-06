@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { mergeClasses } from '@/class-variant/customClassVariants'
-import Subgrid from '@/components/table/parts/Subgrid.vue'
 import { useInjectTableContext } from '@/components/table-next/table.context'
 
 const {
@@ -11,12 +10,11 @@ const {
 </script>
 
 <template>
-  <Subgrid
-    :class="style.row({
-      class: mergeClasses(classConfig?.row, customClassConfig?.row),
+  <div
+    :class="style.cellSkeleton({
+      class: mergeClasses(classConfig?.cellSkeleton, customClassConfig?.cellSkeleton),
     })"
-    role="row"
   >
-    <slot />
-  </Subgrid>
+    <div class="h-4 rounded-md bg-tertiary" />
+  </div>
 </template>

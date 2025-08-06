@@ -15,9 +15,9 @@ export interface TableProps extends CustomizableElement<'tableNext'> {
    */
   isLastColumnSticky?: boolean
   /**
-   * The grid template columns class for the table.
+   * The grid template columns style for the table.
    */
-  gridTemplateColumnsClass: string
+  gridTemplateColumns: string
   /**
    * Defines the visual style of the table.
    */
