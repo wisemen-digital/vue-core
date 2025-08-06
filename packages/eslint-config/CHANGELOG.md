@@ -1,3 +1,11 @@
+## [1.7.2] (2025-08-04)
+- **Project structure:** Allow .props.ts files in components folder to tightly couple it. (I did it wrong previously, so this is a fix for that)
+
+
+## [1.7.1] (2025-08-04)
+- **Project structure:** Allow .props.ts files in models folder to tightly couple it.
+
+
 ## [1.7.0] (2025-06-12)
 - **Refactor to TS files:** Refactored project to use TS files.
 - **Project structure:** Updated structure rules to be more flexible.
