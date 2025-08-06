@@ -6,7 +6,8 @@ import { useInjectConfigContext } from '@/components/config-provider/config.cont
 import type { ToastProps } from '@/components/toast/toast.props'
 import Toast from '@/components/toast/Toast.vue'
 
-const TOAST_DURATION = Infinity
+const PERMANENT_TOAST_DURATION = Infinity
+const AUTO_CLOSE_TOAST_DURATION = 5000
 
 export type ToastPosition = NonNullable<ToastT['position']>
 
@@ -20,7 +21,7 @@ interface UseToastReturnType {
 
 export function useToast(): UseToastReturnType {
   const {
-    toastPosition,
+    autoCloseToast, toastPosition,
   } = useInjectConfigContext()
 
   function showErrorToast(toast: ToastOptions): void {
@@ -28,7 +29,7 @@ export function useToast(): UseToastReturnType {
       ...toast,
       type: 'error',
     }), {
-      duration: TOAST_DURATION,
+      duration: PERMANENT_TOAST_DURATION,
       position: toastPosition,
     })
   }
@@ -38,7 +39,7 @@ export function useToast(): UseToastReturnType {
       ...toast,
       type: 'info',
     }), {
-      duration: TOAST_DURATION,
+      duration: autoCloseToast.value ? AUTO_CLOSE_TOAST_DURATION : PERMANENT_TOAST_DURATION,
       position: toastPosition,
     })
   }
@@ -48,7 +49,7 @@ export function useToast(): UseToastReturnType {
       ...toast,
       type: 'success',
     }), {
-      duration: TOAST_DURATION,
+      duration: autoCloseToast.value ? AUTO_CLOSE_TOAST_DURATION : PERMANENT_TOAST_DURATION,
       position: toastPosition,
     })
   }

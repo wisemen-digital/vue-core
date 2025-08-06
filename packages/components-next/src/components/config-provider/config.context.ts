@@ -5,6 +5,7 @@ import { useContext } from '@/composables/context/context.composable'
 
 interface ConfigContext {
   areKeyboardShortcutHintsHidden: ComputedRef<boolean>
+  autoCloseToast: ComputedRef<boolean>
   googleMapsApiKey: string | null
   locale: ComputedRef<string>
   pagination?: {
