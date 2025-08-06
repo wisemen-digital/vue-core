@@ -1,5 +1,11 @@
 # @wisemen/vue-core-components
 
+## 1.12.1
+
+### 🐞 Patch Fix
+
+- **FileUpload**: Fixed an issue that prevented successful uploads to Azure Blob Storage in certain configurations.
+
 ## 1.12.0
 
 ### ⚠️ Breaking Changes

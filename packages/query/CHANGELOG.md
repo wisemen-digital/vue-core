@@ -1,5 +1,12 @@
 # @wisemen/vue-core-query
 
+## 0.0.42
+
+### Patch Changes
+
+- Updated dependencies [07efc21]
+  - @wisemen/vue-core-components@1.12.1
+
 ## 0.0.41
 
 ### Patch Changes
