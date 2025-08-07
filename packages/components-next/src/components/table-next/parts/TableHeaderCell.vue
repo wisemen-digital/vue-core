@@ -80,7 +80,9 @@ const icon = computed<Icon | null>(() => {
 
     <span
       v-else
-      class="text-sm font-medium text-secondary"
+      :class="style.headerCellLabel({
+        class: mergeClasses(classConfig?.headerCellLabel, customClassConfig?.headerCellLabel),
+      })"
     >
       <slot />
     </span>
