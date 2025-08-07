@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useInfiniteScroll } from '@vueuse/core'
 import { computed } from 'vue'
 
 import type { CustomComponentVariant } from '@/class-variant/classVariant.type'
@@ -22,10 +21,6 @@ const props = withDefaults(defineProps<TableProps>(), {
   variant: null,
 })
 
-const emit = defineEmits<{
-  nextPage: []
-}>()
-
 const {
   theme,
 } = injectThemeProviderContext()
@@ -35,16 +30,7 @@ const {
   hasVerticalOverflow,
   isScrolledHorizontally,
   setTableScrollContainerRef,
-  tableScrollContainerRef,
 } = useTable()
-
-useInfiniteScroll(
-  computed<HTMLElement | null>(() => tableScrollContainerRef.value),
-  () => emit('nextPage'),
-  {
-    distance: 100,
-  },
-)
 
 const tableStyle = computed<CreateTableStyle>(() => createTableNextStyle({
   variant: props.variant ?? undefined,

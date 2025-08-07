@@ -40,7 +40,8 @@ const {
 
     <Button
       :class-config="{
-        root: 'h-6 text-xs px-sm font-regular',
+        root: 'h-6 px-sm font-regular',
+        content: 'text-xs',
       }"
       size="sm"
       variant="secondary"
