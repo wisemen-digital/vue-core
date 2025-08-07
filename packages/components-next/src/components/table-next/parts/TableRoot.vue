@@ -6,10 +6,10 @@ import {
   getCustomComponentVariant,
   mergeClasses,
 } from '@/class-variant/customClassVariants'
-import type { CreateTableStyle } from '@/components/table/table.style'
 import { useTable } from '@/components/table-next/table.composable'
 import { useProvideTableContext } from '@/components/table-next/table.context'
 import type { TableProps } from '@/components/table-next/table.props'
+import type { CreateTableNextStyle } from '@/components/table-next/table.style'
 import { createTableNextStyle } from '@/components/table-next/table.style'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { toComputedRefs } from '@/utils/props.util'
@@ -32,7 +32,7 @@ const {
   setTableScrollContainerRef,
 } = useTable()
 
-const tableStyle = computed<CreateTableStyle>(() => createTableNextStyle({
+const tableStyle = computed<CreateTableNextStyle>(() => createTableNextStyle({
   variant: props.variant ?? undefined,
 }))
 
@@ -60,6 +60,10 @@ useProvideTableContext({
     })"
     role="table"
   >
-    <slot />
+    <slot
+      :has-reached-horizontal-end="hasReachedHorizontalEnd"
+      :has-vertical-overflow="hasVerticalOverflow"
+      :is-scrolled-horizontally="isScrolledHorizontally"
+    />
   </div>
 </template>
