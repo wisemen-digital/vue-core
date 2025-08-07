@@ -1,5 +1,12 @@
 # @wisemen/vue-core-components
 
+## 1.13.0
+
+### 🔥 New Features
+
+- **Toast**: Added support for auto-closing toasts via a new configuration option — useful for transient notifications that shouldn't require manual dismissal.
+- Added `VcTableXXXNext` components which in the future will replace the existing `VcTable` components.
+
 ## 1.12.1
 
 ### 🐞 Patch Fix
