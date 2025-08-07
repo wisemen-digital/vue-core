@@ -23,7 +23,7 @@ const emit = defineEmits<{
   /**
    * Emitted when the item is selected.
    */
-  select: []
+  select: [event: Event]
 }>()
 
 const attrs = useAttrs()
@@ -45,7 +45,7 @@ useProvideDropdownMenuItemContext(toComputedRefs(props))
         :class="style.item({
           class: mergeClasses(customClassConfig.item, classConfig?.item, attrs.class as string),
         })"
-        @select="emit('select')"
+        @select="emit('select', $event)"
       >
         <slot>
           <DropdownMenuItemIcon />
