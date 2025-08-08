@@ -110,6 +110,12 @@ export const components: ComponentConfig[] = [
     componentName: 'FormField',
     styleFunctionName: 'createFormFieldStyle',
   },
+  //Icon
+  {
+    sourceFolder: 'icon/Icon.vue',
+    targetFolder: 'icon',
+    componentName: 'Icon',
+  },
   // Icon button
   {
     sourceFolder: 'button/icon-button/parts/IconButtonRoot.vue',
@@ -193,6 +199,12 @@ export const components: ComponentConfig[] = [
     componentName: 'Select',
     styleFunctionName: 'createSelectStyle',
   },
+  // Spinner
+  {
+    sourceFolder: 'spinner/Spinner.vue',
+    targetFolder: 'spinner',
+    componentName: 'Spinner',
+  },
   // Switch
   {
     sourceFolder: 'switch/parts/SwitchRoot.vue',
@@ -207,6 +219,9 @@ export const components: ComponentConfig[] = [
     componentName: 'Table',
     styleFunctionName: 'createTableStyle',
   },
+
+  // Table v2 -----------------------------------------------------------------------------
+
   // Tabs
   {
     sourceFolder: 'tabs/shared/parts/TabsRoot.vue',

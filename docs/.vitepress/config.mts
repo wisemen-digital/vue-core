@@ -245,6 +245,14 @@ export default defineConfig({
                   link: '/packages/components-next/components/date-range-picker/date-range-picker',
                 },
                 {
+                  text: 'Icon',
+                  link: '/packages/components-next/components/icon/icon',
+                },
+                {
+                  text: 'Spinner',
+                  link: '/packages/components-next/components/spinner/spinner',
+                },
+                {
                   text: 'Toast',
                   link: '/packages/components-next/components/toast/toast',
                 },
