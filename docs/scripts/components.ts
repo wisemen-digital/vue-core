@@ -6,60 +6,53 @@ type ComponentConfig = {
 }
 
 export const components: ComponentConfig[] = [
-  {
-    sourceFolder: 'autocomplete/Autocomplete.vue',
-    targetFolder: 'autocomplete',
-    componentName: 'Autocomplete',
-    styleFunctionName: 'createSelectStyle',
-  },
+  // Address Autocomplete
   {
     sourceFolder: 'address-autocomplete/AddressAutocomplete.vue',
     targetFolder: 'address-autocomplete',
     componentName: 'AddressAutocomplete',
     styleFunctionName: 'createSelectStyle',
   },
+  // Autocomplete
+  {
+    sourceFolder: 'autocomplete/Autocomplete.vue',
+    targetFolder: 'autocomplete',
+    componentName: 'Autocomplete',
+    styleFunctionName: 'createSelectStyle',
+  },
+  // Avatar
   {
     sourceFolder: 'avatar/parts/AvatarRoot.vue',
     targetFolder: 'avatar',
     componentName: 'Avatar',
     styleFunctionName: 'createAvatarStyle',
   },
+  // Badge
   {
     sourceFolder: 'badge/parts/BadgeRoot.vue',
     targetFolder: 'badge',
     componentName: 'Badge',
     styleFunctionName: 'createBadgeStyle',
   },
+  // Button
   {
     sourceFolder: 'button/default-button/parts/ButtonRoot.vue',
     targetFolder: 'button',
     componentName: 'Button',
     styleFunctionName: 'createButtonStyle',
   },
+  // Checkbox
   {
-    sourceFolder: 'button/icon-button/parts/IconButtonRoot.vue',
-    targetFolder: 'icon-button',
-    componentName: 'IconButton',
-    styleFunctionName: 'createIconButtonStyle',
-  },
-  {
-    sourceFolder: 'button/router-link-button/parts/RouterLinkButtonRoot.vue',
-    targetFolder: 'router-link-button',
-    componentName: 'RouterLinkButton',
-    styleFunctionName: 'createRouterLinkButtonStyle',
+    sourceFolder: 'checkbox/parts/CheckboxRoot.vue',
+    targetFolder: 'checkbox',
+    componentName: 'Checkbox',
+    styleFunctionName: 'createFormFieldStyle',
   },
   // Checkbox group
   {
     sourceFolder: 'checkbox-group/parts/CheckboxGroupRoot.vue',
     targetFolder: 'checkbox-group',
     componentName: 'CheckboxGroup',
-    styleFunctionName: 'createFormFieldStyle',
-  },
-  // Checkbox
-  {
-    sourceFolder: 'checkbox/parts/CheckboxRoot.vue',
-    targetFolder: 'checkbox',
-    componentName: 'Checkbox',
     styleFunctionName: 'createFormFieldStyle',
   },
   // Date Field
@@ -69,13 +62,6 @@ export const components: ComponentConfig[] = [
     componentName: 'DateField',
     styleFunctionName: 'createDateFieldStyle',
   },
-  // Date Range Field
-  {
-    sourceFolder: 'date-range-field/parts/DateRangeFieldRoot.vue',
-    targetFolder: 'date-range-field',
-    componentName: 'DateRangeField',
-    styleFunctionName: 'createDateRangeFieldStyle',
-  },
   // Date picker
   {
     sourceFolder: 'date-picker/single/parts/DatePickerRoot.vue',
@@ -83,12 +69,33 @@ export const components: ComponentConfig[] = [
     componentName: 'DatePicker',
     styleFunctionName: 'createDatePickerStyle',
   },
+  // Date Range Field
+  {
+    sourceFolder: 'date-range-field/parts/DateRangeFieldRoot.vue',
+    targetFolder: 'date-range-field',
+    componentName: 'DateRangeField',
+    styleFunctionName: 'createDateRangeFieldStyle',
+  },
   // Date Range picker
   {
     sourceFolder: 'date-picker/range/parts/DateRangePickerRoot.vue',
     targetFolder: 'date-range-picker',
     componentName: 'DateRangePicker',
     styleFunctionName: 'createDateRangePickerStyle',
+  },
+  // Dialog
+  {
+    sourceFolder: 'dialog/parts/DialogRoot.vue',
+    targetFolder: 'dialog',
+    componentName: 'Dialog',
+    styleFunctionName: 'createDialogStyle',
+  },
+  // Dropdown Menu
+  {
+    sourceFolder: 'dropdown-menu/parts/DropdownMenuRoot.vue',
+    targetFolder: 'dropdown-menu',
+    componentName: 'DropdownMenu',
+    styleFunctionName: 'createDropdownMenuStyle',
   },
   // File upload
   {
@@ -102,6 +109,33 @@ export const components: ComponentConfig[] = [
     targetFolder: 'form-field',
     componentName: 'FormField',
     styleFunctionName: 'createFormFieldStyle',
+  },
+  // Icon button
+  {
+    sourceFolder: 'button/icon-button/parts/IconButtonRoot.vue',
+    targetFolder: 'icon-button',
+    componentName: 'IconButton',
+    styleFunctionName: 'createIconButtonStyle',
+  },
+  // Keyboard key
+  {
+    sourceFolder: 'keyboard-key/KeyboardKey.vue',
+    targetFolder: 'keyboard-key',
+    componentName: 'KeyboardKey',
+    styleFunctionName: 'createKeyboardKeyStyle',
+  },
+  // Keyboard shortcut
+  {
+    sourceFolder: 'keyboard-shortcut/KeyboardShortcut.vue',
+    targetFolder: 'keyboard-shortcut',
+    componentName: 'KeyboardShortcut',
+    styleFunctionName: 'createKeyboardShortcutStyle',
+  },
+  // Keyboard shortcut provider
+  {
+    sourceFolder: 'keyboard-shortcut-provider/KeyboardShortcutProvider.vue',
+    targetFolder: 'keyboard-shortcut-provider',
+    componentName: 'KeyboardShortcutProvider',
   },
   // Number Field
   {
@@ -124,6 +158,13 @@ export const components: ComponentConfig[] = [
     componentName: 'PhoneNumberField',
     styleFunctionName: 'createTextFieldStyle',
   },
+  // Popover
+  {
+    sourceFolder: 'popover/parts/PopoverRoot.vue',
+    targetFolder: 'popover',
+    componentName: 'Popover',
+    styleFunctionName: 'createPopoverStyle',
+  },
   // Radio group
   {
     sourceFolder: 'radio-group/parts/RadioGroupRoot.vue',
@@ -131,7 +172,21 @@ export const components: ComponentConfig[] = [
     componentName: 'RadioGroup',
     styleFunctionName: 'createFormFieldStyle',
   },
-  // Sselect
+  // Router link button
+  {
+    sourceFolder: 'button/router-link-button/parts/RouterLinkButtonRoot.vue',
+    targetFolder: 'router-link-button',
+    componentName: 'RouterLinkButton',
+    styleFunctionName: 'createRouterLinkButtonStyle',
+  },
+  // Router link tabs
+  {
+    sourceFolder: 'tabs/shared/parts/TabsRoot.vue',
+    targetFolder: 'router-link-tabs',
+    componentName: 'RouterLinkTabs',
+    styleFunctionName: 'createTabsStyle',
+  },
+  // Select
   {
     sourceFolder: 'select/parts/SelectRoot.vue',
     targetFolder: 'select',
@@ -144,6 +199,20 @@ export const components: ComponentConfig[] = [
     targetFolder: 'switch',
     componentName: 'Switch',
     styleFunctionName: 'createFormFieldStyle',
+  },
+  // Table
+  {
+    sourceFolder: 'table/parts/TableRoot.vue',
+    targetFolder: 'table',
+    componentName: 'Table',
+    styleFunctionName: 'createTableStyle',
+  },
+  // Tabs
+  {
+    sourceFolder: 'tabs/shared/parts/TabsRoot.vue',
+    targetFolder: 'tabs',
+    componentName: 'Tabs',
+    styleFunctionName: 'createTabsStyle',
   },
   // Text Field
   {
@@ -158,13 +227,6 @@ export const components: ComponentConfig[] = [
     targetFolder: 'textarea',
     componentName: 'Textarea',
     styleFunctionName: 'createFormFieldStyle',
-  },
-  // Table
-  {
-    sourceFolder: 'table/parts/TableRoot.vue',
-    targetFolder: 'table',
-    componentName: 'Table',
-    styleFunctionName: 'createTableStyle',
   },
   // Time Field
   {
@@ -186,60 +248,5 @@ export const components: ComponentConfig[] = [
     targetFolder: 'tooltip',
     componentName: 'Tooltip',
     styleFunctionName: 'createTooltipStyle',
-  },
-  // Dialog
-  {
-    sourceFolder: 'dialog/parts/DialogRoot.vue',
-    targetFolder: 'dialog',
-    componentName: 'Dialog',
-    styleFunctionName: 'createDialogStyle',
-  },
-  // Dropdown Menu
-  {
-    sourceFolder: 'dropdown-menu/parts/DropdownMenuRoot.vue',
-    targetFolder: 'dropdown-menu',
-    componentName: 'DropdownMenu',
-    styleFunctionName: 'createDropdownMenuStyle',
-  },
-  // Popover
-  {
-    sourceFolder: 'popover/parts/PopoverRoot.vue',
-    targetFolder: 'popover',
-    componentName: 'Popover',
-    styleFunctionName: 'createPopoverStyle',
-  },
-  // Router link tabs
-  {
-    sourceFolder: 'tabs/shared/parts/TabsRoot.vue',
-    targetFolder: 'router-link-tabs',
-    componentName: 'RouterLinkTabs',
-    styleFunctionName: 'createTabsStyle',
-  },
-  // Tabs
-  {
-    sourceFolder: 'tabs/shared/parts/TabsRoot.vue',
-    targetFolder: 'tabs',
-    componentName: 'Tabs',
-    styleFunctionName: 'createTabsStyle',
-  },
-  // Keyboard key
-  {
-    sourceFolder: 'keyboard-key/KeyboardKey.vue',
-    targetFolder: 'keyboard-key',
-    componentName: 'KeyboardKey',
-    styleFunctionName: 'createKeyboardKeyStyle',
-  },
-  // Keyboard shortcut
-  {
-    sourceFolder: 'keyboard-shortcut/KeyboardShortcut.vue',
-    targetFolder: 'keyboard-shortcut',
-    componentName: 'KeyboardShortcut',
-    styleFunctionName: 'createKeyboardShortcutStyle',
-  },
-  // Keyboard shortcut provider
-  {
-    sourceFolder: 'keyboard-shortcut-provider/KeyboardShortcutProvider.vue',
-    targetFolder: 'keyboard-shortcut-provider',
-    componentName: 'KeyboardShortcutProvider',
   },
 ]
