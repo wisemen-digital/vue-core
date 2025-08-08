@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import type { FileInfo } from '@wisemen/vue-core-components'
+import type {
+  FileInfo,
+  FileUploadInfo,
+} from '@wisemen/vue-core-components'
 import {
   VcButton,
   VcFileUploadItem,
@@ -12,16 +15,21 @@ import { ref } from 'vue'
 
 const files = ref<FileInfo[]>([])
 
-function fakeGetFileInfo(name: string, mimeType: string): Promise<FileInfo> {
+function fakeGetFileInfo(): Promise<FileUploadInfo> {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve({
         uuid: `${Math.random()}`,
-        name,
-        mimeType,
-        order: 0,
-        url: 'https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg',
+        uploadUrl: 'https://example.com/upload',
       })
+    }, 200)
+  })
+}
+
+function fakeConfirmUpload(): Promise<void> {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve()
     }, 200)
   })
 }
@@ -33,6 +41,7 @@ function fakeGetFileInfo(name: string, mimeType: string): Promise<FileInfo> {
     v-model="files"
     :accept="['image/*']"
     :get-file-info="fakeGetFileInfo"
+    :confirm-upload="fakeConfirmUpload"
   >
     <div class="flex flex-col gap-2">
       <VcFileUploadTrigger>
@@ -57,6 +66,7 @@ function fakeGetFileInfo(name: string, mimeType: string): Promise<FileInfo> {
           "
         >
           <img
+            v-if="item.url"
             :src="item.url"
             alt="Alternative text"
             class=""

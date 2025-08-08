@@ -8,9 +8,15 @@
     'required': true
   },
   {
+    'name': 'confirmUpload',
+    'description': '<p>Confirms the upload of a file. In the case of a image, a blur hash can be provided to\ngenerate a placeholder while the image is being uploaded.</p>\n',
+    'type': '(uuid: string, blurHash: string | null) => Promise<void>',
+    'required': true
+  },
+  {
     'name': 'getFileInfo',
     'description': '<p>Prepares a file for upload by retrieving upload metadata from the backend.</p>\n<p>This function is typically used before uploading a file to an external storage service\nlike Amazon S3. It returns the necessary information such as a pre-signed upload URL,\nfile UUID, and MIME type.</p>\n',
-    'type': '(name: string, mimeType: string) => Promise<Pick<FileInfo, \'url\' | \'uuid\'>>',
+    'type': '(name: string, mimeType: string) => Promise<FileUploadInfo>',
     'required': true
   },
   {
@@ -31,8 +37,13 @@
 
 <MethodsTable :data="[
   {
+    'name': 'confirmUpload',
+    'description': '<p>Confirms the upload of a file. In the case of a image, a blur hash can be provided to\ngenerate a placeholder while the image is being uploaded.</p>\n',
+    'type': '(uuid: string, blurHash: string | null) => Promise<void>'
+  },
+  {
     'name': 'getFileInfo',
     'description': '<p>Prepares a file for upload by retrieving upload metadata from the backend.</p>\n<p>This function is typically used before uploading a file to an external storage service\nlike Amazon S3. It returns the necessary information such as a pre-signed upload URL,\nfile UUID, and MIME type.</p>\n',
-    'type': '(name: string, mimeType: string) => Promise<Pick<FileInfo, \'url\' | \'uuid\'>>'
+    'type': '(name: string, mimeType: string) => Promise<FileUploadInfo>'
   }
 ]" />
