@@ -24,6 +24,7 @@ import type { createSelectStyle } from '@/components/select/style/select.style'
 import type { createSwitchStyle } from '@/components/switch/switch.style'
 import type { createTableStyle } from '@/components/table/table.style'
 import type { createTabsStyle } from '@/components/tabs/shared/tabs.style'
+import type { createTagsInputFieldStyle } from '@/components/tags-input-field/tagsInputField.style'
 import type { createTextFieldStyle } from '@/components/text-field/textField.style'
 import type { createTextareaStyle } from '@/components/textarea/textarea.style'
 import type { createTimeFieldStyle } from '@/components/time-field/timeField.style'
@@ -146,6 +147,12 @@ export interface ComponentMap {
     style: typeof createTabsStyle
     children: {
       scrollButton: 'iconButton'
+    }
+  }
+  tagsInputField: {
+    style: typeof createTagsInputFieldStyle
+    children: {
+      tag: 'badge'
     }
   }
   textarea: {

@@ -15,7 +15,7 @@ catalog:
   "reka-ui": "2.2.0"
   "tailwindcss": "4.1.7"
   "typescript": "5.8.3"
-  "vite": "7.0.5"
+  "vite": "6.3.5"
   "vite-plugin-dts": "4.5.3"
   "vitest": "3.1.1"
   "vue-router": "4.5.1"
