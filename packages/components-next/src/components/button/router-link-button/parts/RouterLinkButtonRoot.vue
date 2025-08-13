@@ -7,10 +7,10 @@ import {
   getCustomComponentVariant,
   mergeClasses,
 } from '@/class-variant/customClassVariants'
-import type { CreateButtonStyle } from '@/components/button/default-button/button.style'
-import { createButtonStyle } from '@/components/button/default-button/button.style'
 import { useProvideRouterLinkButtonContext } from '@/components/button/router-link-button/routerLinkButton.context'
 import type { RouterLinkButtonProps } from '@/components/button/router-link-button/routerLinkButton.props'
+import type { CreateRouterLinkButtonStyle } from '@/components/button/router-link-button/routerLinkButton.style'
+import { createRouterLinkButtonStyle } from '@/components/button/router-link-button/routerLinkButton.style'
 import TestIdProvider from '@/components/shared/TestIdProvider.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
 import { toComputedRefs } from '@/utils/props.util'
@@ -30,7 +30,7 @@ const {
   theme,
 } = injectThemeProviderContext()
 
-const buttonStyle = computed<CreateButtonStyle>(() => createButtonStyle({
+const buttonStyle = computed<CreateRouterLinkButtonStyle>(() => createRouterLinkButtonStyle({
   size: props.size,
   variant: props.variant,
 }))
