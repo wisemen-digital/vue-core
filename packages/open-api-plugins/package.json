@@ -1,16 +1,23 @@
 {
   "name": "@wisemen/open-api-plugins",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "OpenAPI plugins for code generation",
   "license": "MIT",
   "homepage": "https://github.com/wisemen-digital/vue-core.git",
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/wisemen-digital/vue-core.git",
     "directory": "."
   },
-  "keywords": ["openapi", "codegen", "plugins"],
+  "keywords": [
+    "openapi",
+    "codegen",
+    "plugins"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -32,14 +39,10 @@
     "typecheck": "pnpm tsc"
   },
   "peerDependencies": {
+    "@hey-api/openapi-ts": "^0.81.0"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
-    "@hey-api/openapi-ts": "0.80.1",
-    "tsdown": "^0.12.9",
-    "tsx": "^4.20.3",
-    "typescript": "^5.8.3",
-    "vitest": "^3.2.4"
+    "tsdown": "0.14.2"
   }
 }

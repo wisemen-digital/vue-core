@@ -1,5 +1,16 @@
 # @wisemen/vue-core-components
 
+## 1.15.0
+
+### Minor Changes
+
+- d4c8d19: Toast: add support for custom duration
+
+### Patch Changes
+
+- 1779bed: RouterLinkButton: fix variant prop
+- fb78687: Button: remove shadow
+
 ## 1.14.0
 
 ### 🚀 Minor Changes
