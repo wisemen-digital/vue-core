@@ -17,5 +17,5 @@ export interface RouterLinkButtonProps extends Omit<TextButtonProps, 'isDisabled
    * Defines the visual style of the button.
    * @default 'primary'
    */
-  variant?: GetComponentProp<'button', 'variant'>
+  variant?: GetComponentProp<'routerLinkButton', 'variant'>
 }
