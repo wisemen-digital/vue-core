@@ -187,6 +187,10 @@ export default defineConfig({
                   link: '/packages/components-next/components/dropdown-menu/dropdown-menu',
                 },
                 {
+                  text: 'Planning',
+                  link: '/packages/components-next/components/planning/planning',
+                },
+                {
                   text: 'Popover',
                   link: '/packages/components-next/components/popover/popover',
                 },
