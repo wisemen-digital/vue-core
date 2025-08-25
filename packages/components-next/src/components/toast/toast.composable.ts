@@ -11,7 +11,14 @@ const AUTO_CLOSE_TOAST_DURATION = 5000
 
 export type ToastPosition = NonNullable<ToastT['position']>
 
-interface ToastOptions extends Omit<ToastProps, 'type'> {}
+interface ToastOptions extends Omit<ToastProps, 'type'> {
+  /**
+   * The time in milliseconds after which the toast will automatically close.
+   * If no timeout is provided, the toast will not automatically close unless `autoCloseToast` is set to `true`
+   * in the config provider component.
+   */
+  durationMs?: number | null
+}
 
 interface UseToastReturnType {
   error: (toast: ToastOptions) => void
@@ -24,12 +31,24 @@ export function useToast(): UseToastReturnType {
     autoCloseToast, toastPosition,
   } = useInjectConfigContext()
 
+  function getToastDuration(toast: ToastOptions, isErrorToast: boolean): number {
+    if (toast.durationMs !== undefined && toast.durationMs !== null) {
+      return toast.durationMs
+    }
+
+    if (autoCloseToast.value && !isErrorToast) {
+      return AUTO_CLOSE_TOAST_DURATION
+    }
+
+    return PERMANENT_TOAST_DURATION
+  }
+
   function showErrorToast(toast: ToastOptions): void {
     toastState.custom(h(Toast, {
       ...toast,
       type: 'error',
     }), {
-      duration: PERMANENT_TOAST_DURATION,
+      duration: getToastDuration(toast, true),
       position: toastPosition,
     })
   }
@@ -39,7 +58,7 @@ export function useToast(): UseToastReturnType {
       ...toast,
       type: 'info',
     }), {
-      duration: autoCloseToast.value ? AUTO_CLOSE_TOAST_DURATION : PERMANENT_TOAST_DURATION,
+      duration: getToastDuration(toast, false),
       position: toastPosition,
     })
   }
@@ -49,7 +68,7 @@ export function useToast(): UseToastReturnType {
       ...toast,
       type: 'success',
     }), {
-      duration: autoCloseToast.value ? AUTO_CLOSE_TOAST_DURATION : PERMANENT_TOAST_DURATION,
+      duration: getToastDuration(toast, false),
       position: toastPosition,
     })
   }
