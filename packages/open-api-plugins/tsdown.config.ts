@@ -1,5 +1,4 @@
-// hypothetical tsup.config.ts for tsdown
-import { defineConfig } from 'tsdown' // Assuming tsdown exports defineConfig
+import { defineConfig } from 'tsdown'
 
 export default defineConfig({
   clean: true, // Clean output directory
@@ -7,5 +6,7 @@ export default defineConfig({
   entry: [
     'src/index.ts',
   ],
-  // ... other tsdown options you might have
+  external: [
+    'typescript',
+  ],
 })
