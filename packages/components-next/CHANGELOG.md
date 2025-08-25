@@ -1,5 +1,11 @@
 # @wisemen/vue-core-components
 
+## 1.14.0
+
+### 🚀 Minor Changes
+
+- **Address**: Added support for `placeId`.
+
 ## 1.13.0
 
 ### 🔥 New Features
