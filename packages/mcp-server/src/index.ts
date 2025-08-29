@@ -208,16 +208,11 @@ server.registerTool(
     }
   },
   async ({ resource }) => {
-    console.log(`[MCP DEBUG] [listDocNames] __dirname:`, __dirname);
-    console.log(`[MCP DEBUG] [listDocNames] process.cwd():`, process.cwd());
     const relDocsPath = resource === "components"
       ? "../../../docs/packages/components-next/components"
       : "../../components-next/src/composables";
     const docsPath = path.resolve(__dirname, relDocsPath);
-    console.log(`[MCP DEBUG] [listDocNames] Resolved docsPath:`, docsPath);
-    const exists = fs.existsSync(docsPath);
-    console.log(`[MCP DEBUG] [listDocNames] Exists:`, exists);
-    if (!exists) {
+    if (!fs.existsSync(docsPath)) {
       return { content: [{ type: "text", text: `Docs folder not found for resource: ${resource}` }] };
     }
     // Use the correct finder for each resource
@@ -225,48 +220,9 @@ server.registerTool(
       ? findComponentDocsRecursively(docsPath)
       : findMarkdownFilesRecursively(docsPath);
     const names = mdFiles.map(f => f.logicalName);
-    console.log(`[MCP DEBUG] [listDocNames] Names:`, names);
     return { content: [{ type: "text", text: names.join("\n") }] };
   }
 );
-
-// Debug: Log discovered component docs at startup
-(function debugLogComponentDocs() {
-  const docsRoot = path.resolve(__dirname, "../../../docs/packages/components-next/components");
-  if (!fs.existsSync(docsRoot)) {
-    console.log("[MCP DEBUG] Components docs directory does not exist:", docsRoot);
-  } else {
-    const files = findComponentDocsRecursively(docsRoot);
-    console.log(`[MCP DEBUG] Found ${files.length} component doc files in:`, docsRoot);
-    files.forEach(f => console.log("[MCP DEBUG] -", f.logicalName, "(", f.filePath, ")"));
-  }
-})();
-
-// Enhanced debug: Log directory contents at each level
-(function enhancedDebugLogComponentDocs() {
-  const docsRoot = path.resolve(__dirname, "../../../docs/packages/components-next/components");
-  function logDir(dir: string, depth = 0) {
-    if (!fs.existsSync(dir)) {
-      console.log("[MCP DEBUG] Directory does not exist:", dir);
-      return;
-    }
-    const indent = "  ".repeat(depth);
-    const entries = fs.readdirSync(dir);
-    console.log(`${indent}[MCP DEBUG] ${dir} contains ${entries.length} entries`);
-    for (const entry of entries) {
-      const fullPath = path.join(dir, entry);
-      if (fs.statSync(fullPath).isDirectory()) {
-        logDir(fullPath, depth + 1);
-      } else {
-        console.log(`${indent}  [MCP DEBUG] File: ${entry}`);
-      }
-    }
-  }
-  logDir(docsRoot);
-  const files = findComponentDocsRecursively(docsRoot);
-  console.log(`[MCP DEBUG] Found ${files.length} component doc files in:`, docsRoot);
-  files.forEach(f => console.log("[MCP DEBUG] -", f.logicalName, "(", f.filePath, ")"));
-})();
 
 // Log recommended MCP client config on startup
 const recommendedConfig = {
