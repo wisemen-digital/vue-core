@@ -3,6 +3,8 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import fs from "fs";
 import path from "path";
 import { z } from "zod";
+import express from "express";
+import bodyParser from "body-parser";
 
 const server = new McpServer({
   name: "vue-library-mcp",
@@ -224,13 +226,20 @@ server.registerTool(
   }
 );
 
-// Log recommended MCP client config on startup
+const HTTP_PORT = process.env.MCP_HTTP_PORT || 3000;
+
+// Log recommended MCP client config on startup (for both stdio and HTTP)
 const recommendedConfig = {
   mcpServers: {
     "vue-core": {
+      // For local/stdio
       command: "pnpm",
       args: ["start"],
-      cwd: process.cwd()
+      cwd: process.cwd(),
+      // For HTTP remote
+      http: {
+        url: `http://localhost:${HTTP_PORT}`
+      }
     }
   }
 };
@@ -240,3 +249,84 @@ console.log("\n===============================\n");
 
 const transport = new StdioServerTransport();
 server.connect(transport);
+
+// HTTP Transport for MCP (optional, for remote access)
+const app = express();
+app.use(bodyParser.json());
+
+// Local registry for tool handlers
+const toolHandlers: Record<string, (params: any) => Promise<any>> = {};
+// Register all tools into the registry
+(server as any)._registeredTools?.forEach?.((tool: any) => {
+  toolHandlers[tool.name] = tool.handler;
+});
+// Fallback: patch server.tool to also register in our registry
+const origTool = server.tool.bind(server);
+server.tool = (name: string, cb: any) => {
+  toolHandlers[name] = cb;
+  return origTool(name, cb);
+};
+
+// POST /mcp/tool - invoke a tool by name
+app.post("/mcp/tool", async (req: import("express").Request, res: import("express").Response) => {
+  const { tool, params } = req.body;
+  if (!tool || typeof tool !== "string") {
+    return res.status(400).json({ error: "Missing or invalid 'tool' parameter" });
+  }
+  try {
+    const handler = toolHandlers[tool];
+    if (!handler) {
+      return res.status(404).json({ error: `Tool '${tool}' not found` });
+    }
+    const result = await handler(params || {});
+    res.json(result);
+  } catch (err) {
+    res.status(500).json({ error: err instanceof Error ? err.message : String(err) });
+  }
+});
+
+// SSE endpoint for tool invocation (GET /mcp/tool/stream?tool=...&params=...)
+app.get("/mcp/tool/stream", async (req: import("express").Request, res: import("express").Response) => {
+  const tool = req.query.tool as string;
+  let params: any = {};
+  if (typeof req.query.params === "string") {
+    try {
+      params = JSON.parse(req.query.params);
+    } catch {
+      // fallback: ignore parse error, use empty params
+    }
+  }
+  if (!tool || typeof tool !== "string") {
+    res.status(400).end("Missing or invalid 'tool' parameter");
+    return;
+  }
+  const handler = toolHandlers[tool];
+  if (!handler) {
+    res.status(404).end(`Tool '${tool}' not found`);
+    return;
+  }
+  res.setHeader("Content-Type", "text/event-stream");
+  res.setHeader("Cache-Control", "no-cache");
+  res.setHeader("Connection", "keep-alive");
+  res.flushHeaders();
+  try {
+    const result = await handler(params || {});
+    // If result is an async generator, stream each value
+    if (result && typeof result[Symbol.asyncIterator] === "function") {
+      for await (const chunk of result) {
+        res.write(`data: ${JSON.stringify(chunk)}\n\n`);
+      }
+    } else {
+      // Otherwise, send a single event
+      res.write(`data: ${JSON.stringify(result)}\n\n`);
+    }
+    res.end();
+  } catch (err) {
+    res.write(`event: error\ndata: ${JSON.stringify({ error: err instanceof Error ? err.message : String(err) })}\n\n`);
+    res.end();
+  }
+});
+
+app.listen(HTTP_PORT, () => {
+  // HTTP server started
+});
