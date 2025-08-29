@@ -4,19 +4,25 @@
   "description": "MCP server for Wisemen Vue component library",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "bin": {
+    "vue-core-mcp": "dist/index.js"
+  },
   "scripts": {
     "build": "tsc",
-    "start": "ts-node src/index.ts",
+    "start": "node dist/index.js",
+    "start:dev": "ts-node src/index.ts",
     "dev": "nodemon --watch src --ext ts --exec ts-node src/index.ts"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.17.4"
+    "@modelcontextprotocol/sdk": "^1.17.4",
+    "zod": "3.23.8"
   },
   "devDependencies": {
-    "typescript": "5.9.2",
+    "nodemon": "^3.0.0",
     "ts-node": "10.9.2",
-    "nodemon": "^3.0.0"
+    "typescript": "5.9.2"
   },
   "author": "Wisemen",
   "license": "MIT"
 }
+r

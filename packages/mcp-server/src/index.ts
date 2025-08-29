@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import fs from "fs";
@@ -74,85 +75,42 @@ server.resource(
 );
 
 // Register composables resource
-defaultResource(
+server.resource(
   "composables",
   "composables://{name}",
-  "../../components-next/src/composables",
-  "Composable documentation"
+  async (uri, params) => {
+    const docsPath = path.resolve(__dirname, "../../components-next/src/composables");
+    if (!fs.existsSync(docsPath)) return { contents: [] };
+    const mdFiles = findMarkdownFilesRecursively(docsPath);
+    const logicalName = uri.pathname.replace(/^\//, "");
+    const match = mdFiles.find(f => f.logicalName === logicalName);
+    if (!match) return { contents: [] };
+    return {
+      contents: [{
+        uri: uri.href,
+        mimeType: "text/markdown",
+        text: fs.readFileSync(match.filePath, "utf8")
+      }]
+    };
+  }
 );
 // Register migrations resource
-server.registerResource(
+server.resource(
   "migrations",
-  new ResourceTemplate("migrations://changelog", { list: undefined }),
-  {
-    title: "Migrations Changelog",
-    description: "Changelog for component migrations"
-  },
+  "migrations://changelog",
   async (uri) => {
-    const changelogPath = path.resolve(__dirname, "../../packages/components/CHANGELOG.md");
+    const changelogPath = path.resolve(__dirname, "../../../packages/components/CHANGELOG.md");
     if (!fs.existsSync(changelogPath)) return { contents: [] };
     const changelog = fs.readFileSync(changelogPath, "utf8");
     return {
       contents: [{
         uri: uri.href,
         text: changelog,
-        title: "Changelog",
         mimeType: "text/markdown"
       }]
     };
   }
 );
-
-function defaultResource(resourceName: string, uriPattern: string, relDocsPath: string, description: string) {
-  server.registerResource(
-    resourceName,
-    new ResourceTemplate(uriPattern, { list: undefined }),
-    {
-      title: `${resourceName.charAt(0).toUpperCase() + resourceName.slice(1)}`,
-      description
-    },
-    async (uri, params) => {
-      const docsPath = path.resolve(__dirname, relDocsPath);
-      if (!fs.existsSync(docsPath)) return { contents: [] };
-      const mdFiles = findMarkdownFilesRecursively(docsPath);
-      // Handle list request (e.g. components://list)
-      if (params && params.list !== undefined) {
-        return {
-          contents: mdFiles.map(({ logicalName }) => ({
-            uri: `${resourceName}://${logicalName}`,
-            title: logicalName,
-            text: "",
-            mimeType: "text/markdown"
-          }))
-        };
-      }
-      // If a specific name is requested, return that file (match logicalName)
-      if (params && params.name) {
-        const match = mdFiles.find(f => f.logicalName === params.name);
-        if (match) {
-          return {
-            contents: [{
-              uri: uri.href,
-              text: fs.readFileSync(match.filePath, "utf8"),
-              title: params.name,
-              mimeType: "text/markdown"
-            }]
-          };
-        }
-        return { contents: [] };
-      }
-      // Otherwise, list all files (legacy fallback)
-      return {
-        contents: mdFiles.map(({ logicalName, filePath }) => ({
-          uri: `${resourceName}://${logicalName}`,
-          text: fs.readFileSync(filePath, "utf8"),
-          title: logicalName,
-          mimeType: "text/markdown"
-        }))
-      };
-    }
-  );
-}
 
 // Register a dummy tool to ensure MCP tools endpoint is present
 server.registerTool(
