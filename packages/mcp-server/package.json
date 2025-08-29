@@ -13,7 +13,8 @@
     "@modelcontextprotocol/sdk": "1.17.4",
     "zod": "3.25.76",
     "express": "5.1.0",
-    "body-parser": "2.2.0"
+    "body-parser": "2.2.0",
+    "vue-docgen-api": "4.79.2"
   },
   "devDependencies": {
     "typescript": "5.9.2",
