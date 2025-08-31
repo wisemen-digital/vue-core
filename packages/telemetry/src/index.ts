@@ -1,7 +1,7 @@
 import * as Sentry from '@sentry/vue'
 import type { App } from 'vue'
 
-import { initOpenTelemetry } from './opentelemetry'
+import { initOpenTelemetry } from './opentelemetry/tracing/tracer'
 import { initSentry } from './sentry'
 import type { TelemetryOptions } from './types'
 
@@ -49,3 +49,5 @@ export function initTelemetry(app: App, options: TelemetryOptions): Telemetry {
     setUser: (user: TelemetryUser) => Sentry.setUser(user),
   }
 }
+
+export { registerAppInstrumentations } from './opentelemetry/tracing/instrumentation'
