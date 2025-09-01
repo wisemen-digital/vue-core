@@ -48,6 +48,7 @@
     "vue-i18n": "catalog:"
   },
   "dependencies": {
+    "axe-playwright": "^2.1.0",
     "tailwind-variants": "catalog:",
     "vue-sonner": "1.3.0"
   },
