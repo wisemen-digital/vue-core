@@ -41,7 +41,9 @@
   "peerDependencies": {
     "@hey-api/openapi-ts": "^0.81.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "json-schema-faker": "0.5.8"
+  },
   "devDependencies": {
     "tsdown": "0.14.2"
   }
