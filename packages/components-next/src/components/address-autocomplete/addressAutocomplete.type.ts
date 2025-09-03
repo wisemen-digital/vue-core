@@ -7,6 +7,7 @@ export interface FormattedAddress {
 }
 
 export interface Address {
+  placeId?: string | null
   bus: string
   city: string
   coordinates: {

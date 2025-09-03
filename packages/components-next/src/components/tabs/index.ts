@@ -15,3 +15,4 @@ export type {
   RouterLinkTabsItemProps as VcRouterLinkTabsItemProps,
   TabsProps as VcTabsProps,
 } from '@/components/tabs/shared/tabs.props'
+export { createTabsStyle } from '@/components/tabs/shared/tabs.style'

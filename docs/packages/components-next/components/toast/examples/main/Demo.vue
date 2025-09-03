@@ -2,7 +2,6 @@
 import {
   useVcToast,
   VcButton,
-  VcToastContainer,
 } from '@wisemen/vue-core-components'
 import {
   h,
@@ -53,7 +52,5 @@ function showToast(): void {
     >
       Show toast
     </VcButton>
-
-    <VcToastContainer />
   </div>
 </template>

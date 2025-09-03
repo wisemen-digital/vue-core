@@ -30,7 +30,7 @@ const activeDialogCount = ref<number>(0)
       <ThemeProvider :appearance="appearance">
         <div
           :class="{
-            'scale-98 overflow-hidden rounded-xl': activeDialogCount > 0,
+            // 'scale-98 overflow-hidden rounded-xl': activeDialogCount > 0,
           }"
           class="
             flex h-screen items-center justify-center gap-lg bg-primary

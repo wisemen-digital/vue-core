@@ -8,6 +8,7 @@ import ComponentPreview from '@docs/.vitepress/components/ComponentPreview.vue'
 import ComponentPreviewV1 from '@docs/.vitepress/components/ComponentPreviewV1.vue'
 import MethodsTable from '@docs/.vitepress/components/tables/MethodsTable.vue'
 import PropsTable from '@docs/.vitepress/components/tables/PropsTable.vue'
+import { router } from '@docs/router'
 import { setupDefaultStyles } from '@wisemen/vue-core'
 import DefaultTheme from 'vitepress/theme'
 import { createI18n } from 'vue-i18n'
@@ -39,6 +40,7 @@ const theme: typeof DefaultTheme = {
   Layout: DefaultTheme.Layout,
   enhanceApp(ctx) {
     ctx.app.use(i18nPlugin as any)
+    ctx.app.use(router)
     ctx.app.component('ComponentPreview', ComponentPreview)
     ctx.app.component('ComponentPreviewV1', ComponentPreviewV1)
     ctx.app.component('ClassConfig', ClassConfig)

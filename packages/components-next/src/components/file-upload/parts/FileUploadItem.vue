@@ -58,7 +58,7 @@ function uploadToS3(uuid: string, url: string, file: File): void {
   })
 
   xhr.onload = (): void => {
-    if (xhr.status === 200) {
+    if (xhr.status >= 200 && xhr.status < 300) {
       onSuccess(props.item)
     }
     else {
@@ -72,6 +72,7 @@ function uploadToS3(uuid: string, url: string, file: File): void {
 
   xhr.open('PUT', url, true)
   xhr.setRequestHeader('Content-Type', file.type)
+  xhr.setRequestHeader('x-ms-blob-type', 'BlockBlob')
   xhr.send(blob)
 }
 

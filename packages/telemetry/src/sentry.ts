@@ -53,6 +53,6 @@ export function initSentry(app: App, options: SentryOptions): void {
   })
 
   if (debug) {
-    logWarning(`Initialized with DSN: ${dsn})`)
+    logWarning(`Initialized with DSN: ${dsn}`)
   }
 }

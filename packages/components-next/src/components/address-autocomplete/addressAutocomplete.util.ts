@@ -27,6 +27,7 @@ export async function getAddressByPlaceId(placeId: string): Promise<Address> {
   const lng = place.location?.lng() ?? null
 
   return {
+    placeId: place.id ?? null,
     bus: findAddressComponent(place.addressComponents ?? [], 'subpremise')?.longText ?? '',
     city: findAddressComponent(place.addressComponents ?? [], 'locality')?.longText ?? '',
     coordinates: {

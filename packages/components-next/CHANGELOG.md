@@ -1,5 +1,35 @@
 # @wisemen/vue-core-components
 
+## 1.15.0
+
+### Minor Changes
+
+- d4c8d19: Toast: add support for custom duration
+
+### Patch Changes
+
+- 1779bed: RouterLinkButton: fix variant prop
+- fb78687: Button: remove shadow
+
+## 1.14.0
+
+### 🚀 Minor Changes
+
+- **Address**: Added support for `placeId`.
+
+## 1.13.0
+
+### 🔥 New Features
+
+- **Toast**: Added support for auto-closing toasts via a new configuration option — useful for transient notifications that shouldn't require manual dismissal.
+- Added `VcTableXXXNext` components which in the future will replace the existing `VcTable` components.
+
+## 1.12.1
+
+### 🐞 Patch Fix
+
+- **FileUpload**: Fixed an issue that prevented successful uploads to Azure Blob Storage in certain configurations.
+
 ## 1.12.0
 
 ### ⚠️ Breaking Changes

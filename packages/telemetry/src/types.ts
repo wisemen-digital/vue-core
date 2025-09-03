@@ -1,7 +1,7 @@
 export interface SentryOptions {
-  /*
-  debug: If true, enables debug mode for Sentry.
-  Default is false.
+  /**
+   * debug: If true, enables debug mode for Sentry.
+   * Default is false.
    */
   debug?: boolean
   /**

@@ -364,7 +364,7 @@ export const folderStructureConfig = createFolderStructure({
           ruleId: 'components_folder',
         },
         {
-          name: '{PascalCase}.vue|{camelCase}.context.ts|{camelCase}.composable.ts|{camelCase}.type.ts',
+          name: '{PascalCase}.vue|{camelCase}.context.ts|{camelCase}.composable.ts|{camelCase}.type.ts|{camelCase}.props.ts',
         },
       ],
     },

@@ -4,7 +4,7 @@
     "access": "public"
   },
   "type": "module",
-  "version": "2.3.5",
+  "version": "2.3.9",
   "private": false,
   "license": "MIT",
   "sideEffects": false,
