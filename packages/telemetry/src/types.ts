@@ -42,7 +42,7 @@ export interface SentryOptions {
 }
 
 export interface OpenTelemetryOptions {
-  accessTokenFn: (() => string | null)
+  accessTokenFn: () => Promise<string>
   buildNumber?: string
   buildTimestamp?: string
   commitHash?: string

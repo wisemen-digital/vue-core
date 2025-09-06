@@ -14,7 +14,7 @@ import {
 
 import type { OpenTelemetryOptions } from '../../types'
 
-export function initOpenTelemetry(options: OpenTelemetryOptions): void {
+export async function initOpenTelemetry(options: OpenTelemetryOptions): Promise<void> {
   console.log('Initializing OpenTelemetry tracing...', options)
 
   const endpoint = options.traceEndpoint
@@ -25,9 +25,11 @@ export function initOpenTelemetry(options: OpenTelemetryOptions): void {
     return
   }
 
+  const accessToken = await options.accessTokenFn()
+
   const customOTLPTraceExporter = new CustomOTLPTraceExporter({
     headers: {
-      'Authorization': `Bearer ${options.accessTokenFn()}`,
+      'Authorization': `Bearer ${accessToken}`,
       'Content-Type': 'application/json',
     },
     url: `${endpoint}`,
@@ -54,11 +56,11 @@ export function initOpenTelemetry(options: OpenTelemetryOptions): void {
 // https://github.com/open-telemetry/opentelemetry-js/issues/2903
 export class CustomOTLPTraceExporter extends OTLPTraceExporter {
   private _headers: Record<string, unknown>
-  private accessTokenFn: () => string | null = () => null
+  private accessTokenFn: () => Promise<string>
 
   constructor(
     config: OTLPExporterNodeConfigBase,
-    accessTokenFn: () => string | null,
+    accessTokenFn: () => Promise<string>,
   ) {
     super(config)
     this._headers = {
@@ -67,11 +69,11 @@ export class CustomOTLPTraceExporter extends OTLPTraceExporter {
     this.accessTokenFn = accessTokenFn
   }
 
-  export(
+  async export(
     items: ReadableSpan[],
     resultCallback: (result: ExportResult) => void,
-  ): void {
-    const token = this.accessTokenFn()
+  ): Promise<void> {
+    const token = await this.accessTokenFn()
 
     if (token !== null) {
       this._headers = {
