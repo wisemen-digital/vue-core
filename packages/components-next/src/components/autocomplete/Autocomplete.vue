@@ -10,8 +10,10 @@ import {
 import type { AutocompleteProps } from '@/components/autocomplete/autocomplete.props'
 import SelectItem from '@/components/select/parts/SelectItem.vue'
 import Select from '@/components/select/Select.vue'
+import type { Icon } from '@/icons/icons'
 
 const props = withDefaults(defineProps<AutocompleteProps<TValue>>(), {
+  isSearchTermOptional: false,
   debounceTimeoutInMs: 300,
   iconRight: null,
 })
@@ -27,8 +29,6 @@ const modelValue = defineModel<TValue>({
 const searchTerm = ref<string>('')
 const isDebouncing = ref<boolean>(false)
 const delegatedItems = ref<TValue[]>(props.items)
-
-const canUserOpenDropdownManually = computed<boolean>(() => props.iconRight !== null)
 
 const isSearchTermEmpty = computed<boolean>(() => searchTerm.value.trim().length === 0)
 
@@ -69,6 +69,18 @@ const isDropdownVisible = computed<boolean>(() => {
   return true
 })
 
+const iconRight = computed<Icon | null>(() => {
+  if (props.iconRight !== null) {
+    return props.iconRight
+  }
+
+  if (props.isSearchTermOptional) {
+    return 'selectIconRight'
+  }
+
+  return null
+})
+
 const debounceSearch = useDebounceFn((searchTerm: string | null) => {
   isDebouncing.value = false
 
@@ -82,7 +94,7 @@ const debounceSearch = useDebounceFn((searchTerm: string | null) => {
 function onUpdateIsOpen(isOpen: boolean): void {
   // If the user can open the dropdown manually, we don't clear the items since they
   // might want to see them again without searching
-  if (!isOpen && !canUserOpenDropdownManually.value) {
+  if (!isOpen && !props.isSearchTermOptional) {
     delegatedItems.value = []
   }
 }
@@ -124,6 +136,7 @@ watch(() => props.items, (newItems) => {
       isInline: true,
       fn: () => true,
     }"
+    :icon-right="iconRight"
     :is-dropdown-hidden="!isDropdownVisible"
     :is-loading="props.isLoading || isDebouncing"
     @update:is-open="onUpdateIsOpen"
