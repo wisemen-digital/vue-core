@@ -1,3 +1,4 @@
+export { useInjectToastContext } from '@/components/toast/toast.context'
 export { default as VcTooltipArrow } from '@/components/tooltip/parts/TooltipArrow.vue'
 export { default as VcTooltipContent } from '@/components/tooltip/parts/TooltipContent.vue'
 export { default as VcTooltipContentTransition } from '@/components/tooltip/parts/TooltipContentTransition.vue'
