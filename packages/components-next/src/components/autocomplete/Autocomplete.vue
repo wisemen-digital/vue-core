@@ -80,6 +80,8 @@ const debounceSearch = useDebounceFn((searchTerm: string | null) => {
 }, props.debounceTimeoutInMs)
 
 function onUpdateIsOpen(isOpen: boolean): void {
+  // If the user can open the dropdown manually, we don't clear the items since they
+  // might want to see them again without searching
   if (!isOpen && !canUserOpenDropdownManually.value) {
     delegatedItems.value = []
   }
