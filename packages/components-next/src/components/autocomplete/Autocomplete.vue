@@ -28,6 +28,8 @@ const searchTerm = ref<string>('')
 const isDebouncing = ref<boolean>(false)
 const delegatedItems = ref<TValue[]>(props.items)
 
+const canUserOpenDropdownManually = computed<boolean>(() => props.iconRight !== null)
+
 const isSearchTermEmpty = computed<boolean>(() => searchTerm.value.trim().length === 0)
 
 const isSearchTermTheSameAsCurrentValue = computed<boolean>(() => {
@@ -78,7 +80,7 @@ const debounceSearch = useDebounceFn((searchTerm: string | null) => {
 }, props.debounceTimeoutInMs)
 
 function onUpdateIsOpen(isOpen: boolean): void {
-  if (!isOpen) {
+  if (!isOpen && !canUserOpenDropdownManually.value) {
     delegatedItems.value = []
   }
 }
