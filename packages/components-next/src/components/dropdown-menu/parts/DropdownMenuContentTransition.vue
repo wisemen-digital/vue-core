@@ -55,9 +55,9 @@ function transform(side: PopperSide): {
       ...transform(side),
     }"
     :transition="{
-      duration: 0.4,
+      duration: 0.3,
       type: 'spring',
-      bounce: 0.2,
+      bounce: 0.15,
     }"
     class="origin-(--reka-dropdown-menu-content-transform-origin)"
   >
