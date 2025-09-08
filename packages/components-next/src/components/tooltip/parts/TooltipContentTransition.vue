@@ -55,9 +55,9 @@ function transform(side: PopperSide): {
       opacity: 1,
       transform: 'translate(0, 0) scale(1)',
       transition: isInitialAnimationEnabled ? {
-        duration: 0.4,
+        duration: 0.3,
         type: 'spring',
-        bounce: 0.2,
+        bounce: 0.15,
       } : {
         duration: 0,
       },
@@ -65,11 +65,11 @@ function transform(side: PopperSide): {
     :exit="{
       opacity: 0,
       ...transform(side),
-      transition: {
-        duration: 0.4,
-        type: 'spring',
-        bounce: 0.2,
-      },
+    }"
+    :transition="{
+      duration: 0.3,
+      type: 'spring',
+      bounce: 0.15,
     }"
     class="origin-(--reka-tooltip-content-transform-origin)"
   >
