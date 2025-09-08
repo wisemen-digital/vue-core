@@ -2,7 +2,10 @@
 import { computed } from 'vue'
 
 import { useProvideConfigContext } from '@/components/config-provider/config.context'
-import type { ToastPosition } from '@/components/toast/toast.composable'
+import type {
+  AutoCloseToastConfig,
+  ToastPosition,
+} from '@/components/toast/toast.composable'
 
 const props = defineProps<{
   /**
@@ -11,10 +14,9 @@ const props = defineProps<{
    */
   areKeyboardShortcutHintsHidden?: boolean
   /**
-   * Whether to automatically close toast notifications after a certain time. This does not apply to error toasts.
-   * @default false
+   * Whether to automatically close toast notifications after a certain time.
    */
-  autoCloseToast?: boolean
+  autoCloseToast?: AutoCloseToastConfig
   /**
    * The Google Maps API key (used for example to validate addresses using the AddressAutocomplete component).
    * @default null
@@ -51,7 +53,7 @@ defineSlots<{
 
 useProvideConfigContext({
   areKeyboardShortcutHintsHidden: computed<boolean>(() => props.areKeyboardShortcutHintsHidden ?? false),
-  autoCloseToast: computed<boolean>(() => props.autoCloseToast ?? false),
+  autoCloseToast: computed<AutoCloseToastConfig | null>(() => props.autoCloseToast ?? null),
   googleMapsApiKey: props.googleMapsApiKey ?? null,
   locale: computed<string>(() => props.locale),
   pagination: {

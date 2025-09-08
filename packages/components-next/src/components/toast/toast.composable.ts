@@ -8,6 +8,13 @@ import Toast from '@/components/toast/Toast.vue'
 
 const PERMANENT_TOAST_DURATION = Infinity
 const AUTO_CLOSE_TOAST_DURATION = 5000
+const AUTO_CLOSE_ERROR_TOAST_DURATION = 7000
+
+export interface AutoCloseToastConfig {
+  error?: boolean | number
+  info?: boolean | number
+  success?: boolean | number
+}
 
 export type ToastPosition = NonNullable<ToastT['position']>
 
@@ -31,13 +38,29 @@ export function useToast(): UseToastReturnType {
     autoCloseToast, toastPosition,
   } = useInjectConfigContext()
 
-  function getToastDuration(toast: ToastOptions, isErrorToast: boolean): number {
+  function getToastDuration(toast: ToastOptions, type: keyof AutoCloseToastConfig): number {
+    // If a proper toast duration is provided, it takes precedence over global config
     if (toast.durationMs !== undefined && toast.durationMs !== null) {
       return toast.durationMs
     }
 
-    if (autoCloseToast.value && !isErrorToast) {
-      return AUTO_CLOSE_TOAST_DURATION
+    const globalConfig = autoCloseToast.value?.[type] ?? null
+
+    // If no global config is provided, fall back to default durations
+    if (globalConfig === null) {
+      return type === 'error' ? PERMANENT_TOAST_DURATION : AUTO_CLOSE_TOAST_DURATION
+    }
+
+    const DEFAULT_AUTO_CLOSE_DURATION = type === 'error'
+      ? AUTO_CLOSE_ERROR_TOAST_DURATION
+      : AUTO_CLOSE_TOAST_DURATION
+
+    if (typeof globalConfig === 'number') {
+      return globalConfig
+    }
+
+    if (globalConfig === true) {
+      return DEFAULT_AUTO_CLOSE_DURATION
     }
 
     return PERMANENT_TOAST_DURATION
@@ -48,7 +71,7 @@ export function useToast(): UseToastReturnType {
       ...toast,
       type: 'error',
     }), {
-      duration: getToastDuration(toast, true),
+      duration: getToastDuration(toast, 'error'),
       position: toastPosition,
     })
   }
@@ -58,7 +81,7 @@ export function useToast(): UseToastReturnType {
       ...toast,
       type: 'info',
     }), {
-      duration: getToastDuration(toast, false),
+      duration: getToastDuration(toast, 'info'),
       position: toastPosition,
     })
   }
@@ -68,7 +91,7 @@ export function useToast(): UseToastReturnType {
       ...toast,
       type: 'success',
     }), {
-      duration: getToastDuration(toast, false),
+      duration: getToastDuration(toast, 'success'),
       position: toastPosition,
     })
   }
