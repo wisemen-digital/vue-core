@@ -1,5 +1,4 @@
 import { useInfiniteQuery } from '@tanstack/vue-query'
-import type { QueryKeys } from '@wisemen/vue-core-query'
 import {
   err,
   ok,
@@ -11,6 +10,7 @@ import type {
   OffsetPaginationParams,
   OffsetPaginationResult,
 } from '@/types/pagination.type'
+import type { QueryKeys } from '@/types/queryKeys.type'
 import { QUERY_CONFIG } from '@/utils/config.utils'
 
 type NonOptionalKeys<T> = {

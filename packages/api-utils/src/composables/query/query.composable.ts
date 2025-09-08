@@ -1,5 +1,4 @@
 import { useQuery as useTanstackQuery } from '@tanstack/vue-query'
-import type { QueryKeys } from '@wisemen/vue-core-query'
 import type {
   ComputedRef,
   MaybeRef,
@@ -7,6 +6,7 @@ import type {
 import { computed } from 'vue'
 
 import type { ApiResult } from '@/types/apiError.type'
+import type { QueryKeys } from '@/types/queryKeys.type'
 
 type NonOptionalKeys<T> = {
   [K in keyof T]-?: T[K]
