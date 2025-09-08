@@ -11,6 +11,11 @@ const props = defineProps<{
    */
   areKeyboardShortcutHintsHidden?: boolean
   /**
+   * Whether to automatically close toast notifications after a certain time. This does not apply to error toasts.
+   * @default false
+   */
+  autoCloseToast?: boolean
+  /**
    * The Google Maps API key (used for example to validate addresses using the AddressAutocomplete component).
    * @default null
    */
@@ -46,6 +51,7 @@ defineSlots<{
 
 useProvideConfigContext({
   areKeyboardShortcutHintsHidden: computed<boolean>(() => props.areKeyboardShortcutHintsHidden ?? false),
+  autoCloseToast: computed<boolean>(() => props.autoCloseToast ?? false),
   googleMapsApiKey: props.googleMapsApiKey ?? null,
   locale: computed<string>(() => props.locale),
   pagination: {

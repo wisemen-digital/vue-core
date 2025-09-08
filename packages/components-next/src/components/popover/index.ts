@@ -7,4 +7,5 @@ export { default as VcPopoverPortal } from '@/components/popover/parts/PopoverPo
 export { default as VcPopoverRoot } from '@/components/popover/parts/PopoverRoot.vue'
 export { default as VcPopoverTrigger } from '@/components/popover/parts/PopoverTrigger.vue'
 export type { PopoverProps as VcPopoverProps } from '@/components/popover/popover.props'
+export { createPopoverStyle } from '@/components/popover/popover.style'
 export { default as VcPopover } from '@/components/popover/Popover.vue'

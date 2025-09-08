@@ -12,7 +12,6 @@ export const createSharedButtonStyle = tv({
       .withOutline('focus-visible:outline-2 outline-offset-2 outline-brand-600')
       .withBorder('border border-solid')
       .withBorderRadius('rounded-md')
-      .withShadow('shadow-button')
       .withCursor('cursor-pointer disabled:cursor-not-allowed data-[loading=true]:cursor-not-allowed')
       .withTransition('duration-100 data-[loading=false]:not-disabled:active:scale-99')
       .build(),
@@ -41,7 +40,6 @@ export const createSharedButtonStyle = tv({
           .withColor('text-error-primary disabled:text-fg-disabled')
           .withBackgroundColor('bg-transparent data-[loading=false]:not-disabled:hover:bg-error-primary data-[loading=false]:not-disabled:active:brightness-98 data-[loading=true]:bg-error-primary')
           .withBorder('border-transparent')
-          .withShadow('shadow-none')
           .withOutline('outline-error-600')
           .build(),
       },
@@ -65,7 +63,6 @@ export const createSharedButtonStyle = tv({
           .withColor('text-tertiary disabled:text-fg-disabled')
           .withBackgroundColor('bg-transparent data-[loading=false]:not-disabled:hover:bg-primary-hover data-[loading=false]:not-disabled:active:brightness-98 data-[loading=true]:bg-primary-hover')
           .withBorder('border-transparent')
-          .withShadow('shadow-none')
           .build(),
       },
     },

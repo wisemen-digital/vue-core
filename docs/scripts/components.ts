@@ -22,11 +22,13 @@ export const components: ComponentConfig[] = [
     sourceFolder: 'avatar/parts/AvatarRoot.vue',
     targetFolder: 'avatar',
     componentName: 'Avatar',
+    styleFunctionName: 'createAvatarStyle',
   },
   {
     sourceFolder: 'badge/parts/BadgeRoot.vue',
     targetFolder: 'badge',
     componentName: 'Badge',
+    styleFunctionName: 'createBadgeStyle',
   },
   {
     sourceFolder: 'button/default-button/parts/ButtonRoot.vue',
@@ -77,14 +79,16 @@ export const components: ComponentConfig[] = [
   // Date picker
   {
     sourceFolder: 'date-picker/single/parts/DatePickerRoot.vue',
-    targetFolder: 'date-range-picker',
+    targetFolder: 'date-picker',
     componentName: 'DatePicker',
+    styleFunctionName: 'createDatePickerStyle',
   },
   // Date Range picker
   {
     sourceFolder: 'date-picker/range/parts/DateRangePickerRoot.vue',
     targetFolder: 'date-range-picker',
     componentName: 'DateRangePicker',
+    styleFunctionName: 'createDateRangePickerStyle',
   },
   // File upload
   {
@@ -160,6 +164,7 @@ export const components: ComponentConfig[] = [
     sourceFolder: 'table/parts/TableRoot.vue',
     targetFolder: 'table',
     componentName: 'Table',
+    styleFunctionName: 'createTableStyle',
   },
   // Time Field
   {
@@ -173,54 +178,63 @@ export const components: ComponentConfig[] = [
     sourceFolder: 'toast/parts/ToastRoot.vue',
     targetFolder: 'toast',
     componentName: 'Toast',
+    styleFunctionName: 'createToastStyle',
   },
   // Tooltip
   {
     sourceFolder: 'tooltip/parts/TooltipRoot.vue',
     targetFolder: 'tooltip',
     componentName: 'Tooltip',
+    styleFunctionName: 'createTooltipStyle',
   },
   // Dialog
   {
     sourceFolder: 'dialog/parts/DialogRoot.vue',
     targetFolder: 'dialog',
     componentName: 'Dialog',
+    styleFunctionName: 'createDialogStyle',
   },
   // Dropdown Menu
   {
     sourceFolder: 'dropdown-menu/parts/DropdownMenuRoot.vue',
     targetFolder: 'dropdown-menu',
     componentName: 'DropdownMenu',
+    styleFunctionName: 'createDropdownMenuStyle',
   },
   // Popover
   {
     sourceFolder: 'popover/parts/PopoverRoot.vue',
     targetFolder: 'popover',
     componentName: 'Popover',
+    styleFunctionName: 'createPopoverStyle',
   },
   // Router link tabs
   {
     sourceFolder: 'tabs/shared/parts/TabsRoot.vue',
     targetFolder: 'router-link-tabs',
     componentName: 'RouterLinkTabs',
+    styleFunctionName: 'createTabsStyle',
   },
   // Tabs
   {
     sourceFolder: 'tabs/shared/parts/TabsRoot.vue',
     targetFolder: 'tabs',
     componentName: 'Tabs',
+    styleFunctionName: 'createTabsStyle',
   },
   // Keyboard key
   {
     sourceFolder: 'keyboard-key/KeyboardKey.vue',
     targetFolder: 'keyboard-key',
     componentName: 'KeyboardKey',
+    styleFunctionName: 'createKeyboardKeyStyle',
   },
   // Keyboard shortcut
   {
     sourceFolder: 'keyboard-shortcut/KeyboardShortcut.vue',
     targetFolder: 'keyboard-shortcut',
     componentName: 'KeyboardShortcut',
+    styleFunctionName: 'createKeyboardShortcutStyle',
   },
   // Keyboard shortcut provider
   {

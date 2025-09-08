@@ -6,11 +6,11 @@ import { Motion } from 'motion-v'
   <Motion
     :initial="{
       opacity: 0,
-      y: '5rem',
+      transform: 'translateY(5rem)',
     }"
     :animate="{
       opacity: 1,
-      y: 0,
+      transform: 'translateY(0rem)',
       transition: {
         duration: 0.6,
         bounce: 0,
@@ -19,14 +19,13 @@ import { Motion } from 'motion-v'
     }"
     :exit="{
       opacity: 0,
-      y: '5rem',
+      transform: 'translateY(5rem)',
       transition: {
         duration: 0.3,
         bounce: 0,
         type: 'spring',
       },
     }"
-    :layout-root="true"
   >
     <slot />
   </Motion>

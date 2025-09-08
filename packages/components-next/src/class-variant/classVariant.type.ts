@@ -15,7 +15,7 @@ import type { createDialogStyle } from '@/components/dialog/dialog.style'
 import type { createDropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style'
 import type { createFormFieldStyle } from '@/components/form-field/formField.style'
 import type { createKeyboardKeyStyle } from '@/components/keyboard-key/keyboardKey.style'
-import type { createkeyboardShortcutStyle } from '@/components/keyboard-shortcut/keyboardShortcut.style'
+import type { createKeyboardShortcutStyle } from '@/components/keyboard-shortcut/keyboardShortcut.style'
 import type { createNumberFieldStyle } from '@/components/number-field/numberField.style'
 import type { createPhoneNumberFieldStyle } from '@/components/phone-number-field/phoneNumberField.style'
 import type { createPopoverStyle } from '@/components/popover/popover.style'
@@ -23,6 +23,7 @@ import type { createRadioGroupItemStyle } from '@/components/radio-group-item/ra
 import type { createSelectStyle } from '@/components/select/style/select.style'
 import type { createSwitchStyle } from '@/components/switch/switch.style'
 import type { createTableStyle } from '@/components/table/table.style'
+import type { createTableNextStyle } from '@/components/table-next/table.style'
 import type { createTabsStyle } from '@/components/tabs/shared/tabs.style'
 import type { createTagsInputFieldStyle } from '@/components/tags-input-field/tagsInputField.style'
 import type { createTextFieldStyle } from '@/components/text-field/textField.style'
@@ -93,7 +94,7 @@ export interface ComponentMap {
     children: {}
   }
   keyboardShortcut: {
-    style: typeof createkeyboardShortcutStyle
+    style: typeof createKeyboardShortcutStyle
     children: {
       keyboardKey: 'keyboardKey'
     }
@@ -139,6 +140,12 @@ export interface ComponentMap {
   }
   table: {
     style: typeof createTableStyle
+    children: {
+      headerCellButton: 'button'
+    }
+  }
+  tableNext: {
+    style: typeof createTableNextStyle
     children: {
       headerCellButton: 'button'
     }

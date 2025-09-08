@@ -15,5 +15,5 @@ const {
       :key="rowIndex"
       :data="rowData"
     />
-  </SubGrid>
+  </Subgrid>
 </template>

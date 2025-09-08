@@ -50,7 +50,7 @@ components.forEach((component) => {
     parsedString += `\n<MethodsTable :data="${JSON.stringify(meta.methods, null, 2).replace(/"/g, '\'')}" />\n`
   
   if (component.styleFunctionName) {
-    parsedString += `\n\n<ClassConfig :style-function="${component.styleFunctionName}" />\n\n`;
+    parsedString += `\n<ClassConfig :style-function="${component.styleFunctionName}" />\n`;
   }
 
   // TODO: Check to re-add those ?

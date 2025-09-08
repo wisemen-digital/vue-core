@@ -11,18 +11,21 @@ This component is build on top of the [Form Field](/packages/components-next/com
 ```vue
 <script setup lang="ts">
 import {
-  FormField,
-  CheckboxRoot,
-  CheckboxControl,
+  VcFormField,
+  VcCheckboxRoot,
+  VcCheckboxControl,
+  VcCheckboxIndicator,
 } from '@wisemen/vue-core-components'
 </script>
 
 <template>
-  <FormField>
-    <CheckboxRoot>
-      <CheckboxControl />
-    </CheckboxRoot>
-  </FormField>
+  <VcFormField>
+    <VcCheckboxRoot>
+      <VcCheckboxControl>
+        <VcCheckboxIndicator />
+      </VcCheckboxControl>
+    </VcCheckboxRoot>
+  </VcFormField>
 </template>
 ```
 
