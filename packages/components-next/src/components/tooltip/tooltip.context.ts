@@ -7,6 +7,7 @@ import { useContext } from '@/composables/context/context.composable'
 import type { PropsToComputed } from '@/utils/props.util'
 
 interface TooltipContext extends PropsToComputed<TooltipProps> {
+  isInitialAnimationEnabled: ComputedRef<boolean>
   isOpen: ComputedRef<boolean>
   customClassConfig: ComputedRef<ResolvedClassConfig<'tooltip'>>
   style: ComputedRef<CreateTooltipStyle>
