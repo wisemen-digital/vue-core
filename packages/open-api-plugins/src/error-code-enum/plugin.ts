@@ -27,18 +27,34 @@ export const handler: ErrorCodeEnumPlugin['Handler'] = ({
     }
   })
 
-  const errorCodeEnumNode = ts.factory.createEnumDeclaration(
+  const errorCodeEnumNode = ts.factory.createVariableStatement(
     [
       ts.factory.createModifier(ts.SyntaxKind.ExportKeyword),
     ],
-    ts.factory.createIdentifier('ApiErrorCode'),
-    errorCodeValues.map((value) => {
-      return ts.factory.createEnumMember(
-        ts.factory.createIdentifier(value.toUpperCase().replace(/-/g, '_')),
-        ts.factory.createStringLiteral(value),
-      )
-    }),
+    ts.factory.createVariableDeclarationList(
+      [
+        ts.factory.createVariableDeclaration(
+          ts.factory.createIdentifier('apiErrorCode'),
+          undefined,
+          undefined,
+          ts.factory.createAsExpression(
+            ts.factory.createObjectLiteralExpression(
+              errorCodeValues.map((value) => {
+                return ts.factory.createPropertyAssignment(
+                  ts.factory.createIdentifier(value.toUpperCase().replace(/-/g, '_')),
+                  ts.factory.createStringLiteral(value),
+                )
+              }),
+              true,
+            ),
+            ts.factory.createTypeReferenceNode('const'),
+          ),
+        ),
+      ],
+      ts.NodeFlags.Const,
+    ),
   )
 
   file.add(errorCodeEnumNode)
+  file.add(`export type ApiErrorCodeType = typeof apiErrorCode;`)
 }
