@@ -1,0 +1,8 @@
+{
+  "extends": ["./oxlint-migrate.json"],
+  "rules": {
+    "no-undef": "off",
+    "typescript/no-floating-promises": "error",
+    "typescript/unbound-method": "off"
+  }
+}
