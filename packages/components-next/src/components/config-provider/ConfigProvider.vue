@@ -14,7 +14,10 @@ const props = defineProps<{
    */
   areKeyboardShortcutHintsHidden?: boolean
   /**
-   * Whether to automatically close toast notifications after a certain time.
+   * Configuration for automatically closing toast notifications.
+   * Accepts an object with properties `error`, `info`, and `success`, each of which can
+   * be a boolean (to enable/disable auto-close) or a number (timeout in milliseconds).
+   * For example: `{ error: true, info: 5000, success: false }`
    */
   autoCloseToast?: AutoCloseToastConfig
   /**
