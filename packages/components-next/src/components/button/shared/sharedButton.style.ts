@@ -1,6 +1,6 @@
 import type { VariantProps } from 'tailwind-variants'
-import { tv } from 'tailwind-variants'
 
+import { tv } from '@/libs/tailwindVariants.lib'
 import { StyleBuilder } from '@/utils/style-builder/styleBuilder.util'
 
 // Do not use `enabled:` since this won't work for the router link button.

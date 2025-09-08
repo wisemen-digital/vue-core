@@ -1,4 +1,4 @@
-import { twMerge } from 'tailwind-merge'
+import { extendTailwindMerge } from 'tailwind-merge'
 
 import type {
   ComponentMap,
@@ -93,6 +93,32 @@ export function getCustomComponentVariant<
   return merged
 }
 
+const twMergeCustom = extendTailwindMerge({
+  extend: {
+    theme: {
+      spacing: [
+        'none',
+        'xxs',
+        'xs',
+        'sm',
+        'md',
+        'lg',
+        'xl',
+        '2xl',
+        '3xl',
+        '4xl',
+        '5xl',
+        '6xl',
+        '7xl',
+        '8xl',
+        '9xl',
+        '10xl',
+        '11xl',
+      ],
+    },
+  },
+})
+
 export function mergeClasses(...strings: (string | null | undefined)[]): string {
-  return twMerge(strings.filter(Boolean).join(' '))
+  return twMergeCustom(strings.filter(Boolean).join(' '))
 }

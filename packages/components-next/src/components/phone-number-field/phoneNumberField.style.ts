@@ -1,5 +1,6 @@
 import type { VariantProps } from 'tailwind-variants'
-import { tv } from 'tailwind-variants'
+
+import { tv } from '@/libs/tailwindVariants.lib'
 
 export const createPhoneNumberFieldStyle = tv({
   slots: {
