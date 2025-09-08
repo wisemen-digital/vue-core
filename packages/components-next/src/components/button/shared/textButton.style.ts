@@ -1,7 +1,7 @@
 import type { VariantProps } from 'tailwind-variants'
-import { tv } from 'tailwind-variants'
 
 import { createSharedButtonStyle } from '@/components/button/shared/sharedButton.style'
+import { tv } from '@/libs/tailwindVariants.lib'
 import { StyleBuilder } from '@/utils/style-builder/styleBuilder.util'
 
 export const createTextButtonStyle = tv({
