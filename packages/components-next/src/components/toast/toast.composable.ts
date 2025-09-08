@@ -11,8 +11,20 @@ const AUTO_CLOSE_TOAST_DURATION = 5000
 const AUTO_CLOSE_ERROR_TOAST_DURATION = 7000
 
 export interface AutoCloseToastConfig {
+  /**
+   * If `true`, error toasts will automatically close after a default duration.
+   * If a number is provided, error toasts will automatically close after the specified duration in milliseconds.
+   */
   error?: boolean | number
+  /**
+   * If `true`, info toasts will automatically close after a default duration.
+   * If a number is provided, info toasts will automatically close after the specified duration in milliseconds.
+   */
   info?: boolean | number
+  /**
+   * If `true`, success toasts will automatically close after a default duration.
+   * If a number is provided, success toasts will automatically close after the specified duration in milliseconds.
+   */
   success?: boolean | number
 }
 
