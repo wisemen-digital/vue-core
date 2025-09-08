@@ -6,6 +6,7 @@ import type {
   AutoCloseToastConfig,
   ToastPosition,
 } from '@/components/toast/toast.composable'
+import TooltipProvider from '@/components/tooltip/TooltipProvider.vue'
 
 const props = defineProps<{
   /**
@@ -68,5 +69,7 @@ useProvideConfigContext({
 </script>
 
 <template>
-  <slot />
+  <TooltipProvider>
+    <slot />
+  </TooltipProvider>
 </template>
