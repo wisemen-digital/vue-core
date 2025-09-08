@@ -8,3 +8,4 @@ export { default as VcTooltipTrigger } from '@/components/tooltip/parts/TooltipT
 export type { TooltipProps as VcTooltipProps } from '@/components/tooltip/tooltip.props'
 export { createTooltipStyle } from '@/components/tooltip/tooltip.style'
 export { default as VcTooltip } from '@/components/tooltip/Tooltip.vue'
+export { default as VcTooltipProvider } from '@/components/tooltip/TooltipProvider.vue'

@@ -6,7 +6,12 @@ import {
   useAttrs,
 } from 'vue'
 
+import { useInjectTooltipContext } from '@/components/tooltip/tooltip.context'
 import type { PopperSide } from '@/types/popperProps.type'
+
+const {
+  isInitialAnimationEnabled,
+} = useInjectTooltipContext()
 
 const attrs = useAttrs()
 const side = computed<PopperSide>(() => attrs['data-side'] as PopperSide)
@@ -49,15 +54,22 @@ function transform(side: PopperSide): {
     :animate="{
       opacity: 1,
       transform: 'translate(0, 0) scale(1)',
+      transition: isInitialAnimationEnabled ? {
+        duration: 0.4,
+        type: 'spring',
+        bounce: 0.2,
+      } : {
+        duration: 0,
+      },
     }"
     :exit="{
       opacity: 0,
       ...transform(side),
-    }"
-    :transition="{
-      duration: 0.4,
-      type: 'spring',
-      bounce: 0.2,
+      transition: {
+        duration: 0.4,
+        type: 'spring',
+        bounce: 0.2,
+      },
     }"
     class="origin-(--reka-tooltip-content-transform-origin)"
   >

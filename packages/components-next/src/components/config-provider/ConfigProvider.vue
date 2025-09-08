@@ -3,6 +3,7 @@ import { computed } from 'vue'
 
 import { useProvideConfigContext } from '@/components/config-provider/config.context'
 import type { ToastPosition } from '@/components/toast/toast.composable'
+import TooltipProvider from '@/components/tooltip/TooltipProvider.vue'
 
 const props = defineProps<{
   /**
@@ -63,5 +64,7 @@ useProvideConfigContext({
 </script>
 
 <template>
-  <slot />
+  <TooltipProvider>
+    <slot />
+  </TooltipProvider>
 </template>
