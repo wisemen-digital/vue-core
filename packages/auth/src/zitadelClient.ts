@@ -229,4 +229,16 @@ export class ZitadelClient {
   public sanitizeRedirectUrl(redirectUrl: string, fallbackUrl?: string): string {
     return this.redirectValidator.sanitizeRedirectUrl(redirectUrl, fallbackUrl)
   }
+
+  public setConfig(options: Partial<OAuth2VueClientOptions>): void {
+    this.client = new ApiClient(
+      {
+        clientId: options.clientId ?? this.options.clientId,
+        baseUrl: options.baseUrl ?? this.options.baseUrl,
+        redirectUri: options.loginRedirectUri ?? this.options.loginRedirectUri,
+        scopes: options.scopes ?? this.options.scopes ?? this.getDefaultScopes(),
+        tokensStrategy: options.tokensStrategy ?? this.tokensStrategy,
+      },
+    )
+  }
 }
