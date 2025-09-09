@@ -1,14 +1,34 @@
 {
   "compilerOptions": {
-    "target": "es2018",
-    "lib": ["esnext"],
-    "module": "esnext",
-    "moduleResolution": "node",
+    "target": "ESNext",
+    "jsx": "preserve",
+    "jsxImportSource": "vue",
+    "useDefineForClassFields": true,
+    "baseUrl": ".",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "paths": {
+      "@/*": ["src/*"]
+    },
     "resolveJsonModule": true,
+    "types": [],
+    "allowImportingTsExtensions": true,
+    "allowJs": true,
     "strict": true,
-    "strictNullChecks": true,
+    "noImplicitThis": true,
+    "noEmit": true,
+    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "skipDefaultLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
     "skipLibCheck": true
-  }
+  },
+  "include": [
+    "**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }
