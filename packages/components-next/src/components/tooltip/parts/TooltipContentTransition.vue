@@ -2,7 +2,6 @@
 import { Motion } from 'motion-v'
 import {
   computed,
-  ref,
   useAttrs,
 } from 'vue'
 
@@ -16,8 +15,6 @@ const {
 const attrs = useAttrs()
 const side = computed<PopperSide>(() => attrs['data-side'] as PopperSide)
 
-const motionRef = ref<InstanceType<any> | null>(null)
-
 const TRANSLATE_AMOUNT = 12
 
 function transform(side: PopperSide): {
@@ -26,19 +23,19 @@ function transform(side: PopperSide): {
   switch (side) {
     case 'top':
       return {
-        transform: `translateY(${TRANSLATE_AMOUNT}px) scale(0)`,
+        transform: `translateY(${TRANSLATE_AMOUNT}px) scale(0.5)`,
       }
     case 'bottom':
       return {
-        transform: `translateY(-${TRANSLATE_AMOUNT}px) scale(0)`,
+        transform: `translateY(-${TRANSLATE_AMOUNT}px) scale(0.5)`,
       }
     case 'left':
       return {
-        transform: `translateX(${TRANSLATE_AMOUNT}px) scale(0)`,
+        transform: `translateX(${TRANSLATE_AMOUNT}px) scale(0.5)`,
       }
     case 'right':
       return {
-        transform: `translateX(-${TRANSLATE_AMOUNT}px) scale(0)`,
+        transform: `translateX(-${TRANSLATE_AMOUNT}px) scale(0.5)`,
       }
   }
 }
@@ -46,7 +43,6 @@ function transform(side: PopperSide): {
 
 <template>
   <Motion
-    ref="motionRef"
     :initial="{
       opacity: 0,
       ...transform(side),
