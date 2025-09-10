@@ -21,19 +21,19 @@ function transform(side: PopperSide): {
   switch (side) {
     case 'top':
       return {
-        transform: `translateY(${TRANSLATE_AMOUNT}px) scale(0)`,
+        transform: `translateY(${TRANSLATE_AMOUNT}px) scale(0.5)`,
       }
     case 'bottom':
       return {
-        transform: `translateY(-${TRANSLATE_AMOUNT}px) scale(0)`,
+        transform: `translateY(-${TRANSLATE_AMOUNT}px) scale(0.5)`,
       }
     case 'left':
       return {
-        transform: `translateX(${TRANSLATE_AMOUNT}px) scale(0)`,
+        transform: `translateX(${TRANSLATE_AMOUNT}px) scale(0.5)`,
       }
     case 'right':
       return {
-        transform: `translateX(-${TRANSLATE_AMOUNT}px) scale(0)`,
+        transform: `translateX(-${TRANSLATE_AMOUNT}px) scale(0.5)`,
       }
   }
 }
