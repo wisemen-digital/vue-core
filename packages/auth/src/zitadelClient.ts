@@ -15,7 +15,7 @@ export class ZitadelClient {
   private redirectValidator: RedirectValidator
   private tokensStrategy: TokensStrategy
 
-  constructor(private readonly options: OAuth2VueClientOptions) {
+  constructor(private options: OAuth2VueClientOptions) {
     this.offline = options.offline ?? false
 
     this.tokensStrategy = this.options.tokensStrategy ?? new LocalStorageTokensStrategy()
@@ -240,5 +240,9 @@ export class ZitadelClient {
         tokensStrategy: options.tokensStrategy ?? this.tokensStrategy,
       },
     )
+    this.options = {
+      ...this.options,
+      ...options,
+    }
   }
 }
