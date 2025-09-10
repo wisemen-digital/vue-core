@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import {
-  TagsInputItem,
-  TagsInputItemDelete,
-  TagsInputItemText,
+  TagsInputItem as RekaTagsInputItem,
+  TagsInputItemDelete as RekaTagsInputItemDelete,
+  TagsInputItemText as RekaTagsInputItemText,
 } from 'reka-ui'
 
 import Badge from '@/components/badge/Badge.vue'
@@ -17,7 +17,7 @@ const {
 </script>
 
 <template>
-  <TagsInputItem
+  <RekaTagsInputItem
     v-for="item in modelValue"
     :key="item"
     :value="item"
@@ -25,22 +25,22 @@ const {
   >
     <Badge
       :class-config="{
-        root: 'aria-[current=true]:bg-gray-100 rounded-sm data-[variant=outline]:!py-xxs data-[variant=outline]:!px-md data-[variant=outline]:!text-secondary data-[variant=outline]:!border-primary ',
+        root: 'aria-[current=true]:bg-gray-100 aria-[current=true]:dark:bg-gray-700 rounded-sm data-[variant=outline]:!py-xxs data-[variant=outline]:!px-md data-[variant=outline]:!text-secondary data-[variant=outline]:!border-primary ',
         ...customClassConfig.tag,
         ...classConfig?.tag,
       }"
       color="gray"
       variant="outline"
     >
-      <TagsInputItemText />
+      <RekaTagsInputItemText />
       <template #right>
-        <TagsInputItemDelete>
+        <RekaTagsInputItemDelete>
           <Icon
             icon="close"
             class="size-4 text-placeholder"
           />
-        </TagsInputItemDelete>
+        </RekaTagsInputItemDelete>
       </template>
     </Badge>
-  </TagsInputItem>
+  </RekaTagsInputItem>
 </template>

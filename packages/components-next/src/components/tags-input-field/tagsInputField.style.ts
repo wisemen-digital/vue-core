@@ -11,7 +11,7 @@ export const createTagsInputFieldStyle = tv({
       .withBackgroundColor('bg-transparent')
       .withPadding('px-sm')
       .withFontSize('text-sm')
-      .withColor('disabled:text-disabled placeholder:text-placeholder')
+      .withColor('disabled:text-disabled placeholder:text-placeholder dark:text-white')
       .withCursor('disabled:cursor-not-allowed')
       .build(),
     root: new StyleBuilder()
@@ -40,8 +40,3 @@ export const createTagsInputFieldStyle = tv({
 
 export type TagsInputFieldStyle = VariantProps<typeof createTagsInputFieldStyle>
 export type CreateTagsInputFieldStyle = ReturnType<typeof createTagsInputFieldStyle>
-
-// class="
-//       flex max-h-50 w-full flex-wrap items-center gap-sm overflow-y-auto
-//       rounded-lg border border-primary bg-primary px-sm py-xxs shadow-xs
-//     "
