@@ -13,7 +13,8 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./style.css": "./dist/style.css"
+    "./style.css": "./dist/style.css",
+    "./package.json": "./package.json"
   },
   "main": "./dist/index.umd.cjs",
   "module": "./dist/index.js",
