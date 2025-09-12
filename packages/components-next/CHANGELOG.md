@@ -1,15 +1,30 @@
 # @wisemen/vue-core-components
 
+## 1.16.0
+
+### ✨ Improvements
+
+- **Popover, Tooltip, DropdownMenu, Select**: Improved transitions by reducing duration and bounce for smoother UI animations.
+
+### 🐞 Bug Fixes
+
+- **General**: Fixed class merge issues that sometimes prevented overrides or required using `!important`.
+- **Autocomplete**: Prevented the list from clearing when manual dropdown opening is allowed. Removed unused `filter` prop.
+- **RouterLinkTabs**: Now replaces routes instead of pushing, improving navigation behavior.
+- **Toast**: Fixed `auto-close-toast` prop to support more flexible customization.
+- **Tooltip**: Resolved issue with `open-delay` being skipped by moving `TooltipProvider` under `ConfigProvider`.
+- **DropdownMenu**: Corrected prop type export casing.
+
 ## 1.15.0
 
-### Minor Changes
+### 🔥 New Features
 
-- d4c8d19: Toast: add support for custom duration
+- **Toast**: Added support for custom duration, enabling more control over how long toasts remain visible.
 
-### Patch Changes
+### 🐞 Bug Fixes
 
-- 1779bed: RouterLinkButton: fix variant prop
-- fb78687: Button: remove shadow
+- **RouterLinkButton**: Fixed issue with `variant` prop not being applied correctly.
+- **Button**: Removed default shadow to align with updated design standards.
 
 ## 1.14.0
 

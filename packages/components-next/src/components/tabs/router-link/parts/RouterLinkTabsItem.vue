@@ -29,7 +29,10 @@ const {
         class: mergeClasses(customClassConfig.item, classConfig?.item),
       })"
     >
-      <RouterLink :to="props.to">
+      <RouterLink
+        :to="props.to"
+        :replace="true"
+      >
         <slot />
       </RouterLink>
     </RekaTabsTrigger>

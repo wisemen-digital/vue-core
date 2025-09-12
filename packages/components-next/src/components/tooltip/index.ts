@@ -1,3 +1,4 @@
+export { useInjectToastContext } from '@/components/toast/toast.context'
 export { default as VcTooltipArrow } from '@/components/tooltip/parts/TooltipArrow.vue'
 export { default as VcTooltipContent } from '@/components/tooltip/parts/TooltipContent.vue'
 export { default as VcTooltipContentTransition } from '@/components/tooltip/parts/TooltipContentTransition.vue'
@@ -8,3 +9,4 @@ export { default as VcTooltipTrigger } from '@/components/tooltip/parts/TooltipT
 export type { TooltipProps as VcTooltipProps } from '@/components/tooltip/tooltip.props'
 export { createTooltipStyle } from '@/components/tooltip/tooltip.style'
 export { default as VcTooltip } from '@/components/tooltip/Tooltip.vue'
+export { default as VcTooltipProvider } from '@/components/tooltip/TooltipProvider.vue'

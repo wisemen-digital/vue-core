@@ -45,35 +45,11 @@ const tabItems = computed<TabItem[]>(() => {
 })
 
 const selectedTab = ref<TabItem | null>(tabItems.value?.[0] ?? null)
-
-const isDark = ref<boolean>(document.documentElement.classList.contains('dark'))
-
-const observer = new MutationObserver((mutations) => {
-  for (const mutation of mutations) {
-    if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-      const darkClass = document.documentElement.classList.contains('dark')
-
-      if (darkClass !== isDark.value) {
-        isDark.value = darkClass
-      }
-    }
-  }
-})
-
-observer.observe(document.documentElement, {
-  attributes: true,
-  attributeFilter: [
-    'class',
-  ],
-})
 </script>
 
 <template>
   <VcConfigProvider locale="en-NL">
-    <VcThemeProvider
-      :appearance="isDark ? 'dark' : 'light'"
-      theme="default"
-    >
+    <VcThemeProvider theme="default">
       <VcDialogContainer />
       <div class="flex flex-col gap-2">
         <div class="vp-raw">

@@ -21,19 +21,19 @@ function transform(side: PopperSide): {
   switch (side) {
     case 'top':
       return {
-        transform: `translateY(${TRANSLATE_AMOUNT}px) scale(0)`,
+        transform: `translateY(${TRANSLATE_AMOUNT}px) scale(0.5)`,
       }
     case 'bottom':
       return {
-        transform: `translateY(-${TRANSLATE_AMOUNT}px) scale(0)`,
+        transform: `translateY(-${TRANSLATE_AMOUNT}px) scale(0.5)`,
       }
     case 'left':
       return {
-        transform: `translateX(${TRANSLATE_AMOUNT}px) scale(0)`,
+        transform: `translateX(${TRANSLATE_AMOUNT}px) scale(0.5)`,
       }
     case 'right':
       return {
-        transform: `translateX(-${TRANSLATE_AMOUNT}px) scale(0)`,
+        transform: `translateX(-${TRANSLATE_AMOUNT}px) scale(0.5)`,
       }
   }
 }
@@ -55,9 +55,9 @@ function transform(side: PopperSide): {
       ...transform(side),
     }"
     :transition="{
-      duration: 0.4,
+      duration: 0.3,
       type: 'spring',
-      bounce: 0.2,
+      bounce: 0.15,
     }"
     class="origin-(--reka-dropdown-menu-content-transform-origin)"
   >

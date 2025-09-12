@@ -1,11 +1,14 @@
 import type { ComputedRef } from 'vue'
 
-import type { ToastPosition } from '@/components/toast/toast.composable'
+import type {
+  AutoCloseToastConfig,
+  ToastPosition,
+} from '@/components/toast/toast.composable'
 import { useContext } from '@/composables/context/context.composable'
 
 interface ConfigContext {
   areKeyboardShortcutHintsHidden: ComputedRef<boolean>
-  autoCloseToast: ComputedRef<boolean>
+  autoCloseToast: ComputedRef<AutoCloseToastConfig | null>
   googleMapsApiKey: string | null
   locale: ComputedRef<string>
   pagination?: {
