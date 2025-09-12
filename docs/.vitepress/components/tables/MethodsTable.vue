@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { VcThemeProvider } from '@wisemen/vue-core-components'
-import { ref } from 'vue'
 
 interface MethodDef {
   name: string
@@ -14,27 +13,6 @@ interface MethodsTableProps {
 
 const props = defineProps<MethodsTableProps>()
 
-const isDark = ref<boolean>(document.documentElement.classList.contains('dark'))
-
-const observer = new MutationObserver((mutations) => {
-  for (const mutation of mutations) {
-    if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-      const darkClass = document.documentElement.classList.contains('dark')
-
-      if (darkClass !== isDark.value) {
-        isDark.value = darkClass
-      }
-    }
-  }
-})
-
-observer.observe(document.documentElement, {
-  attributes: true,
-  attributeFilter: [
-    'class',
-  ],
-})
-
 // Sort by name
 function sortMethods(methods: MethodDef[]): MethodDef[] {
   return methods.sort((a, b) => a.name.localeCompare(b.name))
@@ -42,7 +20,7 @@ function sortMethods(methods: MethodDef[]): MethodDef[] {
 </script>
 
 <template>
-  <VcThemeProvider :appearance="isDark ? 'dark' : 'light'">
+  <VcThemeProvider>
     <h2 id="methods">
       Methods
     </h2>
