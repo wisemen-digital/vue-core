@@ -1,18 +1,26 @@
-/* eslint-disable unicorn/consistent-function-scoping */
+// oxlint-disable no-unused-vars
+
 import {
   assert,
   describe,
   it,
 } from 'vitest'
 
+function _test_1(): void {}
+
+function _test_2(): number {
+  const _test2 = 1
+  const _test3 = 2
+
+  return _test2
+}
+
+function _test_4(): void {}
+
 describe('spacing plugin adds correct spacing', () => {
   it('adds correct spacing between function ]and vars', () => {
-    function _test(): void {}
-
     const _test2 = 1
     const _test3 = 2
-
-    function _test4(): void {}
 
     assert(true)
   })
@@ -28,13 +36,10 @@ describe('spacing plugin adds correct spacing', () => {
   })
 
   it('adds correct spacing between return and vars', () => {
-    function _test(): number {
-      const _test2 = 1
-      const _test3 = 2
-
-      return _test2
-    }
-
     assert(true)
   })
 })
+
+declare const arr: number[]
+
+delete arr[0]

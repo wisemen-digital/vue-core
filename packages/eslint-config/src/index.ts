@@ -16,7 +16,7 @@ import { unicornConfig } from './configs/unicorn.ts'
 import { vitestConfig } from './configs/vitest.ts'
 import { wisemenConfig } from './configs/wisemen.ts'
 
-export default antfu(
+export const eslintConfig = antfu(
   baseConfig,
   spacingConfig,
   perfectionistConfig,

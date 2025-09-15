@@ -10,4 +10,4 @@ export type LintConfig = Awaitable<
   | TypedFlatConfigItem
   | TypedFlatConfigItem[]
 
-  > & { languageOptions?: { parser?: any } }
+> & { languageOptions?: { parser?: any } }
