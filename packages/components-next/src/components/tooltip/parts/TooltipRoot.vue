@@ -1,9 +1,13 @@
 <script setup lang="ts">
 import {
-  TooltipProvider as RekaTooltipProvider,
+  injectTooltipProviderContext,
   TooltipRoot as RekaTooltipRoot,
 } from 'reka-ui'
-import { computed } from 'vue'
+import {
+  computed,
+  ref,
+  watch,
+} from 'vue'
 
 import type { CustomComponentVariant } from '@/class-variant/classVariant.type'
 import { getCustomComponentVariant } from '@/class-variant/customClassVariants'
@@ -44,6 +48,24 @@ const {
   theme,
 } = injectThemeProviderContext()
 
+const {
+  isOpenDelayed,
+} = injectTooltipProviderContext()
+
+const isInitialAnimationEnabled = ref<boolean>(true)
+
+watch(isOpenDelayed, (isOpenDelayed) => {
+  if (isOpenDelayed) {
+    isInitialAnimationEnabled.value = true
+  }
+  else {
+    // Delay disabling the animation to allow the enter animation to play
+    setTimeout(() => {
+      isInitialAnimationEnabled.value = isOpenDelayed
+    }, 100)
+  }
+})
+
 const tooltipStyle = computed<CreateTooltipStyle>(() => createTooltipStyle({
   variant: props.variant ?? undefined,
 }))
@@ -56,6 +78,7 @@ const customClassConfig = computed<CustomComponentVariant<'tooltip'>>(
 
 useProvideTooltipContext({
   ...toComputedRefs(props),
+  isInitialAnimationEnabled: computed<boolean>(() => isInitialAnimationEnabled.value),
   isOpen: computed<boolean>(() => isOpen.value),
   customClassConfig,
   style: tooltipStyle,
@@ -63,16 +86,14 @@ useProvideTooltipContext({
 </script>
 
 <template>
-  <RekaTooltipProvider>
-    <RekaTooltipRoot
-      v-model:open="isOpen"
-      :delay-duration="props.delayDuration"
-      :disable-hoverable-content="props.disableHoverableContent"
-      :disable-closing-trigger="props.disableCloseOnTriggerClick"
-      :disabled="props.isDisabled"
-      :ignore-non-keyboard-focus="true"
-    >
-      <slot />
-    </RekaTooltipRoot>
-  </RekaTooltipProvider>
+  <RekaTooltipRoot
+    v-model:open="isOpen"
+    :delay-duration="props.delayDuration"
+    :disable-hoverable-content="props.disableHoverableContent"
+    :disable-closing-trigger="props.disableCloseOnTriggerClick"
+    :disabled="props.isDisabled"
+    :ignore-non-keyboard-focus="true"
+  >
+    <slot />
+  </RekaTooltipRoot>
 </template>

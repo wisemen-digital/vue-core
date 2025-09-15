@@ -62,7 +62,7 @@ function transform(side: PopperSide): { x: number
       ...transform(side),
     }"
     :transition="{
-      duration: 0.3,
+      duration: 0.2,
       type: 'spring',
       bounce: 0,
     }"
