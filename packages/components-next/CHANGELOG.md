@@ -2,14 +2,14 @@
 
 ## 1.17.0
 
-### Minor Changes
+### 🔥 New Features
 
-- bac8914: ConfigProvider: add `hourCycle` prop
+- **ConfigProvider**: Added `hourCycle` prop to control 12h/24h time formatting across components.
 
-### Patch Changes
+### 🐞 Bug Fixes
 
-- 64b2c2a: Select: adjust dropdown width to fix content
-- bd679d2: Button: remove unused emits to ensure proper event propagation
+- **Select**: Adjusted dropdown width to better fit its content.  
+- **Button**: Removed unused emits to ensure proper event propagation.
 
 ## 1.16.0
 
