@@ -1,5 +1,11 @@
 ## 1.1.0
 
+## 2.2.0
+
+### Minor Changes
+
+- 38fda81: Add `setConfig` method to zitadel client
+
 ## 2.1.0
 
 ### Minor Changes
