@@ -1,5 +1,16 @@
 # @wisemen/vue-core-components
 
+## 1.17.0
+
+### Minor Changes
+
+- bac8914: ConfigProvider: add `hourCycle` prop
+
+### Patch Changes
+
+- 64b2c2a: Select: adjust dropdown width to fix content
+- bd679d2: Button: remove unused emits to ensure proper event propagation
+
 ## 1.16.0
 
 ### ✨ Improvements
