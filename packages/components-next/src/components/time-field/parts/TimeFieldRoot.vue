@@ -83,7 +83,7 @@ const delegatedModel = computed<TimeValue | undefined>({
 })
 
 const {
-  locale,
+  hourCycle, locale,
 } = useInjectConfigContext()
 const {
   theme,
@@ -102,6 +102,14 @@ const customClassConfig = computed<CustomComponentVariant<'timeField'>>(
     variant: props.variant,
   }),
 )
+
+const hourCycleValue = computed<12 | 24 | null>(() => {
+  if (hourCycle.value === null) {
+    return null
+  }
+
+  return hourCycle.value === '12-hour' ? 12 : 24
+})
 
 function onFocus(event: FocusEvent): void {
   isFocused.value = true
@@ -147,6 +155,7 @@ useProvideTimeFieldContext({
         :locale="locale"
         :required="props.isRequired"
         :is-invalid="props.errorMessage !== null"
+        :hour-cycle="hourCycleValue ?? undefined"
       >
         <!-- For some reason, the data- bindings don't work on the `RekaTimeFieldRoot` component -->
         <div
