@@ -1,3 +1,4 @@
+import type { Temporal } from 'temporal-polyfill'
 import type {
   ComputedRef,
   Ref,
@@ -11,8 +12,8 @@ import type { PropsToComputed } from '@/utils/props.util'
 
 interface DateFieldContext extends PropsToComputed<DateFieldProps> {
   customClassConfig: ComputedRef<ResolvedClassConfig<'dateField'>>
-  modelValue: Ref<Date | null>
-  placeholderValue: Ref<Date>
+  modelValue: Ref<Temporal.PlainDate | null>
+  placeholderValue: Ref<Temporal.PlainDate>
   style: ComputedRef<CreateDateFieldStyle>
   onBlur: (event: FocusEvent) => void
   onFocus: (event: FocusEvent) => void

@@ -1,6 +1,7 @@
-<script setup lang="ts" generic="TValue extends string">
+<script setup lang="ts">
 import { Time as TimeValue } from '@internationalized/date'
 import { TimeFieldRoot as RekaTimeFieldRoot } from 'reka-ui'
+import { Temporal } from 'temporal-polyfill'
 import {
   computed,
   ref,
@@ -49,7 +50,7 @@ const props = withDefaults(defineProps<TimeFieldProps>(), {
 
 const emit = defineEmits<TimeFieldEmits>()
 
-const modelValue = defineModel<TValue | null>({
+const modelValue = defineModel<Temporal.PlainTime | null>({
   required: true,
 })
 
@@ -59,15 +60,11 @@ const delegatedModel = computed<TimeValue | undefined>({
       return
     }
 
-    const [
-      hours,
-      minutes,
-    ] = modelValue.value.split(':') ?? [
-      '00',
-      '00',
-    ]
+    const {
+      hour, minute,
+    } = modelValue.value
 
-    return new TimeValue(Number(hours), Number(minutes))
+    return new TimeValue(Number(hour), Number(minute))
   },
   set: (value) => {
     if (value === undefined) {
@@ -78,7 +75,7 @@ const delegatedModel = computed<TimeValue | undefined>({
 
     const updatedValue = `${value.hour.toString().padStart(2, '0')}:${value.minute.toString().padStart(2, '0')}`
 
-    modelValue.value = updatedValue as TValue
+    modelValue.value = Temporal.PlainTime.from(updatedValue)
   },
 })
 
