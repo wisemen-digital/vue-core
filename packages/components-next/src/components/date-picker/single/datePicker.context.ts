@@ -1,3 +1,4 @@
+import type { Temporal } from 'temporal-polyfill'
 import type {
   ComputedRef,
   Ref,
@@ -11,8 +12,8 @@ import type { PropsToComputed } from '@/utils/props.util'
 
 interface DatePickerContext extends PropsToComputed<DatePickerProps> {
   customClassConfig: ComputedRef<ResolvedClassConfig<'datePicker'>>
-  modelValue: Ref<Date | null>
-  placeholderValue: Ref<Date>
+  modelValue: Ref<Temporal.PlainDate | null>
+  placeholderValue: Ref<Temporal.PlainDate>
   style: ComputedRef<CreateDatePickerStyle>
 
 }
