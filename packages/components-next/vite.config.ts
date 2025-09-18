@@ -34,6 +34,7 @@ export default defineConfig({
         'i18n-iso-countries',
         'motion-v',
         'reka-ui',
+        'temporal-polyfill',
       ],
       output: {
         // Provide global variables to use in the UMD build
@@ -41,6 +42,7 @@ export default defineConfig({
         globals: {
           'motion-v': 'MotionV',
           'reka-ui': 'RekaUI',
+          'temporal-polyfill': 'Temporal',
           'vue': 'Vue',
           'vue-i18n': 'VueI18n',
           'vue-router': 'VueRouter',

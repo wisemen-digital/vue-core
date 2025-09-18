@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Primitive } from 'reka-ui'
 import { computed } from 'vue'
 
 import {
@@ -14,12 +15,17 @@ const props = withDefaults(defineProps<{
    */
   appearance?: Appearance | null
   /**
+   * Whether to render the child component directly without any wrapping element.
+   */
+  asChild?: boolean
+  /**
    * The chosen theme for the application.
    * @default null
    */
   theme?: string & {} | 'default' | null
 }>(), {
   appearance: null,
+  asChild: false,
   theme: null,
 })
 
@@ -47,7 +53,10 @@ provideThemeProviderContext({
 </script>
 
 <template>
-  <div :class="[theme, computedAppearance]">
+  <Primitive
+    :as-child="props.asChild"
+    :class="[theme, computedAppearance]"
+  >
     <slot />
-  </div>
+  </Primitive>
 </template>
