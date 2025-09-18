@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { DateValue } from 'reka-ui'
 import { RangeCalendarRoot as RekaRangeCalendarRoot } from 'reka-ui'
+import { Temporal } from 'temporal-polyfill'
 import { computed } from 'vue'
 
 import type { ResolvedClassConfig } from '@/class-variant/classVariant.type'
@@ -14,6 +15,8 @@ import type { Grid } from '@/components/date-picker/shared/datePicker.type'
 import {
   dateToDateValue,
   dateValueToDate,
+  dateValueToPlainDate,
+  plainDateToDateValue,
 } from '@/components/date-picker/shared/datePicker.util'
 import InteractableElement from '@/components/shared/InteractableElement.vue'
 import TestIdProvider from '@/components/shared/TestIdProvider.vue'
@@ -36,11 +39,11 @@ const props = withDefaults(defineProps<DateRangePickerProps>(), {
   variant: null,
 })
 
-const modelValue = defineModel<DateRange>({
+const modelValue = defineModel<DateRange<Temporal.PlainDate>>({
   required: true,
 })
 
-const placeholderValue = defineModel<Date>('placeholderValue', {
+const placeholderValue = defineModel<Temporal.PlainDate>('placeholderValue', {
   required: false,
 })
 
@@ -48,8 +51,8 @@ const delegatedModel = computed<{ end: DateValue | undefined
   start: DateValue | undefined }>({
   get: () => {
     return {
-      end: modelValue.value.until === null ? undefined : dateToDateValue(modelValue.value.until),
-      start: modelValue.value.from === null ? undefined : dateToDateValue(modelValue.value.from),
+      end: modelValue.value.until === null ? undefined : plainDateToDateValue(modelValue.value.until),
+      start: modelValue.value.from === null ? undefined : plainDateToDateValue(modelValue.value.from),
     }
   },
   set: (value) => {
@@ -57,24 +60,24 @@ const delegatedModel = computed<{ end: DateValue | undefined
       modelValue.value.from = null
     }
     else {
-      modelValue.value.from = dateValueToDate(value.start)
+      modelValue.value.from = dateValueToPlainDate(value.start)
     }
 
     if (value.end === undefined || value.end === null) {
       modelValue.value.until = null
     }
     else {
-      modelValue.value.until = dateValueToDate(value.end)
+      modelValue.value.until = dateValueToPlainDate(value.end)
     }
   },
 })
 
 const delegatedPlaceholderValue = computed<DateValue>({
   get: () => {
-    return dateToDateValue(placeholderValue.value ?? modelValue.value.from ?? new Date())
+    return plainDateToDateValue(placeholderValue.value ?? modelValue.value.from ?? Temporal.Now.plainDateISO())
   },
   set: (value) => {
-    placeholderValue.value = dateValueToDate(value)
+    placeholderValue.value = dateValueToPlainDate(value)
   },
 })
 
@@ -101,10 +104,10 @@ useProvideDateRangePickerContext({
   ...toComputedRefs(props),
   customClassConfig,
   modelValue,
-  placeholderValue: computed<Date>({
-    get: () => dateValueToDate(delegatedPlaceholderValue.value),
+  placeholderValue: computed<Temporal.PlainDate>({
+    get: () => dateValueToPlainDate(delegatedPlaceholderValue.value),
     set: (value) => {
-      delegatedPlaceholderValue.value = dateToDateValue(value)
+      delegatedPlaceholderValue.value = plainDateToDateValue(value)
     },
   }),
   style: dateRangePickerStyle,

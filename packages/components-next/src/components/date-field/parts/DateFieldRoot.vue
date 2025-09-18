@@ -1,6 +1,7 @@
-<script setup lang="ts" generic="TValue extends Date">
+<script setup lang="ts">
 import type { DateValue } from 'reka-ui'
 import { DateFieldRoot as RekaDateFieldRoot } from 'reka-ui'
+import { Temporal } from 'temporal-polyfill'
 import {
   computed,
   ref,
@@ -20,6 +21,8 @@ import { createDateFieldStyle } from '@/components/date-field/dateField.style'
 import {
   dateToDateValue,
   dateValueToDate,
+  dateValueToPlainDate,
+  plainDateToDateValue,
 } from '@/components/date-picker/shared/datePicker.util'
 import InteractableElement from '@/components/shared/InteractableElement.vue'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
@@ -52,10 +55,10 @@ const props = withDefaults(defineProps<DateFieldProps>(), {
 
 const emit = defineEmits<DateFieldEmits>()
 
-const modelValue = defineModel<TValue | null>({
+const modelValue = defineModel<Temporal.PlainDate | null>({
   required: true,
 })
-const placeholderValue = defineModel<TValue | null>('placeholderValue', {
+const placeholderValue = defineModel<Temporal.PlainDate | null>('placeholderValue', {
   required: false,
 })
 
@@ -65,7 +68,7 @@ const delegatedModel = computed<DateValue | null>({
       return null
     }
 
-    return dateToDateValue(modelValue.value)
+    return plainDateToDateValue(modelValue.value)
   },
   set: (value) => {
     if (value === null || value === undefined) {
@@ -74,16 +77,16 @@ const delegatedModel = computed<DateValue | null>({
       return
     }
 
-    modelValue.value = dateValueToDate(value) as TValue
+    modelValue.value = dateValueToPlainDate(value)
   },
 })
 
-const delegatedPlaceholderValue = computed<Date>({
+const delegatedPlaceholderValue = computed<Temporal.PlainDate>({
   get: () => {
-    return placeholderValue.value ?? modelValue.value ?? new Date()
+    return placeholderValue.value ?? modelValue.value ?? Temporal.Now.plainDateISO()
   },
   set: (value) => {
-    placeholderValue.value = value as TValue
+    placeholderValue.value = value
   },
 })
 

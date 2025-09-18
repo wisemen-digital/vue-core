@@ -1,4 +1,5 @@
-<script setup lang="ts" generic="TValue extends Date">
+<script setup lang="ts">
+import type { Temporal } from 'temporal-polyfill'
 import { useId } from 'vue'
 
 import type { DateFieldEmits } from '@/components/date-field/dateField.emits'
@@ -8,7 +9,7 @@ import type { DateFieldSegment } from '@/components/date-field/dateField.type'
 import DateFieldIconLeft from '@/components/date-field/parts/DateFieldIconLeft.vue'
 import DateFieldInput from '@/components/date-field/parts/DateFieldInput.vue'
 import DateFieldLoader from '@/components/date-field/parts/DateFieldLoader.vue'
-import DatefieldPopover from '@/components/date-field/parts/DatefieldPopover.vue'
+import DateFieldPopover from '@/components/date-field/parts/DateFieldPopover.vue'
 import DateFieldRoot from '@/components/date-field/parts/DateFieldRoot.vue'
 import FormField from '@/components/form-field/FormField.vue'
 
@@ -17,10 +18,10 @@ const emit = defineEmits<DateFieldEmits>()
 
 defineSlots<DateFieldSlots>()
 
-const modelValue = defineModel<TValue | null>({
+const modelValue = defineModel<Temporal.PlainDate | null>({
   required: true,
 })
-const placeholderValue = defineModel<TValue | null>('placeholderValue', {
+const placeholderValue = defineModel<Temporal.PlainDate | null>('placeholderValue', {
   required: false,
 })
 
@@ -61,7 +62,7 @@ const id = props.id ?? useId()
       <DateFieldIconLeft />
       <DateFieldInput :segments="(segments as DateFieldSegment[])" />
       <DateFieldLoader />
-      <DatefieldPopover />
+      <DateFieldPopover />
     </DateFieldRoot>
   </FormField>
 </template>

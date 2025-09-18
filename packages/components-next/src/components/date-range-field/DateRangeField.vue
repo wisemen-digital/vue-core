@@ -1,4 +1,5 @@
-<script setup lang="ts" generic="TValue extends Date">
+<script setup lang="ts">
+import type { Temporal } from 'temporal-polyfill'
 import { useId } from 'vue'
 
 import type { DateRangeFieldEmits } from '@/components/date-range-field/dateRangeField.emits'
@@ -18,11 +19,11 @@ const emit = defineEmits<DateRangeFieldEmits>()
 
 defineSlots<DateRangeFieldSlots>()
 
-const modelValue = defineModel<DateRange<TValue>>({
+const modelValue = defineModel<DateRange<Temporal.PlainDate>>({
   required: true,
 })
 
-const placeholderValue = defineModel<Date>('placeholderValue', {
+const placeholderValue = defineModel<Temporal.PlainDate>('placeholderValue', {
   required: false,
 })
 
