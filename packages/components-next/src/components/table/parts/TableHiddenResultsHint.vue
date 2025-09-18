@@ -3,7 +3,7 @@ import { useI18n } from 'vue-i18n'
 
 import { mergeClasses } from '@/class-variant/customClassVariants'
 import Button from '@/components/button/default-button/Button.vue'
-import { useInjectTableContext } from '@/components/table-next/table.context'
+import { useInjectTableContext } from '@/components/table/table.context'
 
 const props = defineProps<{
   isEmpty: boolean

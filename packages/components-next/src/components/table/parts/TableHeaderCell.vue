@@ -3,7 +3,7 @@ import { computed } from 'vue'
 
 import { mergeClasses } from '@/class-variant/customClassVariants'
 import { VcButton } from '@/components/button/index'
-import { useInjectTableContext } from '@/components/table-next/table.context'
+import { useInjectTableContext } from '@/components/table/table.context'
 import type { Icon } from '@/icons/icons'
 
 const props = withDefaults(defineProps<{

@@ -3,7 +3,7 @@ import type { VariantProps } from 'tailwind-variants'
 import { tv } from '@/libs/tailwindVariants.lib'
 import { StyleBuilder } from '@/utils/style-builder/styleBuilder.util'
 
-export const createTableNextStyle = tv({
+export const createTableStyle = tv({
   slots: {
     cell: new StyleBuilder()
       .withBase('group/cell whitespace-nowrap relative')
@@ -56,5 +56,5 @@ export const createTableNextStyle = tv({
   },
 })
 
-export type TableNextStyle = VariantProps<typeof createTableNextStyle>
-export type CreateTableNextStyle = ReturnType<typeof createTableNextStyle>
+export type TableStyle = VariantProps<typeof createTableStyle>
+export type CreateTableStyle = ReturnType<typeof createTableStyle>

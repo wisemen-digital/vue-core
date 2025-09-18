@@ -3,7 +3,7 @@ import type {
   GetComponentProp,
 } from '@/class-variant/classVariant.type'
 
-export interface TableProps extends CustomizableElement<'tableNext'> {
+export interface TableProps extends CustomizableElement<'table'> {
   /**
    * Makes the first column sticky (fixed) when horizontally scrolling.
    * @default false
@@ -21,5 +21,5 @@ export interface TableProps extends CustomizableElement<'tableNext'> {
   /**
    * Defines the visual style of the table.
    */
-  variant?: GetComponentProp<'tableNext', 'variant'> | null
+  variant?: GetComponentProp<'table', 'variant'> | null
 }

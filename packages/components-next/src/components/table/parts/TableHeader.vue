@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { mergeClasses } from '@/class-variant/customClassVariants'
 import Subgrid from '@/components/table/parts/Subgrid.vue'
-import { useInjectTableContext } from '@/components/table-next/table.context'
+import { useInjectTableContext } from '@/components/table/table.context'
 
 const {
   classConfig,

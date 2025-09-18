@@ -4,7 +4,7 @@ import {
   ref,
 } from 'vue'
 
-import { useInjectTableContext } from '@/components/table-next/table.context'
+import { useInjectTableContext } from '@/components/table/table.context'
 
 const {
   setTableScrollContainerRef,

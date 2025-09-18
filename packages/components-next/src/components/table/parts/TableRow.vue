@@ -3,8 +3,8 @@ import { RouterLink } from 'vue-router'
 
 import { mergeClasses } from '@/class-variant/customClassVariants'
 import Subgrid from '@/components/table/parts/Subgrid.vue'
-import { useInjectTableContext } from '@/components/table-next/table.context'
-import type { TableRowAction } from '@/components/table-next/table.type'
+import { useInjectTableContext } from '@/components/table/table.context'
+import type { TableRowAction } from '@/components/table/table.type'
 
 const props = withDefaults(defineProps<{
   action?: TableRowAction | null
