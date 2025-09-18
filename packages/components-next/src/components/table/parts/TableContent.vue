@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import { useInjectTableContext } from '@/components/table/table.context'
+import { useInjectTableContext } from '@/components/table-next/table.context'
 
 const {
-  isEmpty,
-  isLoading,
   gridTemplateColumns,
 } = useInjectTableContext()
 </script>
 
 <template>
   <div
-    :style="{ gridTemplateColumns }"
+    :style="{
+      gridTemplateColumns,
+    }"
     class="grid"
   >
-    <slot v-if="!isEmpty && !isLoading" />
+    <slot />
   </div>
 </template>

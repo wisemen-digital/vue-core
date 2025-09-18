@@ -2,126 +2,89 @@
 import { computed } from 'vue'
 
 import { mergeClasses } from '@/class-variant/customClassVariants'
-import Button from '@/components/button/default-button/Button.vue'
-import TableCellLayout from '@/components/table/parts/TableCellLayout.vue'
-import { useInjectTableContext } from '@/components/table/table.context'
-import { useInjectTableHeaderCellContext } from '@/components/table/tableHeaderCell.context'
-import type {
-  PaginationOptions,
-  PaginationSortOrder,
-} from '@/composables/pagination/pagination.type'
+import { VcButton } from '@/components/button/index'
+import { useInjectTableContext } from '@/components/table-next/table.context'
 import type { Icon } from '@/icons/icons'
 
+const props = withDefaults(defineProps<{
+  isSortable?: boolean
+  sortDirection?: 'asc' | 'desc' | null
+}>(), {
+  isSortable: false,
+  sortDirection: null,
+})
+
+const emit = defineEmits<{
+  sort: []
+}>()
+
 const {
+  hasReachedHorizontalEnd,
+  isFirstColumnSticky,
+  isLastColumnSticky,
+  isScrolledHorizontally,
   classConfig,
   customClassConfig,
-  pagination,
   style,
 } = useInjectTableContext()
 
-const {
-  column,
-} = useInjectTableHeaderCellContext()
-
-const paginationOptions = computed<PaginationOptions<any>>(
-  () => pagination.value.paginationOptions.value,
-)
-
-const currentSortDirection = computed<PaginationSortOrder | null>(() => {
-  return getCurrentSortDirection(paginationOptions.value.sort?.order ?? null)
-})
-
-const isCurrentColumnBeingSorted = computed<boolean>(() => {
-  return column.value.key === paginationOptions.value.sort?.key
-})
-
-const sortIcon = computed<Icon | null>(() => {
-  if (!column.value.isSortable) {
+const icon = computed<Icon | null>(() => {
+  if (!props.isSortable) {
     return null
   }
 
-  if (!isCurrentColumnBeingSorted.value) {
-    return 'switchVertical'
-  }
-
-  if (currentSortDirection.value === 'asc') {
+  if (props.sortDirection === 'asc') {
     return 'arrowUp'
   }
 
-  return 'arrowDown'
+  if (props.sortDirection === 'desc') {
+    return 'arrowDown'
+  }
+
+  return 'switchVertical'
 })
-
-const ariaSort = computed<'ascending' | 'descending' | 'none'>(() => {
-  if (!column.value.isSortable || !isCurrentColumnBeingSorted.value) {
-    return 'none'
-  }
-
-  if (currentSortDirection.value === 'asc') {
-    return 'ascending'
-  }
-
-  return 'descending'
-})
-
-function getCurrentSortDirection(currentDirection: PaginationSortOrder | null): PaginationSortOrder {
-  return currentDirection ?? 'asc'
-}
-
-function onSortChange(): void {
-  // If the column is already sorted
-  //    - If the current sort direction is 'asc', change it to 'desc'
-  if (isCurrentColumnBeingSorted.value && currentSortDirection.value === 'asc') {
-    pagination.value.handleSortChange({
-      key: column.value.key as never,
-      order: 'desc',
-    })
-
-    return
-  }
-  //    - If the current sort direction is 'desc', remove the sort
-  if (isCurrentColumnBeingSorted.value && currentSortDirection.value === 'desc') {
-    pagination.value.handleSortChange({} as never)
-
-    return
-  }
-
-  // If column is not already sorted, sort it and set the current sort direction to 'asc'
-  pagination.value.handleSortChange({
-    key: column.value.key as never,
-    order: 'asc',
-  })
-}
 </script>
 
 <template>
-  <TableCellLayout
-    :column="column"
-    :class="style.headerCell({
-      class: mergeClasses(classConfig?.headerCell, customClassConfig?.headerCell),
-    })"
-    :aria-sort="ariaSort"
+  <div
+    :class="[
+      style.headerCell({
+        class: mergeClasses(classConfig?.headerCell, customClassConfig?.headerCell),
+      }),
+      {
+        'first:sticky first:left-0 first:z-1 first:border-r': isFirstColumnSticky,
+        'last:sticky last:right-0 last:z-1 last:border-l': isLastColumnSticky,
+        'first:border-r-secondary': isScrolledHorizontally,
+        'first:border-r-transparent': !isScrolledHorizontally,
+        'last:border-l-secondary': !hasReachedHorizontalEnd,
+        'last:border-l-transparent': hasReachedHorizontalEnd,
+      },
+    ]"
     role="columnheader"
-    class="sticky"
+    class="flex items-center"
   >
-    <div>
-      <slot name="left" />
+    <VcButton
+      v-if="props.isSortable"
+      :class-config="{
+        root: 'p-0 px-0 h-auto !bg-transparent min-w-auto rounded-sm !text-secondary',
+        iconRight: props.sortDirection === null ? 'text-disabled' : 'text-secondary',
+        ...customClassConfig?.headerCellButton,
+        ...classConfig?.headerCellButton,
+      }"
+      :icon-right="icon"
+      variant="tertiary"
+      @click="emit('sort')"
+    >
+      <slot />
+    </VcButton>
 
-      <Button
-        :class-config="{
-          root: 'p-0 px-0 h-auto !bg-transparent min-w-auto rounded-sm !text-secondary',
-          iconRight: isCurrentColumnBeingSorted ? 'text-secondary' : 'text-disabled',
-          ...customClassConfig?.headerCellButton,
-          ...classConfig?.headerCellButton,
-        }"
-        :icon-right="sortIcon"
-        :is-disabled="!column.isSortable"
-        variant="tertiary"
-        @click="onSortChange"
-      >
-        {{ column.headerLabel }}
-      </Button>
-
-      <slot name="right" />
-    </div>
-  </TablecellLayout>
+    <span
+      v-else
+      :class="style.headerCellLabel({
+        class: mergeClasses(classConfig?.headerCellLabel, customClassConfig?.headerCellLabel),
+      })"
+    >
+      <slot />
+    </span>
+  </div>
 </template>

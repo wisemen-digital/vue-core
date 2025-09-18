@@ -3,7 +3,7 @@ import type { VariantProps } from 'tailwind-variants'
 import { tv } from '@/libs/tailwindVariants.lib'
 import { StyleBuilder } from '@/utils/style-builder/styleBuilder.util'
 
-export const createTableStyle = tv({
+export const createTableNextStyle = tv({
   slots: {
     cell: new StyleBuilder()
       .withBase('group/cell whitespace-nowrap relative')
@@ -28,6 +28,11 @@ export const createTableStyle = tv({
       .withBackgroundColor('bg-secondary')
       .withPadding('py-lg px-3xl')
       .build(),
+    headerCellLabel: new StyleBuilder()
+      .withFontSize('text-sm')
+      .withFontWeight('font-medium')
+      .withColor('text-secondary')
+      .build(),
     hiddenResultsHint: new StyleBuilder()
       .withBase('sticky left-0 col-span-full')
       .withBorder('border-t border-solid border-t-secondary')
@@ -51,5 +56,5 @@ export const createTableStyle = tv({
   },
 })
 
-export type TableStyle = VariantProps<typeof createTableStyle>
-export type CreateTableStyle = ReturnType<typeof createTableStyle>
+export type TableNextStyle = VariantProps<typeof createTableNextStyle>
+export type CreateTableNextStyle = ReturnType<typeof createTableNextStyle>
