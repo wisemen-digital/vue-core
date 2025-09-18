@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { Temporal } from 'temporal-polyfill'
+
 import type { DateRangePickerProps } from '@/components/date-picker/range/dateRangePicker.props'
 import DateRangePickerDate from '@/components/date-picker/range/parts/DateRangePickerDate.vue'
 import DateRangePickerGrid from '@/components/date-picker/range/parts/DateRangePickerGrid.vue'
@@ -8,7 +10,7 @@ import type { DateRange } from '@/types/dateRange.type'
 
 const props = defineProps<DateRangePickerProps>()
 
-const modelValue = defineModel<DateRange>({
+const modelValue = defineModel<DateRange<Temporal.PlainDate>>({
   required: true,
 })
 
@@ -16,7 +18,7 @@ const modelValue = defineModel<DateRange>({
  * The placeholder date, which is used to determine what month to display when no date is selected.
  * This updates as the user navigates the calendar and can be used to programmatically control the calendar view
  */
-const placeholderValue = defineModel<Date>('placeholderValue', {
+const placeholderValue = defineModel<Temporal.PlainDate>('placeholderValue', {
   required: false,
 })
 </script>
