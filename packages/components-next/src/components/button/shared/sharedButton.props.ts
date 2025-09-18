@@ -18,6 +18,4 @@ export interface SharedButtonProps extends TestId, InteractableElement {
 
 export interface ButtonEmits {
   (event: 'click', e: MouseEvent): void
-  (event: 'focus', e: FocusEvent): void
-  (event: 'blur', e: FocusEvent): void
 }
