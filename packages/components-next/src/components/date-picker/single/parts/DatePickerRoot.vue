@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { DateValue } from 'reka-ui'
 import { CalendarRoot as RekaCalendarRoot } from 'reka-ui'
+import { Temporal } from 'temporal-polyfill'
 import { computed } from 'vue'
 
 import type { ResolvedClassConfig } from '@/class-variant/classVariant.type'
@@ -10,6 +11,8 @@ import type { Grid } from '@/components/date-picker/shared/datePicker.type'
 import {
   dateToDateValue,
   dateValueToDate,
+  dateValueToPlainDate,
+  plainDateToDateValue,
 } from '@/components/date-picker/shared/datePicker.util'
 import { useProvideDatePickerContext } from '@/components/date-picker/single/datePicker.context'
 import type { DatePickerProps } from '@/components/date-picker/single/datePicker.props'
@@ -34,11 +37,11 @@ const props = withDefaults(defineProps<DatePickerProps>(), {
   variant: null,
 })
 
-const modelValue = defineModel<Date | null>({
+const modelValue = defineModel<Temporal.PlainDate | null>({
   required: true,
 })
 
-const placeholderValue = defineModel<Date>('placeholderValue', {
+const placeholderValue = defineModel<Temporal.PlainDate>('placeholderValue', {
   required: false,
 })
 
@@ -52,7 +55,7 @@ const delegatedModel = computed<DateValue | null>({
       return null
     }
 
-    return dateToDateValue(modelValue.value)
+    return plainDateToDateValue(modelValue.value)
   },
   set: (value) => {
     if (value === null || value === undefined) {
@@ -61,16 +64,16 @@ const delegatedModel = computed<DateValue | null>({
       return
     }
 
-    modelValue.value = dateValueToDate(value)
+    modelValue.value = dateValueToPlainDate(value)
   },
 })
 
 const delegatedPlaceholderValue = computed<DateValue>({
   get: () => {
-    return dateToDateValue(placeholderValue.value ?? modelValue.value ?? new Date())
+    return plainDateToDateValue(placeholderValue.value ?? modelValue.value ?? Temporal.Now.plainDateISO())
   },
   set: (value) => {
-    placeholderValue.value = dateValueToDate(value)
+    placeholderValue.value = dateValueToPlainDate(value)
   },
 })
 
@@ -94,10 +97,10 @@ useProvideDatePickerContext({
   ...toComputedRefs(props),
   customClassConfig,
   modelValue,
-  placeholderValue: computed<Date>({
-    get: () => dateValueToDate(delegatedPlaceholderValue.value),
+  placeholderValue: computed<Temporal.PlainDate>({
+    get: () => dateValueToPlainDate(delegatedPlaceholderValue.value),
     set: (value) => {
-      delegatedPlaceholderValue.value = dateToDateValue(value)
+      delegatedPlaceholderValue.value = plainDateToDateValue(value)
     },
   }),
   style: datePickerStyle,
