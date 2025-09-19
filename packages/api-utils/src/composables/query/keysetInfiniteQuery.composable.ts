@@ -6,12 +6,12 @@ import {
 import type { MaybeRef } from 'vue'
 import { computed } from 'vue'
 
+import { QUERY_CONFIG } from '@/config/config'
 import type {
   KeysetPaginationParams,
   KeysetPaginationResult,
 } from '@/types/pagination.type'
 import type { QueryKeys } from '@/types/queryKeys.type'
-import { QUERY_CONFIG } from '@/utils/config.utils'
 
 type NonOptionalKeys<T> = {
   [K in keyof T]-?: T[K]
