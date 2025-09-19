@@ -1,4 +1,4 @@
-<script setup lang="ts" generic="TSchema, TPagination extends BasePagination">
+<script setup lang="ts">
 import { computed } from 'vue'
 
 import type { CustomComponentVariant } from '@/class-variant/classVariant.type'
@@ -8,34 +8,18 @@ import {
 } from '@/class-variant/customClassVariants'
 import { useTable } from '@/components/table/table.composable'
 import { useProvideTableContext } from '@/components/table/table.context'
-import type { TableEmits } from '@/components/table/table.emits'
 import type { TableProps } from '@/components/table/table.props'
 import type { CreateTableStyle } from '@/components/table/table.style'
 import { createTableStyle } from '@/components/table/table.style'
-import type { TableColumn } from '@/components/table/table.type'
 import { injectThemeProviderContext } from '@/components/theme-provider/themeProvider.context'
-import type { BasePagination } from '@/composables/pagination/pagination.type'
 import { toComputedRefs } from '@/utils/props.util'
 
-const props = withDefaults(defineProps<TableProps<TSchema, TPagination>>(), {
+const props = withDefaults(defineProps<TableProps>(), {
   isFirstColumnSticky: false,
   isLastColumnSticky: false,
   classConfig: null,
-  rowAction: null,
   variant: null,
 })
-
-const emit = defineEmits<TableEmits>()
-
-const isMaxWidthDefinedForAllColumns = props.columns.every((column) => (
-  column.maxWidth !== undefined
-))
-
-if (isMaxWidthDefinedForAllColumns) {
-  console.warn(
-    'All columns have a maxWidth defined. This can restrict the table from expanding to fill available space, potentially causing layout issues. Consider leaving at least one column without a maxWidth to allow flexible sizing.',
-  )
-}
 
 const {
   theme,
@@ -45,68 +29,8 @@ const {
   hasReachedHorizontalEnd,
   hasVerticalOverflow,
   isScrolledHorizontally,
-  gridTemplateColumns,
   setTableScrollContainerRef,
-} = useTable({
-  columns: computed<TableColumn<TSchema>[]>(() => props.columns),
-  rowCount: computed<number>(() => props.data?.data.length ?? 0),
-  onNextPage: () => {
-    emit('nextPage')
-  },
-})
-
-function isValueEmpty(value: any): boolean {
-  if (value == null) {
-    return true
-  }
-  if (typeof value === 'boolean') {
-    return !value
-  }
-  if (typeof value === 'string') {
-    return value.trim().length === 0
-  }
-  if (Array.isArray(value)) {
-    return value.length === 0
-  }
-  if (value instanceof Map || value instanceof Set) {
-    return value.size === 0
-  }
-  if (typeof value === 'object') {
-    return Object.keys(value).length === 0
-  }
-
-  return false
-}
-
-const activeFilterCount = computed<number>(() => {
-  const {
-    filter, search,
-  } = props.pagination.paginationOptions.value
-
-  const hasActiveSearch = search !== undefined && search.length > 0
-
-  let count = 0
-
-  if (hasActiveSearch) {
-    count += 1
-  }
-
-  if (filter === undefined) {
-    return count
-  }
-
-  const nonEmptyFilters = Object.entries(filter).filter(([
-    , value,
-  ]) => !isValueEmpty(value))
-
-  count += nonEmptyFilters.length
-
-  return count
-})
-
-const isEmpty = computed<boolean>(() => {
-  return props.data !== null && props.data.meta.total === 0 && !props.isLoading
-})
+} = useTable()
 
 const tableStyle = computed<CreateTableStyle>(() => createTableStyle({
   variant: props.variant ?? undefined,
@@ -118,23 +42,14 @@ const customClassConfig = computed<CustomComponentVariant<'table'>>(
   }),
 )
 
-function onClearFiltersAndSearch(): void {
-  props.pagination.clearFilters()
-  props.pagination.handleSearchChange('')
-}
-
 useProvideTableContext({
   ...toComputedRefs(props),
   hasReachedHorizontalEnd,
   hasVerticalOverflow,
-  isEmpty,
   isScrolledHorizontally,
-  activeFilterCount,
   customClassConfig,
-  gridTemplateColumns,
   setTableScrollContainerRef,
   style: tableStyle,
-  onClearFiltersAndSearch,
 })
 </script>
 
@@ -145,6 +60,10 @@ useProvideTableContext({
     })"
     role="table"
   >
-    <slot />
+    <slot
+      :has-reached-horizontal-end="hasReachedHorizontalEnd"
+      :has-vertical-overflow="hasVerticalOverflow"
+      :is-scrolled-horizontally="isScrolledHorizontally"
+    />
   </div>
 </template>

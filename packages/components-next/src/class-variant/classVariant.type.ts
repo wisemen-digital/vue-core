@@ -23,7 +23,6 @@ import type { createRadioGroupItemStyle } from '@/components/radio-group-item/ra
 import type { createSelectStyle } from '@/components/select/style/select.style'
 import type { createSwitchStyle } from '@/components/switch/switch.style'
 import type { createTableStyle } from '@/components/table/table.style'
-import type { createTableNextStyle } from '@/components/table-next/table.style'
 import type { createTabsStyle } from '@/components/tabs/shared/tabs.style'
 import type { createTextFieldStyle } from '@/components/text-field/textField.style'
 import type { createTextareaStyle } from '@/components/textarea/textarea.style'
@@ -139,12 +138,6 @@ export interface ComponentMap {
   }
   table: {
     style: typeof createTableStyle
-    children: {
-      headerCellButton: 'button'
-    }
-  }
-  tableNext: {
-    style: typeof createTableNextStyle
     children: {
       headerCellButton: 'button'
     }

@@ -16,6 +16,7 @@ const props = withDefaults(defineProps<{
   appearance?: Appearance | null
   /**
    * Whether to render the child component directly without any wrapping element.
+   * @default false
    */
   asChild?: boolean
   /**
