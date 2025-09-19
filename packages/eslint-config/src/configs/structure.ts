@@ -348,7 +348,7 @@ export const folderStructureConfig = createFolderStructure({
     },
     models_folder: {
       name: '*',
-      folderRecursionLimit: 2,
+      folderRecursionLimit: 3,
       children: [
         {
           ruleId: 'models_folder',
