@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<{
    */
   appearance?: Appearance | null
   /**
-   * When true, the ThemeProvider will render its child components directly instead of wrapping them in a div.
+   * Whether to render the child component directly without any wrapping element.
    * @default false
    */
   asChild?: boolean
