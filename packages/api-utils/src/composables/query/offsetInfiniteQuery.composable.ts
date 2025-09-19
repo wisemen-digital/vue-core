@@ -144,7 +144,7 @@ export function useOffsetInfiniteQuery<TData>(options: OffsetInfiniteQueryOption
     isFetchingNextPage: computed<boolean>(() => infiniteQuery.isFetchingNextPage.value),
     isLoading: computed<boolean>(() => infiniteQuery.isLoading.value),
     isSuccess: computed<boolean>(() => !hasError.value),
-    fetchNextPage: fetchNextPage as unknown as (() => Promise<void>),
+    fetchNextPage,
     refetch: async (): Promise<void> => {
       await infiniteQuery.refetch()
     },

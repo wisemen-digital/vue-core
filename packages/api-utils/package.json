@@ -36,7 +36,8 @@
   },
   "dependencies": {
     "@tanstack/vue-query": "catalog:",
-    "@wisemen/vue-core-components": "workspace:*"
+    "@wisemen/vue-core-components": "workspace:*",
+    "neverthrow": "^8.2.0"
   },
   "devDependencies": {
     "@tsconfig/node18": "18.2.4",
