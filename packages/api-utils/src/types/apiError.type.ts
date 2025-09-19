@@ -1,7 +1,6 @@
 import type { Result } from 'neverthrow'
 
-export interface ApiErrorCodes {
-}
+export interface ApiErrorCodes {}
 
 export type ApiErrorCode = ApiErrorCodes[keyof ApiErrorCodes]
 export interface ApiKnownErrorObject {
