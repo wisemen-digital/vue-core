@@ -21,7 +21,14 @@ const props = withDefaults(defineProps<DialogProps>(), {
 })
 
 const emit = defineEmits<{
+  /**
+   * Emitted when the dialog is requested to be closed (e.g., when clicking outside or pressing the Escape key).
+   */
   close: []
+  /**
+   * @internal
+   */
+  close_: []
 }>()
 
 defineSlots<{
@@ -36,13 +43,21 @@ const isOpen = defineModel<boolean>('isOpen', {
 })
 
 const attrs = useAttrs()
+
+function onClose(): void {
+  // Emit `_close` alongside `@close` to preserve behavior, since catching `@close` can stop event propagation
+  // eslint-disable-next-line vue/custom-event-name-casing
+  emit('close_')
+  emit('close')
+}
 </script>
 
 <template>
+  <!-- eslint-disable vue/custom-event-name-casing -->
   <DialogRoot
     v-bind="props"
     v-model:is-open="isOpen"
-    @close="emit('close')"
+    @close="onClose"
   >
     <DialogPortal>
       <DialogOverlay>
