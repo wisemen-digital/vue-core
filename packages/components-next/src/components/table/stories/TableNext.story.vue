@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import TableBody from '@/components/table-next/parts/TableBody.vue'
-import TableBodyRowCell from '@/components/table-next/parts/TableCell.vue'
-import TableContent from '@/components/table-next/parts/TableContent.vue'
-import TableHeader from '@/components/table-next/parts/TableHeader.vue'
-import TableHeaderCell from '@/components/table-next/parts/TableHeaderCell.vue'
-import TableRoot from '@/components/table-next/parts/TableRoot.vue'
-import TableBodyRow from '@/components/table-next/parts/TableRow.vue'
+import TableBody from '@/components/table/parts/TableBody.vue'
+import TableBodyRowCell from '@/components/table/parts/TableCell.vue'
+import TableContent from '@/components/table/parts/TableContent.vue'
+import TableHeader from '@/components/table/parts/TableHeader.vue'
+import TableHeaderCell from '@/components/table/parts/TableHeaderCell.vue'
+import TableRoot from '@/components/table/parts/TableRoot.vue'
+import TableBodyRow from '@/components/table/parts/TableRow.vue'
 </script>
 
 <template>
