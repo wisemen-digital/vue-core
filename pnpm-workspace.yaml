@@ -3,6 +3,7 @@ packages:
   - "packages/*"
 
 catalog:
+  "tsdown": "0.15.4"
   "vue": "3.5.14"
   "motion-v": "1.6.1"
   "vue-i18n": "11.1.3"
