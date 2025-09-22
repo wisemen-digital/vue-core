@@ -177,6 +177,10 @@ export const Disabled: Story = {
 }
 
 export const Sizes: Story = {
+  args: {
+    icon: 'plus',
+    label: 'Example',
+  },
   render: () => ({
     components: {
       IconButton,
@@ -194,6 +198,10 @@ export const Sizes: Story = {
 }
 
 export const Variants: Story = {
+  args: {
+    icon: 'check',
+    label: 'Example',
+  },
   render: () => ({
     components: {
       IconButton,
@@ -216,6 +224,10 @@ export const Variants: Story = {
 }
 
 export const Icons: Story = {
+  args: {
+    icon: 'plus',
+    label: 'Example',
+  },
   render: () => ({
     components: {
       IconButton,
