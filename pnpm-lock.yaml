@@ -211,9 +211,6 @@ importers:
       '@tanstack/vue-query':
         specifier: 'catalog:'
         version: 5.76.0(vue@3.5.14(typescript@5.8.3))
-      '@wisemen/vue-core-components':
-        specifier: workspace:*
-        version: link:../components-next
       neverthrow:
         specifier: ^8.2.0
         version: 8.2.0
