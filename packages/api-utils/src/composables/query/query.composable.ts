@@ -5,6 +5,7 @@ import type {
 } from 'vue'
 import { computed } from 'vue'
 
+import type { ApiResult } from '@/types/apiError.type'
 import type { QueryKeys } from '@/types/queryKeys.type'
 
 type NonOptionalKeys<T> = {
@@ -34,7 +35,7 @@ export interface UseQueryOptions<TResData> {
    * Function that will be called when query is executed
    * @returns Promise with response data
    */
-  queryFn: () => Promise<TResData>
+  queryFn: () => Promise<ApiResult<TResData>>
   /**
    * Query key associated with the query
    */
@@ -47,7 +48,11 @@ export interface UseQueryOptions<TResData> {
 
 export interface UseQueryReturnType<TResData> {
   /**
-   * Whether query is in error state
+   * Response data
+   */
+  /**
+   * Whether query has errored at least once
+   * @deprecated - use `result.isErr()` instead
    */
   isError: ComputedRef<boolean>
   /**
@@ -59,21 +64,20 @@ export interface UseQueryReturnType<TResData> {
    */
   isLoading: ComputedRef<boolean>
   /**
-   * Whether query is in success state
+   * Whether query has been executed successfully
+   * @deprecated - use `result.isOk()` instead
    */
   isSuccess: ComputedRef<boolean>
-  /**
-   * Response data
-   */
-  data: ComputedRef<TResData | null>
-  /**
-   * Error object, if in error state
-   */
-  error: ComputedRef<unknown>
   /**
    * Refetch the query
    */
   refetch: () => Promise<void>
+  /**
+   * Computed result of the query
+   * It will return an instance of Result<TResData, ApiError>
+   * where TResData is the response data and ApiError is the error
+   */
+  result: ComputedRef<ApiResult<TResData> | null>
 }
 
 export function useQuery<TResData>(options: UseQueryOptions<TResData>): UseQueryReturnType<TResData> {
@@ -95,7 +99,7 @@ export function useQuery<TResData>(options: UseQueryOptions<TResData>): UseQuery
 
     if (isDebug) {
       // eslint-disable-next-line no-console
-      console.log(`Create query with key ${queryKey}`, params)
+      console.debug(`Create query with key ${queryKey}`, params)
     }
 
     return [
@@ -109,12 +113,11 @@ export function useQuery<TResData>(options: UseQueryOptions<TResData>): UseQuery
   }
 
   return {
-    isError: computed<boolean>(() => query.isError.value),
+    isError: computed<boolean>(() => query.data.value?.isErr() ?? false),
     isFetching: computed<boolean>(() => query.isFetching.value),
     isLoading: computed<boolean>(() => query.isLoading.value),
-    isSuccess: computed<boolean>(() => query.isSuccess.value),
-    data: computed<TResData | null>(() => query.data.value ?? null),
-    error: computed<unknown>(() => query.error.value),
+    isSuccess: computed<boolean>(() => query.data.value?.isOk() ?? false),
     refetch,
+    result: computed<ApiResult<TResData> | null>(() => query.data.value ?? null),
   }
 }
