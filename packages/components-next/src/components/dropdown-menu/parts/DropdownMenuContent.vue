@@ -4,6 +4,7 @@ import { DropdownMenuContent as RekaDropdownMenuContent } from 'reka-ui'
 
 import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectDropdownMenuContext } from '@/components/dropdown-menu/dropdownMenu.context'
+import ThemeProvider from '@/components/theme-provider/ThemeProvider.vue'
 
 const {
   isOpen,
@@ -23,25 +24,26 @@ const {
 
 <template>
   <AnimatePresence>
-    <RekaDropdownMenuContent
-      v-if="isOpen"
-      :force-mount="true"
-      :as-child="true"
-      :data-content-width="popoverWidth"
-      :align="popoverAlign"
-      :reference="popoverAnchorReferenceElement ?? undefined"
-      :align-offset="popoverAlignOffset"
-      :collision-padding="popoverCollisionPadding"
-      :collision-boundary="popoverContainerElement"
-      :side="popoverSide"
-      :side-offset="popoverSideOffset"
-      :class="style.content({
-        class: mergeClasses(customClassConfig.content, classConfig?.content),
-      })"
-      position-strategy="absolute"
-      sticky="always"
-    >
-      <slot />
-    </RekaDropdownMenuContent>
+    <ThemeProvider v-if="isOpen">
+      <RekaDropdownMenuContent
+        :force-mount="true"
+        :as-child="true"
+        :data-content-width="popoverWidth"
+        :align="popoverAlign"
+        :reference="popoverAnchorReferenceElement ?? undefined"
+        :align-offset="popoverAlignOffset"
+        :collision-padding="popoverCollisionPadding"
+        :collision-boundary="popoverContainerElement"
+        :side="popoverSide"
+        :side-offset="popoverSideOffset"
+        :class="style.content({
+          class: mergeClasses(customClassConfig.content, classConfig?.content),
+        })"
+        position-strategy="absolute"
+        sticky="always"
+      >
+        <slot />
+      </RekaDropdownMenuContent>
+    </ThemeProvider>
   </AnimatePresence>
 </template>

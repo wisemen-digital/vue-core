@@ -38,30 +38,26 @@ const {
 } = useInjectDateRangePickerContext()
 
 const monthValue = computed<number>({
-  get: () => placeholderValue.value.getMonth(),
+  get: () => placeholderValue.value.month - 1,
   set: async (value) => {
     // Without nextTick, an stack overflow occurs for some weird reason
     // Took me about 2 hours to figure this out
     await nextTick()
 
-    placeholderValue.value = new Date(
-      placeholderValue.value.getFullYear(),
-      value,
-      placeholderValue.value.getDate(),
-    )
+    placeholderValue.value = placeholderValue.value.with({
+      month: value + 1,
+    })
   },
 })
 
 const yearValue = computed<number>({
   get: () => {
-    return placeholderValue.value.getFullYear()
+    return placeholderValue.value.year
   },
   set: (value) => {
-    placeholderValue.value = new Date(
-      value,
-      placeholderValue.value.getMonth(),
-      placeholderValue.value.getDate(),
-    )
+    placeholderValue.value = placeholderValue.value.with({
+      year: value,
+    })
   },
 })
 </script>

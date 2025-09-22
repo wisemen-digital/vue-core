@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { VcThemeProvider } from '@wisemen/vue-core-components'
-import { ref } from 'vue'
 
 interface PropDef {
   name?: string
@@ -16,27 +15,6 @@ interface PropsTableProps {
 }
 
 const props = defineProps<PropsTableProps>()
-
-const isDark = ref<boolean>(document.documentElement.classList.contains('dark'))
-
-const observer = new MutationObserver((mutations) => {
-  for (const mutation of mutations) {
-    if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-      const darkClass = document.documentElement.classList.contains('dark')
-
-      if (darkClass !== isDark.value) {
-        isDark.value = darkClass
-      }
-    }
-  }
-})
-
-observer.observe(document.documentElement, {
-  attributes: true,
-  attributeFilter: [
-    'class',
-  ],
-})
 
 // Sort by required and then alphabetically by name
 function sortProps(props: PropDef[]): PropDef[] {
@@ -58,7 +36,7 @@ function sortProps(props: PropDef[]): PropDef[] {
 </script>
 
 <template>
-  <VcThemeProvider :appearance="isDark ? 'dark' : 'light'">
+  <VcThemeProvider>
     <h2 id="props">
       Props
     </h2>
