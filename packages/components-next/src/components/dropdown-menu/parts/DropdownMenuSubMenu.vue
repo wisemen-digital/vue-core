@@ -15,6 +15,7 @@ import DropdownMenuItemLabel from '@/components/dropdown-menu/parts/DropdownMenu
 import DropdownMenuPortal from '@/components/dropdown-menu/parts/DropdownMenuPortal.vue'
 import DropdownMenuSubMenuTransition from '@/components/dropdown-menu/parts/DropdownMenuSubMenuTransition.vue'
 import Icon from '@/components/icon/Icon.vue'
+import ThemeProvider from '@/components/theme-provider/ThemeProvider.vue'
 import { toComputedRefs } from '@/utils/props.util'
 
 const props = withDefaults(defineProps<DropdownMenuItemProps>(), {
@@ -56,18 +57,20 @@ useProvideDropdownMenuItemContext(toComputedRefs(props))
 
     <DropdownMenuPortal>
       <AnimatePresence>
-        <RekaDropdownMenuSubContent
-          :side-offset="6"
-          :align-offset="-5"
-          :class="style.content({
-            class: mergeClasses(customClassConfig.content, classConfig?.content),
-          })"
-          :as-child="true"
-        >
-          <DropdownMenuSubMenuTransition>
-            <slot />
-          </DropdownMenuSubMenuTransition>
-        </RekaDropdownMenuSubContent>
+        <ThemeProvider>
+          <RekaDropdownMenuSubContent
+            :side-offset="6"
+            :align-offset="-5"
+            :class="style.content({
+              class: mergeClasses(customClassConfig.content, classConfig?.content),
+            })"
+            :as-child="true"
+          >
+            <DropdownMenuSubMenuTransition>
+              <slot />
+            </DropdownMenuSubMenuTransition>
+          </RekaDropdownMenuSubContent>
+        </ThemeProvider>
       </AnimatePresence>
     </DropdownMenuPortal>
   </RekaDropdownMenuSub>
