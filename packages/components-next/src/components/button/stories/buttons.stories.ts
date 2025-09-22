@@ -32,8 +32,8 @@ const meta = {
       control: 'select',
       options: [
         null,
-        'arrow-right',
-        'chevron-right',
+        'arrowRight',
+        'chevronRight',
       ],
     },
     size: {
