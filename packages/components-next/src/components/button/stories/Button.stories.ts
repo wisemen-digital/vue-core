@@ -1,123 +1,178 @@
-import type { Meta, StoryObj } from '@storybook/vue3-vite';
+import type {
+  Meta,
+  StoryObj,
+} from '@storybook/vue3-vite'
 
-import Button from '../default-button/Button.vue';
+import type { ButtonProps } from '@/components/button/default-button/button.props'
+import Button from '@/components/button/default-button/Button.vue'
 
 const meta = {
   title: 'Components/Button',
-  component: Button,
-  parameters: {
-    layout: 'centered',
+  args: {
+    onClick: (): void => {},
   },
-  tags: ['autodocs'],
   argTypes: {
-    variant: {
-      control: 'select',
-      options: ['primary', 'secondary', 'tertiary', 'destructive-primary', 'destructive-secondary', 'destructive-tertiary'],
-    },
-    size: {
-      control: 'select',
-      options: ['sm', 'md', 'lg', 'xl', '2xl'],
-    },
-    iconLeft: {
-      control: 'select',
-      options: [null, 'plus', 'minus', 'check', 'close'],
-    },
-    iconRight: {
-      control: 'select',
-      options: [null, 'arrow-right', 'chevron-right'],
+    isDisabled: {
+      control: 'boolean',
     },
     isLoading: {
       control: 'boolean',
     },
-    isDisabled: {
-      control: 'boolean',
+    iconLeft: {
+      control: 'select',
+      options: [
+        null,
+        'plus',
+        'minus',
+        'check',
+        'close',
+      ],
+    },
+    iconRight: {
+      control: 'select',
+      options: [
+        null,
+        'arrow-right',
+        'chevron-right',
+      ],
+    },
+    size: {
+      control: 'select',
+      options: [
+        'sm',
+        'md',
+        'lg',
+        'xl',
+        '2xl',
+      ],
     },
     type: {
       control: 'select',
-      options: ['button', 'submit', 'reset'],
+      options: [
+        'button',
+        'submit',
+        'reset',
+      ],
+    },
+    variant: {
+      control: 'select',
+      options: [
+        'primary',
+        'secondary',
+        'tertiary',
+        'destructive-primary',
+        'destructive-secondary',
+        'destructive-tertiary',
+      ],
     },
   },
-  args: {
-    onClick: ()=>{},
+  parameters: {
+    layout: 'centered',
   },
-} satisfies Meta<typeof Button>;
+  tags: [
+    'autodocs',
+  ],
+  component: Button,
+} satisfies Meta<typeof Button>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const Primary: Story = {
   args: {
     variant: 'primary',
   },
   render: (args) => ({
-    components: { Button },
-    setup() {
-      return { args };
+    components: {
+      Button,
+    },
+    setup(): { args: ButtonProps } {
+      return {
+        args,
+      }
     },
     template: '<Button v-bind="args">{{ args.children || "Button" }}</Button>',
   }),
-};
+}
 
 export const Secondary: Story = {
   args: {
     variant: 'secondary',
   },
   render: (args) => ({
-    components: { Button },
-    setup() {
-      return { args };
+    components: {
+      Button,
+    },
+    setup(): { args: ButtonProps } {
+      return {
+        args,
+      }
     },
     template: '<Button v-bind="args">{{ args.children || "Button" }}</Button>',
   }),
-};
+}
 
 export const WithIcons: Story = {
   args: {
-    variant: 'primary',
     iconLeft: 'plus',
     iconRight: 'arrowRight',
+    variant: 'primary',
   },
   render: (args) => ({
-    components: { Button },
-    setup() {
-      return { args };
+    components: {
+      Button,
+    },
+    setup(): { args: ButtonProps } {
+      return {
+        args,
+      }
     },
     template: '<Button v-bind="args">{{ args.children || "Button" }}</Button>',
   }),
-};
+}
 
 export const Loading: Story = {
   args: {
-    variant: 'primary',
     isLoading: true,
     iconLeft: 'plus',
+    variant: 'primary',
   },
   render: (args) => ({
-    components: { Button },
-    setup() {
-      return { args };
+    components: {
+      Button,
+    },
+    setup(): { args: ButtonProps } {
+      return {
+        args,
+      }
     },
     template: '<Button v-bind="args">{{ args.children || "Loading..." }}</Button>',
   }),
-};
+}
 
 export const Disabled: Story = {
   args: {
-    variant: 'primary',
     isDisabled: true,
+    variant: 'primary',
   },
   render: (args) => ({
-    components: { Button },
-    setup() {
-      return { args };
+    components: {
+      Button,
+    },
+    setup(): { args: ButtonProps } {
+      return {
+        args,
+      }
     },
     template: '<Button v-bind="args">{{ args.children || "Disabled" }}</Button>',
   }),
-};
+}
 
 export const Sizes: Story = {
   render: () => ({
-    components: { Button },
+    components: {
+      Button,
+    },
     template: `
       <div style="display: flex; gap: 1rem; align-items: center;">
         <Button size="sm">Small</Button>
@@ -128,11 +183,13 @@ export const Sizes: Story = {
       </div>
     `,
   }),
-};
+}
 
 export const Variants: Story = {
   render: () => ({
-    components: { Button },
+    components: {
+      Button,
+    },
     template: `
       <div style="display: flex; flex-direction: column; gap: 1rem;">
         <div style="display: flex; gap: 1rem; align-items: center;">
@@ -148,4 +205,4 @@ export const Variants: Story = {
       </div>
     `,
   }),
-};
+}
