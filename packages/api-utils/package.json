@@ -1,0 +1,45 @@
+{
+  "name": "@wisemen/vue-core-api-utils",
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "version": "0.0.1-beta.0",
+  "license": "MIT",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.umd.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "typings": "./dist/index.d.ts",
+  "web-types": "./dist/web-types.json",
+  "files": [
+    "./dist"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "pub:release": "pnpm publish --access public",
+    "cleanup": "rimraf dist/ node_modules/ .turbo/",
+    "lint": "pnpm eslint --fix .",
+    "test": "vitest --run",
+    "typecheck": "pnpm tsc"
+  },
+  "peerDependencies": {
+    "@tanstack/vue-query": "catalog:",
+    "neverthrow": "^8.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "@wisemen/eslint-config-vue": "catalog:",
+    "eslint": "catalog:",
+    "tsdown": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:",
+    "vue": "catalog:"
+  }
+}

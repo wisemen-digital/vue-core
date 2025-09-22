@@ -1,11 +1,13 @@
 <script setup lang="ts">
+import { Temporal } from 'temporal-polyfill'
+
 import DateRangePicker from '@/components/date-picker/range/DateRangePicker.vue'
 import DatePicker from '@/components/date-picker/single/DatePicker.vue'
 
-const today = new Date()
-const in2Months = new Date()
-
-in2Months.setMonth(today.getMonth() + 2)
+const today = Temporal.Now.plainDateISO()
+const in2Months = today.add({
+  months: 2,
+})
 </script>
 
 <template>

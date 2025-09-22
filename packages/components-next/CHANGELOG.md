@@ -1,5 +1,16 @@
 # @wisemen/vue-core-components
 
+## 1.17.0
+
+### 🔥 New Features
+
+- **ConfigProvider**: Added `hourCycle` prop to control 12h/24h time formatting across components.
+
+### 🐞 Bug Fixes
+
+- **Select**: Adjusted dropdown width to better fit its content.  
+- **Button**: Removed unused emits to ensure proper event propagation.
+
 ## 1.16.0
 
 ### ✨ Improvements

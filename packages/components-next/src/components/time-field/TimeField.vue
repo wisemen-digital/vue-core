@@ -1,4 +1,5 @@
-<script setup lang="ts" generic="TValue extends string">
+<script setup lang="ts">
+import type { Temporal } from 'temporal-polyfill'
 import { useId } from 'vue'
 
 import FormField from '@/components/form-field/FormField.vue'
@@ -17,7 +18,7 @@ const emit = defineEmits<TimeFieldEmits>()
 
 defineSlots<TimeFieldSlots>()
 
-const modelValue = defineModel<TValue | null>({
+const modelValue = defineModel<Temporal.PlainTime | null>({
   required: true,
 })
 

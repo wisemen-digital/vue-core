@@ -7,6 +7,7 @@ import type {
   ToastPosition,
 } from '@/components/toast/toast.composable'
 import TooltipProvider from '@/components/tooltip/TooltipProvider.vue'
+import type { HourCycle } from '@/types/hourCycle.type'
 
 const props = defineProps<{
   /**
@@ -26,6 +27,12 @@ const props = defineProps<{
    * @default null
    */
   googleMapsApiKey?: string
+  /**
+   * The hour cycle to use for time-related components.
+   * Can be either 'h12' or 'h24'. If not provided, the system locale's default will be used.
+   * @default null
+   */
+  hourCycle?: HourCycle
   /**
    * The locale to use for localization.
    */
@@ -59,6 +66,7 @@ useProvideConfigContext({
   areKeyboardShortcutHintsHidden: computed<boolean>(() => props.areKeyboardShortcutHintsHidden ?? false),
   autoCloseToast: computed<AutoCloseToastConfig | null>(() => props.autoCloseToast ?? null),
   googleMapsApiKey: props.googleMapsApiKey ?? null,
+  hourCycle: computed<HourCycle | null>(() => props.hourCycle ?? null),
   locale: computed<string>(() => props.locale),
   pagination: {
     limit: props.pagination?.limit,

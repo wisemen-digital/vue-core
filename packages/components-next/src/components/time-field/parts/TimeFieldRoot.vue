@@ -1,6 +1,7 @@
-<script setup lang="ts" generic="TValue extends string">
+<script setup lang="ts">
 import { Time as TimeValue } from '@internationalized/date'
 import { TimeFieldRoot as RekaTimeFieldRoot } from 'reka-ui'
+import { Temporal } from 'temporal-polyfill'
 import {
   computed,
   ref,
@@ -49,7 +50,7 @@ const props = withDefaults(defineProps<TimeFieldProps>(), {
 
 const emit = defineEmits<TimeFieldEmits>()
 
-const modelValue = defineModel<TValue | null>({
+const modelValue = defineModel<Temporal.PlainTime | null>({
   required: true,
 })
 
@@ -59,15 +60,11 @@ const delegatedModel = computed<TimeValue | undefined>({
       return
     }
 
-    const [
-      hours,
-      minutes,
-    ] = modelValue.value.split(':') ?? [
-      '00',
-      '00',
-    ]
+    const {
+      hour, minute,
+    } = modelValue.value
 
-    return new TimeValue(Number(hours), Number(minutes))
+    return new TimeValue(Number(hour), Number(minute))
   },
   set: (value) => {
     if (value === undefined) {
@@ -78,12 +75,12 @@ const delegatedModel = computed<TimeValue | undefined>({
 
     const updatedValue = `${value.hour.toString().padStart(2, '0')}:${value.minute.toString().padStart(2, '0')}`
 
-    modelValue.value = updatedValue as TValue
+    modelValue.value = Temporal.PlainTime.from(updatedValue)
   },
 })
 
 const {
-  locale,
+  hourCycle, locale,
 } = useInjectConfigContext()
 const {
   theme,
@@ -102,6 +99,14 @@ const customClassConfig = computed<CustomComponentVariant<'timeField'>>(
     variant: props.variant,
   }),
 )
+
+const hourCycleValue = computed<12 | 24 | null>(() => {
+  if (hourCycle.value === null) {
+    return null
+  }
+
+  return hourCycle.value === '12-hour' ? 12 : 24
+})
 
 function onFocus(event: FocusEvent): void {
   isFocused.value = true
@@ -147,6 +152,7 @@ useProvideTimeFieldContext({
         :locale="locale"
         :required="props.isRequired"
         :is-invalid="props.errorMessage !== null"
+        :hour-cycle="hourCycleValue ?? undefined"
       >
         <!-- For some reason, the data- bindings don't work on the `RekaTimeFieldRoot` component -->
         <div
