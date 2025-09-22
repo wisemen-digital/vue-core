@@ -10,6 +10,8 @@ interface DropdownMenuContext extends PropsToComputed<DropdownMenuProps> {
   isOpen: ComputedRef<boolean>
   customClassConfig: ComputedRef<ResolvedClassConfig<'dropdownMenu'>>
   style: ComputedRef<CreateDropdownMenuStyle>
+  onCloseAutoFocus: (event: Event) => void
+  onEscapeKeyDown: (event: KeyboardEvent) => void
 }
 
 export const [
