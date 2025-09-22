@@ -134,7 +134,9 @@ export function useKeysetInfiniteQuery<TData>(options: KeysetInfiniteQueryOption
     isFetchingNextPage: computed<boolean>(() => infiniteQuery.isFetchingNextPage.value),
     isLoading: computed<boolean>(() => infiniteQuery.isLoading.value),
     isSuccess: computed<boolean>(() => !hasError.value),
-    fetchNextPage,
+    fetchNextPage: async (): Promise<void> => {
+      await fetchNextPage()
+    },
     refetch: async (): Promise<void> => {
       await infiniteQuery.refetch()
     },
