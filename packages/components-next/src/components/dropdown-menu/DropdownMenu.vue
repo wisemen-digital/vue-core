@@ -9,6 +9,11 @@ import DropdownMenuTrigger from '@/components/dropdown-menu/parts/DropdownMenuTr
 
 const props = defineProps<DropdownMenuProps>()
 
+const emit = defineEmits<{
+  closeAutoFocus: [event: Event]
+  escapeKeyDown: [event: KeyboardEvent]
+}>()
+
 defineSlots<{
   /**
    * The content to display in the dropdown menu.
@@ -30,6 +35,8 @@ const isOpen = defineModel<boolean>('isOpen', {
   <DropdownMenuRoot
     v-bind="props"
     v-model:is-open="isOpen"
+    @close-auto-focus="emit('closeAutoFocus', $event)"
+    @escape-key-down="emit('escapeKeyDown', $event)"
   >
     <DropdownMenuTrigger>
       <slot name="trigger" />

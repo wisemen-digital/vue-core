@@ -19,6 +19,8 @@ const {
   popoverSideOffset,
   popoverWidth,
   style,
+  onCloseAutoFocus,
+  onEscapeKeyDown,
 } = useInjectDropdownMenuContext()
 </script>
 
@@ -41,6 +43,8 @@ const {
         })"
         position-strategy="absolute"
         sticky="always"
+        @close-auto-focus="onCloseAutoFocus"
+        @escape-key-down="onEscapeKeyDown"
       >
         <slot />
       </RekaDropdownMenuContent>
