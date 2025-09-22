@@ -1,7 +1,7 @@
 {
   "name": "@wisemen/open-api-plugins",
   "type": "module",
-  "version": "0.0.3",
+  "version": "0.0.3-beta.0",
   "description": "OpenAPI plugins for code generation",
   "license": "MIT",
   "homepage": "https://github.com/wisemen-digital/vue-core.git",
@@ -33,6 +33,8 @@
   "scripts": {
     "build": "tsdown",
     "pub:release": "pnpm publish --access public",
+    "pub:beta": "pnpm publish --no-git-checks --access public --tag beta",
+    "pub:next": "pnpm publish --no-git-checks --access public --tag next",
     "cleanup": "rimraf dist/ node_modules/ .turbo/",
     "lint": "pnpm eslint --fix .",
     "test": "pnpm test",
