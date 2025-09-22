@@ -38,6 +38,8 @@
     "@wisemen/eslint-config-vue": "catalog:",
     "eslint": "catalog:",
     "tsdown": "catalog:",
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "vitest": "catalog:",
+    "vue": "catalog:"
   }
 }
