@@ -1,8 +1,8 @@
 import { useQueryClient } from '@tanstack/vue-query'
 
-import type { UseQueryOptions } from './query.composable'
+import { QUERY_CONFIG } from '@/config/config'
 
-const DEFAULT_STALE_TIME = 60
+import type { UseQueryOptions } from './query.composable'
 
 export function usePrefetchQuery<TResData>(query: UseQueryOptions<TResData>) {
   const queryClient = useQueryClient()
@@ -29,7 +29,7 @@ export function usePrefetchQuery<TResData>(query: UseQueryOptions<TResData>) {
 
   async function execute(): Promise<void> {
     await queryClient.prefetchQuery({
-      staleTime: query.staleTime ?? DEFAULT_STALE_TIME,
+      staleTime: query.staleTime ?? QUERY_CONFIG.prefetchStaleTime,
       queryFn: query.queryFn,
       queryKey: getQueryKey(),
     })
