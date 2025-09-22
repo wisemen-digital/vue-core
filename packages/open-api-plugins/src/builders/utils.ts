@@ -124,18 +124,14 @@ export function irToSchema(
     if (typeof ir.additionalProperties === 'boolean') {
       out.additionalProperties = ir.additionalProperties
     }
-    else {
-      out.additionalProperties = irToSchema(ir.additionalProperties as IR.SchemaObject, all, seen)
-    }
+    else { out.additionalProperties = irToSchema(ir.additionalProperties as IR.SchemaObject, all, seen) }
   }
 
   if (ir.items) {
     if (Array.isArray(ir.items)) {
       out.items = ir.items.map((i) => irToSchema(i as IR.SchemaObject, all, seen))
     }
-    else {
-      out.items = irToSchema(ir.items as IR.SchemaObject, all, seen)
-    }
+    else { out.items = irToSchema(ir.items as IR.SchemaObject, all, seen) }
   }
 
   const extendedIrWithComposition = ir as IR.SchemaObject & {
@@ -186,9 +182,7 @@ export function irToSchema(
           val,
         ]
       }
-      else {
-        out[k] = val
-      }
+      else { out[k] = val }
     }
   }
 
@@ -241,6 +235,21 @@ function normalizeSchema(node: ExtendedSchema | NormalizedSchemaNode | Schema): 
     delete workingNode.logicalOperator
   }
 
+  if (Array.isArray(workingNode.items)) {
+    const hasEnumItems = workingNode.items.some((item: NormalizedSchemaNode) =>
+      item && typeof item === 'object' && item.type === 'enum')
+
+    if (hasEnumItems) {
+      workingNode.items = workingNode.items.map((item: NormalizedSchemaNode) => {
+        if (item && typeof item === 'object' && item.type === 'enum') {
+          return normalizeSchema(item)
+        }
+
+        return item
+      })
+    }
+  }
+
   if (
     workingNode.type === 'array'
     && Array.isArray(workingNode.items)
@@ -258,16 +267,18 @@ function normalizeSchema(node: ExtendedSchema | NormalizedSchemaNode | Schema): 
 
   if (workingNode.properties && typeof workingNode.properties === 'object') {
     for (const key of Object.keys(workingNode.properties)) {
-      workingNode.properties[key] = normalizeSchema(workingNode.properties[key])
+      const prop = workingNode.properties[key]
+
+      if (prop !== undefined) {
+        workingNode.properties[key] = normalizeSchema(prop)
+      }
     }
   }
   if (workingNode.items) {
     if (Array.isArray(workingNode.items)) {
       workingNode.items = workingNode.items.map((it) => normalizeSchema(it))
     }
-    else {
-      workingNode.items = normalizeSchema(workingNode.items)
-    }
+    else { workingNode.items = normalizeSchema(workingNode.items) }
   }
   for (const k of [
     'allOf',
@@ -293,6 +304,14 @@ function sanitizeSchema(node: NormalizedSchemaNode): Schema {
     ...node,
   } as Record<string, unknown>
 
+  if (workingNode.type === 'enum') {
+    delete workingNode.type
+
+    if (Array.isArray(workingNode.enum)) {
+      workingNode.type = 'string'
+    }
+  }
+
   if (workingNode.type === 'unknown') {
     delete workingNode.type
   }
@@ -300,11 +319,17 @@ function sanitizeSchema(node: NormalizedSchemaNode): Schema {
     workingNode.type = 'string'
   }
 
+  delete workingNode.logicalOperator
+
   if (workingNode.properties && typeof workingNode.properties === 'object') {
     const properties = workingNode.properties as Record<string, NormalizedSchemaNode>
 
     for (const k of Object.keys(properties)) {
-      properties[k] = sanitizeSchema(properties[k]) as NormalizedSchemaNode
+      const prop = properties[k]
+
+      if (prop !== undefined) {
+        properties[k] = sanitizeSchema(prop) as NormalizedSchemaNode
+      }
     }
   }
   if (workingNode.additionalProperties && typeof workingNode.additionalProperties === 'object') {
@@ -374,7 +399,14 @@ export function collectSchemas(all: Record<string, IR.SchemaObject>): GeneratedS
     name,
     irSchema,
   ] of Object.entries(all)) {
-    const typeName = safeTypeName(name.replace(/Schema$/, ''))
+    let typeName = name.replace(/Schema$/, '')
+
+    typeName = typeName.replace(/^UI([A-Z])/g, 'Ui$1')
+    typeName = typeName.replace(/^API([A-Z])/g, 'Api$1')
+    typeName = typeName.replace(/^HTTP([A-Z])/g, 'Http$1')
+    typeName = typeName.replace(/^URL([A-Z])/g, 'Url$1')
+    typeName = typeName.replace(/^ID([A-Z])/g, 'Id$1')
+
     const jsf = sanitizeSchema(normalizeSchema(irToSchema(irSchema as IR.SchemaObject, all)))
     const schemaWithType = jsf as ExtendedSchema
     const t = schemaWithType.type
@@ -383,7 +415,7 @@ export function collectSchemas(all: Record<string, IR.SchemaObject>): GeneratedS
     metas.push({
       isEnum: isEnum(irSchema as IR.SchemaObject),
       isObject,
-      constName: `${typeName}Schema`,
+      constName: `${safeTypeName(typeName)}Schema`,
       schema: jsf,
       typeName,
     })

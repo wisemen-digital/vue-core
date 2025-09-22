@@ -31,7 +31,7 @@ export {
   defineConfig as defineBuildersConfig,
 } from './config'
 export type { BuildersPlugin } from './types'
+export { generateMockFromZodSchema } from './zodGenerator'
 export type {
-  BuilderOptions,
-  Schema as BuilderSchema,
+  BuilderOptions, Schema as BuilderSchema,
 }

@@ -10,8 +10,6 @@ export const defaultConfig: BuildersPlugin['Config'] = {
     '@hey-api/schemas',
     '@hey-api/typescript',
   ],
-  // @ts-expect-error - not yet in types
-  exportFromIndex: true,
   handler,
   output: 'builders',
 }
