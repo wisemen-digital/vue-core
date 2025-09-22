@@ -34,6 +34,9 @@ const meta = {
         'eyeOff',
       ],
     },
+    label: {
+      control: 'text',
+    },
     size: {
       control: 'select',
       options: [
@@ -62,9 +65,6 @@ const meta = {
         'destructive-secondary',
         'destructive-tertiary',
       ],
-    },
-    label: {
-      control: 'text',
     },
   },
   parameters: {
@@ -138,9 +138,9 @@ export const Tertiary: Story = {
 
 export const Loading: Story = {
   args: {
+    isLoading: true,
     icon: 'plus',
     label: 'Loading',
-    isLoading: true,
     variant: 'primary',
   },
   render: (args) => ({
@@ -158,9 +158,9 @@ export const Loading: Story = {
 
 export const Disabled: Story = {
   args: {
+    isDisabled: true,
     icon: 'minus',
     label: 'Remove item',
-    isDisabled: true,
     variant: 'primary',
   },
   render: (args) => ({
