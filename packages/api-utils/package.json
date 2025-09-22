@@ -1,10 +1,10 @@
 {
-  "name": "@wisemen/vue-core-query",
+  "name": "@wisemen/vue-core-api-utils",
   "publishConfig": {
     "access": "public"
   },
   "type": "module",
-  "version": "0.0.47",
+  "version": "0.0.1-beta.0",
   "license": "MIT",
   "sideEffects": false,
   "exports": {
@@ -36,7 +36,8 @@
   },
   "dependencies": {
     "@tanstack/vue-query": "catalog:",
-    "@wisemen/vue-core-components": "workspace:*"
+    "@wisemen/vue-core-components": "workspace:*",
+    "neverthrow": "^8.2.0"
   },
   "devDependencies": {
     "@tsconfig/node18": "18.2.4",

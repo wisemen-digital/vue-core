@@ -3,6 +3,7 @@ import {
   useQueryClient,
   VueQueryPlugin,
 } from '@tanstack/vue-query'
+import { ResultAsync } from 'neverthrow'
 import {
   describe,
   expect,
@@ -46,10 +47,13 @@ describe('useMutation', () => {
       let queryRunCount = 0
 
       useQuery({
-        queryFn: () => {
+        queryFn: async () => {
           queryRunCount += 1
 
-          return Promise.resolve('')
+          return await ResultAsync.fromPromise(
+            Promise.resolve(''),
+            () => new Error('Generic error'),
+          )
         },
         queryKey: {
           test: {},
@@ -75,10 +79,10 @@ describe('useMutation', () => {
       let queryRunCount = 0
 
       useQuery({
-        queryFn: () => {
+        queryFn: async () => {
           queryRunCount += 1
 
-          return Promise.resolve('')
+          return await ResultAsync.fromPromise(Promise.resolve(''), () => new Error('Generic error'))
         },
         queryKey: {
           test: {
