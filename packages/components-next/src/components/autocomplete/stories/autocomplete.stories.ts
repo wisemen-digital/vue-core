@@ -5,7 +5,6 @@ import type {
 import type { AcceptableValue } from 'reka-ui'
 import { ref } from 'vue'
 
-import type { AutocompleteProps } from '@/components/autocomplete/autocomplete.props'
 import Autocomplete from '@/components/autocomplete/Autocomplete.vue'
 
 // Fake data set
@@ -32,13 +31,12 @@ const countries = [
   'Singapore',
 ]
 
-const meta = {
+const meta: Meta = {
   title: 'Components/Autocomplete',
   args: {
     displayFn: (item: AcceptableValue): string => String(item),
     items: countries,
     label: 'Country',
-    modelValue: null,
     placeholder: 'Search countries...',
   },
   argTypes: {
@@ -67,8 +65,8 @@ const meta = {
   tags: [
     'autodocs',
   ],
-  component: Autocomplete,
-} satisfies Meta<AutocompleteProps<string>>
+  component: Autocomplete as any,
+} as Meta
 
 export default meta
 type Story = StoryObj<typeof meta>
@@ -92,8 +90,7 @@ export const Default: Story = {
         setTimeout(() => {
           if (searchTerm.trim()) {
             filteredCountries.value = countries.filter((country) =>
-              country.toLowerCase().includes(searchTerm.toLowerCase()),
-            )
+              country.toLowerCase().includes(searchTerm.toLowerCase()))
           }
           else {
             filteredCountries.value = []
@@ -145,8 +142,7 @@ export const WithOptionalSearch: Story = {
       function handleSearch(searchTerm: string): void {
         if (searchTerm.trim()) {
           filteredCountries.value = countries.filter((country) =>
-            country.toLowerCase().includes(searchTerm.toLowerCase()),
-          )
+            country.toLowerCase().includes(searchTerm.toLowerCase()))
         }
         else {
           filteredCountries.value = countries
@@ -185,10 +181,10 @@ export const LoadingState: Story = {
       Autocomplete,
     },
     setup(): {
+      isLoading: typeof isLoading
       args: typeof args
       filteredItems: typeof filteredItems
       handleSearch: (searchTerm: string) => void
-      isLoading: typeof isLoading
       selectedItem: typeof selectedItem
     } {
       const selectedItem = ref<string | null>(null)
@@ -203,8 +199,7 @@ export const LoadingState: Story = {
           // Simulate slow API call
           setTimeout(() => {
             filteredItems.value = countries.filter((country) =>
-              country.toLowerCase().includes(searchTerm.toLowerCase()),
-            )
+              country.toLowerCase().includes(searchTerm.toLowerCase()))
             isLoading.value = false
           }, 2000)
         }
@@ -215,10 +210,10 @@ export const LoadingState: Story = {
       }
 
       return {
+        isLoading,
         args,
         filteredItems,
         handleSearch,
-        isLoading,
         selectedItem,
       }
     },
