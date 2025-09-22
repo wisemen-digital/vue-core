@@ -43,6 +43,6 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "tsdown": "0.14.2"
+    "tsdown": "catalog:"
   }
 }
