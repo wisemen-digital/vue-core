@@ -70,7 +70,7 @@ export function useDialog<
     const timeoutId = setTimeout(() => {
       removeDialogFromContainer(dialogId)
       timeoutMap.delete(dialogId)
-    }, 1000)
+    }, 300)
 
     timeoutMap.set(dialogId, timeoutId)
   }
@@ -102,6 +102,7 @@ export function useDialog<
         component as unknown as Component,
         {
           ...attrs,
+          onClose: closeDialog,
           onClose_: closeDialog,
         },
       )
