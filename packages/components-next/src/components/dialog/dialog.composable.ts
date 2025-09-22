@@ -6,40 +6,47 @@ import {
   computed,
   h,
   markRaw,
+  nextTick,
   onBeforeUnmount,
-  reactive,
   ref,
   useId,
 } from 'vue'
 
 import type {
-  Attrs,
   Dialog,
   DialogTriggerProps,
-  UseDialogContainerReturnType,
-  UseDialogOptions,
-  UseDialogReturnType,
+  GetComponentProps,
+  OpenDialog,
 } from '@/components/dialog/dialog.type'
 
 export const dialogs = ref<Dialog[]>([]) as Ref<Dialog[]>
 
-export function useDialogContainer(): UseDialogContainerReturnType {
+export function useDialogContainer() {
   return {
     dialogs,
   }
 }
 
-function removeDialogFromContainer(id: string): void {
+export function removeDialogFromContainer(id: string): void {
   dialogs.value = dialogs.value.filter((dialog) => dialog.id !== id)
 }
 
-export function useDialog<TComponent extends Component>(
-  options: UseDialogOptions<TComponent>,
-): UseDialogReturnType<TComponent> {
-  const dialogId = `dialog-${useId()}`
+export function useDialog<
+  TComponent extends abstract new (...args: any) => any,
+>(component: TComponent) {
+  const dialogId = useId()
+  const timeoutMap = new Map<string, ReturnType<typeof setTimeout>>()
 
-  async function openDialog(attrs: Attrs<TComponent> & { id?: string }): Promise<void> {
-    const dialog = await createDialog(attrs, attrs?.id ?? dialogId)
+  async function openDialog(attrs?: GetComponentProps<TComponent>): Promise<void> {
+    // Cancel any pending removal timeout for this dialog
+    const existingTimeout = timeoutMap.get(dialogId)
+
+    if (existingTimeout) {
+      clearTimeout(existingTimeout)
+      timeoutMap.delete(dialogId)
+    }
+
+    const dialog = createDialog(attrs)
 
     if (dialog === null) {
       return
@@ -47,78 +54,78 @@ export function useDialog<TComponent extends Component>(
 
     dialogs.value.push(dialog.value)
 
-    setTimeout(() => {
-      dialog.value.isOpen = true
-    })
+    await nextTick()
+    dialog.value.isOpen = true
   }
 
-  function closeDialog(id?: string): void {
-    const idToUse = id ?? dialogId
-
-    const dialog = dialogs.value.find((dialog) => dialog.id === idToUse) ?? null
+  function closeDialog(): void {
+    const dialog = dialogs.value.find((dialog) => dialog.id === dialogId) ?? null
 
     if (dialog === null) {
       return
     }
 
     dialog.isOpen = false
+
+    const timeoutId = setTimeout(() => {
+      removeDialogFromContainer(dialogId)
+      timeoutMap.delete(dialogId)
+    }, 1000)
+
+    timeoutMap.set(dialogId, timeoutId)
   }
 
-  function isDialogOpen(id?: string): boolean {
-    const idToUse = id ?? dialogId
-
-    const dialog = dialogs.value.find((dialog) => dialog.id === idToUse) ?? null
+  const isDialogOpen = computed<boolean>(() => {
+    const dialog = dialogs.value.find((dialog) => dialog.id === dialogId) ?? null
 
     if (dialog === null) {
       return false
     }
 
     return dialog.isOpen
-  }
+  })
 
-  async function createDialog(attrs: Attrs<TComponent>, id: string): Promise<Ref<Dialog> | null> {
-    const dialogWithSameId = dialogs.value.find((dialog) => dialog.id === id) ?? null
+  function createDialog(attrs?: GetComponentProps<TComponent>): Ref<Dialog> | null {
+    const dialogWithSameId = dialogs.value.find((dialog) => dialog.id === dialogId) ?? null
 
-    if (dialogWithSameId !== null && isDialogOpen(id)) {
-      throw new Error('A dialog with the same ID is already open.')
+    if (dialogWithSameId !== null && isDialogOpen.value) {
+      console.warn(`Dialog with ID "${dialogId}" is already open`)
+
+      return null
     }
     else if (dialogWithSameId !== null) {
       removeDialogFromContainer(dialogWithSameId.id)
     }
 
-    const c = await options.component()
-
     const dialogComponent = computed<Component>(() => {
       return h(
-        c.default as Component,
-        reactive<Attrs<TComponent>>({
+        component as unknown as Component,
+        {
           ...attrs,
-          id,
-          onClose: () => {
-            closeDialog(id)
-          },
-        }),
+          onClose_: closeDialog,
+        },
       )
     })
 
-    return ref<Dialog>({
-      id,
+    const dialogRef = ref<Dialog>({
+      id: dialogId,
       isOpen: false,
       component: markRaw(dialogComponent),
     })
+
+    return dialogRef
   }
 
-  function getTriggerProps(id?: string): DialogTriggerProps {
-    const idToUse = id ?? dialogId
-    const isOpen = dialogs.value.some((dialog) => dialog.id === idToUse)
+  const triggerProps = computed<DialogTriggerProps>(() => {
+    const isOpen = dialogs.value.some((dialog) => dialog.id === dialogId && dialog.isOpen)
 
     return {
-      'id': idToUse,
+      'id': dialogId,
       'aria-expanded': isOpen,
       'aria-haspopup': 'dialog',
       'data-state': isOpen,
-    }
-  }
+    } as DialogTriggerProps
+  })
 
   onBeforeUnmount(() => {
     closeDialog()
@@ -127,7 +134,7 @@ export function useDialog<TComponent extends Component>(
   return {
     isOpen: isDialogOpen,
     close: closeDialog,
-    getTriggerProps,
-    open: openDialog as UseDialogReturnType<TComponent>['open'],
+    open: openDialog as OpenDialog<GetComponentProps<TComponent>>,
+    triggerProps,
   }
 }

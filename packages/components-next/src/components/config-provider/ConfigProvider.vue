@@ -2,7 +2,12 @@
 import { computed } from 'vue'
 
 import { useProvideConfigContext } from '@/components/config-provider/config.context'
-import type { ToastPosition } from '@/components/toast/toast.composable'
+import type {
+  AutoCloseToastConfig,
+  ToastPosition,
+} from '@/components/toast/toast.composable'
+import TooltipProvider from '@/components/tooltip/TooltipProvider.vue'
+import type { HourCycle } from '@/types/hourCycle.type'
 
 const props = defineProps<{
   /**
@@ -11,15 +16,23 @@ const props = defineProps<{
    */
   areKeyboardShortcutHintsHidden?: boolean
   /**
-   * Whether to automatically close toast notifications after a certain time. This does not apply to error toasts.
-   * @default false
+   * Configuration for automatically closing toast notifications.
+   * Accepts an object with properties `error`, `info`, and `success`, each of which can
+   * be a boolean (to enable/disable auto-close) or a number (timeout in milliseconds).
+   * For example: `{ error: true, info: 5000, success: false }`
    */
-  autoCloseToast?: boolean
+  autoCloseToast?: AutoCloseToastConfig
   /**
    * The Google Maps API key (used for example to validate addresses using the AddressAutocomplete component).
    * @default null
    */
   googleMapsApiKey?: string
+  /**
+   * The hour cycle to use for time-related components.
+   * Can be either 'h12' or 'h24'. If not provided, the system locale's default will be used.
+   * @default null
+   */
+  hourCycle?: HourCycle
   /**
    * The locale to use for localization.
    */
@@ -51,8 +64,9 @@ defineSlots<{
 
 useProvideConfigContext({
   areKeyboardShortcutHintsHidden: computed<boolean>(() => props.areKeyboardShortcutHintsHidden ?? false),
-  autoCloseToast: computed<boolean>(() => props.autoCloseToast ?? false),
+  autoCloseToast: computed<AutoCloseToastConfig | null>(() => props.autoCloseToast ?? null),
   googleMapsApiKey: props.googleMapsApiKey ?? null,
+  hourCycle: computed<HourCycle | null>(() => props.hourCycle ?? null),
   locale: computed<string>(() => props.locale),
   pagination: {
     limit: props.pagination?.limit,
@@ -63,5 +77,7 @@ useProvideConfigContext({
 </script>
 
 <template>
-  <slot />
+  <TooltipProvider>
+    <slot />
+  </TooltipProvider>
 </template>

@@ -1,6 +1,6 @@
 export type {
-  DropdownMenuItemProps as vcDropdownMenuItemProps,
-  DropdownMenuProps as vcDropdownMenuProps,
+  DropdownMenuItemProps as VcDropdownMenuItemProps,
+  DropdownMenuProps as VcDropdownMenuProps,
 } from '@/components/dropdown-menu/dropdownMenu.props'
 export { createDropdownMenuStyle } from '@/components/dropdown-menu/dropdownMenu.style'
 export { default as VcDropdownMenu } from '@/components/dropdown-menu/DropdownMenu.vue'

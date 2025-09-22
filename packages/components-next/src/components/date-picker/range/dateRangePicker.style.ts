@@ -1,7 +1,7 @@
 import type { VariantProps } from 'tailwind-variants'
-import { tv } from 'tailwind-variants'
 
 import { createSharedDatePickerStyle } from '@/components/date-picker/shared/sharedDatePicker.style'
+import { tv } from '@/libs/tailwindVariants.lib'
 import { StyleBuilder } from '@/utils/style-builder/styleBuilder.util'
 
 export const createDateRangePickerStyle = tv({
