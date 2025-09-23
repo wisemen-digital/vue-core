@@ -1,6 +1,6 @@
 import type { VariantProps } from 'tailwind-variants'
-import { tv } from 'tailwind-variants'
 
+import { tv } from '@/libs/tailwindVariants.lib'
 import { StyleBuilder } from '@/utils/style-builder/styleBuilder.util'
 
 export const createTableStyle = tv({
@@ -27,6 +27,11 @@ export const createTableStyle = tv({
     headerCell: new StyleBuilder()
       .withBackgroundColor('bg-secondary')
       .withPadding('py-lg px-3xl')
+      .build(),
+    headerCellLabel: new StyleBuilder()
+      .withFontSize('text-sm')
+      .withFontWeight('font-medium')
+      .withColor('text-secondary')
       .build(),
     hiddenResultsHint: new StyleBuilder()
       .withBase('sticky left-0 col-span-full')

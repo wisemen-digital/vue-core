@@ -1,16 +1,22 @@
 <script setup lang="ts">
+import { Temporal } from 'temporal-polyfill'
 import { ref } from 'vue'
 
 import DatePicker from '@/components/date-picker/single/DatePicker.vue'
 import DatePickerDate from '@/components/date-picker/single/parts/DatePickerDate.vue'
 import Tooltip from '@/components/tooltip/Tooltip.vue'
 
-const inTwoWeeks = new Date(Date.now() + 14 * 24 * 60 * 60 * 1000)
-const inTwoMonths = new Date(Date.now() + 60 * 24 * 60 * 60 * 1000)
+const inTwoWeeks = Temporal.Now.plainDateISO().add({
+  weeks: 2,
+})
+const inTwoMonths = Temporal.Now.plainDateISO().add({
+  months: 2,
+})
 
-const value = ref<Date | null>(inTwoWeeks)
+const value = ref<Temporal.PlainDate | null>(inTwoWeeks)
 
-const today = new Date()
+const today = Temporal.Now.plainDateISO()
+const todayAsDate = new Date(today.toString())
 </script>
 
 <template>
@@ -20,7 +26,7 @@ const today = new Date()
         v-model="value"
         :show-two-months="false"
         :placeholder-value="inTwoMonths"
-        :min-date="today"
+        :min-date="todayAsDate"
         :is-date-disabled="(date) => date.getDate() === 5"
         :is-date-unavailable="(date) => date.getDate() === 15"
         :is-disabled="false"

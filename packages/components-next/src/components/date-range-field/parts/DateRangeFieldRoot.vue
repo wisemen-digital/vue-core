@@ -1,6 +1,7 @@
-<script setup lang="ts" generic="TValue extends Date">
+<script setup lang="ts">
 import type { DateValue } from 'reka-ui'
 import { DateRangeFieldRoot as RekaDateRangeFieldRoot } from 'reka-ui'
+import { Temporal } from 'temporal-polyfill'
 import {
   computed,
   ref,
@@ -15,6 +16,8 @@ import { useInjectConfigContext } from '@/components/config-provider/config.cont
 import {
   dateToDateValue,
   dateValueToDate,
+  dateValueToPlainDate,
+  plainDateToDateValue,
 } from '@/components/date-picker/shared/datePicker.util'
 import { useProvideDateRangeFieldContext } from '@/components/date-range-field/dateRangeField.context'
 import type { DateRangeFieldEmits } from '@/components/date-range-field/dateRangeField.emits'
@@ -53,10 +56,10 @@ const props = withDefaults(defineProps<DateRangeFieldProps>(), {
 
 const emit = defineEmits<DateRangeFieldEmits>()
 
-const modelValue = defineModel<DateRange<TValue>>({
+const modelValue = defineModel<DateRange<Temporal.PlainDate>>({
   required: true,
 })
-const placeholderValue = defineModel<Date>('placeholderValue', {
+const placeholderValue = defineModel<Temporal.PlainDate>('placeholderValue', {
   required: false,
 })
 
@@ -64,8 +67,8 @@ const delegatedModel = computed<{ end: DateValue | undefined
   start: DateValue | undefined }>({
   get: () => {
     return {
-      end: modelValue.value.until === null ? undefined : dateToDateValue(modelValue.value.until),
-      start: modelValue.value.from === null ? undefined : dateToDateValue(modelValue.value.from),
+      end: modelValue.value.until === null ? undefined : plainDateToDateValue(modelValue.value.until),
+      start: modelValue.value.from === null ? undefined : plainDateToDateValue(modelValue.value.from),
     }
   },
   set: (value) => {
@@ -73,24 +76,24 @@ const delegatedModel = computed<{ end: DateValue | undefined
       modelValue.value.from = null
     }
     else {
-      modelValue.value.from = dateValueToDate(value.start) as TValue
+      modelValue.value.from = dateValueToPlainDate(value.start)
     }
 
     if (value.end === undefined || value.end === null) {
       modelValue.value.until = null
     }
     else {
-      modelValue.value.until = dateValueToDate(value.end) as TValue
+      modelValue.value.until = dateValueToPlainDate(value.end)
     }
   },
 })
 
-const delegatedPlaceholderValue = computed<Date>({
+const delegatedPlaceholderValue = computed<Temporal.PlainDate>({
   get: () => {
-    return placeholderValue.value ?? modelValue.value.from ?? new Date()
+    return placeholderValue.value ?? modelValue.value.from ?? Temporal.Now.plainDateISO()
   },
   set: (value) => {
-    placeholderValue.value = value as TValue
+    placeholderValue.value = value
   },
 })
 

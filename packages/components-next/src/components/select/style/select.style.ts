@@ -1,6 +1,6 @@
 import type { VariantProps } from 'tailwind-variants'
-import { tv } from 'tailwind-variants'
 
+import { tv } from '@/libs/tailwindVariants.lib'
 import { StyleBuilder } from '@/utils/style-builder/styleBuilder.util'
 
 export const createSelectStyle = tv({
@@ -23,7 +23,7 @@ export const createSelectStyle = tv({
       .withFlex('flex items-center')
       .build(),
     content: new StyleBuilder()
-      .withBase('outline-none')
+      .withBase('outline-none min-w-(--reka-popover-trigger-width)')
       .withBase('overflow-auto')
       .withPadding('p-xs')
       .withHeight('max-h-80')
@@ -70,7 +70,7 @@ export const createSelectStyle = tv({
       .withBorderRadius('rounded-sm')
       .withPadding('p-md')
       .withSpacing('not-last:mb-xxs')
-      .withFlex('flex items-center justify-between')
+      .withFlex('flex items-center justify-between gap-x-md')
       .withFontSize('text-sm')
       .withFontWeight('data-[state=checked]:font-medium')
       .withColor('text-secondary data-disabled:text-disabled')

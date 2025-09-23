@@ -206,33 +206,11 @@ const MOCKS_FOLDER = {
   ],
 }
 
-const MODELS_FILE_NAMING = '{camelCase}.model.ts|{camelCase}.builder.ts|{camelCase}.transformer.ts|{camelCase}.util.ts|{camelCase}.util.spec.ts|{camelCase}.util.test.ts'
 const MODELS_FOLDER = {
   name: 'models',
   children: [
     {
-      name: '{kebab-case}',
-      children: [
-        {
-          name: MODELS_FILE_NAMING,
-        },
-        {
-          name: `create|update|delete|index|detail|{kebab-case}`,
-          children: [
-            {
-              name: MODELS_FILE_NAMING,
-            },
-            {
-              name: `create|update|delete|index|detail|{kebab-case}`,
-              children: [
-                {
-                  name: MODELS_FILE_NAMING,
-                },
-              ],
-            },
-          ],
-        },
-      ],
+      ruleId: 'models_folder' as const,
     },
   ],
 }
@@ -365,6 +343,18 @@ export const folderStructureConfig = createFolderStructure({
         },
         {
           name: '{PascalCase}.vue|{camelCase}.context.ts|{camelCase}.composable.ts|{camelCase}.type.ts|{camelCase}.props.ts',
+        },
+      ],
+    },
+    models_folder: {
+      name: '*',
+      folderRecursionLimit: 3,
+      children: [
+        {
+          ruleId: 'models_folder',
+        },
+        {
+          name: '{camelCase}.(model|builder|transformer|util|util.spec|util.test|enum).ts',
         },
       ],
     },

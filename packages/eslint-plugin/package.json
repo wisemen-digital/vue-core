@@ -68,7 +68,7 @@
     "micromark-extension-mdxjs": "^3.0.0",
     "rimraf": "^6.0.1",
     "title-case": "^4.3.2",
-    "tsdown": "^0.12.9",
+    "tsdown": "catalog:",
     "tsx": "^4.20.3",
     "typescript": "^5.8.3",
     "unist-util-visit": "^5.0.0",

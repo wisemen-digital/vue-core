@@ -24,27 +24,6 @@ const parsedFiles = computed<string[]>(() => JSON.parse(decodeURIComponent(props
 
 const selectedTab = ref<Tab>('preview')
 const selectedFileTab = ref<string>('Demo.vue')
-
-const isDark = ref<boolean>(document.documentElement.classList.contains('dark'))
-
-const observer = new MutationObserver((mutations) => {
-  for (const mutation of mutations) {
-    if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-      const darkClass = document.documentElement.classList.contains('dark')
-
-      if (darkClass !== isDark.value) {
-        isDark.value = darkClass
-      }
-    }
-  }
-})
-
-observer.observe(document.documentElement, {
-  attributes: true,
-  attributeFilter: [
-    'class',
-  ],
-})
 </script>
 
 <template>
@@ -54,10 +33,7 @@ observer.observe(document.documentElement, {
       teleport-target-selector="#teleport-target"
       google-maps-api-key="AIzaSyATX2fY3BZwaKeURsQhwpEVLmLRr27s4vw"
     >
-      <VcThemeProvider
-        :appearance="isDark ? 'dark' : 'light'"
-        class="vp-raw"
-      >
+      <VcThemeProvider class="vp-raw">
         <VcTabs
           v-model="selectedTab"
           :class-config="{

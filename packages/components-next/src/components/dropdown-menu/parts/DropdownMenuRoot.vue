@@ -30,6 +30,11 @@ const props = withDefaults(defineProps<DropdownMenuProps>(), {
   variant: null,
 })
 
+const emit = defineEmits<{
+  closeAutoFocus: [event: Event]
+  escapeKeyDown: [event: KeyboardEvent]
+}>()
+
 const isOpen = defineModel<boolean>('isOpen', {
   default: false,
   required: false,
@@ -51,11 +56,21 @@ const customClassConfig = computed<ResolvedClassConfig<'dropdownMenu'>>(
   }),
 )
 
+function onCloseAutoFocus(event: Event): void {
+  emit('closeAutoFocus', event)
+}
+
+function onEscapeKeyDown(event: KeyboardEvent): void {
+  emit('escapeKeyDown', event)
+}
+
 useProvideDropdownMenuContext({
   ...toComputedRefs(props),
   isOpen: computed<boolean>(() => isOpen.value),
   customClassConfig,
   style: dropdownMenuStyle,
+  onCloseAutoFocus,
+  onEscapeKeyDown,
 })
 </script>
 
