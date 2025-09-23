@@ -2,7 +2,7 @@ import * as Sentry from '@sentry/vue'
 import type { App } from 'vue'
 
 import { initOpenTelemetry } from './opentelemetry/tracing/tracer'
-import { initSentry } from './sentry'
+import { initSentry } from './sentry/sentry.ts'
 import type { TelemetryOptions } from './types'
 
 interface TelemetryUser {

@@ -1,7 +1,7 @@
 import * as Sentry from '@sentry/vue'
 import type { App } from 'vue'
 
-import type { SentryOptions } from './types'
+import type { SentryOptions } from '@/types.ts'
 
 export function initSentry(app: App, options: SentryOptions): void {
   function logWarning(message: string): void {

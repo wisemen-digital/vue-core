@@ -12,7 +12,7 @@ import {
   WebTracerProvider,
 } from '@opentelemetry/sdk-trace-web'
 
-import type { OpenTelemetryOptions } from '../../types'
+import type { OpenTelemetryOptions } from '@/types.ts'
 
 export async function initOpenTelemetry(options: OpenTelemetryOptions): Promise<void> {
   console.log('Initializing OpenTelemetry tracing...', options)
