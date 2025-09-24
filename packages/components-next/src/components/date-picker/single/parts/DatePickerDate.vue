@@ -22,7 +22,7 @@ const {
     :day="date"
     :month="month"
     :class="style.date({
-      class: mergeClasses(classConfig?.date, customClassConfig.date),
+      class: mergeClasses(customClassConfig.date, classConfig?.date),
     })"
   >
     <slot :day="date.day">

@@ -12,7 +12,7 @@ const {
 <template>
   <div
     :class="style.cellSkeleton({
-      class: mergeClasses(classConfig?.cellSkeleton, customClassConfig?.cellSkeleton),
+      class: mergeClasses(customClassConfig?.cellSkeleton, classConfig?.cellSkeleton),
     })"
   >
     <div class="h-4 rounded-md bg-tertiary" />

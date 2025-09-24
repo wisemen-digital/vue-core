@@ -10,7 +10,7 @@ const {
 </script>
 
 <template>
-  <div :class="style.base({ class: mergeClasses(customClassConfig.base, classConfig?.base) })">
+  <div :class="style.base({ class: mergeClasses(classConfig?.base, customClassConfig.base) })">
     <slot />
   </div>
 </template>
