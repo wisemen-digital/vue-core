@@ -14,7 +14,7 @@ const {
 <template>
   <div
     :class="style.control({
-      class: mergeClasses(classConfig?.control, customClassConfig?.control),
+      class: mergeClasses(customClassConfig?.control, classConfig?.control),
     })"
   >
     <RadioGroupItemIndicator>

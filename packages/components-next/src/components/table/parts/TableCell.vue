@@ -25,7 +25,7 @@ const {
   <div
     :class="[
       style.cell({
-        class: mergeClasses(classConfig?.cell, customClassConfig?.cell),
+        class: mergeClasses(customClassConfig?.cell, classConfig?.cell),
       }),
       {
         'first-of-type:sticky first-of-type:left-0 first-of-type:border-r': isFirstColumnSticky,

@@ -22,7 +22,7 @@ const {
 <template>
   <Subgrid
     :class="style.row({
-      class: mergeClasses(classConfig?.row, customClassConfig?.row),
+      class: mergeClasses(customClassConfig?.row, classConfig?.row),
     })"
     role="row"
   >

@@ -62,14 +62,14 @@ const yearValue = computed<number>({
 <template>
   <div
     :class="style.headerContainer({
-      class: mergeClasses(classConfig?.headerContainer, customClassConfig.headerContainer),
+      class: mergeClasses(customClassConfig.headerContainer, classConfig?.headerContainer),
     })"
   >
     <RekaCalendarHeader
       v-for="(month, index) of props.grid"
       :key="index"
       :class="style.header({
-        class: mergeClasses(classConfig?.header, customClassConfig.header),
+        class: mergeClasses(customClassConfig.header, classConfig?.header),
       })"
     >
       <RekaCalendarPrev
