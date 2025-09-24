@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import {
-  useVcDialog,
+  useDialog,
   VcButton,
 } from '@wisemen/vue-core-components'
 
-const dialog = useVcDialog({
-  component: () => import('./Drawer.vue'),
-})
+import Drawer from './Drawer.vue'
+
+const dialog = useDialog(Drawer)
 </script>
 
 <template>
