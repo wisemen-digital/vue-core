@@ -4,7 +4,7 @@
     "access": "public"
   },
   "type": "module",
-  "version": "0.0.1-beta.1",
+  "version": "0.0.1-beta.2",
   "license": "MIT",
   "sideEffects": false,
   "exports": {
@@ -17,13 +17,14 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "typings": "./dist/index.d.ts",
-  "web-types": "./dist/web-types.json",
   "files": [
     "./dist"
   ],
   "scripts": {
     "build": "tsdown",
     "pub:release": "pnpm publish --access public",
+    "pub:beta": "pnpm publish --no-git-checks --access public --tag beta",
+    "pub:next": "pnpm publish --no-git-checks --access public --tag next",
     "cleanup": "rimraf dist/ node_modules/ .turbo/",
     "lint": "pnpm eslint --fix .",
     "test": "vitest --run",
