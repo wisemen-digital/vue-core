@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {
-  useVcToast,
+  useToast,
   VcButton,
 } from '@wisemen/vue-core-components'
 import {
@@ -10,7 +10,7 @@ import {
 
 import Preview from './Preview.vue'
 
-const toast = useVcToast()
+const toast = useToast()
 const isAddingToCalendar = ref<boolean>(false)
 
 async function addToCalendar(): Promise<void> {
