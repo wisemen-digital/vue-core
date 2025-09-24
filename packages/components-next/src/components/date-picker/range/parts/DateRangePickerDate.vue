@@ -40,7 +40,7 @@ const firstDayIndex = computed<number>(() => {
     :day="date"
     :month="month"
     :class="style.date({
-      class: mergeClasses(classConfig?.date, customClassConfig.date),
+      class: mergeClasses(customClassConfig.date, classConfig?.date),
     })"
     :data-first-day-of-week="date.toDate(getLocalTimeZone()).getDay() === firstDayIndex % 7 || undefined"
     :data-last-day-of-week="date.toDate(getLocalTimeZone()).getDay() === (firstDayIndex + 6) % 7 || undefined"
@@ -49,7 +49,7 @@ const firstDayIndex = computed<number>(() => {
   >
     <div
       :class="style.innerDate({
-        class: mergeClasses(classConfig?.innerDate, customClassConfig.innerDate),
+        class: mergeClasses(customClassConfig.innerDate, classConfig?.innerDate),
       })"
     >
       <slot :day="date.day">
