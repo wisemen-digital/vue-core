@@ -1,2 +1,2 @@
 export const EXAMPLE = 'example'
-export { default as TemplateComponent } from './Template.vue'
+export { default as ExampleComponent } from './ExampleComponent.vue'

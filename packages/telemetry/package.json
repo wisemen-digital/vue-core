@@ -49,9 +49,6 @@
     "@opentelemetry/resources": "2.0.1",
     "@opentelemetry/sdk-trace-base": "2.0.1",
     "@opentelemetry/sdk-trace-web": "2.0.1",
-    "@opentelemetry/semantic-conventions": "1.36.0",
-    "@sentry/integrations": "7.114.0",
-    "@sentry/tracing": "7.120.4",
     "@sentry/vue": "10.0.0"
   },
   "devDependencies": {

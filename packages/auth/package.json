@@ -50,8 +50,6 @@
     "rimraf": "catalog:",
     "tsdown": "catalog:",
     "typescript": "catalog:",
-    "vite": "catalog:",
-    "vitest": "catalog:",
-    "vitest-localstorage-mock": "0.1.2"
+    "vitest": "catalog:"
   }
 }

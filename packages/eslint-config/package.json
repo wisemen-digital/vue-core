@@ -19,7 +19,7 @@
     "pub:release": "pnpm publish --access public",
     "eslint": "eslint . --fix",
     "cleanup": "rimraf dist/ node_modules/ .turbo/",
-    "build": " tsdown --clean --dts",
+    "build": " tsdown",
     "lint": "eslint .",
     "eslint-stats": "eslint . --stats -f json",
     "test": "ts-node createFiles.ts",
