@@ -26,9 +26,9 @@
     "dist"
   ],
   "scripts": {
-    "build": "unbuild",
+    "build": "tsdown",
     "cleanup": "rimraf dist/ node_modules/ .turbo/",
-    "dev": "unbuild --stub",
+    "dev": "tsdown --watch",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "release": "bumpp && npm publish",
@@ -55,17 +55,12 @@
     "@sentry/vue": "10.0.0"
   },
   "devDependencies": {
-    "@number-flow/vue": "0.4.8",
-    "@types/node": "catalog:",
     "@wisemen/eslint-config-vue": "catalog:",
     "bumpp": "catalog:",
     "eslint": "catalog:",
     "esno": "catalog:",
     "rimraf": "catalog:",
-    "typescript": "catalog:",
-    "unbuild": "catalog:",
-    "vite": "catalog:",
-    "vitest": "catalog:",
-    "vitest-localstorage-mock": "0.1.2"
+    "tsdown": "catalog:",
+    "typescript": "catalog:"
   }
 }
