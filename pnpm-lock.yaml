@@ -297,8 +297,8 @@ catalogs:
       specifier: 1.7.1
       version: 1.7.1
     reka-ui:
-      specifier: 2.5.0
-      version: 2.5.0
+      specifier: 2.5.1
+      version: 2.5.1
     vue:
       specifier: 3.5.22
       version: 3.5.22
@@ -786,7 +786,7 @@ importers:
         version: 9.1.7
       reka-ui:
         specifier: catalog:vue
-        version: 2.5.0(typescript@5.9.2)(vue@3.5.22(typescript@5.9.2))
+        version: 2.5.1(typescript@5.9.2)(vue@3.5.22(typescript@5.9.2))
       tailwindcss:
         specifier: catalog:style
         version: 4.1.13
@@ -5624,6 +5624,11 @@ packages:
 
   reka-ui@2.5.0:
     resolution: {integrity: sha512-81aMAmJeVCy2k0E6x7n1kypDY6aM1ldLis5+zcdV1/JtoAlSDck5OBsyLRJU9CfgbrQp1ImnRnBSmC4fZ2fkZQ==}
+    peerDependencies:
+      vue: '>= 3.2.0'
+
+  reka-ui@2.5.1:
+    resolution: {integrity: sha512-QJGB3q21wQ1Kw28HhhNDpjfFe8qpePX1gK4FTBRd68XTh9aEnhR5bTJnlV0jxi8FBPh0xivZBeNFUc3jiGx7mQ==}
     peerDependencies:
       vue: '>= 3.2.0'
 
@@ -11821,6 +11826,23 @@ snapshots:
       '@floating-ui/dom': 1.7.2
       '@floating-ui/vue': 1.1.7(vue@3.5.22(typescript@5.9.2))
       '@internationalized/date': 3.5.4
+      '@internationalized/number': 3.6.4
+      '@tanstack/vue-virtual': 3.13.12(vue@3.5.22(typescript@5.9.2))
+      '@vueuse/core': 12.8.2(typescript@5.9.2)
+      '@vueuse/shared': 12.8.2(typescript@5.9.2)
+      aria-hidden: 1.2.6
+      defu: 6.1.4
+      ohash: 2.0.11
+      vue: 3.5.22(typescript@5.9.2)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - typescript
+
+  reka-ui@2.5.1(typescript@5.9.2)(vue@3.5.22(typescript@5.9.2)):
+    dependencies:
+      '@floating-ui/dom': 1.7.2
+      '@floating-ui/vue': 1.1.7(vue@3.5.22(typescript@5.9.2))
+      '@internationalized/date': 3.9.0
       '@internationalized/number': 3.6.4
       '@tanstack/vue-virtual': 3.13.12(vue@3.5.22(typescript@5.9.2))
       '@vueuse/core': 12.8.2(typescript@5.9.2)
