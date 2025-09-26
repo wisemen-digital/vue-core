@@ -1,7 +1,6 @@
-/* eslint-disable antfu/no-import-dist */
 import globals from 'globals'
 
-import eslintVueConfig from './dist/index.js'
+import eslintVueConfig from './src/index.ts'
 
 export default [
   ...(await eslintVueConfig),

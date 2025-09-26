@@ -49,10 +49,10 @@
     "ts-api-utils": "catalog:general"
   },
   "devDependencies": {
+    "@wisemen/eslint-config-vue": "catalog:lint",
     "eslint": "catalog:lint",
     "rimraf": "catalog:build",
     "tsdown": "catalog:build",
-    "@wisemen/eslint-config-vue": "catalog:lint",
     "typescript": "catalog:build"
   }
 }
