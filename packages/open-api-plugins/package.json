@@ -45,6 +45,8 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "tsdown": "catalog:"
+    "@wisemen/eslint-config-vue": "catalog:",
+    "tsdown": "catalog:",
+    "typescript": "catalog:"
   }
 }

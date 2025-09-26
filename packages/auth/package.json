@@ -29,9 +29,9 @@
     "dist"
   ],
   "scripts": {
-    "build": "unbuild",
+    "build": "tsdown",
     "cleanup": "rimraf dist/ node_modules/ .turbo/",
-    "dev": "unbuild --stub",
+    "dev": "tsdown --watch",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "release": "bumpp && npm publish",
@@ -48,8 +48,8 @@
     "eslint": "catalog:",
     "esno": "catalog:",
     "rimraf": "catalog:",
+    "tsdown": "catalog:",
     "typescript": "catalog:",
-    "unbuild": "catalog:",
     "vite": "catalog:",
     "vitest": "catalog:",
     "vitest-localstorage-mock": "0.1.2"
