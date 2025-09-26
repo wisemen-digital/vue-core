@@ -22,7 +22,7 @@
     "build": " tsdown",
     "lint": "eslint .",
     "eslint-stats": "eslint . --stats -f json",
-    "test": "ts-node createFiles.ts",
+    "test": "vitest --run",
     "pack": "pnpm pack"
   },
   "peerDependencies": {

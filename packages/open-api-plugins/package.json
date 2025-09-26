@@ -37,7 +37,7 @@
     "pub:next": "pnpm publish --no-git-checks --access public --tag next",
     "cleanup": "rimraf dist/ node_modules/ .turbo/",
     "lint": "pnpm eslint --fix .",
-    "test": "pnpm test",
+    "test": "vitest --run",
     "typecheck": "pnpm tsc"
   },
   "peerDependencies": {
