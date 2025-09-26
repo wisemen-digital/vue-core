@@ -33,8 +33,9 @@
     "templates"
   ],
   "scripts": {
-    "build": "unbuild && pnpm pack",
+    "build": "tsdown",
     "lint": "eslint .",
+    "dev": "tsdown --watch",
     "type-check": "tsc --noEmit",
     "cleanup": "rimraf dist/ node_modules/ .turbo/",
     "lint:fix": "eslint . --fix",
@@ -47,23 +48,18 @@
     "commander": "13.1.0",
     "ejs": "3.1.10",
     "fs-extra": "11.3.0",
-    "inquirer": "12.5.0",
     "zod": "catalog:"
   },
   "devDependencies": {
     "@types/ejs": "3.1.5",
     "@types/fs-extra": "11.0.4",
-    "@types/inquirer": "9.0.7",
     "@types/node": "catalog:",
     "@wisemen/eslint-config-vue": "catalog:",
     "bumpp": "catalog:",
     "eslint": "catalog:",
-    "esno": "catalog:",
     "rimraf": "catalog:",
-    "ts-node": "catalog:",
+    "tsdown": "catalog:",
     "typescript": "catalog:",
-    "unbuild": "catalog:",
-    "vite": "catalog:",
     "vitest": "catalog:"
   }
 }
