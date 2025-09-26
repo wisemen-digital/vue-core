@@ -4,7 +4,7 @@ packages:
 
 catalogs:
   vue:
-    "vue": "3.5.21"
+    "vue": "3.5.22"
     "motion-v": "1.7.1"
     "vue-i18n": "11.1.12"
     "@vueuse/core": "13.9.0"
@@ -48,10 +48,9 @@ catalogs:
     "typescript": "5.9.2"
     "turbo": "2.5.8"
     "rimraf": "6.0.1"
-    "bumpp": "10.1.1"
-    "chalk": "5.4.1"
-    "commander": "13.1.0"
-    "tsx": "4.16.0"
+    "bumpp": "10.2.3"
+    "chalk": "5.6.2"
+    "commander": "14.0.1"
   vite: 
     "vite": "7.1.7"
     "vite-plugin-dts": "4.5.4"
@@ -65,17 +64,17 @@ catalogs:
     "tailwindcss": "4.1.13"
     "tailwind-variants": "3.1.1"
     "tailwind-merge": "3.3.1"
-    "sass": "1.77.5"
-    "postcss": "8.4.38"
-    "postcss-prefix-selector": "1.16.1"
-    "@tailwindcss/postcss": "4.0.0-beta.8"
+    "sass": "1.93.2"
+    "postcss": "8.5.6"
+    "postcss-prefix-selector": "2.1.1"
+    "@tailwindcss/postcss": "4.1.13"
   types: 
     "@types/node": "24.5.2"
     "@types/ejs": "3.1.5"
     "@types/fs-extra": "11.0.4"
     "@types/google.maps": "3.58.1"
-    "@types/babel__traverse": "7.20.6"
-    "@types/markdown-it": "14.1.1"
+    "@types/babel__traverse": "7.28.0"
+    "@types/markdown-it": "14.1.2"
     "@tsconfig/node18": "18.2.4"
   general:
     "zod": "4.1.11"
@@ -83,36 +82,40 @@ catalogs:
     "graphemer": "1.4.0"
     "ts-api-utils": "2.1.0"
     "pkce-challenge": "4.1.0"
-    "@googlemaps/js-api-loader": "1.16.8"
+    "@googlemaps/js-api-loader": "1.16.10"
     "blurhash": "2.0.5"
-    "libphonenumber-js": "1.11.3"
+    "libphonenumber-js": "1.12.22"
     "highlight-words": "2.0.0"
   stories:
-    "histoire": "1.0.0-alpha.2"
-    "@histoire/plugin-vue": "1.0.0-alpha.2"
+    "histoire": "1.0.0-alpha.3"
+    "@histoire/plugin-vue": "1.0.0-alpha.3"
   docs:
-    "vitepress": "1.6.3"
+    "vitepress": "1.6.4"
     "vue-component-meta": "2.0.24"
     "markdown-it": "14.1.0"
   date:
-    "@internationalized/date": "3.5.4"
+    "@internationalized/date": "3.9.0"
   openapi:
-    "@hey-api/openapi-ts": "0.81.0"
+    "@hey-api/openapi-ts": "0.84.3"
   tooling:
-    "@commitlint/cli": "19.8.1"
-    "@commitlint/config-conventional": "19.8.1"
-    "@changesets/cli": "2.29.5"
+    "@commitlint/cli": "20.0.0"
+    "@commitlint/config-conventional": "20.0.0"
+    "@changesets/cli": "2.29.7"
   telemetry:
-    "@opentelemetry/context-zone": "2.0.1"
-    "@opentelemetry/core": "2.0.1"
-    "@opentelemetry/exporter-trace-otlp-http": "0.203.0"
-    "@opentelemetry/instrumentation": "0.203.0"
-    "@opentelemetry/instrumentation-fetch": "0.203.0"
-    "@opentelemetry/instrumentation-user-interaction": "0.48.0"
-    "@opentelemetry/otlp-exporter-base": "0.203.0"
-    "@opentelemetry/resources": "2.0.1"
-    "@opentelemetry/sdk-trace-base": "2.0.1"
-    "@opentelemetry/sdk-trace-web": "2.0.1"
-    "@sentry/vue": "10.0.0"
+    "@opentelemetry/context-zone": "2.1.0"
+    "@opentelemetry/core": "2.1.0"
+    "@opentelemetry/exporter-trace-otlp-http": "0.205.0"
+    "@opentelemetry/instrumentation": "0.205.0"
+    "@opentelemetry/instrumentation-fetch": "0.205.0"
+    "@opentelemetry/instrumentation-user-interaction": "0.50.0"
+    "@opentelemetry/otlp-exporter-base": "0.205.0"
+    "@opentelemetry/resources": "2.1.0"
+    "@opentelemetry/sdk-trace-base": "2.1.0"
+    "@opentelemetry/sdk-trace-web": "2.1.0"
+    "@sentry/vue": "10.15.0"
+  generator: 
+    "change-case":  5.4.4
+    "ejs":  3.1.10
+    "fs-extra":  11.3.2
 
 

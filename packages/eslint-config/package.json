@@ -55,7 +55,6 @@
   "devDependencies": {
     "tailwindcss": "catalog:style",
     "tsdown": "catalog:build",
-    "tsx": "catalog:build",
     "vitest": "catalog:test"
   }
 }

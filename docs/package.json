@@ -33,7 +33,6 @@
     "postcss": "catalog:style",
     "postcss-prefix-selector": "catalog:style",
     "tailwindcss": "catalog:style",
-    "tsx": "catalog:build",
     "vitepress": "catalog:docs",
     "vue": "catalog:vue",
     "vue-component-meta": "catalog:docs",

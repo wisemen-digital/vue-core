@@ -44,7 +44,10 @@
   },
   "dependencies": {
     "chalk": "catalog:build",
+    "change-case": "catalog:generator",
     "commander": "catalog:build",
+    "ejs": "catalog:generator",
+    "fs-extra": "catalog:generator",
     "zod": "catalog:general"
   },
   "devDependencies": {

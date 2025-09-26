@@ -27,7 +27,7 @@
     "build": "vite build",
     "precommit": "pnpm type-check && test:unit && pnpm build-only",
     "build-only": "vite build",
-    "type-check": "vue-tsc -p tsconfig.check.json --noEmit",
+    "type-check": "vue-tsc --noEmit",
     "pub:release": "pnpm publish --access public",
     "test:unit": "vitest --run",
     "test": "vitest --run",
