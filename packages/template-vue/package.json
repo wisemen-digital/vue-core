@@ -1,0 +1,66 @@
+{
+  "name": "@wisemen/vue-core-template-vue",
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "version": "0.0.0",
+  "private": false,
+  "license": "MIT",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./style.css": "./dist/style.css",
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.umd.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "typings": "./dist/index.d.ts",
+  "files": [
+    "./dist"
+  ],
+  "scripts": {
+    "prerelease": "pnpm version prerelease --preid=alpha",
+    "build": "pnpm type-check && pnpm build-only && pnpm pack",
+    "precommit": "pnpm type-check && test:unit && pnpm build-only",
+    "build-only": "vite build",
+    "type-check": "vue-tsc --noEmit",
+    "pub:release": "pnpm publish --access public",
+    "test:unit": "vitest --run",
+    "test": "vitest --run",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "cleanup": "rimraf dist/ node_modules/ .turbo/",
+    "prepare": "husky"
+  },
+  "peerDependencies": {
+    "motion-v": ">=1.6.0",
+    "reka-ui": ">=2.2.0",
+    "temporal-polyfill": ">=0.3.0",
+    "vue": ">=3.5.0",
+    "vue-i18n": ">=11.0.0"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "catalog:",
+    "@types/node": "catalog:",
+    "@vitejs/plugin-vue": "catalog:",
+    "@vue/test-utils": "catalog:",
+    "@vue/tsconfig": "catalog:",
+    "@wisemen/eslint-config-vue": "catalog:",
+    "eslint": "catalog:",
+    "husky": "catalog:",
+    "tailwindcss": "catalog:",
+    "typescript": "catalog:",
+    "vite": "catalog:",
+    "vite-plugin-dts": "catalog:",
+    "vitest": "catalog:",
+    "vue": "catalog:",
+    "vue-tsc": "catalog:"
+  }
+}
