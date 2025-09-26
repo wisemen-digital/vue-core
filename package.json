@@ -23,14 +23,14 @@
     "precommit": "pnpm run lint --fix && pnpm run type-check && pnpm run test && pnpm run -r docs:gen"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.8.1",
-    "@commitlint/config-conventional": "^19.8.1",
-    "husky": "catalog:",
-    "rimraf": "catalog:",
-    "turbo": "catalog:",
-    "vitest": "catalog:"
+    "@commitlint/cli": "catalog:tooling",
+    "@commitlint/config-conventional": "catalog:tooling",
+    "husky": "catalog:build",
+    "rimraf": "catalog:build",
+    "turbo": "catalog:build",
+    "vitest": "catalog:test"
   },
   "dependencies": {
-    "@changesets/cli": "^2.29.5"
+    "@changesets/cli": "catalog:tooling"
   }
 }

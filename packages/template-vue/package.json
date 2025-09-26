@@ -47,20 +47,20 @@
   "dependencies": {
   },
   "devDependencies": {
-    "@tailwindcss/vite": "catalog:",
-    "@types/node": "catalog:",
-    "@vitejs/plugin-vue": "catalog:",
-    "@vue/test-utils": "catalog:",
-    "@vue/tsconfig": "catalog:",
-    "@wisemen/eslint-config-vue": "catalog:",
-    "eslint": "catalog:",
-    "husky": "catalog:",
-    "tailwindcss": "catalog:",
-    "typescript": "catalog:",
-    "vite": "catalog:",
-    "vite-plugin-dts": "catalog:",
-    "vitest": "catalog:",
-    "vue": "catalog:",
-    "vue-tsc": "catalog:"
+    "@tailwindcss/vite": "catalog:vite",
+    "@types/node": "catalog:types",
+    "@vitejs/plugin-vue": "catalog:vite",
+    "@vue/test-utils": "catalog:test",
+    "@vue/tsconfig": "catalog:vue",
+    "@wisemen/eslint-config-vue": "catalog:lint",
+    "eslint": "catalog:lint",
+    "husky": "catalog:build",
+    "tailwindcss": "catalog:style",
+    "typescript": "catalog:build",
+    "vite": "catalog:vite",
+    "vite-plugin-dts": "catalog:vite",
+    "vitest": "catalog:test",
+    "vue": "catalog:vue",
+    "vue-tsc": "catalog:vue"
   }
 }
