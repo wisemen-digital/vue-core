@@ -49,7 +49,7 @@ const icon = computed<Icon | null>(() => {
   <div
     :class="[
       style.headerCell({
-        class: mergeClasses(classConfig?.headerCell, customClassConfig?.headerCell),
+        class: mergeClasses(customClassConfig?.headerCell, classConfig?.headerCell),
       }),
       {
         'first:sticky first:left-0 first:z-1 first:border-r': isFirstColumnSticky,
@@ -81,7 +81,7 @@ const icon = computed<Icon | null>(() => {
     <span
       v-else
       :class="style.headerCellLabel({
-        class: mergeClasses(classConfig?.headerCellLabel, customClassConfig?.headerCellLabel),
+        class: mergeClasses(customClassConfig?.headerCellLabel, classConfig?.headerCellLabel),
       })"
     >
       <slot />

@@ -220,7 +220,7 @@ export function createHttpZodClient(
   }
 
   return {
-    delete: del,
+    delete: del as CreateHttpZodClientReturnType['delete'],
     get,
     patch,
     post,

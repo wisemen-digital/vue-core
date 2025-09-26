@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import {
-  useVcToast,
+  useToast,
   VcButton,
 } from '@wisemen/vue-core-components'
 
-const toast = useVcToast()
+const toast = useToast()
 
 function showToast(): void {
   toast.error({
