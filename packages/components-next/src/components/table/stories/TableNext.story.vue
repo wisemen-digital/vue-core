@@ -13,8 +13,8 @@ import TableBodyRow from '@/components/table/parts/TableRow.vue'
     <TableRoot
       :is-first-column-sticky="true"
       :is-last-column-sticky="true"
-      grid-template-columns-class="grid-cols-[140px_200px_200px_200px_200px_auto]"
-      class="mx-auto max-h-140 w-full max-w-4xl"
+      grid-template-columns="grid-cols-[140px_200px_200px_200px_200px_auto]"
+      class="max-h-140 max-w-4xl mx-auto w-full"
     >
       <TableContent>
         <TableHeader>
