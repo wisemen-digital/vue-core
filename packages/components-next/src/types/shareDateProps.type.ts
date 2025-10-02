@@ -1,14 +1,16 @@
+import type { Temporal } from 'temporal-polyfill'
+
 export interface SharedDateProps {
   /**
    * The latest selectable date.
    * @default null
    */
-  maxDate?: Date | null
+  maxDate?: Temporal.PlainDate | null
   /**
    * The earliest selectable date.
    * @default null
    */
-  minDate?: Date | null
+  minDate?: Temporal.PlainDate | null
   /**
    * A function to determine whether a specific date should be disabled.
    *
@@ -20,7 +22,7 @@ export interface SharedDateProps {
    * @returns `true` if the date should be disabled, `false` otherwise.
    * @default () => false
    */
-  isDateDisabled?: (date: Date) => boolean
+  isDateDisabled?: (date: Temporal.PlainDate) => boolean
   /**
    * A function to determine whether a specific date is unavailable.
    *
@@ -31,7 +33,7 @@ export interface SharedDateProps {
    * @returns `true` if the date is unavailable, `false` otherwise.
    * @default () => false
    */
-  isDateUnavailable?: (date: Date) => boolean
+  isDateUnavailable?: (date: Temporal.PlainDate) => boolean
   /**
    * Whether selecting an already selected date should deselect it.
    * @default false
