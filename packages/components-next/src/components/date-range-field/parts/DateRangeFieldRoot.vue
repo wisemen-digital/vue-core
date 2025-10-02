@@ -14,8 +14,6 @@ import {
 } from '@/class-variant/customClassVariants'
 import { useInjectConfigContext } from '@/components/config-provider/config.context'
 import {
-  dateToDateValue,
-  dateValueToDate,
   dateValueToPlainDate,
   plainDateToDateValue,
 } from '@/components/date-picker/shared/datePicker.util'
@@ -152,9 +150,9 @@ useProvideDateRangeFieldContext({
       :id="props.id ?? undefined"
       v-slot="{ segments }"
       v-model="delegatedModel"
-      :min-value="props.minDate === null ? undefined : dateToDateValue(props.minDate)"
-      :max-value="props.maxDate === null ? undefined : dateToDateValue(props.maxDate)"
-      :is-date-unavailable="(dateValue) => props.isDateUnavailable(dateValueToDate(dateValue))"
+      :min-value="props.minDate === null ? undefined : plainDateToDateValue(props.minDate)"
+      :max-value="props.maxDate === null ? undefined : plainDateToDateValue(props.maxDate)"
+      :is-date-unavailable="(dateValue) => props.isDateUnavailable(dateValueToPlainDate(dateValue))"
       :locale="locale"
       :is-invalid="props.errorMessage !== null"
       :required="props.isRequired"

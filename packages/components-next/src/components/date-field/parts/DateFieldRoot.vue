@@ -19,8 +19,6 @@ import type { DateFieldProps } from '@/components/date-field/dateField.props'
 import type { CreateDateFieldStyle } from '@/components/date-field/dateField.style'
 import { createDateFieldStyle } from '@/components/date-field/dateField.style'
 import {
-  dateToDateValue,
-  dateValueToDate,
   dateValueToPlainDate,
   plainDateToDateValue,
 } from '@/components/date-picker/shared/datePicker.util'
@@ -145,9 +143,9 @@ useProvideDateFieldContext({
       :id="props.id ?? undefined"
       v-slot="{ segments }"
       v-model="delegatedModel"
-      :min-value="props.minDate === null ? undefined : dateToDateValue(props.minDate)"
-      :max-value="props.maxDate === null ? undefined : dateToDateValue(props.maxDate)"
-      :is-date-unavailable="(dateValue) => props.isDateUnavailable(dateValueToDate(dateValue))"
+      :min-value="props.minDate === null ? undefined : plainDateToDateValue(props.minDate)"
+      :max-value="props.maxDate === null ? undefined : plainDateToDateValue(props.maxDate)"
+      :is-date-unavailable="(dateValue) => props.isDateUnavailable(dateValueToPlainDate(dateValue))"
       :locale="locale"
       :is-invalid="props.errorMessage !== null"
       :required="props.isRequired"
