@@ -1,0 +1,62 @@
+---
+name: MCP Server CI
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'packages/components/**'
+      - 'packages/vue-core-mcp/**'
+      - 'docs/mcp.md'
+      - '.github/workflows/mcp-server-ci.yml'
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths:
+      - 'packages/components/**'
+      - 'packages/vue-core-mcp/**'
+      - 'docs/mcp.md'
+      - '.github/workflows/mcp-server-ci.yml'
+
+jobs:
+  build-index-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.7.0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build vue-core package
+        run: pnpm --filter @wisemen/vue-core build-only
+
+      - name: Generate MCP artifacts
+        run: pnpm --filter @wisemen/vue-core-mcp mcp:index -- --components-root packages/components/src
+
+      - name: Build MCP server package
+        run: pnpm --filter @wisemen/vue-core-mcp build
+
+      - name: Typecheck MCP server
+        run: pnpm --filter @wisemen/vue-core-mcp typecheck
+
+      - name: Test MCP server
+        run: pnpm --filter @wisemen/vue-core-mcp test
+
+      - name: Upload MCP artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: vue-core-mcp-artifacts
+          path: packages/vue-core-mcp/dist/mcp

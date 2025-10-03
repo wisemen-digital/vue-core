@@ -1,0 +1,63 @@
+{
+  "name": "@wisemen/vue-core-mcp",
+  "type": "module",
+  "version": "0.1.0",
+  "license": "MIT",
+  "private": false,
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./server": {
+      "types": "./dist/server.d.ts",
+      "import": "./dist/server.js"
+    },
+    "./indexer": {
+      "types": "./dist/indexer/index.d.ts",
+      "import": "./dist/indexer/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "bin": {
+    "mcp-index": "./bin/mcp-index.mjs"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "clean": "rimraf dist",
+    "typecheck": "tsc --noEmit",
+    "dev": "esno src/server.ts",
+    "start": "node dist/server.js",
+    "mcp:index": "esno src/indexer/index.ts",
+    "mcp:index:watch": "esno --watch src/indexer/index.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:ci": "vitest run --reporter=default"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.17.4",
+    "commander": "11.1.0",
+    "conventional-changelog": "6.0.0",
+    "fast-glob": "3.3.2",
+    "semver": "7.6.3",
+    "vue-docgen-api": "4.79.2",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "@wisemen/eslint-config-vue": "catalog:",
+    "esno": "catalog:",
+    "eslint": "catalog:",
+    "rimraf": "catalog:",
+    "ts-node": "catalog:",
+    "tsdown": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}
