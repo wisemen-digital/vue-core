@@ -5,6 +5,7 @@ import { useI18n } from 'vue-i18n'
 import type { ResolvedClassConfig } from '@/class-variant/classVariant.type'
 import {
   getCustomComponentVariant,
+  mergeClassConfigs,
   mergeClasses,
 } from '@/class-variant/customClassVariants'
 import { useInjectConfigContext } from '@/components/config-provider/config.context'
@@ -63,10 +64,10 @@ const customClassConfig = computed<ResolvedClassConfig<'keyboardShortcut'>>(
     >
       <KeyboardKey
         :keyboard-key="keyboardKey"
-        :class-config="{
-          ...customClassConfig.keyboardKey,
-          ...props.classConfig?.keyboardKey,
-        }"
+        :class-config="mergeClassConfigs(
+          customClassConfig.keyboardKey,
+          props.classConfig?.keyboardKey,
+        )"
       />
 
       <template v-if="index < props.keyboardKeys.length - 1 && isSequence">
