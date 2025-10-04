@@ -17,6 +17,7 @@ import {
 import type { ResolvedClassConfig } from '@/class-variant/classVariant.type'
 import {
   getCustomComponentVariant,
+  mergeClassConfigs,
   mergeClasses,
 } from '@/class-variant/customClassVariants'
 import { useInjectConfigContext } from '@/components/config-provider/config.context'
@@ -166,11 +167,13 @@ function filterFn(option: CountryCode, searchTerm: string): boolean {
     ref="phoneNumberFieldRef"
     v-bind="props"
     v-model="inputModel"
-    :class-config="{
-      input: 'pl-sm',
-      ...customClassConfig?.input,
-      ...props.classConfig?.input,
-    }"
+    :class-config="mergeClassConfigs(
+      {
+        input: 'pl-sm',
+      },
+      customClassConfig?.input,
+      props.classConfig?.input,
+    )"
     type="tel"
   >
     <template #label>
@@ -198,12 +201,15 @@ function filterFn(option: CountryCode, searchTerm: string): boolean {
           isEnabled: true,
           items: countries,
         }"
-        :class-config="{
-          root: 'h-8 ml-[0.18rem] rounded-xs border-none shadow-none outline-none not-disabled:hover:bg-primary-hover pr-xs focus-within:bg-tertiary',
-          iconRight: 'mr-0 size-4',
-          baseSingle: 'pr-0',
-          ...props.classConfig?.select,
-        }"
+        :class-config="mergeClassConfigs(
+          {
+            root: 'h-8 ml-[0.18rem] rounded-xs border-none shadow-none outline-none not-disabled:hover:bg-primary-hover pr-xs focus-within:bg-tertiary',
+            iconRight: 'mr-0 size-4',
+            baseSingle: 'pr-0',
+          },
+          customClassConfig.select,
+          props.classConfig?.select,
+        )"
         :is-disabled="props.isDisabled"
         class="shrink-0"
         popover-align="start"

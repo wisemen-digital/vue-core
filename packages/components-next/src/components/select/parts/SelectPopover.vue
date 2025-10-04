@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { mergeClassConfigs } from '@/class-variant/customClassVariants'
 import PopoverAnchor from '@/components/popover/parts/PopoverAnchor.vue'
 import PopoverArrow from '@/components/popover/parts/PopoverArrow.vue'
 import PopoverContent from '@/components/popover/parts/PopoverContent.vue'
@@ -47,10 +48,10 @@ function onAutoFocusOnClose(event: Event): void {
     :popover-side="popoverSide"
     :popover-width="popoverWidth"
     :popover-anchor-reference-element="popoverAnchorReferenceElement"
-    :class-config="{
-      ...customClassConfig.popover,
-      ...classConfig?.popover,
-    }"
+    :class-config="mergeClassConfigs(
+      customClassConfig.popover,
+      classConfig?.popover,
+    )"
     @update:is-open="setIsDropdownVisible"
     @escape-key-down="onDropdownEscapeKeyDown"
     @interact-outside="onDropdownInteractOutside"
