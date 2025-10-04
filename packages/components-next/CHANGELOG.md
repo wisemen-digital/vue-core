@@ -1,16 +1,25 @@
 # @wisemen/vue-core-components
 
+## 2.0.0-beta.1
+
+### 🐞 Patch Fixes
+
+- **Temporal migration**: Refactored leftover `Date` usage to fully adopt the Temporal API.  
+- **Styling**: Fixed an issue where `class-config` classes could be overwritten by `defineComponentVariant` classes, ensuring custom styles are applied correctly.
+
 ## 2.0.0-beta.0
 
 ### ⚠️ Breaking Changes
 
-- **Composables**: Renamed to remove the `vc` prefix.  
-  > **Upgrade Note:** Update all imports from `vcXyz` to `Xyz`. Example:  
+- **Composables**: Renamed to remove the `vc` prefix.
+
+  > **Upgrade Note:** Update all imports from `vcXyz` to `Xyz`. Example:
+  >
   > ```ts
   > // Before
-  > import { useVcDialog, useVcToast } from '@wisemen/vue-core-components';
+  > import { useVcDialog, useVcToast } from "@wisemen/vue-core-components";
   > // After
-  > import { useDialog, useToast } from '@wisemen/vue-core-components';
+  > import { useDialog, useToast } from "@wisemen/vue-core-components";
   > ```
 
 - **useDialog**:
@@ -19,28 +28,30 @@
   - `close()` no longer supports an optional `id` parameter.
   - `getTriggerProps()` replaced with the computed property `triggerProps`.
   - `isOpen()` replaced with the computed property `isOpen`.
-  > **Upgrade Note:** Refactor dialog usage to use the new component-based API. Replace calls to `open(id)` and `close(id)` with just `open()` and `close()`. Use `triggerProps` and `isOpen` computed values instead of the old methods.
-  >```ts
-  > // Before
-  > const dialog = useVcDialog({
-  >  component: () => import('./MyDialogComponent.vue'),
-  >})
-  > // After
-  > const dialog = useDialog(MyDialogComponent);
-  
+    > **Upgrade Note:** Refactor dialog usage to use the new component-based API. Replace calls to `open(id)` and `close(id)` with just `open()` and `close()`. Use `triggerProps` and `isOpen` computed values instead of the old methods.
+    >
+    > ```ts
+    > // Before
+    > const dialog = useVcDialog({
+    >   component: () => import("./MyDialogComponent.vue"),
+    > });
+    > // After
+    > const dialog = useDialog(MyDialogComponent);
+    > ```
 
-- **Date handling**: Migrated from `Date` to the [Temporal API](https://tc39.es/proposal-temporal/).  
+- **Date handling**: Migrated from `Date` to the [Temporal API](https://tc39.es/proposal-temporal/).
+
   > **Upgrade Note:** Review all components or composables that previously relied on `Date` objects and update them to use `Temporal.PlainDate`, `Temporal.PlainDateTime`, or `Temporal.ZonedDateTime` as appropriate.
 
-- **Table**: `TableNext` has been renamed to `Table`, and the legacy `Table` components have been removed.  
+- **Table**: `TableNext` has been renamed to `Table`, and the legacy `Table` components have been removed.
   > **Upgrade Note:** Replace all `TableNext` imports and usage with `Table`. Remove any code referencing the old `Table` components.
 
 ### ✨ Improvements
 
-- **ThemeProvider**: Moved from Portal components to PopperContent components for better integration.  
-- **DropdownMenu**: Added `onCloseAutoFocus` and `onEscapeKeyDown` events for finer control over interactions.  
-- **ThemeProvider**: Added `as-child` prop to apply the theme directly to the child component instead of wrapping it in a `div`.  
-- **ConfigProvider**: Now exports its config context for advanced customization.  
+- **ThemeProvider**: Moved from Portal components to PopperContent components for better integration.
+- **DropdownMenu**: Added `onCloseAutoFocus` and `onEscapeKeyDown` events for finer control over interactions.
+- **ThemeProvider**: Added `as-child` prop to apply the theme directly to the child component instead of wrapping it in a `div`.
+- **ConfigProvider**: Now exports its config context for advanced customization.
 
 ## 1.17.0
 
