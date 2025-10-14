@@ -33,7 +33,7 @@
   "peerDependencies": {
     "@tanstack/vue-query": "catalog:",
     "neverthrow": "^8.2.0",
-    "vue": "catalog:"
+    "vue": ">=3.5.0"
   },
   "devDependencies": {
     "@types/node": "catalog:",
