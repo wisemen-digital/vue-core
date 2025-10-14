@@ -32,7 +32,8 @@
   },
   "peerDependencies": {
     "@tanstack/vue-query": "catalog:",
-    "neverthrow": "^8.2.0"
+    "neverthrow": "^8.2.0",
+    "vue": "catalog:"
   },
   "devDependencies": {
     "@types/node": "catalog:",
@@ -40,7 +41,6 @@
     "eslint": "catalog:",
     "tsdown": "catalog:",
     "typescript": "catalog:",
-    "vitest": "catalog:",
-    "vue": "catalog:"
+    "vitest": "catalog:"
   }
 }
