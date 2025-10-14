@@ -1,5 +1,11 @@
 # @wisemen/vue-core-query
 
+## 0.0.1-beta.3
+
+### Patch Changes
+
+- feat(api-utils): Updated fetchNextPage to return void to be more inline the previous query package
+
 ## 0.0.1-beta.1
 
 ### Patch Changes

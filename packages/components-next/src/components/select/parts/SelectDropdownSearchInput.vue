@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ListboxFilter as RekaListboxFilter } from 'reka-ui'
 
+import { mergeClassConfigs } from '@/class-variant/customClassVariants'
 import { useInjectSelectContext } from '@/components/select/select.context'
 import TextFieldIconLeft from '@/components/text-field/parts/TextFieldIconLeft.vue'
 import TextFieldInput from '@/components/text-field/parts/TextFieldInput.vue'
@@ -24,12 +25,14 @@ const {
     <TextFieldRoot
       v-model="searchTerm"
       :placeholder="searchInputPlaceholder"
-      :class-config="{
-        root: 'border-none shadow-none outline-none bg-secondary h-8 rounded-sm',
-        iconLeft: 'ml-md',
-        ...customClassConfig?.dropdownSearchInput,
-        ...classConfig?.dropdownSearchInput,
-      }"
+      :class-config="mergeClassConfigs(
+        {
+          root: 'border-none shadow-none outline-none bg-secondary h-8 rounded-sm',
+          iconLeft: 'ml-md',
+        },
+        customClassConfig?.dropdownSearchInput,
+        classConfig?.dropdownSearchInput,
+      )"
     >
       <TextFieldIconLeft />
 
