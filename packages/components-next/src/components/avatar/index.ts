@@ -1,4 +1,4 @@
-export type { AvatarProps as VcAvatarProps } from '@/components/avatar/avatar.props'
+export type { AvatarPublicProps as VcAvatarProps } from '@/components/avatar/avatar.props'
 export { createAvatarStyle } from '@/components/avatar/avatar.style'
 export { default as VcAvatar } from '@/components/avatar/Avatar.vue'
 export { default as VcAvatarFallback } from '@/components/avatar/parts/AvatarFallback.vue'

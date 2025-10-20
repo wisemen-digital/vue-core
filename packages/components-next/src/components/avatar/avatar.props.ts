@@ -2,6 +2,7 @@ import type {
   CustomizableElement,
   GetComponentProp,
 } from '@/class-variant/classVariant.type'
+import type { PublicProps } from '@/types/props.type'
 import type { TestId } from '@/utils/props.util'
 
 export interface AvatarProps extends TestId, CustomizableElement<'avatar'> {
@@ -20,3 +21,5 @@ export interface AvatarProps extends TestId, CustomizableElement<'avatar'> {
    */
   variant?: GetComponentProp<'avatar', 'variant'> | null
 }
+
+export type AvatarPublicProps = PublicProps<AvatarProps>

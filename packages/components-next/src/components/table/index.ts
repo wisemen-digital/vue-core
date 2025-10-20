@@ -8,4 +8,5 @@ export { default as VcTableHiddenResultsHint } from './parts/TableHiddenResultsH
 export { default as VcTableRoot } from './parts/TableRoot.vue'
 export { default as VcTableRow } from './parts/TableRow.vue'
 export { default as VcTableScrollContainer } from './parts/TableScrollContainer.vue'
+export type { TablePublicProps as VcTableProps } from './table.props'
 export { type TableRowAction } from './table.type'

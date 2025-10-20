@@ -3,6 +3,7 @@ import type {
   GetComponentProp,
 } from '@/class-variant/classVariant.type'
 import type { SharedDatePickerProps } from '@/components/date-picker/shared/sharedDatePicker.props'
+import type { PublicProps } from '@/types/props.type'
 
 export interface DateRangePickerProps extends SharedDatePickerProps, CustomizableElement<'dateRangePicker'> {
   /**
@@ -16,3 +17,5 @@ export interface DateRangePickerProps extends SharedDatePickerProps, Customizabl
    */
   variant?: GetComponentProp<'dateRangePicker', 'variant'> | null
 }
+
+export type DateRangePickerPublicProps = PublicProps<DateRangePickerProps>

@@ -4,6 +4,7 @@ import type {
 } from '@/class-variant/classVariant.type'
 import type { Icon } from '@/icons/icons'
 import type { PopperPropsWithArrowVisibleByDefault } from '@/types/popperProps.type'
+import type { PublicProps } from '@/types/props.type'
 import type {
   InteractableElement,
   TestId,
@@ -35,3 +36,6 @@ export interface DropdownMenuItemProps extends TestId, InteractableElement {
    */
   label: string
 }
+
+export type DropdownMenuPublicProps = PublicProps<DropdownMenuProps>
+export type DropdownMenuItemPublicProps = PublicProps<DropdownMenuItemProps>

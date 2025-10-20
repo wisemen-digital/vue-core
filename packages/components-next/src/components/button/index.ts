@@ -1,4 +1,4 @@
-export type { ButtonProps as VcButtonProps } from '@/components/button/default-button/button.props'
+export type { ButtonPublicProps as VcButtonProps } from '@/components/button/default-button/button.props'
 export { createButtonStyle } from '@/components/button/default-button/button.style'
 export { default as VcButton } from '@/components/button/default-button/Button.vue'
 export { default as VcButtonContent } from '@/components/button/default-button/parts/ButtonContent.vue'
@@ -17,7 +17,7 @@ export { createRouterLinkButtonStyle } from '@/components/button/router-link-but
 export { default as VcRouterLinkButton } from '@/components/button/router-link-button/RouterLinkButton.vue'
 
 // Icon Button
-export type { IconButtonProps as VcIconButtonProps } from '@/components/button/icon-button/iconButton.props'
+export type { IconButtonPublicProps as VcIconButtonProps } from '@/components/button/icon-button/iconButton.props'
 export { createIconButtonStyle } from '@/components/button/icon-button/iconButton.style'
 export { default as VcIconButton } from '@/components/button/icon-button/IconButton.vue'
 export { default as VcIconButtonIcon } from '@/components/button/icon-button/parts/IconButtonIcon.vue'

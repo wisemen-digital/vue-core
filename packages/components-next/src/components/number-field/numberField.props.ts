@@ -3,6 +3,7 @@ import type {
   GetComponentProp,
 } from '@/class-variant/classVariant.type'
 import type { Icon } from '@/icons/icons'
+import type { PublicProps } from '@/types/props.type'
 import type {
   FormElement,
   InteractableElement,
@@ -69,3 +70,5 @@ export interface NumberFieldProps extends TestId, InteractableElement, FormEleme
    */
   variant?: GetComponentProp<'numberField', 'variant'> | null
 }
+
+export type NumberFieldPublicProps = PublicProps<NumberFieldProps>

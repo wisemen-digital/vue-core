@@ -3,6 +3,6 @@ export { default as VcTextFieldIconRight } from '@/components/text-field/parts/T
 export { default as VcTextFieldInput } from '@/components/text-field/parts/TextFieldInput.vue'
 export { default as VcTextFieldLoader } from '@/components/text-field/parts/TextFieldLoader.vue'
 export { default as VcTextFieldRoot } from '@/components/text-field/parts/TextFieldRoot.vue'
-export type { TextFieldProps as VcTextFieldProps } from '@/components/text-field/textField.props'
+export type { TextFieldPublicProps as VcTextFieldProps } from '@/components/text-field/textField.props'
 export { createTextFieldStyle } from '@/components/text-field/textField.style'
 export { default as VcTextField } from '@/components/text-field/TextField.vue'

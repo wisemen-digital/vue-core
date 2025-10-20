@@ -1,4 +1,4 @@
-export type { DateRangeFieldProps as VcDateRangeFieldProps } from '@/components/date-range-field/dateRangeField.props'
+export type { DateRangeFieldPublicProps as VcDateRangeFieldProps } from '@/components/date-range-field/dateRangeField.props'
 export { createDateRangeFieldStyle } from '@/components/date-range-field/dateRangeField.style'
 export { default as VcDateRangeField } from '@/components/date-range-field/DateRangeField.vue'
 export { default as VcDateRangeFieldIconLeft } from '@/components/date-range-field/parts/DateRangeFieldIconLeft.vue'

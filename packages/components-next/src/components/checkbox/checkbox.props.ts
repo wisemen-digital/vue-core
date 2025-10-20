@@ -4,6 +4,7 @@ import type {
   CustomizableElement,
   GetComponentProp,
 } from '@/class-variant/classVariant.type'
+import type { PublicProps } from '@/types/props.type'
 import type {
   FormElement,
   InteractableElement,
@@ -28,3 +29,5 @@ export interface CheckboxProps extends TestId, InteractableElement, FormElement,
    */
   variant?: GetComponentProp<'checkbox', 'variant'> | null
 }
+
+export type CheckboxPublicProps = PublicProps<CheckboxProps>

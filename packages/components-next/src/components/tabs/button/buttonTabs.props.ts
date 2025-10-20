@@ -1,3 +1,4 @@
+import type { PublicProps } from '@/types/props.type'
 import type {
   InteractableElement,
   TestId,
@@ -17,3 +18,6 @@ export interface ButtonTabsContentProps extends TestId {
    */
   value: string
 }
+
+export type ButtonTabsItemPublicProps = PublicProps<ButtonTabsItemProps>
+export type ButtonTabsContentPublicProps = PublicProps<ButtonTabsContentProps>

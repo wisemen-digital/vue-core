@@ -2,6 +2,7 @@ import type {
   CustomizableElement,
   GetComponentProp,
 } from '@/class-variant/classVariant.type'
+import type { PublicProps } from '@/types/props.type'
 import type { FormElement } from '@/utils/props.util'
 
 export interface FormFieldProps extends FormElement, CustomizableElement<'formField'> {
@@ -19,3 +20,5 @@ export interface FormFieldProps extends FormElement, CustomizableElement<'formFi
    */
   variant?: GetComponentProp<'formField', 'variant'> | null
 }
+
+export type FormFieldPublicProps = PublicProps<FormFieldProps>

@@ -2,6 +2,7 @@ import type {
   CustomizableElement,
   GetComponentProp,
 } from '@/class-variant/classVariant.type'
+import type { PublicProps } from '@/types/props.type'
 import type {
   FormElement,
   InteractableElement,
@@ -39,3 +40,5 @@ export interface TextareaProps extends TestId, InteractableElement, FormElement,
    */
   variant?: GetComponentProp<'textarea', 'variant'> | null
 }
+
+export type TextareaPublicProps = PublicProps<TextareaProps>

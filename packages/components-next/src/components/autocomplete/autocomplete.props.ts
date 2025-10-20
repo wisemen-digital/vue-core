@@ -1,6 +1,7 @@
 import type { AcceptableValue } from 'reka-ui'
 
 import type { SelectProps } from '@/components/select/select.props'
+import type { PublicProps } from '@/types/props.type'
 import type { FormElement } from '@/utils/props.util'
 
 export interface AutocompleteProps<TValue extends AcceptableValue> extends Omit<SelectProps<TValue>, 'filter' | 'virtualList'>, FormElement {
@@ -20,3 +21,5 @@ export interface AutocompleteProps<TValue extends AcceptableValue> extends Omit<
    */
   items: TValue[]
 }
+
+export type AutocompletePublicProps<TValue extends AcceptableValue> = PublicProps<AutocompleteProps<TValue>>

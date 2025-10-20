@@ -2,6 +2,7 @@ import type {
   CustomizableElement,
   GetComponentProp,
 } from '@/class-variant/classVariant.type'
+import type { PublicProps } from '@/types/props.type'
 import type { TestId } from '@/utils/props.util'
 
 export interface DialogProps extends TestId, CustomizableElement<'dialog'> {
@@ -32,3 +33,5 @@ export interface DialogProps extends TestId, CustomizableElement<'dialog'> {
    */
   variant?: GetComponentProp<'dialog', 'variant'> | null
 }
+
+export type DialogPublicProps = PublicProps<DialogProps>

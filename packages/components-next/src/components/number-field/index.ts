@@ -1,4 +1,4 @@
-export type { NumberFieldProps as VcNumberFieldProps } from '@/components/number-field/numberField.props'
+export type { NumberFieldPublicProps as VcNumberFieldProps } from '@/components/number-field/numberField.props'
 export { createNumberFieldStyle } from '@/components/number-field/numberField.style'
 export { default as VcNumberField } from '@/components/number-field/NumberField.vue'
 export { default as VcNumberFieldDecrement } from '@/components/number-field/parts/NumberFieldDecrement.vue'

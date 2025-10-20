@@ -1,5 +1,5 @@
 // Single
-export type { DatePickerProps as VcDatePickerProps } from '@/components/date-picker/single/datePicker.props'
+export type { DatePickerPublicProps as VcDatePickerProps } from '@/components/date-picker/single/datePicker.props'
 export { createDatePickerStyle } from '@/components/date-picker/single/datePicker.style'
 export { default as VcDatePicker } from '@/components/date-picker/single/DatePicker.vue'
 export { default as VcDatePickerDate } from '@/components/date-picker/single/parts/DatePickerDate.vue'
@@ -8,7 +8,7 @@ export { default as VcDatePickerHeader } from '@/components/date-picker/single/p
 export { default as VcDatePickerRoot } from '@/components/date-picker/single/parts/DatePickerRoot.vue'
 
 // Range
-export type { DateRangePickerProps as VcDateRangePickerProps } from '@/components/date-picker/range/dateRangePicker.props'
+export type { DateRangePickerPublicProps as VcDateRangePickerProps } from '@/components/date-picker/range/dateRangePicker.props'
 export { createDateRangePickerStyle } from '@/components/date-picker/range/dateRangePicker.style'
 export { default as VcDateRangePicker } from '@/components/date-picker/range/DateRangePicker.vue'
 export { default as VcDateRangePickerDate } from '@/components/date-picker/range/parts/DateRangePickerDate.vue'

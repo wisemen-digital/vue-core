@@ -3,6 +3,7 @@ import type {
   GetComponentProp,
 } from '@/class-variant/classVariant.type'
 import type { Icon } from '@/icons/icons'
+import type { PublicProps } from '@/types/props.type'
 import type { SharedDateProps } from '@/types/shareDateProps.type'
 import type {
   FormElement,
@@ -43,3 +44,5 @@ export interface DateRangeFieldProps extends TestId, InteractableElement, FormEl
    */
   variant?: GetComponentProp<'dateField', 'variant'> | null
 }
+
+export type DateRangeFieldPublicProps = PublicProps<DateRangeFieldProps>

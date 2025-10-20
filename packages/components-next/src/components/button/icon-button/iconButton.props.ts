@@ -4,6 +4,7 @@ import type {
 } from '@/class-variant/classVariant.type'
 import type { SharedButtonProps } from '@/components/button/shared/sharedButton.props'
 import type { Icon } from '@/icons/icons'
+import type { PublicProps } from '@/types/props.type'
 
 export interface IconButtonProps extends SharedButtonProps, CustomizableElement<'iconButton'> {
   /**
@@ -25,3 +26,5 @@ export interface IconButtonProps extends SharedButtonProps, CustomizableElement<
    */
   variant?: GetComponentProp<'iconButton', 'variant'>
 }
+
+export type IconButtonPublicProps = PublicProps<IconButtonProps>

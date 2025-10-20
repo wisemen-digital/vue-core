@@ -1,3 +1,4 @@
+import type { PublicProps } from '@/types/props.type'
 import type { SharedDateProps } from '@/types/shareDateProps.type'
 import type {
   InteractableElement,
@@ -6,7 +7,7 @@ import type {
 
 export interface SharedDatePickerProps extends TestId, InteractableElement, SharedDateProps {
   /**
-   * Whether the calendar should focus on the selected day, today’s date,
+   * Whether the calendar should focus on the selected day, today's date,
    * or the first day of the month when mounted.
    * @default false
    */
@@ -16,3 +17,5 @@ export interface SharedDatePickerProps extends TestId, InteractableElement, Shar
    */
   label: string
 }
+
+export type SharedDatePickerPublicProps = PublicProps<SharedDatePickerProps>

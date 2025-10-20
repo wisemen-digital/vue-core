@@ -3,6 +3,7 @@ import type {
   GetComponentProp,
 } from '@/class-variant/classVariant.type'
 import type { Icon } from '@/icons/icons'
+import type { PublicProps } from '@/types/props.type'
 import type {
   FormElement,
   InteractableElement,
@@ -35,3 +36,5 @@ export interface TimeFieldProps extends TestId, InteractableElement, FormElement
    */
   variant?: GetComponentProp<'timeField', 'variant'> | null
 }
+
+export type TimeFieldPublicProps = PublicProps<TimeFieldProps>

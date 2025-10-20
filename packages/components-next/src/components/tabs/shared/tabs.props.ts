@@ -2,6 +2,7 @@ import type {
   CustomizableElement,
   GetComponentProp,
 } from '@/class-variant/classVariant.type'
+import type { PublicProps } from '@/types/props.type'
 import type { Routes } from '@/types/routes.type'
 import type { TestId } from '@/utils/props.util'
 
@@ -25,3 +26,6 @@ export interface RouterLinkTabsItemProps extends TestId {
   // @ts-expect-error no matching signature
   to: Routes[number]
 }
+
+export type TabsPublicProps = PublicProps<TabsProps>
+export type RouterLinkTabsItemPublicProps = PublicProps<RouterLinkTabsItemProps>
