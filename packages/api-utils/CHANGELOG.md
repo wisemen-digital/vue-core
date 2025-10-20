@@ -1,5 +1,11 @@
 # @wisemen/vue-core-query
 
+## 0.0.1-beta.5
+
+### Patch Changes
+
+- 3ac3fba: Moved Vue to a peer dependency
+
 ## 0.0.1-beta.3
 
 ### Patch Changes

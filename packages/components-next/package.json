@@ -4,7 +4,7 @@
     "access": "public"
   },
   "type": "module",
-  "version": "2.0.0-beta.1",
+  "version": "2.0.0-beta.2",
   "private": false,
   "license": "MIT",
   "sideEffects": false,
@@ -30,6 +30,7 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit",
     "pub:release": "pnpm publish --access public",
+    "pub:beta": "pnpm publish --no-git-checks --access public --tag beta",
     "test:unit": "vitest --run",
     "test": "vitest --run",
     "lint": "eslint .",

@@ -1,7 +1,10 @@
 {
   "name": "@wisemen/eslint-config-vue",
   "type": "module",
-  "version": "1.7.4",
+  "publishConfig": {
+    "access": "public"
+  },
+  "version": "1.7.5",
   "description": "Eslint config for Vue.js projects",
   "author": "Wisemen",
   "license": "ISC",
