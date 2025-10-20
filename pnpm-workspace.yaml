@@ -82,7 +82,7 @@ catalogs:
     "graphemer": "1.4.0"
     "ts-api-utils": "2.1.0"
     "pkce-challenge": "4.1.0"
-    "@googlemaps/js-api-loader": "2.0.1"
+    "@googlemaps/js-api-loader": "1.16.8"
     "blurhash": "2.0.5"
     "libphonenumber-js": "1.12.24"
     "highlight-words": "2.0.0"

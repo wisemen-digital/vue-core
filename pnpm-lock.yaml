@@ -46,8 +46,8 @@ catalogs:
       version: 3.1.1
   general:
     '@googlemaps/js-api-loader':
-      specifier: 2.0.1
-      version: 2.0.1
+      specifier: 1.16.8
+      version: 1.16.8
     blurhash:
       specifier: 2.0.5
       version: 2.0.5
@@ -506,7 +506,7 @@ importers:
     devDependencies:
       '@googlemaps/js-api-loader':
         specifier: catalog:general
-        version: 2.0.1
+        version: 1.16.8
       '@histoire/plugin-vue':
         specifier: catalog:stories
         version: 1.0.0-alpha.3(histoire@1.0.0-alpha.3(@types/node@24.8.1)(lightningcss@1.30.1)(sass@1.93.2)(tsx@4.20.3)(vite@7.1.11(@types/node@24.8.1)(jiti@2.6.1)(lightningcss@1.30.1)(sass@1.93.2)(tsx@4.20.3)(yaml@2.8.1))(yaml@2.8.1))(vite@7.1.11(@types/node@24.8.1)(jiti@2.6.1)(lightningcss@1.30.1)(sass@1.93.2)(tsx@4.20.3)(yaml@2.8.1))(vue@3.5.22(typescript@5.9.3))
@@ -1792,9 +1792,6 @@ packages:
 
   '@googlemaps/js-api-loader@1.16.8':
     resolution: {integrity: sha512-CROqqwfKotdO6EBjZO/gQGVTbeDps5V7Mt9+8+5Q+jTg5CRMi3Ii/L9PmV3USROrt2uWxtGzJHORmByxyo9pSQ==}
-
-  '@googlemaps/js-api-loader@2.0.1':
-    resolution: {integrity: sha512-YUtKJSWH6FiE/6Ii+NP+WfkvoZ55DLwyqthKmVYxZZwn/ny310dvz9Zw3cO1besEhGxA9lW7Ctjmzae1putjXQ==}
 
   '@hey-api/codegen-core@0.3.0':
     resolution: {integrity: sha512-klSGsLQGzgUKpInH5UqzgX4+L1P9R864bgprNNemgr324rmOza2HoVxlcifRnxpD6tF2sIZX10opMzZbvdnl2w==}
@@ -7581,10 +7578,6 @@ snapshots:
 
   '@googlemaps/js-api-loader@1.16.8': {}
 
-  '@googlemaps/js-api-loader@2.0.1':
-    dependencies:
-      '@types/google.maps': 3.58.1
-
   '@hey-api/codegen-core@0.3.0(typescript@5.9.3)':
     dependencies:
       typescript: 5.9.3
@@ -12569,7 +12562,7 @@ snapshots:
   tsx@4.20.3:
     dependencies:
       esbuild: 0.25.10
-      get-tsconfig: 4.10.1
+      get-tsconfig: 4.12.0
     optionalDependencies:
       fsevents: 2.3.3
     optional: true
