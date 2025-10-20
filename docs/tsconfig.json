@@ -44,6 +44,7 @@
     "./components-next/**/*.vue",
     "./icons/**/*.ts",
     "./icons/**/*.vue",
+    "packages/**/*.ts",
     "docs/**/*.ts",
     "docs/**/*.vue",
     "docs/**/*.md"
