@@ -38,11 +38,11 @@
     "prepare": "husky"
   },
   "peerDependencies": {
-    "motion-v": ">=1.6.0",
-    "reka-ui": ">=2.2.0",
-    "temporal-polyfill": ">=0.3.0",
-    "vue": ">=3.5.0",
-    "vue-i18n": ">=11.0.0"
+    "motion-v": "catalog:peer",
+    "reka-ui": "catalog:peer",
+    "temporal-polyfill": "catalog:peer",
+    "vue": "catalog:peer",
+    "vue-i18n": "catalog:peer"
   },
   "dependencies": {
   },

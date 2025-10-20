@@ -25,7 +25,7 @@ const in2Months = today.add({
           until: null,
         }"
         :allow-non-continuous-selection="true"
-        :is-date-disabled="(date) => date.getDate() === 15"
+        :is-date-disabled="(date) => date.day === 15"
         :show-two-months="true"
         label=""
       />

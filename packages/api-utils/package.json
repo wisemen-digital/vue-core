@@ -4,7 +4,7 @@
     "access": "public"
   },
   "type": "module",
-  "version": "0.0.1-beta.2",
+  "version": "0.0.1-beta.4",
   "license": "MIT",
   "sideEffects": false,
   "exports": {
@@ -31,8 +31,9 @@
     "typecheck": "pnpm tsc"
   },
   "peerDependencies": {
-    "@tanstack/vue-query": "catalog:vue",
-    "neverthrow": "catalog:general"
+    "@tanstack/vue-query": "catalog:peer",
+    "neverthrow": "catalog:peer",
+    "vue": "catalog:peer"
   },
   "devDependencies": {
     "@types/node": "catalog:types",
@@ -40,7 +41,6 @@
     "eslint": "catalog:lint",
     "tsdown": "catalog:build",
     "typescript": "catalog:build",
-    "vitest": "catalog:test",
-    "vue": "catalog:vue"
+    "vitest": "catalog:test"
   }
 }

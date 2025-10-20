@@ -162,7 +162,9 @@ export interface ComponentMap {
   }
   toast: {
     style: typeof createToastStyle
-    children: {}
+    children: {
+      closeButton: 'iconButton'
+    }
   }
   tooltip: {
     style: typeof createTooltipStyle

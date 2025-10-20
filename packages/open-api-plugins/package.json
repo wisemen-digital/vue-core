@@ -41,7 +41,7 @@
     "typecheck": "pnpm tsc"
   },
   "peerDependencies": {
-    "@hey-api/openapi-ts": "catalog:openapi"
+    "@hey-api/openapi-ts": "catalog:peer"
   },
   "dependencies": {},
   "devDependencies": {
