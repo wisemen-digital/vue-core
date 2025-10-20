@@ -1,4 +1,6 @@
-export { type FormFieldProps as VcFormFieldProps } from '@/components/form-field/formField.props'
+import type { FormFieldProps } from '@/components/form-field/formField.props'
+
+export type VcFormFieldProps = Omit<FormFieldProps, 'classConfig' | 'variant'>
 export { createFormFieldStyle } from '@/components/form-field/formField.style'
 export { default as VcFormField } from '@/components/form-field/FormField.vue'
 export { default as VcFormFieldError } from '@/components/form-field/parts/FormFieldError.vue'
