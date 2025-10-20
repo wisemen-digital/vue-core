@@ -9,7 +9,7 @@ const test = ref<Date | null>(null)
 <template>
   <Story title="Date Field">
     <DateField
-      v-model="test"
+      v-model="test as any"
       :is-disabled="false"
       :hide-date-picker="false"
       :show-two-months="false"
@@ -20,7 +20,7 @@ const test = ref<Date | null>(null)
       }"
       :errors="['errors']"
       icon-left="search"
-      class="w-52"
+      class="w-60"
       label="Date"
     />
   </Story>

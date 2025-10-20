@@ -1,4 +1,0 @@
-{
-  "extends": ["./tsconfig.app.json"],
-  "files": ["vite.config.ts", "vitest.config.ts", "eslint.config.js", "vitest.setup.ts"]
-}

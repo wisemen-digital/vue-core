@@ -16,7 +16,6 @@ const inTwoMonths = Temporal.Now.plainDateISO().add({
 const value = ref<Temporal.PlainDate | null>(inTwoWeeks)
 
 const today = Temporal.Now.plainDateISO()
-const todayAsDate = new Date(today.toString())
 </script>
 
 <template>
@@ -26,9 +25,9 @@ const todayAsDate = new Date(today.toString())
         v-model="value"
         :show-two-months="false"
         :placeholder-value="inTwoMonths"
-        :min-date="todayAsDate"
-        :is-date-disabled="(date) => date.getDate() === 5"
-        :is-date-unavailable="(date) => date.getDate() === 15"
+        :min-date="today"
+        :is-date-disabled="(date) => date.day === 5"
+        :is-date-unavailable="(date) => date.day === 15"
         :is-disabled="false"
         :allow-deselect="false"
         :focus-on-mount="false"

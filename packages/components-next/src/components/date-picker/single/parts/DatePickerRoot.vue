@@ -47,10 +47,10 @@ const {
   locale,
 } = useInjectConfigContext()
 
-const delegatedModel = computed<DateValue | null>({
+const delegatedModel = computed<DateValue | undefined>({
   get: () => {
     if (modelValue.value === null) {
-      return null
+      return
     }
 
     return plainDateToDateValue(modelValue.value)
@@ -122,10 +122,10 @@ useProvideDatePickerContext({
         :initial-focus="props.focusOnMount"
         :locale="locale"
         :min-value="props.minDate === null
-          ? null
+          ? undefined
           : plainDateToDateValue(props.minDate)"
         :max-value="props.maxDate === null
-          ? null
+          ? undefined
           : plainDateToDateValue(props.maxDate)"
         weekday-format="short"
       >
