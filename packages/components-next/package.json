@@ -78,7 +78,7 @@
     "tailwind-merge": "catalog:",
     "tailwindcss": "catalog:",
     "typescript": "catalog:",
-    "vite": "6.3.5",
+    "vite": "6.3.6",
     "vite-plugin-dts": "catalog:",
     "vitest": "catalog:",
     "vue": "catalog:",
