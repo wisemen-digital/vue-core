@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 import { ref } from 'vue'
 
 import type { FileInfo } from '@/components/file-upload/fileUpload.type'
@@ -16,6 +16,7 @@ function fakeGetFileInfo(name: string, mimeType: string): Promise<FileInfo> {
       resolve({
         uuid: `${Math.random()}`,
         name,
+        blurHash: 'LEHV6nWB2yk8pyo0adR*.7kCMdnj',
         mimeType,
         order: 0,
         url: '',
@@ -70,4 +71,10 @@ function fakeGetFileInfo(name: string, mimeType: string): Promise<FileInfo> {
       </div>
     </FileUploadRoot>
   </Story>
+</template> -->
+
+<template>
+  <div>
+    broken
+  </div>
 </template>

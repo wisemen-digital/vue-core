@@ -31,16 +31,16 @@
     "typecheck": "pnpm tsc"
   },
   "peerDependencies": {
-    "@tanstack/vue-query": "catalog:",
-    "neverthrow": "^8.2.0",
-    "vue": ">=3.5.0"
+    "@tanstack/vue-query": "catalog:peer",
+    "neverthrow": "catalog:peer",
+    "vue": "catalog:peer"
   },
   "devDependencies": {
-    "@types/node": "catalog:",
-    "@wisemen/eslint-config-vue": "catalog:",
-    "eslint": "catalog:",
-    "tsdown": "catalog:",
-    "typescript": "catalog:",
-    "vitest": "catalog:"
+    "@types/node": "catalog:types",
+    "@wisemen/eslint-config-vue": "catalog:lint",
+    "eslint": "catalog:lint",
+    "tsdown": "catalog:build",
+    "typescript": "catalog:build",
+    "vitest": "catalog:test"
   }
 }

@@ -33,8 +33,9 @@
     "templates"
   ],
   "scripts": {
-    "build": "unbuild && pnpm pack",
+    "build": "tsdown",
     "lint": "eslint .",
+    "dev": "tsdown --watch",
     "type-check": "tsc --noEmit",
     "cleanup": "rimraf dist/ node_modules/ .turbo/",
     "lint:fix": "eslint . --fix",
@@ -42,28 +43,22 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "chalk": "5.4.1",
-    "change-case": "5.4.4",
-    "commander": "13.1.0",
-    "ejs": "3.1.10",
-    "fs-extra": "11.3.0",
-    "inquirer": "12.5.0",
-    "zod": "catalog:"
+    "chalk": "catalog:build",
+    "change-case": "catalog:generator",
+    "commander": "catalog:build",
+    "ejs": "catalog:generator",
+    "fs-extra": "catalog:generator",
+    "zod": "catalog:general"
   },
   "devDependencies": {
-    "@types/ejs": "3.1.5",
-    "@types/fs-extra": "11.0.4",
-    "@types/inquirer": "9.0.7",
-    "@types/node": "catalog:",
-    "@wisemen/eslint-config-vue": "catalog:",
-    "bumpp": "catalog:",
-    "eslint": "catalog:",
-    "esno": "catalog:",
-    "rimraf": "catalog:",
-    "ts-node": "catalog:",
-    "typescript": "catalog:",
-    "unbuild": "catalog:",
-    "vite": "catalog:",
-    "vitest": "catalog:"
+    "@types/ejs": "catalog:types",
+    "@types/node": "catalog:types",
+    "@wisemen/eslint-config-vue": "catalog:lint",
+    "bumpp": "catalog:build",
+    "eslint": "catalog:lint",
+    "rimraf": "catalog:build",
+    "tsdown": "catalog:build",
+    "typescript": "catalog:build",
+    "vitest": "catalog:test"
   }
 }

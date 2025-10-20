@@ -9,7 +9,7 @@ const test = ref<string | null>(null)
 <template>
   <Story title="Time Field">
     <TimeField
-      v-model="test"
+      v-model="test as any"
       :is-disabled="false"
       :hide-date-picker="false"
       :show-two-months="false"
