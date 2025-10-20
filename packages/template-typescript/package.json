@@ -30,8 +30,6 @@
     "test": "vitest --run",
     "typecheck": "pnpm tsc"
   },
-  "peerDependencies": {
-  },
   "devDependencies": {
     "@types/node": "catalog:types",
     "@wisemen/eslint-config-vue": "catalog:lint",

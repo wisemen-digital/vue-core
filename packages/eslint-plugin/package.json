@@ -37,9 +37,9 @@
     "typecheck": "pnpm tsc"
   },
   "peerDependencies": {
-    "@typescript-eslint/parser": "^8.35.0",
-    "eslint": "^8.57.0 || ^9.0.0",
-    "typescript": ">=4.8.4 <5.9.0"
+    "@typescript-eslint/parser": "catalog:peer",
+    "eslint": "catalog:peer",
+    "typescript": "catalog:peer"
   },
   "dependencies": {
     "@typescript-eslint/scope-manager": "catalog:lint",

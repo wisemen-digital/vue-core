@@ -153,6 +153,22 @@ onMounted(async () => {
     @blur="emit('blur')"
     @update:model-value="onUpdateModelValue"
   >
+    <template #base>
+      <slot name="base" />
+    </template>
+
+    <template #left>
+      <slot name="left" />
+    </template>
+
+    <template #right>
+      <slot name="right" />
+    </template>
+
+    <template #loader>
+      <slot name="loader" />
+    </template>
+
     <template #item="{ value }">
       <SelectItem :value="value">
         <div class="overflow-hidden">

@@ -26,7 +26,7 @@
     "pack": "pnpm pack"
   },
   "peerDependencies": {
-    "eslint": "^9.31.0"
+    "eslint": "catalog:peer"
   },
   "dependencies": {
     "@antfu/eslint-config": "catalog:lint",
