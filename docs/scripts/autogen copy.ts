@@ -223,7 +223,7 @@ function generateDocs(components: Component[]): void {
       const componentNameCamelCase = toCamelCase(component.componentName)
       const componentPath = component.sourceFolder.slice(0, component.sourceFolder.lastIndexOf("/"))
 
-      const targetDirPath = resolve(__dirname, `../packages/components-next/components/${component.targetFolder}`)
+      const targetDirPath = resolve(__dirname, `../packages/components/components/${component.targetFolder}`)
 
       if (!existsSync(targetDirPath)) {
         mkdirSync(targetDirPath)
