@@ -2,6 +2,9 @@
   "name": "@wisemen/vue-core-telemetry",
   "type": "module",
   "version": "0.0.2",
+  "publishConfig": {
+    "access": "public"
+  },
   "license": "MIT",
   "sideEffects": false,
   "exports": {

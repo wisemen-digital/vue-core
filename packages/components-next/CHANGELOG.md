@@ -1,10 +1,24 @@
 # @wisemen/vue-core-components
 
+## 2.0.0-beta.2
+
+### ✨ Improvements
+
+- **Toast**: Added logic to suppress duplicate toasts with the same title and description, preventing repetitive notifications.
+
+### 🐞 Patch Fixes
+
+- **Toast**: Added `closeButton` to `classConfig` for easier styling customization.  
+- **AddressAutocomplete**: Propagated slots correctly to support advanced slot composition.  
+- **Props export**: Fixed issue where props with complex types required `@vue-ignore` when extending components — props are now exported in a more type-safe way.  
+- **DatePicker / DateRangePicker**: Fixed incorrect month display labels.  
+- **ClassConfig**: Resolved multiple internal issues with the `classConfig` prop to ensure reliable class merging and customization.
+
 ## 2.0.0-beta.1
 
 ### 🐞 Patch Fixes
 
-- **Temporal migration**: Refactored leftover `Date` usage to fully adopt the Temporal API.  
+- **Temporal migration**: Refactored leftover `Date` usage to fully adopt the Temporal API.
 - **Styling**: Fixed an issue where `class-config` classes could be overwritten by `defineComponentVariant` classes, ensuring custom styles are applied correctly.
 
 ## 2.0.0-beta.0
