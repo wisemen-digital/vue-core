@@ -3,7 +3,6 @@ import type {
   GetComponentProp,
 } from '@/class-variant/classVariant.type'
 import type { KeyboardKey } from '@/types/keyboard.type'
-import type { PublicProps } from '@/types/props.type'
 
 export interface KeyboardKeyProps extends CustomizableElement<'keyboardKey'> {
   /**
@@ -15,5 +14,3 @@ export interface KeyboardKeyProps extends CustomizableElement<'keyboardKey'> {
    */
   variant?: GetComponentProp<'keyboardKey', 'variant'> | null
 }
-
-export type KeyboardKeyPublicProps = PublicProps<KeyboardKeyProps>

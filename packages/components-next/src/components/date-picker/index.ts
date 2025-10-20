@@ -1,5 +1,5 @@
 // Single
-export type { DatePickerPublicProps as VcDatePickerProps } from '@/components/date-picker/single/datePicker.props'
+export type { DatePickerProps as VcDatePickerProps } from '@/components/date-picker/single/datePicker.props'
 export { createDatePickerStyle } from '@/components/date-picker/single/datePicker.style'
 export { default as VcDatePicker } from '@/components/date-picker/single/DatePicker.vue'
 export { default as VcDatePickerDate } from '@/components/date-picker/single/parts/DatePickerDate.vue'

@@ -1,5 +1,4 @@
 import type { KeyboardKey } from '@/types/keyboard.type'
-import type { PublicProps } from '@/types/props.type'
 
 /**
  * Props for the KeyboardShortcutProvider component.
@@ -25,5 +24,3 @@ export interface KeyboardShortcutProviderProps {
    */
   stopPropagation?: boolean
 }
-
-export type KeyboardShortcutProviderPublicProps = PublicProps<KeyboardShortcutProviderProps>

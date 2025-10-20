@@ -2,7 +2,6 @@ import type {
   CustomizableElement,
   GetComponentProp,
 } from '@/class-variant/classVariant.type'
-import type { PublicProps } from '@/types/props.type'
 
 export interface TableProps extends CustomizableElement<'table'> {
   /**
@@ -24,5 +23,3 @@ export interface TableProps extends CustomizableElement<'table'> {
    */
   variant?: GetComponentProp<'table', 'variant'> | null
 }
-
-export type TablePublicProps = PublicProps<TableProps>

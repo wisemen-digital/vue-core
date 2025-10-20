@@ -1,5 +1,7 @@
+import type { DialogProps } from '@/components/dialog/dialog.props'
+
 export { useDialog } from '@/components/dialog/dialog.composable'
-export type { DialogPublicProps as VcDialogProps } from '@/components/dialog/dialog.props'
+export type VcDialogProps = Omit<DialogProps, 'classConfig' | 'size' | 'variant'>
 export { createDialogStyle } from '@/components/dialog/dialog.style'
 export type { DialogTriggerProps as VcDialogTriggerProps } from '@/components/dialog/dialog.type'
 export { default as VcDialog } from '@/components/dialog/Dialog.vue'

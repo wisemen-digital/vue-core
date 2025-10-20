@@ -3,7 +3,6 @@ import type {
   GetComponentProp,
 } from '@/class-variant/classVariant.type'
 import type { PopperPropsWithArrowVisibleByDefault } from '@/types/popperProps.type'
-import type { PublicProps } from '@/types/props.type'
 import type { TestId } from '@/utils/props.util'
 
 export interface TooltipProps extends PopperPropsWithArrowVisibleByDefault, TestId, CustomizableElement<'tooltip'> {
@@ -32,5 +31,3 @@ export interface TooltipProps extends PopperPropsWithArrowVisibleByDefault, Test
    */
   variant?: GetComponentProp<'tooltip', 'variant'> | null
 }
-
-export type TooltipPublicProps = PublicProps<TooltipProps>

@@ -2,7 +2,6 @@ import type {
   FileUploadInfo,
   FileUploadItem,
 } from '@/components/file-upload/fileUpload.type'
-import type { PublicProps } from '@/types/props.type'
 import type { InteractableElement } from '@/utils/props.util'
 
 export interface FileUploadProps extends InteractableElement {
@@ -51,6 +50,3 @@ export interface FileUploadProps extends InteractableElement {
 export interface FileUploadItemProps {
   item: FileUploadItem
 }
-
-export type FileUploadPublicProps = PublicProps<FileUploadProps>
-export type FileUploadItemPublicProps = PublicProps<FileUploadItemProps>

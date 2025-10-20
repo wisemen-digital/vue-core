@@ -4,7 +4,6 @@ import type {
   CustomizableElement,
   GetComponentProp,
 } from '@/class-variant/classVariant.type'
-import type { PublicProps } from '@/types/props.type'
 import type {
   FormElement,
   InteractableElement,
@@ -23,5 +22,3 @@ export interface RadioGroupItemProps extends TestId, InteractableElement, FormEl
    */
   variant?: GetComponentProp<'radioGroupItem', 'variant'> | null
 }
-
-export type RadioGroupItemPublicProps = PublicProps<RadioGroupItemProps>

@@ -3,7 +3,6 @@ import type {
   GetComponentProp,
 } from '@/class-variant/classVariant.type'
 import type { PopperPropsWithArrowVisibleByDefault } from '@/types/popperProps.type'
-import type { PublicProps } from '@/types/props.type'
 import type { TestId } from '@/utils/props.util'
 
 export interface PopoverProps extends TestId, PopperPropsWithArrowVisibleByDefault, CustomizableElement<'popover'> {
@@ -12,5 +11,3 @@ export interface PopoverProps extends TestId, PopperPropsWithArrowVisibleByDefau
    */
   variant?: GetComponentProp<'popover', 'variant'> | null
 }
-
-export type PopoverPublicProps = PublicProps<PopoverProps>

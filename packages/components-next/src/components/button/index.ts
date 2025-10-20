@@ -1,4 +1,6 @@
-export type { ButtonPublicProps as VcButtonProps } from '@/components/button/default-button/button.props'
+import type { ButtonProps } from '@/components/button/default-button/button.props'
+
+export type VcButtonProps = Omit<ButtonProps, 'classConfig' | 'size' | 'variant'>
 export { createButtonStyle } from '@/components/button/default-button/button.style'
 export { default as VcButton } from '@/components/button/default-button/Button.vue'
 export { default as VcButtonContent } from '@/components/button/default-button/parts/ButtonContent.vue'
