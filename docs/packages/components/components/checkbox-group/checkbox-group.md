@@ -2,7 +2,7 @@
 
 A wrapper for multiple checkboxes.
 
-This component is build on top of the [Form Field](/packages/components-next/components/form-field/form-field.html) component.
+This component is build on top of the [Form Field](/packages/components/components/form-field/form-field.html) component.
 
 <ComponentPreview name="checkbox-group/examples/main" />
 

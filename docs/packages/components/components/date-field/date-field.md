@@ -2,7 +2,7 @@
 
 An input component for entering or selecting a date.
 
-This component is build on top of [Form Field](/packages/components-next/components/form-field/form-field.html) and uses the [Date Picker](/packages/components-next/components/date-picker/date-picker.html) component.
+This component is build on top of [Form Field](/packages/components/components/form-field/form-field.html) and uses the [Date Picker](/packages/components/components/date-picker/date-picker.html) component.
 
 <ComponentPreview name="date-field/examples/main" />
 

@@ -14,4 +14,4 @@ A component that binds a keyboard shortcut to the nearest interactive element.
 
 ## Default styles
 
-Customize the look of the keys using the [Keyboard Shortcut](/packages/components-next/components/keyboard-shortcut/keyboard-shortcut.html#default-styles) or [Keyboard Key](/packages/components-next/components/keyboard-key/keyboard-key.html#default-styles) styles.
+Customize the look of the keys using the [Keyboard Shortcut](/packages/components/components/keyboard-shortcut/keyboard-shortcut.html#default-styles) or [Keyboard Key](/packages/components/components/keyboard-key/keyboard-key.html#default-styles) styles.

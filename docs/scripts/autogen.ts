@@ -30,7 +30,7 @@ components.forEach((component) => {
 
   const meta = parseMeta(tsconfigChecker.getComponentMeta(componentSourceFolder))
 
-  const metaDirPath = resolve(__dirname, '../packages/components-next/components/', component.targetFolder)
+  const metaDirPath = resolve(__dirname, '../packages/components/components/', component.targetFolder)
   // if meta dir doesn't exist, create
   if (!existsSync(metaDirPath))
     mkdirSync(metaDirPath)

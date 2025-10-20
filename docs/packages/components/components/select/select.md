@@ -2,7 +2,7 @@
 
 Displays a list of options for the user to pick from. Depending on the type of your model, the user will be able to select one or multiple values
 
-This component is build on top of the [Form Field](/packages/components-next/components/form-field/form-field.html) component.
+This component is build on top of the [Form Field](/packages/components/components/form-field/form-field.html) component.
 
 <ComponentPreview name="select/examples/main" />
 

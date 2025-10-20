@@ -2,7 +2,7 @@
 
 A control that allows the user to toggle between checked and not checked.
 
-This component is build on top of the [Form Field](/packages/components-next/components/form-field/form-field.html) component.
+This component is build on top of the [Form Field](/packages/components/components/form-field/form-field.html) component.
 
 <ComponentPreview name="checkbox/examples/main" />
 
