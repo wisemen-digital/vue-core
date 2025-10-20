@@ -6,7 +6,6 @@ import type {
 } from '@/class-variant/classVariant.type'
 import type { Icon } from '@/icons/icons'
 import type { PopperPropsWithArrowHiddenByDefault } from '@/types/popperProps.type'
-import type { PublicProps } from '@/types/props.type'
 import type {
   FormElement,
   InteractableElement,
@@ -146,6 +145,3 @@ export interface SelectItemProps extends TestId {
    */
   value: AcceptableValue
 }
-
-export type SelectPublicProps<TValue extends SelectValue> = PublicProps<SelectProps<TValue>>
-export type SelectItemPublicProps = PublicProps<SelectItemProps>

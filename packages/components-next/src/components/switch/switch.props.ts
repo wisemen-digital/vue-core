@@ -3,7 +3,6 @@ import type {
   GetComponentProp,
 } from '@/class-variant/classVariant.type'
 import type { Icon } from '@/icons/icons'
-import type { PublicProps } from '@/types/props.type'
 import type {
   FormElement,
   InteractableElement,
@@ -31,5 +30,3 @@ export interface SwitchProps extends TestId, InteractableElement, FormElement, C
    */
   variant?: GetComponentProp<'switch', 'variant'> | null
 }
-
-export type SwitchPublicProps = PublicProps<SwitchProps>

@@ -1,6 +1,8 @@
 import type { ButtonProps } from '@/components/button/default-button/button.props'
+import type { IconButtonProps } from '@/components/button/icon-button/iconButton.props'
 
 export type VcButtonProps = Omit<ButtonProps, 'classConfig' | 'size' | 'variant'>
+export type VcIconButtonProps = Omit<IconButtonProps, 'classConfig' | 'size' | 'variant'>
 export { createButtonStyle } from '@/components/button/default-button/button.style'
 export { default as VcButton } from '@/components/button/default-button/Button.vue'
 export { default as VcButtonContent } from '@/components/button/default-button/parts/ButtonContent.vue'
@@ -19,7 +21,6 @@ export { createRouterLinkButtonStyle } from '@/components/button/router-link-but
 export { default as VcRouterLinkButton } from '@/components/button/router-link-button/RouterLinkButton.vue'
 
 // Icon Button
-export type { IconButtonPublicProps as VcIconButtonProps } from '@/components/button/icon-button/iconButton.props'
 export { createIconButtonStyle } from '@/components/button/icon-button/iconButton.style'
 export { default as VcIconButton } from '@/components/button/icon-button/IconButton.vue'
 export { default as VcIconButtonIcon } from '@/components/button/icon-button/parts/IconButtonIcon.vue'

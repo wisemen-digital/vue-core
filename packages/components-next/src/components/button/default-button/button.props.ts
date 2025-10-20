@@ -1,6 +1,5 @@
 import type { GetComponentProp } from '@/class-variant/classVariant.type'
 import type { TextButtonProps } from '@/components/button/shared/textButton.props'
-import type { PublicProps } from '@/types/props.type'
 
 export interface ButtonProps extends TextButtonProps {
   /**
@@ -14,5 +13,3 @@ export interface ButtonProps extends TextButtonProps {
    */
   variant?: GetComponentProp<'button', 'variant'>
 }
-
-export type ButtonPublicProps = PublicProps<ButtonProps>

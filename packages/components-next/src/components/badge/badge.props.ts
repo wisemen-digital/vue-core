@@ -3,7 +3,6 @@ import type {
   GetComponentProp,
 } from '@/class-variant/classVariant.type'
 import type { Icon } from '@/icons/icons'
-import type { PublicProps } from '@/types/props.type'
 import type { TestId } from '@/utils/props.util'
 
 export interface BadgeProps extends TestId, CustomizableElement<'badge'> {
@@ -29,7 +28,5 @@ export interface BadgeProps extends TestId, CustomizableElement<'badge'> {
   /**
    * The visual style of the badge.
    */
-  variant: GetComponentProp<'badge', 'variant'>
+  variant?: GetComponentProp<'badge', 'variant'> | null
 }
-
-export type BadgePublicProps = PublicProps<BadgeProps>

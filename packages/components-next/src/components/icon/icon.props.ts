@@ -1,5 +1,4 @@
 import type { Icon } from '@/icons/icons'
-import type { PublicProps } from '@/types/props.type'
 
 export interface IconProps {
   /**
@@ -7,5 +6,3 @@ export interface IconProps {
    */
   icon: Icon
 }
-
-export type IconPublicProps = PublicProps<IconProps>

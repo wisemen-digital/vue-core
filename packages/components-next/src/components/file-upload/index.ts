@@ -1,5 +1,6 @@
 export type {
-  FileUploadItemProps, FileUploadProps,
+  FileUploadItemProps as VcFileUploadItemProps,
+  FileUploadProps as VcFileUploadProps,
 } from '@/components/file-upload/fileUpload.props'
 export type {
   FileInfo,

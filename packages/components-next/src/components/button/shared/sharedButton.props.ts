@@ -1,4 +1,3 @@
-import type { PublicProps } from '@/types/props.type'
 import type {
   InteractableElement,
   TestId,
@@ -20,5 +19,3 @@ export interface SharedButtonProps extends TestId, InteractableElement {
 export interface ButtonEmits {
   (event: 'click', e: MouseEvent): void
 }
-
-export type SharedButtonPublicProps = PublicProps<SharedButtonProps>

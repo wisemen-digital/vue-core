@@ -3,7 +3,6 @@ import type {
   GetComponentProp,
 } from '@/class-variant/classVariant.type'
 import type { Icon } from '@/icons/icons'
-import type { PublicProps } from '@/types/props.type'
 import type {
   FormElement,
   InteractableElement,
@@ -56,5 +55,3 @@ export interface TextFieldEmits {
   (event: 'focus', e: FocusEvent): void
   (event: 'blur', e: FocusEvent): void
 }
-
-export type TextFieldPublicProps = PublicProps<TextFieldProps>
