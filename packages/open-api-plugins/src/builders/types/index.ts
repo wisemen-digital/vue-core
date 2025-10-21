@@ -90,22 +90,6 @@ export interface Config {
    * @default 'builders'
    */
   output?: string
-  /**
-   * @deprecated Use mockStrategy: 'static' instead
-   * Generate static mock builders without runtime dependencies
-   * When enabled, generates hardcoded mock values based on schema types
-   * instead of using JSON Schema Faker or Zod at runtime
-   *
-   * @default false
-   */
-  useStaticMocks?: boolean
-  /**
-   * @deprecated Use mockStrategy: 'zod' instead
-   * Use Zod for mock generation instead of JSON Schema Faker
-   *
-   * @default false
-   */
-  useZodForMocks?: boolean
 }
 
 /**

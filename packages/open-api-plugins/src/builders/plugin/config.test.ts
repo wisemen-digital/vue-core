@@ -66,24 +66,5 @@ describe('config', () => {
 
       expect(config).toBeDefined()
     })
-
-    it('should return config with all options', () => {
-      const config = defineConfig({
-        generateZod: true,
-        mockStrategy: 'zod',
-      })
-
-      expect(config).toBeDefined()
-    })
-
-    it('should support backward compatibility with deprecated flags', () => {
-      const config = defineConfig({
-        generateZod: true,
-        useStaticMocks: false,
-        useZodForMocks: true,
-      })
-
-      expect(config).toBeDefined()
-    })
   })
 })

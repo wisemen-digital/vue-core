@@ -14,28 +14,13 @@ import { generateZodSchema } from '../generators/zodSchemaGenerator'
 import type { MockStrategy } from '../types'
 
 /**
- * Resolves the mock strategy from config, handling backward compatibility
+ * Resolves the mock strategy from config
  */
 function resolveMockStrategy(config: {
   mockStrategy?: MockStrategy
-  useStaticMocks?: boolean
-  useZodForMocks?: boolean
 }): MockStrategy {
-  // New config takes precedence
-  if (config.mockStrategy) {
-    return config.mockStrategy
-  }
-
-  // Backward compatibility with old boolean flags
-  if (config.useStaticMocks) {
-    return 'static'
-  }
-  if (config.useZodForMocks) {
-    return 'zod'
-  }
-
-  // Default strategy
-  return 'runtime'
+  // Return the configured strategy or default to 'runtime'
+  return config.mockStrategy || 'runtime'
 }
 
 /**
