@@ -43,7 +43,6 @@
   "peerDependencies": {
     "@hey-api/openapi-ts": "catalog:peer"
   },
-  "dependencies": {},
   "devDependencies": {
     "@wisemen/eslint-config-vue": "catalog:lint",
     "tsdown": "catalog:build",
