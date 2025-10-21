@@ -9,8 +9,6 @@ import { getCustomComponentVariant } from '@/class-variant/customClassVariants'
 import { useInjectConfigContext } from '@/components/config-provider/config.context'
 import type { Grid } from '@/components/date-picker/shared/datePicker.type'
 import {
-  dateToDateValue,
-  dateValueToDate,
   dateValueToPlainDate,
   plainDateToDateValue,
 } from '@/components/date-picker/shared/datePicker.util'
@@ -49,10 +47,10 @@ const {
   locale,
 } = useInjectConfigContext()
 
-const delegatedModel = computed<DateValue | null>({
+const delegatedModel = computed<DateValue | undefined>({
   get: () => {
     if (modelValue.value === null) {
-      return null
+      return
     }
 
     return plainDateToDateValue(modelValue.value)
@@ -118,17 +116,17 @@ useProvideDatePickerContext({
         :prevent-deselect="!props.allowDeselect"
         :fixed-weeks="true"
         :number-of-months="props.showTwoMonths ? 2 : 1"
-        :is-date-unavailable="(value: DateValue) => props.isDateUnavailable(dateValueToDate(value))"
-        :is-date-disabled="(value: DateValue) => props.isDateDisabled(dateValueToDate(value))"
+        :is-date-unavailable="(value: DateValue) => props.isDateUnavailable(dateValueToPlainDate(value))"
+        :is-date-disabled="(value: DateValue) => props.isDateDisabled(dateValueToPlainDate(value))"
         :calendar-label="props.label"
         :initial-focus="props.focusOnMount"
         :locale="locale"
         :min-value="props.minDate === null
-          ? null
-          : dateToDateValue(props.minDate)"
+          ? undefined
+          : plainDateToDateValue(props.minDate)"
         :max-value="props.maxDate === null
-          ? null
-          : dateToDateValue(props.maxDate)"
+          ? undefined
+          : plainDateToDateValue(props.maxDate)"
         weekday-format="short"
       >
         <slot

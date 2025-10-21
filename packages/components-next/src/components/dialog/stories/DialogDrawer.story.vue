@@ -2,15 +2,15 @@
 import Button from '@/components/button/default-button/Button.vue'
 import { useDialog } from '@/components/dialog/dialog.composable'
 
-const dialog = useDialog({
-  component: () => import('@/components/dialog/stories/ExampleDrawerDialog.vue'),
-})
+import ExampleDrawerDialog from './ExampleDrawerDialog.vue'
+
+const dialog = useDialog(ExampleDrawerDialog)
 </script>
 
 <template>
   <Story title="Dialog/Drawer">
     <Button
-      v-bind="dialog.getTriggerProps()"
+      v-bind="dialog.triggerProps.value"
       @click="dialog.open()"
     >
       Open drawer

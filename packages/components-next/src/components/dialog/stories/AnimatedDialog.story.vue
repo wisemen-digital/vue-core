@@ -8,17 +8,17 @@ import Button from '@/components/button/default-button/Button.vue'
 import ButtonIconLeft from '@/components/button/default-button/parts/ButtonIconLeft.vue'
 import { useDialog } from '@/components/dialog/dialog.composable'
 
-const dialog = useDialog({
-  component: () => import('@/components/dialog/stories/AnimatedDialog.vue'),
-})
+import AnimatedDialog from './AnimatedDialog.vue'
+
+const dialog = useDialog(AnimatedDialog)
 </script>
 
 <template>
   <Story title="Dialog/Animated">
     <AnimatePresence>
       <Motion
-        v-if="!dialog.isOpen()"
-        v-bind="dialog.getTriggerProps()"
+        v-if="!dialog.isOpen.value"
+        v-bind="dialog.triggerProps.value"
         :transition="{
           type: 'spring',
           bounce: 0.2,

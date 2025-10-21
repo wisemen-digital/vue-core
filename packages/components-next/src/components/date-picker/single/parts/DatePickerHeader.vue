@@ -62,14 +62,14 @@ const yearValue = computed<number>({
 <template>
   <div
     :class="style.headerContainer({
-      class: mergeClasses(classConfig?.headerContainer, customClassConfig.headerContainer),
+      class: mergeClasses(customClassConfig.headerContainer, classConfig?.headerContainer),
     })"
   >
     <RekaCalendarHeader
       v-for="(month, index) of props.grid"
       :key="index"
       :class="style.header({
-        class: mergeClasses(classConfig?.header, customClassConfig.header),
+        class: mergeClasses(customClassConfig.header, classConfig?.header),
       })"
     >
       <RekaCalendarPrev
@@ -118,13 +118,13 @@ const yearValue = computed<number>({
             :filter="{
               isEnabled: true,
             }"
-            :display-fn="(monthIndex) => getMonthName(monthIndex, locale, 'long')"
+            :display-fn="(monthIndex) => getMonthName(monthIndex - 1, locale, 'long')"
             popover-align="start"
           >
             <SelectItem
               v-for="i in 12"
               :key="i"
-              :value="i - 1"
+              :value="i"
             >
               {{ getMonthName(i - 1, locale, 'long') }}
             </SelectItem>

@@ -12,7 +12,6 @@
       "@/*": ["src/*"]
     },
     "resolveJsonModule": true,
-    "types": ["@types/google.maps"],
     "strict": true,
     "declaration": false,
     "outDir": "dist",

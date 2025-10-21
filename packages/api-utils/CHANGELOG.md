@@ -1,5 +1,32 @@
 # @wisemen/vue-core-query
 
+## 0.0.1-beta.5
+
+### Patch Changes
+
+- 3ac3fba: Moved Vue to a peer dependency
+
+## 0.0.1-beta.3
+
+### Patch Changes
+
+- feat(api-utils): Updated fetchNextPage to return void to be more inline the previous query package
+
+## 0.0.1-beta.1
+
+### Patch Changes
+
+- Updated dependencies [56d13b2]
+- Updated dependencies [6fec4c2]
+- Updated dependencies [12eaa58]
+- Updated dependencies [787713d]
+- Updated dependencies [58b6c7b]
+- Updated dependencies [56d5f49]
+- Updated dependencies [f6960b4]
+- Updated dependencies [61c6df1]
+- Updated dependencies [479d3ae]
+  - @wisemen/vue-core-components@2.0.0
+
 ## 0.0.47
 
 ### Patch Changes

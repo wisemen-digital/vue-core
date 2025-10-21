@@ -31,7 +31,7 @@ const {
 <template>
   <div
     :class="style.gridContainer({
-      class: mergeClasses(classConfig?.gridContainer, customClassConfig.gridContainer),
+      class: mergeClasses(customClassConfig.gridContainer, classConfig?.gridContainer),
     })"
   >
     <template
@@ -41,26 +41,26 @@ const {
       <div
         v-if="monthIndex !== 0"
         :class="style.monthSeparator({
-          class: mergeClasses(classConfig?.monthSeparator, customClassConfig.monthSeparator),
+          class: mergeClasses(customClassConfig.monthSeparator, classConfig?.monthSeparator),
         })"
       />
 
       <RekaCalendarGrid
         :class="style.grid({
-          class: mergeClasses(classConfig?.grid, customClassConfig.grid),
+          class: mergeClasses(customClassConfig.grid, classConfig?.grid),
         })"
       >
         <RekaCalendarGridHead>
           <RekaCalendarGridRow
             :class="style.gridRow({
-              class: mergeClasses(classConfig?.gridRow, customClassConfig.gridRow),
+              class: mergeClasses(customClassConfig.gridRow, classConfig?.gridRow),
             })"
           >
             <RekaCalendarHeadCell
               v-for="day in props.weekDays"
               :key="day"
               :class="style.weekDayLabel({
-                class: mergeClasses(classConfig?.weekDayLabel, customClassConfig.weekDayLabel),
+                class: mergeClasses(customClassConfig.weekDayLabel, classConfig?.weekDayLabel),
               })"
             >
               {{ day }}
@@ -70,14 +70,14 @@ const {
 
         <RekaCalendarGridBody
           :class="style.gridBody({
-            class: mergeClasses(classConfig?.gridBody, customClassConfig.gridBody),
+            class: mergeClasses(customClassConfig.gridBody, classConfig?.gridBody),
           })"
         >
           <RekaCalendarGridRow
             v-for="weekDates in month.rows"
             :key="weekDates.toString()"
             :class="style.gridRow({
-              class: mergeClasses(classConfig?.gridRow, customClassConfig.gridRow),
+              class: mergeClasses(customClassConfig.gridRow, classConfig?.gridRow),
             })"
           >
             <RekaCalendarCell

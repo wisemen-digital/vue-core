@@ -1,7 +1,6 @@
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
-  // @ts-expect-error - error
   test: {
     mockReset: false,
     setupFiles: [

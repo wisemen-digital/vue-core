@@ -29,29 +29,25 @@
     "dist"
   ],
   "scripts": {
-    "build": "unbuild",
+    "build": "tsdown",
     "cleanup": "rimraf dist/ node_modules/ .turbo/",
-    "dev": "unbuild --stub",
+    "dev": "tsdown --watch",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "release": "bumpp && npm publish",
-    "start": "esno src/index.ts",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "pkce-challenge": "4.1.0"
+    "pkce-challenge": "catalog:general"
   },
   "devDependencies": {
-    "@types/node": "catalog:",
-    "@wisemen/eslint-config-vue": "catalog:",
-    "bumpp": "catalog:",
-    "eslint": "catalog:",
-    "esno": "catalog:",
-    "rimraf": "catalog:",
-    "typescript": "catalog:",
-    "unbuild": "catalog:",
-    "vite": "catalog:",
-    "vitest": "catalog:",
-    "vitest-localstorage-mock": "0.1.2"
+    "@types/node": "catalog:types",
+    "@wisemen/eslint-config-vue": "catalog:lint",
+    "bumpp": "catalog:build",
+    "eslint": "catalog:lint",
+    "rimraf": "catalog:build",
+    "tsdown": "catalog:build",
+    "typescript": "catalog:build",
+    "vitest": "catalog:test"
   }
 }

@@ -1,5 +1,17 @@
-# Vue Core
+---
+# https://vitepress.dev/reference/default-theme-home-page
+layout: home
 
-This repository contains the core, reusable Vue.js packages (components, composables, utilities, etc.)
-developed and maintained by Wisemen. Its purpose is to centralize shared Vue code, streamline dependency management,
-and ensure consistency across our projects.
+hero:
+  name: "Vue Core"
+  tagline: "A collection of reusable Vue.js packages."
+
+features:
+  - title: Component Library
+    details: Designed with accessibility in mind to ensure an inclusive user experience.
+    link: /packages/components/getting-started/installation
+  - title: API Utils
+    details: A set of utility functions and composables to streamline API interactions in Vue applications.
+    link: /packages/api-utils/pages/index
+
+---

@@ -45,6 +45,10 @@ interface UseToastReturnType {
   success: (toast: ToastOptions) => void
 }
 
+function getToastId(toast: ToastOptions): string {
+  return `${toast.title}${toast.description}`
+}
+
 export function useToast(): UseToastReturnType {
   const {
     autoCloseToast, toastPosition,
@@ -83,6 +87,7 @@ export function useToast(): UseToastReturnType {
       ...toast,
       type: 'error',
     }), {
+      id: getToastId(toast),
       duration: getToastDuration(toast, 'error'),
       position: toastPosition,
     })
@@ -93,6 +98,7 @@ export function useToast(): UseToastReturnType {
       ...toast,
       type: 'info',
     }), {
+      id: getToastId(toast),
       duration: getToastDuration(toast, 'info'),
       position: toastPosition,
     })
@@ -103,6 +109,7 @@ export function useToast(): UseToastReturnType {
       ...toast,
       type: 'success',
     }), {
+      id: getToastId(toast),
       duration: getToastDuration(toast, 'success'),
       position: toastPosition,
     })

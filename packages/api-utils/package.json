@@ -4,7 +4,7 @@
     "access": "public"
   },
   "type": "module",
-  "version": "0.0.1-beta.0",
+  "version": "0.0.1-beta.5",
   "license": "MIT",
   "sideEffects": false,
   "exports": {
@@ -17,29 +17,30 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "typings": "./dist/index.d.ts",
-  "web-types": "./dist/web-types.json",
   "files": [
     "./dist"
   ],
   "scripts": {
     "build": "tsdown",
     "pub:release": "pnpm publish --access public",
+    "pub:beta": "pnpm publish --no-git-checks --access public --tag beta",
+    "pub:next": "pnpm publish --no-git-checks --access public --tag next",
     "cleanup": "rimraf dist/ node_modules/ .turbo/",
     "lint": "pnpm eslint --fix .",
     "test": "vitest --run",
     "typecheck": "pnpm tsc"
   },
   "peerDependencies": {
-    "@tanstack/vue-query": "catalog:",
-    "neverthrow": "^8.2.0"
+    "@tanstack/vue-query": "catalog:peer",
+    "neverthrow": "catalog:peer",
+    "vue": "catalog:peer"
   },
   "devDependencies": {
-    "@types/node": "catalog:",
-    "@wisemen/eslint-config-vue": "catalog:",
-    "eslint": "catalog:",
-    "tsdown": "catalog:",
-    "typescript": "catalog:",
-    "vitest": "catalog:",
-    "vue": "catalog:"
+    "@types/node": "catalog:types",
+    "@wisemen/eslint-config-vue": "catalog:lint",
+    "eslint": "catalog:lint",
+    "tsdown": "catalog:build",
+    "typescript": "catalog:build",
+    "vitest": "catalog:test"
   }
 }

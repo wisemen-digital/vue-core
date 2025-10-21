@@ -13,8 +13,6 @@ import type { CreateDateRangePickerStyle } from '@/components/date-picker/range/
 import { createDateRangePickerStyle } from '@/components/date-picker/range/dateRangePicker.style'
 import type { Grid } from '@/components/date-picker/shared/datePicker.type'
 import {
-  dateToDateValue,
-  dateValueToDate,
   dateValueToPlainDate,
   plainDateToDateValue,
 } from '@/components/date-picker/shared/datePicker.util'
@@ -126,17 +124,17 @@ useProvideDateRangePickerContext({
         :fixed-weeks="true"
         :number-of-months="props.showTwoMonths ? 2 : 1"
         :allow-non-contiguous-ranges="props.allowNonContinuousSelection"
-        :is-date-unavailable="(value: DateValue) => props.isDateUnavailable(dateValueToDate(value))"
-        :is-date-disabled="(value: DateValue) => props.isDateDisabled(dateValueToDate(value))"
+        :is-date-unavailable="(value: DateValue) => props.isDateUnavailable(dateValueToPlainDate(value))"
+        :is-date-disabled="(value: DateValue) => props.isDateDisabled(dateValueToPlainDate(value))"
         :calendar-label="props.label"
         :locale="locale"
         :initial-focus="props.focusOnMount"
         :min-value="props.minDate === null
           ? undefined
-          : dateToDateValue(props.minDate)"
+          : plainDateToDateValue(props.minDate)"
         :max-value="props.maxDate === null
           ? undefined
-          : dateToDateValue(props.maxDate)"
+          : plainDateToDateValue(props.maxDate)"
         weekday-format="short"
       >
         <slot

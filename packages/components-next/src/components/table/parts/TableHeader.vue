@@ -13,7 +13,7 @@ const {
 <template>
   <Subgrid
     :class="style.header({
-      class: mergeClasses(classConfig?.header, customClassConfig?.header),
+      class: mergeClasses(customClassConfig?.header, classConfig?.header),
     })"
     role="rowgroup"
   >

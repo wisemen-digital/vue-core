@@ -65,7 +65,7 @@ const yearValue = computed<number>({
 <template>
   <div
     :class="style.headerContainer({
-      class: mergeClasses(classConfig?.headerContainer, customClassConfig.headerContainer),
+      class: mergeClasses(customClassConfig.headerContainer, classConfig?.headerContainer),
     })"
     class="flex"
   >
@@ -73,7 +73,7 @@ const yearValue = computed<number>({
       v-for="(month, index) of props.grid"
       :key="index"
       :class="style.header({
-        class: mergeClasses(classConfig?.header, customClassConfig.header),
+        class: mergeClasses(customClassConfig.header, classConfig?.header),
       })"
     >
       <RekaRangeCalendarPrev
@@ -114,7 +114,7 @@ const yearValue = computed<number>({
             :class-config="{
               root: 'h-8 shadow-none border-none outline-none hover:bg-primary-hover focus-within:bg-primary-hover',
               baseSingle: 'font-semibold px-sm',
-              content: 'flex gap-xs grid grid-cols-1 [grid-template-columns:auto] sm:[grid-template-columns:repeat(auto-fit,minmax(6rem,1fr))]',
+              content: 'gap-xs grid [grid-template-columns:auto] sm:[grid-template-columns:repeat(auto-fit,minmax(6rem,1fr))]',
               popover: {
                 content: 'min-w-60',
               },
@@ -122,13 +122,13 @@ const yearValue = computed<number>({
             :filter="{
               isEnabled: true,
             }"
-            :display-fn="(monthIndex) => getMonthName(monthIndex, locale, 'long')"
+            :display-fn="(monthIndex) => getMonthName(monthIndex - 1, locale, 'long')"
             popover-align="start"
           >
             <SelectItem
               v-for="i in 12"
               :key="i"
-              :value="i - 1"
+              :value="i"
             >
               {{ getMonthName(i - 1, locale, 'long') }}
             </SelectItem>

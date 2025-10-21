@@ -27,7 +27,7 @@ const {
   <div
     v-if="props.activeFilterCount > 0 && !props.isLoading && !props.isEmpty"
     :class="style.hiddenResultsHint({
-      class: mergeClasses(classConfig?.hiddenResultsHint, customClassConfig?.hiddenResultsHint),
+      class: mergeClasses(customClassConfig?.hiddenResultsHint, classConfig?.hiddenResultsHint),
     })"
   >
     <span class="text-xs text-tertiary">
