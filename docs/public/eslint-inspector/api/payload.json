@@ -40,17 +40,7 @@
       "index": 3
     },
     {
-      "ignores": [
-        "**/src/configs/**/*",
-        "**/src/util/**/*",
-        "**/tools/**/*",
-        "**/src/index.ts",
-        "**/utils/src/**/*",
-        "**/utils/tests/**/*"
-      ],
-      "index": 4
-    },
-    {
+      "name": "project-structure",
       "files": [
         "**"
       ],
@@ -84,6 +74,18 @@
                   },
                   {
                     "name": "{PascalCase}.vue|{camelCase}.context.ts|{camelCase}.composable.ts|{camelCase}.type.ts|{camelCase}.props.ts"
+                  }
+                ]
+              },
+              "models_folder": {
+                "name": "*",
+                "folderRecursionLimit": 3,
+                "children": [
+                  {
+                    "ruleId": "models_folder"
+                  },
+                  {
+                    "name": "{camelCase}.(model|builder|transformer|util|util.spec|util.test|enum).ts"
                   }
                 ]
               }
@@ -287,28 +289,7 @@
                     "name": "models",
                     "children": [
                       {
-                        "name": "{kebab-case}",
-                        "children": [
-                          {
-                            "name": "{camelCase}.model.ts|{camelCase}.builder.ts|{camelCase}.transformer.ts|{camelCase}.util.ts|{camelCase}.util.spec.ts|{camelCase}.util.test.ts"
-                          },
-                          {
-                            "name": "create|update|delete|index|detail|{kebab-case}",
-                            "children": [
-                              {
-                                "name": "{camelCase}.model.ts|{camelCase}.builder.ts|{camelCase}.transformer.ts|{camelCase}.util.ts|{camelCase}.util.spec.ts|{camelCase}.util.test.ts"
-                              },
-                              {
-                                "name": "create|update|delete|index|detail|{kebab-case}",
-                                "children": [
-                                  {
-                                    "name": "{camelCase}.model.ts|{camelCase}.builder.ts|{camelCase}.transformer.ts|{camelCase}.util.ts|{camelCase}.util.spec.ts|{camelCase}.util.test.ts"
-                                  }
-                                ]
-                              }
-                            ]
-                          }
-                        ]
+                        "ruleId": "models_folder"
                       }
                     ]
                   },
@@ -497,28 +478,7 @@
                             "name": "models",
                             "children": [
                               {
-                                "name": "{kebab-case}",
-                                "children": [
-                                  {
-                                    "name": "{camelCase}.model.ts|{camelCase}.builder.ts|{camelCase}.transformer.ts|{camelCase}.util.ts|{camelCase}.util.spec.ts|{camelCase}.util.test.ts"
-                                  },
-                                  {
-                                    "name": "create|update|delete|index|detail|{kebab-case}",
-                                    "children": [
-                                      {
-                                        "name": "{camelCase}.model.ts|{camelCase}.builder.ts|{camelCase}.transformer.ts|{camelCase}.util.ts|{camelCase}.util.spec.ts|{camelCase}.util.test.ts"
-                                      },
-                                      {
-                                        "name": "create|update|delete|index|detail|{kebab-case}",
-                                        "children": [
-                                          {
-                                            "name": "{camelCase}.model.ts|{camelCase}.builder.ts|{camelCase}.transformer.ts|{camelCase}.util.ts|{camelCase}.util.spec.ts|{camelCase}.util.test.ts"
-                                          }
-                                        ]
-                                      }
-                                    ]
-                                  }
-                                ]
+                                "ruleId": "models_folder"
                               }
                             ]
                           },
@@ -696,28 +656,7 @@
                                     "name": "models",
                                     "children": [
                                       {
-                                        "name": "{kebab-case}",
-                                        "children": [
-                                          {
-                                            "name": "{camelCase}.model.ts|{camelCase}.builder.ts|{camelCase}.transformer.ts|{camelCase}.util.ts|{camelCase}.util.spec.ts|{camelCase}.util.test.ts"
-                                          },
-                                          {
-                                            "name": "create|update|delete|index|detail|{kebab-case}",
-                                            "children": [
-                                              {
-                                                "name": "{camelCase}.model.ts|{camelCase}.builder.ts|{camelCase}.transformer.ts|{camelCase}.util.ts|{camelCase}.util.spec.ts|{camelCase}.util.test.ts"
-                                              },
-                                              {
-                                                "name": "create|update|delete|index|detail|{kebab-case}",
-                                                "children": [
-                                                  {
-                                                    "name": "{camelCase}.model.ts|{camelCase}.builder.ts|{camelCase}.transformer.ts|{camelCase}.util.ts|{camelCase}.util.spec.ts|{camelCase}.util.test.ts"
-                                                  }
-                                                ]
-                                              }
-                                            ]
-                                          }
-                                        ]
+                                        "ruleId": "models_folder"
                                       }
                                     ]
                                   },
@@ -820,30 +759,56 @@
         ]
       },
       "settings": {},
-      "index": 5
+      "index": 4
     },
     {
       "name": "antfu/gitignore",
       "ignores": [
+        "**/dist",
+        "**/node_modules",
+        "typesense-data",
+        "**/.typesense/",
+        "**/.postgres",
+        "**/_build",
         "**/logs",
         "**/*.log",
+        "**/lerna-debug.log*",
         "**/npm-debug.log*",
         "**/pnpm-debug.log*",
-        "**/_generation",
-        "**/node_modules",
-        "**/dist",
-        "**/*.local",
-        "**/.vitepress/dist",
-        "**/.vitepress/cache",
-        "**/*/.mjs",
-        "**/.turbo",
+        "**/yarn-debug.log*",
+        "**/yarn-error.log*",
+        "coverage",
+        ".nyc_output",
+        ".vscode/*",
+        "!.vscode/extensions.json",
+        "!.vscode/tasks.json",
+        "!.vscode/launch.json",
+        "!.vscode/extensions.json",
+        "**/.c9/",
+        "**/.classpath",
+        "**/.fleet",
         "**/.idea",
+        "**/.project",
+        "**/.settings/",
         "**/.DS_Store",
-        "**/*.tgz",
-        "**/*storybook.log",
-        "**/.turbo"
+        "**/*.launch",
+        "**/*.suo",
+        "**/*.ntvs*",
+        "**/*.njsproj",
+        "**/*.sln",
+        "**/*.sublime-workspace",
+        "**/*.sw?",
+        "**/.env",
+        "**/.env.*",
+        "!**/.env.test",
+        "!**/.env.example",
+        "**/*.pem",
+        "**/createFiles.ts",
+        "**/performance",
+        "**/test.vue",
+        "**/test.ts"
       ],
-      "index": 6
+      "index": 5
     },
     {
       "ignores": [
@@ -883,7 +848,7 @@
         "node_modules"
       ],
       "name": "antfu/ignores",
-      "index": 7
+      "index": 6
     },
     {
       "languageOptions": {
@@ -2137,7 +2102,7 @@
         "reportUnusedDisableDirectives": true
       },
       "name": "antfu/javascript/setup",
-      "index": 8
+      "index": 7
     },
     {
       "name": "antfu/javascript/rules",
@@ -2426,7 +2391,7 @@
           "never"
         ]
       },
-      "index": 9
+      "index": 8
     },
     {
       "name": "antfu/eslint-comments/rules",
@@ -2439,7 +2404,7 @@
         "eslint-comments/no-unlimited-disable": "error",
         "eslint-comments/no-unused-enable": "error"
       },
-      "index": 10
+      "index": 9
     },
     {
       "name": "antfu/node/rules",
@@ -2465,7 +2430,7 @@
         ],
         "node/process-exit-as-throw": "error"
       },
-      "index": 11
+      "index": 10
     },
     {
       "name": "antfu/jsdoc/rules",
@@ -2491,7 +2456,7 @@
         "jsdoc/check-alignment": "warn",
         "jsdoc/multiline-blocks": "warn"
       },
-      "index": 12
+      "index": 11
     },
     {
       "name": "antfu/imports/rules",
@@ -2518,7 +2483,7 @@
           }
         ]
       },
-      "index": 13
+      "index": 12
     },
     {
       "name": "antfu/command/rules",
@@ -2528,7 +2493,7 @@
       "rules": {
         "command/command": "error"
       },
-      "index": 14
+      "index": 13
     },
     {
       "name": "antfu/perfectionist/setup",
@@ -2586,7 +2551,7 @@
           }
         ]
       },
-      "index": 15
+      "index": 14
     },
     {
       "name": "antfu/imports/rules",
@@ -2613,7 +2578,7 @@
           }
         ]
       },
-      "index": 16
+      "index": 15
     },
     {
       "name": "antfu/unicorn/rules",
@@ -2637,7 +2602,7 @@
         "unicorn/prefer-type-error": "error",
         "unicorn/throw-new-error": "error"
       },
-      "index": 17
+      "index": 16
     },
     {
       "files": [
@@ -2652,7 +2617,7 @@
         }
       },
       "name": "antfu/jsx/setup",
-      "index": 18
+      "index": 17
     },
     {
       "name": "antfu/typescript/setup",
@@ -2660,7 +2625,7 @@
         "antfu": {},
         "ts": {}
       },
-      "index": 19
+      "index": 18
     },
     {
       "files": [
@@ -2678,7 +2643,7 @@
         }
       },
       "name": "antfu/typescript/parser",
-      "index": 20
+      "index": 19
     },
     {
       "files": [
@@ -2794,7 +2759,7 @@
           }
         ]
       },
-      "index": 21
+      "index": 20
     },
     {
       "name": "antfu/stylistic/rules",
@@ -3185,7 +3150,7 @@
         "antfu/if-newline": "error",
         "antfu/top-level-function": "error"
       },
-      "index": 22
+      "index": 21
     },
     {
       "rules": {
@@ -3261,14 +3226,14 @@
         "regexp": {}
       },
       "name": "antfu/regexp/rules",
-      "index": 23
+      "index": 22
     },
     {
       "name": "antfu/test/setup",
       "plugins": {
         "test": {}
       },
-      "index": 24
+      "index": 23
     },
     {
       "files": [
@@ -3297,7 +3262,7 @@
         "node/prefer-global/process": "off",
         "ts/explicit-function-return-type": "off"
       },
-      "index": 25
+      "index": 24
     },
     {
       "languageOptions": {
@@ -3322,7 +3287,7 @@
       "plugins": {
         "vue": {}
       },
-      "index": 26
+      "index": 25
     },
     {
       "files": [
@@ -3664,14 +3629,14 @@
         ],
         "vue/template-curly-spacing": "error"
       },
-      "index": 27
+      "index": 26
     },
     {
       "name": "antfu/jsonc/setup",
       "plugins": {
         "jsonc": {}
       },
-      "index": 28
+      "index": 27
     },
     {
       "files": [
@@ -3753,7 +3718,7 @@
         "jsonc/quote-props": "error",
         "jsonc/quotes": "error"
       },
-      "index": 29
+      "index": 28
     },
     {
       "files": [
@@ -3860,7 +3825,7 @@
           }
         ]
       },
-      "index": 30
+      "index": 29
     },
     {
       "files": [
@@ -3980,14 +3945,14 @@
           }
         ]
       },
-      "index": 31
+      "index": 30
     },
     {
       "name": "antfu/yaml/setup",
       "plugins": {
         "yaml": {}
       },
-      "index": 32
+      "index": 31
     },
     {
       "files": [
@@ -4027,7 +3992,7 @@
         ],
         "yaml/spaced-comment": "error"
       },
-      "index": 33
+      "index": 32
     },
     {
       "files": [
@@ -4067,14 +4032,14 @@
           }
         ]
       },
-      "index": 34
+      "index": 33
     },
     {
       "name": "antfu/toml/setup",
       "plugins": {
         "toml": {}
       },
-      "index": 35
+      "index": 34
     },
     {
       "files": [
@@ -4109,14 +4074,14 @@
         "toml/spaced-comment": "error",
         "toml/table-bracket-spacing": "error"
       },
-      "index": 36
+      "index": 35
     },
     {
       "name": "antfu/formatter/setup",
       "plugins": {
         "format": {}
       },
-      "index": 37
+      "index": 36
     },
     {
       "files": [
@@ -4143,7 +4108,7 @@
           }
         ]
       },
-      "index": 38
+      "index": 37
     },
     {
       "files": [
@@ -4169,7 +4134,7 @@
           }
         ]
       },
-      "index": 39
+      "index": 38
     },
     {
       "files": [
@@ -4195,7 +4160,7 @@
           }
         ]
       },
-      "index": 40
+      "index": 39
     },
     {
       "files": [
@@ -4207,7 +4172,7 @@
         "no-console": "off",
         "ts/explicit-function-return-type": "off"
       },
-      "index": 41
+      "index": 40
     },
     {
       "files": [
@@ -4219,7 +4184,7 @@
         "antfu/no-top-level-await": "off",
         "no-console": "off"
       },
-      "index": 42
+      "index": 41
     },
     {
       "files": [
@@ -4231,7 +4196,7 @@
         "antfu/no-import-dist": "off",
         "antfu/no-import-node-modules-by-path": "off"
       },
-      "index": 43
+      "index": 42
     },
     {
       "files": [
@@ -4243,7 +4208,7 @@
         "no-restricted-syntax": "off",
         "unused-imports/no-unused-vars": "off"
       },
-      "index": 44
+      "index": 43
     },
     {
       "files": [
@@ -4254,7 +4219,7 @@
       "rules": {
         "ts/no-require-imports": "off"
       },
-      "index": 45
+      "index": 44
     },
     {
       "files": [
@@ -4267,9 +4232,10 @@
         "no-console": "off",
         "ts/explicit-function-return-type": "off"
       },
-      "index": 46
+      "index": 45
     },
     {
+      "name": "base",
       "rules": {
         "antfu/consistent-list-newline": "off",
         "curly": [
@@ -4399,7 +4365,7 @@
           }
         ]
       },
-      "index": 47
+      "index": 46
     },
     {
       "name": "spacing",
@@ -4460,10 +4426,10 @@
           }
         ]
       },
-      "index": 48
+      "index": 47
     },
     {
-      "name": "perfectionist-config",
+      "name": "perfectionist",
       "rules": {
         "perfectionist/sort-classes": [
           "error",
@@ -4751,7 +4717,7 @@
         ],
         "perfectionist/sort-vue-attributes": "off"
       },
-      "index": 49
+      "index": 48
     },
     {
       "name": "unicorn",
@@ -4800,7 +4766,7 @@
         "unicorn/template-indent": "error",
         "unicorn/throw-new-error": "error"
       },
-      "index": 50
+      "index": 49
     },
     {
       "name": "vuejs-accessibility:setup:base",
@@ -5976,7 +5942,7 @@
           "XSLTProcessor": false
         }
       },
-      "index": 51
+      "index": 50
     },
     {
       "name": "vuejs-accessibility:setup:with-files-rules-and-parser",
@@ -7179,9 +7145,10 @@
         "vuejs-accessibility/role-has-required-aria-props": "error",
         "vuejs-accessibility/tabindex-no-positive": "error"
       },
-      "index": 52
+      "index": 51
     },
     {
+      "name": "a11y/rules",
       "rules": {
         "vuejs-accessibility/alt-text": "error",
         "vuejs-accessibility/anchor-has-content": "error",
@@ -7206,7 +7173,7 @@
         "vuejs-accessibility/role-has-required-aria-props": "error",
         "vuejs-accessibility/tabindex-no-positive": "error"
       },
-      "index": 53
+      "index": 52
     },
     {
       "rules": {
@@ -7251,7 +7218,7 @@
         "newline-destructuring": {},
         "import-newlines": {}
       },
-      "index": 54
+      "index": 53
     },
     {
       "name": "simple-import-sort",
@@ -7262,7 +7229,7 @@
         "simple-import-sort/exports": "error",
         "simple-import-sort/imports": "error"
       },
-      "index": 55
+      "index": 54
     },
     {
       "name": "vitest",
@@ -7321,7 +7288,7 @@
         "test/valid-expect": "error",
         "test/valid-title": "error"
       },
-      "index": 56
+      "index": 55
     },
     {
       "name": "vue-i18n",
@@ -7348,9 +7315,10 @@
         "@intlify/vue-i18n/prefer-linked-key-with-paren": "error",
         "@intlify/vue-i18n/valid-message-syntax": "error"
       },
-      "index": 57
+      "index": 56
     },
     {
+      "name": "tailwindcss",
       "plugins": {
         "better-tailwindcss": {}
       },
@@ -7382,9 +7350,10 @@
           "entryPoint": "src/assets/styles/index.css"
         }
       },
-      "index": 58
+      "index": 57
     },
     {
+      "name": "independent-modules",
       "files": [
         "**/*.ts",
         "**/*.tsx",
@@ -7403,6 +7372,7 @@
               {
                 "name": "Root folder",
                 "allowImportsFrom": [
+                  "tests/**/*",
                   "src/modules/*/index.ts",
                   "src/modules/*/components.ts",
                   "!src/modules/**/*",
@@ -7419,6 +7389,7 @@
                 "name": "Features",
                 "allowImportsFrom": [
                   [
+                    "tests/**/*",
                     "src/**/*",
                     "!src/modules/**/*"
                   ],
@@ -7448,6 +7419,7 @@
                     "virtual:pwa-register/vue"
                   ],
                   [
+                    "tests/**/*",
                     "src/**/*",
                     "!src/modules/**/*"
                   ],
@@ -7470,9 +7442,10 @@
           }
         ]
       },
-      "index": 59
+      "index": 58
     },
     {
+      "name": "path-no-relative-imports",
       "plugins": {
         "path": {}
       },
@@ -7485,9 +7458,10 @@
           }
         ]
       },
-      "index": 60
+      "index": 59
     },
     {
+      "name": "wisemen-explicit-function-return-type",
       "plugins": {
         "eslint-plugin-wisemen": {}
       },
@@ -7501,9 +7475,10 @@
           }
         ]
       },
-      "index": 61
+      "index": 60
     },
     {
+      "name": "vue/object-property-newline",
       "rules": {
         "vue/object-property-newline": [
           "error",
@@ -7512,9 +7487,10 @@
           }
         ]
       },
-      "index": 62
+      "index": 61
     },
     {
+      "name": "import/settings-and-parser",
       "settings": {
         "import/extensions": [
           ".ts"
@@ -7524,9 +7500,10 @@
           "messageSyntaxVersion": "^9.0.0"
         }
       },
-      "index": 63
+      "index": 62
     },
     {
+      "name": "env-and-language-options",
       "languageOptions": {
         "ecmaVersion": "latest",
         "globals": {
@@ -7659,6 +7636,9 @@
           "CSSFontFaceRule": false,
           "CSSFontFeatureValuesRule": false,
           "CSSFontPaletteValuesRule": false,
+          "CSSFunctionDeclarations": false,
+          "CSSFunctionDescriptors": false,
+          "CSSFunctionRule": false,
           "CSSGroupingRule": false,
           "CSSImageValue": false,
           "CSSImportRule": false,
@@ -8395,6 +8375,11 @@
           "SnapEvent": false,
           "SourceBuffer": false,
           "SourceBufferList": false,
+          "SpeechGrammar": false,
+          "SpeechGrammarList": false,
+          "SpeechRecognition": false,
+          "SpeechRecognitionErrorEvent": false,
+          "SpeechRecognitionEvent": false,
           "speechSynthesis": false,
           "SpeechSynthesis": false,
           "SpeechSynthesisErrorEvent": false,
@@ -8689,13 +8674,7 @@
         },
         "sourceType": "module"
       },
-      "index": 64
-    },
-    {
-      "rules": {
-        "ts/explicit-function-return-type": "off"
-      },
-      "index": 65
+      "index": 63
     }
   ],
   "rules": {
@@ -27408,7 +27387,7 @@
     "better-tailwindcss/no-conflicting-classes": {
       "docs": {
         "description": "Disallow classes that produce conflicting styles.",
-        "recommended": false,
+        "recommended": true,
         "url": "https://github.com/schoero/eslint-plugin-better-tailwindcss/blob/main/docs/rules/no-conflicting-classes.md"
       },
       "fixable": "code",
@@ -27465,7 +27444,7 @@
     "better-tailwindcss/no-unregistered-classes": {
       "docs": {
         "description": "Disallow any css classes that are not registered in tailwindcss.",
-        "recommended": false,
+        "recommended": true,
         "url": "https://github.com/schoero/eslint-plugin-better-tailwindcss/blob/main/docs/rules/no-unregistered-classes.md"
       },
       "fixable": "code",
@@ -27518,6 +27497,33 @@
   },
   "files": [
     {
+      "filepath": ".gitignore",
+      "globs": [
+        "**"
+      ],
+      "configs": [
+        4
+      ]
+    },
+    {
+      "filepath": ".nvmrc",
+      "globs": [
+        "**"
+      ],
+      "configs": [
+        4
+      ]
+    },
+    {
+      "filepath": "README.md",
+      "globs": [
+        "**"
+      ],
+      "configs": [
+        4
+      ]
+    },
+    {
       "filepath": "eslint.config.js",
       "globs": [
         "**/*.js",
@@ -27526,9 +27532,9 @@
       ],
       "configs": [
         2,
+        44,
         45,
-        46,
-        59
+        58
       ]
     },
     {
@@ -27539,41 +27545,237 @@
         "**/package.json"
       ],
       "configs": [
-        5,
-        29,
-        30
+        4,
+        28,
+        29
       ]
     },
     {
-      "filepath": "src/creator/ruleCreator.ts",
+      "filepath": "src/configs/a11y.ts",
       "globs": [
         "**",
         "**/*.?([cm])ts",
         "**/*.ts"
       ],
       "configs": [
-        5,
+        4,
+        19,
         20,
-        21,
-        59
+        58
       ]
     },
     {
-      "filepath": "src/rules/explicit-function-return-type.ts",
+      "filepath": "src/configs/base.ts",
       "globs": [
         "**",
         "**/*.?([cm])ts",
         "**/*.ts"
       ],
       "configs": [
-        5,
+        4,
+        19,
         20,
-        21,
-        59
+        58
       ]
     },
     {
-      "filepath": "src/test/example.test.ts",
+      "filepath": "src/configs/compatLint.ts",
+      "globs": [
+        "**",
+        "**/*.?([cm])ts",
+        "**/*.ts"
+      ],
+      "configs": [
+        4,
+        19,
+        20,
+        58
+      ]
+    },
+    {
+      "filepath": "src/configs/i18n.ts",
+      "globs": [
+        "**",
+        "**/*.?([cm])ts",
+        "**/*.ts"
+      ],
+      "configs": [
+        4,
+        19,
+        20,
+        58
+      ]
+    },
+    {
+      "filepath": "src/configs/modules.ts",
+      "globs": [
+        "**",
+        "**/*.?([cm])ts",
+        "**/*.ts"
+      ],
+      "configs": [
+        4,
+        19,
+        20,
+        58
+      ]
+    },
+    {
+      "filepath": "src/configs/path.ts",
+      "globs": [
+        "**",
+        "**/*.?([cm])ts",
+        "**/*.ts"
+      ],
+      "configs": [
+        4,
+        19,
+        20,
+        58
+      ]
+    },
+    {
+      "filepath": "src/configs/perfectionist.ts",
+      "globs": [
+        "**",
+        "**/*.?([cm])ts",
+        "**/*.ts"
+      ],
+      "configs": [
+        4,
+        19,
+        20,
+        58
+      ]
+    },
+    {
+      "filepath": "src/configs/simpleSort.ts",
+      "globs": [
+        "**",
+        "**/*.?([cm])ts",
+        "**/*.ts"
+      ],
+      "configs": [
+        4,
+        19,
+        20,
+        58
+      ]
+    },
+    {
+      "filepath": "src/configs/spacing.ts",
+      "globs": [
+        "**",
+        "**/*.?([cm])ts",
+        "**/*.ts"
+      ],
+      "configs": [
+        4,
+        19,
+        20,
+        58
+      ]
+    },
+    {
+      "filepath": "src/configs/structure.ts",
+      "globs": [
+        "**",
+        "**/*.?([cm])ts",
+        "**/*.ts"
+      ],
+      "configs": [
+        4,
+        19,
+        20,
+        58
+      ]
+    },
+    {
+      "filepath": "src/configs/tailwind.ts",
+      "globs": [
+        "**",
+        "**/*.?([cm])ts",
+        "**/*.ts"
+      ],
+      "configs": [
+        4,
+        19,
+        20,
+        58
+      ]
+    },
+    {
+      "filepath": "src/configs/unicorn.ts",
+      "globs": [
+        "**",
+        "**/*.?([cm])ts",
+        "**/*.ts"
+      ],
+      "configs": [
+        4,
+        19,
+        20,
+        58
+      ]
+    },
+    {
+      "filepath": "src/configs/vitest.ts",
+      "globs": [
+        "**",
+        "**/*.?([cm])ts",
+        "**/*.ts"
+      ],
+      "configs": [
+        4,
+        19,
+        20,
+        58
+      ]
+    },
+    {
+      "filepath": "src/configs/wisemen.ts",
+      "globs": [
+        "**",
+        "**/*.?([cm])ts",
+        "**/*.ts"
+      ],
+      "configs": [
+        4,
+        19,
+        20,
+        58
+      ]
+    },
+    {
+      "filepath": "src/index.ts",
+      "globs": [
+        "**",
+        "**/*.?([cm])ts",
+        "**/*.ts"
+      ],
+      "configs": [
+        4,
+        19,
+        20,
+        58
+      ]
+    },
+    {
+      "filepath": "src/types/lint.type.ts",
+      "globs": [
+        "**",
+        "**/*.?([cm])ts",
+        "**/*.ts"
+      ],
+      "configs": [
+        4,
+        19,
+        20,
+        58
+      ]
+    },
+    {
+      "filepath": "test/perfectionist.test.ts",
       "globs": [
         "**",
         "**/*.?([cm])ts",
@@ -27582,12 +27784,43 @@
         "**/*.ts"
       ],
       "configs": [
-        5,
+        4,
+        19,
         20,
-        21,
-        25,
-        56,
-        59
+        24,
+        55,
+        58
+      ]
+    },
+    {
+      "filepath": "test/spacing.test.ts",
+      "globs": [
+        "**",
+        "**/*.?([cm])ts",
+        "**/*.test.?([cm])[jt]s?(x)",
+        "**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts}",
+        "**/*.ts"
+      ],
+      "configs": [
+        4,
+        19,
+        20,
+        24,
+        55,
+        58
+      ]
+    },
+    {
+      "filepath": "tsconfig.json",
+      "globs": [
+        "**",
+        "**/*.json",
+        "**/[jt]sconfig.json"
+      ],
+      "configs": [
+        4,
+        28,
+        30
       ]
     },
     {
@@ -27599,11 +27832,11 @@
         "**/*.ts"
       ],
       "configs": [
-        5,
+        4,
+        19,
         20,
-        21,
-        46,
-        59
+        45,
+        58
       ]
     },
     {
@@ -27615,16 +27848,16 @@
         "**/*.ts"
       ],
       "configs": [
-        5,
+        4,
+        19,
         20,
-        21,
-        46,
-        59
+        45,
+        58
       ]
     }
   ],
   "meta": {
-    "lastUpdate": 1761049872646,
+    "lastUpdate": 1761050720450,
     "basePath": "",
     "configPath": ""
   }

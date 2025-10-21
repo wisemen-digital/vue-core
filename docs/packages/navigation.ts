@@ -2,6 +2,7 @@ import type { DefaultTheme } from 'vitepress'
 
 import { API_UTILS_NAVIGATION } from './api-utils/apiUtils.navigation'
 import { COMPONENTS_DOC_NAVIGATION } from './components/components.navigation'
+import { ESLINT_NAVIGATION } from './eslint/eslint.navigation'
 import { MAIN_DOC_NAVIGATION } from './main/main.navigation'
 
 export interface PackageDocNavigation {
@@ -18,6 +19,7 @@ export const PACKAGE_DOC_NAVIGATION: PackageDocNavigation[] = [
   MAIN_DOC_NAVIGATION,
   COMPONENTS_DOC_NAVIGATION,
   API_UTILS_NAVIGATION,
+  ESLINT_NAVIGATION,
 ]
 
 function toFullPackagePath({

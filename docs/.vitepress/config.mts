@@ -68,10 +68,7 @@ export default defineConfig({
         name: 'eslint-inspector-spa',
         configureServer(server): void {
           server.middlewares.use((req, res, next) => {
-            // Check if the request is for eslint-inspector base URL only
-            // Match /vue-core/eslint-inspector or /vue-core/eslint-inspector/
             if (req.url === '/vue-core/eslint-inspector' || req.url === '/vue-core/eslint-inspector/') {
-              // Rewrite to serve the index.html from public
               req.url = '/vue-core/eslint-inspector/index.html'
             }
 

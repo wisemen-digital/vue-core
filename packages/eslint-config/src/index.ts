@@ -31,6 +31,7 @@ export default antfu(
   pathConfig,
   wisemenConfig,
   {
+    name: 'vue/object-property-newline',
     rules: {
       'vue/object-property-newline': [
         'error',
@@ -41,6 +42,7 @@ export default antfu(
     },
   },
   {
+    name: 'import/settings-and-parser',
     settings: {
       'import/extensions': [
         '.ts',
@@ -52,7 +54,7 @@ export default antfu(
     },
   },
   {
-
+    name: 'env-and-language-options',
     languageOptions: {
       ecmaVersion: 'latest',
       globals: {
