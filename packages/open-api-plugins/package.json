@@ -35,14 +35,11 @@
     "pub:release": "pnpm publish --access public",
     "cleanup": "rimraf dist/ node_modules/ .turbo/",
     "lint": "pnpm eslint --fix .",
-    "test": "pnpm test",
+    "test": "vitest --run",
     "typecheck": "pnpm tsc"
   },
   "peerDependencies": {
     "@hey-api/openapi-ts": "^0.81.0"
-  },
-  "dependencies": {
-    "json-schema-faker": "0.5.8"
   },
   "devDependencies": {
     "tsdown": "catalog:"

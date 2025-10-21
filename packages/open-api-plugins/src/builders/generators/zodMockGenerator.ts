@@ -1,9 +1,8 @@
-import type { Schema } from 'json-schema-faker'
-
 import type {
   ExtendedSchema,
   JsonValue,
-} from './types'
+  Schema,
+} from '../types'
 
 export interface ZodGeneratorOptions {
   useNullable?: boolean
@@ -111,7 +110,10 @@ class ZodMockGenerator {
     return null
   }
 
-  private generateArrayMock(zodSchemaString: string, overrides: Record<string, unknown>): unknown[] {
+  private generateArrayMock(
+    zodSchemaString: string,
+    overrides: Record<string, unknown>,
+  ): unknown[] {
     const itemTypeMatch = zodSchemaString.match(/z\.array\(([^)]+)\)/)
 
     if (!itemTypeMatch || !itemTypeMatch[1]) {
@@ -152,7 +154,9 @@ class ZodMockGenerator {
   private generateDate(): string {
     const start = new Date(2020, 0, 1)
     const end = new Date()
-    const randomDate = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()))
+    const randomDate = new Date(
+      start.getTime() + Math.random() * (end.getTime() - start.getTime()),
+    )
 
     return randomDate.toISOString().split('T')[0] as string
   }
@@ -160,7 +164,9 @@ class ZodMockGenerator {
   private generateDateTime(): string {
     const start = new Date(2020, 0, 1)
     const end = new Date()
-    const randomDate = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()))
+    const randomDate = new Date(
+      start.getTime() + Math.random() * (end.getTime() - start.getTime()),
+    )
 
     return randomDate.toISOString()
   }
@@ -226,13 +232,10 @@ class ZodMockGenerator {
     const gtMatch = zodSchemaString.match(/\.gt\(([^)]+)\)/)
     const ltMatch = zodSchemaString.match(/\.lt\(([^)]+)\)/)
 
-    let min = 0
+    let min = isInt ? 0 : 0.0
 
     if (minMatch && minMatch[1]) {
       min = Number.parseFloat(minMatch[1])
-    }
-    else if (!isInt) {
-      min = 0.0
     }
     let max = isInt ? 100 : 100.0
 
@@ -252,7 +255,10 @@ class ZodMockGenerator {
     return isInt ? Math.floor(value) : Math.round(value * 100) / 100
   }
 
-  private generateObjectMock(zodSchemaString: string, overrides: Record<string, unknown>): Record<string, unknown> {
+  private generateObjectMock(
+    zodSchemaString: string,
+    overrides: Record<string, unknown>,
+  ): Record<string, unknown> {
     const mock: Record<string, unknown> = {}
 
     const propertiesString = this.extractObjectProperties(zodSchemaString)
@@ -272,14 +278,17 @@ class ZodMockGenerator {
       }
       else {
         const isOptional = propSchema.includes('.optional()')
+        let shouldGenerate = true
 
         if (isOptional && !this.options.alwaysIncludeOptionals) {
-          const probability = this.options.optionalsProbability === false ? 0.8 : this.options.optionalsProbability
+          const probability
+            = this.options.optionalsProbability === false ? 0.8 : this.options.optionalsProbability
 
-          // eslint-disable-next-line max-depth
-          if (Math.random() > (probability ?? 0.8)) {
-            continue
-          }
+          shouldGenerate = Math.random() <= (probability ?? 0.8)
+        }
+
+        if (!shouldGenerate) {
+          continue
         }
 
         const value = this.generateFromSchemaString(propSchema)
@@ -377,11 +386,22 @@ class ZodMockGenerator {
 
   private generateUUID(): string {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-      const r = Math.random() * 16 | 0
-      const v = c === 'x' ? r : (r & 0x3 | 0x8)
+      const r = (Math.random() * 16) | 0
+      const v = c === 'x' ? r : (r & 0x3) | 0x8
 
       return v.toString(16)
     })
+  }
+
+  private handleBrackets(char: string, depth: number): number {
+    if (char === '(' || char === '[' || char === '{') {
+      return depth + 1
+    }
+    else if (char === ')' || char === ']' || char === '}') {
+      return depth - 1
+    }
+
+    return depth
   }
 
   private hasBalancedBrackets(str: string): boolean {
@@ -401,16 +421,10 @@ class ZodMockGenerator {
         stringChar = ''
       }
       else if (!inString) {
-        if (char === '(' || char === '[' || char === '{') {
-          depth++
-        }
-        else if (char === ')' || char === ']' || char === '}') {
-          depth--
+        depth = this.handleBrackets(char, depth)
 
-          // eslint-disable-next-line max-depth
-          if (depth < 0) {
-            return false
-          }
+        if (depth < 0) {
+          return false
         }
       }
     }
@@ -429,7 +443,6 @@ class ZodMockGenerator {
     const value = str.substring(colonIndex + 1).trim()
 
     const keyValid = /^(?:\w+|"[^"]+"|'[^']+')$/.test(key)
-
     const valueValid = value.length > 0 && this.hasBalancedBrackets(value)
 
     return keyValid && valueValid
@@ -449,8 +462,7 @@ class ZodMockGenerator {
         continue
       }
 
-      // eslint-disable-next-line regexp/no-super-linear-backtracking
-      const match = trimmed.match(/^(\w+|"[^"]+"|'[^']+'):\s*(.+)$/s)
+      const match = trimmed.match(/^(\w+|"[^"]+"|'[^']'):([\s\S]*)$/)
 
       if (match && match[1] && match[2]) {
         const key = match[1].replace(/['"]/g, '')
@@ -495,6 +507,18 @@ class ZodMockGenerator {
     return types
   }
 
+  private pushProperty(current: string, result: string[]): boolean {
+    const beforeComma = current.trim()
+
+    if (beforeComma && this.isCompleteProperty(beforeComma)) {
+      result.push(beforeComma)
+
+      return true
+    }
+
+    return false
+  }
+
   private splitObjectProperties(str: string): string[] {
     const result: string[] = []
     let current = ''
@@ -515,6 +539,8 @@ class ZodMockGenerator {
         stringChar = ''
       }
       else if (!inString) {
+        let pushed = false
+
         if (char === '(' || char === '[' || char === '{') {
           depth++
         }
@@ -522,16 +548,14 @@ class ZodMockGenerator {
           depth--
         }
         else if (char === ',' && depth === 0) {
-          const beforeComma = current.trim()
+          pushed = this.pushProperty(current, result)
+        }
 
-          // eslint-disable-next-line max-depth
-          if (beforeComma && this.isCompleteProperty(beforeComma)) {
-            result.push(current.trim())
-            current = ''
-            i++
+        if (pushed) {
+          current = ''
+          i++
 
-            continue
-          }
+          continue
         }
       }
 
@@ -546,7 +570,10 @@ class ZodMockGenerator {
     return result
   }
 
-  generateFromSchemaString(zodSchemaString: string, overrides: Record<string, unknown> = {}): unknown {
+  generateFromSchemaString(
+    zodSchemaString: string,
+      overrides: Record<string, unknown> = {},
+  ): unknown {
     if (zodSchemaString.includes('z.object(')) {
       return this.generateObjectMock(zodSchemaString, overrides)
     }
@@ -624,17 +651,14 @@ function generateZodSchemaInternal(schema: ExtendedSchema, options: ZodGenerator
     }
   }
 
-  // Handle single types
   if (typeof schema.type === 'string') {
     return generateZodForSingleType(schema.type, schema, options)
   }
 
-  // Handle object with properties but no explicit type
   if (schema.properties && !schema.type) {
     return generateZodObject(schema, options)
   }
 
-  // Handle array with items but no explicit type
   if (schema.items && !schema.type) {
     return generateZodArray(schema, options)
   }
@@ -642,7 +666,11 @@ function generateZodSchemaInternal(schema: ExtendedSchema, options: ZodGenerator
   return 'z.unknown()'
 }
 
-function generateZodForSingleType(type: string, schema: ExtendedSchema, options: ZodGeneratorOptions): string {
+function generateZodForSingleType(
+  type: string,
+  schema: ExtendedSchema,
+  options: ZodGeneratorOptions,
+): string {
   switch (type) {
     case 'string':
       return generateZodString(schema)
@@ -753,7 +781,8 @@ function generateZodArray(schema: ExtendedSchema, options: ZodGeneratorOptions):
 
   if (schema.items) {
     if (Array.isArray(schema.items)) {
-      const tupleTypes = schema.items.map((item) => generateZodSchemaInternal(item as ExtendedSchema, options))
+      const tupleTypes = schema.items.map((item) =>
+        generateZodSchemaInternal(item as ExtendedSchema, options))
 
       return `z.tuple([${tupleTypes.join(', ')}])`
     }
@@ -802,7 +831,10 @@ function generateZodObject(schema: ExtendedSchema, options: ZodGeneratorOptions)
     zodType += '.strict()'
   }
   else if (schema.additionalProperties && typeof schema.additionalProperties === 'object') {
-    const additionalType = generateZodSchemaInternal(schema.additionalProperties as ExtendedSchema, options)
+    const additionalType = generateZodSchemaInternal(
+      schema.additionalProperties as ExtendedSchema,
+      options,
+    )
 
     zodType += `.catchall(${additionalType})`
   }

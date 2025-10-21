@@ -1,7 +1,7 @@
 import { definePluginConfig } from '@hey-api/openapi-ts'
 
-import { handler } from './plugin'
-import type { BuildersPlugin } from './types'
+import type { BuildersPlugin } from '../types'
+import { handler } from './handler'
 
 export const defaultConfig: BuildersPlugin['Config'] = {
   name: 'builders',
@@ -14,8 +14,6 @@ export const defaultConfig: BuildersPlugin['Config'] = {
   output: 'builders',
 }
 
-export const defineConfig = definePluginConfig(
-  defaultConfig,
-)
+export const defineConfig = definePluginConfig(defaultConfig)
 
 export default defineConfig
