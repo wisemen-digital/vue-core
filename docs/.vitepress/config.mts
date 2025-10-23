@@ -56,5 +56,26 @@ export default defineConfig({
         '@': resolve(__dirname, '../../components/src'),
       },
     },
+    server: {
+      fs: {
+        allow: [
+          resolve(__dirname, '../..'),
+        ],
+      },
+    },
+    plugins: [
+      {
+        name: 'eslint-inspector-spa',
+        configureServer(server): void {
+          server.middlewares.use((req, res, next) => {
+            if (req.url === '/vue-core/eslint-inspector' || req.url === '/vue-core/eslint-inspector/') {
+              req.url = '/vue-core/eslint-inspector/index.html'
+            }
+
+            next()
+          })
+        },
+      },
+    ],
   },
 })

@@ -5,6 +5,7 @@ import type { LintConfig } from '@/types/lint.type.ts'
 export const a11yConfig: LintConfig = [
   ...pluginVueA11y.configs['flat/recommended'],
   {
+    name: 'a11y/rules',
     rules: {
       'vuejs-accessibility/alt-text': 'error',
       'vuejs-accessibility/anchor-has-content': 'error',

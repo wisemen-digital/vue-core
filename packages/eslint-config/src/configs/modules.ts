@@ -87,6 +87,7 @@ export const independentModulesConfig = createIndependentModules({
 })
 
 export const modulesConfig: LintConfig = {
+  name: 'independent-modules',
   files: [
     '**/*.ts',
     '**/*.tsx',

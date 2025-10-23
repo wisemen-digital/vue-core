@@ -467,6 +467,7 @@ export const folderStructureConfig = createFolderStructure({
 })
 
 export const projectStructureConfig: LintConfig = {
+  name: 'project-structure',
   files: [
     '**',
   ],
