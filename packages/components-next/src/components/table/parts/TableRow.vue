@@ -30,13 +30,21 @@ const {
       v-if="props.action?.type === 'link'"
       :to="props.action.to"
       class="absolute inset-0 z-2 cursor-pointer outline-none"
-    />
+    >
+      <span class="sr-only">
+        {{ props.action.label }}
+      </span>
+    </RouterLink>
 
     <button
       v-if="props.action?.type === 'button'"
       class="absolute inset-0 z-2 cursor-pointer outline-none"
       @click="props.action.onClick()"
-    />
+    >
+      <span class="sr-only">
+        {{ props.action.label }}
+      </span>
+    </button>
 
     <slot />
   </Subgrid>
