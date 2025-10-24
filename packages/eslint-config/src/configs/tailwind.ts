@@ -4,6 +4,7 @@ import type { LintConfig } from '@/types/lint.type.ts'
 
 export const tailwindConfig: LintConfig = [
   {
+    name: 'tailwindcss',
     plugins: {
       'better-tailwindcss': eslintPluginBetterTailwindcss,
     },
