@@ -1,5 +1,19 @@
 # @wisemen/vue-core-components
 
+## 2.0.0
+
+### ✨ Improvements
+
+- **DropdownMenu, Popover, Tooltip**: Refined transitions for smoother and more consistent animations across components.
+
+### 🐞 Bug Fixes
+
+- **Popover**: Ensured popovers respect the available viewport height by applying a dynamic `max-height`.  
+- **Select**: Fixed an accessibility issue where the `id` was applied to the wrong element, preventing the Select from being properly accessible.  
+- **Table**: Resolved an accessibility issue where row actions did not have a readable label for screen readers.  
+- **Dialog**: Fixed an issue where opening a new dialog from within another caused the first dialog to unmount unexpectedly.  
+- **NumberField**: Now inherits the locale from the user's browser (`navigator.locale`) instead of the configured locale, ensuring a more intuitive number format by default.
+
 ## 2.0.0-beta.2
 
 ### ✨ Improvements
@@ -8,10 +22,10 @@
 
 ### 🐞 Patch Fixes
 
-- **Toast**: Added `closeButton` to `classConfig` for easier styling customization.  
-- **AddressAutocomplete**: Propagated slots correctly to support advanced slot composition.  
-- **Props export**: Fixed issue where props with complex types required `@vue-ignore` when extending components — props are now exported in a more type-safe way.  
-- **DatePicker / DateRangePicker**: Fixed incorrect month display labels.  
+- **Toast**: Added `closeButton` to `classConfig` for easier styling customization.
+- **AddressAutocomplete**: Propagated slots correctly to support advanced slot composition.
+- **Props export**: Fixed issue where props with complex types required `@vue-ignore` when extending components — props are now exported in a more type-safe way.
+- **DatePicker / DateRangePicker**: Fixed incorrect month display labels.
 - **ClassConfig**: Resolved multiple internal issues with the `classConfig` prop to ensure reliable class merging and customization.
 
 ## 2.0.0-beta.1

@@ -1,5 +1,11 @@
 ## [1.7.2] (2025-08-04)
 
+## 1.7.6
+
+### Patch Changes
+
+- 02c19e6: Added names for eslint configs
+
 ## 1.7.5
 
 ### Patch Changes
