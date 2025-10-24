@@ -2,7 +2,7 @@
 
 A component that allows users to input text.
 
-This component is built on top of the [Form Field](/packages/components-next/components/form-field/form-field.html) component.
+This component is built on top of the [Form Field](/packages/components/components/form-field/form-field.html) component.
 
 <ComponentPreview name="text-field/examples/main" />
 

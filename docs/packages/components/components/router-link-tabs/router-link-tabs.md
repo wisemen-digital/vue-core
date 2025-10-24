@@ -2,7 +2,7 @@
 
 A set of layered sections of content, known as tab panels, that are displayed one at a time, with navigation linked to the Vue Router. Each tab corresponds to a specific route.
 
-This component is build on top of the [Tabs](/packages/components-next/components/tabs/tabs.html) component.
+This component is build on top of the [Tabs](/packages/components/components/tabs/tabs.html) component.
 
 <ComponentPreview name="router-link-tabs/examples/main" />
 

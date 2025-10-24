@@ -2,7 +2,7 @@
 
 An input component for entering or selecting a date range.
 
-This component is build on top of [Form Field](/packages/components-next/components/form-field/form-field.html) and uses the [Date Picker](/packages/components-next/components/date-range-picker/date-range-picker.html) component.
+This component is build on top of [Form Field](/packages/components/components/form-field/form-field.html) and uses the [Date Picker](/packages/components/components/date-range-picker/date-range-picker.html) component.
 
 <ComponentPreview name="date-range-field/examples/main" />
 
