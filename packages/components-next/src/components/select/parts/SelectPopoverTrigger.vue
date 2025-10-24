@@ -7,6 +7,7 @@ import InteractableElement from '@/components/shared/InteractableElement.vue'
 
 const {
   id,
+  hasInlineSearchInput,
   isDisabled,
   isDropdownVisible,
   filter,
@@ -30,6 +31,7 @@ function openDropdown(): void {
   <InteractableElement :is-disabled="isDisabled">
     <PopoverTrigger>
       <button
+        :id="hasInlineSearchInput ? undefined : id ?? undefined"
         :tabindex="isTriggerFocusable ? 0 : -1"
         :aria-expanded="isDropdownVisible"
         :aria-controls="`${id}-content`"
