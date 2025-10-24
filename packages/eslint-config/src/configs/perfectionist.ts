@@ -77,7 +77,7 @@ const customGrouping = {
 }
 
 export const perfectionistConfig: LintConfig = {
-  name: 'perfectionist-config',
+  name: 'perfectionist',
   rules: {
     'perfectionist/sort-classes': [
       'error',

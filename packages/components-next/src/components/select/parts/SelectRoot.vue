@@ -322,7 +322,7 @@ useProvideSelectContext({
 <template>
   <TestIdProvider :test-id="props.testId">
     <FormControl
-      :id="props.id"
+      :id="null"
       ref="rootRef"
       :is-disabled="props.isDisabled"
       :is-invalid="props.errorMessage !== null"

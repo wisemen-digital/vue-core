@@ -12,6 +12,6 @@ features:
     link: /packages/components/getting-started/installation
   - title: API Utils
     details: A set of utility functions and composables to streamline API interactions in Vue applications.
-    link: /packages/api-utils/pages/index
+    link: /packages/api-utils/pages/getting-started/installation
 
 ---

@@ -9,6 +9,7 @@ import { mergeClasses } from '@/class-variant/customClassVariants'
 import { useInjectSelectContext } from '@/components/select/select.context'
 
 const {
+  id,
   hasInteractedWithInlineSearchInput,
   isDisabled,
   classConfig,
@@ -39,6 +40,7 @@ onMounted(() => {
 
 <template>
   <RekaListboxFilter
+    :id="id"
     ref="listboxFilterRef"
     v-model="searchTerm"
     :disabled="isDisabled"

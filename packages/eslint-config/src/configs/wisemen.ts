@@ -3,6 +3,7 @@ import eslintPluginWisemen from '@wisemen/eslint-plugin-vue'
 import type { LintConfig } from '@/types/lint.type.ts'
 
 export const wisemenConfig: LintConfig = {
+  name: 'wisemen-explicit-function-return-type',
   plugins: {
     'eslint-plugin-wisemen': eslintPluginWisemen,
   },
