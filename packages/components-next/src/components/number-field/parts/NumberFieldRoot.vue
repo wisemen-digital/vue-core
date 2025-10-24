@@ -7,7 +7,6 @@ import {
   getCustomComponentVariant,
   mergeClasses,
 } from '@/class-variant/customClassVariants'
-import { useInjectConfigContext } from '@/components/config-provider/config.context'
 import { useProvideNumberFieldContext } from '@/components/number-field/numberField.context'
 import type { NumberFieldEmits } from '@/components/number-field/numberField.emits'
 import type { NumberFieldProps } from '@/components/number-field/numberField.props'
@@ -46,6 +45,8 @@ const modelValue = defineModel<number | null>({
   required: true,
 })
 
+const locale = navigator.language
+
 const delegatedModel = computed<number | undefined>({
   get: () => modelValue.value ?? undefined,
   set: (value: number | undefined) => {
@@ -59,9 +60,6 @@ const delegatedModel = computed<number | undefined>({
   },
 })
 
-const {
-  locale,
-} = useInjectConfigContext()
 const {
   theme,
 } = injectThemeProviderContext()
