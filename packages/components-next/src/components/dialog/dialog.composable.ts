@@ -68,7 +68,8 @@ export function useDialog<
     dialog.isOpen = false
 
     const timeoutId = setTimeout(() => {
-      removeDialogFromContainer(dialogId)
+      // TODO: check if this is needed
+      // removeDialogFromContainer(dialogId)
       timeoutMap.delete(dialogId)
     }, 300)
 
