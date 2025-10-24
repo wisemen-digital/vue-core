@@ -14,6 +14,7 @@ const side = computed<PopperSide>(() => attrs['data-side'] as PopperSide)
 const motionRef = ref<InstanceType<any> | null>(null)
 
 const TRANSLATE_AMOUNT = 4
+const SCALE_AMOUNT = 0.9
 
 function transform(side: PopperSide): {
   transform: string
@@ -21,19 +22,19 @@ function transform(side: PopperSide): {
   switch (side) {
     case 'top':
       return {
-        transform: `translateY(${TRANSLATE_AMOUNT}px) scale(0.9)`,
+        transform: `translateY(${TRANSLATE_AMOUNT}px) scale(${SCALE_AMOUNT})`,
       }
     case 'bottom':
       return {
-        transform: `translateY(-${TRANSLATE_AMOUNT}px) scale(0.9)`,
+        transform: `translateY(-${TRANSLATE_AMOUNT}px) scale(${SCALE_AMOUNT})`,
       }
     case 'left':
       return {
-        transform: `translateX(${TRANSLATE_AMOUNT}px) scale(0.9)`,
+        transform: `translateX(${TRANSLATE_AMOUNT}px) scale(${SCALE_AMOUNT})`,
       }
     case 'right':
       return {
-        transform: `translateX(-${TRANSLATE_AMOUNT}px) scale(0.9)`,
+        transform: `translateX(-${TRANSLATE_AMOUNT}px) scale(${SCALE_AMOUNT})`,
       }
   }
 }
