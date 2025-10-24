@@ -10,8 +10,9 @@
   ],
   "scripts": {
     "build": "rimraf packages/vue-core/dist && pnpm run -r build",
+    "docs:gen-eslint": "cd ./packages/eslint-config &&  npx @eslint/config-inspector build --base /vue-core/eslint-inspector --outDir ../../docs/public/eslint-inspector --config ./src/index.ts",
     "docs:dev": "pnpm run -r docs:dev",
-    "docs:build": "pnpm run -r build && pnpm run -r docs:build",
+    "docs:build": "pnpm docs:gen-eslint && pnpm run -r build && pnpm run -r docs:build",
     "pub:release": "cd packages/components && pnpm pub:release --no-git-checks",
     "pub:release-query": "cd packages/query && pnpm pub:release --no-git-checks",
     "lint": "turbo run lint",

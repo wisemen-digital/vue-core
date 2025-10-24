@@ -5,6 +5,7 @@ import type {
 
 export const baseConfig: OptionsConfig & Omit<TypedFlatConfigItem, 'files'> = {
   isInEditor: false,
+  name: 'base',
   formatters: {
     /**
      * Format CSS, LESS, SCSS files, also the `<style>` blocks in Vue
