@@ -13,7 +13,8 @@ const side = computed<PopperSide>(() => attrs['data-side'] as PopperSide)
 
 const motionRef = ref<InstanceType<any> | null>(null)
 
-const TRANSLATE_AMOUNT = 12
+const TRANSLATE_AMOUNT = 4
+const SCALE_AMOUNT = 0.9
 
 function transform(side: PopperSide): {
   transform: string
@@ -21,19 +22,19 @@ function transform(side: PopperSide): {
   switch (side) {
     case 'top':
       return {
-        transform: `translateY(${TRANSLATE_AMOUNT}px) scale(0.5)`,
+        transform: `translateY(${TRANSLATE_AMOUNT}px) scale(${SCALE_AMOUNT})`,
       }
     case 'bottom':
       return {
-        transform: `translateY(-${TRANSLATE_AMOUNT}px) scale(0.5)`,
+        transform: `translateY(-${TRANSLATE_AMOUNT}px) scale(${SCALE_AMOUNT})`,
       }
     case 'left':
       return {
-        transform: `translateX(${TRANSLATE_AMOUNT}px) scale(0.5)`,
+        transform: `translateX(${TRANSLATE_AMOUNT}px) scale(${SCALE_AMOUNT})`,
       }
     case 'right':
       return {
-        transform: `translateX(-${TRANSLATE_AMOUNT}px) scale(0.5)`,
+        transform: `translateX(-${TRANSLATE_AMOUNT}px) scale(${SCALE_AMOUNT})`,
       }
   }
 }
@@ -55,9 +56,9 @@ function transform(side: PopperSide): {
       ...transform(side),
     }"
     :transition="{
-      duration: 0.3,
+      duration: 0.2,
       type: 'spring',
-      bounce: 0.15,
+      bounce: 0,
     }"
     class="origin-(--reka-dropdown-menu-content-transform-origin)"
   >
