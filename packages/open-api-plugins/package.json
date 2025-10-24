@@ -1,7 +1,7 @@
 {
   "name": "@wisemen/open-api-plugins",
   "type": "module",
-  "version": "0.0.3-beta.0",
+  "version": "1.0.0",
   "description": "OpenAPI plugins for code generation",
   "license": "MIT",
   "homepage": "https://github.com/wisemen-digital/vue-core.git",
