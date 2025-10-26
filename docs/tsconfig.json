@@ -47,7 +47,10 @@
     "packages/**/*.ts",
     "docs/**/*.ts",
     "docs/**/*.vue",
-    "docs/**/*.md"
+    "docs/**/*.md",
+    "playbook/**/*.ts",
+    "playbook/**/*.vue",
+    "playbook/**/*.md"
   ],
   "vueCompilerOptions": {
     "vitePressExtensions": [".md"]
