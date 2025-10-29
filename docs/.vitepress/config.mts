@@ -5,8 +5,10 @@ import { defineConfig } from 'vitepress'
 import {
   getPackagesNavigation,
   getPackagesSidebar,
+  sidebarWithIconToDefaultThemeSidebarItem,
 } from '../packages/navigation'
 import { PLAYBOOK_NAVIGATION } from '../playbook/playbook.navigation'
+import { TEMPLATE_NAVIGATION } from '../template/template.navigation'
 import ComponentPreviewPlugin from './plugins/ComponentPreview'
 import ComponentPreviewV1Plugin from './plugins/ComponentPreviewV1'
 
@@ -18,11 +20,13 @@ if (typeof __VUE_PROD_DEVTOOLS__ === 'undefined') {
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+
   base: '/vue-core/',
   title: 'Vue Core',
   rewrites: {
     home: 'index',
   },
+
   description: 'The central repository of Wisemen for all internal Vue packages.',
   themeConfig: {
 
@@ -30,6 +34,10 @@ export default defineConfig({
       {
         text: 'Playbook',
         link: `${PLAYBOOK_NAVIGATION.path}/${PLAYBOOK_NAVIGATION.link}`,
+      },
+      {
+        text: 'Template',
+        link: `${TEMPLATE_NAVIGATION.path}/${TEMPLATE_NAVIGATION.link}`,
       },
       {
         text: 'Packages',
@@ -41,7 +49,8 @@ export default defineConfig({
 
     sidebar: {
       ...getPackagesSidebar(),
-      '/playbook/': PLAYBOOK_NAVIGATION.sidebar,
+      '/playbook/': PLAYBOOK_NAVIGATION.sidebar.map(sidebarWithIconToDefaultThemeSidebarItem),
+      '/template/': TEMPLATE_NAVIGATION.sidebar.map(sidebarWithIconToDefaultThemeSidebarItem),
     },
     socialLinks: [
       {

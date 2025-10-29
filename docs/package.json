@@ -6,6 +6,9 @@
   "author": "",
   "license": "ISC",
   "keywords": [],
+  "import": {
+    "#docs/*": "./*"
+  },
   "main": "index.js",
   "scripts": {
     "docs:dev": "vitepress dev",

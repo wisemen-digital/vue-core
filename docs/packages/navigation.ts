@@ -4,10 +4,15 @@ import { API_UTILS_NAVIGATION } from './api-utils/apiUtils.navigation'
 import { COMPONENTS_DOC_NAVIGATION } from './components/components.navigation'
 import { ESLINT_NAVIGATION } from './eslint/eslint.navigation'
 
+type SidebarWithIcon = DefaultTheme.SidebarItem & {
+  icon?: string
+  items?: SidebarWithIcon[]
+}
+
 export interface PackageDocNavigation {
   title: string
   link: string
-  sidebar: DefaultTheme.SidebarItem[]
+  sidebar: SidebarWithIcon[]
   path: string
 }
 
@@ -28,9 +33,32 @@ function toFullPackagePath({
   return `/packages/${path}/${link}`
 }
 
+function getIconWithText(item: SidebarWithIcon): string {
+  if (item.text == null) {
+    return ''
+  }
+  if (item.icon == null) {
+    return item.text
+  }
+
+  return `<span class="nav-icon-with-text" style="display: flex; align-items: center; gap: 0.5em;">
+    <span class="nav-icon">${item.icon}</span>
+    <span class="nav-text">${item.text}</span>
+  </span>`
+}
+
+export function sidebarWithIconToDefaultThemeSidebarItem(item: SidebarWithIcon): DefaultTheme.SidebarItem {
+  return {
+    ...item,
+    text: getIconWithText(item),
+    items: item.items?.map((subItem) => sidebarWithIconToDefaultThemeSidebarItem(subItem)),
+  }
+}
+
 function sidebarItemToFullPath(item: DefaultTheme.SidebarItem, packagePath: string): DefaultTheme.SidebarItem {
   return {
     ...item,
+    text: getIconWithText(item),
     link: item.link
       ? toFullPackagePath({
           path: packagePath,

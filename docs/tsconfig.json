@@ -50,7 +50,11 @@
     "docs/**/*.md",
     "playbook/**/*.ts",
     "playbook/**/*.vue",
-    "playbook/**/*.md"
+    "playbook/**/*.md",
+    "template/**/*.ts",
+    "template/**/*.vue",
+    "template/**/*.md",
+    "icons/**/*.ts"
   ],
   "vueCompilerOptions": {
     "vitePressExtensions": [".md"]
