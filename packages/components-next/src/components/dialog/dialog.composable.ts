@@ -46,7 +46,7 @@ export function useDialog<
       timeoutMap.delete(dialogId)
     }
 
-    const dialog = createDialog(attrs)
+    const dialog = await createDialog(attrs)
 
     if (dialog === null) {
       return
@@ -69,7 +69,6 @@ export function useDialog<
 
     const timeoutId = setTimeout(() => {
       // TODO: check if this is needed
-      // removeDialogFromContainer(dialogId)
       timeoutMap.delete(dialogId)
     }, 300)
 
@@ -86,7 +85,7 @@ export function useDialog<
     return dialog.isOpen
   })
 
-  function createDialog(attrs?: GetComponentProps<TComponent>): Ref<Dialog> | null {
+  async function createDialog(attrs?: GetComponentProps<TComponent>): Promise<Ref<Dialog> | null> {
     const dialogWithSameId = dialogs.value.find((dialog) => dialog.id === dialogId) ?? null
 
     if (dialogWithSameId !== null && isDialogOpen.value) {
@@ -97,6 +96,8 @@ export function useDialog<
     else if (dialogWithSameId !== null) {
       removeDialogFromContainer(dialogWithSameId.id)
     }
+
+    await nextTick()
 
     const dialogComponent = computed<Component>(() => {
       return h(
