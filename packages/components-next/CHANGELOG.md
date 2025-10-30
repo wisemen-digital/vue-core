@@ -1,5 +1,11 @@
 # @wisemen/vue-core-components
 
+## 2.0.1
+
+### Patch Changes
+
+- **972d805**: `Dialog`: fixed an issue where the component state would persist after reopening a dialog.
+
 ## 2.0.0
 
 ### ✨ Improvements
@@ -8,10 +14,10 @@
 
 ### 🐞 Bug Fixes
 
-- **Popover**: Ensured popovers respect the available viewport height by applying a dynamic `max-height`.  
-- **Select**: Fixed an accessibility issue where the `id` was applied to the wrong element, preventing the Select from being properly accessible.  
-- **Table**: Resolved an accessibility issue where row actions did not have a readable label for screen readers.  
-- **Dialog**: Fixed an issue where opening a new dialog from within another caused the first dialog to unmount unexpectedly.  
+- **Popover**: Ensured popovers respect the available viewport height by applying a dynamic `max-height`.
+- **Select**: Fixed an accessibility issue where the `id` was applied to the wrong element, preventing the Select from being properly accessible.
+- **Table**: Resolved an accessibility issue where row actions did not have a readable label for screen readers.
+- **Dialog**: Fixed an issue where opening a new dialog from within another caused the first dialog to unmount unexpectedly.
 - **NumberField**: Now inherits the locale from the user's browser (`navigator.locale`) instead of the configured locale, ensuring a more intuitive number format by default.
 
 ## 2.0.0-beta.2
