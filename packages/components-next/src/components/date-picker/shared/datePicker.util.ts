@@ -38,3 +38,50 @@ export function getMonthName(month: number, locale: string, format: 'long' | 'sh
 export function getDaysInMonth(month: number, year: number): number {
   return new Date(year, month, 0).getDate()
 }
+
+export function getFirstDayOfWeek(locale: string): 0 | 1 {
+  // List of locales where the first day of the week is Sunday
+  const sundayFirstLocales = [
+    'en-US',
+    'en-CA',
+    'en-PH',
+    'en-MY',
+    'en-AU',
+    'en-NZ',
+    'en-IN',
+    'ja-JP',
+    'zh-CN',
+  ] as const
+
+  // Normalize locale (remove region, lowercase)
+  const normalized = locale.split('-')[0]
+
+  // Check if locale is in the Sunday-first list
+  if (sundayFirstLocales.some((l) => l.toLowerCase().startsWith(normalized!.toLowerCase()))) {
+    return 0 // Sunday
+  }
+
+  return 1 // Default to Monday
+}
+
+export function getWeekdayLabels(calendarLocale: string, labelLocale: string, format: 'long' | 'short' = 'short'): string[] {
+  const firstDay = getFirstDayOfWeek(calendarLocale)
+
+  // Create a base Sunday (0 Jan 2023) and map indices
+  const baseDate = new Date(Date.UTC(2023, 0, 1)) // Sunday
+  const weekdays: string[] = []
+
+  const dtf = new Intl.DateTimeFormat(labelLocale, {
+    weekday: format,
+  })
+
+  for (let i = 0; i < 7; i++) {
+    const dayIndex = (firstDay + i) % 7
+    const date = new Date(baseDate)
+
+    date.setUTCDate(baseDate.getUTCDate() + dayIndex)
+    weekdays.push(dtf.format(date))
+  }
+
+  return weekdays
+}

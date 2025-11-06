@@ -15,7 +15,6 @@ interface DatePickerContext extends PropsToComputed<DatePickerProps> {
   modelValue: Ref<Temporal.PlainDate | null>
   placeholderValue: Ref<Temporal.PlainDate>
   style: ComputedRef<CreateDatePickerStyle>
-
 }
 
 export const [

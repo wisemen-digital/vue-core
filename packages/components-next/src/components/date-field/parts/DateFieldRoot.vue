@@ -12,7 +12,6 @@ import {
   getCustomComponentVariant,
   mergeClasses,
 } from '@/class-variant/customClassVariants'
-import { useInjectConfigContext } from '@/components/config-provider/config.context'
 import { useProvideDateFieldContext } from '@/components/date-field/dateField.context'
 import type { DateFieldEmits } from '@/components/date-field/dateField.emits'
 import type { DateFieldProps } from '@/components/date-field/dateField.props'
@@ -88,9 +87,8 @@ const delegatedPlaceholderValue = computed<Temporal.PlainDate>({
   },
 })
 
-const {
-  locale,
-} = useInjectConfigContext()
+const locale = navigator.language
+
 const {
   theme,
 } = injectThemeProviderContext()

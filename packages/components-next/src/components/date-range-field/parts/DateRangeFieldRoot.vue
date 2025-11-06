@@ -12,7 +12,6 @@ import {
   getCustomComponentVariant,
   mergeClasses,
 } from '@/class-variant/customClassVariants'
-import { useInjectConfigContext } from '@/components/config-provider/config.context'
 import {
   dateValueToPlainDate,
   plainDateToDateValue,
@@ -95,9 +94,9 @@ const delegatedPlaceholderValue = computed<Temporal.PlainDate>({
   },
 })
 
-const {
-  locale,
-} = useInjectConfigContext()
+// TODO: day of week labels are localized incorrectly now!
+const locale = navigator.language
+
 const {
   theme,
 } = injectThemeProviderContext()
