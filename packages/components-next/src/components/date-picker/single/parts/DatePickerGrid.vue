@@ -7,11 +7,16 @@ import {
   CalendarGridHead as RekaCalendarGridHead,
   CalendarGridRow as RekaCalendarGridRow,
   CalendarHeadCell as RekaCalendarHeadCell,
+  injectCalendarRootContext,
 } from 'reka-ui'
 
 import { mergeClasses } from '@/class-variant/customClassVariants'
+import { useInjectConfigContext } from '@/components/config-provider/config.context'
 import type { Grid } from '@/components/date-picker/shared/datePicker.type'
-import { dateValueToDate } from '@/components/date-picker/shared/datePicker.util'
+import {
+  dateValueToDate,
+  getWeekdayLabels,
+} from '@/components/date-picker/shared/datePicker.util'
 import { useInjectDatePickerContext } from '@/components/date-picker/single/datePicker.context'
 import DatePickerDate from '@/components/date-picker/single/parts/DatePickerDate.vue'
 import DatePickerDateProvider from '@/components/date-picker/single/parts/DatePickerDateProvider.vue'
@@ -26,6 +31,14 @@ const {
   customClassConfig,
   style,
 } = useInjectDatePickerContext()
+
+const {
+  locale,
+} = useInjectConfigContext()
+
+const {
+  locale: calendarLocale,
+} = injectCalendarRootContext()
 </script>
 
 <template>
@@ -57,13 +70,13 @@ const {
             })"
           >
             <RekaCalendarHeadCell
-              v-for="day in props.weekDays"
+              v-for="(day, dayIndex) in props.weekDays"
               :key="day"
               :class="style.weekDayLabel({
                 class: mergeClasses(customClassConfig.weekDayLabel, classConfig?.weekDayLabel),
               })"
             >
-              {{ day }}
+              {{ getWeekdayLabels(calendarLocale, locale)[dayIndex] }}
             </RekaCalendarHeadCell>
           </RekaCalendarGridRow>
         </RekaCalendarGridHead>

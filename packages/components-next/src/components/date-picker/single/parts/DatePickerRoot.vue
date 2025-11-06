@@ -6,7 +6,6 @@ import { computed } from 'vue'
 
 import type { ResolvedClassConfig } from '@/class-variant/classVariant.type'
 import { getCustomComponentVariant } from '@/class-variant/customClassVariants'
-import { useInjectConfigContext } from '@/components/config-provider/config.context'
 import type { Grid } from '@/components/date-picker/shared/datePicker.type'
 import {
   dateValueToPlainDate,
@@ -43,9 +42,7 @@ const placeholderValue = defineModel<Temporal.PlainDate>('placeholderValue', {
   required: false,
 })
 
-const {
-  locale,
-} = useInjectConfigContext()
+const locale = navigator.language
 
 const delegatedModel = computed<DateValue | undefined>({
   get: () => {

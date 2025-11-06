@@ -6,7 +6,6 @@ import { computed } from 'vue'
 
 import type { ResolvedClassConfig } from '@/class-variant/classVariant.type'
 import { getCustomComponentVariant } from '@/class-variant/customClassVariants'
-import { useInjectConfigContext } from '@/components/config-provider/config.context'
 import { useProvideDateRangePickerContext } from '@/components/date-picker/range/dateRangePicker.context'
 import type { DateRangePickerProps } from '@/components/date-picker/range/dateRangePicker.props'
 import type { CreateDateRangePickerStyle } from '@/components/date-picker/range/dateRangePicker.style'
@@ -82,9 +81,8 @@ const delegatedPlaceholderValue = computed<DateValue>({
 const {
   theme,
 } = injectThemeProviderContext()
-const {
-  locale,
-} = useInjectConfigContext()
+
+const locale = navigator.language
 
 const dateRangePickerStyle = computed<CreateDateRangePickerStyle>(
   () => createDateRangePickerStyle({
