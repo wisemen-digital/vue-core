@@ -1,5 +1,11 @@
 # @wisemen/vue-core-components
 
+## 2.0.2
+
+### 🐞 Patch Fixes
+
+- **7099d8a**: All date-related components now default to the browser's locale, ensuring dates and times are displayed according to the user's local settings.
+
 ## 2.0.1
 
 ### Patch Changes
