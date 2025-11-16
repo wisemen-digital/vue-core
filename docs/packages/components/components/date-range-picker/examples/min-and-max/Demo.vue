@@ -1,12 +1,17 @@
 <script setup lang="ts">
 import type { DateRange } from '@wisemen/vue-core-components'
 import { VcDateRangePicker } from '@wisemen/vue-core-components'
+import { Temporal } from 'temporal-polyfill'
 import { ref } from 'vue'
 
-const today = new Date()
+const today = Temporal.Now.plainDateISO()
 
-const twoWeeksAgo = new Date(today.getTime() - 14 * 24 * 60 * 60 * 1000)
-const twoWeeksFromNow = new Date(today.getTime() + 14 * 24 * 60 * 60 * 1000)
+const twoWeeksAgo = today.subtract({
+  days: 14,
+})
+const twoWeeksFromNow = today.add({
+  days: 14,
+})
 
 const value = ref<DateRange>({
   from: null,

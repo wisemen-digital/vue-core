@@ -13,7 +13,7 @@ const value = ref<DateRange>({
   <VcDateRangePicker
     v-model="value"
     :show-two-months="true"
-    :is-date-disabled="(date) => date.getDay() === 0 || date.getDay() === 6"
+    :is-date-disabled="(date) => date.dayOfWeek === 6 || date.dayOfWeek === 7"
     :allow-non-continuous-selection="false"
     label="Calendar"
   />

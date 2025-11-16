@@ -12,12 +12,12 @@ const value = ref<Date | null>(null)
 <template>
   <VcDatePicker
     v-model="value"
-    :is-date-unavailable="(date) => date.getDate() === 15"
+    :is-date-unavailable="(date) => date.day === 15"
     label="Example"
   >
     <template #date="{ date }">
       <VcTooltip
-        v-if="date.getDate() === 15"
+        v-if="date.day === 15"
         :disable-close-on-trigger-click="true"
       >
         <template #trigger>
