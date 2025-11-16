@@ -10,7 +10,9 @@ const {
   hasInlineSearchInput,
   isDisabled,
   isDropdownVisible,
+  displayFn,
   filter,
+  modelValue,
   setIsDropdownVisible,
 } = useInjectSelectContext()
 
@@ -42,7 +44,21 @@ function openDropdown(): void {
         class="absolute inset-0 outline-none"
         @keydown.arrow-down.prevent="openDropdown"
         @keydown.arrow-up.prevent="openDropdown"
-      />
+      >
+        <span
+          v-if="Array.isArray(modelValue)"
+          class="sr-only"
+        >
+          {{ modelValue.map(displayFn).join(', ') }}
+        </span>
+
+        <span
+          v-else-if="modelValue !== null"
+          class="sr-only"
+        >
+          {{ displayFn(modelValue) }}
+        </span>
+      </button>
     </PopoverTrigger>
   </InteractableElement>
 </template>
