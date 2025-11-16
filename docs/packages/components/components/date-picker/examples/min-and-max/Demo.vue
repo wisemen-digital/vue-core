@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { VcDatePicker } from '@wisemen/vue-core-components'
+import { Temporal } from 'temporal-polyfill'
 import { ref } from 'vue'
 
-const now = new Date()
-const twoWeeksAgo = new Date(now.getTime() - 14 * 24 * 60 * 60 * 1000)
-const twoWeeksFromNow = new Date(now.getTime() + 14 * 24 * 60 * 60 * 1000)
+const now = Temporal.Now.plainDateISO()
+const twoWeeksAgo = now.subtract({ days: 14 })
+const twoWeeksFromNow = now.add({ days: 14 })
 
 const value = ref<Date | null>(null)
 </script>

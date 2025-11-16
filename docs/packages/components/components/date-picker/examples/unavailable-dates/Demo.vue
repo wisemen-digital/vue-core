@@ -8,7 +8,7 @@ const value = ref<Date | null>(null)
 <template>
   <VcDatePicker
     v-model="value"
-    :is-date-unavailable="(date) => date.getDate() === 15"
+    :is-date-unavailable="(date) => date.day === 15"
     label="Example"
   />
 </template>

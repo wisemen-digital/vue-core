@@ -114,7 +114,7 @@ eslint src/**/*.{js,ts,vue}
 
 ## Next Steps
 
-- Explore the [ESLint Inspector](/packages/eslint/pages/tools/eslint-inspector/) to visualize and understand the rules
+- Explore the [ESLint Inspector](/eslint-inspector/) to visualize and understand the rules
 - Customize rules based on your project needs
 
 ## Need Help?
