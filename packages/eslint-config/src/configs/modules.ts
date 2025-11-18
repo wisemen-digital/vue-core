@@ -4,89 +4,107 @@ import {
   projectStructurePlugin,
 } from 'eslint-plugin-project-structure'
 
-import type { LintConfig } from '@/types/lint.type.ts'
+const ALWAYS_ALLOWED_IMPORTS = [
+  'virtual:pwa-register/vue',
+  'src/modules/*/index.ts',
+  'src/modules/*/components.ts',
+  'tests/**',
+]
 
 export const independentModulesConfig = createIndependentModules({
   modules: [
     {
-      name: 'Root folder',
+      name: 'Tests folder',
       allowImportsFrom: [
-        'tests/**/*',
-        'src/modules/*/index.ts',
-        'src/modules/*/components.ts',
-        '!src/modules/**/*',
-        'virtual:pwa-register/vue',
+        ...ALWAYS_ALLOWED_IMPORTS,
+        [
+          'src/**',
+          '!src/modules/**',
+        ],
       ],
       errorMessage:
-        '🔥 The `root` folder cannot import items from the `modules` folder. 🔥',
+        '🔥 The `tests` folder cannot import items from the `modules` folder. 🔥',
       pattern: [
         [
-          '!src/modules/**/*',
+          'tests/**',
         ],
 
       ],
     },
 
     {
-      name: 'Features',
+      name: 'Root folder',
       allowImportsFrom: [
+        '**',
+      ],
+      errorMessage:
+        '🔥 The `root` should be able to import anything. 🔥',
+      pattern: [
         [
-          'tests/**/*',
-          'src/**/*',
-          '!src/modules/**/*',
+          '**',
+          '!src/**',
         ],
-        [
-          '!src/modules/**/*/features/**/*',
-        ],
-        [
-          '{family_5}/**/*',
-        ],
-        [
-          'src/modules/*/index.ts',
-        ],
-        [
-          'src/modules/*/components.ts',
-        ],
-        [
-          'virtual:pwa-register/vue',
 
+      ],
+    },
+
+    {
+      name: 'Source folder',
+      allowImportsFrom: [
+        ...ALWAYS_ALLOWED_IMPORTS,
+        [
+          'src/**',
+          '!src/modules/**',
         ],
       ],
       errorMessage:
-        '🔥 Everything in the features folder is encapsulated, you cannot import from outside the folder. 🔥',
-      pattern: 'src/modules/*/features/**/*',
+        '🔥 The `source` folder cannot import items from the `modules` folder. 🔥',
+      pattern: [
+        [
+          '!src/modules/**',
+        ],
+
+      ],
+    },
+    {
+      name: 'Features',
+      allowImportsFrom: [
+        ...ALWAYS_ALLOWED_IMPORTS,
+        '{family_3}/**',
+        [
+          'src/**',
+          '!src/modules/**',
+        ],
+        [
+          'src/**',
+          '!src/modules/**/use-cases/**',
+        ],
+      ],
+      errorMessage:
+        '🔥 Everything in the use cases folder is encapsulated, you cannot import from outside the folder. 🔥',
+      pattern: 'src/modules/*/use-cases/**',
     },
     {
       name: 'Modules',
       allowImportsFrom: [
+        ...ALWAYS_ALLOWED_IMPORTS,
+        '{family_3}/**',
         [
-          'virtual:pwa-register/vue',
+          'src/**',
+          '!src/modules/**',
         ],
-        [
-          'tests/**/*',
-          'src/**/*',
-          '!src/modules/**/*',
-        ],
-        [
-          '{family_3}/**/*',
-        ],
-        [
-          'src/modules/*/index.ts',
-        ],
-        [
-          'src/modules/*/components.ts',
-        ],
+
       ],
       errorMessage:
         '🔥 Everything in the modules folder is encapsulated, you cannot import from outside the folder. 🔥',
       pattern: [
-        'src/modules/**/*',
+        'src/modules/**',
       ],
     },
   ],
 })
 
-export const modulesConfig: LintConfig = {
+export const modulesConfig = {
   name: 'independent-modules',
   files: [
     '**/*.ts',
