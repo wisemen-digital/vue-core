@@ -4,6 +4,8 @@ import {
   projectStructurePlugin,
 } from 'eslint-plugin-project-structure'
 
+import type { LintConfig } from '@/types/lint.type'
+
 const ALWAYS_ALLOWED_IMPORTS = [
   'virtual:pwa-register/vue',
   'src/modules/*/index.ts',
@@ -104,7 +106,7 @@ export const independentModulesConfig = createIndependentModules({
   ],
 })
 
-export const modulesConfig = {
+export const modulesConfig: LintConfig = {
   name: 'independent-modules',
   files: [
     '**/*.ts',
