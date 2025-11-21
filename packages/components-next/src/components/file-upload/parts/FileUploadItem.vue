@@ -103,11 +103,12 @@ async function uploadFile(): Promise<void> {
     }
     catch {
       onError(props.item, FileUploadError.PREPROCESSING_FAILED)
+
+      return
     }
   }
 
-  await uploadToS3(uuid, uploadUrl, processedFile)
-
+  void uploadToS3(uuid, uploadUrl, processedFile)
   void confirmUpload(uuid, await BlurhashUtil.encode(processedFile))
 }
 
