@@ -1,13 +1,17 @@
 import type { ComputedRef } from 'vue'
 
 import type { FileUploadProps } from '@/components/file-upload/fileUpload.props'
-import type { FileUploadItem } from '@/components/file-upload/fileUpload.type'
+import type {
+  FileUploadError,
+  FileUploadItem,
+} from '@/components/file-upload/fileUpload.type'
 import { useContext } from '@/composables/context/context.composable'
 import type { PropsToComputed } from '@/utils/props.util'
 
-interface FileUploadContext extends PropsToComputed<FileUploadProps> {
+interface FileUploadContext extends PropsToComputed<Omit<FileUploadProps, 'preprocess'>> {
   isMultiple: ComputedRef<boolean>
-  onError: (fileUploadItem: FileUploadItem, errorMessage: string) => void
+  preprocess: ((file: File) => Promise<File>) | null
+  onError: (fileUploadItem: FileUploadItem, error: FileUploadError) => void
   onFilesSelected: (files: File[]) => void
   onRemoveFileUploadItem: (fileUploadItem: FileUploadItem) => void
   onReplaceFileUploadItem: (fileUploadItem: FileUploadItem, file: File) => void

@@ -21,6 +21,7 @@ import { toComputedRefs } from '@/utils/props.util'
 const props = withDefaults(defineProps<FileUploadProps>(), {
   isDisabled: false,
   isValidFile: null,
+  preprocess: null,
 })
 
 const emit = defineEmits<{
@@ -250,6 +251,7 @@ function onReplaceFileUploadItem(item: FileUploadItem, file: File): void {
 useProvideFileUploadContext({
   ...toComputedRefs(props),
   isMultiple,
+  preprocess: props.preprocess,
   onError,
   onFilesSelected,
   onRemoveFileUploadItem,
