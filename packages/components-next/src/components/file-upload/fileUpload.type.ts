@@ -1,3 +1,9 @@
+export enum FileUploadError {
+  INVALID_MIME_TYPE = 'INVALID_MIME_TYPE',
+  PREPROCESSING_FAILED = 'PREPROCESSING_FAILED',
+  UPLOAD_FAILED = 'UPLOAD_FAILED',
+}
+
 export interface FileInfo {
   uuid: string
   name: string

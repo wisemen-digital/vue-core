@@ -45,6 +45,15 @@ export interface FileUploadProps extends InteractableElement {
    * @returns A promise that resolves to a `FileInfo` object containing upload metadata.
    */
   getFileInfo: (name: string, mimeType: string) => Promise<FileUploadInfo>
+  /**
+   * A preprocessing function that transforms a file before upload.
+   * This function is called before uploading a file and can be used for operations like
+   * image compression, format conversion, or metadata modification.
+   * @param file - The file to be preprocessed.
+   * @returns A promise that resolves to the transformed file.
+   * @default null - No preprocessing is performed.
+   */
+  preprocess?: ((file: File) => Promise<File>) | null
 }
 
 export interface FileUploadItemProps {

@@ -8,7 +8,10 @@ import type {
   FileUploadItem,
   FileUploadItemPending,
 } from '@/components/file-upload/fileUpload.type'
-import { FileUploadStatus } from '@/components/file-upload/fileUpload.type'
+import {
+  FileUploadError,
+  FileUploadStatus,
+} from '@/components/file-upload/fileUpload.type'
 import { useProvideFileUploadItemContext } from '@/components/file-upload/fileUploadItem.context'
 
 const props = defineProps<{
@@ -18,6 +21,7 @@ const props = defineProps<{
 const {
   confirmUpload,
   getFileInfo,
+  preprocess,
   onError,
   onRemoveFileUploadItem,
   onReplaceFileUploadItem,
@@ -35,7 +39,7 @@ async function getFileInfoData(): Promise<FileUploadInfo | null> {
     return await getFileInfo(name, mimeType)
   }
   catch {
-    onError(props.item, 'Failed to fetch file info')
+    onError(props.item, FileUploadError.UPLOAD_FAILED)
   }
 
   return null
@@ -62,12 +66,12 @@ function uploadToS3(uuid: string, url: string, file: File): void {
       onSuccess(props.item)
     }
     else {
-      onError(props.item, 'Failed to upload file to S3')
+      onError(props.item, FileUploadError.UPLOAD_FAILED)
     }
   }
 
   xhr.onerror = (): void => {
-    onError(props.item, 'Failed to upload file to S3')
+    onError(props.item, FileUploadError.UPLOAD_FAILED)
   }
 
   xhr.open('PUT', url, true)
@@ -86,13 +90,26 @@ async function uploadFile(): Promise<void> {
   const {
     uuid, uploadUrl,
   } = fileInfo
+
   const {
     file,
   } = props.item as FileUploadItemPending
 
-  await uploadToS3(uuid, uploadUrl, file)
+  let processedFile = file
 
-  void confirmUpload(uuid, await BlurhashUtil.encode(file))
+  if (preprocess !== null) {
+    try {
+      processedFile = await preprocess(file)
+    }
+    catch {
+      onError(props.item, FileUploadError.PREPROCESSING_FAILED)
+
+      return
+    }
+  }
+
+  void uploadToS3(uuid, uploadUrl, processedFile)
+  void confirmUpload(uuid, await BlurhashUtil.encode(processedFile))
 }
 
 function onCancel(): void {}
