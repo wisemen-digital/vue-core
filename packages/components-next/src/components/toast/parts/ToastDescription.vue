@@ -13,7 +13,6 @@ const {
     :class="style.description({
       class: customClassConfig.description,
     })"
-  >
-    {{ description }}
-  </p>
+    v-html="description"
+  />
 </template>

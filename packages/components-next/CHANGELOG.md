@@ -1,16 +1,28 @@
 # @wisemen/vue-core-components
 
+## 2.1.0
+
+### Minor Changes
+
+- FileUpload: add `preprocess` function to transform a file before upload
+
+## 2.0.3
+
+### Patch Changes
+
+- **Select**: add value for screen readers
+
 ## 2.0.2
 
-### 🐞 Patch Fixes
+### Patch Changes
 
-- **7099d8a**: All date-related components now default to the browser's locale, ensuring dates and times are displayed according to the user's local settings.
+- Use browser locale for date-related components
 
 ## 2.0.1
 
 ### Patch Changes
 
-- **972d805**: `Dialog`: fixed an issue where the component state would persist after reopening a dialog.
+- **Dialog**: resolve an issue where state would persist after reopening a dialog
 
 ## 2.0.0
 
