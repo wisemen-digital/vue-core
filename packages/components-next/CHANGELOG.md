@@ -1,5 +1,11 @@
 # @wisemen/vue-core-components
 
+## 2.1.0
+
+### Minor Changes
+
+- FileUpload: add `preprocess` function to transform a file before upload
+
 ## 2.0.3
 
 ### Patch Changes
