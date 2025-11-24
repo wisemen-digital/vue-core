@@ -94,22 +94,28 @@ const COMPOSABLES_FOLDER = {
   name: 'composables',
   children: [
     {
+      name: '{camelCase}.composable.ts',
+    },
+    {
+      name: '{camelCase}.composable.test.ts|{camelCase}.composable.spec.ts',
+    },
+    {
       name: '{kebab-case}',
       children: [
         {
-          name: '{folderName}.composable.ts',
+          name: '{camelCase}.composable.ts',
         },
         {
-          name: '{folderName}.composable.test.ts|{folderName}.composable.spec.ts',
+          name: '{camelCase}.composable.test.ts|{camelCase}.composable.spec.ts',
         },
         {
           name: '{kebab-case}',
           children: [
             {
-              name: '{folderName}.composable.ts',
+              name: '{camelCase}.composable.ts',
             },
             {
-              name: '{folderName}.composable.test.ts|{folderName}.composable.spec.ts',
+              name: '{camelCase}.composable.test.ts|{camelCase}.composable.spec.ts',
             },
           ],
         },
@@ -231,6 +237,9 @@ const ROUTES_FOLDER = {
     {
       name: 'routes.ts',
     },
+    {
+      name: '{camelCase}.routes.ts',
+    },
 
   ],
 }
@@ -238,6 +247,9 @@ const ROUTES_FOLDER = {
 const ROUTES_MODULE_FOLDER = {
   name: 'routes',
   children: [
+    {
+      name: 'routes.ts',
+    },
     {
       name: '{camelCase}.routes.ts',
     },
@@ -301,7 +313,7 @@ const UTILS_FOLDER = {
           name: '{camelCase}.util.ts',
         },
         {
-          name: '{camelCase}.utils.test.ts|{camelCase}.utils.spec.ts',
+          name: '{camelCase}.util.spec.ts|{camelCase}.util.test.ts',
         },
       ],
     },
@@ -460,7 +472,9 @@ export const folderStructureConfig = createFolderStructure({
         {
           name: 'App.vue',
         },
-
+        {
+          name: 'AppProviders.vue',
+        },
       ],
     },
   ],
