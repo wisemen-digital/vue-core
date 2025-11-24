@@ -6,6 +6,7 @@ import {
   getPackagesNavigation,
   getPackagesSidebar,
 } from '../packages/navigation'
+import { PLAYBOOK_NAVIGATION } from '../playbook/playbook.navigation'
 import ComponentPreviewPlugin from './plugins/ComponentPreview'
 import ComponentPreviewV1Plugin from './plugins/ComponentPreviewV1'
 
@@ -24,7 +25,12 @@ export default defineConfig({
   },
   description: 'The central repository of Wisemen for all internal Vue packages.',
   themeConfig: {
+
     nav: [
+      {
+        text: 'Playbook',
+        link: `${PLAYBOOK_NAVIGATION.path}/${PLAYBOOK_NAVIGATION.link}`,
+      },
       {
         text: 'Packages',
         items: [
@@ -35,6 +41,7 @@ export default defineConfig({
 
     sidebar: {
       ...getPackagesSidebar(),
+      '/playbook/': PLAYBOOK_NAVIGATION.sidebar,
     },
     socialLinks: [
       {
