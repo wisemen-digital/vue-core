@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 
+import type { OidcUser } from './oidc.type'
 import type { TokensStrategy } from './tokens-strategy/tokensStrategy.type'
-import type { ZitadelUser } from './zitadel.type'
 
 export interface OAuth2Tokens {
   expires_at: number
@@ -135,7 +135,7 @@ export class ApiClient {
     return this.getTokensStrategy().getTokens()
   }
 
-  async getUserInfo(): Promise<ZitadelUser> {
+  async getUserInfo(): Promise<OidcUser> {
     const accessToken = await this.getAccessToken()
 
     const response = await fetch(`${this.getBaseUrl()}/oidc/v1/userinfo`, {
@@ -144,7 +144,7 @@ export class ApiClient {
       }),
     })
 
-    return await response.json() as ZitadelUser
+    return await response.json() as OidcUser
   }
 
   public isAccessTokenExpired(): boolean {

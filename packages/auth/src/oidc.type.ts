@@ -1,6 +1,6 @@
 import type { TokensStrategy } from './tokens-strategy/tokensStrategy.type'
 
-export interface ZitadelUser {
+export interface OidcUser {
   updated_at: number
   name: string
   email: string
@@ -17,10 +17,6 @@ export interface OAuth2VueClientOptions {
   * The client ID
   */
   clientId: string
-  /*
-  * The organization ID
-  */
-  organizationId: string
   /*
     * The paths that are allowed to be accessed for redirects
     * If not set, all paths are allowed
@@ -49,9 +45,8 @@ export interface OAuth2VueClientOptions {
   postLogoutRedirectUri: string
   /*
   * The scopes to request from the OAuth2 server
-  * Default: ['openid', 'profile', 'email', 'offline_access', `urn:zitadel:iam:org:id:${organizationId}`]
   */
-  scopes?: string[]
+  scopes: string[]
   /*
   * The tokens strategy to use
   * Default: localStorageStrategy

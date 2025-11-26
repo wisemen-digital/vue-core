@@ -1,15 +1,15 @@
 import pkceChallenge from 'pkce-challenge'
 
 import { ApiClient } from './apiClient'
+import type {
+  OAuth2VueClientOptions,
+  OidcUser,
+} from './oidc.type'
 import { RedirectValidator } from './redirectValidator'
 import { LocalStorageTokensStrategy } from './tokens-strategy/localStorage.tokensStrategy'
 import type { TokensStrategy } from './tokens-strategy/tokensStrategy.type'
-import type {
-  OAuth2VueClientOptions,
-  ZitadelUser,
-} from './zitadel.type'
 
-export class ZitadelClient {
+export class OidcClient {
   private client: ApiClient | null = null
   private readonly offline: boolean
   private redirectValidator: RedirectValidator
@@ -32,20 +32,10 @@ export class ZitadelClient {
         clientId: this.options.clientId,
         baseUrl: this.options.baseUrl,
         redirectUri: this.options.loginRedirectUri,
-        scopes: this.options.scopes ?? this.getDefaultScopes(),
+        scopes: this.options.scopes,
         tokensStrategy: this.tokensStrategy,
       },
     )
-  }
-
-  private getDefaultScopes(): string[] {
-    return [
-      'openid',
-      'profile',
-      'email',
-      'offline_access',
-      `urn:zitadel:iam:org:id:${this.options.organizationId}`,
-    ]
   }
 
   private getTokensStrategy(): TokensStrategy {
@@ -83,7 +73,7 @@ export class ZitadelClient {
 
     const codes = await pkceChallenge()
 
-    const scopes = this.options.scopes ?? this.getDefaultScopes()
+    const scopes = this.options.scopes
 
     scopes.push(`urn:zitadel:iam:org:idp:id:${idpId}`)
 
@@ -104,7 +94,7 @@ export class ZitadelClient {
 
     const codes = await pkceChallenge()
 
-    const scopes = this.options.scopes ?? this.getDefaultScopes()
+    const scopes = this.options.scopes
 
     this.getTokensStrategy().setCodeVerifier(codes.code_verifier)
 
@@ -143,7 +133,7 @@ export class ZitadelClient {
   * Get the user info
   * This will return the user info from the identity provider
   */
-  async getUserInfo(): Promise<ZitadelUser> {
+  async getUserInfo(): Promise<OidcUser> {
     try {
       return await this.getClient().getUserInfo()
     }
@@ -236,7 +226,7 @@ export class ZitadelClient {
         clientId: options.clientId ?? this.options.clientId,
         baseUrl: options.baseUrl ?? this.options.baseUrl,
         redirectUri: options.loginRedirectUri ?? this.options.loginRedirectUri,
-        scopes: options.scopes ?? this.options.scopes ?? this.getDefaultScopes(),
+        scopes: options.scopes ?? this.options.scopes,
         tokensStrategy: options.tokensStrategy ?? this.tokensStrategy,
       },
     )
