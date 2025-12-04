@@ -1,31 +1,30 @@
 import type { Component } from 'vue'
 
 export interface BaseIcons {
-
-  alertCircle: Component
-  alertTriangle: Component
-  arrowDown: Component
-  arrowLeft: Component
-  arrowRight: Component
-  arrowUp: Component
-  calendarIcon: Component
-  check: Component
-  checkCircle: Component
-  chevronLeft: Component
-  chevronLeftDouble: Component
-  chevronRight: Component
-  chevronRightDouble: Component
-  close: Component
-  eye: Component
-  eyeOff: Component
-  infoCircle: Component
-  minus: Component
-  plus: Component
-  search: Component
-  selectIconRight: Component
-  stars: Component
-  switchVertical: Component
-  translate: Component
+  alertCircle: Promise<{ default: Component }>
+  alertTriangle: Promise<{ default: Component }>
+  arrowDown: Promise<{ default: Component }>
+  arrowLeft: Promise<{ default: Component }>
+  arrowRight: Promise<{ default: Component }>
+  arrowUp: Promise<{ default: Component }>
+  calendarIcon: Promise<{ default: Component }>
+  check: Promise<{ default: Component }>
+  checkCircle: Promise<{ default: Component }>
+  chevronLeft: Promise<{ default: Component }>
+  chevronLeftDouble: Promise<{ default: Component }>
+  chevronRight: Promise<{ default: Component }>
+  chevronRightDouble: Promise<{ default: Component }>
+  close: Promise<{ default: Component }>
+  eye: Promise<{ default: Component }>
+  eyeOff: Promise<{ default: Component }>
+  infoCircle: Promise<{ default: Component }>
+  minus: Promise<{ default: Component }>
+  plus: Promise<{ default: Component }>
+  search: Promise<{ default: Component }>
+  selectIconRight: Promise<{ default: Component }>
+  stars: Promise<{ default: Component }>
+  switchVertical: Promise<{ default: Component }>
+  translate: Promise<{ default: Component }>
 }
 
 export interface Icons extends BaseIcons {}
