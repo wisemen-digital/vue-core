@@ -1,5 +1,12 @@
 # @wisemen/vue-core-modules
 
+## 4.0.1
+
+### Patch Changes
+
+- Updated dependencies [3ac86aa]
+  - @wisemen/vue-core-components@2.1.1
+
 ## 4.0.0
 
 ### Patch Changes
