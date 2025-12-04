@@ -1,5 +1,14 @@
 ## 1.1.0
 
+## 3.0.0
+
+### Major Changes
+
+- 4eabb7f: replace ZitadelClient with OidcClient
+  - rename ZitadelClient to OidcClient
+  - scoped are now required; default scopes removed
+  - remove organizationId
+
 ## 2.2.0
 
 ### Minor Changes
