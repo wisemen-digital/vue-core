@@ -195,6 +195,10 @@ function setIsDropdownVisible(value: boolean): void {
 }
 
 function resetSearchTerm(): void {
+  if (props.isSearchTermControlled) {
+    return
+  }
+
   if (isMultiple.value
     || !hasInlineSearchInput.value
     || modelValue.value === null

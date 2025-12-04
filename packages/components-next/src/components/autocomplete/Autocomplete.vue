@@ -116,7 +116,7 @@ watch(searchTerm, (searchTerm) => {
   else {
     isDebouncing.value = false
     // We need to make sure the debounce is "cancelled" by providing a `null` value
-    // And incercept the `null` value in the debounce function
+    // And intercept the `null` value in the debounce function
     debounceSearch(null)
   }
 })
@@ -124,6 +124,12 @@ watch(searchTerm, (searchTerm) => {
 watch(() => props.items, (newItems) => {
   delegatedItems.value = newItems
 })
+
+function onUpdateModelValue(value: TValue | null): void {
+  if (value !== null) {
+    searchTerm.value = props.displayFn(value as any)
+  }
+}
 </script>
 
 <template>
@@ -139,7 +145,9 @@ watch(() => props.items, (newItems) => {
     :icon-right="iconRight"
     :is-dropdown-hidden="!isDropdownVisible"
     :is-loading="props.isLoading || isDebouncing"
+    :is-search-term-controlled="true"
     @update:is-open="onUpdateIsOpen"
+    @update:model-value="onUpdateModelValue"
   >
     <template #base>
       <slot name="base" />
