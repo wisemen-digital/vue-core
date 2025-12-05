@@ -113,7 +113,11 @@ export class OidcClient {
     searchParams.append('code_challenge', codes.code_challenge)
     searchParams.append('code_challenge_method', 'S256')
 
-    return `${this.options.baseUrl}/oauth/v2/authorize?${searchParams.toString()}`
+    const issuer = this.client.get(`${this.options.baseUrl}/.well-known/openid-configuration`)
+
+    const authorizationUrl = issuer.data.authorization_endpoint
+
+    return `${authorizationUrl}?${searchParams.toString()}`
   }
 
   /*
