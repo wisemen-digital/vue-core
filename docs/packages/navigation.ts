@@ -2,6 +2,7 @@ import type { DefaultTheme } from 'vitepress'
 
 import { API_UTILS_NAVIGATION } from './api-utils/apiUtils.navigation'
 import { COMPONENTS_DOC_NAVIGATION } from './components/components.navigation'
+import { DESIGN_SYSTEM_NAVIGATION } from './design-system/designSystem.navigation'
 import { ESLINT_NAVIGATION } from './eslint/eslint.navigation'
 import { TELEMETRY_NAVIGATION } from './telemetry/telemetry.navigation'
 
@@ -17,6 +18,7 @@ export type NavItem = (DefaultTheme.NavItemChildren | DefaultTheme.NavItemCompon
 export const PACKAGE_DOC_NAVIGATION: PackageDocNavigation[] = [
   COMPONENTS_DOC_NAVIGATION,
   API_UTILS_NAVIGATION,
+  DESIGN_SYSTEM_NAVIGATION,
   ESLINT_NAVIGATION,
   TELEMETRY_NAVIGATION,
 ]
