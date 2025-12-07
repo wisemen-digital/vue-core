@@ -1,0 +1,20 @@
+@import 'tailwindcss';
+@source './packages';
+
+@variant dark {
+  :where(.dark) & {
+    @slot;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :where(.system) & {
+      @slot;
+    }
+  }
+}
+
+@variant light {
+  :where(.light) & {
+    @slot;
+  }
+}
