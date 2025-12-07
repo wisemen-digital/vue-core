@@ -8,4 +8,11 @@ export default [
       'project-structure/independent-modules': 'off',
     },
   },
+  {
+    settings: {
+      'better-tailwindcss': {
+        entryPoint: 'src/index.css',
+      },
+    },
+  },
 ]
