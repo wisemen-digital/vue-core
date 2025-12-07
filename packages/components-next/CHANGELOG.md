@@ -1,5 +1,11 @@
 # @wisemen/vue-core-components
 
+## 2.1.2
+
+### Patch Changes
+
+- Autocomplete: fix bugs
+
 ## 2.1.1
 
 ### Patch Changes
