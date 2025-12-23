@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { DateFieldInput as RekaDateFieldInput } from 'reka-ui'
+import { computed } from 'vue'
 
 import { mergeClasses } from '@/class-variant/customClassVariants'
+import { useInjectConfigContext } from '@/components/config-provider/config.context'
 import { useInjectDateFieldContext } from '@/components/date-field/dateField.context'
 import type { DateFieldSegment } from '@/components/date-field/dateField.type'
 import TestIdProvider from '@/components/shared/TestIdProvider.vue'
+import { formatDateFieldSegments } from '@/utils/date-field-format/dateFieldFormat.util.ts'
 
 const props = defineProps<{
   segments: DateFieldSegment[]
@@ -18,6 +21,14 @@ const {
   onBlur,
   onFocus,
 } = useInjectDateFieldContext()
+
+const {
+  dateFieldFormat,
+} = useInjectConfigContext()
+
+const formattedSegments = computed<DateFieldSegment[]>(() => {
+  return formatDateFieldSegments(props.segments, dateFieldFormat.value)
+})
 </script>
 
 <template>
@@ -28,7 +39,7 @@ const {
       })"
     >
       <template
-        v-for="item in props.segments"
+        v-for="item in formattedSegments"
         :key="item.part"
       >
         <RekaDateFieldInput

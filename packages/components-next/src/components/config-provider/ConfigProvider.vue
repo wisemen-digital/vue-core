@@ -23,6 +23,12 @@ const props = defineProps<{
    */
   autoCloseToast?: AutoCloseToastConfig
   /**
+   * Override the DateField input format (e.g. 'DD/MM/YYYY').
+   * When omitted, the DateField follows the locale format.
+   * @default null
+   */
+  dateFieldFormat?: string | null
+  /**
    * The Google Maps API key (used for example to validate addresses using the AddressAutocomplete component).
    * @default null
    */
@@ -65,6 +71,7 @@ defineSlots<{
 useProvideConfigContext({
   areKeyboardShortcutHintsHidden: computed<boolean>(() => props.areKeyboardShortcutHintsHidden ?? false),
   autoCloseToast: computed<AutoCloseToastConfig | null>(() => props.autoCloseToast ?? null),
+  dateFieldFormat: computed<string | null>(() => props.dateFieldFormat ?? null),
   googleMapsApiKey: props.googleMapsApiKey ?? null,
   hourCycle: computed<HourCycle | null>(() => props.hourCycle ?? null),
   locale: computed<string>(() => props.locale),

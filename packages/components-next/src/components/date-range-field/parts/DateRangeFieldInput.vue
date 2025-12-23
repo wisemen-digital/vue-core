@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { DateRangeFieldInput as RekaRangeDateFieldInput } from 'reka-ui'
+import { computed } from 'vue'
 
 import { mergeClasses } from '@/class-variant/customClassVariants'
+import { useInjectConfigContext } from '@/components/config-provider/config.context'
 import { useInjectDateRangeFieldContext } from '@/components/date-range-field/dateRangeField.context'
 import type { DateRangeFieldSegment } from '@/components/date-range-field/dateRangeField.type'
 import TestIdProvider from '@/components/shared/TestIdProvider.vue'
+import { formatDateFieldSegments } from '@/utils/date-field-format/dateFieldFormat.util.ts'
 
 const props = defineProps<{
   segments: DateRangeFieldSegment
@@ -18,6 +21,15 @@ const {
   onBlur,
   onFocus,
 } = useInjectDateRangeFieldContext()
+
+const {
+  dateFieldFormat,
+} = useInjectConfigContext()
+
+const formattedSegments = computed<DateRangeFieldSegment>(() => ({
+  end: formatDateFieldSegments(props.segments.end, dateFieldFormat.value),
+  start: formatDateFieldSegments(props.segments.start, dateFieldFormat.value),
+}))
 </script>
 
 <template>
@@ -28,7 +40,7 @@ const {
       })"
     >
       <template
-        v-for="item in props.segments.start"
+        v-for="item in formattedSegments.start"
         :key="item.part"
       >
         <RekaRangeDateFieldInput
@@ -65,7 +77,7 @@ const {
       </span>
 
       <template
-        v-for="item in props.segments.end"
+        v-for="item in formattedSegments.end"
         :key="item.part"
       >
         <RekaRangeDateFieldInput
