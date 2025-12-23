@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import type { DateValue } from 'reka-ui'
-import { DateFieldRoot as RekaDateFieldRoot } from 'reka-ui'
+import {
+  DateFieldRoot as RekaDateFieldRoot,
+  injectConfigProviderContext,
+} from 'reka-ui'
 import { Temporal } from 'temporal-polyfill'
 import {
   computed,
@@ -87,7 +90,9 @@ const delegatedPlaceholderValue = computed<Temporal.PlainDate>({
   },
 })
 
-const locale = navigator.language
+const {
+  locale,
+} = injectConfigProviderContext()
 
 const {
   theme,

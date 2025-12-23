@@ -10,7 +10,6 @@ import type { HourCycle } from '@/types/hourCycle.type'
 interface ConfigContext {
   areKeyboardShortcutHintsHidden: ComputedRef<boolean>
   autoCloseToast: ComputedRef<AutoCloseToastConfig | null>
-  dateFieldFormat: ComputedRef<string | null>
   googleMapsApiKey: string | null
   hourCycle: ComputedRef<HourCycle | null>
   locale: ComputedRef<string>
