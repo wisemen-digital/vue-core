@@ -54,10 +54,9 @@ export function getFirstDayOfWeek(locale: string): 0 | 1 {
   ] as const
 
   // Normalize locale (remove region, lowercase)
-  const normalized = locale.split('-')[0]
 
   // Check if locale is in the Sunday-first list
-  if (sundayFirstLocales.some((l) => l.toLowerCase().startsWith(normalized!.toLowerCase()))) {
+  if (sundayFirstLocales.some((l) => l.toLowerCase() === locale.toLowerCase())) {
     return 0 // Sunday
   }
 

@@ -1,5 +1,11 @@
 # @wisemen/vue-core-components
 
+## 2.1.1
+
+### Patch Changes
+
+- Autocomplete: fix an issue where the value could never be cleared
+
 ## 2.1.0
 
 ### Minor Changes
