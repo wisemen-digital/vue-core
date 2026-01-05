@@ -1,4 +1,4 @@
-import type { PackageDocNavigation } from '@docs/packages/navigation'
+import type { PackageDocNavigation } from '@docs/packages/navigation.utils'
 
 export const TELEMETRY_NAVIGATION: PackageDocNavigation = {
   link: 'pages/getting-started/installation',

@@ -5,7 +5,7 @@ import { defineConfig } from 'vitepress'
 import {
   getPackagesNavigation,
   getPackagesSidebar,
-} from '../packages/navigation'
+} from '../packages/navigation.utils'
 import ComponentPreviewPlugin from './plugins/ComponentPreview'
 import ComponentPreviewV1Plugin from './plugins/ComponentPreviewV1'
 
