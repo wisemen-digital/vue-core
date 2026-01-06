@@ -47,8 +47,8 @@ features:
 ---
 
 <script setup>
-import HomeTeam from './.vitepress/theme/components/HomeTeam.vue'
-import HomeCredits from './.vitepress/theme/components/HomeCredits.vue'
+import HomeTeam from '../../.vitepress/components/HomeTeam.vue'
+import HomeCredits from '../../.vitepress/components/HomeCredits.vue'
 
 </script>
 
