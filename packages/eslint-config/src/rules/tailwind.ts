@@ -2,7 +2,13 @@ import eslintPluginBetterTailwindcss from 'eslint-plugin-better-tailwindcss'
 
 import type { LintConfig } from '@/types/lint.type.ts'
 
-export const tailwindConfig: LintConfig = [
+export const DEFAULT_TAILWIND_CONFIG_PATH = 'src/assets/styles/index.css'  
+
+export interface TailwindConfigOptions {
+  tailwindConfigPath: string
+}
+
+export const tailwindConfig = (config: TailwindConfigOptions): LintConfig => [
   {
     name: 'tailwindcss',
     plugins: {

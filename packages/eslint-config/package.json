@@ -8,6 +8,9 @@
   "description": "Eslint config for Vue.js projects",
   "author": "Wisemen",
   "license": "ISC",
+  "imports": {
+    "#*": "./src/*"
+  },
   "exports": {
     ".": "./dist/index.js"
   },
