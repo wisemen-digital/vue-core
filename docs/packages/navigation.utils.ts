@@ -1,9 +1,6 @@
 import type { DefaultTheme } from 'vitepress'
 
-import { API_UTILS_NAVIGATION } from './api-utils/apiUtils.navigation'
-import { COMPONENTS_DOC_NAVIGATION } from './components/components.navigation'
-import { ESLINT_NAVIGATION } from './eslint/eslint.navigation'
-import { TELEMETRY_NAVIGATION } from './telemetry/telemetry.navigation'
+import { PACKAGE_DOC_NAVIGATION } from './navigation.router'
 
 export interface PackageDocNavigation {
   title: string
@@ -13,13 +10,6 @@ export interface PackageDocNavigation {
 }
 
 export type NavItem = (DefaultTheme.NavItemChildren | DefaultTheme.NavItemComponent | DefaultTheme.NavItemWithLink)
-
-export const PACKAGE_DOC_NAVIGATION: PackageDocNavigation[] = [
-  COMPONENTS_DOC_NAVIGATION,
-  API_UTILS_NAVIGATION,
-  ESLINT_NAVIGATION,
-  TELEMETRY_NAVIGATION,
-]
 
 function toFullPackagePath({
   path, link,
