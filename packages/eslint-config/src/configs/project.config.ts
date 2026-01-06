@@ -26,6 +26,7 @@ import { wisemenConfig } from '#rules/wisemen.ts'
 interface ProjectConfigOptions {
   localesFolderPath?: string
   tailwindConfigPath?: string
+  tailwindRootFontSize?: number
 }
 
 export async function projectConfig(config?: ProjectConfigOptions) {
@@ -39,12 +40,13 @@ export async function projectConfig(config?: ProjectConfigOptions) {
     simpleSortConfig,
     vitestConfig,
     i18nConfig,
-    tailwindConfig({
-      tailwindConfigPath: config?.tailwindConfigPath ?? DEFAULT_TAILWIND_CONFIG_PATH,
-    }),
     modulesConfig,
     pathConfig,
     wisemenConfig,
+    tailwindConfig({
+      tailwindConfigPath: config?.tailwindConfigPath ?? DEFAULT_TAILWIND_CONFIG_PATH,
+      tailwindRootFontSize: config?.tailwindRootFontSize,
+    }),
     {
       name: 'import/settings-and-parser',
       settings: {

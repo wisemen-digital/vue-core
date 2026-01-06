@@ -13,12 +13,19 @@ import { pathConfig } from '#rules/path.ts'
 import { perfectionistConfig } from '#rules/perfectionist.ts'
 import { simpleSortConfig } from '#rules/simpleSort.ts'
 import { spacingConfig } from '#rules/spacing.ts'
+import {
+  DEFAULT_TAILWIND_CONFIG_PATH,
+  tailwindConfig,
+} from '#rules/tailwind.ts'
 import { unicornConfig } from '#rules/unicorn.ts'
 import { vitestConfig } from '#rules/vitest.ts'
 import { wisemenConfig } from '#rules/wisemen.ts'
 
 export interface PackageConfigOptions {
   localesFolderPath?: string
+  tailwindConfigPath?: string
+  tailwindRootFontSize?: number
+
 }
 
 export async function packageConfig(config?: PackageConfigOptions) {
@@ -34,6 +41,10 @@ export async function packageConfig(config?: PackageConfigOptions) {
     i18nConfig,
     pathConfig,
     wisemenConfig,
+    tailwindConfig({
+      tailwindConfigPath: config?.tailwindConfigPath ?? DEFAULT_TAILWIND_CONFIG_PATH,
+      tailwindRootFontSize: config?.tailwindRootFontSize,
+    }),
     {
       name: 'import/settings-and-parser',
       settings: {
