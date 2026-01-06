@@ -68,8 +68,8 @@ import { projectConfig } from '@wisemen/eslint-config-vue'
 
 export default [
   ...(await projectConfig({
-    localesFolderPath: './src/locales',
-    tailwindConfigPath: './src/assets/index.css',
+    localesFolderPath: './src/locales/*.json',
+    tailwindConfigPath: './src/assets/styles/index.css',
     tailwindRootFontSize: 16,
   })),
   {
