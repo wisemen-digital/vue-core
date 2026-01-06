@@ -2,10 +2,11 @@ import eslintPluginBetterTailwindcss from 'eslint-plugin-better-tailwindcss'
 
 import type { LintConfig } from '@/types/lint.type.ts'
 
-export const DEFAULT_TAILWIND_CONFIG_PATH = 'src/assets/styles/index.css'
+export const DEFAULT_TAILWIND_CONFIG_PATH = './src/assets/styles/index.css'
+export const DEFAULT_TAILWIND_ROOT_FONT_SIZE = 16
 
 export interface TailwindConfigOptions {
-  tailwindConfigPath: string
+  tailwindConfigPath?: string
   tailwindRootFontSize?: number
 }
 
@@ -20,7 +21,7 @@ export function tailwindConfig(config: TailwindConfigOptions): LintConfig {
         'better-tailwindcss/enforce-canonical-classes': [
           'error',
           {
-            rootFontSize: config.tailwindRootFontSize,
+            rootFontSize: config.tailwindRootFontSize ?? DEFAULT_TAILWIND_ROOT_FONT_SIZE,
           },
         ],
         'better-tailwindcss/enforce-consistent-class-order': 'error',

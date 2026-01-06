@@ -8,6 +8,7 @@ This package requires:
 - Node.js 22 or higher
 - ESLint 9.x
 - TypeScript 5.x
+- Tailwind CSS 4.1.15 or higher (optional, for Tailwind-specific rules)
 
 ## 1. Install the package
 
@@ -29,27 +30,48 @@ pnpm add -D eslint
 
 ## 3. Create ESLint configuration
 
-Create an `eslint.config.ts` file in your project root:
+Create an `eslint.config.ts` file in your project root.
+
+### For Projects
+
+Use `projectConfig` for full-featured applications:
 
 ```typescript
 // eslint.config.ts
-import wisemenConfig from '@wisemen/eslint-config-vue'
+import { projectConfig } from '@wisemen/eslint-config-vue'
 
 export default [
-  ...(await wisemenConfig),
+  ...(await projectConfig()),
 ]
 ```
 
-### With Custom Rules
+### For Packages/Libraries
 
-You can extend or override the default configuration:
+Use `packageConfig` for npm packages and libraries (excludes project-structure rules):
 
 ```typescript
 // eslint.config.ts
-import wisemenConfig from '@wisemen/eslint-config-vue'
+import { packageConfig } from '@wisemen/eslint-config-vue'
 
 export default [
-  ...(await wisemenConfig),
+  ...(await packageConfig()),
+]
+```
+
+### With Custom Options
+
+Both configs accept optional configuration:
+
+```typescript
+// eslint.config.ts
+import { projectConfig } from '@wisemen/eslint-config-vue'
+
+export default [
+  ...(await projectConfig({
+    localesFolderPath: './src/locales',
+    tailwindConfigPath: './src/assets/index.css',
+    tailwindRootFontSize: 16,
+  })),
   {
     rules: {
       // Add your custom rules here
@@ -93,14 +115,21 @@ Install the [ESLint extension](https://marketplace.visualstudio.com/items?itemNa
 
 ## What's Included?
 
-The configuration includes rules for:
+### Both Configs Include:
 
 - **Vue.js**: Best practices and Vue 3 composition API patterns
 - **TypeScript**: Type-safe coding patterns
 - **Accessibility**: Vue.js accessibility rules
 - **Imports**: Import ordering and formatting
 - **Code Quality**: Code style, formatting, and best practices
+- **Tailwind CSS**: Class ordering and validation
+- **i18n**: Vue i18n best practices
+- **Vitest**: Testing rules and patterns
+
+### `projectConfig` Additionally Includes:
+
 - **Project Structure**: File and folder naming conventions
+- **Module Independence**: Enforces module boundaries in projects
 
 ## Troubleshooting
 

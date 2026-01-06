@@ -21,12 +21,9 @@ import { unicornConfig } from '#rules/unicorn.ts'
 import { vitestConfig } from '#rules/vitest.ts'
 import { wisemenConfig } from '#rules/wisemen.ts'
 
-export interface PackageConfigOptions {
-  localesFolderPath?: string
-  tailwindConfigPath?: string
-  tailwindRootFontSize?: number
+import type { DefaultConfigOptions } from './default.config'
 
-}
+export interface PackageConfigOptions extends DefaultConfigOptions {}
 
 export async function packageConfig(config?: PackageConfigOptions) {
   return await antfu(
