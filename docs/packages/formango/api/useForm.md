@@ -90,7 +90,7 @@ form.submit()
 ```
 
 ## Type definitions
- 
+
 ::: code-group
 ```ts [UseFormOptions]
 interface UseFormOptions<TSchema extends StandardSchemaV1> {

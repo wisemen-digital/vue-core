@@ -13,26 +13,34 @@ import {
 describe('initial state type allows nulls', () => {
   it('initial state primitive is correct', () => {
     const form = useForm({
-      initialState: { name: 'Joe' },
+      initialState: {
+        name: 'Joe',
+      },
       schema: basicSchema,
       onSubmit: (data) => {
         return data
       },
     })
 
-    expect(form.state.value).toEqual({ name: 'Joe' })
+    expect(form.state.value).toEqual({
+      name: 'Joe',
+    })
   })
 
   it('initial state primitive is nullable', () => {
     const form = useForm({
-      initialState: { name: null },
+      initialState: {
+        name: null,
+      },
       schema: basicSchema,
       onSubmit: (data) => {
         return data
       },
     })
 
-    expect(form.state.value).toEqual({ name: null })
+    expect(form.state.value).toEqual({
+      name: null,
+    })
   })
 
   it('initial state primitive errors with wrong value', () => {
@@ -47,19 +55,25 @@ describe('initial state type allows nulls', () => {
       },
     })
 
-    expect(form.state.value).toEqual({ name: 123 })
+    expect(form.state.value).toEqual({
+      name: 123,
+    })
   })
 
   it('initial state object is nullable', () => {
     const form = useForm({
-      initialState: { a: null },
+      initialState: {
+        a: null,
+      },
       schema: objectSchema,
       onSubmit: (data) => {
         return data
       },
     })
 
-    expect(form.state.value).toEqual({ a: null })
+    expect(form.state.value).toEqual({
+      a: null,
+    })
   })
 
   it('initial state object errors with wrong value', () => {
@@ -74,7 +88,9 @@ describe('initial state type allows nulls', () => {
       },
     })
 
-    expect(form.state.value).toEqual({ a: '123' })
+    expect(form.state.value).toEqual({
+      a: '123',
+    })
   })
 
   it('initial state object nested values are nullable', () => {
@@ -127,7 +143,9 @@ describe('initial state type allows nulls', () => {
       initialState: {
         a: {
           b: '123',
-          bObj: { c: '123' },
+          bObj: {
+            c: '123',
+          },
         },
       },
       schema: objectSchema,
@@ -139,7 +157,9 @@ describe('initial state type allows nulls', () => {
     expect(form.state.value).toEqual({
       a: {
         b: '123',
-        bObj: { c: '123' },
+        bObj: {
+          c: '123',
+        },
       },
     })
   })

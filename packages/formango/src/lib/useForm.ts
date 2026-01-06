@@ -17,7 +17,7 @@ import {
   registerFieldWithDevTools,
   registerFormWithDevTools,
   unregisterFieldWithDevTools,
-} from '../devtools/devtools'
+} from '@/devtools/devtools'
 import type {
   DeepPartial,
   Field,
@@ -31,14 +31,14 @@ import type {
   RegisterArray,
   StandardSchemaV1,
   Unregister,
-} from '../types'
+} from '@/types'
 import {
   generateId,
   get,
   isSubPath,
   set,
   unset,
-} from '../utils'
+} from '@/utils'
 
 interface UseFormOptions<TSchema extends StandardSchemaV1> {
   /**
@@ -149,7 +149,9 @@ export function useForm<TSchema extends StandardSchemaV1>(
       initialFormState.value = deepClone(toValue(newInitialState)) as DeepPartial<StandardSchemaV1.InferOutput<TSchema>>
       Object.assign(form.value, deepClone(toValue(newInitialState)))
     }
-  }, { deep: true })
+  }, {
+    deep: true,
+  })
 
   function getIdByPath(
     paths: Map<string, string>,
@@ -223,7 +225,9 @@ export function useForm<TSchema extends StandardSchemaV1>(
         return false
       }
 
-      const { isPart } = isSubPath({
+      const {
+        isPart,
+      } = isSubPath({
         childPath: field._path.value,
         parentPath: path,
       })
@@ -256,7 +260,9 @@ export function useForm<TSchema extends StandardSchemaV1>(
             return false
           }
 
-          const { isPart } = isSubPath({
+          const {
+            isPart,
+          } = isSubPath({
             childPath: registeredField._path.value,
             parentPath: field._path.value,
           })
@@ -431,7 +437,9 @@ export function useForm<TSchema extends StandardSchemaV1>(
             return false
           }
 
-          const { isPart } = isSubPath({
+          const {
+            isPart,
+          } = isSubPath({
             childPath: registeredField._path.value,
             parentPath: fieldArray._path.value,
           })
@@ -577,7 +585,9 @@ export function useForm<TSchema extends StandardSchemaV1>(
           return false
         }
 
-        const { isPart } = isSubPath({
+        const {
+          isPart,
+        } = isSubPath({
           childPath: dottedPath,
           parentPath: field._path.value,
         })
@@ -635,7 +645,9 @@ export function useForm<TSchema extends StandardSchemaV1>(
           return false
         }
 
-        const { isPart } = isSubPath({
+        const {
+          isPart,
+        } = isSubPath({
           childPath: dottedPath,
           parentPath: field._path.value,
         })
@@ -949,7 +961,7 @@ export function useForm<TSchema extends StandardSchemaV1>(
     immediate: true,
   })
 
-  function reset() {
+  function reset(): void {
     if (initialState == null) {
       throw new Error('In order to reset the form, you need to provide an initial state')
     }

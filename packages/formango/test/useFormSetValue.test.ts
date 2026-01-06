@@ -25,7 +25,9 @@ describe('set a value of a field', () => {
 
     expect(name.modelValue.value).toBe('John')
 
-    expect(form.state.value).toEqual({ name: 'John' })
+    expect(form.state.value).toEqual({
+      name: 'John',
+    })
   })
 
   it('should set a value of a field with `setValue`', () => {
@@ -42,7 +44,9 @@ describe('set a value of a field', () => {
 
     expect(name.modelValue.value).toBe('John')
 
-    expect(form.state.value).toEqual({ name: 'John' })
+    expect(form.state.value).toEqual({
+      name: 'John',
+    })
   })
 
   it('should set a value of a field with `form.setValues`', () => {
@@ -55,11 +59,15 @@ describe('set a value of a field', () => {
 
     const name = form.register('name')
 
-    form.setValues({ name: 'John' })
+    form.setValues({
+      name: 'John',
+    })
 
     expect(name.modelValue.value).toBe('John')
 
-    expect(form.state.value).toEqual({ name: 'John' })
+    expect(form.state.value).toEqual({
+      name: 'John',
+    })
   })
 
   it('should set a nested value of a field with `form.setValues`', () => {
@@ -72,10 +80,18 @@ describe('set a value of a field', () => {
 
     const b = form.register('a.b')
 
-    form.setValues({ a: { b: 'John' } })
+    form.setValues({
+      a: {
+        b: 'John',
+      },
+    })
 
     expect(b.modelValue.value).toBe('John')
 
-    expect(form.state.value).toEqual({ a: { b: 'John' } })
+    expect(form.state.value).toEqual({
+      a: {
+        b: 'John',
+      },
+    })
   })
 })

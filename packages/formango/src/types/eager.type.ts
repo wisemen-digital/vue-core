@@ -34,10 +34,10 @@ type PathImpl<K extends number | string, V, TraversedTypes> = V extends
   | BrowserNativeObject
   | Primitive
   ? `${K}`
-  : // Check so that we don't recurse into the same type
+  // Check so that we don't recurse into the same type
   // by ensuring that the types are mutually assignable
   // mutually required to avoid false positives of subtypes
-  true extends AnyIsEqual<TraversedTypes, V>
+  : true extends AnyIsEqual<TraversedTypes, V>
     ? `${K}`
     : `${K}.${PathInternal<V, TraversedTypes | V>}` | `${K}`
 
@@ -92,10 +92,10 @@ type ArrayPathImpl<K extends number | string, V, TraversedTypes> = V extends
       ? IsAny<V> extends true
         ? string
         : never
-      : // Check so that we don't recurse into the same type
-    // by ensuring that the types are mutually assignable
-    // mutually required to avoid false positives of subtypes
-      true extends AnyIsEqual<TraversedTypes, V>
+      // Check so that we don't recurse into the same type
+      // by ensuring that the types are mutually assignable
+      // mutually required to avoid false positives of subtypes
+      : true extends AnyIsEqual<TraversedTypes, V>
         ? never
         : `${K}.${ArrayPathInternal<V, TraversedTypes | V>}` | `${K}`
     : true extends AnyIsEqual<TraversedTypes, V>
@@ -134,8 +134,8 @@ export type ArrayPath<T> = T extends any ? ArrayPathInternal<T> : never
 /**
  * See {@link ArrayPath}
  */
-export type FieldArrayPath<TFieldValues extends FieldValues> =
-  ArrayPath<TFieldValues>
+export type FieldArrayPath<TFieldValues extends FieldValues>
+  = ArrayPath<TFieldValues>
 
 /**
  * Type to evaluate the type which the given path points to.

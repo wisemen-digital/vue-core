@@ -1,3 +1,4 @@
+/* eslint-disable eslint-plugin-wisemen/explicit-function-return-type-with-regex */
 /* eslint-disable node/prefer-global/process */
 import type {
   App,
@@ -17,14 +18,15 @@ import {
 import type {
   Field,
   Form,
-} from '../types'
+} from '@/types'
 import type {
   EncodedNode,
   FieldNode,
   FormNode,
   ObjectWithPossiblyFieldRecursive,
-} from '../types/devtools.type'
-import { throttle } from '../utils'
+} from '@/types/devtools.type'
+import { throttle } from '@/utils'
+
 import {
   buildFieldState,
   buildFormState,
@@ -365,5 +367,7 @@ if (isDevMode) {
   watch([
     DEVTOOLS_FORMS.value,
     DEVTOOLS_FIELDS.value,
-  ], refreshInspector, { deep: true })
+  ], refreshInspector, {
+    deep: true,
+  })
 }

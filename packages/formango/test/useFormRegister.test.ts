@@ -28,7 +28,9 @@ describe('register a field or fieldArray', () => {
 
     expect(name.modelValue.value).toBeNull()
 
-    expect(form.state.value).toEqual({ name: null })
+    expect(form.state.value).toEqual({
+      name: null,
+    })
   })
 
   it('should register a field which has already been registered', () => {
@@ -48,7 +50,9 @@ describe('register a field or fieldArray', () => {
     expect(name.modelValue.value).toBe('John')
     expect(name2.modelValue.value).toBe('John')
 
-    expect(form.state.value).toEqual({ name: 'John' })
+    expect(form.state.value).toEqual({
+      name: 'John',
+    })
   })
 
   it('should register a field with a default value', () => {
@@ -64,12 +68,16 @@ describe('register a field or fieldArray', () => {
 
     expect(name.modelValue.value).toBe('John')
 
-    expect(form.state.value).toEqual({ name: 'John' })
+    expect(form.state.value).toEqual({
+      name: 'John',
+    })
   })
 
   it('should register a field with a default value from the initial state', () => {
     const form = useForm({
-      initialState: { name: 'John' },
+      initialState: {
+        name: 'John',
+      },
       schema: basicSchema,
       onSubmit: (data) => {
         return data
@@ -80,7 +88,9 @@ describe('register a field or fieldArray', () => {
 
     expect(name.modelValue.value).toBe('John')
 
-    expect(form.state.value).toEqual({ name: 'John' })
+    expect(form.state.value).toEqual({
+      name: 'John',
+    })
   })
 
   it('should register a nested field', () => {
@@ -97,7 +107,11 @@ describe('register a field or fieldArray', () => {
 
     expect(b.modelValue.value).toBeNull()
 
-    expect(form.state.value).toEqual({ a: { b: null } })
+    expect(form.state.value).toEqual({
+      a: {
+        b: null,
+      },
+    })
   })
 
   it('should register a nested field with a default value', () => {
@@ -114,7 +128,11 @@ describe('register a field or fieldArray', () => {
 
     expect(b.modelValue.value).toBe('John')
 
-    expect(form.state.value).toEqual({ a: { b: 'John' } })
+    expect(form.state.value).toEqual({
+      a: {
+        b: 'John',
+      },
+    })
   })
 
   it('should register a nested field without its parent being registed', () => {
@@ -129,7 +147,11 @@ describe('register a field or fieldArray', () => {
 
     expect(b.modelValue.value).toBeNull()
 
-    expect(form.state.value).toEqual({ a: { b: null } })
+    expect(form.state.value).toEqual({
+      a: {
+        b: null,
+      },
+    })
   })
 
   it('should register an array field', () => {
@@ -144,7 +166,9 @@ describe('register a field or fieldArray', () => {
 
     expect(array.modelValue.value).toEqual([])
 
-    expect(form.state.value).toEqual({ array: [] })
+    expect(form.state.value).toEqual({
+      array: [],
+    })
   })
 
   it('should register an array field with a default value', () => {
@@ -211,7 +235,9 @@ describe('register a field or fieldArray', () => {
 
     expect(form.state.value).toEqual({
       array: [
-        { name: null },
+        {
+          name: null,
+        },
       ],
     })
   })
@@ -231,7 +257,9 @@ describe('register a field or fieldArray', () => {
     expect(form.state.value).toEqual({
       array: [
         [
-          { name: 'John' },
+          {
+            name: 'John',
+          },
         ],
       ],
     })
@@ -407,7 +435,9 @@ describe('register a field or fieldArray', () => {
     const array = field.registerArray('array', [])
 
     expect(array.modelValue.value).toEqual([])
-    expect(field.modelValue.value).toEqual({ array: [] })
+    expect(field.modelValue.value).toEqual({
+      array: [],
+    })
 
     array.append('John')
 
@@ -431,28 +461,40 @@ describe('register a field or fieldArray', () => {
 
     const array = form.registerArray('array', [])
     const array2 = array.registerArray('0', [
-      { name: 'Wouter' },
+      {
+        name: 'Wouter',
+      },
     ])
 
     expect(array.modelValue.value).toEqual([
       [
-        { name: 'Wouter' },
+        {
+          name: 'Wouter',
+        },
       ],
     ])
     expect(array2.modelValue.value).toEqual([
-      { name: 'Wouter' },
+      {
+        name: 'Wouter',
+      },
     ])
 
     array.append([
-      { name: 'Robbe' },
+      {
+        name: 'Robbe',
+      },
     ])
 
     expect(array.modelValue.value).toEqual([
       [
-        { name: 'Wouter' },
+        {
+          name: 'Wouter',
+        },
       ],
       [
-        { name: 'Robbe' },
+        {
+          name: 'Robbe',
+        },
       ],
 
     ])

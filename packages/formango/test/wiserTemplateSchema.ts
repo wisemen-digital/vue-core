@@ -31,7 +31,9 @@ export enum QuestionType {
 }
 
 const templateFormOpenQuestionSchema = baseTemplateFormQuestionSchema
-  .merge(z.object({ questionType: z.literal(QuestionType.OPEN) }))
+  .merge(z.object({
+    questionType: z.literal(QuestionType.OPEN),
+  }))
 
 const templateFormScoreQuestionSchema = baseTemplateFormQuestionSchema.merge(z.object({
   labelMax: z.string().nullable(),

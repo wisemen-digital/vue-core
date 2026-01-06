@@ -21,7 +21,9 @@ describe('isDirty', () => {
 
   it('should be false when a default state is provided', () => {
     const form = useForm({
-      initialState: { name: 'John' },
+      initialState: {
+        name: 'John',
+      },
       schema: basicSchema,
       onSubmit: (data) => {
         return data

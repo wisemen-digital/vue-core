@@ -42,7 +42,6 @@ export function toFormField<TValue, TDefaultValue>(field: Field<TValue, TDefault
 
 Visit the [best practice page](../best-practices/custom-input.md) to view an example of a custom input consuming the Field API.
 
-
 ### Field object
 
 | State           | Type      | Description                                                       |
@@ -60,9 +59,8 @@ Visit the [best practice page](../best-practices/custom-input.md) to view an exa
 | setValue | `Function` | Sets modelValue manually |
 | register | `Function` | Function to register any fields under this field |
 
-
 ## Type definitions
- 
+
 ::: code-group
 
 ```ts [Field]

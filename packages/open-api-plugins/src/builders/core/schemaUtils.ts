@@ -17,13 +17,13 @@ export function getEnumValues(items: any[]): JsonValue[] {
 export function inferEnumType(enumValues: JsonValue[]): 'array' | 'boolean' | 'integer' | 'null' | 'number' | 'object' | 'string' {
   const primitiveTypes = new Set(enumValues.map((v) => (v === null ? 'null' : typeof v)))
   let inferred: 'array' | 'boolean' | 'integer' | 'null' | 'number' | 'object' | 'string'
-        = primitiveTypes.size === 1
-          ? (
-              [
-                ...primitiveTypes,
-              ][0] as 'array' | 'boolean' | 'null' | 'number' | 'object' | 'string'
-            )
-          : 'string'
+    = primitiveTypes.size === 1
+      ? (
+          [
+            ...primitiveTypes,
+          ][0] as 'array' | 'boolean' | 'null' | 'number' | 'object' | 'string'
+        )
+      : 'string'
 
   if (inferred === 'number') {
     if (enumValues.every((v) => typeof v === 'number' && Number.isInteger(v))) {

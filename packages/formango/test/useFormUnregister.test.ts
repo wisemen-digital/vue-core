@@ -66,7 +66,9 @@ describe('unregister a field or fieldArray', () => {
 
     array.remove(0)
 
-    expect(form.state.value).toEqual({ array: [] })
+    expect(form.state.value).toEqual({
+      array: [],
+    })
 
     array.append('Doe')
 
@@ -81,7 +83,13 @@ describe('unregister a field or fieldArray', () => {
 
   it('should unregister an array index with a subfield', () => {
     const form = useForm({
-      schema: z.object({ questions: z.object({ choices: z.object({ text: z.string() }).array() }).array() }),
+      schema: z.object({
+        questions: z.object({
+          choices: z.object({
+            text: z.string(),
+          }).array(),
+        }).array(),
+      }),
       onSubmit: (data) => {
         return data
       },

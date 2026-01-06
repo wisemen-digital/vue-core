@@ -24,17 +24,23 @@ describe('modelValue and value stay in sync', () => {
 
     a.setValue({
       b: 'John',
-      bObj: { c: '123' },
+      bObj: {
+        c: '123',
+      },
     })
 
     expect(a.modelValue.value).toEqual({
       b: 'John',
-      bObj: { c: '123' },
+      bObj: {
+        c: '123',
+      },
     })
 
     expect(a.value.value).toEqual({
       b: 'John',
-      bObj: { c: '123' },
+      bObj: {
+        c: '123',
+      },
     })
 
     expect(b.modelValue.value).toBe('John')
@@ -46,7 +52,9 @@ describe('modelValue and value stay in sync', () => {
       initialState: {
         a: {
           b: 'John',
-          bObj: { c: '123' },
+          bObj: {
+            c: '123',
+          },
         },
       },
       schema: objectSchema,
@@ -60,12 +68,16 @@ describe('modelValue and value stay in sync', () => {
 
     expect(a.modelValue.value).toEqual({
       b: 'John',
-      bObj: { c: '123' },
+      bObj: {
+        c: '123',
+      },
     })
 
     expect(a.value.value).toEqual({
       b: 'John',
-      bObj: { c: '123' },
+      bObj: {
+        c: '123',
+      },
     })
 
     expect(b.modelValue.value).toBe('John')
@@ -83,14 +95,20 @@ describe('modelValue and value stay in sync', () => {
     const array = form.registerArray('array')
 
     array.setValue([
-      { name: 'John' },
+      {
+        name: 'John',
+      },
     ])
 
     expect(array.modelValue.value).toEqual([
-      { name: 'John' },
+      {
+        name: 'John',
+      },
     ])
     expect(array.value.value).toEqual([
-      { name: 'John' },
+      {
+        name: 'John',
+      },
     ])
   })
 })

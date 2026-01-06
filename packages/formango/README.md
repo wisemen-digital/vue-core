@@ -2,7 +2,6 @@
 
 ## Installation
 
-
 ```bash
 pnpm i formango
 ```
@@ -18,7 +17,6 @@ Formango takes the hassle out of form validation in your Vue applications, provi
 4. <b>Flexibility in Your Hands</b>: As a headless validation library, Formango adapts to your needs, whether it's handling complex and custom forms or a simple login form. Customize the validation to fit your specific use cases without compromising on quality.
 5. <b>Vue Ecosystem Friendly</b>: Built-in devtools makes it easy to debug your complex forms.
 6. <b>Fruity</b>: It follows the trend of fruit-based Vue libraries.
-
 
 ## Usage Example
 

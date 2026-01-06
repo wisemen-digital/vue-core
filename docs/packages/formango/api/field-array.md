@@ -108,9 +108,8 @@ export type Email = z.infer<typeof emailSchema>
 | setValue | `Function` | Sets the value of the array |
 | register | `Function` | Function to register any fields under this field |
 
-
 ## Type definitions
- 
+
 ```ts
 /**
  * Represents a form field array.

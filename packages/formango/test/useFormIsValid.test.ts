@@ -66,7 +66,9 @@ describe('isValid', () => {
     expect(abObjC.isValid.value).toBeFalsy()
 
     abObjC.setValue('John')
-    abObj.setValue({ c: 'John' })
+    abObj.setValue({
+      c: 'John',
+    })
 
     await sleep(0)
 
@@ -128,7 +130,9 @@ describe('isValid', () => {
     expect(array00.isValid.value).toBeTruthy()
     expect(array00Name.isValid.value).toBeTruthy()
 
-    array01.setValue({ name: 'John' })
+    array01.setValue({
+      name: 'John',
+    })
 
     await sleep(0)
 
@@ -142,7 +146,9 @@ describe('isValid', () => {
     expect(array00.isValid.value).toBeTruthy()
 
     array1.setValue([
-      { name: 'John' },
+      {
+        name: 'John',
+      },
     ])
 
     await sleep(0)

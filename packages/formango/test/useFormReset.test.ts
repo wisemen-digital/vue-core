@@ -14,7 +14,9 @@ import {
 describe('reset form', () => {
   it('should reset the form with initial state', async () => {
     const form = useForm({
-      initialState: { name: 'John' },
+      initialState: {
+        name: 'John',
+      },
       schema: basicSchema,
       onSubmit: (data) => {
         return data
@@ -54,8 +56,12 @@ describe('reset form', () => {
     const form = useForm({
       initialState: {
         array: [
-          { name: null },
-          { name: null },
+          {
+            name: null,
+          },
+          {
+            name: null,
+          },
         ],
       },
       schema: objectArraySchema,

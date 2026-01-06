@@ -6,13 +6,13 @@ import type {
 import type {
   FormattedError,
   StandardSchemaV1,
-} from '../types'
+} from '@/types'
 
-function issueMapper(issue: FormattedError<any> | StandardSchemaV1.Issue) {
+function issueMapper(issue: FormattedError<any> | StandardSchemaV1.Issue): string {
   return issue.message
 }
 
-function isZodIssue(error: any): error is ZodIssue {
+function _isZodIssue(error: any): error is ZodIssue {
   return error.code !== undefined
 }
 
@@ -29,28 +29,11 @@ function getNormalizedPathArray<TType>(issue: SomeIssue<TType>): string[] {
 }
 
 export function formatErrorsToZodFormattedError<TType>(issues: SomeIssues<TType>): ZodFormattedError<TType> {
-  const fieldErrors: ZodFormattedError<TType> = { _errors: [] } as any
+  const fieldErrors: ZodFormattedError<TType> = {
+    _errors: [],
+  } as any
 
-  function processIssue(issue: SomeIssue<TType>) {
-    // Handle zod only issue types
-    if (isZodIssue(issue)) {
-      if (issue.code === 'invalid_union') {
-        issue.unionErrors.map(processIssue)
-
-        return
-      }
-      if (issue.code === 'invalid_return_type') {
-        processIssue(issue.returnTypeError)
-
-        return
-      }
-      if (issue.code === 'invalid_arguments') {
-        processIssue(issue.argumentsError)
-
-        return
-      }
-    }
-
+  function processIssue(issue: SomeIssue<TType>): any {
     // Issue without path gets added to the root
     if (issue.path == null || issue.path?.length === 0) {
       fieldErrors._errors.push(issueMapper(issue))
@@ -70,10 +53,14 @@ export function formatErrorsToZodFormattedError<TType>(issues: SomeIssues<TType>
       const terminal = i === normalizedPath.length - 1
 
       if (!terminal) {
-        curr[el] = curr[el] || { _errors: [] }
+        curr[el] = curr[el] || {
+          _errors: [],
+        }
       }
       else {
-        curr[el] = curr[el] || { _errors: [] }
+        curr[el] = curr[el] || {
+          _errors: [],
+        }
         curr[el]._errors.push(issueMapper(issue))
       }
 

@@ -6,7 +6,6 @@ Here is a custom input which shows the error if the user has focused and blurred
 In this example your v-model, blur and errors automatically get bound by using v-bind on a Field.
 This is a very basic example as a starting point.
 
-
 ::: code-group
 ```vue [CustomInput.vue]
 <script setup lang="ts">

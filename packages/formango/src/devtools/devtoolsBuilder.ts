@@ -1,9 +1,10 @@
+/* eslint-disable eslint-plugin-wisemen/explicit-function-return-type-with-regex */
 import type { UnwrapRef } from 'vue'
 
 import type {
   Field,
   Form,
-} from '../types'
+} from '@/types'
 
 export function buildFormState(form: UnwrapRef<Form<any>>) {
   return {

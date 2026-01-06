@@ -82,32 +82,46 @@ describe('when appending and registering a nested array', () => {
       null,
     ])
 
-    room.append({ name: 'Peter' })
+    room.append({
+      name: 'Peter',
+    })
 
     // Append does append at the end of the array
     expect(room.modelValue.value).toEqual([
       undefined,
       undefined,
       null,
-      { name: 'Peter' },
+      {
+        name: 'Peter',
+      },
     ])
 
-    room.register('1', { name: 'Doe' })
+    room.register('1', {
+      name: 'Doe',
+    })
 
     // Retroactively registering a field should put the data in the correct spot
     expect(room.modelValue.value).toEqual([
       undefined,
-      { name: 'Doe' },
+      {
+        name: 'Doe',
+      },
       null,
-      { name: 'Peter' },
+      {
+        name: 'Peter',
+      },
     ])
     expect(form.state.value).toEqual({
       users: [
         [
           undefined,
-          { name: 'Doe' },
+          {
+            name: 'Doe',
+          },
           null,
-          { name: 'Peter' },
+          {
+            name: 'Peter',
+          },
         ],
       ],
     })

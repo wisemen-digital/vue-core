@@ -13,7 +13,9 @@ import {
 
 describe('reactive initial state', () => {
   it('should update the state when the initial state is updated', async () => {
-    const initialState = ref({ name: 'John' })
+    const initialState = ref({
+      name: 'John',
+    })
 
     const form = useForm({
       initialState,
@@ -27,7 +29,9 @@ describe('reactive initial state', () => {
 
     expect(name.modelValue.value).toBe('John')
 
-    initialState.value = { name: 'Joe' }
+    initialState.value = {
+      name: 'Joe',
+    }
 
     await sleep(0)
 

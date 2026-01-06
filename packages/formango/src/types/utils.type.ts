@@ -24,14 +24,14 @@ interface FileList {
   readonly length: number
 }
 
-export type Primitive =
-  | bigint
-  | boolean
-  | number
-  | string
-  | symbol
-  | null
-  | undefined
+export type Primitive
+  = | bigint
+    | boolean
+    | number
+    | string
+    | symbol
+    | null
+    | undefined
 
 export type BrowserNativeObject = Date | File | FileList
 
@@ -39,9 +39,9 @@ export type EmptyObject = { [K in number | string]: never }
 
 export type NonUndefined<T> = T extends undefined ? never : T
 
-export type LiteralUnion<T extends U, U extends Primitive> =
-  | (U & { _?: never })
-  | T
+export type LiteralUnion<T extends U, U extends Primitive>
+  = | (U & { _?: never })
+    | T
 
 export type DeepPartial<T> = T extends BrowserNativeObject | NestedValue
   ? T
