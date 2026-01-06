@@ -140,6 +140,7 @@ export const baseConfig: OptionsConfig & Omit<TypedFlatConfigItem, 'files'> = {
       },
     ],
     'vue/no-template-shadow': 'error',
+
     'vue/no-undef-components': [
       'error',
     ],
@@ -147,7 +148,6 @@ export const baseConfig: OptionsConfig & Omit<TypedFlatConfigItem, 'files'> = {
       'error',
       {
         allowAllPropertiesOnSameLine: false,
-        allowMultiplePropertiesPerLine: true,
       },
     ],
   },

@@ -2,7 +2,8 @@ import vueI18n from '@intlify/eslint-plugin-vue-i18n'
 
 import type { LintConfig } from '@/types/lint.type.ts'
 
-export const i18nConfig: LintConfig = {
+export const DEFAULT_I18N_LOCALES_FOLDER_PATH = './src/locales/*.json'
+export const i18nConfig: LintConfig = ({
   name: 'vue-i18n',
   plugins: {
     '@intlify/vue-i18n': vueI18n,
@@ -11,6 +12,9 @@ export const i18nConfig: LintConfig = {
     '@intlify/vue-i18n/key-format-style': [
       'error',
       'snake_case',
+      {
+        splitByDots: true,
+      },
     ],
     '@intlify/vue-i18n/no-deprecated-i18n-component': 'error',
     '@intlify/vue-i18n/no-deprecated-i18n-place-attr': 'error',
@@ -27,4 +31,4 @@ export const i18nConfig: LintConfig = {
     '@intlify/vue-i18n/prefer-linked-key-with-paren': 'error',
     '@intlify/vue-i18n/valid-message-syntax': 'error',
   },
-}
+})
