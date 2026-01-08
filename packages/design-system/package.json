@@ -29,7 +29,9 @@
     "cleanup": "rimraf dist/ node_modules/ .turbo/",
     "lint": "pnpm eslint --fix .",
     "test": "vitest --run",
-    "typecheck": "pnpm tsc"
+    "typecheck": "pnpm tsc",
+    "story:dev": "histoire dev",
+    "story:build": "histoire build"
   },
   "peerDependencies": {
     "vue": "catalog:peer"
@@ -41,10 +43,13 @@
     "tailwindcss": "^4.1.17"
   },
   "devDependencies": {
+    "@histoire/plugin-vue": "catalog:stories",
     "@types/node": "catalog:types",
     "@wisemen/eslint-config-vue": "catalog:lint",
     "eslint": "catalog:lint",
+    "histoire": "catalog:stories",
     "typescript": "catalog:build",
-    "vitest": "catalog:test"
+    "vitest": "catalog:test",
+    "vue": "catalog:vue"
   }
 }
