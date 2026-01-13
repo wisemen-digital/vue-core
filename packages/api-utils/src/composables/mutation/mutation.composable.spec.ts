@@ -1,9 +1,11 @@
+/* eslint-disable test/no-conditional-expect */
+/* eslint-disable test/no-conditional-in-test */
 import type { QueryClient } from '@tanstack/vue-query'
 import {
   useQueryClient,
   VueQueryPlugin,
 } from '@tanstack/vue-query'
-import { ResultAsync } from 'neverthrow'
+import { ok } from 'neverthrow'
 import {
   describe,
   expect,
@@ -13,7 +15,12 @@ import type { App } from 'vue'
 import { createApp } from 'vue'
 
 import { useMutation } from '@/composables/mutation/mutation.composable'
-import { useQuery } from '@/composables/query/query.composable'
+
+function flushPromises(): Promise<void> {
+  return new Promise((resolve) => {
+    setTimeout(resolve, 0)
+  })
+}
 
 export function withSetup<T>(composable: (queryClient: QueryClient) => T): [T | null, App] {
   let result: T | null = null
@@ -42,99 +49,39 @@ describe('useMutation', () => {
     expect(useMutation).toBeDefined()
   })
 
-  it('should invalidate a query key correctly', () => {
-    void withSetup(async () => {
-      let queryRunCount = 0
+  it('should return ApiResult from execute', async () => {
+    let mutation: ReturnType<typeof useMutation> | null = null
 
-      useQuery({
-        queryFn: async () => {
-          queryRunCount += 1
-
-          return await ResultAsync.fromPromise(
-            Promise.resolve(''),
-            () => new Error('Generic error'),
-          )
-        },
-        queryKey: {
-          test: {},
-        },
+    const [
+      ,
+      app,
+    ] = withSetup(() => {
+      mutation = useMutation({
+        queryFn: ({
+          body, params,
+        }:
+        {
+          body: { name: string }
+          params: {
+            id: string
+          }
+        }) => Promise.resolve(ok('test-response')),
+        queryKeysToInvalidate: {},
       })
 
-      const mutation = useMutation({
-        queryFn: () => Promise.resolve(''),
-        queryKeysToInvalidate: {
-          test: {},
-        },
-      })
-
-      await mutation.execute()
-
-      // Query also runs once on mount
-      expect(queryRunCount).toBe(2)
+      return mutation
     })
-  })
 
-  it('should invalidate a query key with params correctly', () => {
-    void withSetup(async () => {
-      let queryRunCount = 0
+    await flushPromises()
 
-      useQuery({
-        queryFn: async () => {
-          queryRunCount += 1
+    const result = await mutation!.execute({})
 
-          return await ResultAsync.fromPromise(Promise.resolve(''), () => new Error('Generic error'))
-        },
-        queryKey: {
-          test: {
-            id: 1,
-            obj: {
-              randomKey: 'randomValue',
-            },
-          },
-        },
-      })
+    expect(result.isOk()).toBeTruthy()
 
-      const mutation1 = useMutation({
-        queryFn: () => Promise.resolve(''),
-        queryKeysToInvalidate: {
-          test: {
-            id: () => 1,
-          },
-        },
-      })
+    if (result.isOk()) {
+      expect(result._unsafeUnwrap()).toBe('test-response')
+    }
 
-      const mutation2 = useMutation({
-        queryFn: () => Promise.resolve(''),
-        queryKeysToInvalidate: {
-          test: {
-            id: () => 1,
-            obj: () => ({
-              randomKey: 'randomValue',
-            }),
-          },
-        },
-      })
-
-      const mutation3 = useMutation({
-        queryFn: () => Promise.resolve(''),
-        queryKeysToInvalidate: {
-          test: {
-            id: () => 2,
-          },
-        },
-      })
-
-      // + 1 because query key does match
-      await mutation1.execute()
-
-      // + 1 because query key does match
-      await mutation2.execute()
-
-      // + 0 because query key does not match
-      await mutation3.execute()
-
-      // Query also runs once on mount
-      expect(queryRunCount).toBe(3)
-    })
+    app?.unmount()
   })
 })

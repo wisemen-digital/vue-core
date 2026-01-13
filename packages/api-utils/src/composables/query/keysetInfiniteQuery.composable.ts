@@ -1,14 +1,13 @@
 import { useInfiniteQuery } from '@tanstack/vue-query'
-import {
-  err,
-  ok,
-} from 'neverthrow'
 import type { MaybeRef } from 'vue'
 import { computed } from 'vue'
 
+import { AsyncResult } from '@/async-result/asyncResult'
 import { QUERY_CONFIG } from '@/config/config'
+import type { ApiError } from '@/types/apiError.type'
 import type {
   KeysetPaginationParams,
+  KeysetPaginationResponse,
   KeysetPaginationResult,
 } from '@/types/pagination.type'
 import type { QueryKeys } from '@/types/queryKeys.type'
@@ -91,11 +90,15 @@ export function useKeysetInfiniteQuery<TData>(options: KeysetInfiniteQueryOption
     return Boolean(infiniteQuery.data.value?.pages.find((page) => page.isErr()))
   })
 
-  const result = computed<KeysetPaginationResult<TData>>(() => {
+  const result = computed<AsyncResult<KeysetPaginationResponse<TData>, ApiError>>(() => {
+    if (infiniteQuery.isLoading.value) {
+      return AsyncResult.loading<KeysetPaginationResponse<TData>, ApiError>()
+    }
+
     const firstError = infiniteQuery.data.value?.pages.find((page) => page.isErr())
 
     if (firstError) {
-      return err(firstError.error)
+      return AsyncResult.err<KeysetPaginationResponse<TData>, ApiError>(firstError.error)
     }
 
     const data = infiniteQuery.data.value?.pages
@@ -107,15 +110,16 @@ export function useKeysetInfiniteQuery<TData>(options: KeysetInfiniteQueryOption
       ? firstPage.value.meta
       : {
           next: null,
-          total: data.length,
         }
 
-    return ok({
+    const response: KeysetPaginationResponse<TData> = {
       data,
       meta: {
         next: infiniteQuery.hasNextPage.value ? meta.next : null,
       },
-    })
+    }
+
+    return AsyncResult.ok<KeysetPaginationResponse<TData>, ApiError>(response)
   })
 
   // eslint-disable-next-line eslint-plugin-wisemen/explicit-function-return-type-with-regex

@@ -1,14 +1,13 @@
 import { useInfiniteQuery } from '@tanstack/vue-query'
-import {
-  err,
-  ok,
-} from 'neverthrow'
 import type { MaybeRef } from 'vue'
 import { computed } from 'vue'
 
+import { AsyncResult } from '@/async-result/asyncResult'
 import { QUERY_CONFIG } from '@/config/config'
+import type { ApiError } from '@/types/apiError.type'
 import type {
   OffsetPaginationParams,
+  OffsetPaginationResponse,
   OffsetPaginationResult,
 } from '@/types/pagination.type'
 import type { QueryKeys } from '@/types/queryKeys.type'
@@ -104,11 +103,15 @@ export function useOffsetInfiniteQuery<TData>(options: OffsetInfiniteQueryOption
     return Boolean(infiniteQuery.data.value?.pages.find((page) => page.isErr()))
   })
 
-  const result = computed<OffsetPaginationResult<TData>>(() => {
+  const result = computed<AsyncResult<OffsetPaginationResponse<TData>, ApiError>>(() => {
+    if (infiniteQuery.isLoading.value) {
+      return AsyncResult.loading<OffsetPaginationResponse<TData>, ApiError>()
+    }
+
     const firstError = infiniteQuery.data.value?.pages.find((page) => page.isErr())
 
     if (firstError) {
-      return err(firstError.error)
+      return AsyncResult.err<OffsetPaginationResponse<TData>, ApiError>(firstError.error)
     }
 
     const data = infiniteQuery.data.value?.pages
@@ -118,14 +121,16 @@ export function useOffsetInfiniteQuery<TData>(options: OffsetInfiniteQueryOption
     const firstPage = infiniteQuery.data.value?.pages[0]
     const meta = firstPage?.isOk() ? firstPage.value.meta : null
 
-    return ok({
+    const response: OffsetPaginationResponse<TData> = {
       data,
       meta: {
         limit: meta?.limit ?? 0,
         offset: meta?.offset ?? 0,
         total: meta?.total ?? data.length,
       },
-    })
+    }
+
+    return AsyncResult.ok<OffsetPaginationResponse<TData>, ApiError>(response)
   })
 
   // eslint-disable-next-line eslint-plugin-wisemen/explicit-function-return-type-with-regex

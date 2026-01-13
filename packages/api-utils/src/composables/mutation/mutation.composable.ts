@@ -8,6 +8,11 @@ import type {
 } from 'vue'
 import { computed } from 'vue'
 
+import { AsyncResult } from '@/async-result/asyncResult'
+import type {
+  ApiError,
+  ApiResult,
+} from '@/types/apiError.type'
 import type { QueryKeys } from '@/types/queryKeys.type'
 
 type RequestParams<TReqData, TParams> = TReqData extends void
@@ -27,9 +32,9 @@ interface UseMutationOptions<TParams, TReqData, TResData> {
   /**
    * Function that will be called to perform the mutation
    * @param options - Parameters and body for the mutation
-   * @returns Promise with the response data
+   * @returns Promise with ApiResult containing either the response data or an error
    */
-  queryFn: (options: RequestParams<TReqData, TParams>) => Promise<TResData>
+  queryFn: (options: RequestParams<TReqData, TParams>) => Promise<ApiResult<TResData>>
   /**
    * Array of query keys which should be invalidated after mutation is successful
    */
@@ -50,13 +55,21 @@ export interface UseMutationReturnType<TReqData, TResData, TParams = void> {
   /**
    * Response data from the mutation
    */
-  data: ComputedRef<TResData extends unknown[] ? TResData[] : TResData | null>
+  data: ComputedRef<TResData | null>
   /**
    * Function to execute the mutation
    * @param data - Parameters and body for the mutation
-   * @returns Promise with the response data
+   * @returns Promise with ApiResult containing either the response data or an error
    */
-  execute: (data: RequestParams<TReqData, TParams>) => Promise<TResData>
+  execute: (data: RequestParams<TReqData, TParams>) => Promise<ApiResult<TResData>>
+  /**
+   * Computed result of the mutation
+   * Returns an AsyncResult with three states:
+   * - loading: use `result.value.isLoading()`
+   * - ok: use `result.value.isOk()` and `result.value.getValue()`
+   * - err: use `result.value.isErr()` and `result.value.getError()`
+   */
+  result: ComputedRef<AsyncResult<TResData, ApiError>>
 }
 
 export function useMutation<
@@ -102,9 +115,14 @@ export function useMutation<
     )
   }
 
-  const mutation = useTanstackQueryMutation<TResData, unknown, RequestParams<TReqData, TParams>>({
+  const mutation = useTanstackQueryMutation<ApiResult<TResData>, unknown, RequestParams<TReqData, TParams>>({
     mutationFn: options.queryFn,
-    onSuccess: async (data, variables) => {
+    onSuccess: async (result, variables) => {
+      if (!result.isOk()) {
+        return
+      }
+
+      const data = result._unsafeUnwrap()
       const hasParams = variables !== undefined && 'params' in variables
 
       if (hasParams) {
@@ -117,13 +135,44 @@ export function useMutation<
     },
   })
 
-  async function execute(data: RequestParams<TReqData, TParams>): Promise<TResData> {
+  async function execute(data: RequestParams<TReqData, TParams>): Promise<ApiResult<TResData>> {
     return await mutation.mutateAsync(data)
   }
 
+  const result = computed<AsyncResult<TResData, ApiError>>(() => {
+    if (mutation.isPending.value) {
+      return AsyncResult.loading<TResData, ApiError>()
+    }
+
+    if (mutation.isError.value && mutation.error.value) {
+      return AsyncResult.err<TResData, ApiError>(mutation.error.value as ApiError)
+    }
+
+    if (mutation.isSuccess.value && mutation.data.value) {
+      const apiResult = mutation.data.value
+
+      if (apiResult.isOk()) {
+        return AsyncResult.ok<TResData, ApiError>(apiResult.value)
+      }
+
+      if (apiResult.isErr()) {
+        return AsyncResult.err<TResData, ApiError>(apiResult.error)
+      }
+    }
+
+    return AsyncResult.loading<TResData, ApiError>()
+  })
+
   return {
     isLoading: computed<boolean>(() => mutation.isPending.value),
-    data: computed<TResData extends unknown[] ? TResData[] : TResData | null>(() => mutation.data.value),
+    data: computed<TResData | null>(() => {
+      if (mutation.data.value?.isOk()) {
+        return mutation.data.value.value
+      }
+
+      return null
+    }),
     execute,
+    result,
   }
 }
