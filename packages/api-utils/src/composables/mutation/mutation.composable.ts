@@ -122,7 +122,7 @@ export function useMutation<
         return
       }
 
-      const data = result._unsafeUnwrap()
+      const data = result.value
       const hasParams = variables !== undefined && 'params' in variables
 
       if (hasParams) {
