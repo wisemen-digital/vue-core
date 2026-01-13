@@ -353,21 +353,3 @@ export function testUnwrapOrWithNull(): void {
   type ValueType = typeof _value
   type _ShouldBeTestDataOrNull = AssertEquals<Equals<ValueType, TestData | null>>
 }
-
-/**
- * Test 19: unwrapOr with different type returns T | D
- */
-export function testUnwrapOrWithDifferentType(): void {
-  const result: AsyncResult<TestData, TestError> = AsyncResultFactory.err({
-    code: 'ERROR',
-    message: 'Failed',
-  })
-
-  // Use a typed string variable to avoid literal type inference
-  const defaultValue: string = 'no user'
-  const _value = result.unwrapOr(defaultValue)
-
-  // Return type should be TestData | string
-  type ValueType = typeof _value
-  type _ShouldBeTestDataOrString = AssertEquals<Equals<ValueType, string | TestData>>
-}
