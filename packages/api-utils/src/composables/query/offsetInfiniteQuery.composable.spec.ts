@@ -1,10 +1,5 @@
 /* eslint-disable test/no-conditional-expect */
 /* eslint-disable test/no-conditional-in-test */
-import type { QueryClient } from '@tanstack/vue-query'
-import {
-  useQueryClient,
-  VueQueryPlugin,
-} from '@tanstack/vue-query'
 import {
   err,
   ok,
@@ -14,40 +9,15 @@ import {
   expect,
   it,
 } from 'vitest'
-import type { App } from 'vue'
-import {
-  createApp,
-  nextTick,
-} from 'vue'
+import { nextTick } from 'vue'
 
 import { useOffsetInfiniteQuery } from '@/composables/query/offsetInfiniteQuery.composable'
+import { runInSetup } from '@/test-utils/runInSetup'
 import type { ApiError } from '@/types/apiError.type'
 
 interface TestItem {
   id: string
   name: string
-}
-
-function withSetup<T>(composable: (queryClient: QueryClient) => T): [T | null, App] {
-  let result: T | null = null
-  const app = createApp({
-    setup() {
-      const queryClient = useQueryClient()
-
-      result = composable(queryClient)
-
-      return (): Record<string, unknown> => ({})
-    },
-  })
-
-  app.use(VueQueryPlugin)
-
-  app.mount(document.createElement('div'))
-
-  return [
-    result,
-    app,
-  ]
 }
 
 function flushPromises(): Promise<void> {
@@ -62,10 +32,7 @@ describe('useOffsetInfiniteQuery with AsyncResult', () => {
   })
 
   it('result should start in loading state', () => {
-    const [
-      query,
-      app,
-    ] = withSetup(() => {
+    const query = runInSetup(() => {
       return useOffsetInfiniteQuery<TestItem>({
         queryFn: async () => {
           // Never resolves during the test
@@ -77,12 +44,9 @@ describe('useOffsetInfiniteQuery with AsyncResult', () => {
       })
     })
 
-    expect(query).not.toBeNull()
-    expect(query!.result.value.isLoading()).toBeTruthy()
-    expect(query!.result.value.isOk()).toBeFalsy()
-    expect(query!.result.value.isErr()).toBeFalsy()
-
-    app.unmount()
+    expect(query.result.value.isLoading()).toBeTruthy()
+    expect(query.result.value.isOk()).toBeFalsy()
+    expect(query.result.value.isErr()).toBeFalsy()
   })
 
   it('result should transition to ok state with paginated data', async () => {
@@ -97,10 +61,7 @@ describe('useOffsetInfiniteQuery with AsyncResult', () => {
       },
     ]
 
-    const [
-      query,
-      app,
-    ] = withSetup(() => {
+    const query = runInSetup(() => {
       return useOffsetInfiniteQuery<TestItem>({
         queryFn: async ({
           limit, offset,
@@ -120,24 +81,20 @@ describe('useOffsetInfiniteQuery with AsyncResult', () => {
       })
     })
 
-    expect(query).not.toBeNull()
-
     // Wait for query to resolve
     await flushPromises()
     await nextTick()
 
-    expect(query!.result.value.isLoading()).toBeFalsy()
-    expect(query!.result.value.isOk()).toBeTruthy()
-    expect(query!.result.value.isErr()).toBeFalsy()
+    expect(query.result.value.isLoading()).toBeFalsy()
+    expect(query.result.value.isOk()).toBeTruthy()
+    expect(query.result.value.isErr()).toBeFalsy()
 
-    if (query!.result.value.isOk()) {
-      const result = query!.result.value.getValue()
+    if (query.result.value.isOk()) {
+      const result = query.result.value.getValue()
 
       expect(result.data).toHaveLength(2)
       expect(result.data[0].name).toBe('Item 1')
     }
-
-    app.unmount()
   })
 
   it('result should transition to err state on failure', async () => {
@@ -148,10 +105,7 @@ describe('useOffsetInfiniteQuery with AsyncResult', () => {
       statusText: 'Internal Server Error',
     }
 
-    const [
-      query,
-      app,
-    ] = withSetup(() => {
+    const query = runInSetup(() => {
       return useOffsetInfiniteQuery<TestItem>({
         queryFn: async () => await Promise.resolve(err(apiError)),
         queryKey: {
@@ -160,21 +114,17 @@ describe('useOffsetInfiniteQuery with AsyncResult', () => {
       })
     })
 
-    expect(query).not.toBeNull()
-
     // Wait for query to resolve
     await flushPromises()
     await nextTick()
 
-    expect(query!.result.value.isLoading()).toBeFalsy()
-    expect(query!.result.value.isOk()).toBeFalsy()
-    expect(query!.result.value.isErr()).toBeTruthy()
+    expect(query.result.value.isLoading()).toBeFalsy()
+    expect(query.result.value.isOk()).toBeFalsy()
+    expect(query.result.value.isErr()).toBeTruthy()
 
-    if (query!.result.value.isErr()) {
-      expect(query!.result.value.getError()).toEqual(apiError)
+    if (query.result.value.isErr()) {
+      expect(query.result.value.getError()).toEqual(apiError)
     }
-
-    app.unmount()
   })
 
   it('result.match() should work for all states', async () => {
@@ -185,10 +135,7 @@ describe('useOffsetInfiniteQuery with AsyncResult', () => {
       },
     ]
 
-    const [
-      query,
-      app,
-    ] = withSetup(() => {
+    const query = runInSetup(() => {
       return useOffsetInfiniteQuery<TestItem>({
         queryFn: async ({
           limit, offset,
@@ -208,10 +155,8 @@ describe('useOffsetInfiniteQuery with AsyncResult', () => {
       })
     })
 
-    expect(query).not.toBeNull()
-
     // Before resolving - loading state
-    const loadingMessage = query!.result.value.match({
+    const loadingMessage = query.result.value.match({
       err: () => 'error',
       loading: () => 'loading',
       ok: () => 'success',
@@ -224,15 +169,13 @@ describe('useOffsetInfiniteQuery with AsyncResult', () => {
     await nextTick()
 
     // After resolving - ok state
-    const successMessage = query!.result.value.match({
+    const successMessage = query.result.value.match({
       err: () => 'error',
       loading: () => 'loading',
       ok: (data) => `Got ${data.data.length} items`,
     })
 
     expect(successMessage).toBe('Got 1 items')
-
-    app.unmount()
   })
 
   it('should properly paginate with offset', async () => {
@@ -243,10 +186,7 @@ describe('useOffsetInfiniteQuery with AsyncResult', () => {
       name: `Item ${i + 1}`,
     }))
 
-    const [
-      query,
-      app,
-    ] = withSetup(() => {
+    const query = runInSetup(() => {
       return useOffsetInfiniteQuery<TestItem>({
         limit: 3,
         queryFn: async ({
@@ -267,16 +207,14 @@ describe('useOffsetInfiniteQuery with AsyncResult', () => {
       })
     })
 
-    expect(query).not.toBeNull()
-
     // Wait for initial query
     await flushPromises()
     await nextTick()
 
-    expect(query!.hasNextPage.value).toBeTruthy()
+    expect(query.hasNextPage.value).toBeTruthy()
 
-    if (query!.result.value.isOk()) {
-      const data = query!.result.value.getValue()
+    if (query.result.value.isOk()) {
+      const data = query.result.value.getValue()
 
       expect(data.data).toHaveLength(3)
       expect(data.data[0].id).toBe('1')
@@ -286,17 +224,15 @@ describe('useOffsetInfiniteQuery with AsyncResult', () => {
     }
 
     // Fetch next page
-    await query!.fetchNextPage()
+    await query.fetchNextPage()
     await flushPromises()
     await nextTick()
 
-    if (query!.result.value.isOk()) {
-      const data = query!.result.value.getValue()
+    if (query.result.value.isOk()) {
+      const data = query.result.value.getValue()
 
       expect(data.data).toHaveLength(6) // Accumulated: 3 + 3
     }
-
-    app.unmount()
   })
 
   it('should indicate no next page when at end', async () => {
@@ -311,10 +247,7 @@ describe('useOffsetInfiniteQuery with AsyncResult', () => {
       },
     ]
 
-    const [
-      query,
-      app,
-    ] = withSetup(() => {
+    const query = runInSetup(() => {
       return useOffsetInfiniteQuery<TestItem>({
         limit: 5,
         queryFn: async ({
@@ -335,14 +268,10 @@ describe('useOffsetInfiniteQuery with AsyncResult', () => {
       })
     })
 
-    expect(query).not.toBeNull()
-
     // Wait for query to resolve
     await flushPromises()
     await nextTick()
 
-    expect(query!.hasNextPage.value).toBeFalsy()
-
-    app.unmount()
+    expect(query.hasNextPage.value).toBeFalsy()
   })
 })

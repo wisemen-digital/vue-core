@@ -1,10 +1,5 @@
 /* eslint-disable test/no-conditional-expect */
 /* eslint-disable test/no-conditional-in-test */
-import type { QueryClient } from '@tanstack/vue-query'
-import {
-  useQueryClient,
-  VueQueryPlugin,
-} from '@tanstack/vue-query'
 import {
   err,
   ok,
@@ -15,41 +10,18 @@ import {
   it,
   vi,
 } from 'vitest'
-import type { App } from 'vue'
 import {
-  createApp,
   nextTick,
   ref,
 } from 'vue'
 
 import { useQuery } from '@/composables/query/query.composable'
+import { runInSetup } from '@/test-utils/runInSetup'
 import type { ApiError } from '@/types/apiError.type'
 
 interface TestUser {
   id: string
   name: string
-}
-
-function withSetup<T>(composable: (queryClient: QueryClient) => T): [T | null, App] {
-  let result: T | null = null
-  const app = createApp({
-    setup() {
-      const queryClient = useQueryClient()
-
-      result = composable(queryClient)
-
-      return (): Record<string, unknown> => ({})
-    },
-  })
-
-  app.use(VueQueryPlugin)
-
-  app.mount(document.createElement('div'))
-
-  return [
-    result,
-    app,
-  ]
 }
 
 function flushPromises(): Promise<void> {
@@ -64,10 +36,7 @@ describe('useQuery with AsyncResult', () => {
   })
 
   it('result should start in loading state', () => {
-    const [
-      query,
-      app,
-    ] = withSetup(() => {
+    const query = runInSetup(() => {
       return useQuery<TestUser>({
         queryFn: async () => {
           // Never resolves during the test
@@ -79,12 +48,9 @@ describe('useQuery with AsyncResult', () => {
       })
     })
 
-    expect(query).not.toBeNull()
-    expect(query!.result.value.isLoading()).toBeTruthy()
-    expect(query!.result.value.isOk()).toBeFalsy()
-    expect(query!.result.value.isErr()).toBeFalsy()
-
-    app.unmount()
+    expect(query.result.value.isLoading()).toBeTruthy()
+    expect(query.result.value.isOk()).toBeFalsy()
+    expect(query.result.value.isErr()).toBeFalsy()
   })
 
   it('result should transition to ok state on success', async () => {
@@ -93,10 +59,7 @@ describe('useQuery with AsyncResult', () => {
       name: 'John',
     }
 
-    const [
-      query,
-      app,
-    ] = withSetup(() => {
+    const query = runInSetup(() => {
       return useQuery<TestUser>({
         queryFn: async () => await Promise.resolve(ok(user)),
         queryKey: {
@@ -105,22 +68,18 @@ describe('useQuery with AsyncResult', () => {
       })
     })
 
-    expect(query).not.toBeNull()
-
     // Wait for query to resolve
     await flushPromises()
     await nextTick()
 
-    expect(query!.result.value.isLoading()).toBeFalsy()
-    expect(query!.result.value.isOk()).toBeTruthy()
-    expect(query!.result.value.isErr()).toBeFalsy()
+    expect(query.result.value.isLoading()).toBeFalsy()
+    expect(query.result.value.isOk()).toBeTruthy()
+    expect(query.result.value.isErr()).toBeFalsy()
 
     // After narrowing, getValue() should work
-    if (query!.result.value.isOk()) {
-      expect(query!.result.value.getValue()).toEqual(user)
+    if (query.result.value.isOk()) {
+      expect(query.result.value.getValue()).toEqual(user)
     }
-
-    app.unmount()
   })
 
   it('result should transition to err state on failure', async () => {
@@ -131,10 +90,7 @@ describe('useQuery with AsyncResult', () => {
       statusText: 'Internal Server Error',
     }
 
-    const [
-      query,
-      app,
-    ] = withSetup(() => {
+    const query = runInSetup(() => {
       return useQuery<TestUser>({
         queryFn: async () => await Promise.resolve(err(apiError)),
         queryKey: {
@@ -143,22 +99,18 @@ describe('useQuery with AsyncResult', () => {
       })
     })
 
-    expect(query).not.toBeNull()
-
     // Wait for query to resolve
     await flushPromises()
     await nextTick()
 
-    expect(query!.result.value.isLoading()).toBeFalsy()
-    expect(query!.result.value.isOk()).toBeFalsy()
-    expect(query!.result.value.isErr()).toBeTruthy()
+    expect(query.result.value.isLoading()).toBeFalsy()
+    expect(query.result.value.isOk()).toBeFalsy()
+    expect(query.result.value.isErr()).toBeTruthy()
 
     // After narrowing, getError() should work
-    if (query!.result.value.isErr()) {
-      expect(query!.result.value.getError()).toEqual(apiError)
+    if (query.result.value.isErr()) {
+      expect(query.result.value.getError()).toEqual(apiError)
     }
-
-    app.unmount()
   })
 
   it('result.match() should work for all states', async () => {
@@ -167,10 +119,7 @@ describe('useQuery with AsyncResult', () => {
       name: 'John',
     }
 
-    const [
-      query,
-      app,
-    ] = withSetup(() => {
+    const query = runInSetup(() => {
       return useQuery<TestUser>({
         queryFn: async () => await Promise.resolve(ok(user)),
         queryKey: {
@@ -179,10 +128,8 @@ describe('useQuery with AsyncResult', () => {
       })
     })
 
-    expect(query).not.toBeNull()
-
     // Before resolving - loading state
-    const loadingMessage = query!.result.value.match({
+    const loadingMessage = query.result.value.match({
       err: () => 'error',
       loading: () => 'loading',
       ok: () => 'success',
@@ -195,15 +142,13 @@ describe('useQuery with AsyncResult', () => {
     await nextTick()
 
     // After resolving - ok state
-    const successMessage = query!.result.value.match({
+    const successMessage = query.result.value.match({
       err: () => 'error',
       loading: () => 'loading',
       ok: (u) => `Hello, ${u.name}`,
     })
 
     expect(successMessage).toBe('Hello, John')
-
-    app.unmount()
   })
 
   it('result.map() should transform success values reactively', async () => {
@@ -212,10 +157,7 @@ describe('useQuery with AsyncResult', () => {
       name: 'John',
     }
 
-    const [
-      query,
-      app,
-    ] = withSetup(() => {
+    const query = runInSetup(() => {
       return useQuery<TestUser>({
         queryFn: async () => await Promise.resolve(ok(user)),
         queryKey: {
@@ -224,21 +166,17 @@ describe('useQuery with AsyncResult', () => {
       })
     })
 
-    expect(query).not.toBeNull()
-
     // Wait for query to resolve
     await flushPromises()
     await nextTick()
 
-    const mapped = query!.result.value.map((u) => u.name.toUpperCase())
+    const mapped = query.result.value.map((u) => u.name.toUpperCase())
 
     expect(mapped.isOk()).toBeTruthy()
 
     if (mapped.isOk()) {
       expect(mapped.getValue()).toBe('JOHN')
     }
-
-    app.unmount()
   })
 
   it('result.unwrapOr() should provide default on loading', () => {
@@ -247,10 +185,7 @@ describe('useQuery with AsyncResult', () => {
       name: 'Guest',
     }
 
-    const [
-      query,
-      app,
-    ] = withSetup(() => {
+    const query = runInSetup(() => {
       return useQuery<TestUser>({
         queryFn: async () => {
           // Never resolves during this check
@@ -262,14 +197,10 @@ describe('useQuery with AsyncResult', () => {
       })
     })
 
-    expect(query).not.toBeNull()
-
     // Should return default while loading
-    const user = query!.result.value.unwrapOr(defaultUser)
+    const user = query.result.value.unwrapOr(defaultUser)
 
     expect(user).toEqual(defaultUser)
-
-    app.unmount()
   })
 
   it('result.unwrapOr(null) should return T | null', async () => {
@@ -278,10 +209,7 @@ describe('useQuery with AsyncResult', () => {
       name: 'John',
     }
 
-    const [
-      query,
-      app,
-    ] = withSetup(() => {
+    const query = runInSetup(() => {
       return useQuery<TestUser>({
         queryFn: async () => await Promise.resolve(ok(user)),
         queryKey: {
@@ -290,10 +218,8 @@ describe('useQuery with AsyncResult', () => {
       })
     })
 
-    expect(query).not.toBeNull()
-
     // While loading, should return null
-    const loadingValue = query!.result.value.unwrapOr(null)
+    const loadingValue = query.result.value.unwrapOr(null)
 
     expect(loadingValue).toBeNull()
 
@@ -302,11 +228,9 @@ describe('useQuery with AsyncResult', () => {
     await nextTick()
 
     // After resolving, should return the user
-    const resolvedValue = query!.result.value.unwrapOr(null)
+    const resolvedValue = query.result.value.unwrapOr(null)
 
     expect(resolvedValue).toEqual(user)
-
-    app.unmount()
   })
 
   it('result should update reactively when refetch is called', async () => {
@@ -322,10 +246,7 @@ describe('useQuery with AsyncResult', () => {
       },
     ]
 
-    const [
-      query,
-      app,
-    ] = withSetup(() => {
+    const query = runInSetup(() => {
       return useQuery<TestUser>({
         queryFn: async () => {
           const user = users[callCount]
@@ -340,30 +261,26 @@ describe('useQuery with AsyncResult', () => {
       })
     })
 
-    expect(query).not.toBeNull()
-
     // Wait for initial query to resolve
     await flushPromises()
     await nextTick()
 
-    expect(query!.result.value.isOk()).toBeTruthy()
+    expect(query.result.value.isOk()).toBeTruthy()
 
-    if (query!.result.value.isOk()) {
-      expect(query!.result.value.getValue().name).toBe('John')
+    if (query.result.value.isOk()) {
+      expect(query.result.value.getValue().name).toBe('John')
     }
 
     // Refetch
-    await query!.refetch()
+    await query.refetch()
     await flushPromises()
     await nextTick()
 
-    expect(query!.result.value.isOk()).toBeTruthy()
+    expect(query.result.value.isOk()).toBeTruthy()
 
-    if (query!.result.value.isOk()) {
-      expect(query!.result.value.getValue().name).toBe('Jane')
+    if (query.result.value.isOk()) {
+      expect(query.result.value.getValue().name).toBe('Jane')
     }
-
-    app.unmount()
   })
 
   it('result should respect isEnabled reactively', async () => {
@@ -373,10 +290,7 @@ describe('useQuery with AsyncResult', () => {
       name: 'John',
     })))
 
-    const [
-      query,
-      app,
-    ] = withSetup(() => {
+    const query = runInSetup(() => {
       return useQuery<TestUser>({
         isEnabled,
         queryFn,
@@ -386,15 +300,13 @@ describe('useQuery with AsyncResult', () => {
       })
     })
 
-    expect(query).not.toBeNull()
-
     // Wait a bit
     await flushPromises()
     await nextTick()
 
     // Should not have been called because isEnabled is false
     expect(queryFn).not.toHaveBeenCalled()
-    expect(query!.result.value.isLoading()).toBeTruthy()
+    expect(query.result.value.isLoading()).toBeTruthy()
 
     // Enable the query
     isEnabled.value = true
@@ -404,9 +316,7 @@ describe('useQuery with AsyncResult', () => {
     // Now it should have been called
     // eslint-disable-next-line test/prefer-called-with
     expect(queryFn).toHaveBeenCalled()
-    expect(query!.result.value.isOk()).toBeTruthy()
-
-    app.unmount()
+    expect(query.result.value.isOk()).toBeTruthy()
   })
 
   it('getResult() should return neverthrow Result after success', async () => {
@@ -415,10 +325,7 @@ describe('useQuery with AsyncResult', () => {
       name: 'John',
     }
 
-    const [
-      query,
-      app,
-    ] = withSetup(() => {
+    const query = runInSetup(() => {
       return useQuery<TestUser>({
         queryFn: async () => await Promise.resolve(ok(user)),
         queryKey: {
@@ -427,14 +334,12 @@ describe('useQuery with AsyncResult', () => {
       })
     })
 
-    expect(query).not.toBeNull()
-
     // Wait for query to resolve
     await flushPromises()
     await nextTick()
 
-    if (query!.result.value.isOk()) {
-      const result = query!.result.value.getResult()
+    if (query.result.value.isOk()) {
+      const result = query.result.value.getResult()
 
       expect(result.isOk()).toBeTruthy()
 
@@ -442,15 +347,10 @@ describe('useQuery with AsyncResult', () => {
         expect(result.value).toEqual(user)
       }
     }
-
-    app.unmount()
   })
 
   it('getResult() should return null during loading', () => {
-    const [
-      query,
-      app,
-    ] = withSetup(() => {
+    const query = runInSetup(() => {
       return useQuery<TestUser>({
         queryFn: async () => {
           return await new Promise(() => {})
@@ -461,13 +361,9 @@ describe('useQuery with AsyncResult', () => {
       })
     })
 
-    expect(query).not.toBeNull()
-
-    if (query!.result.value.isLoading()) {
-      expect(query!.result.value.getResult()).toBeNull()
+    if (query.result.value.isLoading()) {
+      expect(query.result.value.getResult()).toBeNull()
     }
-
-    app.unmount()
   })
 
   it('result should reactively update from loading to success with slow API call', async () => {
@@ -476,10 +372,7 @@ describe('useQuery with AsyncResult', () => {
       name: 'John',
     }
 
-    const [
-      query,
-      app,
-    ] = withSetup(() => {
+    const query = runInSetup(() => {
       return useQuery<TestUser>({
         queryFn: async () => {
           // Simulate a slow API call (100ms delay)
@@ -493,15 +386,13 @@ describe('useQuery with AsyncResult', () => {
       })
     })
 
-    expect(query).not.toBeNull()
-
     // Initially should be loading
-    expect(query!.result.value.isLoading()).toBeTruthy()
-    expect(query!.result.value.isOk()).toBeFalsy()
-    expect(query!.result.value.isErr()).toBeFalsy()
+    expect(query.result.value.isLoading()).toBeTruthy()
+    expect(query.result.value.isOk()).toBeFalsy()
+    expect(query.result.value.isErr()).toBeFalsy()
 
     // unwrapOr should return default during loading
-    const loadingValue = query!.result.value.unwrapOr(null)
+    const loadingValue = query.result.value.unwrapOr(null)
 
     expect(loadingValue).toBeNull()
 
@@ -511,21 +402,19 @@ describe('useQuery with AsyncResult', () => {
     await nextTick()
 
     // Now should be success
-    expect(query!.result.value.isLoading()).toBeFalsy()
-    expect(query!.result.value.isOk()).toBeTruthy()
-    expect(query!.result.value.isErr()).toBeFalsy()
+    expect(query.result.value.isLoading()).toBeFalsy()
+    expect(query.result.value.isOk()).toBeTruthy()
+    expect(query.result.value.isErr()).toBeFalsy()
 
     // After narrowing, getValue() should return the user
-    if (query!.result.value.isOk()) {
-      expect(query!.result.value.getValue()).toEqual(user)
+    if (query.result.value.isOk()) {
+      expect(query.result.value.getValue()).toEqual(user)
     }
 
     // unwrapOr should now return the actual value
-    const successValue = query!.result.value.unwrapOr(null)
+    const successValue = query.result.value.unwrapOr(null)
 
     expect(successValue).toEqual(user)
-
-    app.unmount()
   })
 
   it('result should reactively update from loading to error with slow API call', async () => {
@@ -541,10 +430,7 @@ describe('useQuery with AsyncResult', () => {
       statusText: 'Internal Server Error',
     }
 
-    const [
-      query,
-      app,
-    ] = withSetup(() => {
+    const query = runInSetup(() => {
       return useQuery<TestUser>({
         queryFn: async () => {
           // Simulate a slow API call that fails (100ms delay)
@@ -558,15 +444,13 @@ describe('useQuery with AsyncResult', () => {
       })
     })
 
-    expect(query).not.toBeNull()
-
     // Initially should be loading
-    expect(query!.result.value.isLoading()).toBeTruthy()
-    expect(query!.result.value.isOk()).toBeFalsy()
-    expect(query!.result.value.isErr()).toBeFalsy()
+    expect(query.result.value.isLoading()).toBeTruthy()
+    expect(query.result.value.isOk()).toBeFalsy()
+    expect(query.result.value.isErr()).toBeFalsy()
 
     // unwrapOr should return default during loading
-    const loadingValue = query!.result.value.unwrapOr(null)
+    const loadingValue = query.result.value.unwrapOr(null)
 
     expect(loadingValue).toBeNull()
 
@@ -576,20 +460,18 @@ describe('useQuery with AsyncResult', () => {
     await nextTick()
 
     // Now should be error
-    expect(query!.result.value.isLoading()).toBeFalsy()
-    expect(query!.result.value.isOk()).toBeFalsy()
-    expect(query!.result.value.isErr()).toBeTruthy()
+    expect(query.result.value.isLoading()).toBeFalsy()
+    expect(query.result.value.isOk()).toBeFalsy()
+    expect(query.result.value.isErr()).toBeTruthy()
 
     // After narrowing, getError() should return the error
-    if (query!.result.value.isErr()) {
-      expect(query!.result.value.getError()).toEqual(apiError)
+    if (query.result.value.isErr()) {
+      expect(query.result.value.getError()).toEqual(apiError)
     }
 
     // unwrapOr should still return the default on error
-    const errorValue = query!.result.value.unwrapOr(null)
+    const errorValue = query.result.value.unwrapOr(null)
 
     expect(errorValue).toBeNull()
-
-    app.unmount()
   })
 })
