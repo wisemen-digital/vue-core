@@ -57,8 +57,7 @@ export interface UseQueryReturnType<TResData> {
    */
   isError: ComputedRef<boolean>
   /**
-   * Whether query is currently loading
-   * @deprecated - use `result.value.isLoading()` instead
+   * Whether query is currently fetching data, regardless of cache status
    */
   isFetching: ComputedRef<boolean>
   /**
