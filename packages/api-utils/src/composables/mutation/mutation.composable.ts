@@ -24,7 +24,7 @@ type RequestParams<TReqData, TParams> = TReqData extends void
     : { body: TReqData
         params: TParams }
 
-interface UseMutationOptions<TParams, TReqData, TResData> {
+interface UseMutationOptions<TReqData, TResData, TParams = void> {
   /**
    * Whether to enable debug mode
    */
@@ -77,7 +77,7 @@ export function useMutation<
   TResData = void,
   TParams = void,
 >(
-  options: UseMutationOptions<TParams, TReqData, TResData>,
+  options: UseMutationOptions<TReqData, TResData, TParams>,
 ): UseMutationReturnType<TReqData, TResData, TParams> {
   const isDebug = options.isDebug ?? false
   const queryClient = useQueryClient()
@@ -117,7 +117,7 @@ export function useMutation<
 
   const mutation = useTanstackQueryMutation<ApiResult<TResData>, unknown, RequestParams<TReqData, TParams>>({
     mutationFn: options.queryFn,
-    onSuccess: async (result, variables) => {
+    onSuccess: async (result, variables: RequestParams<TReqData, TParams>) => {
       if (!result.isOk()) {
         return
       }
