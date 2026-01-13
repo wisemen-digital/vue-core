@@ -195,3 +195,179 @@ export function testMapErr(): void {
     type _ShouldBeString = AssertEquals<Equals<ErrorType, string>>
   }
 }
+
+/**
+ * Test 9: WRONG PATH - trying to access getError() after isOk() check
+ * This should be a TypeScript error because getError() doesn't exist on AsyncResultOk
+ */
+export function testWrongPathGetErrorAfterIsOk(): void {
+  const result: AsyncResult<TestData, TestError> = AsyncResultFactory.ok({
+    id: '1',
+    name: 'Test',
+  })
+
+  if (result.isOk()) {
+    // @ts-expect-error - getError() should NOT be accessible on AsyncResultOk
+    result.getError()
+  }
+}
+
+/**
+ * Test 10: WRONG PATH - trying to access getValue() after isErr() check
+ * This should be a TypeScript error because getValue() doesn't exist on AsyncResultErr
+ */
+export function testWrongPathGetValueAfterIsErr(): void {
+  const result: AsyncResult<TestData, TestError> = AsyncResultFactory.err({
+    code: 'ERROR',
+    message: 'Failed',
+  })
+
+  if (result.isErr()) {
+    // @ts-expect-error - getValue() should NOT be accessible on AsyncResultErr
+    result.getValue()
+  }
+}
+
+/**
+ * Test 11: WRONG PATH - trying to access getValue() after isLoading() check
+ * This should be a TypeScript error because getValue() doesn't exist on AsyncResultLoading
+ */
+export function testWrongPathGetValueAfterIsLoading(): void {
+  const result: AsyncResult<TestData, TestError> = AsyncResultFactory.loading()
+
+  if (result.isLoading()) {
+    // @ts-expect-error - getValue() should NOT be accessible on AsyncResultLoading
+    result.getValue()
+  }
+}
+
+/**
+ * Test 12: WRONG PATH - trying to access getError() after isLoading() check
+ * This should be a TypeScript error because getError() doesn't exist on AsyncResultLoading
+ */
+export function testWrongPathGetErrorAfterIsLoading(): void {
+  const result: AsyncResult<TestData, TestError> = AsyncResultFactory.loading()
+
+  if (result.isLoading()) {
+    // @ts-expect-error - getError() should NOT be accessible on AsyncResultLoading
+    result.getError()
+  }
+}
+
+/**
+ * Test 13: WRONG PATH - trying to access getValue() without any type narrowing
+ * This should be a TypeScript error because getValue() doesn't exist on the union type
+ */
+export function testWrongPathGetValueWithoutNarrowing(): void {
+  const result: AsyncResult<TestData, TestError> = AsyncResultFactory.ok({
+    id: '1',
+    name: 'Test',
+  })
+
+  // @ts-expect-error - getValue() should NOT be accessible without narrowing
+  result.getValue()
+}
+
+/**
+ * Test 14: WRONG PATH - trying to access getError() without any type narrowing
+ * This should be a TypeScript error because getError() doesn't exist on the union type
+ */
+export function testWrongPathGetErrorWithoutNarrowing(): void {
+  const result: AsyncResult<TestData, TestError> = AsyncResultFactory.err({
+    code: 'ERROR',
+    message: 'Failed',
+  })
+
+  // @ts-expect-error - getError() should NOT be accessible without narrowing
+  result.getError()
+}
+
+/**
+ * Test 15: WRONG PATH - checking isLoading and isErr, then trying to getValue without if
+ * Even after ruling out loading and error states, you still need to use if/else
+ * to properly narrow the type for TypeScript
+ */
+export function testWrongPathCheckLoadingAndErrorThenGetValue(): void {
+  const result: AsyncResult<TestData, TestError> = AsyncResultFactory.ok({
+    id: '1',
+    name: 'Test',
+  })
+
+  // Check loading and error but don't use if statements to narrow
+  const _isLoading = result.isLoading()
+  const _isErr = result.isErr()
+
+  // Even though we "know" it's ok (because it's not loading or error),
+  // TypeScript doesn't narrow without if/else structure
+  // @ts-expect-error - getValue() should NOT be accessible without proper if narrowing
+  result.getValue()
+}
+
+/**
+ * Test 16: WRONG PATH - using boolean checks instead of if narrowing
+ * Demonstrates that just checking the boolean doesn't narrow the type
+ */
+export function testWrongPathBooleanCheckWithoutIf(): void {
+  const result: AsyncResult<TestData, TestError> = AsyncResultFactory.ok({
+    id: '1',
+    name: 'Test',
+  })
+
+  // This narrows the type
+  if (!result.isLoading() && !result.isErr()) {
+    result.getValue()
+  }
+}
+
+/**
+ * Test 17: unwrapOr with same type T returns T | D (where D extends T)
+ * When passing an object literal, D is inferred as the literal type
+ */
+export function testUnwrapOrWithSameType(): void {
+  const result: AsyncResult<TestData, TestError> = AsyncResultFactory.ok({
+    id: '1',
+    name: 'Test',
+  })
+
+  // Use a typed default to get exact T
+  const defaultValue: TestData = {
+    id: 'default',
+    name: 'Guest',
+  }
+  const _value = result.unwrapOr(defaultValue)
+
+  // Return type should be exactly TestData
+  type ValueType = typeof _value
+  type _ShouldBeTestData = AssertEquals<Equals<ValueType, TestData>>
+}
+
+/**
+ * Test 18: unwrapOr with null returns T | null
+ */
+export function testUnwrapOrWithNull(): void {
+  const result: AsyncResult<TestData, TestError> = AsyncResultFactory.loading()
+
+  const _value = result.unwrapOr(null)
+
+  // Return type should be TestData | null
+  type ValueType = typeof _value
+  type _ShouldBeTestDataOrNull = AssertEquals<Equals<ValueType, TestData | null>>
+}
+
+/**
+ * Test 19: unwrapOr with different type returns T | D
+ */
+export function testUnwrapOrWithDifferentType(): void {
+  const result: AsyncResult<TestData, TestError> = AsyncResultFactory.err({
+    code: 'ERROR',
+    message: 'Failed',
+  })
+
+  // Use a typed string variable to avoid literal type inference
+  const defaultValue: string = 'no user'
+  const _value = result.unwrapOr(defaultValue)
+
+  // Return type should be TestData | string
+  type ValueType = typeof _value
+  type _ShouldBeTestDataOrString = AssertEquals<Equals<ValueType, string | TestData>>
+}

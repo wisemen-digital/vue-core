@@ -94,9 +94,11 @@ abstract class AsyncResultBase<T, E> {
   }
 
   /**
-   * Get the success value, or return a default if loading or error
+   * Get the success value, or return a default if loading or error.
+   * If the default value is of type T, returns T.
+   * If the default value is a different type D, returns T | D.
    */
-  unwrapOr(defaultValue: T): T {
+  unwrapOr<D = T>(defaultValue: D): D | T {
     if (this._status === 'ok') {
       return this._value as T
     }
