@@ -54,6 +54,7 @@ export interface UseMutationReturnType<TReqData, TResData, TParams = void> {
   isLoading: ComputedRef<boolean>
   /**
    * Response data from the mutation
+   * @deprecated - use `result.value.getValue()` instead
    */
   data: ComputedRef<TResData | null>
   /**
