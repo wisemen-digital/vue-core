@@ -1,0 +1,60 @@
+{
+  "name": "formango",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "version": "3.2.0",
+  "private": true,
+  "description": "",
+  "license": "MIT",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.umd.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "typings": "./dist/index.d.ts",
+  "files": [
+    "./dist"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "pub:release": "pnpm publish --access public",
+    "pub:beta": "pnpm publish --no-git-checks --access public --tag beta",
+    "pub:next": "pnpm publish --no-git-checks --access public --tag next",
+    "cleanup": "rimraf dist/ node_modules/ .turbo/",
+    "lint": "pnpm eslint --fix .",
+    "test": "vitest --run",
+    "typecheck": "pnpm tsc"
+  },
+  "peerDependencies": {
+    "vue": "catalog:peer",
+    "zod": "catalog:peer"
+  },
+  "dependencies": {
+    "@vue/devtools-api": "catalog:vue",
+    "clone-deep": "catalog:general"
+  },
+  "devDependencies": {
+    "@standard-schema/spec": "catalog:general",
+    "@types/clone-deep": "catalog:types",
+    "@vitest/coverage-v8": "catalog:test",
+    "@wisemen/eslint-config-vue": "catalog:lint",
+    "eslint": "catalog:lint",
+    "tailwindcss": "catalog:style",
+    "vite": "catalog:vite",
+    "vitest": "catalog:test",
+    "vue": "catalog:vue"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
+  }
+}
