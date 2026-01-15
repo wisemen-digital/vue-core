@@ -1,7 +1,7 @@
 {
   "name": "@wisemen/vue-core-telemetry",
   "type": "module",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publishConfig": {
     "access": "public"
   },
@@ -9,22 +9,14 @@
   "sideEffects": false,
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
     }
   },
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
-  "typesVersions": {
-    "*": {
-      "*": [
-        "./dist/*",
-        "./dist/index.d.ts"
-      ]
-    }
-  },
+  "types": "./dist/index.d.mts",
+  "typings": "./dist/index.d.mts",
   "files": [
     "dist"
   ],
@@ -35,7 +27,8 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "release": "bumpp && npm publish",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "pub:beta": "pnpm publish --no-git-checks --access public --tag beta"
   },
   "peerDependencies": {
     "vue": "catalog:peer"
