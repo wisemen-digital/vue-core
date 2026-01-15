@@ -20,16 +20,17 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
     }
   },
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "typings": "./dist/index.d.mts",
   "files": [
     "dist"
   ],
-  "typings": "./dist/index.d.ts",
   "scripts": {
     "build": "tsdown",
     "pub:release": "pnpm publish --access public",
