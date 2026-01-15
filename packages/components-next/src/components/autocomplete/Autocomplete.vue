@@ -19,12 +19,16 @@ const props = withDefaults(defineProps<AutocompleteProps<TValue>>(), {
 })
 
 const emit = defineEmits<{
+  blur: []
+  focus: []
   search: [searchTerm: string]
 }>()
 
 const modelValue = defineModel<TValue>({
   required: true,
 })
+
+const isFocused = ref<boolean>(false)
 
 const searchTerm = ref<string>('')
 const isDebouncing = ref<boolean>(false)
@@ -101,12 +105,15 @@ function onUpdateIsOpen(isOpen: boolean): void {
 
 watch(searchTerm, (searchTerm) => {
   if (isSearchTermEmpty.value) {
+    modelValue.value = null as TValue
     delegatedItems.value = []
   }
 
   if (isSearchTermTheSameAsCurrentValue.value) {
     return
   }
+
+  modelValue.value = null as TValue
 
   if (!isSearchTermEmpty.value) {
     isDebouncing.value = true
@@ -125,9 +132,16 @@ watch(() => props.items, (newItems) => {
   delegatedItems.value = newItems
 })
 
+watch(modelValue, (updatedValue) => {
+  if (updatedValue === null && !isFocused.value) {
+    searchTerm.value = ''
+  }
+})
+
 function onUpdateModelValue(value: TValue | null): void {
   if (value !== null) {
     searchTerm.value = props.displayFn(value as any)
+    emit('search', searchTerm.value)
   }
 }
 </script>
@@ -148,6 +162,8 @@ function onUpdateModelValue(value: TValue | null): void {
     :is-search-term-controlled="true"
     @update:is-open="onUpdateIsOpen"
     @update:model-value="onUpdateModelValue"
+    @focus="onFocus"
+    @blur="onBlur"
   >
     <template #base>
       <slot name="base" />
