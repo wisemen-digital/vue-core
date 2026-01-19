@@ -61,7 +61,6 @@ abstract class AsyncResultBase<T, E> {
   /**
    * Map the error to a new error
    */
-
   mapErr<F>(fn: (error: E) => F): AsyncResult<T, F> {
     if (this._status === 'loading') {
       return AsyncResult.loading()
