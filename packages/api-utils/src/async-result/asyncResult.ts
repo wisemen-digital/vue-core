@@ -45,7 +45,6 @@ abstract class AsyncResultBase<T, E> {
   /**
    * Map the success value to a new value
    */
-
   map<U>(fn: (value: T) => U): AsyncResult<U, E> {
     if (this._status === 'loading') {
       return AsyncResult.loading()
