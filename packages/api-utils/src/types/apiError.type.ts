@@ -26,6 +26,7 @@ export interface ApiUnknownErrorObject {
 export type ApiErrorObject = ApiKnownErrorObject | ApiUnknownErrorObject
 
 export interface ApiExpectedError {
+  errors: ApiErrorObject[]
 }
 
 export type ApiUnexpectedError = Error

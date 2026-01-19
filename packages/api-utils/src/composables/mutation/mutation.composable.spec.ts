@@ -222,4 +222,257 @@ describe('useMutation', () => {
 
     expect(mutation.data.value).toBeNull()
   })
-})
+
+  describe('useMutation with void return type', () => {
+    it('should handle void response on success', async () => {
+      const mutation = runInSetup(() => {
+        return useMutation<void, void, void>({
+          queryFn: () => Promise.resolve(ok(void 0)),
+          queryKeysToInvalidate: {},
+        })
+      })
+
+      await flushPromises()
+
+      const result = await mutation.execute()
+
+      expect(result.isOk()).toBeTruthy()
+      expect(result._unsafeUnwrap()).toBeUndefined()
+    })
+
+    it('should transition result to ok state on void success', async () => {
+      const mutation = runInSetup(() => {
+        return useMutation<void, void, void>({
+          queryFn: () => Promise.resolve(ok(void 0)),
+          queryKeysToInvalidate: {},
+        })
+      })
+
+      // Before execution, should start in loading state
+      expect(mutation.result.value.isLoading()).toBeTruthy()
+      expect(mutation.result.value.isOk()).toBeFalsy()
+      expect(mutation.result.value.isErr()).toBeFalsy()
+
+      await flushPromises()
+
+      // After execution, should be in ok state
+      await mutation.execute()
+      await flushPromises()
+
+      expect(mutation.result.value.isLoading()).toBeFalsy()
+      expect(mutation.result.value.isOk()).toBeTruthy()
+      expect(mutation.result.value.isErr()).toBeFalsy()
+
+      if (mutation.result.value.isOk()) {
+        expect(mutation.result.value.getValue()).toBeUndefined()
+      }
+    })
+
+    it('should use match() to handle void result states', async () => {
+      const mutation = runInSetup(() => {
+        return useMutation<void, void, void>({
+          queryFn: () => Promise.resolve(ok(void 0)),
+          queryKeysToInvalidate: {},
+        })
+      })
+
+      // Before execution
+      let message = mutation.result.value.match({
+        err: () => 'is error',
+        loading: () => 'is loading',
+        ok: () => 'is ok',
+      })
+
+      expect(message).toBe('is loading')
+
+      await flushPromises()
+
+      // After execution
+      await mutation.execute()
+      await flushPromises()
+
+      message = mutation.result.value.match({
+        err: () => 'is error',
+        loading: () => 'is loading',
+        ok: (data) => {
+          expect(data).toBeUndefined()
+          return 'success-with-void'
+        },
+      })
+
+      expect(message).toBe('success-with-void')
+    })
+
+    it('should provide null data property with void response on success', async () => {
+      const mutation = runInSetup(() => {
+        return useMutation<void, void, void>({
+          queryFn: () => Promise.resolve(ok(void 0)),
+          queryKeysToInvalidate: {},
+        })
+      })
+
+      // Before execution
+      expect(mutation.data.value).toBeNull()
+
+      await flushPromises()
+
+      // After execution
+      await mutation.execute()
+      await flushPromises()
+
+      // With void return type, data should remain null
+      expect(mutation.data.value).toBeNull()
+    })
+
+    it('should handle void response with request body on success', async () => {
+      interface RequestBody {
+        message: string
+      }
+
+      const mutation = runInSetup(() => {
+        return useMutation<RequestBody, void, void>({
+          queryFn: ({ body }) => {
+            expect(body).toBeDefined()
+            expect(body.message).toBe('test-message')
+
+            return Promise.resolve(ok(void 0))
+          },
+          queryKeysToInvalidate: {},
+        })
+      })
+
+      await flushPromises()
+
+      const result = await mutation.execute({
+        body: {
+          message: 'test-message',
+        },
+      })
+
+      expect(result.isOk()).toBeTruthy()
+      expect(result._unsafeUnwrap()).toBeUndefined()
+    })
+
+    it('should handle void response with params on success', async () => {
+      interface RequestParams {
+        id: string
+      }
+
+      const mutation = runInSetup(() => {
+        return useMutation<void, void, RequestParams>({
+          queryFn: ({ params }) => {
+            expect(params).toBeDefined()
+            expect(params.id).toBe('test-id')
+
+            return Promise.resolve(ok(void 0))
+          },
+          queryKeysToInvalidate: {},
+        })
+      })
+
+      await flushPromises()
+
+      const result = await mutation.execute({
+        params: {
+          id: 'test-id',
+        },
+      })
+
+      expect(result.isOk()).toBeTruthy()
+      expect(result._unsafeUnwrap()).toBeUndefined()
+    })
+
+    it('should handle void response with body and params on success', async () => {
+      interface RequestBody {
+        message: string
+      }
+
+      interface RequestParams {
+        id: string
+      }
+
+      const mutation = runInSetup(() => {
+        return useMutation<RequestBody, void, RequestParams>({
+          queryFn: ({ body, params }) => {
+            expect(body).toBeDefined()
+            expect(params).toBeDefined()
+            expect(body.message).toBe('test-message')
+            expect(params.id).toBe('test-id')
+
+            return Promise.resolve(ok(void 0))
+          },
+          queryKeysToInvalidate: {},
+        })
+      })
+
+      await flushPromises()
+
+      const result = await mutation.execute({
+        body: {
+          message: 'test-message',
+        },
+        params: {
+          id: 'test-id',
+        },
+      })
+
+      expect(result.isOk()).toBeTruthy()
+      expect(result._unsafeUnwrap()).toBeUndefined()
+    })
+
+    it('should handle error with void return type', async () => {
+      const apiError: ApiError = {
+        traceId: 'test-trace',
+        errors: [],
+        status: 400,
+        statusText: 'Bad Request',
+      }
+
+      const mutation = runInSetup(() => {
+        return useMutation<void, void, void>({
+          queryFn: () => Promise.resolve(err(apiError)),
+          queryKeysToInvalidate: {},
+        })
+      })
+
+      await flushPromises()
+
+      const result = await mutation.execute()
+
+      expect(result.isErr()).toBeTruthy()
+      expect(result._unsafeUnwrapErr()).toEqual(apiError)
+    })
+
+    it('should transition result to err state with void return type on failure', async () => {
+      const apiError: ApiError = {
+        traceId: 'test-trace',
+        errors: [],
+        status: 400,
+        statusText: 'Bad Request',
+      }
+
+      const mutation = runInSetup(() => {
+        return useMutation<void, void, void>({
+          queryFn: () => Promise.resolve(err(apiError)),
+          queryKeysToInvalidate: {},
+        })
+      })
+
+      // Before execution
+      expect(mutation.result.value.isLoading()).toBeTruthy()
+
+      await flushPromises()
+
+      // After execution
+      await mutation.execute()
+      await flushPromises()
+
+      expect(mutation.result.value.isLoading()).toBeFalsy()
+      expect(mutation.result.value.isOk()).toBeFalsy()
+      expect(mutation.result.value.isErr()).toBeTruthy()
+
+      if (mutation.result.value.isErr()) {
+        expect(mutation.result.value.getError()).toEqual(apiError)
+      }
+    })
+  })
