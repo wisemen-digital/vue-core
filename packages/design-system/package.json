@@ -29,7 +29,7 @@
     "cleanup": "rimraf dist/ node_modules/ .turbo/",
     "lint": "pnpm eslint --fix .",
     "test": "vitest --run",
-    "typecheck": "pnpm tsc",
+    "typecheck": "vue-tsc --noEmit",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
@@ -60,6 +60,7 @@
     "storybook": "10.1.11",
     "typescript": "catalog:build",
     "vitest": "catalog:test",
-    "vue": "3.5.26"
+    "vue": "3.5.26",
+    "vue-tsc": "catalog:vue"
   }
 }

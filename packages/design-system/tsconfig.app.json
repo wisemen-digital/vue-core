@@ -21,6 +21,7 @@
     "skipLibCheck": true
   },
   "include": [
+    "env.d.ts",
     "src/**/*",
     "src/**/*.ts",
     "src/**/*.tsx",
