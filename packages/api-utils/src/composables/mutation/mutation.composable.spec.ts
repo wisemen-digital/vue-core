@@ -117,10 +117,9 @@ describe('useMutation', () => {
 
   it('should transition result to err state on failure', async () => {
     const apiError: ApiError = {
-      traceId: 'test-trace',
+      name: 'TestError',
       errors: [],
-      status: 500,
-      statusText: 'Internal Server Error',
+      message: 'Internal Server Error',
     }
 
     const mutation = runInSetup(() => {
@@ -203,10 +202,9 @@ describe('useMutation', () => {
 
   it('should provide null data property on error', async () => {
     const apiError: ApiError = {
-      traceId: 'test-trace',
+      name: 'TestError',
       errors: [],
-      status: 500,
-      statusText: 'Internal Server Error',
+      message: 'Internal Server Error',
     }
 
     const mutation = runInSetup(() => {

@@ -84,10 +84,9 @@ describe('useQuery with AsyncResult', () => {
 
   it('result should transition to err state on failure', async () => {
     const apiError: ApiError = {
-      traceId: 'test-trace',
+      name: 'TestError',
       errors: [],
-      status: 500,
-      statusText: 'Internal Server Error',
+      message: 'Internal Server Error',
     }
 
     const query = runInSetup(() => {
@@ -419,15 +418,15 @@ describe('useQuery with AsyncResult', () => {
 
   it('result should reactively update from loading to error with slow API call', async () => {
     const apiError: ApiError = {
-      traceId: 'test-trace',
+      name: 'TestError',
       errors: [
         {
           code: 'SERVER_ERROR',
           detail: 'Something went wrong',
+          status: '500',
         },
       ],
-      status: 500,
-      statusText: 'Internal Server Error',
+      message: 'Internal Server Error',
     }
 
     const query = runInSetup(() => {

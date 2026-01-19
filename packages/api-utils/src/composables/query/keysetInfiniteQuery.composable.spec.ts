@@ -105,10 +105,9 @@ describe('useKeysetInfiniteQuery with AsyncResult', () => {
 
   it('result should transition to err state on failure', async () => {
     const apiError: ApiError = {
-      traceId: 'test-trace',
+      name: 'TestError',
       errors: [],
-      status: 500,
-      statusText: 'Internal Server Error',
+      message: 'Internal Server Error',
     }
 
     const query = runInSetup(() => {
