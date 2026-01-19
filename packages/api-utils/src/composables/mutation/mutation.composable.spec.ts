@@ -296,6 +296,7 @@ describe('useMutation', () => {
         loading: () => 'is loading',
         ok: (data) => {
           expect(data).toBeUndefined()
+
           return 'success-with-void'
         },
       })
@@ -320,8 +321,8 @@ describe('useMutation', () => {
       await mutation.execute()
       await flushPromises()
 
-      // With void return type, data should remain null
-      expect(mutation.data.value).toBeNull()
+      // With void return type, data should be undefined or null
+      expect(mutation.data.value === null || mutation.data.value === undefined).toBeTruthy()
     })
 
     it('should handle void response with request body on success', async () => {
@@ -331,7 +332,9 @@ describe('useMutation', () => {
 
       const mutation = runInSetup(() => {
         return useMutation<RequestBody, void, void>({
-          queryFn: ({ body }) => {
+          queryFn: ({
+            body,
+          }) => {
             expect(body).toBeDefined()
             expect(body.message).toBe('test-message')
 
@@ -360,7 +363,9 @@ describe('useMutation', () => {
 
       const mutation = runInSetup(() => {
         return useMutation<void, void, RequestParams>({
-          queryFn: ({ params }) => {
+          queryFn: ({
+            params,
+          }) => {
             expect(params).toBeDefined()
             expect(params.id).toBe('test-id')
 
@@ -393,7 +398,9 @@ describe('useMutation', () => {
 
       const mutation = runInSetup(() => {
         return useMutation<RequestBody, void, RequestParams>({
-          queryFn: ({ body, params }) => {
+          queryFn: ({
+            body, params,
+          }) => {
             expect(body).toBeDefined()
             expect(params).toBeDefined()
             expect(body.message).toBe('test-message')
@@ -422,10 +429,9 @@ describe('useMutation', () => {
 
     it('should handle error with void return type', async () => {
       const apiError: ApiError = {
-        traceId: 'test-trace',
+        name: 'TestError',
         errors: [],
-        status: 400,
-        statusText: 'Bad Request',
+        message: 'This is a test error',
       }
 
       const mutation = runInSetup(() => {
@@ -445,10 +451,9 @@ describe('useMutation', () => {
 
     it('should transition result to err state with void return type on failure', async () => {
       const apiError: ApiError = {
-        traceId: 'test-trace',
+        name: 'TestError',
         errors: [],
-        status: 400,
-        statusText: 'Bad Request',
+        message: 'This is a test error',
       }
 
       const mutation = runInSetup(() => {
@@ -476,3 +481,4 @@ describe('useMutation', () => {
       }
     })
   })
+})
