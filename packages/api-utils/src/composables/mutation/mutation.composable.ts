@@ -149,7 +149,7 @@ export function useMutation<
       return AsyncResult.err<TResData, ApiError>(mutation.error.value as ApiError)
     }
 
-    if (mutation.isSuccess.value && mutation.data.value) {
+    if (mutation.isSuccess.value && mutation.data.value !== undefined) {
       const apiResult = mutation.data.value
 
       if (apiResult.isOk()) {
