@@ -12,7 +12,7 @@ import {
 import { nextTick } from 'vue'
 
 import { useKeysetInfiniteQuery } from '@/composables/query/keysetInfiniteQuery.composable'
-import { runInSetup } from '@/test-utils/runInSetup'
+import { runInSetup } from '@/test/runInSetup'
 import type { ApiError } from '@/types/apiError.type'
 
 interface TestItem {

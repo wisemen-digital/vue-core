@@ -11,7 +11,7 @@ import {
 } from 'vitest'
 
 import { useMutation } from '@/composables/mutation/mutation.composable'
-import { runInSetup } from '@/test-utils/runInSetup'
+import { runInSetup } from '@/test/runInSetup'
 import type { ApiError } from '@/types/apiError.type'
 
 function flushPromises(): Promise<void> {

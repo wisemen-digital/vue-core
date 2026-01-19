@@ -22,8 +22,6 @@ export default defineConfig({
       ...configDefaults.exclude,
     ],
     root: fileURLToPath(new URL('./', META_URL)),
-    setupFiles: [
-      resolve(projectRootDir, 'vitest.setup.ts'),
-    ],
+    setupFiles: [],
   },
 })
