@@ -38,6 +38,7 @@
     "vue": "catalog:peer"
   },
   "dependencies": {
+    "@repo/icons": "workspace:*",
     "@tailwindcss/vite": "4.1.17",
     "reka-ui": "^2.6.1",
     "tailwind-merge": "^3.4.0",

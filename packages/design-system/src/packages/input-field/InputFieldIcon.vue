@@ -11,7 +11,7 @@ const props = defineProps<{
     :is="props.icon"
     v-if="props.icon"
     class="
-      size-3.5 shrink-0 text-tertiary
+      size-3.5 shrink-0 text-fg-quaternary
       group-data-disabled/input-field:text-fg-disabled-subtle
     "
   />

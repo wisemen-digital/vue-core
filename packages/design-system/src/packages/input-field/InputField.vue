@@ -26,8 +26,8 @@ const props = withDefaults(defineProps<InputFieldProps>(), {
     }"
     gap="none"
     class="
-      group/input-field relative rounded-sm border border-secondary bg-primary
-      outline outline-transparent duration-100
+      group/input-field relative rounded-md border border-primary bg-primary
+      shadow-xs outline outline-transparent duration-100
       data-disabled:cursor-not-allowed data-disabled:border-disabled-subtle
       data-disabled:bg-disabled-subtle data-disabled:text-disabled
       data-error:border-error
@@ -46,6 +46,7 @@ const props = withDefaults(defineProps<InputFieldProps>(), {
         'ml-md': props.size === 'md',
         'ml-sm': props.size === 'sm',
       }"
+      class="text-error-500"
     />
 
     <slot name="left" />
