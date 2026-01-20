@@ -1,3 +1,3 @@
-import config from '@repo/lint'
+import config from '@wisemen/eslint-config-vue'
 
 export default config

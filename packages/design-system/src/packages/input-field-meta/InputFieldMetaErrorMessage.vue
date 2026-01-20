@@ -45,7 +45,7 @@ const props = defineProps<{
         gap="sm"
       >
         <div
-          class="h-text-xs flex items-center"
+          class="flex items-center text-xs"
         >
           <Component
             :is="AlertTriangleIcon"
