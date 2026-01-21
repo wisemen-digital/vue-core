@@ -7,6 +7,11 @@ import type {
   Meta,
   StoryObj,
 } from '@storybook/vue3-vite'
+import {
+  expect,
+  userEvent,
+  within,
+} from 'storybook/test'
 import { ref } from 'vue'
 
 import TextField from '@/packages/text-field/TextField.vue'
@@ -104,6 +109,20 @@ export const Default: Story = {
     modelValue: null,
     placeholder: 'Enter text...',
   },
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    // Find the input by its label
+    const input = canvas.getByLabelText('Label')
+
+    // Type into the input
+    await userEvent.type(input, 'Hello World')
+
+    // Assert the value was updated
+    await expect(input).toHaveValue('Hello World')
+  },
 }
 
 export const WithHint: Story = {
@@ -114,6 +133,27 @@ export const WithHint: Story = {
     modelValue: null,
     placeholder: 'you@example.com',
   },
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    // Verify hint text is visible
+    const hint = canvas.getByText('We will never share your email with anyone.')
+
+    await expect(hint).toBeInTheDocument()
+
+    // Find and interact with the input
+    const input = canvas.getByLabelText('Email')
+
+    await userEvent.type(input, 'test@example.com')
+
+    // Verify the value
+    await expect(input).toHaveValue('test@example.com')
+
+    // Verify the input has type="email" if specified
+    await expect(input).toHaveAttribute('type')
+  },
 }
 
 export const Required: Story = {
@@ -123,6 +163,23 @@ export const Required: Story = {
     label: 'Full Name',
     modelValue: null,
     placeholder: 'John Doe',
+  },
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    // Find the input
+    const input = canvas.getByLabelText(/Full Name/i)
+
+    // Verify required attribute is present
+    await expect(input).toBeRequired()
+
+    // Type a name
+    await userEvent.type(input, 'John Doe')
+
+    // Verify the value
+    await expect(input).toHaveValue('John Doe')
   },
 }
 
@@ -155,6 +212,23 @@ export const WithIcons: Story = {
     modelValue: null,
     placeholder: 'Enter your email',
   },
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    // Find the input
+    const input = canvas.getByLabelText('Search')
+
+    // Type an email address
+    await userEvent.type(input, 'user@example.com')
+
+    // Verify the value
+    await expect(input).toHaveValue('user@example.com')
+
+    // Verify placeholder is no longer visible (implicit when value is present)
+    await expect(input).not.toHaveValue('')
+  },
 }
 
 export const Disabled: Story = {
@@ -165,6 +239,20 @@ export const Disabled: Story = {
     modelValue: 'Disabled value',
     placeholder: 'Cannot edit',
   },
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    // Find the input
+    const input = canvas.getByLabelText('Disabled Field')
+
+    // Verify it's disabled
+    await expect(input).toBeDisabled()
+
+    // Verify the value is present
+    await expect(input).toHaveValue('Disabled value')
+  },
 }
 
 export const Readonly: Story = {
@@ -173,6 +261,20 @@ export const Readonly: Story = {
     class: 'w-72',
     label: 'Read Only Field',
     modelValue: 'This value is read-only',
+  },
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    // Find the input
+    const input = canvas.getByLabelText('Read Only Field')
+
+    // Verify it's readonly
+    await expect(input).toHaveAttribute('readonly')
+
+    // Verify the value is present
+    await expect(input).toHaveValue('This value is read-only')
   },
 }
 
@@ -193,6 +295,27 @@ export const Error: Story = {
     label: 'Username',
     modelValue: 'johndoe',
     placeholder: 'Enter username',
+  },
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    // Find the input
+    const input = canvas.getByLabelText('Username')
+
+    // Verify the error message is visible
+    const errorMessage = canvas.getByText('This username is already taken')
+
+    await expect(errorMessage).toBeInTheDocument()
+
+    // Verify input has aria-invalid attribute
+    await expect(input).toHaveAttribute('aria-invalid', 'true')
+
+    // Clear and type a new value
+    await userEvent.clear(input)
+    await userEvent.type(input, 'newuser')
+    await expect(input).toHaveValue('newuser')
   },
 }
 
