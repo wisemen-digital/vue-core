@@ -9,5 +9,4 @@ export type LintConfig = Awaitable<
   | Linter.Config[]
   | TypedFlatConfigItem
   | TypedFlatConfigItem[]
-
-  > & { languageOptions?: { parser?: any } }
+> & { languageOptions?: { parser?: any } }

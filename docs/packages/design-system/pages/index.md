@@ -4,7 +4,7 @@ The Design System is a Vue 3 design system package for building consistent user 
 
 ## What is Design System?
 
-Design Library provides a collection of design tokens, utilities, and foundational components for building beautiful and consistent user interfaces.
+Design System provides a collection of design tokens, utilities, and foundational components for building beautiful and consistent user interfaces.
 
 ## Key Features
 
@@ -20,6 +20,6 @@ Get started with Design System in just a few steps:
 
 1. **Installation** - Add the package to your project
 2. **Configuration** - Set up the design system in your application
-3. **Usage** - Start using Design Library components and tokens
+3. **Usage** - Start using Design System components and tokens
 
 Continue to the [Installation guide](./installation) to get started.
