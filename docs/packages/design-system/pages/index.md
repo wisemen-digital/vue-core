@@ -22,4 +22,4 @@ Get started with Design System in just a few steps:
 2. **Configuration** - Set up the design system in your application
 3. **Usage** - Start using Design System components and tokens
 
-Continue to the [Installation guide](./installation) to get started.
+Continue to the [Installation guide](/packages/design-system/pages/index.md) to get started.

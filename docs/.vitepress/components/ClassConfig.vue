@@ -81,7 +81,7 @@ for (const variant in variants) {
 
       <div
         class="
-          border-secondary gap-x-2xl mt-3xl grid max-h-[30rem]
+          border-secondary gap-x-2xl mt-3xl grid max-h-120
           grid-cols-[1fr_2fr] overflow-auto rounded-lg border border-solid
         "
       >

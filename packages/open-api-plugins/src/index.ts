@@ -1,2 +1,2 @@
-export * from './error-code-enum'
 export * from './builders'
+export * from './error-code-enum'

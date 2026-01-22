@@ -2,10 +2,10 @@
   <svg
     viewBox="25 25 50 50"
     aria-hidden="true"
-    class="animate-spinner"
+    class="custom-animate-spinner"
   >
     <circle
-      class="size-full animate-spinner-path"
+      class="custom-animate-spinner-path size-full"
       cx="100%"
       cy="100%"
       fill="none"
@@ -21,11 +21,11 @@
 </template>
 
 <style scoped>
-.animate-spinner {
+.custom-animate-spinner {
   animation: loading-spinner-rotate 2s linear infinite;
 }
 
-.animate-spinner-path {
+.custom-animate-spinner-path {
   animation: loading-spinner-path 1.5s ease-in-out infinite;
 }
 

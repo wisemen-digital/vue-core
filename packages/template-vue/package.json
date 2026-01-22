@@ -34,8 +34,7 @@
     "test": "vitest --run",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "cleanup": "rimraf dist/ node_modules/ .turbo/",
-    "prepare": "husky"
+    "cleanup": "rimraf dist/ node_modules/ .turbo/"
   },
   "peerDependencies": {
     "motion-v": "catalog:peer",
@@ -52,7 +51,7 @@
     "@vitejs/plugin-vue": "catalog:vite",
     "@vue/test-utils": "catalog:test",
     "@vue/tsconfig": "catalog:vue",
-    "@wisemen/eslint-config-vue": "catalog:lint",
+    "@wisemen/eslint-config-vue": "workspace:*",
     "eslint": "catalog:lint",
     "husky": "catalog:build",
     "tailwindcss": "catalog:style",

@@ -47,7 +47,7 @@ const {
       v-if="hasScrolledInDropdownContent"
       class="
         pointer-events-none absolute bottom-0 z-10 h-4 w-full translate-y-full
-        bg-gradient-to-b from-primary to-transparent
+        bg-linear-to-b from-primary to-transparent
       "
     />
   </div>

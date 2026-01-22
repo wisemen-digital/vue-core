@@ -15,6 +15,48 @@ const customGrouping = {
       groupName: 'title',
     },
     {
+      elementNamePattern: '^start(?:Date|_date)$',
+      groupName: 'dateStartDate',
+    },
+    {
+      elementNamePattern: '^end(?:Date|_date)$',
+      groupName: 'dateEndDate',
+    },
+    {
+      elementNamePattern: '^start(?:Time|_time)$',
+      groupName: 'dateStartTime',
+    },
+    {
+      elementNamePattern: '^end(?:Time|_time)$',
+      groupName: 'dateEndTime',
+    },
+    {
+      elementNamePattern: '^started(?:On|At|_on|_at)$',
+      groupName: 'dateStartedOn',
+    },
+    {
+      elementNamePattern: '^ended(?:On|At|_on|_at)$',
+      groupName: 'dateEndedOn',
+    },
+    {
+      elementNamePattern: '^start.+(?:Date|_date)$',
+      groupName: 'dateStartWithDate',
+    },
+
+    {
+      elementNamePattern: '^end.+(?:Date|_date)$',
+      groupName: 'dateEndWithDate',
+    },
+    {
+      elementNamePattern: '^start.+(?:Time|_time)$',
+      groupName: 'dateStartWithTime',
+    },
+    {
+      elementNamePattern: '^end.+(?:Time|_time)$',
+      groupName: 'dateEndWithTime',
+    },
+
+    {
       elementNamePattern: '^(.*At|.*On|.*_at|.*_on|.*_date|.*_time|.*Date|.*Time)$',
       groupName: 'date',
     },
@@ -59,6 +101,16 @@ const customGrouping = {
     'id',
     'relations',
     'title',
+    'dateStartDate',
+    'dateEndDate',
+    'dateStartTime',
+    'dateEndTime',
+    'dateStartedOn',
+    'dateEndedOn',
+    'dateStartWithDate',
+    'dateEndWithDate',
+    'dateStartWithTime',
+    'dateEndWithTime',
     'date',
     'booleans',
     'name',
@@ -105,9 +157,17 @@ export const perfectionistConfig: LintConfig = {
     ],
     'perfectionist/sort-exports': 'off',
     'perfectionist/sort-imports': 'off',
-
     'perfectionist/sort-interfaces': [
       'error',
+      {
+        type: 'unsorted',
+        useConfigurationIf: {
+          declarationCommentMatchesPattern: {
+            flags: 'i',
+            pattern: '^do not sort$',
+          },
+        },
+      },
       {
         ...customGrouping,
       },
@@ -116,16 +176,37 @@ export const perfectionistConfig: LintConfig = {
     'perfectionist/sort-object-types': [
       'error',
       {
+        type: 'unsorted',
+        useConfigurationIf: {
+          declarationCommentMatchesPattern: {
+            flags: 'i',
+            pattern: '^do not sort$',
+          },
+        },
+      },
+      {
         ...customGrouping,
       },
     ],
     'perfectionist/sort-objects': [
       'error',
       {
+        type: 'unsorted',
+        useConfigurationIf: {
+          declarationCommentMatchesPattern: {
+            flags: 'i',
+            pattern: '^do not sort$',
+          },
+        },
+      },
+      {
+        type: 'unsorted',
+        useConfigurationIf: {
+          declarationMatchesPattern: '^variants$',
+        },
+      },
+      {
         ...customGrouping,
-        ignorePattern: [
-          'variants',
-        ],
       },
     ],
     'perfectionist/sort-union-types': [

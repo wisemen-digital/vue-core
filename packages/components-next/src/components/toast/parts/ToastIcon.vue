@@ -31,7 +31,7 @@ const delegatedIcon = computed<IconType | null>(() => {
 <template>
   <div
     v-if="preview === null && delegatedIcon"
-    class="flex h-[1lh] items-center"
+    class="flex h-lh items-center"
   >
     <Icon
       :icon="delegatedIcon"

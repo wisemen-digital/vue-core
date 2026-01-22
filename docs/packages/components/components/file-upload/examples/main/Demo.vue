@@ -68,7 +68,7 @@ function fakeGetFileInfo(name: string, mimeType: string): Promise<FileInfo> {
               label="Remove file"
               variant="destructive-tertiary"
               size="sm"
-              class="!absolute top-1 right-1"
+              class="absolute! top-1 right-1"
             />
           </VcFileUploadItemRemove>
         </div>

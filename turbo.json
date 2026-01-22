@@ -1,21 +1,84 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "ui": "tui",
+  "globalDependencies": [
+    ".env",
+    ".env.local",
+    "tsconfig.json"
+  ],
   "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"],
+      "inputs": [
+        "src/**",
+        "tsconfig.json",
+        "tsconfig.*.json",
+        "vite.config.ts",
+        "tsdown.config.ts",
+        "package.json"
+      ]
+    },
     "test": {
-      "outputs": []
+      "dependsOn": ["^build"],
+      "outputs": ["coverage/**"],
+      "inputs": [
+        "src/**",
+        "test/**",
+        "*.test.ts",
+        "*.spec.ts",
+        "vitest.config.ts"
+      ]
     },
     "type-check": {
-      "outputs": []
+      "dependsOn": ["^build"],
+      "outputs": [],
+      "inputs": [
+        "src/**",
+        "tsconfig.json",
+        "tsconfig.*.json"
+      ]
     },
     "lint": {
-      "outputs": []
+      "dependsOn": ["^build"],
+      "outputs": [],
+      "inputs": [
+        "src/**",
+        "test/**",
+        "eslint.config.*",
+        "package.json"
+      ]
     },
     "lint:fix": {
-      "outputs": []
+      "dependsOn": ["^build"],
+      "outputs": [],
+      "cache": false
     },
     "dev": {
+      "dependsOn": ["^build"],
       "persistent": true,
+      "cache": false
+    },
+    "story:dev": {
+      "dependsOn": ["^build"],
+      "persistent": true,
+      "cache": false
+    },
+    "docs:dev": {
+      "dependsOn": ["^build"],
+      "persistent": true,
+      "cache": false
+    },
+    "docs:build": {
+      "dependsOn": ["^build"],
+      "outputs": [".vitepress/dist/**"]
+    },
+    "docs:gen": {
+      "dependsOn": ["^build"],
+      "outputs": [],
+      "cache": false
+    },
+    "cleanup": {
       "cache": false
     }
   }
