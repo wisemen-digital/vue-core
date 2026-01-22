@@ -135,3 +135,4 @@ catalogs:
     "typescript": ">=4.8.4 <5.9.0"
     "@hey-api/openapi-ts":  ">=0.86.0"
     "zod": ">=4.3.5"
+    "vue-router": ">=4.6.3"
