@@ -58,7 +58,7 @@ catalogs:
     "@vitejs/plugin-vue": "6.0.1"
     "@tailwindcss/vite": "4.1.14"
   test:
-    "vitest": "3.2.4"
+    "vitest": "4.0.16"
     "@vue/test-utils": "2.4.6"
     "jsdom": "27.0.1"
     "@vitest/browser-playwright": "4.0.16"

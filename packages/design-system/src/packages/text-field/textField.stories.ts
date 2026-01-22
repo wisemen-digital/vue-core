@@ -7,6 +7,11 @@ import type {
   Meta,
   StoryObj,
 } from '@storybook/vue3-vite'
+import {
+  expect,
+  userEvent,
+  within,
+} from 'storybook/test'
 import { ref } from 'vue'
 
 import TextField from '@/packages/text-field/TextField.vue'
@@ -104,6 +109,17 @@ export const Default: Story = {
     modelValue: null,
     placeholder: 'Enter text...',
   },
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    const input = canvas.getByLabelText('Label')
+
+    await userEvent.type(input, 'Hello World')
+
+    await expect(input).toHaveValue('Hello World')
+  },
 }
 
 export const WithHint: Story = {
@@ -114,6 +130,23 @@ export const WithHint: Story = {
     modelValue: null,
     placeholder: 'you@example.com',
   },
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    const hint = canvas.getByText('We will never share your email with anyone.')
+
+    await expect(hint).toBeInTheDocument()
+
+    const input = canvas.getByLabelText('Email')
+
+    await userEvent.type(input, 'test@example.com')
+
+    await expect(input).toHaveValue('test@example.com')
+
+    await expect(input).toHaveAttribute('type')
+  },
 }
 
 export const Required: Story = {
@@ -123,6 +156,19 @@ export const Required: Story = {
     label: 'Full Name',
     modelValue: null,
     placeholder: 'John Doe',
+  },
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    const input = canvas.getByLabelText(/Full Name/i)
+
+    await expect(input).toBeRequired()
+
+    await userEvent.type(input, 'John Doe')
+
+    await expect(input).toHaveValue('John Doe')
   },
 }
 
@@ -155,6 +201,19 @@ export const WithIcons: Story = {
     modelValue: null,
     placeholder: 'Enter your email',
   },
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    const input = canvas.getByLabelText('Search')
+
+    await userEvent.type(input, 'user@example.com')
+
+    await expect(input).toHaveValue('user@example.com')
+
+    await expect(input).not.toHaveValue('')
+  },
 }
 
 export const Disabled: Story = {
@@ -165,6 +224,17 @@ export const Disabled: Story = {
     modelValue: 'Disabled value',
     placeholder: 'Cannot edit',
   },
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    const input = canvas.getByLabelText('Disabled Field')
+
+    await expect(input).toBeDisabled()
+
+    await expect(input).toHaveValue('Disabled value')
+  },
 }
 
 export const Readonly: Story = {
@@ -173,6 +243,17 @@ export const Readonly: Story = {
     class: 'w-72',
     label: 'Read Only Field',
     modelValue: 'This value is read-only',
+  },
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    const input = canvas.getByLabelText('Read Only Field')
+
+    await expect(input).toHaveAttribute('readonly')
+
+    await expect(input).toHaveValue('This value is read-only')
   },
 }
 
@@ -193,6 +274,23 @@ export const Error: Story = {
     label: 'Username',
     modelValue: 'johndoe',
     placeholder: 'Enter username',
+  },
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    const input = canvas.getByLabelText('Username')
+
+    const errorMessage = canvas.getByText('This username is already taken')
+
+    await expect(errorMessage).toBeInTheDocument()
+
+    await expect(input).toHaveAttribute('aria-invalid', 'true')
+
+    await userEvent.clear(input)
+    await userEvent.type(input, 'newuser')
+    await expect(input).toHaveValue('newuser')
   },
 }
 
