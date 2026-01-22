@@ -53,6 +53,7 @@
     "@vue/tsconfig": "catalog:vue",
     "@vueuse/core": "catalog:vue",
     "@wisemen/eslint-config-vue": "workspace:*",
+    "@wisemen/vue-core-components": "workspace:*",
     "eslint": "catalog:lint",
     "highlight-words": "catalog:general",
     "histoire": "catalog:stories",
