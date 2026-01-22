@@ -634,8 +634,8 @@ importers:
         specifier: catalog:vite
         version: 4.1.14(vite@7.1.11(@types/node@24.8.1)(jiti@2.6.1)(lightningcss@1.30.2)(sass@1.93.2)(tsx@4.20.3)(yaml@2.8.2))
       reka-ui:
-        specifier: catalog:vue
-        version: 2.5.1(typescript@5.9.3)(vue@3.5.22(typescript@5.9.3))
+        specifier: catalog:peer
+        version: 2.6.1(typescript@5.9.3)(vue@3.5.22(typescript@5.9.3))
       tailwind-merge:
         specifier: catalog:style
         version: 3.3.1
