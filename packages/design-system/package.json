@@ -23,6 +23,7 @@
   ],
   "scripts": {
     "build": "vite build",
+    "dev": "vite build --watch",
     "pub:release": "pnpm publish --access public",
     "pub:beta": "pnpm publish --no-git-checks --access public --tag beta",
     "pub:next": "pnpm publish --no-git-checks --access public --tag next",
