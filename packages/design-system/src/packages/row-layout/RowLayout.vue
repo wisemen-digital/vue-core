@@ -57,11 +57,11 @@ const gapClass = computed<string>(() => {
 </script>
 
 <template>
-  <component
+  <Component
     :is="props.as"
     :class="[alignClass, justifyClass, gapClass]"
     class="flex flex-row"
   >
     <slot />
-  </component>
+  </Component>
 </template>

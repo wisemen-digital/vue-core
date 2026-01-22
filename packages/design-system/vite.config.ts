@@ -29,9 +29,11 @@ export default defineConfig({
         'vue',
         'vue-i18n',
         'vue-router',
+        'reka-ui',
       ],
       output: {
         globals: {
+          'reka-ui': 'RekaUI',
           'vue': 'Vue',
           'vue-i18n': 'VueI18n',
           'vue-router': 'VueRouter',

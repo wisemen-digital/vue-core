@@ -32,20 +32,23 @@
     "typecheck": "pnpm tsc"
   },
   "peerDependencies": {
-    "vue": "catalog:peer"
+    "reka-ui": "catalog:peer",
+    "vue": "catalog:peer",
+    "vue-i18n": "catalog:peer",
+    "vue-router": "catalog:peer"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.1.17",
-    "reka-ui": "^2.6.1",
-    "tailwind-merge": "^3.4.0",
-    "tailwindcss": "^4.1.17",
-    "vue-router": "^4.6.3"
+    "@tailwindcss/vite": "catalog:vite",
+    "tailwind-merge": "catalog:style",
+    "tailwindcss": "catalog:style"
   },
   "devDependencies": {
     "@types/node": "catalog:types",
+    "@vitejs/plugin-vue": "catalog:vite",
     "@wisemen/eslint-config-vue": "catalog:lint",
     "eslint": "catalog:lint",
     "typescript": "catalog:build",
+    "vite-plugin-dts": "catalog:vite",
     "vitest": "catalog:test"
   }
 }
