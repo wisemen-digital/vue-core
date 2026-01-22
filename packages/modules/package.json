@@ -37,8 +37,7 @@
     "lint:fix": "eslint . --fix",
     "story:dev": "histoire dev",
     "story:build": "histoire build",
-    "story:preview": "histoire preview",
-    "prepare": "husky"
+    "story:preview": "histoire preview"
   },
   "peerDependencies": {
     "@wisemen/vue-core-components": "workspace:*",

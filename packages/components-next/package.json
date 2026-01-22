@@ -39,8 +39,7 @@
     "story:dev": "histoire dev",
     "story:build": "histoire build",
     "cleanup": "rimraf dist/ node_modules/ .turbo/",
-    "story:preview": "histoire preview",
-    "prepare": "husky"
+    "story:preview": "histoire preview"
   },
   "peerDependencies": {
     "motion-v": "catalog:peer",

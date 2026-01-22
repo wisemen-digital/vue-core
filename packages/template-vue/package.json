@@ -34,8 +34,7 @@
     "test": "vitest --run",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "cleanup": "rimraf dist/ node_modules/ .turbo/",
-    "prepare": "husky"
+    "cleanup": "rimraf dist/ node_modules/ .turbo/"
   },
   "peerDependencies": {
     "motion-v": "catalog:peer",
