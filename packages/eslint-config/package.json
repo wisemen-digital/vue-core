@@ -8,11 +8,18 @@
   "description": "Eslint config for Vue.js projects",
   "author": "Wisemen",
   "license": "ISC",
-  "exports": {
-    ".": "./dist/index.js"
+  "imports": {
+    "#*": "./src/*"
   },
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
   "files": [
     "dist"
   ],

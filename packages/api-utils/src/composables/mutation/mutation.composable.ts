@@ -36,7 +36,7 @@ interface UseMutationOptions<TParams, TReqData, TResData> {
   queryKeysToInvalidate: {
     [TQueryKey in keyof QueryKeys]?: {
       [TQueryKeyParam in keyof QueryKeys[TQueryKey]]: (
-        params: TParams, data: TResData
+        params: TParams, data: TResData,
       ) => UnwrapRef<QueryKeys[TQueryKey][TQueryKeyParam]>
     }
   }

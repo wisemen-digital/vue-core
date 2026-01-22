@@ -1,4 +1,5 @@
 <script setup lang="ts">
+<<<<<<< HEAD
 import {
   ref,
   useAttrs,
@@ -57,4 +58,15 @@ const textRef = ref<HTMLElement | null>(null)
   >
     {{ props.text }}
   </Component>
+=======
+const props = defineProps<{
+  text: string
+}>()
+</script>
+
+<template>
+  <span>
+    {{ props.text }}
+  </span>
+>>>>>>> main
 </template>
