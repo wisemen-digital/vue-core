@@ -29,17 +29,19 @@
     "cleanup": "rimraf dist/ node_modules/ .turbo/",
     "lint": "pnpm eslint --fix .",
     "test": "vitest --run",
-    "typecheck": "vue-tsc --noEmit",
+    "type-check": "vue-tsc --noEmit",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
   "peerDependencies": {
+    "motion-v": "catalog:peer",
     "reka-ui": "catalog:peer",
     "vue": "catalog:peer",
     "vue-i18n": "catalog:peer",
     "vue-router": "catalog:peer"
   },
   "dependencies": {
+    "@repo/icons": "workspace:*",
     "@tailwindcss/vite": "catalog:vite",
     "tailwind-merge": "catalog:style",
     "tailwindcss": "catalog:style"
@@ -59,6 +61,7 @@
     "@wisemen/eslint-config-vue": "catalog:lint",
     "eslint": "catalog:lint",
     "eslint-plugin-storybook": "10.1.11",
+    "motion-v": "catalog:peer",
     "playwright": "1.57.0",
     "reka-ui": "catalog:peer",
     "storybook": "10.1.11",
