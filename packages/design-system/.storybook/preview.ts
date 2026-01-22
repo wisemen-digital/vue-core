@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/consistent-function-scoping */
 import '../src/styles/index.css'
 
 import type { Preview } from '@storybook/vue3-vite'
