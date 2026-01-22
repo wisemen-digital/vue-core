@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useTemplateModuleData } from '../composables/useTemplateModuleData.composable'
+import { useTemplateModuleData } from 'src/composables/useTemplateModuleData.composable'
 
 /**
  * TemplateModuleCard - Example component from the Template Module
@@ -9,12 +9,21 @@ defineProps<{
   title?: string
 }>()
 
-const { apiUrl = '', config = { debug: false } } = useTemplateModuleData() || {}
+const {
+  apiUrl, config,
+} = useTemplateModuleData()
 </script>
 
 <template>
+  <!-- eslint-disable better-tailwindcss/no-unregistered-classes -->
+  <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
   <div class="template-module-card">
-    <h3 v-if="title" class="title">{{ title }}</h3>
+    <h3
+      v-if="title"
+      class="title"
+    >
+      {{ title }}
+    </h3>
     <div class="content">
       <div class="info-row">
         <span class="label">API URL:</span>
@@ -22,8 +31,11 @@ const { apiUrl = '', config = { debug: false } } = useTemplateModuleData() || {}
       </div>
       <div class="info-row">
         <span class="label">Debug Mode:</span>
-        <span class="badge" :class="{ active: config.debug }">
-          {{ config.debug ? '🟢 ON' : '🔴 OFF' }}
+        <span
+          :class="{ active: config?.debug }"
+          class="badge"
+        >
+          {{ config?.debug ? '🟢 ON' : '🔴 OFF' }}
         </span>
       </div>
     </div>

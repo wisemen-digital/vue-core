@@ -1,25 +1,20 @@
-import { defineConfig } from 'vite'
+import { resolve } from 'node:path'
+
 import vue from '@vitejs/plugin-vue'
+import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
-import { resolve } from 'path'
 
 export default defineConfig({
-  plugins: [
-    vue(),
-    dts({
-      outDir: 'dist',
-      include: ['src/**/*.ts', 'src/**/*.vue'],
-      rollupTypes: false,
-    }),
-  ],
   build: {
     lib: {
       entry: {
         index: resolve(__dirname, 'src/index.ts'),
-        routes: resolve(__dirname, 'src/routes/routes.ts'),
         locales: resolve(__dirname, 'src/locales/i18n.ts'),
+        routes: resolve(__dirname, 'src/routes/routes.ts'),
       },
-      formats: ['es'],
+      formats: [
+        'es',
+      ],
     },
     rollupOptions: {
       external: [
@@ -32,4 +27,15 @@ export default defineConfig({
       },
     },
   },
+  plugins: [
+    vue(),
+    dts({
+      include: [
+        'src/**/*.ts',
+        'src/**/*.vue',
+      ],
+      outDir: 'dist',
+      rollupTypes: false,
+    }),
+  ],
 })

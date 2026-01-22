@@ -4,7 +4,7 @@
  */
 export interface TemplateModuleOptions {
   /** Example option - replace with your needs */
-  apiUrl?: string
+  apiUrl: string
 
   /** Example option - replace with your needs */
   config?: Record<string, unknown>

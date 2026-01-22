@@ -15,11 +15,4 @@ import type { RouteRecordRaw } from 'vue-router'
  * })
  * ```
  */
-export const templateModuleRoutes: RouteRecordRaw[] = [
-  // TODO: Add your module routes here
-  // {
-  //   path: '/template',
-  //   component: () => import('./pages/TemplatePage.vue'),
-  //   children: [/* ... */],
-  // },
-]
+export const templateModuleRoutes: RouteRecordRaw[] = []

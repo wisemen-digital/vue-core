@@ -1,5 +1,5 @@
 import { createContext } from '@wisemen/vue-core-module-registry'
-import type { TemplateModuleOptions } from '../types'
+import type { TemplateModuleOptions } from 'src/types'
 
 /**
  * Internal context for the Template module
@@ -9,16 +9,11 @@ const templateModuleContext = createContext<TemplateModuleOptions>({
   name: 'Template Module Context',
 })
 
-
-export async function setupTemplateModule(options: TemplateModuleOptions): Promise<void> {
+export function setupTemplateModule(options: TemplateModuleOptions): void {
   // Provide the options to the module context
   // This makes them available to all composables/components in the module
   templateModuleContext.provide(options)
-
-  // TODO: Add any async initialization here
-  // e.g., await fetch('/initialize')
 }
-
 
 export function useTemplateModuleContext(): TemplateModuleOptions {
   const context = templateModuleContext.inject()
@@ -31,5 +26,3 @@ export function useTemplateModuleContext(): TemplateModuleOptions {
 
   return context
 }
-
-

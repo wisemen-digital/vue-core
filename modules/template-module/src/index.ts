@@ -1,18 +1,21 @@
 import type { ModuleDefinition } from '@wisemen/vue-core-module-registry'
-import { setupTemplateModule, useTemplateModuleContext } from './context/context'
-import type { TemplateModuleOptions } from './types'
 
+import {
+  setupTemplateModule,
+  useTemplateModuleContext,
+} from './context/context'
+import type { TemplateModuleOptions } from './types'
 
 /**
  * Create a Template module instance with the given options
- * 
+ *
  * @example
  * ```typescript
  * const module = createTemplateModule({
  *   apiUrl: 'https://api.example.com',
  *   config: { debug: true },
  * })
- * 
+ *
  * registry.use(module)
  * ```
  */
@@ -20,8 +23,8 @@ export function createTemplateModule(
   options: TemplateModuleOptions,
 ): ModuleDefinition<TemplateModuleOptions> {
   return {
-  id: 'template-module',
-  name: 'Template Module',
+    id: 'template-module',
+    name: 'Template Module',
     setup: (opts) => setupTemplateModule(options || opts),
   }
 }
@@ -29,7 +32,6 @@ export function createTemplateModule(
 // Re-export composables and types for convenience
 export { useTemplateModuleContext }
 export type { TemplateModuleOptions }
-
 
 // Re-export composables separately
 export * from './composables/useTemplateModuleData.composable'

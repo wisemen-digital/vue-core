@@ -39,9 +39,9 @@
     "type-check": "tsc --noEmit"
   },
   "peerDependencies": {
+    "@wisemen/vue-core-module-registry": "*",
     "vue": ">=3.5.22",
-    "vue-router": ">=4.6.3",
-    "@wisemen/vue-core-module-registry": "*"
+    "vue-router": ">=4.6.3"
   },
   "devDependencies": {
     "@types/node": "catalog:types",
@@ -54,8 +54,8 @@
     "typescript": "catalog:build",
     "vite": "catalog:vite",
     "vite-plugin-dts": "catalog:vite",
+    "vitest": "catalog:test",
     "vue": "catalog:vue",
-    "vue-router": "catalog:vue",
-    "vitest": "catalog:test"
+    "vue-router": "catalog:vue"
   }
 }
