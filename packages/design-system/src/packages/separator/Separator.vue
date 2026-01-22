@@ -4,6 +4,9 @@ import { twMerge } from 'tailwind-merge'
 
 const props = withDefaults(defineProps<{
   class?: string
+  /**
+   * The orientation of the separator.
+   */
   orientation?: 'horizontal' | 'vertical'
 }>(), {
   orientation: 'horizontal',

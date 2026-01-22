@@ -572,7 +572,7 @@ class ZodMockGenerator {
 
   generateFromSchemaString(
     zodSchemaString: string,
-      overrides: Record<string, unknown> = {},
+    overrides: Record<string, unknown> = {},
   ): unknown {
     if (zodSchemaString.includes('z.object(')) {
       return this.generateObjectMock(zodSchemaString, overrides)

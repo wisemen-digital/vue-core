@@ -84,7 +84,7 @@ export class RedirectValidator {
    */
   public sanitizeRedirectUrl(
     redirectUrl: string | null,
-        fallbackUrl: string = '/',
+    fallbackUrl: string = '/',
   ): string {
     if (!redirectUrl || !this.isValidRedirectUrl(redirectUrl)) {
       return fallbackUrl
