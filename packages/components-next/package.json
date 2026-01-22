@@ -66,7 +66,7 @@
     "@vue/tsconfig": "catalog:vue",
     "@vueuse/core": "catalog:vue",
     "@vueuse/router": "catalog:vue",
-    "@wisemen/eslint-config-vue": "catalog:lint",
+    "@wisemen/eslint-config-vue": "workspace:*",
     "blurhash": "catalog:general",
     "eslint": "catalog:lint",
     "histoire": "catalog:stories",

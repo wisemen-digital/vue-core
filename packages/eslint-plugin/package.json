@@ -50,7 +50,7 @@
     "ts-api-utils": "catalog:general"
   },
   "devDependencies": {
-    "@wisemen/eslint-config-vue": "catalog:lint",
+    "@wisemen/eslint-config-vue": "workspace:*",
     "eslint": "catalog:lint",
     "rimraf": "catalog:build",
     "tsdown": "catalog:build",

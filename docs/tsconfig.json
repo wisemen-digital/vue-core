@@ -27,7 +27,7 @@
     "skipLibCheck": true
   },
   "files": [
-    "eslint.config.js"
+    "eslint.config.ts"
   ],
   "include": [
     "./playground/**/*.ts",

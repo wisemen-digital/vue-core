@@ -78,7 +78,7 @@ catalogs:
     "@types/babel__traverse": "7.28.0"
     "@types/markdown-it": "14.1.2"
     "@tsconfig/node18": "18.2.4"
-    "@types/clone-deep":  4.0.4
+    "@types/clone-deep": 4.0.4
   general:
     "zod": "4.1.12"
     "neverthrow": "8.2.0"
@@ -90,7 +90,7 @@ catalogs:
     "libphonenumber-js": "1.12.24"
     "highlight-words": "2.0.0"
     "@standard-schema/spec": "1.1.0"
-    "clone-deep":  4.0.1
+    "clone-deep": 4.0.1
   stories:
     "histoire": "1.0.0-alpha.3"
     "@histoire/plugin-vue": "1.0.0-alpha.3"
@@ -119,9 +119,9 @@ catalogs:
     "@opentelemetry/sdk-trace-web": "2.1.0"
     "@sentry/vue": "10.20.0"
   generator:
-    "change-case":  5.4.4
-    "ejs":  3.1.10
-    "fs-extra":  11.3.2
+    "change-case": 5.4.4
+    "ejs": 3.1.10
+    "fs-extra": 11.3.2
   peer:
     vue: ">=3.5.22"
     "@tanstack/vue-query": ">=5.90.5"
@@ -130,9 +130,11 @@ catalogs:
     "reka-ui": ">=2.5.1"
     "temporal-polyfill": ">=0.3.0"
     "vue-i18n": ">=11.1.12"
-    "eslint":  ">=9.38.0"
+    "eslint": ">=9.38.0"
     "@typescript-eslint/parser": "^8.46.1"
     "typescript": ">=4.8.4 <5.9.0"
-    "@hey-api/openapi-ts":  ">=0.86.0"
+    "@hey-api/openapi-ts": ">=0.86.0"
     "zod": ">=4.3.5"
     "vue-router": ">=4.6.3"
+catalog:
+  "@wisemen/vue-core": 1.0.0-alpha.42

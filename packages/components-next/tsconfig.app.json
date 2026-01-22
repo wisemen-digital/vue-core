@@ -22,6 +22,7 @@
     "skipLibCheck": true
   },
   "include": [
+    "eslint.config.ts",
     "env.d.ts",
     "src/**/*",
     "src/**/*.ts",

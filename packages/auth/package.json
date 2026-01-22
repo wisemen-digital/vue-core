@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@types/node": "catalog:types",
-    "@wisemen/eslint-config-vue": "catalog:lint",
+    "@wisemen/eslint-config-vue": "workspace:*",
     "bumpp": "catalog:build",
     "eslint": "catalog:lint",
     "rimraf": "catalog:build",

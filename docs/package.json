@@ -18,7 +18,7 @@
     "type-check": "vue-tsc --noEmit --project tsconfig.autogen.json"
   },
   "dependencies": {
-    "@wisemen/vue-core": "1.0.0-alpha.42",
+    "@wisemen/vue-core": "catalog:",
     "@wisemen/vue-core-components": "workspace:*"
   },
   "devDependencies": {
@@ -26,7 +26,7 @@
     "@types/babel__traverse": "catalog:types",
     "@types/markdown-it": "catalog:types",
     "@types/node": "catalog:types",
-    "@wisemen/eslint-config-vue": "catalog:lint",
+    "@wisemen/eslint-config-vue": "workspace:*",
     "eslint": "catalog:lint",
     "markdown-it": "catalog:docs",
     "motion-v": "catalog:vue",

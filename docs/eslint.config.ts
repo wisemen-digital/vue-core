@@ -1,7 +1,7 @@
-import eslintVueConfig from '@wisemen/eslint-config-vue'
+import { packageConfig } from '@wisemen/eslint-config-vue'
 
 export default [
-  ...(await eslintVueConfig),
+  ...(await packageConfig({})),
   {
     rules: {
       'perfectionist/sort-objects': 'off',
@@ -18,6 +18,7 @@ export default [
       'better-tailwindcss/no-unregistered-classes': 'off',
       'better-tailwindcss/no-conflicting-classes': 'off',
       'better-tailwindcss/no-restricted-classes': 'off',
+      'better-tailwindcss/no-unknown-classes': 'off',
       'project-structure/independent-modules': 'off',
     },
   },

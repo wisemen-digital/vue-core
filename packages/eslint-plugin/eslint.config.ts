@@ -1,4 +1,4 @@
-import eslintVueConfig from '@wisemen/eslint-config-vue'
+import { packageConfig } from '@wisemen/eslint-config-vue'
 
 export default [
   {
@@ -14,7 +14,7 @@ export default [
     ],
   },
 
-  ...(await eslintVueConfig),
+  ...(await packageConfig()),
   {
     rules: {
       'ts/explicit-function-return-type': 'off',

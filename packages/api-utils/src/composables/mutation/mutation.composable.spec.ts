@@ -23,6 +23,7 @@ export function withSetup<T>(composable: (queryClient: QueryClient) => T): [T | 
 
       result = composable(queryClient)
 
+      // eslint-disable-next-line unicorn/consistent-function-scoping
       return (): Record<string, unknown> => ({})
     },
   })
