@@ -1,22 +1,29 @@
----
-name: Publish Package to NPM
+name: Release
 
 on:
   push:
-    tags:
-      - '[0-9]+.[0-9]+.[0-9]+'
-  workflow_dispatch:
-    inputs:
-      version:
-        description: Version that's being published (tag must exist)
-        required: true
-        type: string
+    branches:
+      - main
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  build-and-publish:
-    uses: wisemen-digital/devops-github-actions/.github/workflows/node-publish-package.yml@main
-    with:
-      access: public
-      packages: ''
-      tag: ${{ inputs.version || github.ref_name }}
-    secrets: inherit
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js 24
+        uses: actions/setup-node@v3
+        with:
+          node-version: 24
+
+      - name: Install Dependencies
+        run: yarn
+
+      - name: Create Release Pull Request
+        uses: changesets/action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
