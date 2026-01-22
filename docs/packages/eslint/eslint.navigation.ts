@@ -1,4 +1,4 @@
-import type { PackageDocNavigation } from '@docs/packages/navigation'
+import type { PackageDocNavigation } from '@docs/packages/navigation.utils'
 
 export const ESLINT_NAVIGATION: PackageDocNavigation = {
   link: 'pages/getting-started/installation',
