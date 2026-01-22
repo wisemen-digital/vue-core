@@ -1,0 +1,51 @@
+{
+  "name": "@wisemen/vue-core-design-system",
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "version": "0.0.1-beta.0",
+  "license": "MIT",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "style": "./dist/index.css"
+    }
+  },
+  "main": "./dist/index.umd.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "typings": "./dist/index.d.ts",
+  "files": [
+    "./dist"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "pub:release": "pnpm publish --access public",
+    "pub:beta": "pnpm publish --no-git-checks --access public --tag beta",
+    "pub:next": "pnpm publish --no-git-checks --access public --tag next",
+    "cleanup": "rimraf dist/ node_modules/ .turbo/",
+    "lint": "pnpm eslint --fix .",
+    "test": "vitest --run",
+    "typecheck": "pnpm tsc"
+  },
+  "peerDependencies": {
+    "vue": "catalog:peer"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.17",
+    "reka-ui": "^2.6.1",
+    "tailwind-merge": "^3.4.0",
+    "tailwindcss": "^4.1.17",
+    "vue-router": "^4.6.3"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:types",
+    "@wisemen/eslint-config-vue": "catalog:lint",
+    "eslint": "catalog:lint",
+    "typescript": "catalog:build",
+    "vitest": "catalog:test"
+  }
+}
