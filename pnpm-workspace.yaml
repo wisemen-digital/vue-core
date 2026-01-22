@@ -43,6 +43,8 @@ catalogs:
     "@typescript-eslint/scope-manager": "8.53.0"
     "@typescript-eslint/type-utils": "8.53.0"
     "@typescript-eslint/utils": "8.53.0"
+    "eslint-plugin-storybook": 10.1.11
+
   build:
     "tsdown": "0.18.4"
     "husky": "^9.1.7"
@@ -63,6 +65,8 @@ catalogs:
     "jsdom": "27.0.1"
     "@vitest/browser-playwright": "4.0.16"
     "@vitest/coverage-v8": "4.0.16"
+    playwright: 1.57.0
+
   style:
     "tailwindcss": "4.1.14"
     "tailwind-variants": "3.1.1"
@@ -92,6 +96,8 @@ catalogs:
     "highlight-words": "2.0.0"
     "@standard-schema/spec": "1.1.0"
     "clone-deep": 4.0.1
+    "@wisemen/vue-core": 1.0.0-alpha.42
+
   stories:
     "histoire": "1.0.0-alpha.3"
     "@histoire/plugin-vue": "1.0.0-alpha.3"
@@ -137,5 +143,14 @@ catalogs:
     "@hey-api/openapi-ts": ">=0.86.0"
     "zod": ">=4.3.5"
     "vue-router": ">=4.6.3"
-catalog:
-  "@wisemen/vue-core": 1.0.0-alpha.42
+  storybook: 
+    "@chromatic-com/storybook": 5.0.0
+    "@storybook/addon-a11y": 10.1.11
+    "@storybook/addon-docs": 10.1.11
+    "@storybook/addon-onboarding": 10.1.11
+    "@storybook/addon-vitest": 10.1.11
+    "@storybook/vue3": 10.1.11
+    "@storybook/vue3-vite": 10.1.11
+    "storybook": 10.1.11
+
+
