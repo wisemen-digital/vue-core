@@ -1,6 +1,0 @@
-@import './themes/default.css';
-@import './core/colors.css';
-@import './core/tokens.css';
-@import 'tailwindcss';
-@source '../../../components-next/src';
-@variant dark (&:where(.dark, .dark *));

@@ -1,0 +1,23 @@
+{
+  "name": "module-registry-playground",
+  "private": true,
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "vue": "catalog:vue",
+    "@wisemen/vue-core-module-registry": "workspace:*",
+    "@wisemen/template-module": "workspace:*"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "catalog:vite",
+    "typescript": "catalog:build",
+    "vite": "catalog:vite",
+    "vue": "catalog:vue"
+  }
+}

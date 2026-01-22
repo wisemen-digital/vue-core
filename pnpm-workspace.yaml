@@ -1,6 +1,8 @@
 packages:
   - docs
   - "packages/*"
+  - "modules/*"
+  - playground
 
 catalogs:
   vue:

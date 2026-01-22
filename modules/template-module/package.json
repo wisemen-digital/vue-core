@@ -1,0 +1,61 @@
+{
+  "name": "@wisemen/template-module",
+  "type": "module",
+  "version": "0.1.0",
+  "license": "MIT",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs"
+    },
+    "./routes": {
+      "types": "./dist/routes.d.ts",
+      "import": "./dist/routes.mjs"
+    },
+    "./locales": {
+      "types": "./dist/locales/*.d.ts",
+      "import": "./dist/locales/*.mjs"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "typings": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "locales"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "cleanup": "rimraf dist/ node_modules/ .turbo/",
+    "dev": "vite build --watch",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "release": "bumpp && npm publish",
+    "type-check": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@wisemen/vue-core-module-registry": "*",
+    "vue": ">=3.5.22",
+    "vue-router": ">=4.6.3"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:types",
+    "@vitejs/plugin-vue": "catalog:vite",
+    "@wisemen/eslint-config-vue": "catalog:lint",
+    "@wisemen/vue-core-module-registry": "workspace:*",
+    "bumpp": "catalog:build",
+    "eslint": "catalog:lint",
+    "rimraf": "catalog:build",
+    "typescript": "catalog:build",
+    "vite": "catalog:vite",
+    "vite-plugin-dts": "catalog:vite",
+    "vitest": "catalog:test",
+    "vue": "catalog:vue",
+    "vue-router": "catalog:vue"
+  }
+}
