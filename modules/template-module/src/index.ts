@@ -25,7 +25,7 @@ export function createTemplateModule(
   return {
     id: 'template-module',
     name: 'Template Module',
-    setup: (opts) => setupTemplateModule(options || opts),
+    setup: () => setupTemplateModule(options),
   }
 }
 

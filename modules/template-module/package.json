@@ -13,9 +13,9 @@
       "types": "./dist/routes.d.ts",
       "import": "./dist/routes.mjs"
     },
-    "./composables": {
-      "types": "./dist/composables.d.ts",
-      "import": "./dist/composables.mjs"
+    "./locales": {
+      "types": "./dist/locales/*.d.ts",
+      "import": "./dist/locales/*.mjs"
     }
   },
   "publishConfig": {
