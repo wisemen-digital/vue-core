@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// eslint-disable better-tailwindcss/no-unregistered-classes
+/* eslint-disable better-tailwindcss/no-unregistered-classes */
 </script>
 
 <template>

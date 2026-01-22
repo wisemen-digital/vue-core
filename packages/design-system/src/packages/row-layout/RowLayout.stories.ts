@@ -21,7 +21,9 @@ const ExampleBox = `<div class="bg-brand-500 text-white p-4 rounded-md">Item</di
 
 export const Default: Story = {
   render: () => ({
-    components: { RowLayout },
+    components: {
+      RowLayout,
+    },
     template: `
       <RowLayout>
         ${ExampleBox}
@@ -34,7 +36,9 @@ export const Default: Story = {
 
 export const WithLargeGap: Story = {
   render: () => ({
-    components: { RowLayout },
+    components: {
+      RowLayout,
+    },
     template: `
       <RowLayout gap="xl">
         ${ExampleBox}
@@ -47,7 +51,9 @@ export const WithLargeGap: Story = {
 
 export const CenterJustified: Story = {
   render: () => ({
-    components: { RowLayout },
+    components: {
+      RowLayout,
+    },
     template: `
       <RowLayout justify="center">
         ${ExampleBox}
@@ -60,7 +66,9 @@ export const CenterJustified: Story = {
 
 export const SpaceBetween: Story = {
   render: () => ({
-    components: { RowLayout },
+    components: {
+      RowLayout,
+    },
     template: `
       <RowLayout justify="between">
         ${ExampleBox}
@@ -73,7 +81,9 @@ export const SpaceBetween: Story = {
 
 export const AlignEnd: Story = {
   render: () => ({
-    components: { RowLayout },
+    components: {
+      RowLayout,
+    },
     template: `
       <RowLayout align="end">
         <div class="bg-brand-500 text-white p-4 rounded-md h-20">Tall Item</div>
