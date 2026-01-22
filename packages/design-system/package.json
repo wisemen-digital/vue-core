@@ -34,13 +34,16 @@
     "build-storybook": "storybook build"
   },
   "peerDependencies": {
-    "vue": "catalog:peer"
+    "reka-ui": "catalog:peer",
+    "vue": "catalog:peer",
+    "vue-i18n": "catalog:peer",
+    "vue-router": "catalog:peer"
   },
   "dependencies": {
-    "@tailwindcss/vite": "4.1.17",
+    "@tailwindcss/vite": "catalog:vite",
     "reka-ui": "^2.6.1",
-    "tailwind-merge": "^3.4.0",
-    "tailwindcss": "^4.1.17",
+    "tailwind-merge": "catalog:style",
+    "tailwindcss": "catalog:style",
     "vue-router": "^4.6.3"
   },
   "devDependencies": {
@@ -52,6 +55,7 @@
     "@storybook/vue3": "10.1.11",
     "@storybook/vue3-vite": "10.1.11",
     "@types/node": "catalog:types",
+    "@vitejs/plugin-vue": "catalog:vite",
     "@vitest/browser-playwright": "catalog:test",
     "@vitest/coverage-v8": "catalog:test",
     "@wisemen/eslint-config-vue": "catalog:lint",
@@ -60,6 +64,7 @@
     "playwright": "1.57.0",
     "storybook": "10.1.11",
     "typescript": "catalog:build",
+    "vite-plugin-dts": "catalog:vite",
     "vitest": "catalog:test",
     "vue": "3.5.26",
     "vue-tsc": "catalog:vue"
