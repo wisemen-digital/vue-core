@@ -7,7 +7,7 @@
     "lib": ["esnext", "dom"],
     "baseUrl": ".",
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "paths": {
       "@/*": ["src/*"]
     },
@@ -22,6 +22,7 @@
   },
   "include": [
     "eslint.config.ts",
+    "env.d.ts",
     "src/**/*",
     "src/**/*.ts",
     "src/**/*.tsx",
