@@ -66,7 +66,7 @@
     "@wisemen/eslint-config-vue": "workspace:*",
     "eslint": "catalog:lint",
     "eslint-plugin-storybook": "catalog:lint",
-    "jsdom": "catalog:conflicts_test_25_0_1",
+    "jsdom": "catalog:test",
     "motion-v": "catalog:peer",
     "playwright": "catalog:test",
     "reka-ui": "catalog:peer",

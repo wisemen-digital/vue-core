@@ -702,7 +702,7 @@ importers:
         specifier: catalog:test
         version: 4.0.17(@vitest/browser@4.0.17(vite@7.3.1(@types/node@24.8.1)(jiti@2.6.1)(lightningcss@1.30.2)(sass@1.97.3)(tsx@4.20.3)(yaml@2.8.2))(vitest@4.0.17))(vitest@4.0.17)
       '@vue/test-utils':
-        specifier: 2.4.6
+        specifier: catalog:test
         version: 2.4.6
       '@wisemen/eslint-config-vue':
         specifier: workspace:*
@@ -714,8 +714,8 @@ importers:
         specifier: catalog:lint
         version: 10.2.0(eslint@9.39.2(jiti@2.6.1))(storybook@10.2.0(@testing-library/dom@10.4.1)(prettier@3.7.4)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(typescript@5.9.3)
       jsdom:
-        specifier: 25.0.1
-        version: 25.0.1
+        specifier: catalog:test
+        version: 27.4.0
       motion-v:
         specifier: catalog:peer
         version: 1.7.3(@vueuse/core@14.1.0(vue@3.5.22(typescript@5.9.3)))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(vue@3.5.22(typescript@5.9.3))
@@ -736,7 +736,7 @@ importers:
         version: 4.5.4(@types/node@24.8.1)(rollup@4.52.2)(typescript@5.9.3)(vite@7.3.1(@types/node@24.8.1)(jiti@2.6.1)(lightningcss@1.30.2)(sass@1.97.3)(tsx@4.20.3)(yaml@2.8.2))
       vitest:
         specifier: catalog:test
-        version: 4.0.17(@opentelemetry/api@1.9.0)(@types/node@24.8.1)(@vitest/browser-playwright@4.0.17)(esbuild@0.27.2)(jiti@2.6.1)(jsdom@25.0.1)(sass@1.97.3)(tsx@4.20.3)(yaml@2.8.2)
+        version: 4.0.17(@opentelemetry/api@1.9.0)(@types/node@24.8.1)(@vitest/browser-playwright@4.0.17)(esbuild@0.27.2)(jiti@2.6.1)(jsdom@27.4.0)(sass@1.97.3)(tsx@4.20.3)(yaml@2.8.2)
       vue:
         specifier: catalog:peer
         version: 3.5.22(typescript@5.9.3)
@@ -9526,7 +9526,7 @@ snapshots:
       '@vitest/browser': 4.0.17(vite@7.3.1(@types/node@24.8.1)(jiti@2.6.1)(lightningcss@1.30.2)(sass@1.97.3)(tsx@4.20.3)(yaml@2.8.2))(vitest@4.0.17)
       '@vitest/browser-playwright': 4.0.17(playwright@1.57.0)(vite@7.3.1(@types/node@24.8.1)(jiti@2.6.1)(lightningcss@1.30.2)(sass@1.97.3)(tsx@4.20.3)(yaml@2.8.2))(vitest@4.0.17)
       '@vitest/runner': 4.0.17
-      vitest: 4.0.17(@opentelemetry/api@1.9.0)(@types/node@24.8.1)(@vitest/browser-playwright@4.0.17)(esbuild@0.27.2)(jiti@2.6.1)(jsdom@25.0.1)(sass@1.97.3)(tsx@4.20.3)(yaml@2.8.2)
+      vitest: 4.0.17(@opentelemetry/api@1.9.0)(@types/node@24.8.1)(@vitest/browser-playwright@4.0.17)(esbuild@0.27.2)(jiti@2.6.1)(jsdom@27.4.0)(sass@1.97.3)(tsx@4.20.3)(yaml@2.8.2)
     transitivePeerDependencies:
       - react
       - react-dom
@@ -10343,7 +10343,7 @@ snapshots:
       '@vitest/mocker': 4.0.17(vite@7.3.1(@types/node@24.8.1)(jiti@2.6.1)(lightningcss@1.30.2)(sass@1.97.3)(tsx@4.20.3)(yaml@2.8.2))
       playwright: 1.57.0
       tinyrainbow: 3.0.3
-      vitest: 4.0.17(@opentelemetry/api@1.9.0)(@types/node@24.8.1)(@vitest/browser-playwright@4.0.17)(esbuild@0.27.2)(jiti@2.6.1)(jsdom@25.0.1)(sass@1.97.3)(tsx@4.20.3)(yaml@2.8.2)
+      vitest: 4.0.17(@opentelemetry/api@1.9.0)(@types/node@24.8.1)(@vitest/browser-playwright@4.0.17)(esbuild@0.27.2)(jiti@2.6.1)(jsdom@27.4.0)(sass@1.97.3)(tsx@4.20.3)(yaml@2.8.2)
     transitivePeerDependencies:
       - bufferutil
       - msw
@@ -10377,7 +10377,7 @@ snapshots:
       pngjs: 7.0.0
       sirv: 3.0.2
       tinyrainbow: 3.0.3
-      vitest: 4.0.17(@opentelemetry/api@1.9.0)(@types/node@24.8.1)(@vitest/browser-playwright@4.0.17)(esbuild@0.27.2)(jiti@2.6.1)(jsdom@25.0.1)(sass@1.97.3)(tsx@4.20.3)(yaml@2.8.2)
+      vitest: 4.0.17(@opentelemetry/api@1.9.0)(@types/node@24.8.1)(@vitest/browser-playwright@4.0.17)(esbuild@0.27.2)(jiti@2.6.1)(jsdom@27.4.0)(sass@1.97.3)(tsx@4.20.3)(yaml@2.8.2)
       ws: 8.18.3
     transitivePeerDependencies:
       - bufferutil
@@ -10413,7 +10413,7 @@ snapshots:
       obug: 2.1.1
       std-env: 3.10.0
       tinyrainbow: 3.0.3
-      vitest: 4.0.17(@opentelemetry/api@1.9.0)(@types/node@24.8.1)(@vitest/browser-playwright@4.0.17)(esbuild@0.27.2)(jiti@2.6.1)(jsdom@25.0.1)(sass@1.97.3)(tsx@4.20.3)(yaml@2.8.2)
+      vitest: 4.0.17(@opentelemetry/api@1.9.0)(@types/node@24.8.1)(@vitest/browser-playwright@4.0.17)(esbuild@0.27.2)(jiti@2.6.1)(jsdom@27.4.0)(sass@1.97.3)(tsx@4.20.3)(yaml@2.8.2)
     optionalDependencies:
       '@vitest/browser': 4.0.17(vite@7.3.1(@types/node@24.8.1)(jiti@2.6.1)(lightningcss@1.30.2)(sass@1.97.3)(tsx@4.20.3)(yaml@2.8.2))(vitest@4.0.17)
 
@@ -14796,46 +14796,6 @@ snapshots:
       - tsx
       - typescript
       - universal-cookie
-      - yaml
-
-  vitest@4.0.17(@opentelemetry/api@1.9.0)(@types/node@24.8.1)(@vitest/browser-playwright@4.0.17)(esbuild@0.27.2)(jiti@2.6.1)(jsdom@25.0.1)(sass@1.97.3)(tsx@4.20.3)(yaml@2.8.2):
-    dependencies:
-      '@vitest/expect': 4.0.17
-      '@vitest/mocker': 4.0.17(rolldown-vite@7.3.1(@types/node@24.8.1)(esbuild@0.27.2)(jiti@2.6.1)(sass@1.97.3)(tsx@4.20.3)(yaml@2.8.2))
-      '@vitest/pretty-format': 4.0.17
-      '@vitest/runner': 4.0.17
-      '@vitest/snapshot': 4.0.17
-      '@vitest/spy': 4.0.17
-      '@vitest/utils': 4.0.17
-      es-module-lexer: 1.7.0
-      expect-type: 1.2.2
-      magic-string: 0.30.21
-      obug: 2.1.1
-      pathe: 2.0.3
-      picomatch: 4.0.3
-      std-env: 3.10.0
-      tinybench: 2.9.0
-      tinyexec: 1.0.2
-      tinyglobby: 0.2.15
-      tinyrainbow: 3.0.3
-      vite: rolldown-vite@7.3.1(@types/node@24.8.1)(esbuild@0.27.2)(jiti@2.6.1)(sass@1.97.3)(tsx@4.20.3)(yaml@2.8.2)
-      why-is-node-running: 2.3.0
-    optionalDependencies:
-      '@opentelemetry/api': 1.9.0
-      '@types/node': 24.8.1
-      '@vitest/browser-playwright': 4.0.17(playwright@1.57.0)(vite@7.3.1(@types/node@24.8.1)(jiti@2.6.1)(lightningcss@1.30.2)(sass@1.97.3)(tsx@4.20.3)(yaml@2.8.2))(vitest@4.0.17)
-      jsdom: 25.0.1
-    transitivePeerDependencies:
-      - esbuild
-      - jiti
-      - less
-      - msw
-      - sass
-      - sass-embedded
-      - stylus
-      - sugarss
-      - terser
-      - tsx
       - yaml
 
   vitest@4.0.17(@opentelemetry/api@1.9.0)(@types/node@24.8.1)(@vitest/browser-playwright@4.0.17)(esbuild@0.27.2)(jiti@2.6.1)(jsdom@27.4.0)(sass@1.97.3)(tsx@4.20.3)(yaml@2.8.2):
