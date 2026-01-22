@@ -33,7 +33,7 @@
     "build": "tsdown",
     "pub:release": "pnpm publish --access public",
     "cleanup": "rimraf dist/ node_modules/ .turbo/",
-    "lint": "pnpm eslint --fix .",
+    "lint": "eslint .",
     "test": "vitest --run",
     "typecheck": "pnpm tsc"
   },
