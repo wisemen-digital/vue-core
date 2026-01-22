@@ -973,9 +973,6 @@ importers:
 
   packages/modules:
     dependencies:
-      '@wisemen/vue-core-components':
-        specifier: workspace:*
-        version: link:../components-next
       motion-v:
         specifier: catalog:vue
         version: 1.9.0(@vueuse/core@14.1.0(vue@3.5.27(typescript@5.9.3)))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(vue@3.5.27(typescript@5.9.3))
@@ -1004,6 +1001,9 @@ importers:
       '@wisemen/eslint-config-vue':
         specifier: workspace:*
         version: link:../eslint-config
+      '@wisemen/vue-core-components':
+        specifier: workspace:*
+        version: link:../components-next
       eslint:
         specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
