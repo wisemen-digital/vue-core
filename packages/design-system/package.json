@@ -29,7 +29,9 @@
     "cleanup": "rimraf dist/ node_modules/ .turbo/",
     "lint": "pnpm eslint --fix .",
     "test": "vitest --run",
-    "typecheck": "pnpm tsc"
+    "typecheck": "vue-tsc --noEmit",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "peerDependencies": {
     "reka-ui": "catalog:peer",
@@ -43,12 +45,28 @@
     "tailwindcss": "catalog:style"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "5.0.0",
+    "@storybook/addon-a11y": "10.1.11",
+    "@storybook/addon-docs": "10.1.11",
+    "@storybook/addon-onboarding": "10.1.11",
+    "@storybook/addon-vitest": "10.1.11",
+    "@storybook/vue3": "10.1.11",
+    "@storybook/vue3-vite": "10.1.11",
     "@types/node": "catalog:types",
     "@vitejs/plugin-vue": "catalog:vite",
+    "@vitest/browser-playwright": "catalog:test",
+    "@vitest/coverage-v8": "catalog:test",
     "@wisemen/eslint-config-vue": "catalog:lint",
     "eslint": "catalog:lint",
+    "eslint-plugin-storybook": "10.1.11",
+    "playwright": "1.57.0",
+    "reka-ui": "catalog:peer",
+    "storybook": "10.1.11",
     "typescript": "catalog:build",
     "vite-plugin-dts": "catalog:vite",
-    "vitest": "catalog:test"
+    "vitest": "catalog:test",
+    "vue": "catalog:peer",
+    "vue-router": "catalog:peer",
+    "vue-tsc": "catalog:vue"
   }
 }

@@ -1,0 +1,13 @@
+@import './themes/default.css';
+@import './core/colors.css';
+@import './core/tokens.css';
+
+@import 'tailwindcss';
+@variant dark (&:where(.dark, .dark *));
+@utility no-scrollbar {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
