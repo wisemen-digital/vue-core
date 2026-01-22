@@ -1,10 +1,10 @@
 <script setup lang="ts">
+import { AlertTriangleIcon } from '@repo/icons'
 import {
   AnimatePresence,
   Motion,
 } from 'motion-v'
 
-import { AlertTriangleIcon } from '@/icons/index'
 import { UIRowLayout } from '@/packages/row-layout/index'
 import { UIText } from '@/packages/text/index'
 
