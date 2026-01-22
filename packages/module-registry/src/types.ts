@@ -1,11 +1,11 @@
-import type { App, InjectionKey } from 'vue'
+import type { InjectionKey } from 'vue'
 
 /**
  * Module setup hook that runs during module initialization
  * Can be synchronous for simple context injection or asynchronous for API calls
  */
 export type ModuleSetupHook<TOptions = unknown> = (
-  options: TOptions) => void | Promise<void>
+  options: TOptions) => Promise<void> | void
 
 /**
  * Definition of a reusable module that can be registered with ModuleRegistry
@@ -18,9 +18,6 @@ export interface ModuleDefinition<TOptions = unknown> {
   /** Human-readable name of the module */
   name: string
 
-  /** Optional version string */
-  version?: string
-
   /** Setup hook called when module is registered */
   setup?: ModuleSetupHook<TOptions>
 }
@@ -29,14 +26,14 @@ export interface ModuleDefinition<TOptions = unknown> {
  * A registered module instance with options
  */
 export interface RegisteredModule<TOptions = unknown> {
+  /** Whether the module has been initialized */
+  initialized: boolean
+
   /** The module definition */
   module: ModuleDefinition<TOptions>
 
   /** Options passed during registration */
   options: TOptions
-
-  /** Whether the module has been initialized */
-  initialized: boolean
 }
 
 /**
@@ -45,21 +42,21 @@ export interface RegisteredModule<TOptions = unknown> {
  */
 export interface IModuleRegistry {
   /**
-   * Register a module
-   * The module should be created with a factory function that includes its options
-   * @param module - Module definition with options baked in
+   * Check if a module is registered
    */
-  use<TOptions = unknown>(module: ModuleDefinition<TOptions>): void
+  has: (id: string) => boolean
 
   /**
    * Get a registered module by ID
    */
-  get(id: string): RegisteredModule | undefined
+  get: (id: string) => RegisteredModule | undefined
 
   /**
-   * Check if a module is registered
+   * Register a module
+   * The module should be created with a factory function that includes its options
+   * @param module - Module definition with options baked in
    */
-  has(id: string): boolean
+  use: <TOptions = unknown>(module: ModuleDefinition<TOptions>) => void
 }
 
 /**
@@ -77,12 +74,12 @@ export interface ContextOptions<T> {
  * Context helpers for a module
  */
 export interface Context<T> {
+  /** Inject function to retrieve context */
+  inject: (fallback?: T) => T | undefined
+
   /** Injection key for the context */
   injectionKey: InjectionKey<T>
 
   /** Provide function to inject context */
-  provide(value: T): void
-
-  /** Inject function to retrieve context */
-  inject(fallback?: T): T | undefined
+  provide: (value: T) => void
 }

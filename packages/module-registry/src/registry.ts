@@ -1,7 +1,32 @@
-import type { IModuleRegistry, ModuleDefinition, RegisteredModule } from './types'
+import type {
+  IModuleRegistry,
+  ModuleDefinition,
+  RegisteredModule,
+} from './types'
 
 export class ModuleRegistry implements IModuleRegistry {
   private modules = new Map<string, RegisteredModule>()
+
+  /**
+   * Get a registered module by ID
+   */
+  get(id: string): RegisteredModule | undefined {
+    return this.modules.get(id)
+  }
+
+  /**
+   * Get all registered modules
+   */
+  getAll(): RegisteredModule[] {
+    return Array.from(this.modules.values())
+  }
+
+  /**
+   * Check if a module is registered
+   */
+  has(id: string): boolean {
+    return this.modules.has(id)
+  }
 
   /**
    * Register a module
@@ -15,35 +40,13 @@ export class ModuleRegistry implements IModuleRegistry {
     }
 
     const registeredModule: RegisteredModule<TOptions> = {
+      initialized: false,
       module,
       options: undefined as any,
-      initialized: false,
     }
 
     this.modules.set(module.id, registeredModule as any)
   }
-
-  /**
-   * Get a registered module by ID
-   */
-  get(id: string): RegisteredModule | undefined {
-    return this.modules.get(id)
-  }
-
-  /**
-   * Check if a module is registered
-   */
-  has(id: string): boolean {
-    return this.modules.has(id)
-  }
-
-  /**
-   * Get all registered modules
-   */
-  getAll(): RegisteredModule[] {
-    return Array.from(this.modules.values())
-  }
-
 }
 
 /**

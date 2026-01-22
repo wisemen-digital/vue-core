@@ -4,14 +4,14 @@
   "version": "0.1.0",
   "license": "MIT",
   "sideEffects": false,
+  "imports": {
+    "#src/*": "./src/*"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs"
     }
-  },
-  "imports": {
-    "#src/*": "./src/*"
   },
   "publishConfig": {
     "access": "public"
@@ -45,7 +45,7 @@
     "typescript": "catalog:build",
     "vite": "catalog:vite",
     "vite-plugin-dts": "catalog:vite",
-    "vue": "catalog:vue",
-    "vitest": "catalog:test"
+    "vitest": "catalog:test",
+    "vue": "catalog:vue"
   }
 }

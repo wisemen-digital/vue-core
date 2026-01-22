@@ -1,25 +1,18 @@
-import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 
 export default defineConfig({
-  plugins: [
-    vue(),
-    dts({
-      include: ['src'],
-      outDir: 'dist',
-      entryRoot: 'src',
-      rollupTypes: true,
-    }),
-  ],
   build: {
     lib: {
-      entry: 'src/index.ts',
       name: 'ModuleRegistry',
+      entry: 'src/index.ts',
       fileName: (format) => `index.${format === 'es' ? 'mjs' : 'js'}`,
     },
     rollupOptions: {
-      external: ['vue'],
+      external: [
+        'vue',
+      ],
       output: {
         globals: {
           vue: 'Vue',
@@ -27,4 +20,15 @@ export default defineConfig({
       },
     },
   },
+  plugins: [
+    vue(),
+    dts({
+      entryRoot: 'src',
+      include: [
+        'src',
+      ],
+      outDir: 'dist',
+      rollupTypes: true,
+    }),
+  ],
 })
