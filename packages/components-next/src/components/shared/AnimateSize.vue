@@ -31,7 +31,7 @@ onMounted(() => {
   >
     <div
       ref="contentRef"
-      class="h-fit w-fit"
+      class="size-fit"
     >
       <slot />
     </div>

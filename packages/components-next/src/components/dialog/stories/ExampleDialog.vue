@@ -26,7 +26,7 @@ const isSmall = ref<boolean>(false)
         }"
         class="h-[90vh] w-[90vw] p-2xl"
       >
-        <DialogCloseButton class="!absolute top-2 right-2" />
+        <DialogCloseButton class="absolute! top-2 right-2" />
 
         <DialogTitle>
           <h1 class="text-2xl font-semibold text-primary">

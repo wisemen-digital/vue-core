@@ -105,9 +105,17 @@ export const perfectionistConfig: LintConfig = {
     ],
     'perfectionist/sort-exports': 'off',
     'perfectionist/sort-imports': 'off',
-
     'perfectionist/sort-interfaces': [
       'error',
+      {
+        type: 'unsorted',
+        useConfigurationIf: {
+          declarationCommentMatchesPattern: {
+            flags: 'i',
+            pattern: '^do not sort$',
+          },
+        },
+      },
       {
         ...customGrouping,
       },
@@ -116,16 +124,37 @@ export const perfectionistConfig: LintConfig = {
     'perfectionist/sort-object-types': [
       'error',
       {
+        type: 'unsorted',
+        useConfigurationIf: {
+          declarationCommentMatchesPattern: {
+            flags: 'i',
+            pattern: '^do not sort$',
+          },
+        },
+      },
+      {
         ...customGrouping,
       },
     ],
     'perfectionist/sort-objects': [
       'error',
       {
+        type: 'unsorted',
+        useConfigurationIf: {
+          declarationCommentMatchesPattern: {
+            flags: 'i',
+            pattern: '^do not sort$',
+          },
+        },
+      },
+      {
+        type: 'unsorted',
+        useConfigurationIf: {
+          declarationMatchesPattern: '^variants$',
+        },
+      },
+      {
         ...customGrouping,
-        ignorePattern: [
-          'variants',
-        ],
       },
     ],
     'perfectionist/sort-union-types': [

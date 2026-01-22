@@ -43,7 +43,7 @@ function sortProps(props: PropDef[]): PropDef[] {
 
     <div
       class="
-        border-secondary gap-x-2xl mt-3xl grid max-h-[30rem]
+        border-secondary gap-x-2xl mt-3xl grid max-h-120
         grid-cols-[1fr_2fr_1fr] overflow-auto rounded-lg border border-solid
       "
     >

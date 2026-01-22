@@ -1,5 +1,5 @@
-/* eslint-disable eslint-plugin-wisemen/explicit-function-return-type-with-regex */
 import antfu from '@antfu/eslint-config'
+import type { FlatConfigComposer } from 'eslint-flat-config-utils'
 import globals from 'globals'
 
 import { a11yConfig } from '#rules/a11y.ts'
@@ -25,7 +25,7 @@ import type { DefaultConfigOptions } from './default.config'
 
 export interface PackageConfigOptions extends DefaultConfigOptions {}
 
-export async function packageConfig(config?: PackageConfigOptions) {
+export async function packageConfig(config?: PackageConfigOptions): Promise<FlatConfigComposer> {
   return await antfu(
     baseConfig,
     spacingConfig,

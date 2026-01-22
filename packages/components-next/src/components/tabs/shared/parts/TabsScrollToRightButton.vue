@@ -39,7 +39,7 @@ const {
     >
       <div
         class="
-          absolute top-0 right-0 z-20 flex h-full items-center bg-gradient-to-l
+          absolute top-0 right-0 z-20 flex h-full items-center bg-linear-to-l
           from-primary to-transparent px-md
         "
       >
