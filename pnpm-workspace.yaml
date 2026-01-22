@@ -143,7 +143,7 @@ catalogs:
     "@hey-api/openapi-ts": ">=0.86.0"
     "zod": ">=4.3.5"
     "vue-router": ">=4.6.3"
-  storybook: 
+  storybook:
     "@chromatic-com/storybook": 5.0.0
     "@storybook/addon-a11y": 10.2.0
     "@storybook/addon-docs": 10.2.0
@@ -152,5 +152,5 @@ catalogs:
     "@storybook/vue3": 10.2.0
     "@storybook/vue3-vite": 10.2.0
     "storybook": 10.2.0
-
-
+  conflicts_test_25_0_1:
+    jsdom: 25.0.1

@@ -30,6 +30,9 @@
     "cleanup": "rimraf dist/ node_modules/ .turbo/",
     "lint": "pnpm eslint --fix .",
     "test": "vitest --run",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --run --coverage",
     "type-check": "vue-tsc --noEmit",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
@@ -62,6 +65,8 @@
     "@wisemen/eslint-config-vue": "workspace:*",
     "eslint": "catalog:lint",
     "eslint-plugin-storybook": "catalog:lint",
+    "@vue/test-utils": "2.4.6",
+    "jsdom": "25.0.1",
     "motion-v": "catalog:peer",
     "playwright": "catalog:test",
     "reka-ui": "catalog:peer",
