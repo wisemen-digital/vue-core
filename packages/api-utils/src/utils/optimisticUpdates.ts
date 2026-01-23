@@ -5,7 +5,10 @@ import type {
 } from 'vue'
 import { unref } from 'vue'
 
-import type { AsyncResult as AsyncResultType } from '@/async-result/asyncResult'
+import type {
+  AsyncResult as AsyncResultType,
+  AsyncResultOk,
+} from '@/async-result/asyncResult'
 import { AsyncResult } from '@/async-result/asyncResult'
 import type {
   QueryKeyEntityFromConfig,
@@ -175,7 +178,7 @@ export class OptimisticUpdates<TQueryKeys extends object = QueryKeys> {
    */
   private wrapEntityInAsyncResult<TEntity>(
     entity: TEntity,
-  ): AsyncResultType<TEntity, any> {
+  ): AsyncResultOk<TEntity, any> {
     return AsyncResult.ok(entity)
   }
 

@@ -98,7 +98,9 @@ export function useQuery<TResData>(options: UseQueryOptions<TResData>): UseQuery
     staleTime: options.staleTime,
     enabled: options.isEnabled,
     placeholderData: (data) => data,
-    queryFn: options.queryFn,
+    queryFn: async () => {
+      return AsyncResult.fromResult(await options.queryFn())
+    },
     queryKey: getQueryKey(),
   })
 
@@ -134,8 +136,12 @@ export function useQuery<TResData>(options: UseQueryOptions<TResData>): UseQuery
         return AsyncResult.loading<TResData, ApiError>()
       }
 
-      if (query.data.value) {
-        return AsyncResult.fromResult(query.data.value)
+      if (query.data.value?.isOk()) {
+        return AsyncResult.ok(query.data.value.getValue())
+      }
+
+      if (query.data.value?.isErr()) {
+        return AsyncResult.err<TResData, ApiError>(query.data.value.getError())
       }
 
       return AsyncResult.loading<TResData, ApiError>()
