@@ -125,6 +125,18 @@ describe('createApiUtils - useQuery', () => {
                 name: 'John Doe',
                 email: 'john@example.com',
               },
+              {
+                id: '124',
+                uuid: 'uuid-124',
+                name: 'Alice Smith',
+                email: 'test@test.be',
+              },
+              {
+                id: '125',
+                uuid: 'uuid-125',
+                name: 'Bob Johnson',
+                email: 'bob@example.com',
+              },
             ]),
           ),
         }),
@@ -145,7 +157,7 @@ describe('createApiUtils - useQuery', () => {
         throw new Error('Expected ok state after refetch')
       },
       ok: (users) => {
-        expect(users).toHaveLength(1)
+        expect(users).toHaveLength(3)
         expect(users[0]?.email).toBe('john@example.com')
       },
     })
@@ -156,7 +168,7 @@ describe('createApiUtils - useQuery', () => {
       },
       value: {
         name: 'Jane Doe',
-        email: 'hmm',
+        email: 'jane@example.com',
       },
     })
 
@@ -168,9 +180,32 @@ describe('createApiUtils - useQuery', () => {
         throw new Error('Expected ok state after optimistic update')
       },
       ok: (users) => {
-        expect(users).toHaveLength(1)
+        expect(users).toHaveLength(3)
         expect(users[0]?.name).toBe('Jane Doe')
-        expect(users[0]?.email).toBe('hmm')
+        expect(users[0]?.email).toBe('jane@example.com')
+      },
+    })
+
+    query.updated.update('userIndex', {
+      by: (user) => user.email.endsWith('@example.com'),
+      value: {
+        name: 'example user',
+      },
+    })
+
+    query.query.result.value.match({
+      err: () => {
+        throw new Error('Expected ok state after optimistic update')
+      },
+      loading: () => {
+        throw new Error('Expected ok state after optimistic update')
+      },
+      ok: (users) => {
+        expect(users).toHaveLength(3)
+
+        const usersWithExampleUserName = users.filter((user) => user.name === 'example user')
+
+        expect(usersWithExampleUserName).toHaveLength(2)
       },
     })
   })
