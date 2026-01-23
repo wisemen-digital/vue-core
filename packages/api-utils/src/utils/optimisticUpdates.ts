@@ -1,4 +1,7 @@
-import type { QueryClient } from '@tanstack/vue-query'
+import type {
+  QueryClient,
+  QueryKey,
+} from '@tanstack/vue-query'
 import { unref } from 'vue'
 
 import type { AsyncResult as AsyncResultType } from '@/async-result/asyncResult'
@@ -51,6 +54,13 @@ export interface OptimisticUpdateOptions<
    */
   value: TEntity extends any[] ? Partial<TEntity[number]> : Partial<TEntity>
 }
+
+/**
+ * Union type for query key parameter - either just the key or the full tuple with params
+ */
+type QueryKeyOrTuple<TKey extends QueryKeysWithEntity>
+  = | TKey
+    | readonly [TKey, Partial<QueryKeyParams<TKey>>]
 
 /**
  * OptimisticUpdates utility class for type-safe optimistic updates
@@ -171,27 +181,86 @@ export class OptimisticUpdates {
    *
    * @example
    * ```typescript
+   * // Get all userDetail queries
+   * const allUsers = optimisticUpdates.get('userDetail')
+   *
+   * // Get specific userDetail query
    * const user = optimisticUpdates.get(['userDetail', { userUuid: '123' }] as const)
    * ```
    */
-  get<
-    TKey extends QueryKeysWithEntity,
-    TEntity extends QueryKeyEntity<TKey> = QueryKeyEntity<TKey>,
-  >(
-    queryKey: readonly any[],
-  ): TEntity | null {
-    const data = this.queryClient.getQueryData<AsyncResultType<TEntity, any> | TEntity>(queryKey)
+
+  // Overload: key only - returns array or single entity depending on queries
+  get<TKey extends QueryKeysWithEntity>(
+    queryKey: TKey,
+  ): QueryKeyEntity<TKey>[]
+  // Overload: full tuple with params - returns single entity or array
+  get<TKey extends QueryKeysWithEntity>(
+    queryKey: readonly [TKey, Partial<QueryKeyParams<TKey>>],
+  ): QueryKeyEntity<TKey> | null
+  // Implementation
+  get<TKey extends QueryKeysWithEntity>(
+    queryKey: QueryKeyOrTuple<TKey>,
+  ): QueryKeyEntity<TKey> | QueryKeyEntity<TKey>[] | null {
+    // If it's just a key string, get all matching queries
+    if (typeof queryKey === 'string') {
+      const allQueries = this.queryClient.getQueryCache().findAll({
+        predicate: (query) => {
+          const qKey = query.queryKey as any[]
+
+          return qKey[0] === queryKey
+        },
+      })
+
+      const results: any[] = []
+
+      for (const query of allQueries) {
+        const data = query.state.data as any
+        const entity = this.extractEntityFromAsyncResult(data)
+
+        if (entity !== null) {
+          results.push(entity)
+        }
+      }
+
+      return results
+    }
+
+    // If it's a tuple [key, params], get specific query
+    const data = this.queryClient.getQueryData<any>(queryKey)
 
     return this.extractEntityFromAsyncResult(data)
   }
 
   /**
    * Invalidate queries to trigger a refetch
+   *
+   * When using just the key, invalidates ALL queries with that key
+   * When using key + params tuple, invalidates SPECIFIC query
+   *
+   * @example
+   * ```typescript
+   * // Invalidate all userDetail queries
+   * await optimisticUpdates.invalidate('userDetail')
+   *
+   * // Invalidate specific query
+   * await optimisticUpdates.invalidate(['userDetail', { userUuid: '123' }] as const)
+   * ```
    */
+
+  // Overload: key only - invalidates all matching queries
+  async invalidate<TKey extends QueryKeysWithEntity>(key: TKey): Promise<void>
+  // Overload: full tuple with params - invalidates specific query
   async invalidate<TKey extends QueryKeysWithEntity>(
-    key: TKey,
-    params?: Partial<QueryKeyParams<TKey>>,
+    keyTuple: readonly [TKey, Partial<QueryKeyParams<TKey>>],
+  ): Promise<void>
+  // Implementation
+  async invalidate<TKey extends QueryKeysWithEntity>(
+    keyOrTuple: QueryKeyOrTuple<TKey>,
   ): Promise<void> {
+    const isSpecific = Array.isArray(keyOrTuple)
+    const key = isSpecific ? (keyOrTuple as any[])[0] : keyOrTuple
+    const params = isSpecific ? (keyOrTuple as any[])[1] : null
+
     await this.queryClient.invalidateQueries({
       predicate: (query) => {
         const queryKey = query.queryKey as any[]
@@ -200,21 +269,18 @@ export class OptimisticUpdates {
           return false
         }
 
-        // If params provided, also match on params
-        if (params && queryKey[1]) {
-          return Object.entries(params).every((
-            [
-              paramKey,
-              paramValue,
-            ],
-          ) => {
-            const queryValue = (queryKey[1] as any)[paramKey]
-
-            return queryValue === paramValue
+        // If specific query requested, match params too
+        if (isSpecific && params && queryKey[1]) {
+          return Object.entries(params).every(([
+            paramKey,
+            paramValue,
+          ]) => {
+            return (queryKey[1] as any)[paramKey] === paramValue
           })
         }
 
-        return true
+        // If not specific, match all with this key
+        return !isSpecific
       },
     })
   }
@@ -225,60 +291,113 @@ export class OptimisticUpdates {
    *
    * @example
    * ```typescript
+   * // Set all userDetail queries (array of entities)
+   * optimisticUpdates.set('userDetail', [user1, user2])
+   *
+   * // Set specific userDetail query
    * optimisticUpdates.set(['userDetail', { userUuid: '123' }] as const, userData)
    * ```
    */
-  set<
-    TKey extends QueryKeysWithEntity,
-    TEntity extends QueryKeyEntity<TKey> = QueryKeyEntity<TKey>,
-  >(
-    queryKey: readonly any[],
-    entity: TEntity,
+
+  // Overload: key only - expects array
+  set<TKey extends QueryKeysWithEntity>(
+    queryKey: TKey,
+    entities: QueryKeyEntity<TKey>[],
+  ): void
+  // Overload: full tuple with params - expects single entity or array
+  set<TKey extends QueryKeysWithEntity>(
+    queryKey: readonly [TKey, Partial<QueryKeyParams<TKey>>],
+    entity: QueryKeyEntity<TKey>,
+  ): void
+  // Implementation
+  set<TKey extends QueryKeysWithEntity>(
+    queryKey: QueryKeyOrTuple<TKey>,
+    entity: any,
   ): void {
     const wrappedData = this.wrapEntityInAsyncResult(entity)
 
-    this.queryClient.setQueryData(queryKey, wrappedData)
+    this.queryClient.setQueryData(queryKey as QueryKey, wrappedData)
   }
 
   /**
    * Update entity data in the query cache optimistically
    *
+   * When using just the key, updates ALL queries with that key
+   * When using key + params tuple, updates SPECIFIC query
+   *
    * @example
    * ```typescript
-   * // Update by id (from value)
+   * // Update all userDetail queries by id
    * optimisticUpdates.update('userDetail', {
    *   value: { id: '123', name: 'John Doe' }
    * })
    *
-   * // Update using key-value matching
-   * optimisticUpdates.update('userDetail', {
-   *   value: { name: 'John Doe' },
-   *   by: { uuid: 'abc-123' }
+   * // Update specific query by key + params
+   * optimisticUpdates.update(['userDetail', { userUuid: '123' }] as const, {
+   *   value: { name: 'John Doe' }
    * })
    *
-   * // Update using a predicate function
+   * // Update using predicates
    * optimisticUpdates.update('userList', {
    *   value: { isActive: false },
    *   by: (user) => user.email === 'john@example.com'
    * })
    * ```
    */
+
+  // Overload: key only - updates all matching queries
   update<
     TKey extends QueryKeysWithEntity,
     TEntity extends QueryKeyEntity<TKey> = QueryKeyEntity<TKey>,
   >(
     key: TKey,
     options: OptimisticUpdateOptions<TEntity>,
+  ): void
+  // Overload: full tuple with params - updates specific query
+  update<
+    TKey extends QueryKeysWithEntity,
+    TEntity extends QueryKeyEntity<TKey> = QueryKeyEntity<TKey>,
+  >(
+    keyTuple: readonly [TKey, Partial<QueryKeyParams<TKey>>],
+    options: OptimisticUpdateOptions<TEntity>,
+  ): void
+  // Implementation
+  update<
+    TKey extends QueryKeysWithEntity,
+    TEntity extends QueryKeyEntity<TKey> = QueryKeyEntity<TKey>,
+  >(
+    keyOrTuple: QueryKeyOrTuple<TKey>,
+    options: OptimisticUpdateOptions<TEntity>,
   ): void {
     const by = options.by ?? undefined
     const value = options.value
 
-    // Get all queries matching this key
+    // Determine if we're updating all or specific queries
+    const isSpecific = Array.isArray(keyOrTuple)
+    const key = isSpecific ? (keyOrTuple as any[])[0] : keyOrTuple
+    const params = isSpecific ? (keyOrTuple as any[])[1] : null
+
+    // Get matching queries
     const queries = this.queryClient.getQueryCache().findAll({
       predicate: (query) => {
         const queryKey = query.queryKey as any[]
 
-        return queryKey[0] === key
+        if (queryKey[0] !== key) {
+          return false
+        }
+
+        // If specific query requested, match params too
+        if (isSpecific && params && queryKey[1]) {
+          return Object.entries(params).every(([
+            paramKey,
+            paramValue,
+          ]) => {
+            return (queryKey[1] as any)[paramKey] === paramValue
+          })
+        }
+
+        // If not specific, match all with this key
+        return !isSpecific
       },
     })
 

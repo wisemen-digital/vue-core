@@ -77,9 +77,12 @@ describe('optimisticUpdates - invalidate', () => {
     setup.optimisticUpdates.set(queryKey1, user1)
     setup.optimisticUpdates.set(queryKey2, user2)
 
-    await setup.optimisticUpdates.invalidate('userDetail', {
-      userUuid: 'abc-123',
-    })
+    await setup.optimisticUpdates.invalidate([
+      'userDetail',
+      {
+        userUuid: 'abc-123',
+      },
+    ])
 
     const query1 = setup.queryClient
       .getQueryCache()
@@ -116,9 +119,12 @@ describe('optimisticUpdates - invalidate', () => {
 
     setup.optimisticUpdates.set(queryKey, userData)
 
-    await setup.optimisticUpdates.invalidate('userDetail', {
-      userUuid,
-    })
+    await setup.optimisticUpdates.invalidate([
+      'userDetail',
+      {
+        userUuid,
+      },
+    ])
 
     const query = setup.queryClient
       .getQueryCache()
@@ -127,5 +133,51 @@ describe('optimisticUpdates - invalidate', () => {
       })
 
     expect(query?.state.isInvalidated).toBeTruthy()
+  })
+
+  it('should invalidate all queries with the same key', async () => {
+    const userData: User = {
+      id: '123',
+      uuid: 'abc-123',
+      isActive: true,
+      name: 'John Doe',
+      email: 'john@example.com',
+    }
+
+    const queryKey1 = [
+      'userDetail',
+      {
+        userUuid: 'user-1',
+      },
+    ] as const
+
+    const queryKey2 = [
+      'userDetail',
+      {
+        userUuid: 'user-2',
+      },
+    ] as const
+
+    setup.optimisticUpdates.set(queryKey1, userData)
+    setup.optimisticUpdates.set(queryKey2, userData)
+
+    // Invalidate all 'userDetail' queries using single key format
+    await setup.optimisticUpdates.invalidate('userDetail')
+
+    const query1 = setup.queryClient
+      .getQueryCache()
+      .find({
+        queryKey: queryKey1,
+      })
+
+    const query2 = setup.queryClient
+      .getQueryCache()
+      .find({
+        queryKey: queryKey2,
+      })
+
+    // Both should be invalidated
+    expect(query1?.state.isInvalidated).toBeTruthy()
+    expect(query2?.state.isInvalidated).toBeTruthy()
   })
 })

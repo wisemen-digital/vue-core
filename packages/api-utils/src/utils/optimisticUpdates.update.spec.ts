@@ -31,15 +31,20 @@ describe('optimisticUpdates - update', () => {
 
       const queryKey = [
         'userDetail',
+        {
+          userUuid: 'abc-123',
+        },
       ] as const
 
       // Set initial data
       setup.optimisticUpdates.set(queryKey, userData)
 
       // Update the user (id from value)
-      setup.optimisticUpdates.update('userDetail', {
-        value: {
+      setup.optimisticUpdates.update(queryKey, {
+        by: {
           id: '123',
+        },
+        value: {
           name: 'Jane Doe',
         },
       })
@@ -524,6 +529,187 @@ describe('optimisticUpdates - update', () => {
       const updatedData = setup.optimisticUpdates.get(queryKey)
 
       expect(updatedData).toEqual([])
+    })
+  })
+
+  describe('single key format - update all matching queries', () => {
+    it('should update all queries with the same key', () => {
+      const user1: User = {
+        id: '1',
+        uuid: 'user-1',
+        isActive: true,
+        name: 'John',
+        email: 'john@example.com',
+      }
+
+      const user2: User = {
+        id: '2',
+        uuid: 'user-2',
+        isActive: true,
+        name: 'Jane',
+        email: 'jane@example.com',
+      }
+
+      // Set data with different params but same key
+      const queryKey1 = [
+        'userDetail',
+        {
+          userUuid: 'user-1',
+        },
+      ] as const
+      const queryKey2 = [
+        'userDetail',
+        {
+          userUuid: 'user-2',
+        },
+      ] as const
+
+      setup.optimisticUpdates.set(queryKey1, user1)
+      setup.optimisticUpdates.set(queryKey2, user2)
+
+      // Update all 'userDetail' queries using single key format
+      setup.optimisticUpdates.update('userDetail', {
+        by: () => true, // Match all items
+        value: {
+          isActive: false,
+        },
+      })
+
+      // Both queries should be updated
+      const updated1 = setup.optimisticUpdates.get(queryKey1)
+      const updated2 = setup.optimisticUpdates.get(queryKey2)
+
+      expect(updated1).toEqual({
+        ...user1,
+        isActive: false,
+      })
+      expect(updated2).toEqual({
+        ...user2,
+        isActive: false,
+      })
+    })
+
+    it('should update all arrays with the same key using predicate', () => {
+      const users1: User[] = [
+        {
+          id: '1',
+          uuid: 'user-1',
+          isActive: true,
+          name: 'John',
+          email: 'john@example.com',
+        },
+        {
+          id: '2',
+          uuid: 'user-2',
+          isActive: true,
+          name: 'Jane',
+          email: 'jane@example.com',
+        },
+      ]
+
+      const users2: User[] = [
+        {
+          id: '3',
+          uuid: 'user-3',
+          isActive: true,
+          name: 'Bob',
+          email: 'bob@example.com',
+        },
+      ]
+
+      setup.optimisticUpdates.set([
+        'userList',
+        {
+          search: 'active',
+        },
+      ], users1)
+      setup.optimisticUpdates.set([
+        'userList',
+        {
+          search: 'pending',
+        },
+      ], users2)
+      // Update all 'userList' queries where name === 'John'
+      setup.optimisticUpdates.update('userList', {
+        by: (user: User) => user.name === 'John',
+        value: {
+          isActive: false,
+        },
+      })
+
+      const updated1 = setup.optimisticUpdates.get([
+        'userList',
+        {
+          search: 'active',
+        },
+      ])
+      const updated2 = setup.optimisticUpdates.get([
+        'userList',
+        {
+          search: 'pending',
+        },
+      ])
+
+      expect(updated1).toEqual([
+        {
+          id: '1',
+          uuid: 'user-1',
+          isActive: false,
+          name: 'John',
+          email: 'john@example.com',
+        },
+        users1[1],
+      ])
+      expect(updated2).toEqual(users2)
+    })
+  })
+
+  describe('single key format - get all matching queries', () => {
+    it('should get all entities with the same key', () => {
+      const user1: User = {
+        id: '1',
+        uuid: 'user-1',
+        isActive: true,
+        name: 'John',
+        email: 'john@example.com',
+      }
+
+      const user2: User = {
+        id: '2',
+        uuid: 'user-2',
+        isActive: false,
+        name: 'Jane',
+        email: 'jane@example.com',
+      }
+
+      const queryKey1 = [
+        'userDetail',
+        {
+          userUuid: 'user-1',
+        },
+      ] as const
+      const queryKey2 = [
+        'userDetail',
+        {
+          userUuid: 'user-2',
+        },
+      ] as const
+
+      setup.optimisticUpdates.set(queryKey1, user1)
+      setup.optimisticUpdates.set(queryKey2, user2)
+
+      // Get all 'userDetail' queries
+      const allUsers = setup.optimisticUpdates.get('userDetail')
+
+      expect(allUsers).toHaveLength(2)
+      expect(allUsers).toContainEqual(user1)
+      expect(allUsers).toContainEqual(user2)
+    })
+
+    it('should return empty array when no queries match the key', () => {
+      const allUsers = setup.optimisticUpdates.get('userDetail')
+
+      expect(allUsers).toEqual([])
     })
   })
 })
