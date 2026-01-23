@@ -51,38 +51,59 @@ const optimisticUpdates = createOptimisticUpdates(queryClient)
 ### Update a single entity
 
 ```typescript
-// Update by ID (default)
+// Update by ID (from value)
 optimisticUpdates.update({
   key: 'userDetail',
-  value: { name: 'John Doe', email: 'john@example.com' },
-  match: '123' // user id
+  value: { 
+    id: '123',
+    name: 'John Doe', 
+    email: 'john@example.com' 
+  }
 })
 
-// Update by custom field
+// Update by custom field using key-value matching
 optimisticUpdates.update({
   key: 'userDetail',
   value: { name: 'John Doe' },
-  by: 'uuid',
-  match: 'abc-123-def'
+  by: { uuid: 'abc-123-def' }
+})
+
+// Update by multiple fields (all must match)
+optimisticUpdates.update({
+  key: 'userDetail',
+  value: { isActive: false },
+  by: { 
+    id: '123',
+    uuid: 'abc-123'
+  }
+})
+
+// Update using a predicate function
+optimisticUpdates.update({
+  key: 'userDetail',
+  value: { name: 'John Doe' },
+  by: (user) => user.email === 'john@example.com'
 })
 ```
 
 ### Update items in a list
 
 ```typescript
-// Update by ID (default)
+// Update by ID (from value)
 optimisticUpdates.update({
   key: 'productList',
-  value: { price: 99.99, inStock: true },
-  match: '456' // product id
+  value: { 
+    id: '456',
+    price: 99.99, 
+    inStock: true 
+  }
 })
 
 // Update using a custom key
 optimisticUpdates.update({
   key: 'productList',
   value: { price: 99.99 },
-  by: 'sku',
-  match: 'PROD-123'
+  by: { sku: 'PROD-123' }
 })
 
 // Update using a predicate function
@@ -113,9 +134,62 @@ The system is fully type-safe:
 
 - ✅ Only keys with `entity` types can be used
 - ✅ The `value` parameter must match the entity type
-- ✅ The `by` parameter must be a valid key of the entity
-- ✅ The `match` parameter type is inferred from the `by` parameter
+- ✅ The `by` parameter accepts:
+  - A predicate function `(entity) => boolean`
+  - A key-value object `{ key: value }` for matching
+  - Undefined (defaults to matching by `id` from the value)
+- ✅ When using key-value matching, keys must be valid properties of the entity
 - ✅ Predicate functions receive the correct entity type
+
+## Matching Behavior
+
+### Default (no `by` parameter)
+When `by` is omitted, the system looks for an `id` property in the `value` and matches entities with that ID.
+
+```typescript
+// Will match entities where entity.id === '123'
+optimisticUpdates.update({
+  key: 'userDetail',
+  value: { 
+    id: '123',
+    name: 'John Doe' 
+  }
+})
+```
+
+### Key-Value Matching
+Provide an object with one or more key-value pairs. All pairs must match for an entity to be updated.
+
+```typescript
+// Will match entities where entity.uuid === 'abc-123'
+optimisticUpdates.update({
+  key: 'userDetail',
+  value: { name: 'John Doe' },
+  by: { uuid: 'abc-123' }
+})
+
+// Will match entities where BOTH conditions are true
+optimisticUpdates.update({
+  key: 'userDetail',
+  value: { name: 'John Doe' },
+  by: { 
+    id: '123',
+    email: 'john@example.com' 
+  }
+})
+```
+
+### Predicate Function
+Provide a function that receives the entity and returns `true` if it should be updated.
+
+```typescript
+// Will match entities where the function returns true
+optimisticUpdates.update({
+  key: 'userList',
+  value: { isActive: false },
+  by: (user) => user.role === 'admin' && user.createdAt < someDate
+})
+```
 
 ## Notes
 

@@ -5,7 +5,11 @@ import type {
 } from 'vue'
 import { computed } from 'vue'
 
-import type { ApiResult } from '@/types/apiError.type'
+import { AsyncResult } from '@/async-result/asyncResult'
+import type {
+  ApiError,
+  ApiResult,
+} from '@/types/apiError.type'
 import type { QueryKeys } from '@/types/queryKeys.type'
 
 type NonOptionalKeys<T> = {
@@ -53,24 +57,22 @@ export interface UseQueryOptions<TResData> {
 
 export interface UseQueryReturnType<TResData> {
   /**
-   * Response data
-   */
-  /**
    * Whether query has errored at least once
-   * @deprecated - use `result.isErr()` instead
+   * @deprecated - use `result.value.isErr()` instead
    */
   isError: ComputedRef<boolean>
   /**
-   * Whether query is currently loading
+   * Whether query is currently fetching data, regardless of cache status
    */
   isFetching: ComputedRef<boolean>
   /**
    * Whether query is initially loading
+   * @deprecated - use `result.value.isLoading()` instead
    */
   isLoading: ComputedRef<boolean>
   /**
    * Whether query has been executed successfully
-   * @deprecated - use `result.isOk()` instead
+   * @deprecated - use `result.value.isOk()` instead
    */
   isSuccess: ComputedRef<boolean>
   /**
@@ -79,10 +81,14 @@ export interface UseQueryReturnType<TResData> {
   refetch: () => Promise<void>
   /**
    * Computed result of the query
-   * It will return an instance of Result<TResData, ApiError>
-   * where TResData is the response data and ApiError is the error
+   * Returns an AsyncResult with three states:
+   * - loading: use `result.value.isLoading()`
+   * - ok: use `result.value.isOk()` and `result.value.getValue()`
+   * - err: use `result.value.isErr()` and `result.value.getError()`
+   *
+   * Use `result.value.match({ loading, ok, err })` for exhaustive handling
    */
-  result: ComputedRef<ApiResult<TResData> | null>
+  result: ComputedRef<AsyncResult<TResData, ApiError>>
 }
 
 export function useQuery<TResData>(options: UseQueryOptions<TResData>): UseQueryReturnType<TResData> {
@@ -123,6 +129,16 @@ export function useQuery<TResData>(options: UseQueryOptions<TResData>): UseQuery
     isLoading: computed<boolean>(() => query.isLoading.value),
     isSuccess: computed<boolean>(() => query.data.value?.isOk() ?? false),
     refetch,
-    result: computed<ApiResult<TResData> | null>(() => query.data.value ?? null),
+    result: computed<AsyncResult<TResData, ApiError>>(() => {
+      if (query.isLoading.value) {
+        return AsyncResult.loading<TResData, ApiError>()
+      }
+
+      if (query.data.value) {
+        return AsyncResult.fromResult(query.data.value)
+      }
+
+      return AsyncResult.loading<TResData, ApiError>()
+    }),
   }
 }
