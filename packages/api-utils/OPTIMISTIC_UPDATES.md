@@ -52,8 +52,7 @@ const optimisticUpdates = createOptimisticUpdates(queryClient)
 
 ```typescript
 // Update by ID (from value)
-optimisticUpdates.update({
-  key: 'userDetail',
+optimisticUpdates.update('userDetail', {
   value: { 
     id: '123',
     name: 'John Doe', 
@@ -62,15 +61,13 @@ optimisticUpdates.update({
 })
 
 // Update by custom field using key-value matching
-optimisticUpdates.update({
-  key: 'userDetail',
+optimisticUpdates.update('userDetail', {
   value: { name: 'John Doe' },
   by: { uuid: 'abc-123-def' }
 })
 
 // Update by multiple fields (all must match)
-optimisticUpdates.update({
-  key: 'userDetail',
+optimisticUpdates.update('userDetail', {
   value: { isActive: false },
   by: { 
     id: '123',
@@ -79,8 +76,7 @@ optimisticUpdates.update({
 })
 
 // Update using a predicate function
-optimisticUpdates.update({
-  key: 'userDetail',
+optimisticUpdates.update('userDetail', {
   value: { name: 'John Doe' },
   by: (user) => user.email === 'john@example.com'
 })
@@ -90,8 +86,7 @@ optimisticUpdates.update({
 
 ```typescript
 // Update by ID (from value)
-optimisticUpdates.update({
-  key: 'productList',
+optimisticUpdates.update('productList', {
   value: { 
     id: '456',
     price: 99.99, 
@@ -100,15 +95,13 @@ optimisticUpdates.update({
 })
 
 // Update using a custom key
-optimisticUpdates.update({
-  key: 'productList',
+optimisticUpdates.update('productList', {
   value: { price: 99.99 },
   by: { sku: 'PROD-123' }
 })
 
 // Update using a predicate function
-optimisticUpdates.update({
-  key: 'productList',
+optimisticUpdates.update('productList', {
   value: { isActive: false },
   by: (product) => product.category === 'electronics'
 })
@@ -124,7 +117,7 @@ await optimisticUpdates.invalidate('userDetail')
 
 // Invalidate specific queries matching params
 await optimisticUpdates.invalidate('userDetail', {
-  userUuid: computed(() => '123')
+  userUuid: '123'
 })
 ```
 
@@ -148,8 +141,7 @@ When `by` is omitted, the system looks for an `id` property in the `value` and m
 
 ```typescript
 // Will match entities where entity.id === '123'
-optimisticUpdates.update({
-  key: 'userDetail',
+optimisticUpdates.update('userDetail', {
   value: { 
     id: '123',
     name: 'John Doe' 
@@ -162,15 +154,13 @@ Provide an object with one or more key-value pairs. All pairs must match for an 
 
 ```typescript
 // Will match entities where entity.uuid === 'abc-123'
-optimisticUpdates.update({
-  key: 'userDetail',
+optimisticUpdates.update('userDetail', {
   value: { name: 'John Doe' },
   by: { uuid: 'abc-123' }
 })
 
 // Will match entities where BOTH conditions are true
-optimisticUpdates.update({
-  key: 'userDetail',
+optimisticUpdates.update('userDetail', {
   value: { name: 'John Doe' },
   by: { 
     id: '123',
@@ -184,8 +174,7 @@ Provide a function that receives the entity and returns `true` if it should be u
 
 ```typescript
 // Will match entities where the function returns true
-optimisticUpdates.update({
-  key: 'userList',
+optimisticUpdates.update('userList', {
   value: { isActive: false },
   by: (user) => user.role === 'admin' && user.createdAt < someDate
 })

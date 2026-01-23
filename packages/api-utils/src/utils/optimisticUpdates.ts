@@ -1,7 +1,8 @@
 import type { QueryClient } from '@tanstack/vue-query'
-import type { MaybeRef } from 'vue'
 import { unref } from 'vue'
 
+import type { AsyncResult as AsyncResultType } from '@/async-result/asyncResult'
+import { AsyncResult } from '@/async-result/asyncResult'
 import type {
   QueryKeyEntity,
   QueryKeyParams,
@@ -28,14 +29,14 @@ type MatchByKeyValue<TEntity> = TEntity extends any[]
 type ByOption<TEntity>
   = MatchByKeyValue<TEntity>
     | PredicateFn<TEntity>
+    | null
     | undefined
 
 /**
  * Options for optimistic update
  */
 export interface OptimisticUpdateOptions<
-  TKey extends QueryKeysWithEntity,
-  TEntity extends QueryKeyEntity<TKey> = QueryKeyEntity<TKey>,
+  TEntity,
 > {
   /**
    * How to match the entity to update:
@@ -44,11 +45,6 @@ export interface OptimisticUpdateOptions<
    * - undefined: defaults to matching by 'id' from the value
    */
   by?: ByOption<TEntity>
-
-  /**
-   * The query key to update
-   */
-  key: TKey
 
   /**
    * The new value to set (for single entities) or merge (for arrays)
@@ -61,6 +57,31 @@ export interface OptimisticUpdateOptions<
  */
 export class OptimisticUpdates {
   constructor(private readonly queryClient: QueryClient) {}
+
+  /**
+   * Extract the raw entity from AsyncResult data
+   */
+  private extractEntityFromAsyncResult<TEntity>(
+    data: AsyncResultType<TEntity, any> | TEntity | null | undefined,
+  ): TEntity | null {
+    if (data === undefined || data === null) {
+      return null
+    }
+
+    // Check if it's an AsyncResult by checking for isOk method
+    if (typeof data === 'object' && 'isOk' in data) {
+      const asyncResult = data as AsyncResultType<TEntity, any>
+
+      if (asyncResult.isOk()) {
+        return asyncResult.getValue()
+      }
+
+      return null
+    }
+
+    // It's already a raw entity
+    return data as TEntity
+  }
 
   /**
    * Determine if an item should be updated
@@ -136,11 +157,40 @@ export class OptimisticUpdates {
   }
 
   /**
+   * Wrap a raw entity in an AsyncResult (preserving ok state)
+   */
+  private wrapEntityInAsyncResult<TEntity>(
+    entity: TEntity,
+  ): AsyncResultType<TEntity, any> {
+    return AsyncResult.ok(entity)
+  }
+
+  /**
+   * Get raw entity data from the query cache
+   * Automatically extracts the entity from AsyncResult wrapper
+   *
+   * @example
+   * ```typescript
+   * const user = optimisticUpdates.get(['userDetail', { userUuid: '123' }] as const)
+   * ```
+   */
+  get<
+    TKey extends QueryKeysWithEntity,
+    TEntity extends QueryKeyEntity<TKey> = QueryKeyEntity<TKey>,
+  >(
+    queryKey: readonly any[],
+  ): TEntity | null {
+    const data = this.queryClient.getQueryData<AsyncResultType<TEntity, any> | TEntity>(queryKey)
+
+    return this.extractEntityFromAsyncResult(data)
+  }
+
+  /**
    * Invalidate queries to trigger a refetch
    */
   async invalidate<TKey extends QueryKeysWithEntity>(
     key: TKey,
-    params?: Partial<MaybeRef<QueryKeyParams<TKey>>>,
+    params?: Partial<QueryKeyParams<TKey>>,
   ): Promise<void> {
     await this.queryClient.invalidateQueries({
       predicate: (query) => {
@@ -158,10 +208,9 @@ export class OptimisticUpdates {
               paramValue,
             ],
           ) => {
-            const queryValue = unref((queryKey[1] as any)[paramKey])
-            const matchValue = unref(paramValue)
+            const queryValue = (queryKey[1] as any)[paramKey]
 
-            return queryValue === matchValue
+            return queryValue === paramValue
           })
         }
 
@@ -171,26 +220,44 @@ export class OptimisticUpdates {
   }
 
   /**
+   * Set raw entity data in the query cache
+   * Automatically wraps the entity in AsyncResult
+   *
+   * @example
+   * ```typescript
+   * optimisticUpdates.set(['userDetail', { userUuid: '123' }] as const, userData)
+   * ```
+   */
+  set<
+    TKey extends QueryKeysWithEntity,
+    TEntity extends QueryKeyEntity<TKey> = QueryKeyEntity<TKey>,
+  >(
+    queryKey: readonly any[],
+    entity: TEntity,
+  ): void {
+    const wrappedData = this.wrapEntityInAsyncResult(entity)
+
+    this.queryClient.setQueryData(queryKey, wrappedData)
+  }
+
+  /**
    * Update entity data in the query cache optimistically
    *
    * @example
    * ```typescript
    * // Update by id (from value)
-   * optimisticUpdates.update({
-   *   key: 'userDetail',
+   * optimisticUpdates.update('userDetail', {
    *   value: { id: '123', name: 'John Doe' }
    * })
    *
    * // Update using key-value matching
-   * optimisticUpdates.update({
-   *   key: 'userDetail',
+   * optimisticUpdates.update('userDetail', {
    *   value: { name: 'John Doe' },
    *   by: { uuid: 'abc-123' }
    * })
    *
    * // Update using a predicate function
-   * optimisticUpdates.update({
-   *   key: 'userList',
+   * optimisticUpdates.update('userList', {
    *   value: { isActive: false },
    *   by: (user) => user.email === 'john@example.com'
    * })
@@ -199,12 +266,12 @@ export class OptimisticUpdates {
   update<
     TKey extends QueryKeysWithEntity,
     TEntity extends QueryKeyEntity<TKey> = QueryKeyEntity<TKey>,
-  >(options: OptimisticUpdateOptions<TKey, TEntity>): void {
-    const {
-      by,
-      key,
-      value,
-    } = options
+  >(
+    key: TKey,
+    options: OptimisticUpdateOptions<TEntity>,
+  ): void {
+    const by = options.by ?? undefined
+    const value = options.value
 
     // Get all queries matching this key
     const queries = this.queryClient.getQueryCache().findAll({
@@ -217,15 +284,22 @@ export class OptimisticUpdates {
 
     // Update each matching query
     for (const query of queries) {
-      const currentData = query.state.data as TEntity | undefined
+      const currentData = query.state.data as AsyncResultType<TEntity, any> | TEntity | null
 
-      if (currentData === undefined || currentData === null) {
+      // Extract raw entity from AsyncResult or use directly if raw
+      const rawEntity = this.extractEntityFromAsyncResult(currentData)
+
+      if (rawEntity === null) {
         continue
       }
 
-      const updatedData = this.updateEntity(by, currentData, value)
+      // Update the raw entity
+      const updatedEntity = this.updateEntity(by, rawEntity, value)
 
-      this.queryClient.setQueryData(query.queryKey, updatedData)
+      // Wrap back in AsyncResult
+      const wrappedData = this.wrapEntityInAsyncResult(updatedEntity)
+
+      this.queryClient.setQueryData(query.queryKey, wrappedData)
     }
   }
 }
