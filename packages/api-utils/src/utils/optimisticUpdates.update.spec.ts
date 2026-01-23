@@ -712,4 +712,104 @@ describe('optimisticUpdates - update', () => {
       expect(allUsers).toEqual([])
     })
   })
+
+  describe('single key format - set query', () => {
+    it('should set a query using single key format', () => {
+      const userData: User = {
+        id: '123',
+        uuid: 'abc-123',
+        isActive: true,
+        name: 'John Doe',
+        email: 'john@example.com',
+      }
+
+      // Set using single key format
+      setup.optimisticUpdates.set('userDetail', userData)
+
+      // Get using single key format returns array
+      const allUsers = setup.optimisticUpdates.get('userDetail')
+
+      expect(allUsers).toEqual([
+        userData,
+      ])
+    })
+
+    it('should store single key query in normalized array format', () => {
+      const userData: User = {
+        id: '123',
+        uuid: 'abc-123',
+        isActive: true,
+        name: 'John Doe',
+        email: 'john@example.com',
+      }
+
+      // Set using single key format
+      setup.optimisticUpdates.set('userDetail', userData)
+
+      // Verify it's stored under normalized array key
+      const query = setup.queryClient
+        .getQueryCache()
+        .find({
+          queryKey: [
+            'userDetail',
+          ],
+        })
+
+      expect(query).toBeDefined()
+      expect(query?.state.data).toBeDefined()
+    })
+
+    it('should distinguish between single key and tuple key formats', () => {
+      const user1: User = {
+        id: '1',
+        uuid: 'user-1',
+        isActive: true,
+        name: 'John',
+        email: 'john@example.com',
+      }
+
+      const user2: User = {
+        id: '2',
+        uuid: 'user-2',
+        isActive: true,
+        name: 'Jane',
+        email: 'jane@example.com',
+      }
+
+      // Set using single key format
+      setup.optimisticUpdates.set('userDetail', user1)
+
+      // Set using tuple format with params
+      setup.optimisticUpdates.set([
+        'userDetail',
+        {
+          userUuid: 'user-2',
+        },
+      ] as const, user2)
+
+      // Get all queries with 'userDetail' key - should return both
+      const allResults = setup.optimisticUpdates.get('userDetail')
+
+      expect(allResults).toContainEqual(user1)
+      expect(allResults).toContainEqual(user2)
+      expect(allResults).toHaveLength(2)
+
+      // Get exact query stored as ['userDetail'] - should only return user1
+      const exactResult = setup.optimisticUpdates.get('userDetail', {
+        isExact: true,
+      })
+
+      expect(exactResult).toEqual(user1)
+
+      // Get using tuple key - should only return user2
+      const tupleKeyResult = setup.optimisticUpdates.get([
+        'userDetail',
+        {
+          userUuid: 'user-2',
+        },
+      ] as const)
+
+      expect(tupleKeyResult).toEqual(user2)
+    })
+  })
 })

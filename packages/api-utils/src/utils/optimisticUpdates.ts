@@ -1,7 +1,4 @@
-import type {
-  QueryClient,
-  QueryKey,
-} from '@tanstack/vue-query'
+import type { QueryClient } from '@tanstack/vue-query'
 import { unref } from 'vue'
 
 import type { AsyncResult as AsyncResultType } from '@/async-result/asyncResult'
@@ -179,56 +176,79 @@ export class OptimisticUpdates {
    * Get raw entity data from the query cache
    * Automatically extracts the entity from AsyncResult wrapper
    *
+   * When using just a key string:
+   * - By default (isExact=false), returns ALL queries with that key as first element
+   * - With isExact=true, returns only the query stored as [key]
+   *
    * @example
    * ```typescript
-   * // Get all userDetail queries
+   * // Get all userDetail queries (returns array)
    * const allUsers = optimisticUpdates.get('userDetail')
    *
-   * // Get specific userDetail query
+   * // Get exact query stored as ['userDetail']
+   * const exactUser = optimisticUpdates.get('userDetail', { isExact: true })
+   *
+   * // Get specific userDetail query with params
    * const user = optimisticUpdates.get(['userDetail', { userUuid: '123' }] as const)
    * ```
    */
 
-  // Overload: key only - returns array or single entity depending on queries
   get<TKey extends QueryKeysWithEntity>(
     queryKey: TKey,
+    options?: { isExact?: false },
   ): QueryKeyEntity<TKey>[]
-  // Overload: full tuple with params - returns single entity or array
+  get<TKey extends QueryKeysWithEntity>(
+    queryKey: TKey,
+    options: { isExact: true },
+  ): QueryKeyEntity<TKey> | null
   get<TKey extends QueryKeysWithEntity>(
     queryKey: readonly [TKey, Partial<QueryKeyParams<TKey>>],
   ): QueryKeyEntity<TKey> | null
-  // Implementation
   get<TKey extends QueryKeysWithEntity>(
     queryKey: QueryKeyOrTuple<TKey>,
+    options?: { isExact?: boolean },
   ): QueryKeyEntity<TKey> | QueryKeyEntity<TKey>[] | null {
-    // If it's just a key string, get all matching queries
-    if (typeof queryKey === 'string') {
-      const allQueries = this.queryClient.getQueryCache().findAll({
-        predicate: (query) => {
-          const qKey = query.queryKey as any[]
+    // If it's a tuple [key, params], always get specific query
+    if (Array.isArray(queryKey)) {
+      const data = this.queryClient.getQueryData<any>(queryKey)
 
-          return qKey[0] === queryKey
-        },
-      })
-
-      const results: any[] = []
-
-      for (const query of allQueries) {
-        const data = query.state.data as any
-        const entity = this.extractEntityFromAsyncResult(data)
-
-        if (entity !== null) {
-          results.push(entity)
-        }
-      }
-
-      return results
+      return this.extractEntityFromAsyncResult(data)
     }
 
-    // If it's a tuple [key, params], get specific query
-    const data = this.queryClient.getQueryData<any>(queryKey)
+    // It's a single key string
+    const isExact = options?.isExact ?? false
 
-    return this.extractEntityFromAsyncResult(data)
+    if (isExact) {
+      // Get exact query stored as [key]
+      const normalizedKey = [
+        queryKey,
+      ]
+      const data = this.queryClient.getQueryData<any>(normalizedKey)
+
+      return this.extractEntityFromAsyncResult(data)
+    }
+
+    // Get all queries with this key as first element
+    const allQueries = this.queryClient.getQueryCache().findAll({
+      predicate: (query) => {
+        const qKey = query.queryKey as any[]
+
+        return qKey[0] === queryKey
+      },
+    })
+
+    const results: any[] = []
+
+    for (const query of allQueries) {
+      const data = query.state.data as any
+      const entity = this.extractEntityFromAsyncResult(data)
+
+      if (entity !== null) {
+        results.push(entity)
+      }
+    }
+
+    return results
   }
 
   /**
@@ -286,25 +306,29 @@ export class OptimisticUpdates {
   }
 
   /**
-   * Set raw entity data in the query cache
+   * Set raw entity data in the query cache for a specific query
    * Automatically wraps the entity in AsyncResult
+   *
+   * Both formats set a single query - just with different key representations:
+   * - 'userDetail' sets the query with key ['userDetail']
+   * - ['userDetail', { userUuid: '123' }] sets the query with that exact key
    *
    * @example
    * ```typescript
-   * // Set all userDetail queries (array of entities)
-   * optimisticUpdates.set('userDetail', [user1, user2])
+   * // Set query with just the key
+   * optimisticUpdates.set('userDetail', userData)
    *
-   * // Set specific userDetail query
+   * // Set query with key + params
    * optimisticUpdates.set(['userDetail', { userUuid: '123' }] as const, userData)
    * ```
    */
 
-  // Overload: key only - expects array
+  // Overload: key only - stores as ['userDetail']
   set<TKey extends QueryKeysWithEntity>(
     queryKey: TKey,
-    entities: QueryKeyEntity<TKey>[],
+    entity: QueryKeyEntity<TKey>,
   ): void
-  // Overload: full tuple with params - expects single entity or array
+  // Overload: full tuple with params - stores as ['userDetail', params]
   set<TKey extends QueryKeysWithEntity>(
     queryKey: readonly [TKey, Partial<QueryKeyParams<TKey>>],
     entity: QueryKeyEntity<TKey>,
@@ -316,7 +340,14 @@ export class OptimisticUpdates {
   ): void {
     const wrappedData = this.wrapEntityInAsyncResult(entity)
 
-    this.queryClient.setQueryData(queryKey as QueryKey, wrappedData)
+    // Convert single key to array format if needed
+    const normalizedKey = Array.isArray(queryKey)
+      ? queryKey
+      : [
+          queryKey,
+        ]
+
+    this.queryClient.setQueryData(normalizedKey as any, wrappedData)
   }
 
   /**
