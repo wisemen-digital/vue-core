@@ -16,6 +16,9 @@ type NonOptionalKeys<T> = {
   [K in keyof T]-?: T[K]
 }
 
+// Helper to extract params from QueryKeys (backwards compatible)
+type ExtractParams<T> = T extends { params: infer P } ? P : T
+
 export interface OffsetInfiniteQueryOptions<TData> {
   /**
    * The time in milliseconds after which the query will be considered stale
@@ -44,7 +47,9 @@ export interface OffsetInfiniteQueryOptions<TData> {
    */
   queryKey: {
     [TQueryKey in keyof QueryKeys]?: {
-      [TQueryKeyParam in keyof NonOptionalKeys<QueryKeys[TQueryKey]>]: MaybeRef<QueryKeys[TQueryKey][TQueryKeyParam]>
+      [TQueryKeyParam in keyof NonOptionalKeys<ExtractParams<QueryKeys[TQueryKey]>>]: MaybeRef<
+        ExtractParams<QueryKeys[TQueryKey]>[TQueryKeyParam]
+      >
     }
   }
 }

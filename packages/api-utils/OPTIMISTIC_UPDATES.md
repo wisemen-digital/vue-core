@@ -4,7 +4,71 @@ Type-safe optimistic updates for the api-utils package.
 
 ## Setup
 
-First, extend your QueryKeys interface to include entity types:
+You have two options:
+
+1) **Recommended**: type-only `createApiUtils<MyQueryKeys>()` (no module augmentation, no runtime config)
+2) **Alternative**: config-based `createApiUtils({ queryKeys })`
+3) **Legacy**: module augmentation of `QueryKeys`
+
+### Recommended: createApiUtils (type-only)
+
+```typescript
+import { createApiUtils } from '@wisemen/vue-core-api-utils'
+
+type UserUuid = string
+interface User {
+  id: string
+  uuid: string
+  name: string
+  email: string
+}
+
+interface Product {
+  id: string
+  sku: string
+  price: number
+  category: string
+}
+
+interface MyQueryKeys {
+  userDetail: {
+    entity: User
+    params: { userUuid: UserUuid }
+  }
+  productList: {
+    entity: Product[]
+    params: { category: string }
+  }
+}
+
+export const {
+  useOptimisticUpdates,
+} = createApiUtils<MyQueryKeys>()
+```
+
+### Alternative: createApiUtils + defineQueryKeys
+
+If you prefer config-based inference (e.g. to reuse the same config for other helpers later),
+you can still do this:
+
+```typescript
+import { createApiUtils, defineQueryKeys } from '@wisemen/vue-core-api-utils'
+
+export const queryKeys = defineQueryKeys({
+  userDetail: {
+    entity: {} as User,
+    params: { userUuid: '' as UserUuid },
+  },
+})
+
+export const {
+  useOptimisticUpdates,
+} = createApiUtils({ queryKeys })
+```
+
+### Legacy: module augmentation
+
+First, extend your `QueryKeys` interface to include entity types:
 
 ```typescript
 import type { ComputedRef } from 'vue'
@@ -39,6 +103,16 @@ declare module '@wisemen/vue-core-api-utils' {
 ## Usage
 
 ### Create the OptimisticUpdates instance
+
+#### With createApiUtils (recommended)
+
+```typescript
+import { useOptimisticUpdates } from './queryKeys' // from the snippet above
+
+const optimisticUpdates = useOptimisticUpdates()
+```
+
+#### With createOptimisticUpdates (legacy)
 
 ```typescript
 import { useQueryClient } from '@tanstack/vue-query'
@@ -115,10 +189,10 @@ You can also invalidate queries to trigger a refetch:
 // Invalidate all queries with this key
 await optimisticUpdates.invalidate('userDetail')
 
-// Invalidate specific queries matching params
-await optimisticUpdates.invalidate('userDetail', {
-  userUuid: '123'
-})
+// Invalidate a specific query matching params
+await optimisticUpdates.invalidate(['userDetail', {
+  userUuid: '123',
+}] as const)
 ```
 
 ## Type Safety

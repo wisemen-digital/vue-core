@@ -43,9 +43,7 @@ describe('useQuery with AsyncResult', () => {
           return await new Promise(() => {})
         },
         queryKey: {
-          productList: {
-            category: 'electronics',
-          },
+          test: {},
         },
       })
     })
@@ -65,9 +63,7 @@ describe('useQuery with AsyncResult', () => {
       return useQuery<TestUser>({
         queryFn: async () => await Promise.resolve(ok(user)),
         queryKey: {
-          productList: {
-            category: 'electronics',
-          },
+          test: {},
         },
       })
     })
@@ -97,10 +93,9 @@ describe('useQuery with AsyncResult', () => {
       return useQuery<TestUser>({
         queryFn: async () => await Promise.resolve(err(apiError)),
         queryKey: {
-          productList: {
-            category: 'electronics',
-          },
+          test: {},
         },
+
       })
     })
 
@@ -128,10 +123,9 @@ describe('useQuery with AsyncResult', () => {
       return useQuery<TestUser>({
         queryFn: async () => await Promise.resolve(ok(user)),
         queryKey: {
-          productList: {
-            category: 'electronics',
-          },
+          test: {},
         },
+
       })
     })
 
@@ -168,10 +162,9 @@ describe('useQuery with AsyncResult', () => {
       return useQuery<TestUser>({
         queryFn: async () => await Promise.resolve(ok(user)),
         queryKey: {
-          productList: {
-            category: 'electronics',
-          },
+          test: {},
         },
+
       })
     })
 
@@ -201,10 +194,9 @@ describe('useQuery with AsyncResult', () => {
           return await new Promise(() => {})
         },
         queryKey: {
-          productList: {
-            category: 'electronics',
-          },
+          test: {},
         },
+
       })
     })
 
@@ -224,10 +216,9 @@ describe('useQuery with AsyncResult', () => {
       return useQuery<TestUser>({
         queryFn: async () => await Promise.resolve(ok(user)),
         queryKey: {
-          productList: {
-            category: 'electronics',
-          },
+          test: {},
         },
+
       })
     })
 
@@ -269,10 +260,9 @@ describe('useQuery with AsyncResult', () => {
           return await Promise.resolve(ok(user))
         },
         queryKey: {
-          productList: {
-            category: 'electronics',
-          },
+          test: {},
         },
+
       })
     })
 
@@ -310,10 +300,9 @@ describe('useQuery with AsyncResult', () => {
         isEnabled,
         queryFn,
         queryKey: {
-          productList: {
-            category: 'electronics',
-          },
+          test: {},
         },
+
       })
     })
 
@@ -346,10 +335,9 @@ describe('useQuery with AsyncResult', () => {
       return useQuery<TestUser>({
         queryFn: async () => await Promise.resolve(ok(user)),
         queryKey: {
-          productList: {
-            category: 'electronics',
-          },
+          test: {},
         },
+
       })
     })
 
@@ -375,10 +363,9 @@ describe('useQuery with AsyncResult', () => {
           return await new Promise(() => {})
         },
         queryKey: {
-          productList: {
-            category: 'electronics',
-          },
+          test: {},
         },
+
       })
     })
 
@@ -402,10 +389,9 @@ describe('useQuery with AsyncResult', () => {
           return await Promise.resolve(ok(user))
         },
         queryKey: {
-          productList: {
-            category: 'electronics',
-          },
+          test: {},
         },
+
       })
     })
 
@@ -462,10 +448,9 @@ describe('useQuery with AsyncResult', () => {
           return await Promise.resolve(err(apiError))
         },
         queryKey: {
-          productList: {
-            category: 'electronics',
-          },
+          test: {},
         },
+
       })
     })
 

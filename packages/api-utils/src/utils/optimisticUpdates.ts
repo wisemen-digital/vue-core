@@ -1,12 +1,17 @@
 import type { QueryClient } from '@tanstack/vue-query'
+import type {
+  MaybeRef,
+  UnwrapRef,
+} from 'vue'
 import { unref } from 'vue'
 
 import type { AsyncResult as AsyncResultType } from '@/async-result/asyncResult'
 import { AsyncResult } from '@/async-result/asyncResult'
 import type {
-  QueryKeyEntity,
-  QueryKeyParams,
-  QueryKeysWithEntity,
+  QueryKeyEntityFromConfig,
+  QueryKeyParamsFromConfig,
+  QueryKeys,
+  QueryKeysWithEntityFromConfig,
 } from '@/types/queryKeys.type'
 
 /**
@@ -19,9 +24,11 @@ type PredicateFn<TEntity> = TEntity extends any[]
 /**
  * Type for matching by key-value pair
  */
-type MatchByKeyValue<TEntity> = TEntity extends any[]
-  ? Partial<Record<keyof TEntity[number], any>>
-  : Partial<Record<keyof TEntity, any>>
+type EntityItem<TEntity> = TEntity extends any[] ? TEntity[number] : TEntity
+
+type MatchByKeyValue<TEntity> = Partial<{
+  [K in keyof EntityItem<TEntity>]: MaybeRef<UnwrapRef<EntityItem<TEntity>[K]>>
+}>
 
 /**
  * Options for the "by" parameter - can be a predicate function or key-value object
@@ -52,17 +59,17 @@ export interface OptimisticUpdateOptions<
   value: TEntity extends any[] ? Partial<TEntity[number]> : Partial<TEntity>
 }
 
-/**
- * Union type for query key parameter - either just the key or the full tuple with params
- */
-type QueryKeyOrTuple<TKey extends QueryKeysWithEntity>
+type QueryKeyOrTupleFromConfig<
+  TQueryKeys extends object,
+  TKey extends QueryKeysWithEntityFromConfig<TQueryKeys>,
+>
   = | TKey
-    | readonly [TKey, Partial<QueryKeyParams<TKey>>]
+    | readonly [TKey, Partial<QueryKeyParamsFromConfig<TQueryKeys, TKey>>]
 
 /**
  * OptimisticUpdates utility class for type-safe optimistic updates
  */
-export class OptimisticUpdates {
+export class OptimisticUpdates<TQueryKeys extends object = QueryKeys> {
   constructor(private readonly queryClient: QueryClient) {}
 
   /**
@@ -77,7 +84,7 @@ export class OptimisticUpdates {
 
     // Check if it's an AsyncResult by checking for isOk method
     if (typeof data === 'object' && 'isOk' in data) {
-      const asyncResult = data as AsyncResultType<TEntity, any>
+      const asyncResult = data
 
       if (asyncResult.isOk()) {
         return asyncResult.getValue()
@@ -87,7 +94,7 @@ export class OptimisticUpdates {
     }
 
     // It's already a raw entity
-    return data as TEntity
+    return data
   }
 
   /**
@@ -193,21 +200,24 @@ export class OptimisticUpdates {
    * ```
    */
 
-  get<TKey extends QueryKeysWithEntity>(
+  get<TKey extends QueryKeysWithEntityFromConfig<TQueryKeys>>(
     queryKey: TKey,
     options?: { isExact?: false },
-  ): QueryKeyEntity<TKey>[]
-  get<TKey extends QueryKeysWithEntity>(
+  ): QueryKeyEntityFromConfig<TQueryKeys, TKey>[]
+  get<TKey extends QueryKeysWithEntityFromConfig<TQueryKeys>>(
     queryKey: TKey,
     options: { isExact: true },
-  ): QueryKeyEntity<TKey> | null
-  get<TKey extends QueryKeysWithEntity>(
-    queryKey: readonly [TKey, Partial<QueryKeyParams<TKey>>],
-  ): QueryKeyEntity<TKey> | null
-  get<TKey extends QueryKeysWithEntity>(
-    queryKey: QueryKeyOrTuple<TKey>,
+  ): QueryKeyEntityFromConfig<TQueryKeys, TKey> | null
+  get<TKey extends QueryKeysWithEntityFromConfig<TQueryKeys>>(
+    queryKey: readonly [TKey, Partial<QueryKeyParamsFromConfig<TQueryKeys, TKey>>],
+  ): QueryKeyEntityFromConfig<TQueryKeys, TKey> | null
+  get<TKey extends QueryKeysWithEntityFromConfig<TQueryKeys>>(
+    queryKey: QueryKeyOrTupleFromConfig<TQueryKeys, TKey>,
     options?: { isExact?: boolean },
-  ): QueryKeyEntity<TKey> | QueryKeyEntity<TKey>[] | null {
+  ):
+    | QueryKeyEntityFromConfig<TQueryKeys, TKey>
+    | QueryKeyEntityFromConfig<TQueryKeys, TKey>[]
+    | null {
     // If it's a tuple [key, params], always get specific query
     if (Array.isArray(queryKey)) {
       const data = this.queryClient.getQueryData<any>(queryKey)
@@ -268,14 +278,16 @@ export class OptimisticUpdates {
    */
 
   // Overload: key only - invalidates all matching queries
-  async invalidate<TKey extends QueryKeysWithEntity>(key: TKey): Promise<void>
+  async invalidate<TKey extends QueryKeysWithEntityFromConfig<TQueryKeys>>(
+    key: TKey,
+  ): Promise<void>
   // Overload: full tuple with params - invalidates specific query
-  async invalidate<TKey extends QueryKeysWithEntity>(
-    keyTuple: readonly [TKey, Partial<QueryKeyParams<TKey>>],
+  async invalidate<TKey extends QueryKeysWithEntityFromConfig<TQueryKeys>>(
+    keyTuple: readonly [TKey, Partial<QueryKeyParamsFromConfig<TQueryKeys, TKey>>],
   ): Promise<void>
   // Implementation
-  async invalidate<TKey extends QueryKeysWithEntity>(
-    keyOrTuple: QueryKeyOrTuple<TKey>,
+  async invalidate<TKey extends QueryKeysWithEntityFromConfig<TQueryKeys>>(
+    keyOrTuple: QueryKeyOrTupleFromConfig<TQueryKeys, TKey>,
   ): Promise<void> {
     const isSpecific = Array.isArray(keyOrTuple)
     const key = isSpecific ? (keyOrTuple as any[])[0] : keyOrTuple
@@ -324,18 +336,18 @@ export class OptimisticUpdates {
    */
 
   // Overload: key only - stores as ['userDetail']
-  set<TKey extends QueryKeysWithEntity>(
+  set<TKey extends QueryKeysWithEntityFromConfig<TQueryKeys>>(
     queryKey: TKey,
-    entity: QueryKeyEntity<TKey>,
+    entity: QueryKeyEntityFromConfig<TQueryKeys, TKey>,
   ): void
   // Overload: full tuple with params - stores as ['userDetail', params]
-  set<TKey extends QueryKeysWithEntity>(
-    queryKey: readonly [TKey, Partial<QueryKeyParams<TKey>>],
-    entity: QueryKeyEntity<TKey>,
+  set<TKey extends QueryKeysWithEntityFromConfig<TQueryKeys>>(
+    queryKey: readonly [TKey, Partial<QueryKeyParamsFromConfig<TQueryKeys, TKey>>],
+    entity: QueryKeyEntityFromConfig<TQueryKeys, TKey>,
   ): void
   // Implementation
-  set<TKey extends QueryKeysWithEntity>(
-    queryKey: QueryKeyOrTuple<TKey>,
+  set<TKey extends QueryKeysWithEntityFromConfig<TQueryKeys>>(
+    queryKey: QueryKeyOrTupleFromConfig<TQueryKeys, TKey>,
     entity: any,
   ): void {
     const wrappedData = this.wrapEntityInAsyncResult(entity)
@@ -378,26 +390,26 @@ export class OptimisticUpdates {
 
   // Overload: key only - updates all matching queries
   update<
-    TKey extends QueryKeysWithEntity,
-    TEntity extends QueryKeyEntity<TKey> = QueryKeyEntity<TKey>,
+    TKey extends QueryKeysWithEntityFromConfig<TQueryKeys>,
+    TEntity extends QueryKeyEntityFromConfig<TQueryKeys, TKey> = QueryKeyEntityFromConfig<TQueryKeys, TKey>,
   >(
     key: TKey,
     options: OptimisticUpdateOptions<TEntity>,
   ): void
   // Overload: full tuple with params - updates specific query
   update<
-    TKey extends QueryKeysWithEntity,
-    TEntity extends QueryKeyEntity<TKey> = QueryKeyEntity<TKey>,
+    TKey extends QueryKeysWithEntityFromConfig<TQueryKeys>,
+    TEntity extends QueryKeyEntityFromConfig<TQueryKeys, TKey> = QueryKeyEntityFromConfig<TQueryKeys, TKey>,
   >(
-    keyTuple: readonly [TKey, Partial<QueryKeyParams<TKey>>],
+    keyTuple: readonly [TKey, Partial<QueryKeyParamsFromConfig<TQueryKeys, TKey>>],
     options: OptimisticUpdateOptions<TEntity>,
   ): void
   // Implementation
   update<
-    TKey extends QueryKeysWithEntity,
-    TEntity extends QueryKeyEntity<TKey> = QueryKeyEntity<TKey>,
+    TKey extends QueryKeysWithEntityFromConfig<TQueryKeys>,
+    TEntity extends QueryKeyEntityFromConfig<TQueryKeys, TKey> = QueryKeyEntityFromConfig<TQueryKeys, TKey>,
   >(
-    keyOrTuple: QueryKeyOrTuple<TKey>,
+    keyOrTuple: QueryKeyOrTupleFromConfig<TQueryKeys, TKey>,
     options: OptimisticUpdateOptions<TEntity>,
   ): void {
     const by = options.by ?? undefined

@@ -1,6 +1,8 @@
 import { QueryClient } from '@tanstack/vue-query'
 
-import { createOptimisticUpdates } from './optimisticUpdates'
+import { createApiUtils } from '@/factory/createApiUtils'
+
+import type { OptimisticUpdates } from './optimisticUpdates'
 
 // Define test types
 export interface User {
@@ -21,31 +23,29 @@ export interface Product {
 }
 
 // Extend QueryKeys for testing
-declare module '@/types/queryKeys.type' {
-  interface QueryKeys {
-    productList: {
-      entity: Product[]
-      params: {
-        category: string
-      }
+interface TestQueryKeys {
+  productList: {
+    entity: Product[]
+    params: {
+      category: string
     }
-    userDetail: {
-      entity: User
-      params: {
-        userUuid: string
-      }
+  }
+  userDetail: {
+    entity: User
+    params: {
+      userUuid: string
     }
-    userList: {
-      entity: User[]
-      params: {
-        search: string
-      }
+  }
+  userList: {
+    entity: User[]
+    params: {
+      search: string
     }
   }
 }
 
 export function createTestSetup(): {
-  optimisticUpdates: ReturnType<typeof createOptimisticUpdates>
+  optimisticUpdates: OptimisticUpdates<TestQueryKeys>
   queryClient: QueryClient
 } {
   const queryClient = new QueryClient({
@@ -55,7 +55,13 @@ export function createTestSetup(): {
       },
     },
   })
-  const optimisticUpdates = createOptimisticUpdates(queryClient)
+  const {
+    useOptimisticUpdates,
+  } = createApiUtils<TestQueryKeys>({
+    queryClient,
+  })
+
+  const optimisticUpdates = useOptimisticUpdates()
 
   return {
     optimisticUpdates,
