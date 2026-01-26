@@ -23,7 +23,8 @@
     "docs:gen": "turbo run docs:gen",
     "docs:gen-eslint": "cd ./packages/eslint-config && npx @eslint/config-inspector build --base /vue-core/eslint-inspector --outDir ../../docs/public/eslint-inspector --config ./src/inspector.ts",
     "precommit": "turbo run lint type-check test",
-    "ci": "turbo run build test lint type-check"
+    "ci": "turbo run build test lint type-check",
+    "build-storybook": "storybook build -c ./packages/design-system/.storybook"
   },
   "devDependencies": {
     "@commitlint/cli": "catalog:tooling",

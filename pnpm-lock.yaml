@@ -30,6 +30,14 @@ catalogs:
     typescript:
       specifier: 5.9.3
       version: 5.9.3
+  conflicts_docs_3_2_4:
+    vue-component-meta:
+      specifier: 3.2.4
+      version: 3.2.4
+  conflicts_test_25_0_1:
+    jsdom:
+      specifier: 25.0.1
+      version: 25.0.1
   date:
     '@internationalized/date':
       specifier: 3.10.1
@@ -667,7 +675,7 @@ importers:
         specifier: catalog:style
         version: 4.1.18
       vue-component-meta:
-        specifier: ^3.2.4
+        specifier: catalog:conflicts_docs_3_2_4
         version: 3.2.4(typescript@5.9.3)
       vue-i18n:
         specifier: catalog:peer
@@ -707,7 +715,7 @@ importers:
         specifier: catalog:test
         version: 4.0.17(@vitest/browser@4.0.17(vite@7.3.1(@types/node@24.8.1)(jiti@2.6.1)(lightningcss@1.30.2)(sass@1.97.3)(tsx@4.20.3)(yaml@2.8.2))(vitest@4.0.17))(vitest@4.0.17)
       '@vue/test-utils':
-        specifier: 2.4.6
+        specifier: catalog:test
         version: 2.4.6
       '@wisemen/eslint-config-vue':
         specifier: workspace:*
@@ -719,7 +727,7 @@ importers:
         specifier: catalog:lint
         version: 10.2.0(eslint@9.39.2(jiti@2.6.1))(storybook@10.2.0(@testing-library/dom@10.4.1)(prettier@3.7.4)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(typescript@5.9.3)
       jsdom:
-        specifier: 25.0.1
+        specifier: catalog:conflicts_test_25_0_1
         version: 25.0.1
       motion-v:
         specifier: catalog:peer
@@ -10195,7 +10203,7 @@ snapshots:
       '@vitest/mocker': 4.0.17(vite@7.3.1(@types/node@24.8.1)(jiti@2.6.1)(lightningcss@1.30.2)(sass@1.97.3)(tsx@4.20.3)(yaml@2.8.2))
       playwright: 1.57.0
       tinyrainbow: 3.0.3
-      vitest: 4.0.17(@opentelemetry/api@1.9.0)(@types/node@24.8.1)(@vitest/browser-playwright@4.0.17)(jiti@2.6.1)(jsdom@25.0.1)(lightningcss@1.30.2)(sass@1.97.3)(tsx@4.20.3)(yaml@2.8.2)
+      vitest: 4.0.17(@opentelemetry/api@1.9.0)(@types/node@24.8.1)(@vitest/browser-playwright@4.0.17)(jiti@2.6.1)(jsdom@27.4.0)(lightningcss@1.30.2)(sass@1.97.3)(tsx@4.20.3)(yaml@2.8.2)
     transitivePeerDependencies:
       - bufferutil
       - msw
@@ -10211,7 +10219,7 @@ snapshots:
       pngjs: 7.0.0
       sirv: 3.0.2
       tinyrainbow: 3.0.3
-      vitest: 4.0.17(@opentelemetry/api@1.9.0)(@types/node@24.8.1)(@vitest/browser-playwright@4.0.17)(jiti@2.6.1)(jsdom@25.0.1)(lightningcss@1.30.2)(sass@1.97.3)(tsx@4.20.3)(yaml@2.8.2)
+      vitest: 4.0.17(@opentelemetry/api@1.9.0)(@types/node@24.8.1)(@vitest/browser-playwright@4.0.17)(jiti@2.6.1)(jsdom@27.4.0)(lightningcss@1.30.2)(sass@1.97.3)(tsx@4.20.3)(yaml@2.8.2)
       ws: 8.18.3
     transitivePeerDependencies:
       - bufferutil
@@ -10460,10 +10468,10 @@ snapshots:
 
   '@vue/language-core@2.2.0(typescript@5.9.3)':
     dependencies:
-      '@volar/language-core': 2.4.23
-      '@vue/compiler-dom': 3.5.22
+      '@volar/language-core': 2.4.27
+      '@vue/compiler-dom': 3.5.27
       '@vue/compiler-vue2': 2.7.16
-      '@vue/shared': 3.5.22
+      '@vue/shared': 3.5.27
       alien-signals: 0.4.14
       minimatch: 9.0.5
       muggle-string: 0.4.1
@@ -10487,8 +10495,8 @@ snapshots:
   '@vue/language-core@3.2.2':
     dependencies:
       '@volar/language-core': 2.4.27
-      '@vue/compiler-dom': 3.5.22
-      '@vue/shared': 3.5.22
+      '@vue/compiler-dom': 3.5.27
+      '@vue/shared': 3.5.27
       alien-signals: 3.0.3
       muggle-string: 0.4.1
       path-browserify: 1.0.1
@@ -14695,7 +14703,7 @@ snapshots:
     dependencies:
       '@babel/parser': 7.28.5
       '@babel/types': 7.28.5
-      '@vue/compiler-dom': 3.5.22
+      '@vue/compiler-dom': 3.5.27
       '@vue/compiler-sfc': 3.5.22
       ast-types: 0.16.1
       esm-resolve: 1.0.11
