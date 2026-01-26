@@ -106,7 +106,7 @@ export const Default: Story = {
   args: {
     class: 'w-72',
     label: 'Label',
-    modelValue: null,
+    modelValue: '',
     placeholder: 'Enter text...',
   },
   play: async ({
@@ -155,7 +155,7 @@ export const Required: Story = {
     class: 'w-72',
     label: 'Full Name',
     modelValue: null,
-    placeholder: 'John Doe',
+    placeholder: 'Enter your full name',
   },
   play: async ({
     canvasElement,
