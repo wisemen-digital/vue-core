@@ -17,7 +17,7 @@ if (typeof __VUE_PROD_DEVTOOLS__ === 'undefined') {
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  base: '/vue-core/',
+  base: '/vue-core/docs/',
   title: 'Vue Core',
   rewrites: {
     home: 'index',
