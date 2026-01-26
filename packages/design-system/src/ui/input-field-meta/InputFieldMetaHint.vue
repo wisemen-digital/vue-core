@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { UIText } from '@/packages/text/index'
+import { UIText } from '@/ui/text/index'
 
 const props = defineProps<{
   for: string | null

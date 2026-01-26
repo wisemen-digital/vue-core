@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { UIRowLayout } from '@/packages/row-layout/index'
-import { UIText } from '@/packages/text/index'
+import { UIRowLayout } from '@/ui/row-layout/index'
+import { UIText } from '@/ui/text/index'
 
 const props = defineProps<{
   isRequired: boolean

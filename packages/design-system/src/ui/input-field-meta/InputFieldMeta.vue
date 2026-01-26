@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { InputFieldMetaProps } from '@/packages/input-field-meta/inputFieldMeta.props'
+import type { InputFieldMetaProps } from '@/ui/input-field-meta/inputFieldMeta.props'
 import InputFieldMetaErrorMessage from '@/packages/input-field-meta/InputFieldMetaErrorMessage.vue'
 import InputFieldMetaHint from '@/packages/input-field-meta/InputFieldMetaHint.vue'
 import InputFieldMetaLabel from '@/packages/input-field-meta/InputFieldMetaLabel.vue'

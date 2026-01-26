@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { InputFieldProps } from '@/packages/input-field/inputField.props'
+import type { InputFieldProps } from '@/ui/input-field/inputField.props'
 import InputFieldIcon from '@/packages/input-field/InputFieldIcon.vue'
 import InputFieldLoader from '@/packages/input-field/InputFieldLoader.vue'
-import { UIRowLayout } from '@/packages/row-layout/index'
+import { UIRowLayout } from '@/ui/row-layout/index'
 import { INPUT_FIELD_DEFAULTS } from '@/types/input.type'
 
 // Wrapper component for TextField, NumberField, DateField, Select, etc

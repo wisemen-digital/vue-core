@@ -3,7 +3,7 @@ import { RouterLink } from 'vue-router'
 
 import Interactable from '@/packages/interactable/Interactable.vue'
 import RowLayout from '@/packages/row-layout/RowLayout.vue'
-import type { DashboardSidebarNavLink } from '@/packages/sidebar/types/sidebar.type'
+import type { DashboardSidebarNavLink } from '@/ui/sidebar/types/sidebar.type'
 import Text from '@/packages/text/Text.vue'
 
 interface Props extends DashboardSidebarNavLink {}
