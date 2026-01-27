@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { InputFieldProps } from '@/ui/input-field/inputField.props'
-import InputFieldIcon from '@/packages/input-field/InputFieldIcon.vue'
-import InputFieldLoader from '@/packages/input-field/InputFieldLoader.vue'
-import { UIRowLayout } from '@/ui/row-layout/index'
 import { INPUT_FIELD_DEFAULTS } from '@/types/input.type'
+import type { InputFieldProps } from '@/ui/input-field/inputField.props'
+import InputFieldIcon from '@/ui/input-field/InputFieldIcon.vue'
+import InputFieldLoader from '@/ui/input-field/InputFieldLoader.vue'
+import { UIRowLayout } from '@/ui/row-layout/index'
 
 // Wrapper component for TextField, NumberField, DateField, Select, etc
 
@@ -27,7 +27,7 @@ const props = withDefaults(defineProps<InputFieldProps>(), {
     gap="none"
     class="
       group/input-field relative rounded-md border border-primary bg-primary
-      shadow-sm outline outline-transparent duration-100
+      outline outline-transparent duration-100
       data-disabled:cursor-not-allowed data-disabled:border-disabled-subtle
       data-disabled:bg-disabled-subtle data-disabled:text-disabled
       data-error:border-error

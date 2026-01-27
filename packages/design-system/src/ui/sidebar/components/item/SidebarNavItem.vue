@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
 
-import Interactable from '@/packages/interactable/Interactable.vue'
-import RowLayout from '@/packages/row-layout/RowLayout.vue'
+import Interactable from '@/ui/interactable/Interactable.vue'
+import RowLayout from '@/ui/row-layout/RowLayout.vue'
 import type { DashboardSidebarNavLink } from '@/ui/sidebar/types/sidebar.type'
-import Text from '@/packages/text/Text.vue'
+import Text from '@/ui/text/Text.vue'
 
 interface Props extends DashboardSidebarNavLink {}
 

@@ -6,14 +6,14 @@ import {
 } from 'vue'
 
 import { useInput } from '@/composables/input.composable'
-import InputField from '@/packages/input-field/InputField.vue'
-import InputFieldMeta from '@/packages/input-field-meta/InputFieldMeta.vue'
 import {
   AUTOCOMPLETE_INPUT_DEFAULTS,
   INPUT_DEFAULTS,
   INPUT_FIELD_DEFAULTS,
   INPUT_META_DEFAULTS,
 } from '@/types/input.type'
+import InputField from '@/ui/input-field/InputField.vue'
+import InputFieldMeta from '@/ui/input-field-meta/InputFieldMeta.vue'
 import type { TextFieldProps } from '@/ui/text-field/textField.props'
 
 defineOptions({

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import ColumnLayout from '@/packages/column-layout/ColumnLayout.vue'
-import Text from '@/packages/text/Text.vue'
+import ColumnLayout from '@/ui/column-layout/ColumnLayout.vue'
+import Text from '@/ui/text/Text.vue'
 
 const props = defineProps<{
   label: string | null

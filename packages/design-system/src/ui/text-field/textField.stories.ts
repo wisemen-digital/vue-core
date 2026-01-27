@@ -14,7 +14,7 @@ import {
 } from 'storybook/test'
 import { ref } from 'vue'
 
-import TextField from '@/packages/text-field/TextField.vue'
+import TextField from './TextField.vue'
 
 const meta = {
   title: 'Components/TextField',

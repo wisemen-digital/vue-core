@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ColumnLayout from '@/packages/column-layout/ColumnLayout.vue'
+import ColumnLayout from '@/ui/column-layout/ColumnLayout.vue'
 </script>
 
 <template>
