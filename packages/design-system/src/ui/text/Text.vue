@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import {
+  computed,
   ref,
   useAttrs,
 } from 'vue'
+
+import type { TextStyle } from '@/ui/text/text.style'
+import { createTextStyle } from '@/ui/text/text.style'
 
 const props = withDefaults(defineProps<{
   /**
@@ -34,6 +38,10 @@ const props = withDefaults(defineProps<{
 
 const attrs = useAttrs()
 
+const textStyle = computed<TextStyle>(() => createTextStyle({
+  truncate: props.truncate,
+}))
+
 const textRef = ref<HTMLElement | null>(null)
 </script>
 
@@ -44,16 +52,8 @@ const textRef = ref<HTMLElement | null>(null)
     :is="props.as"
     ref="textRef"
     :class="[
-      props.class, {
-        'truncate': props.truncate === true,
-        'line-clamp-2': props.truncate === 2,
-        'line-clamp-3': props.truncate === 3,
-        'line-clamp-4': props.truncate === 4,
-        'line-clamp-5': props.truncate === 5,
-        'line-clamp-6': props.truncate === 6,
-      },
+      props.class, textStyle.text(),
     ]"
-    class="max-w-full"
   >
     {{ props.text }}
   </Component>
