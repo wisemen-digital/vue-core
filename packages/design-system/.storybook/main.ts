@@ -43,6 +43,7 @@ const config: StorybookConfig = {
 
     if (idx !== -1) {
       const plugin = plugins[idx]
+
       plugins.splice(idx, 1)
 
       plugins.push(plugin)

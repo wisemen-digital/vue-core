@@ -1,4 +1,5 @@
 {
   "component.number_field.decrement": "Aftrekken",
-  "component.number_field.increment": "Optellen"
+  "component.number_field.increment": "Optellen",
+  "component.keyboard_shortcut.sequence_label": "dan"
 }

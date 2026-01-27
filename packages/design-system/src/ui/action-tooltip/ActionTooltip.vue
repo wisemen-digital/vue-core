@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import KeyboardShortcut from '@/ui/keyboard-shortcut/KeyboardShortcut.vue'
 import RowLayout from '@/ui/row-layout/RowLayout.vue'
 import type { TooltipProps } from '@/ui/tooltip/tooltip.props'
 import Tooltip from '@/ui/tooltip/Tooltip.vue'
@@ -42,7 +43,7 @@ const props = withDefaults(defineProps<Props>(), {
             :text="props.label"
           />
 
-          <keyboardShortcut
+          <KeyboardShortcut
             v-if="props.keyboardShortcut !== null"
             :keyboard-shortcut="props.keyboardShortcut"
           />

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import { useKbd } from '@/composables/kbd.composable'
 import { UIRowLayout } from '@/ui/row-layout/index'
@@ -28,6 +29,7 @@ const props = defineProps<{
 const COMBINATION_SEPARATOR = '_' // meta_k
 const SEQUENCE_SEPARATOR = '-' // g-d
 
+const i18n = useI18n()
 const kbd = useKbd()
 
 const shortcutParts = computed<ShortcutPart[]>(() => {
@@ -91,7 +93,7 @@ const shortcutParts = computed<ShortcutPart[]>(() => {
         v-else-if="part.type === 'sequence'"
         class="text-xxs text-tertiary"
       >
-        then
+        {{ i18n.t('component.keyboard_shortcut.sequence_label') }}
       </span>
     </template>
   </UIRowLayout>

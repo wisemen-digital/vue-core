@@ -64,7 +64,7 @@ function onClick(event: MouseEvent): void {
         'size-5.5 rounded-xs': props.size === 'xs',
         'dark:p-px': props.variant === 'primary',
         // Variant
-        'data-interactive:dark:glassy border-brand-600 bg-brand-solid focus-visible:outline-fg-brand-primary disabled:border-disabled-subtle disabled:bg-disabled data-interactive:hover:brightness-95 data-interactive:dark:border-none': props.variant === 'primary',
+        'border-brand-600 bg-brand-solid focus-visible:outline-fg-brand-primary disabled:border-disabled-subtle disabled:bg-disabled data-interactive:hover:brightness-95 data-interactive:dark:border-none data-interactive:dark:glassy': props.variant === 'primary',
         'border-secondary bg-primary focus-visible:outline-fg-brand-primary disabled:border-disabled-subtle disabled:bg-disabled data-interactive:hover:bg-primary-hover': props.variant === 'secondary',
         'border-transparent focus-visible:outline-fg-brand-primary data-interactive:hover:bg-primary-hover': props.variant === 'tertiary',
         'border-error-600 bg-error-solid focus-visible:outline-fg-error-primary disabled:border-disabled-subtle disabled:bg-disabled data-interactive:hover:brightness-95': props.variant === 'destructive-primary',

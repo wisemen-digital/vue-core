@@ -1,14 +1,14 @@
 <script setup lang="ts">
+import LinkIcon from 'node_modules/@repo/icons/src/LinkIcon.vue'
 import {
   computed,
   useAttrs,
 } from 'vue'
 import { RouterLink } from 'vue-router'
 
-import ActionTooltip from '#packages/action-tooltip/ActionTooltip.vue'
-import type { LinkProps } from '#packages/button/link/link.props.ts'
-import LinkIcon from '#packages/button/link/LinkIcon.vue'
-import { UIRowLayout } from '#packages/row-layout/index.ts'
+import ActionTooltip from '@/ui/action-tooltip/ActionTooltip.vue'
+import type { LinkProps } from '@/ui/button/link/link.props'
+import { UIRowLayout } from '@/ui/row-layout/index'
 
 defineOptions({
   inheritAttrs: false,
@@ -98,16 +98,12 @@ const linkAttributes = computed<Record<string, unknown>>(() => {
           'dark:rounded-[0.15rem] dark:px-xs': props.size === 'xs' && props.variant === 'primary',
           'dark:glassy-inner-content': props.variant === 'primary',
         }"
-        class="
-          grid size-full
-          [grid-template-areas:'stack']
-        "
+        class="grid size-full [grid-template-areas:'stack']"
       >
         <UIRowLayout
           gap="sm"
           class="
-            duration-100
-            [grid-area:stack]
+            duration-100 [grid-area:stack]
             group-active/link:scale-98
           "
         >

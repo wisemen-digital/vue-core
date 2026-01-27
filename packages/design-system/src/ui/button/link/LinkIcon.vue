@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Component } from 'vue'
 
-import type { ButtonProps } from '#packages/button/button/button.props.ts'
+import type { ButtonProps } from '@/ui/button/button/button.props'
 
 const props = defineProps<{
   icon: Component
