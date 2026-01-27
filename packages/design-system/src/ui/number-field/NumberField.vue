@@ -237,6 +237,7 @@ watch(copiedModelValue, () => {
 
         <RekaNumberFieldInput
           :aria-describedby="ariaDescribedBy"
+          :aria-required="props.isRequired"
           :autocomplete="props.autocomplete ?? undefined"
           :aria-busy="ariaBusy"
           :aria-invalid="ariaInvalid"
