@@ -152,7 +152,8 @@ catalogs:
     "@storybook/vue3": 10.2.0
     "@storybook/vue3-vite": 10.2.0
     "storybook": 10.2.0
+    "vue-component-meta": 3.2.4
   conflicts_test_25_0_1:
     jsdom: 25.0.1
-  conflicts_docs_3_2_4:
-    vue-component-meta: 3.2.4
+  
+  
