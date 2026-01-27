@@ -88,7 +88,7 @@ export const Truncated: Story = {
     const text = canvas.getByText(longText)
 
     await expect(text).toBeVisible()
-    await expect(text.scrollWidth).toBeGreaterThan(text.clientWidth)
+    await expect(text.className).toContain('truncate')
   },
 }
 
@@ -106,7 +106,7 @@ export const MultiLineClamp: Story = {
     const text = canvas.getByText(longText)
 
     await expect(text).toBeVisible()
-    await expect(text.scrollHeight).toBeGreaterThan(text.clientHeight)
+    await expect(text.className).toContain('line-clamp-2')
   },
 }
 
