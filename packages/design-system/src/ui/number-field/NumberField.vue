@@ -26,8 +26,8 @@ import {
   INPUT_META_DEFAULTS,
 } from '@/types/input.type'
 import IconButton from '@/ui/button/icon/IconButton.vue'
-import InputField from '@/ui/input-field/InputField.vue'
 import InputFieldMeta from '@/ui/input-field-meta/InputFieldMeta.vue'
+import InputFieldWrapper from '@/ui/input-field-wrapper/InputFieldWrapper.vue'
 import type { NumberFieldProps } from '@/ui/number-field/numberField.props'
 import type { NumberFieldStyle } from '@/ui/number-field/numberField.style'
 import { createNumberFieldStyle } from '@/ui/number-field/numberField.style'
@@ -187,7 +187,7 @@ watch(copiedModelValue, () => {
       :max="props.max ?? undefined"
       :min="props.min ?? undefined"
     >
-      <InputField
+      <InputFieldWrapper
         :icon-left="props.iconLeft"
         :icon-right="props.iconRight"
         :is-loading="props.isLoading"
@@ -243,13 +243,13 @@ watch(copiedModelValue, () => {
           :aria-invalid="ariaInvalid"
           :placeholder="props.placeholder ?? undefined"
           :class="numberFieldStyle.input()"
-          data-input-field
+          data-input-field-wrapper
           @input="onInput"
           @keydown.enter="onEnterKeyDown"
           @focus.prevent
           @blur="onBlur"
         />
-      </InputField>
+      </InputFieldWrapper>
     </RekaNumberFieldRoot>
   </InputFieldMeta>
 </template>

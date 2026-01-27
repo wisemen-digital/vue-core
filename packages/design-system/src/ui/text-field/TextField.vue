@@ -12,8 +12,8 @@ import {
   INPUT_FIELD_DEFAULTS,
   INPUT_META_DEFAULTS,
 } from '@/types/input.type'
-import InputField from '@/ui/input-field/InputField.vue'
 import InputFieldMeta from '@/ui/input-field-meta/InputFieldMeta.vue'
+import InputFieldWrapper from '@/ui/input-field-wrapper/InputFieldWrapper.vue'
 import type { TextFieldProps } from '@/ui/text-field/textField.props'
 
 defineOptions({
@@ -72,7 +72,7 @@ defineExpose({
       <slot name="label-right" />
     </template>
 
-    <InputField
+    <InputFieldWrapper
       :icon-left="props.iconLeft"
       :icon-right="props.iconRight"
       :is-loading="props.isLoading"
@@ -115,9 +115,9 @@ defineExpose({
           disabled:cursor-not-allowed disabled:text-disabled
           disabled:placeholder:text-fg-disabled-subtle
         "
-        data-input-field
+        data-input-field-wrapper
         @input="(event) => modelValue = (event.target as HTMLInputElement).value"
       >
-    </InputField>
+    </InputFieldWrapper>
   </InputFieldMeta>
 </template>
