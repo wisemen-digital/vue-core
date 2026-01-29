@@ -100,6 +100,18 @@ export class OptimisticUpdates<TQueryKeys extends object = QueryKeys> {
     return data
   }
 
+  private isInfiniteDataLike(data: unknown): data is {
+    pageParams?: unknown[]
+    pages: unknown[]
+  } {
+    return Boolean(
+      data
+      && typeof data === 'object'
+      && 'pages' in (data as any)
+      && Array.isArray((data as any).pages),
+    )
+  }
+
   /**
    * Determine if an item should be updated
    */
@@ -449,10 +461,38 @@ export class OptimisticUpdates<TQueryKeys extends object = QueryKeys> {
 
     // Update each matching query
     for (const query of queries) {
-      const currentData = query.state.data as AsyncResultType<TEntity, any> | TEntity | null
+      const currentData = query.state.data as any
+
+      // Support infinite queries: cached data is typically { pages, pageParams }
+      if (this.isInfiniteDataLike(currentData)) {
+        const updatedInfiniteData = {
+          ...currentData,
+          pages: (currentData.pages as any[]).map((page) => {
+            // neverthrow Result has .map + .isOk
+            if (page && typeof page === 'object' && 'map' in page && typeof page.map === 'function') {
+              return page.map((pageValue: any) => {
+                if (pageValue && typeof pageValue === 'object' && Array.isArray(pageValue.data)) {
+                  return {
+                    ...pageValue,
+                    data: this.updateEntity(by, pageValue.data, value),
+                  }
+                }
+
+                return pageValue
+              })
+            }
+
+            return page
+          }),
+        }
+
+        this.queryClient.setQueryData(query.queryKey, updatedInfiniteData)
+
+        continue
+      }
 
       // Extract raw entity from AsyncResult or use directly if raw
-      const rawEntity = this.extractEntityFromAsyncResult(currentData)
+      const rawEntity = this.extractEntityFromAsyncResult(currentData as AsyncResultType<TEntity, any> | TEntity | null)
 
       if (rawEntity === null) {
         continue
