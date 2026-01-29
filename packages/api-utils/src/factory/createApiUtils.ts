@@ -1,11 +1,15 @@
 /* eslint-disable eslint-plugin-wisemen/explicit-function-return-type-with-regex */
 import { createApiInfiniteQueryUtils } from './createApiInfiniteQueryUtils'
 import { createApiOptimisticUpdatesUtils } from './createApiOptimisticUpdatesUtils'
+import { createApiPrefetchInfiniteQueryUtils } from './createApiPrefetchInfiniteQueryUtils'
+import { createApiPrefetchQueryUtils } from './createApiPrefetchQueryUtils'
 import { createApiQueryUtils } from './createApiQueryUtils'
 import type { CreateApiUtilsOptions } from './createApiUtils.types'
 
 export { createApiInfiniteQueryUtils } from './createApiInfiniteQueryUtils'
 export { createApiOptimisticUpdatesUtils } from './createApiOptimisticUpdatesUtils'
+export { createApiPrefetchInfiniteQueryUtils } from './createApiPrefetchInfiniteQueryUtils'
+export { createApiPrefetchQueryUtils } from './createApiPrefetchQueryUtils'
 export { createApiQueryUtils } from './createApiQueryUtils'
 export type { CreateApiUtilsOptions } from './createApiUtils.types'
 
@@ -16,6 +20,8 @@ export type { CreateApiUtilsOptions } from './createApiUtils.types'
 export function createApiUtils<TQueryKeys extends object>(options: CreateApiUtilsOptions) {
   return {
     ...createApiQueryUtils<TQueryKeys>(),
+    ...createApiPrefetchQueryUtils<TQueryKeys>(options),
+    ...createApiPrefetchInfiniteQueryUtils<TQueryKeys>(options),
     ...createApiInfiniteQueryUtils<TQueryKeys>(),
     ...createApiOptimisticUpdatesUtils<TQueryKeys>(options),
   }

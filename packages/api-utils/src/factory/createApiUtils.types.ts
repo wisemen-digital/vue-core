@@ -47,6 +47,18 @@ export type ApiUseQueryOptions<
     : { params: QueryKeyParamsFromConfig<TQueryKeys, TKey> }
 )
 
+export type ApiUsePrefetchQueryOptions<
+  TQueryKeys extends object,
+  TKey extends QueryKeysWithEntityFromConfig<TQueryKeys>,
+> = {
+  staleTime?: number
+  queryFn: () => Promise<ApiResult<QueryKeyEntityFromConfig<TQueryKeys, TKey>>>
+} & (
+  QueryKeyParamsFromConfig<TQueryKeys, TKey> extends Record<string, never>
+    ? { params?: QueryKeyParamsFromConfig<TQueryKeys, TKey> }
+    : { params: QueryKeyParamsFromConfig<TQueryKeys, TKey> }
+)
+
 export type ApiUseOffsetInfiniteQueryOptions<
   TQueryKeys extends object,
   TKey extends QueryKeysWithArrayEntityFromConfig<TQueryKeys>,
@@ -62,12 +74,40 @@ export type ApiUseOffsetInfiniteQueryOptions<
     : { params: QueryKeyParamsFromConfig<TQueryKeys, TKey> }
 )
 
+export type ApiUseOffsetInfinitePrefetchQueryOptions<
+  TQueryKeys extends object,
+  TKey extends QueryKeysWithArrayEntityFromConfig<TQueryKeys>,
+> = {
+  staleTime?: number
+  limit?: number
+  queryFn: (paginationParams: OffsetPaginationParams)
+  => Promise<OffsetPaginationResult<QueryKeyArrayItemFromConfig<TQueryKeys, TKey>>>
+} & (
+  QueryKeyParamsFromConfig<TQueryKeys, TKey> extends Record<string, never>
+    ? { params?: QueryKeyParamsFromConfig<TQueryKeys, TKey> }
+    : { params: QueryKeyParamsFromConfig<TQueryKeys, TKey> }
+)
+
 export type ApiUseKeysetInfiniteQueryOptions<
   TQueryKeys extends object,
   TKey extends QueryKeysWithArrayEntityFromConfig<TQueryKeys>,
 > = {
   staleTime?: number
   isEnabled?: MaybeRef<boolean>
+  limit?: number
+  queryFn: (paginationParams: KeysetPaginationParams)
+  => Promise<KeysetPaginationResult<QueryKeyArrayItemFromConfig<TQueryKeys, TKey>>>
+} & (
+  QueryKeyParamsFromConfig<TQueryKeys, TKey> extends Record<string, never>
+    ? { params?: QueryKeyParamsFromConfig<TQueryKeys, TKey> }
+    : { params: QueryKeyParamsFromConfig<TQueryKeys, TKey> }
+)
+
+export type ApiUseKeysetInfinitePrefetchQueryOptions<
+  TQueryKeys extends object,
+  TKey extends QueryKeysWithArrayEntityFromConfig<TQueryKeys>,
+> = {
+  staleTime?: number
   limit?: number
   queryFn: (paginationParams: KeysetPaginationParams)
   => Promise<KeysetPaginationResult<QueryKeyArrayItemFromConfig<TQueryKeys, TKey>>>
