@@ -1,11 +1,9 @@
 /* eslint-disable eslint-plugin-wisemen/explicit-function-return-type-with-regex */
 import { OptimisticUpdates } from '@/utils/optimisticUpdates'
 
-import type { CreateApiUtilsOptions } from './createApiUtils.types'
-
-export function createApiOptimisticUpdatesUtils<TQueryKeys extends object>(options: CreateApiUtilsOptions) {
+export function createApiOptimisticUpdatesUtils<TQueryKeys extends object>() {
   function useOptimisticUpdates(): OptimisticUpdates<TQueryKeys> {
-    return new OptimisticUpdates<TQueryKeys>(options.queryClient)
+    return new OptimisticUpdates<TQueryKeys>()
   }
 
   return {

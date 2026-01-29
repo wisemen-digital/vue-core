@@ -1,4 +1,4 @@
-import type { QueryClient } from '@tanstack/vue-query'
+import { useQueryClient } from '@tanstack/vue-query'
 import type {
   MaybeRef,
   UnwrapRef,
@@ -73,7 +73,7 @@ type QueryKeyOrTupleFromConfig<
  * OptimisticUpdates utility class for type-safe optimistic updates
  */
 export class OptimisticUpdates<TQueryKeys extends object = QueryKeys> {
-  constructor(private readonly queryClient: QueryClient) {}
+  constructor() {}
 
   /**
    * Extract the raw entity from AsyncResult data
@@ -233,9 +233,11 @@ export class OptimisticUpdates<TQueryKeys extends object = QueryKeys> {
     | QueryKeyEntityFromConfig<TQueryKeys, TKey>
     | QueryKeyEntityFromConfig<TQueryKeys, TKey>[]
     | null {
+    const queryClient = useQueryClient()
+
     // If it's a tuple [key, params], always get specific query
     if (Array.isArray(queryKey)) {
-      const data = this.queryClient.getQueryData<any>(queryKey)
+      const data = queryClient.getQueryData<any>(queryKey)
 
       return this.extractEntityFromAsyncResult(data)
     }
@@ -248,13 +250,13 @@ export class OptimisticUpdates<TQueryKeys extends object = QueryKeys> {
       const normalizedKey = [
         queryKey,
       ]
-      const data = this.queryClient.getQueryData<any>(normalizedKey)
+      const data = queryClient.getQueryData<any>(normalizedKey)
 
       return this.extractEntityFromAsyncResult(data)
     }
 
     // Get all queries with this key as first element
-    const allQueries = this.queryClient.getQueryCache().findAll({
+    const allQueries = queryClient.getQueryCache().findAll({
       predicate: (query) => {
         const qKey = query.queryKey as any[]
 
@@ -304,11 +306,12 @@ export class OptimisticUpdates<TQueryKeys extends object = QueryKeys> {
   async invalidate<TKey extends QueryKeysWithEntityFromConfig<TQueryKeys>>(
     keyOrTuple: QueryKeyOrTupleFromConfig<TQueryKeys, TKey>,
   ): Promise<void> {
+    const queryClient = useQueryClient()
     const isSpecific = Array.isArray(keyOrTuple)
     const key = isSpecific ? (keyOrTuple as any[])[0] : keyOrTuple
     const params = isSpecific ? (keyOrTuple as any[])[1] : null
 
-    await this.queryClient.invalidateQueries({
+    await queryClient.invalidateQueries({
       predicate: (query) => {
         const queryKey = query.queryKey as any[]
 
@@ -365,6 +368,7 @@ export class OptimisticUpdates<TQueryKeys extends object = QueryKeys> {
     queryKey: QueryKeyOrTupleFromConfig<TQueryKeys, TKey>,
     entity: any,
   ): void {
+    const queryClient = useQueryClient()
     const wrappedData = this.wrapEntityInAsyncResult(entity)
 
     // Convert single key to array format if needed
@@ -374,7 +378,7 @@ export class OptimisticUpdates<TQueryKeys extends object = QueryKeys> {
           queryKey,
         ]
 
-    this.queryClient.setQueryData(normalizedKey as any, wrappedData)
+    queryClient.setQueryData(normalizedKey as any, wrappedData)
   }
 
   /**
@@ -427,6 +431,7 @@ export class OptimisticUpdates<TQueryKeys extends object = QueryKeys> {
     keyOrTuple: QueryKeyOrTupleFromConfig<TQueryKeys, TKey>,
     options: OptimisticUpdateOptions<TEntity>,
   ): void {
+    const queryClient = useQueryClient()
     const by = options.by ?? undefined
     const value = options.value
 
@@ -436,7 +441,7 @@ export class OptimisticUpdates<TQueryKeys extends object = QueryKeys> {
     const params = isSpecific ? (keyOrTuple as any[])[1] : null
 
     // Get matching queries
-    const queries = this.queryClient.getQueryCache().findAll({
+    const queries = queryClient.getQueryCache().findAll({
       predicate: (query) => {
         const queryKey = query.queryKey as any[]
 
@@ -486,7 +491,7 @@ export class OptimisticUpdates<TQueryKeys extends object = QueryKeys> {
           }),
         }
 
-        this.queryClient.setQueryData(query.queryKey, updatedInfiniteData)
+        queryClient.setQueryData(query.queryKey, updatedInfiniteData)
 
         continue
       }
@@ -504,7 +509,7 @@ export class OptimisticUpdates<TQueryKeys extends object = QueryKeys> {
       // Wrap back in AsyncResult
       const wrappedData = this.wrapEntityInAsyncResult(updatedEntity)
 
-      this.queryClient.setQueryData(query.queryKey, wrappedData)
+      queryClient.setQueryData(query.queryKey, wrappedData)
     }
   }
 }
@@ -512,6 +517,6 @@ export class OptimisticUpdates<TQueryKeys extends object = QueryKeys> {
 /**
  * Create an OptimisticUpdates instance
  */
-export function createOptimisticUpdates(queryClient: QueryClient): OptimisticUpdates {
-  return new OptimisticUpdates(queryClient)
+export function createOptimisticUpdates(): OptimisticUpdates {
+  return new OptimisticUpdates()
 }
