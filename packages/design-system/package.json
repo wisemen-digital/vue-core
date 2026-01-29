@@ -48,7 +48,8 @@
     "@repo/icons": "workspace:*",
     "@tailwindcss/vite": "catalog:vite",
     "tailwind-merge": "catalog:style",
-    "tailwindcss": "catalog:style"
+    "tailwindcss": "catalog:style",
+    "vue-component-meta": "catalog:conflicts_docs_3_2_4"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "catalog:storybook",
@@ -62,11 +63,11 @@
     "@vitejs/plugin-vue": "catalog:vite",
     "@vitest/browser-playwright": "catalog:test",
     "@vitest/coverage-v8": "catalog:test",
+    "@vue/test-utils": "catalog:test",
     "@wisemen/eslint-config-vue": "workspace:*",
     "eslint": "catalog:lint",
     "eslint-plugin-storybook": "catalog:lint",
-    "@vue/test-utils": "2.4.6",
-    "jsdom": "25.0.1",
+    "jsdom": "catalog:conflicts_test_25_0_1",
     "motion-v": "catalog:peer",
     "playwright": "catalog:test",
     "reka-ui": "catalog:peer",
