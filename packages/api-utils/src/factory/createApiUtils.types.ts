@@ -1,3 +1,4 @@
+import type { QueryClient } from '@tanstack/vue-query'
 import type { MaybeRef } from 'vue'
 
 import type { ApiResult } from '@/types/apiError.type'
@@ -12,6 +13,10 @@ import type {
   QueryKeyParamsFromConfig,
   QueryKeysWithEntityFromConfig,
 } from '@/types/queryKeys.type'
+
+export interface CreateApiUtilsOptions {
+  queryClient: QueryClient
+}
 
 export type QueryKeysWithArrayEntityFromConfig<TQueryKeys extends object> = (
   {
