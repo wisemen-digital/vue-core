@@ -3,5 +3,5 @@ import { Toaster } from 'vue-sonner'
 </script>
 
 <template>
-  <Toaster class="!right-20" />
+  <Toaster class="right-20!" />
 </template>

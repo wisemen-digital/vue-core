@@ -41,7 +41,7 @@ import {
         </div>
       </div>
 
-      <VcPopoverCloseButton class="!absolute top-2 right-2" />
+      <VcPopoverCloseButton class="absolute! top-2 right-2" />
     </template>
   </VcPopover>
 </template>

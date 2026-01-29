@@ -25,6 +25,7 @@
   "scripts": {
     "prerelease": "pnpm version prerelease --preid=alpha",
     "build": "vite build",
+    "dev": "vite build --watch",
     "precommit": "pnpm type-check && test:unit && pnpm build-only",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit",
@@ -36,8 +37,7 @@
     "lint:fix": "eslint . --fix",
     "story:dev": "histoire dev",
     "story:build": "histoire build",
-    "story:preview": "histoire preview",
-    "prepare": "husky"
+    "story:preview": "histoire preview"
   },
   "peerDependencies": {
     "@wisemen/vue-core-components": "workspace:*",
@@ -52,7 +52,8 @@
     "@vue/test-utils": "catalog:test",
     "@vue/tsconfig": "catalog:vue",
     "@vueuse/core": "catalog:vue",
-    "@wisemen/eslint-config-vue": "catalog:lint",
+    "@wisemen/eslint-config-vue": "workspace:*",
+    "@wisemen/vue-core-components": "workspace:*",
     "eslint": "catalog:lint",
     "highlight-words": "catalog:general",
     "histoire": "catalog:stories",

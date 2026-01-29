@@ -26,7 +26,7 @@ const value = ref<boolean>(true)
         dark:group-data-[state=checked]/checkbox:bg-brand-950/50
       "
     >
-      <div class="flex h-[1lh] items-center">
+      <div class="flex h-lh items-center">
         <VcCheckboxControl class="shrink-0" />
       </div>
 

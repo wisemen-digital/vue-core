@@ -4,72 +4,77 @@ packages:
 
 catalogs:
   vue:
-    "vue": "3.5.22"
-    "motion-v": "1.7.3"
-    "vue-i18n": "11.1.12"
-    "@vueuse/core": "13.9.0"
-    "@vueuse/router": "13.9.0"
-    "reka-ui": "2.5.1"
-    "vue-tsc": "3.1.1"
-    "vue-router": "4.6.3"
+    "vue": "3.5.27"
+    "motion-v": "1.9.0"
+    "vue-i18n": "11.2.8"
+    "@vueuse/core": "14.1.0"
+    "@vueuse/router": "14.1.0"
+    "reka-ui": "2.7.0"
+    "vue-tsc": "3.2.2"
+    "vue-router": "4.6.4"
     "@vue/tsconfig": "0.8.1"
-    "@tanstack/vue-query": "5.90.5"
+    "@tanstack/vue-query": "5.92.8"
     "vue-sonner": "1.3.0"
     "@vue/devtools-api": "^6.6.4"
   lint:
     "eslint": "9.39.2"
     "@wisemen/eslint-config-vue": "1.7.6"
-    "@antfu/eslint-config": "6.7.3"
+    "@antfu/eslint-config": "7.2.0"
     "@eslint/eslintrc": "3.3.3"
-    "@intlify/eslint-plugin-vue-i18n": "4.1.0"
-    "@typescript-eslint/parser": "8.53.0"
+    "@intlify/eslint-plugin-vue-i18n": "4.1.1"
+    "@typescript-eslint/parser": "8.53.1"
     "@vitest/eslint-plugin": "1.6.6"
     "@wisemen/eslint-plugin-vue": "0.0.1"
-    "eslint-flat-config-utils": "2.1.4"
-    "eslint-plugin-better-tailwindcss": "4.0.0"
+    "eslint-flat-config-utils": "3.0.0"
+    "eslint-plugin-better-tailwindcss": "4.0.1"
     "eslint-plugin-check-file": "3.3.1"
-    "eslint-plugin-format": "1.3.0"
+    "eslint-plugin-format": "1.3.1"
     "eslint-plugin-import-newlines": "1.4.0"
     "eslint-plugin-newline-destructuring": "1.2.2"
     "eslint-plugin-path": "2.0.3"
-    "eslint-plugin-perfectionist": "5.3.1"
-    "eslint-plugin-project-structure": "3.14.1"
+    "eslint-plugin-perfectionist": "5.4.0"
+    "eslint-plugin-project-structure": "3.14.2"
     "eslint-plugin-require-explicit-generics": "1.0.0"
     "eslint-plugin-simple-import-sort": "12.1.1"
     "eslint-plugin-unused-imports": "4.3.0"
     "eslint-plugin-vuejs-accessibility": "2.4.1"
     "eslint-typegen": "2.3.0"
     "globals": "17.0.0"
-    "@typescript-eslint/scope-manager": "8.53.0"
-    "@typescript-eslint/type-utils": "8.53.0"
-    "@typescript-eslint/utils": "8.53.0"
+    "@typescript-eslint/scope-manager": "8.53.1"
+    "@typescript-eslint/type-utils": "8.53.1"
+    "@typescript-eslint/utils": "8.53.1"
+    "eslint-plugin-storybook": 10.2.0
+
   build:
     "tsdown": "0.18.4"
     "husky": "^9.1.7"
     "typescript": "5.9.3"
-    "turbo": "2.5.8"
-    "rimraf": "6.0.1"
-    "bumpp": "10.3.1"
+    "turbo": "2.7.5"
+    "rimraf": "6.1.2"
+    "bumpp": "10.4.0"
     "chalk": "5.6.2"
-    "commander": "14.0.1"
+    "commander": "14.0.2"
   vite:
-    "vite": "7.1.11"
+    "vite": "7.3.1"
     "vite-plugin-dts": "4.5.4"
-    "@vitejs/plugin-vue": "6.0.1"
-    "@tailwindcss/vite": "4.1.14"
+    "@vitejs/plugin-vue": "6.0.3"
+    "@tailwindcss/vite": "4.1.18"
   test:
-    "vitest": "3.2.4"
+    "vitest": "4.0.17"
     "@vue/test-utils": "2.4.6"
-    "jsdom": "27.0.1"
-    "@vitest/coverage-v8": 4.0.16
+    "jsdom": "27.4.0"
+    "@vitest/browser-playwright": "4.0.17"
+    "@vitest/coverage-v8": "4.0.17"
+    playwright: 1.57.0
+
   style:
-    "tailwindcss": "4.1.14"
-    "tailwind-variants": "3.1.1"
-    "tailwind-merge": "3.3.1"
-    "sass": "1.93.2"
+    "tailwindcss": "4.1.18"
+    "tailwind-variants": "3.2.2"
+    "tailwind-merge": "3.4.0"
+    "sass": "1.97.3"
     "postcss": "8.5.6"
     "postcss-prefix-selector": "2.1.1"
-    "@tailwindcss/postcss": "4.1.14"
+    "@tailwindcss/postcss": "4.1.18"
   types:
     "@types/node": "24.8.1"
     "@types/ejs": "3.1.5"
@@ -78,50 +83,52 @@ catalogs:
     "@types/babel__traverse": "7.28.0"
     "@types/markdown-it": "14.1.2"
     "@tsconfig/node18": "18.2.4"
-    "@types/clone-deep":  4.0.4
+    "@types/clone-deep": 4.0.4
   general:
-    "zod": "4.1.12"
+    "zod": "4.3.5"
     "neverthrow": "8.2.0"
     "graphemer": "1.4.0"
-    "ts-api-utils": "2.1.0"
-    "pkce-challenge": "4.1.0"
+    "ts-api-utils": "2.4.0"
+    "pkce-challenge": "5.0.1"
     "@googlemaps/js-api-loader": "1.16.8"
     "blurhash": "2.0.5"
-    "libphonenumber-js": "1.12.24"
+    "libphonenumber-js": "1.12.35"
     "highlight-words": "2.0.0"
     "@standard-schema/spec": "1.1.0"
-    "clone-deep":  4.0.1
+    "clone-deep": 4.0.1
+    "@wisemen/vue-core": 1.0.0-alpha.42
+
   stories:
     "histoire": "1.0.0-alpha.3"
     "@histoire/plugin-vue": "1.0.0-alpha.3"
   docs:
     "vitepress": "1.6.4"
-    "vue-component-meta": "3.1.1"
+    "vue-component-meta": "3.2.2"
     "markdown-it": "14.1.0"
   date:
-    "@internationalized/date": "3.10.0"
+    "@internationalized/date": "3.10.1"
   openapi:
-    "@hey-api/openapi-ts": "0.86.8"
+    "@hey-api/openapi-ts": "0.90.8"
   tooling:
-    "@commitlint/cli": "20.1.0"
-    "@commitlint/config-conventional": "20.0.0"
-    "@changesets/cli": "2.29.7"
+    "@commitlint/cli": "20.3.1"
+    "@commitlint/config-conventional": "20.3.1"
+    "@changesets/cli": "2.29.8"
   telemetry:
-    "@opentelemetry/context-zone": "2.1.0"
-    "@opentelemetry/core": "2.1.0"
-    "@opentelemetry/exporter-trace-otlp-http": "0.206.0"
-    "@opentelemetry/instrumentation": "0.206.0"
-    "@opentelemetry/instrumentation-fetch": "0.206.0"
-    "@opentelemetry/instrumentation-user-interaction": "0.51.0"
-    "@opentelemetry/otlp-exporter-base": "0.206.0"
-    "@opentelemetry/resources": "2.1.0"
-    "@opentelemetry/sdk-trace-base": "2.1.0"
-    "@opentelemetry/sdk-trace-web": "2.1.0"
-    "@sentry/vue": "10.20.0"
+    "@opentelemetry/context-zone": "2.5.0"
+    "@opentelemetry/core": "2.5.0"
+    "@opentelemetry/exporter-trace-otlp-http": "0.211.0"
+    "@opentelemetry/instrumentation": "0.211.0"
+    "@opentelemetry/instrumentation-fetch": "0.211.0"
+    "@opentelemetry/instrumentation-user-interaction": "0.55.0"
+    "@opentelemetry/otlp-exporter-base": "0.211.0"
+    "@opentelemetry/resources": "2.5.0"
+    "@opentelemetry/sdk-trace-base": "2.5.0"
+    "@opentelemetry/sdk-trace-web": "2.5.0"
+    "@sentry/vue": "10.36.0"
   generator:
-    "change-case":  5.4.4
-    "ejs":  3.1.10
-    "fs-extra":  11.3.2
+    "change-case": 5.4.4
+    "ejs": 4.0.1
+    "fs-extra": 11.3.3
   peer:
     vue: ">=3.5.22"
     "@tanstack/vue-query": ">=5.90.5"
@@ -130,8 +137,22 @@ catalogs:
     "reka-ui": ">=2.5.1"
     "temporal-polyfill": ">=0.3.0"
     "vue-i18n": ">=11.1.12"
-    "eslint":  ">=9.38.0"
+    "eslint": ">=9.38.0"
     "@typescript-eslint/parser": "^8.46.1"
     "typescript": ">=4.8.4 <5.9.0"
-    "@hey-api/openapi-ts":  ">=0.86.0"
+    "@hey-api/openapi-ts": ">=0.86.0"
     "zod": ">=4.3.5"
+    "vue-router": ">=4.6.3"
+  storybook:
+    "@chromatic-com/storybook": 5.0.0
+    "@storybook/addon-a11y": 10.2.0
+    "@storybook/addon-docs": 10.2.0
+    "@storybook/addon-onboarding": 10.2.0
+    "@storybook/addon-vitest": 10.2.0
+    "@storybook/vue3": 10.2.0
+    "@storybook/vue3-vite": 10.2.0
+    "storybook": 10.2.0
+  conflicts_test_25_0_1:
+    jsdom: 25.0.1
+  conflicts_docs_3_2_4:
+    vue-component-meta: 3.2.4

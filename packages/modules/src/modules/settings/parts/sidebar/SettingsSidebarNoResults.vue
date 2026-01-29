@@ -15,7 +15,7 @@ const {
 <template>
   <p
     v-if="filteredCategories.length === 0"
-    class="text-sm break-words text-tertiary"
+    class="text-sm wrap-break-word text-tertiary"
   >
     {{ t('module.settings.no_results', { searchTerm }) }}
   </p>

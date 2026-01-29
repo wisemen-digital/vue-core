@@ -20,8 +20,10 @@
     "skipLibCheck": true
   },
   "include": [
+    "eslint.config.ts",
     "src/**/*",
     "src/**/*.ts",
-    "src/**/*.tsx"
+    "src/**/*.tsx",
+    "test/**/*.ts"
   ]
 }

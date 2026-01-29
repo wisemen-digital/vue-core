@@ -24,7 +24,7 @@ const theme = useData()
     :dark-mode-value="theme.isDark.value ? 'dark' : 'light'"
     theme="default"
   >
-    <ul class="!pl-0">
+    <ul class="pl-0!">
       <li
         v-for="item of props.items"
         :key="item.description"

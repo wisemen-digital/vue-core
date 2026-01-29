@@ -26,6 +26,7 @@
   "scripts": {
     "prerelease": "pnpm version prerelease --preid=alpha",
     "build": "vite build",
+    "dev": "vite build --watch",
     "precommit": "pnpm type-check && test:unit && pnpm build-only",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit",
@@ -38,8 +39,7 @@
     "story:dev": "histoire dev",
     "story:build": "histoire build",
     "cleanup": "rimraf dist/ node_modules/ .turbo/",
-    "story:preview": "histoire preview",
-    "prepare": "husky"
+    "story:preview": "histoire preview"
   },
   "peerDependencies": {
     "motion-v": "catalog:peer",
@@ -65,7 +65,7 @@
     "@vue/tsconfig": "catalog:vue",
     "@vueuse/core": "catalog:vue",
     "@vueuse/router": "catalog:vue",
-    "@wisemen/eslint-config-vue": "catalog:lint",
+    "@wisemen/eslint-config-vue": "workspace:*",
     "blurhash": "catalog:general",
     "eslint": "catalog:lint",
     "histoire": "catalog:stories",

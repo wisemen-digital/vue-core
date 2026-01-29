@@ -40,7 +40,7 @@ const options = [
           last:border-b-0 last:pb-0
         "
       >
-        <div class="flex h-[1lh] items-center">
+        <div class="flex h-lh items-center">
           <VcRadioGroupItemControl />
         </div>
 

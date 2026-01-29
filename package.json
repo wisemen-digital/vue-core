@@ -9,20 +9,22 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "rimraf packages/vue-core/dist && pnpm run -r build",
-    "docs:gen-eslint": "cd ./packages/eslint-config &&  npx @eslint/config-inspector build --base /vue-core/eslint-inspector --outDir ../../docs/public/eslint-inspector --config ./src/inspector.ts",
-    "docs:dev": "pnpm run -r docs:dev",
-    "docs:build": "pnpm docs:gen-eslint && pnpm run -r build && pnpm run -r docs:build",
-    "pub:release": "cd packages/components && pnpm pub:release --no-git-checks",
-    "pub:release-query": "cd packages/query && pnpm pub:release --no-git-checks",
-    "lint": "turbo run lint",
-    "cleanup": "pnpm -r cleanup",
-    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "dev": "turbo watch dev",
     "test": "turbo run test",
+    "lint": "turbo run lint",
     "lint:fix": "turbo run lint:fix",
     "type-check": "turbo run type-check",
-    "precommit": "pnpm run lint --fix && pnpm run type-check && pnpm run test && pnpm run -r docs:gen",
-    "prepare": "pnpm build"
+    "cleanup": "turbo run cleanup",
+    "story:dev": "turbo watch story:dev",
+    "story:build": "turbo run story:build",
+    "docs:dev": "turbo watch docs:dev",
+    "docs:build": "turbo run docs:build",
+    "docs:gen": "turbo run docs:gen",
+    "docs:gen-eslint": "cd ./packages/eslint-config && npx @eslint/config-inspector build --base /vue-core/eslint-inspector --outDir ../../docs/public/eslint-inspector --config ./src/inspector.ts",
+    "precommit": "turbo run lint type-check test",
+    "ci": "turbo run build test lint type-check",
+    "build-storybook": "storybook build -c ./packages/design-system/.storybook -o ./static/storybook"
   },
   "devDependencies": {
     "@commitlint/cli": "catalog:tooling",
@@ -37,19 +39,9 @@
   },
   "pnpm": {
     "overrides": {
-      "axios@>=1.3.2 <=1.7.3": ">=1.7.4",
-      "esbuild@<=0.24.2": ">=0.25.0",
-      "vite@<=5.4.19": ">=5.4.20",
-      "@conventional-changelog/git-client@<2.0.0": ">=2.0.0",
       "axios@>=1.0.0 <1.12.0": ">=1.12.0",
-      "vite@>=5.2.6 <=5.4.20": ">=5.4.21",
-      "tar@=7.5.1": ">=7.5.2",
-      "js-yaml@<3.14.2": ">=3.14.2",
-      "glob@>=10.2.0 <10.5.0": ">=10.5.0",
-      "glob@>=11.0.0 <11.1.0": ">=11.1.0",
-      "axios@>=1.0.0 <1.8.2": ">=1.8.2",
-      "mdast-util-to-hast@>=13.0.0 <13.2.1": ">=13.2.1",
-      "preact@>=10.26.5 <10.26.10": ">=10.26.10"
+      "lodash@>=4.0.0 <=4.17.22": ">=4.17.23",
+      "esbuild@<=0.24.2": ">=0.25.0"
     }
   }
 }

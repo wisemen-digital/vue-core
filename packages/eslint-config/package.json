@@ -30,6 +30,7 @@
     "eslint": "eslint . --fix",
     "cleanup": "rimraf dist/ node_modules/ .turbo/",
     "build": " tsdown",
+    "dev": "tsdown --watch",
     "lint": "eslint .",
     "eslint-stats": "eslint . --stats -f json",
     "test": "vitest --run",
