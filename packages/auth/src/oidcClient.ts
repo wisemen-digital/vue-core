@@ -102,6 +102,9 @@ export class OidcClient {
   private refreshPromise: Promise<User | null> | null = null
   private userManager: UserManager
 
+  /**
+   * Creates a new OIDC client instance with validated and normalized configuration.
+   */
   constructor(options: OAuthClientOptions) {
     this.ensureBrowserEnvironment()
 
@@ -261,7 +264,7 @@ export class OidcClient {
       requireHttps,
       scopes,
       silentRedirectUri,
-      storage: options.storage ?? 'session',
+      storage: options.storage ?? 'local',
     }
   }
 
@@ -434,6 +437,17 @@ export class OidcClient {
     return new MemoryStorage()
   }
 
+  private async revokeAndClearAuthState(): Promise<void> {
+    try {
+      await this.userManager.revokeTokens()
+    }
+    catch {
+      // Ignore revocation failures and still clear local auth state.
+    }
+
+    await this.clearAuthState()
+  }
+
   private storageIsWritable(storage: Storage): boolean {
     const testStorageKey = `${DEFAULT_PREFIX}.storage-probe`
 
@@ -448,27 +462,44 @@ export class OidcClient {
     }
   }
 
+  /**
+   * Clears current user data and stale OIDC state from storage.
+   */
   public async clearAuthState(): Promise<void> {
     await this.userManager.removeUser()
     await this.userManager.clearStaleState()
   }
 
+  /**
+   * Throws when called outside a browser environment.
+   */
   public ensureBrowserEnvironment(): void {
     if (typeof window === 'undefined') {
       throw new TypeError('OidcClient requires a browser environment')
     }
   }
 
+  /**
+   * Returns a valid access token, refreshing it silently when needed.
+   * Returns an empty string when no authenticated user exists.
+   */
   public async getAccessToken(): Promise<string> {
     const user = await this.getValidUser()
 
     return user?.access_token ?? ''
   }
 
+  /**
+   * Returns the underlying `UserManager` instance for advanced integrations.
+   */
   public getClient(): UserManager {
     return this.userManager
   }
 
+  /**
+   * Builds the login URL and stores request state for callback validation.
+   * Pass a string (or `state` in an object) to round-trip a redirect target.
+   */
   public async getLoginUrl(queryParams?: string | Record<string, string> | null): Promise<string> {
     const extraQueryParams: Record<string, string> = {}
     let urlState: string | undefined
@@ -497,6 +528,9 @@ export class OidcClient {
     return request.url
   }
 
+  /**
+   * Returns the logout URL for the identity provider.
+   */
   public getLogoutUrl(): string {
     if (this.endSessionEndpoint !== null) {
       const url = new URL(this.endSessionEndpoint)
@@ -515,6 +549,10 @@ export class OidcClient {
     return this.config.postLogoutRedirectUri
   }
 
+  /**
+   * Fetches user profile information from the userinfo endpoint.
+   * Clears auth state and throws when the request fails.
+   */
   public async getUserInfo(): Promise<OidcUser> {
     const accessToken = await this.getAccessToken()
 
@@ -548,19 +586,12 @@ export class OidcClient {
     }
   }
 
-  public async isLoggedIn(): Promise<boolean> {
-    const user = await this.getValidUser()
-
-    return user !== null && user.access_token !== ''
-  }
-
-  public async loginWithCode(code?: string): Promise<string> {
+  /**
+   * Processes the OIDC redirect callback and returns a sanitized redirect target.
+   */
+  public async handleRedirectCallback(): Promise<string> {
     try {
       const callbackUrl = new URL(window.location.href)
-
-      if (code !== undefined) {
-        callbackUrl.searchParams.set('code', code)
-      }
 
       if (!callbackUrl.searchParams.has('state')) {
         throw new Error('Missing state parameter in login callback URL')
@@ -579,10 +610,25 @@ export class OidcClient {
     }
   }
 
-  public logout(): void {
-    void this.clearAuthState()
+  /**
+   * Returns whether an authenticated user with a non-empty access token exists.
+   */
+  public async isLoggedIn(): Promise<boolean> {
+    const user = await this.getValidUser()
+
+    return user !== null && user.access_token !== ''
   }
 
+  /**
+   * Revokes server-side tokens when possible and clears local auth state.
+   */
+  public async logout(): Promise<void> {
+    await this.revokeAndClearAuthState()
+  }
+
+  /**
+   * Validates and normalizes a redirect URL to a safe in-app path.
+   */
   public sanitizeRedirectUrl(redirectUrl: string, fallbackUrl: string = '/'): string {
     try {
       const targetUrl = new URL(redirectUrl, this.getWindowOrigin())
@@ -606,6 +652,9 @@ export class OidcClient {
     }
   }
 
+  /**
+   * Updates client configuration and recreates internal OIDC clients.
+   */
   public setConfig(options: Partial<OAuthClientOptions>): void {
     this.config = this.normalizeConfig({
       ...this.config,

@@ -27,12 +27,10 @@ export const oAuthClient = new OidcClient({
   clientId: AUTH_CLIENT_ID,
   baseUrl: AUTH_BASE_URL,
   loginRedirectUri: `${window.location.origin}/auth/callback`,
-  offline: CURRENT_ENVIRONMENT === 'e2e',
   postLogoutRedirectUri: `${window.location.origin}/auth/logout`,
-  prefix: 'my-app.auth',
+  prefix: 'my-app',
   scopes: ['openid', 'profile', 'email'],
-  storage: 'session',
-  silentRedirectUri: `${window.location.origin}/auth/silent-callback`,
+  storage: 'local',
 })
 ```
 
@@ -42,8 +40,7 @@ export const oAuthClient = new OidcClient({
 - HTTPS is required for OIDC endpoints and redirect URLs (except localhost/127.0.0.1).
 - OIDC callback parameters are removed from the URL after successful callback handling.
 - Reserved OIDC query parameters cannot be overridden through custom login query params.
-- `session` storage is used by default; use `storage: 'local'` only when persistence is explicitly required.
 
 ### Callback redirect target
 
-`loginWithCode()` returns the sanitized redirect target extracted from OIDC callback state.
+`handleRedirectCallback()` returns the sanitized redirect target extracted from OIDC callback state.
