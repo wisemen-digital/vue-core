@@ -30,10 +30,6 @@ catalogs:
     typescript:
       specifier: 5.9.3
       version: 5.9.3
-  conflicts_docs_3_2_4:
-    vue-component-meta:
-      specifier: 3.2.4
-      version: 3.2.4
   conflicts_test_25_0_1:
     jsdom:
       specifier: 25.0.1
@@ -244,6 +240,9 @@ catalogs:
     storybook:
       specifier: 10.2.0
       version: 10.2.0
+    vue-component-meta:
+      specifier: 3.2.4
+      version: 3.2.4
   style:
     '@tailwindcss/postcss':
       specifier: 4.1.18
@@ -671,11 +670,14 @@ importers:
       tailwind-merge:
         specifier: catalog:style
         version: 3.4.0
+      tailwind-variants:
+        specifier: catalog:style
+        version: 3.2.2(tailwind-merge@3.4.0)(tailwindcss@4.1.18)
       tailwindcss:
         specifier: catalog:style
         version: 4.1.18
       vue-component-meta:
-        specifier: catalog:conflicts_docs_3_2_4
+        specifier: catalog:storybook
         version: 3.2.4(typescript@5.9.3)
       vue-i18n:
         specifier: catalog:peer

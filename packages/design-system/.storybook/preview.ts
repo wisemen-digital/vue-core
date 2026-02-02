@@ -2,9 +2,15 @@
 import '../src/styles/index.css'
 
 import type { Preview } from '@storybook/vue3-vite'
+import { setup } from '@storybook/vue3-vite'
 import { h } from 'vue'
 
+import { i18nPlugin } from '../src/plugins/i18n.plugin'
 import StoryWrapper from './StoryWrapper.vue'
+
+setup((app) => {
+  app.use(i18nPlugin)
+})
 
 const preview: Preview = {
   decorators: [
