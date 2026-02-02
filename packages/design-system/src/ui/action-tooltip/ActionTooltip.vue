@@ -15,7 +15,6 @@ const props = withDefaults(defineProps<Props>(), {
   isDisabled: false,
   disableCloseOnTriggerClick: false,
   keyboardShortcut: null,
-  keyboardShortcutKeys: null,
   label: null,
   popoverAlign: 'center',
   popoverSide: 'top',
