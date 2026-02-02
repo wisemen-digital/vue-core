@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import LinkIcon from 'node_modules/@repo/icons/src/LinkIcon.vue'
 import {
   computed,
   useAttrs,
@@ -8,6 +7,7 @@ import { RouterLink } from 'vue-router'
 
 import ActionTooltip from '@/ui/action-tooltip/ActionTooltip.vue'
 import type { LinkProps } from '@/ui/button/link/link.props'
+import LinkIcon from '@/ui/button/link/LinkIcon.vue'
 import { UIRowLayout } from '@/ui/row-layout/index'
 
 defineOptions({
@@ -79,7 +79,7 @@ const linkAttributes = computed<Record<string, unknown>>(() => {
         'h-5.5 min-w-5.5 rounded-xs px-xs': props.size === 'xs',
         'dark:p-px': props.variant === 'primary',
         // Variant
-        'border-brand-600 bg-brand-solid hover:brightness-95 focus-visible:outline-fg-brand-primary dark:border-none dark:glassy': props.variant === 'primary',
+        'dark:glassy border-brand-600 bg-brand-solid hover:brightness-95 focus-visible:outline-fg-brand-primary dark:border-none': props.variant === 'primary',
         'border-secondary bg-primary hover:bg-primary-hover focus-visible:outline-fg-brand-primary': props.variant === 'secondary',
         'border-transparent hover:bg-primary-hover focus-visible:outline-fg-brand-primary': props.variant === 'tertiary',
         'border-error-600 bg-error-solid hover:brightness-95 focus-visible:outline-fg-error-primary': props.variant === 'destructive-primary',
