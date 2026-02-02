@@ -8,6 +8,11 @@ import type {
   Meta,
   StoryObj,
 } from '@storybook/vue3-vite'
+import {
+  expect,
+  userEvent,
+  within,
+} from 'storybook/test'
 
 import IconButton from './IconButton.vue'
 
@@ -86,7 +91,25 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
+    icon: Trash01Icon,
     label: 'Settings',
+  },
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    const button = canvas.getByRole('button', {
+      name: 'Settings',
+    })
+
+    await expect(button).not.toBeDisabled()
+
+    const icon = button.querySelector('svg')
+
+    await expect(icon).toBeInTheDocument()
+
+    await userEvent.click(button)
   },
   render: () => ({
     components: {
@@ -104,8 +127,23 @@ export const Default: Story = {
 
 export const AllVariants: Story = {
   args: {
-
+    icon: Trash01Icon,
     label: 'Settings',
+  },
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    const buttons = canvas.getAllByRole('button')
+
+    await expect(buttons).toHaveLength(5)
+
+    for (const button of buttons) {
+      const icon = button.querySelector('svg')
+
+      await expect(icon).toBeInTheDocument()
+    }
   },
   render: () => ({
     components: {
@@ -134,6 +172,7 @@ export const AllVariants: Story = {
 
 export const AllSizes: Story = {
   args: {
+    icon: Trash01Icon,
     label: 'Settings',
   },
   render: () => ({
@@ -158,7 +197,20 @@ export const AllSizes: Story = {
 
 export const Loading: Story = {
   args: {
+    icon: Trash01Icon,
     label: 'Settings',
+  },
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    const buttons = canvas.getAllByRole('button')
+
+    for (const button of buttons) {
+      await expect(button).toHaveAttribute('aria-busy', 'true')
+      await expect(button).toHaveAttribute('aria-disabled', 'true')
+    }
   },
   render: () => ({
     components: {
@@ -181,7 +233,19 @@ export const Loading: Story = {
 
 export const Disabled: Story = {
   args: {
+    icon: Trash01Icon,
     label: 'Settings',
+  },
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    const buttons = canvas.getAllByRole('button')
+
+    for (const button of buttons) {
+      await expect(button).toBeDisabled()
+    }
   },
   render: () => ({
     components: {
@@ -204,7 +268,23 @@ export const Disabled: Story = {
 
 export const WithTooltip: Story = {
   args: {
+    icon: Trash01Icon,
     label: 'Add item',
+  },
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    const button = canvas.getByRole('button', {
+      name: 'Add item',
+    })
+
+    await expect(button).toBeInTheDocument()
+
+    const icon = button.querySelector('svg')
+
+    await expect(icon).toBeInTheDocument()
   },
   render: () => ({
     components: {
@@ -222,6 +302,7 @@ export const WithTooltip: Story = {
 
 export const WithKeyboardShortcut: Story = {
   args: {
+    icon: Trash01Icon,
     label: 'Settings',
   },
   render: () => ({
@@ -240,7 +321,23 @@ export const WithKeyboardShortcut: Story = {
 
 export const DestructiveExample: Story = {
   args: {
+    icon: Trash01Icon,
     label: 'Delete',
+  },
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    const buttons = canvas.getAllByRole('button')
+
+    await expect(buttons).toHaveLength(2)
+
+    for (const button of buttons) {
+      const icon = button.querySelector('svg')
+
+      await expect(icon).toBeInTheDocument()
+    }
   },
   render: () => ({
     components: {

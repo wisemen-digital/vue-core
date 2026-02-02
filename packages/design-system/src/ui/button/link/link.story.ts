@@ -9,6 +9,11 @@ import type {
   Meta,
   StoryObj,
 } from '@storybook/vue3-vite'
+import {
+  expect,
+  userEvent,
+  within,
+} from 'storybook/test'
 
 import Link from './Link.vue'
 
@@ -67,6 +72,19 @@ export const Default: Story = {
   args: {
     label: 'Link',
   },
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    const link = canvas.getByRole('link')
+
+    await expect(link).toHaveTextContent('Learn More')
+
+    await expect(link).toHaveAttribute('href', '#')
+
+    await userEvent.click(link)
+  },
   render: () => ({
     components: {
       Link,
@@ -120,6 +138,19 @@ export const WithIconLeft: Story = {
   args: {
     label: 'Add Item',
   },
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    const link = canvas.getByRole('link')
+
+    await expect(link).toHaveTextContent('Add Item')
+
+    const icon = link.querySelector('svg')
+
+    await expect(icon).toBeInTheDocument()
+  },
   render: () => ({
     components: {
       Link,
@@ -156,6 +187,19 @@ export const WithBothIcons: Story = {
   args: {
     label: 'Add and Continue',
   },
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    const link = canvas.getByRole('link')
+
+    const icons = Array.from(link.querySelectorAll('svg')).filter(
+      (icon) => icon.getAttribute('aria-hidden') !== 'true',
+    )
+
+    await expect(icons).toHaveLength(2)
+  },
   render: () => ({
     components: {
       ArrowRightIcon,
@@ -175,6 +219,21 @@ export const WithBothIcons: Story = {
 export const ExternalLink: Story = {
   args: {
     label: 'Documentation',
+  },
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    const link = canvas.getByRole('link')
+
+    await expect(link).toHaveAttribute('href', 'https://example.com')
+    await expect(link).toHaveAttribute('target', '_blank')
+    await expect(link).toHaveAttribute('rel', 'noopener noreferrer')
+
+    const icon = link.querySelector('svg')
+
+    await expect(icon).toBeInTheDocument()
   },
   render: () => ({
     components: {
@@ -222,6 +281,23 @@ export const WithKeyboardShortcut: Story = {
 export const DestructiveExample: Story = {
   args: {
     label: 'Delete',
+  },
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    const links = canvas.getAllByRole('link')
+
+    await expect(links).toHaveLength(2)
+
+    for (const link of links) {
+      await expect(link).toHaveTextContent('Delete Account')
+
+      const icon = link.querySelector('svg')
+
+      await expect(icon).toBeInTheDocument()
+    }
   },
   render: () => ({
     components: {

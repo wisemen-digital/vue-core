@@ -8,6 +8,11 @@ import type {
   Meta,
   StoryObj,
 } from '@storybook/vue3-vite'
+import {
+  expect,
+  userEvent,
+  within,
+} from 'storybook/test'
 
 import Button from './Button.vue'
 
@@ -79,6 +84,19 @@ export const Default: Story = {
   args: {
     label: 'Button',
   },
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    const button = canvas.getByRole('button')
+
+    await expect(button).toHaveTextContent('Button')
+
+    await expect(button).not.toBeDisabled()
+
+    await userEvent.click(button)
+  },
   render: (args) => ({
     components: {
       Button,
@@ -137,6 +155,19 @@ export const WithIconLeft: Story = {
   args: {
     label: 'Add Item',
   },
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    const button = canvas.getByRole('button')
+
+    await expect(button).toHaveTextContent('Add Item')
+
+    const icon = button.querySelector('svg')
+
+    await expect(icon).toBeInTheDocument()
+  },
   render: () => ({
     components: {
       Button,
@@ -173,6 +204,19 @@ export const WithBothIcons: Story = {
   args: {
     label: 'Add and Continue',
   },
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    const button = canvas.getByRole('button')
+
+    const icons = Array.from(button.querySelectorAll('svg')).filter(
+      (icon) => icon.getAttribute('aria-hidden') !== 'true',
+    )
+
+    await expect(icons).toHaveLength(2)
+  },
   render: () => ({
     components: {
       ArrowRightIcon,
@@ -193,6 +237,18 @@ export const Loading: Story = {
   args: {
     label: 'Loading',
   },
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    const buttons = canvas.getAllByRole('button')
+
+    for (const button of buttons) {
+      await expect(button).toHaveAttribute('aria-busy', 'true')
+      await expect(button).toHaveAttribute('aria-disabled', 'true')
+    }
+  },
   render: () => ({
     components: {
       Button,
@@ -209,6 +265,17 @@ export const Loading: Story = {
 export const Disabled: Story = {
   args: {
     label: 'Disabled',
+  },
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    const buttons = canvas.getAllByRole('button')
+
+    for (const button of buttons) {
+      await expect(button).toBeDisabled()
+    }
   },
   render: () => ({
     components: {
@@ -250,6 +317,23 @@ export const WithKeyboardShortcut: Story = {
 export const DestructiveExample: Story = {
   args: {
     label: 'Delete',
+  },
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    const buttons = canvas.getAllByRole('button')
+
+    await expect(buttons).toHaveLength(2)
+
+    for (const button of buttons) {
+      await expect(button).toHaveTextContent('Delete')
+
+      const icon = button.querySelector('svg')
+
+      await expect(icon).toBeInTheDocument()
+    }
   },
   render: () => ({
     components: {
