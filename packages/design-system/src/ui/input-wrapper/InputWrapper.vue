@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import { INPUT_META_DEFAULTS } from '@/types/input.type'
-import type { InputFieldMetaProps } from '@/ui/input-field-meta/inputFieldMeta.props'
-import InputFieldMetaErrorMessage from '@/ui/input-field-meta/InputFieldMetaErrorMessage.vue'
-import InputFieldMetaHint from '@/ui/input-field-meta/InputFieldMetaHint.vue'
-import InputFieldMetaLabel from '@/ui/input-field-meta/InputFieldMetaLabel.vue'
+import type { InputWrapperProps } from '@/ui/input-wrapper/inputWrapper.props'
+import InputWrapperErrorMessage from '@/ui/input-wrapper/InputWrapperErrorMessage.vue'
+import InputWrapperHint from '@/ui/input-wrapper/InputWrapperHint.vue'
+import InputWrapperLabel from '@/ui/input-wrapper/InputWrapperLabel.vue'
 
-const props = withDefaults(defineProps<InputFieldMetaProps>(), {
+const props = withDefaults(defineProps<InputWrapperProps>(), {
   ...INPUT_META_DEFAULTS,
 })
 </script>
 
 <template>
   <div>
-    <InputFieldMetaLabel
+    <InputWrapperLabel
       :label="props.label"
       :for="props.for"
       :is-required="props.isRequired"
@@ -24,16 +24,16 @@ const props = withDefaults(defineProps<InputFieldMetaProps>(), {
       <template #right>
         <slot name="label-right" />
       </template>
-    </InputFieldMetaLabel>
+    </InputWrapperLabel>
 
     <slot />
 
-    <InputFieldMetaHint
+    <InputWrapperHint
       :hint="props.hint"
       :for="props.for"
     />
 
-    <InputFieldMetaErrorMessage
+    <InputWrapperErrorMessage
       v-if="!props.hideErrorMessage"
       :error-message="props.errorMessage"
       :for="props.for"

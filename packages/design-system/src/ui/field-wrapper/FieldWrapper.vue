@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { INPUT_FIELD_DEFAULTS } from '@/types/input.type'
-import type { InputFieldWrapperProps } from '@/ui/input-field-wrapper/inputFieldWrapper.props'
-import InputFieldWrapperIcon from '@/ui/input-field-wrapper/InputFieldWrapperIcon.vue'
-import InputFieldWrapperLoader from '@/ui/input-field-wrapper/InputFieldWrapperLoader.vue'
+import type { FieldWrapperProps } from '@/ui/field-wrapper/fieldWrapper.props'
+import FieldWrapperIcon from '@/ui/field-wrapper/FieldWrapperIcon.vue'
+import FieldWrapperLoader from '@/ui/field-wrapper/FieldWrapperLoader.vue'
 import { UIRowLayout } from '@/ui/row-layout/index'
 
 // Wrapper component for TextField, NumberField, DateField, Select, etc
 
-const props = withDefaults(defineProps<InputFieldWrapperProps>(), {
+const props = withDefaults(defineProps<FieldWrapperProps>(), {
   ...INPUT_FIELD_DEFAULTS,
   isError: false,
   size: 'md',
@@ -26,19 +26,19 @@ const props = withDefaults(defineProps<InputFieldWrapperProps>(), {
     }"
     gap="none"
     class="
-      group/input-field-wrapper relative rounded-md border border-primary
-      bg-primary outline outline-transparent duration-100
+      group/field-wrapper relative rounded-md border border-primary bg-primary
+      outline outline-transparent duration-100
       data-disabled:cursor-not-allowed data-disabled:border-disabled-subtle
       data-disabled:bg-disabled-subtle data-disabled:text-disabled
       data-error:border-error
       not-data-error:data-interactive:hover:border-primary
-      [&:has([data-input-field-wrapper]:focus-visible)]:data-interactive:border-fg-brand-primary
-      [&:has([data-input-field-wrapper]:focus-visible)]:data-interactive:outline-fg-brand-primary
-      [&:has([data-input-field-wrapper]:focus-visible)]:data-interactive:data-error:border-error
-      [&:has([data-input-field-wrapper]:focus-visible)]:data-interactive:data-error:outline-fg-error-primary
+      [&:has([data-field-wrapper]:focus-visible)]:data-interactive:border-fg-brand-primary
+      [&:has([data-field-wrapper]:focus-visible)]:data-interactive:outline-fg-brand-primary
+      [&:has([data-field-wrapper]:focus-visible)]:data-interactive:data-error:border-error
+      [&:has([data-field-wrapper]:focus-visible)]:data-interactive:data-error:outline-fg-error-primary
     "
   >
-    <InputFieldWrapperIcon
+    <FieldWrapperIcon
       v-if="props.iconLeft"
       :icon="props.iconLeft"
       :input-field-size="props.size"
@@ -55,7 +55,7 @@ const props = withDefaults(defineProps<InputFieldWrapperProps>(), {
 
     <slot name="right" />
 
-    <InputFieldWrapperIcon
+    <FieldWrapperIcon
       v-if="props.iconRight"
       :icon="props.iconRight"
       :input-field-size="props.size"
@@ -65,6 +65,6 @@ const props = withDefaults(defineProps<InputFieldWrapperProps>(), {
       }"
     />
 
-    <InputFieldWrapperLoader v-if="props.isLoading" />
+    <FieldWrapperLoader v-if="props.isLoading" />
   </UIRowLayout>
 </template>
