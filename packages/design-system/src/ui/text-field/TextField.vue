@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import {
+  computed,
   useAttrs,
   useId,
   useTemplateRef,
@@ -15,6 +16,8 @@ import {
 import FieldWrapper from '@/ui/field-wrapper/FieldWrapper.vue'
 import InputWrapper from '@/ui/input-wrapper/InputWrapper.vue'
 import type { TextFieldProps } from '@/ui/text-field/textField.props'
+import type { TextFieldStyle } from '@/ui/text-field/textField.style'
+import { createTextFieldStyle } from '@/ui/text-field/textField.style'
 
 defineOptions({
   inheritAttrs: false,
@@ -32,6 +35,10 @@ const props = withDefaults(defineProps<TextFieldProps>(), {
 const modelValue = defineModel<string | null>({
   required: true,
 })
+
+const textFieldStyle = computed<TextFieldStyle>(() => createTextFieldStyle({
+  size: props.size,
+}))
 
 const inputRef = useTemplateRef('input')
 
@@ -104,17 +111,7 @@ defineExpose({
         :aria-invalid="ariaInvalid"
         :disabled="props.isDisabled"
         :placeholder="props.placeholder ?? undefined"
-        :class="{
-          'px-md': props.size === 'md',
-          'px-sm': props.size === 'sm',
-        }"
-        class="
-          size-full truncate bg-transparent text-xs text-primary outline-none
-          placeholder:text-placeholder
-          read-only:cursor-default
-          disabled:cursor-not-allowed disabled:text-disabled
-          disabled:placeholder:text-fg-disabled-subtle
-        "
+        :class="textFieldStyle.input()"
         data-field-wrapper
         @input="(event) => modelValue = (event.target as HTMLInputElement).value"
       >
