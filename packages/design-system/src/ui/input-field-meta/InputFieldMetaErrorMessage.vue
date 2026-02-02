@@ -41,7 +41,7 @@ const props = defineProps<{
     >
       <UIRowLayout
         class="pt-xs"
-        align="start"
+        align="center"
         gap="sm"
       >
         <div
