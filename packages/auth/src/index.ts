@@ -1,6 +1,3 @@
-export type { OAuth2Tokens } from './apiClient'
 export type { OidcUser } from './oidc.type'
 export type { OAuth2VueClientOptions } from './oidc.type'
 export { OidcClient } from './oidcClient'
-export { LocalStorageTokensStrategy } from './tokens-strategy/localStorage.tokensStrategy'
-export type { TokensStrategy } from './tokens-strategy/tokensStrategy.type'

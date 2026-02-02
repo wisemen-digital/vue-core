@@ -30,7 +30,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "pkce-challenge": "catalog:general"
+    "oidc-client-ts": "catalog:auth"
   },
   "devDependencies": {
     "@types/node": "catalog:types",

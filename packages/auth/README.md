@@ -10,50 +10,25 @@ pnpm add @wisemen/vue-core-oauth-client
 
 ## Usage
 
-### OAuth2VueClient
-Create a new file `auth.lib.ts` and add the following code:
-
-```typescript
-import { OAuth2VueClient } from '@wisemen/vue-core-auth'
-import axios from 'axios'
-
-import {
-  API_AUTH_URL,
-  API_CLIENT_ID,
-  API_CLIENT_SECRET,
-} from '@/constants/environment.constant.ts'
-
-export const oAuthClient = new OAuth2VueClient({
-  clientId: API_CLIENT_ID,
-  axios,
-  clientSecret: API_CLIENT_SECRET,
-  tokenEndpoint: `${API_AUTH_URL}/token`,
-})
-```
-
-### ZitadelClient
+### OidcClient
 
 Create a new file `auth.lib.ts` and add the following code:
 
 ```typescript
-import { ZitadelClient, useAxiosFetchStrategy, localStorageTokensStrategy } from '@wisemen/vue-core-auth'
-import axios from 'axios'
+import { OidcClient } from '@wisemen/vue-core-auth'
 
 import {
   AUTH_BASE_URL,
   AUTH_CLIENT_ID,
-  AUTH_ORGANIZATION_ID,
   CURRENT_ENVIRONMENT,
 } from '@/constants/environment.constant.ts'
 
-export const oAuthClient = new ZitadelClient({
+export const oAuthClient = new OidcClient({
   clientId: AUTH_CLIENT_ID,
-  organizationId: AUTH_ORGANIZATION_ID,
-  fetchStrategy: new AxiosFetchStrategy(axios),
-  tokensStrategy: new LocalStorageTokensStrategy(), // Optional, defaults to localStorage
   baseUrl: AUTH_BASE_URL,
   loginRedirectUri: `${window.location.origin}/auth/callback`,
   offline: CURRENT_ENVIRONMENT === 'e2e',
   postLogoutRedirectUri: `${window.location.origin}/auth/logout`,
+  scopes: ['openid', 'profile', 'email'],
 })
 ```
