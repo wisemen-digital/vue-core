@@ -2,10 +2,7 @@ import {
   useMutation as useTanstackQueryMutation,
   useQueryClient,
 } from '@tanstack/vue-query'
-import type {
-  ComputedRef,
-  UnwrapRef,
-} from 'vue'
+import type { ComputedRef } from 'vue'
 import { computed } from 'vue'
 
 import { AsyncResult } from '@/async-result/asyncResult'
@@ -13,7 +10,6 @@ import type {
   ApiError,
   ApiResult,
 } from '@/types/apiError.type'
-import type { QueryKeys } from '@/types/queryKeys.type'
 
 type RequestParams<TReqData, TParams> = TReqData extends void
   ? TParams extends void
@@ -36,15 +32,22 @@ interface UseMutationOptions<TReqData, TResData, TParams = void> {
    */
   queryFn: (options: RequestParams<TReqData, TParams>) => Promise<ApiResult<TResData>>
   /**
-   * Array of query keys which should be invalidated after mutation is successful
+   * Object where each key is a query key to invalidate after mutation succeeds.
+   * Each query key can optionally have nested parameter extractors.
+   * @example
+   * ```typescript
+   * queryKeysToInvalidate: {
+   *   contactDetail: {
+   *     contactUuid: (params, result) => params.contactUuid,
+   *   },
+   *   contactIndex: {},
+   * }
+   * ```
    */
-  queryKeysToInvalidate: {
-    [TQueryKey in keyof QueryKeys]?: {
-      [TQueryKeyParam in keyof QueryKeys[TQueryKey]]: (
-        params: TParams, data: TResData,
-      ) => UnwrapRef<QueryKeys[TQueryKey][TQueryKeyParam]>
-    }
-  }
+  queryKeysToInvalidate?: Record<
+    string,
+    Record<string, (params: TParams, data: TResData) => any> | undefined
+  >
 }
 
 export interface UseMutationReturnType<TReqData, TResData, TParams = void> {
@@ -84,21 +87,58 @@ export function useMutation<
   const queryClient = useQueryClient()
 
   async function onSuccess(responseData: TResData, params: TParams): Promise<void> {
+    if (!options.queryKeysToInvalidate) {
+      return
+    }
+
     await Promise.all(
       Object.entries(options.queryKeysToInvalidate).map(async ([
         queryKey,
         queryKeyParams,
       ]) => {
-        const qkp = queryKeyParams as Record<string, (params: TParams, data: TResData) => unknown>
+        if (!queryKeyParams) {
+          // If no params specified, just invalidate the query key directly
+          if (isDebug) {
+            // eslint-disable-next-line no-console
+            console.log(`[MUTATION] Invalidating ${queryKey}`)
+          }
 
-        const paramsWithValues = Object.entries(qkp).reduce((acc, [
+          await queryClient.invalidateQueries({
+            queryKey: [
+              queryKey,
+            ],
+          })
+
+          return
+        }
+
+        const qkp = queryKeyParams as Record<string, (params: TParams, data: TResData) => unknown>
+        const paramEntries = Object.entries(qkp)
+
+        if (paramEntries.length === 0) {
+          // If params object is empty, just invalidate the query key directly
+          if (isDebug) {
+            // eslint-disable-next-line no-console
+            console.log(`[MUTATION] Invalidating ${queryKey}`)
+          }
+
+          await queryClient.invalidateQueries({
+            queryKey: [
+              queryKey,
+            ],
+          })
+
+          return
+        }
+
+        const paramsWithValues = paramEntries.reduce((acc, [
           key,
           value,
         ]) => {
-          acc[key as keyof TParams] = value(params, responseData) as TParams[keyof TParams]
+          acc[key] = value(params, responseData)
 
           return acc
-        }, {} as TParams)
+        }, {} as Record<string, any>)
 
         if (isDebug) {
           // eslint-disable-next-line no-console

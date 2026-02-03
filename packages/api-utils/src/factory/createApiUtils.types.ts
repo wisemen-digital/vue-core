@@ -1,6 +1,8 @@
+/* eslint-disable ts/no-empty-object-type */
 import type { QueryClient } from '@tanstack/vue-query'
 import type { MaybeRef } from 'vue'
 
+import type { UseMutationReturnType } from '@/composables/mutation/mutation.composable'
 import type { ApiResult } from '@/types/apiError.type'
 import type {
   KeysetPaginationParams,
@@ -11,12 +13,33 @@ import type {
 import type {
   QueryKeyEntityFromConfig,
   QueryKeyParamsFromConfig,
+  QueryKeyRawParamsFromConfig,
   QueryKeysWithEntityFromConfig,
 } from '@/types/queryKeys.type'
 
 export interface CreateApiUtilsOptions {
   queryClient: QueryClient
 }
+
+/**
+ * Helper type to build the invalidation config for a specific query key
+ * Maps the query key's params to optional parameter extractors
+ */
+type QueryKeyInvalidationConfig<
+  TQueryKeys extends object,
+  TKey extends keyof TQueryKeys,
+  TParams,
+  TResData,
+> = QueryKeyRawParamsFromConfig<TQueryKeys, TKey & string> extends void
+  ? {} // Allow empty object for void params
+  : QueryKeyRawParamsFromConfig<TQueryKeys, TKey & string> extends object
+    ? {
+        [ParamKey in keyof QueryKeyRawParamsFromConfig<TQueryKeys, TKey & string>]?: (
+          params: TParams,
+          data: TResData,
+        ) => QueryKeyRawParamsFromConfig<TQueryKeys, TKey & string>[ParamKey]
+      }
+    : {}
 
 export type QueryKeysWithArrayEntityFromConfig<TQueryKeys extends object> = (
   {
@@ -116,3 +139,52 @@ export type ApiUseKeysetInfinitePrefetchQueryOptions<
     ? { params?: QueryKeyParamsFromConfig<TQueryKeys, TKey> }
     : { params: QueryKeyParamsFromConfig<TQueryKeys, TKey> }
 )
+
+type RequestParams<TReqData, TParams> = TReqData extends void
+  ? TParams extends void
+    ? void
+    : { params: TParams }
+  : TParams extends void
+    ? { body: TReqData }
+    : { body: TReqData
+        params: TParams }
+
+export interface ApiUseMutationOptions<
+  TQueryKeys extends object,
+  TReqData,
+  TResData,
+  TParams = void,
+> {
+  /**
+   * Whether to enable debug mode
+   */
+  isDebug?: boolean
+  /**
+   * Function that will be called to perform the mutation
+   * @param options - Parameters and body for the mutation
+   * @returns Promise with ApiResult containing either the response data or an error
+   */
+  queryFn: (options: RequestParams<TReqData, TParams>) => Promise<ApiResult<TResData>>
+  /**
+   * Query keys which should be invalidated after mutation is successful
+   * Each key is optional and maps to the query key's specific parameters
+   * @example
+   * ```typescript
+   * queryKeysToInvalidate: {
+   *   userDetail: {
+   *     userUuid: (params, result) => params.userUuid,
+   *   },
+   *   userList: {},
+   * }
+   * ```
+   */
+  queryKeysToInvalidate?: {
+    [TKey in keyof TQueryKeys]?: QueryKeyInvalidationConfig<TQueryKeys, TKey, TParams, TResData>
+  }
+}
+
+export interface CreateApiMutationUtilsReturnType<TQueryKeys extends object> {
+  useMutation: <TReqData = void, TResData = void, TParams = void>(
+    options: ApiUseMutationOptions<TQueryKeys, TReqData, TResData, TParams>,
+  ) => UseMutationReturnType<TReqData, TResData, TParams>
+}

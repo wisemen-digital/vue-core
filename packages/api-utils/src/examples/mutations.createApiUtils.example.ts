@@ -64,9 +64,9 @@ export function exampleMutation(): void {
     },
     queryKeysToInvalidate: {
       // Return specific params to invalidate (required params must be specified)
-      userDetail: (params) => ({
-        userUuid: params.userUuid,
-      }),
+      userDetail: {
+        userUuid: (params) => params.userUuid,
+      },
       // Empty object is allowed for void params or when all params are optional
       userList: {},
     },
