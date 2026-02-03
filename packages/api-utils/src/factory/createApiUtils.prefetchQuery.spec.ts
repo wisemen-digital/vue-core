@@ -6,7 +6,10 @@ import {
   it,
   vi,
 } from 'vitest'
-import { nextTick } from 'vue'
+import {
+  computed,
+  nextTick,
+} from 'vue'
 
 import { createApiUtils } from '@/factory/createApiUtils'
 import { runInSetup } from '@/test/runInSetup'
@@ -59,14 +62,14 @@ describe('createApiUtils - usePrefetchQuery', () => {
         prefetch: usePrefetchQuery('userDetail', {
           staleTime: 999_999,
           params: {
-            userUuid: 'uuid-123',
+            userUuid: computed<UserUuid>(() => 'uuid-123'),
           },
           queryFn,
         }),
         query: useQuery('userDetail', {
           staleTime: 999_999,
           params: {
-            userUuid: 'uuid-123',
+            userUuid: computed<UserUuid>(() => 'uuid-123'),
           },
           queryFn,
         }),

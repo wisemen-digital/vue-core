@@ -5,6 +5,7 @@ import {
   expect,
   it,
 } from 'vitest'
+import { computed } from 'vue'
 
 import { createApiUtils } from '@/factory/createApiUtils'
 import { runInSetup } from '@/test/runInSetup'
@@ -46,7 +47,7 @@ describe('createApiUtils - useQuery', () => {
 
       return useQuery('userDetail', {
         params: {
-          userUuid: 'uuid-123',
+          userUuid: computed<UserUuid>(() => 'uuid-123'),
         },
         queryFn: () => Promise.resolve(
           ok({
@@ -115,7 +116,7 @@ describe('createApiUtils - useQuery', () => {
       return {
         query: useQuery('userIndex', {
           params: {
-            search: 'john',
+            search: computed<string>(() => 'user'),
           },
           queryFn: () => Promise.resolve(
             ok([

@@ -8,7 +8,10 @@ import {
   it,
   vi,
 } from 'vitest'
-import { nextTick } from 'vue'
+import {
+  computed,
+  nextTick,
+} from 'vue'
 
 import { createApiUtils } from '@/factory/createApiUtils'
 import { runInSetup } from '@/test/runInSetup'
@@ -70,7 +73,7 @@ describe('createApiUtils - prefetch infinite queries', () => {
           staleTime: 999_999,
           limit: 2,
           params: {
-            search: 'user',
+            search: computed<string>(() => 'user'),
           },
           queryFn: ({
             limit, offset,
@@ -83,7 +86,7 @@ describe('createApiUtils - prefetch infinite queries', () => {
           staleTime: 999_999,
           limit: 2,
           params: {
-            search: 'user',
+            search: computed<string>(() => 'user'),
           },
           queryFn: ({
             limit, offset,
@@ -165,7 +168,7 @@ describe('createApiUtils - prefetch infinite queries', () => {
           staleTime: 999_999,
           limit: 2,
           params: {
-            search: 'user',
+            search: computed<string>(() => 'user'),
           },
           queryFn: ({
             key, limit,
@@ -178,7 +181,7 @@ describe('createApiUtils - prefetch infinite queries', () => {
           staleTime: 999_999,
           limit: 2,
           params: {
-            search: 'user',
+            search: computed<string>(() => 'user'),
           },
           queryFn: ({
             key, limit,
