@@ -1,5 +1,3 @@
-import type { MaybeRef } from 'vue'
-
 import { useKeysetInfiniteQuery as useBaseKeysetInfiniteQuery } from '@/composables/query/keysetInfiniteQuery.composable'
 import { useOffsetInfiniteQuery as useBaseOffsetInfiniteQuery } from '@/composables/query/offsetInfiniteQuery.composable'
 import type { QueryKeyParamsFromConfig } from '@/types/queryKeys.type'
@@ -29,20 +27,11 @@ CreateApiInfiniteQueryUtilsReturnType<TQueryKeys> {
     queryOptions: ApiUseOffsetInfiniteQueryOptions<TQueryKeys, TKey>,
   ) {
     type Params = QueryKeyParamsFromConfig<TQueryKeys, TKey>
-    type ParamsWithRefs = Params extends void
-      ? void
-      : {
-          [K in keyof Params]: MaybeRef<Params[K]>
-        }
 
-    const params = (queryOptions as { params?: Params }).params
-    const queryKey = params === undefined
-      ? {
-          [key]: undefined,
-        } as { [K in TKey]: undefined }
-      : {
-          [key]: params as ParamsWithRefs,
-        } as { [K in TKey]: ParamsWithRefs }
+    const params = (queryOptions as { params?: Params }).params ?? ({} as Params)
+    const queryKey = {
+      [key]: params,
+    } as { [K in TKey]: Params }
 
     return useBaseOffsetInfiniteQuery<QueryKeyArrayItemFromConfig<TQueryKeys, TKey>>({
       staleTime: queryOptions.staleTime,
@@ -58,20 +47,11 @@ CreateApiInfiniteQueryUtilsReturnType<TQueryKeys> {
     queryOptions: ApiUseKeysetInfiniteQueryOptions<TQueryKeys, TKey>,
   ) {
     type Params = QueryKeyParamsFromConfig<TQueryKeys, TKey>
-    type ParamsWithRefs = Params extends void
-      ? void
-      : {
-          [K in keyof Params]: MaybeRef<Params[K]>
-        }
 
-    const params = (queryOptions as { params?: Params }).params
-    const queryKey = params === undefined
-      ? {
-          [key]: undefined,
-        } as { [K in TKey]: undefined }
-      : {
-          [key]: params as ParamsWithRefs,
-        } as { [K in TKey]: ParamsWithRefs }
+    const params = (queryOptions as { params?: Params }).params ?? ({} as Params)
+    const queryKey = {
+      [key]: params,
+    } as { [K in TKey]: Params }
 
     return useBaseKeysetInfiniteQuery<QueryKeyArrayItemFromConfig<TQueryKeys, TKey>>({
       staleTime: queryOptions.staleTime,

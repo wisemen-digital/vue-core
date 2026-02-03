@@ -11,6 +11,7 @@
 
 import { QueryClient } from '@tanstack/vue-query'
 import { ok } from 'neverthrow'
+import { computed } from 'vue'
 
 import { createApiUtils } from '@/index'
 
@@ -106,7 +107,7 @@ export function exampleVoidParams(): void {
   // This should work - params passed for userDetail
   useQuery('userDetail', {
     params: {
-      userId: 'user-123',
+      userId: computed<string>(() => 'user-123'),
     },
     queryFn: () => {
       return Promise.resolve(

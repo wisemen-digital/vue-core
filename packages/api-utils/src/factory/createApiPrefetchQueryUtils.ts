@@ -1,5 +1,3 @@
-import type { MaybeRef } from 'vue'
-
 import { AsyncResult } from '@/async-result/asyncResult'
 import { QUERY_CONFIG } from '@/config/config'
 import type {
@@ -29,22 +27,12 @@ export function createApiPrefetchQueryUtils<TQueryKeys extends object>(
     queryOptions: ApiUsePrefetchQueryOptions<TQueryKeys, TKey>,
   ) {
     type Params = QueryKeyParamsFromConfig<TQueryKeys, TKey>
-    type ParamsWithRefs = Params extends void
-      ? void
-      : {
-          [K in keyof Params]: MaybeRef<Params[K]>
-        }
 
-    const params = (queryOptions as { params?: Params }).params
-    const queryKey = params === undefined
-      ? [
-          key,
-          undefined,
-        ] as const
-      : [
-          key,
-          params as ParamsWithRefs,
-        ] as const
+    const params = (queryOptions as { params?: Params }).params ?? ({} as Params)
+    const queryKey = [
+      key,
+      params,
+    ] as const
 
     async function execute(): Promise<void> {
       await options.queryClient.prefetchQuery({

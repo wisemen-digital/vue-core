@@ -8,7 +8,10 @@ import {
   expect,
   it,
 } from 'vitest'
-import { nextTick } from 'vue'
+import {
+  computed,
+  nextTick,
+} from 'vue'
 
 import { createApiUtils } from '@/factory/createApiUtils'
 import { runInSetup } from '@/test/runInSetup'
@@ -60,7 +63,7 @@ describe('createApiUtils - infinite queries', () => {
         query: useOffsetInfiniteQuery('userIndex', {
           limit: 2,
           params: {
-            search: 'user',
+            search: computed<string>(() => 'user'),
           },
           queryFn: async ({
             limit, offset,
@@ -153,7 +156,7 @@ describe('createApiUtils - infinite queries', () => {
         query: useKeysetInfiniteQuery('userIndex', {
           limit: 2,
           params: {
-            search: 'user',
+            search: computed<string>(() => 'user'),
           },
           queryFn: async ({
             key, limit,

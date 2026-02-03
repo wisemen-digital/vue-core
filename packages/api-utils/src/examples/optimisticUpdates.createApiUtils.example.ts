@@ -6,6 +6,7 @@
 
 import { QueryClient } from '@tanstack/vue-query'
 import { ok } from 'neverthrow'
+import { computed } from 'vue'
 
 import { createApiUtils } from '@/index'
 
@@ -38,7 +39,7 @@ export function exampleOptimisticUpdate(): void {
 
   const userQuery = apiUtils.useQuery('userDetail', {
     params: {
-      userUuid: 'uuid-123',
+      userUuid: computed<UserUuid>(() => 'uuid-123'),
     },
     queryFn: () => {
       return Promise.resolve(

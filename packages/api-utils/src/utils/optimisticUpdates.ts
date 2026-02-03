@@ -12,7 +12,7 @@ import type {
 import { AsyncResult } from '@/async-result/asyncResult'
 import type {
   QueryKeyEntityFromConfig,
-  QueryKeyParamsFromConfig,
+  QueryKeyRawParamsFromConfig,
   QueryKeys,
   QueryKeysWithEntityFromConfig,
 } from '@/types/queryKeys.type'
@@ -67,7 +67,7 @@ type QueryKeyOrTupleFromConfig<
   TKey extends QueryKeysWithEntityFromConfig<TQueryKeys>,
 >
   = | TKey
-    | readonly [TKey, Partial<QueryKeyParamsFromConfig<TQueryKeys, TKey>>]
+    | readonly [TKey, Partial<QueryKeyRawParamsFromConfig<TQueryKeys, TKey>>]
 
 /**
  * OptimisticUpdates utility class for type-safe optimistic updates
@@ -224,7 +224,7 @@ export class OptimisticUpdates<TQueryKeys extends object = QueryKeys> {
     options: { isExact: true },
   ): QueryKeyEntityFromConfig<TQueryKeys, TKey> | null
   get<TKey extends QueryKeysWithEntityFromConfig<TQueryKeys>>(
-    queryKey: readonly [TKey, Partial<QueryKeyParamsFromConfig<TQueryKeys, TKey>>],
+    queryKey: readonly [TKey, Partial<QueryKeyRawParamsFromConfig<TQueryKeys, TKey>>],
   ): QueryKeyEntityFromConfig<TQueryKeys, TKey> | null
   get<TKey extends QueryKeysWithEntityFromConfig<TQueryKeys>>(
     queryKey: QueryKeyOrTupleFromConfig<TQueryKeys, TKey>,
@@ -298,7 +298,7 @@ export class OptimisticUpdates<TQueryKeys extends object = QueryKeys> {
   ): Promise<void>
   // Overload: full tuple with params - invalidates specific query
   async invalidate<TKey extends QueryKeysWithEntityFromConfig<TQueryKeys>>(
-    keyTuple: readonly [TKey, Partial<QueryKeyParamsFromConfig<TQueryKeys, TKey>>],
+    keyTuple: readonly [TKey, Partial<QueryKeyRawParamsFromConfig<TQueryKeys, TKey>>],
   ): Promise<void>
   // Implementation
   async invalidate<TKey extends QueryKeysWithEntityFromConfig<TQueryKeys>>(
@@ -357,7 +357,7 @@ export class OptimisticUpdates<TQueryKeys extends object = QueryKeys> {
   ): void
   // Overload: full tuple with params - stores as ['userDetail', params]
   set<TKey extends QueryKeysWithEntityFromConfig<TQueryKeys>>(
-    queryKey: readonly [TKey, Partial<QueryKeyParamsFromConfig<TQueryKeys, TKey>>],
+    queryKey: readonly [TKey, Partial<QueryKeyRawParamsFromConfig<TQueryKeys, TKey>>],
     entity: QueryKeyEntityFromConfig<TQueryKeys, TKey>,
   ): void
   // Implementation
@@ -416,7 +416,7 @@ export class OptimisticUpdates<TQueryKeys extends object = QueryKeys> {
     TKey extends QueryKeysWithEntityFromConfig<TQueryKeys>,
     TEntity extends QueryKeyEntityFromConfig<TQueryKeys, TKey> = QueryKeyEntityFromConfig<TQueryKeys, TKey>,
   >(
-    keyTuple: readonly [TKey, Partial<QueryKeyParamsFromConfig<TQueryKeys, TKey>>],
+    keyTuple: readonly [TKey, Partial<QueryKeyRawParamsFromConfig<TQueryKeys, TKey>>],
     options: OptimisticUpdateOptions<TEntity>,
   ): void
   // Implementation

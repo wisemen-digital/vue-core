@@ -40,8 +40,23 @@ export type QueryKeyEntityFromConfig<
 
 /**
  * Extract the params type from a query-keys config for a specific key.
+ * Automatically wraps each param in Ref for reactivity.
  */
 export type QueryKeyParamsFromConfig<
+  TQueryKeys extends object,
+  TKey extends PropertyKey,
+> = TKey extends keyof TQueryKeys
+  ? TQueryKeys[TKey] extends { params: infer P }
+    ? {
+        [K in keyof P]: Ref<P[K]>
+      }
+    : void
+  : never
+/**
+ * Extract the raw params type from a query-keys config for a specific key (unwrapped from Computed).
+ * Used for optimistic updates which accept plain values.
+ */
+export type QueryKeyRawParamsFromConfig<
   TQueryKeys extends object,
   TKey extends PropertyKey,
 > = TKey extends keyof TQueryKeys
@@ -49,7 +64,6 @@ export type QueryKeyParamsFromConfig<
     ? P
     : void
   : never
-
 /**
  * Get all keys that have an associated entity in a query-keys config.
  */

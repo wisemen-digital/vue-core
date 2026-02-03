@@ -1,5 +1,3 @@
-import type { MaybeRef } from 'vue'
-
 import type { UseQueryReturnType } from '@/composables/query/query.composable'
 import { useQuery as useBaseQuery } from '@/composables/query/query.composable'
 import type {
@@ -23,16 +21,11 @@ export function createApiQueryUtils<TQueryKeys extends object>(): CreateApiQuery
     queryOptions: ApiUseQueryOptions<TQueryKeys, TKey>,
   ): UseQueryReturnType<QueryKeyEntityFromConfig<TQueryKeys, TKey>> {
     type Params = QueryKeyParamsFromConfig<TQueryKeys, TKey>
-    type ParamsWithRefs = Params extends void
-      ? void
-      : {
-          [K in keyof Params]: MaybeRef<Params[K]>
-        }
 
     const params = (queryOptions as { params?: Params }).params ?? ({} as Params)
     const queryKey = {
-      [key]: params as ParamsWithRefs,
-    } as { [K in TKey]: ParamsWithRefs }
+      [key]: params,
+    } as { [K in TKey]: Params }
 
     return useBaseQuery<QueryKeyEntityFromConfig<TQueryKeys, TKey>>({
       staleTime: queryOptions.staleTime,
