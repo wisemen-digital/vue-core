@@ -614,9 +614,16 @@ export class OidcClient {
    * Returns whether an authenticated user with a non-empty access token exists.
    */
   public async isLoggedIn(): Promise<boolean> {
-    const user = await this.getValidUser()
+    try {
+      const user = await this.getValidUser()
 
-    return user !== null && user.access_token !== ''
+      return user !== null && user.access_token !== ''
+    }
+    catch (error) {
+      await this.clearAuthState()
+
+      throw error
+    }
   }
 
   /**
