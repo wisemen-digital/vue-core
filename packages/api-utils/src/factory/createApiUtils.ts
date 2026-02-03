@@ -1,4 +1,5 @@
 import { createApiInfiniteQueryUtils } from './createApiInfiniteQueryUtils'
+import { createApiMutationUtils } from './createApiMutationUtils'
 import { createApiOptimisticUpdatesUtils } from './createApiOptimisticUpdatesUtils'
 import { createApiPrefetchInfiniteQueryUtils } from './createApiPrefetchInfiniteQueryUtils'
 import { createApiPrefetchQueryUtils } from './createApiPrefetchQueryUtils'
@@ -7,6 +8,8 @@ import type { CreateApiUtilsOptions } from './createApiUtils.types'
 
 export type { CreateApiInfiniteQueryUtilsReturnType } from './createApiInfiniteQueryUtils'
 export { createApiInfiniteQueryUtils } from './createApiInfiniteQueryUtils'
+export type { CreateApiMutationUtilsReturnType } from './createApiMutationUtils'
+export { createApiMutationUtils } from './createApiMutationUtils'
 export type { CreateApiOptimisticUpdatesUtilsReturnType } from './createApiOptimisticUpdatesUtils'
 export { createApiOptimisticUpdatesUtils } from './createApiOptimisticUpdatesUtils'
 export type { CreateApiPrefetchInfiniteQueryUtilsReturnType } from './createApiPrefetchInfiniteQueryUtils'
@@ -23,6 +26,7 @@ export type CreateApiUtilsReturnType<TQueryKeys extends object> = ReturnType<
 & ReturnType<typeof createApiPrefetchQueryUtils<TQueryKeys>>
 & ReturnType<typeof createApiInfiniteQueryUtils<TQueryKeys>>
 & ReturnType<typeof createApiPrefetchInfiniteQueryUtils<TQueryKeys>>
+& ReturnType<typeof createApiMutationUtils<TQueryKeys>>
 & ReturnType<typeof createApiOptimisticUpdatesUtils<TQueryKeys>>
 
 /**
@@ -37,6 +41,7 @@ export function createApiUtils<TQueryKeys extends object>(
     ...createApiPrefetchQueryUtils<TQueryKeys>(options),
     ...createApiPrefetchInfiniteQueryUtils<TQueryKeys>(options),
     ...createApiInfiniteQueryUtils<TQueryKeys>(),
+    ...createApiMutationUtils<TQueryKeys>(),
     ...createApiOptimisticUpdatesUtils<TQueryKeys>(options),
   }
 }
