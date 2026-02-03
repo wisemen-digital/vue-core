@@ -1,3 +1,5 @@
+import type { Ref } from 'vue'
+
 /**
  * Base interface for defining query keys with their associated entities
  *
@@ -45,7 +47,7 @@ export type QueryKeyParamsFromConfig<
 > = TKey extends keyof TQueryKeys
   ? TQueryKeys[TKey] extends { params: infer P }
     ? P
-    : Record<string, never>
+    : void
   : never
 
 /**
@@ -63,7 +65,7 @@ export type QueryKeysWithEntityFromConfig<TQueryKeys extends object> = (
  * Extract the parameters object from a query key definition
  */
 export type QueryKeyParams<TKey extends keyof QueryKeys> = QueryKeys[TKey] extends { params: infer P }
-  ? P
+  ? Ref<P>
   : QueryKeys[TKey]
 
 /**

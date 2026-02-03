@@ -42,7 +42,7 @@ export type ApiUseQueryOptions<
   isEnabled?: MaybeRef<boolean>
   queryFn: () => Promise<ApiResult<QueryKeyEntityFromConfig<TQueryKeys, TKey>>>
 } & (
-  QueryKeyParamsFromConfig<TQueryKeys, TKey> extends Record<string, never>
+  QueryKeyParamsFromConfig<TQueryKeys, TKey> extends void
     ? { params?: QueryKeyParamsFromConfig<TQueryKeys, TKey> }
     : { params: QueryKeyParamsFromConfig<TQueryKeys, TKey> }
 )
@@ -54,7 +54,7 @@ export type ApiUsePrefetchQueryOptions<
   staleTime?: number
   queryFn: () => Promise<ApiResult<QueryKeyEntityFromConfig<TQueryKeys, TKey>>>
 } & (
-  QueryKeyParamsFromConfig<TQueryKeys, TKey> extends Record<string, never>
+  QueryKeyParamsFromConfig<TQueryKeys, TKey> extends void
     ? { params?: QueryKeyParamsFromConfig<TQueryKeys, TKey> }
     : { params: QueryKeyParamsFromConfig<TQueryKeys, TKey> }
 )
@@ -69,7 +69,7 @@ export type ApiUseOffsetInfiniteQueryOptions<
   queryFn: (paginationParams: OffsetPaginationParams)
   => Promise<OffsetPaginationResult<QueryKeyArrayItemFromConfig<TQueryKeys, TKey>>>
 } & (
-  QueryKeyParamsFromConfig<TQueryKeys, TKey> extends Record<string, never>
+  QueryKeyParamsFromConfig<TQueryKeys, TKey> extends void
     ? { params?: QueryKeyParamsFromConfig<TQueryKeys, TKey> }
     : { params: QueryKeyParamsFromConfig<TQueryKeys, TKey> }
 )
@@ -83,7 +83,7 @@ export type ApiUseOffsetInfinitePrefetchQueryOptions<
   queryFn: (paginationParams: OffsetPaginationParams)
   => Promise<OffsetPaginationResult<QueryKeyArrayItemFromConfig<TQueryKeys, TKey>>>
 } & (
-  QueryKeyParamsFromConfig<TQueryKeys, TKey> extends Record<string, never>
+  QueryKeyParamsFromConfig<TQueryKeys, TKey> extends void
     ? { params?: QueryKeyParamsFromConfig<TQueryKeys, TKey> }
     : { params: QueryKeyParamsFromConfig<TQueryKeys, TKey> }
 )
@@ -98,7 +98,7 @@ export type ApiUseKeysetInfiniteQueryOptions<
   queryFn: (paginationParams: KeysetPaginationParams)
   => Promise<KeysetPaginationResult<QueryKeyArrayItemFromConfig<TQueryKeys, TKey>>>
 } & (
-  QueryKeyParamsFromConfig<TQueryKeys, TKey> extends Record<string, never>
+  QueryKeyParamsFromConfig<TQueryKeys, TKey> extends void
     ? { params?: QueryKeyParamsFromConfig<TQueryKeys, TKey> }
     : { params: QueryKeyParamsFromConfig<TQueryKeys, TKey> }
 )
@@ -112,7 +112,7 @@ export type ApiUseKeysetInfinitePrefetchQueryOptions<
   queryFn: (paginationParams: KeysetPaginationParams)
   => Promise<KeysetPaginationResult<QueryKeyArrayItemFromConfig<TQueryKeys, TKey>>>
 } & (
-  QueryKeyParamsFromConfig<TQueryKeys, TKey> extends Record<string, never>
+  QueryKeyParamsFromConfig<TQueryKeys, TKey> extends void
     ? { params?: QueryKeyParamsFromConfig<TQueryKeys, TKey> }
     : { params: QueryKeyParamsFromConfig<TQueryKeys, TKey> }
 )

@@ -8,6 +8,7 @@ export {
   type QueryConfig, setQueryConfig,
 } from './config/config'
 export * from './factory/createApiUtils'
+export * from './factory/createApiUtils.types'
 export * from './types/apiError.type'
 export * from './types/pagination.type'
 export * from './types/query.type'

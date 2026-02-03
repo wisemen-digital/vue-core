@@ -1,4 +1,3 @@
-/* eslint-disable eslint-plugin-wisemen/explicit-function-return-type-with-regex */
 import type { MaybeRef } from 'vue'
 
 import type { UseQueryReturnType } from '@/composables/query/query.composable'
@@ -11,15 +10,24 @@ import type {
 
 import type { ApiUseQueryOptions } from './createApiUtils.types'
 
-export function createApiQueryUtils<TQueryKeys extends object>() {
+export interface CreateApiQueryUtilsReturnType<TQueryKeys extends object> {
+  useQuery: <TKey extends QueryKeysWithEntityFromConfig<TQueryKeys>>(
+    key: TKey,
+    queryOptions: ApiUseQueryOptions<TQueryKeys, TKey>,
+  ) => UseQueryReturnType<QueryKeyEntityFromConfig<TQueryKeys, TKey>>
+}
+
+export function createApiQueryUtils<TQueryKeys extends object>(): CreateApiQueryUtilsReturnType<TQueryKeys> {
   function useQuery<TKey extends QueryKeysWithEntityFromConfig<TQueryKeys>>(
     key: TKey,
     queryOptions: ApiUseQueryOptions<TQueryKeys, TKey>,
   ): UseQueryReturnType<QueryKeyEntityFromConfig<TQueryKeys, TKey>> {
     type Params = QueryKeyParamsFromConfig<TQueryKeys, TKey>
-    type ParamsWithRefs = {
-      [K in keyof Params]: MaybeRef<Params[K]>
-    }
+    type ParamsWithRefs = Params extends void
+      ? void
+      : {
+          [K in keyof Params]: MaybeRef<Params[K]>
+        }
 
     const params = (queryOptions as { params?: Params }).params ?? ({} as Params)
     const queryKey = {

@@ -1,4 +1,3 @@
-/* eslint-disable eslint-plugin-wisemen/explicit-function-return-type-with-regex */
 import type { MaybeRef } from 'vue'
 
 import { QUERY_CONFIG } from '@/config/config'
@@ -20,7 +19,24 @@ import type {
 
 const DEFAULT_LIMIT = QUERY_CONFIG.limit
 
-export function createApiPrefetchInfiniteQueryUtils<TQueryKeys extends object>(options: CreateApiUtilsOptions) {
+export interface CreateApiPrefetchInfiniteQueryUtilsReturnType<TQueryKeys extends object> {
+  usePrefetchKeysetInfiniteQuery: <TKey extends QueryKeysWithArrayEntityFromConfig<TQueryKeys>>(
+    key: TKey,
+    queryOptions: ApiUseKeysetInfinitePrefetchQueryOptions<TQueryKeys, TKey>,
+  ) => {
+    execute: () => Promise<void>
+  }
+  usePrefetchOffsetInfiniteQuery: <TKey extends QueryKeysWithArrayEntityFromConfig<TQueryKeys>>(
+    key: TKey,
+    queryOptions: ApiUseOffsetInfinitePrefetchQueryOptions<TQueryKeys, TKey>,
+  ) => {
+    execute: () => Promise<void>
+  }
+}
+
+export function createApiPrefetchInfiniteQueryUtils<TQueryKeys extends object>(
+  options: CreateApiUtilsOptions,
+): CreateApiPrefetchInfiniteQueryUtilsReturnType<TQueryKeys> {
   function usePrefetchOffsetInfiniteQuery<TKey extends QueryKeysWithArrayEntityFromConfig<TQueryKeys>>(
     key: TKey,
     queryOptions: ApiUseOffsetInfinitePrefetchQueryOptions<TQueryKeys, TKey>,
@@ -29,15 +45,22 @@ export function createApiPrefetchInfiniteQueryUtils<TQueryKeys extends object>(o
     type Page = OffsetPaginationResult<TData>
 
     type Params = QueryKeyParamsFromConfig<TQueryKeys, TKey>
-    type ParamsWithRefs = {
-      [K in keyof Params]: MaybeRef<Params[K]>
-    }
+    type ParamsWithRefs = Params extends void
+      ? void
+      : {
+          [K in keyof Params]: MaybeRef<Params[K]>
+        }
 
-    const params = (queryOptions as { params?: Params }).params ?? ({} as Params)
-    const queryKey = [
-      key,
-      params as ParamsWithRefs,
-    ] as const
+    const params = (queryOptions as { params?: Params }).params
+    const queryKey = params === undefined
+      ? [
+          key,
+          undefined,
+        ] as const
+      : [
+          key,
+          params as ParamsWithRefs,
+        ] as const
 
     async function execute(): Promise<void> {
       await options.queryClient.prefetchInfiniteQuery({
@@ -80,15 +103,22 @@ export function createApiPrefetchInfiniteQueryUtils<TQueryKeys extends object>(o
     type Page = KeysetPaginationResult<TData>
 
     type Params = QueryKeyParamsFromConfig<TQueryKeys, TKey>
-    type ParamsWithRefs = {
-      [K in keyof Params]: MaybeRef<Params[K]>
-    }
+    type ParamsWithRefs = Params extends void
+      ? void
+      : {
+          [K in keyof Params]: MaybeRef<Params[K]>
+        }
 
-    const params = (queryOptions as { params?: Params }).params ?? ({} as Params)
-    const queryKey = [
-      key,
-      params as ParamsWithRefs,
-    ] as const
+    const params = (queryOptions as { params?: Params }).params
+    const queryKey = params === undefined
+      ? [
+          key,
+          undefined,
+        ] as const
+      : [
+          key,
+          params as ParamsWithRefs,
+        ] as const
 
     async function execute(): Promise<void> {
       await options.queryClient.prefetchInfiniteQuery({
