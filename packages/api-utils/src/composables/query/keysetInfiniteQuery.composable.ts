@@ -4,7 +4,10 @@ import { computed } from 'vue'
 
 import { AsyncResult } from '@/async-result/asyncResult'
 import { QUERY_CONFIG } from '@/config/config'
-import type { ApiError } from '@/types/apiError.type'
+import type {
+  ApiError,
+  AsyncApiResult,
+} from '@/types/apiError.type'
 import type {
   KeysetPaginationParams,
   KeysetPaginationResponse,
@@ -95,15 +98,15 @@ export function useKeysetInfiniteQuery<TData>(options: KeysetInfiniteQueryOption
     return Boolean(infiniteQuery.data.value?.pages.find((page) => page.isErr()))
   })
 
-  const result = computed<AsyncResult<KeysetPaginationResponse<TData>, ApiError>>(() => {
+  const result = computed<AsyncApiResult<KeysetPaginationResponse<TData>>>(() => {
     if (infiniteQuery.isLoading.value) {
-      return AsyncResult.loading<KeysetPaginationResponse<TData>, ApiError>()
+      return AsyncResult.loading<KeysetPaginationResponse<TData>>()
     }
 
     const firstError = infiniteQuery.data.value?.pages.find((page) => page.isErr())
 
     if (firstError) {
-      return AsyncResult.err<KeysetPaginationResponse<TData>, ApiError>(firstError.error)
+      return AsyncResult.err<KeysetPaginationResponse<TData>>(firstError.error)
     }
 
     const data = infiniteQuery.data.value?.pages
@@ -124,7 +127,7 @@ export function useKeysetInfiniteQuery<TData>(options: KeysetInfiniteQueryOption
       },
     }
 
-    return AsyncResult.ok<KeysetPaginationResponse<TData>, ApiError>(response)
+    return AsyncResult.ok<KeysetPaginationResponse<TData>>(response)
   })
 
   // eslint-disable-next-line eslint-plugin-wisemen/explicit-function-return-type-with-regex

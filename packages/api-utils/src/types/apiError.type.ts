@@ -1,5 +1,7 @@
 import type { Result } from 'neverthrow'
 
+import type { AsyncResult } from '@/async-result/asyncResult'
+
 export interface ApiErrorCodes {}
 
 export type ApiErrorCode = ApiErrorCodes[keyof ApiErrorCodes]
@@ -32,3 +34,5 @@ export interface ApiExpectedError {
 export type ApiUnexpectedError = Error
 export type ApiError = ApiExpectedError | ApiUnexpectedError
 export type ApiResult<T> = Result<T, ApiError>
+
+export type AsyncApiResult<T> = AsyncResult<T, ApiError>

@@ -9,6 +9,7 @@ import { AsyncResult } from '@/async-result/asyncResult'
 import type {
   ApiError,
   ApiResult,
+  AsyncApiResult,
 } from '@/types/apiError.type'
 import type { QueryKeys } from '@/types/queryKeys.type'
 
@@ -131,7 +132,7 @@ export function useQuery<TResData>(options: UseQueryOptions<TResData>): UseQuery
     isLoading: computed<boolean>(() => query.isLoading.value),
     isSuccess: computed<boolean>(() => query.data.value?.isOk() ?? false),
     refetch,
-    result: computed<AsyncResult<TResData, ApiError>>(() => {
+    result: computed<AsyncApiResult<TResData>>(() => {
       if (query.isLoading.value) {
         return AsyncResult.loading<TResData, ApiError>()
       }

@@ -9,6 +9,7 @@ import { AsyncResult } from '@/async-result/asyncResult'
 import type {
   ApiError,
   ApiResult,
+  AsyncApiResult,
 } from '@/types/apiError.type'
 
 type RequestParams<TReqData, TParams> = TReqData extends void
@@ -180,7 +181,7 @@ export function useMutation<
     return await mutation.mutateAsync(data)
   }
 
-  const result = computed<AsyncResult<TResData, ApiError>>(() => {
+  const result = computed<AsyncApiResult<TResData>>(() => {
     if (mutation.isPending.value) {
       return AsyncResult.loading<TResData, ApiError>()
     }
