@@ -17,7 +17,10 @@ import type {
 
 const DEFAULT_LIMIT = QUERY_CONFIG.limit
 
-export interface CreateApiPrefetchInfiniteQueryUtilsReturnType<TQueryKeys extends object, TErrorCode extends string = string> {
+export interface CreateApiPrefetchInfiniteQueryUtilsReturnType<
+  TQueryKeys extends object, TErrorCode extends string = string,
+>
+{
   usePrefetchKeysetInfiniteQuery: <TKey extends QueryKeysWithArrayEntityFromConfig<TQueryKeys>>(
     key: TKey,
     queryOptions: ApiUseKeysetInfinitePrefetchQueryOptions<TQueryKeys, TKey, TErrorCode>,

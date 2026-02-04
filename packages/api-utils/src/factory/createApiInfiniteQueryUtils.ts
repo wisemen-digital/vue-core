@@ -13,11 +13,11 @@ export interface CreateApiInfiniteQueryUtilsReturnType<TQueryKeys extends object
   useKeysetInfiniteQuery: <TKey extends QueryKeysWithArrayEntityFromConfig<TQueryKeys>>(
     key: TKey,
     queryOptions: ApiUseKeysetInfiniteQueryOptions<TQueryKeys, TKey, TErrorCode>,
-  ) => ReturnType<typeof useBaseKeysetInfiniteQuery<QueryKeyArrayItemFromConfig<TQueryKeys, TKey>>>
+  ) => ReturnType<typeof useBaseKeysetInfiniteQuery<QueryKeyArrayItemFromConfig<TQueryKeys, TKey>, TErrorCode>>
   useOffsetInfiniteQuery: <TKey extends QueryKeysWithArrayEntityFromConfig<TQueryKeys>>(
     key: TKey,
     queryOptions: ApiUseOffsetInfiniteQueryOptions<TQueryKeys, TKey, TErrorCode>,
-  ) => ReturnType<typeof useBaseOffsetInfiniteQuery<QueryKeyArrayItemFromConfig<TQueryKeys, TKey>>>
+  ) => ReturnType<typeof useBaseOffsetInfiniteQuery<QueryKeyArrayItemFromConfig<TQueryKeys, TKey>, TErrorCode>>
 }
 
 export function createApiInfiniteQueryUtils<TQueryKeys extends object, TErrorCode extends string = string>():
@@ -33,7 +33,7 @@ CreateApiInfiniteQueryUtilsReturnType<TQueryKeys, TErrorCode> {
       [key]: params,
     } as { [K in TKey]: Params }
 
-    return useBaseOffsetInfiniteQuery<QueryKeyArrayItemFromConfig<TQueryKeys, TKey>>({
+    return useBaseOffsetInfiniteQuery<QueryKeyArrayItemFromConfig<TQueryKeys, TKey>, TErrorCode>({
       staleTime: queryOptions.staleTime,
       isEnabled: queryOptions.isEnabled,
       limit: queryOptions.limit,
@@ -53,7 +53,7 @@ CreateApiInfiniteQueryUtilsReturnType<TQueryKeys, TErrorCode> {
       [key]: params,
     } as { [K in TKey]: Params }
 
-    return useBaseKeysetInfiniteQuery<QueryKeyArrayItemFromConfig<TQueryKeys, TKey>>({
+    return useBaseKeysetInfiniteQuery<QueryKeyArrayItemFromConfig<TQueryKeys, TKey>, TErrorCode>({
       staleTime: queryOptions.staleTime,
       isEnabled: queryOptions.isEnabled,
       limit: queryOptions.limit,

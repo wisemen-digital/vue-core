@@ -19,7 +19,7 @@ type NonOptionalKeys<T> = {
 // Helper to extract params from QueryKeys (backwards compatible)
 type ExtractParams<T> = T extends { params: infer P } ? P : T
 
-export interface OffsetInfiniteQueryOptions<TData> {
+export interface OffsetInfiniteQueryOptions<TData, TErrorCode extends string = string> {
   /**
    * The time in milliseconds after which the query will be considered stale
    * After this time, the query will be refetched automatically in the background when it is rendered or accessed
@@ -41,7 +41,7 @@ export interface OffsetInfiniteQueryOptions<TData> {
    * Function that will be called when query is executed
    * @returns Promise with response data
    */
-  queryFn: (paginationParams: OffsetPaginationParams) => Promise<OffsetPaginationResult<TData>>
+  queryFn: (paginationParams: OffsetPaginationParams) => Promise<OffsetPaginationResult<TData, TErrorCode>>
   /**
    * Query key associated with the query
    */
@@ -56,7 +56,9 @@ export interface OffsetInfiniteQueryOptions<TData> {
 
 const DEFAULT_LIMIT = QUERY_CONFIG.limit
 
-export function useOffsetInfiniteQuery<TData>(options: OffsetInfiniteQueryOptions<TData>) {
+export function useOffsetInfiniteQuery<TData, TErrorCode extends string = string>(
+  options: OffsetInfiniteQueryOptions<TData, TErrorCode>,
+) {
   function getQueryKey(): unknown[] {
     const entries = Object.entries(options.queryKey)
     const [
@@ -80,7 +82,7 @@ export function useOffsetInfiniteQuery<TData>(options: OffsetInfiniteQueryOption
   const infiniteQuery = useInfiniteQuery({
     staleTime: options.staleTime,
     enabled: options.isEnabled,
-    getNextPageParam: (lastPage: OffsetPaginationResult<TData>) => {
+    getNextPageParam: (lastPage: OffsetPaginationResult<TData, TErrorCode>) => {
       if (lastPage.isErr()) {
         return null
       }
@@ -108,15 +110,15 @@ export function useOffsetInfiniteQuery<TData>(options: OffsetInfiniteQueryOption
     return Boolean(infiniteQuery.data.value?.pages.find((page) => page.isErr()))
   })
 
-  const result = computed<AsyncResult<OffsetPaginationResponse<TData>, ApiError>>(() => {
+  const result = computed<AsyncResult<OffsetPaginationResponse<TData>, ApiError<TErrorCode>>>(() => {
     if (infiniteQuery.isLoading.value) {
-      return AsyncResult.loading<OffsetPaginationResponse<TData>, ApiError>()
+      return AsyncResult.loading<OffsetPaginationResponse<TData>, ApiError<TErrorCode>>()
     }
 
     const firstError = infiniteQuery.data.value?.pages.find((page) => page.isErr())
 
     if (firstError) {
-      return AsyncResult.err<OffsetPaginationResponse<TData>, ApiError>(firstError.error)
+      return AsyncResult.err<OffsetPaginationResponse<TData>, ApiError<TErrorCode>>(firstError.error)
     }
 
     const data = infiniteQuery.data.value?.pages
@@ -135,7 +137,7 @@ export function useOffsetInfiniteQuery<TData>(options: OffsetInfiniteQueryOption
       },
     }
 
-    return AsyncResult.ok<OffsetPaginationResponse<TData>, ApiError>(response)
+    return AsyncResult.ok<OffsetPaginationResponse<TData>, ApiError<TErrorCode>>(response)
   })
 
   // eslint-disable-next-line eslint-plugin-wisemen/explicit-function-return-type-with-regex

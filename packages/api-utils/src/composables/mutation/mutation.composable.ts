@@ -9,6 +9,7 @@ import { AsyncResult } from '@/async-result/asyncResult'
 import type {
   ApiError,
   ApiResult,
+  ApiUnexpectedError,
   AsyncApiResult,
 } from '@/types/apiError.type'
 
@@ -21,7 +22,7 @@ type RequestParams<TReqData, TParams> = TReqData extends void
     : { body: TReqData
         params: TParams }
 
-interface UseMutationOptions<TReqData, TResData, TParams = void> {
+interface UseMutationOptions<TReqData, TResData, TParams = void, TErrorCode extends string = string> {
   /**
    * Whether to enable debug mode
    */
@@ -31,7 +32,7 @@ interface UseMutationOptions<TReqData, TResData, TParams = void> {
    * @param options - Parameters and body for the mutation
    * @returns Promise with ApiResult containing either the response data or an error
    */
-  queryFn: (options: RequestParams<TReqData, TParams>) => Promise<ApiResult<TResData>>
+  queryFn: (options: RequestParams<TReqData, TParams>) => Promise<ApiResult<TResData, TErrorCode>>
   /**
    * Object where each key is a query key to invalidate after mutation succeeds.
    * Each query key can optionally have nested parameter extractors.
@@ -51,7 +52,7 @@ interface UseMutationOptions<TReqData, TResData, TParams = void> {
   >
 }
 
-export interface UseMutationReturnType<TReqData, TResData, TParams = void> {
+export interface UseMutationReturnType<TReqData, TResData, TParams = void, TErrorCode extends string = string> {
   /**
    * Whether mutation is loading
    */
@@ -66,7 +67,7 @@ export interface UseMutationReturnType<TReqData, TResData, TParams = void> {
    * @param data - Parameters and body for the mutation
    * @returns Promise with ApiResult containing either the response data or an error
    */
-  execute: (data: RequestParams<TReqData, TParams>) => Promise<ApiResult<TResData>>
+  execute: (data: RequestParams<TReqData, TParams>) => Promise<ApiResult<TResData, TErrorCode>>
   /**
    * Computed result of the mutation
    * Returns an AsyncResult with three states:
@@ -74,16 +75,17 @@ export interface UseMutationReturnType<TReqData, TResData, TParams = void> {
    * - ok: use `result.value.isOk()` and `result.value.getValue()`
    * - err: use `result.value.isErr()` and `result.value.getError()`
    */
-  result: ComputedRef<AsyncResult<TResData, ApiError>>
+  result: ComputedRef<AsyncResult<TResData, ApiError<TErrorCode>>>
 }
 
 export function useMutation<
   TReqData = void,
   TResData = void,
   TParams = void,
+  TErrorCode extends string = string,
 >(
-  options: UseMutationOptions<TReqData, TResData, TParams>,
-): UseMutationReturnType<TReqData, TResData, TParams> {
+  options: UseMutationOptions<TReqData, TResData, TParams, TErrorCode>,
+): UseMutationReturnType<TReqData, TResData, TParams, TErrorCode> {
   const isDebug = options.isDebug ?? false
   const queryClient = useQueryClient()
 
@@ -157,7 +159,11 @@ export function useMutation<
     )
   }
 
-  const mutation = useTanstackQueryMutation<ApiResult<TResData>, unknown, RequestParams<TReqData, TParams>>({
+  const mutation = useTanstackQueryMutation<
+    ApiResult<TResData, TErrorCode>,
+    unknown,
+    RequestParams<TReqData, TParams>
+  >({
     mutationFn: options.queryFn,
     onSuccess: async (result, variables: RequestParams<TReqData, TParams>) => {
       if (!result.isOk()) {
@@ -177,32 +183,32 @@ export function useMutation<
     },
   })
 
-  async function execute(data: RequestParams<TReqData, TParams>): Promise<ApiResult<TResData>> {
+  async function execute(data: RequestParams<TReqData, TParams>): Promise<ApiResult<TResData, TErrorCode>> {
     return await mutation.mutateAsync(data)
   }
 
-  const result = computed<AsyncApiResult<TResData>>(() => {
+  const result = computed<AsyncApiResult<TResData, TErrorCode>>(() => {
     if (mutation.isPending.value) {
-      return AsyncResult.loading<TResData, ApiError>()
+      return AsyncResult.loading<TResData, ApiError<TErrorCode>>()
     }
 
-    if (mutation.isError.value && mutation.error.value) {
-      return AsyncResult.err<TResData, ApiError>(mutation.error.value as ApiError)
+    if (mutation.isError.value) {
+      return AsyncResult.err<TResData, ApiUnexpectedError>(mutation.error.value as ApiUnexpectedError)
     }
 
     if (mutation.isSuccess.value && mutation.data.value !== undefined) {
       const apiResult = mutation.data.value
 
       if (apiResult.isOk()) {
-        return AsyncResult.ok<TResData, ApiError>(apiResult.value)
+        return AsyncResult.ok<TResData, ApiError<TErrorCode>>(apiResult.value)
       }
 
       if (apiResult.isErr()) {
-        return AsyncResult.err<TResData, ApiError>(apiResult.error)
+        return AsyncResult.err<TResData, ApiError<TErrorCode>>(apiResult.error)
       }
     }
 
-    return AsyncResult.loading<TResData, ApiError>()
+    return AsyncResult.loading<TResData, ApiError<TErrorCode>>()
   })
 
   return {

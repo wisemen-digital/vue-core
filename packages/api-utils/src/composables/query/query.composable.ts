@@ -9,7 +9,6 @@ import { AsyncResult } from '@/async-result/asyncResult'
 import type {
   ApiError,
   ApiResult,
-  AsyncApiResult,
 } from '@/types/apiError.type'
 import type { QueryKeys } from '@/types/queryKeys.type'
 
@@ -20,7 +19,7 @@ type NonOptionalKeys<T> = {
 // Helper to extract params from QueryKeys (backwards compatible)
 type ExtractParams<T> = T extends { params: infer P } ? P : T
 
-export interface UseQueryOptions<TResData> {
+export interface UseQueryOptions<TResData, TErrorCode extends string = string> {
   /**
    * The time in milliseconds after which the query will be considered stale
    * After this time, the query will be refetched automatically in the background when it is rendered or accessed
@@ -43,7 +42,7 @@ export interface UseQueryOptions<TResData> {
    * Function that will be called when query is executed
    * @returns Promise with response data
    */
-  queryFn: () => Promise<ApiResult<TResData>>
+  queryFn: () => Promise<ApiResult<TResData, TErrorCode>>
   /**
    * Query key associated with the query
    */
@@ -56,7 +55,7 @@ export interface UseQueryOptions<TResData> {
   }
 }
 
-export interface UseQueryReturnType<TResData> {
+export interface UseQueryReturnType<TResData, TErrorCode extends string = string> {
   /**
    * Whether query has errored at least once
    * @deprecated - use `result.value.isErr()` instead
@@ -89,10 +88,12 @@ export interface UseQueryReturnType<TResData> {
    *
    * Use `result.value.match({ loading, ok, err })` for exhaustive handling
    */
-  result: ComputedRef<AsyncResult<TResData, ApiError>>
+  result: ComputedRef<AsyncResult<TResData, ApiError<TErrorCode>>>
 }
 
-export function useQuery<TResData>(options: UseQueryOptions<TResData>): UseQueryReturnType<TResData> {
+export function useQuery<TResData, TErrorCode extends string = string>(
+  options: UseQueryOptions<TResData, TErrorCode>,
+): UseQueryReturnType<TResData, TErrorCode> {
   const isDebug = options.isDebug ?? false
 
   const query = useTanstackQuery({
@@ -132,9 +133,9 @@ export function useQuery<TResData>(options: UseQueryOptions<TResData>): UseQuery
     isLoading: computed<boolean>(() => query.isLoading.value),
     isSuccess: computed<boolean>(() => query.data.value?.isOk() ?? false),
     refetch,
-    result: computed<AsyncApiResult<TResData>>(() => {
+    result: computed<AsyncResult<TResData, ApiError<TErrorCode>>>(() => {
       if (query.isLoading.value) {
-        return AsyncResult.loading<TResData, ApiError>()
+        return AsyncResult.loading<TResData, ApiError<TErrorCode>>()
       }
 
       if (query.data.value?.isOk()) {
@@ -142,10 +143,10 @@ export function useQuery<TResData>(options: UseQueryOptions<TResData>): UseQuery
       }
 
       if (query.data.value?.isErr()) {
-        return AsyncResult.err<TResData, ApiError>(query.data.value.getError())
+        return AsyncResult.err<TResData, ApiError<TErrorCode>>(query.data.value.getError())
       }
 
-      return AsyncResult.loading<TResData, ApiError>()
+      return AsyncResult.loading<TResData, ApiError<TErrorCode>>()
     }),
   }
 }

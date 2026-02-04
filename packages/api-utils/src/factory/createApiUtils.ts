@@ -27,7 +27,7 @@ export type CreateApiUtilsReturnType<TQueryKeys extends object, TErrorCode exten
 & ReturnType<typeof createApiInfiniteQueryUtils<TQueryKeys, TErrorCode>>
 & ReturnType<typeof createApiPrefetchInfiniteQueryUtils<TQueryKeys, TErrorCode>>
 & ReturnType<typeof createApiMutationUtils<TQueryKeys, TErrorCode>>
-& ReturnType<typeof createApiOptimisticUpdatesUtils<TQueryKeys, TErrorCode>>
+& ReturnType<typeof createApiOptimisticUpdatesUtils<TQueryKeys>>
 
 /**
  * Factory that creates typed composables based on a user-provided query-keys config.
@@ -42,6 +42,6 @@ export function createApiUtils<TQueryKeys extends object, TErrorCode extends str
     ...createApiPrefetchInfiniteQueryUtils<TQueryKeys, TErrorCode>(options),
     ...createApiInfiniteQueryUtils<TQueryKeys, TErrorCode>(),
     ...createApiMutationUtils<TQueryKeys, TErrorCode>(),
-    ...createApiOptimisticUpdatesUtils<TQueryKeys, TErrorCode>(options),
+    ...createApiOptimisticUpdatesUtils<TQueryKeys>(options),
   }
 }
