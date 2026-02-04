@@ -9,22 +9,22 @@ import type {
   QueryKeysWithArrayEntityFromConfig,
 } from './createApiUtils.types'
 
-export interface CreateApiInfiniteQueryUtilsReturnType<TQueryKeys extends object> {
+export interface CreateApiInfiniteQueryUtilsReturnType<TQueryKeys extends object, TErrorCode extends string = string> {
   useKeysetInfiniteQuery: <TKey extends QueryKeysWithArrayEntityFromConfig<TQueryKeys>>(
     key: TKey,
-    queryOptions: ApiUseKeysetInfiniteQueryOptions<TQueryKeys, TKey>,
+    queryOptions: ApiUseKeysetInfiniteQueryOptions<TQueryKeys, TKey, TErrorCode>,
   ) => ReturnType<typeof useBaseKeysetInfiniteQuery<QueryKeyArrayItemFromConfig<TQueryKeys, TKey>>>
   useOffsetInfiniteQuery: <TKey extends QueryKeysWithArrayEntityFromConfig<TQueryKeys>>(
     key: TKey,
-    queryOptions: ApiUseOffsetInfiniteQueryOptions<TQueryKeys, TKey>,
+    queryOptions: ApiUseOffsetInfiniteQueryOptions<TQueryKeys, TKey, TErrorCode>,
   ) => ReturnType<typeof useBaseOffsetInfiniteQuery<QueryKeyArrayItemFromConfig<TQueryKeys, TKey>>>
 }
 
-export function createApiInfiniteQueryUtils<TQueryKeys extends object>():
-CreateApiInfiniteQueryUtilsReturnType<TQueryKeys> {
+export function createApiInfiniteQueryUtils<TQueryKeys extends object, TErrorCode extends string = string>():
+CreateApiInfiniteQueryUtilsReturnType<TQueryKeys, TErrorCode> {
   function useOffsetInfiniteQuery<TKey extends QueryKeysWithArrayEntityFromConfig<TQueryKeys>>(
     key: TKey,
-    queryOptions: ApiUseOffsetInfiniteQueryOptions<TQueryKeys, TKey>,
+    queryOptions: ApiUseOffsetInfiniteQueryOptions<TQueryKeys, TKey, TErrorCode>,
   ) {
     type Params = QueryKeyParamsFromConfig<TQueryKeys, TKey>
 
@@ -44,7 +44,7 @@ CreateApiInfiniteQueryUtilsReturnType<TQueryKeys> {
 
   function useKeysetInfiniteQuery<TKey extends QueryKeysWithArrayEntityFromConfig<TQueryKeys>>(
     key: TKey,
-    queryOptions: ApiUseKeysetInfiniteQueryOptions<TQueryKeys, TKey>,
+    queryOptions: ApiUseKeysetInfiniteQueryOptions<TQueryKeys, TKey, TErrorCode>,
   ) {
     type Params = QueryKeyParamsFromConfig<TQueryKeys, TKey>
 

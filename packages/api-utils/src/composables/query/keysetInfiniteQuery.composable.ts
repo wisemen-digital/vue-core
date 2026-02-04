@@ -100,13 +100,13 @@ export function useKeysetInfiniteQuery<TData>(options: KeysetInfiniteQueryOption
 
   const result = computed<AsyncApiResult<KeysetPaginationResponse<TData>>>(() => {
     if (infiniteQuery.isLoading.value) {
-      return AsyncResult.loading<KeysetPaginationResponse<TData>>()
+      return AsyncResult.loading<KeysetPaginationResponse<TData>, ApiError>()
     }
 
     const firstError = infiniteQuery.data.value?.pages.find((page) => page.isErr())
 
     if (firstError) {
-      return AsyncResult.err<KeysetPaginationResponse<TData>>(firstError.error)
+      return AsyncResult.err<KeysetPaginationResponse<TData>, ApiError>(firstError.error)
     }
 
     const data = infiniteQuery.data.value?.pages
@@ -127,7 +127,7 @@ export function useKeysetInfiniteQuery<TData>(options: KeysetInfiniteQueryOption
       },
     }
 
-    return AsyncResult.ok<KeysetPaginationResponse<TData>>(response)
+    return AsyncResult.ok<KeysetPaginationResponse<TData>, ApiError>(response)
   })
 
   // eslint-disable-next-line eslint-plugin-wisemen/explicit-function-return-type-with-regex

@@ -10,21 +10,21 @@ import type {
   CreateApiUtilsOptions,
 } from './createApiUtils.types'
 
-export interface CreateApiPrefetchQueryUtilsReturnType<TQueryKeys extends object> {
+export interface CreateApiPrefetchQueryUtilsReturnType<TQueryKeys extends object, TErrorCode extends string = string> {
   usePrefetchQuery: <TKey extends QueryKeysWithEntityFromConfig<TQueryKeys>>(
     key: TKey,
-    queryOptions: ApiUsePrefetchQueryOptions<TQueryKeys, TKey>,
+    queryOptions: ApiUsePrefetchQueryOptions<TQueryKeys, TKey, TErrorCode>,
   ) => {
     execute: () => Promise<void>
   }
 }
 
-export function createApiPrefetchQueryUtils<TQueryKeys extends object>(
+export function createApiPrefetchQueryUtils<TQueryKeys extends object, TErrorCode extends string = string>(
   options: CreateApiUtilsOptions,
-): CreateApiPrefetchQueryUtilsReturnType<TQueryKeys> {
+): CreateApiPrefetchQueryUtilsReturnType<TQueryKeys, TErrorCode> {
   function usePrefetchQuery<TKey extends QueryKeysWithEntityFromConfig<TQueryKeys>>(
     key: TKey,
-    queryOptions: ApiUsePrefetchQueryOptions<TQueryKeys, TKey>,
+    queryOptions: ApiUsePrefetchQueryOptions<TQueryKeys, TKey, TErrorCode>,
   ) {
     type Params = QueryKeyParamsFromConfig<TQueryKeys, TKey>
 

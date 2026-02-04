@@ -17,27 +17,27 @@ import type {
 
 const DEFAULT_LIMIT = QUERY_CONFIG.limit
 
-export interface CreateApiPrefetchInfiniteQueryUtilsReturnType<TQueryKeys extends object> {
+export interface CreateApiPrefetchInfiniteQueryUtilsReturnType<TQueryKeys extends object, TErrorCode extends string = string> {
   usePrefetchKeysetInfiniteQuery: <TKey extends QueryKeysWithArrayEntityFromConfig<TQueryKeys>>(
     key: TKey,
-    queryOptions: ApiUseKeysetInfinitePrefetchQueryOptions<TQueryKeys, TKey>,
+    queryOptions: ApiUseKeysetInfinitePrefetchQueryOptions<TQueryKeys, TKey, TErrorCode>,
   ) => {
     execute: () => Promise<void>
   }
   usePrefetchOffsetInfiniteQuery: <TKey extends QueryKeysWithArrayEntityFromConfig<TQueryKeys>>(
     key: TKey,
-    queryOptions: ApiUseOffsetInfinitePrefetchQueryOptions<TQueryKeys, TKey>,
+    queryOptions: ApiUseOffsetInfinitePrefetchQueryOptions<TQueryKeys, TKey, TErrorCode>,
   ) => {
     execute: () => Promise<void>
   }
 }
 
-export function createApiPrefetchInfiniteQueryUtils<TQueryKeys extends object>(
+export function createApiPrefetchInfiniteQueryUtils<TQueryKeys extends object, TErrorCode extends string = string>(
   options: CreateApiUtilsOptions,
-): CreateApiPrefetchInfiniteQueryUtilsReturnType<TQueryKeys> {
+): CreateApiPrefetchInfiniteQueryUtilsReturnType<TQueryKeys, TErrorCode> {
   function usePrefetchOffsetInfiniteQuery<TKey extends QueryKeysWithArrayEntityFromConfig<TQueryKeys>>(
     key: TKey,
-    queryOptions: ApiUseOffsetInfinitePrefetchQueryOptions<TQueryKeys, TKey>,
+    queryOptions: ApiUseOffsetInfinitePrefetchQueryOptions<TQueryKeys, TKey, TErrorCode>,
   ) {
     type TData = QueryKeyArrayItemFromConfig<TQueryKeys, TKey>
     type Page = OffsetPaginationResult<TData>
@@ -85,7 +85,7 @@ export function createApiPrefetchInfiniteQueryUtils<TQueryKeys extends object>(
 
   function usePrefetchKeysetInfiniteQuery<TKey extends QueryKeysWithArrayEntityFromConfig<TQueryKeys>>(
     key: TKey,
-    queryOptions: ApiUseKeysetInfinitePrefetchQueryOptions<TQueryKeys, TKey>,
+    queryOptions: ApiUseKeysetInfinitePrefetchQueryOptions<TQueryKeys, TKey, TErrorCode>,
   ) {
     type TData = QueryKeyArrayItemFromConfig<TQueryKeys, TKey>
     type Page = KeysetPaginationResult<TData>

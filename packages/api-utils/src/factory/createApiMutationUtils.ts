@@ -6,9 +6,10 @@ import type {
   CreateApiMutationUtilsReturnType,
 } from './createApiUtils.types'
 
-export function createApiMutationUtils<TQueryKeys extends object>(): CreateApiMutationUtilsReturnType<TQueryKeys> {
+export function createApiMutationUtils<TQueryKeys extends object, TErrorCode extends string = string>():
+CreateApiMutationUtilsReturnType<TQueryKeys, TErrorCode> {
   function useMutation<TReqData = void, TResData = void, TParams = void>(
-    options: ApiUseMutationOptions<TQueryKeys, TReqData, TResData, TParams>,
+    options: ApiUseMutationOptions<TQueryKeys, TReqData, TResData, TParams, TErrorCode>,
   ): UseMutationReturnType<TReqData, TResData, TParams> {
     return useMutationComposable({
       isDebug: options.isDebug,

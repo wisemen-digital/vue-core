@@ -8,17 +8,18 @@ import type {
 
 import type { ApiUseQueryOptions } from './createApiUtils.types'
 
-export interface CreateApiQueryUtilsReturnType<TQueryKeys extends object> {
+export interface CreateApiQueryUtilsReturnType<TQueryKeys extends object, TErrorCode extends string = string> {
   useQuery: <TKey extends QueryKeysWithEntityFromConfig<TQueryKeys>>(
     key: TKey,
-    queryOptions: ApiUseQueryOptions<TQueryKeys, TKey>,
+    queryOptions: ApiUseQueryOptions<TQueryKeys, TKey, TErrorCode>,
   ) => UseQueryReturnType<QueryKeyEntityFromConfig<TQueryKeys, TKey>>
 }
 
-export function createApiQueryUtils<TQueryKeys extends object>(): CreateApiQueryUtilsReturnType<TQueryKeys> {
+export function createApiQueryUtils<TQueryKeys extends object, TErrorCode extends string = string>():
+CreateApiQueryUtilsReturnType<TQueryKeys, TErrorCode> {
   function useQuery<TKey extends QueryKeysWithEntityFromConfig<TQueryKeys>>(
     key: TKey,
-    queryOptions: ApiUseQueryOptions<TQueryKeys, TKey>,
+    queryOptions: ApiUseQueryOptions<TQueryKeys, TKey, TErrorCode>,
   ): UseQueryReturnType<QueryKeyEntityFromConfig<TQueryKeys, TKey>> {
     type Params = QueryKeyParamsFromConfig<TQueryKeys, TKey>
 

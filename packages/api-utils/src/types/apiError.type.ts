@@ -4,15 +4,15 @@ import type { AsyncResult } from '@/async-result/asyncResult'
 
 export interface ApiErrorCodes {}
 
-export type ApiErrorCode = ApiErrorCodes[keyof ApiErrorCodes]
-export interface ApiKnownErrorObject {
-  code: ApiErrorCode
+export type ApiErrorCode = string
+
+export interface ApiKnownErrorObject<TCode extends string = string> {
+  code: TCode
   detail: string
   source?: {
     pointer: string
   }
   status: string
-
 }
 
 export interface ApiUnknownErrorObject {
@@ -22,17 +22,16 @@ export interface ApiUnknownErrorObject {
     pointer: string
   }
   status: string
-
 }
 
-export type ApiErrorObject = ApiKnownErrorObject | ApiUnknownErrorObject
+export type ApiErrorObject<TCode extends string = string> = ApiKnownErrorObject<TCode> | ApiUnknownErrorObject
 
-export interface ApiExpectedError {
-  errors: ApiErrorObject[]
+export interface ApiExpectedError<TCode extends string = string> {
+  errors: ApiErrorObject<TCode>[]
 }
 
 export type ApiUnexpectedError = Error
-export type ApiError = ApiExpectedError | ApiUnexpectedError
-export type ApiResult<T> = Result<T, ApiError>
+export type ApiError<TCode extends string = string> = ApiExpectedError<TCode> | ApiUnexpectedError
+export type ApiResult<T, TCode extends string = string> = Result<T, ApiError<TCode>>
 
-export type AsyncApiResult<T> = AsyncResult<T, ApiError>
+export type AsyncApiResult<T, TCode extends string = string> = AsyncResult<T, ApiError<TCode>>

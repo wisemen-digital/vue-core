@@ -59,11 +59,12 @@ export type QueryKeyArrayItemFromConfig<
 export type ApiUseQueryOptions<
   TQueryKeys extends object,
   TKey extends QueryKeysWithEntityFromConfig<TQueryKeys>,
+  TErrorCode extends string = string,
 > = {
   staleTime?: number
   isDebug?: boolean
   isEnabled?: MaybeRef<boolean>
-  queryFn: () => Promise<ApiResult<QueryKeyEntityFromConfig<TQueryKeys, TKey>>>
+  queryFn: () => Promise<ApiResult<QueryKeyEntityFromConfig<TQueryKeys, TKey>, TErrorCode>>
 } & (
   QueryKeyParamsFromConfig<TQueryKeys, TKey> extends void
     ? { params?: QueryKeyParamsFromConfig<TQueryKeys, TKey> }
@@ -73,9 +74,10 @@ export type ApiUseQueryOptions<
 export type ApiUsePrefetchQueryOptions<
   TQueryKeys extends object,
   TKey extends QueryKeysWithEntityFromConfig<TQueryKeys>,
+  TErrorCode extends string = string,
 > = {
   staleTime?: number
-  queryFn: () => Promise<ApiResult<QueryKeyEntityFromConfig<TQueryKeys, TKey>>>
+  queryFn: () => Promise<ApiResult<QueryKeyEntityFromConfig<TQueryKeys, TKey>, TErrorCode>>
 } & (
   QueryKeyParamsFromConfig<TQueryKeys, TKey> extends void
     ? { params?: QueryKeyParamsFromConfig<TQueryKeys, TKey> }
@@ -85,12 +87,13 @@ export type ApiUsePrefetchQueryOptions<
 export type ApiUseOffsetInfiniteQueryOptions<
   TQueryKeys extends object,
   TKey extends QueryKeysWithArrayEntityFromConfig<TQueryKeys>,
+  TErrorCode extends string = string,
 > = {
   staleTime?: number
   isEnabled?: MaybeRef<boolean>
   limit?: number
   queryFn: (paginationParams: OffsetPaginationParams)
-  => Promise<OffsetPaginationResult<QueryKeyArrayItemFromConfig<TQueryKeys, TKey>>>
+  => Promise<OffsetPaginationResult<QueryKeyArrayItemFromConfig<TQueryKeys, TKey>, TErrorCode>>
 } & (
   QueryKeyParamsFromConfig<TQueryKeys, TKey> extends void
     ? { params?: QueryKeyParamsFromConfig<TQueryKeys, TKey> }
@@ -100,11 +103,12 @@ export type ApiUseOffsetInfiniteQueryOptions<
 export type ApiUseOffsetInfinitePrefetchQueryOptions<
   TQueryKeys extends object,
   TKey extends QueryKeysWithArrayEntityFromConfig<TQueryKeys>,
+  TErrorCode extends string = string,
 > = {
   staleTime?: number
   limit?: number
   queryFn: (paginationParams: OffsetPaginationParams)
-  => Promise<OffsetPaginationResult<QueryKeyArrayItemFromConfig<TQueryKeys, TKey>>>
+  => Promise<OffsetPaginationResult<QueryKeyArrayItemFromConfig<TQueryKeys, TKey>, TErrorCode>>
 } & (
   QueryKeyParamsFromConfig<TQueryKeys, TKey> extends void
     ? { params?: QueryKeyParamsFromConfig<TQueryKeys, TKey> }
@@ -114,12 +118,13 @@ export type ApiUseOffsetInfinitePrefetchQueryOptions<
 export type ApiUseKeysetInfiniteQueryOptions<
   TQueryKeys extends object,
   TKey extends QueryKeysWithArrayEntityFromConfig<TQueryKeys>,
+  TErrorCode extends string = string,
 > = {
   staleTime?: number
   isEnabled?: MaybeRef<boolean>
   limit?: number
   queryFn: (paginationParams: KeysetPaginationParams)
-  => Promise<KeysetPaginationResult<QueryKeyArrayItemFromConfig<TQueryKeys, TKey>>>
+  => Promise<KeysetPaginationResult<QueryKeyArrayItemFromConfig<TQueryKeys, TKey>, TErrorCode>>
 } & (
   QueryKeyParamsFromConfig<TQueryKeys, TKey> extends void
     ? { params?: QueryKeyParamsFromConfig<TQueryKeys, TKey> }
@@ -129,11 +134,12 @@ export type ApiUseKeysetInfiniteQueryOptions<
 export type ApiUseKeysetInfinitePrefetchQueryOptions<
   TQueryKeys extends object,
   TKey extends QueryKeysWithArrayEntityFromConfig<TQueryKeys>,
+  TErrorCode extends string = string,
 > = {
   staleTime?: number
   limit?: number
   queryFn: (paginationParams: KeysetPaginationParams)
-  => Promise<KeysetPaginationResult<QueryKeyArrayItemFromConfig<TQueryKeys, TKey>>>
+  => Promise<KeysetPaginationResult<QueryKeyArrayItemFromConfig<TQueryKeys, TKey>, TErrorCode>>
 } & (
   QueryKeyParamsFromConfig<TQueryKeys, TKey> extends void
     ? { params?: QueryKeyParamsFromConfig<TQueryKeys, TKey> }
@@ -154,6 +160,7 @@ export interface ApiUseMutationOptions<
   TReqData,
   TResData,
   TParams = void,
+  TErrorCode extends string = string,
 > {
   /**
    * Whether to enable debug mode
@@ -164,7 +171,7 @@ export interface ApiUseMutationOptions<
    * @param options - Parameters and body for the mutation
    * @returns Promise with ApiResult containing either the response data or an error
    */
-  queryFn: (options: RequestParams<TReqData, TParams>) => Promise<ApiResult<TResData>>
+  queryFn: (options: RequestParams<TReqData, TParams>) => Promise<ApiResult<TResData, TErrorCode>>
   /**
    * Query keys which should be invalidated after mutation is successful
    * Each key is optional and maps to the query key's specific parameters
@@ -183,8 +190,8 @@ export interface ApiUseMutationOptions<
   }
 }
 
-export interface CreateApiMutationUtilsReturnType<TQueryKeys extends object> {
+export interface CreateApiMutationUtilsReturnType<TQueryKeys extends object, TErrorCode extends string = string> {
   useMutation: <TReqData = void, TResData = void, TParams = void>(
-    options: ApiUseMutationOptions<TQueryKeys, TReqData, TResData, TParams>,
+    options: ApiUseMutationOptions<TQueryKeys, TReqData, TResData, TParams, TErrorCode>,
   ) => UseMutationReturnType<TReqData, TResData, TParams>
 }

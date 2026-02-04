@@ -20,28 +20,28 @@ export type { CreateApiQueryUtilsReturnType } from './createApiQueryUtils'
 export { createApiQueryUtils } from './createApiQueryUtils'
 export type { CreateApiUtilsOptions } from './createApiUtils.types'
 
-export type CreateApiUtilsReturnType<TQueryKeys extends object> = ReturnType<
-  typeof createApiQueryUtils<TQueryKeys>
+export type CreateApiUtilsReturnType<TQueryKeys extends object, TErrorCode extends string = string> = ReturnType<
+  typeof createApiQueryUtils<TQueryKeys, TErrorCode>
 >
-& ReturnType<typeof createApiPrefetchQueryUtils<TQueryKeys>>
-& ReturnType<typeof createApiInfiniteQueryUtils<TQueryKeys>>
-& ReturnType<typeof createApiPrefetchInfiniteQueryUtils<TQueryKeys>>
-& ReturnType<typeof createApiMutationUtils<TQueryKeys>>
-& ReturnType<typeof createApiOptimisticUpdatesUtils<TQueryKeys>>
+& ReturnType<typeof createApiPrefetchQueryUtils<TQueryKeys, TErrorCode>>
+& ReturnType<typeof createApiInfiniteQueryUtils<TQueryKeys, TErrorCode>>
+& ReturnType<typeof createApiPrefetchInfiniteQueryUtils<TQueryKeys, TErrorCode>>
+& ReturnType<typeof createApiMutationUtils<TQueryKeys, TErrorCode>>
+& ReturnType<typeof createApiOptimisticUpdatesUtils<TQueryKeys, TErrorCode>>
 
 /**
  * Factory that creates typed composables based on a user-provided query-keys config.
  * This is an alternative to module augmentation of `QueryKeys`.
  */
-export function createApiUtils<TQueryKeys extends object>(
+export function createApiUtils<TQueryKeys extends object, TErrorCode extends string = string>(
   options: CreateApiUtilsOptions,
-): CreateApiUtilsReturnType<TQueryKeys> {
+): CreateApiUtilsReturnType<TQueryKeys, TErrorCode> {
   return {
-    ...createApiQueryUtils<TQueryKeys>(),
-    ...createApiPrefetchQueryUtils<TQueryKeys>(options),
-    ...createApiPrefetchInfiniteQueryUtils<TQueryKeys>(options),
-    ...createApiInfiniteQueryUtils<TQueryKeys>(),
-    ...createApiMutationUtils<TQueryKeys>(),
-    ...createApiOptimisticUpdatesUtils<TQueryKeys>(options),
+    ...createApiQueryUtils<TQueryKeys, TErrorCode>(),
+    ...createApiPrefetchQueryUtils<TQueryKeys, TErrorCode>(options),
+    ...createApiPrefetchInfiniteQueryUtils<TQueryKeys, TErrorCode>(options),
+    ...createApiInfiniteQueryUtils<TQueryKeys, TErrorCode>(),
+    ...createApiMutationUtils<TQueryKeys, TErrorCode>(),
+    ...createApiOptimisticUpdatesUtils<TQueryKeys, TErrorCode>(options),
   }
 }
