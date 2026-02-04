@@ -24,7 +24,51 @@ pnpm install @tanstack/vue-query neverthrow
 
 ## 3. Setup your query keys
 
-Define your query keys using the factory pattern:
+You have two options:
+
+### Recommended: type-only (no module augmentation)
+
+```typescript
+import { createApiUtils } from '@wisemen/vue-core-api-utils'
+
+type ContactUuid = string
+interface Contact {
+  id: string
+  name: string
+}
+
+interface MyQueryKeys {
+  contactDetail: {
+    entity: Contact
+    params: { contactUuid: ContactUuid }
+  }
+}
+
+export const {
+  useOptimisticUpdates,
+} = createApiUtils<MyQueryKeys>()
+```
+
+### Alternative: config-based
+
+```typescript
+import { createApiUtils, defineQueryKeys } from '@wisemen/vue-core-api-utils'
+
+export const queryKeys = defineQueryKeys({
+  contactDetail: {
+    entity: {} as Contact,
+    params: { contactUuid: '' as ContactUuid },
+  },
+})
+
+export const {
+  useOptimisticUpdates,
+} = createApiUtils({ queryKeys })
+```
+
+### Legacy: module augmentation
+
+Define your query keys using module augmentation:
 
 ```typescript
 // filepath: src/types/queryKeys.type.ts
