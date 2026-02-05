@@ -6,7 +6,10 @@ import {
 import { RouterLink } from 'vue-router'
 
 import ActionTooltip from '@/ui/action-tooltip/ActionTooltip.vue'
+import { useProvideLinkContext } from '@/ui/button/link/link.context'
 import type { LinkProps } from '@/ui/button/link/link.props'
+import type { LinkStyle } from '@/ui/button/link/link.style'
+import { createLinkStyle } from '@/ui/button/link/link.style'
 import LinkIcon from '@/ui/button/link/LinkIcon.vue'
 import { UIRowLayout } from '@/ui/row-layout/index'
 
@@ -56,6 +59,16 @@ const linkAttributes = computed<Record<string, unknown>>(() => {
 
   return {}
 })
+
+const linkStyle = computed<LinkStyle>(() => createLinkStyle({
+  class: attrs.class as string,
+  size: props.size,
+  variant: props.variant,
+}))
+
+useProvideLinkContext({
+  linkStyle,
+})
 </script>
 
 <template>
@@ -71,41 +84,14 @@ const linkAttributes = computed<Record<string, unknown>>(() => {
         ...linkAttributes,
         ...attrs,
       }"
-      :class="{
-        // Size
-        'h-7 min-w-7 rounded-sm px-md': props.size === 'md',
-        'h-8 min-w-8 rounded-sm px-lg': props.size === 'lg',
-        'h-6 min-w-6 rounded-xs px-sm': props.size === 'sm',
-        'h-5.5 min-w-5.5 rounded-xs px-xs': props.size === 'xs',
-        'dark:p-px': props.variant === 'primary',
-        // Variant
-        'border-brand-600 bg-brand-solid hover:brightness-95 focus-visible:outline-fg-brand-primary dark:border-none dark:glassy': props.variant === 'primary',
-        'border-secondary bg-primary hover:bg-primary-hover focus-visible:outline-fg-brand-primary': props.variant === 'secondary',
-        'border-transparent hover:bg-primary-hover focus-visible:outline-fg-brand-primary': props.variant === 'tertiary',
-        'border-error-600 bg-error-solid hover:brightness-95 focus-visible:outline-fg-error-primary': props.variant === 'destructive-primary',
-        'border-transparent hover:bg-error-primary focus-visible:outline-fg-error-primary': props.variant === 'destructive-tertiary',
-      }"
-      class="
-        group/link shrink-0 cursor-pointer items-center justify-center border
-        outline-2 outline-offset-1 outline-transparent duration-100
-      "
+      :class="linkStyle.root()"
     >
       <div
-        :class="{
-          'dark:rounded-[0.35rem] dark:px-md': props.size === 'md' && props.variant === 'primary',
-          'dark:rounded-[0.3rem] dark:px-lg': props.size === 'lg' && props.variant === 'primary',
-          'dark:rounded-[0.2rem] dark:px-sm': props.size === 'sm' && props.variant === 'primary',
-          'dark:rounded-[0.15rem] dark:px-xs': props.size === 'xs' && props.variant === 'primary',
-          'dark:glassy-inner-content': props.variant === 'primary',
-        }"
-        class="grid size-full [grid-template-areas:'stack']"
+        :class="linkStyle.container()"
       >
         <UIRowLayout
+          :class="linkStyle.rowLayout()"
           gap="sm"
-          class="
-            duration-100 [grid-area:stack]
-            group-active/link:scale-98
-          "
         >
           <LinkIcon
             v-if="props.iconLeft !== null"
@@ -115,17 +101,7 @@ const linkAttributes = computed<Record<string, unknown>>(() => {
           />
 
           <span
-            :class="{
-              // Size
-              'text-xs': props.size === 'md' || props.size === 'sm' || props.size === 'xs',
-              'text-sm': props.size === 'lg',
-              // Variant
-              'text-primary-on-brand': props.variant === 'primary',
-              'text-secondary': props.variant === 'secondary' || props.variant === 'tertiary',
-              'text-white': props.variant === 'destructive-primary',
-              'text-error-primary': props.variant === 'destructive-tertiary',
-            }"
-            class=""
+            :class="linkStyle.label()"
           >
             {{ props.label }}
           </span>

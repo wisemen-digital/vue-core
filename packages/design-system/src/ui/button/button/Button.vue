@@ -1,8 +1,14 @@
 <script setup lang="ts">
-import { useAttrs } from 'vue'
+import {
+  computed,
+  useAttrs,
+} from 'vue'
 
 import ActionTooltip from '@/ui/action-tooltip/ActionTooltip.vue'
+import { useProvideButtonContext } from '@/ui/button/button/button.context'
 import type { ButtonProps } from '@/ui/button/button/button.props'
+import type { ButtonStyle } from '@/ui/button/button/button.style'
+import { createButtonStyle } from '@/ui/button/button/button.style'
 import ButtonIcon from '@/ui/button/button/ButtonIcon.vue'
 import Loader from '@/ui/loader/Loader.vue'
 import { UIRowLayout } from '@/ui/row-layout/index'
@@ -30,6 +36,13 @@ const emit = defineEmits<{
 
 const attrs = useAttrs()
 
+const buttonStyle = computed<ButtonStyle>(() => createButtonStyle({
+  isLoading: props.isLoading,
+  class: attrs.class as string,
+  size: props.size,
+  variant: props.variant,
+}))
+
 function onClick(event: MouseEvent): void {
   if (props.isLoading) {
     event.preventDefault()
@@ -39,6 +52,10 @@ function onClick(event: MouseEvent): void {
 
   emit('click', event)
 }
+
+useProvideButtonContext({
+  buttonStyle,
+})
 </script>
 
 <template>
@@ -56,63 +73,19 @@ function onClick(event: MouseEvent): void {
       :disabled="props.isDisabled"
       :aria-busy="props.isLoading"
       :data-interactive="(!props.isDisabled && !props.isLoading) || undefined"
-      :class="{
-        // Size
-        'h-7 min-w-7 rounded-sm px-md': props.size === 'md',
-        'h-8 min-w-8 rounded-sm px-lg': props.size === 'lg',
-        'h-6 min-w-6 rounded-xs px-sm': props.size === 'sm',
-        'h-5.5 min-w-5.5 rounded-xs px-xs': props.size === 'xs',
-        'dark:p-px': props.variant === 'primary',
-        // Variant
-        'border-brand-600 bg-brand-solid focus-visible:outline-fg-brand-primary disabled:border-disabled-subtle disabled:bg-disabled data-interactive:hover:brightness-95 not-data-disabled:dark:border-0! not-data-disabled:dark:glassy': props.variant === 'primary',
-        'border-secondary bg-primary focus-visible:outline-fg-brand-primary disabled:border-disabled-subtle disabled:bg-disabled data-interactive:hover:bg-secondary': props.variant === 'secondary',
-        'border-transparent focus-visible:outline-fg-brand-primary data-interactive:hover:bg-primary-hover': props.variant === 'tertiary',
-        'border-error-600 bg-error-solid focus-visible:outline-fg-error-primary disabled:border-disabled-subtle disabled:bg-disabled data-interactive:hover:brightness-95': props.variant === 'destructive-primary',
-        'border-transparent focus-visible:outline-fg-error-primary data-interactive:hover:bg-error-primary': props.variant === 'destructive-tertiary',
-      }"
-      class="
-        group/button shrink-0 cursor-pointer items-center justify-center border
-        outline-2 outline-offset-1 outline-transparent duration-100
-        not-data-interactive:cursor-not-allowed
-      "
+      :class="buttonStyle.root()"
       @click="onClick"
     >
       <div
-        :class="{
-          'dark:rounded-[0.35rem] dark:px-md': props.size === 'md' && props.variant === 'primary',
-          'dark:rounded-[0.3rem] dark:px-lg': props.size === 'lg' && props.variant === 'primary',
-          'dark:rounded-[0.2rem] dark:px-sm': props.size === 'sm' && props.variant === 'primary',
-          'dark:rounded-[0.15rem] dark:px-xs': props.size === 'xs' && props.variant === 'primary',
-          'dark:glassy-inner-content': props.variant === 'primary',
-        }"
-        class="grid size-full items-center [grid-template-areas:'stack']"
+        :class="buttonStyle.container()"
       >
         <Loader
-          :class="{
-            'invisible opacity-0': !props.isLoading,
-            'opacity-100': props.isLoading,
-            // Size
-            'size-3.5': props.size === 'md' || props.size === 'sm' || props.size === 'xs',
-            'size-4': props.size === 'lg',
-            // Variant
-            'text-primary-on-brand group-disabled/button:text-disabled': props.variant === 'primary',
-            'text-secondary group-disabled/button:text-disabled': props.variant === 'secondary' || props.variant === 'tertiary',
-            'text-white group-disabled/button:text-disabled': props.variant === 'destructive-primary',
-            'text-error-primary group-disabled/button:text-disabled': props.variant === 'destructive-tertiary',
-          }"
-          class="mx-auto items-center duration-100 [grid-area:stack]"
+          :class="buttonStyle.loader()"
         />
 
         <UIRowLayout
-          :class="{
-            'invisible opacity-0': props.isLoading,
-            'opacity-100': !props.isLoading,
-          }"
+          :class="buttonStyle.rowLayout()"
           gap="sm"
-          class="
-            duration-100 [grid-area:stack]
-            group-not-disabled/button:group-active/button:scale-98
-          "
         >
           <slot name="left" />
 
@@ -124,16 +97,7 @@ function onClick(event: MouseEvent): void {
           />
 
           <span
-            :class="{
-              // Size
-              'text-xs': props.size === 'md' || props.size === 'sm' || props.size === 'xs',
-              'text-sm': props.size === 'lg',
-              // Variant
-              'text-primary-on-brand group-disabled/button:text-disabled': props.variant === 'primary',
-              'text-secondary group-disabled/button:text-disabled': props.variant === 'secondary' || props.variant === 'tertiary',
-              'text-white group-disabled/button:text-disabled': props.variant === 'destructive-primary',
-              'text-error-primary group-disabled/button:text-disabled': props.variant === 'destructive-tertiary',
-            }"
+            :class="buttonStyle.label()"
             class=""
           >
             {{ props.label }}
