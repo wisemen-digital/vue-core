@@ -36,6 +36,9 @@ export default defineConfig({
           'vue-i18n': 'VueI18n',
           'vue-router': 'VueRouter',
         },
+        preserveModules: true,
+
+        preserveModulesRoot: 'src',
       },
     },
   },
