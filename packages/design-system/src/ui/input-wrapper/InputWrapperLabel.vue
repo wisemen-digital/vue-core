@@ -3,6 +3,7 @@ import { UIRowLayout } from '@/ui/row-layout/index'
 import { UIText } from '@/ui/text/index'
 
 const props = defineProps<{
+  isHorizontal?: boolean
   isRequired: boolean
   for: string | null
   label: string | null
@@ -12,7 +13,9 @@ const props = defineProps<{
 <template>
   <UIRowLayout
     v-if="props.label !== null"
-    class="pb-xs"
+    :class="{
+      'pb-xs': !props.isHorizontal,
+    }"
     gap="none"
   >
     <slot name="left" />
