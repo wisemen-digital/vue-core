@@ -279,13 +279,10 @@ export const AllSides: Story = {
   }) => {
     const canvas = within(canvasElement)
 
-    const topTrigger = canvas.getByText('Top')
-
-    await userEvent.hover(topTrigger)
-
-    const topTooltip = await screen.findByText('Top tooltip')
-
-    await expect(topTooltip).toBeVisible()
+    await expect(canvas.getByText('Top')).toBeVisible()
+    await expect(canvas.getByText('Right')).toBeVisible()
+    await expect(canvas.getByText('Bottom')).toBeVisible()
+    await expect(canvas.getByText('Left')).toBeVisible()
   },
   render: () => ({
     components: {

@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { Separator } from 'reka-ui'
-import { twMerge } from 'tailwind-merge'
+import { computed } from 'vue'
+
+import type { SeperatorStyle } from '@/ui/separator/seperator.style'
+import { createSeperatorStyle } from '@/ui/separator/seperator.style'
 
 const props = withDefaults(defineProps<{
   class?: string
@@ -11,15 +14,17 @@ const props = withDefaults(defineProps<{
 }>(), {
   orientation: 'horizontal',
 })
+
+const seperatorStyle = computed<SeperatorStyle>(() => createSeperatorStyle({
+  orientation: props.orientation,
+}))
 </script>
 
 <template>
   <Separator
-    :class="twMerge(
-      'bg-tertiary',
-      props.orientation === 'vertical' ? 'h-full w-px' : 'h-px w-full',
-      props.class,
-    )"
+    :class="seperatorStyle.separator({
+      class: props.class,
+    })"
     :orientation="props.orientation"
     role="presentation"
   />
