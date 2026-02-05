@@ -51,9 +51,10 @@ const textRef = ref<HTMLElement | null>(null)
     v-bind="attrs"
     :is="props.as"
     ref="textRef"
-    :class="[
-      props.class, textStyle.text(),
-    ]"
+    :class="textStyle.text({
+      class: props.class,
+    })
+    "
   >
     {{ props.text }}
   </Component>
