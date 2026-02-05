@@ -5,7 +5,12 @@ export default [
     tailwindConfigPath: 'src/styles/index.css',
   })),
   {
-    files: ['**/*.stories.ts', '**/*.stories.tsx'],
+    files: [
+      '**/*.story.ts',
+      '**/*.story.tsx',
+      '**/*.stories.ts',
+      '**/*.stories.tsx',
+    ],
     rules: {
       'eslint-plugin-wisemen/explicit-function-return-type-with-regex': 'off',
     },
