@@ -1,8 +1,7 @@
-# Changelog
+# @wisemen/eslint-plugin-vue
 
-## 0.0.1
+## 0.0.2
 
 ### Patch Changes
 
-- 696071d: number field component
 - 347cf1a: Bumped dependency versions
