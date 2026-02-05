@@ -17,7 +17,6 @@ const modelValue = defineModel<boolean>({
   <BaseCheckbox
     v-bind="props"
     v-model="modelValue"
-    :is-horizontal="true"
     @blur="emit('blur')"
   />
 </template>

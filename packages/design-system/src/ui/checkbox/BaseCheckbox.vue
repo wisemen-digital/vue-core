@@ -67,7 +67,7 @@ useProvideCheckboxContext({
     :is-required="props.isRequired"
     :hint="props.hint"
     :label="props.label"
-    :is-horizontal="props.isHorizontal"
+    :is-horizontal="true"
     :class="props.class"
     :style="props.style"
     :for="id"
@@ -77,6 +77,7 @@ useProvideCheckboxContext({
       :id="id"
       v-model="delegatedModel"
       :class="checkboxStyle.root()"
+      :value="props.value"
       @blur="emit('blur')"
     >
       <div
