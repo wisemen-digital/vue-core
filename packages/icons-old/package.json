@@ -1,0 +1,22 @@
+{
+  "name": "@wisemen/vue-core-icons-old",
+  "type": "module",
+  "version": "0.0.1",
+  "private": false,
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "lint": "pnpm eslint --fix .",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "vue": ">=3.5.0"
+  },
+  "devDependencies": {
+    "@wisemen/eslint-config-vue": "catalog:lint",
+    "typescript": "catalog:peer"
+  }
+}

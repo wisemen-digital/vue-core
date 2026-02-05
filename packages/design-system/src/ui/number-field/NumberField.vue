@@ -2,7 +2,7 @@
 import {
   MinusIcon,
   PlusIcon,
-} from '@repo/icons'
+} from '../../../../icons-old/src'
 import {
   NumberFieldDecrement as RekaNumberFieldDecrement,
   NumberFieldIncrement as RekaNumberFieldIncrement,

@@ -3,7 +3,7 @@ import {
   PlusIcon,
   Settings01Icon,
   Trash01Icon,
-} from '@repo/icons'
+} from '../../../../../icons-old/src'
 import type {
   Meta,
   StoryObj,

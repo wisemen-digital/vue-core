@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { AlertTriangleIcon } from '@repo/icons'
+import { AlertTriangleIcon } from '../../../../icons-old/src'
 import {
   AnimatePresence,
   Motion,
