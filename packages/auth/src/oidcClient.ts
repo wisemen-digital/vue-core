@@ -1,238 +1,879 @@
-import pkceChallenge from 'pkce-challenge'
-
-import { ApiClient } from './apiClient'
 import type {
-  OAuth2VueClientOptions,
+  StateStore,
+  User,
+  UserManagerSettings,
+} from 'oidc-client-ts'
+import {
+  OidcClient as OidcClientTs,
+  UserManager,
+  WebStorageStateStore,
+} from 'oidc-client-ts'
+
+import type {
+  OAuthClientEvent,
+  OAuthClientOptions,
   OidcUser,
 } from './oidc.type'
-import { RedirectValidator } from './redirectValidator'
-import { LocalStorageTokensStrategy } from './tokens-strategy/localStorage.tokensStrategy'
-import type { TokensStrategy } from './tokens-strategy/tokensStrategy.type'
+
+const DEFAULT_PREFIX = 'wisemen.auth'
+
+const DEFAULT_SCOPES = [
+  'openid',
+  'profile',
+  'email',
+] as const
+const DEFAULT_USER_INFO_TIMEOUT_MS = 10_000
+const DEFAULT_CLOCK_SKEW_SECONDS = 30
+const DEFAULT_CHECK_SESSION_INTERVAL_SECONDS = 60
+
+const TERMINAL_REFRESH_ERROR_MARKERS = [
+  'account_selection_required',
+  'consent_required',
+  'interaction_required',
+  'invalid_grant',
+  'invalid_token',
+  'login_required',
+  'session',
+] as const
+
+const OIDC_CALLBACK_QUERY_PARAMS = [
+  'code',
+  'state',
+  'session_state',
+  'iss',
+  'error',
+  'error_description',
+  'error_uri',
+] as const
+
+const RESERVED_OIDC_QUERY_PARAMS = new Set([
+  'acr_values',
+  'claims',
+  'client_id',
+  'code_challenge',
+  'code_challenge_method',
+  'display',
+  'id_token_hint',
+  'login_hint',
+  'max_age',
+  'nonce',
+  'prompt',
+  'redirect_uri',
+  'request',
+  'request_uri',
+  'resource',
+  'response_mode',
+  'response_type',
+  'scope',
+  'state',
+  'ui_locales',
+])
+
+interface NormalizedOAuthClientOptions extends OAuthClientOptions {
+  allowedPaths: string[]
+  blockedPaths: string[]
+  checkSessionIntervalInSeconds: number
+  clockSkewInSeconds: number
+  monitorSession: boolean
+  prefix: string
+  requireHttps: boolean
+  scopes: string[]
+  storage: 'local' | 'session'
+  storageFallback: 'allow' | 'disallow'
+  userInfoEndpoint?: string
+  onEvent?: (event: OAuthClientEvent) => void
+}
+
+class MemoryStorage implements Storage {
+  private readonly storage = new Map<string, string>()
+
+  public clear(): void {
+    this.storage.clear()
+  }
+
+  public getItem(key: string): string | null {
+    return this.storage.get(key) ?? null
+  }
+
+  public key(index: number): string | null {
+    return Array.from(this.storage.keys())[index] ?? null
+  }
+
+  public get length(): number {
+    return this.storage.size
+  }
+
+  public removeItem(key: string): void {
+    this.storage.delete(key)
+  }
+
+  public setItem(key: string, value: string): void {
+    this.storage.set(key, value)
+  }
+}
 
 export class OidcClient {
-  private client: ApiClient | null = null
-  private readonly offline: boolean
-  private redirectValidator: RedirectValidator
-  private tokensStrategy: TokensStrategy
+  private config: NormalizedOAuthClientOptions
+  private endSessionEndpoint: string | null = null
+  private metadataPromise: Promise<void> | null = null
+  private metadataResolved = false
+  private oidcClient: OidcClientTs
+  private oidcStorage: Storage
+  private refreshPromise: Promise<User | null> | null = null
+  private userInfoEndpoint: string | null = null
+  private userManager: UserManager
 
-  constructor(private options: OAuth2VueClientOptions) {
-    this.offline = options.offline ?? false
+  /**
+   * Creates a new OIDC client instance with validated and normalized configuration.
+   */
+  constructor(options: OAuthClientOptions) {
+    this.ensureBrowserEnvironment()
 
-    this.tokensStrategy = this.options.tokensStrategy ?? new LocalStorageTokensStrategy()
+    this.config = this.normalizeConfig(options)
+    this.userInfoEndpoint = this.config.userInfoEndpoint ?? null
+    this.oidcStorage = this.resolveStorage(this.config.storage, this.config.storageFallback)
 
-    this.redirectValidator = new RedirectValidator(
-      {
-        allowedPaths: this.options.allowedPaths ?? [],
-        blockedPaths: this.options.blockedPaths ?? [],
-      },
-    )
-
-    this.client = new ApiClient(
-      {
-        clientId: this.options.clientId,
-        baseUrl: this.options.baseUrl,
-        redirectUri: this.options.loginRedirectUri,
-        scopes: this.options.scopes,
-        tokensStrategy: this.tokensStrategy,
-      },
-    )
+    this.userManager = this.createUserManager(this.config)
+    this.oidcClient = this.createOidcClient(this.config)
+    this.prefetchMetadata()
   }
 
-  private getTokensStrategy(): TokensStrategy {
-    return this.tokensStrategy
-  }
-
-  /*
-  * Get the access token
-  * This will return the access token from the identity provider
-  * If the access token is expired, it will try to refresh it
-  * If it fails, it will throw an error
-  */
-  public async getAccessToken(): Promise<string> {
-    if (this.client === null) {
-      throw new Error('Client is not initialized')
+  private createOidcClient(config: NormalizedOAuthClientOptions): OidcClientTs {
+    const settings: UserManagerSettings = {
+      client_id: config.clientId,
+      authority: config.baseUrl,
+      redirect_uri: config.loginRedirectUri,
+      response_type: 'code',
+      scope: this.getScopes(config.scopes),
+      stateStore: this.createStateStore(config.prefix),
     }
 
-    return await this.client.getAccessToken()
+    return new OidcClientTs(settings)
   }
 
-  /*
-  * Get the client
-  * This will return the client that is used to make requests to the identity provider
-  */
-  public getClient(): ApiClient {
-    if (this.client === null) {
-      throw new Error('Client is not initialized')
+  private createStateStore(prefix: string): StateStore {
+    return new WebStorageStateStore({
+      prefix: `${prefix}.state.`,
+      store: this.oidcStorage,
+    })
+  }
+
+  private createUserManager(config: NormalizedOAuthClientOptions): UserManager {
+    const hasSilentRedirectUri = config.silentRedirectUri !== undefined
+    const settings: UserManagerSettings = {
+      client_id: config.clientId,
+      authority: config.baseUrl,
+      automaticSilentRenew: config.automaticSilentRenew ?? hasSilentRedirectUri,
+      checkSessionIntervalInSeconds: config.checkSessionIntervalInSeconds,
+      loadUserInfo: false,
+      monitorSession: config.monitorSession,
+      post_logout_redirect_uri: config.postLogoutRedirectUri,
+      redirect_uri: config.loginRedirectUri,
+      response_type: 'code',
+      revokeTokensOnSignout: true,
+      scope: this.getScopes(config.scopes),
+      silent_redirect_uri: config.silentRedirectUri,
+      stateStore: this.createStateStore(config.prefix),
+      userStore: new WebStorageStateStore({
+        prefix: `${config.prefix}.user.`,
+        store: this.oidcStorage,
+      }),
     }
 
-    return this.client
+    return new UserManager(settings)
   }
 
-  public async getIdentityProviderLoginUrl(idpId: string): Promise<string> {
-    const searchParams = new URLSearchParams()
-
-    const codes = await pkceChallenge()
-
-    const scopes = this.options.scopes
-
-    scopes.push(`urn:zitadel:iam:org:idp:id:${idpId}`)
-
-    this.getTokensStrategy().setCodeVerifier(codes.code_verifier)
-
-    searchParams.append('client_id', this.options.clientId)
-    searchParams.append('redirect_uri', this.options.loginRedirectUri)
-    searchParams.append('response_type', 'code')
-    searchParams.append('scope', scopes.join(' '))
-    searchParams.append('code_challenge', codes.code_challenge)
-    searchParams.append('code_challenge_method', 'S256')
-
-    return `${this.options.baseUrl}/oauth/v2/authorize?${searchParams.toString()}`
-  }
-
-  public async getLoginUrl(redirectUrl?: string): Promise<string> {
-    const searchParams = new URLSearchParams()
-
-    const codes = await pkceChallenge()
-
-    const scopes = this.options.scopes
-
-    this.getTokensStrategy().setCodeVerifier(codes.code_verifier)
-
-    searchParams.append('client_id', this.options.clientId)
-    searchParams.append('redirect_uri', this.options.loginRedirectUri)
-    searchParams.append('response_type', 'code')
-    searchParams.append('prompt', 'login')
-
-    if (redirectUrl !== undefined) {
-      const safeRedirectUrl = this.sanitizeRedirectUrl(redirectUrl)
-
-      searchParams.append('state', safeRedirectUrl)
-    }
-
-    searchParams.append('scope', scopes.join(' '))
-    searchParams.append('code_challenge', codes.code_challenge)
-    searchParams.append('code_challenge_method', 'S256')
-
-    return `${this.options.baseUrl}/oauth/v2/authorize?${searchParams.toString()}`
-  }
-
-  /*
-  * Get the logout URL
-  * Use this to redirect the user to the logout page of the identity provider
-  */
-  public getLogoutUrl(): string {
-    const searchParams = new URLSearchParams()
-
-    searchParams.append('client_id', this.options.clientId)
-    searchParams.append('post_logout_redirect_uri', this.options.postLogoutRedirectUri)
-
-    return `${this.options.baseUrl}/oidc/v1/end_session?${searchParams.toString()}`
-  }
-
-  /*
-  * Get the user info
-  * This will return the user info from the identity provider
-  */
-  async getUserInfo(): Promise<OidcUser> {
+  private emitEvent(event: OAuthClientEvent): void {
     try {
-      return await this.getClient().getUserInfo()
+      this.config.onEvent?.(event)
     }
-    catch (error) {
-      this.logout()
-
-      throw error
+    catch {
+      // Ignore observer errors to keep auth flow stable.
     }
   }
 
-  /*
-  * Check if the user is logged in
-  * If the access token is expired, it will try to refresh it and add it to the fetch instance headers
-  * If it fails, it will log the user out
-  */
-  public async isLoggedIn(): Promise<boolean> {
-    if (this.options.offline === true) {
+  private getBrowserStorage(type: 'local' | 'session'): Storage | null {
+    try {
+      return type === 'local' ? window.localStorage : window.sessionStorage
+    }
+    catch {
+      return null
+    }
+  }
+
+  private getErrorMessage(error: unknown): string {
+    if (error instanceof Error) {
+      return error.message
+    }
+
+    if (typeof error === 'string') {
+      return error
+    }
+
+    return 'Unknown error'
+  }
+
+  private getScopes(scopes: string[]): string {
+    const scopeList = scopes.length > 0
+      ? scopes
+      : [
+          ...DEFAULT_SCOPES,
+        ]
+
+    return [
+      ...new Set(scopeList),
+    ].join(' ')
+  }
+
+  private async getValidUser(): Promise<User | null> {
+    const user = await this.userManager.getUser()
+
+    if (user === null) {
+      return null
+    }
+
+    if (!this.shouldRefreshUser(user)) {
+      return user
+    }
+
+    if (this.refreshPromise === null) {
+      this.emitEvent({
+        type: 'token_refresh_started',
+      })
+
+      this.refreshPromise = this.refreshUser(user)
+        .finally(() => {
+          this.refreshPromise = null
+        })
+    }
+
+    return await this.refreshPromise
+  }
+
+  private getWindowOrigin(): string {
+    return window.location.origin
+  }
+
+  private isHttpsOrLocalhost(url: URL): boolean {
+    if (url.protocol === 'https:') {
       return true
     }
 
-    if (this.client === null) {
+    if (url.protocol !== 'http:') {
       return false
     }
 
-    if (this.getClient().getTokens() === null) {
-      return false
-    }
+    return url.hostname === 'localhost' || url.hostname === '127.0.0.1'
+  }
 
-    try {
-      await this.client.getAccessToken()
+  private isPathAllowed(pathname: string): boolean {
+    const allowedPaths = this.config.allowedPaths
 
+    if (allowedPaths.length === 0) {
       return true
     }
+
+    return allowedPaths.some((allowedPath) => this.matchesPathRule(pathname, allowedPath))
+  }
+
+  private isPathBlocked(pathname: string): boolean {
+    return this.config.blockedPaths.some((blockedPath) => this.matchesPathRule(pathname, blockedPath))
+  }
+
+  private isTerminalRefreshError(error: unknown): boolean {
+    const errorMessage = this.getErrorMessage(error).toLowerCase()
+
+    return TERMINAL_REFRESH_ERROR_MARKERS.some((marker) => errorMessage.includes(marker))
+  }
+
+  private async loadMetadata(): Promise<void> {
+    try {
+      const metadata = await this.userManager.metadataService.getMetadata()
+
+      this.endSessionEndpoint = metadata.end_session_endpoint ?? null
+      this.userInfoEndpoint = this.config.userInfoEndpoint ?? metadata.userinfo_endpoint ?? null
+      this.emitEvent({
+        hasEndSessionEndpoint: this.endSessionEndpoint !== null,
+        hasUserInfoEndpoint: this.userInfoEndpoint !== null,
+        type: 'metadata_loaded',
+      })
+    }
     catch (error) {
-      console.error('Failed to get access token, logging out', error)
-
-      this.logout()
-
-      return false
+      this.endSessionEndpoint = null
+      this.userInfoEndpoint = this.config.userInfoEndpoint ?? null
+      this.emitEvent({
+        message: this.getErrorMessage(error),
+        type: 'metadata_load_failed',
+      })
+    }
+    finally {
+      this.metadataResolved = true
+      this.metadataPromise = null
     }
   }
 
-  /*
-  * Login the user offline by setting mock tokens
-  */
-  public loginOffline(): void {
-    if (this.client === null) {
-      throw new Error('Client is not initialized')
+  private matchesPathRule(pathname: string, pathRule: string): boolean {
+    if (pathRule.endsWith('/*')) {
+      return pathname.startsWith(pathRule.slice(0, -1))
     }
 
-    this.client.setMockTokens()
+    return pathname === pathRule || pathname.startsWith(`${pathRule}/`)
   }
 
-  /*
-  * Login the user with the code from the identity provider
-  * It will get the access token and add it to the fetch instance headers
-  */
-  public async loginWithCode(code: string): Promise<void> {
-    if (this.options.offline === true) {
-      this.loginOffline()
+  private normalizeConfig(options: OAuthClientOptions): NormalizedOAuthClientOptions {
+    const clientId = this.normalizeRequiredString(options.clientId, 'clientId')
+    const requireHttps = options.requireHttps ?? true
+    const baseUrl = this.normalizeUrl(options.baseUrl, 'baseUrl', requireHttps)
+    const loginRedirectUri = this.normalizeUrl(options.loginRedirectUri, 'loginRedirectUri', requireHttps)
+    const postLogoutRedirectUri = this.normalizeUrl(options.postLogoutRedirectUri, 'postLogoutRedirectUri', requireHttps)
+    const userInfoEndpoint = options.userInfoEndpoint !== undefined
+      ? this.normalizeUrl(options.userInfoEndpoint, 'userInfoEndpoint', requireHttps)
+      : undefined
+    const silentRedirectUri = options.silentRedirectUri !== undefined
+      ? this.normalizeUrl(options.silentRedirectUri, 'silentRedirectUri', requireHttps)
+      : undefined
+    const scopes = this.normalizeScopes(options.scopes)
 
+    return {
+      ...options,
+      clientId,
+      allowedPaths: this.normalizePathRules(options.allowedPaths),
+      baseUrl,
+      blockedPaths: this.normalizePathRules(options.blockedPaths),
+      checkSessionIntervalInSeconds: this.normalizePositiveNumber(
+        options.checkSessionIntervalInSeconds,
+        DEFAULT_CHECK_SESSION_INTERVAL_SECONDS,
+        'checkSessionIntervalInSeconds',
+      ),
+      clockSkewInSeconds: this.normalizePositiveNumber(
+        options.clockSkewInSeconds,
+        DEFAULT_CLOCK_SKEW_SECONDS,
+        'clockSkewInSeconds',
+      ),
+      loginRedirectUri,
+      monitorSession: options.monitorSession ?? false,
+      postLogoutRedirectUri,
+      prefix: this.normalizePrefix(options.prefix),
+      requireHttps,
+      scopes,
+      silentRedirectUri,
+      storage: options.storage ?? 'local',
+      storageFallback: options.storageFallback ?? 'allow',
+      userInfoEndpoint,
+    }
+  }
+
+  private normalizePathRule(pathRule: string): string {
+    const pathWithoutSearchOrHash = pathRule.split('?')[0]?.split('#')[0]?.trim() ?? ''
+
+    if (!pathWithoutSearchOrHash.startsWith('/')) {
+      throw new Error(`Path rule '${pathRule}' must start with '/'`)
+    }
+
+    if (pathWithoutSearchOrHash === '/') {
+      return pathWithoutSearchOrHash
+    }
+
+    return pathWithoutSearchOrHash.endsWith('/')
+      ? pathWithoutSearchOrHash.slice(0, -1)
+      : pathWithoutSearchOrHash
+  }
+
+  private normalizePathRules(pathRules?: string[]): string[] {
+    if (pathRules === undefined) {
+      return []
+    }
+
+    return [
+      ...new Set(pathRules
+        .map((pathRule) => {
+          const trimmedPathRule = pathRule.trim()
+
+          if (trimmedPathRule === '') {
+            return null
+          }
+
+          if (trimmedPathRule.startsWith('/')) {
+            return this.normalizePathRule(trimmedPathRule)
+          }
+
+          try {
+            const ruleUrl = new URL(trimmedPathRule)
+
+            if (ruleUrl.origin !== this.getWindowOrigin()) {
+              throw new Error(`Path rule '${trimmedPathRule}' is not same-origin`)
+            }
+
+            return this.normalizePathRule(ruleUrl.pathname)
+          }
+          catch {
+            throw new Error(`Path rule '${trimmedPathRule}' must start with '/' or be a same-origin URL`)
+          }
+        })
+        .filter((pathRule): pathRule is string => pathRule !== null)),
+    ]
+  }
+
+  private normalizePositiveNumber(value: number | undefined, fallback: number, fieldName: string): number {
+    if (value === undefined) {
+      return fallback
+    }
+
+    if (!Number.isFinite(value) || value < 0) {
+      throw new Error(`${fieldName} must be a non-negative number`)
+    }
+
+    return value
+  }
+
+  private normalizePrefix(prefix?: string): string {
+    if (prefix === undefined) {
+      return DEFAULT_PREFIX
+    }
+
+    const normalizedPrefix = prefix.trim()
+
+    if (normalizedPrefix === '') {
+      throw new Error('prefix must not be empty')
+    }
+
+    return normalizedPrefix
+  }
+
+  private normalizeQueryParams(queryParams: Record<string, string>): Record<string, string> {
+    return Object.entries(queryParams).reduce<Record<string, string>>((accumulator, [
+      key,
+      value,
+    ]) => {
+      const normalizedKey = key.trim()
+
+      if (normalizedKey === '' || RESERVED_OIDC_QUERY_PARAMS.has(normalizedKey)) {
+        return accumulator
+      }
+
+      accumulator[normalizedKey] = value
+
+      return accumulator
+    }, {})
+  }
+
+  private normalizeRequiredString(value: string, fieldName: string): string {
+    const normalizedValue = value.trim()
+
+    if (normalizedValue === '') {
+      throw new Error(`${fieldName} must not be empty`)
+    }
+
+    return normalizedValue
+  }
+
+  private normalizeScopes(scopes?: string[]): string[] {
+    const normalizedScopes = [
+      ...new Set((scopes ?? [])
+        .map((scope) => scope.trim())
+        .filter((scope) => scope !== '')),
+    ]
+
+    if (normalizedScopes.length === 0) {
+      return [
+        ...DEFAULT_SCOPES,
+      ]
+    }
+
+    if (!normalizedScopes.includes('openid')) {
+      normalizedScopes.unshift('openid')
+    }
+
+    return normalizedScopes
+  }
+
+  private normalizeUrl(value: string, fieldName: string, requireHttps: boolean): string {
+    const normalizedValue = this.normalizeRequiredString(value, fieldName)
+    const parsedUrl = new URL(normalizedValue)
+
+    if (requireHttps && !this.isHttpsOrLocalhost(parsedUrl)) {
+      throw new Error(`${fieldName} must use HTTPS (localhost/127.0.0.1 over HTTP is allowed)`)
+    }
+
+    return parsedUrl.toString()
+  }
+
+  private prefetchMetadata(): void {
+    if (this.metadataResolved || this.metadataPromise !== null) {
       return
     }
 
+    this.metadataPromise = this.loadMetadata()
+    void this.metadataPromise
+  }
+
+  private async refreshUser(currentUser: User): Promise<User | null> {
     try {
-      await this.getClient().loginWithCode(code)
+      const user = await this.userManager.signinSilent()
+
+      this.emitEvent({
+        type: 'token_refresh_succeeded',
+      })
+
+      return user
     }
     catch (error) {
-      this.logout()
+      const isTerminalError = this.isTerminalRefreshError(error)
+
+      this.emitEvent({
+        message: this.getErrorMessage(error),
+        terminal: isTerminalError,
+        type: 'token_refresh_failed',
+      })
+
+      if (isTerminalError) {
+        await this.clearAuthState()
+
+        return null
+      }
+
+      return currentUser.expired
+        ? null
+        : currentUser
+    }
+  }
+
+  private removeOidcCallbackParamsFromCurrentUrl(): void {
+    const currentUrl = new URL(window.location.href)
+    let shouldReplace = false
+
+    for (const param of OIDC_CALLBACK_QUERY_PARAMS) {
+      if (currentUrl.searchParams.has(param)) {
+        currentUrl.searchParams.delete(param)
+        shouldReplace = true
+      }
+    }
+
+    if (!shouldReplace) {
+      return
+    }
+
+    const cleanPath = `${currentUrl.pathname}${currentUrl.search}${currentUrl.hash}`
+
+    window.history.replaceState(window.history.state, document.title, cleanPath)
+  }
+
+  private resolveStorage(type: 'local' | 'session', storageFallback: 'allow' | 'disallow'): Storage {
+    const requestedStorage = this.getBrowserStorage(type)
+
+    if (requestedStorage !== null && this.storageIsWritable(requestedStorage)) {
+      return requestedStorage
+    }
+
+    if (storageFallback === 'disallow') {
+      throw new Error(`Unable to use requested '${type}' storage`)
+    }
+
+    const fallbackStorage = this.getBrowserStorage(type === 'session' ? 'local' : 'session')
+
+    if (fallbackStorage !== null && this.storageIsWritable(fallbackStorage)) {
+      this.emitEvent({
+        from: type,
+        to: type === 'session' ? 'local' : 'session',
+        type: 'storage_fallback',
+      })
+
+      return fallbackStorage
+    }
+
+    this.emitEvent({
+      from: type,
+      to: 'memory',
+      type: 'storage_fallback',
+    })
+
+    return new MemoryStorage()
+  }
+
+  private async resolveUserInfoEndpoint(): Promise<string> {
+    if (this.userInfoEndpoint !== null) {
+      return this.userInfoEndpoint
+    }
+
+    if (!this.metadataResolved) {
+      this.prefetchMetadata()
+    }
+
+    if (this.metadataPromise !== null) {
+      await this.metadataPromise
+    }
+
+    if (this.userInfoEndpoint === null) {
+      throw new Error('userinfo_endpoint is missing from OIDC metadata and was not configured explicitly')
+    }
+
+    return this.userInfoEndpoint
+  }
+
+  private async revokeAndClearAuthState(): Promise<void> {
+    try {
+      await this.userManager.revokeTokens()
+    }
+    catch {
+      // Ignore revocation failures and still clear local auth state.
+    }
+
+    await this.clearAuthState()
+  }
+
+  private shouldRefreshUser(user: User): boolean {
+    if (user.expired) {
+      return true
+    }
+
+    if (user.expires_at === undefined || user.expires_at === null) {
+      return false
+    }
+
+    const expiresAtMs = user.expires_at * 1000
+
+    return expiresAtMs - Date.now() <= this.config.clockSkewInSeconds * 1000
+  }
+
+  private storageIsWritable(storage: Storage): boolean {
+    const testStorageKey = `${DEFAULT_PREFIX}.storage-probe`
+
+    try {
+      storage.setItem(testStorageKey, '1')
+      storage.removeItem(testStorageKey)
+
+      return true
+    }
+    catch {
+      return false
+    }
+  }
+
+  /**
+   * Clears current user data and stale OIDC state from storage.
+   */
+  public async clearAuthState(): Promise<void> {
+    await this.userManager.removeUser()
+    await this.userManager.clearStaleState()
+  }
+
+  /**
+   * Throws when called outside a browser environment.
+   */
+  public ensureBrowserEnvironment(): void {
+    if (typeof window === 'undefined') {
+      throw new TypeError('OidcClient requires a browser environment')
+    }
+  }
+
+  /**
+   * Returns a valid access token, refreshing it silently when needed.
+   * Returns an empty string when no authenticated user exists.
+   */
+  public async getAccessToken(): Promise<string> {
+    const user = await this.getValidUser()
+
+    return user?.access_token ?? ''
+  }
+
+  /**
+   * Returns the underlying `UserManager` instance for advanced integrations.
+   */
+  public getClient(): UserManager {
+    return this.userManager
+  }
+
+  /**
+   * Builds the login URL and stores request state for callback validation.
+   * Pass a string (or `state` in an object) to round-trip a redirect target.
+   */
+  public async getLoginUrl(queryParams?: string | Record<string, string> | null): Promise<string> {
+    const extraQueryParams: Record<string, string> = {}
+    let urlState: string | undefined
+
+    if (typeof queryParams === 'string') {
+      urlState = this.sanitizeRedirectUrl(queryParams, '/')
+    }
+    else if (queryParams !== null && queryParams !== undefined) {
+      const {
+        state,
+        ...restQueryParams
+      } = queryParams
+
+      if (typeof state === 'string') {
+        urlState = this.sanitizeRedirectUrl(state, '/')
+      }
+
+      Object.assign(extraQueryParams, this.normalizeQueryParams(restQueryParams))
+    }
+
+    const request = await this.oidcClient.createSigninRequest({
+      extraQueryParams,
+      url_state: urlState,
+    })
+
+    return request.url
+  }
+
+  /**
+   * Returns the logout URL for the identity provider.
+   */
+  public getLogoutUrl(): string {
+    if (this.endSessionEndpoint !== null) {
+      const url = new URL(this.endSessionEndpoint)
+
+      if (this.config.postLogoutRedirectUri !== '') {
+        url.searchParams.set('post_logout_redirect_uri', this.config.postLogoutRedirectUri)
+      }
+
+      if (this.config.clientId !== '') {
+        url.searchParams.set('client_id', this.config.clientId)
+      }
+
+      return url.toString()
+    }
+
+    return this.config.postLogoutRedirectUri
+  }
+
+  /**
+   * Fetches user profile information from the userinfo endpoint.
+   * Clears auth state and throws when the request fails.
+   */
+  public async getUserInfo(): Promise<OidcUser> {
+    const accessToken = await this.getAccessToken()
+
+    if (accessToken === '') {
+      throw new Error('Failed to fetch user info: access token is missing')
+    }
+
+    const abortController = new AbortController()
+    const timeout = window.setTimeout(() => {
+      abortController.abort()
+    }, DEFAULT_USER_INFO_TIMEOUT_MS)
+
+    try {
+      const response = await fetch(await this.resolveUserInfoEndpoint(), {
+        headers: new Headers({
+          Authorization: `Bearer ${accessToken}`,
+        }),
+        signal: abortController.signal,
+      })
+
+      if (!response.ok) {
+        await this.clearAuthState()
+
+        throw new Error(`Failed to fetch user info (${response.status})`)
+      }
+
+      return await response.json() as OidcUser
+    }
+    finally {
+      window.clearTimeout(timeout)
+    }
+  }
+
+  /**
+   * Processes the OIDC redirect callback and returns a sanitized redirect target.
+   */
+  public async handleRedirectCallback(): Promise<string> {
+    try {
+      const callbackUrl = new URL(window.location.href)
+
+      if (!callbackUrl.searchParams.has('state')) {
+        throw new Error('Missing state parameter in login callback URL')
+      }
+
+      const user = await this.userManager.signinRedirectCallback(callbackUrl.toString())
+      const redirectTarget = this.sanitizeRedirectUrl(typeof user?.url_state === 'string' ? user.url_state : '/', '/')
+
+      this.emitEvent({
+        redirectTarget,
+        type: 'callback_handled',
+      })
+
+      return redirectTarget
+    }
+    catch (error) {
+      await this.clearAuthState()
+      this.emitEvent({
+        message: this.getErrorMessage(error),
+        type: 'callback_failed',
+      })
+
+      throw error
+    }
+    finally {
+      this.removeOidcCallbackParamsFromCurrentUrl()
+    }
+  }
+
+  /**
+   * Returns whether an authenticated user with a non-empty access token exists.
+   */
+  public async isLoggedIn(): Promise<boolean> {
+    try {
+      const user = await this.getValidUser()
+
+      return user !== null && user.access_token !== ''
+    }
+    catch (error) {
+      await this.clearAuthState()
 
       throw error
     }
   }
 
-  /*
-  * Logout the user by clearing the tokens and removing the authorization header
-  */
-  public logout(): void {
-    this.client?.clearTokens()
-    this.client = null
+  /**
+   * Revokes server-side tokens when possible and clears local auth state.
+   */
+  public async logout(): Promise<void> {
+    await this.revokeAndClearAuthState()
   }
 
-  public sanitizeRedirectUrl(redirectUrl: string, fallbackUrl?: string): string {
-    return this.redirectValidator.sanitizeRedirectUrl(redirectUrl, fallbackUrl)
-  }
+  /**
+   * Validates and normalizes a redirect URL to a safe in-app path.
+   */
+  public sanitizeRedirectUrl(redirectUrl: string, fallbackUrl: string = '/'): string {
+    try {
+      const targetUrl = new URL(redirectUrl, this.getWindowOrigin())
 
-  public setConfig(options: Partial<OAuth2VueClientOptions>): void {
-    this.client = new ApiClient(
-      {
-        clientId: options.clientId ?? this.options.clientId,
-        baseUrl: options.baseUrl ?? this.options.baseUrl,
-        redirectUri: options.loginRedirectUri ?? this.options.loginRedirectUri,
-        scopes: options.scopes ?? this.options.scopes,
-        tokensStrategy: options.tokensStrategy ?? this.tokensStrategy,
-      },
-    )
-    this.options = {
-      ...this.options,
-      ...options,
+      if (targetUrl.origin !== this.getWindowOrigin()) {
+        return fallbackUrl
+      }
+
+      if (this.isPathBlocked(targetUrl.pathname)) {
+        return fallbackUrl
+      }
+
+      if (!this.isPathAllowed(targetUrl.pathname)) {
+        return fallbackUrl
+      }
+
+      return `${targetUrl.pathname}${targetUrl.search}${targetUrl.hash}`
     }
+    catch {
+      return fallbackUrl
+    }
+  }
+
+  /**
+   * Updates client configuration and recreates internal OIDC clients.
+   */
+  public setConfig(options: Partial<OAuthClientOptions>): void {
+    this.config = this.normalizeConfig({
+      ...this.config,
+      ...options,
+    })
+    this.oidcStorage = this.resolveStorage(this.config.storage, this.config.storageFallback)
+    this.refreshPromise = null
+
+    this.userManager = this.createUserManager(this.config)
+    this.oidcClient = this.createOidcClient(this.config)
+    this.metadataResolved = false
+    this.metadataPromise = null
+    this.endSessionEndpoint = null
+    this.userInfoEndpoint = this.config.userInfoEndpoint ?? null
+    this.prefetchMetadata()
   }
 }

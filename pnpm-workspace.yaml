@@ -125,6 +125,8 @@ catalogs:
     "@opentelemetry/sdk-trace-base": "2.5.0"
     "@opentelemetry/sdk-trace-web": "2.5.0"
     "@sentry/vue": "10.36.0"
+  auth:
+    "oidc-client-ts": "3.4.1"
   generator:
     "change-case": 5.4.4
     "ejs": 4.0.1
