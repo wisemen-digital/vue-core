@@ -1,5 +1,12 @@
 # @wisemen/vue-core-components
 
+## 2.1.2
+
+### Patch Changes
+
+- 6b01189: Refactored rendering of icon to prevent memory leak in nuxt
+- 347cf1a: Bumped dependency versions
+
 ## 2.1.1
 
 ### Patch Changes

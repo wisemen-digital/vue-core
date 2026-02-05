@@ -1,5 +1,27 @@
 ## [1.7.2] (2025-08-04)
 
+## 2.0.0
+
+### Major Changes
+
+- 8c3d962: - Added separate configs for package / projects
+  - Better tailwindcss v4, with canonical classes support
+  - Updated packages
+
+### Patch Changes
+
+- cfa9ee9: Updated dependencies
+- 41e6b97: - Allow AppProviders.vue on source
+  - Allow test files in util folder, e.g. /src/util/address/address.util.spec.ts
+  - Allow {camelCase}.composable.ts and {camelCase}.composable.spec.ts files on root of composables folder
+  - Name of composables don't need to match folder name anymore
+  - Allow {camelCase}.routes.ts files in routes folder
+  - Allow import @tests/ in encapsulated folders
+  - Improved encapsulated folder detection logic
+  - Allow inter use-case imports in module folders
+- 347cf1a: Better date sorting
+- 347cf1a: Bumped dependency versions
+
 ## 1.7.6
 
 ### Patch Changes
