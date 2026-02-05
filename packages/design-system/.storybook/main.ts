@@ -33,7 +33,7 @@ const config: StorybookConfig = {
   },
   stories: [
     '../src/**/*.mdx',
-    '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)',
+    '../src/**/*.story.@(js|jsx|mjs|ts|tsx)',
 
   ],
   viteFinal(config) {

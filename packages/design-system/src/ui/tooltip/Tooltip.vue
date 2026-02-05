@@ -5,10 +5,13 @@ import {
   TooltipRoot as RekaTooltipRoot,
   TooltipTrigger as RekaTooltipTrigger,
 } from 'reka-ui'
+import { computed } from 'vue'
 
 import { POPPER_PROPS_DEFAULTS } from '@/types/popper.type'
 import ThemeProvider from '@/ui/theme-provider/ThemeProvider.vue'
 import type { TooltipProps } from '@/ui/tooltip/tooltip.props'
+import type { TooltipStyle } from '@/ui/tooltip/tooltip.style'
+import { createTooltipStyle } from '@/ui/tooltip/tooltip.style'
 import TooltipArrow from '@/ui/tooltip/TooltipArrow.vue'
 
 const props = withDefaults(defineProps<TooltipProps>(), {
@@ -18,6 +21,10 @@ const props = withDefaults(defineProps<TooltipProps>(), {
   disableCloseOnTriggerClick: false,
   disableHoverableContent: false,
 })
+
+const tooltipStyle = computed<TooltipStyle>(() => createTooltipStyle({
+  popoverWidth: props.popoverWidth ?? undefined,
+}))
 
 const isOpen = defineModel<boolean>('isOpen', {
   default: false,
@@ -50,20 +57,13 @@ const isOpen = defineModel<boolean>('isOpen', {
           :collision-boundary="props.popoverContainerElement"
           :side="props.popoverSide"
           :side-offset="props.popoverSideOffset"
-          :class="{
-            'w-(--reka-tooltip-trigger-width)': props.popoverWidth === 'anchor-width',
-            'w-(--reka-tooltip-content-available-width)': props.popoverWidth === 'available-width',
-          }"
+          :class="tooltipStyle.contentWrapper()"
           :data-animation="props.popoverAnimationName ?? 'tooltip-default'"
           position-strategy="absolute"
           sticky="always"
-          class="z-40 will-change-[transform,filter,opacity]"
         >
           <div
-            class="
-              relative size-full overflow-hidden rounded-sm border
-              border-secondary bg-primary shadow-lg
-            "
+            :class="tooltipStyle.content()"
           >
             <slot name="content" />
           </div>
