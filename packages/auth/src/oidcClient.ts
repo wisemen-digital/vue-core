@@ -10,6 +10,7 @@ import {
 } from 'oidc-client-ts'
 
 import type {
+  OAuthClientEvent,
   OAuthClientOptions,
   OidcUser,
 } from './oidc.type'
@@ -22,6 +23,18 @@ const DEFAULT_SCOPES = [
   'email',
 ] as const
 const DEFAULT_USER_INFO_TIMEOUT_MS = 10_000
+const DEFAULT_CLOCK_SKEW_SECONDS = 30
+const DEFAULT_CHECK_SESSION_INTERVAL_SECONDS = 60
+
+const TERMINAL_REFRESH_ERROR_MARKERS = [
+  'account_selection_required',
+  'consent_required',
+  'interaction_required',
+  'invalid_grant',
+  'invalid_token',
+  'login_required',
+  'session',
+] as const
 
 const OIDC_CALLBACK_QUERY_PARAMS = [
   'code',
@@ -59,10 +72,16 @@ const RESERVED_OIDC_QUERY_PARAMS = new Set([
 interface NormalizedOAuthClientOptions extends OAuthClientOptions {
   allowedPaths: string[]
   blockedPaths: string[]
+  checkSessionIntervalInSeconds: number
+  clockSkewInSeconds: number
+  monitorSession: boolean
   prefix: string
   requireHttps: boolean
   scopes: string[]
   storage: 'local' | 'session'
+  storageFallback: 'allow' | 'disallow'
+  userInfoEndpoint?: string
+  onEvent?: (event: OAuthClientEvent) => void
 }
 
 class MemoryStorage implements Storage {
@@ -96,10 +115,12 @@ class MemoryStorage implements Storage {
 export class OidcClient {
   private config: NormalizedOAuthClientOptions
   private endSessionEndpoint: string | null = null
+  private metadataPromise: Promise<void> | null = null
   private metadataResolved = false
   private oidcClient: OidcClientTs
-  private readonly oidcStorage: Storage
+  private oidcStorage: Storage
   private refreshPromise: Promise<User | null> | null = null
+  private userInfoEndpoint: string | null = null
   private userManager: UserManager
 
   /**
@@ -109,7 +130,8 @@ export class OidcClient {
     this.ensureBrowserEnvironment()
 
     this.config = this.normalizeConfig(options)
-    this.oidcStorage = this.resolveStorage(this.config.storage)
+    this.userInfoEndpoint = this.config.userInfoEndpoint ?? null
+    this.oidcStorage = this.resolveStorage(this.config.storage, this.config.storageFallback)
 
     this.userManager = this.createUserManager(this.config)
     this.oidcClient = this.createOidcClient(this.config)
@@ -142,9 +164,9 @@ export class OidcClient {
       client_id: config.clientId,
       authority: config.baseUrl,
       automaticSilentRenew: config.automaticSilentRenew ?? hasSilentRedirectUri,
-      checkSessionIntervalInSeconds: 60,
+      checkSessionIntervalInSeconds: config.checkSessionIntervalInSeconds,
       loadUserInfo: false,
-      monitorSession: false,
+      monitorSession: config.monitorSession,
       post_logout_redirect_uri: config.postLogoutRedirectUri,
       redirect_uri: config.loginRedirectUri,
       response_type: 'code',
@@ -161,6 +183,15 @@ export class OidcClient {
     return new UserManager(settings)
   }
 
+  private emitEvent(event: OAuthClientEvent): void {
+    try {
+      this.config.onEvent?.(event)
+    }
+    catch {
+      // Ignore observer errors to keep auth flow stable.
+    }
+  }
+
   private getBrowserStorage(type: 'local' | 'session'): Storage | null {
     try {
       return type === 'local' ? window.localStorage : window.sessionStorage
@@ -168,6 +199,18 @@ export class OidcClient {
     catch {
       return null
     }
+  }
+
+  private getErrorMessage(error: unknown): string {
+    if (error instanceof Error) {
+      return error.message
+    }
+
+    if (typeof error === 'string') {
+      return error
+    }
+
+    return 'Unknown error'
   }
 
   private getScopes(scopes: string[]): string {
@@ -189,12 +232,16 @@ export class OidcClient {
       return null
     }
 
-    if (!user.expired) {
+    if (!this.shouldRefreshUser(user)) {
       return user
     }
 
     if (this.refreshPromise === null) {
-      this.refreshPromise = this.refreshUser()
+      this.emitEvent({
+        type: 'token_refresh_started',
+      })
+
+      this.refreshPromise = this.refreshUser(user)
         .finally(() => {
           this.refreshPromise = null
         })
@@ -233,6 +280,38 @@ export class OidcClient {
     return this.config.blockedPaths.some((blockedPath) => this.matchesPathRule(pathname, blockedPath))
   }
 
+  private isTerminalRefreshError(error: unknown): boolean {
+    const errorMessage = this.getErrorMessage(error).toLowerCase()
+
+    return TERMINAL_REFRESH_ERROR_MARKERS.some((marker) => errorMessage.includes(marker))
+  }
+
+  private async loadMetadata(): Promise<void> {
+    try {
+      const metadata = await this.userManager.metadataService.getMetadata()
+
+      this.endSessionEndpoint = metadata.end_session_endpoint ?? null
+      this.userInfoEndpoint = this.config.userInfoEndpoint ?? metadata.userinfo_endpoint ?? null
+      this.emitEvent({
+        hasEndSessionEndpoint: this.endSessionEndpoint !== null,
+        hasUserInfoEndpoint: this.userInfoEndpoint !== null,
+        type: 'metadata_loaded',
+      })
+    }
+    catch (error) {
+      this.endSessionEndpoint = null
+      this.userInfoEndpoint = this.config.userInfoEndpoint ?? null
+      this.emitEvent({
+        message: this.getErrorMessage(error),
+        type: 'metadata_load_failed',
+      })
+    }
+    finally {
+      this.metadataResolved = true
+      this.metadataPromise = null
+    }
+  }
+
   private matchesPathRule(pathname: string, pathRule: string): boolean {
     if (pathRule.endsWith('/*')) {
       return pathname.startsWith(pathRule.slice(0, -1))
@@ -247,6 +326,9 @@ export class OidcClient {
     const baseUrl = this.normalizeUrl(options.baseUrl, 'baseUrl', requireHttps)
     const loginRedirectUri = this.normalizeUrl(options.loginRedirectUri, 'loginRedirectUri', requireHttps)
     const postLogoutRedirectUri = this.normalizeUrl(options.postLogoutRedirectUri, 'postLogoutRedirectUri', requireHttps)
+    const userInfoEndpoint = options.userInfoEndpoint !== undefined
+      ? this.normalizeUrl(options.userInfoEndpoint, 'userInfoEndpoint', requireHttps)
+      : undefined
     const silentRedirectUri = options.silentRedirectUri !== undefined
       ? this.normalizeUrl(options.silentRedirectUri, 'silentRedirectUri', requireHttps)
       : undefined
@@ -258,14 +340,43 @@ export class OidcClient {
       allowedPaths: this.normalizePathRules(options.allowedPaths),
       baseUrl,
       blockedPaths: this.normalizePathRules(options.blockedPaths),
+      checkSessionIntervalInSeconds: this.normalizePositiveNumber(
+        options.checkSessionIntervalInSeconds,
+        DEFAULT_CHECK_SESSION_INTERVAL_SECONDS,
+        'checkSessionIntervalInSeconds',
+      ),
+      clockSkewInSeconds: this.normalizePositiveNumber(
+        options.clockSkewInSeconds,
+        DEFAULT_CLOCK_SKEW_SECONDS,
+        'clockSkewInSeconds',
+      ),
       loginRedirectUri,
+      monitorSession: options.monitorSession ?? false,
       postLogoutRedirectUri,
       prefix: this.normalizePrefix(options.prefix),
       requireHttps,
       scopes,
       silentRedirectUri,
       storage: options.storage ?? 'local',
+      storageFallback: options.storageFallback ?? 'allow',
+      userInfoEndpoint,
     }
+  }
+
+  private normalizePathRule(pathRule: string): string {
+    const pathWithoutSearchOrHash = pathRule.split('?')[0]?.split('#')[0]?.trim() ?? ''
+
+    if (!pathWithoutSearchOrHash.startsWith('/')) {
+      throw new Error(`Path rule '${pathRule}' must start with '/'`)
+    }
+
+    if (pathWithoutSearchOrHash === '/') {
+      return pathWithoutSearchOrHash
+    }
+
+    return pathWithoutSearchOrHash.endsWith('/')
+      ? pathWithoutSearchOrHash.slice(0, -1)
+      : pathWithoutSearchOrHash
   }
 
   private normalizePathRules(pathRules?: string[]): string[] {
@@ -283,7 +394,7 @@ export class OidcClient {
           }
 
           if (trimmedPathRule.startsWith('/')) {
-            return trimmedPathRule
+            return this.normalizePathRule(trimmedPathRule)
           }
 
           try {
@@ -293,7 +404,7 @@ export class OidcClient {
               throw new Error(`Path rule '${trimmedPathRule}' is not same-origin`)
             }
 
-            return `${ruleUrl.pathname}${ruleUrl.search}${ruleUrl.hash}`
+            return this.normalizePathRule(ruleUrl.pathname)
           }
           catch {
             throw new Error(`Path rule '${trimmedPathRule}' must start with '/' or be a same-origin URL`)
@@ -301,6 +412,18 @@ export class OidcClient {
         })
         .filter((pathRule): pathRule is string => pathRule !== null)),
     ]
+  }
+
+  private normalizePositiveNumber(value: number | undefined, fallback: number, fieldName: string): number {
+    if (value === undefined) {
+      return fallback
+    }
+
+    if (!Number.isFinite(value) || value < 0) {
+      throw new Error(`${fieldName} must be a non-negative number`)
+    }
+
+    return value
   }
 
   private normalizePrefix(prefix?: string): string {
@@ -344,21 +467,21 @@ export class OidcClient {
     return normalizedValue
   }
 
-  private normalizeScopes(scopes: string[]): string[] {
+  private normalizeScopes(scopes?: string[]): string[] {
     const normalizedScopes = [
-      ...new Set(scopes
+      ...new Set((scopes ?? [])
         .map((scope) => scope.trim())
         .filter((scope) => scope !== '')),
     ]
-
-    if (!normalizedScopes.includes('openid')) {
-      normalizedScopes.unshift('openid')
-    }
 
     if (normalizedScopes.length === 0) {
       return [
         ...DEFAULT_SCOPES,
       ]
+    }
+
+    if (!normalizedScopes.includes('openid')) {
+      normalizedScopes.unshift('openid')
     }
 
     return normalizedScopes
@@ -376,28 +499,42 @@ export class OidcClient {
   }
 
   private prefetchMetadata(): void {
-    if (this.metadataResolved) {
+    if (this.metadataResolved || this.metadataPromise !== null) {
       return
     }
 
-    void this.userManager.metadataService.getMetadata()
-      .then((metadata) => {
-        this.endSessionEndpoint = metadata.end_session_endpoint ?? null
-        this.metadataResolved = true
-      })
-      .catch(() => {
-        this.metadataResolved = true
-      })
+    this.metadataPromise = this.loadMetadata()
+    void this.metadataPromise
   }
 
-  private async refreshUser(): Promise<User | null> {
+  private async refreshUser(currentUser: User): Promise<User | null> {
     try {
-      return await this.userManager.signinSilent()
-    }
-    catch {
-      await this.clearAuthState()
+      const user = await this.userManager.signinSilent()
 
-      return null
+      this.emitEvent({
+        type: 'token_refresh_succeeded',
+      })
+
+      return user
+    }
+    catch (error) {
+      const isTerminalError = this.isTerminalRefreshError(error)
+
+      this.emitEvent({
+        message: this.getErrorMessage(error),
+        terminal: isTerminalError,
+        type: 'token_refresh_failed',
+      })
+
+      if (isTerminalError) {
+        await this.clearAuthState()
+
+        return null
+      }
+
+      return currentUser.expired
+        ? null
+        : currentUser
     }
   }
 
@@ -421,20 +558,56 @@ export class OidcClient {
     window.history.replaceState(window.history.state, document.title, cleanPath)
   }
 
-  private resolveStorage(type: 'local' | 'session'): Storage {
+  private resolveStorage(type: 'local' | 'session', storageFallback: 'allow' | 'disallow'): Storage {
     const requestedStorage = this.getBrowserStorage(type)
 
     if (requestedStorage !== null && this.storageIsWritable(requestedStorage)) {
       return requestedStorage
     }
 
+    if (storageFallback === 'disallow') {
+      throw new Error(`Unable to use requested '${type}' storage`)
+    }
+
     const fallbackStorage = this.getBrowserStorage(type === 'session' ? 'local' : 'session')
 
     if (fallbackStorage !== null && this.storageIsWritable(fallbackStorage)) {
+      this.emitEvent({
+        from: type,
+        to: type === 'session' ? 'local' : 'session',
+        type: 'storage_fallback',
+      })
+
       return fallbackStorage
     }
 
+    this.emitEvent({
+      from: type,
+      to: 'memory',
+      type: 'storage_fallback',
+    })
+
     return new MemoryStorage()
+  }
+
+  private async resolveUserInfoEndpoint(): Promise<string> {
+    if (this.userInfoEndpoint !== null) {
+      return this.userInfoEndpoint
+    }
+
+    if (!this.metadataResolved) {
+      this.prefetchMetadata()
+    }
+
+    if (this.metadataPromise !== null) {
+      await this.metadataPromise
+    }
+
+    if (this.userInfoEndpoint === null) {
+      throw new Error('userinfo_endpoint is missing from OIDC metadata and was not configured explicitly')
+    }
+
+    return this.userInfoEndpoint
   }
 
   private async revokeAndClearAuthState(): Promise<void> {
@@ -446,6 +619,20 @@ export class OidcClient {
     }
 
     await this.clearAuthState()
+  }
+
+  private shouldRefreshUser(user: User): boolean {
+    if (user.expired) {
+      return true
+    }
+
+    if (user.expires_at === undefined || user.expires_at === null) {
+      return false
+    }
+
+    const expiresAtMs = user.expires_at * 1000
+
+    return expiresAtMs - Date.now() <= this.config.clockSkewInSeconds * 1000
   }
 
   private storageIsWritable(storage: Storage): boolean {
@@ -566,7 +753,7 @@ export class OidcClient {
     }, DEFAULT_USER_INFO_TIMEOUT_MS)
 
     try {
-      const response = await fetch(`${this.config.baseUrl.replace(/\/$/, '')}/oidc/v1/userinfo`, {
+      const response = await fetch(await this.resolveUserInfoEndpoint(), {
         headers: new Headers({
           Authorization: `Bearer ${accessToken}`,
         }),
@@ -598,15 +785,26 @@ export class OidcClient {
       }
 
       const user = await this.userManager.signinRedirectCallback(callbackUrl.toString())
+      const redirectTarget = this.sanitizeRedirectUrl(typeof user?.url_state === 'string' ? user.url_state : '/', '/')
 
-      this.removeOidcCallbackParamsFromCurrentUrl()
+      this.emitEvent({
+        redirectTarget,
+        type: 'callback_handled',
+      })
 
-      return this.sanitizeRedirectUrl(typeof user?.url_state === 'string' ? user.url_state : '/', '/')
+      return redirectTarget
     }
     catch (error) {
       await this.clearAuthState()
+      this.emitEvent({
+        message: this.getErrorMessage(error),
+        type: 'callback_failed',
+      })
 
       throw error
+    }
+    finally {
+      this.removeOidcCallbackParamsFromCurrentUrl()
     }
   }
 
@@ -667,12 +865,15 @@ export class OidcClient {
       ...this.config,
       ...options,
     })
+    this.oidcStorage = this.resolveStorage(this.config.storage, this.config.storageFallback)
     this.refreshPromise = null
 
     this.userManager = this.createUserManager(this.config)
     this.oidcClient = this.createOidcClient(this.config)
     this.metadataResolved = false
+    this.metadataPromise = null
     this.endSessionEndpoint = null
+    this.userInfoEndpoint = this.config.userInfoEndpoint ?? null
     this.prefetchMetadata()
   }
 }

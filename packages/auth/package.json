@@ -1,7 +1,7 @@
 {
   "name": "@wisemen/vue-core-auth",
   "type": "module",
-  "version": "3.0.0",
+  "version": "3.4.0",
   "license": "MIT",
   "sideEffects": false,
   "exports": {
@@ -27,19 +27,28 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "release": "bumpp && npm publish",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
     "type-check": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "vue": "catalog:peer",
+    "vue-router": "catalog:peer"
   },
   "dependencies": {
     "oidc-client-ts": "catalog:auth"
   },
   "devDependencies": {
     "@types/node": "catalog:types",
+    "@vitest/coverage-v8": "catalog:test",
     "@wisemen/eslint-config-vue": "workspace:*",
     "bumpp": "catalog:build",
     "eslint": "catalog:lint",
     "rimraf": "catalog:build",
     "tsdown": "catalog:build",
     "typescript": "catalog:build",
-    "vitest": "catalog:test"
+    "vitest": "catalog:test",
+    "vue": "catalog:vue",
+    "vue-router": "catalog:vue"
   }
 }
