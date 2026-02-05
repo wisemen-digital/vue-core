@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import LinkIcon from 'node_modules/@repo/icons/src/LinkIcon.vue'
 import {
   computed,
   useAttrs,
@@ -8,6 +7,7 @@ import { RouterLink } from 'vue-router'
 
 import ActionTooltip from '@/ui/action-tooltip/ActionTooltip.vue'
 import type { LinkProps } from '@/ui/button/link/link.props'
+import LinkIcon from '@/ui/button/link/LinkIcon.vue'
 import { UIRowLayout } from '@/ui/row-layout/index'
 
 defineOptions({

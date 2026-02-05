@@ -204,7 +204,8 @@ watch(copiedModelValue, () => {
             >
               <RekaNumberFieldDecrement :as-child="true">
                 <IconButton
-                  :is-disabled="props.isDisabled || props.isReadonly"
+                  :is-tooltip-disabled="true"
+                  :is-disabled="props.isDisabled || props.isReadonly || props.min === copiedModelValue"
                   :icon="MinusIcon"
                   :label="i18n.t('component.number_field.decrement')"
                   variant="tertiary"
@@ -224,7 +225,8 @@ watch(copiedModelValue, () => {
             >
               <RekaNumberFieldIncrement :as-child="true">
                 <IconButton
-                  :is-disabled="props.isDisabled || props.isReadonly"
+                  :is-tooltip-disabled="true"
+                  :is-disabled="props.isDisabled || props.isReadonly || props.max === copiedModelValue"
                   :icon="PlusIcon"
                   :label="i18n.t('component.number_field.increment')"
                   variant="tertiary"
