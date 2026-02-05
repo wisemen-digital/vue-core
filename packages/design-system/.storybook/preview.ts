@@ -17,11 +17,6 @@ const preview: Preview = {
     (story, context) => {
       const theme = context.globals.theme || 'light'
 
-      // Apply dark class to document for Tailwind dark mode
-      if (typeof window !== 'undefined') {
-        document.documentElement.classList.toggle('dark', theme === 'dark')
-      }
-
       return () => h(StoryWrapper, {
         theme,
       }, () => h(story()))
