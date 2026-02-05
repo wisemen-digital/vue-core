@@ -43,7 +43,7 @@ catalogs:
     "@typescript-eslint/scope-manager": "8.53.1"
     "@typescript-eslint/type-utils": "8.53.1"
     "@typescript-eslint/utils": "8.53.1"
-    "eslint-plugin-storybook": 10.2.0
+    "eslint-plugin-storybook": 10.2.1
 
   build:
     "tsdown": "0.18.4"
@@ -145,13 +145,13 @@ catalogs:
     "vue-router": ">=4.6.3"
   storybook:
     "@chromatic-com/storybook": 5.0.0
-    "@storybook/addon-a11y": 10.2.0
-    "@storybook/addon-docs": 10.2.0
-    "@storybook/addon-onboarding": 10.2.0
-    "@storybook/addon-vitest": 10.2.0
-    "@storybook/vue3": 10.2.0
-    "@storybook/vue3-vite": 10.2.0
-    "storybook": 10.2.0
+    "@storybook/addon-a11y": 10.2.1
+    "@storybook/addon-docs": 10.2.1
+    "@storybook/addon-onboarding": 10.2.1
+    "@storybook/addon-vitest": 10.2.1
+    "@storybook/vue3": 10.2.1
+    "@storybook/vue3-vite": 10.2.1
+    "storybook": 10.2.1
     "vue-component-meta": 3.2.4
   conflicts_test_25_0_1:
     jsdom: 25.0.1
