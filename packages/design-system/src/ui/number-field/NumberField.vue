@@ -1,9 +1,5 @@
 <script setup lang="ts">
 import {
-  MinusIcon,
-  PlusIcon,
-} from '../../../../icons-old/src'
-import {
   NumberFieldDecrement as RekaNumberFieldDecrement,
   NumberFieldIncrement as RekaNumberFieldIncrement,
   NumberFieldInput as RekaNumberFieldInput,
@@ -32,6 +28,11 @@ import type { NumberFieldProps } from '@/ui/number-field/numberField.props'
 import type { NumberFieldStyle } from '@/ui/number-field/numberField.style'
 import { createNumberFieldStyle } from '@/ui/number-field/numberField.style'
 import { UIRowLayout } from '@/ui/row-layout/index'
+
+import {
+  MinusIcon,
+  PlusIcon,
+} from '../../../../icons-old/src'
 
 defineOptions({
   inheritAttrs: false,
