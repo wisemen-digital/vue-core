@@ -12,9 +12,7 @@ export default defineConfig({
     lib: {
       name: 'vue-core',
       cssFileName: 'style',
-      entry: [
-        resolve(__dirname, 'src/index.ts'),
-      ],
+      entry: resolve(__dirname, 'src/index.ts'),
       fileName: (format, name) => {
         if (format === 'es') {
           return `${name}.js`
@@ -22,6 +20,9 @@ export default defineConfig({
 
         return `${name}.${format}`
       },
+      formats: [
+        'es',
+      ],
     },
 
     rollupOptions: {
@@ -31,13 +32,7 @@ export default defineConfig({
         'vue-router',
       ],
       output: {
-        globals: {
-          'vue': 'Vue',
-          'vue-i18n': 'VueI18n',
-          'vue-router': 'VueRouter',
-        },
         preserveModules: true,
-
         preserveModulesRoot: 'src',
       },
     },
