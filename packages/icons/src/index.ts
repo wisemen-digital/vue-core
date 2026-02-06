@@ -1,5 +1,3 @@
-import type { Component } from 'vue'
-
 export { default as ActivityHeartIcon } from './ActivityHeartIcon.vue'
 export { default as ActivityIcon } from './ActivityIcon.vue'
 export { default as AirplayIcon } from './AirplayIcon.vue'
@@ -1173,71 +1171,3 @@ export { default as ZapOffIcon } from './ZapOffIcon.vue'
 export { default as ZapSquareIcon } from './ZapSquareIcon.vue'
 export { default as ZoomInIcon } from './ZoomInIcon.vue'
 export { default as ZoomOutIcon } from './ZoomOutIcon.vue'
-
-export const icons = {
-  addOpenBoundary: import('./AddOpenBoundaryIcon.vue'),
-  airline: import('./AirlineIcon.vue'),
-  airplane: import('./AirplaneIcon.vue'),
-  airport: import('./AirportIcon.vue'),
-  alertTriangle: import('./AlertTriangleIcon.vue'),
-  allocations: import('./AllocationsIcon.vue'),
-  arrowNarrowRight: import('./ArrowNarrowRightIcon.vue'),
-  asset: import('./AssetIcon.vue'),
-  barChart: import('./BarChartIcon.vue'),
-  bell: import('./BellIcon.vue'),
-  building: import('./BuildingIcon.vue'),
-  charger: import('./ChargerIcon.vue'),
-  chevronDown: import('./ChevronDownIcon.vue'),
-  chevronUp: import('./ChevronUpIcon.vue'),
-  clock: import('./ClockIcon.vue'),
-  clockSnooze: import('./ClockSnoozeIcon.vue'),
-  copy: import('./CopyIcon.vue'),
-  downloadCloud: import('./DownloadCloudIcon.vue'),
-  edit: import('./EditIcon.vue'),
-  erase: import('./EraserIcon.vue'),
-  file: import('./FileIcon.vue'),
-  filterLines: import('./FilterLinesIcon.vue'),
-  globe: import('./GlobeIcon.vue'),
-  help: import('./HelpIcon.vue'),
-  hourGlass: import('./HourGlassIcon.vue'),
-  infoCircle: import('./InfoCircleIcon.vue'),
-  keyboard: import('./KeyboardIcon.vue'),
-  link: import('./LinkIcon.vue'),
-  linkExternal: import('./LinkExternalIcon.vue'),
-  marker: import('./MarkerIcon.vue'),
-  mobileBattery: import('./MobileBatteryIcon.vue'),
-  monitor: import('./MonitorIcon.vue'),
-  notification: import('./NotificationIcon.vue'),
-  parking: import('./ParkingIcon.vue'),
-  planning: import('./PlanningIcon.vue'),
-  preference: import('./PreferenceIcon.vue'),
-  refresh: import('./RefreshIcon.vue'),
-  removeOpenBoundary: import('./RemoveOpenBoundaryIcon.vue'),
-  rewind: import('./RewindIcon.vue'),
-  settings: import('./SettingsIcon.vue'),
-  shield: import('./ShieldIcon.vue'),
-  shieldOff: import('./ShieldOffIcon.vue'),
-  signOut: import('./SignOutIcon.vue'),
-  slashCircle: import('./SlashCircleIcon.vue'),
-  stand: import('./StandIcon.vue'),
-  stars: import('./StarsIcon.vue'),
-  stopwatch: import('./StopwatchIcon.vue'),
-  target: import('./TargetIcon.vue'),
-  threeDots: import('./ThreeDotsIcon.vue'),
-  tool: import('./ToolIcon.vue'),
-  trash: import('./TrashIcon.vue'),
-  turnaround: import('./TurnaroundIcon.vue'),
-  uploadCloud: import('./UploadCloudIcon.vue'),
-  user: import('./UserIcon.vue'),
-  users: import('./UsersIcon.vue'),
-  verified: import('./VerifiedIcon.vue'),
-  wifi: import('./WifiIcon.vue'),
-  wifiOff: import('./WifiOffIcon.vue'),
-  zap: import('./ZapIcon.vue'),
-  zoomIn: import('./ZoomInIcon.vue'),
-  zoomOut: import('./ZoomOutIcon.vue'),
-} satisfies Record<string, Component>
-
-export type Icons = {
-  [K in keyof typeof icons]: Component
-}

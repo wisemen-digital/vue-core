@@ -1,3 +1,5 @@
-import config from '@wisemen/eslint-config-vue'
+import { packageConfig } from '@wisemen/eslint-config-vue'
 
-export default config
+export default [
+  ...(await packageConfig()),
+]
