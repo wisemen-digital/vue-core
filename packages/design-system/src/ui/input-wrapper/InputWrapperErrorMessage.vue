@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { AlertTriangleIcon } from '@repo/icons'
+import { AlertTriangleIcon } from '@wisemen/vue-core-icons'
 import {
   AnimatePresence,
   Motion,

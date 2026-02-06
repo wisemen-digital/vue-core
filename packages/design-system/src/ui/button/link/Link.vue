@@ -102,7 +102,6 @@ useProvideLinkContext({
 
           <span
             :class="linkStyle.label()"
-            class=""
           >
             {{ props.label }}
           </span>

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { Separator } from 'reka-ui'
-import { twMerge } from 'tailwind-merge'
 import { computed } from 'vue'
 
 import type { SeperatorStyle } from '@/ui/separator/seperator.style'
@@ -23,10 +22,9 @@ const seperatorStyle = computed<SeperatorStyle>(() => createSeperatorStyle({
 
 <template>
   <Separator
-    :class="twMerge(
-      seperatorStyle.separator(),
-      props.class,
-    )"
+    :class="seperatorStyle.separator({
+      class: props.class,
+    })"
     :orientation="props.orientation"
     role="presentation"
   />

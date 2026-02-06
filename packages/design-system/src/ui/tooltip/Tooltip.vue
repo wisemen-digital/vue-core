@@ -22,7 +22,9 @@ const props = withDefaults(defineProps<TooltipProps>(), {
   disableHoverableContent: false,
 })
 
-const tooltipStyle = computed<TooltipStyle>(() => createTooltipStyle())
+const tooltipStyle = computed<TooltipStyle>(() => createTooltipStyle({
+  popoverWidth: props.popoverWidth ?? undefined,
+}))
 
 const isOpen = defineModel<boolean>('isOpen', {
   default: false,
@@ -55,13 +57,7 @@ const isOpen = defineModel<boolean>('isOpen', {
           :collision-boundary="props.popoverContainerElement"
           :side="props.popoverSide"
           :side-offset="props.popoverSideOffset"
-          :class="[
-            {
-              'w-(--reka-tooltip-trigger-width)': props.popoverWidth === 'anchor-width',
-              'w-(--reka-tooltip-content-available-width)': props.popoverWidth === 'available-width',
-            },
-            tooltipStyle.contentWrapper(),
-          ]"
+          :class="tooltipStyle.contentWrapper()"
           :data-animation="props.popoverAnimationName ?? 'tooltip-default'"
           position-strategy="absolute"
           sticky="always"

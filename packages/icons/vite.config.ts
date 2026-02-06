@@ -12,9 +12,7 @@ export default defineConfig({
     lib: {
       name: 'vue-core',
       cssFileName: 'style',
-      entry: [
-        resolve(__dirname, 'src/index.ts'),
-      ],
+      entry: resolve(__dirname, 'src/index.ts'),
       fileName: (format, name) => {
         if (format === 'es') {
           return `${name}.js`
@@ -22,6 +20,9 @@ export default defineConfig({
 
         return `${name}.${format}`
       },
+      formats: [
+        'es',
+      ],
     },
 
     rollupOptions: {
@@ -29,22 +30,12 @@ export default defineConfig({
         'vue',
         'vue-i18n',
         'vue-router',
-        'reka-ui',
       ],
       output: {
-        globals: {
-          'reka-ui': 'RekaUI',
-          'vue': 'Vue',
-          'vue-i18n': 'VueI18n',
-          'vue-router': 'VueRouter',
-        },
+        preserveModules: true,
+        preserveModulesRoot: 'src',
       },
     },
-  },
-  optimizeDeps: {
-    include: [
-      '@wisemen/vue-core-icons',
-    ],
   },
   plugins: [
     tailwindcss(),

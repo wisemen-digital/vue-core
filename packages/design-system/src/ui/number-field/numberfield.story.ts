@@ -1,4 +1,3 @@
-/* eslint-disable eslint-plugin-wisemen/explicit-function-return-type-with-regex */
 import type {
   Meta,
   StoryObj,
@@ -155,10 +154,10 @@ export const Required: Story = {
   },
 }
 
-export const Counter: Story = {
+export const WithControls: Story = {
   args: {
     class: 'w-72',
-    label: 'Counter',
+    label: 'With Controls',
     modelValue: 0,
     showControls: true,
     step: 1,
@@ -253,7 +252,7 @@ export const ReadonlyWithControls: Story = {
   args: {
     isReadonly: true,
     class: 'w-72',
-    label: 'Read Only Counter',
+    label: 'Read Only With Controls',
     modelValue: 10,
     showControls: true,
     step: 1,

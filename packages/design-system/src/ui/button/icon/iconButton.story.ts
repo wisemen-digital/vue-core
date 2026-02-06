@@ -1,13 +1,12 @@
-/* eslint-disable eslint-plugin-wisemen/explicit-function-return-type-with-regex */
-import {
-  PlusIcon,
-  Settings01Icon,
-  Trash01Icon,
-} from '@repo/icons'
 import type {
   Meta,
   StoryObj,
 } from '@storybook/vue3-vite'
+import {
+  PlusIcon,
+  Settings01Icon,
+  Trash01Icon,
+} from '@wisemen/vue-core-icons'
 import {
   expect,
   userEvent,
