@@ -7,6 +7,7 @@ import { useInjectCheckboxGroupContext } from '@/ui/checkbox-group/checkboxGroup
 const props = defineProps<{
   label?: string
 }>()
+
 const {
   isIndeterminate,
   modelValue,

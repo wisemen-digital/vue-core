@@ -2,6 +2,7 @@ import type { AcceptableValue } from 'reka-ui'
 import type {
   ComputedRef,
   InjectionKey,
+  Ref,
 } from 'vue'
 import {
   inject,
@@ -10,7 +11,7 @@ import {
 
 interface CheckboxGroupContext {
   isIndeterminate: ComputedRef<boolean>
-  modelValue: ComputedRef<AcceptableValue[]>
+  modelValue: Ref<AcceptableValue[]>
   registerCheckbox: (id: string, value: AcceptableValue) => void
   toggleAll: () => void
   unRegisterCheckbox: (id: string) => void
