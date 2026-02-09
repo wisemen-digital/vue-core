@@ -264,6 +264,16 @@ export function createVueAuth<TUser>(options: VueAuthOptions<TUser>): VueAuthCon
       return true
     }
 
+    const fetchedUser = await refetchCurrentUser()
+
+    return fetchedUser !== null
+  }
+
+  async function refetchCurrentUser(): Promise<TUser | null> {
+    if (userOptions === undefined) {
+      return currentUser.value
+    }
+
     try {
       isUserLoading.value = true
 
@@ -272,18 +282,18 @@ export function createVueAuth<TUser>(options: VueAuthOptions<TUser>): VueAuthCon
       currentUser.value = fetchedUser
       userOptions.setCurrentUser?.(fetchedUser)
 
-      return true
+      return fetchedUser
     }
     catch (error) {
       if (userOptions.isUnauthorizedError?.(error) ?? isUnauthorizedError(error)) {
         await clearSession()
 
-        return false
+        return null
       }
 
       onError(error)
 
-      return false
+      return null
     }
     finally {
       isUserLoading.value = false
@@ -412,6 +422,7 @@ export function createVueAuth<TUser>(options: VueAuthOptions<TUser>): VueAuthCon
     login,
     logout,
     redirectIfAuthenticatedGuard,
+    refetchCurrentUser,
     requireAuthGuard,
     routeNames,
     routes: [],

@@ -529,6 +529,9 @@ importers:
       '@types/node':
         specifier: catalog:types
         version: 24.8.1
+      '@vitest/coverage-v8':
+        specifier: catalog:test
+        version: 4.0.17(@vitest/browser@4.0.17(vite@7.3.1(@types/node@24.8.1)(jiti@2.6.1)(lightningcss@1.30.2)(sass@1.97.3)(tsx@4.20.3)(yaml@2.8.2))(vitest@4.0.17))(vitest@4.0.17)
       '@wisemen/eslint-config-vue':
         specifier: workspace:*
         version: link:../eslint-config
@@ -550,6 +553,12 @@ importers:
       vitest:
         specifier: catalog:test
         version: 4.0.17(@opentelemetry/api@1.9.0)(@types/node@24.8.1)(@vitest/browser-playwright@4.0.17)(jiti@2.6.1)(jsdom@27.4.0)(lightningcss@1.30.2)(sass@1.97.3)(tsx@4.20.3)(yaml@2.8.2)
+      vue:
+        specifier: catalog:vue
+        version: 3.5.27(typescript@5.9.3)
+      vue-router:
+        specifier: catalog:vue
+        version: 4.6.4(vue@3.5.27(typescript@5.9.3))
 
   packages/components-next:
     dependencies:
@@ -14716,7 +14725,7 @@ snapshots:
       '@babel/parser': 7.28.5
       '@babel/types': 7.28.5
       '@vue/compiler-dom': 3.5.27
-      '@vue/compiler-sfc': 3.5.22
+      '@vue/compiler-sfc': 3.5.27
       ast-types: 0.16.1
       esm-resolve: 1.0.11
       hash-sum: 2.0.0

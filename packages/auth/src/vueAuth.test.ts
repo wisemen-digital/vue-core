@@ -112,6 +112,59 @@ describe('createVueAuth', () => {
     })
   })
 
+  it('refetchCurrentUser reloads user and updates package state', async () => {
+    const fetchCurrentUser = vi.fn()
+      .mockResolvedValueOnce({
+        id: 'user-1',
+      })
+      .mockResolvedValueOnce({
+        id: 'user-2',
+      })
+    const setCurrentUser = vi.fn()
+    const auth = createVueAuth({
+      client: createMockClient({
+        isLoggedIn: true,
+      }),
+      user: {
+        fetchCurrentUser,
+        setCurrentUser,
+      },
+    })
+
+    await expect(auth.ensureAuthenticated()).resolves.toBeTruthy()
+    await expect(auth.refetchCurrentUser()).resolves.toEqual({
+      id: 'user-2',
+    })
+
+    expect(fetchCurrentUser).toHaveBeenCalledTimes(2)
+    expect(setCurrentUser).toHaveBeenCalledTimes(2)
+    expect(auth.getCurrentUser()).toEqual({
+      id: 'user-2',
+    })
+  })
+
+  it('refetchCurrentUser clears auth state when adapter returns unauthorized error', async () => {
+    const clearAuthState = vi.fn().mockImplementation(async () => {})
+    const client = createMockClient({
+      isLoggedIn: true,
+    })
+
+    client.clearAuthState = clearAuthState
+
+    const auth = createVueAuth({
+      client,
+      user: {
+        fetchCurrentUser: vi.fn().mockRejectedValue({
+          statusCode: 401,
+        }),
+      },
+    })
+
+    await expect(auth.refetchCurrentUser()).resolves.toBeNull()
+    expect(clearAuthState).toHaveBeenCalledTimes(1)
+    expect(auth.user.value).toBeNull()
+  })
+
   it('handleUnauthorized is single-flight and clears the session once', async () => {
     let resolveClearStatePromise: ((value: PromiseLike<void> | void) => void) | undefined
     const clearAuthState = vi.fn().mockReturnValue(new Promise<void>((resolve) => {

@@ -86,6 +86,7 @@ export interface VueAuthController<TUser> {
     shouldRedirectToLogin?: boolean
   }) => Promise<void>
   redirectIfAuthenticatedGuard: VueAuthGuard
+  refetchCurrentUser: () => Promise<TUser | null>
   requireAuthGuard: VueAuthGuard
   routeNames: VueAuthRouteNames
   routes: RouteRecordRaw[]
