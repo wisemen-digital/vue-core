@@ -30,6 +30,7 @@ const props = withDefaults(defineProps<DateFieldProps>(), {
   testId: null,
   maxDate: null,
   minDate: null,
+  weekStartsOn: 0,
   isDateDisabled: () => false,
   isDateUnavailable: () => false,
   isDisabled: false,
@@ -59,6 +60,10 @@ const placeholderValue = defineModel<Temporal.PlainDate | null>('placeholderValu
   required: false,
 })
 
+const resolvedLocale = computed<string>(() => {
+  return props.locale ?? navigator.language
+})
+
 const delegatedModel = computed<DateValue | null>({
   get: () => {
     if (modelValue.value === null) {
@@ -86,8 +91,6 @@ const delegatedPlaceholderValue = computed<Temporal.PlainDate>({
     placeholderValue.value = value
   },
 })
-
-const locale = navigator.language
 
 const {
   theme,
@@ -141,10 +144,10 @@ useProvideDateFieldContext({
       :id="props.id ?? undefined"
       v-slot="{ segments }"
       v-model="delegatedModel"
+      :locale="resolvedLocale"
       :min-value="props.minDate === null ? undefined : plainDateToDateValue(props.minDate)"
       :max-value="props.maxDate === null ? undefined : plainDateToDateValue(props.maxDate)"
       :is-date-unavailable="(dateValue) => props.isDateUnavailable(dateValueToPlainDate(dateValue))"
-      :locale="locale"
       :is-invalid="props.errorMessage !== null"
       :required="props.isRequired"
     >

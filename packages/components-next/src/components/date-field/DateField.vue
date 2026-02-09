@@ -49,20 +49,22 @@ const id = props.id ?? useId()
       <slot name="hint" />
     </template>
 
-    <DateFieldRoot
-      v-bind="props"
-      :id="id"
-      v-slot="{ segments }"
-      v-model="modelValue"
-      v-model:placeholder-value="placeholderValue"
-      @blur="emit('blur', $event)"
-      @focus="emit('focus', $event)"
-    >
-      <slot name="left" />
-      <DateFieldIconLeft />
-      <DateFieldInput :segments="(segments as DateFieldSegment[])" />
-      <DateFieldLoader />
-      <DateFieldPopover />
-    </DateFieldRoot>
+    <template #default>
+      <DateFieldRoot
+        v-bind="props"
+        :id="id"
+        v-slot="{ segments }"
+        v-model="modelValue"
+        v-model:placeholder-value="placeholderValue"
+        @blur="emit('blur', $event)"
+        @focus="emit('focus', $event)"
+      >
+        <slot name="left" />
+        <DateFieldIconLeft />
+        <DateFieldInput :segments="(segments as DateFieldSegment[])" />
+        <DateFieldLoader />
+        <DateFieldPopover />
+      </DateFieldRoot>
+    </template>
   </FormField>
 </template>
