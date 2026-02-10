@@ -64,16 +64,24 @@ const resolvedLocale = computed<string>(() => {
   return props.locale ?? navigator.language
 })
 
-function clampToMinMax(value: Temporal.PlainDate): Temporal.PlainDate {
+function clampToMinMax(): void {
+  const value = modelValue.value
+
+  if (value === null) {
+    return
+  }
+
+  let clamped = value
+
   if (props.minDate !== null && Temporal.PlainDate.compare(value, props.minDate) < 0) {
-    return props.minDate
+    clamped = props.minDate
+  } else if (props.maxDate !== null && Temporal.PlainDate.compare(value, props.maxDate) > 0) {
+    clamped = props.maxDate
   }
 
-  if (props.maxDate !== null && Temporal.PlainDate.compare(value, props.maxDate) > 0) {
-    return props.maxDate
+  if (Temporal.PlainDate.compare(clamped, value) !== 0) {
+    modelValue.value = clamped
   }
-
-  return value
 }
 
 const delegatedModel = computed<DateValue | null>({
@@ -91,7 +99,7 @@ const delegatedModel = computed<DateValue | null>({
       return
     }
 
-    modelValue.value = clampToMinMax(dateValueToPlainDate(value))
+    modelValue.value = dateValueToPlainDate(value)
   },
 })
 
@@ -134,6 +142,7 @@ function onBlur(event: FocusEvent): void {
   // In this case, we don't want to emit the blur event since the focus is still within the component
   setTimeout(() => {
     if (!isFocused.value) {
+      clampToMinMax()
       emit('blur', event)
     }
   })
