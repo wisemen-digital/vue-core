@@ -155,5 +155,3 @@ catalogs:
     "vue-component-meta": 3.2.4
   conflicts_test_25_0_1:
     jsdom: 25.0.1
-
-
