@@ -1,4 +1,3 @@
-/* eslint-disable eslint-plugin-wisemen/explicit-function-return-type-with-regex */
 import {
   PlusIcon,
   Settings01Icon,

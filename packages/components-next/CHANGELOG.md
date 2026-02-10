@@ -1,5 +1,11 @@
 # @wisemen/vue-core-components
 
+## 2.1.4
+
+### Patch Changes
+
+- f5311b7: Add locale and weekStartsOn props to DateRangePicker
+
 ## 2.1.3
 
 ### Patch Changes

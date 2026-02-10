@@ -45,7 +45,7 @@
     "@intlify/eslint-plugin-vue-i18n": "catalog:lint",
     "@typescript-eslint/parser": "catalog:lint",
     "@vitest/eslint-plugin": "catalog:lint",
-    "@wisemen/eslint-plugin-vue": "catalog:lint",
+    "@wisemen/eslint-plugin-vue": "workspace:*",
     "eslint": "catalog:lint",
     "eslint-flat-config-utils": "catalog:lint",
     "eslint-plugin-better-tailwindcss": "catalog:lint",

@@ -16,7 +16,7 @@
     "vue": ">=3.5.0"
   },
   "devDependencies": {
-    "@wisemen/eslint-config-vue": "catalog:lint",
+    "@wisemen/eslint-config-vue": "workspace:*",
     "typescript": "catalog:peer"
   }
 }
