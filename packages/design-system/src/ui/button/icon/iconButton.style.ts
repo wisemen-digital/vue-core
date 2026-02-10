@@ -115,13 +115,12 @@ export const createIconButtonStyle = tv({
           group-disabled/button:text-disabled
         `,
         root: `
-          data-interactive:dark:glassy
           border-brand-600 bg-brand-solid
           focus-visible:outline-fg-brand-primary
           disabled:border-disabled-subtle disabled:bg-disabled
           data-interactive:hover:brightness-95
           dark:p-px
-          data-interactive:dark:border-none
+          data-interactive:dark:border-none data-interactive:dark:glassy
         `,
       },
       'secondary': {
