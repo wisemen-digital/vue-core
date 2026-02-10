@@ -1,7 +1,7 @@
 {
   "name": "@wisemen/eslint-plugin-vue",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Eslint rules extended for Wisemen",
   "license": "MIT",
   "homepage": "https://github.com/wisemen-digital/vue-core.git",
