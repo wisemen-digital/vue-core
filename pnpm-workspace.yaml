@@ -18,7 +18,7 @@ catalogs:
     "@vue/devtools-api": "^6.6.4"
   lint:
     "eslint": "9.39.2"
-    "@wisemen/eslint-config-vue": "1.7.6"
+    "@wisemen/eslint-config-vue": "2.0.0"
     "@antfu/eslint-config": "7.2.0"
     "@eslint/eslintrc": "3.3.3"
     "@intlify/eslint-plugin-vue-i18n": "4.1.1"
