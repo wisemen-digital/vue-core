@@ -64,6 +64,18 @@ const resolvedLocale = computed<string>(() => {
   return props.locale ?? navigator.language
 })
 
+function clampToMinMax(value: Temporal.PlainDate): Temporal.PlainDate {
+  if (props.minDate !== null && Temporal.PlainDate.compare(value, props.minDate) < 0) {
+    return props.minDate
+  }
+
+  if (props.maxDate !== null && Temporal.PlainDate.compare(value, props.maxDate) > 0) {
+    return props.maxDate
+  }
+
+  return value
+}
+
 const delegatedModel = computed<DateValue | null>({
   get: () => {
     if (modelValue.value === null) {
@@ -79,7 +91,7 @@ const delegatedModel = computed<DateValue | null>({
       return
     }
 
-    modelValue.value = dateValueToPlainDate(value)
+    modelValue.value = clampToMinMax(dateValueToPlainDate(value))
   },
 })
 
