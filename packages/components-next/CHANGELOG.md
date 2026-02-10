@@ -1,5 +1,13 @@
 # @wisemen/vue-core-components
 
+## 2.1.3
+
+### Patch Changes
+
+- 6b01189: Refactored rendering of icon to prevent memory leak in nuxt
+- Date: fix issues where the first day of the week would be calculated incorrectly in the Calendar and DatePicker components
+- 347cf1a: Bumped dependency versions
+
 ## 2.1.1
 
 ### Patch Changes

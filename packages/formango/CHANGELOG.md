@@ -1,5 +1,11 @@
 # Formango
 
+## 3.2.1
+
+### Patch Changes
+
+- 347cf1a: Bumped dependency versions
+
 ## 3.0.0
 
 ### Major changes
