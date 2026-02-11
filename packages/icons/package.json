@@ -55,13 +55,11 @@
     "eslint": "catalog:lint",
     "husky": "catalog:build",
     "tailwindcss": "catalog:style",
-    "typescript": "catalog:build",
+    "typescript": "catalog:peer",
     "vite": "catalog:vite",
     "vite-plugin-dts": "catalog:vite",
     "vitest": "catalog:test",
     "vue": "catalog:vue",
     "vue-tsc": "catalog:vue"
-    "@wisemen/eslint-config-vue": "workspace:*",
-    "typescript": "catalog:peer"
   }
 }
