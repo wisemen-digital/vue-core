@@ -4,7 +4,7 @@
     "access": "public"
   },
   "type": "module",
-  "version": "0.0.1-beta.2",
+  "version": "0.0.1-alpha.0",
   "license": "MIT",
   "sideEffects": false,
   "exports": {
@@ -46,8 +46,8 @@
     "vue-router": "catalog:peer"
   },
   "dependencies": {
-    "@repo/icons": "workspace:*",
     "@tailwindcss/vite": "catalog:vite",
+    "@wisemen/vue-core-icons": "workspace:*",
     "tailwind-merge": "catalog:style",
     "tailwind-variants": "catalog:style",
     "tailwindcss": "catalog:style",

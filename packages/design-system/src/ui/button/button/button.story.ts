@@ -1,12 +1,12 @@
-import {
-  ArrowRightIcon,
-  PlusIcon,
-  Trash01Icon,
-} from '@repo/icons'
 import type {
   Meta,
   StoryObj,
 } from '@storybook/vue3-vite'
+import {
+  ArrowRightIcon,
+  PlusIcon,
+  Trash01Icon,
+} from '@wisemen/vue-core-icons'
 import {
   expect,
   userEvent,

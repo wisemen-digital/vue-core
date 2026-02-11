@@ -114,9 +114,15 @@ catalogs:
     '@vitest/eslint-plugin':
       specifier: 1.6.6
       version: 1.6.6
+<<<<<<< HEAD
     '@wisemen/eslint-config-vue':
       specifier: 2.0.0
       version: 2.0.0
+=======
+    '@wisemen/eslint-plugin-vue':
+      specifier: 0.0.1
+      version: 0.0.1
+>>>>>>> feat/button
     eslint:
       specifier: 9.39.2
       version: 9.39.2
@@ -190,9 +196,6 @@ catalogs:
     temporal-polyfill:
       specifier: '>=0.3.0'
       version: 0.3.0
-    typescript:
-      specifier: '>=4.8.4 <5.9.0'
-      version: 5.8.2
     vue:
       specifier: '>=3.5.22'
       version: 3.5.22
@@ -658,12 +661,12 @@ importers:
 
   packages/design-system:
     dependencies:
-      '@repo/icons':
-        specifier: workspace:*
-        version: link:../icons
       '@tailwindcss/vite':
         specifier: catalog:vite
         version: 4.1.18(vite@7.3.1(@types/node@24.8.1)(jiti@2.6.1)(lightningcss@1.30.2)(sass@1.97.3)(tsx@4.20.3)(yaml@2.8.2))
+      '@wisemen/vue-core-icons':
+        specifier: workspace:*
+        version: link:../icons
       tailwind-merge:
         specifier: catalog:style
         version: 3.4.0
@@ -966,6 +969,7 @@ importers:
 
   packages/icons:
     dependencies:
+<<<<<<< HEAD
       vue:
         specifier: '>=3.5.0'
         version: 3.5.27(typescript@5.8.2)
@@ -974,8 +978,66 @@ importers:
         specifier: workspace:*
         version: link:../eslint-config
       typescript:
+=======
+      motion-v:
+>>>>>>> feat/button
         specifier: catalog:peer
-        version: 5.8.2
+        version: 1.7.3(@vueuse/core@14.1.0(vue@3.5.27(typescript@5.9.3)))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(vue@3.5.27(typescript@5.9.3))
+      reka-ui:
+        specifier: catalog:peer
+        version: 2.6.1(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3))
+      temporal-polyfill:
+        specifier: catalog:peer
+        version: 0.3.0
+      vue-i18n:
+        specifier: catalog:peer
+        version: 11.1.12(vue@3.5.27(typescript@5.9.3))
+    devDependencies:
+      '@tailwindcss/vite':
+        specifier: catalog:vite
+        version: 4.1.18(vite@7.3.1(@types/node@24.8.1)(jiti@2.6.1)(lightningcss@1.30.2)(sass@1.97.3)(tsx@4.20.3)(yaml@2.8.2))
+      '@types/node':
+        specifier: catalog:types
+        version: 24.8.1
+      '@vitejs/plugin-vue':
+        specifier: catalog:vite
+        version: 6.0.3(vite@7.3.1(@types/node@24.8.1)(jiti@2.6.1)(lightningcss@1.30.2)(sass@1.97.3)(tsx@4.20.3)(yaml@2.8.2))(vue@3.5.27(typescript@5.9.3))
+      '@vue/test-utils':
+        specifier: catalog:test
+        version: 2.4.6
+      '@vue/tsconfig':
+        specifier: catalog:vue
+        version: 0.8.1(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3))
+      '@wisemen/eslint-config-vue':
+        specifier: workspace:*
+        version: link:../eslint-config
+      eslint:
+        specifier: catalog:lint
+        version: 9.39.2(jiti@2.6.1)
+      husky:
+        specifier: catalog:build
+        version: 9.1.7
+      tailwindcss:
+        specifier: catalog:style
+        version: 4.1.18
+      typescript:
+        specifier: catalog:build
+        version: 5.9.3
+      vite:
+        specifier: catalog:vite
+        version: 7.3.1(@types/node@24.8.1)(jiti@2.6.1)(lightningcss@1.30.2)(sass@1.97.3)(tsx@4.20.3)(yaml@2.8.2)
+      vite-plugin-dts:
+        specifier: catalog:vite
+        version: 4.5.4(@types/node@24.8.1)(rollup@4.52.2)(typescript@5.9.3)(vite@7.3.1(@types/node@24.8.1)(jiti@2.6.1)(lightningcss@1.30.2)(sass@1.97.3)(tsx@4.20.3)(yaml@2.8.2))
+      vitest:
+        specifier: catalog:test
+        version: 4.0.17(@opentelemetry/api@1.9.0)(@types/node@24.8.1)(@vitest/browser-playwright@4.0.17)(jiti@2.6.1)(jsdom@27.4.0)(lightningcss@1.30.2)(sass@1.97.3)(tsx@4.20.3)(yaml@2.8.2)
+      vue:
+        specifier: catalog:vue
+        version: 3.5.27(typescript@5.9.3)
+      vue-tsc:
+        specifier: catalog:vue
+        version: 3.2.2(typescript@5.9.3)
 
   packages/modules:
     dependencies:
@@ -3459,26 +3521,17 @@ packages:
   '@volar/language-core@2.4.15':
     resolution: {integrity: sha512-3VHw+QZU0ZG9IuQmzT68IyN4hZNd9GchGPhbD9+pa8CVv7rnoOZwo7T8weIbrRmihqy3ATpdfXFnqRrfPVK6CA==}
 
-  '@volar/language-core@2.4.23':
-    resolution: {integrity: sha512-hEEd5ET/oSmBC6pi1j6NaNYRWoAiDhINbT8rmwtINugR39loROSlufGdYMF9TaKGfz+ViGs1Idi3mAhnuPcoGQ==}
-
   '@volar/language-core@2.4.27':
     resolution: {integrity: sha512-DjmjBWZ4tJKxfNC1F6HyYERNHPYS7L7OPFyCrestykNdUZMFYzI9WTyvwPcaNaHlrEUwESHYsfEw3isInncZxQ==}
 
   '@volar/source-map@2.4.15':
     resolution: {integrity: sha512-CPbMWlUN6hVZJYGcU/GSoHu4EnCHiLaXI9n8c9la6RaI9W5JHX+NqG+GSQcB0JdC2FIBLdZJwGsfKyBB71VlTg==}
 
-  '@volar/source-map@2.4.23':
-    resolution: {integrity: sha512-Z1Uc8IB57Lm6k7q6KIDu/p+JWtf3xsXJqAX/5r18hYOTpJyBn0KXUR8oTJ4WFYOcDzWC9n3IflGgHowx6U6z9Q==}
-
   '@volar/source-map@2.4.27':
     resolution: {integrity: sha512-ynlcBReMgOZj2i6po+qVswtDUeeBRCTgDurjMGShbm8WYZgJ0PA4RmtebBJ0BCYol1qPv3GQF6jK7C9qoVc7lg==}
 
   '@volar/typescript@2.4.15':
     resolution: {integrity: sha512-2aZ8i0cqPGjXb4BhkMsPYDkkuc2ZQ6yOpqwAuNwUoncELqoy5fRgOQtLR9gB0g902iS0NAkvpIzs27geVyVdPg==}
-
-  '@volar/typescript@2.4.23':
-    resolution: {integrity: sha512-lAB5zJghWxVPqfcStmAP1ZqQacMpe90UrP5RJ3arDyrhy4aCUQqmxPPLB2PWDKugvylmO41ljK7vZ+t6INMTag==}
 
   '@volar/typescript@2.4.27':
     resolution: {integrity: sha512-eWaYCcl/uAPInSK2Lze6IqVWaBu/itVqR5InXcHXFyles4zO++Mglt3oxdgj75BDcv1Knr9Y93nowS8U3wqhxg==}
@@ -3661,11 +3714,14 @@ packages:
     peerDependencies:
       vue: ^3.5.0
 
+<<<<<<< HEAD
   '@wisemen/eslint-config-vue@2.0.0':
     resolution: {integrity: sha512-Lk9jyLrH1Gxndg6HzSlDTBSBjc1vQDR6X7PUcl6uf8E6mjNs85OcgsQpNgXwguJu1a05YUJqJK5jNBh/blaKow==}
     peerDependencies:
       eslint: '>=9.38.0'
 
+=======
+>>>>>>> feat/button
   '@wisemen/eslint-plugin-vue@0.0.1':
     resolution: {integrity: sha512-CZXp/oROVvCO+hRB89qLsPjZGLsBkqgdDLplCXtKZSsuSoXZRz6qqJYNzVEfH3s//t8kQ4m8enRy8FBlznljgg==}
     peerDependencies:
@@ -8902,7 +8958,7 @@ snapshots:
       ajv: 8.13.0
       ajv-draft-04: 1.0.0(ajv@8.13.0)
       ajv-formats: 3.0.1(ajv@8.13.0)
-      fs-extra: 11.3.2
+      fs-extra: 11.3.3
       import-lazy: 4.0.0
       jju: 1.4.0
       resolve: 1.22.10
@@ -9363,6 +9419,7 @@ snapshots:
 
   '@types/web-bluetooth@0.0.21': {}
 
+<<<<<<< HEAD
   '@typescript-eslint/eslint-plugin@8.53.1(@typescript-eslint/parser@8.52.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)':
     dependencies:
       '@eslint-community/regexpp': 4.12.2
@@ -9380,6 +9437,8 @@ snapshots:
       - supports-color
     optional: true
 
+=======
+>>>>>>> feat/button
   '@typescript-eslint/eslint-plugin@8.53.1(@typescript-eslint/parser@8.53.1(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)':
     dependencies:
       '@eslint-community/regexpp': 4.12.2
@@ -9422,8 +9481,13 @@ snapshots:
 
   '@typescript-eslint/project-service@8.35.0(typescript@5.9.3)':
     dependencies:
+<<<<<<< HEAD
       '@typescript-eslint/tsconfig-utils': 8.53.1(typescript@5.9.3)
       '@typescript-eslint/types': 8.53.1
+=======
+      '@typescript-eslint/tsconfig-utils': 8.53.0(typescript@5.9.3)
+      '@typescript-eslint/types': 8.53.0
+>>>>>>> feat/button
       debug: 4.4.3
       typescript: 5.9.3
     transitivePeerDependencies:
@@ -9441,7 +9505,11 @@ snapshots:
   '@typescript-eslint/project-service@8.53.0(typescript@5.9.3)':
     dependencies:
       '@typescript-eslint/tsconfig-utils': 8.53.0(typescript@5.9.3)
+<<<<<<< HEAD
       '@typescript-eslint/types': 8.53.1
+=======
+      '@typescript-eslint/types': 8.53.0
+>>>>>>> feat/button
       debug: 4.4.3
       typescript: 5.9.3
     transitivePeerDependencies:
@@ -9782,29 +9850,17 @@ snapshots:
     dependencies:
       '@volar/source-map': 2.4.15
 
-  '@volar/language-core@2.4.23':
-    dependencies:
-      '@volar/source-map': 2.4.23
-
   '@volar/language-core@2.4.27':
     dependencies:
       '@volar/source-map': 2.4.27
 
   '@volar/source-map@2.4.15': {}
 
-  '@volar/source-map@2.4.23': {}
-
   '@volar/source-map@2.4.27': {}
 
   '@volar/typescript@2.4.15':
     dependencies:
       '@volar/language-core': 2.4.15
-      path-browserify: 1.0.1
-      vscode-uri: 3.1.0
-
-  '@volar/typescript@2.4.23':
-    dependencies:
-      '@volar/language-core': 2.4.23
       path-browserify: 1.0.1
       vscode-uri: 3.1.0
 
@@ -9983,12 +10039,6 @@ snapshots:
       '@vue/shared': 3.5.22
       vue: 3.5.22(typescript@5.9.3)
 
-  '@vue/server-renderer@3.5.27(vue@3.5.27(typescript@5.8.2))':
-    dependencies:
-      '@vue/compiler-ssr': 3.5.27
-      '@vue/shared': 3.5.27
-      vue: 3.5.27(typescript@5.8.2)
-
   '@vue/server-renderer@3.5.27(vue@3.5.27(typescript@5.9.3))':
     dependencies:
       '@vue/compiler-ssr': 3.5.27
@@ -10068,6 +10118,7 @@ snapshots:
     dependencies:
       vue: 3.5.27(typescript@5.9.3)
 
+<<<<<<< HEAD
   '@wisemen/eslint-config-vue@2.0.0(@typescript-eslint/eslint-plugin@8.53.1(@typescript-eslint/parser@8.52.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(jsonc-eslint-parser@2.4.2)(tailwindcss@4.1.18)(typescript@5.9.3)(vitest@4.0.17)(vue-eslint-parser@10.2.0(eslint@9.39.2(jiti@2.6.1)))(yaml-eslint-parser@2.0.0)':
     dependencies:
       '@antfu/eslint-config': 7.2.0(eslint-plugin-format@1.3.1(eslint@9.39.2(jiti@2.6.1)))(eslint-plugin-vuejs-accessibility@2.4.1(eslint@9.39.2(jiti@2.6.1)))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)(vitest@4.0.17)
@@ -10119,6 +10170,8 @@ snapshots:
       - vue-eslint-parser
       - yaml-eslint-parser
 
+=======
+>>>>>>> feat/button
   '@wisemen/eslint-plugin-vue@0.0.1(@typescript-eslint/parser@8.53.1(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)':
     dependencies:
       '@eslint-community/regexpp': 4.12.2
@@ -11090,12 +11143,15 @@ snapshots:
       semver: 7.7.3
       strip-indent: 4.1.1
 
+<<<<<<< HEAD
   eslint-plugin-unused-imports@4.3.0(@typescript-eslint/eslint-plugin@8.53.1(@typescript-eslint/parser@8.52.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1)):
     dependencies:
       eslint: 9.39.2(jiti@2.6.1)
     optionalDependencies:
       '@typescript-eslint/eslint-plugin': 8.53.1(@typescript-eslint/parser@8.52.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
 
+=======
+>>>>>>> feat/button
   eslint-plugin-unused-imports@4.3.0(@typescript-eslint/eslint-plugin@8.53.1(@typescript-eslint/parser@8.53.1(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1)):
     dependencies:
       eslint: 9.39.2(jiti@2.6.1)
@@ -13702,7 +13758,7 @@ snapshots:
     dependencies:
       '@microsoft/api-extractor': 7.52.9(@types/node@24.8.1)
       '@rollup/pluginutils': 5.2.0(rollup@4.52.2)
-      '@volar/typescript': 2.4.23
+      '@volar/typescript': 2.4.27
       '@vue/language-core': 2.2.0(typescript@5.9.3)
       compare-versions: 6.1.1
       debug: 4.4.3
@@ -14008,16 +14064,6 @@ snapshots:
       '@vue/shared': 3.5.22
     optionalDependencies:
       typescript: 5.9.3
-
-  vue@3.5.27(typescript@5.8.2):
-    dependencies:
-      '@vue/compiler-dom': 3.5.27
-      '@vue/compiler-sfc': 3.5.27
-      '@vue/runtime-dom': 3.5.27
-      '@vue/server-renderer': 3.5.27(vue@3.5.27(typescript@5.8.2))
-      '@vue/shared': 3.5.27
-    optionalDependencies:
-      typescript: 5.8.2
 
   vue@3.5.27(typescript@5.9.3):
     dependencies:
