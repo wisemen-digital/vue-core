@@ -70,5 +70,5 @@ export interface ButtonProps {
    * Visual style variant of the button.
    * @default 'primary'
    */
-  variant?: 'destructive-primary' | 'destructive-tertiary' | 'minimal-color' | 'primary' | 'secondary' | 'tertiary'
+  variant?: 'destructive-primary' | 'destructive-secondary' | 'destructive-tertiary' | 'minimal-color' | 'primary' | 'secondary' | 'tertiary'
 }
