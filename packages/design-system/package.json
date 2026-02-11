@@ -34,7 +34,8 @@
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --run --coverage",
     "type-check": "vue-tsc --noEmit",
-    "storybook": "storybook dev -p 6006 --no-open",
+    "storybook:clean": "rimraf node_modules/.cache node_modules/.vite",
+    "storybook": "pnpm storybook:clean && storybook dev -p 6006 --no-open",
     "build-storybook": "storybook build"
   },
   "peerDependencies": {

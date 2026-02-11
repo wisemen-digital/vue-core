@@ -12,6 +12,12 @@ export interface ButtonProps {
    */
   isLoading?: boolean
   /**
+   * Provides a reason why the button is disabled,
+   * when provided a tooltip will be shown on hover with the provided text.
+   * @default null
+   */
+  disabledReason?: string | null
+  /**
    * The form ID the button is associated with.
    * @default null
    */
@@ -50,6 +56,11 @@ export interface ButtonProps {
    */
   tooltipLabel?: string | null
   /**
+   * Position of the tooltip relative to the button.
+   * @default 'top'
+   */
+  tooltipSide?: 'bottom' | 'left' | 'right' | 'top'
+  /**
    * Native button type attribute.
    *
    * @default 'button'
@@ -59,5 +70,5 @@ export interface ButtonProps {
    * Visual style variant of the button.
    * @default 'primary'
    */
-  variant?: 'destructive-primary' | 'destructive-tertiary' | 'primary' | 'secondary' | 'tertiary'
+  variant?: 'destructive-primary' | 'destructive-tertiary' | 'minimal-color' | 'minimal-gray' | 'primary' | 'secondary' | 'tertiary'
 }
