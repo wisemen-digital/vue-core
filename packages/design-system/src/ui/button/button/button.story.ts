@@ -179,7 +179,7 @@ export const WithIconLeft: Story = {
         PlusIcon,
       }
     },
-    template: '<Button label="Add Item" variant="minimal-color" :icon-left="PlusIcon" />',
+    template: '<Button label="Add Item" :icon-left="PlusIcon" />',
   }),
 }
 
