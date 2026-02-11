@@ -9,7 +9,7 @@ catalogs:
     "vue-i18n": "11.2.8"
     "@vueuse/core": "14.1.0"
     "@vueuse/router": "14.1.0"
-    "reka-ui": "2.7.0"
+    "reka-ui": "2.8.0"
     "vue-tsc": "3.2.2"
     "vue-router": "4.6.4"
     "@vue/tsconfig": "0.8.1"
@@ -18,7 +18,7 @@ catalogs:
     "@vue/devtools-api": "^6.6.4"
   lint:
     "eslint": "9.39.2"
-    "@wisemen/eslint-config-vue": "1.7.6"
+    "@wisemen/eslint-config-vue": "2.0.0"
     "@antfu/eslint-config": "7.2.0"
     "@eslint/eslintrc": "3.3.3"
     "@intlify/eslint-plugin-vue-i18n": "4.1.1"

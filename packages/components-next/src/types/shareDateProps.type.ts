@@ -12,6 +12,11 @@ export interface SharedDateProps {
    */
   minDate?: Temporal.PlainDate | null
   /**
+   * The day the week starts on, where 0 represents Sunday, 1 represents Monday, and so on up to 6 for Saturday.
+   * @default 0
+   */
+  weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
+  /**
    * A function to determine whether a specific date should be disabled.
    *
    * A date that is restricted by rules or settings, such as blackout dates, min/max date limits,
@@ -39,6 +44,12 @@ export interface SharedDateProps {
    * @default false
    */
   allowDeselect?: boolean
+  /**
+   * The locale to use for date formatting and calendar display.
+   * If not provided, the component will use the browser's default locale.
+   * @default undefined
+   */
+  locale?: string
   /**
    * Whether the calendar should display two months instead of one.
    * @default false

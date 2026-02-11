@@ -1,7 +1,7 @@
 {
   "name": "@wisemen/eslint-plugin-vue",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Eslint rules extended for Wisemen",
   "license": "MIT",
   "homepage": "https://github.com/wisemen-digital/vue-core.git",
@@ -50,7 +50,7 @@
     "ts-api-utils": "catalog:general"
   },
   "devDependencies": {
-    "@wisemen/eslint-config-vue": "workspace:*",
+    "@wisemen/eslint-config-vue": "catalog:lint",
     "eslint": "catalog:lint",
     "rimraf": "catalog:build",
     "tsdown": "catalog:build",

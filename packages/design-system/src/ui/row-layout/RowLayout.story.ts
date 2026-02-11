@@ -1,4 +1,3 @@
-/* eslint-disable eslint-plugin-wisemen/explicit-function-return-type-with-regex */
 // eslint-disable-next-line check-file/filename-naming-convention
 import type {
   Meta,
