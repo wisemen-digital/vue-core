@@ -79,8 +79,6 @@ function clampToMinMax(): void {
 
   if (props.maxDate !== null && Temporal.PlainDate.compare(value, props.maxDate) > 0) {
     modelValue.value = props.maxDate
-
-    return
   }
 }
 
