@@ -71,17 +71,16 @@ function clampToMinMax(): void {
     return
   }
 
-  let clamped = value
-
   if (props.minDate !== null && Temporal.PlainDate.compare(value, props.minDate) < 0) {
-    clamped = props.minDate
-  }
-  else if (props.maxDate !== null && Temporal.PlainDate.compare(value, props.maxDate) > 0) {
-    clamped = props.maxDate
+    modelValue.value = props.minDate
+
+    return
   }
 
-  if (Temporal.PlainDate.compare(clamped, value) !== 0) {
-    modelValue.value = clamped
+  if (props.maxDate !== null && Temporal.PlainDate.compare(value, props.maxDate) > 0) {
+    modelValue.value = props.maxDate
+
+    return
   }
 }
 
