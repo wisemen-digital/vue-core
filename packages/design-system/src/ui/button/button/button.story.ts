@@ -1,4 +1,3 @@
-
 import type {
   Meta,
   StoryObj,
@@ -124,9 +123,11 @@ export const AllVariants: Story = {
         <Button label="Primary" variant="primary" />
         <Button label="Secondary" variant="secondary" />
         <Button label="Tertiary" variant="tertiary" />
+        <Button label="Minimal Color" variant="minimal-color" />
       </div>
       <div class="flex items-center gap-2">
         <Button label="Destructive Primary" variant="destructive-primary" />
+        <Button label="Destructive Secondary" variant="destructive-secondary" />
         <Button label="Destructive Tertiary" variant="destructive-tertiary" />
       </div>
     </div>`,
@@ -282,11 +283,15 @@ export const Disabled: Story = {
       Button,
     },
     template: `
-    <div class="flex items-center gap-2">
-      <Button label="Disabled" :is-disabled="true" variant="primary" />
-      <Button label="Disabled" :is-disabled="true" variant="secondary" />
-      <Button label="Disabled" :is-disabled="true" variant="tertiary" />
-    </div>`,
+    <div class="flex items-center gap-2 flex-col">
+      <div class="grid items-center grid-cols-3 gap-2">
+        <Button label="Disabled" :is-disabled="true" variant="primary" />
+        <Button label="Disabled" :is-disabled="true" variant="secondary" />
+        <Button label="Disabled" :is-disabled="true" variant="tertiary" />
+      </div>
+      <Button disabled-reason="To showcase this feature" label="Disabled with reason" :is-disabled="true" variant="primary" />
+    </div>
+      `,
   }),
 }
 

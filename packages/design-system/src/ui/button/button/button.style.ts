@@ -70,6 +70,26 @@ export const createButtonStyle = tv({
           data-interactive:hover:brightness-95
         `,
       },
+      'destructive-secondary': {
+        icon: `
+          text-error-600
+          group-disabled/button:text-disabled
+        `,
+        label: `
+          text-error-600
+          group-disabled/button:text-disabled
+        `,
+        loader: `
+          text-error-600
+          group-disabled/button:text-disabled
+        `,
+        root: `
+          border-error-200
+          focus-visible:outline-fg-error-primary
+          disabled:border-disabled-subtle disabled:bg-disabled
+          data-interactive:hover:bg-error-50
+        `,
+      },
       'destructive-tertiary': {
         icon: `
           text-error-primary
@@ -89,6 +109,25 @@ export const createButtonStyle = tv({
           data-interactive:hover:bg-error-primary
         `,
       },
+      'minimal-color': {
+        icon: `
+          text-brand-primary
+          group-disabled/button:text-disabled
+        `,
+        label: `
+          text-brand-primary
+          group-disabled/button:text-disabled
+        `,
+        loader: `
+          text-brand-primary
+          group-disabled/button:text-disabled
+        `,
+        root: `
+          border-transparent
+          focus-visible:outline-fg-brand-primary
+          data-interactive:hover:bg-brand-50
+        `,
+      },
       'primary': {
         container: `dark:glassy-inner-content`,
         icon: `
@@ -104,12 +143,13 @@ export const createButtonStyle = tv({
           group-disabled/button:text-disabled
         `,
         root: `
+          not-data-disabled:dark:glassy
           border-brand-600 bg-brand-solid
           focus-visible:outline-fg-brand-primary
           disabled:border-disabled-subtle disabled:bg-disabled
           data-interactive:hover:brightness-95
           dark:p-px
-          not-data-disabled:dark:border-0! not-data-disabled:dark:glassy
+          not-data-disabled:dark:border-0!
         `,
       },
       'secondary': {
