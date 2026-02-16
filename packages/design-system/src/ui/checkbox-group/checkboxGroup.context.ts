@@ -10,8 +10,10 @@ import {
 } from 'vue'
 
 interface CheckboxGroupContext {
+  isDisabled: ComputedRef<boolean>
   isIndeterminate: ComputedRef<boolean>
   modelValue: Ref<AcceptableValue[]>
+  orientation: ComputedRef<'horizontal' | 'vertical'>
   registerCheckbox: (id: string, value: AcceptableValue) => void
   toggleAll: () => void
   unRegisterCheckbox: (id: string) => void

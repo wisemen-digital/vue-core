@@ -6,7 +6,7 @@ import {
   useId,
 } from 'vue'
 
-import BaseCheckbox from '@/ui/checkbox/BaseCheckbox.vue'
+import BaseCheckbox from '@/ui/checkbox/base/BaseCheckbox.vue'
 import { useInjectCheckboxGroupContext } from '@/ui/checkbox-group/checkboxGroup.context'
 
 const props = defineProps<{

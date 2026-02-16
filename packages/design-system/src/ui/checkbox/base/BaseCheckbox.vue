@@ -5,14 +5,14 @@ import {
   useId,
 } from 'vue'
 
-import { useProvideCheckboxContext } from '@/ui/checkbox/checkbox.context'
-import type { CheckboxProps } from '@/ui/checkbox/checkbox.props'
-import type { CheckboxStyle } from '@/ui/checkbox/checkbox.style'
-import { createCheckboxStyle } from '@/ui/checkbox/checkbox.style'
+import { useProvideCheckboxContext } from '@/ui/checkbox/base/baseCheckbox.context'
+import type { BaseCheckboxProps } from '@/ui/checkbox/base/baseCheckbox.props'
+import type { BaseCheckboxStyle } from '@/ui/checkbox/base/baseCheckbox.style'
+import { createBaseCheckboxStyle } from '@/ui/checkbox/base/baseCheckbox.style'
 import CheckboxIndicator from '@/ui/checkbox/CheckboxIndicator.vue'
 import InputWrapper from '@/ui/input-wrapper/InputWrapper.vue'
 
-const props = withDefaults(defineProps<CheckboxProps>(), {
+const props = withDefaults(defineProps<BaseCheckboxProps>(), {
   isIndeterminate: false,
   hideErrorMessage: false,
 })
@@ -27,7 +27,7 @@ const modelValue = defineModel<boolean>({
 
 const id = props.id ?? useId()
 
-const checkboxStyle = computed<CheckboxStyle>(() => createCheckboxStyle())
+const checkboxStyle = computed<BaseCheckboxStyle>(() => createBaseCheckboxStyle())
 
 const delegatedModel = computed<boolean | 'indeterminate' | null>({
   get() {
@@ -76,6 +76,7 @@ useProvideCheckboxContext({
     <RekaCheckboxRoot
       :id="id"
       v-model="delegatedModel"
+      :disabled="props.isDisabled"
       :class="checkboxStyle.root()"
       :value="props.value"
       @blur="emit('blur')"

@@ -7,7 +7,12 @@ import {
 } from 'vue'
 
 import { useProvideCheckboxGroupContext } from '@/ui/checkbox-group/checkboxGroup.context'
+import type { CheckboxGroupProps } from '@/ui/checkbox-group/CheckboxGroup.props'
 
+const props = withDefaults(defineProps<CheckboxGroupProps>(), {
+  isDisabled: false,
+  orientation: 'vertical',
+})
 const modelValue = defineModel<TValue[]>({
   required: true,
 })
@@ -15,12 +20,12 @@ const modelValue = defineModel<TValue[]>({
 const registeredCheckboxes = ref<Map<string, TValue>>(new Map()) as Ref<Map<string, TValue>>
 
 const isAllChecked = computed<boolean>(() => {
-  return modelValue.value.length === Object.values(registeredCheckboxes.value).length
+  return modelValue.value.length === registeredCheckboxes.value.size
 })
 
 const isIndeterminate = computed<boolean>(() => {
   const checkedCount = modelValue.value.length
-  const totalCount = Object.values(registeredCheckboxes.value).length
+  const totalCount = registeredCheckboxes.value.size
 
   return checkedCount > 0 && checkedCount < totalCount
 })
@@ -28,12 +33,13 @@ const isIndeterminate = computed<boolean>(() => {
 function toggleAll(): void {
   if (isAllChecked.value) {
     modelValue.value = []
+
+    return
   }
-  else {
-    modelValue.value = [
-      ...registeredCheckboxes.value.values(),
-    ] as TValue[]
-  }
+
+  modelValue.value = [
+    ...registeredCheckboxes.value.values(),
+  ] as TValue[]
 }
 
 function registerCheckbox(id: string, value: AcceptableValue): void {
@@ -45,8 +51,10 @@ function unRegisterCheckbox(id: string): void {
 }
 
 useProvideCheckboxGroupContext({
+  isDisabled: computed<boolean>(() => props.isDisabled),
   isIndeterminate,
   modelValue,
+  orientation: computed<'horizontal' | 'vertical'>(() => props.orientation),
   registerCheckbox,
   toggleAll,
   unRegisterCheckbox,

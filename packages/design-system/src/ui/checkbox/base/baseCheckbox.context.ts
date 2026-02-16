@@ -7,11 +7,11 @@ import {
   provide,
 } from 'vue'
 
-import type { CheckboxStyle } from '@/ui/checkbox/checkbox.style'
+import type { BaseCheckboxStyle } from '@/ui/checkbox/base/baseCheckbox.style'
 
 interface CheckboxContext {
   isIndeterminate: ComputedRef<boolean>
-  checkboxStyle: ComputedRef<CheckboxStyle>
+  checkboxStyle: ComputedRef<BaseCheckboxStyle>
 }
 
 export const checkboxContextKey: InjectionKey<CheckboxContext> = Symbol('CheckboxContextKey')

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import BaseCheckbox from '@/ui/checkbox/BaseCheckbox.vue'
+import BaseCheckbox from '@/ui/checkbox/base/BaseCheckbox.vue'
 import { useInjectCheckboxGroupContext } from '@/ui/checkbox-group/checkboxGroup.context'
 
 const props = defineProps<{
@@ -9,6 +9,7 @@ const props = defineProps<{
 }>()
 
 const {
+  isDisabled,
   isIndeterminate,
   modelValue,
   toggleAll,
@@ -21,6 +22,7 @@ const isAtLeastOneChecked = computed<boolean>(() => {
 
 <template>
   <BaseCheckbox
+    :is-disabled="isDisabled"
     :model-value="isAtLeastOneChecked"
     :is-indeterminate="isIndeterminate"
     :label="props.label"

@@ -6,7 +6,7 @@ import type {
   InputWrapper,
 } from '@/types/input.type'
 
-export interface CheckboxProps extends Input, InputWrapper, AutocompleteInput {
+export interface BaseCheckboxProps extends Input, InputWrapper, AutocompleteInput {
   /**
    * Whether the checkbox is in an indeterminate state.
    * @default false

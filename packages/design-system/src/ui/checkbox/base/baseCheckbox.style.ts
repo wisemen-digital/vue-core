@@ -1,6 +1,6 @@
 import { tv } from '@/styles/tailwindVariants.lib'
 
-export const createCheckboxStyle = tv({
+export const createBaseCheckboxStyle = tv({
   slots: {
     control: `
       relative flex size-4 items-center justify-center overflow-hidden
@@ -29,4 +29,4 @@ export const createCheckboxStyle = tv({
   },
 })
 
-export type CheckboxStyle = ReturnType<typeof createCheckboxStyle>
+export type BaseCheckboxStyle = ReturnType<typeof createBaseCheckboxStyle>
