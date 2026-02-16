@@ -83,11 +83,10 @@ export const createLinkStyle = tv({
         icon: `text-primary-on-brand`,
         label: `text-primary-on-brand`,
         root: `
-          dark:glassy
           border-brand-600 bg-brand-solid
           hover:brightness-95
           focus-visible:outline-fg-brand-primary
-          dark:border-none dark:p-px
+          dark:border-none dark:p-px dark:glassy
         `,
       },
       'secondary': {

@@ -36,8 +36,8 @@ const emit = defineEmits<{
 const attrs = useAttrs()
 
 const iconButtonStyle = computed<IconButtonStyle>(() => createIconButtonStyle({
-  class: attrs.class as string,
   isLoading: props.isLoading,
+  class: attrs.class as string,
   size: props.size,
   variant: props.variant,
 }))

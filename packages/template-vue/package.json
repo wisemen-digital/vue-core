@@ -4,7 +4,7 @@
     "access": "public"
   },
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "license": "MIT",
   "sideEffects": false,
@@ -43,8 +43,7 @@
     "vue": "catalog:peer",
     "vue-i18n": "catalog:peer"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "@tailwindcss/vite": "catalog:vite",
     "@types/node": "catalog:types",
