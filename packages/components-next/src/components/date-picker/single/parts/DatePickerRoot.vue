@@ -25,6 +25,7 @@ const props = withDefaults(defineProps<DatePickerProps>(), {
   testId: null,
   maxDate: null,
   minDate: null,
+  weekStartsOn: 0,
   isDateDisabled: () => false,
   isDateUnavailable: () => false,
   isDisabled: false,
@@ -42,7 +43,9 @@ const placeholderValue = defineModel<Temporal.PlainDate>('placeholderValue', {
   required: false,
 })
 
-const locale = navigator.language
+const resolvedLocale = computed<string>(() => {
+  return props.locale ?? navigator.language
+})
 
 const delegatedModel = computed<DateValue | undefined>({
   get: () => {
@@ -109,7 +112,7 @@ useProvideDatePickerContext({
         v-slot="{ weekDays, grid }"
         v-model="delegatedModel"
         v-model:placeholder="delegatedPlaceholderValue"
-        :week-starts-on="0"
+        :week-starts-on="props.weekStartsOn"
         :prevent-deselect="!props.allowDeselect"
         :fixed-weeks="true"
         :number-of-months="props.showTwoMonths ? 2 : 1"
@@ -117,7 +120,7 @@ useProvideDatePickerContext({
         :is-date-disabled="(value: DateValue) => props.isDateDisabled(dateValueToPlainDate(value))"
         :calendar-label="props.label"
         :initial-focus="props.focusOnMount"
-        :locale="locale"
+        :locale="resolvedLocale"
         :min-value="props.minDate === null
           ? undefined
           : plainDateToDateValue(props.minDate)"

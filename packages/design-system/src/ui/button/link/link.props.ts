@@ -50,6 +50,11 @@ export interface LinkProps {
    */
   tooltipLabel?: string | null
   /**
+   * Position of the tooltip relative to the link.
+   * @default 'top'
+   */
+  tooltipSide?: 'bottom' | 'left' | 'right' | 'top'
+  /**
    * Visual style variant of the button.
    * @default 'primary'
    */

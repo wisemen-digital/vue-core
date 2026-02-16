@@ -2,4 +2,4 @@
 "@wisemen/vue-core-design-system": patch
 ---
 
-number field component
+Removed disabled prop for link component

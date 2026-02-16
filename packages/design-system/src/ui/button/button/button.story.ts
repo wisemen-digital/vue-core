@@ -26,6 +26,10 @@ const meta = {
       control: 'boolean',
       description: 'Shows a loading state and disables interaction',
     },
+    disabledReason: {
+      control: 'text',
+      description: 'Provides a reason why the button is disabled, shown in tooltip',
+    },
     keyboardShortcut: {
       control: 'text',
       description: 'Visual representation of a keyboard shortcut (e.g. "⌘K")',
@@ -47,6 +51,16 @@ const meta = {
     tooltipLabel: {
       control: 'text',
       description: 'Tooltip text shown on hover or focus',
+    },
+    tooltipSide: {
+      control: 'select',
+      description: 'Position of the tooltip relative to the button',
+      options: [
+        'top',
+        'bottom',
+        'left',
+        'right',
+      ],
     },
     type: {
       control: 'select',
@@ -123,9 +137,11 @@ export const AllVariants: Story = {
         <Button label="Primary" variant="primary" />
         <Button label="Secondary" variant="secondary" />
         <Button label="Tertiary" variant="tertiary" />
+        <Button label="Minimal Color" variant="minimal-color" />
       </div>
       <div class="flex items-center gap-2">
         <Button label="Destructive Primary" variant="destructive-primary" />
+        <Button label="Destructive Secondary" variant="destructive-secondary" />
         <Button label="Destructive Tertiary" variant="destructive-tertiary" />
       </div>
     </div>`,
@@ -281,11 +297,15 @@ export const Disabled: Story = {
       Button,
     },
     template: `
-    <div class="flex items-center gap-2">
-      <Button label="Disabled" :is-disabled="true" variant="primary" />
-      <Button label="Disabled" :is-disabled="true" variant="secondary" />
-      <Button label="Disabled" :is-disabled="true" variant="tertiary" />
-    </div>`,
+    <div class="flex items-center gap-2 flex-col">
+      <div class="grid items-center grid-cols-3 gap-2">
+        <Button label="Disabled" :is-disabled="true" variant="primary" />
+        <Button label="Disabled" :is-disabled="true" variant="secondary" />
+        <Button label="Disabled" :is-disabled="true" variant="tertiary" />
+      </div>
+      <Button disabled-reason="To showcase this feature" label="Disabled with reason" :is-disabled="true" variant="primary" />
+    </div>
+      `,
   }),
 }
 
@@ -297,7 +317,11 @@ export const WithTooltip: Story = {
     components: {
       Button,
     },
-    template: '<Button label="Hover me" tooltip-label="This is a helpful tooltip" />',
+    template: `
+    <div class="flex items-center gap-2">
+      <Button label="Hover me" tooltip-label="This is a helpful tooltip" />
+      <Button label="Disabled" :is-disabled="true" disabled-reason="You need permission to perform this action" />
+    </div>`,
   }),
 }
 
