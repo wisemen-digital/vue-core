@@ -55,7 +55,7 @@
     "eslint": "catalog:lint",
     "husky": "catalog:build",
     "tailwindcss": "catalog:style",
-    "typescript": "catalog:peer",
+    "typescript": "catalog:build",
     "vite": "catalog:vite",
     "vite-plugin-dts": "catalog:vite",
     "vitest": "catalog:test",
