@@ -39,12 +39,17 @@ export interface Input {
   style?: Record<string, string> | null
 }
 
-export interface InputMeta {
+export interface InputWrapper {
   /**
    * Determines whether the element is disabled. When `true`, styles indicate the element is non-interactive.
    * @default false
    */
   isDisabled?: boolean
+  /**
+   * Whether the label and hint are displayed horizontally.
+   * @default false
+   */
+  isHorizontal?: boolean
   /**
    * Whether the input is required. When `true`, an asterisk is shown next to the label.
    * @default false
@@ -77,7 +82,7 @@ export interface InputMeta {
   label?: string | null
 }
 
-export interface InputField {
+export interface FieldWrapper {
   /**
    * Determines whether the input is disabled. When `true`, the input becomes non-interactive.
    * @default false
@@ -128,13 +133,14 @@ export const INPUT_DEFAULTS = {
 
 export const INPUT_META_DEFAULTS = {
   isDisabled: false,
+  isHorizontal: false,
   isRequired: false,
   errorMessage: null,
   for: null,
   hideErrorMessage: false,
   hint: null,
   label: null,
-} satisfies InputMeta
+} satisfies InputWrapper
 
 export const INPUT_FIELD_DEFAULTS = {
   isDisabled: false,
@@ -143,7 +149,7 @@ export const INPUT_FIELD_DEFAULTS = {
   iconLeft: null,
   iconRight: null,
   placeholder: null,
-} satisfies InputField
+} satisfies FieldWrapper
 
 export const AUTOCOMPLETE_INPUT_DEFAULTS = {
   autocomplete: 'off',

@@ -1,6 +1,6 @@
-import type { InputField } from '@/types/input.type'
+import type { FieldWrapper } from '@/types/input.type'
 
-export interface FieldWrapperProps extends InputField {
+export interface FieldWrapperProps extends FieldWrapper {
   /**
    * Whether the input is in an error state.
    * @default false
