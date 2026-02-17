@@ -1,0 +1,54 @@
+<script setup lang="ts">
+import { VcIcon } from '@wisemen/vue-core-components'
+import {
+  DropdownMenuItemIndicator,
+  DropdownMenuRadioItem,
+} from 'reka-ui'
+
+import { UIText } from '@/ui/text/index'
+import RowLayout from '#packages/row-layout/RowLayout.vue'
+
+const props = defineProps<{
+  hint?: string | null
+  label: string
+  value: string
+}>()
+</script>
+
+<template>
+  <DropdownMenuRadioItem
+    :value="props.value"
+    class="
+      flex min-h-8 w-full cursor-default items-center rounded-sm px-md py-sm
+      text-primary duration-100 outline-none
+      data-highlighted:bg-tertiary
+    "
+  >
+    <RowLayout
+      justify="between"
+      class="w-full"
+    >
+      <RowLayout gap="sm">
+        <slot name="left" />
+
+        <UIText
+          :text="props.label"
+          class="text-sm"
+        />
+
+        <UIText
+          v-if="props.hint"
+          :text="props.hint"
+          class="text-sm text-tertiary"
+        />
+      </RowLayout>
+
+      <DropdownMenuItemIndicator>
+        <VcIcon
+          icon="check"
+          class="size-3.5 text-tertiary"
+        />
+      </DropdownMenuItemIndicator>
+    </RowLayout>
+  </DropdownMenuRadioItem>
+</template>

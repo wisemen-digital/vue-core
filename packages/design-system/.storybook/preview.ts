@@ -3,12 +3,19 @@ import '../src/styles/index.css'
 import type { Preview } from '@storybook/vue3-vite'
 import { setup } from '@storybook/vue3-vite'
 import { h } from 'vue'
+import { createMemoryHistory, createRouter } from 'vue-router'
 
 import { i18nPlugin } from '../src/plugins/i18n.plugin'
 import StoryWrapper from './StoryWrapper.vue'
 
+const router = createRouter({
+  history: createMemoryHistory(),
+  routes: [{ path: '/:catchAll(.*)', component: { template: '<div />' } }],
+})
+
 setup((app) => {
   app.use(i18nPlugin)
+  app.use(router)
 })
 
 const preview: Preview = {
