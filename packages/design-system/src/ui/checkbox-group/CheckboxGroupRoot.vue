@@ -7,7 +7,7 @@ import {
 } from 'vue'
 
 import { useProvideCheckboxGroupContext } from '@/ui/checkbox-group/checkboxGroup.context'
-import type { CheckboxGroupProps } from '@/ui/checkbox-group/CheckboxGroup.props'
+import type { CheckboxGroupProps } from '@/ui/checkbox-group/checkboxGroup.props'
 
 const props = withDefaults(defineProps<CheckboxGroupProps>(), {
   isDisabled: false,

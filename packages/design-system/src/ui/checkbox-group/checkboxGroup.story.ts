@@ -1,7 +1,4 @@
-import type {
-  Meta,
-  StoryObj,
-} from '@storybook/vue3-vite'
+import type { StoryObj } from '@storybook/vue3-vite'
 import { ref } from 'vue'
 
 import CheckboxGroupCheckbox from './CheckboxGroupCheckbox.vue'
@@ -14,14 +11,17 @@ const meta = {
   tags: [
     'autodocs',
   ],
-  component: CheckboxGroupRoot,
-} satisfies Meta<typeof CheckboxGroupRoot>
+  component: CheckboxGroupRoot<string>,
+}
 
 export default meta
 
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
+  args: {
+    modelValue: [],
+  },
   render: () => ({
     components: {
       CheckboxGroupCheckbox,
@@ -62,6 +62,9 @@ export const Default: Story = {
 }
 
 export const Indeterminate: Story = {
+  args: {
+    modelValue: [],
+  },
   render: () => ({
     components: {
       CheckboxGroupCheckbox,
