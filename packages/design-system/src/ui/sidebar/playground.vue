@@ -86,7 +86,7 @@ const footerNavigation = computed<NavigationItem[]>(() => ([
 <template>
   <div class="flex w-full overflow-hidden border border-primary">
     <Sidebar
-      variant="icons-only"
+      variant="default"
     >
       <template #header>
         <SidebarHeader

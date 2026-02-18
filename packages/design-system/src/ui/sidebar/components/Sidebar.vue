@@ -35,7 +35,7 @@ setVariant(props.variant)
           flex h-full flex-col justify-between overflow-hidden text-primary
         "
       >
-        <div class="px-lg py-lg">
+        <div class="p-lg">
           <slot name="header" />
         </div>
         <nav
@@ -44,7 +44,7 @@ setVariant(props.variant)
           <slot name="navigation" />
         </nav>
         <div
-          class="flex flex-col gap-sm px-md py-md"
+          class="flex flex-col gap-sm p-md"
         >
           <slot name="footer" />
         </div>
