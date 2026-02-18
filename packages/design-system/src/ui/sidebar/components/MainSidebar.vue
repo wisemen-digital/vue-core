@@ -11,6 +11,7 @@ import {
   DialogRoot,
   DialogTitle,
 } from 'reka-ui'
+import { useI18n } from 'vue-i18n'
 
 import MainSidebarContent from '@/ui/sidebar/components/MainSidebarContent.vue'
 import MainSidebarTransition from '@/ui/sidebar/components/MainSidebarTransition.vue'
@@ -30,6 +31,7 @@ const {
   sidebarWidth,
 } = useMainSidebar()
 
+const i18n = useI18n()
 const isReduceMotionEnabledOnDevice = useReducedMotion()
 
 setVariant(props.variant)
@@ -60,14 +62,14 @@ setVariant(props.variant)
               as="h1"
               class="sr-only"
             >
-              Sidebar
+              {{ i18n.t('components.sidebar.title') }}
             </DialogTitle>
 
             <DialogDescription
               class="sr-only"
               as="p"
             >
-              The sidebar contains navigation links and other important actions.
+              {{ i18n.t('components.sidebar.description') }}
             </DialogDescription>
 
             <MainSidebarContent>

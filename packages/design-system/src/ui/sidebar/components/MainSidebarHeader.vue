@@ -14,9 +14,15 @@ const {
 </script>
 
 <template>
+  <Logo
+    v-if="variant === 'icons-only'"
+    :name="props.name"
+    src="https://picsum.photos/300/300"
+    alt="Logo"
+    size="xs"
+  />
   <RowLayout
-    v-if="variant === 'default'"
-
+    v-else
     justify="between"
   >
     <LogoWithText
@@ -26,11 +32,4 @@ const {
     />
     <slot name="right" />
   </RowLayout>
-  <Logo
-    v-else
-    :name="props.name"
-    src="https://picsum.photos/300/300"
-    alt="Logo"
-    size="xs"
-  />
 </template>

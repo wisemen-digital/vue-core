@@ -2,5 +2,8 @@
   "component.number_field.decrement": "Aftrekken",
   "component.number_field.increment": "Optellen",
   "component.keyboard_shortcut.sequence_label": "dan",
-  "components.sidebar.global_search.label": "Zoeken"
+  "components.sidebar.global_search.label": "Zoeken",
+  "components.sidebar.title": "Zijbalk",
+  "components.sidebar.description": "De zijbalk bevat navigatielinks en andere belangrijke acties.",
+  "components.sidebar.sign_out": "Uitloggen"
 }

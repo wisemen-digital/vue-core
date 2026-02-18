@@ -4,6 +4,7 @@ import {
   LogOut01Icon,
 } from '@wisemen/vue-core-icons'
 import type { Component } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import { UIAvatar } from '@/ui/avatar/index'
 import ClickableElement from '@/ui/clickable-element/ClickableElement.vue'
@@ -27,6 +28,8 @@ const props = defineProps<{
   menuOptions: MenuOption[]
   onSignOut: () => void
 }>()
+
+const i18n = useI18n()
 
 const {
   variant,
@@ -111,7 +114,7 @@ const {
         <DropdownMenuGroup>
           <DropdownMenuItem
             :icon="LogOut01Icon"
-            label="Sign out"
+            :label="i18n.t('components.sidebar.sign_out')"
             @select="props.onSignOut()"
           />
         </DropdownMenuGroup>
