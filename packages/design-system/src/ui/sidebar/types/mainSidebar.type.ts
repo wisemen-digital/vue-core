@@ -1,6 +1,8 @@
 import type { Component } from 'vue'
 import type { RouteLocationRaw } from 'vue-router'
 
+export type MainSidebarVariant = 'default' | 'icons-only'
+
 export interface DashboardSidebarNavLink {
   /**
    * Icon component to display alongside the label

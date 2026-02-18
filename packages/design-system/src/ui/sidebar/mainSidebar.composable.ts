@@ -7,11 +7,13 @@ import {
   ref,
 } from 'vue'
 
+import type { MainSidebarVariant } from '@/ui/sidebar/types/mainSidebar.type'
+
 const DEFAULT_SIDEBAR_WIDTH = '14rem'
 const ICONS_ONLY_SIDEBAR_WIDTH = '3rem'
 const isFloatingSidebarOpen = ref<boolean>(false)
 const sidebarWidth = ref<string>(DEFAULT_SIDEBAR_WIDTH)
-const variant = ref<'default' | 'icons-only'>('default')
+const variant = ref<MainSidebarVariant>('default')
 
 export function useMainSidebar() {
   const screen = useBreakpoints({
@@ -46,7 +48,7 @@ export function useMainSidebar() {
     }
   }
 
-  function setVariant(value: 'default' | 'icons-only'): void {
+  function setVariant(value: MainSidebarVariant): void {
     variant.value = value
 
     if (value === 'icons-only') {

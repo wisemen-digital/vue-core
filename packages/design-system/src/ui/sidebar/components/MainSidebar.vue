@@ -15,9 +15,10 @@ import {
 import MainSidebarContent from '@/ui/sidebar/components/MainSidebarContent.vue'
 import MainSidebarTransition from '@/ui/sidebar/components/MainSidebarTransition.vue'
 import { useMainSidebar } from '@/ui/sidebar/mainSidebar.composable'
+import type { MainSidebarVariant } from '@/ui/sidebar/types/mainSidebar.type'
 
 const props = withDefaults(defineProps<{
-  variant?: 'default' | 'icons-only'
+  variant?: MainSidebarVariant
 }>(), {
   variant: 'default',
 })
