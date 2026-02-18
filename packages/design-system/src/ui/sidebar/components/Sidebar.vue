@@ -4,9 +4,19 @@ import { AnimatePresence } from 'motion-v'
 import SidebarTransition from '@/ui/sidebar/components/SidebarTransition.vue'
 import { useSidebar } from '@/ui/sidebar/sidebar.composable'
 
+const props = withDefaults(defineProps<{
+  variant?: 'default' | 'icons-only'
+}>(), {
+  variant: 'default',
+})
+
 const {
-  isSidebarOpen, sidebarWidth,
+  isSidebarOpen,
+  setVariant,
+  sidebarWidth,
 } = useSidebar()
+
+setVariant(props.variant)
 </script>
 
 <template>
@@ -34,7 +44,7 @@ const {
           <slot name="navigation" />
         </nav>
         <div
-          class="flex flex-col gap-sm px-lg py-md"
+          class="flex flex-col gap-sm px-md py-md"
         >
           <slot name="footer" />
         </div>

@@ -3,7 +3,10 @@ import { UIColumnLayout } from '@/ui/column-layout/index'
 </script>
 
 <template>
-  <UIColumnLayout gap="xs">
+  <UIColumnLayout
+    class="w-full"
+    gap="xs"
+  >
     <slot />
   </UIColumnLayout>
 </template>

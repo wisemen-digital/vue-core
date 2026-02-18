@@ -30,6 +30,10 @@ const emit = defineEmits<{
   click: []
 }>()
 
+const {
+  variant,
+} = useSidebar()
+
 const route = useRoute()
 
 const {
@@ -61,6 +65,9 @@ function onClick(): void {
         >
           <div
             :data-active="isRouteActive || props.isActive(route) || undefined"
+            :class="{
+              'flex aspect-square items-center justify-center': variant === 'icons-only',
+            }"
             class="
               group rounded-md p-px
               hover:bg-primary-hover
@@ -69,6 +76,7 @@ function onClick(): void {
             "
           >
             <RowLayout
+              v-if="variant === 'default'"
               gap="md"
               justify="between"
               class="
@@ -96,12 +104,27 @@ function onClick(): void {
                   {{ props.label }}
                 </span>
               </RowLayout>
-              <RowLayout gap="lg">
+              <RowLayout
+                gap="lg"
+              >
                 <slot
                   name="right"
                 />
               </RowLayout>
             </RowLayout>
+            <div
+              v-else
+              class="p-sm"
+            >
+              <Component
+                :is="props.icon"
+                class="
+                  size-4 text-fg-quaternary duration-100
+                  group-data-active:text-fg-brand-primary
+                  dark:group-data-active:text-fg-primary
+                "
+              />
+            </div>
           </div>
         </SidebarNavigationLinkProvider>
       </RouterLink>

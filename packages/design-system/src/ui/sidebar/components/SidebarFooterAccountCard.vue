@@ -11,6 +11,7 @@ import DropdownMenu from '@/ui/dropdown-menu/DropdownMenu.vue'
 import DropdownMenuGroup from '@/ui/dropdown-menu/DropdownMenuGroup.vue'
 import DropdownMenuItem from '@/ui/dropdown-menu/DropdownMenuItem.vue'
 import RowLayout from '@/ui/row-layout/RowLayout.vue'
+import { useSidebar } from '@/ui/sidebar/sidebar.composable'
 import Text from '@/ui/text/Text.vue'
 
 export interface MenuOption {
@@ -26,6 +27,10 @@ const props = defineProps<{
   menuOptions: MenuOption[]
   onSignOut: () => void
 }>()
+
+const {
+  variant,
+} = useSidebar()
 </script>
 
 <template>
@@ -36,6 +41,7 @@ const props = defineProps<{
     <template #trigger>
       <ClickableElement>
         <button
+          v-if="variant === 'default'"
           class="
             flex w-full flex-col overflow-hidden rounded-xl border
             border-secondary bg-primary-alt p-md text-left duration-100
@@ -70,6 +76,14 @@ const props = defineProps<{
               class="size-4 shrink-0 text-quaternary"
             />
           </RowLayout>
+        </button>
+        <button
+          v-else
+          class="flex justify-center"
+        >
+          <UIAvatar
+            :name="props.name"
+          />
         </button>
       </ClickableElement>
     </template>
