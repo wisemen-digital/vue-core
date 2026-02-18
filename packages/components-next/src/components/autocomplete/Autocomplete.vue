@@ -26,7 +26,7 @@ const modelValue = defineModel<TValue>({
   required: true,
 })
 
-const searchTerm = ref<string>('')
+const searchTerm = ref<string>(props.displayFn(modelValue.value as any) || '')
 const isDebouncing = ref<boolean>(false)
 const delegatedItems = ref<TValue[]>(props.items)
 
@@ -133,6 +133,7 @@ function onUpdateModelValue(value: TValue | null): void {
 </script>
 
 <template>
+  <p>serach teerm : {{ searchTerm }}</p>
   <Select
     v-bind="props"
     v-model:search-term="searchTerm"
