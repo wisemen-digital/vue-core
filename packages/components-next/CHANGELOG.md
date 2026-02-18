@@ -1,5 +1,13 @@
 # @wisemen/vue-core-components
 
+## 2.1.5
+
+### Patch Changes
+
+- d5d31a7: Autocomplete - fill in search term when modelvalue is passed
+
+- 45082dc: Addition of start- and end date clamping to avoid complete freedom when there are restrictions with min- and max dates
+
 ## 2.1.4
 
 ### Patch Changes
