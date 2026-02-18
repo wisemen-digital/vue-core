@@ -1,5 +1,6 @@
 {
   "component.number_field.decrement": "Aftrekken",
   "component.number_field.increment": "Optellen",
-  "component.keyboard_shortcut.sequence_label": "dan"
+  "component.keyboard_shortcut.sequence_label": "dan",
+  "components.sidebar.global_search.label": "Zoeken"
 }

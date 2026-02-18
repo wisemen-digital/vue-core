@@ -1,5 +1,6 @@
 {
   "component.number_field.decrement": "Decrement",
   "component.number_field.increment": "Increment",
-  "component.keyboard_shortcut.sequence_label": "then"
+  "component.keyboard_shortcut.sequence_label": "then",
+  "components.sidebar.global_search.label": "Search"
 }

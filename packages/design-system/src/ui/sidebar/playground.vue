@@ -58,7 +58,7 @@ const navigation = computed<NavigationGroup[]>(() => ([
         name: 'Projects',
         icon: Rows01Icon,
         to: {
-          path: '/test',
+          path: '/projects',
         },
       },
     ],
@@ -70,7 +70,7 @@ const footerNavigation = computed<NavigationItem[]>(() => ([
     name: 'Support',
     icon: LifeBuoy01Icon,
     to: {
-      path: '/',
+      path: '/support',
     },
   },
   {
@@ -84,7 +84,7 @@ const footerNavigation = computed<NavigationItem[]>(() => ([
 </script>
 
 <template>
-  <div class="flex w-full overflow-hidden">
+  <div class="flex w-full overflow-hidden border border-primary">
     <Sidebar>
       <template #header>
         <SidebarHeader
@@ -131,9 +131,17 @@ const footerNavigation = computed<NavigationItem[]>(() => ([
           />
         </SidebarFooterNavigation>
         <SidebarFooterAccountCard
-          :menu-options="[]"
-          name="Jeroen "
-          email="jeroen.vc1@icloud.com"
+          :menu-options="[{
+            icon: Settings01Icon,
+            label: 'Account settings',
+            onSelect: () => {},
+          }, {
+            icon: LifeBuoy01Icon,
+            label: 'Support',
+            onSelect: () => {},
+          }]"
+          name="jeroen"
+          email="jeroen.vc1@icloud.comsdfsfsfdf"
           @sign-out="() => {}"
         />
       </template>

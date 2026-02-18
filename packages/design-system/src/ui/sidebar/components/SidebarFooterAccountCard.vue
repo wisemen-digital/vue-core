@@ -5,6 +5,7 @@ import {
 } from '@wisemen/vue-core-icons'
 import type { Component } from 'vue'
 
+import { UIAvatar } from '@/ui/avatar/index'
 import ClickableElement from '@/ui/clickable-element/ClickableElement.vue'
 import DropdownMenu from '@/ui/dropdown-menu/DropdownMenu.vue'
 import DropdownMenuGroup from '@/ui/dropdown-menu/DropdownMenuGroup.vue'
@@ -45,21 +46,30 @@ const props = defineProps<{
             justify="between"
             class="overflow-hidden"
           >
-            <Text
-              :text="props.name"
-              class="w-full text-xs font-semibold text-primary"
-            />
+            <RowLayout
+              gap="md"
+              class="overflow-hidden"
+            >
+              <UIAvatar
+                :name="props.name"
+              />
+              <div class="flex w-full flex-col overflow-hidden">
+                <Text
+                  :text="props.name"
+                  class="w-full text-xs font-semibold text-primary"
+                />
+                <Text
+                  :text="props.email"
+                  class="w-full text-xs text-tertiary"
+                />
+              </div>
+            </RowLayout>
 
             <Component
               :is="ChevronDownIcon"
               class="size-4 shrink-0 text-quaternary"
             />
           </RowLayout>
-
-          <Text
-            :text="props.email"
-            class="mt-xs w-full text-xs text-tertiary"
-          />
         </button>
       </ClickableElement>
     </template>
