@@ -12,9 +12,9 @@ import {
   DialogTitle,
 } from 'reka-ui'
 
-import SidebarContent from '@/ui/sidebar/components/SidebarContent.vue'
-import SidebarTransition from '@/ui/sidebar/components/SidebarTransition.vue'
-import { useSidebar } from '@/ui/sidebar/sidebar.composable'
+import MainSidebarContent from '@/ui/sidebar/components/MainSidebarContent.vue'
+import MainSidebarTransition from '@/ui/sidebar/components/MainSidebarTransition.vue'
+import { useMainSidebar } from '@/ui/sidebar/mainSidebar.composable'
 
 const props = withDefaults(defineProps<{
   variant?: 'default' | 'icons-only'
@@ -27,7 +27,7 @@ const {
   isSidebarOpen,
   setVariant,
   sidebarWidth,
-} = useSidebar()
+} = useMainSidebar()
 
 const isReduceMotionEnabledOnDevice = useReducedMotion()
 
@@ -46,7 +46,7 @@ setVariant(props.variant)
         :force-mount="true"
         @open-auto-focus.prevent
       >
-        <SidebarTransition
+        <MainSidebarTransition
           class="absolute z-6 h-full w-64 p-md outline-none"
         >
           <div
@@ -69,7 +69,7 @@ setVariant(props.variant)
               The sidebar contains navigation links and other important actions.
             </DialogDescription>
 
-            <SidebarContent>
+            <MainSidebarContent>
               <template #header>
                 <slot name="header" />
               </template>
@@ -79,9 +79,9 @@ setVariant(props.variant)
               <template #footer>
                 <slot name="footer" />
               </template>
-            </SidebarContent>
+            </MainSidebarContent>
           </div>
-        </SidebarTransition>
+        </MainSidebarTransition>
       </DialogContent>
 
       <DialogOverlay
@@ -104,14 +104,14 @@ setVariant(props.variant)
     v-else
     :initial="false"
   >
-    <SidebarTransition
+    <MainSidebarTransition
       v-if="isSidebarOpen"
       :style="{
         width: sidebarWidth,
       }"
       class="absolute h-full"
     >
-      <SidebarContent>
+      <MainSidebarContent>
         <template #header>
           <slot name="header" />
         </template>
@@ -121,7 +121,7 @@ setVariant(props.variant)
         <template #footer>
           <slot name="footer" />
         </template>
-      </SidebarContent>
-    </SidebarTransition>
+      </MainSidebarContent>
+    </MainSidebarTransition>
   </AnimatePresence>
 </template>

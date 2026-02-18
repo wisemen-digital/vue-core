@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { UIBadge } from '@/ui/badge/index'
-import { useInjectSidebarNavigationLinkContext } from '@/ui/sidebar/components/sidebarNavigationLink.context'
+import { useInjectMainSidebarNavigationLinkContext } from '@/ui/sidebar/components/mainSidebarNavigationLink.context'
 
 const props = defineProps<{
   label: string
@@ -8,7 +8,7 @@ const props = defineProps<{
 
 const {
   isActive,
-} = useInjectSidebarNavigationLinkContext()
+} = useInjectMainSidebarNavigationLinkContext()
 </script>
 
 <template>

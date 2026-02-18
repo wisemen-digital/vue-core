@@ -2,7 +2,7 @@
 import Logo from '@/ui/logo/Logo.vue'
 import LogoWithText from '@/ui/logo/LogoWithText.vue'
 import RowLayout from '@/ui/row-layout/RowLayout.vue'
-import { useSidebar } from '@/ui/sidebar/sidebar.composable'
+import { useMainSidebar } from '@/ui/sidebar/mainSidebar.composable'
 
 const props = defineProps<{
   name: string
@@ -10,7 +10,7 @@ const props = defineProps<{
 
 const {
   variant,
-} = useSidebar()
+} = useMainSidebar()
 </script>
 
 <template>

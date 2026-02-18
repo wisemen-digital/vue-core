@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { UIColumnLayout } from '@/ui/column-layout/index'
-import { useSidebar } from '@/ui/sidebar/sidebar.composable'
+import { useMainSidebar } from '@/ui/sidebar/mainSidebar.composable'
 
 const props = withDefaults(defineProps<{
   label?: string | null
@@ -10,7 +10,7 @@ const props = withDefaults(defineProps<{
 
 const {
   variant,
-} = useSidebar()
+} = useMainSidebar()
 </script>
 
 <template>

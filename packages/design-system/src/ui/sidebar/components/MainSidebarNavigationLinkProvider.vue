@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import { useProvideSidebarNavigationLinkContext } from '@/ui/sidebar/components/sidebarNavigationLink.context'
+import { useProvideMainSidebarNavigationLinkContext } from '@/ui/sidebar/components/mainSidebarNavigationLink.context'
 
 const props = defineProps<{
   isActive: boolean
 }>()
 
-useProvideSidebarNavigationLinkContext({
+useProvideMainSidebarNavigationLinkContext({
   isActive: computed<boolean>(() => props.isActive),
 })
 </script>

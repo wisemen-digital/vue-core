@@ -9,8 +9,8 @@ import {
 import ActionTooltip from '@/ui/action-tooltip/ActionTooltip.vue'
 import ClickableElement from '@/ui/clickable-element/ClickableElement.vue'
 import RowLayout from '@/ui/row-layout/RowLayout.vue'
-import SidebarNavigationLinkProvider from '@/ui/sidebar/components/SidebarNavigationLinkProvider.vue'
-import { useSidebar } from '@/ui/sidebar/sidebar.composable'
+import MainSidebarNavigationLinkProvider from '@/ui/sidebar/components/MainSidebarNavigationLinkProvider.vue'
+import { useMainSidebar } from '@/ui/sidebar/mainSidebar.composable'
 
 export interface Props {
   isActive?: (route: RouteLocationNormalized) => boolean
@@ -32,13 +32,13 @@ const emit = defineEmits<{
 
 const {
   variant,
-} = useSidebar()
+} = useMainSidebar()
 
 const route = useRoute()
 
 const {
   closeIfFloatingSidebar,
-} = useSidebar()
+} = useMainSidebar()
 
 function onClick(): void {
   closeIfFloatingSidebar()
@@ -66,7 +66,7 @@ function onClick(): void {
           class="w-full"
           @click="onClick"
         >
-          <SidebarNavigationLinkProvider
+          <MainSidebarNavigationLinkProvider
             :is-active="isRouteActive"
           >
             <div
@@ -132,7 +132,7 @@ function onClick(): void {
                 />
               </div>
             </div>
-          </SidebarNavigationLinkProvider>
+          </MainSidebarNavigationLinkProvider>
         </RouterLink>
       </ClickableElement>
     </ActionTooltip>

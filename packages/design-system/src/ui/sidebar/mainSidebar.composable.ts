@@ -13,7 +13,7 @@ const isFloatingSidebarOpen = ref<boolean>(false)
 const sidebarWidth = ref<string>(DEFAULT_SIDEBAR_WIDTH)
 const variant = ref<'default' | 'icons-only'>('default')
 
-export function useSidebar() {
+export function useMainSidebar() {
   const screen = useBreakpoints({
     xl: 960,
   })

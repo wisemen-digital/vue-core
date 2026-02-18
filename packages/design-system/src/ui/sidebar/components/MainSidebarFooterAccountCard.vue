@@ -11,7 +11,7 @@ import DropdownMenu from '@/ui/dropdown-menu/DropdownMenu.vue'
 import DropdownMenuGroup from '@/ui/dropdown-menu/DropdownMenuGroup.vue'
 import DropdownMenuItem from '@/ui/dropdown-menu/DropdownMenuItem.vue'
 import RowLayout from '@/ui/row-layout/RowLayout.vue'
-import { useSidebar } from '@/ui/sidebar/sidebar.composable'
+import { useMainSidebar } from '@/ui/sidebar/mainSidebar.composable'
 import Text from '@/ui/text/Text.vue'
 
 export interface MenuOption {
@@ -30,7 +30,7 @@ const props = defineProps<{
 
 const {
   variant,
-} = useSidebar()
+} = useMainSidebar()
 </script>
 
 <template>

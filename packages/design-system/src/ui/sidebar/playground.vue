@@ -13,23 +13,23 @@ import type { Component } from 'vue'
 import { computed } from 'vue'
 
 import { UIButton } from '@/ui/button/index'
-import Sidebar from '@/ui/sidebar/components/Sidebar.vue'
-import SidebarFooterAccountCard from '@/ui/sidebar/components/SidebarFooterAccountCard.vue'
-import SidebarFooterFeaturedCard from '@/ui/sidebar/components/SidebarFooterFeaturedCard.vue'
-import SidebarFooterNavigation from '@/ui/sidebar/components/SidebarFooterNavigation.vue'
-import SidebarGlobalSearch from '@/ui/sidebar/components/SidebarGlobalSearch.vue'
-import SidebarHeader from '@/ui/sidebar/components/SidebarHeader.vue'
-import SidebarNavigationGroup from '@/ui/sidebar/components/SidebarNavigationGroup.vue'
-import SidebarNavigationLink from '@/ui/sidebar/components/SidebarNavigationLink.vue'
-import SidebarNavigationLinkBadge from '@/ui/sidebar/components/SidebarNavigationLinkBadge.vue'
-import SidebarNavigationLinkStatus from '@/ui/sidebar/components/SidebarNavigationLinkStatus.vue'
-import { useSidebar } from '@/ui/sidebar/sidebar.composable'
+import MainSidebar from '@/ui/sidebar/components/MainSidebar.vue'
+import MainSidebarFooterAccountCard from '@/ui/sidebar/components/MainSidebarFooterAccountCard.vue'
+import MainSidebarFooterFeaturedCard from '@/ui/sidebar/components/MainSidebarFooterFeaturedCard.vue'
+import MainSidebarFooterNavigation from '@/ui/sidebar/components/MainSidebarFooterNavigation.vue'
+import MainSidebarGlobalSearch from '@/ui/sidebar/components/MainSidebarGlobalSearch.vue'
+import MainSidebarHeader from '@/ui/sidebar/components/MainSidebarHeader.vue'
+import MainSidebarNavigationGroup from '@/ui/sidebar/components/MainSidebarNavigationGroup.vue'
+import MainSidebarNavigationLink from '@/ui/sidebar/components/MainSidebarNavigationLink.vue'
+import MainSidebarNavigationLinkBadge from '@/ui/sidebar/components/MainSidebarNavigationLinkBadge.vue'
+import MainSidebarNavigationLinkStatus from '@/ui/sidebar/components/MainSidebarNavigationLinkStatus.vue'
+import { useMainSidebar } from '@/ui/sidebar/mainSidebar.composable'
 
 const {
   isFloatingSidebar,
   isSidebarOpen,
   sidebarWidth,
-} = useSidebar()
+} = useMainSidebar()
 
 const isReduceMotionEnabledOnDevice = useReducedMotion()
 
@@ -87,26 +87,26 @@ const footerNavigation = computed<NavigationItem[]>(() => ([
   <div
     class="relative flex h-[80dvh] w-full overflow-hidden border border-primary"
   >
-    <Sidebar
+    <MainSidebar
       variant="default"
     >
       <template #header>
-        <SidebarHeader
+        <MainSidebarHeader
           name="Wisemen"
         >
           <template #right>
-            <SidebarGlobalSearch />
+            <MainSidebarGlobalSearch />
           </template>
-        </SidebarHeader>
+        </MainSidebarHeader>
       </template>
 
       <template #navigation>
-        <SidebarNavigationGroup
+        <MainSidebarNavigationGroup
           v-for="group in navigation"
           :key="group.label"
           :label="group.label"
         >
-          <SidebarNavigationLink
+          <MainSidebarNavigationLink
             v-for="link in group.links"
             :key="link.name"
             :to="link.to"
@@ -114,27 +114,27 @@ const footerNavigation = computed<NavigationItem[]>(() => ([
             :label="link.name"
           >
             <template #right>
-              <SidebarNavigationLinkBadge
+              <MainSidebarNavigationLinkBadge
                 label="10"
               />
-              <SidebarNavigationLinkStatus />
+              <MainSidebarNavigationLinkStatus />
             </template>
-          </SidebarNavigationLink>
-        </SidebarNavigationGroup>
+          </MainSidebarNavigationLink>
+        </MainSidebarNavigationGroup>
       </template>
 
       <template #footer>
-        <SidebarFooterFeaturedCard />
-        <SidebarFooterNavigation>
-          <SidebarNavigationLink
+        <MainSidebarFooterFeaturedCard />
+        <MainSidebarFooterNavigation>
+          <MainSidebarNavigationLink
             v-for="link in footerNavigation"
             :key="link.name"
             :to="link.to"
             :icon="link.icon"
             :label="link.name"
           />
-        </SidebarFooterNavigation>
-        <SidebarFooterAccountCard
+        </MainSidebarFooterNavigation>
+        <MainSidebarFooterAccountCard
           :menu-options="[{
             icon: Settings01Icon,
             label: 'Account settings',
@@ -149,7 +149,7 @@ const footerNavigation = computed<NavigationItem[]>(() => ([
           @sign-out="() => {}"
         />
       </template>
-    </Sidebar>
+    </MainSidebar>
 
     <Motion
       :initial="{
