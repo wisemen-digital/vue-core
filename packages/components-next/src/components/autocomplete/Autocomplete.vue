@@ -133,7 +133,6 @@ function onUpdateModelValue(value: TValue | null): void {
 </script>
 
 <template>
-  <p>serach teerm : {{ searchTerm }}</p>
   <Select
     v-bind="props"
     v-model:search-term="searchTerm"
