@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import {
   BarChartSquare02Icon,
+  CalendarIcon,
+  File05Icon,
   LifeBuoy01Icon,
   Rows01Icon,
   Settings01Icon,
@@ -59,6 +61,25 @@ const navigation = computed<NavigationGroup[]>(() => ([
         icon: Rows01Icon,
         to: {
           path: '/projects',
+        },
+      },
+    ],
+  },
+  {
+    label: 'Other',
+    links: [
+      {
+        name: 'Documents',
+        icon: File05Icon,
+        to: {
+          path: '/others',
+        },
+      },
+      {
+        name: 'Calendar',
+        icon: CalendarIcon,
+        to: {
+          path: '/other-projects',
         },
       },
     ],

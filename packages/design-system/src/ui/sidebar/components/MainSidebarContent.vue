@@ -10,7 +10,7 @@
       <slot name="header" />
     </div>
     <nav
-      class="flex h-full flex-col justify-between overflow-y-auto p-md"
+      class="flex h-full flex-col gap-2xl overflow-y-auto p-md"
     >
       <slot name="navigation" />
     </nav>
