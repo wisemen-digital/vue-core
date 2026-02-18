@@ -25,7 +25,10 @@ const {
       {{ props.label }}
     </span>
 
-    <UIColumnLayout gap="xs">
+    <UIColumnLayout
+      :align="variant === 'icons-only' ? 'center' : 'start'"
+      gap="xs"
+    >
       <slot />
     </UIColumnLayout>
   </div>

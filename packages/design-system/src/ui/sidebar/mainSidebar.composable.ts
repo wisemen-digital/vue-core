@@ -10,7 +10,7 @@ import {
 import type { MainSidebarVariant } from '@/ui/sidebar/types/mainSidebar.type'
 
 const DEFAULT_SIDEBAR_WIDTH = '14rem'
-const ICONS_ONLY_SIDEBAR_WIDTH = '3rem'
+const ICONS_ONLY_SIDEBAR_WIDTH = '3.4rem'
 const isFloatingSidebarOpen = ref<boolean>(false)
 const sidebarWidth = ref<string>(DEFAULT_SIDEBAR_WIDTH)
 const variant = ref<MainSidebarVariant>('default')

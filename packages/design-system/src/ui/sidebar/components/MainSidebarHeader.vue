@@ -14,13 +14,17 @@ const {
 </script>
 
 <template>
-  <Logo
+  <RowLayout
     v-if="variant === 'icons-only'"
-    :name="props.name"
-    src="https://picsum.photos/300/300"
-    alt="Logo"
-    size="xs"
-  />
+    justify="center"
+  >
+    <Logo
+      :name="props.name"
+      src="https://picsum.photos/300/300"
+      alt="Logo"
+      size="xs"
+    />
+  </RowLayout>
   <RowLayout
     v-else
     justify="between"

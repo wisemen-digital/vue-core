@@ -15,7 +15,6 @@ import type { Component } from 'vue'
 import { computed } from 'vue'
 
 import { UIButton } from '@/ui/button/index'
-import MainSidebar from '@/ui/sidebar/components/MainSidebar.vue'
 import MainSidebarFooterAccountCard from '@/ui/sidebar/components/MainSidebarFooterAccountCard.vue'
 import MainSidebarFooterFeaturedCard from '@/ui/sidebar/components/MainSidebarFooterFeaturedCard.vue'
 import MainSidebarFooterNavigation from '@/ui/sidebar/components/MainSidebarFooterNavigation.vue'
@@ -26,6 +25,7 @@ import MainSidebarNavigationLink from '@/ui/sidebar/components/MainSidebarNaviga
 import MainSidebarNavigationLinkBadge from '@/ui/sidebar/components/MainSidebarNavigationLinkBadge.vue'
 import MainSidebarNavigationLinkStatus from '@/ui/sidebar/components/MainSidebarNavigationLinkStatus.vue'
 import { useMainSidebar } from '@/ui/sidebar/mainSidebar.composable'
+import MainSidebar from '@/ui/sidebar/MainSidebar.vue'
 
 const {
   isFloatingSidebar,
@@ -106,10 +106,13 @@ const footerNavigation = computed<NavigationItem[]>(() => ([
 
 <template>
   <div
-    class="relative flex h-[80dvh] w-full overflow-hidden border border-primary"
+    class="
+      relative flex h-[80dvh] w-full overflow-hidden rounded-lg border
+      border-primary
+    "
   >
     <MainSidebar
-      variant="default"
+      variant="icons-only"
     >
       <template #header>
         <MainSidebarHeader
@@ -186,7 +189,7 @@ const footerNavigation = computed<NavigationItem[]>(() => ([
       }"
       class="size-full"
     >
-      <div class="h-full bg-secondary p-xl">
+      <div class="h-full rounded-l-lg bg-secondary p-xl">
         <UIButton
           :label="isSidebarOpen ? 'Close sidebar' : 'Open sidebar'"
           @click="() => isSidebarOpen = !isSidebarOpen"

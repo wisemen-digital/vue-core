@@ -48,80 +48,46 @@ function onClick(): void {
 
 <template>
   <ActionTooltip
-    :is-disabled="props.keyboardShortcut === null"
+    :is-disabled="variant !== 'icons-only' && props.keyboardShortcut === null"
     :keyboard-shortcut="props.keyboardShortcut"
     :label="props.label"
     popover-side="right"
   >
-    <ActionTooltip
-      :label="props.label"
-      :keyboard-shortcut="props.keyboardShortcut"
-      :is-disabled="variant !== 'icons-only'"
-      popover-side="right"
-    >
-      <ClickableElement>
-        <RouterLink
-          v-slot="{ isActive: isRouteActive }"
-          :to="props.to"
-          class="w-full"
-          @click="onClick"
+    <ClickableElement>
+      <RouterLink
+        v-slot="{ isActive: isRouteActive }"
+        :to="props.to"
+        :class="{
+          'w-fit': variant === 'icons-only',
+        }"
+        class="w-full"
+        @click="onClick"
+      >
+        <MainSidebarNavigationLinkProvider
+          :is-active="isRouteActive"
         >
-          <MainSidebarNavigationLinkProvider
-            :is-active="isRouteActive"
+          <div
+            :data-active="isRouteActive || props.isActive(route) || undefined"
+            :class="{
+              'flex aspect-square size-3 items-center justify-center': variant === 'icons-only',
+            }"
+            class="
+              group rounded-md p-px
+              hover:bg-primary-hover
+              data-active:bg-brand-primary
+              dark:data-active:glassy
+            "
           >
-            <div
-              :data-active="isRouteActive || props.isActive(route) || undefined"
-              :class="{
-                'flex aspect-square items-center justify-center': variant === 'icons-only',
-              }"
+            <RowLayout
+              v-if="variant === 'default'"
+              gap="md"
+              justify="between"
               class="
-                group rounded-md p-px
-                hover:bg-primary-hover
-                data-active:bg-brand-primary
-                dark:data-active:glassy
+                group h-7 rounded-[0.4rem] px-lg duration-100
+                dark:group-data-active:glassy-inner-content
               "
             >
-              <RowLayout
-                v-if="variant === 'default'"
-                gap="md"
-                justify="between"
-                class="
-                  group h-7 rounded-[0.4rem] px-lg duration-100
-                  dark:group-data-active:glassy-inner-content
-                "
-              >
-                <RowLayout>
-                  <Component
-                    :is="props.icon"
-                    class="
-                      size-4 text-fg-quaternary duration-100
-                      group-data-active:text-fg-brand-primary
-                      dark:group-data-active:text-fg-primary
-                    "
-                  />
-
-                  <span
-                    class="
-                      text-xs font-medium text-secondary duration-100
-                      group-hover:text-primary
-                      group-data-active:text-brand-secondary
-                    "
-                  >
-                    {{ props.label }}
-                  </span>
-                </RowLayout>
-                <RowLayout
-                  gap="lg"
-                >
-                  <slot
-                    name="right"
-                  />
-                </RowLayout>
-              </RowLayout>
-              <div
-                v-else
-                class="p-sm"
-              >
+              <RowLayout>
                 <Component
                   :is="props.icon"
                   class="
@@ -130,11 +96,41 @@ function onClick(): void {
                     dark:group-data-active:text-fg-primary
                   "
                 />
-              </div>
+
+                <span
+                  class="
+                    text-xs font-medium text-secondary duration-100
+                    group-hover:text-primary
+                    group-data-active:text-brand-secondary
+                  "
+                >
+                  {{ props.label }}
+                </span>
+              </RowLayout>
+              <RowLayout
+                gap="lg"
+              >
+                <slot
+                  name="right"
+                />
+              </RowLayout>
+            </RowLayout>
+            <div
+              v-else
+              class="p-sm"
+            >
+              <Component
+                :is="props.icon"
+                class="
+                  size-4 text-fg-quaternary duration-100
+                  group-data-active:text-fg-brand-primary
+                  dark:group-data-active:text-fg-primary
+                "
+              />
             </div>
-          </MainSidebarNavigationLinkProvider>
-        </RouterLink>
-      </ClickableElement>
-    </ActionTooltip>
+          </div>
+        </MainSidebarNavigationLinkProvider>
+      </RouterLink>
+    </ClickableElement>
   </ActionTooltip>
 </template>
