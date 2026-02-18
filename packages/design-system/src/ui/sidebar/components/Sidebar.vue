@@ -1,6 +1,18 @@
 <script setup lang="ts">
-import { AnimatePresence } from 'motion-v'
+import {
+  AnimatePresence,
+  Motion,
+  useReducedMotion,
+} from 'motion-v'
+import {
+  DialogContent,
+  DialogDescription,
+  DialogOverlay,
+  DialogRoot,
+  DialogTitle,
+} from 'reka-ui'
 
+import SidebarContent from '@/ui/sidebar/components/SidebarContent.vue'
 import SidebarTransition from '@/ui/sidebar/components/SidebarTransition.vue'
 import { useSidebar } from '@/ui/sidebar/sidebar.composable'
 
@@ -11,16 +23,85 @@ const props = withDefaults(defineProps<{
 })
 
 const {
+  isFloatingSidebar,
   isSidebarOpen,
   setVariant,
   sidebarWidth,
 } = useSidebar()
 
+const isReduceMotionEnabledOnDevice = useReducedMotion()
+
 setVariant(props.variant)
 </script>
 
 <template>
+  <DialogRoot
+    v-if="isFloatingSidebar"
+    v-model:open="isSidebarOpen"
+  >
+    <AnimatePresence :initial="false">
+      <DialogContent
+        v-if="isSidebarOpen"
+        :as-child="true"
+        :force-mount="true"
+        @open-auto-focus.prevent
+      >
+        <SidebarTransition
+          class="absolute z-6 h-full w-64 p-md outline-none"
+        >
+          <div
+            class="
+              size-full rounded-xl border border-secondary bg-secondary
+              shadow-lg/5
+            "
+          >
+            <DialogTitle
+              as="h1"
+              class="sr-only"
+            >
+              Sidebar
+            </DialogTitle>
+
+            <DialogDescription
+              class="sr-only"
+              as="p"
+            >
+              The sidebar contains navigation links and other important actions.
+            </DialogDescription>
+
+            <SidebarContent>
+              <template #header>
+                <slot name="header" />
+              </template>
+              <template #navigation>
+                <slot name="navigation" />
+              </template>
+              <template #footer>
+                <slot name="footer" />
+              </template>
+            </SidebarContent>
+          </div>
+        </SidebarTransition>
+      </DialogContent>
+
+      <DialogOverlay
+        v-if="isSidebarOpen"
+        :as-child="true"
+      >
+        <Motion
+          :initial="{ opacity: 0 }"
+          :animate="{ opacity: 1 }"
+          :exit="{ opacity: 0 }"
+          :transition="{
+            duration: isReduceMotionEnabledOnDevice ? 0 : 0.3,
+          }"
+          class="absolute inset-0 z-5 bg-black/10"
+        />
+      </DialogOverlay>
+    </AnimatePresence>
+  </DialogRoot>
   <AnimatePresence
+    v-else
     :initial="false"
   >
     <SidebarTransition
@@ -28,27 +109,19 @@ setVariant(props.variant)
       :style="{
         width: sidebarWidth,
       }"
-      class="absolute h-dvh"
+      class="absolute h-full"
     >
-      <div
-        class="
-          flex h-full flex-col justify-between overflow-hidden text-primary
-        "
-      >
-        <div class="p-lg">
+      <SidebarContent>
+        <template #header>
           <slot name="header" />
-        </div>
-        <nav
-          class="flex h-full flex-col justify-between overflow-y-auto p-md"
-        >
+        </template>
+        <template #navigation>
           <slot name="navigation" />
-        </nav>
-        <div
-          class="flex flex-col gap-sm p-md"
-        >
+        </template>
+        <template #footer>
           <slot name="footer" />
-        </div>
-      </div>
+        </template>
+      </SidebarContent>
     </SidebarTransition>
   </AnimatePresence>
 </template>

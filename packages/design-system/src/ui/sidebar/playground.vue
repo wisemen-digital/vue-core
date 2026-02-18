@@ -84,7 +84,9 @@ const footerNavigation = computed<NavigationItem[]>(() => ([
 </script>
 
 <template>
-  <div class="flex w-full overflow-hidden border border-primary">
+  <div
+    class="relative flex h-[80dvh] w-full overflow-hidden border border-primary"
+  >
     <Sidebar
       variant="default"
     >
@@ -151,19 +153,19 @@ const footerNavigation = computed<NavigationItem[]>(() => ([
 
     <Motion
       :initial="{
-        paddingLeft: isSidebarOpen && !isFloatingSidebar ? sidebarWidth : '0.5rem',
+        paddingLeft: isSidebarOpen && !isFloatingSidebar ? sidebarWidth : '0',
       }"
       :animate="{
-        paddingLeft: isSidebarOpen && !isFloatingSidebar ? sidebarWidth : '0.5rem',
+        paddingLeft: isSidebarOpen && !isFloatingSidebar ? sidebarWidth : '0',
       }"
       :transition="{
         duration: isReduceMotionEnabledOnDevice ? 0 : 0.3,
         type: 'spring',
         bounce: 0,
       }"
-      class="w-full"
+      class="size-full"
     >
-      <div class="h-dvh bg-secondary p-xl">
+      <div class="h-full bg-secondary p-xl">
         <UIButton
           :label="isSidebarOpen ? 'Close sidebar' : 'Open sidebar'"
           @click="() => isSidebarOpen = !isSidebarOpen"
