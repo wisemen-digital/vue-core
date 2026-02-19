@@ -31,7 +31,7 @@ const emit = defineEmits<{
 }>()
 
 const {
-  variant,
+  isSidebarOpen, variant,
 } = useMainSidebar()
 
 const route = useRoute()
@@ -48,7 +48,7 @@ function onClick(): void {
 
 <template>
   <ActionTooltip
-    :is-disabled="variant !== 'icons-only' && props.keyboardShortcut === null"
+    :is-disabled="variant !== 'icons-only' && !isSidebarOpen && props.keyboardShortcut === null"
     :keyboard-shortcut="props.keyboardShortcut"
     :label="props.label"
     popover-side="right"
@@ -58,7 +58,7 @@ function onClick(): void {
         v-slot="{ isActive: isRouteActive }"
         :to="props.to"
         :class="{
-          'w-fit': variant === 'icons-only',
+          'w-fit': variant === 'icons-only' && !isSidebarOpen,
         }"
         class="w-full"
         @click="onClick"
@@ -69,7 +69,7 @@ function onClick(): void {
           <div
             :data-active="isRouteActive || props.isActive(route) || undefined"
             :class="{
-              'flex aspect-square items-center justify-center': variant === 'icons-only',
+              'flex items-center justify-center': variant === 'icons-only' && !isSidebarOpen,
             }"
             class="
               group rounded-md p-px
@@ -78,8 +78,21 @@ function onClick(): void {
               dark:data-active:glassy
             "
           >
+            <div
+              v-if="variant === 'icons-only' && !isSidebarOpen"
+              class="p-sm"
+            >
+              <Component
+                :is="props.icon"
+                class="
+                  size-4 text-fg-quaternary duration-100
+                  group-data-active:text-fg-brand-primary
+                  dark:group-data-active:text-fg-primary
+                "
+              />
+            </div>
             <RowLayout
-              v-if="variant === 'icons-with-labels'"
+              v-else
               gap="md"
               justify="between"
               class="
@@ -115,19 +128,6 @@ function onClick(): void {
                 />
               </RowLayout>
             </RowLayout>
-            <div
-              v-else
-              class="p-sm"
-            >
-              <Component
-                :is="props.icon"
-                class="
-                  size-4 text-fg-quaternary duration-100
-                  group-data-active:text-fg-brand-primary
-                  dark:group-data-active:text-fg-primary
-                "
-              />
-            </div>
           </div>
         </MainSidebarNavigationLinkProvider>
       </RouterLink>

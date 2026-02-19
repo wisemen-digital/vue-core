@@ -34,7 +34,7 @@ const props = defineProps<{
 const i18n = useI18n()
 
 const {
-  variant,
+  isSidebarOpen, variant,
 } = useMainSidebar()
 </script>
 
@@ -46,13 +46,21 @@ const {
     <template #trigger>
       <ClickableElement>
         <button
-          v-if="variant === 'icons-with-labels'"
+          v-if="variant === 'icons-only' && !isSidebarOpen"
+          class="flex h-12 items-center justify-center"
+        >
+          <UIAvatar
+            :name="props.name"
+          />
+        </button>
+        <button
+          v-else
           class="rounded-xl"
         >
           <UICard
             class="
-              flex w-full flex-col overflow-hidden bg-primary-alt p-md py-sm
-              text-left duration-100
+              flex h-12 w-full flex-col overflow-hidden bg-primary-alt p-md
+              py-sm text-left duration-100
               hover:bg-tertiary/50
             "
           >
@@ -86,14 +94,6 @@ const {
               />
             </UIRowLayout>
           </UICard>
-        </button>
-        <button
-          v-else
-          class="flex justify-center"
-        >
-          <UIAvatar
-            :name="props.name"
-          />
         </button>
       </ClickableElement>
     </template>

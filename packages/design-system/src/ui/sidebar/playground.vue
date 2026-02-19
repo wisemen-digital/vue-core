@@ -30,6 +30,7 @@ const {
   isFloatingSidebar,
   isSidebarOpen,
   sidebarWidth,
+  variant,
 } = useMainSidebar()
 
 const isReduceMotionEnabledOnDevice = useReducedMotion()
@@ -116,7 +117,7 @@ const footerNavigation = computed<NavigationGroup[]>(() => ([
     "
   >
     <MainSidebar
-      variant="icons-with-labels"
+      variant="icons-only"
     >
       <template #header>
         <MainSidebarHeaderLogoWithText
@@ -187,10 +188,10 @@ const footerNavigation = computed<NavigationGroup[]>(() => ([
 
     <Motion
       :initial="{
-        paddingLeft: isSidebarOpen && !isFloatingSidebar ? sidebarWidth : '0',
+        paddingLeft: variant === 'icons-only' ? sidebarWidth : isSidebarOpen && !isFloatingSidebar ? sidebarWidth : '0',
       }"
       :animate="{
-        paddingLeft: isSidebarOpen && !isFloatingSidebar ? sidebarWidth : '0',
+        paddingLeft: variant === 'icons-only' ? sidebarWidth : isSidebarOpen && !isFloatingSidebar ? sidebarWidth : '0',
       }"
       :transition="{
         duration: isReduceMotionEnabledOnDevice ? 0 : 0.3,
@@ -200,6 +201,7 @@ const footerNavigation = computed<NavigationGroup[]>(() => ([
       class="size-full"
     >
       <div class="h-full bg-secondary p-xl">
+        {{ sidebarWidth }}
         <UIButton
           :label="isSidebarOpen ? 'Close sidebar' : 'Open sidebar'"
           @click="() => isSidebarOpen = !isSidebarOpen"

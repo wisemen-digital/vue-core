@@ -104,7 +104,7 @@ setVariant(props.variant)
     </AnimatePresence>
   </DialogRoot>
   <AnimatePresence
-    v-else
+    v-else-if="variant === 'icons-with-labels'"
     :initial="false"
   >
     <MainSidebarTransition
@@ -127,4 +127,28 @@ setVariant(props.variant)
       </MainSidebarContent>
     </MainSidebarTransition>
   </AnimatePresence>
+  <Motion
+    v-else
+    :initial="false"
+    :animate="{ width: sidebarWidth }"
+    :transition="{
+      duration: isReduceMotionEnabledOnDevice ? 0 : 0.3,
+      type: 'spring',
+      bounce: 0,
+    }"
+    :style="{ width: sidebarWidth }"
+    class="absolute h-full overflow-hidden"
+  >
+    <MainSidebarContent>
+      <template #header>
+        <slot name="header" />
+      </template>
+      <template #navigation>
+        <slot name="navigation" />
+      </template>
+      <template #footer>
+        <slot name="footer" />
+      </template>
+    </MainSidebarContent>
+  </Motion>
 </template>

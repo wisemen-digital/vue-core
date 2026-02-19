@@ -10,14 +10,15 @@ const props = defineProps<{
 }>()
 
 const {
-  variant,
+  isSidebarOpen, variant,
 } = useMainSidebar()
 </script>
 
 <template>
   <RowLayout
-    v-if="variant === 'icons-only'"
+    v-if="variant === 'icons-only' && !isSidebarOpen"
     justify="center"
+    class="h-8"
   >
     <Logo
       :name="props.name"
@@ -29,6 +30,7 @@ const {
   <RowLayout
     v-else
     justify="between"
+    class="h-8"
   >
     <LogoWithText
       :name="props.name"

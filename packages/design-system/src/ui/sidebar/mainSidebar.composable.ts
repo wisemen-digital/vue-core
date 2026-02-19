@@ -37,6 +37,10 @@ export function useMainSidebar() {
         isFloatingSidebarOpen.value = value
       }
       else {
+        if (variant.value === 'icons-only') {
+          sidebarWidth.value = value ? DEFAULT_SIDEBAR_WIDTH : ICONS_ONLY_SIDEBAR_WIDTH
+        }
+
         isSidebarOpenSetting.value = value
       }
     },
@@ -50,12 +54,6 @@ export function useMainSidebar() {
 
   function setVariant(value: MainSidebarVariant): void {
     variant.value = value
-
-    if (value === 'icons-only') {
-      sidebarWidth.value = ICONS_ONLY_SIDEBAR_WIDTH
-
-      return
-    }
 
     sidebarWidth.value = DEFAULT_SIDEBAR_WIDTH
   }
