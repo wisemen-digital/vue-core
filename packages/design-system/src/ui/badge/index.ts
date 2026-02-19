@@ -1,0 +1,8 @@
+export type { BadgeProps as UIBadgeProps } from './badge.props'
+export { default as UIBadge } from './Badge.vue'
+export { default as UIBadgeDot } from './BadgeDot.vue'
+export { default as UIBadgeGroup } from './BadgeGroup.vue'
+export { default as UIBadgeGroupTruncate } from './BadgeGroupTruncate.vue'
+export { default as UIBadgeIcon } from './BadgeIcon.vue'
+export { default as UIBadgeLabel } from './BadgeLabel.vue'
+export { default as UIBadgeSeparator } from './BadgeSeparator.vue'
