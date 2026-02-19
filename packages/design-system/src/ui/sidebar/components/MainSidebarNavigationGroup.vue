@@ -9,7 +9,7 @@ const props = withDefaults(defineProps<{
 })
 
 const {
-  variant,
+  isSidebarOpen, variant,
 } = useMainSidebar()
 </script>
 
@@ -18,7 +18,7 @@ const {
     <span
       v-if="props.label !== null"
       :class="{
-        'opacity-0': variant === 'icons-only',
+        'opacity-0': variant === 'icons-only' && !isSidebarOpen,
       }"
       class="block px-lg pb-sm text-xs font-medium text-quaternary"
     >
