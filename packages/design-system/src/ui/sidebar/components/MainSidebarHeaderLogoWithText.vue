@@ -32,7 +32,7 @@ const {
   >
     <LogoWithText
       :name="props.name"
-      src="https://picsum.photos/300/300"
+      :src="props.url"
       size="xs"
     />
     <slot name="right" />

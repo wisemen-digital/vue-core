@@ -7,6 +7,7 @@ import type { Component } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import { UIAvatar } from '@/ui/avatar/index'
+import { UICard } from '@/ui/card/index'
 import ClickableElement from '@/ui/clickable-element/ClickableElement.vue'
 import DropdownMenu from '@/ui/dropdown-menu/DropdownMenu.vue'
 import DropdownMenuGroup from '@/ui/dropdown-menu/DropdownMenuGroup.vue'
@@ -24,6 +25,7 @@ export interface MenuOption {
 
 const props = defineProps<{
   name: string
+  avatarUrl?: string
   email: string
   menuOptions: MenuOption[]
   onSignOut: () => void
@@ -45,40 +47,45 @@ const {
       <ClickableElement>
         <button
           v-if="variant === 'icons-with-labels'"
-          class="
-            flex w-full flex-col overflow-hidden rounded-xl border
-            border-secondary bg-primary-alt p-md text-left duration-100
-            hover:bg-tertiary/50
-          "
+          class="rounded-xl"
         >
-          <RowLayout
-            justify="between"
-            class="overflow-hidden"
+          <UICard
+            class="
+              flex w-full flex-col overflow-hidden bg-primary-alt p-md py-sm
+              text-left duration-100
+              hover:bg-tertiary/50
+            "
           >
             <RowLayout
-              gap="md"
+              justify="between"
               class="overflow-hidden"
             >
-              <UIAvatar
-                :name="props.name"
-              />
-              <div class="flex w-full flex-col overflow-hidden">
-                <Text
-                  :text="props.name"
-                  class="w-full text-xs font-semibold text-primary"
+              <RowLayout
+                gap="md"
+                class="overflow-hidden"
+              >
+                <UIAvatar
+                  :src="props.avatarUrl"
+                  :name="props.name"
                 />
-                <Text
-                  :text="props.email"
-                  class="w-full text-xs text-tertiary"
-                />
-              </div>
-            </RowLayout>
+                <div class="flex w-full flex-col overflow-hidden">
+                  <Text
+                    :text="props.name"
+                    class="w-full text-xs font-semibold text-primary"
+                  />
+                  <Text
+                    :text="props.email"
+                    class="w-full text-xs text-tertiary"
+                  />
+                </div>
+              </RowLayout>
 
-            <Component
-              :is="ChevronDownIcon"
-              class="size-4 shrink-0 text-quaternary"
-            />
-          </RowLayout>
+              <Component
+                :is="ChevronDownIcon"
+                class="size-4 shrink-0 text-quaternary"
+              />
+            </RowLayout>
+          </UICard>
         </button>
         <button
           v-else

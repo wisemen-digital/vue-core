@@ -120,7 +120,7 @@ const footerNavigation = computed<NavigationGroup[]>(() => ([
     >
       <template #header>
         <MainSidebarHeaderLogoWithText
-          url="https://picsum.photos/300/300"
+          url="../../../storybook-assets/wisemen-logo.png"
           name="Wisemen"
         >
           <template #right>
@@ -177,8 +177,9 @@ const footerNavigation = computed<NavigationGroup[]>(() => ([
             label: 'Support',
             onSelect: () => {},
           }]"
-          name="jeroen"
-          email="jeroen.vc1@icloud.comsdfsfsfdf"
+          avatar-url="../../../storybook-assets/profile-picture.jpg"
+          name="Jeroen Van Caekenberghe"
+          email="jeroen.vancaekenberghe@wisemen.digital"
           @sign-out="() => {}"
         />
       </template>
