@@ -46,18 +46,14 @@ const {
     <template #trigger>
       <ClickableElement>
         <button
-          v-if="variant === 'icons-only' && !isSidebarOpen"
-          class="flex h-12 items-center justify-center"
+          class="flex h-10 items-center justify-center"
         >
           <UIAvatar
+            v-if="variant === 'icons-only' && !isSidebarOpen"
             :name="props.name"
           />
-        </button>
-        <button
-          v-else
-          class="rounded-xl"
-        >
           <UICard
+            v-else
             class="
               flex h-12 w-full flex-col overflow-hidden bg-primary-alt p-md
               py-sm text-left duration-100

@@ -194,14 +194,13 @@ const footerNavigation = computed<NavigationGroup[]>(() => ([
         paddingLeft: variant === 'icons-only' ? sidebarWidth : isSidebarOpen && !isFloatingSidebar ? sidebarWidth : '0',
       }"
       :transition="{
-        duration: isReduceMotionEnabledOnDevice ? 0 : 0.3,
+        duration: isReduceMotionEnabledOnDevice ? 0 : variant === 'icons-only' ? 0.1 : 0.3,
         type: 'spring',
         bounce: 0,
       }"
       class="size-full"
     >
       <div class="h-full bg-secondary p-xl">
-        {{ sidebarWidth }}
         <UIButton
           :label="isSidebarOpen ? 'Close sidebar' : 'Open sidebar'"
           @click="() => isSidebarOpen = !isSidebarOpen"
