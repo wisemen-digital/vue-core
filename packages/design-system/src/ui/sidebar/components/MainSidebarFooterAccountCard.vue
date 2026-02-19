@@ -12,9 +12,9 @@ import ClickableElement from '@/ui/clickable-element/ClickableElement.vue'
 import DropdownMenu from '@/ui/dropdown-menu/DropdownMenu.vue'
 import DropdownMenuGroup from '@/ui/dropdown-menu/DropdownMenuGroup.vue'
 import DropdownMenuItem from '@/ui/dropdown-menu/DropdownMenuItem.vue'
-import RowLayout from '@/ui/row-layout/RowLayout.vue'
+import { UIRowLayout } from '@/ui/row-layout/index'
 import { useMainSidebar } from '@/ui/sidebar/mainSidebar.composable'
-import Text from '@/ui/text/Text.vue'
+import { UIText } from '@/ui/text/index'
 
 export interface MenuOption {
   icon: Component
@@ -56,11 +56,11 @@ const {
               hover:bg-tertiary/50
             "
           >
-            <RowLayout
+            <UIRowLayout
               justify="between"
               class="overflow-hidden"
             >
-              <RowLayout
+              <UIRowLayout
                 gap="md"
                 class="overflow-hidden"
               >
@@ -69,22 +69,22 @@ const {
                   :name="props.name"
                 />
                 <div class="flex w-full flex-col overflow-hidden">
-                  <Text
+                  <UIText
                     :text="props.name"
                     class="w-full text-xs font-semibold text-primary"
                   />
-                  <Text
+                  <UIText
                     :text="props.email"
                     class="w-full text-xs text-tertiary"
                   />
                 </div>
-              </RowLayout>
+              </UIRowLayout>
 
               <Component
                 :is="ChevronDownIcon"
                 class="size-4 shrink-0 text-quaternary"
               />
-            </RowLayout>
+            </UIRowLayout>
           </UICard>
         </button>
         <button
