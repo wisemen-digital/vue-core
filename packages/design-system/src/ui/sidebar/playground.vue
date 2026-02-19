@@ -17,13 +17,12 @@ import { computed } from 'vue'
 import { UIButton } from '@/ui/button/index'
 import MainSidebarFooterAccountCard from '@/ui/sidebar/components/MainSidebarFooterAccountCard.vue'
 import MainSidebarFooterFeaturedCard from '@/ui/sidebar/components/MainSidebarFooterFeaturedCard.vue'
-import MainSidebarFooterNavigation from '@/ui/sidebar/components/MainSidebarFooterNavigation.vue'
 import MainSidebarGlobalSearch from '@/ui/sidebar/components/MainSidebarGlobalSearch.vue'
 import MainSidebarHeaderLogoWithText from '@/ui/sidebar/components/MainSidebarHeaderLogoWithText.vue'
 import MainSidebarNavigationGroup from '@/ui/sidebar/components/MainSidebarNavigationGroup.vue'
 import MainSidebarNavigationLink from '@/ui/sidebar/components/MainSidebarNavigationLink.vue'
 import MainSidebarNavigationLinkBadge from '@/ui/sidebar/components/MainSidebarNavigationLinkBadge.vue'
-import MainSidebarNavigationLinkStatus from '@/ui/sidebar/components/MainSidebarNavigationLinkStatus.vue'
+import MainSidebarNavigationLinkStatusDot from '@/ui/sidebar/components/MainSidebarNavigationLinkStatusDot.vue'
 import { useMainSidebar } from '@/ui/sidebar/mainSidebar.composable'
 import MainSidebar from '@/ui/sidebar/MainSidebar.vue'
 
@@ -86,20 +85,25 @@ const navigation = computed<NavigationGroup[]>(() => ([
   },
 ]))
 
-const footerNavigation = computed<NavigationItem[]>(() => ([
+const footerNavigation = computed<NavigationGroup[]>(() => ([
   {
-    name: 'Support',
-    icon: LifeBuoy01Icon,
-    to: {
-      path: '/support',
-    },
-  },
-  {
-    name: 'Settings',
-    icon: Settings01Icon,
-    to: {
-      path: '/test',
-    },
+    label: '',
+    links: [
+      {
+        name: 'Support',
+        icon: LifeBuoy01Icon,
+        to: {
+          path: '/support',
+        },
+      },
+      {
+        name: 'Settings',
+        icon: Settings01Icon,
+        to: {
+          path: '/test',
+        },
+      },
+    ],
   },
 ]))
 </script>
@@ -142,7 +146,7 @@ const footerNavigation = computed<NavigationItem[]>(() => ([
               <MainSidebarNavigationLinkBadge
                 label="10"
               />
-              <MainSidebarNavigationLinkStatus />
+              <MainSidebarNavigationLinkStatusDot />
             </template>
           </MainSidebarNavigationLink>
         </MainSidebarNavigationGroup>
@@ -150,15 +154,19 @@ const footerNavigation = computed<NavigationItem[]>(() => ([
 
       <template #footer>
         <MainSidebarFooterFeaturedCard />
-        <MainSidebarFooterNavigation>
+        <MainSidebarNavigationGroup
+          v-for="group in footerNavigation"
+          :key="group.label"
+          :label="group.label"
+        >
           <MainSidebarNavigationLink
-            v-for="link in footerNavigation"
+            v-for="link in group.links"
             :key="link.name"
             :to="link.to"
             :icon="link.icon"
             :label="link.name"
           />
-        </MainSidebarFooterNavigation>
+        </MainSidebarNavigationGroup>
         <MainSidebarFooterAccountCard
           :menu-options="[{
             icon: Settings01Icon,
