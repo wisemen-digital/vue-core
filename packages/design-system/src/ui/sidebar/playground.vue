@@ -112,7 +112,7 @@ const footerNavigation = computed<NavigationItem[]>(() => ([
     "
   >
     <MainSidebar
-      variant="icons-only"
+      variant="default"
     >
       <template #header>
         <MainSidebarHeader
@@ -189,7 +189,7 @@ const footerNavigation = computed<NavigationItem[]>(() => ([
       }"
       class="size-full"
     >
-      <div class="h-full rounded-l-lg bg-secondary p-xl">
+      <div class="h-full bg-secondary p-xl">
         <UIButton
           :label="isSidebarOpen ? 'Close sidebar' : 'Open sidebar'"
           @click="() => isSidebarOpen = !isSidebarOpen"

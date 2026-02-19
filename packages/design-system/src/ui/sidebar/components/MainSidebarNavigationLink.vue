@@ -69,7 +69,7 @@ function onClick(): void {
           <div
             :data-active="isRouteActive || props.isActive(route) || undefined"
             :class="{
-              'flex aspect-square size-3 items-center justify-center': variant === 'icons-only',
+              'flex aspect-square items-center justify-center': variant === 'icons-only',
             }"
             class="
               group rounded-md p-px

@@ -25,8 +25,9 @@ function getInitials(name: string): string {
   <div
     v-else
     class="
-      flex aspect-square size-6 items-center justify-center rounded-full border
-      border-secondary bg-tertiary text-xs font-semibold text-quaternary
+      flex aspect-square size-6 shrink-0 items-center justify-center
+      rounded-full border border-secondary bg-tertiary text-xs font-semibold
+      text-quaternary
     "
   >
     {{ getInitials(props.name) }}
