@@ -1,7 +1,7 @@
 import type { Component } from 'vue'
 import type { RouteLocationRaw } from 'vue-router'
 
-export type MainSidebarVariant = 'default' | 'icons-only'
+export type MainSidebarVariant = 'icons-only' | 'icons-with-labels'
 
 export interface DashboardSidebarNavLink {
   /**

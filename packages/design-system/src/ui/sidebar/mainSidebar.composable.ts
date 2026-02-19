@@ -13,7 +13,7 @@ const DEFAULT_SIDEBAR_WIDTH = '14rem'
 const ICONS_ONLY_SIDEBAR_WIDTH = '3.4rem'
 const isFloatingSidebarOpen = ref<boolean>(false)
 const sidebarWidth = ref<string>(DEFAULT_SIDEBAR_WIDTH)
-const variant = ref<MainSidebarVariant>('default')
+const variant = ref<MainSidebarVariant>('icons-with-labels')
 
 export function useMainSidebar() {
   const screen = useBreakpoints({

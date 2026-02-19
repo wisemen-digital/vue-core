@@ -21,7 +21,7 @@ import type { MainSidebarVariant } from '@/ui/sidebar/types/mainSidebar.type'
 const props = withDefaults(defineProps<{
   variant?: MainSidebarVariant
 }>(), {
-  variant: 'default',
+  variant: 'icons-with-labels',
 })
 
 const {

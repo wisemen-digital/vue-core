@@ -79,7 +79,7 @@ function onClick(): void {
             "
           >
             <RowLayout
-              v-if="variant === 'default'"
+              v-if="variant === 'icons-with-labels'"
               gap="md"
               justify="between"
               class="

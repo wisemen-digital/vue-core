@@ -112,7 +112,7 @@ const footerNavigation = computed<NavigationItem[]>(() => ([
     "
   >
     <MainSidebar
-      variant="default"
+      variant="icons-with-labels"
     >
       <template #header>
         <MainSidebarHeader

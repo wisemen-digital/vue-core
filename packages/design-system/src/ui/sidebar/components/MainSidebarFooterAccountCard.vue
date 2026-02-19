@@ -44,7 +44,7 @@ const {
     <template #trigger>
       <ClickableElement>
         <button
-          v-if="variant === 'default'"
+          v-if="variant === 'icons-with-labels'"
           class="
             flex w-full flex-col overflow-hidden rounded-xl border
             border-secondary bg-primary-alt p-md text-left duration-100
