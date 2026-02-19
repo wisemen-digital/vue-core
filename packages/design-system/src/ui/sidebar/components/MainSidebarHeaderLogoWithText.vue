@@ -6,6 +6,7 @@ import { useMainSidebar } from '@/ui/sidebar/mainSidebar.composable'
 
 const props = defineProps<{
   name: string
+  url: string
 }>()
 
 const {
@@ -20,7 +21,7 @@ const {
   >
     <Logo
       :name="props.name"
-      src="https://picsum.photos/300/300"
+      :src="props.url"
       alt="Logo"
       size="xs"
     />

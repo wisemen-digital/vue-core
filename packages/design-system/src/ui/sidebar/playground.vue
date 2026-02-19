@@ -19,7 +19,7 @@ import MainSidebarFooterAccountCard from '@/ui/sidebar/components/MainSidebarFoo
 import MainSidebarFooterFeaturedCard from '@/ui/sidebar/components/MainSidebarFooterFeaturedCard.vue'
 import MainSidebarFooterNavigation from '@/ui/sidebar/components/MainSidebarFooterNavigation.vue'
 import MainSidebarGlobalSearch from '@/ui/sidebar/components/MainSidebarGlobalSearch.vue'
-import MainSidebarHeader from '@/ui/sidebar/components/MainSidebarHeader.vue'
+import MainSidebarHeaderLogoWithText from '@/ui/sidebar/components/MainSidebarHeaderLogoWithText.vue'
 import MainSidebarNavigationGroup from '@/ui/sidebar/components/MainSidebarNavigationGroup.vue'
 import MainSidebarNavigationLink from '@/ui/sidebar/components/MainSidebarNavigationLink.vue'
 import MainSidebarNavigationLinkBadge from '@/ui/sidebar/components/MainSidebarNavigationLinkBadge.vue'
@@ -115,13 +115,14 @@ const footerNavigation = computed<NavigationItem[]>(() => ([
       variant="icons-with-labels"
     >
       <template #header>
-        <MainSidebarHeader
+        <MainSidebarHeaderLogoWithText
+          url="https://picsum.photos/300/300"
           name="Wisemen"
         >
           <template #right>
             <MainSidebarGlobalSearch />
           </template>
-        </MainSidebarHeader>
+        </MainSidebarHeaderLogoWithText>
       </template>
 
       <template #navigation>
