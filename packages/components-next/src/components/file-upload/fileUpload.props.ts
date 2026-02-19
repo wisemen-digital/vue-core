@@ -5,6 +5,13 @@ import type {
 import type { InteractableElement } from '@/utils/props.util'
 
 export interface FileUploadProps extends InteractableElement {
+  /*
+    * If true, the uploaded file will be publicly accessible. This typically means that the file
+    * will be uploaded with permissions that allow anyone to view or download it without authentication.
+    *
+    * @default false - The file will be uploaded with private permissions, requiring authentication for access.
+   */
+  isPublic?: boolean
   /**
    * A validator function that checks if a file is valid for upload.
    * This function is called before uploading a file to ensure that it meets the required criteria.
