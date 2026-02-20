@@ -1,5 +1,17 @@
 # @wisemen/vue-core-components
 
+## 3.0.0
+
+### Major Changes
+
+- 45082dc: Addition of start- and end date clamping to avoid complete freedom when there are restrictions with min- and max dates
+
+### Patch Changes
+
+- 546d87d: Add `isPublic` prop to FileUpload component to allow users to specify if the uploaded file should be public or private.
+  This prop will be used to set the appropriate permissions when uploading the file to the server.
+- d5d31a7: Autocomplete - fill in search term when modelvalue is passed
+
 ## 2.1.4
 
 ### Patch Changes
