@@ -1,0 +1,8 @@
+export { ViesClient } from './client/vies.client.js'
+export { ViesModule } from './vies.module.js'
+export { CountryCode } from './enums/country-code.enum.js'
+export { ViesCheckVatNumberCommand } from './commands/check-vat-number.command.js'
+export { ViesCheckVatNumberCommandBuilder } from './builders/vies-check-vat-number-command.builder.js'
+export { ViesUnavailableError } from './errors/vies-unavailable.error.js'
+export { ViesCheckVatNumberResponse } from './responses/check-vat-number.response.js'
+export { ViesCheckVatNumberResponseBuilder } from './builders/vies-check-vat-number-response.builder.js'
