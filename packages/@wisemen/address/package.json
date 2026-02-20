@@ -31,7 +31,8 @@
     "@wisemen/eslint-config-nestjs": "catalog:lint",
     "eslint": "catalog:lint",
     "expect": "catalog:test",
-    "typescript": "catalog:peer"
+    "typescript": "catalog:peer",
+    "pg": "catalog:backend"
   },
   "author": "Kobe Kwanten",
   "license": "GPL",

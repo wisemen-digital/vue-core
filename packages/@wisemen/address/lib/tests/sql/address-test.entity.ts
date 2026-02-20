@@ -7,6 +7,6 @@ export class AddressTest {
   @PrimaryColumn()
   id: number
 
-  @AddressColumn({nullable: true})
+  @AddressColumn({ nullable: true })
   address: Address | null
 }

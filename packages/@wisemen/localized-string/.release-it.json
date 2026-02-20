@@ -1,0 +1,13 @@
+{
+  "git": {
+    "tagName": "localized-string@${version}",
+    "commitMessage": "Release ${tagName}",
+    "tagAnnotation": "Release ${tagName}"
+  },
+  "npm": {
+    "publishArgs": [
+      "--access",
+      "public"
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "git": {
+    "tagName": "int-range@${version}",
+    "commitMessage": "Release ${tagName}",
+    "tagAnnotation": "Release ${tagName}"
+  },
+  "npm": {
+    "publishArgs": [
+      "--access",
+      "public"
+    ]
+  }
+}
