@@ -45,8 +45,8 @@
     "vue-router": "catalog:peer"
   },
   "dependencies": {
-    "@repo/icons": "workspace:*",
     "@tailwindcss/vite": "catalog:vite",
+    "@wisemen/vue-core-icons": "workspace:*",
     "tailwind-merge": "catalog:style",
     "tailwind-variants": "catalog:style",
     "tailwindcss": "catalog:style",

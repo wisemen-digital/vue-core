@@ -2,7 +2,7 @@
 import {
   MinusIcon,
   PlusIcon,
-} from '@repo/icons'
+} from '@wisemen/vue-core-icons'
 import {
   NumberFieldDecrement as RekaNumberFieldDecrement,
   NumberFieldIncrement as RekaNumberFieldIncrement,
