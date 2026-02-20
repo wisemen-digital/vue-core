@@ -26,7 +26,7 @@ const modelValue = defineModel<TValue>({
   required: true,
 })
 
-const searchTerm = ref<string>(props.displayFn(modelValue.value as any) || '')
+const searchTerm = ref<string>(modelValue.value ? props.displayFn(modelValue.value as any) : '')
 const isDebouncing = ref<boolean>(false)
 const delegatedItems = ref<TValue[]>(props.items)
 
