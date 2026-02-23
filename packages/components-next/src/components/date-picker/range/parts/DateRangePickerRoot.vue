@@ -26,6 +26,7 @@ const props = withDefaults(defineProps<DateRangePickerProps>(), {
   testId: null,
   maxDate: null,
   minDate: null,
+  weekStartsOn: 0,
   isDateDisabled: () => false,
   isDateUnavailable: () => false,
   isDisabled: false,
@@ -82,7 +83,9 @@ const {
   theme,
 } = injectThemeProviderContext()
 
-const locale = navigator.language
+const resolvedLocale = computed<string>(() => {
+  return props.locale ?? navigator.language
+})
 
 const dateRangePickerStyle = computed<CreateDateRangePickerStyle>(
   () => createDateRangePickerStyle({
@@ -117,7 +120,7 @@ useProvideDateRangePickerContext({
         v-slot="{ weekDays, grid }"
         v-model="delegatedModel"
         v-model:placeholder="delegatedPlaceholderValue"
-        :week-starts-on="0"
+        :week-starts-on="props.weekStartsOn"
         :prevent-deselect="!props.allowDeselect"
         :fixed-weeks="true"
         :number-of-months="props.showTwoMonths ? 2 : 1"
@@ -125,7 +128,7 @@ useProvideDateRangePickerContext({
         :is-date-unavailable="(value: DateValue) => props.isDateUnavailable(dateValueToPlainDate(value))"
         :is-date-disabled="(value: DateValue) => props.isDateDisabled(dateValueToPlainDate(value))"
         :calendar-label="props.label"
-        :locale="locale"
+        :locale="resolvedLocale"
         :initial-focus="props.focusOnMount"
         :min-value="props.minDate === null
           ? undefined

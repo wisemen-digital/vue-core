@@ -4,8 +4,8 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "3.2.0",
-  "private": true,
+  "version": "3.2.1",
+  "private": false,
   "description": "",
   "license": "MIT",
   "sideEffects": false,
@@ -30,6 +30,7 @@
     "pub:next": "pnpm publish --no-git-checks --access public --tag next",
     "cleanup": "rimraf dist/ node_modules/ .turbo/",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "test": "vitest --run",
     "typecheck": "pnpm tsc"
   },

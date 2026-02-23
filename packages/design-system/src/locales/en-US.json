@@ -1,0 +1,5 @@
+{
+  "component.number_field.decrement": "Decrement",
+  "component.number_field.increment": "Increment",
+  "component.keyboard_shortcut.sequence_label": "then"
+}

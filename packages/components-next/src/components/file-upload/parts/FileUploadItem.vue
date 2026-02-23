@@ -19,6 +19,7 @@ const props = defineProps<{
 }>()
 
 const {
+  isPublic,
   confirmUpload,
   getFileInfo,
   preprocess,
@@ -76,6 +77,14 @@ function uploadToS3(uuid: string, url: string, file: File): void {
 
   xhr.open('PUT', url, true)
   xhr.setRequestHeader('Content-Type', file.type)
+
+  if (isPublic.value) {
+    xhr.setRequestHeader('x-amz-acl', 'public-read')
+  }
+  else {
+    xhr.setRequestHeader('x-amz-acl', 'private')
+  }
+
   xhr.setRequestHeader('x-ms-blob-type', 'BlockBlob')
   xhr.send(blob)
 }

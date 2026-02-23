@@ -22,7 +22,7 @@ export default defineConfig({
       exclude: [
         'node_modules/',
         'dist/',
-        '**/*.stories.ts',
+        '**/*.story.ts',
         '**/*.spec.ts',
         '.storybook/',
       ],

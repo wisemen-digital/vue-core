@@ -1,4 +1,7 @@
-import { dirname } from 'node:path'
+import {
+  dirname,
+  resolve,
+} from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import type { StorybookConfig } from '@storybook/vue3-vite'
@@ -19,12 +22,35 @@ const config: StorybookConfig = {
     getAbsolutePath('@storybook/addon-docs'),
     getAbsolutePath('@storybook/addon-onboarding'),
   ],
-  framework: getAbsolutePath('@storybook/vue3-vite'),
+  framework: {
+    name: getAbsolutePath('@storybook/vue3-vite'),
+    options: {
+      docgen: {
+        plugin: 'vue-component-meta',
+        tsconfig: resolve(dirname(fileURLToPath(import.meta.url)), '../tsconfig.app.json') as `tsconfig${string}.json`,
+      },
+    },
+  },
   stories: [
     '../src/**/*.mdx',
-    '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)',
+    '../src/**/*.story.@(js|jsx|mjs|ts|tsx)',
 
   ],
+  viteFinal(config) {
+    const pluginName = 'storybook:vue-component-meta'
+    const plugins = config.plugins as any[]
+    const idx = plugins.findIndex((x) => x?.name === pluginName)
+
+    if (idx !== -1) {
+      const plugin = plugins[idx]
+
+      plugins.splice(idx, 1)
+
+      plugins.push(plugin)
+    }
+
+    return config
+  },
 }
 
 export default config

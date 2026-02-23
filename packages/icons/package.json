@@ -10,13 +10,14 @@
   "types": "./src/index.ts",
   "scripts": {
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
     "vue": ">=3.5.0"
   },
   "devDependencies": {
-    "@wisemen/eslint-config-vue": "catalog:lint",
+    "@wisemen/eslint-config-vue": "workspace:*",
     "typescript": "catalog:peer"
   }
 }

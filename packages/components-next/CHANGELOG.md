@@ -1,5 +1,29 @@
 # @wisemen/vue-core-components
 
+## 2.2.2
+
+### Patch Changes
+
+- 45082dc: Addition of start- and end date clamping to avoid complete freedom when there are restrictions with min- and max dates
+- 546d87d: Add `isPublic` prop to FileUpload component to allow users to specify if the uploaded file should be public or private.
+  This prop will be used to set the appropriate permissions when uploading the file to the server.
+- d5d31a7: Autocomplete - fill in search term when modelvalue is passed
+- 6f55f64: Fix default vallue null check in autocomplete
+
+## 2.1.4
+
+### Patch Changes
+
+- f5311b7: Add locale and weekStartsOn props to DateRangePicker
+
+## 2.1.3
+
+### Patch Changes
+
+- 6b01189: Refactored rendering of icon to prevent memory leak in nuxt
+- Date: fix issues where the first day of the week would be calculated incorrectly in the Calendar and DatePicker components
+- 347cf1a: Bumped dependency versions
+
 ## 2.1.1
 
 ### Patch Changes

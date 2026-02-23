@@ -4,7 +4,7 @@
     "access": "public"
   },
   "type": "module",
-  "version": "0.0.1-beta.5",
+  "version": "0.0.1",
   "license": "MIT",
   "sideEffects": false,
   "exports": {
@@ -28,6 +28,7 @@
     "pub:next": "pnpm publish --no-git-checks --access public --tag next",
     "cleanup": "rimraf dist/ node_modules/ .turbo/",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "test": "vitest --run",
     "typecheck": "pnpm tsc"
   },
