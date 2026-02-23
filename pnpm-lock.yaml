@@ -36,8 +36,8 @@ catalogs:
       version: 3.10.1
   docs:
     markdown-it:
-      specifier: 14.1.0
-      version: 14.1.0
+      specifier: 14.1.1
+      version: 14.1.1
     vitepress:
       specifier: 1.6.4
       version: 1.6.4
@@ -447,7 +447,7 @@ importers:
         version: 9.39.2(jiti@2.6.1)
       markdown-it:
         specifier: catalog:docs
-        version: 14.1.0
+        version: 14.1.1
       motion-v:
         specifier: catalog:vue
         version: 1.9.0(@vueuse/core@14.1.0(vue@3.5.27(typescript@5.9.3)))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(vue@3.5.27(typescript@5.9.3))
@@ -5471,6 +5471,10 @@ packages:
 
   markdown-it@14.1.0:
     resolution: {integrity: sha512-a54IwgWPaeBCAAsv13YgmALOF1elABB08FxO9i+r4VFk5Vl4pKokRPeX8u5TCgSsPi6ec1otfLjdOpVcgbpshg==}
+    hasBin: true
+
+  markdown-it@14.1.1:
+    resolution: {integrity: sha512-BuU2qnTti9YKgK5N+IeMubp14ZUKUUw7yeJbkjtosvHiP0AZ5c8IAgEMk79D0eC8F23r4Ac/q8cAIFdm2FtyoA==}
     hasBin: true
 
   markdown-table@3.0.4:
@@ -11806,6 +11810,15 @@ snapshots:
   markdown-it-emoji@3.0.0: {}
 
   markdown-it@14.1.0:
+    dependencies:
+      argparse: 2.0.1
+      entities: 4.5.0
+      linkify-it: 5.0.0
+      mdurl: 2.0.0
+      punycode.js: 2.3.1
+      uc.micro: 2.1.0
+
+  markdown-it@14.1.1:
     dependencies:
       argparse: 2.0.1
       entities: 4.5.0
