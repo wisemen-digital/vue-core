@@ -1,5 +1,4 @@
 /* eslint-disable unicorn/no-keyword-prefix */
-import { useQueryClient } from '@tanstack/vue-query'
 import { ok } from 'neverthrow'
 import {
   describe,
@@ -46,13 +45,9 @@ describe('createApiUtils - useMutation', () => {
     }
 
     const result = runInSetup(() => {
-      const queryClient = useQueryClient()
-
       const {
         useMutation, useQuery,
-      } = createApiUtils<MyQueryKeys>({
-        queryClient,
-      })
+      } = createApiUtils<MyQueryKeys>()
 
       // First, set up a query
       const userQuery = useQuery('userDetail', {
@@ -150,13 +145,9 @@ describe('createApiUtils - useMutation', () => {
     }
 
     const result = runInSetup(() => {
-      const queryClient = useQueryClient()
-
       const {
         useMutation,
-      } = createApiUtils<MyQueryKeys>({
-        queryClient,
-      })
+      } = createApiUtils<MyQueryKeys>()
 
       // Mutation without params
       const createMutation = useMutation<
@@ -220,13 +211,9 @@ describe('createApiUtils - useMutation', () => {
     }
 
     const result = runInSetup(() => {
-      const queryClient = useQueryClient()
-
       const {
         useMutation,
-      } = createApiUtils<MyQueryKeys>({
-        queryClient,
-      })
+      } = createApiUtils<MyQueryKeys>()
 
       const mutation = useMutation<UpdateRequest, User, void>({
         queryFn: async ({
@@ -293,13 +280,9 @@ describe('createApiUtils - useMutation', () => {
     let user2UpdateCount = 0
 
     const result = runInSetup(() => {
-      const queryClient = useQueryClient()
-
       const {
         useMutation, useQuery,
-      } = createApiUtils<MyQueryKeys>({
-        queryClient,
-      })
+      } = createApiUtils<MyQueryKeys>()
 
       // Set up two queries with different user IDs
       const user1Query = useQuery('userDetail', {
@@ -423,13 +406,9 @@ describe('createApiUtils - useMutation', () => {
     let postListUpdateCount = 0
 
     const result = runInSetup(() => {
-      const queryClient = useQueryClient()
-
       const {
         useMutation, useQuery,
-      } = createApiUtils<MyQueryKeys>({
-        queryClient,
-      })
+      } = createApiUtils<MyQueryKeys>()
 
       // Single query with void params
       const postListQuery = useQuery('postList', {
@@ -527,13 +506,9 @@ describe('createApiUtils - useMutation', () => {
     let indexSearchUpdateCount = 0
 
     const result = runInSetup(() => {
-      const queryClient = useQueryClient()
-
       const {
         useMutation, useQuery,
-      } = createApiUtils<MyQueryKeys>({
-        queryClient,
-      })
+      } = createApiUtils<MyQueryKeys>()
 
       // Set up detail query
       const contactDetailQuery = useQuery('contactDetail', {
@@ -693,13 +668,9 @@ describe('createApiUtils - useMutation', () => {
     let indexSearchOtherUpdateCount = 0
 
     const result = runInSetup(() => {
-      const queryClient = useQueryClient()
-
       const {
         useMutation, useQuery,
-      } = createApiUtils<MyQueryKeys>({
-        queryClient,
-      })
+      } = createApiUtils<MyQueryKeys>()
 
       // Query without search
       const contactIndexAllQuery = useQuery('contactIndex', {

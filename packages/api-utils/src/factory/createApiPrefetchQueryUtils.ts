@@ -1,3 +1,5 @@
+import type { QueryClient } from '@tanstack/vue-query'
+
 import { AsyncResult } from '@/async-result/asyncResult'
 import { QUERY_CONFIG } from '@/config/config'
 import type {
@@ -5,10 +7,7 @@ import type {
   QueryKeysWithEntityFromConfig,
 } from '@/types/queryKeys.type'
 
-import type {
-  ApiUsePrefetchQueryOptions,
-  CreateApiUtilsOptions,
-} from './createApiUtils.types'
+import type { ApiUsePrefetchQueryOptions } from './createApiUtils.types'
 
 export interface CreateApiPrefetchQueryUtilsReturnType<TQueryKeys extends object, TErrorCode extends string = string> {
   usePrefetchQuery: <TKey extends QueryKeysWithEntityFromConfig<TQueryKeys>>(
@@ -20,7 +19,7 @@ export interface CreateApiPrefetchQueryUtilsReturnType<TQueryKeys extends object
 }
 
 export function createApiPrefetchQueryUtils<TQueryKeys extends object, TErrorCode extends string = string>(
-  options: CreateApiUtilsOptions,
+  queryClient: QueryClient,
 ): CreateApiPrefetchQueryUtilsReturnType<TQueryKeys, TErrorCode> {
   function usePrefetchQuery<TKey extends QueryKeysWithEntityFromConfig<TQueryKeys>>(
     key: TKey,
@@ -35,7 +34,7 @@ export function createApiPrefetchQueryUtils<TQueryKeys extends object, TErrorCod
     ] as const
 
     async function execute(): Promise<void> {
-      await options.queryClient.prefetchQuery({
+      await queryClient.prefetchQuery({
         staleTime: queryOptions.staleTime ?? QUERY_CONFIG.prefetchStaleTime,
         queryFn: async () => {
           return AsyncResult.fromResult(await queryOptions.queryFn())

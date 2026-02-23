@@ -1,5 +1,4 @@
 /* eslint-disable ts/no-empty-object-type */
-import type { QueryClient } from '@tanstack/vue-query'
 import type { MaybeRef } from 'vue'
 
 import type { UseMutationReturnType } from '@/composables/mutation/mutation.composable'
@@ -16,10 +15,6 @@ import type {
   QueryKeyRawParamsFromConfig,
   QueryKeysWithEntityFromConfig,
 } from '@/types/queryKeys.type'
-
-export interface CreateApiUtilsOptions {
-  queryClient: QueryClient
-}
 
 /**
  * Helper type to build the invalidation config for a specific query key

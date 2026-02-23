@@ -1,4 +1,3 @@
-import { useQueryClient } from '@tanstack/vue-query'
 import { ok } from 'neverthrow'
 import {
   describe,
@@ -50,13 +49,9 @@ describe('createApiUtils - usePrefetchQuery', () => {
     })
 
     const setup = runInSetup(() => {
-      const queryClient = useQueryClient()
-
       const {
         usePrefetchQuery, useQuery,
-      } = createApiUtils<MyQueryKeys>({
-        queryClient,
-      })
+      } = createApiUtils<MyQueryKeys>()
 
       return {
         prefetch: usePrefetchQuery('userDetail', {

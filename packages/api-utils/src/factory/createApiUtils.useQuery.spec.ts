@@ -1,4 +1,3 @@
-import { useQueryClient } from '@tanstack/vue-query'
 import { ok } from 'neverthrow'
 import {
   describe,
@@ -37,13 +36,9 @@ describe('createApiUtils - useQuery', () => {
     }
 
     const query = runInSetup(() => {
-      const queryClient = useQueryClient()
-
       const {
         useQuery,
-      } = createApiUtils<MyQueryKeys>({
-        queryClient,
-      })
+      } = createApiUtils<MyQueryKeys>()
 
       return useQuery('userDetail', {
         params: {
@@ -105,13 +100,9 @@ describe('createApiUtils - useQuery', () => {
     }
 
     const query = runInSetup(() => {
-      const queryClient = useQueryClient()
-
       const {
         useOptimisticUpdates, useQuery,
-      } = createApiUtils<MyQueryKeys>({
-        queryClient,
-      })
+      } = createApiUtils<MyQueryKeys>()
 
       return {
         query: useQuery('userIndex', {

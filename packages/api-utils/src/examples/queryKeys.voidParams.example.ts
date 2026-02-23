@@ -13,6 +13,7 @@ import { QueryClient } from '@tanstack/vue-query'
 import { ok } from 'neverthrow'
 import { computed } from 'vue'
 
+import { initializeApiUtils } from '@/config/config'
 import { createApiUtils } from '@/index'
 
 interface Post {
@@ -73,9 +74,9 @@ interface MyQueryKeys {
 
 const queryClient = new QueryClient()
 
-export const apiUtils = createApiUtils<MyQueryKeys>({
-  queryClient,
-})
+initializeApiUtils(queryClient)
+
+export const apiUtils = createApiUtils<MyQueryKeys>()
 
 export function exampleVoidParams(): void {
   const {
@@ -122,9 +123,7 @@ export function exampleVoidParams(): void {
 }
 
 export function exampleInfiniteQueryVoidParams(): void {
-  const postApiUtils = createApiUtils<MyQueryKeys>({
-    queryClient,
-  })
+  const postApiUtils = createApiUtils<MyQueryKeys>()
 
   // This should work - infinite query without params
   postApiUtils.useOffsetInfiniteQuery('postList', {

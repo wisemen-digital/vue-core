@@ -8,6 +8,7 @@ import { QueryClient } from '@tanstack/vue-query'
 import { ok } from 'neverthrow'
 import { computed } from 'vue'
 
+import { initializeApiUtils } from '@/config/config'
 import { createApiUtils } from '@/index'
 
 type UserUuid = string
@@ -30,9 +31,9 @@ interface MyQueryKeys {
 
 const queryClient = new QueryClient()
 
-export const apiUtils = createApiUtils<MyQueryKeys>({
-  queryClient,
-})
+initializeApiUtils(queryClient)
+
+export const apiUtils = createApiUtils<MyQueryKeys>()
 
 export function exampleOptimisticUpdate(): void {
   const optimisticUpdates = apiUtils.useOptimisticUpdates()

@@ -1,5 +1,6 @@
 import { QueryClient } from '@tanstack/vue-query'
 
+import { initializeApiUtils } from '@/config/config'
 import { createApiUtils } from '@/factory/createApiUtils'
 
 import type { OptimisticUpdates } from './optimisticUpdates'
@@ -55,11 +56,12 @@ export function createTestSetup(): {
       },
     },
   })
+
+  initializeApiUtils(queryClient)
+
   const {
     useOptimisticUpdates,
-  } = createApiUtils<TestQueryKeys>({
-    queryClient,
-  })
+  } = createApiUtils<TestQueryKeys>()
 
   const optimisticUpdates = useOptimisticUpdates()
 

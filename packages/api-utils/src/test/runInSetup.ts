@@ -11,6 +11,8 @@ import {
   h,
 } from 'vue'
 
+import { initializeApiUtils } from '@/config/config'
+
 let tempApp: ReturnType<typeof createApp> | null = null
 let testContainer: HTMLElement | null = null
 let queryClient: QueryClient | null = null
@@ -52,6 +54,8 @@ export function runInSetup<T>(composable: () => T): T {
       },
     },
   })
+
+  initializeApiUtils(queryClient)
 
   tempApp = createApp(TestComponent)
   tempApp.use(VueQueryPlugin, {

@@ -1,14 +1,16 @@
 /**
- * Example usage of AsyncResult with useQuery
+ * Example usage of AsyncResult with useQuery via createApiUtils
  *
  * This file demonstrates how to use the AsyncResult pattern
  * for type-safe handling of loading, success, and error states.
  */
 
+import { QueryClient } from '@tanstack/vue-query'
 import { ok } from 'neverthrow'
 import { computed } from 'vue'
 
-import { useQuery } from '@/composables/query/query.composable'
+import { initializeApiUtils } from '@/config/config'
+import { createApiUtils } from '@/factory/createApiUtils'
 import type { ApiResult } from '@/types/apiError.type'
 
 interface User {
@@ -16,6 +18,18 @@ interface User {
   name: string
   email: string
 }
+
+interface MyQueryKeys {
+  user: {
+    entity: User
+  }
+}
+
+const queryClient = new QueryClient()
+
+initializeApiUtils(queryClient)
+
+const apiUtils = createApiUtils<MyQueryKeys>()
 
 // Simulated API call - in real usage this returns ApiResult<User>
 async function fetchUser(id: string): Promise<ApiResult<User>> {
@@ -32,11 +46,10 @@ async function fetchUser(id: string): Promise<ApiResult<User>> {
  * Example 1: Pattern matching - handles all 3 states exhaustively
  */
 function examplePatternMatching(): void {
-  const query = useQuery<User>({
+  const query = apiUtils.useQuery('user', {
     queryFn: () => {
       return fetchUser('123')
     },
-    queryKey: {},
   })
 
   // Pattern matching gives you exhaustive handling of all states
@@ -55,11 +68,10 @@ function examplePatternMatching(): void {
  * Example 2: Individual state checks
  */
 function exampleStateChecks(): void {
-  const query = useQuery<User>({
+  const query = apiUtils.useQuery('user', {
     queryFn: () => {
       return fetchUser('123')
     },
-    queryKey: {},
   })
 
   // Check loading state
@@ -92,11 +104,10 @@ function exampleStateChecks(): void {
  * Example 3: Using unwrapOr for default values
  */
 function exampleUnwrapOr(): void {
-  const query = useQuery<User>({
+  const query = apiUtils.useQuery('user', {
     queryFn: () => {
       return fetchUser('123')
     },
-    queryKey: {},
   })
 
   // Get user with fallback - never null
@@ -114,11 +125,10 @@ function exampleUnwrapOr(): void {
  * Example 4: Transforming results with map
  */
 function exampleMap(): void {
-  const query = useQuery<User>({
+  const query = apiUtils.useQuery('user', {
     queryFn: () => {
       return fetchUser('123')
     },
-    queryKey: {},
   })
 
   // Transform the success value
@@ -139,11 +149,10 @@ function exampleMap(): void {
  * Example 5: Accessing the underlying neverthrow Result
  */
 function exampleGetResult(): void {
-  const query = useQuery<User>({
+  const query = apiUtils.useQuery('user', {
     queryFn: () => {
       return fetchUser('123')
     },
-    queryKey: {},
   })
 
   // Get the underlying neverthrow Result (null if loading)

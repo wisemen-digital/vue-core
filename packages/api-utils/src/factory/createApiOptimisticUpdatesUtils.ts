@@ -1,6 +1,6 @@
-import { OptimisticUpdates } from '@/utils/optimisticUpdates'
+import type { QueryClient } from '@tanstack/vue-query'
 
-import type { CreateApiUtilsOptions } from './createApiUtils.types'
+import { OptimisticUpdates } from '@/utils/optimisticUpdates'
 
 export interface CreateApiOptimisticUpdatesUtilsReturnType<
   TQueryKeys extends object,
@@ -9,10 +9,10 @@ export interface CreateApiOptimisticUpdatesUtilsReturnType<
 }
 
 export function createApiOptimisticUpdatesUtils<TQueryKeys extends object>(
-  options: CreateApiUtilsOptions,
+  queryClient: QueryClient,
 ): CreateApiOptimisticUpdatesUtilsReturnType<TQueryKeys> {
   function useOptimisticUpdates(): OptimisticUpdates<TQueryKeys> {
-    return new OptimisticUpdates<TQueryKeys>(options.queryClient)
+    return new OptimisticUpdates<TQueryKeys>(queryClient)
   }
 
   return {

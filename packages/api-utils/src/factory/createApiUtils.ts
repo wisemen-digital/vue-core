@@ -1,10 +1,13 @@
+import type { QueryClient } from '@tanstack/vue-query'
+
+import { getQueryClient } from '@/config/config'
+
 import { createApiInfiniteQueryUtils } from './createApiInfiniteQueryUtils'
 import { createApiMutationUtils } from './createApiMutationUtils'
 import { createApiOptimisticUpdatesUtils } from './createApiOptimisticUpdatesUtils'
 import { createApiPrefetchInfiniteQueryUtils } from './createApiPrefetchInfiniteQueryUtils'
 import { createApiPrefetchQueryUtils } from './createApiPrefetchQueryUtils'
 import { createApiQueryUtils } from './createApiQueryUtils'
-import type { CreateApiUtilsOptions } from './createApiUtils.types'
 
 export type { CreateApiInfiniteQueryUtilsReturnType } from './createApiInfiniteQueryUtils'
 export { createApiInfiniteQueryUtils } from './createApiInfiniteQueryUtils'
@@ -18,7 +21,6 @@ export type { CreateApiPrefetchQueryUtilsReturnType } from './createApiPrefetchQ
 export { createApiPrefetchQueryUtils } from './createApiPrefetchQueryUtils'
 export type { CreateApiQueryUtilsReturnType } from './createApiQueryUtils'
 export { createApiQueryUtils } from './createApiQueryUtils'
-export type { CreateApiUtilsOptions } from './createApiUtils.types'
 
 export type CreateApiUtilsReturnType<TQueryKeys extends object, TErrorCode extends string = string> = ReturnType<
   typeof createApiQueryUtils<TQueryKeys, TErrorCode>
@@ -31,17 +33,27 @@ export type CreateApiUtilsReturnType<TQueryKeys extends object, TErrorCode exten
 
 /**
  * Factory that creates typed composables based on a user-provided query-keys config.
- * This is an alternative to module augmentation of `QueryKeys`.
+ *
+ * Requires `initializeApiUtils(queryClient)` to be called first.
+ *
+ * @example
+ * ```typescript
+ * // In app setup (plugin or main.ts):
+ * initializeApiUtils(queryClient)
+ *
+ * // In your api lib:
+ * export const { useQuery, useMutation, useOptimisticUpdates } = createApiUtils<MyQueryKeys>()
+ * ```
  */
-export function createApiUtils<TQueryKeys extends object, TErrorCode extends string = string>(
-  options: CreateApiUtilsOptions,
-): CreateApiUtilsReturnType<TQueryKeys, TErrorCode> {
+export function createApiUtils<TQueryKeys extends object, TErrorCode extends string = string>(): CreateApiUtilsReturnType<TQueryKeys, TErrorCode> {
+  const queryClient: QueryClient = getQueryClient()
+
   return {
     ...createApiQueryUtils<TQueryKeys, TErrorCode>(),
-    ...createApiPrefetchQueryUtils<TQueryKeys, TErrorCode>(options),
-    ...createApiPrefetchInfiniteQueryUtils<TQueryKeys, TErrorCode>(options),
+    ...createApiPrefetchQueryUtils<TQueryKeys, TErrorCode>(queryClient),
+    ...createApiPrefetchInfiniteQueryUtils<TQueryKeys, TErrorCode>(queryClient),
     ...createApiInfiniteQueryUtils<TQueryKeys, TErrorCode>(),
     ...createApiMutationUtils<TQueryKeys, TErrorCode>(),
-    ...createApiOptimisticUpdatesUtils<TQueryKeys>(options),
+    ...createApiOptimisticUpdatesUtils<TQueryKeys>(queryClient),
   }
 }

@@ -1,7 +1,6 @@
 /* eslint-disable test/no-conditional-expect */
 /* eslint-disable test/no-conditional-in-test */
 
-import { useQueryClient } from '@tanstack/vue-query'
 import { ok } from 'neverthrow'
 import {
   describe,
@@ -50,13 +49,9 @@ describe('createApiUtils - infinite queries', () => {
     }))
 
     const setup = runInSetup(() => {
-      const queryClient = useQueryClient()
-
       const {
         useOffsetInfiniteQuery, useOptimisticUpdates,
-      } = createApiUtils<MyQueryKeys>({
-        queryClient,
-      })
+      } = createApiUtils<MyQueryKeys>()
 
       return {
         optimisticUpdates: useOptimisticUpdates(),
@@ -144,13 +139,9 @@ describe('createApiUtils - infinite queries', () => {
     }))
 
     const setup = runInSetup(() => {
-      const queryClient = useQueryClient()
-
       const {
         useKeysetInfiniteQuery, useOptimisticUpdates,
-      } = createApiUtils<MyQueryKeys>({
-        queryClient,
-      })
+      } = createApiUtils<MyQueryKeys>()
 
       return {
         optimisticUpdates: useOptimisticUpdates(),

@@ -10,14 +10,6 @@ import type {
   ApiError,
   ApiResult,
 } from '@/types/apiError.type'
-import type { QueryKeys } from '@/types/queryKeys.type'
-
-type NonOptionalKeys<T> = {
-  [K in keyof T]-?: T[K]
-}
-
-// Helper to extract params from QueryKeys (backwards compatible)
-type ExtractParams<T> = T extends { params: infer P } ? P : T
 
 export interface UseQueryOptions<TResData, TErrorCode extends string = string> {
   /**
@@ -46,13 +38,7 @@ export interface UseQueryOptions<TResData, TErrorCode extends string = string> {
   /**
    * Query key associated with the query
    */
-  queryKey: {
-    [TQueryKey in keyof QueryKeys]?: {
-      [TQueryKeyParam in keyof NonOptionalKeys<ExtractParams<QueryKeys[TQueryKey]>>]: MaybeRef<
-        ExtractParams<QueryKeys[TQueryKey]>[TQueryKeyParam]
-      >
-    }
-  }
+  queryKey: Record<string, unknown>
 }
 
 export interface UseQueryReturnType<TResData, TErrorCode extends string = string> {

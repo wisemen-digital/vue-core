@@ -10,14 +10,6 @@ import type {
   KeysetPaginationResponse,
   KeysetPaginationResult,
 } from '@/types/pagination.type'
-import type { QueryKeys } from '@/types/queryKeys.type'
-
-type NonOptionalKeys<T> = {
-  [K in keyof T]-?: T[K]
-}
-
-// Helper to extract params from QueryKeys (backwards compatible)
-type ExtractParams<T> = T extends { params: infer P } ? P : T
 
 export interface KeysetInfiniteQueryOptions<TData, TErrorCode extends string = string> {
   /**
@@ -45,13 +37,7 @@ export interface KeysetInfiniteQueryOptions<TData, TErrorCode extends string = s
   /**
    * Query key associated with the query
    */
-  queryKey: {
-    [TQueryKey in keyof QueryKeys]?: {
-      [TQueryKeyParam in keyof NonOptionalKeys<ExtractParams<QueryKeys[TQueryKey]>>]: MaybeRef<
-        ExtractParams<QueryKeys[TQueryKey]>[TQueryKeyParam]
-      >
-    }
-  }
+  queryKey: Record<string, unknown>
 }
 
 const DEFAULT_LIMIT = QUERY_CONFIG.limit

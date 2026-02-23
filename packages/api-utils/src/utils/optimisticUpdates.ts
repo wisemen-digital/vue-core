@@ -8,7 +8,6 @@ import { AsyncResult } from '@/async-result/asyncResult'
 import type {
   QueryKeyEntityFromConfig,
   QueryKeyRawParamsFromConfig,
-  QueryKeys,
   QueryKeysWithEntityFromConfig,
 } from '@/types/queryKeys.type'
 
@@ -44,7 +43,7 @@ type QueryKeyOrTupleFromConfig<
 /**
  * OptimisticUpdates utility class for type-safe optimistic updates
  */
-export class OptimisticUpdates<TQueryKeys extends object = QueryKeys> {
+export class OptimisticUpdates<TQueryKeys extends object> {
   constructor(private readonly queryClient: QueryClient) {}
 
   /**
@@ -439,11 +438,4 @@ export class OptimisticUpdates<TQueryKeys extends object = QueryKeys> {
       this.queryClient.setQueryData(query.queryKey, wrappedData)
     }
   }
-}
-
-/**
- * Create an OptimisticUpdates instance
- */
-export function createOptimisticUpdates(queryClient: QueryClient): OptimisticUpdates {
-  return new OptimisticUpdates(queryClient)
 }

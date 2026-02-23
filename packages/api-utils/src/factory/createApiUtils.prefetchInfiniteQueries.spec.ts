@@ -1,6 +1,5 @@
 /* eslint-disable test/no-conditional-expect */
 /* eslint-disable test/no-conditional-in-test */
-import { useQueryClient } from '@tanstack/vue-query'
 import { ok } from 'neverthrow'
 import {
   describe,
@@ -60,13 +59,9 @@ describe('createApiUtils - prefetch infinite queries', () => {
     })
 
     const setup = runInSetup(() => {
-      const queryClient = useQueryClient()
-
       const {
         useOffsetInfiniteQuery, usePrefetchOffsetInfiniteQuery,
-      } = createApiUtils<MyQueryKeys>({
-        queryClient,
-      })
+      } = createApiUtils<MyQueryKeys>()
 
       return {
         prefetch: usePrefetchOffsetInfiniteQuery('userIndex', {
@@ -155,13 +150,9 @@ describe('createApiUtils - prefetch infinite queries', () => {
     })
 
     const setup = runInSetup(() => {
-      const queryClient = useQueryClient()
-
       const {
         useKeysetInfiniteQuery, usePrefetchKeysetInfiniteQuery,
-      } = createApiUtils<MyQueryKeys>({
-        queryClient,
-      })
+      } = createApiUtils<MyQueryKeys>()
 
       return {
         prefetch: usePrefetchKeysetInfiniteQuery('userIndex', {
