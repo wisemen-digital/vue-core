@@ -4,7 +4,6 @@ import {
   expect,
   it,
 } from 'vitest'
-import { ref } from 'vue'
 
 import type {
   Product,
@@ -41,12 +40,11 @@ describe('optimisticUpdates - update', () => {
 
       // Update the user (id from value)
       setup.optimisticUpdates.update(queryKey, {
-        by: {
-          id: '123',
-        },
-        value: {
+        by: (user) => user.id === '123',
+        value: (user) => ({
+          ...user,
           name: 'Jane Doe',
-        },
+        }),
       })
 
       // Get updated data
@@ -77,12 +75,11 @@ describe('optimisticUpdates - update', () => {
       setup.optimisticUpdates.set(queryKey, userData)
 
       setup.optimisticUpdates.update('userDetail', {
-        by: {
-          uuid: 'abc-123',
-        },
-        value: {
+        by: (user) => user.uuid === 'abc-123',
+        value: (user) => ({
+          ...user,
           email: 'jane@example.com',
-        },
+        }),
       })
 
       const updatedData = setup.optimisticUpdates.get(queryKey)
@@ -113,9 +110,10 @@ describe('optimisticUpdates - update', () => {
 
       setup.optimisticUpdates.update('userDetail', {
         by: (user) => user.email === 'john@example.com',
-        value: {
+        value: (user) => ({
+          ...user,
           isActive: false,
-        },
+        }),
       })
 
       const updatedData = setup.optimisticUpdates.get(queryKey)
@@ -145,12 +143,11 @@ describe('optimisticUpdates - update', () => {
       setup.optimisticUpdates.set(queryKey, userData)
 
       setup.optimisticUpdates.update('userDetail', {
-        by: {
-          id: '999',
-        },
-        value: {
+        by: (user) => user.id === '999',
+        value: (user) => ({
+          ...user,
           name: 'Jane Doe',
-        },
+        }),
       })
 
       const updatedData = setup.optimisticUpdates.get(queryKey)
@@ -158,7 +155,7 @@ describe('optimisticUpdates - update', () => {
       expect(updatedData).toEqual(userData)
     })
 
-    it('should handle Vue refs in match value', () => {
+    it('should handle matching by id', () => {
       const userData: User = {
         id: '123',
         uuid: 'abc-123',
@@ -176,22 +173,14 @@ describe('optimisticUpdates - update', () => {
 
       setup.optimisticUpdates.set(queryKey, userData)
 
-      const idRef = ref<string>('123')
+      const targetId = '123'
 
       setup.optimisticUpdates.update('userDetail', {
-        by: {
-          id: idRef.value,
-        },
-        value: {
+        by: (user) => user.id === targetId,
+        value: (user) => ({
+          ...user,
           name: 'Jane Doe',
-        },
-      })
-
-      setup.optimisticUpdates.update('userDetail', {
-        by: (user) => user.id === idRef.value,
-        value: {
-          name: 'Jane Doe',
-        },
+        }),
       })
 
       const updatedData = setup.optimisticUpdates.get(queryKey)
@@ -218,13 +207,11 @@ describe('optimisticUpdates - update', () => {
       setup.optimisticUpdates.set(queryKey, userData)
 
       setup.optimisticUpdates.update('userDetail', {
-        by: {
-          id: '123',
-          uuid: 'abc-123',
-        },
-        value: {
+        by: (user) => user.id === '123' && user.uuid === 'abc-123',
+        value: (user) => ({
+          ...user,
           name: 'Jane Doe',
-        },
+        }),
       })
 
       const updatedData = setup.optimisticUpdates.get(queryKey)
@@ -262,12 +249,11 @@ describe('optimisticUpdates - update', () => {
       setup.optimisticUpdates.set(queryKey, users)
 
       setup.optimisticUpdates.update('userList', {
-        by: {
-          id: '2',
-        },
-        value: {
+        by: (user) => user.id === '2',
+        value: (user) => ({
+          ...user,
           name: 'Jane Smith',
-        },
+        }),
       })
 
       const updatedData = setup.optimisticUpdates.get(queryKey)
@@ -311,12 +297,11 @@ describe('optimisticUpdates - update', () => {
       setup.optimisticUpdates.set(queryKey, products)
 
       setup.optimisticUpdates.update('productList', {
-        by: {
-          sku: 'PROD-002',
-        },
-        value: {
+        by: (product) => product.sku === 'PROD-002',
+        value: (product) => ({
+          ...product,
           price: 39,
-        },
+        }),
       })
 
       const updatedData = setup.optimisticUpdates.get(queryKey)
@@ -369,9 +354,10 @@ describe('optimisticUpdates - update', () => {
 
       setup.optimisticUpdates.update('productList', {
         by: (product) => product.category === 'electronics',
-        value: {
+        value: (product) => ({
+          ...product,
           inStock: false,
-        },
+        }),
       })
 
       const updatedData = setup.optimisticUpdates.get(queryKey)
@@ -410,12 +396,11 @@ describe('optimisticUpdates - update', () => {
       setup.optimisticUpdates.set(queryKey, users)
 
       setup.optimisticUpdates.update('userList', {
-        by: {
-          id: '999',
-        },
-        value: {
+        by: (user) => user.id === '999',
+        value: (user) => ({
+          ...user,
           name: 'Jane Doe',
-        },
+        }),
       })
 
       const updatedData = setup.optimisticUpdates.get(queryKey)
@@ -461,12 +446,11 @@ describe('optimisticUpdates - update', () => {
 
       // Update all userDetail queries
       setup.optimisticUpdates.update('userDetail', {
-        by: {
-          id: '123',
-        },
-        value: {
+        by: (user) => user.id === '123',
+        value: (user) => ({
+          ...user,
           name: 'Updated Name',
-        },
+        }),
       })
 
       const updatedData1 = setup.optimisticUpdates.get(queryKey1)
@@ -490,10 +474,11 @@ describe('optimisticUpdates - update', () => {
 
       expect(() => {
         setup.optimisticUpdates.update('userDetail', {
-          value: {
-            id: '123',
+          by: (user) => user.id === '123',
+          value: (user) => ({
+            ...user,
             name: 'John Doe',
-          },
+          }),
         })
       }).not.toThrowError()
     })
@@ -501,10 +486,11 @@ describe('optimisticUpdates - update', () => {
     it('should handle undefined data gracefully', () => {
       expect(() => {
         setup.optimisticUpdates.update('userDetail', {
-          value: {
-            id: '123',
+          by: (user) => user.id === '123',
+          value: (user) => ({
+            ...user,
             name: 'John Doe',
-          },
+          }),
         })
       }).not.toThrowError()
     })
@@ -520,10 +506,11 @@ describe('optimisticUpdates - update', () => {
       setup.optimisticUpdates.set(queryKey, [])
 
       setup.optimisticUpdates.update('userList', {
-        value: {
-          id: '123',
+        by: (user) => user.id === '123',
+        value: (user) => ({
+          ...user,
           name: 'John Doe',
-        },
+        }),
       })
 
       const updatedData = setup.optimisticUpdates.get(queryKey)
@@ -570,9 +557,10 @@ describe('optimisticUpdates - update', () => {
       // Update all 'userDetail' queries using single key format
       setup.optimisticUpdates.update('userDetail', {
         by: () => true, // Match all items
-        value: {
+        value: (user) => ({
+          ...user,
           isActive: false,
-        },
+        }),
       })
 
       // Both queries should be updated
@@ -632,9 +620,10 @@ describe('optimisticUpdates - update', () => {
       // Update all 'userList' queries where name === 'John'
       setup.optimisticUpdates.update('userList', {
         by: (user: User) => user.name === 'John',
-        value: {
+        value: (user: User) => ({
+          ...user,
           isActive: false,
-        },
+        }),
       })
 
       const updated1 = setup.optimisticUpdates.get([

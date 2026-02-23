@@ -164,13 +164,12 @@ describe('createApiUtils - useQuery', () => {
     })
 
     query.updated.update('userIndex', {
-      by: {
-        id: '123',
-      },
-      value: {
+      by: (user) => user.id === '123',
+      value: (user) => ({
+        ...user,
         name: 'Jane Doe',
         email: 'jane@example.com',
-      },
+      }),
     })
 
     query.query.result.value.match({
@@ -189,9 +188,10 @@ describe('createApiUtils - useQuery', () => {
 
     query.updated.update('userIndex', {
       by: (user) => user.email.endsWith('@example.com'),
-      value: {
+      value: (user) => ({
+        ...user,
         name: 'example user',
-      },
+      }),
     })
 
     query.query.result.value.match({

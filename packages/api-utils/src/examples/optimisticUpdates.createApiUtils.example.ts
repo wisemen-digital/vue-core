@@ -54,13 +54,12 @@ export function exampleOptimisticUpdate(): void {
   })
 
   optimisticUpdates.update('userDetail', {
-    by: {
-      id: '123e4567-e89b-12d3-a456-426614174000',
-    },
-    value: {
+    by: (user) => user.id === '123e4567-e89b-12d3-a456-426614174000',
+    value: (user) => ({
+      ...user,
       name: 'Jane Doe',
       email: 'jane@example.com',
-    },
+    }),
   })
 
   const user = optimisticUpdates.get([

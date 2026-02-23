@@ -29,6 +29,7 @@ You have two options:
 ### Recommended: type-only (no module augmentation)
 
 ```typescript
+import { QueryClient } from '@tanstack/vue-query'
 import { createApiUtils } from '@wisemen/vue-core-api-utils'
 
 type ContactUuid = string
@@ -44,26 +45,13 @@ interface MyQueryKeys {
   }
 }
 
+const queryClient = new QueryClient()
+
 export const {
   useOptimisticUpdates,
-} = createApiUtils<MyQueryKeys>()
-```
-
-### Alternative: config-based
-
-```typescript
-import { createApiUtils, defineQueryKeys } from '@wisemen/vue-core-api-utils'
-
-export const queryKeys = defineQueryKeys({
-  contactDetail: {
-    entity: {} as Contact,
-    params: { contactUuid: '' as ContactUuid },
-  },
+} = createApiUtils<MyQueryKeys>({
+  queryClient,
 })
-
-export const {
-  useOptimisticUpdates,
-} = createApiUtils({ queryKeys })
 ```
 
 ### Legacy: module augmentation

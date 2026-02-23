@@ -7,12 +7,12 @@ Type-safe optimistic updates for the api-utils package.
 You have two options:
 
 1) **Recommended**: type-only `createApiUtils<MyQueryKeys>()` (no module augmentation, no runtime config)
-2) **Alternative**: config-based `createApiUtils({ queryKeys })`
-3) **Legacy**: module augmentation of `QueryKeys`
+2) **Legacy**: module augmentation of `QueryKeys`
 
 ### Recommended: createApiUtils (type-only)
 
 ```typescript
+import { QueryClient } from '@tanstack/vue-query'
 import { createApiUtils } from '@wisemen/vue-core-api-utils'
 
 type UserUuid = string
@@ -41,29 +41,13 @@ interface MyQueryKeys {
   }
 }
 
+const queryClient = new QueryClient()
+
 export const {
   useOptimisticUpdates,
-} = createApiUtils<MyQueryKeys>()
-```
-
-### Alternative: createApiUtils + defineQueryKeys
-
-If you prefer config-based inference (e.g. to reuse the same config for other helpers later),
-you can still do this:
-
-```typescript
-import { createApiUtils, defineQueryKeys } from '@wisemen/vue-core-api-utils'
-
-export const queryKeys = defineQueryKeys({
-  userDetail: {
-    entity: {} as User,
-    params: { userUuid: '' as UserUuid },
-  },
+} = createApiUtils<MyQueryKeys>({
+  queryClient,
 })
-
-export const {
-  useOptimisticUpdates,
-} = createApiUtils({ queryKeys })
 ```
 
 ### Legacy: module augmentation
@@ -124,60 +108,57 @@ const optimisticUpdates = createOptimisticUpdates(queryClient)
 
 ### Update a single entity
 
+Both `by` and `value` are functions that receive the current item:
+- `by` returns a boolean indicating whether the item should be updated
+- `value` returns the new item
+
 ```typescript
-// Update by ID (from value)
+// Update by ID
 optimisticUpdates.update('userDetail', {
-  value: { 
-    id: '123',
+  by: (user) => user.id === '123',
+  value: (user) => ({ 
+    ...user,
     name: 'John Doe', 
-    email: 'john@example.com' 
-  }
+    email: 'john@example.com',
+  }),
 })
 
-// Update by custom field using key-value matching
+// Update by custom field
 optimisticUpdates.update('userDetail', {
-  value: { name: 'John Doe' },
-  by: { uuid: 'abc-123-def' }
+  by: (user) => user.uuid === 'abc-123-def',
+  value: (user) => ({ ...user, name: 'John Doe' }),
 })
 
 // Update by multiple fields (all must match)
 optimisticUpdates.update('userDetail', {
-  value: { isActive: false },
-  by: { 
-    id: '123',
-    uuid: 'abc-123'
-  }
-})
-
-// Update using a predicate function
-optimisticUpdates.update('userDetail', {
-  value: { name: 'John Doe' },
-  by: (user) => user.email === 'john@example.com'
+  by: (user) => user.id === '123' && user.uuid === 'abc-123',
+  value: (user) => ({ ...user, isActive: false }),
 })
 ```
 
 ### Update items in a list
 
 ```typescript
-// Update by ID (from value)
+// Update a specific item by ID
 optimisticUpdates.update('productList', {
-  value: { 
-    id: '456',
+  by: (product) => product.id === '456',
+  value: (product) => ({ 
+    ...product,
     price: 99.99, 
-    inStock: true 
-  }
+    inStock: true,
+  }),
 })
 
-// Update using a custom key
+// Update a specific item by custom key
 optimisticUpdates.update('productList', {
-  value: { price: 99.99 },
-  by: { sku: 'PROD-123' }
+  by: (product) => product.sku === 'PROD-123',
+  value: (product) => ({ ...product, price: 99.99 }),
 })
 
-// Update using a predicate function
+// Update all items matching a condition
 optimisticUpdates.update('productList', {
-  value: { isActive: false },
-  by: (product) => product.category === 'electronics'
+  by: (product) => product.category === 'electronics',
+  value: (product) => ({ ...product, inStock: false }),
 })
 ```
 
@@ -200,59 +181,9 @@ await optimisticUpdates.invalidate(['userDetail', {
 The system is fully type-safe:
 
 - ✅ Only keys with `entity` types can be used
-- ✅ The `value` parameter must match the entity type
-- ✅ The `by` parameter accepts:
-  - A predicate function `(entity) => boolean`
-  - A key-value object `{ key: value }` for matching
-  - Undefined (defaults to matching by `id` from the value)
-- ✅ When using key-value matching, keys must be valid properties of the entity
-- ✅ Predicate functions receive the correct entity type
-
-## Matching Behavior
-
-### Default (no `by` parameter)
-When `by` is omitted, the system looks for an `id` property in the `value` and matches entities with that ID.
-
-```typescript
-// Will match entities where entity.id === '123'
-optimisticUpdates.update('userDetail', {
-  value: { 
-    id: '123',
-    name: 'John Doe' 
-  }
-})
-```
-
-### Key-Value Matching
-Provide an object with one or more key-value pairs. All pairs must match for an entity to be updated.
-
-```typescript
-// Will match entities where entity.uuid === 'abc-123'
-optimisticUpdates.update('userDetail', {
-  value: { name: 'John Doe' },
-  by: { uuid: 'abc-123' }
-})
-
-// Will match entities where BOTH conditions are true
-optimisticUpdates.update('userDetail', {
-  value: { name: 'John Doe' },
-  by: { 
-    id: '123',
-    email: 'john@example.com' 
-  }
-})
-```
-
-### Predicate Function
-Provide a function that receives the entity and returns `true` if it should be updated.
-
-```typescript
-// Will match entities where the function returns true
-optimisticUpdates.update('userList', {
-  value: { isActive: false },
-  by: (user) => user.role === 'admin' && user.createdAt < someDate
-})
-```
+- ✅ `by` is a predicate function `(item) => boolean` — receives the correctly typed entity
+- ✅ `value` is an updater function `(item) => item` — must return the full entity type
+- ✅ For array entities, both functions receive the array item type
 
 ## Notes
 
@@ -262,13 +193,6 @@ I chose `params` instead of `key` for the query parameters because:
 - It's more descriptive of what it contains (the query parameters)
 - It avoids confusion with the query key itself
 - It clearly separates concerns: `params` for query parameters, `entity` for the data type
-
-Alternative naming suggestions:
-- `parameters` / `entity` (more verbose but very clear)
-- `args` / `entity` (shorter)
-- `queryParams` / `entity` (explicit)
-
-If you prefer a different name, it's easy to change! The important part is the structure that separates the parameters from the entity type.
 
 ### Backwards Compatibility
 

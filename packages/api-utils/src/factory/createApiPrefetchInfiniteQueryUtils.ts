@@ -55,7 +55,7 @@ export function createApiPrefetchInfiniteQueryUtils<TQueryKeys extends object, T
 
     async function execute(): Promise<void> {
       await options.queryClient.prefetchInfiniteQuery({
-        staleTime: queryOptions.staleTime,
+        staleTime: queryOptions.staleTime ?? QUERY_CONFIG.prefetchStaleTime,
         getNextPageParam: (lastPage: Page) => {
           if (lastPage.isErr()) {
             return null
@@ -103,7 +103,7 @@ export function createApiPrefetchInfiniteQueryUtils<TQueryKeys extends object, T
 
     async function execute(): Promise<void> {
       await options.queryClient.prefetchInfiniteQuery({
-        staleTime: queryOptions.staleTime,
+        staleTime: queryOptions.staleTime ?? QUERY_CONFIG.prefetchStaleTime,
         getNextPageParam: (lastPage: Page) => {
           if (lastPage.isErr()) {
             return null

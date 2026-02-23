@@ -1,9 +1,4 @@
 import type { QueryClient } from '@tanstack/vue-query'
-import type {
-  MaybeRef,
-  UnwrapRef,
-} from 'vue'
-import { unref } from 'vue'
 
 import type {
   AsyncResult as AsyncResultType,
@@ -18,29 +13,9 @@ import type {
 } from '@/types/queryKeys.type'
 
 /**
- * Predicate function type that takes an entity and returns boolean
- */
-type PredicateFn<TEntity> = TEntity extends any[]
-  ? (item: TEntity[number]) => boolean
-  : (item: TEntity) => boolean
-
-/**
- * Type for matching by key-value pair
+ * Helper type to extract the item type from an entity (array item or entity itself)
  */
 type EntityItem<TEntity> = TEntity extends any[] ? TEntity[number] : TEntity
-
-type MatchByKeyValue<TEntity> = Partial<{
-  [K in keyof EntityItem<TEntity>]: MaybeRef<UnwrapRef<EntityItem<TEntity>[K]>>
-}>
-
-/**
- * Options for the "by" parameter - can be a predicate function or key-value object
- */
-type ByOption<TEntity>
-  = MatchByKeyValue<TEntity>
-    | PredicateFn<TEntity>
-    | null
-    | undefined
 
 /**
  * Options for optimistic update
@@ -49,17 +24,14 @@ export interface OptimisticUpdateOptions<
   TEntity,
 > {
   /**
-   * How to match the entity to update:
-   * - function: a predicate that returns true for the entity to update
-   * - object: key-value pairs to match (e.g., { id: '123' } or { uuid: 'abc' })
-   * - undefined: defaults to matching by 'id' from the value
+   * Predicate function that receives the current item and returns true if it should be updated
    */
-  by?: ByOption<TEntity>
+  by: (item: EntityItem<TEntity>) => boolean
 
   /**
-   * The new value to set (for single entities) or merge (for arrays)
+   * Function that receives the current item and returns the updated item
    */
-  value: TEntity extends any[] ? Partial<TEntity[number]> : Partial<TEntity>
+  value: (item: EntityItem<TEntity>) => EntityItem<TEntity>
 }
 
 type QueryKeyOrTupleFromConfig<
@@ -116,70 +88,34 @@ export class OptimisticUpdates<TQueryKeys extends object = QueryKeys> {
    * Determine if an item should be updated
    */
   private shouldUpdateItem<TItem>(
-    by: ByOption<any>,
+    by: (item: TItem) => boolean,
     item: TItem,
-    value: any,
   ): boolean {
-    // If by is a function, use it as predicate
-    if (typeof by === 'function') {
-      return by(item)
-    }
-
-    // If by is an object, match all key-value pairs
-    if (by && typeof by === 'object') {
-      return Object.entries(by).every(([
-        key,
-        matchValue,
-      ]) => {
-        const itemValue = item[key as keyof TItem]
-        const currentValue = unref(itemValue)
-        const expectedValue = unref(matchValue)
-
-        return currentValue === expectedValue
-      })
-    }
-
-    // Default: match by 'id' from value
-    const idFromValue = (value as any).id
-    const itemId = item['id' as keyof TItem]
-
-    if (idFromValue !== undefined && itemId !== undefined) {
-      return unref(itemId) === unref(idFromValue)
-    }
-
-    return false
+    return by(item)
   }
 
   /**
    * Internal method to update entity based on the "by" option
    */
   private updateEntity<TEntity>(
-    by: ByOption<TEntity>,
+    by: (item: any) => boolean,
     currentData: TEntity,
-    value: any,
+    value: (item: any) => any,
   ): TEntity {
     // Handle array entities
     if (Array.isArray(currentData)) {
       return currentData.map((item) => {
-        const shouldUpdate = this.shouldUpdateItem(by, item, value)
+        const shouldUpdate = this.shouldUpdateItem(by, item)
 
-        return shouldUpdate
-          ? {
-              ...item,
-              ...value,
-            }
-          : item
+        return shouldUpdate ? value(item) : item
       }) as TEntity
     }
 
     // Handle single entity
-    const shouldUpdate = this.shouldUpdateItem(by, currentData, value)
+    const shouldUpdate = this.shouldUpdateItem(by, currentData)
 
     if (shouldUpdate) {
-      return {
-        ...currentData,
-        ...value,
-      } as TEntity
+      return value(currentData) as TEntity
     }
 
     return currentData
@@ -385,20 +321,16 @@ export class OptimisticUpdates<TQueryKeys extends object = QueryKeys> {
    *
    * @example
    * ```typescript
-   * // Update all userDetail queries by id
+   * // Update a specific user by id
    * optimisticUpdates.update('userDetail', {
-   *   value: { id: '123', name: 'John Doe' }
+   *   by: (user) => user.id === '123',
+   *   value: (user) => ({ ...user, name: 'John Doe' })
    * })
    *
-   * // Update specific query by key + params
-   * optimisticUpdates.update(['userDetail', { userUuid: '123' }] as const, {
-   *   value: { name: 'John Doe' }
-   * })
-   *
-   * // Update using predicates
-   * optimisticUpdates.update('userList', {
-   *   value: { isActive: false },
-   *   by: (user) => user.email === 'john@example.com'
+   * // Update all electronics products to out of stock
+   * optimisticUpdates.update('productList', {
+   *   by: (product) => product.category === 'electronics',
+   *   value: (product) => ({ ...product, inStock: false })
    * })
    * ```
    */
@@ -427,7 +359,7 @@ export class OptimisticUpdates<TQueryKeys extends object = QueryKeys> {
     keyOrTuple: QueryKeyOrTupleFromConfig<TQueryKeys, TKey>,
     options: OptimisticUpdateOptions<TEntity>,
   ): void {
-    const by = options.by ?? undefined
+    const by = options.by
     const value = options.value
 
     // Determine if we're updating all or specific queries

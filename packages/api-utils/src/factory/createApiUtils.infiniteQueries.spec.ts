@@ -95,10 +95,11 @@ describe('createApiUtils - infinite queries', () => {
     }
 
     setup.optimisticUpdates.update('userIndex', {
-      value: {
-        id: '1',
+      by: (user) => user.id === '1',
+      value: (user) => ({
+        ...user,
         name: 'Updated User 1',
-      },
+      }),
     })
 
     if (setup.query.result.value.isOk()) {
@@ -181,10 +182,11 @@ describe('createApiUtils - infinite queries', () => {
     expect(setup.query.hasNextPage.value).toBeTruthy()
 
     setup.optimisticUpdates.update('userIndex', {
-      value: {
-        id: '2',
+      by: (user) => user.id === '2',
+      value: (user) => ({
+        ...user,
         email: 'updated2@example.com',
-      },
+      }),
     })
 
     if (setup.query.result.value.isOk()) {
