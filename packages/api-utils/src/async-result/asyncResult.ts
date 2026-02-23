@@ -154,6 +154,7 @@ export class AsyncResultLoading<T, E> extends AsyncResultBase<T, E> {
 /**
  * AsyncResult representing a success state
  */
+
 export class AsyncResultOk<T, E> extends AsyncResultBase<T, E> {
   private constructor(value: T) {
     super('ok', value)
@@ -189,7 +190,7 @@ export const AsyncResult = {
   /**
    * Create a failed AsyncResult with error
    */
-  err<T, E>(error: E): AsyncResult<T, E> {
+  err<T, E>(error: E): AsyncResultErr<T, E> {
     return AsyncResultErr._create<T, E>(error)
   },
 
@@ -207,14 +208,14 @@ export const AsyncResult = {
   /**
    * Create a loading AsyncResult
    */
-  loading<T, E>(): AsyncResult<T, E> {
+  loading<T, E>(): AsyncResultLoading<T, E> {
     return AsyncResultLoading._create<T, E>()
   },
 
   /**
    * Create a successful AsyncResult with data
    */
-  ok<T, E>(value: T): AsyncResult<T, E> {
+  ok<T, E>(value: T): AsyncResultOk<T, E> {
     return AsyncResultOk._create<T, E>(value)
   },
 } as const

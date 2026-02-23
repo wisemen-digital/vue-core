@@ -10,13 +10,8 @@ import type {
   KeysetPaginationResponse,
   KeysetPaginationResult,
 } from '@/types/pagination.type'
-import type { QueryKeys } from '@/types/queryKeys.type'
 
-type NonOptionalKeys<T> = {
-  [K in keyof T]-?: T[K]
-}
-
-export interface KeysetInfiniteQueryOptions<TData> {
+export interface KeysetInfiniteQueryOptions<TData, TErrorCode extends string = string> {
   /**
    * The time in milliseconds after which the query will be considered stale
    * After this time, the query will be refetched automatically in the background when it is rendered or accessed
@@ -38,20 +33,18 @@ export interface KeysetInfiniteQueryOptions<TData> {
    * Function that will be called when query is executed
    * @returns Promise with response data
    */
-  queryFn: (paginationParams: KeysetPaginationParams) => Promise<KeysetPaginationResult<TData>>
+  queryFn: (paginationParams: KeysetPaginationParams) => Promise<KeysetPaginationResult<TData, TErrorCode>>
   /**
    * Query key associated with the query
    */
-  queryKey: {
-    [TQueryKey in keyof QueryKeys]?: {
-      [TQueryKeyParam in keyof NonOptionalKeys<QueryKeys[TQueryKey]>]: MaybeRef<QueryKeys[TQueryKey][TQueryKeyParam]>
-    }
-  }
+  queryKey: Record<string, unknown>
 }
 
 const DEFAULT_LIMIT = QUERY_CONFIG.limit
 
-export function useKeysetInfiniteQuery<TData>(options: KeysetInfiniteQueryOptions<TData>) {
+export function useKeysetInfiniteQuery<TData, TErrorCode extends string = string>(
+  options: KeysetInfiniteQueryOptions<TData, TErrorCode>,
+) {
   function getQueryKey(): unknown[] {
     const [
       queryKey,
@@ -67,7 +60,7 @@ export function useKeysetInfiniteQuery<TData>(options: KeysetInfiniteQueryOption
   const infiniteQuery = useInfiniteQuery({
     staleTime: options.staleTime,
     enabled: options.isEnabled,
-    getNextPageParam: (lastPage: KeysetPaginationResult<TData>) => {
+    getNextPageParam: (lastPage: KeysetPaginationResult<TData, TErrorCode>) => {
       if (lastPage.isErr()) {
         return null
       }
@@ -90,15 +83,15 @@ export function useKeysetInfiniteQuery<TData>(options: KeysetInfiniteQueryOption
     return Boolean(infiniteQuery.data.value?.pages.find((page) => page.isErr()))
   })
 
-  const result = computed<AsyncResult<KeysetPaginationResponse<TData>, ApiError>>(() => {
+  const result = computed<AsyncResult<KeysetPaginationResponse<TData>, ApiError<TErrorCode>>>(() => {
     if (infiniteQuery.isLoading.value) {
-      return AsyncResult.loading<KeysetPaginationResponse<TData>, ApiError>()
+      return AsyncResult.loading<KeysetPaginationResponse<TData>, ApiError<TErrorCode>>()
     }
 
     const firstError = infiniteQuery.data.value?.pages.find((page) => page.isErr())
 
     if (firstError) {
-      return AsyncResult.err<KeysetPaginationResponse<TData>, ApiError>(firstError.error)
+      return AsyncResult.err<KeysetPaginationResponse<TData>, ApiError<TErrorCode>>(firstError.error)
     }
 
     const data = infiniteQuery.data.value?.pages
@@ -119,7 +112,7 @@ export function useKeysetInfiniteQuery<TData>(options: KeysetInfiniteQueryOption
       },
     }
 
-    return AsyncResult.ok<KeysetPaginationResponse<TData>, ApiError>(response)
+    return AsyncResult.ok<KeysetPaginationResponse<TData>, ApiError<TErrorCode>>(response)
   })
 
   // eslint-disable-next-line eslint-plugin-wisemen/explicit-function-return-type-with-regex

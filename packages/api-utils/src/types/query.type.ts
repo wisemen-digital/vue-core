@@ -1,5 +1,3 @@
-import type { Ref } from 'vue'
-
 import type { Sort } from './sort.type'
 
 export interface QueryParams {
@@ -18,10 +16,4 @@ export interface WithSortQuery<TKeys extends string> {
 
 export interface WithFilterQuery<TFilters extends Record<string, any>> {
   filters: TFilters
-}
-
-export interface InfiniteQueryOptions<TParams> {
-  params: {
-    [K in keyof TParams]: Ref<TParams[K]>
-  }
 }

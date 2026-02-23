@@ -95,6 +95,7 @@ describe('useQuery with AsyncResult', () => {
         queryKey: {
           test: {},
         },
+
       })
     })
 
@@ -124,6 +125,7 @@ describe('useQuery with AsyncResult', () => {
         queryKey: {
           test: {},
         },
+
       })
     })
 
@@ -162,6 +164,7 @@ describe('useQuery with AsyncResult', () => {
         queryKey: {
           test: {},
         },
+
       })
     })
 
@@ -193,6 +196,7 @@ describe('useQuery with AsyncResult', () => {
         queryKey: {
           test: {},
         },
+
       })
     })
 
@@ -214,6 +218,7 @@ describe('useQuery with AsyncResult', () => {
         queryKey: {
           test: {},
         },
+
       })
     })
 
@@ -257,6 +262,7 @@ describe('useQuery with AsyncResult', () => {
         queryKey: {
           test: {},
         },
+
       })
     })
 
@@ -296,6 +302,7 @@ describe('useQuery with AsyncResult', () => {
         queryKey: {
           test: {},
         },
+
       })
     })
 
@@ -330,6 +337,7 @@ describe('useQuery with AsyncResult', () => {
         queryKey: {
           test: {},
         },
+
       })
     })
 
@@ -357,6 +365,7 @@ describe('useQuery with AsyncResult', () => {
         queryKey: {
           test: {},
         },
+
       })
     })
 
@@ -382,6 +391,7 @@ describe('useQuery with AsyncResult', () => {
         queryKey: {
           test: {},
         },
+
       })
     })
 
@@ -440,6 +450,7 @@ describe('useQuery with AsyncResult', () => {
         queryKey: {
           test: {},
         },
+
       })
     })
 
