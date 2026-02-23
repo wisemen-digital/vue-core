@@ -49,6 +49,11 @@ const config: StorybookConfig = {
       plugins.push(plugin)
     }
 
+    config.optimizeDeps = {
+      ...config.optimizeDeps,
+      force: true,
+    }
+
     return config
   },
 }
