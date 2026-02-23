@@ -2,6 +2,7 @@ import type { StoryObj } from '@storybook/vue3-vite'
 import { ref } from 'vue'
 
 import RadioGroupItem from './RadioGroupItem.vue'
+import RadioGroupItemCard from './RadioGroupItemCard.vue'
 import RadioGroupItems from './RadioGroupItems.vue'
 import RadioGroupRoot from './RadioGroupRoot.vue'
 
@@ -185,6 +186,53 @@ export const WithDescriptions: Story = {
               value="option3"
               description="This is a description for option 3"
             />
+          </RadioGroupItems>
+        </RadioGroupRoot>
+      </div>
+    `,
+  }),
+}
+
+export const CardVariant: Story = {
+  args: {
+    modelValue: '',
+  },
+  render: () => ({
+    components: {
+      RadioGroupItemCard,
+      RadioGroupItems,
+      RadioGroupRoot,
+    },
+    setup() {
+      const modelValue = ref<string | null>(null)
+
+      return {
+        modelValue,
+      }
+    },
+    template: `
+      <div class="p-xl">
+        <RadioGroupRoot
+          v-model="modelValue"
+        >
+          <RadioGroupItems>
+            <div class="flex flex-col gap-md">
+              <RadioGroupItemCard
+                label="Basic plan"
+                value="option1"
+                description="Includes up to 10 users, 20 GB individual data and access to all features."
+              />
+              <RadioGroupItemCard
+                label="Option 2"
+                value="option2"
+                description="This is a description for option 2"
+              />
+              <RadioGroupItemCard
+                label="Option 3"
+                value="option3"
+                description="This is a description for option 3"
+              />
+            </div>
           </RadioGroupItems>
         </RadioGroupRoot>
       </div>
