@@ -1,0 +1,7 @@
+export * from './dashboardPage.type'
+export { default as UIDashboardPage } from './DashboardPage.vue'
+export { default as UIDashboardPageActions } from './DashboardPageActions.vue'
+export { default as UIDashboardPageContainer } from './DashboardPageContainer.vue'
+export { default as UIDashboardPageContent } from './DashboardPageContent.vue'
+export { default as UIDashboardPageHeader } from './DashboardPageHeader.vue'
+export { default as UIDashboardPageLoadingState } from './DashboardPageLoadingState.vue'
