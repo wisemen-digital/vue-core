@@ -46,7 +46,7 @@ const {
     <template #trigger>
       <ClickableElement>
         <button
-          class="flex h-10 items-center justify-center"
+          class="flex h-12 items-center justify-center"
         >
           <UIAvatar
             v-if="variant === 'icons-only' && !isSidebarOpen"
