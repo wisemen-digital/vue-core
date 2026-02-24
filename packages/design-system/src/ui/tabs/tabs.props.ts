@@ -1,4 +1,5 @@
 import type { Component } from 'vue'
+import type { RouteLocationRaw } from 'vue-router'
 
 export type TabsVariant = 'button-border' | 'button-brand' | 'underline'
 
@@ -51,4 +52,28 @@ export interface TabsContentProps {
    * It determines which content is displayed when a tab is selected.
    */
   value: string
+}
+
+export interface TabsRouterLinkItemProps {
+  /**
+   * Whether the tab item is disabled.
+   * @default false
+   */
+  isDisabled?: boolean
+  /**
+   * A count to display as a badge on the right side of the tab.
+   */
+  count?: number | null
+  /**
+   * An optional icon to be displayed alongside the tab label.
+   */
+  icon?: Component
+  /**
+   * The label text for the tab.
+   */
+  label?: string | null
+  /**
+   * The route location to navigate to when the tab is clicked.
+   */
+  to: RouteLocationRaw
 }
