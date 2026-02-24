@@ -4,6 +4,7 @@ import type {
 } from '@storybook/vue3-vite'
 
 import BreadcrumbPlayground from '@/ui/breadcrumbs/BreadcrumbPlayground.vue'
+import BreadcrumbResponsivePlayground from '@/ui/breadcrumbs/BreadcrumbResponsivePlayground.vue'
 
 const meta = {
   title: 'Components/Breadcrumbs',
@@ -18,3 +19,10 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {}
+
+export const Responsive: StoryObj<typeof BreadcrumbResponsivePlayground> = {
+  render: () => ({
+    components: { BreadcrumbResponsivePlayground },
+    template: '<BreadcrumbResponsivePlayground />',
+  }),
+}
