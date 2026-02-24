@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { TabsTrigger as RekaTabsTrigger } from 'reka-ui'
 
-import { UIBadge } from '@/ui/badge/index'
 import ClickableElement from '@/ui/clickable-element/ClickableElement.vue'
+import { UINumberBadge } from '@/ui/number-badge/index'
 import { useInjectTabsContext } from '@/ui/tabs/tabs.context'
 import type { TabsItemProps } from '@/ui/tabs/tabs.props'
 
@@ -34,9 +34,9 @@ const {
         {{ props.label }}
       </template>
       <slot v-else />
-      <UIBadge
+      <UINumberBadge
         v-if="props.count != null"
-        :label="String(props.count)"
+        :value="props.count"
         size="sm"
       />
     </RekaTabsTrigger>
