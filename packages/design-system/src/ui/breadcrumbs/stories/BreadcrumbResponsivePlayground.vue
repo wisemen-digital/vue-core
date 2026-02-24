@@ -13,7 +13,7 @@ import BreadcrumbSeperator from '@/ui/breadcrumbs/BreadcrumbSeperator.vue'
 <template>
   <div
     class="
-      w-full max-w-md resize-x overflow-auto border border-dashed
+      w-full max-w-lg resize-x overflow-auto border border-dashed
       border-secondary p-4
     "
   >

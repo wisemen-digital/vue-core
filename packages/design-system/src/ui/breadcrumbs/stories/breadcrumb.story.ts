@@ -3,8 +3,8 @@ import type {
   StoryObj,
 } from '@storybook/vue3-vite'
 
-import BreadcrumbPlayground from '@/ui/breadcrumbs/BreadcrumbPlayground.vue'
-import BreadcrumbResponsivePlayground from '@/ui/breadcrumbs/BreadcrumbResponsivePlayground.vue'
+import BreadcrumbPlayground from '@/ui/breadcrumbs/stories/BreadcrumbPlayground.vue'
+import BreadcrumbResponsivePlayground from '@/ui/breadcrumbs/stories/BreadcrumbResponsivePlayground.vue'
 
 const meta = {
   title: 'Components/Breadcrumbs',
@@ -22,7 +22,9 @@ export const Default: Story = {}
 
 export const Responsive: StoryObj<typeof BreadcrumbResponsivePlayground> = {
   render: () => ({
-    components: { BreadcrumbResponsivePlayground },
+    components: {
+      BreadcrumbResponsivePlayground,
+    },
     template: '<BreadcrumbResponsivePlayground />',
   }),
 }
