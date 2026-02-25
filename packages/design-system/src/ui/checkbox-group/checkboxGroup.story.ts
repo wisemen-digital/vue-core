@@ -4,6 +4,7 @@ import { ref } from 'vue'
 import CheckboxGroupCheckbox from './CheckboxGroupCheckbox.vue'
 import CheckboxGroupIndeterminateCheckbox from './CheckboxGroupIndeterminateCheckbox.vue'
 import CheckboxGroupItems from './CheckboxGroupItems.vue'
+import CheckboxGroupPlayground from './CheckboxGroupPlayground.vue'
 import CheckboxGroupRoot from './CheckboxGroupRoot.vue'
 
 const meta = {
@@ -203,6 +204,27 @@ export const HorizontalOrientation: Story = {
           </div>
         </CheckboxGroupRoot>
       </div>
+    `,
+  }),
+}
+
+export const Playground: Story = {
+  args: {
+    modelValue: [],
+  },
+  render: () => ({
+    components: {
+      CheckboxGroupPlayground,
+    },
+    setup() {
+      const modelValue = ref<string[]>([])
+
+      return {
+        modelValue,
+      }
+    },
+    template: `
+      <CheckboxGroupPlayground v-model="modelValue" />
     `,
   }),
 }

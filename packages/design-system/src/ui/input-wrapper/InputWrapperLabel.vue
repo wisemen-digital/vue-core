@@ -4,6 +4,7 @@ import { UIText } from '@/ui/text/index'
 
 const props = defineProps<{
   isHorizontal?: boolean
+  isLabelHidden?: boolean
   isRequired: boolean
   for: string | null
   label: string | null
@@ -13,9 +14,12 @@ const props = defineProps<{
 <template>
   <UIRowLayout
     v-if="props.label !== null"
-    :class="{
-      'pb-xs': !props.isHorizontal,
-    }"
+    :class="[
+      {
+        'pb-xs': !props.isHorizontal,
+      },
+      props.isLabelHidden && 'sr-only',
+    ]"
     gap="none"
   >
     <slot name="left" />
