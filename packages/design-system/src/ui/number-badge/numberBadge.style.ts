@@ -19,7 +19,7 @@ export const numberBadgeVariants = tv({
     },
     {
       class: {
-        base: 'border-brand-700 bg-brand-700',
+        base: 'border-brand-600 bg-brand-600',
         label: 'text-primary-on-brand',
       },
       color: 'brand',
@@ -57,7 +57,7 @@ export const numberBadgeVariants = tv({
     },
     {
       class: {
-        base: 'border-error-700 bg-error-700',
+        base: 'border-error-600 bg-error-600',
         label: 'text-white',
       },
       color: 'error',
@@ -95,7 +95,7 @@ export const numberBadgeVariants = tv({
     },
     {
       class: {
-        base: 'border-gray-700 bg-gray-700',
+        base: 'border-gray-500 bg-gray-500',
         label: 'text-white',
       },
       color: 'gray',
@@ -133,11 +133,48 @@ export const numberBadgeVariants = tv({
     },
     {
       class: {
-        base: 'border-success-950 bg-success-950',
+        base: 'border-success-600 bg-success-600',
         label: 'text-white',
       },
       color: 'success',
       variant: 'solid',
+    },
+    // blue
+    {
+      class: {
+        base: `
+          border-blue-400
+          dark:border-blue-600
+        `,
+        label: `
+          text-blue-700
+          dark:text-blue-300
+        `,
+      },
+      color: 'blue',
+      variant: 'outline',
+    },
+    {
+      class: {
+        base: 'border-blue-600 bg-blue-600',
+        label: 'text-white',
+      },
+      color: 'blue',
+      variant: 'solid',
+    },
+    {
+      class: {
+        base: `
+          bg-blue-25 border-blue-200
+          dark:border-blue-800 dark:bg-blue-950
+        `,
+        label: `
+          text-blue-700
+          dark:text-blue-200
+        `,
+      },
+      color: 'blue',
+      variant: 'translucent',
     },
     {
       class: {
@@ -151,6 +188,44 @@ export const numberBadgeVariants = tv({
         `,
       },
       color: 'success',
+      variant: 'translucent',
+    },
+
+    // pink
+    {
+      class: {
+        base: `
+          border-pink-400
+          dark:border-pink-600
+        `,
+        label: `
+          text-pink-700
+          dark:text-pink-300
+        `,
+      },
+      color: 'pink',
+      variant: 'outline',
+    },
+    {
+      class: {
+        base: 'border-pink-600 bg-pink-600',
+        label: 'text-white',
+      },
+      color: 'pink',
+      variant: 'solid',
+    },
+    {
+      class: {
+        base: `
+          bg-pink-25 border-pink-200
+          dark:border-pink-800 dark:bg-pink-950
+        `,
+        label: `
+          text-pink-700
+          dark:text-pink-200
+        `,
+      },
+      color: 'pink',
       variant: 'translucent',
     },
 
@@ -171,7 +246,7 @@ export const numberBadgeVariants = tv({
     },
     {
       class: {
-        base: 'border-purple-700 bg-purple-700',
+        base: 'border-purple-600 bg-purple-600',
         label: 'text-white',
       },
       color: 'purple',
@@ -179,8 +254,14 @@ export const numberBadgeVariants = tv({
     },
     {
       class: {
-        base: `border-purple-200 bg-purple-50`,
-        label: `text-purple-700`,
+        base: `
+          bg-purple-25 border-purple-200
+          dark:border-purple-800 dark:bg-purple-950
+        `,
+        label: `
+          text-purple-700
+          dark:text-purple-200
+        `,
       },
       color: 'purple',
       variant: 'translucent',
@@ -203,7 +284,7 @@ export const numberBadgeVariants = tv({
     },
     {
       class: {
-        base: 'border-warning-700 bg-warning-700',
+        base: 'border-warning-600 bg-warning-600',
         label: 'text-white',
       },
       color: 'warning',
@@ -247,14 +328,14 @@ export const numberBadgeVariants = tv({
     },
 
     color: {
-      'blue': {},
-      'blue-light': {},
-      'brand': {},
-      'error': {},
-      'gray': {},
-      'purple': {},
-      'success': {},
-      'warning': {},
+      blue: {},
+      brand: {},
+      error: {},
+      gray: {},
+      pink: {},
+      purple: {},
+      success: {},
+      warning: {},
     },
 
     variant: {

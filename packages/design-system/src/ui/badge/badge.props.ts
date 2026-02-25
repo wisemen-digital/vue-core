@@ -1,6 +1,6 @@
 import type { Component } from 'vue'
 
-export type BadgeColor = 'blue-light' | 'brand' | 'error' | 'gray' | 'purple' | 'success' | 'warning'
+export type BadgeColor = 'brand' | 'error' | 'gray' | 'pink' | 'purple' | 'success' | 'warning'
 
 export interface BadgeProps {
   hasDot?: boolean

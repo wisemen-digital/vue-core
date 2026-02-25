@@ -240,6 +240,124 @@ export const badgeVariants = tv({
       variant: 'translucent',
     },
 
+    // blue
+    {
+      class: {
+        base: `
+          border-blue-400
+          dark:border-blue-600
+        `,
+        dot: 'bg-blue-500',
+        icon: `
+          text-blue-700
+          dark:text-blue-300
+        `,
+        label: `
+          text-blue-700
+          dark:text-blue-300
+        `,
+        separator: `
+          bg-blue-400
+          dark:bg-blue-600
+        `,
+      },
+      color: 'blue',
+      variant: 'outline',
+    },
+    {
+      class: {
+        base: 'border-blue-700 bg-blue-700',
+        dot: 'bg-white',
+        icon: 'text-white',
+        label: 'text-white',
+        separator: 'bg-blue-700',
+      },
+      color: 'blue',
+      variant: 'solid',
+    },
+    {
+      class: {
+        base: `
+          bg-blue-25 border-blue-200
+          dark:border-blue-800 dark:bg-blue-950
+        `,
+        dot: 'bg-blue-500',
+        icon: `
+          text-blue-700
+          dark:text-blue-200
+        `,
+        label: `
+          text-blue-700
+          dark:text-blue-200
+        `,
+        separator: `
+          bg-blue-200
+          dark:bg-blue-800
+        `,
+      },
+      color: 'blue',
+      variant: 'translucent',
+    },
+
+    // pink
+    {
+      class: {
+        base: `
+          border-pink-400
+          dark:border-pink-600
+        `,
+        dot: 'bg-pink-500',
+        icon: `
+          text-pink-700
+          dark:text-pink-300
+        `,
+        label: `
+          text-pink-700
+          dark:text-pink-300
+        `,
+        separator: `
+          bg-pink-400
+          dark:bg-pink-600
+        `,
+      },
+      color: 'pink',
+      variant: 'outline',
+    },
+    {
+      class: {
+        base: 'border-pink-700 bg-pink-700',
+        dot: 'bg-white',
+        icon: 'text-white',
+        label: 'text-white',
+        separator: 'bg-pink-700',
+      },
+      color: 'pink',
+      variant: 'solid',
+    },
+    {
+      class: {
+        base: `
+          bg-pink-25 border-pink-200
+          dark:border-pink-800 dark:bg-pink-950
+        `,
+        dot: 'bg-pink-500',
+        icon: `
+          text-pink-700
+          dark:text-pink-200
+        `,
+        label: `
+          text-pink-700
+          dark:text-pink-200
+        `,
+        separator: `
+          bg-pink-200
+          dark:bg-pink-800
+        `,
+      },
+      color: 'pink',
+      variant: 'translucent',
+    },
+
     // purple
     {
       class: {
@@ -277,11 +395,23 @@ export const badgeVariants = tv({
     },
     {
       class: {
-        base: `border-purple-200 bg-purple-50`,
+        base: `
+          bg-purple-25 border-purple-200
+          dark:border-purple-800 dark:bg-purple-950
+        `,
         dot: 'bg-purple-500',
-        icon: `text-purple-700`,
-        label: `text-purple-700`,
-        separator: `bg-purple-200`,
+        icon: `
+          text-purple-700
+          dark:text-purple-200
+        `,
+        label: `
+          text-purple-700
+          dark:text-purple-200
+        `,
+        separator: `
+          bg-purple-200
+          dark:bg-purple-800
+        `,
       },
       color: 'purple',
       variant: 'translucent',
@@ -376,14 +506,14 @@ export const badgeVariants = tv({
     },
 
     color: {
-      'blue': {},
-      'blue-light': {},
-      'brand': {},
-      'error': {},
-      'gray': {},
-      'purple': {},
-      'success': {},
-      'warning': {},
+      blue: {},
+      brand: {},
+      error: {},
+      gray: {},
+      pink: {},
+      purple: {},
+      success: {},
+      warning: {},
     },
 
     variant: {
