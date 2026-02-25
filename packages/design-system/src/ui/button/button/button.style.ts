@@ -143,13 +143,12 @@ export const createButtonStyle = tv({
           group-disabled/button:text-disabled
         `,
         root: `
-          not-data-disabled:dark:glassy
           border-brand-600 bg-brand-solid
           focus-visible:outline-fg-brand-primary
           disabled:border-disabled-subtle disabled:bg-disabled
           data-interactive:hover:brightness-95
           dark:p-px
-          not-data-disabled:dark:border-0!
+          not-data-disabled:dark:border-0! not-data-disabled:dark:glassy
         `,
       },
       'secondary': {

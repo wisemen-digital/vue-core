@@ -28,8 +28,8 @@ export const createLinkStyle = tv({
     icon: `shrink-0`,
     label: ``,
     root: `
-      group/link shrink-0 cursor-pointer items-center justify-center border
-      outline-2 outline-offset-1 outline-transparent duration-100
+      group/link inline-flex shrink-0 cursor-pointer items-center justify-center
+      border outline-2 outline-offset-1 outline-transparent duration-100
     `,
     rowLayout: `
       duration-100 [grid-area:stack]

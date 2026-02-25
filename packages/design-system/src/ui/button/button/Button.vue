@@ -97,6 +97,7 @@ useProvideButtonContext({
         <UIRowLayout
           :class="buttonStyle.rowLayout()"
           gap="sm"
+          justify="center"
         >
           <slot name="left" />
 

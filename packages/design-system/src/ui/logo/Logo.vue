@@ -1,9 +1,7 @@
 <script setup lang="ts">
-const props = defineProps<{
-  alt: string
-  size: '3xs' | 'sm' | 'xs' | 'xxs'
-  src: string
-}>()
+import type { LogoProps } from '@/ui/logo/logo.props'
+
+const props = defineProps<LogoProps>()
 </script>
 
 <template>

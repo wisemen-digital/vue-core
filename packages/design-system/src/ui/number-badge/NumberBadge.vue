@@ -28,7 +28,7 @@ const variants = computed<NumberBadgeVariants>(() =>
     role="status"
   >
     <UIText
-      :text="String(props.value)"
+      :text="props.value"
       :class="variants.label()"
     />
   </span>

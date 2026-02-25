@@ -1,7 +1,7 @@
 import type {
   AutocompleteInput,
-  Input,
   FieldWrapper,
+  Input,
   InputWrapper,
 } from '@/types/input.type'
 

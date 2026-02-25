@@ -17,7 +17,7 @@ const meta = {
         'success',
         'warning',
         'purple',
-        'blue-light',
+        'pink',
       ],
     },
     size: {

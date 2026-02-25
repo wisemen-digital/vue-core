@@ -5,6 +5,7 @@ import ClickableElement from '@/ui/clickable-element/ClickableElement.vue'
 import { UINumberBadge } from '@/ui/number-badge/index'
 import { useInjectTabsContext } from '@/ui/tabs/tabs.context'
 import type { TabsItemProps } from '@/ui/tabs/tabs.props'
+import { UIText } from '@/ui/text/index'
 
 const props = withDefaults(defineProps<TabsItemProps>(), {
   isDisabled: false,
@@ -30,9 +31,13 @@ const {
         v-if="props.icon != null"
         class="size-4 shrink-0"
       />
-      <template v-if="props.label != null">
+      <UIText
+        v-if="props.label != null"
+        :text="props.label"
+        class="text-xs"
+      >
         {{ props.label }}
-      </template>
+      </UIText>
       <slot v-else />
       <UINumberBadge
         v-if="props.count != null"

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+/* eslint-disable @intlify/vue-i18n/no-raw-text */
 import type { NumberBadgeColor } from '@/ui/number-badge/numberBadge.props'
 import NumberBadge from '@/ui/number-badge/NumberBadge.vue'
 
@@ -17,6 +18,8 @@ const props = withDefaults(defineProps<{
 const colors: NumberBadgeColor[] = [
   'gray',
   'brand',
+  'blue',
+  'pink',
   'error',
   'success',
   'warning',
@@ -53,21 +56,21 @@ const variants: Array<'outline' | 'solid' | 'translucent'> = [
       <div class="flex items-center gap-3">
         <NumberBadge
           :value="8"
+          :color="props.color"
+          :variant="props.variant"
           size="sm"
-          :color="props.color"
-          :variant="props.variant"
         />
         <NumberBadge
           :value="8"
+          :color="props.color"
+          :variant="props.variant"
           size="md"
-          :color="props.color"
-          :variant="props.variant"
         />
         <NumberBadge
           :value="8"
-          size="lg"
           :color="props.color"
           :variant="props.variant"
+          size="lg"
         />
       </div>
     </div>
@@ -100,18 +103,18 @@ const variants: Array<'outline' | 'solid' | 'translucent'> = [
         All colors &amp; variants
       </p>
       <div
-        v-for="variant in variants"
-        :key="variant"
+        v-for="variantItem in variants"
+        :key="variantItem"
         class="flex flex-col gap-2"
       >
         <p class="text-xs text-tertiary">
-          {{ variant }}
+          {{ variantItem }}
         </p>
         <div class="flex items-center gap-3">
           <NumberBadge
-            v-for="color in colors"
-            :key="color"
-            :color="color"
+            v-for="colorItem in colors"
+            :key="colorItem"
+            :color="colorItem"
             :value="12"
             :variant="variant"
           />

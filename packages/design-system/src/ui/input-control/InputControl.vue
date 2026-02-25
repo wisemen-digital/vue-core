@@ -1,17 +1,10 @@
 <script setup lang="ts">
 import { Primitive } from 'reka-ui'
 
+import type { InputControlProps } from '@/ui/input-control/inputControl.props'
 import Interactable from '@/ui/interactable/Interactable.vue'
 
-const props = withDefaults(defineProps<{
-  id: string | null
-  isDisabled: boolean
-  isInvalid: boolean
-  isLoading: boolean
-  isRequired: boolean
-  as?: string | null
-  describedBy: string
-}>(), {
+const props = withDefaults(defineProps<InputControlProps>(), {
   as: null,
 })
 </script>
