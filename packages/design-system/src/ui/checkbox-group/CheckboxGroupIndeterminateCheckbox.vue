@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
-import { CheckboxGroupRoot as RekaCheckboxGroupRoot } from 'reka-ui';
-
+import { CheckboxGroupRoot as RekaCheckboxGroupRoot } from 'reka-ui'
+import { computed } from 'vue'
 
 import BaseCheckbox from '@/ui/checkbox/base/BaseCheckbox.vue'
 import { useInjectCheckboxGroupContext } from '@/ui/checkbox-group/checkboxGroup.context'
@@ -21,9 +20,12 @@ const isAtLeastOneChecked = computed<boolean>(() => {
   return modelValue.value.length > 0
 })
 
-
 const value = computed<string[]>({
-  get: () => isAtLeastOneChecked.value ? ['indeterminate'] : [],
+  get: () => isAtLeastOneChecked.value
+    ? [
+        'indeterminate',
+      ]
+    : [],
   set: toggleAll,
 })
 </script>
@@ -32,9 +34,9 @@ const value = computed<string[]>({
   <RekaCheckboxGroupRoot v-model="value">
     <BaseCheckbox
       :is-disabled="isDisabled"
-      value="indeterminate"
       :is-indeterminate="isIndeterminate"
       :label="props.label"
+      value="indeterminate"
       @update:model-value="toggleAll"
     />
   </RekaCheckboxGroupRoot>

@@ -4,8 +4,8 @@ import type { AcceptableInputValue } from 'reka-ui'
 import BaseRadioGroup from '@/ui/radio-group/base/BaseRadioGroup.vue'
 
 defineProps<{
-  description?: string | null
   isLabelHidden?: boolean
+  description?: string | null
   label: string
   value: AcceptableInputValue
 }>()

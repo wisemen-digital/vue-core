@@ -5,31 +5,11 @@ import {
   useAttrs,
 } from 'vue'
 
+import type { TextProps } from '@/ui/text/text.props'
 import type { TextStyle } from '@/ui/text/text.style'
 import { createTextStyle } from '@/ui/text/text.style'
 
-const props = withDefaults(defineProps<{
-  /**
-   * The HTML element or component to render as the text container.
-   * @default 'span'
-   */
-  as?: string
-  class?: string | null
-  /**
-   * If `true`, the tooltip will be disabled even if the text is truncated.
-   * @default false
-   */
-  disableTooltip?: boolean
-  /**
-   * The text content to display.
-   */
-  text: string
-  /**
-   * If `true`, the text will be truncated with an ellipsis if it overflows its container.
-   * If a number between 1 and 6 is provided, the text will be clamped to that number of lines.
-   */
-  truncate?: boolean | 2 | 3 | 4 | 5 | 6
-}>(), {
+const props = withDefaults(defineProps<TextProps>(), {
   as: 'span',
   class: null,
   disableTooltip: false,

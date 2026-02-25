@@ -225,7 +225,9 @@ export const numberBadgeVariants = tv({
     },
   ],
   slots: {
-    base: 'inline-flex items-center justify-center rounded-full border min-w-fit',
+    base: `
+      inline-flex min-w-fit items-center justify-center rounded-full border
+    `,
     label: 'font-medium',
   },
   variants: {

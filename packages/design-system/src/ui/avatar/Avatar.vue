@@ -5,10 +5,9 @@ import {
   AvatarRoot,
 } from 'reka-ui'
 
-const props = defineProps<{
-  name: string
-  src?: string | null
-}>()
+import type { AvatarProps } from '@/ui/avatar/avatar.props'
+
+const props = defineProps<AvatarProps>()
 
 function getInitials(name: string): string {
   const nameParts = name.split(' ')
