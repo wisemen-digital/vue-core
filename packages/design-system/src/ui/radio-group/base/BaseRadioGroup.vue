@@ -13,6 +13,7 @@ import { UIText } from '@/ui/text/index'
 
 const props = withDefaults(defineProps<BaseRadioGroupItemProps>(), {
   isDisabled: false,
+  isLabelHidden: false,
   description: null,
 })
 
@@ -44,6 +45,7 @@ useProvideRadioGroupItemContext({
       </div>
 
       <ColumnLayout
+        :class="props.isLabelHidden && 'sr-only'"
         gap="none"
       >
         <UIText
