@@ -51,6 +51,11 @@ export interface InputWrapper {
    */
   isHorizontal?: boolean
   /**
+   * Whether the label is visually hidden but still accessible to screen readers.
+   * @default false
+   */
+  isLabelHidden?: boolean
+  /**
    * Whether the input is required. When `true`, an asterisk is shown next to the label.
    * @default false
    */
@@ -134,6 +139,7 @@ export const INPUT_DEFAULTS = {
 export const INPUT_META_DEFAULTS = {
   isDisabled: false,
   isHorizontal: false,
+  isLabelHidden: false,
   isRequired: false,
   errorMessage: null,
   for: null,
