@@ -114,7 +114,7 @@ export const Variants: Story = {
 
     const triggers = canvas.getAllByText('Hover me')
 
-    await userEvent.hover(triggers[0])
+    await userEvent.hover(triggers[0]!)
 
     const title = await screen.findAllByText('What a beautiful tooltip!')
 

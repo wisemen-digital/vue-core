@@ -1,4 +1,4 @@
-export type NumberBadgeColor = 'brand' | 'error' | 'gray' | 'pink' | 'purple' | 'success' | 'warning'
+export type NumberBadgeColor = 'blue' | 'brand' | 'error' | 'gray' | 'pink' | 'pink' | 'purple' | 'success' | 'warning'
 
 export interface NumberBadgeProps {
   ariaLabel?: string | null

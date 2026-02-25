@@ -165,7 +165,7 @@ export const States: Story = {
     }
 
     const disabledButtons = buttons.filter(
-      (button) => button.disabled,
+      (button) => (button as HTMLButtonElement).disabled,
     )
 
     for (const button of disabledButtons) {

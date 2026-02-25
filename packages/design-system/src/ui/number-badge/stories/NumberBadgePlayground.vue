@@ -18,6 +18,8 @@ const props = withDefaults(defineProps<{
 const colors: NumberBadgeColor[] = [
   'gray',
   'brand',
+  'blue',
+  'pink',
   'error',
   'success',
   'warning',
