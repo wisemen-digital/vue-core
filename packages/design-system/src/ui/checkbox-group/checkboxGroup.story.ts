@@ -3,7 +3,6 @@ import { ref } from 'vue'
 
 import CheckboxGroupCheckbox from './CheckboxGroupCheckbox.vue'
 import CheckboxGroupIndeterminateCheckbox from './CheckboxGroupIndeterminateCheckbox.vue'
-import CheckboxGroupItems from './CheckboxGroupItems.vue'
 import CheckboxGroupPlayground from './CheckboxGroupPlayground.vue'
 import CheckboxGroupRoot from './CheckboxGroupRoot.vue'
 
@@ -27,7 +26,6 @@ export const Default: Story = {
     components: {
       CheckboxGroupCheckbox,
       CheckboxGroupIndeterminateCheckbox,
-      CheckboxGroupItems,
       CheckboxGroupRoot,
     },
     setup() {
@@ -42,20 +40,18 @@ export const Default: Story = {
         <CheckboxGroupRoot
           v-model="modelValue"
         >
-        <CheckboxGroupItems>
-            <CheckboxGroupCheckbox
-              label="option 1"
-              value="option1"
-            />
-            <CheckboxGroupCheckbox
-              label="option 2"
-              value="option2"
-            />
-            <CheckboxGroupCheckbox
-              label="option 3"
-              value="option3"
-            />
-          </CheckboxGroupItems>
+          <CheckboxGroupCheckbox
+            label="option 1"
+            value="option1"
+          />
+          <CheckboxGroupCheckbox
+            label="option 2"
+            value="option2"
+          />
+          <CheckboxGroupCheckbox
+            label="option 3"
+            value="option3"
+          />
         </CheckboxGroupRoot>
       </div>
     `,
@@ -70,7 +66,6 @@ export const Indeterminate: Story = {
     components: {
       CheckboxGroupCheckbox,
       CheckboxGroupIndeterminateCheckbox,
-      CheckboxGroupItems,
       CheckboxGroupRoot,
     },
     setup() {
@@ -88,21 +83,19 @@ export const Indeterminate: Story = {
           <CheckboxGroupIndeterminateCheckbox
             label="Select All"
           />
-        <CheckboxGroupItems>
-            <CheckboxGroupCheckbox
-              label="option 1"
-              value="option1"
-            />
-            <CheckboxGroupCheckbox
-              label="option 2"
-              value="option2"
-            />
-            <CheckboxGroupCheckbox
-              label="option 3"
-              value="option3"
-            />
-          </CheckboxGroupItems>
-        </CheckboxGroupRoot>
+          <CheckboxGroupCheckbox
+            label="option 1"
+            value="option1"
+          />
+          <CheckboxGroupCheckbox
+            label="option 2"
+            value="option2"
+          />
+          <CheckboxGroupCheckbox
+            label="option 3"
+            value="option3"
+          />
+        </CheckboxGroupItems>
       </div>
     `,
   }),
@@ -116,7 +109,6 @@ export const Disabled: Story = {
     components: {
       CheckboxGroupCheckbox,
       CheckboxGroupIndeterminateCheckbox,
-      CheckboxGroupItems,
       CheckboxGroupRoot,
     },
     setup() {
@@ -137,20 +129,18 @@ export const Disabled: Story = {
           <CheckboxGroupIndeterminateCheckbox
             label="Select All"
           />
-        <CheckboxGroupItems>
-            <CheckboxGroupCheckbox
-              label="option 1"
-              value="option1"
-            />
-            <CheckboxGroupCheckbox
-              label="option 2"
-              value="option2"
-            />
-            <CheckboxGroupCheckbox
-              label="option 3"
-              value="option3"
-            />
-          </CheckboxGroupItems>
+          <CheckboxGroupCheckbox
+            label="option 1"
+            value="option1"
+          />
+          <CheckboxGroupCheckbox
+            label="option 2"
+            value="option2"
+          />
+          <CheckboxGroupCheckbox
+            label="option 3"
+            value="option3"
+          />
         </CheckboxGroupRoot>
       </div>
     `,
@@ -165,7 +155,6 @@ export const HorizontalOrientation: Story = {
     components: {
       CheckboxGroupCheckbox,
       CheckboxGroupIndeterminateCheckbox,
-      CheckboxGroupItems,
       CheckboxGroupRoot,
     },
     setup() {
@@ -185,22 +174,20 @@ export const HorizontalOrientation: Story = {
             <CheckboxGroupIndeterminateCheckbox
               label="Select All"
             />
-            <CheckboxGroupItems>
-              <div class="flex items-center gap-lg">
-                <CheckboxGroupCheckbox
-                  label="option 1"
-                  value="option1"
-                />
-                <CheckboxGroupCheckbox
-                  label="option 2"
-                  value="option2"
-                />
-                <CheckboxGroupCheckbox
-                  label="option 3"
-                  value="option3"
-                />
-              </div>
-            </CheckboxGroupItems>
+            <div class="flex items-center gap-lg">
+              <CheckboxGroupCheckbox
+                label="option 1"
+                value="option1"
+              />
+              <CheckboxGroupCheckbox
+                label="option 2"
+                value="option2"
+              />
+              <CheckboxGroupCheckbox
+                label="option 3"
+                value="option3"
+              />
+            </div>
           </div>
         </CheckboxGroupRoot>
       </div>
