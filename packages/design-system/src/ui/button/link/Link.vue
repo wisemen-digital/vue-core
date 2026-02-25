@@ -87,6 +87,7 @@ useProvideLinkContext({
         ...attrs,
       }"
       :class="linkStyle.root()"
+      class="border"
     >
       <div
         :class="linkStyle.container()"
@@ -94,6 +95,7 @@ useProvideLinkContext({
         <UIRowLayout
           :class="linkStyle.rowLayout()"
           gap="sm"
+          justify="center"
         >
           <LinkIcon
             v-if="props.iconLeft !== null"

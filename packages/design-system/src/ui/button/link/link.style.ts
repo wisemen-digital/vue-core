@@ -28,7 +28,7 @@ export const createLinkStyle = tv({
     icon: `shrink-0`,
     label: ``,
     root: `
-      group/link shrink-0 cursor-pointer items-center justify-center border
+      inline-flex group/link shrink-0 cursor-pointer items-center justify-center border
       outline-2 outline-offset-1 outline-transparent duration-100
     `,
     rowLayout: `
