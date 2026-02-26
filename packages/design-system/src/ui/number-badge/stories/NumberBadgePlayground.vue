@@ -43,7 +43,7 @@ const variants: Array<'outline' | 'solid' | 'translucent'> = [
         <NumberBadge
           :color="props.color"
           :size="props.size"
-          :value="props.value"
+          :value="props.value.toString()"
           :variant="props.variant"
         />
       </div>

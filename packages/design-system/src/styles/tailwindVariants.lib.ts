@@ -9,6 +9,7 @@ export const tv = createTV({
         'font-size': [
           {
             text: [
+              'xxxs',
               'xxs',
             ],
           },

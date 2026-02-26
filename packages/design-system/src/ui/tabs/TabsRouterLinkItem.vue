@@ -53,7 +53,7 @@ const routeName = computed<string>(() => {
         <slot v-else />
         <UINumberBadge
           v-if="props.count != null"
-          :value="props.count"
+          :value="props.count.toString()"
           size="sm"
         />
       </RouterLink>
