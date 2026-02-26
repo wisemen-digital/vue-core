@@ -21,5 +21,5 @@
 }
 
 @utility glassy-inner-content {
-  @apply bg-gradient-to-br from-secondary to-quaternary group-hover:from-primary;
+  @apply bg-linear-to-br from-secondary to-quaternary group-hover:from-primary;
 }

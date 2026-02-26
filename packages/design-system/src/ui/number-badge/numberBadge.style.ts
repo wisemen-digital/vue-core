@@ -314,16 +314,16 @@ export const numberBadgeVariants = tv({
   variants: {
     size: {
       lg: {
-        base: 'h-7 min-w-7 px-sm',
+        base: 'h-5 min-w-5 px-xxs',
         label: 'text-xs',
       },
       md: {
-        base: 'h-6 min-w-6 px-sm',
-        label: 'text-xxs',
+        base: 'h-4 min-w-4 px-xxs',
+        label: 'text-[0.625rem]',
       },
       sm: {
-        base: 'h-5 min-w-5 px-xs',
-        label: 'text-xxs',
+        base: 'h-3.5 min-w-3.5 px-xxs',
+        label: 'text-xxxs',
       },
     },
 

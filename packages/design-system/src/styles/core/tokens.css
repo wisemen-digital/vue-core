@@ -334,9 +334,11 @@
   /* ------------------------------------------------------------------------ */
 
   --text-*: initial;
-  --text-xxs: 0.6875rem;
+  --text-xxxs: 0.5rem; /* 8px */
+  --text-xxxs--line-height: var(--line-height-xs);
+  --text-xxs: 0.6875rem; /* 11px */
   --text-xxs--line-height: var(--line-height-xs);
-  --text-xs: 0.75rem;
+  --text-xs: 0.75rem; /* 12px */
   --text-xs--line-height: var(--line-height-xs);
   --text-sm: 0.875rem;
   --text-sm--line-height: var(--line-height-sm);

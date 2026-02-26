@@ -1,1 +1,7 @@
-export { default as UIBreadcrumbs } from './Breadcrumbs.vue'
+export type { BreadcrumbItemProps as UIBreadcrumbItemProps } from './breadcrumb.props'
+export { default as UIBreadcrumbDateSelect } from './BreadcrumbDateSelect.vue'
+export { default as UIBreadcrumbItem } from './BreadcrumbItem.vue'
+export { default as UIBreadcrumbItems } from './BreadcrumbItems.vue'
+export { default as UIBreadcrumbRoot } from './BreadcrumbRoot.vue'
+export { default as UIBreadcrumbSelect } from './BreadcrumbSelect.vue'
+export { default as UIBreadcrumbSeperator } from './BreadcrumbSeperator.vue'
