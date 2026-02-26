@@ -27,7 +27,6 @@ const props = withDefaults(defineProps<TextareaFieldProps>(), {
   ...INPUT_DEFAULTS,
   ...INPUT_META_DEFAULTS,
   ...AUTOCOMPLETE_INPUT_DEFAULTS,
-  isLoading: false,
   isSpellCheckEnabled: false,
   maxLength: null,
   placeholder: null,

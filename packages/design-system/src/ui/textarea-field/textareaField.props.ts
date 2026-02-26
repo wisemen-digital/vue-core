@@ -6,11 +6,6 @@ import type {
 
 export interface TextareaFieldProps extends Input, AutocompleteInput, InputWrapper {
   /**
-   * Whether the textarea is in a loading state.
-   * @default false
-   */
-  isLoading?: boolean
-  /**
    * Whether the input is spell check enabled.
    * @default false
    */
