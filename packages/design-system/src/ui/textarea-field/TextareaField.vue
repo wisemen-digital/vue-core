@@ -83,10 +83,6 @@ watch(() => modelValue.value, async () => {
   await nextTick()
   adjustHeight()
 })
-
-defineExpose({
-  textarea: textareaRef,
-})
 </script>
 
 <template>
