@@ -55,21 +55,21 @@ const variants: Array<'outline' | 'solid' | 'translucent'> = [
       </p>
       <div class="flex items-center gap-3">
         <NumberBadge
-          :value="8"
           :color="props.color"
           :variant="props.variant"
+          value="8"
           size="sm"
         />
         <NumberBadge
-          :value="8"
           :color="props.color"
           :variant="props.variant"
+          value="8"
           size="md"
         />
         <NumberBadge
-          :value="8"
           :color="props.color"
           :variant="props.variant"
+          value="8"
           size="lg"
         />
       </div>
@@ -81,19 +81,19 @@ const variants: Array<'outline' | 'solid' | 'translucent'> = [
       </p>
       <div class="flex items-center gap-3">
         <NumberBadge
-          :value="3"
           :color="props.color"
           :variant="props.variant"
+          value="3"
         />
         <NumberBadge
-          :value="42"
           :color="props.color"
           :variant="props.variant"
+          value="42"
         />
         <NumberBadge
-          :value="128"
           :color="props.color"
           :variant="props.variant"
+          value="128"
         />
       </div>
     </div>
@@ -115,8 +115,8 @@ const variants: Array<'outline' | 'solid' | 'translucent'> = [
             v-for="colorItem in colors"
             :key="colorItem"
             :color="colorItem"
-            :value="12"
             :variant="variant"
+            value="12"
           />
         </div>
       </div>
