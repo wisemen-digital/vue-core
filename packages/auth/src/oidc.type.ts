@@ -52,5 +52,10 @@ export interface OAuth2VueClientOptions {
   * Default: localStorageStrategy
   */
   tokensStrategy?: TokensStrategy
+  /*
+  * Prefix for localStorage keys used by the default LocalStorageTokensStrategy
+  * Useful to avoid collisions between multiple localhost apps
+  */
+  prefix?: string
 
 }

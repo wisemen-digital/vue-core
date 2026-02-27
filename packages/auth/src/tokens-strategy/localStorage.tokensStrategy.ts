@@ -2,16 +2,25 @@ import type { OAuth2Tokens } from '../apiClient'
 import type { TokensStrategy } from './tokensStrategy.type'
 
 export class LocalStorageTokensStrategy implements TokensStrategy {
-  private CODE_VERIFIER_KEY = 'code_verifier'
-  private TOKENS_KEY = 'tokens'
+  private readonly CODE_VERIFIER_KEY = 'code_verifier'
+  private readonly TOKENS_KEY = 'tokens'
 
-  constructor() {}
+  constructor(private readonly prefix?: string) {}
+
+  private getStorageKey(key: string): string {
+    if (this.prefix === undefined || this.prefix === '') {
+      return key
+    }
+
+    return `${this.prefix}:${key}`
+  }
+
   public getCodeVerifier(): string | null {
-    return localStorage.getItem(this.CODE_VERIFIER_KEY)
+    return localStorage.getItem(this.getStorageKey(this.CODE_VERIFIER_KEY))
   }
 
   public getTokens(): OAuth2Tokens | null {
-    const tokens = localStorage.getItem(this.TOKENS_KEY)
+    const tokens = localStorage.getItem(this.getStorageKey(this.TOKENS_KEY))
 
     if (tokens === null) {
       return null
@@ -21,18 +30,18 @@ export class LocalStorageTokensStrategy implements TokensStrategy {
   }
 
   public removeCodeVerifier(): void {
-    localStorage.removeItem(this.CODE_VERIFIER_KEY)
+    localStorage.removeItem(this.getStorageKey(this.CODE_VERIFIER_KEY))
   }
 
   public removeTokens(): void {
-    localStorage.removeItem(this.TOKENS_KEY)
+    localStorage.removeItem(this.getStorageKey(this.TOKENS_KEY))
   }
 
   public setCodeVerifier(codeVerifier: string): void {
-    localStorage.setItem(this.CODE_VERIFIER_KEY, codeVerifier)
+    localStorage.setItem(this.getStorageKey(this.CODE_VERIFIER_KEY), codeVerifier)
   }
 
   public setTokens(tokens: OAuth2Tokens): void {
-    localStorage.setItem(this.TOKENS_KEY, JSON.stringify(tokens))
+    localStorage.setItem(this.getStorageKey(this.TOKENS_KEY), JSON.stringify(tokens))
   }
 }
