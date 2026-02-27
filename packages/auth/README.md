@@ -50,6 +50,7 @@ export const oAuthClient = new ZitadelClient({
   clientId: AUTH_CLIENT_ID,
   organizationId: AUTH_ORGANIZATION_ID,
   fetchStrategy: new AxiosFetchStrategy(axios),
+  prefix: 'my-app', // Optional, prefixes localStorage keys used by the default strategy
   tokensStrategy: new LocalStorageTokensStrategy(), // Optional, defaults to localStorage
   baseUrl: AUTH_BASE_URL,
   loginRedirectUri: `${window.location.origin}/auth/callback`,

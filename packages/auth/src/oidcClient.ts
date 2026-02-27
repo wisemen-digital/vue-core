@@ -18,7 +18,7 @@ export class OidcClient {
   constructor(private options: OAuth2VueClientOptions) {
     this.offline = options.offline ?? false
 
-    this.tokensStrategy = this.options.tokensStrategy ?? new LocalStorageTokensStrategy()
+    this.tokensStrategy = this.options.tokensStrategy ?? new LocalStorageTokensStrategy(this.options.prefix)
 
     this.redirectValidator = new RedirectValidator(
       {
@@ -221,18 +221,31 @@ export class OidcClient {
   }
 
   public setConfig(options: Partial<OAuth2VueClientOptions>): void {
-    this.client = new ApiClient(
-      {
-        clientId: options.clientId ?? this.options.clientId,
-        baseUrl: options.baseUrl ?? this.options.baseUrl,
-        redirectUri: options.loginRedirectUri ?? this.options.loginRedirectUri,
-        scopes: options.scopes ?? this.options.scopes,
-        tokensStrategy: options.tokensStrategy ?? this.tokensStrategy,
-      },
-    )
-    this.options = {
+    const nextOptions = {
       ...this.options,
       ...options,
     }
+
+    if (options.tokensStrategy !== undefined) {
+      this.tokensStrategy = options.tokensStrategy
+    }
+    else if (
+      this.options.tokensStrategy === undefined
+      && options.prefix !== undefined
+      && options.prefix !== this.options.prefix
+    ) {
+      this.tokensStrategy = new LocalStorageTokensStrategy(nextOptions.prefix)
+    }
+
+    this.client = new ApiClient(
+      {
+        clientId: nextOptions.clientId,
+        baseUrl: nextOptions.baseUrl,
+        redirectUri: nextOptions.loginRedirectUri,
+        scopes: nextOptions.scopes,
+        tokensStrategy: this.tokensStrategy,
+      },
+    )
+    this.options = nextOptions
   }
 }
