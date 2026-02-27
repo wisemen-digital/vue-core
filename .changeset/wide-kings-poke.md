@@ -1,5 +1,5 @@
 ---
-"@wisemen/vue-core-auth": patch
+"@wisemen/vue-core-auth": minor
 ---
 
 add prefix prop to oidc client
