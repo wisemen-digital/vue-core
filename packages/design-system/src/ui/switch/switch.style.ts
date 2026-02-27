@@ -1,0 +1,54 @@
+import { tv } from '@/styles/tailwindVariants.lib'
+
+export const createSwitchStyle = tv({
+  defaultVariants: {
+    size: 'md',
+  },
+  slots: {
+    root: `
+      group/switch relative isolate cursor-pointer overflow-hidden rounded-full
+      border border-solid border-tertiary bg-tertiary px-xxs outline-offset-3
+      outline-brand-600 duration-200
+      disabled:cursor-not-allowed disabled:border-disabled-subtle
+      disabled:bg-disabled-subtle
+      data-invalid:bg-error-primary data-invalid:outline-error-600
+      data-[state=checked]:border-brand-600 data-[state=checked]:bg-brand-solid
+      disabled:data-[state=checked]:border-disabled-subtle
+      disabled:data-[state=checked]:bg-disabled-subtle
+      data-invalid:data-[state=checked]:border-error
+      data-invalid:data-[state=checked]:bg-error-solid
+      data-invalid:data-[state=unchecked]:border-error
+      dark:border-primary
+    `,
+    thumb: `
+      flex items-center justify-center overflow-hidden rounded-full bg-white
+      shadow-xs duration-200
+    `,
+    thumbIcon: `
+      text-gray-800
+      group-data-[state=checked]/switch:text-brand-600
+    `,
+  },
+  variants: {
+    size: {
+      md: {
+        root: 'h-6 w-11',
+        thumb: `
+          size-5
+          data-[state=checked]:translate-x-[1.15rem]
+        `,
+        thumbIcon: 'size-3.5',
+      },
+      sm: {
+        root: 'h-5 w-9',
+        thumb: `
+          size-4
+          data-[state=checked]:translate-x-[0.9rem]
+        `,
+        thumbIcon: 'size-3',
+      },
+    },
+  },
+})
+
+export type SwitchStyle = ReturnType<typeof createSwitchStyle>

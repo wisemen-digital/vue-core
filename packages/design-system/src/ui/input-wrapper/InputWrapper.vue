@@ -8,13 +8,14 @@ import RowLayout from '@/ui/row-layout/RowLayout.vue'
 
 const props = withDefaults(defineProps<InputWrapperProps>(), {
   ...INPUT_META_DEFAULTS,
+  horizontalAlign: 'start',
 })
 </script>
 
 <template>
   <div v-if="props.isHorizontal">
     <RowLayout
-      align="start"
+      :align="props.horizontalAlign"
     >
       <slot />
       <div>
