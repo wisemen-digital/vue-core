@@ -95,7 +95,32 @@ export const Default: Story = {
   },
 }
 
+export const WithControls: Story = {
+  args: {
+    label: 'Number Field',
+    showControls: true,
+    step: 1,
+  },
+}
+
 export const AllStates: Story = {
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    const disabledInput = canvas.getByLabelText('Disabled')
+
+    await expect(disabledInput).toBeDisabled()
+
+    const readonlyInput = canvas.getByLabelText('Read Only')
+
+    await expect(readonlyInput).toHaveAttribute('readonly')
+
+    const errorInput = canvas.getByLabelText('Error')
+
+    await expect(errorInput).toHaveAttribute('aria-invalid', 'true')
+  },
   render: (args) => ({
     components: {
       NumberFieldStatesPlayground,

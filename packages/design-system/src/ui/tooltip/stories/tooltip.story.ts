@@ -79,6 +79,18 @@ export const Default: Story = {
     const tooltip = await screen.findAllByText('What a beautiful tooltip!')
 
     await expect(tooltip[0]).toBeVisible()
+
+    await userEvent.unhover(trigger)
+  },
+}
+
+export const KeyboardFocus: Story = {
+  play: async () => {
+    await userEvent.tab()
+
+    const tooltip = await screen.findAllByText('What a beautiful tooltip!')
+
+    await expect(tooltip[0]).toBeVisible()
   },
 }
 
