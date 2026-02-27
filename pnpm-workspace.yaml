@@ -144,14 +144,25 @@ catalogs:
     "zod": ">=4.3.5"
     "vue-router": ">=4.6.3"
   storybook:
-    "@chromatic-com/storybook": 5.0.0
-    "@storybook/addon-a11y": 10.2.1
-    "@storybook/addon-docs": 10.2.1
-    "@storybook/addon-onboarding": 10.2.1
-    "@storybook/addon-vitest": 10.2.1
-    "@storybook/vue3": 10.2.1
-    "@storybook/vue3-vite": 10.2.1
-    "storybook": 10.2.1
+    "@chromatic-com/storybook": 5.0.1
+    "@storybook/addon-a11y": 10.2.13
+    "@storybook/addon-docs": 10.2.13
+    "@storybook/addon-vitest": 10.2.13
+    "@storybook/vue3": 10.2.13
+    "@storybook/vue3-vite": 10.2.13
+    "storybook": 10.2.13
+    "eslint-plugin-storybook": 10.2.13
     "vue-component-meta": 3.2.4
   conflicts_test_25_0_1:
     jsdom: 25.0.1
+  conflicts_storybook_5_0_1:
+    "@chromatic-com/storybook": 5.0.1
+  conflicts_storybook_10_2_13:
+    "@storybook/addon-a11y": 10.2.13
+    "@storybook/addon-docs": 10.2.13
+    "@storybook/addon-vitest": 10.2.13
+    "@storybook/vue3": 10.2.13
+    "@storybook/vue3-vite": 10.2.13
+    storybook: 10.2.13
+  conflicts_lint_10_2_13:
+    eslint-plugin-storybook: 10.2.13

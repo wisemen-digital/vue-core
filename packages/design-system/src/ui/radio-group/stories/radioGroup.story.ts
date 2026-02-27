@@ -2,6 +2,11 @@ import type {
   Meta,
   StoryObj,
 } from '@storybook/vue3-vite'
+import {
+  expect,
+  userEvent,
+  within,
+} from 'storybook/test'
 
 import RadioGroupCardPlayground from './RadioGroupCardPlayground.vue'
 import RadioGroupPlayground from './RadioGroupPlayground.vue'
@@ -35,6 +40,28 @@ export const Default: Story = {
     isDisabled: false,
     orientation: 'vertical',
   },
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    const radios = canvas.getAllByRole('radio')
+
+    await expect(radios).toHaveLength(3)
+
+    for (const radio of radios) {
+      await expect(radio).not.toBeChecked()
+    }
+
+    await userEvent.click(radios[0]!)
+
+    await expect(radios[0]).toBeChecked()
+
+    await userEvent.click(radios[1]!)
+
+    await expect(radios[0]).not.toBeChecked()
+    await expect(radios[1]).toBeChecked()
+  },
 }
 
 export const Horizontal: Story = {
@@ -48,6 +75,17 @@ export const Disabled: Story = {
   args: {
     isDisabled: true,
     orientation: 'vertical',
+  },
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    const radios = canvas.getAllByRole('radio')
+
+    for (const radio of radios) {
+      await expect(radio).toBeDisabled()
+    }
   },
 }
 

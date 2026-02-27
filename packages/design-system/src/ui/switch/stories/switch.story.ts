@@ -2,6 +2,11 @@ import type {
   Meta,
   StoryObj,
 } from '@storybook/vue3-vite'
+import {
+  expect,
+  userEvent,
+  within,
+} from 'storybook/test'
 
 import SwitchPlayground from './SwitchPlayground.vue'
 import SwitchSizesPlayground from './SwitchSizesPlayground.vue'
@@ -54,9 +59,41 @@ export const Default: Story = {
     label: 'Switch Label',
     size: 'md',
   },
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    const switchElement = canvas.getByRole('switch')
+
+    await expect(switchElement).not.toBeChecked()
+
+    await userEvent.click(switchElement)
+
+    await expect(switchElement).toBeChecked()
+
+    await userEvent.click(switchElement)
+
+    await expect(switchElement).not.toBeChecked()
+  },
 }
 
 export const AllStates: Story = {
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    const switches = canvas.getAllByRole('switch')
+
+    const disabledSwitches = switches.filter(
+      (s) => (s as HTMLButtonElement).disabled,
+    )
+
+    for (const s of disabledSwitches) {
+      await expect(s).toBeDisabled()
+    }
+  },
   render: (args) => ({
     components: {
       SwitchStatesPlayground,
