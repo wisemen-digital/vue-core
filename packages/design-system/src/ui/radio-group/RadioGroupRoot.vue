@@ -11,8 +11,8 @@ import type { RadioGroupProps } from '@/ui/radio-group/radioGroup.props'
 
 const props = withDefaults(defineProps<RadioGroupProps>(), {
   isDisabled: false,
-  orientation: 'vertical',
   hideErrorMessage: false,
+  orientation: 'vertical',
 })
 
 const modelValue = defineModel<TValue>({
