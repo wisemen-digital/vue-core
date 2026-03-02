@@ -81,6 +81,8 @@ export function useTabs(): UseTabs {
     })
   }
 
+  let resizeObserver: ResizeObserver | null = null
+
   onMounted(() => {
     if (scrollContainerRef.value === null) {
       return
@@ -88,16 +90,17 @@ export function useTabs(): UseTabs {
 
     updateScrollState()
     scrollContainerRef.value.addEventListener('scroll', updateScrollState)
-    scrollContainerRef.value.addEventListener('resize', updateScrollState)
+
+    resizeObserver = new ResizeObserver(updateScrollState)
+    resizeObserver.observe(scrollContainerRef.value)
   })
 
   onBeforeUnmount(() => {
-    if (scrollContainerRef.value === null) {
-      return
+    if (scrollContainerRef.value !== null) {
+      scrollContainerRef.value.removeEventListener('scroll', updateScrollState)
     }
 
-    scrollContainerRef.value.removeEventListener('scroll', updateScrollState)
-    scrollContainerRef.value.removeEventListener('resize', updateScrollState)
+    resizeObserver?.disconnect()
   })
 
   return {
