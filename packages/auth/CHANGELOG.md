@@ -1,5 +1,11 @@
 ## 1.1.0
 
+## 3.1.0
+
+### Minor Changes
+
+- 7bcd018: add prefix prop to oidc client
+
 ## 3.0.1
 
 ### Patch Changes
