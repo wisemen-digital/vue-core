@@ -55,6 +55,12 @@ export function useMainSidebar() {
   function setVariant(value: MainSidebarVariant): void {
     variant.value = value
 
+    if (value === 'icons-only') {
+      sidebarWidth.value = isSidebarOpen.value ? DEFAULT_SIDEBAR_WIDTH : ICONS_ONLY_SIDEBAR_WIDTH
+
+      return
+    }
+
     sidebarWidth.value = DEFAULT_SIDEBAR_WIDTH
   }
 

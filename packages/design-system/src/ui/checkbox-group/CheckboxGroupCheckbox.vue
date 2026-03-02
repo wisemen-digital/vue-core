@@ -10,6 +10,7 @@ import BaseCheckbox from '@/ui/checkbox/base/BaseCheckbox.vue'
 import { useInjectCheckboxGroupContext } from '@/ui/checkbox-group/checkboxGroup.context'
 
 const props = defineProps<{
+  isDisabled?: boolean
   label: string
   value: AcceptableInputValue
 }>()
@@ -33,5 +34,6 @@ onBeforeUnmount(() => {
   <BaseCheckbox
     :value="props.value"
     :label="props.label"
+    :is-disabled="props.isDisabled"
   />
 </template>

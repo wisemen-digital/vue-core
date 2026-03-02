@@ -44,6 +44,11 @@ export interface OAuth2VueClientOptions {
   */
   postLogoutRedirectUri: string
   /*
+  * Prefix for localStorage keys used by the default LocalStorageTokensStrategy
+  * Useful to avoid collisions between multiple localhost apps
+  */
+  prefix?: string
+  /*
   * The scopes to request from the OAuth2 server
   */
   scopes: string[]
@@ -52,5 +57,4 @@ export interface OAuth2VueClientOptions {
   * Default: localStorageStrategy
   */
   tokensStrategy?: TokensStrategy
-
 }
