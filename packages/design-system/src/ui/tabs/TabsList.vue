@@ -53,6 +53,7 @@ onMounted(() => {
         @click="scrollToLeft"
       >
         <svg
+          aria-hidden="true"
           class="size-4"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -97,6 +98,7 @@ onMounted(() => {
         @click="scrollToRight"
       >
         <svg
+          aria-hidden="true"
           class="size-4"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
