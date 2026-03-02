@@ -21,7 +21,6 @@ const {
     class="h-8"
   >
     <Logo
-      :name="props.name"
       :src="props.url"
       alt="Logo"
       size="xs"

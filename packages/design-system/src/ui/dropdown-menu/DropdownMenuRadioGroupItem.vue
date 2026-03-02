@@ -5,8 +5,8 @@ import {
   DropdownMenuRadioItem,
 } from 'reka-ui'
 
+import RowLayout from '@/ui/row-layout/RowLayout.vue'
 import { UIText } from '@/ui/text/index'
-import RowLayout from '#packages/row-layout/RowLayout.vue'
 
 const props = defineProps<{
   hint?: string | null
