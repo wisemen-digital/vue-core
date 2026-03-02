@@ -1,0 +1,45 @@
+{
+  "name": "@wisemen/date-range",
+  "version": "0.0.23",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "type": "module",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "prebuild": "rm -rf ./dist",
+    "clean": "rm -rf ./dist",
+    "build": "tsc",
+    "pretest": "npm run clean && npm run build",
+    "test": "node --test ./dist/**/*.js",
+    "lint": "eslint --cache",
+    "prerelease": "npm run build",
+    "release": "pnpx release-it"
+  },
+  "peerDependencies": {
+    "@nestjs/swagger": "catalog:backend",
+    "@wisemen/pagination": "catalog:backend",
+    "@wisemen/validators": "catalog:backend",
+    "@wisemen/wise-date": "catalog:backend",
+    "class-transformer": "catalog:backend",
+    "class-validator": "catalog:backend",
+    "dayjs": "catalog:backend",
+    "typeorm": "catalog:backend"
+  },
+  "devDependencies": {
+    "@nestjs/common": "catalog:backend",
+    "@types/node": "catalog:backend",
+    "@wisemen/eslint-config-nestjs": "catalog:lint",
+    "eslint": "catalog:lint",
+    "expect": "catalog:test",
+    "typescript": "catalog:peer"
+  },
+  "author": "Kobe Kwanten",
+  "contributors": [],
+  "license": "GPL",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:wisemen-digital/node-core.git"
+  }
+}
