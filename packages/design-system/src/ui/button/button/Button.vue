@@ -55,6 +55,30 @@ function onClick(event: MouseEvent): void {
   emit('click', event)
 }
 
+const isTooltipDisabled = computed<boolean>(() => {
+  if (props.tooltipLabel !== null) {
+    return false
+  }
+
+  if (props.keyboardShortcut !== null) {
+    return false
+  }
+
+  if (props.isDisabled && props.disabledReason !== null) {
+    return false
+  }
+
+  return true
+})
+
+const tooltipLabel = computed<string>(() => {
+  if (props.isDisabled && props.disabledReason !== null) {
+    return props.disabledReason
+  }
+
+  return props.tooltipLabel ?? props.label
+})
+
 useProvideButtonContext({
   buttonStyle,
 })
@@ -63,16 +87,8 @@ useProvideButtonContext({
 <template>
   <ActionTooltip
     :popover-side="props.tooltipSide"
-    :is-disabled="
-      props.tooltipLabel === null
-        && props.keyboardShortcut === null
-        && (!props.isDisabled || props.disabledReason === null)
-    "
-    :label="
-      props.isDisabled && props.disabledReason !== null
-        ? props.disabledReason
-        : props.tooltipLabel ?? props.label
-    "
+    :is-disabled="isTooltipDisabled"
+    :label="tooltipLabel"
     :keyboard-shortcut="props.keyboardShortcut"
   >
     <!-- This component contains a lot of hacky code to get the glassy look working -->

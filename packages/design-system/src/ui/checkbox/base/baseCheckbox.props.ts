@@ -12,11 +12,6 @@ export interface BaseCheckboxProps extends Input, InputWrapper, AutocompleteInpu
    * @default false
    */
   isIndeterminate?: boolean
-  /**
-   * The size of the text field.
-   * @default 'md'
-   */
-  size?: 'md' | 'sm'
 
   /**
    * The value of the checkbox.
