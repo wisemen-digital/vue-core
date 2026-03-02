@@ -29,10 +29,6 @@ export default defineConfig({
       external: [
         'vue',
       ],
-      output: {
-        preserveModules: true,
-        preserveModulesRoot: 'src',
-      },
     },
   },
   plugins: [
