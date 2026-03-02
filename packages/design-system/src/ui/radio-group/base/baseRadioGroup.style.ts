@@ -27,7 +27,7 @@ export const createBaseRadioGroupStyle = tv({
     description: `text-xs text-tertiary`,
     indicator: `
       block size-1.5 rounded-full bg-white
-      group-data-disabled/radio-group-item:bg-fg-disabled-subtle
+      group-disabled/radio-group-item:bg-fg-disabled-subtle
     `,
     label: `text-xs font-medium text-primary`,
     root: `
