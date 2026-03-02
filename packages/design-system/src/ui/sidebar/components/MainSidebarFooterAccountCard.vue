@@ -36,6 +36,14 @@ const i18n = useI18n()
 const {
   isSidebarOpen, variant,
 } = useMainSidebar()
+
+function onSignOut(): void {
+  if (props.onSignOut == null) {
+    return
+  }
+
+  props.onSignOut()
+}
 </script>
 
 <template>
@@ -46,7 +54,12 @@ const {
     <template #trigger>
       <ClickableElement>
         <button
+<<<<<<< HEAD
           class="flex h-12 items-center justify-center"
+=======
+          type="button"
+          class="flex h-10 items-center justify-center"
+>>>>>>> feat/sidebar
         >
           <UIAvatar
             v-if="variant === 'icons-only' && !isSidebarOpen"
@@ -118,7 +131,7 @@ const {
           <DropdownMenuItem
             :icon="LogOut01Icon"
             :label="i18n.t('components.sidebar.sign_out')"
-            @select="props.onSignOut()"
+            @select="onSignOut()"
           />
         </DropdownMenuGroup>
       </div>

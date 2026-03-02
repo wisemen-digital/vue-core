@@ -1,0 +1,33 @@
+{
+  "name": "@wisemen/node-doc-processor",
+  "version": "1.2.6",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "type": "module",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "lint": "eslint lib",
+    "prebuild": "rm -rf ./dist",
+    "clean": "rm -r ./dist",
+    "build": "tsc",
+    "pretest": "npm run clean && npm run build",
+    "test": "node --test",
+    "prerelease": "npm run build",
+    "release": "pnpx release-it"
+  },
+  "author": "Pieter Pauwels",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:wisemen-digital/node-core.git"
+  },
+  "peerDependencies": {
+    "@wisemen/pgboss-nestjs-job": "catalog:backend"
+  },
+  "devDependencies": {
+    "@wisemen/eslint-config-nestjs": "catalog:lint",
+    "eslint": "catalog:lint"
+  }
+}

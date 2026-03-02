@@ -178,20 +178,20 @@ const footerNavigation = computed<NavigationGroup[]>(() => ([
             label: 'Support',
             onSelect: () => {},
           }]"
+          :on-sign-out="() => {}"
           avatar-url="../../../storybook-assets/profile-picture.jpg"
           name="Jeroen Van Caekenberghe"
           email="jeroen.vancaekenberghe@wisemen.digital"
-          @sign-out="() => {}"
         />
       </template>
     </MainSidebar>
 
     <Motion
       :initial="{
-        paddingLeft: variant === 'icons-only' ? sidebarWidth : isSidebarOpen && !isFloatingSidebar ? sidebarWidth : '0',
+        paddingLeft: variant === 'icons-only' ? !isFloatingSidebar ? sidebarWidth : '0' : isSidebarOpen && !isFloatingSidebar ? sidebarWidth : '0',
       }"
       :animate="{
-        paddingLeft: variant === 'icons-only' ? sidebarWidth : isSidebarOpen && !isFloatingSidebar ? sidebarWidth : '0',
+        paddingLeft: variant === 'icons-only' ? !isFloatingSidebar ? sidebarWidth : '0' : isSidebarOpen && !isFloatingSidebar ? sidebarWidth : '0',
       }"
       :transition="{
         duration: isReduceMotionEnabledOnDevice ? 0 : variant === 'icons-only' ? 0.1 : 0.3,
