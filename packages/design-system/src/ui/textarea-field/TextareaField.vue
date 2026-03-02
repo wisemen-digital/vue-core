@@ -2,6 +2,7 @@
 import {
   computed,
   nextTick,
+  onMounted,
   useAttrs,
   useId,
   useTemplateRef,
@@ -81,6 +82,10 @@ function adjustHeight(): void {
 
 watch(() => modelValue.value, async () => {
   await nextTick()
+  adjustHeight()
+})
+
+onMounted(() => {
   adjustHeight()
 })
 </script>
