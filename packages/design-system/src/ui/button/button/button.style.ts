@@ -148,7 +148,7 @@ export const createButtonStyle = tv({
           disabled:border-disabled-subtle disabled:bg-disabled
           data-interactive:hover:brightness-95
           dark:p-px
-          not-data-disabled:dark:border-0! not-data-disabled:dark:glassy
+          not-data-disabled:dark:glassy
         `,
       },
       'secondary': {
