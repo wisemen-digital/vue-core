@@ -6,9 +6,11 @@ import { CheckboxGroupRoot as RekaCheckboxGroupRoot } from 'reka-ui';
 import BaseCheckbox from '@/ui/checkbox/base/BaseCheckbox.vue'
 import { useInjectCheckboxGroupContext } from '@/ui/checkbox-group/checkboxGroup.context'
 
-const props = defineProps<{
-  label?: string
-}>()
+const props = withDefaults(defineProps<{
+  label?: string | null
+}>(), {
+  label: null,
+})
 
 const {
   isDisabled,

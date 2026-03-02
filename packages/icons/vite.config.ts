@@ -28,13 +28,7 @@ export default defineConfig({
     rollupOptions: {
       external: [
         'vue',
-        'vue-i18n',
-        'vue-router',
       ],
-      output: {
-        preserveModules: true,
-        preserveModulesRoot: 'src',
-      },
     },
   },
   plugins: [

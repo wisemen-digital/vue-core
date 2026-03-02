@@ -179,8 +179,14 @@ export const numberBadgeVariants = tv({
     },
     {
       class: {
-        base: `border-purple-200 bg-purple-50`,
-        label: `text-purple-700`,
+        base: `
+          border-purple-200 bg-purple-50
+          dark:border-purple-800 dark:bg-purple-950
+        `,
+        label: `
+          text-purple-700
+          dark:text-purple-300
+        `,
       },
       color: 'purple',
       variant: 'translucent',
@@ -225,7 +231,9 @@ export const numberBadgeVariants = tv({
     },
   ],
   slots: {
-    base: 'inline-flex items-center justify-center rounded-full border min-w-fit',
+    base: `
+      inline-flex min-w-fit items-center justify-center rounded-full border
+    `,
     label: 'font-medium',
   },
   variants: {
