@@ -16,7 +16,7 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    isDisabled: true,
+    isDisabled: false,
     isHorizontal: true,
     label: 'Checkbox Label',
     modelValue: true,
