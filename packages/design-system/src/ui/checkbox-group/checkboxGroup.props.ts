@@ -6,7 +6,7 @@ export interface CheckboxGroupProps {
   isDisabled?: boolean
   /**
    * Controls the keyboard navigation direction of the checkbox group.
-   * @default null
+   * @default 'vertical'
    */
   orientation?: 'horizontal' | 'vertical'
 

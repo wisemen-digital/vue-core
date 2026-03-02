@@ -20,7 +20,7 @@ export const createBaseCheckboxStyle = tv({
     `,
     indicator: `
       block size-3 text-primary-on-brand
-      group-data-disabled/checkbox:text-fg-disabled-subtle
+      group-disabled/checkbox:text-fg-disabled-subtle
     `,
     root: `
       group/checkbox flex cursor-pointer items-center justify-start outline-none
