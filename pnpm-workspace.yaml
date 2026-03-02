@@ -161,8 +161,6 @@ catalogs:
     "@storybook/vue3-vite": 10.2.1
     "storybook": 10.2.1
     "vue-component-meta": 3.2.4
-  conflicts_test_25_0_1:
-    jsdom: 25.0.1
   backend:
     "@asyncapi/generator": "3.1.2"
     "@aws-sdk/client-s3": "3.994.0"
@@ -224,5 +222,6 @@ catalogs:
     "rxjs": "7.8.2"
     "twilio": "5.12.2"
     "typeorm": "0.3.28"
+    "wkx": "0.5.0"
     "yaml": "2.8.2"
     
