@@ -54,12 +54,8 @@ function onSignOut(): void {
     <template #trigger>
       <ClickableElement>
         <button
-<<<<<<< HEAD
           class="flex h-12 items-center justify-center"
-=======
           type="button"
-          class="flex h-10 items-center justify-center"
->>>>>>> feat/sidebar
         >
           <UIAvatar
             v-if="variant === 'icons-only' && !isSidebarOpen"
