@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import type { Component } from 'vue'
-import type { RouteLocationNormalized } from 'vue-router'
+import type {
+  RouteLocationNormalized,
+  RouteLocationRaw,
+} from 'vue-router'
 import {
   RouterLink,
   useRoute,
@@ -17,8 +20,7 @@ export interface Props {
   icon: Component
   keyboardShortcut?: string | null
   label: string
-  // @ts-expect-error no matching signature
-  to: Routes[number]
+  to: RouteLocationRaw
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -31,14 +33,12 @@ const emit = defineEmits<{
 }>()
 
 const {
-  isSidebarOpen, variant,
+  isSidebarOpen,
+  closeIfFloatingSidebar,
+  variant,
 } = useMainSidebar()
 
 const route = useRoute()
-
-const {
-  closeIfFloatingSidebar,
-} = useMainSidebar()
 
 function onClick(): void {
   closeIfFloatingSidebar()

@@ -20,6 +20,7 @@ import { toComputedRefs } from '@/utils/props.util'
 
 const props = withDefaults(defineProps<FileUploadProps>(), {
   isDisabled: false,
+  isPublic: false,
   isValidFile: null,
   preprocess: null,
 })
