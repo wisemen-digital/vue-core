@@ -45,7 +45,10 @@ export type CreateApiUtilsReturnType<TQueryKeys extends object, TErrorCode exten
  * export const { useQuery, useMutation, useOptimisticUpdates } = createApiUtils<MyQueryKeys>()
  * ```
  */
-export function createApiUtils<TQueryKeys extends object, TErrorCode extends string = string>(): CreateApiUtilsReturnType<TQueryKeys, TErrorCode> {
+export function createApiUtils<
+  TQueryKeys extends object,
+  TErrorCode extends string = string,
+>(): CreateApiUtilsReturnType<TQueryKeys, TErrorCode> {
   const queryClient: QueryClient = getQueryClient()
 
   return {
