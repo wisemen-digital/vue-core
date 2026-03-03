@@ -1,11 +1,11 @@
 import type {
   AutocompleteInput,
+  FieldWrapper,
   Input,
-  InputField,
-  InputMeta,
+  InputWrapper,
 } from '@/types/input.type'
 
-export interface NumberFieldProps extends Input, AutocompleteInput, InputMeta, InputField {
+export interface NumberFieldProps extends Input, AutocompleteInput, InputWrapper, FieldWrapper {
   /**
    * Specifies formatting options for the number input, using `Intl.NumberFormatOptions`.
    * This controls how the number is displayed (e.g., decimal places, currency, or percentage).

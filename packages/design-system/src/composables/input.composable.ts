@@ -1,12 +1,12 @@
 import { computed } from 'vue'
 
 import type {
+  FieldWrapper,
   Input,
-  InputField,
-  InputMeta,
+  InputWrapper,
 } from '@/types/input.type'
 
-export function useInput(id: string, options: Input & InputMeta & InputField) {
+export function useInput(id: string, options: Input & InputWrapper & FieldWrapper) {
   const ariaDescribedBy = computed<string | undefined>(() => {
     if (options.errorMessage === null && options.hint === null) {
       return
