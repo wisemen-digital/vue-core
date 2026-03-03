@@ -35,6 +35,7 @@ const emit = defineEmits<{
 const {
   isSidebarOpen,
   closeIfFloatingSidebar,
+  sidebarIconSize,
   sidebarLinkHeight,
   sidebarLinkPadding,
   variant,
@@ -87,8 +88,12 @@ function onClick(): void {
               <RowLayout>
                 <Component
                   :is="props.icon"
+                  :style="{
+                    width: sidebarIconSize,
+                    height: sidebarIconSize,
+                  }"
                   class="
-                    size-4 shrink-0 text-fg-quaternary duration-100
+                    shrink-0 text-fg-quaternary duration-100
                     group-data-active:text-fg-brand-primary
                     dark:group-data-active:text-fg-primary
                   "

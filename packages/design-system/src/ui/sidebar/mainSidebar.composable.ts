@@ -56,6 +56,8 @@ export function useMainSidebar() {
 
   const collapsedInnerSize = SIDEBAR_COLLAPSED_WIDTH - 2 * SIDEBAR_CONTAINER_PADDING
 
+  const sidebarContainerPadding = `${SIDEBAR_CONTAINER_PADDING}px`
+  const sidebarIconSize = `${SIDEBAR_ICON_SIZE}px`
   const sidebarLinkPadding = `${(collapsedInnerSize - SIDEBAR_ICON_SIZE) / 2}px`
   const sidebarLinkHeight = `${collapsedInnerSize}px`
   const sidebarLogoPadding = `${(collapsedInnerSize - SIDEBAR_LOGO_SIZE) / 2}px`
@@ -86,6 +88,8 @@ export function useMainSidebar() {
     iconsOnlySidebarWidth: ICONS_ONLY_SIDEBAR_WIDTH,
     setVariant,
     sidebarAvatarPadding,
+    sidebarContainerPadding,
+    sidebarIconSize,
     sidebarLinkHeight,
     sidebarLinkPadding,
     sidebarLogoPadding,
