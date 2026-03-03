@@ -12,7 +12,10 @@ import {
   useReducedMotion,
 } from 'motion-v'
 import type { Component } from 'vue'
-import { computed } from 'vue'
+import {
+  computed,
+  watch,
+} from 'vue'
 
 import { UIButton } from '@/ui/button/index'
 import MainSidebarFooterAccountCard from '@/ui/sidebar/components/MainSidebarFooterAccountCard.vue'
@@ -25,13 +28,27 @@ import MainSidebarNavigationLinkBadge from '@/ui/sidebar/components/MainSidebarN
 import MainSidebarNavigationLinkStatusDot from '@/ui/sidebar/components/MainSidebarNavigationLinkStatusDot.vue'
 import { useMainSidebar } from '@/ui/sidebar/mainSidebar.composable'
 import MainSidebar from '@/ui/sidebar/MainSidebar.vue'
+import type { MainSidebarVariant } from '@/ui/sidebar/types/mainSidebar.type'
+
+const props = withDefaults(defineProps<{
+  variant?: MainSidebarVariant
+}>(), {
+  variant: 'icons-only',
+})
 
 const {
   isFloatingSidebar,
   isSidebarOpen,
+  setVariant,
   sidebarWidth,
-  variant,
+  variant: _sidebarVariant,
 } = useMainSidebar()
+
+watch(() => props.variant, (value) => {
+  setVariant(value)
+}, {
+  immediate: true,
+})
 
 const isReduceMotionEnabledOnDevice = useReducedMotion()
 
@@ -117,7 +134,7 @@ const footerNavigation = computed<NavigationGroup[]>(() => ([
     "
   >
     <MainSidebar
-      variant="icons-only"
+      :variant="props.variant"
     >
       <template #header>
         <MainSidebarHeaderLogoWithText
@@ -188,13 +205,13 @@ const footerNavigation = computed<NavigationGroup[]>(() => ([
 
     <Motion
       :initial="{
-        paddingLeft: variant === 'icons-only' ? !isFloatingSidebar ? sidebarWidth : '0' : isSidebarOpen && !isFloatingSidebar ? sidebarWidth : '0',
+        paddingLeft: props.variant === 'icons-only' ? !isFloatingSidebar ? sidebarWidth : '0' : isSidebarOpen && !isFloatingSidebar ? sidebarWidth : '0',
       }"
       :animate="{
-        paddingLeft: variant === 'icons-only' ? !isFloatingSidebar ? sidebarWidth : '0' : isSidebarOpen && !isFloatingSidebar ? sidebarWidth : '0',
+        paddingLeft: props.variant === 'icons-only' ? !isFloatingSidebar ? sidebarWidth : '0' : isSidebarOpen && !isFloatingSidebar ? sidebarWidth : '0',
       }"
       :transition="{
-        duration: isReduceMotionEnabledOnDevice ? 0 : variant === 'icons-only' ? 0.1 : 0.3,
+        duration: isReduceMotionEnabledOnDevice ? 0 : props.variant === 'icons-only' ? 0.1 : 0.3,
         type: 'spring',
         bounce: 0,
       }"
