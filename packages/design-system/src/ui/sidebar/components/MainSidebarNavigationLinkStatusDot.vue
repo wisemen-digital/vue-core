@@ -3,5 +3,5 @@
 </script>
 
 <template>
-  <div />
+  <div class="size-2 rounded-full bg-success-500" />
 </template>
