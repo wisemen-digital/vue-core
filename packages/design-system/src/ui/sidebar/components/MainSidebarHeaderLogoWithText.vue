@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import Logo from '@/ui/logo/Logo.vue'
-import LogoWithText from '@/ui/logo/LogoWithText.vue'
 import RowLayout from '@/ui/row-layout/RowLayout.vue'
 import { useMainSidebar } from '@/ui/sidebar/mainSidebar.composable'
 
@@ -16,26 +15,25 @@ const {
 
 <template>
   <RowLayout
-    v-if="variant === 'icons-only' && !isSidebarOpen"
-    justify="center"
-    class="h-8"
-  >
-    <Logo
-      :src="props.url"
-      alt="Logo"
-      size="xs"
-    />
-  </RowLayout>
-  <RowLayout
-    v-else
     justify="between"
-    class="h-8"
+    class="h-7"
   >
-    <LogoWithText
-      :name="props.name"
-      :src="props.url"
-      size="xs"
+    <RowLayout class="p-0.5">
+      <Logo
+        :src="props.url"
+        alt="Logo"
+        size="xs"
+      />
+      <span
+        v-if="variant !== 'icons-only' || isSidebarOpen"
+        class="text-sm font-semibold text-secondary"
+      >
+        {{ props.name }}
+      </span>
+    </RowLayout>
+    <slot
+      v-if="variant !== 'icons-only' || isSidebarOpen"
+      name="right"
     />
-    <slot name="right" />
   </RowLayout>
 </template>

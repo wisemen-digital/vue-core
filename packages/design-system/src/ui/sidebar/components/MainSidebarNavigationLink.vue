@@ -57,9 +57,6 @@ function onClick(): void {
       <RouterLink
         v-slot="{ isActive: isRouteActive }"
         :to="props.to"
-        :class="{
-          'w-fit': variant === 'icons-only' && !isSidebarOpen,
-        }"
         class="w-full"
         @click="onClick"
       >
@@ -68,35 +65,18 @@ function onClick(): void {
         >
           <div
             :data-active="isRouteActive || props.isActive(route) || undefined"
-            :class="{
-              'flex items-center justify-center': variant === 'icons-only' && !isSidebarOpen,
-            }"
             class="
-              group rounded-md p-px
+              group h-7 rounded-md
               hover:bg-primary-hover
               data-active:bg-brand-primary
               dark:data-active:glassy
             "
           >
-            <div
-              v-if="variant === 'icons-only' && !isSidebarOpen"
-              class="p-sm"
-            >
-              <Component
-                :is="props.icon"
-                class="
-                  size-4 text-fg-quaternary duration-100
-                  group-data-active:text-fg-brand-primary
-                  dark:group-data-active:text-fg-primary
-                "
-              />
-            </div>
             <RowLayout
-              v-else
               gap="md"
               justify="between"
               class="
-                group h-7 rounded-[0.4rem] px-lg duration-100
+                group h-full rounded-[0.4rem] p-sm duration-100
                 dark:group-data-active:glassy-inner-content
               "
             >
@@ -104,13 +84,14 @@ function onClick(): void {
                 <Component
                   :is="props.icon"
                   class="
-                    size-4 text-fg-quaternary duration-100
+                    size-4 shrink-0 text-fg-quaternary duration-100
                     group-data-active:text-fg-brand-primary
                     dark:group-data-active:text-fg-primary
                   "
                 />
 
                 <span
+                  v-if="variant !== 'icons-only' || isSidebarOpen"
                   class="
                     text-xs font-medium text-secondary duration-100
                     group-hover:text-primary
@@ -121,6 +102,7 @@ function onClick(): void {
                 </span>
               </RowLayout>
               <RowLayout
+                v-if="variant !== 'icons-only' || isSidebarOpen"
                 gap="lg"
               >
                 <slot

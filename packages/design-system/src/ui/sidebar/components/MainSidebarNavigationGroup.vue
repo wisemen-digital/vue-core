@@ -20,7 +20,7 @@ const {
       :class="{
         'opacity-0': variant === 'icons-only' && !isSidebarOpen,
       }"
-      class="block px-lg pb-sm text-xs font-medium text-quaternary"
+      class="block px-sm pb-sm text-xs font-medium text-quaternary"
     >
       {{ props.label }}
     </span>

@@ -6,7 +6,7 @@
   <div
     class="flex h-full flex-col justify-between overflow-hidden text-primary"
   >
-    <div class="p-lg">
+    <div class="p-md">
       <slot name="header" />
     </div>
     <nav
