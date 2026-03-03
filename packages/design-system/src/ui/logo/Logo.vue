@@ -10,7 +10,6 @@ const props = defineProps<LogoProps>()
     :alt="props.alt"
     :class="{
       'size-8 rounded-lg': props.size === 'sm',
-      'size-7 rounded-md': props.size === 'sidebar',
       'size-6 rounded-md': props.size === 'xs',
       'size-5 rounded-sm': props.size === 'xxs',
       'size-3.5 rounded-xs': props.size === '3xs',
