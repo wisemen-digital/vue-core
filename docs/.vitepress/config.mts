@@ -1,5 +1,7 @@
 import { resolve } from 'node:path'
 
+import tailwindcss from '@tailwindcss/vite'
+import postcssPrefixSelector from 'postcss-prefix-selector'
 import { defineConfig } from 'vitepress'
 
 import {
@@ -50,6 +52,27 @@ export default defineConfig({
     },
   },
   vite: {
+    css: {
+      postcss: {
+        plugins: [
+          postcssPrefixSelector({
+            prefix: ':not(:where(.vp-raw *))',
+            includeFiles: [
+              /vp-doc\.css/,
+              /base\.css/,
+            ],
+            transform(prefix: string, _selector: string) {
+              const [
+                selector,
+                pseudo = '',
+              ] = _selector.split(/(:\S*)$/)
+
+              return selector + prefix + pseudo
+            },
+          }),
+        ],
+      },
+    },
     resolve: {
       alias: {
         '@docs': resolve(__dirname, '../'),
@@ -64,6 +87,7 @@ export default defineConfig({
       },
     },
     plugins: [
+      tailwindcss(),
       {
         name: 'eslint-inspector-spa',
         configureServer(server): void {
