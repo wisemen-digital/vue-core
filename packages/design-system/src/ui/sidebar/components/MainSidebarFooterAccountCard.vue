@@ -34,7 +34,9 @@ const props = defineProps<{
 const i18n = useI18n()
 
 const {
-  isSidebarOpen, variant,
+  isSidebarOpen,
+  sidebarAvatarPadding,
+  variant,
 } = useMainSidebar()
 
 function onSignOut(): void {
@@ -59,11 +61,15 @@ function onSignOut(): void {
         >
           <UICard
             :class="variant === 'icons-only' && !isSidebarOpen
-              ? 'border-transparent p-0.5'
+              ? 'border-transparent'
               : `
                 bg-primary-alt p-md py-sm
                 hover:bg-tertiary/50
               `
+            "
+            :style="variant === 'icons-only' && !isSidebarOpen
+              ? { padding: sidebarAvatarPadding }
+              : undefined
             "
             class="flex w-full flex-col overflow-hidden text-left duration-100"
           >

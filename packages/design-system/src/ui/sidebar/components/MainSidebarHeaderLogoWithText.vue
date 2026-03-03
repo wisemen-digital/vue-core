@@ -9,16 +9,19 @@ const props = defineProps<{
 }>()
 
 const {
-  isSidebarOpen, variant,
+  isSidebarOpen,
+  sidebarLinkHeight,
+  sidebarLogoPadding,
+  variant,
 } = useMainSidebar()
 </script>
 
 <template>
   <RowLayout
+    :style="{ height: sidebarLinkHeight }"
     justify="between"
-    class="h-7"
   >
-    <RowLayout class="p-0.5">
+    <RowLayout :style="{ padding: sidebarLogoPadding }">
       <Logo
         :src="props.url"
         alt="Logo"

@@ -35,6 +35,8 @@ const emit = defineEmits<{
 const {
   isSidebarOpen,
   closeIfFloatingSidebar,
+  sidebarLinkHeight,
+  sidebarLinkPadding,
   variant,
 } = useMainSidebar()
 
@@ -65,18 +67,20 @@ function onClick(): void {
         >
           <div
             :data-active="isRouteActive || props.isActive(route) || undefined"
+            :style="{ height: sidebarLinkHeight }"
             class="
-              group h-7 rounded-md
+              group rounded-md
               hover:bg-primary-hover
               data-active:bg-brand-primary
               dark:data-active:glassy
             "
           >
             <RowLayout
+              :style="{ padding: sidebarLinkPadding }"
               gap="md"
               justify="between"
               class="
-                group h-full rounded-[0.4rem] p-sm duration-100
+                group h-full rounded-[0.4rem] duration-100
                 dark:group-data-active:glassy-inner-content
               "
             >
