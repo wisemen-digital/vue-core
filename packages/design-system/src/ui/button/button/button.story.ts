@@ -26,6 +26,10 @@ const meta = {
       control: 'boolean',
       description: 'Shows a loading state and disables interaction',
     },
+    disabledReason: {
+      control: 'text',
+      description: 'Provides a reason why the button is disabled, shown in tooltip',
+    },
     keyboardShortcut: {
       control: 'text',
       description: 'Visual representation of a keyboard shortcut (e.g. "⌘K")',
@@ -47,6 +51,16 @@ const meta = {
     tooltipLabel: {
       control: 'text',
       description: 'Tooltip text shown on hover or focus',
+    },
+    tooltipSide: {
+      control: 'select',
+      description: 'Position of the tooltip relative to the button',
+      options: [
+        'top',
+        'bottom',
+        'left',
+        'right',
+      ],
     },
     type: {
       control: 'select',
@@ -303,7 +317,11 @@ export const WithTooltip: Story = {
     components: {
       Button,
     },
-    template: '<Button label="Hover me" tooltip-label="This is a helpful tooltip" />',
+    template: `
+    <div class="flex items-center gap-2">
+      <Button label="Hover me" tooltip-label="This is a helpful tooltip" />
+      <Button label="Disabled" :is-disabled="true" disabled-reason="You need permission to perform this action" />
+    </div>`,
   }),
 }
 

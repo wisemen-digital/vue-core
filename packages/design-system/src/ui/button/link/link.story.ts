@@ -45,6 +45,16 @@ const meta = {
       control: 'text',
       description: 'Tooltip text shown on hover or focus',
     },
+    tooltipSide: {
+      control: 'select',
+      description: 'Position of the tooltip relative to the link',
+      options: [
+        'top',
+        'bottom',
+        'left',
+        'right',
+      ],
+    },
     variant: {
       control: 'select',
       description: 'Visual style variant of the link',
