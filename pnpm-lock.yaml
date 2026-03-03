@@ -641,6 +641,9 @@ importers:
       '@tailwindcss/postcss':
         specifier: catalog:style
         version: 4.1.18
+      '@tailwindcss/vite':
+        specifier: catalog:vite
+        version: 4.1.18(rolldown-vite@7.3.1(@types/node@24.8.1)(esbuild@0.27.2)(jiti@2.6.1)(sass@1.97.3)(tsx@4.20.3)(yaml@2.8.2))
       '@types/babel__traverse':
         specifier: catalog:types
         version: 7.28.0
