@@ -1,6 +1,6 @@
 import { resolve } from 'node:path'
 
-import tailwindcss from '@tailwindcss/postcss'
+import tailwindcss from '@tailwindcss/vite'
 import postcssPrefixSelector from 'postcss-prefix-selector'
 import { defineConfig } from 'vitepress'
 
@@ -55,7 +55,6 @@ export default defineConfig({
     css: {
       postcss: {
         plugins: [
-          tailwindcss(),
           postcssPrefixSelector({
             prefix: ':not(:where(.vp-raw *))',
             includeFiles: [
@@ -88,6 +87,7 @@ export default defineConfig({
       },
     },
     plugins: [
+      tailwindcss(),
       {
         name: 'eslint-inspector-spa',
         configureServer(server): void {
