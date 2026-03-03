@@ -7,7 +7,7 @@
     "lib": ["esnext", "dom"],
     "baseUrl": ".",
     "module": "esnext",
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "paths": {
       "@/*": ["src/*"]
     },
