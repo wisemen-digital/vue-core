@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "catalog:style",
+    "@tailwindcss/vite": "catalog:vite",
     "@types/babel__traverse": "catalog:types",
     "@types/markdown-it": "catalog:types",
     "@types/node": "catalog:types",
