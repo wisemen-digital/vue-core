@@ -1,0 +1,43 @@
+{
+  "name": "@wisemen/address",
+  "version": "0.2.8",
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "imports": {
+    "#*": "./lib/*"
+  },
+  "scripts": {
+    "prebuild": "rm -rf ./dist",
+    "clean": "rm -rf ./dist",
+    "build": "tsc",
+    "pretest": "npm run clean && npm run build",
+    "test": "node --env-file=.env.test --test ./**/*.test.js",
+    "lint": "eslint --cache",
+    "prerelease": "npm run build",
+    "release": "pnpx release-it"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "catalog:backend",
+    "@nestjs/swagger": "catalog:backend",
+    "@wisemen/coordinates": "catalog:backend",
+    "@wisemen/validators": "catalog:backend",
+    "class-transformer": "catalog:backend",
+    "class-validator": "catalog:backend",
+    "typeorm": "catalog:backend"
+  },
+  "devDependencies": {
+    "@wisemen/eslint-config-nestjs": "catalog:lint",
+    "eslint": "catalog:lint",
+    "expect": "catalog:test",
+    "typescript": "catalog:peer",
+    "pg": "catalog:backend"
+  },
+  "author": "Kobe Kwanten",
+  "license": "GPL",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:wisemen-digital/node-core.git"
+  }
+}

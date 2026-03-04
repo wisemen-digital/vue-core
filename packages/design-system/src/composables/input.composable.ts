@@ -1,8 +1,8 @@
 import { computed } from 'vue'
 
 import type {
-  Input,
   FieldWrapper,
+  Input,
   InputWrapper,
 } from '@/types/input.type'
 
