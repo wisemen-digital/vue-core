@@ -7,6 +7,7 @@ const props = defineProps<{
   isDisabled?: boolean
   isLabelHidden?: boolean
   description?: string | null
+  disabledReason?: string | null
   label: string
   value: AcceptableInputValue
 }>()
@@ -19,5 +20,6 @@ const props = defineProps<{
     :description="props.description"
     :is-label-hidden="props.isLabelHidden"
     :is-disabled="props.isDisabled"
+    :disabled-reason="props.disabledReason"
   />
 </template>

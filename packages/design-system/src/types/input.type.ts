@@ -61,6 +61,12 @@ export interface InputWrapper {
    */
   isRequired?: boolean
   /**
+   * Provides a reason why the element is disabled,
+   * when provided a tooltip will be shown on hover with the provided text.
+   * @default null
+   */
+  disabledReason?: string | null
+  /**
    * The error associated with the input.
    * @default null
    */
@@ -141,6 +147,7 @@ export const INPUT_META_DEFAULTS = {
   isHorizontal: false,
   isLabelHidden: false,
   isRequired: false,
+  disabledReason: null,
   errorMessage: null,
   for: null,
   hideErrorMessage: false,

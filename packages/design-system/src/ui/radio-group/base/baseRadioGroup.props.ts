@@ -17,6 +17,12 @@ export interface BaseRadioGroupItemProps {
    */
   description?: string | null
   /**
+   * Provides a reason why this radio item is disabled,
+   * when provided a tooltip will be shown on hover with the provided text.
+   * @default null
+   */
+  disabledReason?: string | null
+  /**
    * The label displayed next to the radio item.
    */
   label: string

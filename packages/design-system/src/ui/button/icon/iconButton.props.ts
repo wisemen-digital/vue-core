@@ -17,6 +17,12 @@ export interface IconButtonProps {
    */
   isTooltipDisabled?: boolean
   /**
+   * Provides a reason why the button is disabled,
+   * when provided a tooltip will be shown on hover with the provided text.
+   * @default null
+   */
+  disabledReason?: string | null
+  /**
    * The form ID the button is associated with.
    * @default null
    */

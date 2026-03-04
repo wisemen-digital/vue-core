@@ -155,6 +155,7 @@ watch(copiedModelValue, () => {
     :error-message="props.errorMessage"
     :is-disabled="props.isDisabled"
     :is-required="props.isRequired"
+    :disabled-reason="props.disabledReason"
     :hint="props.hint"
     :label="props.label"
     :class="props.class"

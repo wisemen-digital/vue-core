@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { TabsTrigger as RekaTabsTrigger } from 'reka-ui'
 
+import ActionTooltip from '@/ui/action-tooltip/ActionTooltip.vue'
 import ClickableElement from '@/ui/clickable-element/ClickableElement.vue'
 import { UINumberBadge } from '@/ui/number-badge/index'
 import { useInjectTabsContext } from '@/ui/tabs/tabs.context'
@@ -10,6 +11,7 @@ import { UIText } from '@/ui/text/index'
 const props = withDefaults(defineProps<TabsItemProps>(), {
   isDisabled: false,
   count: null,
+  disabledReason: null,
   icon: undefined,
   label: null,
 })
@@ -20,30 +22,35 @@ const {
 </script>
 
 <template>
-  <ClickableElement>
-    <RekaTabsTrigger
-      :value="props.value"
-      :disabled="props.isDisabled"
-      :class="variants.item()"
-    >
-      <component
-        :is="props.icon"
-        v-if="props.icon != null"
-        class="size-4 shrink-0"
-      />
-      <UIText
-        v-if="props.label != null"
-        :text="props.label"
-        class="text-xs"
+  <ActionTooltip
+    :is-disabled="!props.isDisabled || props.disabledReason == null"
+    :label="props.disabledReason"
+  >
+    <ClickableElement>
+      <RekaTabsTrigger
+        :value="props.value"
+        :disabled="props.isDisabled"
+        :class="variants.item()"
       >
-        {{ props.label }}
-      </UIText>
-      <slot v-else />
-      <UINumberBadge
-        v-if="props.count != null"
-        :value="props.count.toString()"
-        size="sm"
-      />
-    </RekaTabsTrigger>
-  </ClickableElement>
+        <component
+          :is="props.icon"
+          v-if="props.icon != null"
+          class="size-4 shrink-0"
+        />
+        <UIText
+          v-if="props.label != null"
+          :text="props.label"
+          class="text-xs"
+        >
+          {{ props.label }}
+        </UIText>
+        <slot v-else />
+        <UINumberBadge
+          v-if="props.count != null"
+          :value="props.count.toString()"
+          size="sm"
+        />
+      </RekaTabsTrigger>
+    </ClickableElement>
+  </ActionTooltip>
 </template>

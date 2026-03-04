@@ -3,11 +3,13 @@ import type { AcceptableValue } from 'reka-ui'
 import { RadioGroupRoot as RekaRadioGroupRoot } from 'reka-ui'
 import { computed } from 'vue'
 
+import ActionTooltip from '@/ui/action-tooltip/ActionTooltip.vue'
 import { useProvideRadioGroupContext } from '@/ui/radio-group/radioGroup.context'
 import type { RadioGroupProps } from '@/ui/radio-group/radioGroup.props'
 
 const props = withDefaults(defineProps<RadioGroupProps>(), {
   isDisabled: false,
+  disabledReason: null,
   hideErrorMessage: false,
   orientation: 'vertical',
 })
@@ -24,11 +26,16 @@ useProvideRadioGroupContext({
 </script>
 
 <template>
-  <RekaRadioGroupRoot
-    v-model="modelValue"
-    :orientation="orientation"
-    :disabled="isDisabled"
+  <ActionTooltip
+    :is-disabled="!props.isDisabled || props.disabledReason == null"
+    :label="props.disabledReason"
   >
-    <slot />
-  </RekaRadioGroupRoot>
+    <RekaRadioGroupRoot
+      v-model="modelValue"
+      :orientation="orientation"
+      :disabled="isDisabled"
+    >
+      <slot />
+    </RekaRadioGroupRoot>
+  </ActionTooltip>
 </template>

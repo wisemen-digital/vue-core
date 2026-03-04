@@ -32,6 +32,12 @@ export interface TabsItemProps {
    */
   count?: number | null
   /**
+   * Provides a reason why the tab is disabled,
+   * when provided a tooltip will be shown on hover with the provided text.
+   * @default null
+   */
+  disabledReason?: string | null
+  /**
    * An optional icon to be displayed alongside the tab label.
    */
   icon?: Component
@@ -64,6 +70,12 @@ export interface TabsRouterLinkItemProps {
    * A count to display as a badge on the right side of the tab.
    */
   count?: number | null
+  /**
+   * Provides a reason why the tab is disabled,
+   * when provided a tooltip will be shown on hover with the provided text.
+   * @default null
+   */
+  disabledReason?: string | null
   /**
    * An optional icon to be displayed alongside the tab label.
    */
