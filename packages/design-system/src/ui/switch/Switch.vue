@@ -3,6 +3,7 @@ import {
   SwitchRoot as RekaSwitchRoot,
   SwitchThumb as RekaSwitchThumb,
 } from 'reka-ui'
+import { twMerge } from 'tailwind-merge'
 import type { Component } from 'vue'
 import {
   computed,
@@ -13,12 +14,16 @@ import {
   INPUT_DEFAULTS,
   INPUT_META_DEFAULTS,
 } from '@/types/input.type'
-import InputWrapper from '@/ui/input-wrapper/InputWrapper.vue'
+import InputWrapperErrorMessage from '@/ui/input-wrapper/InputWrapperErrorMessage.vue'
+import InputWrapperHint from '@/ui/input-wrapper/InputWrapperHint.vue'
+import { UIRowLayout } from '@/ui/row-layout/index'
+import RowLayout from '@/ui/row-layout/RowLayout.vue'
 import { useProvideSwitchContext } from '@/ui/switch/switch.context'
 import type { SwitchProps } from '@/ui/switch/switch.props'
 import type { SwitchStyle } from '@/ui/switch/switch.style'
 import { createSwitchStyle } from '@/ui/switch/switch.style'
 import SwitchThumbIcon from '@/ui/switch/SwitchThumbIcon.vue'
+import { UIText } from '@/ui/text/index'
 
 const props = withDefaults(defineProps<SwitchProps>(), {
   ...INPUT_DEFAULTS,
@@ -51,17 +56,8 @@ useProvideSwitchContext({
 </script>
 
 <template>
-  <InputWrapper
-    :error-message="props.errorMessage"
-    :is-disabled="props.isDisabled"
-    :is-required="props.isRequired"
-    :hint="props.hint"
-    :label="props.label"
-    :is-horizontal="true"
-    :class="props.class"
-    :style="props.style"
-    :for="id"
-    :is-label-hidden="props.isLabelHidden"
+  <RowLayout
+    align="start"
   >
     <RekaSwitchRoot
       :id="id"
@@ -75,5 +71,40 @@ useProvideSwitchContext({
         <SwitchThumbIcon />
       </RekaSwitchThumb>
     </RekaSwitchRoot>
-  </InputWrapper>
+    <div>
+      <UIRowLayout
+        v-if="props.label !== null"
+        :class="[
+          props.isLabelHidden && 'sr-only',
+        ]"
+        gap="none"
+      >
+        <slot name="left" />
+
+        <UIText
+          :for="props.for ?? undefined"
+          :text="props.label"
+          :class="twMerge(
+            'text-xs/5 font-medium text-secondary',
+            props.isRequired ? 'after:pl-xxs after:text-error-primary' : '',
+          )"
+          :data-label-required="props.isRequired ? '' : null"
+          as="label"
+        />
+
+        <slot name="right" />
+      </UIRowLayout>
+
+      <InputWrapperHint
+        :hint="props.hint"
+        :for="props.for"
+      />
+
+      <InputWrapperErrorMessage
+        v-if="!props.hideErrorMessage"
+        :error-message="props.errorMessage"
+        :for="props.for"
+      />
+    </div>
+  </RowLayout>
 </template>
