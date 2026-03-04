@@ -6,16 +6,15 @@ import {
   useId,
 } from 'vue'
 
+import type { DisabledWithReason } from '@/types/disabledWithReason.type'
 import BaseCheckbox from '@/ui/checkbox/base/BaseCheckbox.vue'
 import { useInjectCheckboxGroupContext } from '@/ui/checkbox-group/checkboxGroup.context'
 
 const props = defineProps<{
-  isDisabled?: boolean
   isLabelHidden?: boolean
-  disabledReason?: string | null
   label?: string
   value: AcceptableInputValue
-}>()
+} & DisabledWithReason>()
 
 const id = useId()
 
