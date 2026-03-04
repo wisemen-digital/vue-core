@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import Logo from '@/ui/logo/Logo.vue'
-import LogoWithText from '@/ui/logo/LogoWithText.vue'
 import RowLayout from '@/ui/row-layout/RowLayout.vue'
 import { useMainSidebar } from '@/ui/sidebar/mainSidebar.composable'
 
@@ -10,32 +9,34 @@ const props = defineProps<{
 }>()
 
 const {
-  isSidebarOpen, variant,
+  isSidebarOpen,
+  sidebarLinkHeight,
+  sidebarLogoPadding,
+  variant,
 } = useMainSidebar()
 </script>
 
 <template>
   <RowLayout
-    v-if="variant === 'icons-only' && !isSidebarOpen"
-    justify="center"
-    class="h-8"
-  >
-    <Logo
-      :src="props.url"
-      alt="Logo"
-      size="xs"
-    />
-  </RowLayout>
-  <RowLayout
-    v-else
+    :style="{ height: sidebarLinkHeight }"
     justify="between"
-    class="h-8"
   >
-    <LogoWithText
-      :name="props.name"
-      :src="props.url"
-      size="xs"
+    <RowLayout :style="{ padding: sidebarLogoPadding }">
+      <Logo
+        :src="props.url"
+        alt="Logo"
+        size="xs"
+      />
+      <span
+        v-if="variant !== 'icons-only' || isSidebarOpen"
+        class="text-sm font-semibold text-secondary"
+      >
+        {{ props.name }}
+      </span>
+    </RowLayout>
+    <slot
+      v-if="variant !== 'icons-only' || isSidebarOpen"
+      name="right"
     />
-    <slot name="right" />
   </RowLayout>
 </template>
