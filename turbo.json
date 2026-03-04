@@ -20,36 +20,6 @@
         "package.json"
       ]
     },
-    "@wisemen/address#build": {
-      "dependsOn": ["^build", "@wisemen/coordinates#build", "@wisemen/validators#build"]
-    },
-    "@wisemen/date-range#build": {
-      "dependsOn": ["^build", "@wisemen/pagination#build", "@wisemen/validators#build", "@wisemen/wise-date#build"]
-    },
-    "@wisemen/date-time-range#build": {
-      "dependsOn": ["^build", "@wisemen/pagination#build", "@wisemen/validators#build"]
-    },
-    "@wisemen/datewise#build": {
-      "dependsOn": ["^build", "@wisemen/pagination#build", "@wisemen/quantity#build"]
-    },
-    "@wisemen/int-range#build": {
-      "dependsOn": ["^build", "@wisemen/pagination#build"]
-    },
-    "@wisemen/node-doc-processor#build": {
-      "dependsOn": ["^build", "@wisemen/pgboss-nestjs-job#build"]
-    },
-    "@wisemen/pgboss-nestjs-job#build": {
-      "dependsOn": ["^build", "@wisemen/nestjs-typeorm#build", "@wisemen/opentelemetry#build"]
-    },
-    "@wisemen/planning#build": {
-      "dependsOn": ["^build", "@wisemen/time#build"]
-    },
-    "@wisemen/twilio#build": {
-      "dependsOn": ["^build", "@wisemen/api-error#build"]
-    },
-    "@wisemen/validators#build": {
-      "dependsOn": ["^build", "@wisemen/time#build"]
-    },
     "test": {
       "dependsOn": ["^build"],
       "outputs": ["coverage/**"],

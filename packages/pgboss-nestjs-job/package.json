@@ -38,7 +38,9 @@
     "typeorm": "catalog:backend"
   },
   "devDependencies": {
-    "@wisemen/eslint-config-nestjs": "catalog:lint",
+    "@wisemen/eslint-config-nestjs": "workspace:*",
+    "@wisemen/nestjs-typeorm": "workspace:*",
+    "@wisemen/opentelemetry": "workspace:*",
     "eslint": "catalog:lint",
     "typescript": "catalog:peer"
   }

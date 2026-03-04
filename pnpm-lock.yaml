@@ -279,9 +279,6 @@ catalogs:
     '@vitest/eslint-plugin':
       specifier: 1.6.9
       version: 1.6.9
-    '@wisemen/eslint-config-nestjs':
-      specifier: 0.2.8
-      version: 0.2.8
     '@wisemen/eslint-config-vue':
       specifier: 2.0.0
       version: 2.0.0
@@ -677,12 +674,6 @@ importers:
       '@nestjs/swagger':
         specifier: catalog:backend
         version: 11.2.6(@nestjs/common@11.1.14(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.14(@nestjs/common@11.1.14(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2))(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)
-      '@wisemen/coordinates':
-        specifier: workspace:*
-        version: link:../coordinates
-      '@wisemen/validators':
-        specifier: workspace:*
-        version: link:../validators
       class-transformer:
         specifier: catalog:backend
         version: 0.5.1
@@ -693,9 +684,15 @@ importers:
         specifier: catalog:backend
         version: 0.3.28(pg@8.18.0)(ts-node@10.9.2(@types/node@25.3.0)(typescript@5.9.3))
     devDependencies:
+      '@wisemen/coordinates':
+        specifier: workspace:*
+        version: link:../coordinates
       '@wisemen/eslint-config-nestjs':
-        specifier: catalog:lint
-        version: 0.2.8(@typescript-eslint/eslint-plugin@8.56.0(@typescript-eslint/parser@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))
+        specifier: workspace:*
+        version: link:../eslint-config-nestjs
+      '@wisemen/validators':
+        specifier: workspace:*
+        version: link:../validators
       eslint:
         specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
@@ -731,8 +728,8 @@ importers:
         specifier: catalog:backend
         version: 25.3.0
       '@wisemen/eslint-config-nestjs':
-        specifier: catalog:lint
-        version: 0.2.8(@typescript-eslint/eslint-plugin@8.56.0(@typescript-eslint/parser@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))
+        specifier: workspace:*
+        version: link:../eslint-config-nestjs
       eslint:
         specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
@@ -793,8 +790,8 @@ importers:
         specifier: catalog:backend
         version: 25.3.0
       '@wisemen/eslint-config-nestjs':
-        specifier: catalog:lint
-        version: 0.2.8(@typescript-eslint/eslint-plugin@8.56.0(@typescript-eslint/parser@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))
+        specifier: workspace:*
+        version: link:../eslint-config-nestjs
       eslint:
         specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
@@ -950,9 +947,6 @@ importers:
       '@nestjs/swagger':
         specifier: catalog:backend
         version: 11.2.6(@nestjs/common@11.1.14(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.14(@nestjs/common@11.1.14(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2))(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)
-      '@wisemen/quantity':
-        specifier: workspace:*
-        version: link:../quantity
       class-validator:
         specifier: catalog:backend
         version: 0.14.3
@@ -967,8 +961,11 @@ importers:
         specifier: catalog:backend
         version: 25.3.0
       '@wisemen/eslint-config-nestjs':
-        specifier: catalog:lint
-        version: 0.2.8(@typescript-eslint/eslint-plugin@8.56.0(@typescript-eslint/parser@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))
+        specifier: workspace:*
+        version: link:../eslint-config-nestjs
+      '@wisemen/quantity':
+        specifier: workspace:*
+        version: link:../quantity
       eslint:
         specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
@@ -985,8 +982,8 @@ importers:
         specifier: catalog:backend
         version: 25.3.0
       '@wisemen/eslint-config-nestjs':
-        specifier: catalog:lint
-        version: 0.2.8(@typescript-eslint/eslint-plugin@8.56.0(@typescript-eslint/parser@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))
+        specifier: workspace:*
+        version: link:../eslint-config-nestjs
       eslint:
         specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
@@ -1002,15 +999,6 @@ importers:
       '@nestjs/swagger':
         specifier: catalog:backend
         version: 11.2.6(@nestjs/common@11.1.14(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.14(@nestjs/common@11.1.14(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2))(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)
-      '@wisemen/pagination':
-        specifier: workspace:*
-        version: link:../pagination
-      '@wisemen/validators':
-        specifier: workspace:*
-        version: link:../validators
-      '@wisemen/wise-date':
-        specifier: workspace:*
-        version: link:../wise-date
       class-transformer:
         specifier: catalog:backend
         version: 0.5.1
@@ -1031,8 +1019,17 @@ importers:
         specifier: catalog:backend
         version: 25.3.0
       '@wisemen/eslint-config-nestjs':
-        specifier: catalog:lint
-        version: 0.2.8(@typescript-eslint/eslint-plugin@8.56.0(@typescript-eslint/parser@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))
+        specifier: workspace:*
+        version: link:../eslint-config-nestjs
+      '@wisemen/pagination':
+        specifier: workspace:*
+        version: link:../pagination
+      '@wisemen/validators':
+        specifier: workspace:*
+        version: link:../validators
+      '@wisemen/wise-date':
+        specifier: workspace:*
+        version: link:../wise-date
       eslint:
         specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
@@ -1051,12 +1048,6 @@ importers:
       '@nestjs/swagger':
         specifier: catalog:backend
         version: 11.2.6(@nestjs/common@11.1.14(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.14(@nestjs/common@11.1.14(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2))(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)
-      '@wisemen/pagination':
-        specifier: workspace:*
-        version: link:../pagination
-      '@wisemen/validators':
-        specifier: workspace:*
-        version: link:../validators
       class-transformer:
         specifier: catalog:backend
         version: 0.5.1
@@ -1074,8 +1065,14 @@ importers:
         specifier: catalog:backend
         version: 25.3.0
       '@wisemen/eslint-config-nestjs':
-        specifier: catalog:lint
-        version: 0.2.8(@typescript-eslint/eslint-plugin@8.56.0(@typescript-eslint/parser@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))
+        specifier: workspace:*
+        version: link:../eslint-config-nestjs
+      '@wisemen/pagination':
+        specifier: workspace:*
+        version: link:../pagination
+      '@wisemen/validators':
+        specifier: workspace:*
+        version: link:../validators
       eslint:
         specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
@@ -1091,12 +1088,6 @@ importers:
       '@nestjs/swagger':
         specifier: catalog:backend
         version: 11.2.6(@nestjs/common@11.1.14(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.14(@nestjs/common@11.1.14(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2))(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)
-      '@wisemen/pagination':
-        specifier: workspace:*
-        version: link:../pagination
-      '@wisemen/quantity':
-        specifier: workspace:*
-        version: link:../quantity
       class-transformer:
         specifier: catalog:backend
         version: 0.5.1
@@ -1117,8 +1108,14 @@ importers:
         specifier: catalog:backend
         version: 25.3.0
       '@wisemen/eslint-config-nestjs':
-        specifier: catalog:lint
-        version: 0.2.8(@typescript-eslint/eslint-plugin@8.56.0(@typescript-eslint/parser@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))
+        specifier: workspace:*
+        version: link:../eslint-config-nestjs
+      '@wisemen/pagination':
+        specifier: workspace:*
+        version: link:../pagination
+      '@wisemen/quantity':
+        specifier: workspace:*
+        version: link:../quantity
       eslint:
         specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
@@ -1437,8 +1434,8 @@ importers:
         specifier: catalog:backend
         version: 6.14.0
       '@wisemen/eslint-config-nestjs':
-        specifier: catalog:lint
-        version: 0.2.8(@typescript-eslint/eslint-plugin@8.56.0(@typescript-eslint/parser@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))
+        specifier: workspace:*
+        version: link:../eslint-config-nestjs
       eslint:
         specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
@@ -1591,9 +1588,6 @@ importers:
       '@nestjs/swagger':
         specifier: catalog:backend
         version: 11.2.6(@nestjs/common@11.1.14(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.14(@nestjs/common@11.1.14(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2))(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)
-      '@wisemen/pagination':
-        specifier: workspace:*
-        version: link:../pagination
       class-transformer:
         specifier: catalog:backend
         version: 0.5.1
@@ -1608,8 +1602,11 @@ importers:
         specifier: catalog:backend
         version: 25.3.0
       '@wisemen/eslint-config-nestjs':
-        specifier: catalog:lint
-        version: 0.2.8(@typescript-eslint/eslint-plugin@8.56.0(@typescript-eslint/parser@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))
+        specifier: workspace:*
+        version: link:../eslint-config-nestjs
+      '@wisemen/pagination':
+        specifier: workspace:*
+        version: link:../pagination
       eslint:
         specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
@@ -1639,8 +1636,8 @@ importers:
         version: 0.3.28(pg@8.18.0)(ts-node@10.9.2(@types/node@25.3.0)(typescript@5.9.3))
     devDependencies:
       '@wisemen/eslint-config-nestjs':
-        specifier: catalog:lint
-        version: 0.2.8(@typescript-eslint/eslint-plugin@8.56.0(@typescript-eslint/parser@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))
+        specifier: workspace:*
+        version: link:../eslint-config-nestjs
       eslint:
         specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
@@ -1746,8 +1743,8 @@ importers:
         specifier: catalog:backend
         version: 25.3.0
       '@wisemen/eslint-config-nestjs':
-        specifier: catalog:lint
-        version: 0.2.8(@typescript-eslint/eslint-plugin@8.56.0(@typescript-eslint/parser@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))
+        specifier: workspace:*
+        version: link:../eslint-config-nestjs
       eslint:
         specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
@@ -1774,8 +1771,8 @@ importers:
         version: 2.8.2
     devDependencies:
       '@wisemen/eslint-config-nestjs':
-        specifier: catalog:lint
-        version: 0.2.8(@typescript-eslint/eslint-plugin@8.56.0(@typescript-eslint/parser@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))
+        specifier: workspace:*
+        version: link:../eslint-config-nestjs
       eslint:
         specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
@@ -1811,8 +1808,8 @@ importers:
         version: 1.11.19
     devDependencies:
       '@wisemen/eslint-config-nestjs':
-        specifier: catalog:lint
-        version: 0.2.8(@typescript-eslint/eslint-plugin@8.56.0(@typescript-eslint/parser@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))
+        specifier: workspace:*
+        version: link:../eslint-config-nestjs
       expect:
         specifier: catalog:test
         version: 30.2.0
@@ -1828,9 +1825,6 @@ importers:
       '@nestjs/typeorm':
         specifier: catalog:backend
         version: 11.0.0(@nestjs/common@11.1.14(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.14(@nestjs/common@11.1.14(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2)(typeorm@0.3.28(pg@8.18.0)(ts-node@10.9.2(@types/node@25.3.0)(typescript@5.9.3)))
-      '@wisemen/time':
-        specifier: workspace:*
-        version: link:../time
       change-case:
         specifier: catalog:backend
         version: 5.4.4
@@ -1847,6 +1841,9 @@ importers:
       '@types/node':
         specifier: catalog:backend
         version: 25.3.0
+      '@wisemen/time':
+        specifier: workspace:*
+        version: link:../time
       eslint:
         specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
@@ -1858,14 +1855,13 @@ importers:
         version: 5.9.3
 
   packages/node-doc-processor:
-    dependencies:
+    devDependencies:
+      '@wisemen/eslint-config-nestjs':
+        specifier: workspace:*
+        version: link:../eslint-config-nestjs
       '@wisemen/pgboss-nestjs-job':
         specifier: workspace:*
         version: link:../pgboss-nestjs-job
-    devDependencies:
-      '@wisemen/eslint-config-nestjs':
-        specifier: catalog:lint
-        version: 0.2.8(@typescript-eslint/eslint-plugin@8.56.0(@typescript-eslint/parser@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))
       eslint:
         specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
@@ -1895,8 +1891,8 @@ importers:
         specifier: catalog:backend
         version: 25.3.0
       '@wisemen/eslint-config-nestjs':
-        specifier: catalog:lint
-        version: 0.2.8(@typescript-eslint/eslint-plugin@8.56.0(@typescript-eslint/parser@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))
+        specifier: workspace:*
+        version: link:../eslint-config-nestjs
       eslint:
         specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
@@ -1984,8 +1980,8 @@ importers:
         specifier: catalog:backend
         version: 25.3.0
       '@wisemen/eslint-config-nestjs':
-        specifier: catalog:lint
-        version: 0.2.8(@typescript-eslint/eslint-plugin@8.56.0(@typescript-eslint/parser@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))
+        specifier: workspace:*
+        version: link:../eslint-config-nestjs
       eslint:
         specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
@@ -2015,8 +2011,8 @@ importers:
         specifier: catalog:backend
         version: 25.3.0
       '@wisemen/eslint-config-nestjs':
-        specifier: catalog:lint
-        version: 0.2.8(@typescript-eslint/eslint-plugin@8.56.0(@typescript-eslint/parser@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))
+        specifier: workspace:*
+        version: link:../eslint-config-nestjs
       eslint:
         specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
@@ -2041,12 +2037,6 @@ importers:
       '@sentry/nestjs':
         specifier: catalog:backend
         version: 10.39.0(@nestjs/common@11.1.14(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.14(@nestjs/common@11.1.14(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2))
-      '@wisemen/nestjs-typeorm':
-        specifier: workspace:*
-        version: link:../nestjs-typeorm
-      '@wisemen/opentelemetry':
-        specifier: workspace:*
-        version: link:../opentelemetry
       colors:
         specifier: catalog:backend
         version: 1.4.0
@@ -2061,8 +2051,14 @@ importers:
         version: 0.3.28(pg@8.18.0)(ts-node@10.9.2(@types/node@25.3.0)(typescript@5.9.3))
     devDependencies:
       '@wisemen/eslint-config-nestjs':
-        specifier: catalog:lint
-        version: 0.2.8(@typescript-eslint/eslint-plugin@8.56.0(@typescript-eslint/parser@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))
+        specifier: workspace:*
+        version: link:../eslint-config-nestjs
+      '@wisemen/nestjs-typeorm':
+        specifier: workspace:*
+        version: link:../nestjs-typeorm
+      '@wisemen/opentelemetry':
+        specifier: workspace:*
+        version: link:../opentelemetry
       eslint:
         specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
@@ -2083,8 +2079,8 @@ importers:
         specifier: catalog:backend
         version: 25.3.0
       '@wisemen/eslint-config-nestjs':
-        specifier: catalog:lint
-        version: 0.2.8(@typescript-eslint/eslint-plugin@8.56.0(@typescript-eslint/parser@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))
+        specifier: workspace:*
+        version: link:../eslint-config-nestjs
       eslint:
         specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
@@ -2103,9 +2099,6 @@ importers:
       '@nestjs/swagger':
         specifier: catalog:backend
         version: 11.2.6(@nestjs/common@11.1.14(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.14(@nestjs/common@11.1.14(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2))(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)
-      '@wisemen/nestjs-typeorm':
-        specifier: workspace:*
-        version: link:../nestjs-typeorm
       class-transformer:
         specifier: catalog:backend
         version: 0.5.1
@@ -2117,8 +2110,11 @@ importers:
         version: 0.3.28(pg@8.18.0)(ts-node@10.9.2(@types/node@25.3.0)(typescript@5.9.3))
     devDependencies:
       '@wisemen/eslint-config-nestjs':
-        specifier: catalog:lint
-        version: 0.2.8(@typescript-eslint/eslint-plugin@8.56.0(@typescript-eslint/parser@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))
+        specifier: workspace:*
+        version: link:../eslint-config-nestjs
+      '@wisemen/nestjs-typeorm':
+        specifier: workspace:*
+        version: link:../nestjs-typeorm
       eslint:
         specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
@@ -2282,8 +2278,8 @@ importers:
         specifier: catalog:backend
         version: 25.3.0
       '@wisemen/eslint-config-nestjs':
-        specifier: catalog:lint
-        version: 0.2.8(@typescript-eslint/eslint-plugin@8.56.0(@typescript-eslint/parser@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))
+        specifier: workspace:*
+        version: link:../eslint-config-nestjs
       eslint:
         specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
@@ -2297,8 +2293,8 @@ importers:
   packages/transformer:
     devDependencies:
       '@wisemen/eslint-config-nestjs':
-        specifier: catalog:lint
-        version: 0.2.8(@typescript-eslint/eslint-plugin@8.56.0(@typescript-eslint/parser@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))
+        specifier: workspace:*
+        version: link:../eslint-config-nestjs
       eslint:
         specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
@@ -2311,16 +2307,16 @@ importers:
       '@nestjs/common':
         specifier: catalog:backend
         version: 11.1.14(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2)
-      '@wisemen/api-error':
-        specifier: workspace:*
-        version: link:../api-error
       twilio:
         specifier: catalog:backend
         version: 5.12.2
     devDependencies:
+      '@wisemen/api-error':
+        specifier: workspace:*
+        version: link:../api-error
       '@wisemen/eslint-config-nestjs':
-        specifier: catalog:lint
-        version: 0.2.8(@typescript-eslint/eslint-plugin@8.56.0(@typescript-eslint/parser@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))
+        specifier: workspace:*
+        version: link:../eslint-config-nestjs
       eslint:
         specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
@@ -2333,9 +2329,6 @@ importers:
 
   packages/validators:
     dependencies:
-      '@wisemen/time':
-        specifier: workspace:*
-        version: link:../time
       class-validator:
         specifier: catalog:backend
         version: 0.14.3
@@ -2344,8 +2337,11 @@ importers:
         version: 1.11.19
     devDependencies:
       '@wisemen/eslint-config-nestjs':
-        specifier: catalog:lint
-        version: 0.2.8(@typescript-eslint/eslint-plugin@8.56.0(@typescript-eslint/parser@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))
+        specifier: workspace:*
+        version: link:../eslint-config-nestjs
+      '@wisemen/time':
+        specifier: workspace:*
+        version: link:../time
       eslint:
         specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
@@ -2369,8 +2365,8 @@ importers:
         version: 1.13.5
     devDependencies:
       '@wisemen/eslint-config-nestjs':
-        specifier: catalog:lint
-        version: 0.2.8(@typescript-eslint/eslint-plugin@8.56.0(@typescript-eslint/parser@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))
+        specifier: workspace:*
+        version: link:../eslint-config-nestjs
       eslint:
         specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
@@ -2400,8 +2396,8 @@ importers:
         specifier: catalog:backend
         version: 25.3.0
       '@wisemen/eslint-config-nestjs':
-        specifier: catalog:lint
-        version: 0.2.8(@typescript-eslint/eslint-plugin@8.56.0(@typescript-eslint/parser@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))
+        specifier: workspace:*
+        version: link:../eslint-config-nestjs
       eslint:
         specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
@@ -6991,11 +6987,6 @@ packages:
       '@wisemen/quantity': ^0.3.4
       class-validator: ^0.14.3
       typeorm: ^0.3.28
-
-  '@wisemen/eslint-config-nestjs@0.2.8':
-    resolution: {integrity: sha512-+KGvqYdAeGHmjprfyOWLox3iIPVnSCyz+HXE3kXcRrj1mJ6UcvjwmggviEWq+jpUgvYvEVIhbfOlWRq2/Se9Eg==}
-    peerDependencies:
-      eslint: ^9.21.0
 
   '@wisemen/eslint-config-vue@2.0.0':
     resolution: {integrity: sha512-Lk9jyLrH1Gxndg6HzSlDTBSBjc1vQDR6X7PUcl6uf8E6mjNs85OcgsQpNgXwguJu1a05YUJqJK5jNBh/blaKow==}
@@ -18707,26 +18698,6 @@ snapshots:
       '@wisemen/quantity': 0.4.0(@nestjs/common@11.1.14(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/swagger@11.2.6(@nestjs/common@11.1.14(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.14(@nestjs/common@11.1.14(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2))(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2))(@wisemen/nestjs-typeorm@0.1.4)(class-transformer@0.5.1)(class-validator@0.14.3)(typeorm@0.3.28(pg@8.18.0)(ts-node@10.9.2(@types/node@25.3.0)(typescript@5.9.3)))
       class-validator: 0.14.3
       typeorm: 0.3.28(pg@8.18.0)(ts-node@10.9.2(@types/node@25.3.0)(typescript@5.9.3))
-
-  '@wisemen/eslint-config-nestjs@0.2.8(@typescript-eslint/eslint-plugin@8.56.0(@typescript-eslint/parser@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))':
-    dependencies:
-      '@eslint/eslintrc': 3.3.3
-      '@eslint/js': 9.39.2
-      '@stylistic/eslint-plugin': 5.9.0(eslint@9.39.2(jiti@2.6.1))
-      '@types/node': 25.3.0
-      eslint: 9.39.2(jiti@2.6.1)
-      eslint-plugin-import-typescript: 0.0.4
-      eslint-plugin-import-x: 4.16.1(@typescript-eslint/utils@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))
-      eslint-plugin-unicorn: 62.0.0(eslint@9.39.2(jiti@2.6.1))
-      eslint-plugin-unused-imports: 4.4.1(@typescript-eslint/eslint-plugin@8.56.0(@typescript-eslint/parser@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))
-      globals: 17.3.0
-      typescript: 5.9.3
-      typescript-eslint: 8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
-    transitivePeerDependencies:
-      - '@typescript-eslint/eslint-plugin'
-      - '@typescript-eslint/utils'
-      - eslint-import-resolver-node
-      - supports-color
 
   '@wisemen/eslint-config-vue@2.0.0(@typescript-eslint/eslint-plugin@8.56.0(@typescript-eslint/parser@8.56.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(jsonc-eslint-parser@2.4.2)(tailwindcss@4.1.18)(typescript@5.9.3)(vitest@4.0.17)(vue-eslint-parser@10.2.0(eslint@9.39.2(jiti@2.6.1)))(yaml-eslint-parser@2.0.0)':
     dependencies:

@@ -28,7 +28,9 @@
     "typeorm": "catalog:backend"
   },
   "devDependencies": {
-    "@wisemen/eslint-config-nestjs": "catalog:lint",
+    "@wisemen/coordinates": "workspace:*",
+    "@wisemen/eslint-config-nestjs": "workspace:*",
+    "@wisemen/validators": "workspace:*",
     "eslint": "catalog:lint",
     "expect": "catalog:test",
     "typescript": "catalog:peer",
