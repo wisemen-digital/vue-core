@@ -19,8 +19,8 @@
   },
   "peerDependencies": {
     "@nestjs/swagger": "catalog:backend",
-    "@wisemen/pagination": "catalog:backend",
-    "@wisemen/quantity": "catalog:backend",
+    "@wisemen/pagination": "workspace:*",
+    "@wisemen/quantity": "workspace:*",
     "class-transformer": "catalog:backend",
     "class-validator": "catalog:backend",
     "dayjs": "catalog:backend",

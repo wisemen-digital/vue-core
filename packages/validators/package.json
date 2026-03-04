@@ -18,7 +18,7 @@
     "release": "pnpx release-it"
   },
   "peerDependencies": {
-    "@wisemen/time": "catalog:backend",
+    "@wisemen/time": "workspace:*",
     "class-validator": "catalog:backend",
     "dayjs": "catalog:backend"
   },

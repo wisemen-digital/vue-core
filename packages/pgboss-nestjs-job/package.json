@@ -31,8 +31,8 @@
     "@nestjs/core": "catalog:backend",
     "@opentelemetry/api": "catalog:backend",
     "@sentry/nestjs": "catalog:backend",
-    "@wisemen/nestjs-typeorm": "catalog:backend",
-    "@wisemen/opentelemetry": "catalog:backend",
+    "@wisemen/nestjs-typeorm": "workspace:*",
+    "@wisemen/opentelemetry": "workspace:*",
     "colors": "catalog:backend",
     "rxjs": "catalog:backend",
     "typeorm": "catalog:backend"
