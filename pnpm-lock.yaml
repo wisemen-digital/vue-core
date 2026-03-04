@@ -2068,9 +2068,6 @@ importers:
 
   packages/planning:
     dependencies:
-      '@wisemen/time':
-        specifier: workspace:*
-        version: link:../time
       moment:
         specifier: catalog:backend
         version: 2.30.1
@@ -2081,6 +2078,9 @@ importers:
       '@wisemen/eslint-config-nestjs':
         specifier: workspace:*
         version: link:../eslint-config-nestjs
+      '@wisemen/time':
+        specifier: workspace:*
+        version: link:../time
       eslint:
         specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
