@@ -62,13 +62,12 @@ useProvideSwitchContext({
     :style="props.style"
     :for="id"
     :is-label-hidden="props.isLabelHidden"
-    horizontal-align="center"
   >
     <RekaSwitchRoot
       :id="id"
       v-model="modelValue"
       :disabled="props.isDisabled"
-      :data-invalid="(errorMessage !== null && errorMessage !== undefined) || undefined"
+      :data-invalid="(props.errorMessage !== null && props.errorMessage !== undefined) || undefined"
       :class="switchStyle.root()"
       @blur="emit('blur')"
     >

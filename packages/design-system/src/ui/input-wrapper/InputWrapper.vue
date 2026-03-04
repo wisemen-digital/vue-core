@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<InputWrapperProps>(), {
 <template>
   <div v-if="props.isHorizontal">
     <RowLayout
-      :align="props.horizontalAlign"
+      align="start"
     >
       <slot />
       <div>
