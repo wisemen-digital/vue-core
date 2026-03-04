@@ -83,20 +83,18 @@ export const Indeterminate: Story = {
           <CheckboxGroupIndeterminateCheckbox
             label="Select All"
           />
-        <CheckboxGroupItems>
-            <CheckboxGroupCheckbox
-              label="option 1"
-              value="option1"
-            />
-            <CheckboxGroupCheckbox
-              label="option 2"
-              value="option2"
-            />
-            <CheckboxGroupCheckbox
-              label="option 3"
-              value="option3"
-            />
-          </CheckboxGroupItems>
+          <CheckboxGroupCheckbox
+            label="option 1"
+            value="option1"
+          />
+          <CheckboxGroupCheckbox
+            label="option 2"
+            value="option2"
+          />
+          <CheckboxGroupCheckbox
+            label="option 3"
+            value="option3"
+          />
         </CheckboxGroupRoot>
       </div>
     `,
@@ -131,7 +129,6 @@ export const Disabled: Story = {
           <CheckboxGroupIndeterminateCheckbox
             label="Select All"
           />
-        <CheckboxGroupItems>
             <CheckboxGroupCheckbox
               label="option 1"
               value="option1"
@@ -144,7 +141,6 @@ export const Disabled: Story = {
               label="option 3"
               value="option3"
             />
-          </CheckboxGroupItems>
         </CheckboxGroupRoot>
       </div>
     `,
@@ -178,22 +174,20 @@ export const HorizontalOrientation: Story = {
             <CheckboxGroupIndeterminateCheckbox
               label="Select All"
             />
-            <CheckboxGroupItems>
-              <div class="flex items-center gap-lg">
-                <CheckboxGroupCheckbox
-                  label="option 1"
-                  value="option1"
-                />
-                <CheckboxGroupCheckbox
-                  label="option 2"
-                  value="option2"
-                />
-                <CheckboxGroupCheckbox
-                  label="option 3"
-                  value="option3"
-                />
-              </div>
-            </CheckboxGroupItems>
+            <div class="flex items-center gap-lg">
+              <CheckboxGroupCheckbox
+                label="option 1"
+                value="option1"
+              />
+              <CheckboxGroupCheckbox
+                label="option 2"
+                value="option2"
+              />
+              <CheckboxGroupCheckbox
+                label="option 3"
+                value="option3"
+              />
+            </div>
           </div>
         </CheckboxGroupRoot>
       </div>
