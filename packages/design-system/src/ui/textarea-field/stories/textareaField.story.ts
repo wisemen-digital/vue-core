@@ -91,6 +91,25 @@ export const Default: Story = {
 }
 
 export const AllStates: Story = {
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    const disabledTextarea = canvas.getByLabelText('Disabled')
+
+    await expect(disabledTextarea).toBeDisabled()
+
+    const readonlyTextarea = canvas.getByLabelText('Read Only')
+
+    await expect(readonlyTextarea).toHaveAttribute('readonly')
+
+    const errorTextarea = canvas.getByLabelText('Error')
+
+    await expect(errorTextarea).toHaveAttribute('aria-invalid', 'true')
+
+    await expect(canvas.getByText('This field has an error')).toBeVisible()
+  },
   render: (args) => ({
     components: {
       TextareaFieldStatesPlayground,
@@ -119,6 +138,19 @@ export const AllResizeModes: Story = {
 }
 
 export const MaxLength: Story = {
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    const textarea = canvas.getByLabelText('With max length')
+
+    await expect(canvas.getByText('0/500')).toBeVisible()
+
+    await userEvent.type(textarea, 'Hello')
+
+    await expect(canvas.getByText('5/500')).toBeVisible()
+  },
   render: (args) => ({
     components: {
       TextareaFieldMaxLengthPlayground,

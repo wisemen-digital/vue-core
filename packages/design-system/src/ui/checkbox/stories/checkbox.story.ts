@@ -2,6 +2,11 @@ import type {
   Meta,
   StoryObj,
 } from '@storybook/vue3-vite'
+import {
+  expect,
+  userEvent,
+  within,
+} from 'storybook/test'
 
 import CheckboxPlayground from './CheckboxPlayground.vue'
 
@@ -36,5 +41,22 @@ export const Default: Story = {
     isDisabled: false,
     isHorizontal: false,
     label: 'Checkbox Label',
+  },
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    const checkbox = canvas.getByRole('checkbox')
+
+    await expect(checkbox).not.toBeChecked()
+
+    await userEvent.click(checkbox)
+
+    await expect(checkbox).toBeChecked()
+
+    await userEvent.click(checkbox)
+
+    await expect(checkbox).not.toBeChecked()
   },
 }

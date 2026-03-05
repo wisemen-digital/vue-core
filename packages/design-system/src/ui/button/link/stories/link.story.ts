@@ -85,8 +85,6 @@ export const Default: Story = {
     await expect(link).toHaveTextContent('Learn More')
 
     await expect(link).toHaveAttribute('href', '#')
-
-    await userEvent.click(link)
   },
   render: (args) => ({
     components: {

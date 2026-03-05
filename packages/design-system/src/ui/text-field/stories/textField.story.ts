@@ -102,6 +102,25 @@ export const Default: Story = {
 }
 
 export const AllStates: Story = {
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    const disabledInput = canvas.getByLabelText('Disabled')
+
+    await expect(disabledInput).toBeDisabled()
+
+    const readonlyInput = canvas.getByLabelText('Read Only')
+
+    await expect(readonlyInput).toHaveAttribute('readonly')
+
+    const errorInput = canvas.getByLabelText('Error')
+
+    await expect(errorInput).toHaveAttribute('aria-invalid', 'true')
+
+    await expect(canvas.getByText('This field has an error')).toBeVisible()
+  },
   render: (args) => ({
     components: {
       TextFieldStatesPlayground,

@@ -20,8 +20,10 @@ const config: StorybookConfig = {
     getAbsolutePath('@storybook/addon-vitest'),
     getAbsolutePath('@storybook/addon-a11y'),
     getAbsolutePath('@storybook/addon-docs'),
-    getAbsolutePath('@storybook/addon-onboarding'),
   ],
+  core: {
+    disableWhatsNewNotifications: true,
+  },
   framework: {
     name: getAbsolutePath('@storybook/vue3-vite'),
     options: {

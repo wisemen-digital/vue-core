@@ -97,6 +97,10 @@ watch(() => modelValue.value, async () => {
 onMounted(() => {
   adjustHeight()
 })
+
+onMounted(() => {
+  adjustHeight()
+})
 </script>
 
 <template>
