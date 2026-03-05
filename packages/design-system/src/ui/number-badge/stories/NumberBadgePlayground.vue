@@ -1,11 +1,11 @@
 <script setup lang="ts">
 /* eslint-disable @intlify/vue-i18n/no-raw-text */
-import type { NumberBadgeColor } from '@/ui/number-badge/numberBadge.props'
+import type { UtilityColor } from '@/types/utilityColor.type'
 import NumberBadge from '@/ui/number-badge/NumberBadge.vue'
 
 const props = withDefaults(defineProps<{
-  color?: NumberBadgeColor
-  size?: 'lg' | 'md' | 'sm'
+  color?: UtilityColor
+  size?: 'lg' | 'md'
   value?: number
   variant?: 'outline' | 'solid' | 'translucent'
 }>(), {
@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<{
   variant: 'translucent',
 })
 
-const colors: NumberBadgeColor[] = [
+const colors: UtilityColor[] = [
   'gray',
   'brand',
   'blue',
@@ -54,12 +54,6 @@ const variants: Array<'outline' | 'solid' | 'translucent'> = [
         Sizes
       </p>
       <div class="flex items-center gap-3">
-        <NumberBadge
-          :color="props.color"
-          :variant="props.variant"
-          value="8"
-          size="sm"
-        />
         <NumberBadge
           :color="props.color"
           :variant="props.variant"
