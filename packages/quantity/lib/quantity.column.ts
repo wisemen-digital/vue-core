@@ -40,12 +40,8 @@ implements ValueTransformer {
   to (quantity: Q | null): number | null
   to (quantity: Q | null | undefined): number | null | undefined
   to (quantity: Q | null | undefined): number | null | undefined {
-    if (quantity === null) {
-      return null
-    }
-
-    if (quantity === undefined) {
-      return undefined
+    if (quantity === undefined || quantity === null) {
+      return quantity
     }
 
     return quantity.asNumber(this.storedUnit)
