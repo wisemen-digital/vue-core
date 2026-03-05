@@ -42,7 +42,7 @@ const {
       <UINumberBadge
         v-if="props.count != null"
         :value="props.count.toString()"
-        size="sm"
+        size="md"
       />
     </RekaTabsTrigger>
   </ClickableElement>

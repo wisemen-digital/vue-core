@@ -16,7 +16,9 @@ const props = withDefaults(defineProps<InputWrapperProps>(), {
     <RowLayout
       align="start"
     >
-      <slot />
+      <RowLayout class="h-4.5">
+        <slot />
+      </RowLayout>
       <div>
         <InputWrapperLabel
           :label="props.label"
