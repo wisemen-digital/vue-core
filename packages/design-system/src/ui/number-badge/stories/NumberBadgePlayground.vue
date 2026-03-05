@@ -109,7 +109,7 @@ const variants: Array<'outline' | 'solid' | 'translucent'> = [
             v-for="colorItem in colors"
             :key="colorItem"
             :color="colorItem"
-            :variant="variant"
+            :variant="variantItem"
             value="12"
           />
         </div>

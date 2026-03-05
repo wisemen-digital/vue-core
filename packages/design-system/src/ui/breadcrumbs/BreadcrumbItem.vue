@@ -12,40 +12,38 @@ const props = defineProps<BreadcrumbItemProps>()
 </script>
 
 <template>
-  <UIActionTooltip :label="props.label">
+  <Component
+    :is="props.to !== undefined ? ClickableElement : 'span'"
+    class="min-w-0 shrink overflow-hidden"
+  >
     <Component
-      :is="props.to !== undefined ? ClickableElement : 'span'"
-      class="min-w-0 shrink overflow-hidden"
+      :is="props.to !== undefined ? RouterLink : 'span'"
+      :to="props.to"
+      class="group min-w-0"
     >
-      <Component
-        :is="props.to !== undefined ? RouterLink : 'span'"
-        :to="props.to"
-        class="group min-w-0"
+      <RowLayout
+        class="min-w-0"
+        gap="sm"
       >
-        <RowLayout
-          class="min-w-0"
-          gap="sm"
-        >
-          <Component
-            :is="props.icon"
-            v-if="props.icon"
-            :class="{
-              'group-hover:text-primary': props.to !== undefined,
-            }"
-            class="size-4 shrink-0 text-quaternary"
-          />
-          <UIText
-            v-if="props.label"
-            :text="props.label"
-            :class="twMerge(
-              'text-xs text-quaternary',
-              props.to !== undefined ? `
-                group-hover:text-primary group-hover:underline
-              ` : '',
-            )"
-          />
-        </RowLayout>
-      </Component>
+        <Component
+          :is="props.icon"
+          v-if="props.icon"
+          :class="{
+            'group-hover:text-primary': props.to !== undefined,
+          }"
+          class="size-4 shrink-0 text-quaternary"
+        />
+        <UIText
+          v-if="props.label"
+          :text="props.label"
+          :class="twMerge(
+            'text-xs text-quaternary',
+            props.to !== undefined ? `
+              group-hover:text-primary group-hover:underline
+            ` : '',
+          )"
+        />
+      </RowLayout>
     </Component>
-  </UIActionTooltip>
+  </Component>
 </template>
