@@ -9,11 +9,13 @@ export function QuantityColumn<U extends string, Q extends Quantity<U, Q>> (
   storeAsUnit: U,
   options?: QuantityColumnOptions<U, Q>
 ): PropertyDecorator {
+  const transformer = new QuantityTypeOrmTransformer(QuantityConstructor, storeAsUnit)
+
   return Column({
     ...options,
-    default: options?.default?.asNumber(storeAsUnit),
+    default: transformer.to(options?.default),
     type: 'float',
-    transformer: new QuantityTypeOrmTransformer(QuantityConstructor, storeAsUnit)
+    transformer
   })
 }
 
@@ -36,13 +38,14 @@ implements ValueTransformer {
 
   to (quantity: Q): number
   to (quantity: Q | null): number | null
-  to (quantity: Q | null | undefined): number | null {
+  to (quantity: Q | null | undefined): number | null | undefined
+  to (quantity: Q | null | undefined): number | null | undefined {
     if (quantity === null) {
       return null
     }
 
     if (quantity === undefined) {
-      return null
+      return undefined
     }
 
     return quantity.asNumber(this.storedUnit)
