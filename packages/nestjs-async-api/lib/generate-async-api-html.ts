@@ -483,7 +483,7 @@ export function generateAsyncAPIHTML (
   const title = escapeHTML(info.title)
   const version = escapeHTML(info.version)
   const description = escapeHTML(info.description ?? 'No description provided.')
-  const asyncapiVersion = escapeHTML(document.asyncapi)
+  const asyncApiVersion = escapeHTML(document.asyncapi)
 
   const channelBlocks = lookups.channels.map((channel) => {
     const channelAddress = channel.address ?? ''
@@ -818,7 +818,7 @@ export function generateAsyncAPIHTML (
   <main>
     <section id="overview">
       <h1>${title}</h1>
-      <p class="muted">AsyncAPI version: ${asyncapiVersion}</p>
+      <p class="muted">AsyncAPI version: ${asyncApiVersion}</p>
       <p><strong>Version:</strong> ${version}</p>
       <p>${description}</p>
       <nav>
