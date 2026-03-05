@@ -18,20 +18,24 @@ const props = defineProps<{
 <template>
   <Component
     :is="props.to !== undefined ? ClickableElement : 'span'"
+    class="min-w-0 shrink overflow-hidden"
   >
     <Component
       :is="props.to !== undefined ? RouterLink : 'span'"
       :to="props.to"
-      class="group"
+      class="group min-w-0"
     >
-      <RowLayout gap="sm">
+      <RowLayout
+        class="min-w-0"
+        gap="sm"
+      >
         <Component
           :is="props.icon"
           v-if="props.icon"
           :class="{
             'group-hover:text-primary': props.to !== undefined,
           }"
-          class="size-4 text-quaternary"
+          class="size-4 shrink-0 text-quaternary"
         />
         <UIText
           v-if="props.label"
