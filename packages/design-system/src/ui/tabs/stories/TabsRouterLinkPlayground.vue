@@ -5,13 +5,11 @@ import {
   User01Icon,
 } from '@wisemen/vue-core-icons'
 import { onBeforeMount } from 'vue'
-import {
-  RouterView,
-  useRouter,
-} from 'vue-router'
+import { useRouter } from 'vue-router'
 
 import type { TabsVariant } from '@/ui/tabs/tabs.props'
 import TabsRouterLink from '@/ui/tabs/TabsRouterLink.vue'
+import TabsRouterLinkContent from '@/ui/tabs/TabsRouterLinkContent.vue'
 import TabsRouterLinkItem from '@/ui/tabs/TabsRouterLinkItem.vue'
 
 const props = withDefaults(defineProps<{
@@ -89,6 +87,6 @@ onBeforeMount(() => {
       />
     </TabsRouterLink>
 
-    <RouterView />
+    <TabsRouterLinkContent />
   </div>
 </template>

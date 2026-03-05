@@ -2,6 +2,7 @@
 import {
   computed,
   nextTick,
+  onMounted,
   useAttrs,
   useId,
   useTemplateRef,
@@ -28,7 +29,9 @@ const props = withDefaults(defineProps<TextareaFieldProps>(), {
   ...INPUT_META_DEFAULTS,
   ...AUTOCOMPLETE_INPUT_DEFAULTS,
   isSpellCheckEnabled: false,
+  maxHeight: null,
   maxLength: null,
+  minHeight: null,
   placeholder: null,
   resize: 'none',
 })
@@ -68,6 +71,11 @@ const {
   ariaRequired,
 } = useInput(id, props)
 
+const textareaStyle = computed<Record<string, string | undefined>>(() => ({
+  maxHeight: props.maxHeight ?? undefined,
+  minHeight: props.minHeight ?? undefined,
+}))
+
 function adjustHeight(): void {
   const el = textareaRef.value
 
@@ -81,6 +89,12 @@ function adjustHeight(): void {
 
 watch(() => modelValue.value, async () => {
   await nextTick()
+  adjustHeight()
+}, {
+  immediate: true,
+})
+
+onMounted(() => {
   adjustHeight()
 })
 </script>
@@ -128,6 +142,7 @@ watch(() => modelValue.value, async () => {
         :maxlength="props.maxLength ?? undefined"
         :placeholder="props.placeholder ?? undefined"
         :spellcheck="props.isSpellCheckEnabled"
+        :style="textareaStyle"
         :class="textareaFieldStyle.textarea()"
         class="min-h-20 px-md py-sm"
         @input="(event) => modelValue = (event.target as HTMLTextAreaElement).value"
