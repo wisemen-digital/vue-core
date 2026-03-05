@@ -2,26 +2,23 @@ import type { AcceptableInputValue } from 'reka-ui'
 
 export interface BaseRadioGroupItemProps {
   /**
-   * The label displayed next to the radio item.
+   * Whether this individual item is disabled.
+   * @default false
    */
-  label: string
-  /**
-   * The value of the radio group item.
-   */
-  value: AcceptableInputValue
+  isDisabled?: boolean
+  isLabelHidden?: boolean
   /**
    * A description displayed underneath the label.
    * @default null
    */
   description?: string | null
   /**
-   * Whether this individual item is disabled.
-   * @default false
+   * The label displayed next to the radio item.
    */
-  isDisabled?: boolean
+  label: string
+
   /**
-   * Whether the label should be visually hidden.
-   * @default false
+   * The value of the radio group item.
    */
-  isLabelHidden?: boolean
+  value: AcceptableInputValue
 }
