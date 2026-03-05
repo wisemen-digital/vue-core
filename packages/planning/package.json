@@ -18,12 +18,13 @@
     "release": "pnpx release-it"
   },
   "peerDependencies": {
-    "@wisemen/time": "catalog:backend",
+    "@wisemen/time": "workspace:*",
     "moment": "catalog:backend"
   },
   "devDependencies": {
     "@types/node": "catalog:backend",
-    "@wisemen/eslint-config-nestjs": "catalog:lint",
+    "@wisemen/eslint-config-nestjs": "workspace:*",
+    "@wisemen/time": "workspace:*",
     "eslint": "catalog:lint",
     "expect": "catalog:test",
     "typescript": "catalog:peer"

@@ -26,14 +26,15 @@
   "peerDependencies": {
     "@nestjs/common": "catalog:backend",
     "@nestjs/swagger": "catalog:backend",
-    "@wisemen/pagination": "catalog:backend",
+    "@wisemen/pagination": "workspace:*",
     "class-transformer": "catalog:backend",
     "class-validator": "catalog:backend",
     "typeorm": "catalog:backend"
   },
   "devDependencies": {
     "@types/node": "catalog:backend",
-    "@wisemen/eslint-config-nestjs": "catalog:lint",
+    "@wisemen/eslint-config-nestjs": "workspace:*",
+    "@wisemen/pagination": "workspace:*",
     "eslint": "catalog:lint",
     "expect": "catalog:test",
     "typescript": "catalog:peer"
