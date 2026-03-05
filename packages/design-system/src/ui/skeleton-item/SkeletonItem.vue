@@ -1,21 +1,13 @@
 <script setup lang="ts">
-const props = withDefaults(defineProps<{
-  /**
-   * Whether the skeleton item should shimmer
-   * @default false
-   */
-  animate?: boolean
-  /**
-   * The animation delay in milliseconds
-   * @default 0
-   */
-  animationDelayInMs?: number
-}>(), {
+import type { SkeletonItemProps } from '@/ui/skeleton-item/skeletonItem.props'
+
+const props = withDefaults(defineProps<SkeletonItemProps>(), {
   animate: false,
   animationDelayInMs: 0,
 })
 </script>
 
+<!-- eslint-disable better-tailwindcss/no-unknown-classes -->
 <template>
   <div
     :aria-busy="true"
@@ -26,7 +18,6 @@ const props = withDefaults(defineProps<{
     role="status"
     aria-live="polite"
   >
-    <!-- eslint-disable better-tailwindcss/no-unregistered-classes -->
     <div
       v-if="props.animate"
       :style="{ animationDelay: `${props.animationDelayInMs}ms` }"

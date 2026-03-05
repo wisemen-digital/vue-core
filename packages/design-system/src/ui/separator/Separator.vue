@@ -2,16 +2,11 @@
 import { Separator } from 'reka-ui'
 import { computed } from 'vue'
 
+import type { SeparatorProps } from '@/ui/separator/separator.props'
 import type { SeperatorStyle } from '@/ui/separator/seperator.style'
 import { createSeperatorStyle } from '@/ui/separator/seperator.style'
 
-const props = withDefaults(defineProps<{
-  class?: string
-  /**
-   * The orientation of the separator.
-   */
-  orientation?: 'horizontal' | 'vertical'
-}>(), {
+const props = withDefaults(defineProps<SeparatorProps>(), {
   orientation: 'horizontal',
 })
 

@@ -16,11 +16,9 @@ import { useI18n } from 'vue-i18n'
 import MainSidebarContent from '@/ui/sidebar/components/MainSidebarContent.vue'
 import MainSidebarTransition from '@/ui/sidebar/components/MainSidebarTransition.vue'
 import { useMainSidebar } from '@/ui/sidebar/mainSidebar.composable'
-import type { MainSidebarVariant } from '@/ui/sidebar/types/mainSidebar.type'
+import type { MainSidebarProps } from '@/ui/sidebar/mainSidebar.props'
 
-const props = withDefaults(defineProps<{
-  variant?: MainSidebarVariant
-}>(), {
+const props = withDefaults(defineProps<MainSidebarProps>(), {
   variant: 'icons-with-labels',
 })
 

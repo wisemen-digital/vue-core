@@ -10,10 +10,9 @@ import {
 } from 'vue'
 
 import { useInjectAdaptiveContentContext } from '@/ui/adaptive-content/adaptiveContent.context'
+import type { AdaptiveContentBlockProps } from '@/ui/adaptive-content/adaptiveContentBlock.props'
 
-const props = defineProps<{
-  priority: number
-}>()
+const props = defineProps<AdaptiveContentBlockProps>()
 
 const blockRef = useTemplateRef('block')
 

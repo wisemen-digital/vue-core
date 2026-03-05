@@ -1,4 +1,4 @@
-export type NumberBadgeColor = 'blue-light' | 'brand' | 'error' | 'gray' | 'purple' | 'success' | 'warning'
+export type NumberBadgeColor = 'blue' | 'brand' | 'error' | 'gray' | 'pink' | 'pink' | 'purple' | 'success' | 'warning'
 
 export interface NumberBadgeProps {
   /**
@@ -16,9 +16,9 @@ export interface NumberBadgeProps {
    */
   size?: 'lg' | 'md' | 'sm'
   /**
-   * The numeric value displayed in the badge.
+   * The number to display inside the badge. always use a formatted string here (e.g. 1.400, 4,5)
    */
-  value: number
+  value: string
   /**
    * The visual style variant of the badge.
    * @default 'translucent'

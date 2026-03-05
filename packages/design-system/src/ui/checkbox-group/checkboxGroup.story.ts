@@ -95,7 +95,7 @@ export const Indeterminate: Story = {
             label="option 3"
             value="option3"
           />
-        </CheckboxGroupRoot>
+        </CheckboxGroupItems>
       </div>
     `,
   }),
