@@ -30,6 +30,7 @@ interface AdaptiveContentBlockWithWidth extends AdaptiveContentBlock {
 const containerRef = useTemplateRef('container')
 let resizeObserver: ResizeObserver | null = null
 let isLayoutScheduled = false
+let isEvaluating = false
 
 const blocks = ref<Map<string, AdaptiveContentBlockWithWidth>>(new Map())
 const visibleBlockIds = ref<Set<string>>(new Set())
@@ -51,7 +52,7 @@ function unregisterBlock(id: string): void {
 }
 
 function scheduleLayoutEvaluation(): void {
-  if (isLayoutScheduled) {
+  if (isLayoutScheduled || isEvaluating) {
     return
   }
 
@@ -94,12 +95,15 @@ function getContainerElement(): HTMLElement | null {
 }
 
 async function evaluateLayout(): Promise<void> {
+  console.log('hello -----------')
+
   const container = getContainerElement()
 
   if (container === null) {
     return
   }
 
+  isEvaluating = true
   visibleBlockIds.value = new Set()
 
   const blocksPerPriority = groupBlocksByPriority()
@@ -133,6 +137,8 @@ async function evaluateLayout(): Promise<void> {
       break
     }
   }
+
+  isEvaluating = false
 }
 
 onMounted(() => {
@@ -146,6 +152,7 @@ onBeforeUnmount(() => {
 
 useProvideAdaptiveContentContext({
   registerBlock,
+  scheduleLayoutEvaluation,
   unregisterBlock,
   visibleBlockIds: computed<Set<string>>(() => visibleBlockIds.value),
 })

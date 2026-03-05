@@ -120,6 +120,23 @@ export const HorizontalOverflow: Story = {
   }),
 }
 
+export const AdaptiveOverflow: Story = {
+  args: {
+    variant: 'underline',
+  },
+  render: (args) => ({
+    components: {
+      TabsOverflowPlayground,
+    },
+    setup() {
+      return {
+        args,
+      }
+    },
+    template: '<TabsOverflowPlayground v-bind="args" is-adaptive />',
+  }),
+}
+
 export const RouterLink: Story = {
   args: {
     orientation: 'horizontal',

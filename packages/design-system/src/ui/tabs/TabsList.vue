@@ -8,18 +8,22 @@ import {
   ref,
 } from 'vue'
 
+import { UIAdaptiveContent } from '@/ui/adaptive-content/index'
 import { useInjectTabsContext } from '@/ui/tabs/tabs.context'
+import TabsAdaptiveContentDrodpown from '@/ui/tabs/TabsAdaptiveContentDrodpown.vue'
 
 const scrollContainerRef = ref<HTMLElement | null>(null)
 
 const {
   hasHorizontalOverflow,
   hasReachedHorizontalEnd,
+  isAdaptive,
   isScrolledHorizontally,
   orientation,
   scrollToLeft,
   scrollToRight,
   setScrollContainerRef,
+  tabs,
   variants,
 } = useInjectTabsContext()
 
@@ -35,7 +39,7 @@ onMounted(() => {
 <template>
   <div :class="variants.base()">
     <div
-      v-if="isScrolledHorizontally && hasHorizontalOverflow && orientation === 'horizontal'"
+      v-if="!isAdaptive && isScrolledHorizontally && hasHorizontalOverflow && orientation === 'horizontal'"
       class="
         absolute top-0 left-0 z-20 flex h-full items-center bg-linear-to-r
         from-primary to-transparent px-md
@@ -73,7 +77,27 @@ onMounted(() => {
       :class="variants.scrollContainer()"
       :data-orientation="orientation"
     >
-      <RekaTabsList :class="variants.list()">
+      <UIAdaptiveContent v-if="isAdaptive">
+        <template #default="{ hiddenBlockCount }">
+          <RekaTabsList
+            :class="variants.list()"
+            class="overflow-hidden"
+          >
+            <slot />
+
+            <RekaTabsIndicator :class="variants.indicator()" />
+            <TabsAdaptiveContentDrodpown
+              :hidden-tabs-count="hiddenBlockCount"
+              :tabs="tabs"
+            />
+          </RekaTabsList>
+        </template>
+      </UIAdaptiveContent>
+
+      <RekaTabsList
+        v-else
+        :class="variants.list()"
+      >
         <slot />
 
         <RekaTabsIndicator :class="variants.indicator()" />
@@ -81,7 +105,7 @@ onMounted(() => {
     </div>
 
     <div
-      v-if="!hasReachedHorizontalEnd && hasHorizontalOverflow && orientation === 'horizontal'"
+      v-if="!isAdaptive && !hasReachedHorizontalEnd && hasHorizontalOverflow && orientation === 'horizontal'"
       class="
         absolute top-0 right-0 z-20 flex h-full items-center bg-linear-to-l
         from-primary to-transparent px-md
