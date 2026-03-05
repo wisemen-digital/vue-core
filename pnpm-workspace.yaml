@@ -162,7 +162,6 @@ catalogs:
     "storybook": 10.2.1
     "vue-component-meta": 3.2.4
   backend:
-    "@asyncapi/generator": "3.1.2"
     "@aws-sdk/client-s3": "3.994.0"
     "@aws-sdk/lib-storage": "3.994.0"
     "@aws-sdk/s3-request-presigner": "3.994.0"
