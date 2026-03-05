@@ -5,14 +5,10 @@ import BaseRadioGroup from '@/ui/radio-group/base/BaseRadioGroup.vue'
 
 const props = defineProps<{
   isDisabled?: boolean
+  isLabelHidden?: boolean
   description?: string | null
   label: string
   value: AcceptableInputValue
-}>()
-
-const emit = defineEmits<{
-  blur: []
-  focus: []
 }>()
 </script>
 
@@ -21,8 +17,7 @@ const emit = defineEmits<{
     :value="props.value"
     :label="props.label"
     :description="props.description"
+    :is-label-hidden="props.isLabelHidden"
     :is-disabled="props.isDisabled"
-    @blur="emit('blur')"
-    @focus="emit('focus')"
   />
 </template>
