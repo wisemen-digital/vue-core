@@ -129,18 +129,18 @@ export const Disabled: Story = {
           <CheckboxGroupIndeterminateCheckbox
             label="Select All"
           />
-          <CheckboxGroupCheckbox
-            label="option 1"
-            value="option1"
-          />
-          <CheckboxGroupCheckbox
-            label="option 2"
-            value="option2"
-          />
-          <CheckboxGroupCheckbox
-            label="option 3"
-            value="option3"
-          />
+            <CheckboxGroupCheckbox
+              label="option 1"
+              value="option1"
+            />
+            <CheckboxGroupCheckbox
+              label="option 2"
+              value="option2"
+            />
+            <CheckboxGroupCheckbox
+              label="option 3"
+              value="option3"
+            />
         </CheckboxGroupRoot>
       </div>
     `,
