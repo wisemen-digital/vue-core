@@ -5,5 +5,9 @@
   "components.sidebar.global_search.label": "Zoeken",
   "components.sidebar.title": "Zijbalk",
   "components.sidebar.description": "De zijbalk bevat navigatielinks en andere belangrijke acties.",
-  "components.sidebar.sign_out": "Uitloggen"
+  "components.sidebar.sign_out": "Uitloggen",
+  "component.dashboard_page_header.options": "Opties",
+  "component.dashboard_page_loading_state.loading": "Laden",
+  "component.dashboard_page_header_sidebar_toggle.collapse": "Zijbalk inklappen",
+  "component.dashboard_page_header_sidebar_toggle.expand": "Zijbalk uitklappen"
 }

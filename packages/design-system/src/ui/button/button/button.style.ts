@@ -3,22 +3,30 @@ import { tv } from '@/styles/tailwindVariants.lib'
 export const createButtonStyle = tv({
   compoundVariants: [
     {
-      class: 'dark:rounded-[0.35rem] dark:px-md',
+      class: {
+        container: 'dark:rounded-[0.35rem] dark:px-md',
+      },
       size: 'md',
       variant: 'primary',
     },
     {
-      class: 'dark:rounded-[0.3rem] dark:px-lg',
+      class: {
+        container: 'dark:rounded-[0.3rem] dark:px-lg',
+      },
       size: 'lg',
       variant: 'primary',
     },
     {
-      class: 'dark:rounded-[0.2rem] dark:px-sm',
+      class: {
+        container: 'dark:rounded-[0.2rem] dark:px-sm',
+      },
       size: 'sm',
       variant: 'primary',
     },
     {
-      class: `dark:rounded-[0.15rem] dark:px-xs`,
+      class: {
+        container: `dark:rounded-[0.15rem] dark:px-xs`,
+      },
       size: 'xs',
       variant: 'primary',
     },

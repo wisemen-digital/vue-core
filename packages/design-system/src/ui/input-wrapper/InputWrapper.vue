@@ -16,13 +16,16 @@ const props = withDefaults(defineProps<InputWrapperProps>(), {
     <RowLayout
       align="start"
     >
-      <slot />
+      <RowLayout class="h-4.5">
+        <slot />
+      </RowLayout>
       <div>
         <InputWrapperLabel
           :label="props.label"
           :for="props.for"
           :is-required="props.isRequired"
           :is-horizontal="props.isHorizontal"
+          :is-label-hidden="props.isLabelHidden"
         >
           <template #left>
             <slot name="label-left" />
@@ -51,6 +54,7 @@ const props = withDefaults(defineProps<InputWrapperProps>(), {
       :label="props.label"
       :for="props.for"
       :is-required="props.isRequired"
+      :is-label-hidden="props.isLabelHidden"
     >
       <template #left>
         <slot name="label-left" />

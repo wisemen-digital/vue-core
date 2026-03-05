@@ -6,6 +6,12 @@ export interface BaseRadioGroupItemProps {
    * @default false
    */
   isDisabled?: boolean
+  isLabelHidden?: boolean
+  /**
+   * Whether the label should be visually hidden.
+   * @default false
+   */
+  isLabelHidden?: boolean
   /**
    * A description displayed underneath the label.
    * @default null
@@ -15,6 +21,7 @@ export interface BaseRadioGroupItemProps {
    * The label displayed next to the radio item.
    */
   label: string
+
   /**
    * The value of the radio group item.
    */

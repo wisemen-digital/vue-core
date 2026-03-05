@@ -5,5 +5,9 @@
   "components.sidebar.global_search.label": "Search",
   "components.sidebar.title": "Sidebar",
   "components.sidebar.description": "The sidebar contains navigation links and other important actions.",
-  "components.sidebar.sign_out": "Sign out"
+  "components.sidebar.sign_out": "Sign out",
+  "component.dashboard_page_header.options": "Options",
+  "component.dashboard_page_loading_state.loading": "Loading",
+  "component.dashboard_page_header_sidebar_toggle.collapse": "Collapse sidebar",
+  "component.dashboard_page_header_sidebar_toggle.expand": "Expand sidebar"
 }
