@@ -24,7 +24,7 @@
     "@nestjs/swagger": "catalog:backend"
   },
   "devDependencies": {
-    "@wisemen/eslint-config-nestjs": "catalog:lint",
+    "@wisemen/eslint-config-nestjs": "workspace:*",
     "eslint": "catalog:lint",
     "typescript": "catalog:peer"
   },
