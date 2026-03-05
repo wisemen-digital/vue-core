@@ -26,8 +26,8 @@ useProvideRadioGroupContext({
 <template>
   <RekaRadioGroupRoot
     v-model="modelValue"
-    :orientation="orientation"
-    :disabled="isDisabled"
+    :orientation="props.orientation"
+    :disabled="props.isDisabled"
   >
     <slot />
   </RekaRadioGroupRoot>
