@@ -1,13 +1,17 @@
 import { Column, ColumnOptions, ValueTransformer } from 'typeorm'
 import { Quantity, QuantityConstructor } from './quantity.js'
 
+export type QuantityColumnOptions<U extends string, Q extends Quantity<U, Q>>
+  = Omit<ColumnOptions, 'type' | 'transformer' | 'default'> & { default?: Q }
+
 export function QuantityColumn<U extends string, Q extends Quantity<U, Q>> (
   QuantityConstructor: QuantityConstructor<U, Q>,
   storeAsUnit: U,
-  options?: Omit<ColumnOptions, 'type' | 'transformer'>
+  options?: QuantityColumnOptions<U, Q>
 ): PropertyDecorator {
   return Column({
     ...options,
+    default: options?.default?.asNumber(storeAsUnit),
     type: 'float',
     transformer: new QuantityTypeOrmTransformer(QuantityConstructor, storeAsUnit)
   })
