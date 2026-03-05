@@ -4,6 +4,7 @@ import {
   DropdownMenuItem as RekaDropdownMenuItem,
   TabsTrigger as RekaTabsTrigger,
 } from 'reka-ui'
+import type { Component } from 'vue'
 import {
   computed,
   watch,
@@ -48,6 +49,12 @@ const labelText = computed<string>(() => {
   return 'More'
 })
 
+const dropdownLeftIcon = computed<Component | undefined>(() => {
+  const isActiveTabHidden = hiddenTabs.value.some((tab) => tab.value === activeTab.value?.value)
+
+  return isActiveTabHidden ? activeTab.value?.icon : undefined
+})
+
 watch(activeTab, () => {
   scheduleLayoutEvaluation()
 })
@@ -62,6 +69,7 @@ watch(activeTab, () => {
         justify="center"
       >
         <UIButton
+          :icon-left="dropdownLeftIcon"
           :icon-right="ChevronDownIcon"
           :label="labelText"
           variant="secondary"
@@ -82,6 +90,7 @@ watch(activeTab, () => {
             :value="item.value"
             :disabled="item.isDisabled"
             :class="variants.item()"
+            class="w-full"
           >
             <component
               :is="item.icon"
