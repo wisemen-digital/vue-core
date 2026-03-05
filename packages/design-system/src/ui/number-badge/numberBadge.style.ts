@@ -165,7 +165,7 @@ export const numberBadgeVariants = tv({
     {
       class: {
         base: `
-          bg-blue-25 border-blue-200
+          border-blue-200 bg-blue-25
           dark:border-blue-800 dark:bg-blue-950
         `,
         label: `
@@ -217,7 +217,7 @@ export const numberBadgeVariants = tv({
     {
       class: {
         base: `
-          bg-pink-25 border-pink-200
+          border-pink-200 bg-pink-25
           dark:border-pink-800 dark:bg-pink-950
         `,
         label: `
@@ -255,7 +255,7 @@ export const numberBadgeVariants = tv({
     {
       class: {
         base: `
-          bg-purple-25 border-purple-200
+          border-purple-200 bg-purple-25
           dark:border-purple-800 dark:bg-purple-950
         `,
         label: `
@@ -314,16 +314,12 @@ export const numberBadgeVariants = tv({
   variants: {
     size: {
       lg: {
-        base: 'h-7 min-w-7 px-sm',
+        base: 'h-5 min-w-5 px-xxs',
         label: 'text-xs',
       },
       md: {
-        base: 'h-6 min-w-6 px-sm',
-        label: 'text-xxs',
-      },
-      sm: {
-        base: 'h-5 min-w-5 px-xs',
-        label: 'text-xxs',
+        base: 'h-4 min-w-4 px-xxs',
+        label: 'text-[0.625rem]',
       },
     },
 

@@ -1,11 +1,11 @@
 <script setup lang="ts">
 /* eslint-disable @intlify/vue-i18n/no-raw-text */
-import type { NumberBadgeColor } from '@/ui/number-badge/numberBadge.props'
+import type { UtilityColor } from '@/types/utilityColor.type'
 import NumberBadge from '@/ui/number-badge/NumberBadge.vue'
 
 const props = withDefaults(defineProps<{
-  color?: NumberBadgeColor
-  size?: 'lg' | 'md' | 'sm'
+  color?: UtilityColor
+  size?: 'lg' | 'md'
   value?: number
   variant?: 'outline' | 'solid' | 'translucent'
 }>(), {
@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<{
   variant: 'translucent',
 })
 
-const colors: NumberBadgeColor[] = [
+const colors: UtilityColor[] = [
   'gray',
   'brand',
   'blue',
@@ -43,7 +43,7 @@ const variants: Array<'outline' | 'solid' | 'translucent'> = [
         <NumberBadge
           :color="props.color"
           :size="props.size"
-          :value="props.value"
+          :value="props.value.toString()"
           :variant="props.variant"
         />
       </div>
@@ -55,21 +55,15 @@ const variants: Array<'outline' | 'solid' | 'translucent'> = [
       </p>
       <div class="flex items-center gap-3">
         <NumberBadge
-          :value="8"
           :color="props.color"
           :variant="props.variant"
-          size="sm"
-        />
-        <NumberBadge
-          :value="8"
-          :color="props.color"
-          :variant="props.variant"
+          value="8"
           size="md"
         />
         <NumberBadge
-          :value="8"
           :color="props.color"
           :variant="props.variant"
+          value="8"
           size="lg"
         />
       </div>
@@ -81,19 +75,19 @@ const variants: Array<'outline' | 'solid' | 'translucent'> = [
       </p>
       <div class="flex items-center gap-3">
         <NumberBadge
-          :value="3"
           :color="props.color"
           :variant="props.variant"
+          value="3"
         />
         <NumberBadge
-          :value="42"
           :color="props.color"
           :variant="props.variant"
+          value="42"
         />
         <NumberBadge
-          :value="128"
           :color="props.color"
           :variant="props.variant"
+          value="128"
         />
       </div>
     </div>
