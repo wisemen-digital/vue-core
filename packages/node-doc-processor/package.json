@@ -24,10 +24,11 @@
     "url": "git@github.com:wisemen-digital/node-core.git"
   },
   "peerDependencies": {
-    "@wisemen/pgboss-nestjs-job": "catalog:backend"
+    "@wisemen/pgboss-nestjs-job": "workspace:*"
   },
   "devDependencies": {
-    "@wisemen/eslint-config-nestjs": "catalog:lint",
+    "@wisemen/eslint-config-nestjs": "workspace:*",
+    "@wisemen/pgboss-nestjs-job": "workspace:*",
     "eslint": "catalog:lint"
   }
 }
