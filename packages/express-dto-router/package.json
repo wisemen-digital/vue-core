@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@sentry/types": "catalog:backend",
-    "@wisemen/eslint-config-nestjs": "catalog:lint",
+    "@wisemen/eslint-config-nestjs": "workspace:*",
     "eslint": "catalog:lint",
     "@types/express": "catalog:backend",
     "@types/node": "catalog:backend",

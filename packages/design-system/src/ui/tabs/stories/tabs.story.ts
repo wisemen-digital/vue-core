@@ -5,6 +5,7 @@ import type {
 
 import TabsOverflowPlayground from './TabsOverflowPlayground.vue'
 import TabsPlayground from './TabsPlayground.vue'
+import TabsRouterLinkPlayground from './TabsRouterLinkPlayground.vue'
 
 const meta = {
   title: 'Components/Tabs',
@@ -89,5 +90,23 @@ export const HorizontalOverflow: Story = {
       }
     },
     template: '<TabsOverflowPlayground v-bind="args" />',
+  }),
+}
+
+export const RouterLink: Story = {
+  args: {
+    orientation: 'horizontal',
+    variant: 'underline',
+  },
+  render: (args) => ({
+    components: {
+      TabsRouterLinkPlayground,
+    },
+    setup() {
+      return {
+        args,
+      }
+    },
+    template: '<TabsRouterLinkPlayground v-bind="args" />',
   }),
 }
