@@ -4,7 +4,10 @@ import {
   computed,
   onMounted,
 } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import {
+  useRoute,
+  useRouter,
+} from 'vue-router'
 
 import { toComputedRefs } from '@/composables/context.composable'
 import { useTabs } from '@/ui/tabs/tabs.composable'
@@ -23,11 +26,14 @@ const props = withDefaults(defineProps<TabsProps>(), {
 
 const route = useRoute()
 const router = useRouter()
-const activeRouteName = computed<string>(() => route.name as string)
+const activeRouteName = computed<string | undefined>(() =>
+  typeof route.name === 'string' ? route.name : undefined)
 
 function onUpdateModelValue(value: string): void {
   if (value !== activeRouteName.value) {
-    router.replace({ name: value })
+    router.replace({
+      name: value,
+    })
   }
 }
 

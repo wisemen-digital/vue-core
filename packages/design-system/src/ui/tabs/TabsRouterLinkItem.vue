@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { TabsTrigger as RekaTabsTrigger } from 'reka-ui'
 import { computed } from 'vue'
-import type { RouteLocationResolved } from 'vue-router'
-import { RouterLink } from 'vue-router'
+import {
+  RouterLink,
+  useRouter,
+} from 'vue-router'
 
 import ClickableElement from '@/ui/clickable-element/ClickableElement.vue'
 import { UINumberBadge } from '@/ui/number-badge/index'
@@ -21,10 +23,12 @@ const {
   variants,
 } = useInjectTabsContext()
 
-const routeName = computed<string>(() => {
-  const to = props.to as RouteLocationResolved
+const router = useRouter()
 
-  return to.name as string
+const routeName = computed<string>(() => {
+  const resolved = router.resolve(props.to)
+
+  return resolved.name as string
 })
 </script>
 
