@@ -17,8 +17,8 @@ if (typeof __VUE_PROD_DEVTOOLS__ === 'undefined') {
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  base: '/vue-core/docs/',
-  title: 'Vue Core',
+  base: '/wisemen-core/docs/',
+  title: 'Wisemen Core',
   rewrites: {
     home: 'index',
   },
@@ -39,7 +39,7 @@ export default defineConfig({
     socialLinks: [
       {
         icon: 'github',
-        link: 'https://github.com/wisemen-digital/vue-core',
+        link: 'https://github.com/wisemen-digital/wisemen-core',
       },
     ],
   },
@@ -68,8 +68,8 @@ export default defineConfig({
         name: 'eslint-inspector-spa',
         configureServer(server): void {
           server.middlewares.use((req, res, next) => {
-            if (req.url === '/vue-core/eslint-inspector' || req.url === '/vue-core/eslint-inspector/') {
-              req.url = '/vue-core/eslint-inspector/index.html'
+            if (req.url === '/wisemen-core/eslint-inspector' || req.url === '/wisemen-core/eslint-inspector/') {
+              req.url = '/wisemen-core/eslint-inspector/index.html'
             }
 
             next()
