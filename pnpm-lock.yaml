@@ -1717,9 +1717,6 @@ importers:
       '@nestjs/swagger':
         specifier: catalog:backend
         version: 11.2.6(@nestjs/common@11.1.14(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.14(@nestjs/common@11.1.14(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2))(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)
-      '@wisemen/nestjs-typeorm':
-        specifier: workspace:*
-        version: link:../nestjs-typeorm
       class-transformer:
         specifier: catalog:backend
         version: 0.5.1
@@ -1736,6 +1733,9 @@ importers:
       '@wisemen/eslint-config-nestjs':
         specifier: workspace:*
         version: link:../eslint-config-nestjs
+      '@wisemen/nestjs-typeorm':
+        specifier: workspace:*
+        version: link:../nestjs-typeorm
       eslint:
         specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
@@ -1985,9 +1985,6 @@ importers:
       '@nestjs/swagger':
         specifier: catalog:backend
         version: 11.2.6(@nestjs/common@11.1.14(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.14(@nestjs/common@11.1.14(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2))(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)
-      '@wisemen/validators':
-        specifier: workspace:*
-        version: link:../validators
       class-transformer:
         specifier: catalog:backend
         version: 0.5.1
@@ -2001,6 +1998,9 @@ importers:
       '@wisemen/eslint-config-nestjs':
         specifier: workspace:*
         version: link:../eslint-config-nestjs
+      '@wisemen/validators':
+        specifier: workspace:*
+        version: link:../validators
       eslint:
         specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
@@ -2367,9 +2367,6 @@ importers:
       '@nestjs/swagger':
         specifier: catalog:backend
         version: 11.2.6(@nestjs/common@11.1.14(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.14(@nestjs/common@11.1.14(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2))(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)
-      '@wisemen/validators':
-        specifier: workspace:*
-        version: link:../validators
       class-validator:
         specifier: catalog:backend
         version: 0.14.3
@@ -2386,6 +2383,9 @@ importers:
       '@wisemen/eslint-config-nestjs':
         specifier: workspace:*
         version: link:../eslint-config-nestjs
+      '@wisemen/validators':
+        specifier: workspace:*
+        version: link:../validators
       eslint:
         specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
