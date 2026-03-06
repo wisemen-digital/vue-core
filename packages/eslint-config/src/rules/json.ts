@@ -30,6 +30,8 @@ export const jsonConfig: LintConfig[] = [
   // Ignore package.json files from key sorting
     files: [
       '**/package.json',
+      '**/package-lock.json',
+      '**/tsconfig.json',
     ],
     rules: {
       'jsonc/sort-keys': 'off',
