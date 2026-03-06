@@ -1,6 +1,9 @@
 {
   "name": "@wisemen/app-container",
   "version": "3.0.1",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "A package for a nest app container in kubernetes",
   "directories": {
     "example": "examples"

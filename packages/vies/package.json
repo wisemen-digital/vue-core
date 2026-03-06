@@ -1,6 +1,9 @@
 {
   "name": "@wisemen/vies",
   "version": "0.0.13",
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "type": "module",

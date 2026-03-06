@@ -120,7 +120,7 @@ catalogs:
   tooling:
     "@commitlint/cli": "20.3.1"
     "@commitlint/config-conventional": "20.3.1"
-    "@changesets/cli": "2.29.8"
+    "@changesets/cli": "2.30.0"
   telemetry:
     "@opentelemetry/context-zone": "2.5.0"
     "@opentelemetry/core": "2.5.0"

@@ -2,6 +2,9 @@
   "name": "@wisemen/eslint-plugin-vue",
   "type": "module",
   "version": "0.0.2",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "Eslint rules extended for Wisemen",
   "license": "MIT",
   "homepage": "https://github.com/wisemen-digital/vue-core.git",

@@ -1,6 +1,9 @@
 {
   "name": "@wisemen/planning",
   "version": "0.0.33",
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "type": "module",

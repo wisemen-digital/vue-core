@@ -1,6 +1,9 @@
 {
   "name": "@wisemen/datewise",
   "version": "0.1.4",
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "type": "module",

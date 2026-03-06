@@ -1,6 +1,9 @@
 {
   "name": "@wisemen/csv",
   "version": "0.0.5",
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "type": "module",
