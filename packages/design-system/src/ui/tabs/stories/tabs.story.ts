@@ -2,9 +2,15 @@ import type {
   Meta,
   StoryObj,
 } from '@storybook/vue3-vite'
+import {
+  expect,
+  userEvent,
+  within,
+} from 'storybook/test'
 
 import TabsOverflowPlayground from './TabsOverflowPlayground.vue'
 import TabsPlayground from './TabsPlayground.vue'
+import TabsRouterLinkPlayground from './TabsRouterLinkPlayground.vue'
 
 const meta = {
   title: 'Components/Tabs',
@@ -43,6 +49,28 @@ export const Underline: Story = {
   args: {
     orientation: 'horizontal',
     variant: 'underline',
+  },
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+
+    const tabs = canvas.getAllByRole('tab')
+
+    await expect(tabs[0]).toHaveAttribute('aria-selected', 'true')
+
+    await expect(canvas.getByText('General content goes here.')).toBeVisible()
+
+    await userEvent.click(tabs[1]!)
+
+    await expect(tabs[1]).toHaveAttribute('aria-selected', 'true')
+    await expect(tabs[0]).toHaveAttribute('aria-selected', 'false')
+
+    await expect(canvas.getByText('Members content goes here.')).toBeVisible()
+
+    const disabledTab = canvas.getByRole('tab', { name: /Disabled/i })
+
+    await expect(disabledTab).toBeDisabled()
   },
 }
 
@@ -89,5 +117,23 @@ export const HorizontalOverflow: Story = {
       }
     },
     template: '<TabsOverflowPlayground v-bind="args" />',
+  }),
+}
+
+export const RouterLink: Story = {
+  args: {
+    orientation: 'horizontal',
+    variant: 'underline',
+  },
+  render: (args) => ({
+    components: {
+      TabsRouterLinkPlayground,
+    },
+    setup() {
+      return {
+        args,
+      }
+    },
+    template: '<TabsRouterLinkPlayground v-bind="args" />',
   }),
 }

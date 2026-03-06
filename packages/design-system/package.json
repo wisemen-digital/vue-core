@@ -4,7 +4,7 @@
     "access": "public"
   },
   "type": "module",
-  "version": "0.0.1-alpha.4",
+  "version": "0.0.1-alpha.6",
   "license": "MIT",
   "sideEffects": false,
   "exports": {
@@ -58,7 +58,6 @@
     "@chromatic-com/storybook": "catalog:storybook",
     "@storybook/addon-a11y": "catalog:storybook",
     "@storybook/addon-docs": "catalog:storybook",
-    "@storybook/addon-onboarding": "catalog:storybook",
     "@storybook/addon-vitest": "catalog:storybook",
     "@storybook/vue3": "catalog:storybook",
     "@storybook/vue3-vite": "catalog:storybook",
@@ -69,7 +68,7 @@
     "@vue/test-utils": "catalog:test",
     "@wisemen/eslint-config-vue": "workspace:*",
     "eslint": "catalog:lint",
-    "eslint-plugin-storybook": "catalog:lint",
+    "eslint-plugin-storybook": "catalog:storybook",
     "jsdom": "catalog:test",
     "motion-v": "catalog:peer",
     "playwright": "catalog:test",

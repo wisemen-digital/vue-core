@@ -1,20 +1,14 @@
 <script setup lang="ts">
-import { twMerge } from 'tailwind-merge'
-import type { Component } from 'vue'
-import type { RouteLocationRaw } from 'vue-router'
 import { RouterLink } from 'vue-router'
 
 import ActionTooltip from '@/ui/action-tooltip/ActionTooltip.vue'
+import type { BreadcrumbItemProps } from '@/ui/breadcrumbs/breadcrumb.props'
 import ClickableElement from '@/ui/clickable-element/ClickableElement.vue'
 import RowLayout from '@/ui/row-layout/RowLayout.vue'
 import { UIText } from '@/ui/text/index'
+import { twMerge } from '@/utils/twMerge.util'
 
-const props = defineProps<{
-  isLabelHidden?: boolean
-  icon?: Component
-  label: string
-  to?: RouteLocationRaw
-}>()
+const props = defineProps<BreadcrumbItemProps>()
 </script>
 
 <template>

@@ -41,8 +41,8 @@ const {
       <slot v-else />
       <UINumberBadge
         v-if="props.count != null"
-        :value="props.count"
-        size="sm"
+        :value="props.count.toString()"
+        size="md"
       />
     </RekaTabsTrigger>
   </ClickableElement>

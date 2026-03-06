@@ -71,6 +71,7 @@ onMounted(() => {
     <div
       ref="scrollContainerRef"
       :class="variants.scrollContainer()"
+      :data-orientation="orientation"
     >
       <RekaTabsList :class="variants.list()">
         <slot />

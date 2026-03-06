@@ -34,7 +34,9 @@ const props = defineProps<{
 const i18n = useI18n()
 
 const {
-  isSidebarOpen, variant,
+  isSidebarOpen,
+  sidebarAvatarPadding,
+  variant,
 } = useMainSidebar()
 
 function onSignOut(): void {
@@ -57,17 +59,19 @@ function onSignOut(): void {
           class="flex h-12 items-center justify-center"
           type="button"
         >
-          <UIAvatar
-            v-if="variant === 'icons-only' && !isSidebarOpen"
-            :name="props.name"
-          />
           <UICard
-            v-else
-            class="
-              flex h-12 w-full flex-col overflow-hidden bg-primary-alt p-md
-              py-sm text-left duration-100
-              hover:bg-tertiary/50
+            :class="variant === 'icons-only' && !isSidebarOpen
+              ? 'border-transparent'
+              : `
+                bg-primary-alt p-md py-sm
+                hover:bg-tertiary/50
+              `
             "
+            :style="variant === 'icons-only' && !isSidebarOpen
+              ? { padding: sidebarAvatarPadding }
+              : undefined
+            "
+            class="flex w-full flex-col overflow-hidden text-left duration-100"
           >
             <UIRowLayout
               justify="between"
@@ -81,7 +85,10 @@ function onSignOut(): void {
                   :src="props.avatarUrl"
                   :name="props.name"
                 />
-                <div class="flex w-full flex-col overflow-hidden">
+                <div
+                  v-if="variant !== 'icons-only' || isSidebarOpen"
+                  class="flex w-full flex-col overflow-hidden"
+                >
                   <UIText
                     :text="props.name"
                     class="w-full text-xs font-semibold text-primary"
@@ -93,8 +100,8 @@ function onSignOut(): void {
                 </div>
               </UIRowLayout>
 
-              <Component
-                :is="ChevronDownIcon"
+              <ChevronDownIcon
+                v-if="variant !== 'icons-only' || isSidebarOpen"
                 class="size-4 shrink-0 text-quaternary"
               />
             </UIRowLayout>

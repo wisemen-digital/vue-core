@@ -4,13 +4,10 @@ import {
   useAttrs,
 } from 'vue'
 
-<<<<<<< Updated upstream
 import type { TextStyle } from '@/ui/text/text.style'
 import { createTextStyle } from '@/ui/text/text.style'
-=======
 import ActionTooltip from '@/ui/action-tooltip/ActionTooltip.vue'
 import { useIsTruncated } from '@/ui/text/isTruncated.composable'
->>>>>>> Stashed changes
 
 const props = withDefaults(defineProps<{
   /**
@@ -18,11 +15,8 @@ const props = withDefaults(defineProps<{
    * @default 'span'
    */
   as?: string
-<<<<<<< Updated upstream
-  class?: string | null
-=======
+
   class?: string | Record<string, unknown> | null
->>>>>>> Stashed changes
   /**
    * If `true`, the tooltip will be disabled even if the text is truncated.
    * @default false
@@ -51,6 +45,29 @@ const isTruncated = useIsTruncated(textRef)
 </script>
 
 <template>
+  <ActionTooltip
+    :is-disabled="!isTruncated || props.disableTooltip"
+    :label="props.text"
+  >
+    <!-- eslint-disable vue/no-v-text-v-html-on-component -->
+    <Component
+      v-bind="attrs"
+      :is="props.as"
+      ref="textRef"
+      :class="[
+        props.class, {
+          'truncate': props.truncate === true,
+          'line-clamp-2': props.truncate === 2,
+          'line-clamp-3': props.truncate === 3,
+          'line-clamp-4': props.truncate === 4,
+          'line-clamp-5': props.truncate === 5,
+          'line-clamp-6': props.truncate === 6,
+        },
+      ]"
+      class="max-w-full"
+      v-html="props.text"
+    />
+  </ActionTooltip>
   <ActionTooltip
     :is-disabled="!isTruncated || props.disableTooltip"
     :label="props.text"

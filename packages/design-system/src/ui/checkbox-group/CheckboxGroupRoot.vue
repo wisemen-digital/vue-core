@@ -1,5 +1,6 @@
 <script setup lang="ts" generic="TValue extends AcceptableValue">
 import type { AcceptableValue } from 'reka-ui'
+import { CheckboxGroupRoot as RekaCheckboxGroupRoot } from 'reka-ui'
 import type { Ref } from 'vue'
 import {
   computed,
@@ -62,5 +63,7 @@ useProvideCheckboxGroupContext({
 </script>
 
 <template>
-  <slot />
+  <RekaCheckboxGroupRoot v-model="modelValue">
+    <slot />
+  </RekaCheckboxGroupRoot>
 </template>

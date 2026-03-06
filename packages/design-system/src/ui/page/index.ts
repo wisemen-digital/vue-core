@@ -1,3 +1,4 @@
+export { default as UIDashboardLayoutContainer } from './DashboardLayoutContainer.vue'
 export * from './dashboardPage.type'
 export { default as UIDashboardPage } from './DashboardPage.vue'
 export { default as UIDashboardPageActions } from './DashboardPageActions.vue'

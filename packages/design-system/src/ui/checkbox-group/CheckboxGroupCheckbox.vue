@@ -11,7 +11,8 @@ import { useInjectCheckboxGroupContext } from '@/ui/checkbox-group/checkboxGroup
 
 const props = defineProps<{
   isDisabled?: boolean
-  label: string
+  isLabelHidden?: boolean
+  label?: string
   value: AcceptableInputValue
 }>()
 
@@ -34,6 +35,7 @@ onBeforeUnmount(() => {
   <BaseCheckbox
     :value="props.value"
     :label="props.label"
+    :is-label-hidden="props.isLabelHidden"
     :is-disabled="props.isDisabled"
   />
 </template>

@@ -17,13 +17,12 @@ const meta = {
         'success',
         'warning',
         'purple',
-        'blue-light',
+        'pink',
       ],
     },
     size: {
       control: 'select',
       options: [
-        'sm',
         'md',
         'lg',
       ],
@@ -74,15 +73,6 @@ export const Outline: Story = {
     size: 'md',
     value: 3,
     variant: 'outline',
-  },
-}
-
-export const Small: Story = {
-  args: {
-    color: 'gray',
-    size: 'sm',
-    value: 7,
-    variant: 'translucent',
   },
 }
 

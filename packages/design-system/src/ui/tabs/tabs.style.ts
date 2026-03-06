@@ -42,9 +42,9 @@ export const tabsVariants = tv({
     },
     variant: {
       'button-border': {
-        base: 'w-fit rounded-lg border border-secondary bg-secondary-alt',
+        base: 'w-fit rounded-lg bg-tertiary',
         indicator: `
-          rounded-sm bg-primary-alt shadow-xs
+          rounded-sm bg-primary-alt shadow-sm
           group-data-[orientation=horizontal]:h-full
           group-data-[orientation=vertical]:w-full
         `,
@@ -92,8 +92,9 @@ export const tabsVariants = tv({
           not-disabled:data-[state=active]:hover:bg-brand-primary-alt
           data-[state=inactive]:text-quaternary
         `,
-        list: `
-          gap-lg border-secondary
+        list: 'gap-lg',
+        scrollContainer: `
+          border-secondary
           data-[orientation=horizontal]:border-b
           data-[orientation=vertical]:border-l
         `,

@@ -11,6 +11,12 @@ const meta = {
     'autodocs',
   ],
   component: Playground,
+  argTypes: {
+    variant: {
+      control: 'select',
+      options: ['icons-only', 'icons-with-labels'],
+    },
+  },
 } satisfies Meta<typeof Playground>
 
 export default meta
@@ -18,5 +24,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  args: {},
+  args: {
+    variant: 'icons-only',
+  },
 }
