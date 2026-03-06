@@ -86,12 +86,10 @@ onMounted(() => {
             <slot />
 
             <RekaTabsIndicator :class="variants.indicator()" />
-            <div class="flex w-full justify-start">
-              <TabsAdaptiveContentDropdown
-                :hidden-tabs-count="hiddenBlockCount"
-                :tabs="tabs"
-              />
-            </div>
+            <TabsAdaptiveContentDropdown
+              :hidden-tabs-count="hiddenBlockCount"
+              :tabs="tabs"
+            />
           </RekaTabsList>
         </template>
       </UIAdaptiveContent>
