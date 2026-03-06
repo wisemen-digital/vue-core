@@ -25,7 +25,7 @@ const props = withDefaults(defineProps<TabsRouterLinkItemProps>(), {
 })
 
 const {
-  isAdaptive,
+  isTouchDevice,
   nextPriority,
   registerTab,
   unregisterTab,
@@ -57,7 +57,7 @@ onBeforeUnmount(() => {
 
 <template>
   <UIAdaptiveContentBlock
-    v-if="isAdaptive"
+    v-if="!isTouchDevice"
     :priority="priority"
   >
     <ClickableElement>

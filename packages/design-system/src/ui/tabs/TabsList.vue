@@ -17,8 +17,8 @@ const scrollContainerRef = ref<HTMLElement | null>(null)
 const {
   hasHorizontalOverflow,
   hasReachedHorizontalEnd,
-  isAdaptive,
   isScrolledHorizontally,
+  isTouchDevice,
   orientation,
   scrollToLeft,
   scrollToRight,
@@ -39,7 +39,7 @@ onMounted(() => {
 <template>
   <div :class="variants.base()">
     <div
-      v-if="!isAdaptive && isScrolledHorizontally && hasHorizontalOverflow && orientation === 'horizontal'"
+      v-if="isTouchDevice && isScrolledHorizontally && hasHorizontalOverflow && orientation === 'horizontal'"
       class="
         absolute top-0 left-0 z-20 flex h-full items-center bg-linear-to-r
         from-primary to-transparent px-md
@@ -77,7 +77,7 @@ onMounted(() => {
       :class="variants.scrollContainer()"
       :data-orientation="orientation"
     >
-      <UIAdaptiveContent v-if="isAdaptive">
+      <UIAdaptiveContent v-if="!isTouchDevice">
         <template #default="{ hiddenBlockCount }">
           <RekaTabsList
             :class="variants.list()"
@@ -105,7 +105,7 @@ onMounted(() => {
     </div>
 
     <div
-      v-if="!isAdaptive && !hasReachedHorizontalEnd && hasHorizontalOverflow && orientation === 'horizontal'"
+      v-if="isTouchDevice && !hasReachedHorizontalEnd && hasHorizontalOverflow && orientation === 'horizontal'"
       class="
         absolute top-0 right-0 z-20 flex h-full items-center bg-linear-to-l
         from-primary to-transparent px-md

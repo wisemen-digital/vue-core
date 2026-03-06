@@ -17,8 +17,10 @@ export interface TabItemData extends TabsItemProps {
 
 interface TabsContext extends PropsToComputed<TabsProps> {
   hasHorizontalOverflow: ComputedRef<boolean>
+
   hasReachedHorizontalEnd: ComputedRef<boolean>
   isScrolledHorizontally: ComputedRef<boolean>
+  isTouchDevice: ComputedRef<boolean>
   activeTab: ComputedRef<TabItemData | null>
   nextPriority: () => number
   registerTab: (tab: TabItemData) => void

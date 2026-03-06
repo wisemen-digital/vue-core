@@ -20,7 +20,7 @@ const props = withDefaults(defineProps<TabsItemProps>(), {
 })
 
 const {
-  isAdaptive,
+  isTouchDevice,
   nextPriority,
   registerTab,
   unregisterTab,
@@ -43,7 +43,7 @@ onBeforeUnmount(() => {
 
 <template>
   <UIAdaptiveContentBlock
-    v-if="isAdaptive"
+    v-if="!isTouchDevice"
     :priority="priority"
   >
     <ClickableElement>

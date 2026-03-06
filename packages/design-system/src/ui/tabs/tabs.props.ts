@@ -5,12 +5,6 @@ export type TabsVariant = 'button-border' | 'button-brand' | 'underline'
 
 export interface TabsProps {
   /**
-   * Whether the tabs should adapt to the available space by hiding overflowing tabs.
-   * Hidden tabs can be accessed through a dropdown.
-   * @default false
-   */
-  isAdaptive?: boolean
-  /**
    * Whether the tabs should stretch to fill the full width of the container.
    * @default false
    */

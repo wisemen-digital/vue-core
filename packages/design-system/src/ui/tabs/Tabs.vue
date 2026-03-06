@@ -8,17 +8,19 @@ import {
 import { toComputedRefs } from '@/composables/context.composable'
 import { useTabs } from '@/ui/tabs/tabs.composable'
 import { useProvideTabsContext } from '@/ui/tabs/tabs.context'
-import { useAdaptiveTabs } from '@/ui/tabs/tabsAdaptive.composable'
 import type { TabsProps } from '@/ui/tabs/tabs.props'
 import type { TabsVariants } from '@/ui/tabs/tabs.style'
 import { tabsVariants } from '@/ui/tabs/tabs.style'
+import { useAdaptiveTabs } from '@/ui/tabs/tabsAdaptive.composable'
+import { isTouchDevice } from '@/utils/isTouchDevice.util'
 
 const props = withDefaults(defineProps<TabsProps>(), {
-  isAdaptive: false,
   isFullWidth: false,
   orientation: 'horizontal',
   variant: 'underline',
 })
+
+const isTouch = computed<boolean>(() => isTouchDevice())
 
 const modelValue = defineModel<string>({
   required: true,
@@ -56,6 +58,7 @@ useProvideTabsContext({
   hasHorizontalOverflow,
   hasReachedHorizontalEnd,
   isScrolledHorizontally,
+  isTouchDevice: isTouch,
   activeTab,
   nextPriority,
   registerTab,
