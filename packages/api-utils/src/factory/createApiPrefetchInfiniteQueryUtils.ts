@@ -1,6 +1,9 @@
 import type { QueryClient } from '@tanstack/vue-query'
 
-import { getQueryClient, QUERY_CONFIG } from '@/config/config'
+import {
+  getQueryClient,
+  QUERY_CONFIG,
+} from '@/config/config'
 import type {
   KeysetPaginationParams,
   KeysetPaginationResult,
@@ -36,7 +39,8 @@ export interface CreateApiPrefetchInfiniteQueryUtilsReturnType<
   }
 }
 
-export function createApiPrefetchInfiniteQueryUtils<TQueryKeys extends object, TErrorCode extends string = string>(): CreateApiPrefetchInfiniteQueryUtilsReturnType<TQueryKeys, TErrorCode> {
+export function createApiPrefetchInfiniteQueryUtils<TQueryKeys extends object, TErrorCode extends string = string>():
+CreateApiPrefetchInfiniteQueryUtilsReturnType<TQueryKeys, TErrorCode> {
   function usePrefetchOffsetInfiniteQuery<TKey extends QueryKeysWithArrayEntityFromConfig<TQueryKeys>>(
     key: TKey,
     queryOptions: ApiUseOffsetInfinitePrefetchQueryOptions<TQueryKeys, TKey, TErrorCode>,
@@ -53,6 +57,7 @@ export function createApiPrefetchInfiniteQueryUtils<TQueryKeys extends object, T
     ] as const
 
     const queryClient: QueryClient = getQueryClient()
+
     async function execute(): Promise<void> {
       await queryClient.prefetchInfiniteQuery({
         staleTime: queryOptions.staleTime ?? QUERY_CONFIG.prefetchStaleTime,
@@ -103,6 +108,7 @@ export function createApiPrefetchInfiniteQueryUtils<TQueryKeys extends object, T
 
     async function execute(): Promise<void> {
       const queryClient: QueryClient = getQueryClient()
+
       await queryClient.prefetchInfiniteQuery({
         staleTime: queryOptions.staleTime ?? QUERY_CONFIG.prefetchStaleTime,
         getNextPageParam: (lastPage: Page) => {

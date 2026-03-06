@@ -4,9 +4,10 @@ import {
   it,
 } from 'vitest'
 
+import type { Sort } from '@/types/sort.type'
+import { SortDirection } from '@/types/sort.type'
 
 import { SortUtil } from './sort.utils'
-import { Sort, SortDirection } from '@/types/sort.type'
 
 describe('sortUtil', () => {
   describe('toDto', () => {

@@ -1,5 +1,5 @@
-import { Sort, SortDirection } from '@/types/sort.type'
-
+import type { Sort } from '@/types/sort.type'
+import { SortDirection } from '@/types/sort.type'
 
 export class SortUtil {
   static toDto<SortKey extends string, QueryKey>(

@@ -33,7 +33,6 @@ export function initializeApiUtils(queryClient: QueryClient): void {
 
 /**
  * @internal
- * Get the global QueryClient. Throws if `initializeApiUtils` has not been called.
  */
 export function getQueryClient(): QueryClient {
   if (globalQueryClient == null) {

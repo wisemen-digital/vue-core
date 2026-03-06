@@ -1,7 +1,4 @@
-import type { QueryClient } from '@tanstack/vue-query'
-
-import { getQueryClient } from '@/config/config'
-
+/* eslint-disable eslint-plugin-wisemen/explicit-function-return-type-with-regex */
 import { createApiInfiniteQueryUtils } from './createApiInfiniteQueryUtils'
 import { createApiMutationUtils } from './createApiMutationUtils'
 import { createApiOptimisticUpdatesUtils } from './createApiOptimisticUpdatesUtils'
@@ -40,7 +37,6 @@ export function createApiUtils<
   TQueryKeys extends object,
   TErrorCode extends string = string,
 >() {
-
   return {
     ...createApiQueryUtils<TQueryKeys, TErrorCode>(),
     ...createApiPrefetchQueryUtils<TQueryKeys, TErrorCode>(),

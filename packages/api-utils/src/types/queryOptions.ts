@@ -1,6 +1,6 @@
 import type { Ref } from 'vue'
-import { Sort } from './sort.type'
 
+import type { Sort } from './sort.type'
 
 export interface QueryParams {
   filters?: Record<string, any>
