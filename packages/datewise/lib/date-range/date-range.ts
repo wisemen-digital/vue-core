@@ -180,6 +180,10 @@ export class DateRange {
       && this.endDate.isSame(otherRange.endDate)
   }
 
+  isFinite (): boolean {
+    return (!this.startDate.isInfinity()) && (!this.endDate.isInfinity())
+  }
+
   toString (): string {
     const startInclusivity = this.startDate.isInfinity() ? `(` : '['
     const endInclusivity = this.endDate.isInfinity() ? `)` : ']'

@@ -238,6 +238,11 @@ export class DateTimeRange {
       && this.until.isSame(otherRange.until)
   }
 
+  /** returns true if both boundaries are finite */
+  isFinite (): boolean {
+    return (!this.from.isInfinity()) && (!this.until.isInfinity())
+  }
+
   /**
    * Returns a string representation of the range, indicating inclusivity and bounds in ISO format.
    * @example "(-infinity, 2025-10-17T14:22:14.768+00)"
