@@ -9,7 +9,6 @@ import RowLayout from '@/ui/row-layout/RowLayout.vue'
 
 const props = withDefaults(defineProps<InputWrapperProps>(), {
   ...INPUT_META_DEFAULTS,
-  horizontalAlign: 'start',
 })
 </script>
 
@@ -20,9 +19,11 @@ const props = withDefaults(defineProps<InputWrapperProps>(), {
   >
     <div v-if="props.isHorizontal">
       <RowLayout
-        :align="props.horizontalAlign"
+        align="start"
       >
-        <slot />
+        <RowLayout class="h-4.5">
+          <slot />
+        </RowLayout>
         <div>
           <InputWrapperLabel
             :label="props.label"

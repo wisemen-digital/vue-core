@@ -17,6 +17,7 @@ export interface BaseRadioGroupItemProps extends DisabledWithReason {
    * The label displayed next to the radio item.
    */
   label: string
+
   /**
    * The value of the radio group item.
    */
