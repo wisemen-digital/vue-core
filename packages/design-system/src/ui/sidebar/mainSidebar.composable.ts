@@ -11,9 +11,10 @@ import type { MainSidebarVariant } from '@/ui/sidebar/types/mainSidebar.type'
 
 const DEFAULT_SIDEBAR_WIDTH = '14rem'
 
-const SIDEBAR_COLLAPSED_WIDTH = 44
-const SIDEBAR_CONTAINER_PADDING = 8
+const SIDEBAR_COLLAPSED_WIDTH = 56
+const SIDEBAR_CONTAINER_PADDING = 13
 const SIDEBAR_ICON_SIZE = 16
+const SIDEBAR_ICON_CELL_SIZE = 30
 const SIDEBAR_LOGO_SIZE = 24
 const SIDEBAR_AVATAR_SIZE = 24
 
@@ -54,14 +55,12 @@ export function useMainSidebar() {
     },
   })
 
-  const collapsedInnerSize = SIDEBAR_COLLAPSED_WIDTH - 2 * SIDEBAR_CONTAINER_PADDING
-
   const sidebarContainerPadding = `${SIDEBAR_CONTAINER_PADDING}px`
   const sidebarIconSize = `${SIDEBAR_ICON_SIZE}px`
-  const sidebarLinkPadding = `${(collapsedInnerSize - SIDEBAR_ICON_SIZE) / 2}px`
-  const sidebarLinkHeight = `${collapsedInnerSize}px`
-  const sidebarLogoPadding = `${(collapsedInnerSize - SIDEBAR_LOGO_SIZE) / 2}px`
-  const sidebarAvatarPadding = `${(collapsedInnerSize - SIDEBAR_AVATAR_SIZE) / 2}px`
+  const sidebarIconCellSize = `${SIDEBAR_ICON_CELL_SIZE}px`
+  const sidebarLinkHeight = `${SIDEBAR_ICON_CELL_SIZE}px`
+  const sidebarLogoPadding = `${(SIDEBAR_ICON_CELL_SIZE - SIDEBAR_LOGO_SIZE) / 2}px`
+  const sidebarAvatarPadding = `${(SIDEBAR_ICON_CELL_SIZE - SIDEBAR_AVATAR_SIZE) / 2}px`
 
   function closeIfFloatingSidebar(): void {
     if (isFloatingSidebar.value) {
@@ -89,9 +88,9 @@ export function useMainSidebar() {
     setVariant,
     sidebarAvatarPadding,
     sidebarContainerPadding,
+    sidebarIconCellSize,
     sidebarIconSize,
     sidebarLinkHeight,
-    sidebarLinkPadding,
     sidebarLogoPadding,
     sidebarWidth,
     variant,

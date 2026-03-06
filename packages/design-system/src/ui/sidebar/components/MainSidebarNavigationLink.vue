@@ -11,7 +11,6 @@ import {
 
 import ActionTooltip from '@/ui/action-tooltip/ActionTooltip.vue'
 import ClickableElement from '@/ui/clickable-element/ClickableElement.vue'
-import RowLayout from '@/ui/row-layout/RowLayout.vue'
 import MainSidebarNavigationLinkProvider from '@/ui/sidebar/components/MainSidebarNavigationLinkProvider.vue'
 import { useMainSidebar } from '@/ui/sidebar/mainSidebar.composable'
 
@@ -35,9 +34,9 @@ const emit = defineEmits<{
 const {
   isSidebarOpen,
   closeIfFloatingSidebar,
+  sidebarIconCellSize,
   sidebarIconSize,
   sidebarLinkHeight,
-  sidebarLinkPadding,
   variant,
 } = useMainSidebar()
 
@@ -68,57 +67,59 @@ function onClick(): void {
         >
           <div
             :data-active="isRouteActive || props.isActive(route) || undefined"
-            :style="{ height: sidebarLinkHeight }"
+            :style="{
+              height: sidebarLinkHeight,
+              gridTemplateColumns: variant === 'icons-only' && !isSidebarOpen
+                ? sidebarIconCellSize
+                : `${sidebarIconCellSize} 1fr`,
+            }"
             class="
-              group rounded-md
+              group grid rounded-md duration-100
               hover:bg-primary-hover
               data-active:bg-brand-primary
               dark:data-active:glassy
             "
           >
-            <RowLayout
-              :style="{ padding: sidebarLinkPadding }"
-              gap="md"
-              justify="between"
+            <div
+              :style="{
+                width: sidebarIconCellSize,
+                height: sidebarIconCellSize,
+              }"
+              class="flex items-center justify-center"
+            >
+              <Component
+                :is="props.icon"
+                :style="{
+                  width: sidebarIconSize,
+                  height: sidebarIconSize,
+                }"
+                class="
+                  shrink-0 text-fg-quaternary duration-100
+                  group-data-active:text-fg-brand-primary
+                  dark:group-data-active:text-fg-primary
+                "
+              />
+            </div>
+
+            <div
+              v-if="variant !== 'icons-only' || isSidebarOpen"
               class="
-                group h-full rounded-[0.4rem] duration-100
-                dark:group-data-active:glassy-inner-content
+                flex items-center justify-between gap-md overflow-hidden pr-md
               "
             >
-              <RowLayout>
-                <Component
-                  :is="props.icon"
-                  :style="{
-                    width: sidebarIconSize,
-                    height: sidebarIconSize,
-                  }"
-                  class="
-                    shrink-0 text-fg-quaternary duration-100
-                    group-data-active:text-fg-brand-primary
-                    dark:group-data-active:text-fg-primary
-                  "
-                />
-
-                <span
-                  v-if="variant !== 'icons-only' || isSidebarOpen"
-                  class="
-                    text-xs font-medium text-secondary duration-100
-                    group-hover:text-primary
-                    group-data-active:text-brand-secondary
-                  "
-                >
-                  {{ props.label }}
-                </span>
-              </RowLayout>
-              <RowLayout
-                v-if="variant !== 'icons-only' || isSidebarOpen"
-                gap="lg"
+              <span
+                class="
+                  truncate text-xs font-medium text-secondary duration-100
+                  group-hover:text-primary
+                  group-data-active:text-brand-secondary
+                "
               >
-                <slot
-                  name="right"
-                />
-              </RowLayout>
-            </RowLayout>
+                {{ props.label }}
+              </span>
+              <div class="flex shrink-0 items-center gap-lg">
+                <slot name="right" />
+              </div>
+            </div>
           </div>
         </MainSidebarNavigationLinkProvider>
       </RouterLink>

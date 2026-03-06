@@ -26,7 +26,7 @@ const {
     </span>
 
     <UIColumnLayout
-      :align="variant === 'icons-only' ? 'center' : 'start'"
+      align="start"
       gap="xs"
     >
       <slot />
