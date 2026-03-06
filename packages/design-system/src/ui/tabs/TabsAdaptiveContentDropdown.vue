@@ -70,7 +70,7 @@ watch(activeTab, () => {
     <template #trigger>
       <RowLayout
         justify="center"
-        class="my-sm"
+        class="my-xxs"
       >
         <UIButton
           :icon-left="dropdownLeftIcon"

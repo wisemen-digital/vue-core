@@ -5,7 +5,7 @@ export const tabsVariants = tv({
     {
       isFullWidth: true,
       class: {
-        base: 'w-auto',
+        list: 'w-auto',
       },
       variant: 'button-border',
     },
@@ -22,6 +22,7 @@ export const tabsVariants = tv({
       group-data-[orientation=vertical]:h-(--reka-tabs-indicator-size)
       group-data-[orientation=vertical]:translate-y-(--reka-tabs-indicator-position)
     `,
+    indicatorInner: 'hidden',
     item: `
       group/tabs-item relative z-10 flex cursor-pointer items-center gap-sm
       text-sm font-semibold whitespace-nowrap duration-200
@@ -42,29 +43,31 @@ export const tabsVariants = tv({
     },
     variant: {
       'button-border': {
-        base: 'w-fit rounded-lg bg-tertiary',
+        base: 'rounded-lg',
         indicator: `
-          rounded-sm bg-primary-alt shadow-sm
           group-data-[orientation=horizontal]:h-full
           group-data-[orientation=vertical]:w-full
         `,
+        indicatorInner: `
+          absolute inset-1 block rounded-sm bg-primary-alt shadow-sm outline-2
+          outline-transparent
+          group-has-focus-visible:outline-fg-brand-primary-alt
+        `,
         item: `
-          rounded-sm px-lg py-xs outline-2 outline-transparent
-          focus-visible:outline-fg-brand-primary-alt
+          rounded-sm px-lg py-md outline-none
           disabled:opacity-75
           data-[state=active]:text-secondary
           data-[state=inactive]:text-quaternary
           not-disabled:data-[state=inactive]:hover:text-tertiary
         `,
-        list: 'gap-xs',
-        scrollContainer: 'p-xs',
+        list: 'relative w-fit gap-xs rounded-sm bg-tertiary',
       },
       'button-brand': {
         indicator: `
-          rounded-sm bg-brand-primary-alt
           group-data-[orientation=horizontal]:h-full
           group-data-[orientation=vertical]:w-full
         `,
+        indicatorInner: 'block size-full rounded-sm bg-brand-primary-alt',
         item: `
           rounded-sm px-lg py-md outline-2 outline-transparent
           focus-visible:outline-fg-brand-primary-alt

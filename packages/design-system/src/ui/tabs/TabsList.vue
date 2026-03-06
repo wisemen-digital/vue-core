@@ -79,18 +79,21 @@ onMounted(() => {
     >
       <UIAdaptiveContent v-if="!isTouchDevice">
         <template #default="{ hiddenBlockCount }">
-          <RekaTabsList
-            :class="variants.list()"
-            class="overflow-scroll"
-          >
-            <slot />
+          <div class="h-full">
+            <RekaTabsList
+              :class="variants.list()"
+            >
+              <slot />
 
-            <RekaTabsIndicator :class="variants.indicator()" />
-            <TabsAdaptiveContentDropdown
-              :hidden-tabs-count="hiddenBlockCount"
-              :tabs="tabs"
-            />
-          </RekaTabsList>
+              <RekaTabsIndicator :class="variants.indicator()">
+                <div :class="variants.indicatorInner()" />
+              </RekaTabsIndicator>
+              <TabsAdaptiveContentDropdown
+                :hidden-tabs-count="hiddenBlockCount"
+                :tabs="tabs"
+              />
+            </RekaTabsList>
+          </div>
         </template>
       </UIAdaptiveContent>
 
@@ -100,7 +103,9 @@ onMounted(() => {
       >
         <slot />
 
-        <RekaTabsIndicator :class="variants.indicator()" />
+        <RekaTabsIndicator :class="variants.indicator()">
+          <div :class="variants.indicatorInner()" />
+        </RekaTabsIndicator>
       </RekaTabsList>
     </div>
 

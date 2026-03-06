@@ -69,7 +69,9 @@ export const Underline: Story = {
 
     await expect(canvas.getByText('Members content goes here.')).toBeVisible()
 
-    const disabledTab = canvas.getByRole('tab', { name: /Disabled/i })
+    const disabledTab = canvas.getByRole('tab', {
+      name: /Disabled/i,
+    })
 
     await expect(disabledTab).toBeDisabled()
   },
@@ -123,7 +125,7 @@ export const HorizontalOverflow: Story = {
 
 export const AdaptiveOverflow: Story = {
   args: {
-    variant: 'underline',
+    variant: 'button-border',
   },
   render: (args) => ({
     components: {
