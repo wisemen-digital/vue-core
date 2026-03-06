@@ -16,6 +16,7 @@ import type { TabsProps } from '@/ui/tabs/tabs.props'
 import type { TabsVariants } from '@/ui/tabs/tabs.style'
 import { tabsVariants } from '@/ui/tabs/tabs.style'
 import { useAdaptiveTabs } from '@/ui/tabs/tabsAdaptive.composable'
+import { isTouchDevice } from '@/utils/isTouchDevice.util'
 
 import TabsList from './TabsList.vue'
 
@@ -30,6 +31,8 @@ const route = useRoute()
 const router = useRouter()
 const activeRouteName = computed<string | undefined>(() =>
   typeof route.name === 'string' ? route.name : undefined)
+
+const isTouch = computed<boolean>(() => isTouchDevice())
 
 function onUpdateModelValue(value: string): void {
   if (value !== activeRouteName.value) {
@@ -67,6 +70,7 @@ const {
 } = useAdaptiveTabs(activeRouteName)
 
 useProvideTabsContext({
+  isTouchDevice: isTouch,
   ...toComputedRefs(props),
   hasHorizontalOverflow,
   hasReachedHorizontalEnd,
