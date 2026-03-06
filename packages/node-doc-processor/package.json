@@ -1,6 +1,9 @@
 {
   "name": "@wisemen/node-doc-processor",
-  "version": "1.2.6",
+  "version": "1.2.7",
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "type": "module",
