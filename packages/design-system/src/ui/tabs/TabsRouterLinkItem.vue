@@ -64,7 +64,7 @@ const routeName = computed<string>(() => {
           <UINumberBadge
             v-if="props.count != null"
             :value="props.count.toString()"
-            size="sm"
+            size="md"
           />
         </RouterLink>
       </RekaTabsTrigger>
