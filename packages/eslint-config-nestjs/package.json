@@ -1,6 +1,9 @@
 {
   "name": "@wisemen/eslint-config-nestjs",
   "version": "0.2.10",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "",
   "main": "eslint.config.js",
   "type": "module",

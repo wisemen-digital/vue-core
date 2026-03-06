@@ -1,4 +1,5 @@
 import { randomUUID } from 'crypto'
+import { AsyncLocalStorage } from 'async_hooks'
 import { Injectable } from '@nestjs/common'
 import { ConnectionOptions } from 'pg-boss'
 import { EntityManager } from 'typeorm'
@@ -15,6 +16,7 @@ import { TraceContextCarrier } from '../jobs/trace-context-carrier.js'
 @Injectable()
 export class PgBossScheduler {
   private readonly manager: EntityManager
+  private readonly jobStorage: AsyncLocalStorage<SerializedJob<BaseJob>[]>
 
   constructor (
     private boss: PgBossClient,
@@ -22,6 +24,7 @@ export class PgBossScheduler {
     @InjectEntityManager() entityManager: EntityManager
   ) {
     this.manager = createTransactionManagerProxy(entityManager)
+    this.jobStorage = new AsyncLocalStorage()
   }
 
   async scheduleJob<T extends BaseJob>(job: T): Promise<void> {
@@ -36,7 +39,37 @@ export class PgBossScheduler {
 
     const serializedJobs = jobs.map(job => this.serializeJob(job, outputTraceContext))
 
+    const storedJobs = this.jobStorage.getStore()
+
+    if (storedJobs !== undefined) {
+      storedJobs.push(...serializedJobs)
+
+      return
+    }
+
     await this.insertJobs(serializedJobs)
+  }
+
+  /**
+   * Captures all scheduled jobs through `scheduleJob` and `scheduleJobs` invocations.
+   * All captured jobs are inserted in query after the callback ends.
+   */
+  async runAndCaptureJobs (callback: () => void | Promise<void>): Promise<void> {
+    const existingJobs = this.jobStorage.getStore()
+
+    if (existingJobs !== undefined) {
+      await this.jobStorage.run(existingJobs, callback)
+
+      return
+    }
+
+    const capturedJobs: SerializedJob<BaseJob>[] = []
+
+    await this.jobStorage.run(capturedJobs, callback)
+
+    if (capturedJobs.length > 0) {
+      await this.insertJobs(capturedJobs)
+    }
   }
 
   private serializeJob<T extends BaseJob>(job: T, context: TraceContextCarrier): SerializedJob<T> {

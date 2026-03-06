@@ -1,6 +1,9 @@
 {
   "name": "@wisemen/coordinates",
-  "version": "0.0.19",
+  "version": "0.0.20",
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "type": "module",
@@ -25,14 +28,15 @@
   },
   "peerDependencies": {
     "@nestjs/common": "catalog:backend",
-    "@wisemen/quantity": "catalog:backend",
+    "@wisemen/quantity": "workspace:*",
     "@nestjs/swagger": "catalog:backend",
     "class-validator": "catalog:backend",
     "typeorm": "catalog:backend"
   },
   "devDependencies": {
     "@types/node": "catalog:backend",
-    "@wisemen/eslint-config-nestjs": "catalog:lint",
+    "@wisemen/eslint-config-nestjs": "workspace:*",
+    "@wisemen/quantity": "workspace:*",
     "eslint": "catalog:lint",
     "expect": "catalog:test",
     "typescript": "catalog:peer"

@@ -1,6 +1,9 @@
 {
   "name": "@wisemen/pagination",
   "version": "0.0.12",
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "type": "module",
@@ -32,7 +35,7 @@
   },
   "devDependencies": {
     "@types/node": "catalog:backend",
-    "@wisemen/eslint-config-nestjs": "catalog:lint",
+    "@wisemen/eslint-config-nestjs": "workspace:*",
     "eslint": "catalog:lint",
     "expect": "catalog:test",
     "typescript": "catalog:peer"

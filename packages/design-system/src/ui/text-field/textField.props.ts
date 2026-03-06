@@ -1,11 +1,11 @@
 import type {
   AutocompleteInput,
+  FieldWrapper,
   Input,
-  InputField,
-  InputMeta,
+  InputWrapper,
 } from '@/types/input.type'
 
-export interface TextFieldProps extends Input, AutocompleteInput, InputMeta, InputField {
+export interface TextFieldProps extends Input, AutocompleteInput, InputWrapper, FieldWrapper {
   /**
    * The size of the text field.
    * @default 'md'

@@ -1,6 +1,9 @@
 {
   "name": "@wisemen/nestjs-typeorm",
   "version": "0.1.4",
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "type": "module",
@@ -21,8 +24,7 @@
     "@nestjs/common": "catalog:backend",
     "@nestjs/config": "catalog:backend",
     "@nestjs/typeorm": "catalog:backend",
-    "@wisemen/coordinates": "catalog:backend",
-    "@wisemen/time": "catalog:backend",
+    "@wisemen/time": "workspace:*",
     "change-case": "catalog:backend",
     "class-validator": "catalog:backend",
     "pg": "catalog:backend",
@@ -30,6 +32,7 @@
   },
   "devDependencies": {
     "@types/node": "catalog:backend",
+    "@wisemen/time": "workspace:*",
     "eslint": "catalog:lint",
     "expect": "catalog:test",
     "typescript": "catalog:peer"

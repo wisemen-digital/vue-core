@@ -25,6 +25,7 @@ const props = withDefaults(defineProps<LinkProps>(), {
   size: 'md',
   to: null,
   tooltipLabel: null,
+  tooltipSide: 'top',
   variant: 'primary',
 })
 
@@ -73,6 +74,7 @@ useProvideLinkContext({
 
 <template>
   <ActionTooltip
+    :popover-side="props.tooltipSide"
     :is-disabled="props.tooltipLabel === null && props.keyboardShortcut === null"
     :label="props.tooltipLabel ?? props.label"
     :keyboard-shortcut="props.keyboardShortcut"

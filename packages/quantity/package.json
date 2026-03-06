@@ -1,6 +1,9 @@
 {
   "name": "@wisemen/quantity",
   "version": "0.3.4",
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "type": "module",
@@ -20,13 +23,14 @@
   "peerDependencies": {
     "@nestjs/common": "catalog:backend",
     "@nestjs/swagger": "catalog:backend",
-    "@wisemen/nestjs-typeorm": "catalog:backend",
+    "@wisemen/nestjs-typeorm": "workspace:*",
     "class-transformer": "catalog:backend",
     "class-validator": "catalog:backend",
     "typeorm": "catalog:backend"
   },
   "devDependencies": {
-    "@wisemen/eslint-config-nestjs": "catalog:lint",
+    "@wisemen/eslint-config-nestjs": "workspace:*",
+    "@wisemen/nestjs-typeorm": "workspace:*",
     "eslint": "catalog:lint",
     "expect": "catalog:test",
     "typescript": "catalog:peer"

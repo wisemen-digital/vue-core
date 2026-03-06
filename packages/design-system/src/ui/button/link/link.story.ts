@@ -1,13 +1,13 @@
+import type {
+  Meta,
+  StoryObj,
+} from '@storybook/vue3-vite'
 import {
   ArrowRightIcon,
   LinkExternal01Icon,
   PlusIcon,
   Trash01Icon,
-} from '@repo/icons'
-import type {
-  Meta,
-  StoryObj,
-} from '@storybook/vue3-vite'
+} from '@wisemen/vue-core-icons'
 import {
   expect,
   userEvent,
@@ -44,6 +44,16 @@ const meta = {
     tooltipLabel: {
       control: 'text',
       description: 'Tooltip text shown on hover or focus',
+    },
+    tooltipSide: {
+      control: 'select',
+      description: 'Position of the tooltip relative to the link',
+      options: [
+        'top',
+        'bottom',
+        'left',
+        'right',
+      ],
     },
     variant: {
       control: 'select',

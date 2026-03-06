@@ -41,6 +41,11 @@ export default defineConfig({
       },
     },
   },
+  optimizeDeps: {
+    include: [
+      '@wisemen/vue-core-icons',
+    ],
+  },
   plugins: [
     tailwindcss(),
     vue(),

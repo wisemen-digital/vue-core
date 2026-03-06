@@ -1,6 +1,9 @@
 {
   "name": "@wisemen/validators",
   "version": "0.0.21",
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "type": "module",
@@ -18,12 +21,13 @@
     "release": "pnpx release-it"
   },
   "peerDependencies": {
-    "@wisemen/time": "catalog:backend",
+    "@wisemen/time": "workspace:*",
     "class-validator": "catalog:backend",
     "dayjs": "catalog:backend"
   },
   "devDependencies": {
-    "@wisemen/eslint-config-nestjs": "catalog:lint",
+    "@wisemen/eslint-config-nestjs": "workspace:*",
+    "@wisemen/time": "workspace:*",
     "eslint": "catalog:lint",
     "expect": "catalog:test",
     "typescript": "catalog:peer"

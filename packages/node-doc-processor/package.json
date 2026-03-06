@@ -1,6 +1,9 @@
 {
   "name": "@wisemen/node-doc-processor",
-  "version": "1.2.6",
+  "version": "1.2.7",
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "type": "module",
@@ -24,10 +27,11 @@
     "url": "git@github.com:wisemen-digital/node-core.git"
   },
   "peerDependencies": {
-    "@wisemen/pgboss-nestjs-job": "catalog:backend"
+    "@wisemen/pgboss-nestjs-job": "workspace:*"
   },
   "devDependencies": {
-    "@wisemen/eslint-config-nestjs": "catalog:lint",
+    "@wisemen/eslint-config-nestjs": "workspace:*",
+    "@wisemen/pgboss-nestjs-job": "workspace:*",
     "eslint": "catalog:lint"
   }
 }

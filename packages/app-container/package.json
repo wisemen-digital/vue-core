@@ -1,6 +1,9 @@
 {
   "name": "@wisemen/app-container",
   "version": "3.0.1",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "A package for a nest app container in kubernetes",
   "directories": {
     "example": "examples"
@@ -30,7 +33,7 @@
     "@nestjs/platform-fastify": "catalog:backend",
     "@types/express": "catalog:backend",
     "@types/node": "catalog:backend",
-    "@wisemen/eslint-config-nestjs": "catalog:lint",
+    "@wisemen/eslint-config-nestjs": "workspace:*",
     "eslint": "catalog:lint",
     "typescript": "catalog:peer"
   },

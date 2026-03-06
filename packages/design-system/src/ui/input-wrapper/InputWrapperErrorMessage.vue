@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { AlertTriangleIcon } from '@repo/icons'
+import { AlertTriangleIcon } from '@wisemen/vue-core-icons'
 import {
   AnimatePresence,
   Motion,
@@ -40,12 +40,12 @@ const props = defineProps<{
       }"
     >
       <UIRowLayout
-        class="pt-xs"
+        class="pt-xs text-xs"
         align="start"
         gap="sm"
       >
         <div
-          class="flex items-center text-xs"
+          class="flex h-lh items-center"
         >
           <Component
             :is="AlertTriangleIcon"
@@ -59,7 +59,7 @@ const props = defineProps<{
           :truncate="false"
           role="alert"
           aria-live="assertive"
-          class="block text-xs text-error-primary"
+          class="block text-error-primary"
         />
       </UIRowLayout>
     </Motion>

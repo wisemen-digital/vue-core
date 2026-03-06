@@ -1,6 +1,9 @@
 {
   "name": "@appwise/express-dto-router",
   "version": "1.1.17",
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
@@ -26,7 +29,7 @@
   },
   "devDependencies": {
     "@sentry/types": "catalog:backend",
-    "@wisemen/eslint-config-nestjs": "catalog:lint",
+    "@wisemen/eslint-config-nestjs": "workspace:*",
     "eslint": "catalog:lint",
     "@types/express": "catalog:backend",
     "@types/node": "catalog:backend",

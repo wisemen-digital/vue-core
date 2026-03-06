@@ -1,6 +1,9 @@
 {
   "name": "@wisemen/opentelemetry",
   "version": "0.1.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "type": "module",
@@ -41,7 +44,7 @@
   },
   "devDependencies": {
     "@types/node": "catalog:backend",
-    "@wisemen/eslint-config-nestjs": "catalog:lint",
+    "@wisemen/eslint-config-nestjs": "workspace:*",
     "eslint": "catalog:lint",
     "typescript": "catalog:peer"
   },

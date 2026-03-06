@@ -1,6 +1,9 @@
 {
   "name": "@wisemen/date-range",
   "version": "0.0.23",
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "type": "module",
@@ -19,9 +22,9 @@
   },
   "peerDependencies": {
     "@nestjs/swagger": "catalog:backend",
-    "@wisemen/pagination": "catalog:backend",
-    "@wisemen/validators": "catalog:backend",
-    "@wisemen/wise-date": "catalog:backend",
+    "@wisemen/pagination": "workspace:*",
+    "@wisemen/validators": "workspace:*",
+    "@wisemen/wise-date": "workspace:*",
     "class-transformer": "catalog:backend",
     "class-validator": "catalog:backend",
     "dayjs": "catalog:backend",
@@ -30,7 +33,10 @@
   "devDependencies": {
     "@nestjs/common": "catalog:backend",
     "@types/node": "catalog:backend",
-    "@wisemen/eslint-config-nestjs": "catalog:lint",
+    "@wisemen/eslint-config-nestjs": "workspace:*",
+    "@wisemen/pagination": "workspace:*",
+    "@wisemen/validators": "workspace:*",
+    "@wisemen/wise-date": "workspace:*",
     "eslint": "catalog:lint",
     "expect": "catalog:test",
     "typescript": "catalog:peer"

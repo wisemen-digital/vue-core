@@ -1,6 +1,9 @@
 {
   "name": "@wisemen/localized-string",
   "version": "0.0.7",
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "type": "module",
@@ -25,7 +28,7 @@
     "typeorm": "catalog:backend"
   },
   "devDependencies": {
-    "@wisemen/eslint-config-nestjs": "catalog:lint",
+    "@wisemen/eslint-config-nestjs": "workspace:*",
     "eslint": "catalog:lint",
     "expect": "catalog:test",
     "typescript": "catalog:peer"

@@ -1,3 +1,3 @@
-import type { InputMeta } from '@/types/input.type'
+import type { InputWrapper } from '@/types/input.type'
 
-export interface InputWrapperProps extends InputMeta {}
+export interface InputWrapperProps extends InputWrapper {}
