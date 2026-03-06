@@ -31,6 +31,7 @@ const containerRef = useTemplateRef('container')
 let resizeObserver: ResizeObserver | null = null
 let isLayoutScheduled = false
 let isEvaluating = false
+let isPendingEvaluation = false
 
 const blocks = ref<Map<string, AdaptiveContentBlockWithWidth>>(new Map())
 const visibleBlockIds = ref<Set<string>>(new Set())
@@ -52,7 +53,13 @@ function unregisterBlock(id: string): void {
 }
 
 function scheduleLayoutEvaluation(): void {
-  if (isLayoutScheduled || isEvaluating) {
+  if (isEvaluating) {
+    isPendingEvaluation = true
+
+    return
+  }
+
+  if (isLayoutScheduled) {
     return
   }
 
@@ -95,8 +102,6 @@ function getContainerElement(): HTMLElement | null {
 }
 
 async function evaluateLayout(): Promise<void> {
-  console.log('hello -----------')
-
   const container = getContainerElement()
 
   if (container === null) {
@@ -139,6 +144,11 @@ async function evaluateLayout(): Promise<void> {
   }
 
   isEvaluating = false
+
+  if (isPendingEvaluation) {
+    isPendingEvaluation = false
+    scheduleLayoutEvaluation()
+  }
 }
 
 onMounted(() => {

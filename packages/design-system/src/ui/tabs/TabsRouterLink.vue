@@ -15,10 +15,12 @@ import { useProvideTabsContext } from '@/ui/tabs/tabs.context'
 import type { TabsProps } from '@/ui/tabs/tabs.props'
 import type { TabsVariants } from '@/ui/tabs/tabs.style'
 import { tabsVariants } from '@/ui/tabs/tabs.style'
+import { useAdaptiveTabs } from '@/ui/tabs/tabsAdaptive.composable'
 
 import TabsList from './TabsList.vue'
 
 const props = withDefaults(defineProps<TabsProps>(), {
+  isAdaptive: false,
   isFullWidth: false,
   orientation: 'horizontal',
   variant: 'underline',
@@ -56,14 +58,27 @@ onMounted(() => {
   scrollToActiveTab()
 })
 
+const {
+  activeTab,
+  nextPriority,
+  registerTab,
+  tabs,
+  unregisterTab,
+} = useAdaptiveTabs(activeRouteName)
+
 useProvideTabsContext({
   ...toComputedRefs(props),
   hasHorizontalOverflow,
   hasReachedHorizontalEnd,
   isScrolledHorizontally,
+  activeTab,
+  nextPriority,
+  registerTab,
   scrollToLeft,
   scrollToRight,
   setScrollContainerRef,
+  tabs,
+  unregisterTab,
   variants,
 })
 </script>

@@ -10,7 +10,7 @@ import {
 
 import { UIAdaptiveContent } from '@/ui/adaptive-content/index'
 import { useInjectTabsContext } from '@/ui/tabs/tabs.context'
-import TabsAdaptiveContentDrodpown from '@/ui/tabs/TabsAdaptiveContentDrodpown.vue'
+import TabsAdaptiveContentDropdown from '@/ui/tabs/TabsAdaptiveContentDropdown.vue'
 
 const scrollContainerRef = ref<HTMLElement | null>(null)
 
@@ -86,7 +86,7 @@ onMounted(() => {
             <slot />
 
             <RekaTabsIndicator :class="variants.indicator()" />
-            <TabsAdaptiveContentDrodpown
+            <TabsAdaptiveContentDropdown
               :hidden-tabs-count="hiddenBlockCount"
               :tabs="tabs"
             />

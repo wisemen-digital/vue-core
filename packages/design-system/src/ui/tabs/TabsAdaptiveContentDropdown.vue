@@ -9,6 +9,7 @@ import {
   computed,
   watch,
 } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import { useInjectAdaptiveContentContext } from '@/ui/adaptive-content/adaptiveContent.context'
 import { UIButton } from '@/ui/button/index'
@@ -24,6 +25,8 @@ const props = defineProps<{
   hiddenTabsCount: number
   tabs: TabItemData[]
 }>()
+
+const i18n = useI18n()
 
 const hiddenTabs = computed<TabItemData[]>(
   () => [
@@ -43,10 +46,10 @@ const labelText = computed<string>(() => {
   const isActiveTabHidden = hiddenTabs.value.some((tab) => tab.value === activeTab.value?.value)
 
   if (isActiveTabHidden) {
-    return activeTab.value?.label ?? ''
+    return activeTab.value?.label ?? i18n.t('component.tabs.adaptive_dropdown.trigger.label')
   }
 
-  return 'More'
+  return i18n.t('component.tabs.adaptive_dropdown.trigger.label')
 })
 
 const dropdownLeftIcon = computed<Component | undefined>(() => {
@@ -104,11 +107,10 @@ watch(activeTab, () => {
             >
               {{ item.label }}
             </UIText>
-            <slot v-else />
             <UINumberBadge
               v-if="item.count != null"
               :value="item.count.toString()"
-              size="sm"
+              size="md"
             />
           </RekaTabsTrigger>
         </RekaDropdownMenuItem>

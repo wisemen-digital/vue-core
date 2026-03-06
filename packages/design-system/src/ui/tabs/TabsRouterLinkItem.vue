@@ -1,11 +1,16 @@
 <script setup lang="ts">
 import { TabsTrigger as RekaTabsTrigger } from 'reka-ui'
-import { computed } from 'vue'
+import {
+  computed,
+  onBeforeUnmount,
+  onMounted,
+} from 'vue'
 import {
   RouterLink,
   useRouter,
 } from 'vue-router'
 
+import { UIAdaptiveContentBlock } from '@/ui/adaptive-content/index'
 import ClickableElement from '@/ui/clickable-element/ClickableElement.vue'
 import { UINumberBadge } from '@/ui/number-badge/index'
 import { useInjectTabsContext } from '@/ui/tabs/tabs.context'
@@ -20,6 +25,10 @@ const props = withDefaults(defineProps<TabsRouterLinkItemProps>(), {
 })
 
 const {
+  isAdaptive,
+  nextPriority,
+  registerTab,
+  unregisterTab,
   variants,
 } = useInjectTabsContext()
 
@@ -30,10 +39,60 @@ const routeName = computed<string>(() => {
 
   return resolved.name as string
 })
+
+const priority = nextPriority()
+
+onMounted(() => {
+  registerTab({
+    ...props,
+    priority,
+    value: routeName.value,
+  })
+})
+
+onBeforeUnmount(() => {
+  unregisterTab(routeName.value)
+})
 </script>
 
 <template>
-  <ClickableElement>
+  <UIAdaptiveContentBlock
+    v-if="isAdaptive"
+    :priority="priority"
+  >
+    <ClickableElement>
+      <RekaTabsTrigger
+        :value="routeName"
+        :disabled="props.isDisabled"
+        :as-child="true"
+        :class="variants.item()"
+      >
+        <RouterLink
+          :to="props.to"
+          :replace="true"
+        >
+          <component
+            :is="props.icon"
+            v-if="props.icon != null"
+            class="size-4 shrink-0"
+          />
+          <UIText
+            v-if="props.label != null"
+            :text="props.label"
+            class="text-xs"
+          />
+          <slot v-else />
+          <UINumberBadge
+            v-if="props.count != null"
+            :value="props.count.toString()"
+            size="md"
+          />
+        </RouterLink>
+      </RekaTabsTrigger>
+    </ClickableElement>
+  </UIAdaptiveContentBlock>
+
+  <ClickableElement v-else>
     <RekaTabsTrigger
       :value="routeName"
       :disabled="props.isDisabled"
@@ -58,7 +117,7 @@ const routeName = computed<string>(() => {
         <UINumberBadge
           v-if="props.count != null"
           :value="props.count.toString()"
-          size="sm"
+          size="md"
         />
       </RouterLink>
     </RekaTabsTrigger>

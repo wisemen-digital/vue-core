@@ -10,6 +10,7 @@ import {
 
 import TabsOverflowPlayground from './TabsOverflowPlayground.vue'
 import TabsPlayground from './TabsPlayground.vue'
+import TabsRouterLinkAdaptivePlayground from './TabsRouterLinkAdaptivePlayground.vue'
 import TabsRouterLinkPlayground from './TabsRouterLinkPlayground.vue'
 
 const meta = {
@@ -134,6 +135,23 @@ export const AdaptiveOverflow: Story = {
       }
     },
     template: '<TabsOverflowPlayground v-bind="args" is-adaptive />',
+  }),
+}
+
+export const AdaptiveRouterLink: Story = {
+  args: {
+    variant: 'underline',
+  },
+  render: (args) => ({
+    components: {
+      TabsRouterLinkAdaptivePlayground,
+    },
+    setup() {
+      return {
+        args,
+      }
+    },
+    template: '<TabsRouterLinkAdaptivePlayground v-bind="args" />',
   }),
 }
 
