@@ -1,7 +1,7 @@
 import type { QueryClient } from '@tanstack/vue-query'
 
 import { AsyncResult } from '@/async-result/asyncResult'
-import { QUERY_CONFIG } from '@/config/config'
+import { getQueryClient, QUERY_CONFIG } from '@/config/config'
 import type {
   QueryKeyParamsFromConfig,
   QueryKeysWithEntityFromConfig,
@@ -18,13 +18,12 @@ export interface CreateApiPrefetchQueryUtilsReturnType<TQueryKeys extends object
   }
 }
 
-export function createApiPrefetchQueryUtils<TQueryKeys extends object, TErrorCode extends string = string>(
-  queryClient: QueryClient,
-): CreateApiPrefetchQueryUtilsReturnType<TQueryKeys, TErrorCode> {
+export function createApiPrefetchQueryUtils<TQueryKeys extends object, TErrorCode extends string = string>(): CreateApiPrefetchQueryUtilsReturnType<TQueryKeys, TErrorCode> {
   function usePrefetchQuery<TKey extends QueryKeysWithEntityFromConfig<TQueryKeys>>(
     key: TKey,
     queryOptions: ApiUsePrefetchQueryOptions<TQueryKeys, TKey, TErrorCode>,
   ) {
+    const queryClient: QueryClient = getQueryClient()
     type Params = QueryKeyParamsFromConfig<TQueryKeys, TKey>
 
     const params = (queryOptions as { params?: Params }).params ?? ({} as Params)

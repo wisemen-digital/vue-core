@@ -22,15 +22,6 @@ export { createApiPrefetchQueryUtils } from './createApiPrefetchQueryUtils'
 export type { CreateApiQueryUtilsReturnType } from './createApiQueryUtils'
 export { createApiQueryUtils } from './createApiQueryUtils'
 
-export type CreateApiUtilsReturnType<TQueryKeys extends object, TErrorCode extends string = string> = ReturnType<
-  typeof createApiQueryUtils<TQueryKeys, TErrorCode>
->
-& ReturnType<typeof createApiPrefetchQueryUtils<TQueryKeys, TErrorCode>>
-& ReturnType<typeof createApiInfiniteQueryUtils<TQueryKeys, TErrorCode>>
-& ReturnType<typeof createApiPrefetchInfiniteQueryUtils<TQueryKeys, TErrorCode>>
-& ReturnType<typeof createApiMutationUtils<TQueryKeys, TErrorCode>>
-& ReturnType<typeof createApiOptimisticUpdatesUtils<TQueryKeys>>
-
 /**
  * Factory that creates typed composables based on a user-provided query-keys config.
  *
@@ -48,15 +39,14 @@ export type CreateApiUtilsReturnType<TQueryKeys extends object, TErrorCode exten
 export function createApiUtils<
   TQueryKeys extends object,
   TErrorCode extends string = string,
->(): CreateApiUtilsReturnType<TQueryKeys, TErrorCode> {
-  const queryClient: QueryClient = getQueryClient()
+>() {
 
   return {
     ...createApiQueryUtils<TQueryKeys, TErrorCode>(),
-    ...createApiPrefetchQueryUtils<TQueryKeys, TErrorCode>(queryClient),
-    ...createApiPrefetchInfiniteQueryUtils<TQueryKeys, TErrorCode>(queryClient),
+    ...createApiPrefetchQueryUtils<TQueryKeys, TErrorCode>(),
+    ...createApiPrefetchInfiniteQueryUtils<TQueryKeys, TErrorCode>(),
     ...createApiInfiniteQueryUtils<TQueryKeys, TErrorCode>(),
     ...createApiMutationUtils<TQueryKeys, TErrorCode>(),
-    ...createApiOptimisticUpdatesUtils<TQueryKeys>(queryClient),
+    ...createApiOptimisticUpdatesUtils<TQueryKeys>(),
   }
 }
