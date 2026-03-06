@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/consistent-function-scoping */
 import {
   QueryClient,
   VueQueryPlugin,
@@ -9,6 +10,8 @@ import {
   defineComponent,
   h,
 } from 'vue'
+
+import { initializeApiUtils } from '@/config/config'
 
 let tempApp: ReturnType<typeof createApp> | null = null
 let testContainer: HTMLElement | null = null
@@ -51,6 +54,8 @@ export function runInSetup<T>(composable: () => T): T {
       },
     },
   })
+
+  initializeApiUtils(queryClient)
 
   tempApp = createApp(TestComponent)
   tempApp.use(VueQueryPlugin, {

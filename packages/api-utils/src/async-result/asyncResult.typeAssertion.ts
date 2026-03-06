@@ -3,7 +3,10 @@
  * These tests are not executed at runtime - they're purely for TypeScript verification
  */
 
-import { ok } from 'neverthrow'
+import {
+  err,
+  ok,
+} from 'neverthrow'
 
 import type { AsyncResult } from './asyncResult'
 import { AsyncResult as AsyncResultFactory } from './asyncResult'
@@ -259,10 +262,10 @@ export function testWrongPathGetErrorAfterIsLoading(): void {
  * This should be a TypeScript error because getValue() doesn't exist on the union type
  */
 export function testWrongPathGetValueWithoutNarrowing(): void {
-  const result: AsyncResult<TestData, TestError> = AsyncResultFactory.ok({
+  const result: AsyncResult<TestData, TestError> = AsyncResultFactory.fromResult(ok({
     id: '1',
     name: 'Test',
-  })
+  }))
 
   // @ts-expect-error - getValue() should NOT be accessible without narrowing
   result.getValue()
@@ -273,10 +276,10 @@ export function testWrongPathGetValueWithoutNarrowing(): void {
  * This should be a TypeScript error because getError() doesn't exist on the union type
  */
 export function testWrongPathGetErrorWithoutNarrowing(): void {
-  const result: AsyncResult<TestData, TestError> = AsyncResultFactory.err({
+  const result: AsyncResult<TestData, TestError> = AsyncResultFactory.fromResult(err({
     code: 'ERROR',
     message: 'Failed',
-  })
+  }))
 
   // @ts-expect-error - getError() should NOT be accessible without narrowing
   result.getError()
@@ -288,10 +291,10 @@ export function testWrongPathGetErrorWithoutNarrowing(): void {
  * to properly narrow the type for TypeScript
  */
 export function testWrongPathCheckLoadingAndErrorThenGetValue(): void {
-  const result: AsyncResult<TestData, TestError> = AsyncResultFactory.ok({
+  const result: AsyncResult<TestData, TestError> = AsyncResultFactory.fromResult(ok({
     id: '1',
     name: 'Test',
-  })
+  }))
 
   // Check loading and error but don't use if statements to narrow
   const _isLoading = result.isLoading()
