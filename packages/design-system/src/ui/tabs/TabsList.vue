@@ -86,7 +86,7 @@ onMounted(() => {
             <slot />
 
             <RekaTabsIndicator :class="variants.indicator()" />
-            <div class="flex w-full justify-end">
+            <div class="flex w-full justify-start">
               <TabsAdaptiveContentDropdown
                 :hidden-tabs-count="hiddenBlockCount"
                 :tabs="tabs"
