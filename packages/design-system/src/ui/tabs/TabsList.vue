@@ -81,15 +81,17 @@ onMounted(() => {
         <template #default="{ hiddenBlockCount }">
           <RekaTabsList
             :class="variants.list()"
-            class="overflow-hidden"
+            class="overflow-scroll"
           >
             <slot />
 
             <RekaTabsIndicator :class="variants.indicator()" />
-            <TabsAdaptiveContentDropdown
-              :hidden-tabs-count="hiddenBlockCount"
-              :tabs="tabs"
-            />
+            <div class="flex w-full justify-end">
+              <TabsAdaptiveContentDropdown
+                :hidden-tabs-count="hiddenBlockCount"
+                :tabs="tabs"
+              />
+            </div>
           </RekaTabsList>
         </template>
       </UIAdaptiveContent>

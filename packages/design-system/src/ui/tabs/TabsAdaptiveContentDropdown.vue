@@ -76,7 +76,7 @@ watch(activeTab, () => {
           :icon-left="dropdownLeftIcon"
           :icon-right="ChevronDownIcon"
           :label="labelText"
-          variant="secondary"
+          variant="tertiary"
         />
       </RowLayout>
     </template>
