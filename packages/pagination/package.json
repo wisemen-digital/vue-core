@@ -26,7 +26,7 @@
   "peerDependencies": {
     "@nestjs/common": "catalog:backend",
     "@nestjs/swagger": "catalog:backend",
-    "@wisemen/validators": "catalog:backend",
+    "@wisemen/validators": "workspace:*",
     "class-transformer": "catalog:backend",
     "class-validator": "catalog:backend"
   },

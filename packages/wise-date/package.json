@@ -19,7 +19,7 @@
   },
   "peerDependencies": {
     "@nestjs/swagger": "catalog:backend",
-    "@wisemen/validators": "catalog:backend",
+    "@wisemen/validators": "workspace:*",
     "class-validator": "catalog:backend",
     "dayjs": "catalog:backend",
     "typeorm": "catalog:backend"
