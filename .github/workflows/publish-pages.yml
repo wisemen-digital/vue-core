@@ -22,6 +22,8 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+      - name: Build icons
+        run: pnpm --filter @wisemen/vue-core-icons build
       - name: Build storybook
         run: pnpm build-storybook
       - name: Build docs
@@ -48,5 +50,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-        with:
-          artifact_name: static

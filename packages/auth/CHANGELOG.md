@@ -1,5 +1,17 @@
 ## 1.1.0
 
+## 3.1.0
+
+### Minor Changes
+
+- 7bcd018: add prefix prop to oidc client
+
+## 3.0.1
+
+### Patch Changes
+
+- 347cf1a: Bumped dependency versions
+
 ## 3.0.0
 
 ### Major Changes

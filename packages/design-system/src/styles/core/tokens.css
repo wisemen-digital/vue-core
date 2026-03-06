@@ -295,6 +295,8 @@
   /* ------------------------------------------------------------------------ */
 
   --text-*: initial;
+  --text-xxs: 0.6875rem;
+  --text-xxs--line-height: var(--line-height-xs);
   --text-xs: 0.75rem;
   --text-xs--line-height: var(--line-height-xs);
   --text-sm: 0.875rem;

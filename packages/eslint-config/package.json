@@ -4,7 +4,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "1.7.6",
+  "version": "2.0.0",
   "description": "Eslint config for Vue.js projects",
   "author": "Wisemen",
   "license": "ISC",
@@ -45,7 +45,7 @@
     "@intlify/eslint-plugin-vue-i18n": "catalog:lint",
     "@typescript-eslint/parser": "catalog:lint",
     "@vitest/eslint-plugin": "catalog:lint",
-    "@wisemen/eslint-plugin-vue": "catalog:lint",
+    "@wisemen/eslint-plugin-vue": "workspace:*",
     "eslint": "catalog:lint",
     "eslint-flat-config-utils": "catalog:lint",
     "eslint-plugin-better-tailwindcss": "catalog:lint",

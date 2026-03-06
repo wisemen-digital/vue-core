@@ -7,6 +7,7 @@ import Popover from '@/components/popover/Popover.vue'
 const {
   maxDate,
   minDate,
+  weekStartsOn,
   isDateDisabled,
   isDateUnavailable,
   isDisabled,
@@ -15,6 +16,7 @@ const {
   customClassConfig,
   hideDatePicker,
   label,
+  locale,
   modelValue,
   placeholderValue,
   showTwoMonths,
@@ -52,6 +54,8 @@ const {
           :is-date-unavailable="isDateUnavailable"
           :placeholder-value="placeholderValue"
           :max-date="maxDate"
+          :locale="locale"
+          :week-starts-on="weekStartsOn"
           :min-date="minDate"
           :show-two-months="showTwoMonths"
           :label="label ?? ''"

@@ -30,6 +30,7 @@ const props = withDefaults(defineProps<DateFieldProps>(), {
   testId: null,
   maxDate: null,
   minDate: null,
+  weekStartsOn: 0,
   isDateDisabled: () => false,
   isDateUnavailable: () => false,
   isDisabled: false,
@@ -59,6 +60,28 @@ const placeholderValue = defineModel<Temporal.PlainDate | null>('placeholderValu
   required: false,
 })
 
+const resolvedLocale = computed<string>(() => {
+  return props.locale ?? navigator.language
+})
+
+function clampToMinMax(): void {
+  const value = modelValue.value
+
+  if (value === null) {
+    return
+  }
+
+  if (props.minDate !== null && Temporal.PlainDate.compare(value, props.minDate) < 0) {
+    modelValue.value = props.minDate
+
+    return
+  }
+
+  if (props.maxDate !== null && Temporal.PlainDate.compare(value, props.maxDate) > 0) {
+    modelValue.value = props.maxDate
+  }
+}
+
 const delegatedModel = computed<DateValue | null>({
   get: () => {
     if (modelValue.value === null) {
@@ -86,8 +109,6 @@ const delegatedPlaceholderValue = computed<Temporal.PlainDate>({
     placeholderValue.value = value
   },
 })
-
-const locale = navigator.language
 
 const {
   theme,
@@ -119,6 +140,7 @@ function onBlur(event: FocusEvent): void {
   // In this case, we don't want to emit the blur event since the focus is still within the component
   setTimeout(() => {
     if (!isFocused.value) {
+      clampToMinMax()
       emit('blur', event)
     }
   })
@@ -141,10 +163,10 @@ useProvideDateFieldContext({
       :id="props.id ?? undefined"
       v-slot="{ segments }"
       v-model="delegatedModel"
+      :locale="resolvedLocale"
       :min-value="props.minDate === null ? undefined : plainDateToDateValue(props.minDate)"
       :max-value="props.maxDate === null ? undefined : plainDateToDateValue(props.maxDate)"
       :is-date-unavailable="(dateValue) => props.isDateUnavailable(dateValueToPlainDate(dateValue))"
-      :locale="locale"
       :is-invalid="props.errorMessage !== null"
       :required="props.isRequired"
     >

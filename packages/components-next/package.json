@@ -4,7 +4,7 @@
     "access": "public"
   },
   "type": "module",
-  "version": "2.1.1",
+  "version": "2.2.2",
   "private": false,
   "license": "MIT",
   "sideEffects": false,
@@ -27,7 +27,7 @@
     "prerelease": "pnpm version prerelease --preid=alpha",
     "build": "vite build",
     "dev": "vite build --watch",
-    "precommit": "pnpm type-check && test:unit && pnpm build-only",
+    "precommit": "pnpm type-check && pnpm test:unit && pnpm build-only",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit",
     "pub:release": "pnpm publish --access public",

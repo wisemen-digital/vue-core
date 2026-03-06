@@ -31,6 +31,7 @@ const props = withDefaults(defineProps<DateRangeFieldProps>(), {
   testId: null,
   maxDate: null,
   minDate: null,
+  weekStartsOn: 0,
   isDateDisabled: () => false,
   isDateUnavailable: () => false,
   isDisabled: false,
@@ -94,8 +95,9 @@ const delegatedPlaceholderValue = computed<Temporal.PlainDate>({
   },
 })
 
-// TODO: day of week labels are localized incorrectly now!
-const locale = navigator.language
+const resolvedLocale = computed<string>(() => {
+  return props.locale ?? navigator.language
+})
 
 const {
   theme,
@@ -152,7 +154,8 @@ useProvideDateRangeFieldContext({
       :min-value="props.minDate === null ? undefined : plainDateToDateValue(props.minDate)"
       :max-value="props.maxDate === null ? undefined : plainDateToDateValue(props.maxDate)"
       :is-date-unavailable="(dateValue) => props.isDateUnavailable(dateValueToPlainDate(dateValue))"
-      :locale="locale"
+      :locale="resolvedLocale"
+      :week-starts-on="props.weekStartsOn"
       :is-invalid="props.errorMessage !== null"
       :required="props.isRequired"
     >

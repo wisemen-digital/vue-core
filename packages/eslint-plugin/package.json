@@ -1,7 +1,10 @@
 {
   "name": "@wisemen/eslint-plugin-vue",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.2",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "Eslint rules extended for Wisemen",
   "license": "MIT",
   "homepage": "https://github.com/wisemen-digital/vue-core.git",
@@ -33,7 +36,7 @@
     "build": "tsdown",
     "pub:release": "pnpm publish --access public",
     "cleanup": "rimraf dist/ node_modules/ .turbo/",
-    "lint": "pnpm eslint --fix .",
+    "lint": "eslint .",
     "test": "vitest --run",
     "typecheck": "pnpm tsc"
   },
@@ -50,7 +53,7 @@
     "ts-api-utils": "catalog:general"
   },
   "devDependencies": {
-    "@wisemen/eslint-config-vue": "workspace:*",
+    "@wisemen/eslint-config-vue": "catalog:lint",
     "eslint": "catalog:lint",
     "rimraf": "catalog:build",
     "tsdown": "catalog:build",

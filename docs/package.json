@@ -14,7 +14,7 @@
     "docs:preview": "vitepress preview",
     "docs:gen": "vue-tsc --noEmit --project tsconfig.autogen.json && tsx scripts/autogen.ts",
     "lint": "eslint .",
-    "lint:fix": "eslint --fix .",
+    "lint:fix": "eslint . --fix",
     "type-check": "vue-tsc --noEmit --project tsconfig.autogen.json"
   },
   "dependencies": {
@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "catalog:style",
+    "@tailwindcss/vite": "catalog:vite",
     "@types/babel__traverse": "catalog:types",
     "@types/markdown-it": "catalog:types",
     "@types/node": "catalog:types",

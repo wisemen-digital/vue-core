@@ -33,7 +33,7 @@ const config: StorybookConfig = {
   },
   stories: [
     '../src/**/*.mdx',
-    '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)',
+    '../src/**/*.story.@(js|jsx|mjs|ts|tsx)',
 
   ],
   viteFinal(config) {
@@ -43,9 +43,15 @@ const config: StorybookConfig = {
 
     if (idx !== -1) {
       const plugin = plugins[idx]
+
       plugins.splice(idx, 1)
 
       plugins.push(plugin)
+    }
+
+    config.optimizeDeps = {
+      ...config.optimizeDeps,
+      force: true,
     }
 
     return config

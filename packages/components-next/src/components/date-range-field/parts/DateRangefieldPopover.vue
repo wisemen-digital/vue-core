@@ -7,6 +7,7 @@ import Popover from '@/components/popover/Popover.vue'
 const {
   maxDate,
   minDate,
+  weekStartsOn,
   isDateDisabled,
   isDateUnavailable,
   isDisabled,
@@ -16,6 +17,7 @@ const {
   customClassConfig,
   hideDatePicker,
   label,
+  locale,
   modelValue,
   placeholderValue,
   showTwoMonths,
@@ -51,6 +53,8 @@ const {
           :allow-deselect="allowDeselect"
           :placeholder-value="placeholderValue"
           :is-date-disabled="isDateDisabled"
+          :week-starts-on="weekStartsOn"
+          :locale="locale"
           :allow-non-continuous-selection="allowNonContinuousSelection"
           :is-date-unavailable="isDateUnavailable"
           :max-date="maxDate"

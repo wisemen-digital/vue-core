@@ -4,7 +4,7 @@
     "access": "public"
   },
   "type": "module",
-  "version": "0.0.1-beta.0",
+  "version": "0.1.0",
   "license": "MIT",
   "sideEffects": false,
   "exports": {
@@ -28,13 +28,15 @@
     "pub:beta": "pnpm publish --no-git-checks --access public --tag beta",
     "pub:next": "pnpm publish --no-git-checks --access public --tag next",
     "cleanup": "rimraf dist/ node_modules/ .turbo/",
-    "lint": "pnpm eslint --fix .",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "test": "vitest --run",
     "test:watch": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --run --coverage",
     "type-check": "vue-tsc --noEmit",
-    "storybook": "storybook dev -p 6006",
+    "storybook:clean": "rimraf node_modules/.cache node_modules/.vite",
+    "storybook": "pnpm storybook:clean && storybook dev -p 6006 --no-open",
     "build-storybook": "storybook build"
   },
   "peerDependencies": {
@@ -45,11 +47,12 @@
     "vue-router": "catalog:peer"
   },
   "dependencies": {
-    "@repo/icons": "workspace:*",
     "@tailwindcss/vite": "catalog:vite",
+    "@wisemen/vue-core-icons": "workspace:*",
     "tailwind-merge": "catalog:style",
+    "tailwind-variants": "catalog:style",
     "tailwindcss": "catalog:style",
-    "vue-component-meta": "catalog:conflicts_docs_3_2_4"
+    "vue-component-meta": "catalog:storybook"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "catalog:storybook",
@@ -67,7 +70,7 @@
     "@wisemen/eslint-config-vue": "workspace:*",
     "eslint": "catalog:lint",
     "eslint-plugin-storybook": "catalog:lint",
-    "jsdom": "catalog:conflicts_test_25_0_1",
+    "jsdom": "catalog:test",
     "motion-v": "catalog:peer",
     "playwright": "catalog:test",
     "reka-ui": "catalog:peer",

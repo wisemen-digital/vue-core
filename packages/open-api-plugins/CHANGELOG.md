@@ -1,5 +1,11 @@
 # @wisemen/open-api-plugins
 
+## 1.0.1
+
+### Patch Changes
+
+- 347cf1a: Bumped dependency versions
+
 ## 1.0.0
 
 ### Major Changes
