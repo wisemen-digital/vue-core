@@ -11,11 +11,21 @@ export interface TextareaFieldProps extends Input, AutocompleteInput, InputWrapp
    */
   isSpellCheckEnabled?: boolean
   /**
+   * The maximum height of the textarea (e.g. `'200px'`, `'10rem'`).
+   * @default null
+   */
+  maxHeight?: string | null
+  /**
    * The maximum number of characters allowed. When set, a character count
    * is shown in place of the hint.
    * @default null
    */
   maxLength?: number | null
+  /**
+   * The minimum height of the textarea (e.g. `'100px'`, `'5rem'`).
+   * @default null
+   */
+  minHeight?: string | null
   /**
    * The placeholder text of the textarea.
    * @default null

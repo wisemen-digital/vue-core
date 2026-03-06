@@ -16,7 +16,7 @@
     "release": "pnpx release-it"
   },
   "devDependencies": {
-    "@wisemen/eslint-config-nestjs": "catalog:lint",
+    "@wisemen/eslint-config-nestjs": "workspace:*",
     "expect": "catalog:test"
   },
   "peerDependencies": {

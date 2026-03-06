@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import {
-  computed,
   ref,
   useAttrs,
 } from 'vue'
 
 import type { TextProps } from '@/ui/text/text.props'
-import type { TextStyle } from '@/ui/text/text.style'
-import { createTextStyle } from '@/ui/text/text.style'
+import ActionTooltip from '@/ui/action-tooltip/ActionTooltip.vue'
+import { useIsTruncated } from '@/ui/text/isTruncated.composable'
 
 const props = withDefaults(defineProps<TextProps>(), {
   as: 'span',
@@ -18,24 +17,32 @@ const props = withDefaults(defineProps<TextProps>(), {
 
 const attrs = useAttrs()
 
-const textStyle = computed<TextStyle>(() => createTextStyle({
-  truncate: props.truncate,
-}))
-
 const textRef = ref<HTMLElement | null>(null)
+const isTruncated = useIsTruncated(textRef)
 </script>
 
 <template>
-  <!-- eslint-disable vue/no-v-text-v-html-on-component -->
-  <Component
-    v-bind="attrs"
-    :is="props.as"
-    ref="textRef"
-    :class="textStyle.text({
-      class: props.class,
-    })
-    "
+  <ActionTooltip
+    :is-disabled="!isTruncated || props.disableTooltip"
+    :label="props.text"
   >
-    {{ props.text }}
-  </Component>
+    <!-- eslint-disable vue/no-v-text-v-html-on-component -->
+    <Component
+      v-bind="attrs"
+      :is="props.as"
+      ref="textRef"
+      :class="[
+        props.class, {
+          'truncate': props.truncate === true,
+          'line-clamp-2': props.truncate === 2,
+          'line-clamp-3': props.truncate === 3,
+          'line-clamp-4': props.truncate === 4,
+          'line-clamp-5': props.truncate === 5,
+          'line-clamp-6': props.truncate === 6,
+        },
+      ]"
+      class="max-w-full"
+      v-html="props.text"
+    />
+  </ActionTooltip>
 </template>

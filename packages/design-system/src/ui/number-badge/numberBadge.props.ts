@@ -1,4 +1,4 @@
-export type NumberBadgeColor = 'blue' | 'brand' | 'error' | 'gray' | 'pink' | 'pink' | 'purple' | 'success' | 'warning'
+import type { UtilityColor } from '@/types/utilityColor.type'
 
 export interface NumberBadgeProps {
   /**
@@ -9,12 +9,12 @@ export interface NumberBadgeProps {
    * The color of the badge.
    * @default 'gray'
    */
-  color?: NumberBadgeColor
+  color?: UtilityColor
   /**
    * The size of the badge.
    * @default 'md'
    */
-  size?: 'lg' | 'md' | 'sm'
+  size?: 'lg' | 'md'
   /**
    * The number to display inside the badge. always use a formatted string here (e.g. 1.400, 4,5)
    */

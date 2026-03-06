@@ -87,7 +87,6 @@ useProvideLinkContext({
         ...attrs,
       }"
       :class="linkStyle.root()"
-      class="border"
     >
       <div
         :class="linkStyle.container()"
