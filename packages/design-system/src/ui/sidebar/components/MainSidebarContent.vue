@@ -10,7 +10,9 @@ const {
   <div
     class="flex h-full flex-col justify-between overflow-hidden text-primary"
   >
-    <div :style="{ padding: sidebarContainerPadding }">
+    <div
+      :style="{ padding: sidebarContainerPadding }"
+    >
       <slot name="header" />
     </div>
     <nav

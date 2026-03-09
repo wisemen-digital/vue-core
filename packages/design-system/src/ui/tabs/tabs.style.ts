@@ -49,7 +49,7 @@ export const tabsVariants = tv({
           group-data-[orientation=vertical]:w-full
         `,
         item: `
-          rounded-sm px-lg py-xs outline-2 outline-transparent
+          rounded-sm px-lg py-xxs outline-2 outline-transparent
           focus-visible:outline-fg-brand-primary-alt
           disabled:opacity-75
           data-[state=active]:text-secondary
@@ -82,7 +82,8 @@ export const tabsVariants = tv({
           group-data-[orientation=vertical]:w-0.5
         `,
         item: `
-          rounded-md px-md py-xs outline-2 -outline-offset-2 outline-transparent
+          rounded-md px-md py-xxs outline-2 -outline-offset-2
+          outline-transparent
           group-data-[orientation=horizontal]:my-sm
           group-data-[orientation=vertical]:mx-sm
           not-disabled:hover:bg-primary-hover
