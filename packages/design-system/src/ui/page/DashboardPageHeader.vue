@@ -36,7 +36,7 @@ const hasSlotContent = computed<boolean>(() => {
 </script>
 
 <template>
-  <header class="shrink-0 border-b border-secondary">
+  <header class="border-b border-secondary">
     <div class="flex h-11 items-center">
       <DashboardPageContainer>
         <RowLayout justify="between">
