@@ -9,4 +9,4 @@ on:
 jobs:
   lint-build-test:
     uses: wisemen-digital/devops-github-actions/.github/workflows/web-build-and-test.yml@main
-    if: github.head_ref != 'changeset-release/main' && github.event.pull_request.draft == false
+    if: github.event.pull_request.draft == false
