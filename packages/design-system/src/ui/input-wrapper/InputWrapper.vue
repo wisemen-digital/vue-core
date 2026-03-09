@@ -26,6 +26,7 @@ const props = withDefaults(defineProps<InputWrapperProps>(), {
           :is-required="props.isRequired"
           :is-horizontal="props.isHorizontal"
           :is-label-hidden="props.isLabelHidden"
+          :help-text="props.helpText"
         >
           <template #left>
             <slot name="label-left" />
@@ -55,6 +56,7 @@ const props = withDefaults(defineProps<InputWrapperProps>(), {
       :for="props.for"
       :is-required="props.isRequired"
       :is-label-hidden="props.isLabelHidden"
+      :help-text="props.helpText"
     >
       <template #left>
         <slot name="label-left" />

@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { HelpCircleIcon } from '@wisemen/vue-core-icons'
+
+import ActionTooltip from '@/ui/action-tooltip/ActionTooltip.vue'
+import ClickableElement from '@/ui/clickable-element/ClickableElement.vue'
 import { UIRowLayout } from '@/ui/row-layout/index'
 import { UIText } from '@/ui/text/index'
 import { twMerge } from '@/utils/twMerge.util'
@@ -8,6 +12,7 @@ const props = defineProps<{
   isLabelHidden?: boolean
   isRequired: boolean
   for: string | null
+  helpText?: string | null
   label: string | null
 }>()
 </script>
@@ -36,6 +41,24 @@ const props = defineProps<{
 
       as="label"
     />
+
+    <ActionTooltip
+      v-if="props.helpText !== undefined && props.helpText !== null"
+      :label="props.helpText"
+    >
+      <ClickableElement
+        :is-default-cursor="true"
+      >
+        <span
+          tabindex="0"
+          role="img"
+          aria-label="Help"
+          class="ml-xs inline-flex items-center"
+        >
+          <HelpCircleIcon class="size-3.5 shrink-0 text-fg-quaternary" />
+        </span>
+      </ClickableElement>
+    </ActionTooltip>
 
     <slot name="right" />
   </UIRowLayout>

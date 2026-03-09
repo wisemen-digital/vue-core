@@ -51,5 +51,11 @@ const readonlyValue = ref<string | null>('Read only')
       error-message="This field has an error"
       label="Error"
     />
+    <TextField
+      v-model="filledValue"
+      class="w-64"
+      label="Help"
+      help-text="This field has an error with help text"
+    />
   </div>
 </template>
