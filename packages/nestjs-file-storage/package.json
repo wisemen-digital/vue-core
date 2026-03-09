@@ -5,6 +5,9 @@
     "access": "public"
   },
   "type": "module",
+  "imports": {
+    "#src/*": "./dist/*"
+  },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
