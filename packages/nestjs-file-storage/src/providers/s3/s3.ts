@@ -185,10 +185,6 @@ export class S3 extends FileStorage {
       throw new Error(`Could not download ${key}`)
     }
 
-    if (result.Body instanceof Readable) {
-      return result.Body
-    }
-
     return Readable.fromWeb(result.Body.transformToWebStream() as NodeReadableStream)
   }
 
