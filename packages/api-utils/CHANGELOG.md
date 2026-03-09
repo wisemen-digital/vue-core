@@ -1,5 +1,11 @@
 # @wisemen/vue-core-query
 
+## 0.0.2
+
+### Patch Changes
+
+- 2b69479: test
+
 ## 0.0.1
 
 ### Patch Changes
