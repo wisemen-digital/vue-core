@@ -6,7 +6,6 @@ export interface BaseRadioGroupItemProps {
    * @default false
    */
   isDisabled?: boolean
-  isLabelHidden?: boolean
   /**
    * Whether the label should be visually hidden.
    * @default false
