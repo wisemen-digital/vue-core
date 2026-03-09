@@ -18,6 +18,7 @@
     "cleanup": "turbo run cleanup",
     "story:dev": "turbo watch story:dev",
     "story:build": "turbo run story:build",
+    "changeset:release": "changeset publish",
     "docs:dev": "turbo watch docs:dev",
     "docs:build": "turbo run docs:build",
     "docs:gen": "turbo run docs:gen",
