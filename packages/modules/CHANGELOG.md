@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- b731146: Just a test
+- b731146: Just a test 2
 
 ## 5.0.0
 
