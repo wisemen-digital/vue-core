@@ -1,5 +1,11 @@
 # @wisemen/vue-core-modules
 
+## 4.0.5
+
+### Patch Changes
+
+- b731146: Just a test
+
 ## 5.0.0
 
 ### Patch Changes
