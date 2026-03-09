@@ -33,11 +33,11 @@ withDefaults(defineProps<{
       <TimelineItem :icon="CheckCircleIcon">
         <UIText
           class="text-xs font-medium"
-          text="Task complete"
+          text="Phoenix Baker"
         />
         <UIText
           class="text-xs text-tertiary"
-          text="The initial setup has been completed successfully."
+          text="Added a file to the project repository."
         />
       </TimelineItem>
 
