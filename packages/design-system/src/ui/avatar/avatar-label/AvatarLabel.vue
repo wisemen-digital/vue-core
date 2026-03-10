@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import Avatar from '@/ui/avatar/Avatar.vue'
-import type { AvatarLabelProps } from '@/ui/avatar/avatarLabel.props'
-import { AVATAR_LABEL_DEFAULTS } from '@/ui/avatar/avatarLabel.props'
-import type { AvatarLabelStyle } from '@/ui/avatar/avatarLabel.style'
-import { createAvatarLabelStyle } from '@/ui/avatar/avatarLabel.style'
+import Avatar from '@/ui/avatar/avatar/Avatar.vue'
+import type { AvatarLabelProps } from '@/ui/avatar/avatar-label/avatarLabel.props'
+import { AVATAR_LABEL_DEFAULTS } from '@/ui/avatar/avatar-label/avatarLabel.props'
+import type { AvatarLabelStyle } from '@/ui/avatar/avatar-label/avatarLabel.style'
+import { createAvatarLabelStyle } from '@/ui/avatar/avatar-label/avatarLabel.style'
 import ColumnLayout from '@/ui/column-layout/ColumnLayout.vue'
 import Text from '@/ui/text/Text.vue'
 

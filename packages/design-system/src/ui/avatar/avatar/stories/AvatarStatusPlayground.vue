@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Avatar from '@/ui/avatar/Avatar.vue'
+import Avatar from '@/ui/avatar/avatar/Avatar.vue'
 import ColumnLayout from '@/ui/column-layout/ColumnLayout.vue'
 import RowLayout from '@/ui/row-layout/RowLayout.vue'
 

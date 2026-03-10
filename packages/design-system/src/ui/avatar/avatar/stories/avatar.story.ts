@@ -3,10 +3,10 @@ import type {
   StoryObj,
 } from '@storybook/vue3-vite'
 
-import AvatarFallbackPlayground from '@/ui/avatar/stories/AvatarFallbackPlayground.vue'
-import AvatarImagePlayground from '@/ui/avatar/stories/AvatarImagePlayground.vue'
-import AvatarLogoPlayground from '@/ui/avatar/stories/AvatarLogoPlayground.vue'
-import AvatarStatusPlayground from '@/ui/avatar/stories/AvatarStatusPlayground.vue'
+import AvatarFallbackPlayground from '@/ui/avatar/avatar/stories/AvatarFallbackPlayground.vue'
+import AvatarImagePlayground from '@/ui/avatar/avatar/stories/AvatarImagePlayground.vue'
+import AvatarLogoPlayground from '@/ui/avatar/avatar/stories/AvatarLogoPlayground.vue'
+import AvatarStatusPlayground from '@/ui/avatar/avatar/stories/AvatarStatusPlayground.vue'
 
 const meta = {
   title: 'Components/Avatar',

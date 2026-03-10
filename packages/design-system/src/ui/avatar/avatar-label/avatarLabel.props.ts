@@ -1,4 +1,4 @@
-import type { AvatarProps } from '@/ui/avatar/avatar.props'
+import type { AvatarProps } from '@/ui/avatar/avatar/avatar.props'
 
 export interface AvatarLabelProps extends AvatarProps {
   /**

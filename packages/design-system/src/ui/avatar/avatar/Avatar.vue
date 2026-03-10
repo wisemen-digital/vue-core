@@ -6,10 +6,10 @@ import {
 } from 'reka-ui'
 import { computed } from 'vue'
 
-import type { AvatarProps } from '@/ui/avatar/avatar.props'
-import { AVATAR_DEFAULTS } from '@/ui/avatar/avatar.props'
-import type { AvatarStyle } from '@/ui/avatar/avatar.style'
-import { createAvatarStyle } from '@/ui/avatar/avatar.style'
+import type { AvatarProps } from '@/ui/avatar/avatar/avatar.props'
+import { AVATAR_DEFAULTS } from '@/ui/avatar/avatar/avatar.props'
+import type { AvatarStyle } from '@/ui/avatar/avatar/avatar.style'
+import { createAvatarStyle } from '@/ui/avatar/avatar/avatar.style'
 
 const props = withDefaults(defineProps<AvatarProps>(), {
   ...AVATAR_DEFAULTS,

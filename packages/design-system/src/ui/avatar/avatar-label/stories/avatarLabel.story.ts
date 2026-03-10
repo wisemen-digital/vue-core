@@ -3,9 +3,9 @@ import type {
   StoryObj,
 } from '@storybook/vue3-vite'
 
-import AvatarLabelResponsivePlayground from '@/ui/avatar/stories/AvatarLabelResponsivePlayground.vue'
-import AvatarLabelSizesPlayground from '@/ui/avatar/stories/AvatarLabelSizesPlayground.vue'
-import AvatarLabelVariantsPlayground from '@/ui/avatar/stories/AvatarLabelVariantsPlayground.vue'
+import AvatarLabelResponsivePlayground from '@/ui/avatar/avatar-label/stories/AvatarLabelResponsivePlayground.vue'
+import AvatarLabelSizesPlayground from '@/ui/avatar/avatar-label/stories/AvatarLabelSizesPlayground.vue'
+import AvatarLabelVariantsPlayground from '@/ui/avatar/avatar-label/stories/AvatarLabelVariantsPlayground.vue'
 
 const meta = {
   title: 'Components/Avatar Label',

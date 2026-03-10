@@ -6,8 +6,8 @@ import {
 import type { Component } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import Avatar from '@/ui/avatar/Avatar.vue'
-import AvatarLabel from '@/ui/avatar/AvatarLabel.vue'
+import Avatar from '@/ui/avatar/avatar/Avatar.vue'
+import AvatarLabel from '@/ui/avatar/avatar-label/AvatarLabel.vue'
 import { UICard } from '@/ui/card/index'
 import ClickableElement from '@/ui/clickable-element/ClickableElement.vue'
 import ColumnLayout from '@/ui/column-layout/ColumnLayout.vue'

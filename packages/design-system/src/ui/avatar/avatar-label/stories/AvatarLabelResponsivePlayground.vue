@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AvatarLabel from '@/ui/avatar/AvatarLabel.vue'
+import AvatarLabel from '@/ui/avatar/avatar-label/AvatarLabel.vue'
 </script>
 
 <template>
