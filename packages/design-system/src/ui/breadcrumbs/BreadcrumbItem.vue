@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
 
 import ActionTooltip from '@/ui/action-tooltip/ActionTooltip.vue'
@@ -9,6 +10,22 @@ import { UIText } from '@/ui/text/index'
 import { twMerge } from '@/utils/twMerge.util'
 
 const props = defineProps<BreadcrumbItemProps>()
+
+const srOnlyClasses = computed<string>(() => {
+  if (props.isLabelHidden) {
+    return 'sr-only'
+  }
+
+  return ''
+})
+
+const toClasses = computed<string>(() => {
+  if (props.to !== undefined) {
+    return 'group-hover:text-primary group-hover:underline'
+  }
+
+  return ''
+})
 </script>
 
 <template>
@@ -43,10 +60,8 @@ const props = defineProps<BreadcrumbItemProps>()
           :text="props.label"
           :class="twMerge(
             'text-xs text-quaternary',
-            props.isLabelHidden && 'sr-only',
-            props.to !== undefined ? `
-              group-hover:text-primary group-hover:underline
-            ` : '',
+            srOnlyClasses,
+            toClasses,
           )"
         />
       </RowLayout>

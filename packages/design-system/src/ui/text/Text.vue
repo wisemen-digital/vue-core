@@ -4,8 +4,6 @@ import {
   useAttrs,
 } from 'vue'
 
-import type { TextStyle } from '@/ui/text/text.style'
-import { createTextStyle } from '@/ui/text/text.style'
 import ActionTooltip from '@/ui/action-tooltip/ActionTooltip.vue'
 import { useIsTruncated } from '@/ui/text/isTruncated.composable'
 
@@ -88,7 +86,8 @@ const isTruncated = useIsTruncated(textRef)
         },
       ]"
       class="max-w-full"
-      v-html="props.text"
-    />
+    >
+      {{ props.text }}
+    </Component>
   </ActionTooltip>
 </template>
