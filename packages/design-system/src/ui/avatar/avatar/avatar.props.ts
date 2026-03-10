@@ -5,7 +5,16 @@ export interface AvatarProps {
    * The name used to generate fallback initials.
    */
   name: string
+  /**
+   * The image source URL for the avatar's logo.
+   * Falls back to initials when not provided.
+   * @default null
+   */
   logo?: string | null
+  /**
+   * The alt text for the avatar's logo image.
+   * @default null
+   */
   logoAlt?: string | null
   /**
    * The size of the avatar.
