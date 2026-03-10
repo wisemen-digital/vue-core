@@ -14,7 +14,7 @@ export const createAvatarStyle = tv({
       absolute right-0 bottom-0 rounded-full object-cover ring-2 ring-white
       dark:ring-gray-900
     `,
-    root: 'relative inline-block',
+    root: 'relative inline-block shrink-0',
     statusDot: `
       absolute right-0 bottom-0 rounded-full ring-2 ring-white
       dark:ring-gray-900
