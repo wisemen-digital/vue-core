@@ -8,14 +8,16 @@ on:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 permissions:
-  id-token: write
   contents: write
-  pull-requests: write
+  id-token: write  # Required for OIDC authentication
 
 jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    permissions:
+      contents: write 
+      id-token: write
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -31,4 +33,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_CONFIG_PROVENANCE: true
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
