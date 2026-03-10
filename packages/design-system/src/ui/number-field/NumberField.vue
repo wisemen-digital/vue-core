@@ -160,6 +160,7 @@ watch(copiedModelValue, () => {
     :class="props.class"
     :style="props.style"
     :for="id"
+    :help-text="props.helpText"
     :hide-error-message="props.hideErrorMessage"
   >
     <template #label-left>
