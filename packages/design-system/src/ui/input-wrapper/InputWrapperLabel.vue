@@ -49,14 +49,13 @@ const props = defineProps<{
       <ClickableElement
         :is-default-cursor="true"
       >
-        <span
+        <button
           tabindex="0"
-          role="img"
           aria-label="Help"
           class="ml-xs inline-flex items-center"
         >
           <HelpCircleIcon class="size-3.5 shrink-0 text-fg-quaternary" />
-        </span>
+        </button>
       </ClickableElement>
     </ActionTooltip>
 
