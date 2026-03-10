@@ -4,9 +4,9 @@ import {
   useAttrs,
 } from 'vue'
 
-import type { TextProps } from '@/ui/text/text.props'
 import ActionTooltip from '@/ui/action-tooltip/ActionTooltip.vue'
 import { useIsTruncated } from '@/ui/text/isTruncated.composable'
+import type { TextProps } from '@/ui/text/text.props'
 
 const props = withDefaults(defineProps<TextProps>(), {
   as: 'span',
