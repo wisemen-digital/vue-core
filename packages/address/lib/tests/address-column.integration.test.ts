@@ -69,10 +69,10 @@ describe('AddressColumn', () => {
       expect(test.address?.country).toBe('Belgium')
       expect(test.address?.city).toBe('Antwerp')
       expect(test.address?.postalCode).toBe('2000')
-      expect(test.address?.streetName).toBeUndefined()
-      expect(test.address?.streetNumber).toBeUndefined()
-      expect(test.address?.unit).toBeUndefined()
-      expect(test.address?.coordinates).toBeUndefined()
+      expect(test.address?.streetName).toBeNull()
+      expect(test.address?.streetNumber).toBeNull()
+      expect(test.address?.unit).toBeNull()
+      expect(test.address?.coordinates).toBeNull()
     })
 
     it('stores and retrieves an address with coordinates only', async () => {
@@ -91,8 +91,8 @@ describe('AddressColumn', () => {
       expect(test.address).not.toBeNull()
       expect(test.address?.coordinates?.latitude).toBe(51.2194)
       expect(test.address?.coordinates?.longitude).toBe(4.4025)
-      expect(test.address?.country).toBeUndefined()
-      expect(test.address?.city).toBeUndefined()
+      expect(test.address?.country).toBeNull()
+      expect(test.address?.city).toBeNull()
     })
 
     it('stores and retrieves a null address', async () => {
@@ -125,7 +125,7 @@ describe('AddressColumn', () => {
       expect(test.address).not.toBeNull()
       expect(test.address?.country).toBe('Netherlands')
       expect(test.address?.city).toBe('Amsterdam')
-      expect(test.address?.coordinates).toBeUndefined()
+      expect(test.address?.coordinates).toBeNull()
     })
 
     it('updates an existing address', async () => {

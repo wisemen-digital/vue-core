@@ -1,6 +1,6 @@
 {
   "name": "@wisemen/decorators",
-  "version": "0.0.14",
+  "version": "0.0.16",
   "publishConfig": {
     "access": "public"
   },
@@ -24,10 +24,12 @@
   "license": "GPL",
   "repository": {
     "type": "git",
-    "url": "git@github.com:wisemen-digital/node-core.git"
+    "url": "https://github.com/wisemen-digital/wisemen-core",
+    "directory": "packages/decorators"
   },
   "dependencies": {
-    "@nestjs/common": "catalog:backend"
+    "@nestjs/common": "catalog:backend",
+    "@nestjs/swagger": "catalog:backend"
   },
   "devDependencies": {
     "@types/node": "catalog:backend",

@@ -13,6 +13,9 @@ export class AddressResponse {
   country: string | null
 
   @ApiProperty({ type: 'string', nullable: true })
+  countryCode: string | null
+
+  @ApiProperty({ type: 'string', nullable: true })
   city: string | null
 
   @ApiProperty({ type: 'string', nullable: true })
@@ -34,6 +37,7 @@ export class AddressResponse {
     this.placeName = address.placeName ?? null
     this.placeId = address.placeId ?? null
     this.country = address.country ?? null
+    this.countryCode = address.countryCode ?? null
     this.city = address.city ?? null
     this.postalCode = address.postalCode ?? null
     this.streetName = address.streetName ?? null

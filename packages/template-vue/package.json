@@ -7,6 +7,11 @@
   "version": "0.0.1",
   "private": true,
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wisemen-digital/wisemen-core",
+    "directory": "packages/template-vue"
+  },
   "sideEffects": false,
   "exports": {
     ".": {

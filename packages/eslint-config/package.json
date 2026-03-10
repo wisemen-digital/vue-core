@@ -8,6 +8,11 @@
   "description": "Eslint config for Vue.js projects",
   "author": "Wisemen",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wisemen-digital/wisemen-core",
+    "directory": "packages/eslint-config"
+  },
   "imports": {
     "#*": "./src/*"
   },

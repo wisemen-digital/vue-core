@@ -24,7 +24,8 @@
   "license": "GPL",
   "repository": {
     "type": "git",
-    "url": "git@github.com:wisemen-digital/node-core.git"
+    "url": "https://github.com/wisemen-digital/wisemen-core",
+    "directory": "packages/pagination"
   },
   "peerDependencies": {
     "@nestjs/common": "catalog:backend",

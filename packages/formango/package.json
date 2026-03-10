@@ -8,6 +8,11 @@
   "private": false,
   "description": "",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wisemen-digital/wisemen-core",
+    "directory": "packages/formango"
+  },
   "sideEffects": false,
   "exports": {
     ".": {
