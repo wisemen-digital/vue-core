@@ -6,6 +6,7 @@ import {
   useRouter,
 } from 'vue-router'
 
+import ActionTooltip from '@/ui/action-tooltip/ActionTooltip.vue'
 import ClickableElement from '@/ui/clickable-element/ClickableElement.vue'
 import { UINumberBadge } from '@/ui/number-badge/index'
 import { useInjectTabsContext } from '@/ui/tabs/tabs.context'
@@ -15,6 +16,7 @@ import { UIText } from '@/ui/text/index'
 const props = withDefaults(defineProps<TabsRouterLinkItemProps>(), {
   isDisabled: false,
   count: null,
+  disabledReason: null,
   icon: undefined,
   label: null,
 })
@@ -33,34 +35,39 @@ const routeName = computed<string>(() => {
 </script>
 
 <template>
-  <ClickableElement>
-    <RekaTabsTrigger
-      :value="routeName"
-      :disabled="props.isDisabled"
-      :as-child="true"
-      :class="variants.item()"
-    >
-      <RouterLink
-        :to="props.to"
-        :replace="true"
+  <ActionTooltip
+    :is-disabled="!props.isDisabled || props.disabledReason == null"
+    :label="props.disabledReason"
+  >
+    <ClickableElement>
+      <RekaTabsTrigger
+        :value="routeName"
+        :disabled="props.isDisabled"
+        :as-child="true"
+        :class="variants.item()"
       >
-        <component
-          :is="props.icon"
-          v-if="props.icon != null"
-          class="size-4 shrink-0"
-        />
-        <UIText
-          v-if="props.label != null"
-          :text="props.label"
-          class="text-xs"
-        />
-        <slot v-else />
-        <UINumberBadge
-          v-if="props.count != null"
-          :value="props.count.toString()"
-          size="sm"
-        />
-      </RouterLink>
-    </RekaTabsTrigger>
-  </ClickableElement>
+        <RouterLink
+          :to="props.to"
+          :replace="true"
+        >
+          <component
+            :is="props.icon"
+            v-if="props.icon != null"
+            class="size-4 shrink-0"
+          />
+          <UIText
+            v-if="props.label != null"
+            :text="props.label"
+            class="text-xs"
+          />
+          <slot v-else />
+          <UINumberBadge
+            v-if="props.count != null"
+            :value="props.count.toString()"
+            size="md"
+          />
+        </RouterLink>
+      </RekaTabsTrigger>
+    </ClickableElement>
+  </ActionTooltip>
 </template>

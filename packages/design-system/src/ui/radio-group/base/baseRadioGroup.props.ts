@@ -1,12 +1,8 @@
 import type { AcceptableInputValue } from 'reka-ui'
 
-export interface BaseRadioGroupItemProps {
-  /**
-   * Whether this individual item is disabled.
-   * @default false
-   */
-  isDisabled?: boolean
-  isLabelHidden?: boolean
+import type { DisabledWithReason } from '@/types/disabledWithReason.type'
+
+export interface BaseRadioGroupItemProps extends DisabledWithReason {
   /**
    * Whether the label should be visually hidden.
    * @default false

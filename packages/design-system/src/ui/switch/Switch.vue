@@ -14,6 +14,7 @@ import {
   INPUT_DEFAULTS,
   INPUT_META_DEFAULTS,
 } from '@/types/input.type'
+import ActionTooltip from '@/ui/action-tooltip/ActionTooltip.vue'
 import InputWrapperErrorMessage from '@/ui/input-wrapper/InputWrapperErrorMessage.vue'
 import InputWrapperHint from '@/ui/input-wrapper/InputWrapperHint.vue'
 import { UIRowLayout } from '@/ui/row-layout/index'
@@ -56,55 +57,60 @@ useProvideSwitchContext({
 </script>
 
 <template>
-  <RowLayout
-    align="start"
+  <ActionTooltip
+    :is-disabled="!props.isDisabled || props.disabledReason == null"
+    :label="props.disabledReason"
   >
-    <RekaSwitchRoot
-      :id="id"
-      v-model="modelValue"
-      :disabled="props.isDisabled"
-      :data-invalid="(props.errorMessage !== null && props.errorMessage !== undefined) || undefined"
-      :class="switchStyle.root()"
-      @blur="emit('blur')"
+    <RowLayout
+      align="start"
     >
-      <RekaSwitchThumb :class="switchStyle.thumb()">
-        <SwitchThumbIcon />
-      </RekaSwitchThumb>
-    </RekaSwitchRoot>
-    <div>
-      <UIRowLayout
-        v-if="props.label !== null"
-        :class="[
-          props.isLabelHidden && 'sr-only',
-        ]"
-        gap="none"
+      <RekaSwitchRoot
+        :id="id"
+        v-model="modelValue"
+        :disabled="props.isDisabled"
+        :data-invalid="(props.errorMessage !== null && props.errorMessage !== undefined) || undefined"
+        :class="switchStyle.root()"
+        @blur="emit('blur')"
       >
-        <slot name="left" />
+        <RekaSwitchThumb :class="switchStyle.thumb()">
+          <SwitchThumbIcon />
+        </RekaSwitchThumb>
+      </RekaSwitchRoot>
+      <div>
+        <UIRowLayout
+          v-if="props.label !== null"
+          :class="[
+            props.isLabelHidden && 'sr-only',
+          ]"
+          gap="none"
+        >
+          <slot name="left" />
 
-        <UIText
-          :for="props.for ?? undefined"
-          :text="props.label"
-          :class="twMerge(
-            'text-xs/5 font-medium text-secondary',
-            props.isRequired ? 'after:pl-xxs after:text-error-primary' : '',
-          )"
-          :data-label-required="props.isRequired ? '' : null"
-          as="label"
+          <UIText
+            :for="props.for ?? undefined"
+            :text="props.label"
+            :class="twMerge(
+              'text-xs/5 font-medium text-secondary',
+              props.isRequired ? 'after:pl-xxs after:text-error-primary' : '',
+            )"
+            :data-label-required="props.isRequired ? '' : null"
+            as="label"
+          />
+
+          <slot name="right" />
+        </UIRowLayout>
+
+        <InputWrapperHint
+          :hint="props.hint"
+          :for="props.for"
         />
 
-        <slot name="right" />
-      </UIRowLayout>
-
-      <InputWrapperHint
-        :hint="props.hint"
-        :for="props.for"
-      />
-
-      <InputWrapperErrorMessage
-        v-if="!props.hideErrorMessage"
-        :error-message="props.errorMessage"
-        :for="props.for"
-      />
-    </div>
-  </RowLayout>
+        <InputWrapperErrorMessage
+          v-if="!props.hideErrorMessage"
+          :error-message="props.errorMessage"
+          :for="props.for"
+        />
+      </div>
+    </RowLayout>
+  </ActionTooltip>
 </template>

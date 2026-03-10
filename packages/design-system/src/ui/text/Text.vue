@@ -6,6 +6,7 @@ import {
 
 import ActionTooltip from '@/ui/action-tooltip/ActionTooltip.vue'
 import { useIsTruncated } from '@/ui/text/isTruncated.composable'
+import type { TextProps } from '@/ui/text/text.props'
 
 const props = withDefaults(defineProps<{
   /**

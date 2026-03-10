@@ -1,6 +1,8 @@
 import type { Component } from 'vue'
 import type { RouteLocationRaw } from 'vue-router'
 
+import type { DisabledWithReason } from '@/types/disabledWithReason.type'
+
 export type TabsVariant = 'button-border' | 'button-brand' | 'underline'
 
 export interface TabsProps {
@@ -21,12 +23,7 @@ export interface TabsProps {
   variant?: TabsVariant
 }
 
-export interface TabsItemProps {
-  /**
-   * Whether the tab item is disabled.
-   * @default false
-   */
-  isDisabled?: boolean
+export interface TabsItemProps extends DisabledWithReason {
   /**
    * A count to display as a badge on the right side of the tab.
    */
@@ -54,12 +51,7 @@ export interface TabsContentProps {
   value: string
 }
 
-export interface TabsRouterLinkItemProps {
-  /**
-   * Whether the tab item is disabled.
-   * @default false
-   */
-  isDisabled?: boolean
+export interface TabsRouterLinkItemProps extends DisabledWithReason {
   /**
    * A count to display as a badge on the right side of the tab.
    */

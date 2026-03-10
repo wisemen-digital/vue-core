@@ -28,6 +28,7 @@ const errorValue = ref<boolean>(false)
     <Switch
       v-model="disabledChecked"
       :is-disabled="true"
+      disabled-reason="This switch is disabled because..."
       label="Disabled (On)"
     />
     <Switch
