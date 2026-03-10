@@ -72,6 +72,7 @@ useProvideCheckboxContext({
     :class="props.class"
     :style="props.style"
     :for="id"
+    :help-text="props.helpText"
     :hide-error-message="props.hideErrorMessage"
     :is-label-hidden="props.isLabelHidden"
   >
