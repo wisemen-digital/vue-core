@@ -47,30 +47,6 @@ const isTruncated = useIsTruncated(textRef)
     :is-disabled="!isTruncated || props.disableTooltip"
     :label="props.text"
   >
-    <!-- eslint-disable vue/no-v-text-v-html-on-component -->
-    <Component
-      v-bind="attrs"
-      :is="props.as"
-      ref="textRef"
-      :class="[
-        props.class, {
-          'truncate': props.truncate === true,
-          'line-clamp-2': props.truncate === 2,
-          'line-clamp-3': props.truncate === 3,
-          'line-clamp-4': props.truncate === 4,
-          'line-clamp-5': props.truncate === 5,
-          'line-clamp-6': props.truncate === 6,
-        },
-      ]"
-      class="max-w-full"
-      v-html="props.text"
-    />
-  </ActionTooltip>
-  <ActionTooltip
-    :is-disabled="!isTruncated || props.disableTooltip"
-    :label="props.text"
-  >
-    <!-- eslint-disable vue/no-v-text-v-html-on-component -->
     <Component
       v-bind="attrs"
       :is="props.as"
