@@ -81,6 +81,12 @@ export interface InputWrapper {
    */
   hint?: string | null
   /**
+   * The help text displayed in a tooltip next to the label.
+   * When provided, a help circle icon is shown next to the label.
+   * @default null
+   */
+  helpText?: string | null
+  /**
    * The label of the input.
    * @default null
    */
@@ -143,6 +149,7 @@ export const INPUT_META_DEFAULTS = {
   isRequired: false,
   errorMessage: null,
   for: null,
+  helpText: null,
   hideErrorMessage: false,
   hint: null,
   label: null,
