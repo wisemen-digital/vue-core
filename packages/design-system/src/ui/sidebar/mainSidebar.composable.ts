@@ -11,8 +11,8 @@ import type { MainSidebarVariant } from '@/ui/sidebar/types/mainSidebar.type'
 
 const DEFAULT_SIDEBAR_WIDTH = '14rem'
 
-const SIDEBAR_COLLAPSED_WIDTH = 56
-const SIDEBAR_CONTAINER_PADDING = 13
+const SIDEBAR_COLLAPSED_WIDTH = 48
+const SIDEBAR_CONTAINER_PADDING = 9
 const SIDEBAR_ICON_SIZE = 16
 const SIDEBAR_ICON_CELL_SIZE = 30
 const SIDEBAR_LOGO_SIZE = 24
