@@ -7,11 +7,11 @@
   },
   "description": "Eslint rules extended for Wisemen",
   "license": "MIT",
-  "homepage": "https://github.com/wisemen-digital/vue-core.git",
+  "homepage": "https://github.com/wisemen-digital/wisemen-core",
   "repository": {
     "type": "git",
-    "url": "https://github.com/wisemen-digital/vue-core.git",
-    "directory": "."
+    "url": "https://github.com/wisemen-digital/wisemen-core",
+    "directory": "packages/eslint-plugin"
   },
   "keywords": [
     "eslint",

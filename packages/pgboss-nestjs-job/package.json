@@ -24,7 +24,8 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git@github.com:wisemen-digital/node-core.git"
+    "url": "https://github.com/wisemen-digital/wisemen-core",
+    "directory": "packages/pgboss-nestjs-job"
   },
   "dependencies": {
     "pg-boss": "catalog:backend"
