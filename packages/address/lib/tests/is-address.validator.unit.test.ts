@@ -40,6 +40,7 @@ describe('IsAddress decorator test', () => {
     const addressCommand = new AddressCommand()
 
     addressCommand.country = 'Belgium'
+    addressCommand.countryCode = 'BE'
     addressCommand.city = 'Brussels'
     addressCommand.postalCode = '1000'
     addressCommand.streetName = 'Main Street'
@@ -61,6 +62,7 @@ describe('IsAddress decorator test', () => {
     const addressCommand = new AddressCommand()
 
     addressCommand.country = 'Belgium'
+    addressCommand.countryCode = null
     addressCommand.city = null
     addressCommand.postalCode = null
     addressCommand.streetName = null
@@ -107,6 +109,7 @@ describe('IsAddress decorator test', () => {
     const addressCommand = new AddressCommand()
 
     addressCommand.country = 'Belgium'
+    addressCommand.countryCode = null
     addressCommand.city = 'Brussels'
     addressCommand.postalCode = '1000'
     addressCommand.streetName = 'Main Street'
@@ -161,6 +164,7 @@ describe('IsAddress decorator test', () => {
     const addressCommand = new AddressCommand()
 
     addressCommand.country = 'Belgium'
+    addressCommand.countryCode = 'BE'
     addressCommand.city = 'Brussels'
     addressCommand.postalCode = '1000'
     addressCommand.streetName = 'Main Street'
@@ -183,6 +187,7 @@ describe('IsAddress decorator test', () => {
     const addressCommand = new AddressCommand()
 
     addressCommand.country = 'Belgium'
+    addressCommand.countryCode = 'BE'
     addressCommand.city = 'Brussels'
     addressCommand.postalCode = '1000'
     addressCommand.streetName = 'Main Street'
@@ -204,6 +209,7 @@ describe('IsAddress decorator test', () => {
     const addressCommand = new AddressCommand()
 
     addressCommand.country = 'Belgium'
+    addressCommand.countryCode = 'BE'
     addressCommand.city = 'Brussels'
     addressCommand.postalCode = '1000'
     addressCommand.streetName = 'Main Street'
@@ -226,6 +232,7 @@ describe('IsAddress decorator test', () => {
     const addressCommand = new AddressCommand()
 
     addressCommand.country = 'Belgium'
+    addressCommand.countryCode = 'BE'
     addressCommand.city = 'Brussels'
     addressCommand.postalCode = '1000'
     addressCommand.streetName = 'Main Street'

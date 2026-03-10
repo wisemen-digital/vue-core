@@ -5,6 +5,7 @@ import { AddressCommand } from './address-command.js'
 
 export interface IsAddressValidationOptions extends ValidationOptions {
   countryRequired?: boolean
+  countryCodeRequired?: boolean
   cityRequired?: boolean
   postalCodeRequired?: boolean
   streetNameRequired?: boolean
@@ -26,6 +27,7 @@ export function IsAddress (
       IsAddressValidator,
       [{
         countryRequired: validationOptions?.countryRequired ?? false,
+        countryCodeRequired: validationOptions?.countryCodeRequired ?? false,
         cityRequired: validationOptions?.cityRequired ?? false,
         postalCodeRequired: validationOptions?.postalCodeRequired ?? false,
         streetNameRequired: validationOptions?.streetNameRequired ?? false,
@@ -42,6 +44,7 @@ export function IsAddress (
 
 interface ValidatorConstraints {
   countryRequired: boolean
+  countryCodeRequired: boolean
   cityRequired: boolean
   postalCodeRequired: boolean
   streetNameRequired: boolean
@@ -66,6 +69,7 @@ class IsAddressValidator implements ValidatorConstraintInterface {
 
   private isAddressValid (address: AddressCommand, constraints: ValidatorConstraints): boolean {
     return (!constraints.countryRequired || address.country != null)
+      && (!constraints.countryCodeRequired || address.countryCode != null)
       && (!constraints.cityRequired || address.city != null)
       && (!constraints.postalCodeRequired || address.postalCode != null)
       && (!constraints.streetNameRequired || address.streetName != null)

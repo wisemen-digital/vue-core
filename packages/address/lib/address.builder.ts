@@ -9,6 +9,7 @@ export class AddressBuilder {
     this.address.placeId = null
     this.address.placeName = null
     this.address.country = null
+    this.address.countryCode = null
     this.address.city = null
     this.address.postalCode = null
     this.address.streetName = null
@@ -31,6 +32,12 @@ export class AddressBuilder {
 
   withCountry (country?: string | null): this {
     this.address.country = country ?? null
+
+    return this
+  }
+
+  withCountryCode (countryCode?: string | null): this {
+    this.address.countryCode = countryCode ?? null
 
     return this
   }
