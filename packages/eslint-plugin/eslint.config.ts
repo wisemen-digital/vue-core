@@ -17,6 +17,9 @@ export default [
   ...(await packageConfig()),
   {
     rules: {
+      'check-file/filename-naming-convention': 'off',
+      'eslint-plugin-wisemen/explicit-function-return-type-with-regex': 'off',
+      'max-depth': 'off',
       'ts/explicit-function-return-type': 'off',
     },
   },
