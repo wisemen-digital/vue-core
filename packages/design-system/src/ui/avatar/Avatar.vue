@@ -4,10 +4,16 @@ import {
   AvatarImage,
   AvatarRoot,
 } from 'reka-ui'
+import { computed } from 'vue'
 
 import type { AvatarProps } from '@/ui/avatar/avatar.props'
+import { AVATAR_DEFAULTS } from '@/ui/avatar/avatar.props'
+import type { AvatarStyle } from '@/ui/avatar/avatar.style'
+import { createAvatarStyle } from '@/ui/avatar/avatar.style'
 
-const props = defineProps<AvatarProps>()
+const props = withDefaults(defineProps<AvatarProps>(), {
+  ...AVATAR_DEFAULTS,
+})
 
 function getInitials(name: string): string {
   const nameParts = name.split(' ')
@@ -17,29 +23,41 @@ function getInitials(name: string): string {
 
   return firstTwoInitials
 }
+
+const avatarStyle = computed<AvatarStyle>(
+  () => createAvatarStyle({
+    size: props.size,
+    status: props.status ?? undefined,
+  }),
+)
 </script>
 
 <template>
-  <AvatarRoot
-    :as-child="true"
-  >
-    <AvatarImage
-      v-if="props.src"
-      :src="props.src"
-      class="
-        aspect-square size-6 shrink-0 rounded-full border border-secondary
-        object-cover
-      "
-      alt="Avatar"
-    />
-    <AvatarFallback
-      class="
-        flex aspect-square size-6 shrink-0 items-center justify-center
-        rounded-full border border-secondary bg-tertiary text-xs font-semibold
-        text-quaternary
-      "
+  <div :class="avatarStyle.root()">
+    <AvatarRoot
+      :as-child="true"
     >
-      {{ getInitials(props.name) }}
-    </AvatarFallback>
-  </AvatarRoot>
+      <AvatarImage
+        v-if="props.src"
+        :src="props.src"
+        :class="avatarStyle.base()"
+        alt="Avatar"
+      />
+      <AvatarFallback
+        :class="avatarStyle.fallBack()"
+      >
+        {{ getInitials(props.name) }}
+      </AvatarFallback>
+    </AvatarRoot>
+    <span
+      v-if="props.status != null"
+      :class="avatarStyle.statusDot()"
+    />
+    <img
+      v-else-if="props.logo"
+      :src="props.logo"
+      :alt="props.logoAlt ?? 'Avatar Logo'"
+      :class="avatarStyle.logo()"
+    >
+  </div>
 </template>
