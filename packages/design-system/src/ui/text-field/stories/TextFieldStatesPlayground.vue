@@ -30,6 +30,7 @@ const readonlyValue = ref<string | null>('Read only')
       :is-disabled="true"
       class="w-64"
       label="Disabled"
+      disabled-reason="You don't have permission to edit this field"
       placeholder="Enter text..."
     />
     <TextField
