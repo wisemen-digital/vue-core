@@ -6,15 +6,16 @@ import {
 import type { Component } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import { UIAvatar } from '@/ui/avatar/index'
+import Avatar from '@/ui/avatar/Avatar.vue'
+import AvatarLabel from '@/ui/avatar/AvatarLabel.vue'
 import { UICard } from '@/ui/card/index'
 import ClickableElement from '@/ui/clickable-element/ClickableElement.vue'
+import ColumnLayout from '@/ui/column-layout/ColumnLayout.vue'
 import DropdownMenu from '@/ui/dropdown-menu/DropdownMenu.vue'
 import DropdownMenuGroup from '@/ui/dropdown-menu/DropdownMenuGroup.vue'
 import DropdownMenuItem from '@/ui/dropdown-menu/DropdownMenuItem.vue'
 import { UIRowLayout } from '@/ui/row-layout/index'
 import { useMainSidebar } from '@/ui/sidebar/mainSidebar.composable'
-import { UIText } from '@/ui/text/index'
 
 export interface MenuOption {
   icon: Component
@@ -81,29 +82,29 @@ function onSignOut(): void {
                 gap="md"
                 class="overflow-hidden"
               >
-                <UIAvatar
-                  :src="props.avatarUrl"
+                <Avatar
+                  v-if="variant === 'icons-only' && !isSidebarOpen"
                   :name="props.name"
+                  :src="props.avatarUrl"
+                  size="xs"
                 />
-                <div
-                  v-if="variant !== 'icons-only' || isSidebarOpen"
-                  class="flex w-full flex-col overflow-hidden"
-                >
-                  <UIText
-                    :text="props.name"
-                    class="w-full text-xs font-semibold text-primary"
-                  />
-                  <UIText
-                    :text="props.email"
-                    class="w-full text-xs text-tertiary"
-                  />
-                </div>
+                <AvatarLabel
+                  v-else
+                  :name="props.name"
+                  :src="props.avatarUrl"
+                  :supporting-text="props.email"
+                  size="xs"
+                />
               </UIRowLayout>
 
-              <ChevronDownIcon
-                v-if="variant !== 'icons-only' || isSidebarOpen"
-                class="size-4 shrink-0 text-quaternary"
-              />
+              <ColumnLayout
+                class="h-full self-start"
+              >
+                <ChevronDownIcon
+                  v-if="variant !== 'icons-only' || isSidebarOpen"
+                  class="size-4 shrink-0 text-quaternary"
+                />
+              </ColumnLayout>
             </UIRowLayout>
           </UICard>
         </button>

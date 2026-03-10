@@ -15,7 +15,7 @@ const SIDEBAR_COLLAPSED_WIDTH = 44
 const SIDEBAR_CONTAINER_PADDING = 8
 const SIDEBAR_ICON_SIZE = 16
 const SIDEBAR_LOGO_SIZE = 24
-const SIDEBAR_AVATAR_SIZE = 24
+const SIDEBAR_AVATAR_SIZE = 28
 
 const ICONS_ONLY_SIDEBAR_WIDTH = `${SIDEBAR_COLLAPSED_WIDTH / 16}rem`
 
@@ -61,7 +61,7 @@ export function useMainSidebar() {
   const sidebarLinkPadding = `${(collapsedInnerSize - SIDEBAR_ICON_SIZE) / 2}px`
   const sidebarLinkHeight = `${collapsedInnerSize}px`
   const sidebarLogoPadding = `${(collapsedInnerSize - SIDEBAR_LOGO_SIZE) / 2}px`
-  const sidebarAvatarPadding = `${(collapsedInnerSize - SIDEBAR_AVATAR_SIZE) / 2}px`
+  const sidebarAvatarPadding = `${((collapsedInnerSize - SIDEBAR_AVATAR_SIZE) / 2) + 1.24}px`
 
   function closeIfFloatingSidebar(): void {
     if (isFloatingSidebar.value) {
