@@ -1,10 +1,13 @@
 {
   "name": "@wisemen/nestjs-file-storage",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "publishConfig": {
     "access": "public"
   },
   "type": "module",
+  "imports": {
+    "#src/*": "./dist/*"
+  },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
@@ -36,6 +39,7 @@
   "license": "GPL",
   "repository": {
     "type": "git",
-    "url": "git@github.com:wisemen-digital/node-core.git"
+    "url": "https://github.com/wisemen-digital/wisemen-core",
+    "directory": "packages/nestjs-file-storage"
   }
 }

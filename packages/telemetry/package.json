@@ -6,6 +6,11 @@
     "access": "public"
   },
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wisemen-digital/wisemen-core",
+    "directory": "packages/telemetry"
+  },
   "sideEffects": false,
   "exports": {
     ".": {

@@ -4,14 +4,14 @@
   "version": "1.0.1",
   "description": "OpenAPI plugins for code generation",
   "license": "MIT",
-  "homepage": "https://github.com/wisemen-digital/vue-core.git",
+  "homepage": "https://github.com/wisemen-digital/wisemen-core",
   "publishConfig": {
     "access": "public"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/wisemen-digital/vue-core.git",
-    "directory": "."
+    "url": "https://github.com/wisemen-digital/wisemen-core",
+    "directory": "packages/open-api-plugins"
   },
   "keywords": [
     "openapi",

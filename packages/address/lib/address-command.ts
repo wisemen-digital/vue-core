@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsObject, IsString, ValidateNested } from 'class-validator'
+import { IsISO31661Alpha2, IsNotEmpty, IsObject, IsString, ValidateNested } from 'class-validator'
 import { ApiProperty } from '@nestjs/swagger'
 import { Type } from 'class-transformer'
 import { IsNullable } from '@wisemen/validators'
@@ -24,6 +24,12 @@ export class AddressCommand {
   @IsString()
   @IsNotEmpty()
   country: string | null
+
+  @ApiProperty({ type: 'string', nullable: true, example: 'US', description: 'The ISO 3166-1 alpha-2 country code' })
+  @IsNullable()
+  @IsISO31661Alpha2()
+  @IsNotEmpty()
+  countryCode: string | null
 
   @ApiProperty({ type: 'string', nullable: true })
   @IsNullable()
@@ -67,6 +73,7 @@ export class AddressCommand {
       .withPlaceId(this.placeId)
       .withPlaceName(this.placeName)
       .withCountry(this.country)
+      .withCountryCode(this.countryCode)
       .withCity(this.city)
       .withPostalCode(this.postalCode)
       .withStreetName(this.streetName)

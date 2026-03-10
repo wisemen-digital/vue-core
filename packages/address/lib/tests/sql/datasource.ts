@@ -6,7 +6,7 @@ export const dataSource = new DataSource({
   url: process.env.DATABASE_URI,
   ssl: false,
   extra: { max: 50 },
-  logging: true,
+  logging: false,
   synchronize: false,
   migrationsRun: true,
   entities: [
