@@ -160,6 +160,7 @@ catalogs:
     "@storybook/vue3": "10.2.13"
     "@storybook/vue3-vite": "10.2.13"
     "storybook": "10.2.13"
+    "storybook-dark-mode": "5.0.0"
     "eslint-plugin-storybook": "10.2.13"
     "vue-component-meta": "3.2.4"
   backend:
@@ -225,4 +226,7 @@ catalogs:
     "typeorm": "0.3.28"
     "wkx": "0.5.0"
     "yaml": "2.8.2"
-    
+  conflicts_storybook-dark-mode_5_0_0:
+    storybook-dark-mode: 5.0.0
+catalog:
+  storybook-dark-mode: ^5.0.0

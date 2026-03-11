@@ -74,6 +74,7 @@
     "playwright": "catalog:test",
     "reka-ui": "catalog:peer",
     "storybook": "catalog:storybook",
+    "storybook-dark-mode": "catalog:storybook",
     "typescript": "catalog:build",
     "vite-plugin-dts": "catalog:vite",
     "vitest": "catalog:test",
