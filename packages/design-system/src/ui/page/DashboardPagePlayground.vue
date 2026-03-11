@@ -212,6 +212,8 @@ const tabsModelValue = ref<string>('tab1')
           :breadcrumbs="breadcrumbs"
           :detail-pane="{
             width: '24rem',
+            maxWidth: '30rem',
+            minWidth: '16rem',
             storage: {
               key: 'dashboard-page-detail-pane-is-open',
               strategy: 'localStorage',
