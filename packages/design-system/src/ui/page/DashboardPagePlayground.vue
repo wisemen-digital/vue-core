@@ -219,7 +219,7 @@ const tabsModelValue = ref<string>('tab1')
           }"
           title="Dashboard"
         >
-          <template #header-actions>
+          <template #header-master-actions>
             <IconButton
               :icon="Bell01Icon"
               label="Notifications"
@@ -231,7 +231,7 @@ const tabsModelValue = ref<string>('tab1')
               variant="tertiary"
             />
           </template>
-          <template #left>
+          <template #header-action-left>
             <RowLayout>
               <Tabs
                 v-model="tabsModelValue"
@@ -255,7 +255,7 @@ const tabsModelValue = ref<string>('tab1')
             </RowLayout>
           </template>
 
-          <template #right>
+          <template #header-action-right>
             <UIButton
               :icon-left="Trash01Icon"
               variant="destructive-secondary"

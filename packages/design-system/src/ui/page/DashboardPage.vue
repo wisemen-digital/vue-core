@@ -89,24 +89,24 @@ onMounted(() => {
       </template>
 
       <template
-        v-if="slots.left"
-        #left
+        v-if="slots['header-action-left']"
+        #action-left
       >
-        <slot name="left" />
+        <slot name="header-action-left" />
       </template>
 
       <template
-        v-if="slots.center"
-        #center
+        v-if="slots['header-action-center']"
+        #action-center
       >
-        <slot name="center" />
+        <slot name="header-action-center" />
       </template>
 
       <template
-        v-if="slots.right"
-        #right
+        v-if="slots['header-action-right']"
+        #action-right
       >
-        <slot name="right" />
+        <slot name="header-action-right" />
       </template>
 
       <template
@@ -116,8 +116,11 @@ onMounted(() => {
         <slot name="breadcrumb-actions" />
       </template>
 
-      <template #actions>
-        <slot name="header-actions" />
+      <template
+        v-if="slots['header-master-actions']"
+        #master-actions
+      >
+        <slot name="header-master-actions" />
         <DashboardPageDetailPaneToggle v-if="hasDetailPane" />
       </template>
     </DashboardPageHeader>
