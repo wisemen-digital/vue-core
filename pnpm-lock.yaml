@@ -1247,9 +1247,6 @@ importers:
       '@wisemen/eslint-config-nestjs':
         specifier: workspace:*
         version: link:../eslint-config-nestjs
-      '@wisemen/time':
-        specifier: workspace:*
-        version: link:../time
       eslint:
         specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
