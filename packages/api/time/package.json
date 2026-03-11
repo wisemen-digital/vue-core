@@ -25,10 +25,14 @@
   },
   "peerDependencies": {
     "class-validator": "catalog:backend",
-    "dayjs": "catalog:backend"
+    "dayjs": "catalog:backend",
+    "@nestjs/common": "catalog:backend",
+    "typeorm": "catalog:backend"
   },
   "devDependencies": {
     "@types/node": "catalog:backend",
+    "@nestjs/common": "catalog:backend",
+    "typeorm": "catalog:backend",
     "@wisemen/eslint-config-nestjs": "workspace:*",
     "eslint": "catalog:lint",
     "expect": "catalog:test",
