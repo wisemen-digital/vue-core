@@ -37,6 +37,7 @@ useProvideRadioGroupItemContext({
     :label="props.disabledReason"
   >
     <RekaRadioGroupItem
+      :id="props.id"
       :disabled="props.isDisabled"
       :value="props.value"
       :class="radioGroupStyle.root()"

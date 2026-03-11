@@ -51,7 +51,6 @@ const options = [
           :for="`id-${option.value}`"
         >
           <ClickableElement>
-
             <div
               class="
                 flex w-xl items-center justify-between rounded-md border
