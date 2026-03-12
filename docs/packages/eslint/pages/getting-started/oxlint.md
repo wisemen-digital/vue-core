@@ -178,10 +178,5 @@ This ensures Oxlint stays in sync with your ESLint rules.
 
 ## Need Help?
 
-<<<<<<< HEAD
-- [Report issues](https://github.com/wisemen-digital/wisemen/core/issues)
-- [View source code](https://github.com/wisemen-digital/wisemen/core/tree/main/packages/eslint-config)
-=======
 - [Report issues](https://github.com/wisemen-digital/wisemen-core/issues)
 - [View source code](https://github.com/wisemen-digital/wisemen-core/tree/main/packages/eslint-config)
->>>>>>> origin/main
