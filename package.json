@@ -22,11 +22,7 @@
     "docs:dev": "turbo watch docs:dev",
     "docs:build": "turbo run docs:build",
     "docs:gen": "turbo run docs:gen",
-<<<<<<< HEAD
-    "docs:gen-eslint": "cd ./packages/eslint-config && npx @eslint/config-inspector build --base /wisemen/core/eslint-inspector --outDir ../../docs/public/eslint-inspector --config ./src/inspector.ts",
-=======
     "docs:gen-eslint": "cd ./packages/eslint-config && npx @eslint/config-inspector build --base /wisemen-core/eslint-inspector --outDir ../../docs/public/eslint-inspector --config ./src/inspector.ts",
->>>>>>> origin/main
     "precommit": "turbo run lint type-check test",
     "ci": "turbo run build test lint type-check",
     "build-storybook": "storybook build -c ./packages/web/design-system/.storybook -o ./static/storybook"
