@@ -1,6 +1,6 @@
 packages:
   - docs
-  - "packages/**"
+  - "packages/**/*"
 
 catalogs:
   vue:
@@ -110,9 +110,10 @@ catalogs:
     "histoire": "1.0.0-alpha.3"
     "@histoire/plugin-vue": "1.0.0-alpha.3"
   docs:
-    "vitepress": "1.6.4"
+    "vitepress": "2.0.0-alpha.16"
     "vue-component-meta": "3.2.2"
     "markdown-it": "14.1.0"
+    oxc-minify: "0.117.0"
   date:
     "@internationalized/date": "3.10.1"
   openapi:
@@ -223,4 +224,11 @@ catalogs:
     "typeorm": "0.3.28"
     "wkx": "0.5.0"
     "yaml": "2.8.2"
-    
+  "conflicts_docs_:":
+    oxc-minify: ":"
+  conflicts_docs_1:
+    oxc-minify: "1"
+  conflicts_docs_123:
+    oxc-minify: "123"
+  conflicts_docs_:
+    oxc-minify: ""
