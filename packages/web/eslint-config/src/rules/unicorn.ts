@@ -20,6 +20,7 @@ export const unicornConfig: LintConfig = {
     'unicorn/no-await-in-promise-methods': 'error',
     'unicorn/no-empty-file': 'error',
     'unicorn/no-for-loop': 'error',
+    'unicorn/no-instanceof-builtins': 'off',
     'unicorn/no-keyword-prefix': 'error',
     'unicorn/no-nested-ternary': 'error',
     'unicorn/no-single-promise-in-promise-methods': 'error',
