@@ -816,7 +816,7 @@ describe('schema Transformer', () => {
 
       const result = collectSchemas(schemas)
 
-      expect(result[0].constName).toMatch(/Schema$/)
+      expect(result[0].constName).toMatch(SCHEMA_SUFFIX_REGEX)
       expect(result[0].constName).not.toContain('-')
     })
 

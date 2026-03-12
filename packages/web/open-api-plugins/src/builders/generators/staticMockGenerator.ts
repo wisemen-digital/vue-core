@@ -246,7 +246,7 @@ function generateStaticObject(schema: ExtendedSchema, typeName: string, depth: n
     }
 
     const propValue = generateStaticMockInternal(propSchema as ExtendedSchema, typeName, depth + 1)
-    const safePropName = /^[a-z_]\w*$/i.test(key) ? key : `"${key}"`
+    const safePropName = VALID_IDENTIFIER_REGEX.test(key) ? key : `"${key}"`
 
     properties.push(`${safePropName}: ${propValue}`)
   }

@@ -11,6 +11,8 @@ import { ref } from 'vue'
 
 import NumberField from './NumberField.vue'
 
+const QUANTITY_LABEL_REGEX = /Quantity/i
+
 const meta = {
   title: 'Components/NumberField',
   argTypes: {
@@ -148,7 +150,7 @@ export const Required: Story = {
   }) => {
     const canvas = within(canvasElement)
 
-    const input = canvas.getByLabelText(/Quantity/i)
+    const input = canvas.getByLabelText(QUANTITY_LABEL_REGEX)
 
     await expect(input).toBeRequired()
   },

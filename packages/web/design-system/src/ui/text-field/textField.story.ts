@@ -15,6 +15,8 @@ import { ref } from 'vue'
 
 import TextField from './TextField.vue'
 
+const FULL_NAME_REGEX = /Full Name/i
+
 const meta = {
   title: 'Components/TextField',
   argTypes: {
@@ -161,7 +163,7 @@ export const Required: Story = {
   }) => {
     const canvas = within(canvasElement)
 
-    const input = canvas.getByLabelText(/Full Name/i)
+    const input = canvas.getByLabelText(FULL_NAME_REGEX)
 
     await expect(input).toBeRequired()
 

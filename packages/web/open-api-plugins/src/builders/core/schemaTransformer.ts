@@ -414,7 +414,7 @@ export function collectSchemas(all: Record<string, IR.SchemaObject>): GeneratedS
     name,
     irSchema,
   ] of Object.entries(all)) {
-    let typeName = name.replace(/Schema$/, '')
+    let typeName = name.replace(SCHEMA_SUFFIX_REGEX, '')
 
     typeName = normalizeTypeName(typeName)
 
