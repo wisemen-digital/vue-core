@@ -64,8 +64,8 @@ import { ContactService } from '@/services'
 
 export function useUpdateContact(contactId: string) {
   return useMutation({
-    queryFn: async (body: ContactUpdateForm) => {
-      return await ContactService.update(contactId, body)
+    queryFn: (body: ContactUpdateForm) => {
+      return ContactService.update(contactId, body)
     },
     queryKeysToInvalidate: {
       contactDetail: { contactId },
