@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Component } from 'vue'
+import { computed } from 'vue'
 import type {
   RouteLocationNormalized,
   RouteLocationRaw,
@@ -11,6 +12,7 @@ import {
 
 import ActionTooltip from '@/ui/action-tooltip/ActionTooltip.vue'
 import ClickableElement from '@/ui/clickable-element/ClickableElement.vue'
+import RowLayout from '@/ui/row-layout/RowLayout.vue'
 import MainSidebarNavigationLinkProvider from '@/ui/sidebar/components/MainSidebarNavigationLinkProvider.vue'
 import { useMainSidebar } from '@/ui/sidebar/mainSidebar.composable'
 
@@ -46,6 +48,14 @@ function onClick(): void {
   closeIfFloatingSidebar()
   emit('click')
 }
+
+const navigationLinkGridTemplateColumns = computed<string>(() => {
+  if (variant.value === 'icons-only' && !isSidebarOpen) {
+    return sidebarIconCellSize
+  }
+
+  return `${sidebarIconCellSize} 1fr`
+})
 </script>
 
 <template>
@@ -69,9 +79,7 @@ function onClick(): void {
             :data-active="isRouteActive || props.isActive(route) || undefined"
             :style="{
               height: sidebarLinkHeight,
-              gridTemplateColumns: variant === 'icons-only' && !isSidebarOpen
-                ? sidebarIconCellSize
-                : `${sidebarIconCellSize} 1fr`,
+              gridTemplateColumns: navigationLinkGridTemplateColumns,
             }"
             class="
               group grid rounded-md duration-100
@@ -80,12 +88,13 @@ function onClick(): void {
               dark:data-active:glassy
             "
           >
-            <div
+            <RowLayout
               :style="{
                 width: sidebarIconCellSize,
                 height: sidebarIconCellSize,
               }"
-              class="flex items-center justify-center"
+              align="center"
+              justify="center"
             >
               <Component
                 :is="props.icon"
@@ -99,13 +108,14 @@ function onClick(): void {
                   dark:group-data-active:text-fg-primary
                 "
               />
-            </div>
+            </RowLayout>
 
-            <div
+            <RowLayout
               v-if="variant !== 'icons-only' || isSidebarOpen"
-              class="
-                flex items-center justify-between gap-md overflow-hidden pr-md
-              "
+              align="center"
+              justify="between"
+              gap="md"
+              class="overflow-hidden pr-md"
             >
               <span
                 class="
@@ -116,10 +126,14 @@ function onClick(): void {
               >
                 {{ props.label }}
               </span>
-              <div class="flex shrink-0 items-center gap-lg">
+              <RowLayout
+                gap="lg"
+                align="center"
+                class="shrink-0"
+              >
                 <slot name="right" />
-              </div>
-            </div>
+              </RowLayout>
+            </RowLayout>
           </div>
         </MainSidebarNavigationLinkProvider>
       </RouterLink>
