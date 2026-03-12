@@ -12,3 +12,4 @@ jobs:
     if: github.event.pull_request.draft == false
     with: 
       node-version: 24
+      test-timeout: 10
