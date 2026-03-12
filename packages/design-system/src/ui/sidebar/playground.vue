@@ -211,7 +211,7 @@ const footerNavigation = computed<NavigationGroup[]>(() => ([
         paddingLeft: props.variant === 'icons-only' ? !isFloatingSidebar ? sidebarWidth : '0' : isSidebarOpen && !isFloatingSidebar ? sidebarWidth : '0',
       }"
       :transition="{
-        duration: isReduceMotionEnabledOnDevice ? 0 : props.variant === 'icons-only' ? 0.1 : 0.3,
+        duration: isReduceMotionEnabledOnDevice ? 0 : props.variant === 'icons-only' ? 0.3 : 0.3,
         type: 'spring',
         bounce: 0,
       }"
