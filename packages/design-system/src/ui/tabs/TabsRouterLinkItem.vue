@@ -56,8 +56,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <UIAdaptiveContentBlock
-    v-if="!isTouchDevice"
+  <Component :is="isTouchDevice ? 'div' : UIAdaptiveContentBlock"
     :priority="priority"
   >
     <ClickableElement>
@@ -90,36 +89,5 @@ onBeforeUnmount(() => {
         </RouterLink>
       </RekaTabsTrigger>
     </ClickableElement>
-  </UIAdaptiveContentBlock>
-
-  <ClickableElement v-else>
-    <RekaTabsTrigger
-      :value="routeName"
-      :disabled="props.isDisabled"
-      :as-child="true"
-      :class="variants.item()"
-    >
-      <RouterLink
-        :to="props.to"
-        :replace="true"
-      >
-        <component
-          :is="props.icon"
-          v-if="props.icon != null"
-          class="size-4 shrink-0"
-        />
-        <UIText
-          v-if="props.label != null"
-          :text="props.label"
-          class="text-xs"
-        />
-        <slot v-else />
-        <UINumberBadge
-          v-if="props.count != null"
-          :value="props.count.toString()"
-          size="md"
-        />
-      </RouterLink>
-    </RekaTabsTrigger>
-  </ClickableElement>
+  </Component>
 </template>
