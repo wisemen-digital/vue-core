@@ -1,23 +1,23 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "allowJs": true,
+    "baseUrl": ".",
+    "declaration": false,
+    "esModuleInterop": true,
     "jsx": "preserve",
     "lib": ["esnext", "dom"],
-    "baseUrl": ".",
     "module": "esnext",
     "moduleResolution": "node",
+    "outDir": "dist",
     "paths": {
       "@/*": ["src/*"]
     },
     "resolveJsonModule": true,
-    "types": ["node"],
-    "allowJs": true,
-    "strict": true,
-    "declaration": false,
-    "outDir": "dist",
+    "skipLibCheck": true,
     "sourceMap": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true
+    "strict": true,
+    "target": "esnext",
+    "types": ["node"]
   },
   "include": [
     "eslint.config.ts",
