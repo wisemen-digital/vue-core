@@ -16,7 +16,7 @@ interface VueI18nConfig<TLocale extends string, TMessages extends Record<TLocale
 }
 export function vueI18nConfig<TLocale extends string, TMessages extends Record<TLocale, Record<string, string>>>(
   config: VueI18nConfig<TLocale, TMessages>,
-  overrides: Partial<I18nOptions>,
+  overrides?: Partial<I18nOptions>,
 ): I18nOptions {
   return defu(overrides, {
     ...DEFAULT_VUE_I18N_CONFIG,

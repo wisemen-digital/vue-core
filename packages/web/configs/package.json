@@ -40,17 +40,21 @@
   "peerDependencies": {
     "@hey-api/openapi-ts": "catalog:peer",
     "@tanstack/vue-query": "catalog:peer",
+    "@vitejs/plugin-vue": "catalog:vite",
     "tailwind-variants": "catalog:style",
+    "vite": "catalog:vite",
+    "vite-plugin-pwa": "catalog:vite",
+    "vitest": "catalog:test",
+    "vue": "catalog:vue",
     "vue-i18n": "catalog:peer",
     "zod": "catalog:peer"
+
   },
   "dependencies": {
     "defu": "catalog:general"
   },
   "devDependencies": {
     "@hey-api/openapi-ts": "catalog:openapi",
-    "@import-meta-env/unplugin": "catalog:vite",
-    "@tailwindcss/vite": "catalog:vite",
     "@tanstack/vue-query": "catalog:vue",
     "@types/node": "catalog:types",
     "@vitejs/plugin-vue": "catalog:vite",
@@ -59,8 +63,7 @@
     "tailwind-variants": "catalog:style",
     "tsdown": "catalog:build",
     "typescript": "catalog:build",
-    "vite-plugin-compression": "catalog:vite",
-    "vite-plugin-istanbul": "catalog:test",
+    "vite": "catalog:vite",
     "vite-plugin-pwa": "catalog:vite",
     "vitest": "catalog:test",
     "vue-i18n": "catalog:vue",

@@ -22,6 +22,6 @@ export const DEFAULT_HEY_API_CONFIG: UserConfig = {
   ],
 }
 
-export function heyApiConfig(overrides: UserConfig): UserConfig {
-  return defu(overrides, DEFAULT_HEY_API_CONFIG)
+export function heyApiConfig(overrides?: Partial<UserConfig>): UserConfig {
+  return defu(overrides, DEFAULT_HEY_API_CONFIG) as UserConfig
 }
