@@ -1,5 +1,12 @@
 # @wisemen/vue-core-template-typescript
 
+## 0.0.2
+
+### Patch Changes
+
+- f5bddce: Ran updated linter
+- fce3eff: Updated linter dependency
+
 ## 0.0.1
 
 ### Patch Changes

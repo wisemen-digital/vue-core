@@ -48,7 +48,6 @@
     "vue": "catalog:vue",
     "vue-i18n": "catalog:peer",
     "zod": "catalog:peer"
-
   },
   "dependencies": {
     "defu": "catalog:general"

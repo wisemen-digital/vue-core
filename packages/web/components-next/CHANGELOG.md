@@ -1,5 +1,12 @@
 # @wisemen/vue-core-components
 
+## 2.2.3
+
+### Patch Changes
+
+- f5bddce: Ran updated linter
+- fce3eff: Updated linter dependency
+
 ## 2.2.2
 
 ### Patch Changes
