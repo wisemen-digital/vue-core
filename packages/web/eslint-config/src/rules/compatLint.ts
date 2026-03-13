@@ -39,9 +39,6 @@ export const compatConfig: LintConfig[] = compat.config({
     'require-explicit-generics/require-explicit-generics': [
       'error',
       [
-        'computed',
-        'ref',
-        'reactive',
         'defineEmits',
       ],
     ],
