@@ -32,8 +32,17 @@ const {
 const isOpen = ref<boolean>(false)
 
 watch(
-  () => [modelValue.value.from?.toString(), modelValue.value.until?.toString()],
-  ([from, until], [previousFrom, previousUntil]) => {
+  () => [
+    modelValue.value.from?.toString(),
+    modelValue.value.until?.toString(),
+  ],
+  ([
+    from,
+    until,
+  ], [
+    previousFrom,
+    previousUntil,
+  ]) => {
     if (!closeOnSelect.value || !isOpen.value) {
       return
     }
