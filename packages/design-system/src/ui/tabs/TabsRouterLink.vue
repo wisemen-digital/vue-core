@@ -63,7 +63,6 @@ onMounted(() => {
 
 const {
   activeTab,
-  nextPriority,
   registerTab,
   tabs,
   unregisterTab,
@@ -76,7 +75,6 @@ useProvideTabsContext({
   hasReachedHorizontalEnd,
   isScrolledHorizontally,
   activeTab,
-  nextPriority,
   registerTab,
   scrollToLeft,
   scrollToRight,

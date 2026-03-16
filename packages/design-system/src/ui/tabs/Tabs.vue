@@ -47,7 +47,6 @@ onMounted(() => {
 
 const {
   activeTab,
-  nextPriority,
   registerTab,
   tabs,
   unregisterTab,
@@ -60,7 +59,6 @@ useProvideTabsContext({
   isScrolledHorizontally,
   isTouchDevice: isTouch,
   activeTab,
-  nextPriority,
   registerTab,
   scrollToLeft,
   scrollToRight,

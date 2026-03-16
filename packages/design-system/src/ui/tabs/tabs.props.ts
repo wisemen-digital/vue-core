@@ -28,6 +28,11 @@ export interface TabsItemProps {
    */
   isDisabled?: boolean
   /**
+   * Whether the label is visually hidden but still accessible to screen readers.
+   * @default false
+   */
+  isLabelHidden?: boolean
+  /**
    * A count to display as a badge on the right side of the tab.
    */
   count?: number | null
@@ -38,7 +43,7 @@ export interface TabsItemProps {
   /**
    * The label text for the tab.
    */
-  label?: string | null
+  label: string
   /**
    * Unique identifier for the tab item.
    */
@@ -60,6 +65,11 @@ export interface TabsRouterLinkItemProps {
    */
   isDisabled?: boolean
   /**
+   * Whether the label is visually hidden but still accessible to screen readers.
+   * @default false
+   */
+  isLabelHidden?: boolean
+  /**
    * A count to display as a badge on the right side of the tab.
    */
   count?: number | null
@@ -70,9 +80,10 @@ export interface TabsRouterLinkItemProps {
   /**
    * The label text for the tab.
    */
-  label?: string | null
+  label: string
   /**
    * The route location to navigate to when the tab is clicked.
    */
   to: RouteLocationRaw
+
 }

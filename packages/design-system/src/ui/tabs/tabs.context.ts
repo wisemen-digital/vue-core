@@ -23,8 +23,7 @@ interface TabsContext extends PropsToComputed<TabsProps> {
   isTouchDevice: ComputedRef<boolean>
 
   activeTab: ComputedRef<TabItemData | null>
-  nextPriority: () => number
-  registerTab: (tab: TabItemData) => void
+  registerTab: (tab: TabsItemProps) => number
   scrollToLeft: () => void
   scrollToRight: () => void
   setScrollContainerRef: (ref: HTMLElement) => void

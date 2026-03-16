@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
 
-import { UIActionTooltip } from '@/ui/action-tooltip/index'
 import type { BreadcrumbItemProps } from '@/ui/breadcrumbs/breadcrumb.props'
 import ClickableElement from '@/ui/clickable-element/ClickableElement.vue'
 import RowLayout from '@/ui/row-layout/RowLayout.vue'

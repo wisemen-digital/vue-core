@@ -16,24 +16,20 @@ const props = withDefaults(defineProps<TabsItemProps>(), {
   isDisabled: false,
   count: null,
   icon: undefined,
-  label: null,
 })
 
 const {
   isTouchDevice,
-  nextPriority,
   registerTab,
   unregisterTab,
   variants,
 } = useInjectTabsContext()
 
-const priority = nextPriority()
+const priority = registerTab({
+  ...props,
+})
 
 onMounted(() => {
-  registerTab({
-    ...props,
-    priority,
-  })
 })
 
 onBeforeUnmount(() => {
@@ -58,13 +54,14 @@ onBeforeUnmount(() => {
           class="size-4 shrink-0"
         />
         <UIText
-          v-if="props.label != null"
           :text="props.label"
+          :class="{
+            'sr-only': props.isLabelHidden,
+          }"
           class="text-xs"
         >
           {{ props.label }}
         </UIText>
-        <slot v-else />
         <UINumberBadge
           v-if="props.count != null"
           :value="props.count.toString()"
@@ -86,13 +83,14 @@ onBeforeUnmount(() => {
         class="size-4 shrink-0"
       />
       <UIText
-        v-if="props.label != null"
         :text="props.label"
+        :class="{
+          'sr-only': props.isLabelHidden,
+        }"
         class="text-xs"
       >
         {{ props.label }}
       </UIText>
-      <slot v-else />
       <UINumberBadge
         v-if="props.count != null"
         :value="props.count.toString()"

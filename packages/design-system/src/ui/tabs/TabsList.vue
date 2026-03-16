@@ -7,11 +7,13 @@ import {
   onMounted,
   ref,
 } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import { UIAdaptiveContent } from '@/ui/adaptive-content/index'
 import { useInjectTabsContext } from '@/ui/tabs/tabs.context'
 import TabsAdaptiveContentDropdown from '@/ui/tabs/TabsAdaptiveContentDropdown.vue'
 
+const i18n = useI18n()
 const scrollContainerRef = ref<HTMLElement | null>(null)
 
 const {
@@ -46,6 +48,7 @@ onMounted(() => {
       "
     >
       <button
+        :aria-label="i18n.t('component.tabs.scroll_left')"
         class="
           flex size-7 items-center justify-center rounded-md bg-primary
           text-secondary
@@ -53,7 +56,6 @@ onMounted(() => {
         "
         tabindex="-1"
         type="button"
-        aria-label="Scroll left"
         @click="scrollToLeft"
       >
         <svg
@@ -117,6 +119,7 @@ onMounted(() => {
       "
     >
       <button
+        :aria-label="i18n.t('component.tabs.scroll_right')"
         class="
           flex size-7 items-center justify-center rounded-md bg-primary
           text-secondary
@@ -124,7 +127,6 @@ onMounted(() => {
         "
         tabindex="-1"
         type="button"
-        aria-label="Scroll right"
         @click="scrollToRight"
       >
         <svg

@@ -8,11 +8,11 @@ import {
 } from 'vue'
 
 import type { TabItemData } from '@/ui/tabs/tabs.context'
+import type { TabsItemProps } from '@/ui/tabs/tabs.props'
 
 interface UseAdaptiveTabs {
   activeTab: ComputedRef<TabItemData | null>
-  nextPriority: () => number
-  registerTab: (tab: TabItemData) => void
+  registerTab: (tab: TabsItemProps) => number
   tabs: ShallowRef<TabItemData[]>
   unregisterTab: (value: string) => void
 }
@@ -30,11 +30,18 @@ export function useAdaptiveTabs(activeValue: ComputedRef<string | undefined>): U
     return tabs.value.find((tab) => tab.value === activeValue.value) ?? null
   })
 
-  function registerTab(tab: TabItemData): void {
+  function registerTab(tab: TabsItemProps): number {
+    const priority = nextPriority()
+
     tabs.value = [
       ...tabs.value,
-      tab,
+      {
+        ...tab,
+        priority,
+      },
     ]
+
+    return priority
   }
 
   function unregisterTab(value: string): void {
@@ -43,7 +50,6 @@ export function useAdaptiveTabs(activeValue: ComputedRef<string | undefined>): U
 
   return {
     activeTab,
-    nextPriority,
     registerTab,
     tabs,
     unregisterTab,

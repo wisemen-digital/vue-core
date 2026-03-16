@@ -3,7 +3,6 @@ import { TabsTrigger as RekaTabsTrigger } from 'reka-ui'
 import {
   computed,
   onBeforeUnmount,
-  onMounted,
 } from 'vue'
 import {
   RouterLink,
@@ -21,12 +20,10 @@ const props = withDefaults(defineProps<TabsRouterLinkItemProps>(), {
   isDisabled: false,
   count: null,
   icon: undefined,
-  label: null,
 })
 
 const {
   isTouchDevice,
-  nextPriority,
   registerTab,
   unregisterTab,
   variants,
@@ -40,14 +37,11 @@ const routeName = computed<string>(() => {
   return resolved.name as string
 })
 
-const priority = nextPriority()
-
-onMounted(() => {
-  registerTab({
-    ...props,
-    priority,
-    value: routeName.value,
-  })
+const priority = registerTab({
+  ...props,
+  isDisabled: props.isDisabled,
+  icon: props.icon,
+  value: routeName.value,
 })
 
 onBeforeUnmount(() => {
@@ -56,7 +50,8 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <Component :is="isTouchDevice ? 'div' : UIAdaptiveContentBlock"
+  <Component
+    :is="isTouchDevice ? 'div' : UIAdaptiveContentBlock"
     :priority="priority"
   >
     <ClickableElement>
@@ -76,11 +71,12 @@ onBeforeUnmount(() => {
             class="size-4 shrink-0"
           />
           <UIText
-            v-if="props.label != null"
             :text="props.label"
+            :class="{
+              'sr-only': props.isLabelHidden,
+            }"
             class="text-xs"
           />
-          <slot v-else />
           <UINumberBadge
             v-if="props.count != null"
             :value="props.count.toString()"
