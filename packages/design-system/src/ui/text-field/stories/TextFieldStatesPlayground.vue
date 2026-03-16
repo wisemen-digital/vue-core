@@ -30,6 +30,7 @@ const readonlyValue = ref<string | null>('Read only')
       :is-disabled="true"
       class="w-64"
       label="Disabled"
+      disabled-reason="You don't have permission to edit this field"
       placeholder="Enter text..."
     />
     <TextField
@@ -50,6 +51,12 @@ const readonlyValue = ref<string | null>('Read only')
       class="w-64"
       error-message="This field has an error"
       label="Error"
+    />
+    <TextField
+      v-model="filledValue"
+      class="w-64"
+      label="Help"
+      help-text="This field has an error with help text"
     />
   </div>
 </template>
