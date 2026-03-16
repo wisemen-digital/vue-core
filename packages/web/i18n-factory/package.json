@@ -38,7 +38,6 @@
     "typecheck": "pnpm tsc"
   },
   "devDependencies": {
-    "@wisemen/vue-core-configs": "workspace:*",
     "@types/node": "catalog:types",
     "@wisemen/eslint-config-vue": "workspace:*",
     "eslint": "catalog:lint",
