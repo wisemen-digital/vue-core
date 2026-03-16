@@ -1,13 +1,13 @@
-# NullableNestedKeys
+# DeepNullable
 
-The `NullableNestedKeys` utility type recursively makes all properties of a type nullable at all nested levels. This is useful for representing partial data structures where any property at any depth could be null, such as database records or API responses.
+The `DeepNullable` utility type recursively makes all properties of a type nullable at all nested levels. This is useful for representing partial data structures where any property at any depth could be null, such as database records or API responses.
 
 ## Definition
 
 ```typescript
-export type NullableNestedKeys<T> = T extends object
+export type DeepNullable<T> = T extends object
   ? {
-      [K in keyof T]: NullableNestedKeys<T[K]> | null
+      [K in keyof T]: DeepNullable<T[K]> | null
     }
   : T
 ```
@@ -25,7 +25,7 @@ interface User {
   }
 }
 
-type NullableUser = NullableNestedKeys<User>
+type NullableUser = DeepNullable<User>
 // Result: All properties at all levels become nullable
 // {
 //   id: string | null
@@ -55,7 +55,7 @@ interface Product {
   }
 }
 
-type ApiProductResponse = NullableNestedKeys<Product>
+type ApiProductResponse = DeepNullable<Product>
 
 function processProduct(product: ApiProductResponse): void {
   // Handle potential null values at any level
@@ -80,7 +80,7 @@ interface UserRecord {
   }
 }
 
-type DatabaseUser = NullableNestedKeys<UserRecord>
+type DatabaseUser = DeepNullable<UserRecord>
 
 async function fetchUserFromDb(userId: string): Promise<DatabaseUser> {
   // Database columns might be NULL
@@ -103,7 +103,7 @@ interface FormData {
   }
 }
 
-type FormState = NullableNestedKeys<FormData>
+type FormState = DeepNullable<FormData>
 
 // Fields can be null or undefined during form editing
 const state: FormState = {

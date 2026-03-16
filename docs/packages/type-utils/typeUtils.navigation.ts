@@ -22,8 +22,8 @@ export const TYPE_UTILS_NAVIGATION: PackageDocNavigation = {
           link: '/pages/usage/deep-partial',
         },
         {
-          text: 'NullableNestedKeys',
-          link: '/pages/usage/nullable-nested-keys',
+          text: 'DeepNullable',
+          link: '/pages/usage/deep-nullable',
         },
       ],
     },

@@ -17,8 +17,8 @@
  * // Result: All properties at all levels become nullable (Type | null)
  * ```
  */
-export type NullableNestedKeys<T> = T extends object
+export type DeepNullable<T> = T extends object
   ? {
-      [K in keyof T]: NullableNestedKeys<T[K]> | null
+      [K in keyof T]: DeepNullable<T[K]> | null
     }
   : T

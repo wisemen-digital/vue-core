@@ -5,12 +5,12 @@
   },
   "type": "module",
   "version": "0.0.1",
-  "private": true,
+  "private": false,
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/wisemen-digital/wisemen-core",
-    "directory": "packages/type-utils"
+    "directory": "packages/web/type-utils"
   },
   "sideEffects": false,
   "exports": {
@@ -35,7 +35,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "vitest --run",
-    "typecheck": "pnpm tsc"
+    "type-check": "pnpm tsc"
   },
   "devDependencies": {
     "@types/node": "catalog:types",

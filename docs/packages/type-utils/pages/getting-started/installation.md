@@ -23,7 +23,7 @@ yarn add @wisemen/vue-core-type-utils
 Once installed, you can import the utility types in your TypeScript files:
 
 ```typescript
-import type { DeepPartial, NullableNestedKeys } from '@wisemen/vue-core-type-utils'
+import type { DeepPartial, DeepNullable } from '@wisemen/vue-core-type-utils'
 
 // Use in your type definitions
 interface User {
@@ -35,7 +35,7 @@ interface User {
 }
 
 type PartialUser = DeepPartial<User>
-type NullableUser = NullableNestedKeys<User>
+type NullableUser = DeepNullable<User>
 ```
 
 That's it! You're ready to use the type utilities in your project.

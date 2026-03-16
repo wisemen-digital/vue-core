@@ -4,16 +4,16 @@ import {
   it,
 } from 'vitest'
 
-import type { NullableNestedKeys } from './nullableNestedKeys'
+import type { DeepNullable } from './deepNullable'
 
-describe('nullableNestedKeys', () => {
+describe('deepNullable', () => {
   it('should make top-level properties nullable', () => {
     interface User {
       id: string
       name: string
     }
 
-    type NullableUser = NullableNestedKeys<User>
+    type NullableUser = DeepNullable<User>
 
     const user: NullableUser = {
       id: null,
@@ -35,7 +35,7 @@ describe('nullableNestedKeys', () => {
       }
     }
 
-    type NullableUser = NullableNestedKeys<User>
+    type NullableUser = DeepNullable<User>
 
     const user: NullableUser = {
       id: 'user-123',
@@ -63,7 +63,7 @@ describe('nullableNestedKeys', () => {
       }
     }
 
-    type NullableUser = NullableNestedKeys<User>
+    type NullableUser = DeepNullable<User>
 
     const user: NullableUser = {
       id: 'user-123',
@@ -90,7 +90,7 @@ describe('nullableNestedKeys', () => {
       }
     }
 
-    type NullableConfig = NullableNestedKeys<Config>
+    type NullableConfig = DeepNullable<Config>
 
     const config: NullableConfig = {
       database: {
@@ -133,7 +133,7 @@ describe('nullableNestedKeys', () => {
       status: string
     }
 
-    type NullableResponse = NullableNestedKeys<ApiResponse>
+    type NullableResponse = DeepNullable<ApiResponse>
 
     const response: NullableResponse = {
       data: {
@@ -162,7 +162,7 @@ describe('nullableNestedKeys', () => {
       name: string
     }
 
-    type NullableUser = NullableNestedKeys<User>
+    type NullableUser = DeepNullable<User>
 
     const user: NullableUser = {
       id: null,
