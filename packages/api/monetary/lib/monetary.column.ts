@@ -6,7 +6,8 @@ import { PrecisionLossError } from './precision-loss-error.js'
 export type MonetaryOptions = {
   currencyPrecisions?: Record<Currency, number>
   defaultPrecision: number
-} & Omit<ColumnOptions, 'type' | 'transformer'>
+  default: Monetary
+} & Omit<ColumnOptions, 'type' | 'transformer' | 'default'>
 
 export interface MonetaryJSON {
   amount: number
@@ -15,13 +16,16 @@ export interface MonetaryJSON {
 
 /** Stores the amount and currency as jsonb */
 export function MonetaryColumn (options: MonetaryOptions): PropertyDecorator {
+  const transformer = new MoneyTypeOrmTransformer(
+    options.defaultPrecision,
+    options.currencyPrecisions ?? {} as Record<Currency, number>
+  )
+
   return Column({
     ...options,
     type: 'jsonb',
-    transformer: new MoneyTypeOrmTransformer(
-      options.defaultPrecision,
-      options.currencyPrecisions ?? {} as Record<Currency, number>
-    )
+    default: transformer.to(options.default),
+    transformer
   })
 }
 
@@ -49,12 +53,8 @@ export class MoneyTypeOrmTransformer implements ValueTransformer {
   }
 
   to (monetary: Monetary | null | undefined): MonetaryJSON | null | undefined {
-    if (monetary === undefined) {
-      return undefined
-    }
-
-    if (monetary === null) {
-      return null
+    if (monetary === undefined || monetary === null) {
+      return monetary
     }
 
     const precision = this.getPrecisionFor(monetary.currency)

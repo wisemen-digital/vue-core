@@ -8,14 +8,18 @@ export type MonetaryAmountColumnOptions = {
   currency: Currency
   monetaryPrecision: number
   type?: 'int' | 'int2' | 'int4' | 'int8' | 'integer' | 'tinyint' | 'smallint' | 'mediumint' | 'bigint'
-} & Omit<ColumnOptions, 'type' | 'transformer'>
+  default: Monetary
+} & Omit<ColumnOptions, 'type' | 'transformer' | 'default'>
 
 /** Stores the amount as an int */
 export function MonetaryAmountColumn (options: MonetaryAmountColumnOptions): PropertyDecorator {
+  const transformer = new MoneyTypeOrmAmountTransformer(options.currency, options.monetaryPrecision)
+
   return Column({
     ...options,
     type: options.type ?? 'int',
-    transformer: new MoneyTypeOrmAmountTransformer(options.currency, options.monetaryPrecision)
+    default: transformer.to(options.default),
+    transformer
   })
 }
 
