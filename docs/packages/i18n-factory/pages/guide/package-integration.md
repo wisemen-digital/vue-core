@@ -188,24 +188,3 @@ Include JSDoc comments to help consumers understand what keys must be provided:
  */
 export const formMessages = { /* ... */ }
 ```
-
-### 4. Keep Packages Composable
-
-Allow consumers to combine translations from multiple packages:
-
-```typescript
-import { i18n as formI18n } from '@your-package/form/i18n'
-import { i18n as tableI18n } from '@your-package/table/i18n'
-
-// Compose multiple factories
-const combined = formI18n.getTranslations({
-  extendedLocales: {
-    'es-ES': {
-      // Form keys
-      'form.title': 'Formulario',
-      // Table keys
-      'table.title': 'Tabla',
-    },
-  },
-})
-```
