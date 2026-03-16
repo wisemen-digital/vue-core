@@ -6,7 +6,6 @@ const compat = new FlatCompat()
 
 export const compatConfig: LintConfig[] = compat.config({
   plugins: [
-    'require-explicit-generics',
     'check-file',
     'newline-destructuring',
     'import-newlines',
@@ -36,15 +35,6 @@ export const compatConfig: LintConfig[] = compat.config({
       },
     ],
     'newline-destructuring/newline': 'error',
-    'require-explicit-generics/require-explicit-generics': [
-      'error',
-      [
-        'computed',
-        'ref',
-        'reactive',
-        'defineEmits',
-      ],
-    ],
     'sort-imports': 'off',
     'unused-imports/no-unused-imports': 'error',
   },

@@ -9,6 +9,7 @@ import {
   DEFAULT_I18N_LOCALES_FOLDER_PATH,
   i18nConfig,
 } from '#rules/i18n.ts'
+import { jsonConfig } from '#rules/json.ts'
 import { modulesConfig } from '#rules/modules.ts'
 import { pathConfig } from '#rules/path.ts'
 import { perfectionistConfig } from '#rules/perfectionist.ts'
@@ -41,6 +42,7 @@ export async function projectConfig(config?: ProjectConfigOptions): Promise<Flat
     modulesConfig,
     pathConfig,
     wisemenConfig,
+    ...jsonConfig,
     tailwindConfig({
       tailwindConfigPath: config?.tailwindConfigPath ?? DEFAULT_TAILWIND_CONFIG_PATH,
       tailwindRootFontSize: config?.tailwindRootFontSize,

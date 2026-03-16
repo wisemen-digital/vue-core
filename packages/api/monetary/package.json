@@ -10,6 +10,9 @@
   "files": [
     "dist/"
   ],
+  "imports": {
+    "#src/*": "./dist/*"
+  },
   "scripts": {
     "prebuild": "rm -rf ./dist",
     "clean": "rm -rf ./dist",
