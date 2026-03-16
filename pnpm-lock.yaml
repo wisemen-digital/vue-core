@@ -1288,9 +1288,6 @@ importers:
       '@wisemen/eslint-config-nestjs':
         specifier: workspace:*
         version: link:../eslint-config-nestjs
-      '@wisemen/time':
-        specifier: workspace:*
-        version: link:../time
       eslint:
         specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
@@ -1565,6 +1562,9 @@ importers:
         specifier: catalog:backend
         version: 1.11.19
     devDependencies:
+      '@nestjs/common':
+        specifier: catalog:backend
+        version: 11.1.14(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2)
       '@types/node':
         specifier: catalog:backend
         version: 25.3.0
@@ -1577,6 +1577,9 @@ importers:
       expect:
         specifier: catalog:test
         version: 30.2.0
+      typeorm:
+        specifier: catalog:backend
+        version: 0.3.28(pg@8.18.0)(ts-node@10.9.2(@types/node@25.3.0)(typescript@5.9.3))
       typescript:
         specifier: catalog:peer
         version: 5.9.3
