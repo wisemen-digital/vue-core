@@ -1,15 +1,25 @@
 packages:
   - docs
-  - "packages/**"
+  - "packages/**/*"
 
 catalogs:
   vue:
+    "@tanstackvue-query": ^0.0.0
+    "@tanstacvue-query": ^0.0.0
+    "@tanstavue-query": ^0.0.0
+    "@tanstvue-query": ^0.0.0
+    "@tansvue-query": ^0.0.0
+    "@tanvue-query": ^0.0.0
+    "@tavue-query": ^0.0.0
+    "@tvue-query": ^0.0.0
+    "@vue-query": ^0.0.0
     "vue": "3.5.27"
     "motion-v": "1.9.0"
     "vue-i18n": "11.2.8"
     "@vueuse/core": "14.1.0"
     "@vueuse/router": "14.1.0"
     "reka-ui": "2.8.0"
+    vue-query: ^0.0.0
     "vue-tsc": "3.2.2"
     "vue-router": "4.6.4"
     "@vue/tsconfig": "0.8.1"
@@ -66,6 +76,9 @@ catalogs:
     "vite-plugin-dts": "4.5.4"
     "@vitejs/plugin-vue": "6.0.3"
     "@tailwindcss/vite": "4.1.18"
+    "@import-meta-env/unplugin": "0.4.2"
+    "vite-plugin-compression": "0.5.1"
+    "vite-plugin-pwa": "0.20.2"
   test:
     "vitest": "4.0.17"
     "@vue/test-utils": "2.4.6"
@@ -74,6 +87,7 @@ catalogs:
     "@vitest/coverage-v8": "4.0.17"
     playwright: 1.57.0
     "expect": "30.2.0"
+    "vite-plugin-istanbul": "6.0.2"
 
   style:
     "tailwindcss": "4.1.18"
@@ -94,6 +108,7 @@ catalogs:
     "@types/clone-deep": 4.0.4
   general:
     "zod": "4.3.5"
+    defu: 6.1.4
     "neverthrow": "8.2.0"
     "graphemer": "1.4.0"
     "ts-api-utils": "2.4.0"
@@ -110,9 +125,10 @@ catalogs:
     "histoire": "1.0.0-alpha.3"
     "@histoire/plugin-vue": "1.0.0-alpha.3"
   docs:
-    "vitepress": "1.6.4"
+    "vitepress": "2.0.0-alpha.16"
     "vue-component-meta": "3.2.2"
     "markdown-it": "14.1.0"
+    oxc-minify: "0.117.0"
   date:
     "@internationalized/date": "3.10.1"
   openapi:
@@ -223,4 +239,3 @@ catalogs:
     "typeorm": "0.3.28"
     "wkx": "0.5.0"
     "yaml": "2.8.2"
-    
