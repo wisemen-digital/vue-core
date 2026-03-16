@@ -1,5 +1,4 @@
 import { ApiProperty, ApiPropertyOptions } from '@nestjs/swagger'
-import { Column, ColumnOptions } from 'typeorm'
 
 /**
  * ISO 4217 taken from https://www.iso.org/iso-4217-currency-codes.html
@@ -193,14 +192,5 @@ export function CurrencyApiProperty (options?: ApiPropertyOptions): PropertyDeco
     enumName: 'Currency',
     example: Currency.EUR,
     description: 'a ISO 4217 currency code'
-  })
-}
-
-export function CurrencyColumn (options?: Omit<ColumnOptions, 'type' | 'enum' | 'enumName'>): PropertyDecorator {
-  return Column({
-    ...options,
-    type: 'enum',
-    enum: Currency,
-    enumName: 'currency'
   })
 }

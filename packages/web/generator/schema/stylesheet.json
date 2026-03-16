@@ -1,34 +1,34 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Theme Color Schema",
-  "type": "object",
+  "additionalProperties": false,
   "properties": {
     "$schema": {
-      "type": "string",
-      "format": "uri"
+      "format": "uri",
+      "type": "string"
     },
     "colors": {
-      "type": "object",
+      "additionalProperties": false,
       "patternProperties": {
         ".*": {
-          "type": "object",
+          "additionalProperties": false,
           "properties": {
-            "light": {
-              "type": "string",
-              "pattern": "^#(?:[0-9a-fA-F]{3}){1,2}$"
-            },
             "dark": {
-              "type": "string",
-              "pattern": "^#(?:[0-9a-fA-F]{3}){1,2}$"
+              "pattern": "^#(?:[0-9a-fA-F]{3}){1,2}$",
+              "type": "string"
+            },
+            "light": {
+              "pattern": "^#(?:[0-9a-fA-F]{3}){1,2}$",
+              "type": "string"
             }
           },
           "required": ["light", "dark"],
-          "additionalProperties": false
+          "type": "object"
         }
       },
-      "additionalProperties": false
+      "type": "object"
     }
   },
   "required": ["colors"],
-  "additionalProperties": false
+  "title": "Theme Color Schema",
+  "type": "object"
 }

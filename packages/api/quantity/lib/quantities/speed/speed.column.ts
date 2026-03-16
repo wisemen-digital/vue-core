@@ -1,11 +1,10 @@
-import { ColumnOptions } from 'typeorm'
-import { QuantityColumn } from '../../quantity.column.js'
+import { QuantityColumn, QuantityColumnOptions } from '../../quantity.column.js'
 import { SpeedUnit } from './speed-unit.enum.js'
 import { Speed } from './speed.js'
 
 export function SpeedColumn (
   storeAsUnit: SpeedUnit,
-  options?: Omit<ColumnOptions, 'type' | 'transformer'>
+  options?: QuantityColumnOptions<SpeedUnit, Speed>
 ) {
   return QuantityColumn(Speed, storeAsUnit, options)
 }

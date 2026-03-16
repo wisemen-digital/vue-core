@@ -1,5 +1,12 @@
 # @wisemen/vue-core-generator
 
+## 1.2.2
+
+### Patch Changes
+
+- f5bddce: Ran updated linter
+- fce3eff: Updated linter dependency
+
 ## 1.2.1
 
 ### Patch Changes
