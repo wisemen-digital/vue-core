@@ -30,7 +30,6 @@ const props = withDefaults(defineProps<DatePickerProps>(), {
   isDateUnavailable: () => false,
   isDisabled: false,
   allowDeselect: false,
-  closeOnSelect: false,
   focusOnMount: false,
   showTwoMonths: false,
   variant: null,

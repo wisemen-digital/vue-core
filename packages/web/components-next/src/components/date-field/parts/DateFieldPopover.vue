@@ -76,7 +76,6 @@ watch(modelValue, (value, previousValue) => {
           :placeholder-value="placeholderValue"
           :max-date="maxDate"
           :locale="locale"
-          :close-on-select="closeOnSelect"
           :week-starts-on="weekStartsOn"
           :min-date="minDate"
           :show-two-months="showTwoMonths"

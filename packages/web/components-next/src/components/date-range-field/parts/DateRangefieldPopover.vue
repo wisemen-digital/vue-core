@@ -82,7 +82,6 @@ watch(
           :week-starts-on="weekStartsOn"
           :locale="locale"
           :allow-non-continuous-selection="allowNonContinuousSelection"
-          :close-on-select="closeOnSelect"
           :is-date-unavailable="isDateUnavailable"
           :max-date="maxDate"
           :min-date="minDate"
