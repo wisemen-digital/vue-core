@@ -35,7 +35,9 @@ const hiddenTabs = computed<TabItemData[]>(
 )
 
 const {
-  activeTab, variants,
+  activeTab,
+  variant,
+  variants,
 } = useInjectTabsContext()
 
 const {
@@ -80,6 +82,9 @@ watch(activeTab, () => {
         class="my-xxs"
       >
         <UIButton
+          :class="{
+            'hover:bg-transparent!': variant === 'button-border',
+          }"
           :icon-left="dropdownLeftIcon"
           :icon-right="ChevronDownIcon"
           :label="labelText"
@@ -96,7 +101,9 @@ watch(activeTab, () => {
           v-for="item in hiddenTabs"
           :key="item.value"
           :disabled="item.isDisabled"
-          :class="variants.item()"
+          :class="variants.item({
+            variant: 'underline',
+          })"
           class="w-full"
           @select="() => onSelectTab(item.value)"
         >
