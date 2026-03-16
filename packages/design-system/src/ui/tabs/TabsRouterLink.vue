@@ -50,7 +50,9 @@ const {
   scrollToLeft,
   scrollToRight,
   setScrollContainerRef,
-} = useTabs()
+} = useTabs({
+  activeValue: activeRouteName,
+})
 
 const variants = computed<TabsVariants>(() => tabsVariants({
   isFullWidth: props.isFullWidth,

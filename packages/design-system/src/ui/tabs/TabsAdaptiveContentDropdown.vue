@@ -2,7 +2,7 @@
 import { ChevronDownIcon } from '@wisemen/vue-core-icons'
 import {
   DropdownMenuItem as RekaDropdownMenuItem,
-  TabsTrigger as RekaTabsTrigger,
+  injectTabsRootContext,
 } from 'reka-ui'
 import type { Component } from 'vue'
 import {
@@ -58,6 +58,12 @@ const dropdownLeftIcon = computed<Component | undefined>(() => {
   return isActiveTabHidden ? activeTab.value?.icon : undefined
 })
 
+const tabsRootContext = injectTabsRootContext()
+
+function onSelectTab(value: string): void {
+  tabsRootContext.changeModelValue(value)
+}
+
 watch(activeTab, () => {
   scheduleLayoutEvaluation()
 })
@@ -66,6 +72,7 @@ watch(activeTab, () => {
 <template>
   <DropdownMenu
     v-if="props.hiddenTabsCount > 0"
+    popover-align="end"
   >
     <template #trigger>
       <RowLayout
@@ -88,33 +95,28 @@ watch(activeTab, () => {
         <RekaDropdownMenuItem
           v-for="item in hiddenTabs"
           :key="item.value"
-          :as-child="true"
+          :disabled="item.isDisabled"
+          :class="variants.item()"
           class="w-full"
+          @select="() => onSelectTab(item.value)"
         >
-          <RekaTabsTrigger
-            :value="item.value"
-            :disabled="item.isDisabled"
-            :class="variants.item()"
-            class="w-full"
+          <component
+            :is="item.icon"
+            v-if="item.icon != null"
+            class="size-4 shrink-0"
+          />
+          <UIText
+            v-if="item.label != null"
+            :text="item.label"
+            class="text-xs"
           >
-            <component
-              :is="item.icon"
-              v-if="item.icon != null"
-              class="size-4 shrink-0"
-            />
-            <UIText
-              v-if="item.label != null"
-              :text="item.label"
-              class="text-xs"
-            >
-              {{ item.label }}
-            </UIText>
-            <UINumberBadge
-              v-if="item.count != null"
-              :value="item.count.toString()"
-              size="md"
-            />
-          </RekaTabsTrigger>
+            {{ item.label }}
+          </UIText>
+          <UINumberBadge
+            v-if="item.count != null"
+            :value="item.count.toString()"
+            size="md"
+          />
         </RekaDropdownMenuItem>
       </ColumnLayout>
     </template>

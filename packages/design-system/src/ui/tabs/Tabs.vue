@@ -34,7 +34,9 @@ const {
   scrollToLeft,
   scrollToRight,
   setScrollContainerRef,
-} = useTabs()
+} = useTabs({
+  activeValue: computed<string | undefined>(() => modelValue.value),
+})
 
 const variants = computed<TabsVariants>(() => tabsVariants({
   isFullWidth: props.isFullWidth,
