@@ -134,25 +134,6 @@ const extended = i18n.getTranslations({
 })
 ```
 
-## Type-Safe Translation Keys
-
-By exposing the factory, you provide consumers with full TypeScript support:
-
-```typescript
-import { i18n, type Messages } from '@your-package/i18n'
-
-const translations = i18n.getTranslations()
-
-// TypeScript knows all available keys from Messages type
-type AvailableKeys = keyof Messages['en-US']
-
-// This works:
-const title = translations['en-US']['component.title']
-
-// This will error at compile time:
-// const invalid = translations['en-US']['invalid.key']
-```
-
 ## Best Practices
 
 ### 1. Use Consistent Namespacing
