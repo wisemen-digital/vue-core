@@ -244,5 +244,3 @@ catalogs:
     "typeorm": "0.3.28"
     "wkx": "0.5.0"
     "yaml": "2.8.2"
-catalog:
-  "@wi-ki/cdn": 0.0.1
