@@ -1,5 +1,7 @@
 import { resolve } from 'node:path'
 
+import tailwindcss from '@tailwindcss/vite'
+import postcssPrefixSelector from 'postcss-prefix-selector'
 import { defineConfig } from 'vitepress'
 
 import {
@@ -17,7 +19,7 @@ if (typeof __VUE_PROD_DEVTOOLS__ === 'undefined') {
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  base: '/vue-core/docs/',
+  base: '/wisemen-core/docs/',
   title: 'Vue Core',
   rewrites: {
     home: 'index',
@@ -39,7 +41,7 @@ export default defineConfig({
     socialLinks: [
       {
         icon: 'github',
-        link: 'https://github.com/wisemen-digital/vue-core',
+        link: 'https://github.com/wisemen-digital/wisemen-core',
       },
     ],
   },
@@ -50,6 +52,27 @@ export default defineConfig({
     },
   },
   vite: {
+    css: {
+      postcss: {
+        plugins: [
+          postcssPrefixSelector({
+            prefix: ':not(:where(.vp-raw *))',
+            includeFiles: [
+              /vp-doc\.css/,
+              /base\.css/,
+            ],
+            transform(prefix: string, _selector: string) {
+              const [
+                selector,
+                pseudo = '',
+              ] = _selector.split(/(:\S*)$/)
+
+              return selector + prefix + pseudo
+            },
+          }),
+        ],
+      },
+    },
     resolve: {
       alias: {
         '@docs': resolve(__dirname, '../'),
@@ -64,12 +87,13 @@ export default defineConfig({
       },
     },
     plugins: [
+      tailwindcss(),
       {
         name: 'eslint-inspector-spa',
         configureServer(server): void {
           server.middlewares.use((req, res, next) => {
-            if (req.url === '/vue-core/eslint-inspector' || req.url === '/vue-core/eslint-inspector/') {
-              req.url = '/vue-core/eslint-inspector/index.html'
+            if (req.url === '/wisemen-core/eslint-inspector' || req.url === '/wisemen-core/eslint-inspector/') {
+              req.url = '/wisemen-core/eslint-inspector/index.html'
             }
 
             next()
