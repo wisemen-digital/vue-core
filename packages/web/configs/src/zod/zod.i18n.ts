@@ -1,6 +1,6 @@
 import { createI18nFactory } from '@wisemen/vue-core-i18n-factory'
 
-export const DEFAULT_ZOD_CONFIG_LOCALES = {
+export const DEFAULT_ZOD_CONFIG_I18N = {
   'en-US': {
     'package.configs.validation.invalid_uuid': 'Invalid UUID',
     'package.configs.validation.invalid_date': 'Invalid date',
@@ -47,4 +47,4 @@ export const DEFAULT_ZOD_CONFIG_LOCALES = {
   },
 } as const
 
-export const zodConfigLocaleFactory = createI18nFactory(DEFAULT_ZOD_CONFIG_LOCALES)
+export const zodConfigI18nFactory = createI18nFactory(DEFAULT_ZOD_CONFIG_I18N)
