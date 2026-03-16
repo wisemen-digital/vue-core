@@ -1,5 +1,19 @@
 ## [1.7.2] (2025-08-04)
 
+## 2.1.0
+
+### Minor Changes
+
+- f5bddce: JSON sorting
+
+### Patch Changes
+
+- f5bddce: Ran updated linter
+- fce3eff: Implemented new computed / ref rule
+- f5bddce: Removed generics from computed / ref
+- Updated dependencies [fce3eff]
+  - @wisemen/eslint-plugin-vue@0.1.0
+
 ## 2.0.0
 
 ### Major Changes

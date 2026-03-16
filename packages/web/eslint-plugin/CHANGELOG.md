@@ -1,5 +1,11 @@
 # @wisemen/eslint-plugin-vue
 
+## 0.1.0
+
+### Minor Changes
+
+- fce3eff: Added new rule for computed / ref generics and it to be less strict
+
 ## 0.0.2
 
 ### Patch Changes
