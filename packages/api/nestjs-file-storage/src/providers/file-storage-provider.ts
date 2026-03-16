@@ -35,6 +35,10 @@ export abstract class FileStorage {
     isPublic?: boolean
   ): Promise<void>
 
+  abstract downloadStream (
+    key: string
+  ): Promise<Readable>
+
   abstract delete (
     key: string
   ): Promise<void>

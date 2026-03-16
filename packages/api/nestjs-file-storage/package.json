@@ -1,6 +1,6 @@
 {
   "name": "@wisemen/nestjs-file-storage",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "publishConfig": {
     "access": "public"
   },
@@ -34,6 +34,20 @@
     "class-transformer": "catalog:backend",
     "class-validator": "catalog:backend",
     "dayjs": "catalog:backend"
+  },
+  "peerDependenciesMeta": {
+    "@aws-sdk/client-s3": {
+      "optional": true
+    },
+    "@aws-sdk/lib-storage": {
+      "optional": true
+    },
+    "@aws-sdk/s3-request-presigner": {
+      "optional": true
+    },
+    "@azure/storage-blob": {
+      "optional": true
+    }
   },
   "author": "Pieter Pauwels",
   "license": "GPL",

@@ -1,35 +1,35 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "allowImportingTsExtensions": true,
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
     "jsx": "preserve",
     "jsxImportSource": "vue",
-    "useDefineForClassFields": true,
-    "baseUrl": ".",
     "module": "ESNext",
     "moduleResolution": "bundler",
+    "noEmit": true,
+    "noImplicitThis": true,
     "paths": {
       "@/*": ["src/*"]
     },
     "resolveJsonModule": true,
-    "types": [],
-    "allowImportingTsExtensions": true,
-    "allowJs": true,
+    "skipLibCheck": true,
     "strict": true,
-    "noImplicitThis": true,
-    "noEmit": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
-    "verbatimModuleSyntax": true,
-    "skipLibCheck": true
+    "target": "ESNext",
+    "types": [],
+    "useDefineForClassFields": true,
+    "verbatimModuleSyntax": true
   },
-  "include": [
-    "eslint.config.ts",
-    "**/*.ts"
-  ],
   "exclude": [
     "node_modules",
     "dist"
+  ],
+  "include": [
+    "eslint.config.ts",
+    "**/*.ts"
   ]
 }
