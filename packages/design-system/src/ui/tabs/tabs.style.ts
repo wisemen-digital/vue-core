@@ -95,7 +95,10 @@ export const tabsVariants = tv({
           not-disabled:data-[state=active]:hover:bg-brand-primary-alt
           data-[state=inactive]:text-quaternary
         `,
-        list: 'gap-lg',
+        list: `
+          gap-lg
+          data-[orientation=vertical]:gap-sm
+        `,
         scrollContainer: `
           border-secondary
           data-[orientation=horizontal]:border-b
