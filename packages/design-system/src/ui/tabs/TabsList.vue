@@ -44,7 +44,7 @@ onMounted(() => {
       v-if="isTouchDevice && isScrolledHorizontally && hasHorizontalOverflow && orientation === 'horizontal'"
       class="
         absolute top-0 left-0 z-20 flex h-full items-center bg-linear-to-r
-        from-primary to-transparent px-md
+        from-primary to-transparent
       "
     >
       <button
@@ -115,7 +115,7 @@ onMounted(() => {
       v-if="isTouchDevice && !hasReachedHorizontalEnd && hasHorizontalOverflow && orientation === 'horizontal'"
       class="
         absolute top-0 right-0 z-20 flex h-full items-center bg-linear-to-l
-        from-primary to-transparent px-md
+        from-primary to-transparent
       "
     >
       <button
