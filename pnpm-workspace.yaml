@@ -132,7 +132,7 @@ catalogs:
   date:
     "@internationalized/date": "3.10.1"
   openapi:
-    "@hey-api/openapi-ts": "0.90.8"
+    "@hey-api/openapi-ts": "0.94.0"
   tooling:
     "@commitlint/cli": "20.3.1"
     "@commitlint/config-conventional": "20.3.1"
