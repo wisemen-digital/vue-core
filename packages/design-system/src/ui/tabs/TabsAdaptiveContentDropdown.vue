@@ -88,6 +88,7 @@ watch(activeTab, () => {
         <RekaDropdownMenuItem
           v-for="item in hiddenTabs"
           :key="item.value"
+          :as-child="true"
           class="w-full"
         >
           <RekaTabsTrigger

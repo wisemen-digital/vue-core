@@ -9,6 +9,7 @@ import {
   useRouter,
 } from 'vue-router'
 
+import { UIActionTooltip } from '@/ui/action-tooltip/index'
 import { UIAdaptiveContentBlock } from '@/ui/adaptive-content/index'
 import ClickableElement from '@/ui/clickable-element/ClickableElement.vue'
 import { UINumberBadge } from '@/ui/number-badge/index'
@@ -19,6 +20,7 @@ import { UIText } from '@/ui/text/index'
 const props = withDefaults(defineProps<TabsRouterLinkItemProps>(), {
   isDisabled: false,
   count: null,
+  disabledReason: null,
   icon: undefined,
 })
 
@@ -50,40 +52,45 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <Component
-    :is="isTouchDevice ? 'div' : UIAdaptiveContentBlock"
-    :priority="priority"
+  <UIActionTooltip
+    :is-disabled="props.disabledReason == null"
+    :label="props.disabledReason"
   >
-    <ClickableElement>
-      <RekaTabsTrigger
-        :value="routeName"
-        :disabled="props.isDisabled"
-        :as-child="true"
-        :class="variants.item()"
-      >
-        <RouterLink
-          :to="props.to"
-          :replace="true"
+    <Component
+      :is="isTouchDevice ? 'div' : UIAdaptiveContentBlock"
+      :priority="priority"
+    >
+      <ClickableElement>
+        <RekaTabsTrigger
+          :value="routeName"
+          :disabled="props.isDisabled"
+          :as-child="true"
+          :class="variants.item()"
         >
-          <component
-            :is="props.icon"
-            v-if="props.icon != null"
-            class="size-4 shrink-0"
-          />
-          <UIText
-            :text="props.label"
-            :class="{
-              'sr-only': props.isLabelHidden,
-            }"
-            class="text-xs"
-          />
-          <UINumberBadge
-            v-if="props.count != null"
-            :value="props.count.toString()"
-            size="md"
-          />
-        </RouterLink>
-      </RekaTabsTrigger>
-    </ClickableElement>
-  </Component>
+          <RouterLink
+            :to="props.to"
+            :replace="true"
+          >
+            <component
+              :is="props.icon"
+              v-if="props.icon != null"
+              class="size-4 shrink-0"
+            />
+            <UIText
+              :text="props.label"
+              :class="{
+                'sr-only': props.isLabelHidden,
+              }"
+              class="text-xs"
+            />
+            <UINumberBadge
+              v-if="props.count != null"
+              :value="props.count.toString()"
+              size="md"
+            />
+          </RouterLink>
+        </RekaTabsTrigger>
+      </ClickableElement>
+    </Component>
+  </UIActionTooltip>
 </template>

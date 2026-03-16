@@ -37,6 +37,12 @@ export interface TabsItemProps {
    */
   count?: number | null
   /**
+   * Provides a reason why the tab is disabled,
+   * when provided a tooltip will be shown on hover with the provided text.
+   * @default null
+   */
+  disabledReason?: string | null
+  /**
    * An optional icon to be displayed alongside the tab label.
    */
   icon?: Component
@@ -74,6 +80,12 @@ export interface TabsRouterLinkItemProps {
    */
   count?: number | null
   /**
+   * Provides a reason why the tab is disabled,
+   * when provided a tooltip will be shown on hover with the provided text.
+   * @default null
+   */
+  disabledReason?: string | null
+  /**
    * An optional icon to be displayed alongside the tab label.
    */
   icon?: Component
@@ -85,5 +97,4 @@ export interface TabsRouterLinkItemProps {
    * The route location to navigate to when the tab is clicked.
    */
   to: RouteLocationRaw
-
 }
