@@ -1,12 +1,4 @@
 /**
- * Utility type for creating a recursive partial type
- * Allows partial overrides at any depth of nested objects
- */
-export type DeepPartial<T> = T extends object ? {
-  [P in keyof T]?: DeepPartial<T[P]>
-} : T
-
-/**
  * Configuration for getTranslations method
  * - overrideDefaults: partial overrides for default locales
  * - extendedLocales: new locales with complete key specification

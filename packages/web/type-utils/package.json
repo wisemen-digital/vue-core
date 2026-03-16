@@ -1,16 +1,16 @@
 {
-  "name": "@wisemen/vue-core-i18n-factory",
+  "name": "@wisemen/vue-core-type-utils",
   "publishConfig": {
     "access": "public"
   },
   "type": "module",
   "version": "0.0.1",
-  "private": false,
+  "private": true,
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/wisemen-digital/wisemen-core",
-    "directory": "packages/web/i18n-factory"
+    "directory": "packages/type-utils"
   },
   "sideEffects": false,
   "exports": {
@@ -38,7 +38,6 @@
     "typecheck": "pnpm tsc"
   },
   "devDependencies": {
-    "@wisemen/vue-core-configs": "workspace:*",
     "@types/node": "catalog:types",
     "@wisemen/eslint-config-vue": "workspace:*",
     "eslint": "catalog:lint",

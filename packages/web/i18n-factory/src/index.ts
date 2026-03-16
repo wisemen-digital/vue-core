@@ -1,7 +1,6 @@
 // Types
 export type { I18nFactory } from './factory'
 export type {
-  DeepPartial,
   DefaultLocaleOverrides,
   ExtendedLocales,
   I18nFactoryConfig,
