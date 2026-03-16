@@ -12,6 +12,11 @@ import type {
 
 export interface DateFieldProps extends TestId, InteractableElement, FormElement, SharedDateProps, CustomizableElement<'dateField'> {
   /**
+   * Whether the picker should close after a selection is made.
+   * @default false
+   */
+  closeOnSelect?: boolean
+  /**
    * Whether the input is loading.
    * @default false
    */

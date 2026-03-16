@@ -6,6 +6,12 @@ import type {
 
 export interface SharedDatePickerProps extends TestId, InteractableElement, SharedDateProps {
   /**
+   * Whether the picker should close after a selection is made.
+   * This only affects integrations that render the picker inside a dismissible container.
+   * @default false
+   */
+  closeOnSelect?: boolean
+  /**
    * The day the week starts on, where 0 represents Sunday, 1 represents Monday, and so on up to 6 for Saturday.
    * @default 0
    */

@@ -32,6 +32,7 @@ const props = withDefaults(defineProps<DateRangePickerProps>(), {
   isDisabled: false,
   allowDeselect: false,
   allowNonContinuousSelection: false,
+  closeOnSelect: false,
   focusOnMount: false,
   showTwoMonths: false,
   variant: null,
