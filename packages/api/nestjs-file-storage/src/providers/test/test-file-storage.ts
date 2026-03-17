@@ -1,4 +1,4 @@
-import { Readable } from 'node:stream'
+import { Readable } from 'stream'
 import { Injectable } from '@nestjs/common'
 import { FileStorage } from '#src/providers/file-storage-provider.js'
 
@@ -37,6 +37,14 @@ export class TestFileStorage extends FileStorage {
 
   uploadStream (_key: string, _stream: Readable): Promise<void> {
     return Promise.resolve()
+  }
+
+  downloadStream (_key: string): Promise<Readable> {
+    const stream = new Readable()
+    stream.push('test')
+    stream.push(null)
+
+    return Promise.resolve(stream)
   }
 
   delete (_key: string): Promise<void> {

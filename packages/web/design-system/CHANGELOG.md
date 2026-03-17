@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.1
+
+### Patch Changes
+
+- f5bddce: Ran updated linter
+- fce3eff: Updated linter dependency
+- Updated dependencies [f5bddce]
+- Updated dependencies [fce3eff]
+  - @wisemen/vue-core-icons@0.0.1
+
 ## 0.1.0
 
 ### Minor Changes

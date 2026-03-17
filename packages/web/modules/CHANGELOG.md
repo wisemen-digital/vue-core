@@ -1,5 +1,15 @@
 # @wisemen/vue-core-modules
 
+## 4.0.6
+
+### Patch Changes
+
+- f5bddce: Ran updated linter
+- fce3eff: Updated linter dependency
+- Updated dependencies [f5bddce]
+- Updated dependencies [fce3eff]
+  - @wisemen/vue-core-components@2.2.3
+
 ## 4.0.5
 
 ### Patch Changes

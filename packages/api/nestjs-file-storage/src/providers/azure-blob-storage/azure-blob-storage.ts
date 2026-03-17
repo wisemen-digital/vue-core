@@ -1,4 +1,4 @@
-import type { Readable } from 'stream'
+import { Readable } from 'stream'
 import { BlobSASPermissions, BlobServiceClient, ContainerClient, StorageSharedKeyCredential } from '@azure/storage-blob'
 import { Injectable } from '@nestjs/common'
 import dayjs from 'dayjs'
@@ -139,6 +139,22 @@ export class AzureBlobStorage extends FileStorage {
     const blobClient = this.containerClient.getBlockBlobClient(key)
 
     await blobClient.uploadStream(stream)
+  }
+
+  public async downloadStream (
+    key: string
+  ): Promise<Readable> {
+    this.validateKey(key)
+
+    const blobClient = this.containerClient.getBlockBlobClient(key)
+
+    const downloadResponse = await blobClient.download()
+
+    if (downloadResponse.readableStreamBody === undefined) {
+      throw new Error(`Could not download stream for ${key}`)
+    }
+
+    return downloadResponse.readableStreamBody as Readable
   }
 
   public async delete (

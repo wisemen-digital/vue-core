@@ -1,38 +1,31 @@
 import { Column, ColumnOptions, ValueTransformer } from 'typeorm'
 import { Monetary } from './monetary.js'
-import { Currency, CurrencyColumn } from './currency.enum.js'
+import { Currency } from './currency.enum.js'
 import { PrecisionLossError } from './precision-loss-error.js'
 
-export type EmbeddedMonetaryOptions = {
+export type MonetaryOptions = {
   currencyPrecisions?: Record<Currency, number>
   defaultPrecision: number
-} & Omit<ColumnOptions, 'type' | 'transformer'>
+  default: Monetary
+} & Omit<ColumnOptions, 'type' | 'transformer' | 'default'>
 
-export class EmbeddedMonetary {
-  @Column({ type: 'int4' })
+export interface MonetaryJSON {
   amount: number
-
-  @CurrencyColumn()
   currency: Currency
 }
 
-export class NullableEmbeddedMonetary {
-  @Column({ type: 'int4', nullable: true })
-  amount: number | null
-
-  @CurrencyColumn({ nullable: true })
-  currency: Currency | null
-}
-
 /** Stores the amount and currency as jsonb */
-export function MonetaryColumn (options: EmbeddedMonetaryOptions): PropertyDecorator {
+export function MonetaryColumn (options: MonetaryOptions): PropertyDecorator {
+  const transformer = new MoneyTypeOrmTransformer(
+    options.defaultPrecision,
+    options.currencyPrecisions ?? {} as Record<Currency, number>
+  )
+
   return Column({
     ...options,
     type: 'jsonb',
-    transformer: new MoneyTypeOrmTransformer(
-      options.defaultPrecision,
-      options.currencyPrecisions ?? {} as Record<Currency, number>
-    )
+    default: transformer.to(options.default),
+    transformer
   })
 }
 
@@ -49,12 +42,8 @@ export class MoneyTypeOrmTransformer implements ValueTransformer {
     }
   }
 
-  from (monetary: EmbeddedMonetary | NullableEmbeddedMonetary | null): Monetary | null {
+  from (monetary: MonetaryJSON | null): Monetary | null {
     if (monetary === null) {
-      return null
-    }
-
-    if (monetary.amount === null || monetary.currency === null) {
       return null
     }
 
@@ -63,15 +52,9 @@ export class MoneyTypeOrmTransformer implements ValueTransformer {
     return new Monetary(monetary.amount, monetary.currency, precision)
   }
 
-  to (
-    monetary: Monetary | null | undefined
-  ): EmbeddedMonetary | NullableEmbeddedMonetary | undefined {
-    if (monetary === undefined) {
-      return undefined
-    }
-
-    if (monetary === null) {
-      return { amount: null, currency: null }
+  to (monetary: Monetary | null | undefined): MonetaryJSON | null | undefined {
+    if (monetary === undefined || monetary === null) {
+      return monetary
     }
 
     const precision = this.getPrecisionFor(monetary.currency)
