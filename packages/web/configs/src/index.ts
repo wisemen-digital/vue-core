@@ -17,5 +17,6 @@ export {
   DEFAULT_VUE_QUERY_CLIENT_CONFIG, vueQueryClientConfig,
 } from './vue-query/vueQueryClient.config'
 export {
-  zodConfig, type ZodConfigOptions,
+  zodConfig,
+  type ZodConfigOptions,
 } from './zod/zod.config'
