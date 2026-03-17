@@ -12,6 +12,7 @@ import { useI18n } from 'vue-i18n'
 import { UIAdaptiveContent } from '@/ui/adaptive-content/index'
 import { useInjectTabsContext } from '@/ui/tabs/tabs.context'
 import TabsAdaptiveContentDropdown from '@/ui/tabs/TabsAdaptiveContentDropdown.vue'
+import TabsIndicator from '@/ui/tabs/TabsIndicator.vue'
 
 const i18n = useI18n()
 const scrollContainerRef = ref<HTMLElement | null>(null)
@@ -87,9 +88,10 @@ onMounted(() => {
             >
               <slot />
 
-              <RekaTabsIndicator :class="variants.indicator()">
-                <div :class="variants.indicatorInner()" />
-              </RekaTabsIndicator>
+              <TabsIndicator
+                :hidden-tabs-count="hiddenBlockCount"
+                :tabs="tabs"
+              />
               <TabsAdaptiveContentDropdown
                 :hidden-tabs-count="hiddenBlockCount"
                 :tabs="tabs"

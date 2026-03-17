@@ -23,13 +23,16 @@ interface TabsContext extends PropsToComputed<TabsProps> {
   isTouchDevice: ComputedRef<boolean>
 
   activeTab: ComputedRef<TabItemData | null>
+  getAdaptiveDropdownRef: () => InstanceType<typeof HTMLDivElement> | null
   registerTab: (tab: TabsItemProps) => number
   scrollToLeft: () => void
   scrollToRight: () => void
+  setAdaptiveDropdownRef: (el: InstanceType<typeof HTMLDivElement> | null) => void
   setScrollContainerRef: (ref: HTMLElement) => void
   tabs: Ref<TabItemData[]>
   unregisterTab: (value: string) => void
   variants: ComputedRef<TabsVariants>
+
 }
 
 export const [

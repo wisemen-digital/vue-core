@@ -13,6 +13,8 @@ export const tabsVariants = tv({
   slots: {
     base: 'relative isolate overflow-hidden',
     content: 'outline-none',
+    dropdownIndicator: 'absolute transition-opacity duration-200',
+    dropdownTrigger: 'relative flex items-center justify-center',
     indicator: `
       absolute duration-200
       group-data-[orientation=horizontal]:bottom-0
@@ -44,6 +46,7 @@ export const tabsVariants = tv({
     variant: {
       'button-border': {
         base: 'rounded-lg',
+        dropdownIndicator: 'inset-1 rounded-sm bg-primary-alt shadow-sm',
         indicator: `
           group-data-[orientation=horizontal]:h-full
           group-data-[orientation=vertical]:w-full
@@ -63,6 +66,7 @@ export const tabsVariants = tv({
         list: 'relative w-fit gap-xs rounded-sm bg-tertiary',
       },
       'button-brand': {
+        dropdownIndicator: 'inset-0 rounded-sm bg-brand-primary-alt',
         indicator: `
           group-data-[orientation=horizontal]:h-full
           group-data-[orientation=vertical]:w-full
@@ -79,6 +83,7 @@ export const tabsVariants = tv({
         list: 'gap-xs',
       },
       'underline': {
+        dropdownIndicator: 'bottom-0 left-0 h-0.5 w-full rounded-md bg-fg-brand-primary-alt',
         indicator: `
           rounded-md bg-fg-brand-primary-alt
           group-data-[orientation=horizontal]:h-0.5

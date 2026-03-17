@@ -7,6 +7,7 @@ import {
 import type { Component } from 'vue'
 import {
   computed,
+  ref,
   watch,
 } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -16,7 +17,6 @@ import { UIButton } from '@/ui/button/index'
 import ColumnLayout from '@/ui/column-layout/ColumnLayout.vue'
 import DropdownMenu from '@/ui/dropdown-menu/DropdownMenu.vue'
 import { UINumberBadge } from '@/ui/number-badge/index'
-import RowLayout from '@/ui/row-layout/RowLayout.vue'
 import type { TabItemData } from '@/ui/tabs/tabs.context'
 import { useInjectTabsContext } from '@/ui/tabs/tabs.context'
 import { UIText } from '@/ui/text/index'
@@ -28,6 +28,8 @@ const props = defineProps<{
 
 const i18n = useI18n()
 
+const adaptiveDropdownRef = ref<InstanceType<typeof HTMLDivElement> | null>(null)
+
 const hiddenTabs = computed<TabItemData[]>(
   () => [
     ...props.tabs,
@@ -36,6 +38,7 @@ const hiddenTabs = computed<TabItemData[]>(
 
 const {
   activeTab,
+  setAdaptiveDropdownRef,
   variant,
   variants,
 } = useInjectTabsContext()
@@ -44,10 +47,12 @@ const {
   scheduleLayoutEvaluation,
 } = useInjectAdaptiveContentContext()
 
-const labelText = computed<string>(() => {
-  const isActiveTabHidden = hiddenTabs.value.some((tab) => tab.value === activeTab.value?.value)
+const isActiveTabHidden = computed<boolean>(
+  () => hiddenTabs.value.some((tab) => tab.value === activeTab.value?.value),
+)
 
-  if (isActiveTabHidden) {
+const labelText = computed<string>(() => {
+  if (isActiveTabHidden.value) {
     return activeTab.value?.label ?? i18n.t('component.tabs.adaptive_dropdown.trigger.label')
   }
 
@@ -55,10 +60,13 @@ const labelText = computed<string>(() => {
 })
 
 const dropdownLeftIcon = computed<Component | undefined>(() => {
-  const isActiveTabHidden = hiddenTabs.value.some((tab) => tab.value === activeTab.value?.value)
-
-  return isActiveTabHidden ? activeTab.value?.icon : undefined
+  return isActiveTabHidden.value ? activeTab.value?.icon : undefined
 })
+
+const activeButtonClasses = computed<Record<string, boolean>>(() => ({
+  'text-brand-secondary!': isActiveTabHidden.value && (variant.value === 'underline' || variant.value === 'button-brand'),
+  'text-secondary!': isActiveTabHidden.value && variant.value === 'button-border',
+}))
 
 const tabsRootContext = injectTabsRootContext()
 
@@ -69,6 +77,16 @@ function onSelectTab(value: string): void {
 watch(activeTab, () => {
   scheduleLayoutEvaluation()
 })
+
+watch(() => props.hiddenTabsCount, () => {
+  if (props.hiddenTabsCount === 0) {
+    setAdaptiveDropdownRef(null)
+
+    return
+  }
+
+  setAdaptiveDropdownRef(adaptiveDropdownRef.value)
+})
 </script>
 
 <template>
@@ -77,20 +95,28 @@ watch(activeTab, () => {
     popover-align="end"
   >
     <template #trigger>
-      <RowLayout
-        justify="center"
-        class="my-xxs"
+      <div
+        ref="adaptiveDropdownRef"
+        :class="variants.dropdownTrigger()"
       >
+        <div
+          v-if="false"
+          :class="variants.dropdownIndicator()"
+        />
         <UIButton
-          :class="{
-            'hover:bg-transparent!': variant === 'button-border',
-          }"
+          :class="[
+            activeButtonClasses,
+            {
+              'hover:bg-transparent!': variant === 'button-border',
+            },
+          ]"
           :icon-left="dropdownLeftIcon"
           :icon-right="ChevronDownIcon"
           :label="labelText"
+          class="relative z-10"
           variant="tertiary"
         />
-      </RowLayout>
+      </div>
     </template>
     <template #content>
       <ColumnLayout
