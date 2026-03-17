@@ -2,6 +2,10 @@ import type {
   Meta,
   StoryObj,
 } from '@storybook/vue3-vite'
+import {
+  expect,
+  within,
+} from 'storybook/test'
 
 import BadgePlayground from './BadgePlayground.vue'
 import BadgeVariantPlayground from './BadgeVariantPlayground.vue'
@@ -9,6 +13,9 @@ import BadgeVariantPlayground from './BadgeVariantPlayground.vue'
 const meta = {
   title: 'Components/Badge',
   argTypes: {
+    hasDot: {
+      control: 'boolean',
+    },
     color: {
       control: 'select',
       options: [
@@ -21,9 +28,6 @@ const meta = {
         'warning',
         'purple',
       ],
-    },
-    hasDot: {
-      control: 'boolean',
     },
     label: {
       control: 'text',
@@ -64,12 +68,21 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    color: 'gray',
     hasDot: false,
+    color: 'gray',
     label: 'Badge',
     rounded: 'default',
     size: 'md',
     variant: 'translucent',
+  },
+  play: async ({
+    canvasElement,
+  }) => {
+    const canvas = within(canvasElement)
+    const badges = canvas.getAllByRole('status')
+
+    await expect(badges.length).toBeGreaterThan(0)
+    await expect(badges[0]).toHaveTextContent('Badge')
   },
 }
 
