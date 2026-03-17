@@ -22,7 +22,6 @@
   },
   "peerDependencies": {
     "@nestjs/swagger": "catalog:backend",
-    "@wisemen/validators": "catalog:backend",
     "class-validator": "catalog:backend",
     "dayjs": "catalog:backend",
     "typeorm": "catalog:backend"
@@ -30,6 +29,7 @@
   "devDependencies": {
     "@types/node": "catalog:backend",
     "@wisemen/eslint-config-nestjs": "workspace:*",
+    "@wisemen/validators": "workspace:*",
     "eslint": "catalog:lint",
     "expect": "catalog:test",
     "typescript": "catalog:peer"

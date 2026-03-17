@@ -10,6 +10,9 @@
   "files": [
     "dist/"
   ],
+  "imports": {
+    "#src/*": "./dist/*"
+  },
   "scripts": {
     "prebuild": "rm -rf ./dist",
     "clean": "rm -rf ./dist",
@@ -23,7 +26,7 @@
   "peerDependencies": {
     "@nestjs/common": "catalog:backend",
     "@nestjs/swagger": "catalog:backend",
-    "@wisemen/nestjs-typeorm": "catalog:backend",
+    "@wisemen/nestjs-typeorm": "workspace:*",
     "class-transformer": "catalog:backend",
     "class-validator": "catalog:backend",
     "typeorm": "catalog:backend"
@@ -31,6 +34,7 @@
   "devDependencies": {
     "@types/node": "catalog:backend",
     "@wisemen/eslint-config-nestjs": "workspace:*",
+    "@wisemen/nestjs-typeorm": "workspace:*",
     "eslint": "catalog:lint",
     "expect": "catalog:test",
     "typescript": "catalog:peer"
