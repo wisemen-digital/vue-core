@@ -16,15 +16,12 @@ import type { DetailPaneStorage } from '@/ui/page/detailPane.type'
 
 const DEFAULT_WIDTH = '20rem'
 const DEFAULT_MIN_WIDTH = '16rem'
-const DEFAULT_MAX_WIDTH = '40rem'
+const DEFAULT_MAX_WIDTH = '25rem'
 
 interface UseDetailPaneOptions {
   isOpen: Ref<boolean>
   isResizable: boolean
-  maxWidth: string
-  minWidth: string
   storage: DetailPaneStorage | null
-  width: string
 }
 
 interface UseDetailPaneReturn {
@@ -32,11 +29,11 @@ interface UseDetailPaneReturn {
   isOpen: WritableComputedRef<boolean>
   isResizable: boolean
   isResizing: Ref<boolean>
-  maxWidth: string
-  minWidth: string
   sidebarWidth: Ref<string>
   toggleIsOpen: () => void
+  onResizeKeyDown: (event: KeyboardEvent) => void
   onResizeStart: (event: PointerEvent) => void
+
 }
 
 function remToPx(rem: string): number {
@@ -49,13 +46,12 @@ function remToPx(rem: string): number {
 }
 
 export function useDetailPane(options: UseDetailPaneOptions): UseDetailPaneReturn {
-  const {
-    isResizable = true,
-    maxWidth = DEFAULT_MAX_WIDTH,
-    minWidth = DEFAULT_MIN_WIDTH,
-    storage,
-    width = DEFAULT_WIDTH,
-  } = options
+  const isResizable = options.isResizable ?? true
+  const storage = options.storage
+
+  const width = DEFAULT_WIDTH
+  const minWidth = DEFAULT_MIN_WIDTH
+  const maxWidth = DEFAULT_MAX_WIDTH
 
   const screen = useBreakpoints({
     xl: 960,
@@ -151,15 +147,45 @@ export function useDetailPane(options: UseDetailPaneOptions): UseDetailPaneRetur
     document.addEventListener('pointerup', onPointerUp)
   }
 
+  const RESIZE_STEP_PX = 16
+
+  function onResizeKeyDown(event: KeyboardEvent): void {
+    if (isFloatingDetailPane.value) {
+      return
+    }
+
+    const minPx = remToPx(minWidth)
+    const maxPx = remToPx(maxWidth)
+
+    let delta = 0
+
+    if (event.key === 'ArrowLeft') {
+      delta = RESIZE_STEP_PX
+    }
+    else if (event.key === 'ArrowRight') {
+      delta = -RESIZE_STEP_PX
+    }
+
+    if (delta === 0) {
+      return
+    }
+
+    event.preventDefault()
+
+    const currentPx = Number.parseFloat(sidebarWidth.value) || remToPx(width)
+    const newWidth = Math.min(Math.max(currentPx + delta, minPx), maxPx)
+
+    sidebarWidth.value = `${newWidth}px`
+  }
+
   return {
     isFloatingDetailPane,
     isOpen,
     isResizable,
     isResizing,
-    maxWidth,
-    minWidth,
     sidebarWidth,
     toggleIsOpen,
+    onResizeKeyDown,
     onResizeStart,
   }
 }

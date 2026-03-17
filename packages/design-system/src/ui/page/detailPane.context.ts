@@ -10,11 +10,10 @@ export interface DetailPaneContext {
   isOpen: Ref<boolean>
   isResizable: boolean
   isResizing: Ref<boolean>
-  maxWidth: string
-  minWidth: string
   sidebarWidth: Ref<string>
   toggleIsOpen: () => void
   onResizeStart: (event: PointerEvent) => void
+  onResizeKeyDown: (event: KeyboardEvent) => void
 }
 
 export const [
