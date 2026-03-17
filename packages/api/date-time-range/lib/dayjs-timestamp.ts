@@ -188,7 +188,7 @@ export class DayjsTimestamp implements Timestamp {
     return this.value.utcOffset()
   }
 
-  isBefore (other: TimestampInput, unit?: OpUnitType): boolean {
+  isBefore (other: TimestampInput, unit: OpUnitType = 'milliseconds'): boolean {
     other = timestamp(other)
 
     if (other.isPastInfinity()) {
@@ -200,7 +200,7 @@ export class DayjsTimestamp implements Timestamp {
     return this.value.isBefore((other as DayjsTimestamp).value, unit)
   }
 
-  isAfter (other: TimestampInput, unit?: OpUnitType): boolean {
+  isAfter (other: TimestampInput, unit: OpUnitType = 'milliseconds'): boolean {
     other = timestamp(other)
 
     if (other.isFutureInfinity()) {
@@ -212,7 +212,7 @@ export class DayjsTimestamp implements Timestamp {
     return this.value.isAfter((other as DayjsTimestamp).value, unit)
   }
 
-  isSame (other: TimestampInput, unit?: OpUnitType): boolean {
+  isSame (other: TimestampInput, unit: OpUnitType = 'milliseconds'): boolean {
     other = timestamp(other)
 
     if (other.isInfinity()) {
@@ -222,11 +222,11 @@ export class DayjsTimestamp implements Timestamp {
     return this.value.isSame((other as DayjsTimestamp).value, unit)
   }
 
-  isSameOrAfter (other: TimestampInput, unit?: OpUnitType): boolean {
+  isSameOrAfter (other: TimestampInput, unit: OpUnitType = 'milliseconds'): boolean {
     return this.isAfter(other, unit) || this.isSame(other, unit)
   }
 
-  isSameOrBefore (other: TimestampInput, unit?: OpUnitType): boolean {
+  isSameOrBefore (other: TimestampInput, unit: OpUnitType = 'milliseconds'): boolean {
     return this.isBefore(other, unit) || this.isSame(other, unit)
   }
 
