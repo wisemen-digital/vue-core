@@ -108,6 +108,7 @@ onMounted(() => {
     :error-message="props.errorMessage"
     :is-disabled="props.isDisabled"
     :is-required="props.isRequired"
+    :disabled-reason="props.disabledReason"
     :hint="resolvedHint"
     :label="props.label"
     :class="props.class"
