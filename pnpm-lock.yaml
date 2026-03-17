@@ -2219,6 +2219,9 @@ importers:
       '@wisemen/eslint-config-vue':
         specifier: workspace:*
         version: link:../eslint-config
+      '@wisemen/vue-core-configs':
+        specifier: workspace:*
+        version: link:../configs
       eslint:
         specifier: catalog:lint
         version: 9.39.2(jiti@2.6.1)
@@ -2505,6 +2508,27 @@ importers:
       vue-tsc:
         specifier: catalog:vue
         version: 3.2.2(typescript@5.9.3)
+
+  packages/web/type-utils:
+    devDependencies:
+      '@types/node':
+        specifier: catalog:types
+        version: 24.8.1
+      '@wisemen/eslint-config-vue':
+        specifier: workspace:*
+        version: link:../eslint-config
+      eslint:
+        specifier: catalog:lint
+        version: 9.39.2(jiti@2.6.1)
+      tsdown:
+        specifier: catalog:build
+        version: 0.18.4(synckit@0.11.11)(typescript@5.9.3)(vue-tsc@3.2.2(typescript@5.9.3))
+      typescript:
+        specifier: catalog:build
+        version: 5.9.3
+      vitest:
+        specifier: catalog:test
+        version: 4.0.17(@opentelemetry/api@1.9.0)(@types/node@24.8.1)(@vitest/browser-playwright@4.0.17)(esbuild@0.27.2)(jiti@2.6.1)(jsdom@27.4.0)(sass@1.97.3)(terser@5.46.0)(tsx@4.20.3)(yaml@2.8.2)
 
 packages:
 
