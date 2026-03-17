@@ -8,7 +8,7 @@ hero:
   actions:
     - theme: brand
       text: Get Started
-      link: /pages/getting-started/installation
+      link: /packages/i18n-factory/pages/getting-started/installation
     - theme: alt
       text: View on GitHub
       link: https://github.com/wisemen-digital/wisemen-core/tree/main/packages/web/i18n-factory

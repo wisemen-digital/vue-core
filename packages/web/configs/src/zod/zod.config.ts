@@ -12,7 +12,7 @@ function configureZod(i18nInstance: Composer): void {
       const isInvalidDiscriminator = iss.code === 'invalid_union'
 
       if (isStringAndEmpty || isInvalidType || isInvalidDiscriminator) {
-        return t('package.configs.validation.invalid_string')
+        return t('package.configs.validation.required')
       }
 
       if (iss.code === 'invalid_format' && iss.format === 'email') {
@@ -69,7 +69,7 @@ function configureZod(i18nInstance: Composer): void {
       }
       if (iss.code === 'too_small' && iss.origin === 'date') {
         return t('package.configs.validation.too_small_date', {
-          v: iss.minimum,
+          count: iss.minimum,
         })
       }
     },

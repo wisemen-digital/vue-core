@@ -15,7 +15,7 @@ export const DEFAULT_ZOD_CONFIG_I18N = {
     'package.configs.validation.invalid_url': 'Invalid URL',
     'package.configs.validation.required': 'This field is required',
     'package.configs.validation.too_big': 'Must be less than or equal to {count}',
-    'package.configs.validation.too_big_array': 'Must contain a most {count} item | Must contain a most {count} items',
+    'package.configs.validation.too_big_array': 'Must contain at most {count} item | Must contain at most {count} items',
     'package.configs.validation.too_big_number': 'Must be less than or equal to {count}',
     'package.configs.validation.too_big_string': 'Must be at most {count} character | Must be at most {count} characters',
     'package.configs.validation.too_small': 'Must be greater than or equal to {count}',
