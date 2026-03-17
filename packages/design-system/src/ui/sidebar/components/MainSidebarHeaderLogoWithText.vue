@@ -10,6 +10,7 @@ const props = defineProps<{
 
 const {
   isSidebarOpen,
+  sidebarLogoHeight,
   sidebarLogoPadding,
   variant,
 } = useMainSidebar()
@@ -17,7 +18,7 @@ const {
 
 <template>
   <RowLayout
-    :style="{ height: '42px' }"
+    :style="{ height: sidebarLogoHeight }"
     justify="between"
   >
     <RowLayout :style="{ padding: sidebarLogoPadding }">

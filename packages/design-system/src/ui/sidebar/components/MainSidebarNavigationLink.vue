@@ -56,11 +56,23 @@ const navigationLinkGridTemplateColumns = computed<string>(() => {
 
   return `${sidebarIconCellSize} 1fr`
 })
+
+const isTooltipDisabled = computed<boolean>(() => {
+  if (variant.value === 'icons-with-labels' && props.keyboardShortcut === null) {
+    return true
+  }
+
+  if (variant.value === 'icons-only' && isSidebarOpen && props.keyboardShortcut === null) {
+    return true
+  }
+
+  return false
+})
 </script>
 
 <template>
   <ActionTooltip
-    :is-disabled="variant !== 'icons-only' && !isSidebarOpen && props.keyboardShortcut === null"
+    :is-disabled="isTooltipDisabled"
     :keyboard-shortcut="props.keyboardShortcut"
     :label="props.label"
     popover-side="right"

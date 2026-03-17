@@ -17,8 +17,13 @@ const SIDEBAR_ICON_SIZE = 16
 const SIDEBAR_ICON_CELL_SIZE = SIDEBAR_COLLAPSED_WIDTH - 2 * SIDEBAR_CONTAINER_PADDING
 const SIDEBAR_LOGO_SIZE = 24
 const SIDEBAR_AVATAR_SIZE = 24
+const SIDEBAR_LOGO_HEIGHT = 42
 
-const ICONS_ONLY_SIDEBAR_WIDTH = `${SIDEBAR_COLLAPSED_WIDTH / 16}rem`
+function pxToRem(px: number): string {
+  return `${px / 16}rem`
+}
+
+const ICONS_ONLY_SIDEBAR_WIDTH = pxToRem(SIDEBAR_COLLAPSED_WIDTH)
 
 const isFloatingSidebarOpen = ref<boolean>(false)
 const sidebarWidth = ref<string>(DEFAULT_SIDEBAR_WIDTH)
@@ -55,12 +60,13 @@ export function useMainSidebar() {
     },
   })
 
-  const sidebarContainerPadding = `${SIDEBAR_CONTAINER_PADDING}px`
-  const sidebarIconSize = `${SIDEBAR_ICON_SIZE}px`
-  const sidebarIconCellSize = `${SIDEBAR_ICON_CELL_SIZE}px`
-  const sidebarLinkHeight = `${SIDEBAR_ICON_CELL_SIZE}px`
-  const sidebarLogoPadding = `${(SIDEBAR_ICON_CELL_SIZE - SIDEBAR_LOGO_SIZE) / 2}px`
-  const sidebarAvatarPadding = `${(SIDEBAR_ICON_CELL_SIZE - SIDEBAR_AVATAR_SIZE) / 2}px`
+  const sidebarContainerPadding = pxToRem(SIDEBAR_CONTAINER_PADDING)
+  const sidebarIconSize = pxToRem(SIDEBAR_ICON_SIZE)
+  const sidebarIconCellSize = pxToRem(SIDEBAR_ICON_CELL_SIZE)
+  const sidebarLinkHeight = pxToRem(SIDEBAR_ICON_CELL_SIZE)
+  const sidebarLogoPadding = pxToRem((SIDEBAR_ICON_CELL_SIZE - SIDEBAR_LOGO_SIZE) / 2)
+  const sidebarAvatarPadding = pxToRem((SIDEBAR_ICON_CELL_SIZE - SIDEBAR_AVATAR_SIZE) / 2)
+  const sidebarLogoHeight = pxToRem(SIDEBAR_LOGO_HEIGHT)
 
   function closeIfFloatingSidebar(): void {
     if (isFloatingSidebar.value) {
@@ -91,6 +97,7 @@ export function useMainSidebar() {
     sidebarIconCellSize,
     sidebarIconSize,
     sidebarLinkHeight,
+    sidebarLogoHeight,
     sidebarLogoPadding,
     sidebarWidth,
     variant,
