@@ -2,7 +2,7 @@
 import AvatarLabel from '@/ui/avatar/avatar-label/AvatarLabel.vue'
 import RowLayout from '@/ui/row-layout/RowLayout.vue'
 
-const profileSrc = '../../../storybook-assets/profile-picture.jpg'
+const profileSrc = '../../../../storybook-assets/profile-picture.jpg'
 </script>
 
 <template>

@@ -2,12 +2,20 @@ import { tv } from '@/styles/tailwindVariants.lib'
 
 export const createAvatarGroupAddButtonStyle = tv({
   slots: {
-    icon: 'text-tertiary',
+    icon: `
+      text-tertiary
+      group-disabled/button:text-disabled
+    `,
+
     root: `
-      flex items-center justify-center rounded-full! border border-dashed
-      border-primary bg-primary transition-all duration-200
+      group/button flex cursor-pointer items-center justify-center rounded-full
+      border border-dashed border-primary bg-primary outline-2
+      outline-transparent transition-all duration-200
       hover:bg-secondary
+      focus-visible:outline-fg-brand-primary
       active:scale-95 active:bg-secondary
+      disabled:cursor-not-allowed disabled:border-disabled-subtle
+      disabled:bg-disabled
     `,
   },
   variants: {

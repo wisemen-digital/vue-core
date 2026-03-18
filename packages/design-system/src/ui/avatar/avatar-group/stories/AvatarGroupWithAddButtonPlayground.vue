@@ -5,9 +5,12 @@ import AvatarGroupAddButton from '@/ui/avatar/avatar-group/AvatarGroupAddButton.
 import ColumnLayout from '@/ui/column-layout/ColumnLayout.vue'
 import RowLayout from '@/ui/row-layout/RowLayout.vue'
 
-const profileSrc = '../../../storybook-assets/profile-picture.jpg'
+const profileSrc = '../../../../storybook-assets/profile-picture.jpg'
 
-const avatars: AvatarProps[] = Array.from({ length: 15 }, (_, i) => ({
+const avatars: AvatarProps[] = Array.from({
+  length: 15,
+}, (_, i) => ({
+
   name: `User ${i + 1}`,
   src: profileSrc,
 }))
@@ -24,7 +27,10 @@ const avatars: AvatarProps[] = Array.from({ length: 15 }, (_, i) => ({
         :max="10"
         size="xs"
       />
-      <AvatarGroupAddButton size="xs" />
+      <AvatarGroupAddButton
+        label="Add user"
+        size="xs"
+      />
     </RowLayout>
     <RowLayout
       gap="md"
@@ -35,7 +41,10 @@ const avatars: AvatarProps[] = Array.from({ length: 15 }, (_, i) => ({
         :max="10"
         size="sm"
       />
-      <AvatarGroupAddButton size="sm" />
+      <AvatarGroupAddButton
+        label="Add user"
+        size="sm"
+      />
     </RowLayout>
     <RowLayout
       gap="md"
@@ -46,7 +55,10 @@ const avatars: AvatarProps[] = Array.from({ length: 15 }, (_, i) => ({
         :max="10"
         size="md"
       />
-      <AvatarGroupAddButton size="md" />
+      <AvatarGroupAddButton
+        label="Add user"
+        size="md"
+      />
     </RowLayout>
   </ColumnLayout>
 </template>

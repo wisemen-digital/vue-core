@@ -6,6 +6,11 @@ export interface AvatarProps {
    */
   name: string
   /**
+   * The alt text for the avatar image.
+   * @default null
+   */
+  imageAlt?: string | null
+  /**
    * The image source URL for the avatar's logo.
    * Falls back to initials when not provided.
    * @default null
@@ -37,6 +42,7 @@ export interface AvatarProps {
 
 export const AVATAR_DEFAULTS: AvatarProps = {
   name: '',
+  imageAlt: null,
   logo: null,
   logoAlt: null,
   size: 'md',

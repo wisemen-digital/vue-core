@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<AvatarGroupProps>(), {
 })
 
 const visibleAvatars = computed<AvatarProps[]>(() => props.avatars.slice(0, props.max))
-const overflowCount = computed<number>(() => props.avatars.length - props.max!)
+const overflowCount = computed<number>(() => props.avatars.length - props.max)
 
 const i18n = useI18n()
 
@@ -30,7 +30,7 @@ const avatarGroupStyle = computed<AvatarGroupStyle>(
   <div :class="avatarGroupStyle.root()">
     <Avatar
       v-for="(avatar, index) in visibleAvatars"
-      :key="index"
+      :key="`avatar-${avatar.name}-${avatar.src}-${index}`"
       :class="avatarGroupStyle.avatar()"
       :logo="avatar.logo"
       :logo-alt="avatar.logoAlt"

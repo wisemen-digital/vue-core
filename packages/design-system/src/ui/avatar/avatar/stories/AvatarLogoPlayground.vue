@@ -2,8 +2,8 @@
 import Avatar from '@/ui/avatar/avatar/Avatar.vue'
 import RowLayout from '@/ui/row-layout/RowLayout.vue'
 
-const profileSrc = '../../../storybook-assets/profile-picture.jpg'
-const logoSrc = '../../../storybook-assets/wisemen-logo.png'
+const profileSrc = '../../../../storybook-assets/profile-picture.jpg'
+const logoSrc = '../../../../storybook-assets/wisemen-logo.png'
 </script>
 
 <template>

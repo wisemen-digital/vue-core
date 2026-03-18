@@ -41,7 +41,7 @@ const avatarStyle = computed<AvatarStyle>(
         v-if="props.src"
         :src="props.src"
         :class="avatarStyle.base()"
-        alt="Avatar"
+        :alt="props.imageAlt ?? 'Avatar'"
       />
       <AvatarFallback
         :class="avatarStyle.fallBack()"

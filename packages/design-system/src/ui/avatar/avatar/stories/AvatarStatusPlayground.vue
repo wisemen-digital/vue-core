@@ -3,7 +3,7 @@ import Avatar from '@/ui/avatar/avatar/Avatar.vue'
 import ColumnLayout from '@/ui/column-layout/ColumnLayout.vue'
 import RowLayout from '@/ui/row-layout/RowLayout.vue'
 
-const profileSrc = '../../../storybook-assets/profile-picture.jpg'
+const profileSrc = '../../../../storybook-assets/profile-picture.jpg'
 </script>
 
 <template>

@@ -3,9 +3,12 @@ import type { AvatarProps } from '@/ui/avatar/avatar/avatar.props'
 import AvatarGroup from '@/ui/avatar/avatar-group/AvatarGroup.vue'
 import ColumnLayout from '@/ui/column-layout/ColumnLayout.vue'
 
-const profileSrc = '../../../storybook-assets/profile-picture.jpg'
+const profileSrc = '../../../../storybook-assets/profile-picture.jpg'
 
-const avatars: AvatarProps[] = Array.from({ length: 15 }, (_, i) => ({
+const avatars: AvatarProps[] = Array.from({
+  length: 15,
+}, (_, i) => ({
+
   name: `User ${i + 1}`,
   src: profileSrc,
 }))
