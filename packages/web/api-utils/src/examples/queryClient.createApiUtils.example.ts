@@ -1,5 +1,5 @@
 /**
- * Example: fully-typed `useOptimisticUpdates` via `createApiUtils<MyQueryKeys>()`.
+ * Example: fully-typed type-safe `useQueryClient` via `createApiUtils<MyQueryKeys>()`.
  *
  * This avoids module augmentation of `QueryKeys`.
  */
@@ -36,7 +36,7 @@ initializeApiUtils(queryClient)
 export const apiUtils = createApiUtils<MyQueryKeys>()
 
 export function exampleOptimisticUpdate(): void {
-  const optimisticUpdates = apiUtils.useOptimisticUpdates()
+  const queryClient = apiUtils.useQueryClient()
 
   const userQuery = apiUtils.useQuery('userDetail', {
     params: {
@@ -54,7 +54,7 @@ export function exampleOptimisticUpdate(): void {
     },
   })
 
-  optimisticUpdates.update('userDetail', {
+  queryClient.update('userDetail', {
     by: (user) => user.id === '123e4567-e89b-12d3-a456-426614174000',
     value: (user) => ({
       ...user,
@@ -63,7 +63,7 @@ export function exampleOptimisticUpdate(): void {
     }),
   })
 
-  const user = optimisticUpdates.get([
+  const user = queryClient.get([
     'userDetail',
     {
       userUuid: 'uuid-123',

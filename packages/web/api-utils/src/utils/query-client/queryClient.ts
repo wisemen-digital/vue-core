@@ -1,4 +1,4 @@
-import type { QueryClient } from '@tanstack/vue-query'
+import type { QueryClient as TanstackQueryClient } from '@tanstack/vue-query'
 
 import type {
   AsyncResult as AsyncResultType,
@@ -17,9 +17,9 @@ import type {
 type EntityItem<TEntity> = TEntity extends any[] ? TEntity[number] : TEntity
 
 /**
- * Options for optimistic update
+ * Options for type-safe query client update
  */
-export interface OptimisticUpdateOptions<
+export interface QueryClientUpdateOptions<
   TEntity,
 > {
   /**
@@ -41,10 +41,10 @@ type QueryKeyOrTupleFromConfig<
     | readonly [TKey, Partial<QueryKeyRawParamsFromConfig<TQueryKeys, TKey>>]
 
 /**
- * OptimisticUpdates utility class for type-safe optimistic updates
+ * QueryClient utility class for type-safe query operations
  */
-export class OptimisticUpdates<TQueryKeys extends object> {
-  constructor(private readonly queryClient: QueryClient) {}
+export class QueryClient<TQueryKeys extends object> {
+  constructor(private readonly queryClient: TanstackQueryClient) {}
 
   /**
    * Extract the raw entity from AsyncResult data
@@ -140,13 +140,13 @@ export class OptimisticUpdates<TQueryKeys extends object> {
    * @example
    * ```typescript
    * // Get all userDetail queries (returns array)
-   * const allUsers = optimisticUpdates.get('userDetail')
+   * const allUsers = queryClient.get('userDetail')
    *
    * // Get exact query stored as ['userDetail']
-   * const exactUser = optimisticUpdates.get('userDetail', { isExact: true })
+   * const exactUser = queryClient.get('userDetail', { isExact: true })
    *
    * // Get specific userDetail query with params
-   * const user = optimisticUpdates.get(['userDetail', { userUuid: '123' }] as const)
+   * const user = queryClient.get(['userDetail', { userUuid: '123' }] as const)
    * ```
    */
 
@@ -220,10 +220,10 @@ export class OptimisticUpdates<TQueryKeys extends object> {
    * @example
    * ```typescript
    * // Invalidate all userDetail queries
-   * await optimisticUpdates.invalidate('userDetail')
+   * await queryClient.invalidate('userDetail')
    *
    * // Invalidate specific query
-   * await optimisticUpdates.invalidate(['userDetail', { userUuid: '123' }] as const)
+   * await queryClient.invalidate(['userDetail', { userUuid: '123' }] as const)
    * ```
    */
 
@@ -278,10 +278,10 @@ export class OptimisticUpdates<TQueryKeys extends object> {
    * @example
    * ```typescript
    * // Set query with just the key
-   * optimisticUpdates.set('userDetail', userData)
+   * queryClient.set('userDetail', userData)
    *
    * // Set query with key + params
-   * optimisticUpdates.set(['userDetail', { userUuid: '123' }] as const, userData)
+   * queryClient.set(['userDetail', { userUuid: '123' }] as const, userData)
    * ```
    */
 
@@ -313,7 +313,7 @@ export class OptimisticUpdates<TQueryKeys extends object> {
   }
 
   /**
-   * Update entity data in the query cache optimistically
+   * Update entity data in the query cache
    *
    * When using just the key, updates ALL queries with that key
    * When using key + params tuple, updates SPECIFIC query
@@ -321,13 +321,13 @@ export class OptimisticUpdates<TQueryKeys extends object> {
    * @example
    * ```typescript
    * // Update a specific user by id
-   * optimisticUpdates.update('userDetail', {
+   * queryClient.update('userDetail', {
    *   by: (user) => user.id === '123',
    *   value: (user) => ({ ...user, name: 'John Doe' })
    * })
    *
    * // Update all electronics products to out of stock
-   * optimisticUpdates.update('productList', {
+   * queryClient.update('productList', {
    *   by: (product) => product.category === 'electronics',
    *   value: (product) => ({ ...product, inStock: false })
    * })
@@ -340,7 +340,7 @@ export class OptimisticUpdates<TQueryKeys extends object> {
     TEntity extends QueryKeyEntityFromConfig<TQueryKeys, TKey> = QueryKeyEntityFromConfig<TQueryKeys, TKey>,
   >(
     key: TKey,
-    options: OptimisticUpdateOptions<TEntity>,
+    options: QueryClientUpdateOptions<TEntity>,
   ): void
   // Overload: full tuple with params - updates specific query
   update<
@@ -348,7 +348,7 @@ export class OptimisticUpdates<TQueryKeys extends object> {
     TEntity extends QueryKeyEntityFromConfig<TQueryKeys, TKey> = QueryKeyEntityFromConfig<TQueryKeys, TKey>,
   >(
     keyTuple: readonly [TKey, Partial<QueryKeyRawParamsFromConfig<TQueryKeys, TKey>>],
-    options: OptimisticUpdateOptions<TEntity>,
+    options: QueryClientUpdateOptions<TEntity>,
   ): void
   // Implementation
   update<
@@ -356,7 +356,7 @@ export class OptimisticUpdates<TQueryKeys extends object> {
     TEntity extends QueryKeyEntityFromConfig<TQueryKeys, TKey> = QueryKeyEntityFromConfig<TQueryKeys, TKey>,
   >(
     keyOrTuple: QueryKeyOrTupleFromConfig<TQueryKeys, TKey>,
-    options: OptimisticUpdateOptions<TEntity>,
+    options: QueryClientUpdateOptions<TEntity>,
   ): void {
     const by = options.by
     const value = options.value

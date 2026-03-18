@@ -50,11 +50,10 @@ describe('createApiUtils - infinite queries', () => {
 
     const setup = runInSetup(() => {
       const {
-        useOffsetInfiniteQuery, useOptimisticUpdates,
+        useOffsetInfiniteQuery, useQueryClient,
       } = createApiUtils<MyQueryKeys>()
 
       return {
-        optimisticUpdates: useOptimisticUpdates(),
         query: useOffsetInfiniteQuery('userIndex', {
           limit: 2,
           params: {
@@ -73,6 +72,7 @@ describe('createApiUtils - infinite queries', () => {
             }))
           },
         }),
+        queryClient: useQueryClient(),
       }
     })
 
@@ -89,7 +89,7 @@ describe('createApiUtils - infinite queries', () => {
       expect(result.data[0]?.email).toBe('user1@example.com')
     }
 
-    setup.optimisticUpdates.update('userIndex', {
+    setup.queryClient.update('userIndex', {
       by: (user) => user.id === '1',
       value: (user) => ({
         ...user,
@@ -140,11 +140,10 @@ describe('createApiUtils - infinite queries', () => {
 
     const setup = runInSetup(() => {
       const {
-        useKeysetInfiniteQuery, useOptimisticUpdates,
+        useKeysetInfiniteQuery, useQueryClient,
       } = createApiUtils<MyQueryKeys>()
 
       return {
-        optimisticUpdates: useOptimisticUpdates(),
         query: useKeysetInfiniteQuery('userIndex', {
           limit: 2,
           params: {
@@ -163,6 +162,7 @@ describe('createApiUtils - infinite queries', () => {
             }))
           },
         }),
+        queryClient: useQueryClient(),
       }
     })
 
@@ -172,7 +172,7 @@ describe('createApiUtils - infinite queries', () => {
     expect(setup.query.result.value.isOk()).toBeTruthy()
     expect(setup.query.hasNextPage.value).toBeTruthy()
 
-    setup.optimisticUpdates.update('userIndex', {
+    setup.queryClient.update('userIndex', {
       by: (user) => user.id === '2',
       value: (user) => ({
         ...user,

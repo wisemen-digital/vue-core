@@ -101,7 +101,7 @@ describe('createApiUtils - useQuery', () => {
 
     const query = runInSetup(() => {
       const {
-        useOptimisticUpdates, useQuery,
+        useQuery, useQueryClient,
       } = createApiUtils<MyQueryKeys>()
 
       return {
@@ -132,7 +132,7 @@ describe('createApiUtils - useQuery', () => {
             ]),
           ),
         }),
-        updated: useOptimisticUpdates(),
+        updated: useQueryClient(),
       }
     })
 

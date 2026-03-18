@@ -1,9 +1,9 @@
-import { QueryClient } from '@tanstack/vue-query'
+import { QueryClient as TanStackQueryClient } from '@tanstack/vue-query'
 
 import { initializeApiUtils } from '@/config/config'
 import { createApiUtils } from '@/factory/createApiUtils'
 
-import type { OptimisticUpdates } from './optimisticUpdates'
+import type { QueryClient } from './queryClient'
 
 // Define test types
 export interface User {
@@ -46,10 +46,10 @@ interface TestQueryKeys {
 }
 
 export function createTestSetup(): {
-  optimisticUpdates: OptimisticUpdates<TestQueryKeys>
-  queryClient: QueryClient
+  queryClient: QueryClient<TestQueryKeys>
+  tanstackQueryClient: TanStackQueryClient
 } {
-  const queryClient = new QueryClient({
+  const tanstackQueryClient = new TanStackQueryClient({
     defaultOptions: {
       queries: {
         retry: false,
@@ -57,16 +57,16 @@ export function createTestSetup(): {
     },
   })
 
-  initializeApiUtils(queryClient)
+  initializeApiUtils(tanstackQueryClient)
 
   const {
-    useOptimisticUpdates,
+    useQueryClient,
   } = createApiUtils<TestQueryKeys>()
 
-  const optimisticUpdates = useOptimisticUpdates()
+  const queryClient = useQueryClient()
 
   return {
-    optimisticUpdates,
     queryClient,
+    tanstackQueryClient,
   }
 }

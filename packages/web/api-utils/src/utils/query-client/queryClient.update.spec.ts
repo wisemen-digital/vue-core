@@ -8,10 +8,10 @@ import {
 import type {
   Product,
   User,
-} from './optimisticUpdates.setup'
-import { createTestSetup } from './optimisticUpdates.setup'
+} from './queryClient.setup'
+import { createTestSetup } from './queryClient.setup'
 
-describe('optimisticUpdates - update', () => {
+describe('queryClient - update', () => {
   let setup: ReturnType<typeof createTestSetup>
 
   beforeEach(() => {
@@ -36,10 +36,10 @@ describe('optimisticUpdates - update', () => {
       ] as const
 
       // Set initial data
-      setup.optimisticUpdates.set(queryKey, userData)
+      setup.queryClient.set(queryKey, userData)
 
       // Update the user (id from value)
-      setup.optimisticUpdates.update(queryKey, {
+      setup.queryClient.update(queryKey, {
         by: (user) => user.id === '123',
         value: (user) => ({
           ...user,
@@ -48,7 +48,7 @@ describe('optimisticUpdates - update', () => {
       })
 
       // Get updated data
-      const updatedData = setup.optimisticUpdates.get(queryKey)
+      const updatedData = setup.queryClient.get(queryKey)
 
       expect(updatedData).toEqual({
         ...userData,
@@ -72,9 +72,9 @@ describe('optimisticUpdates - update', () => {
         },
       ] as const
 
-      setup.optimisticUpdates.set(queryKey, userData)
+      setup.queryClient.set(queryKey, userData)
 
-      setup.optimisticUpdates.update('userDetail', {
+      setup.queryClient.update('userDetail', {
         by: (user) => user.uuid === 'abc-123',
         value: (user) => ({
           ...user,
@@ -82,7 +82,7 @@ describe('optimisticUpdates - update', () => {
         }),
       })
 
-      const updatedData = setup.optimisticUpdates.get(queryKey)
+      const updatedData = setup.queryClient.get(queryKey)
 
       expect(updatedData).toEqual({
         ...userData,
@@ -106,9 +106,9 @@ describe('optimisticUpdates - update', () => {
         },
       ] as const
 
-      setup.optimisticUpdates.set(queryKey, userData)
+      setup.queryClient.set(queryKey, userData)
 
-      setup.optimisticUpdates.update('userDetail', {
+      setup.queryClient.update('userDetail', {
         by: (user) => user.email === 'john@example.com',
         value: (user) => ({
           ...user,
@@ -116,7 +116,7 @@ describe('optimisticUpdates - update', () => {
         }),
       })
 
-      const updatedData = setup.optimisticUpdates.get(queryKey)
+      const updatedData = setup.queryClient.get(queryKey)
 
       expect(updatedData).toEqual({
         ...userData,
@@ -140,9 +140,9 @@ describe('optimisticUpdates - update', () => {
         },
       ] as const
 
-      setup.optimisticUpdates.set(queryKey, userData)
+      setup.queryClient.set(queryKey, userData)
 
-      setup.optimisticUpdates.update('userDetail', {
+      setup.queryClient.update('userDetail', {
         by: (user) => user.id === '999',
         value: (user) => ({
           ...user,
@@ -150,7 +150,7 @@ describe('optimisticUpdates - update', () => {
         }),
       })
 
-      const updatedData = setup.optimisticUpdates.get(queryKey)
+      const updatedData = setup.queryClient.get(queryKey)
 
       expect(updatedData).toEqual(userData)
     })
@@ -171,11 +171,11 @@ describe('optimisticUpdates - update', () => {
         },
       ] as const
 
-      setup.optimisticUpdates.set(queryKey, userData)
+      setup.queryClient.set(queryKey, userData)
 
       const targetId = '123'
 
-      setup.optimisticUpdates.update('userDetail', {
+      setup.queryClient.update('userDetail', {
         by: (user) => user.id === targetId,
         value: (user) => ({
           ...user,
@@ -183,7 +183,7 @@ describe('optimisticUpdates - update', () => {
         }),
       })
 
-      const updatedData = setup.optimisticUpdates.get(queryKey)
+      const updatedData = setup.queryClient.get(queryKey)
 
       expect(updatedData?.name).toBe('Jane Doe')
     })
@@ -204,9 +204,9 @@ describe('optimisticUpdates - update', () => {
         },
       ] as const
 
-      setup.optimisticUpdates.set(queryKey, userData)
+      setup.queryClient.set(queryKey, userData)
 
-      setup.optimisticUpdates.update('userDetail', {
+      setup.queryClient.update('userDetail', {
         by: (user) => user.id === '123' && user.uuid === 'abc-123',
         value: (user) => ({
           ...user,
@@ -214,7 +214,7 @@ describe('optimisticUpdates - update', () => {
         }),
       })
 
-      const updatedData = setup.optimisticUpdates.get(queryKey)
+      const updatedData = setup.queryClient.get(queryKey)
 
       expect(updatedData?.name).toBe('Jane Doe')
     })
@@ -246,9 +246,9 @@ describe('optimisticUpdates - update', () => {
         },
       ] as const
 
-      setup.optimisticUpdates.set(queryKey, users)
+      setup.queryClient.set(queryKey, users)
 
-      setup.optimisticUpdates.update('userList', {
+      setup.queryClient.update('userList', {
         by: (user) => user.id === '2',
         value: (user) => ({
           ...user,
@@ -256,7 +256,7 @@ describe('optimisticUpdates - update', () => {
         }),
       })
 
-      const updatedData = setup.optimisticUpdates.get(queryKey)
+      const updatedData = setup.queryClient.get(queryKey)
 
       expect(updatedData).toEqual([
         users[0],
@@ -294,9 +294,9 @@ describe('optimisticUpdates - update', () => {
         },
       ] as const
 
-      setup.optimisticUpdates.set(queryKey, products)
+      setup.queryClient.set(queryKey, products)
 
-      setup.optimisticUpdates.update('productList', {
+      setup.queryClient.update('productList', {
         by: (product) => product.sku === 'PROD-002',
         value: (product) => ({
           ...product,
@@ -304,7 +304,7 @@ describe('optimisticUpdates - update', () => {
         }),
       })
 
-      const updatedData = setup.optimisticUpdates.get(queryKey)
+      const updatedData = setup.queryClient.get(queryKey)
 
       expect(updatedData).toEqual([
         products[0],
@@ -350,9 +350,9 @@ describe('optimisticUpdates - update', () => {
         },
       ] as const
 
-      setup.optimisticUpdates.set(queryKey, products)
+      setup.queryClient.set(queryKey, products)
 
-      setup.optimisticUpdates.update('productList', {
+      setup.queryClient.update('productList', {
         by: (product) => product.category === 'electronics',
         value: (product) => ({
           ...product,
@@ -360,7 +360,7 @@ describe('optimisticUpdates - update', () => {
         }),
       })
 
-      const updatedData = setup.optimisticUpdates.get(queryKey)
+      const updatedData = setup.queryClient.get(queryKey)
 
       expect(updatedData).toEqual([
         {
@@ -393,9 +393,9 @@ describe('optimisticUpdates - update', () => {
         },
       ] as const
 
-      setup.optimisticUpdates.set(queryKey, users)
+      setup.queryClient.set(queryKey, users)
 
-      setup.optimisticUpdates.update('userList', {
+      setup.queryClient.update('userList', {
         by: (user) => user.id === '999',
         value: (user) => ({
           ...user,
@@ -403,7 +403,7 @@ describe('optimisticUpdates - update', () => {
         }),
       })
 
-      const updatedData = setup.optimisticUpdates.get(queryKey)
+      const updatedData = setup.queryClient.get(queryKey)
 
       expect(updatedData).toEqual(users)
     })
@@ -441,11 +441,11 @@ describe('optimisticUpdates - update', () => {
       ] as const
 
       // Set data for multiple queries with same key but different params
-      setup.optimisticUpdates.set(queryKey1, user1)
-      setup.optimisticUpdates.set(queryKey2, user2)
+      setup.queryClient.set(queryKey1, user1)
+      setup.queryClient.set(queryKey2, user2)
 
       // Update all userDetail queries
-      setup.optimisticUpdates.update('userDetail', {
+      setup.queryClient.update('userDetail', {
         by: (user) => user.id === '123',
         value: (user) => ({
           ...user,
@@ -453,8 +453,8 @@ describe('optimisticUpdates - update', () => {
         }),
       })
 
-      const updatedData1 = setup.optimisticUpdates.get(queryKey1)
-      const updatedData2 = setup.optimisticUpdates.get(queryKey2)
+      const updatedData1 = setup.queryClient.get(queryKey1)
+      const updatedData2 = setup.queryClient.get(queryKey2)
 
       expect(updatedData1?.name).toBe('Updated Name')
       expect(updatedData2?.name).toBe('Updated Name')
@@ -470,10 +470,10 @@ describe('optimisticUpdates - update', () => {
         },
       ] as const
 
-      setup.queryClient.setQueryData(queryKey, null)
+      setup.tanstackQueryClient.setQueryData(queryKey, null)
 
       expect(() => {
-        setup.optimisticUpdates.update('userDetail', {
+        setup.queryClient.update('userDetail', {
           by: (user) => user.id === '123',
           value: (user) => ({
             ...user,
@@ -485,7 +485,7 @@ describe('optimisticUpdates - update', () => {
 
     it('should handle undefined data gracefully', () => {
       expect(() => {
-        setup.optimisticUpdates.update('userDetail', {
+        setup.queryClient.update('userDetail', {
           by: (user) => user.id === '123',
           value: (user) => ({
             ...user,
@@ -503,9 +503,9 @@ describe('optimisticUpdates - update', () => {
         },
       ] as const
 
-      setup.optimisticUpdates.set(queryKey, [])
+      setup.queryClient.set(queryKey, [])
 
-      setup.optimisticUpdates.update('userList', {
+      setup.queryClient.update('userList', {
         by: (user) => user.id === '123',
         value: (user) => ({
           ...user,
@@ -513,7 +513,7 @@ describe('optimisticUpdates - update', () => {
         }),
       })
 
-      const updatedData = setup.optimisticUpdates.get(queryKey)
+      const updatedData = setup.queryClient.get(queryKey)
 
       expect(updatedData).toEqual([])
     })
@@ -551,11 +551,11 @@ describe('optimisticUpdates - update', () => {
         },
       ] as const
 
-      setup.optimisticUpdates.set(queryKey1, user1)
-      setup.optimisticUpdates.set(queryKey2, user2)
+      setup.queryClient.set(queryKey1, user1)
+      setup.queryClient.set(queryKey2, user2)
 
       // Update all 'userDetail' queries using single key format
-      setup.optimisticUpdates.update('userDetail', {
+      setup.queryClient.update('userDetail', {
         by: () => true, // Match all items
         value: (user) => ({
           ...user,
@@ -564,8 +564,8 @@ describe('optimisticUpdates - update', () => {
       })
 
       // Both queries should be updated
-      const updated1 = setup.optimisticUpdates.get(queryKey1)
-      const updated2 = setup.optimisticUpdates.get(queryKey2)
+      const updated1 = setup.queryClient.get(queryKey1)
+      const updated2 = setup.queryClient.get(queryKey2)
 
       expect(updated1).toEqual({
         ...user1,
@@ -605,20 +605,20 @@ describe('optimisticUpdates - update', () => {
         },
       ]
 
-      setup.optimisticUpdates.set([
+      setup.queryClient.set([
         'userList',
         {
           search: 'active',
         },
       ], users1)
-      setup.optimisticUpdates.set([
+      setup.queryClient.set([
         'userList',
         {
           search: 'pending',
         },
       ], users2)
       // Update all 'userList' queries where name === 'John'
-      setup.optimisticUpdates.update('userList', {
+      setup.queryClient.update('userList', {
         by: (user: User) => user.name === 'John',
         value: (user: User) => ({
           ...user,
@@ -626,13 +626,13 @@ describe('optimisticUpdates - update', () => {
         }),
       })
 
-      const updated1 = setup.optimisticUpdates.get([
+      const updated1 = setup.queryClient.get([
         'userList',
         {
           search: 'active',
         },
       ])
-      const updated2 = setup.optimisticUpdates.get([
+      const updated2 = setup.queryClient.get([
         'userList',
         {
           search: 'pending',
@@ -684,11 +684,11 @@ describe('optimisticUpdates - update', () => {
         },
       ] as const
 
-      setup.optimisticUpdates.set(queryKey1, user1)
-      setup.optimisticUpdates.set(queryKey2, user2)
+      setup.queryClient.set(queryKey1, user1)
+      setup.queryClient.set(queryKey2, user2)
 
       // Get all 'userDetail' queries
-      const allUsers = setup.optimisticUpdates.get('userDetail')
+      const allUsers = setup.queryClient.get('userDetail')
 
       expect(allUsers).toHaveLength(2)
       expect(allUsers).toContainEqual(user1)
@@ -696,7 +696,7 @@ describe('optimisticUpdates - update', () => {
     })
 
     it('should return empty array when no queries match the key', () => {
-      const allUsers = setup.optimisticUpdates.get('userDetail')
+      const allUsers = setup.queryClient.get('userDetail')
 
       expect(allUsers).toEqual([])
     })
@@ -713,10 +713,10 @@ describe('optimisticUpdates - update', () => {
       }
 
       // Set using single key format
-      setup.optimisticUpdates.set('userDetail', userData)
+      setup.queryClient.set('userDetail', userData)
 
       // Get using single key format returns array
-      const allUsers = setup.optimisticUpdates.get('userDetail')
+      const allUsers = setup.queryClient.get('userDetail')
 
       expect(allUsers).toEqual([
         userData,
@@ -733,10 +733,10 @@ describe('optimisticUpdates - update', () => {
       }
 
       // Set using single key format
-      setup.optimisticUpdates.set('userDetail', userData)
+      setup.queryClient.set('userDetail', userData)
 
       // Verify it's stored under normalized array key
-      const query = setup.queryClient
+      const query = setup.tanstackQueryClient
         .getQueryCache()
         .find({
           queryKey: [
@@ -766,10 +766,10 @@ describe('optimisticUpdates - update', () => {
       }
 
       // Set using single key format
-      setup.optimisticUpdates.set('userDetail', user1)
+      setup.queryClient.set('userDetail', user1)
 
       // Set using tuple format with params
-      setup.optimisticUpdates.set([
+      setup.queryClient.set([
         'userDetail',
         {
           userUuid: 'user-2',
@@ -777,21 +777,21 @@ describe('optimisticUpdates - update', () => {
       ] as const, user2)
 
       // Get all queries with 'userDetail' key - should return both
-      const allResults = setup.optimisticUpdates.get('userDetail')
+      const allResults = setup.queryClient.get('userDetail')
 
       expect(allResults).toContainEqual(user1)
       expect(allResults).toContainEqual(user2)
       expect(allResults).toHaveLength(2)
 
       // Get exact query stored as ['userDetail'] - should only return user1
-      const exactResult = setup.optimisticUpdates.get('userDetail', {
+      const exactResult = setup.queryClient.get('userDetail', {
         isExact: true,
       })
 
       expect(exactResult).toEqual(user1)
 
       // Get using tuple key - should only return user2
-      const tupleKeyResult = setup.optimisticUpdates.get([
+      const tupleKeyResult = setup.queryClient.get([
         'userDetail',
         {
           userUuid: 'user-2',

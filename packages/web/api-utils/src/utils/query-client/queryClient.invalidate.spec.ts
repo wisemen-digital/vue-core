@@ -5,10 +5,10 @@ import {
   it,
 } from 'vitest'
 
-import type { User } from './optimisticUpdates.setup'
-import { createTestSetup } from './optimisticUpdates.setup'
+import type { User } from './queryClient.setup'
+import { createTestSetup } from './queryClient.setup'
 
-describe('optimisticUpdates - invalidate', () => {
+describe('queryClient - invalidate', () => {
   let setup: ReturnType<typeof createTestSetup>
 
   beforeEach(() => {
@@ -31,11 +31,11 @@ describe('optimisticUpdates - invalidate', () => {
       },
     ] as const
 
-    setup.optimisticUpdates.set(queryKey, userData)
+    setup.queryClient.set(queryKey, userData)
 
-    await setup.optimisticUpdates.invalidate('userDetail')
+    await setup.queryClient.invalidate('userDetail')
 
-    const query = setup.queryClient
+    const query = setup.tanstackQueryClient
       .getQueryCache()
       .find({
         queryKey,
@@ -74,22 +74,22 @@ describe('optimisticUpdates - invalidate', () => {
       },
     ] as const
 
-    setup.optimisticUpdates.set(queryKey1, user1)
-    setup.optimisticUpdates.set(queryKey2, user2)
+    setup.queryClient.set(queryKey1, user1)
+    setup.queryClient.set(queryKey2, user2)
 
-    await setup.optimisticUpdates.invalidate([
+    await setup.queryClient.invalidate([
       'userDetail',
       {
         userUuid: 'abc-123',
       },
     ])
 
-    const query1 = setup.queryClient
+    const query1 = setup.tanstackQueryClient
       .getQueryCache()
       .find({
         queryKey: queryKey1,
       })
-    const query2 = setup.queryClient
+    const query2 = setup.tanstackQueryClient
       .getQueryCache()
       .find({
         queryKey: queryKey2,
@@ -117,16 +117,16 @@ describe('optimisticUpdates - invalidate', () => {
       },
     ] as const
 
-    setup.optimisticUpdates.set(queryKey, userData)
+    setup.queryClient.set(queryKey, userData)
 
-    await setup.optimisticUpdates.invalidate([
+    await setup.queryClient.invalidate([
       'userDetail',
       {
         userUuid,
       },
     ])
 
-    const query = setup.queryClient
+    const query = setup.tanstackQueryClient
       .getQueryCache()
       .find({
         queryKey,
@@ -158,19 +158,19 @@ describe('optimisticUpdates - invalidate', () => {
       },
     ] as const
 
-    setup.optimisticUpdates.set(queryKey1, userData)
-    setup.optimisticUpdates.set(queryKey2, userData)
+    setup.queryClient.set(queryKey1, userData)
+    setup.queryClient.set(queryKey2, userData)
 
     // Invalidate all 'userDetail' queries using single key format
-    await setup.optimisticUpdates.invalidate('userDetail')
+    await setup.queryClient.invalidate('userDetail')
 
-    const query1 = setup.queryClient
+    const query1 = setup.tanstackQueryClient
       .getQueryCache()
       .find({
         queryKey: queryKey1,
       })
 
-    const query2 = setup.queryClient
+    const query2 = setup.tanstackQueryClient
       .getQueryCache()
       .find({
         queryKey: queryKey2,

@@ -18,5 +18,5 @@ export type {
   InfiniteQueryOptions, QueryParams, WithFilterQuery, WithSearchQuery, WithSortQuery, WithStaticFilterQuery,
 } from './types/queryOptions'
 export * from './types/sort.type'
-export * from './utils/optimisticUpdates'
+export * from './utils/query-client/queryClient'
 export { SortUtil } from './utils/sort/sort.utils'

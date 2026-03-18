@@ -1,21 +1,21 @@
 /* eslint-disable eslint-plugin-wisemen/explicit-function-return-type-with-regex */
 import { createApiInfiniteQueryUtils } from './createApiInfiniteQueryUtils'
 import { createApiMutationUtils } from './createApiMutationUtils'
-import { createApiOptimisticUpdatesUtils } from './createApiOptimisticUpdatesUtils'
 import { createApiPrefetchInfiniteQueryUtils } from './createApiPrefetchInfiniteQueryUtils'
 import { createApiPrefetchQueryUtils } from './createApiPrefetchQueryUtils'
+import { createApiQueryClientUtils } from './createApiQueryClientUtils'
 import { createApiQueryUtils } from './createApiQueryUtils'
 
 export type { CreateApiInfiniteQueryUtilsReturnType } from './createApiInfiniteQueryUtils'
 export { createApiInfiniteQueryUtils } from './createApiInfiniteQueryUtils'
 export type { CreateApiMutationUtilsReturnType } from './createApiMutationUtils'
 export { createApiMutationUtils } from './createApiMutationUtils'
-export type { CreateApiOptimisticUpdatesUtilsReturnType } from './createApiOptimisticUpdatesUtils'
-export { createApiOptimisticUpdatesUtils } from './createApiOptimisticUpdatesUtils'
 export type { CreateApiPrefetchInfiniteQueryUtilsReturnType } from './createApiPrefetchInfiniteQueryUtils'
 export { createApiPrefetchInfiniteQueryUtils } from './createApiPrefetchInfiniteQueryUtils'
 export type { CreateApiPrefetchQueryUtilsReturnType } from './createApiPrefetchQueryUtils'
 export { createApiPrefetchQueryUtils } from './createApiPrefetchQueryUtils'
+export type { CreateApiQueryClientUtilsReturnType } from './createApiQueryClientUtils'
+export { createApiQueryClientUtils } from './createApiQueryClientUtils'
 export type { CreateApiQueryUtilsReturnType } from './createApiQueryUtils'
 export { createApiQueryUtils } from './createApiQueryUtils'
 
@@ -30,7 +30,7 @@ export { createApiQueryUtils } from './createApiQueryUtils'
  * initializeApiUtils(queryClient)
  *
  * // In your api lib:
- * export const { useQuery, useMutation, useOptimisticUpdates } = createApiUtils<MyQueryKeys>()
+ * export const { useQuery, useMutation, useQueryClient } = createApiUtils<MyQueryKeys>()
  * ```
  */
 export function createApiUtils<
@@ -43,6 +43,6 @@ export function createApiUtils<
     ...createApiPrefetchInfiniteQueryUtils<TQueryKeys, TErrorCode>(),
     ...createApiInfiniteQueryUtils<TQueryKeys, TErrorCode>(),
     ...createApiMutationUtils<TQueryKeys, TErrorCode>(),
-    ...createApiOptimisticUpdatesUtils<TQueryKeys>(),
+    ...createApiQueryClientUtils<TQueryKeys>(),
   }
 }
