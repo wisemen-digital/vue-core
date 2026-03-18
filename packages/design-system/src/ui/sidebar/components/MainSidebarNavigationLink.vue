@@ -73,7 +73,7 @@ function onClick(): void {
               group rounded-md
               hover:bg-primary-hover
               data-active:bg-brand-primary
-              dark:data-active:glassy dark:data-active:p-px
+              dark:data-active:p-px dark:data-active:glassy
             "
           >
             <RowLayout
