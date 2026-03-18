@@ -54,6 +54,12 @@ function stopObserver(): void {
   styleObserver = null
 }
 
+watch(isActiveTabHidden, (isHidden) => {
+  if (!isHidden) {
+    stopObserver()
+  }
+})
+
 watch(activeTab, () => {
   stopObserver()
 
@@ -78,6 +84,8 @@ watch(activeTab, () => {
       ],
       attributes: true,
     })
+
+    applyDropdownIndicatorStyle(indicatorEl)
   }
 })
 

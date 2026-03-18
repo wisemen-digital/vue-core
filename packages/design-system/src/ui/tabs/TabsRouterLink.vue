@@ -3,6 +3,7 @@ import { TabsRoot as RekaTabsRoot } from 'reka-ui'
 import {
   computed,
   onMounted,
+  ref,
 } from 'vue'
 import {
   useRoute,
@@ -70,6 +71,16 @@ const {
   unregisterTab,
 } = useAdaptiveTabs(activeRouteName)
 
+const adaptiveDropdownRef = ref<InstanceType<typeof HTMLDivElement> | null>(null)
+
+function setAdaptiveDropdownRef(el: InstanceType<typeof HTMLDivElement> | null): void {
+  adaptiveDropdownRef.value = el
+}
+
+function getAdaptiveDropdownRef(): InstanceType<typeof HTMLDivElement> | null {
+  return adaptiveDropdownRef.value
+}
+
 useProvideTabsContext({
   isTouchDevice: isTouch,
   ...toComputedRefs(props),
@@ -77,9 +88,11 @@ useProvideTabsContext({
   hasReachedHorizontalEnd,
   isScrolledHorizontally,
   activeTab,
+  getAdaptiveDropdownRef,
   registerTab,
   scrollToLeft,
   scrollToRight,
+  setAdaptiveDropdownRef,
   setScrollContainerRef,
   tabs,
   unregisterTab,
