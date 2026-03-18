@@ -30,11 +30,11 @@ export const badgeVariants = tv({
     },
     {
       class: {
-        base: 'border-brand-700 bg-brand-700',
+        base: 'border-brand-500 bg-brand-500',
         dot: 'bg-white',
         icon: 'text-primary-on-brand',
         label: 'text-primary-on-brand',
-        separator: 'bg-brand-700',
+        separator: 'bg-brand-500',
       },
       color: 'brand',
       variant: 'solid',
@@ -89,11 +89,11 @@ export const badgeVariants = tv({
     },
     {
       class: {
-        base: 'border-error-700 bg-error-700',
+        base: 'border-error-500 bg-error-500',
         dot: 'bg-white',
         icon: 'text-white',
         label: 'text-white',
-        separator: 'bg-error-700',
+        separator: 'bg-error-500',
       },
       color: 'error',
       variant: 'solid',
@@ -148,11 +148,11 @@ export const badgeVariants = tv({
     },
     {
       class: {
-        base: 'border-gray-700 bg-gray-700',
+        base: 'border-gray-500 bg-gray-500',
         dot: 'bg-white',
         icon: 'text-white',
         label: 'text-white',
-        separator: 'bg-gray-700',
+        separator: 'bg-gray-500',
       },
       color: 'gray',
       variant: 'solid',
@@ -207,11 +207,11 @@ export const badgeVariants = tv({
     },
     {
       class: {
-        base: 'border-success-950 bg-success-950',
+        base: 'border-success-500 bg-success-500',
         dot: 'bg-white',
         icon: 'text-white',
         label: 'text-white',
-        separator: 'bg-success-950',
+        separator: 'bg-success-500',
       },
       color: 'success',
       variant: 'solid',
@@ -266,11 +266,11 @@ export const badgeVariants = tv({
     },
     {
       class: {
-        base: 'border-blue-700 bg-blue-700',
+        base: 'border-blue-600 bg-blue-600',
         dot: 'bg-white',
         icon: 'text-white',
         label: 'text-white',
-        separator: 'bg-blue-700',
+        separator: 'bg-blue-600',
       },
       color: 'blue',
       variant: 'solid',
@@ -325,11 +325,11 @@ export const badgeVariants = tv({
     },
     {
       class: {
-        base: 'border-pink-700 bg-pink-700',
+        base: 'border-pink-500 bg-pink-500',
         dot: 'bg-white',
         icon: 'text-white',
         label: 'text-white',
-        separator: 'bg-pink-700',
+        separator: 'bg-pink-500',
       },
       color: 'pink',
       variant: 'solid',
@@ -384,11 +384,11 @@ export const badgeVariants = tv({
     },
     {
       class: {
-        base: 'border-purple-700 bg-purple-700',
+        base: 'border-purple-500 bg-purple-500',
         dot: 'bg-white',
         icon: 'text-white',
         label: 'text-white',
-        separator: 'bg-purple-700',
+        separator: 'bg-purple-500',
       },
       color: 'purple',
       variant: 'solid',
@@ -443,11 +443,11 @@ export const badgeVariants = tv({
     },
     {
       class: {
-        base: 'border-warning-700 bg-warning-700',
+        base: 'border-warning-500 bg-warning-500',
         dot: 'bg-white',
         icon: 'text-white',
         label: 'text-white',
-        separator: 'bg-warning-700',
+        separator: 'bg-warning-500',
       },
       color: 'warning',
       variant: 'solid',
