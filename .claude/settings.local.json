@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /mnt/c/Users/nb199/Documents/projects/wisemen-core/packages/web/data-formatting -type f -name *.ts -o -name *.vue)",
+      "Bash(grep -r \"i18n-factory\\\\|i18n\\\\|translation\" /mnt/c/Users/nb199/Documents/projects/wisemen-core/packages/web/components-next/src --include=*.ts --include=*.vue)"
+    ]
+  }
+}
