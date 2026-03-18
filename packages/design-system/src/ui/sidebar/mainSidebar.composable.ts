@@ -20,7 +20,9 @@ const SIDEBAR_AVATAR_SIZE = 24
 const SIDEBAR_LOGO_HEIGHT = 42
 
 function pxToRem(px: number): string {
-  return `${px / 16}rem`
+  const rootFontSize = Number.parseFloat(getComputedStyle(document.documentElement).fontSize)
+
+  return `${px / rootFontSize}rem`
 }
 
 const ICONS_ONLY_SIDEBAR_WIDTH = pxToRem(SIDEBAR_COLLAPSED_WIDTH)
