@@ -13,6 +13,7 @@ import {
 import ActionTooltip from '@/ui/action-tooltip/ActionTooltip.vue'
 import ClickableElement from '@/ui/clickable-element/ClickableElement.vue'
 import RowLayout from '@/ui/row-layout/RowLayout.vue'
+import MainSidebarLabelTransition from '@/ui/sidebar/components/MainSidebarLabelTransition.vue'
 import MainSidebarNavigationLinkProvider from '@/ui/sidebar/components/MainSidebarNavigationLinkProvider.vue'
 import { useMainSidebar } from '@/ui/sidebar/mainSidebar.composable'
 
@@ -49,13 +50,7 @@ function onClick(): void {
   emit('click')
 }
 
-const navigationLinkGridTemplateColumns = computed<string>(() => {
-  if (variant.value === 'icons-only' && !isSidebarOpen) {
-    return sidebarIconCellSize
-  }
-
-  return `${sidebarIconCellSize} 1fr`
-})
+const navigationLinkGridTemplateColumns = `${sidebarIconCellSize} 1fr`
 
 const isTooltipDisabled = computed<boolean>(() => {
   if (variant.value === 'icons-with-labels' && props.keyboardShortcut === null) {
@@ -122,30 +117,31 @@ const isTooltipDisabled = computed<boolean>(() => {
               />
             </RowLayout>
 
-            <RowLayout
-              v-if="variant !== 'icons-only' || isSidebarOpen"
-              align="center"
-              justify="between"
-              gap="md"
-              class="overflow-hidden pr-md"
-            >
-              <span
-                class="
-                  truncate text-xs font-medium text-secondary duration-100
-                  group-hover:text-primary
-                  group-data-active:text-brand-secondary
-                "
-              >
-                {{ props.label }}
-              </span>
+            <MainSidebarLabelTransition>
               <RowLayout
-                gap="lg"
                 align="center"
-                class="shrink-0"
+                justify="between"
+                gap="md"
+                class="overflow-hidden pr-md"
               >
-                <slot name="right" />
+                <span
+                  class="
+                    truncate text-xs font-medium text-secondary duration-100
+                    group-hover:text-primary
+                    group-data-active:text-brand-secondary
+                  "
+                >
+                  {{ props.label }}
+                </span>
+                <RowLayout
+                  gap="lg"
+                  align="center"
+                  class="shrink-0"
+                >
+                  <slot name="right" />
+                </RowLayout>
               </RowLayout>
-            </RowLayout>
+            </MainSidebarLabelTransition>
           </div>
         </MainSidebarNavigationLinkProvider>
       </RouterLink>
