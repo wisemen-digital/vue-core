@@ -1,11 +1,10 @@
-import { ColumnOptions } from 'typeorm'
-import { QuantityColumn } from '../../quantity.column.js'
+import { QuantityColumn, QuantityColumnOptions } from '../../quantity.column.js'
 import { DistanceUnit } from './distance-unit.enum.js'
 import { Distance } from './distance.js'
 
 export function DistanceColumn (
   storeAsUnit: DistanceUnit,
-  options?: Omit<ColumnOptions, 'type' | 'transformer'>
+  options?: QuantityColumnOptions<DistanceUnit, Distance>
 ) {
   return QuantityColumn(Distance, storeAsUnit, options)
 }

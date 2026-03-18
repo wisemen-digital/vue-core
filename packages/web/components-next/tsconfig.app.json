@@ -1,26 +1,26 @@
 {
-  // This tsconfig is for development. Allowing *.story.vue, and __test__/*.vue to have types support
-  "extends": "@vue/tsconfig/tsconfig.dom.json",
   "compilerOptions": {
-    "target": "esnext",
+    "baseUrl": ".",
+    "declaration": false,
+    "esModuleInterop": true,
     "jsx": "preserve",
     "lib": ["esnext", "dom"],
-    "baseUrl": ".",
     "module": "ESNext",
     "moduleResolution": "node",
+    "noUncheckedIndexedAccess": true,
+    "outDir": "dist",
     "paths": {
       "@/*": ["src/*"]
     },
     "resolveJsonModule": true,
-    "types": ["node", "@types/google.maps"],
-    "strict": true,
-    "noUncheckedIndexedAccess": true,
-    "declaration": false,
-    "outDir": "dist",
+    "skipLibCheck": true,
     "sourceMap": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true
+    "strict": true,
+    "target": "esnext",
+    "types": ["node", "@types/google.maps"]
   },
+  // This tsconfig is for development. Allowing *.story.vue, and __test__/*.vue to have types support
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
   "include": [
     "eslint.config.ts",
     "env.d.ts",

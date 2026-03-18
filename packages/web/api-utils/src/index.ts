@@ -11,6 +11,7 @@ export {
 } from './config/config'
 export * from './factory/createApiUtils'
 export * from './factory/createApiUtils.types'
+export { apiUtilsPlugin } from './plugin/apiUtilsPlugin'
 export * from './types/apiError.type'
 export * from './types/pagination.type'
 export * from './types/query.type'
@@ -20,3 +21,4 @@ export type {
 export * from './types/sort.type'
 export * from './utils/query-client/queryClient'
 export { SortUtil } from './utils/sort/sort.utils'
+export type { QueryClient } from '@tanstack/vue-query'

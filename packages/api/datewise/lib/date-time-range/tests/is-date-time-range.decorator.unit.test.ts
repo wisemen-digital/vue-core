@@ -244,4 +244,55 @@ describe('is date time range decorator tests', () => {
       expect(errors).toHaveLength(0)
     })
   })
+
+  describe('finiteOnly option', () => {
+    class FiniteDto {
+      @IsDateTimeRange({ finiteOnly: true })
+      range: DateTimeRangeDto
+    }
+
+    it('detects validation errors for (-infinity, timestamp)', async () => {
+      const dto = plainToInstance(FiniteDto, { range: {
+        from: timestamp.pastInfinity().toISOString(),
+        until: timestamp().toISOString()
+      } })
+
+      const errors = await validate(dto)
+
+      expect(errors).not.toHaveLength(0)
+    })
+
+    it('detects validation errors for [timestamp, infinity)', async () => {
+      const dto = plainToInstance(FiniteDto, { range: {
+        from: timestamp().toISOString(),
+        until: timestamp.futureInfinity().toISOString()
+      } })
+
+      const errors = await validate(dto)
+
+      expect(errors).not.toHaveLength(0)
+    })
+
+    it('detects validation errors for (-infinity, infinity)', async () => {
+      const dto = plainToInstance(FiniteDto, { range: {
+        from: timestamp.pastInfinity().toISOString(),
+        until: timestamp.futureInfinity().toISOString()
+      } })
+
+      const errors = await validate(dto)
+
+      expect(errors).not.toHaveLength(0)
+    })
+
+    it('allows finite ranges', async () => {
+      const dto = plainToInstance(FiniteDto, { range: {
+        from: timestamp().subtract(1, 'hour').toISOString(),
+        until: timestamp().toISOString()
+      } })
+
+      const errors = await validate(dto)
+
+      expect(errors).toHaveLength(0)
+    })
+  })
 })

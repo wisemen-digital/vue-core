@@ -239,4 +239,55 @@ describe('is date range decorator tests', () => {
       expect(errors).toHaveLength(0)
     })
   })
+
+  describe('finiteOnly option', () => {
+    class FiniteDto {
+      @IsDateRange({ finiteOnly: true })
+      range: DateRangeDto
+    }
+
+    it('detects validation errors for (-infinity, date]', async () => {
+      const dto = plainToInstance(FiniteDto, { range: {
+        startDate: plainDate.pastInfinity().toString(),
+        endDate: plainDate.today().toString()
+      } })
+
+      const errors = await validate(dto)
+
+      expect(errors).not.toHaveLength(0)
+    })
+
+    it('detects validation errors for [date, infinity)', async () => {
+      const dto = plainToInstance(FiniteDto, { range: {
+        startDate: plainDate.today().toString(),
+        endDate: plainDate.futureInfinity().toString()
+      } })
+
+      const errors = await validate(dto)
+
+      expect(errors).not.toHaveLength(0)
+    })
+
+    it('detects validation errors for (-infinity, infinity)', async () => {
+      const dto = plainToInstance(FiniteDto, { range: {
+        startDate: plainDate.pastInfinity().toString(),
+        endDate: plainDate.futureInfinity().toString()
+      } })
+
+      const errors = await validate(dto)
+
+      expect(errors).not.toHaveLength(0)
+    })
+
+    it('allows finite ranges', async () => {
+      const dto = plainToInstance(FiniteDto, { range: {
+        startDate: plainDate.yesterday().toString(),
+        endDate: plainDate.today().toString()
+      } })
+
+      const errors = await validate(dto)
+
+      expect(errors).toHaveLength(0)
+    })
+  })
 })
