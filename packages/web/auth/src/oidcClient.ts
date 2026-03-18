@@ -10,7 +10,7 @@ import { LocalStorageTokensStrategy } from './tokens-strategy/localStorage.token
 import type { TokensStrategy } from './tokens-strategy/tokensStrategy.type'
 
 export class OidcClient {
-  private client: ApiClient | null = null
+  private client: ApiClient
   private readonly offline: boolean
   private redirectValidator: RedirectValidator
   private tokensStrategy: TokensStrategy
@@ -49,10 +49,6 @@ export class OidcClient {
   * If it fails, it will throw an error
   */
   public async getAccessToken(): Promise<string> {
-    if (this.client === null) {
-      throw new Error('Client is not initialized')
-    }
-
     return await this.client.getAccessToken()
   }
 
@@ -61,10 +57,6 @@ export class OidcClient {
   * This will return the client that is used to make requests to the identity provider
   */
   public getClient(): ApiClient {
-    if (this.client === null) {
-      throw new Error('Client is not initialized')
-    }
-
     return this.client
   }
 
@@ -73,9 +65,10 @@ export class OidcClient {
 
     const codes = await pkceChallenge()
 
-    const scopes = this.options.scopes
-
-    scopes.push(`urn:zitadel:iam:org:idp:id:${idpId}`)
+    const scopes = [
+      ...this.options.scopes,
+      `urn:zitadel:iam:org:idp:id:${idpId}`,
+    ]
 
     this.getTokensStrategy().setCodeVerifier(codes.code_verifier)
 
@@ -89,12 +82,12 @@ export class OidcClient {
     return `${this.options.baseUrl}/oauth/v2/authorize?${searchParams.toString()}`
   }
 
-  public async getLoginUrl(redirectUrl?: string): Promise<string> {
+  public async getLoginUrl(redirectUrl?: string, overrideScopes?: string[]): Promise<string> {
     const searchParams = new URLSearchParams()
 
     const codes = await pkceChallenge()
 
-    const scopes = this.options.scopes
+    const scopes = overrideScopes ?? this.options.scopes
 
     this.getTokensStrategy().setCodeVerifier(codes.code_verifier)
 
@@ -154,22 +147,16 @@ export class OidcClient {
       return true
     }
 
-    if (this.client === null) {
-      return false
-    }
-
     if (this.getClient().getTokens() === null) {
       return false
     }
 
     try {
-      await this.client.getAccessToken()
+      await this.getClient().getAccessToken()
 
       return true
     }
-    catch (error) {
-      console.error('Failed to get access token, logging out', error)
-
+    catch {
       this.logout()
 
       return false
@@ -180,10 +167,6 @@ export class OidcClient {
   * Login the user offline by setting mock tokens
   */
   public loginOffline(): void {
-    if (this.client === null) {
-      throw new Error('Client is not initialized')
-    }
-
     this.client.setMockTokens()
   }
 
@@ -209,11 +192,11 @@ export class OidcClient {
   }
 
   /*
-  * Logout the user by clearing the tokens and removing the authorization header
+  * Logout the user by clearing the tokens
+  * The client is kept alive so the user can log in again without a page reload
   */
   public logout(): void {
     this.client?.clearTokens()
-    this.client = null
   }
 
   public sanitizeRedirectUrl(redirectUrl: string, fallbackUrl?: string): string {

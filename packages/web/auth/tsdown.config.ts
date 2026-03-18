@@ -4,6 +4,10 @@ export default defineConfig({
   entry: [
     'src/index.ts',
   ],
+  external: [
+    'vue',
+    'vue-router',
+  ],
   format: [
     'esm',
   ],
