@@ -1,10 +1,10 @@
-# Optimistic Updates
+# Type-Safe Query Client
 
-Optimistic updates allow you to immediately update the cache with expected results before the server responds. This provides instant UI feedback while the request is in flight.
+Type-safe query client utilities allow you to immediately update the cache with expected results before the server responds. This provides instant UI feedback while the request is in flight.
 
 ## Overview
 
-The `useOptimisticUpdates()` composable provides three core methods:
+The `useQueryClient()` composable provides three core methods:
 - **`update()`** - Update cached data based on a predicate
 - **`get()`** - Read cached data
 - **`set()`** - Write data to cache
@@ -23,7 +23,7 @@ Update a specific query's cached data:
 
 import { useMutation } from '@/api'
 import { ContactService } from '@/services'
-import { useOptimisticUpdates } from '@/api'
+import { useQueryClient } from '@/api'
 
 export function useUpdateContact(contactUuid: string, originalData: ContactDetail) {
   const { execute } = useMutation({
@@ -32,11 +32,11 @@ export function useUpdateContact(contactUuid: string, originalData: ContactDetai
     },
   })
 
-  const optimisticUpdates = useOptimisticUpdates()
+  const queryClient = useQueryClient()
 
   async function update(body: Partial<ContactDetail>) {
     // Optimistically update the cache
-    optimisticUpdates.update(
+    queryClient.update(
       ['contactDetail', { contactUuid }],
       {
         by: (contact) => contact.uuid === contactUuid,
@@ -49,7 +49,7 @@ export function useUpdateContact(contactUuid: string, originalData: ContactDetai
 
     // Handle errors - rollback by restoring original data
     if (result.isErr()) {
-      optimisticUpdates.set(['contactDetail', { contactUuid }], originalData)
+      queryClient.set(['contactDetail', { contactUuid }], originalData)
     }
   }
 
@@ -63,7 +63,7 @@ Update items in a cached list:
 
 ```typescript
 // Update all products with "electronics" category
-optimisticUpdates.update('productList', {
+queryClient.update('productList', {
   by: (product) => product.category === 'electronics',
   value: (product) => ({ ...product, inStock: false }),
 })
@@ -75,15 +75,15 @@ Read data from the cache:
 
 ```typescript
 // Get specific cached query
-const contact = optimisticUpdates.get(
+const contact = queryClient.get(
   ['contactDetail', { contactUuid: '123' }]
 )
 
 // Get all queries with this key
-const allContacts = optimisticUpdates.get('contactDetail')
+const allContacts = queryClient.get('contactDetail')
 
 // Get exact query only
-const contact = optimisticUpdates.get('contactDetail', { isExact: true })
+const contact = queryClient.get('contactDetail', { isExact: true })
 ```
 
 ### Set Cached Data
@@ -91,7 +91,7 @@ const contact = optimisticUpdates.get('contactDetail', { isExact: true })
 Manually set cache data:
 
 ```typescript
-optimisticUpdates.set(
+queryClient.set(
   ['contactDetail', { contactUuid: '123' }],
   contactData
 )
@@ -103,7 +103,7 @@ optimisticUpdates.set(
 // src/composables/useEditContact.ts
 
 import { ref, computed } from 'vue'
-import { useQuery, useMutation, useOptimisticUpdates } from '@/api'
+import { useQuery, useMutation, useQueryClient } from '@/api'
 import { ContactService } from '@/services'
 import type { ContactUuid, ContactDetail, ContactUpdateForm } from '@/types'
 
@@ -120,14 +120,14 @@ export function useEditContact(contactUuid: string) {
     },
   })
 
-  const optimisticUpdates = useOptimisticUpdates()
+  const queryClient = useQueryClient()
 
   async function handleSave(updates: Partial<ContactDetail>) {
     // Store original for rollback
     const originalData = contactResult.value.getValue()
 
     // Optimistically update the cache
-    optimisticUpdates.update(
+    queryClient.update(
       ['contactDetail', { contactUuid }],
       {
         by: (contact) => contact.uuid === contactUuid,
@@ -140,7 +140,7 @@ export function useEditContact(contactUuid: string) {
 
     if (result.isErr()) {
       // Rollback on error - restore original data
-      optimisticUpdates.set(
+      queryClient.set(
         ['contactDetail', { contactUuid }],
         originalData
       )
@@ -209,7 +209,7 @@ async function onSubmit() {
 Most common pattern for single entity updates:
 
 ```typescript
-optimisticUpdates.update(
+queryClient.update(
   ['userDetail', { userId: '123' }],
   {
     by: (user) => user.id === '123',
@@ -223,7 +223,7 @@ optimisticUpdates.update(
 Update multiple items in a list matching a condition:
 
 ```typescript
-optimisticUpdates.update('orderList', {
+queryClient.update('orderList', {
   by: (order) => order.status === 'pending',
   value: (order) => ({ ...order, status: 'confirmed' }),
 })
@@ -235,7 +235,7 @@ Update all cached queries with a key without specifying params:
 
 ```typescript
 // Updates ALL userDetail queries
-optimisticUpdates.update('userDetail', {
+queryClient.update('userDetail', {
   by: (user) => user.isActive === false,
   value: (user) => ({ ...user, isActive: true }),
 })
@@ -248,11 +248,11 @@ Optimistic updates work seamlessly with infinite queries:
 ```typescript
 // src/composables/useToggleProductFavorite.ts
 
-import { useMutation, useOptimisticUpdates } from '@/api'
+import { useMutation, useQueryClient } from '@/api'
 import { ProductService } from '@/services'
 
 export function useToggleProductFavorite() {
-  const optimisticUpdates = useOptimisticUpdates()
+  const queryClient = useQueryClient()
 
   const toggleMutation = useMutation({
     queryFn: async (productId: string) => {
@@ -262,11 +262,11 @@ export function useToggleProductFavorite() {
 
   async function toggle(productId: string) {
     // Backup original state from both caches
-    const originalFromList = optimisticUpdates.get('productList')
-    const originalFromKeyset = optimisticUpdates.get('productListKeyset')
+    const originalFromList = queryClient.get('productList')
+    const originalFromKeyset = queryClient.get('productListKeyset')
 
     // Optimistically update in all product lists
-    optimisticUpdates.update('productList', {
+    queryClient.update('productList', {
       by: (product) => product.id === productId,
       value: (product) => ({ 
         ...product, 
@@ -275,7 +275,7 @@ export function useToggleProductFavorite() {
     })
 
     // Also update keyset infinite query
-    optimisticUpdates.update('productListKeyset', {
+    queryClient.update('productListKeyset', {
       by: (product) => product.id === productId,
       value: (product) => ({ 
         ...product, 
@@ -288,8 +288,8 @@ export function useToggleProductFavorite() {
 
     if (result.isErr()) {
       // Rollback both by restoring original data
-      optimisticUpdates.set('productList', originalFromList)
-      optimisticUpdates.set('productListKeyset', originalFromKeyset)
+      queryClient.set('productList', originalFromList)
+      queryClient.set('productListKeyset', originalFromKeyset)
     }
   }
 
@@ -304,10 +304,10 @@ Always plan for failures:
 ```typescript
 async function updateAndHandle(updates: any) {
   // Backup original
-  const original = optimisticUpdates.get(['contactDetail', { contactUuid }])
+  const original = queryClient.get(['contactDetail', { contactUuid }])
 
   // Optimistic update
-  optimisticUpdates.update(['contactDetail', { contactUuid }], {
+  queryClient.update(['contactDetail', { contactUuid }], {
     by: (item) => item.uuid === contactUuid,
     value: (item) => ({ ...item, ...updates }),
   })
@@ -317,7 +317,7 @@ async function updateAndHandle(updates: any) {
 
   if (result.isErr()) {
     // Rollback: restore original data
-    optimisticUpdates.set(['contactDetail', { contactUuid }], original)
+    queryClient.set(['contactDetail', { contactUuid }], original)
 
     // Show error to user
     showErrorNotification(result.getError().message)
@@ -382,13 +382,13 @@ Update both detail and list caches:
 ```typescript
 async function updateAndRefreshLists(contactUuid: string, updates: any) {
   // Update the detail query
-  optimisticUpdates.update(['contactDetail', { contactUuid }], {
+  queryClient.update(['contactDetail', { contactUuid }], {
     by: (contact) => contact.uuid === contactUuid,
     value: (contact) => ({ ...contact, ...updates }),
   })
 
   // Update all list queries
-  optimisticUpdates.update('contactList', {
+  queryClient.update('contactList', {
     by: (contact) => contact.uuid === contactUuid,
     value: (contact) => ({ ...contact, ...updates }),
   })
@@ -397,8 +397,8 @@ async function updateAndRefreshLists(contactUuid: string, updates: any) {
 
   if (result.isErr()) {
     // Rollback both
-    await optimisticUpdates.invalidate(['contactDetail', { contactUuid }])
-    await optimisticUpdates.invalidate('contactList')
+    await queryClient.invalidate(['contactDetail', { contactUuid }])
+    await queryClient.invalidate('contactList')
   }
 }
 ```

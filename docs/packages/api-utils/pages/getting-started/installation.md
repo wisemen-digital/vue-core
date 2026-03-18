@@ -119,7 +119,7 @@ export const {
   useKeysetInfiniteQuery,
   useMutation,
   useOffsetInfiniteQuery,
-  useOptimisticUpdates,
+  useQueryClient,
   usePrefetchKeysetInfiniteQuery,
   usePrefetchOffsetInfiniteQuery,
   usePrefetchQuery,

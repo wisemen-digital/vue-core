@@ -24,7 +24,7 @@ export const {
   useKeysetInfiniteQuery,
   useMutation,
   useOffsetInfiniteQuery,
-  useOptimisticUpdates,
+  useQueryClient,
   usePrefetchKeysetInfiniteQuery,
   usePrefetchOffsetInfiniteQuery,
   usePrefetchQuery,
@@ -79,7 +79,7 @@ result.value.match({
 ### Mutations
 
 - **`useMutation`**: Create, update, or delete resources with automatic cache invalidation
-- **`useOptimisticUpdates`**: Update the cache optimistically before the server responds
+- **`useQueryClient`**: Type-safe utilities to update the cache before the server responds
 
 ## Return Values
 
@@ -269,7 +269,7 @@ export function useUpdateUser(userId: string) {
 }
 ```
 
-For optimistic updates, see the [Optimistic Updates](./optimistic-updates.md) guide.
+For type-safe query client operations, see the [Type-Safe Query Client](./query-client.md) guide.
 
 ## Error Handling
 

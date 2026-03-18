@@ -406,6 +406,6 @@ queryKeysToInvalidate: {
 }
 ```
 
-## Optimistic Updates
+## Type-Safe Query Client
 
-For optimistic updates and immediate cache modifications, see the [Optimistic Updates](/docs/packages/api-utils/pages/usage/optimistic-updates.md) page.
+For type-safe query client operations and immediate cache modifications, see the [Type-Safe Query Client](/docs/packages/api-utils/pages/usage/query-client.md) page.
