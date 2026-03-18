@@ -6,6 +6,7 @@ export type {
   UseQueryOptions, UseQueryReturnType,
 } from './composables/query/query.composable'
 export {
+  getQueryClient as getTanstackQueryClient,
   initializeApiUtils,
   type QueryConfig, setQueryConfig,
 } from './config/config'

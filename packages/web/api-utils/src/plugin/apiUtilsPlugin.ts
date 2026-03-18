@@ -26,7 +26,9 @@ import { initializeApiUtils } from '@/config/config'
  * @param config - QueryClient configuration
  * @returns A Vue plugin that can be used with app.use()
  */
-export function apiUtilsPlugin(config: QueryClientConfig) {
+export function apiUtilsPlugin(config: QueryClientConfig): {
+  install: (app: App<any>) => void
+} {
   const queryClient = new QueryClient(config)
 
   return {
