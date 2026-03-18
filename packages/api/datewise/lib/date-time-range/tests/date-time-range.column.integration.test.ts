@@ -1,50 +1,28 @@
 import { after, before, describe, it } from 'node:test'
 import { expect } from 'expect'
-import { ColumnType } from 'typeorm'
 import { DateTimeRange } from '../date-time-range.js'
 import { ContainsTimestamp } from '../typeorm/contains-timestamp.js'
 import { StartsAfter } from '../../common/typeorm/starts-after.js'
 import { EndsBefore } from '../../common/typeorm/ends-before.js'
-import { initDayjs } from '../../common/init-dayjs.js'
 import { FutureInfinity } from '../../timestamp/future-infinity.js'
 import { timestamp } from '../../timestamp/index.js'
 import { PastInfinity } from '../../timestamp/past-infinity.js'
 import { DateRange } from '../../date-range/date-range.js'
 import { OverlapsWith, Succeeds, Precedes, IsPrecededBy, IsSucceededBy } from '../../common/index.js'
+import { IntegrationTestSetup } from './test-setup.js'
 import { dataSource } from './sql/datasource.js'
 import { DateTimeRangeTest } from './sql/date-time-range-test.entity.js'
 import { MultiDateTimeRangeTest } from './sql/multi-date-time-range-test.entity.js'
 
 describe('DateTimeRangeColumn', () => {
+  const setup = new IntegrationTestSetup()
+
   before(async () => {
-    initDayjs()
-    dataSource.driver.supportedDataTypes.push(
-      'tstzrange3' as ColumnType,
-      'tstzmultirange3' as ColumnType
-    )
-    await dataSource.initialize()
-    await dataSource.query(`
-      DO $$
-      BEGIN
-        IF NOT EXISTS (
-          SELECT 1
-          FROM pg_type t
-          JOIN pg_namespace n ON n.oid = t.typnamespace
-          WHERE t.typname = 'tstzrange3'
-            AND n.nspname = 'public'  -- change if not public schema
-        ) THEN
-          CREATE TYPE tstzrange3 AS RANGE (
-            subtype = timestamp (3) with time zone,
-            multirange_type_name = tstzmultirange3
-          );
-        END IF;
-      END $$;
-   `)
-    await dataSource.synchronize(true)
+    await setup.setup()
   })
 
   after(async () => {
-    await dataSource.destroy()
+    await setup.teardown()
   })
 
   describe('serialization and deserialization', () => {

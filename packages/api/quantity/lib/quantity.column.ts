@@ -1,15 +1,21 @@
 import { Column, ColumnOptions, ValueTransformer } from 'typeorm'
 import { Quantity, QuantityConstructor } from './quantity.js'
 
+export type QuantityColumnOptions<U extends string, Q extends Quantity<U, Q>>
+  = Omit<ColumnOptions, 'type' | 'transformer' | 'default'> & { default?: Q }
+
 export function QuantityColumn<U extends string, Q extends Quantity<U, Q>> (
   QuantityConstructor: QuantityConstructor<U, Q>,
   storeAsUnit: U,
-  options?: Omit<ColumnOptions, 'type' | 'transformer'>
+  options?: QuantityColumnOptions<U, Q>
 ): PropertyDecorator {
+  const transformer = new QuantityTypeOrmTransformer(QuantityConstructor, storeAsUnit)
+
   return Column({
     ...options,
+    default: transformer.to(options?.default),
     type: 'float',
-    transformer: new QuantityTypeOrmTransformer(QuantityConstructor, storeAsUnit)
+    transformer
   })
 }
 
@@ -32,13 +38,10 @@ implements ValueTransformer {
 
   to (quantity: Q): number
   to (quantity: Q | null): number | null
-  to (quantity: Q | null | undefined): number | null {
-    if (quantity === null) {
-      return null
-    }
-
-    if (quantity === undefined) {
-      return null
+  to (quantity: Q | null | undefined): number | null | undefined
+  to (quantity: Q | null | undefined): number | null | undefined {
+    if (quantity === undefined || quantity === null) {
+      return quantity
     }
 
     return quantity.asNumber(this.storedUnit)

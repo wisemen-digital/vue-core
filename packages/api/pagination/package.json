@@ -30,13 +30,14 @@
   "peerDependencies": {
     "@nestjs/common": "catalog:backend",
     "@nestjs/swagger": "catalog:backend",
-    "@wisemen/validators": "catalog:backend",
+    "@wisemen/validators": "workspace:*",
     "class-transformer": "catalog:backend",
     "class-validator": "catalog:backend"
   },
   "devDependencies": {
     "@types/node": "catalog:backend",
     "@wisemen/eslint-config-nestjs": "workspace:*",
+    "@wisemen/validators": "workspace:*",
     "eslint": "catalog:lint",
     "expect": "catalog:test",
     "typescript": "catalog:peer"

@@ -1,5 +1,4 @@
 import { Readable } from 'stream'
-import type { ReadableStream as NodeReadableStream } from 'node:stream/web'
 import { Injectable } from '@nestjs/common'
 import { DeleteObjectCommand, GetObjectCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3'
 import { Upload } from '@aws-sdk/lib-storage'
@@ -170,9 +169,7 @@ export class S3 extends FileStorage {
     await parallelUploads.done()
   }
 
-  public async downloadStream (
-    key: string
-  ): Promise<Readable> {
+  public async downloadStream (key: string): Promise<Readable> {
     this.validateKey(key)
 
     const command = new GetObjectCommand({
@@ -185,7 +182,7 @@ export class S3 extends FileStorage {
       throw new Error(`Could not download ${key}`)
     }
 
-    return Readable.fromWeb(result.Body.transformToWebStream() as NodeReadableStream)
+    return result.Body as Readable
   }
 
   public async delete (key: string): Promise<void> {
