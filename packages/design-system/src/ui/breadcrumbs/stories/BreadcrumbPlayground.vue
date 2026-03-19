@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import {
+  NotificationMessageIcon,
   User01Icon,
   Users01Icon,
 } from '@wisemen/vue-core-icons'
@@ -16,6 +17,15 @@ import BreadcrumbSeperator from '@/ui/breadcrumbs/BreadcrumbSeperator.vue'
       <BreadcrumbItem
         :icon="Users01Icon"
         label="Users"
+        to="/"
+      />
+
+      <BreadcrumbSeperator />
+
+      <BreadcrumbItem
+        :icon="NotificationMessageIcon"
+        :is-label-hidden="true"
+        label="Messages"
         to="/"
       />
 

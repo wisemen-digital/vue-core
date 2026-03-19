@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Logo from '@/ui/logo/Logo.vue'
 import RowLayout from '@/ui/row-layout/RowLayout.vue'
+import MainSidebarFadeTransition from '@/ui/sidebar/components/MainSidebarFadeTransition.vue'
 import { useMainSidebar } from '@/ui/sidebar/mainSidebar.composable'
 
 const props = defineProps<{
@@ -10,7 +11,7 @@ const props = defineProps<{
 
 const {
   isSidebarOpen,
-  sidebarLinkHeight,
+  sidebarLogoHeight,
   sidebarLogoPadding,
   variant,
 } = useMainSidebar()
@@ -18,7 +19,7 @@ const {
 
 <template>
   <RowLayout
-    :style="{ height: sidebarLinkHeight }"
+    :style="{ height: sidebarLogoHeight }"
     justify="between"
   >
     <RowLayout :style="{ padding: sidebarLogoPadding }">
@@ -27,16 +28,20 @@ const {
         alt="Logo"
         size="xs"
       />
-      <span
-        v-if="variant !== 'icons-only' || isSidebarOpen"
-        class="text-sm font-semibold text-secondary"
-      >
-        {{ props.name }}
-      </span>
+      <MainSidebarFadeTransition>
+        <span
+          v-if="variant !== 'icons-only' || isSidebarOpen"
+          class="text-sm font-semibold text-secondary"
+        >
+          {{ props.name }}
+        </span>
+      </MainSidebarFadeTransition>
     </RowLayout>
-    <slot
-      v-if="variant !== 'icons-only' || isSidebarOpen"
-      name="right"
-    />
+    <MainSidebarFadeTransition>
+      <slot
+        v-if="variant !== 'icons-only' || isSidebarOpen"
+        name="right"
+      />
+    </MainSidebarFadeTransition>
   </RowLayout>
 </template>
