@@ -1,8 +1,11 @@
 {
   "name": "@wisemen/nestjs-typeorm",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "publishConfig": {
     "access": "public"
+  },
+  "imports": {
+    "#src/*": "./dist/*"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -16,23 +19,21 @@
     "clean": "rm -rf ./dist",
     "build": "tsc",
     "pretest": "npm run clean && npm run build",
-    "test": "node --env-file=.env --test",
+    "test": "node --env-file=.env --test ./**/*.test.js",
     "prerelease": "npm run build",
     "release": "pnpx release-it"
   },
   "peerDependencies": {
-    "@nestjs/common": "catalog:backend",
-    "@nestjs/config": "catalog:backend",
-    "@nestjs/typeorm": "catalog:backend",
-    "@wisemen/time": "workspace:*",
-    "change-case": "catalog:backend",
-    "class-validator": "catalog:backend",
-    "pg": "catalog:backend",
-    "typeorm": "catalog:backend"
+    "@nestjs/common": "catalog:backend-peer",
+    "@nestjs/config": "catalog:backend-peer",
+    "@nestjs/typeorm": "catalog:backend-peer",
+    "change-case": "catalog:backend-peer",
+    "class-validator": "catalog:backend-peer",
+    "pg": "catalog:backend-peer",
+    "typeorm": "catalog:backend-peer"
   },
   "devDependencies": {
     "@types/node": "catalog:backend",
-    "@wisemen/time": "workspace:*",
     "eslint": "catalog:lint",
     "expect": "catalog:test",
     "typescript": "catalog:peer",

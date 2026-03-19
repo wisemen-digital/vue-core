@@ -1,6 +1,6 @@
 {
   "name": "@wisemen/pgboss-nestjs-job",
-  "version": "3.3.2",
+  "version": "3.3.3",
   "publishConfig": {
     "access": "public"
   },
@@ -28,23 +28,21 @@
     "directory": "packages/pgboss-nestjs-job"
   },
   "dependencies": {
-    "pg-boss": "catalog:backend"
+    "pg-boss": "catalog:backend",
+    "@wisemen/nestjs-typeorm": "workspace:*",
+    "@wisemen/opentelemetry": "workspace:*"
   },
   "peerDependencies": {
-    "@nestjs/common": "catalog:backend",
-    "@nestjs/core": "catalog:backend",
-    "@opentelemetry/api": "catalog:backend",
-    "@sentry/nestjs": "catalog:backend",
-    "@wisemen/nestjs-typeorm": "workspace:*",
-    "@wisemen/opentelemetry": "workspace:*",
-    "colors": "catalog:backend",
-    "rxjs": "catalog:backend",
-    "typeorm": "catalog:backend"
+    "@nestjs/common": "catalog:backend-peer",
+    "@nestjs/core": "catalog:backend-peer",
+    "@opentelemetry/api": "catalog:backend-peer",
+    "@sentry/nestjs": "catalog:backend-peer",
+    "colors": "catalog:backend-peer",
+    "rxjs": "catalog:backend-peer",
+    "typeorm": "catalog:backend-peer"
   },
   "devDependencies": {
     "@wisemen/eslint-config-nestjs": "workspace:*",
-    "@wisemen/nestjs-typeorm": "workspace:*",
-    "@wisemen/opentelemetry": "workspace:*",
     "eslint": "catalog:lint",
     "typescript": "catalog:peer"
   }

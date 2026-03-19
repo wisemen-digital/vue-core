@@ -9,8 +9,5 @@ export const dataSource = new DataSource({
   logging: false,
   synchronize: false,
   migrationsRun: true,
-  entities: [
-    'dist/**/date-time-range-test.entity.js',
-    'dist/**/multi-date-time-range-test.entity.js'
-  ]
+  entities: ['dist/**/*.entity.js']
 })
