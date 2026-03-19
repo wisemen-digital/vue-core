@@ -3,6 +3,7 @@ import { TabsRoot as RekaTabsRoot } from 'reka-ui'
 import {
   computed,
   onMounted,
+  ref,
 } from 'vue'
 import {
   useRoute,
@@ -15,10 +16,13 @@ import { useProvideTabsContext } from '@/ui/tabs/tabs.context'
 import type { TabsProps } from '@/ui/tabs/tabs.props'
 import type { TabsVariants } from '@/ui/tabs/tabs.style'
 import { tabsVariants } from '@/ui/tabs/tabs.style'
+import { useAdaptiveTabs } from '@/ui/tabs/tabsAdaptive.composable'
+import { isTouchDevice } from '@/utils/isTouchDevice.util'
 
 import TabsList from './TabsList.vue'
 
 const props = withDefaults(defineProps<TabsProps>(), {
+  isAdaptive: false,
   isFullWidth: false,
   orientation: 'horizontal',
   variant: 'underline',
@@ -26,8 +30,10 @@ const props = withDefaults(defineProps<TabsProps>(), {
 
 const route = useRoute()
 const router = useRouter()
-const activeRouteName = computed<string | undefined>(() =>
-  typeof route.name === 'string' ? route.name : undefined)
+const activeRouteName = computed<string>(() =>
+  route.name as string)
+
+const isTouch = isTouchDevice()
 
 function onUpdateModelValue(value: string): void {
   if (value !== activeRouteName.value) {
@@ -45,7 +51,9 @@ const {
   scrollToLeft,
   scrollToRight,
   setScrollContainerRef,
-} = useTabs()
+} = useTabs({
+  activeValue: activeRouteName,
+})
 
 const variants = computed<TabsVariants>(() => tabsVariants({
   isFullWidth: props.isFullWidth,
@@ -56,14 +64,38 @@ onMounted(() => {
   scrollToActiveTab()
 })
 
+const {
+  activeTab,
+  registerTab,
+  tabs,
+  unregisterTab,
+} = useAdaptiveTabs(activeRouteName)
+
+const adaptiveDropdownRef = ref<InstanceType<typeof HTMLDivElement> | null>(null)
+
+function setAdaptiveDropdownRef(el: InstanceType<typeof HTMLDivElement> | null): void {
+  adaptiveDropdownRef.value = el
+}
+
+function getAdaptiveDropdownRef(): InstanceType<typeof HTMLDivElement> | null {
+  return adaptiveDropdownRef.value
+}
+
 useProvideTabsContext({
+  isTouchDevice: isTouch,
   ...toComputedRefs(props),
   hasHorizontalOverflow,
   hasReachedHorizontalEnd,
   isScrolledHorizontally,
+  activeTab,
+  getAdaptiveDropdownRef,
+  registerTab,
   scrollToLeft,
   scrollToRight,
+  setAdaptiveDropdownRef,
   setScrollContainerRef,
+  tabs,
+  unregisterTab,
   variants,
 })
 </script>

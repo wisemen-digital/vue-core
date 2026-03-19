@@ -14,7 +14,6 @@ import {
   Settings01Icon,
   Trash01Icon,
 } from '@wisemen/vue-core-icons'
-import { useReducedMotion } from 'motion-v'
 import type { Component } from 'vue'
 import {
   computed,
@@ -36,20 +35,10 @@ import MainSidebarGlobalSearch from '@/ui/sidebar/components/MainSidebarGlobalSe
 import MainSidebarHeaderLogoWithText from '@/ui/sidebar/components/MainSidebarHeaderLogoWithText.vue'
 import MainSidebarNavigationGroup from '@/ui/sidebar/components/MainSidebarNavigationGroup.vue'
 import MainSidebarNavigationLink from '@/ui/sidebar/components/MainSidebarNavigationLink.vue'
-import { useMainSidebar } from '@/ui/sidebar/mainSidebar.composable'
 import MainSidebar from '@/ui/sidebar/MainSidebar.vue'
 import Tabs from '@/ui/tabs/Tabs.vue'
 import TabsItem from '@/ui/tabs/TabsItem.vue'
 import TabsList from '@/ui/tabs/TabsList.vue'
-
-const {
-  isFloatingSidebar,
-  isSidebarOpen,
-  sidebarWidth,
-  variant,
-} = useMainSidebar()
-
-const isReduceMotionEnabledOnDevice = useReducedMotion()
 
 interface NavigationGroup {
   label: string

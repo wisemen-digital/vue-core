@@ -130,7 +130,7 @@ setVariant(props.variant)
     :initial="false"
     :animate="{ width: sidebarWidth }"
     :transition="{
-      duration: isReduceMotionEnabledOnDevice ? 0 : 0.1,
+      duration: isReduceMotionEnabledOnDevice ? 0 : 0.3,
       type: 'spring',
       bounce: 0,
     }"

@@ -1,10 +1,11 @@
+import type { DisabledWithReason } from '@/types/disabledWithReason.type'
 import type {
   AutocompleteInput,
   Input,
   InputWrapper,
 } from '@/types/input.type'
 
-export interface TextareaFieldProps extends Input, AutocompleteInput, InputWrapper {
+export interface TextareaFieldProps extends DisabledWithReason, Input, AutocompleteInput, InputWrapper {
   /**
    * Whether the input is spell check enabled.
    * @default false

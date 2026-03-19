@@ -21,6 +21,7 @@ const modelValue = ref<string | null>(null)
       v-model="modelValue"
       :is-disabled="props.isDisabled"
       :orientation="props.orientation"
+      disabled-reason="You don't have permission to change this setting"
     >
       <div
         :class="props.orientation === 'horizontal' ? 'flex-row items-center' : `
