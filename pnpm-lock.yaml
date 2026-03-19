@@ -350,18 +350,12 @@ catalogs:
     '@hey-api/openapi-ts':
       specifier: '>=0.86.0'
       version: 0.86.0
-    '@tanstack/vue-query':
-      specifier: '>=5.90.5'
-      version: 5.90.5
     '@typescript-eslint/parser':
       specifier: ^8.46.1
       version: 8.56.0
     motion-v:
       specifier: '>=1.7.3'
       version: 1.9.0
-    neverthrow:
-      specifier: '>=8.2.0'
-      version: 8.2.0
     reka-ui:
       specifier: '>=2.5.1'
       version: 2.8.0
@@ -1708,6 +1702,9 @@ importers:
         specifier: catalog:peer
         version: 3.5.27(typescript@5.9.3)
     devDependencies:
+      '@tanstack/intent':
+        specifier: ^0.0.23
+        version: 0.0.23
       '@types/node':
         specifier: catalog:types
         version: 24.8.1
@@ -6442,6 +6439,10 @@ packages:
     resolution: {integrity: sha512-jVA+/UpKL1vRLg6Hkao5jldawNmRo7mQYrZtNHMIVpLfLhDml5nMRUo/8MwoX2vNXvnaXNNMedrMfMugAVX1nA==}
     peerDependencies:
       vite: ^5.2.0 || ^6 || ^7
+
+  '@tanstack/intent@0.0.23':
+    resolution: {integrity: sha512-q5e0sh5e+xBOR5Z7eoZTBcXtakgTwucm2m0bNUkj7h4UagSgIDmPRYbtC7B81AF4FB5rW2OP1zgl7Jd9EH4qEw==}
+    hasBin: true
 
   '@tanstack/match-sorter-utils@8.19.4':
     resolution: {integrity: sha512-Wo1iKt2b9OT7d+YGhvEPD3DXvPv2etTusIMhMUoG7fbhmxcXCtIjJDEygy91Y2JFlwGyjqiBPRozme7UD8hoqg==}
@@ -17009,6 +17010,11 @@ snapshots:
       tailwindcss: 4.1.18
       vite: 7.3.1(@types/node@24.8.1)(jiti@2.6.1)(lightningcss@1.30.2)(sass@1.97.3)(terser@5.46.1)(tsx@4.20.3)(yaml@2.8.2)
 
+  '@tanstack/intent@0.0.23':
+    dependencies:
+      cac: 6.7.14
+      yaml: 2.8.2
+
   '@tanstack/match-sorter-utils@8.19.4':
     dependencies:
       remove-accents: 0.5.0
@@ -17684,6 +17690,20 @@ snapshots:
       vite: 7.3.1(@types/node@24.8.1)(jiti@2.6.1)(lightningcss@1.30.2)(sass@1.97.3)(terser@5.46.1)(tsx@4.20.3)(yaml@2.8.2)
       vue: 3.5.27(typescript@5.9.3)
 
+  '@vitest/browser-playwright@4.0.17(playwright@1.57.0)(rolldown-vite@7.3.1(@types/node@24.8.1)(esbuild@0.27.3)(jiti@2.6.1)(sass@1.97.3)(terser@5.46.1)(tsx@4.20.3)(yaml@2.8.2))(vitest@4.0.17)':
+    dependencies:
+      '@vitest/browser': 4.0.17(rolldown-vite@7.3.1(@types/node@24.8.1)(esbuild@0.27.3)(jiti@2.6.1)(sass@1.97.3)(terser@5.46.1)(tsx@4.20.3)(yaml@2.8.2))(vitest@4.0.17)
+      '@vitest/mocker': 4.0.17(rolldown-vite@7.3.1(@types/node@24.8.1)(esbuild@0.27.3)(jiti@2.6.1)(sass@1.97.3)(terser@5.46.1)(tsx@4.20.3)(yaml@2.8.2))
+      playwright: 1.57.0
+      tinyrainbow: 3.0.3
+      vitest: 4.0.17(@opentelemetry/api@1.9.0)(@types/node@24.8.1)(@vitest/browser-playwright@4.0.17)(esbuild@0.27.3)(jiti@2.6.1)(jsdom@27.4.0)(sass@1.97.3)(terser@5.46.1)(tsx@4.20.3)(yaml@2.8.2)
+    transitivePeerDependencies:
+      - bufferutil
+      - msw
+      - utf-8-validate
+      - vite
+    optional: true
+
   '@vitest/browser-playwright@4.0.17(playwright@1.57.0)(vite@7.3.1(@types/node@24.8.1)(jiti@2.6.1)(lightningcss@1.30.2)(sass@1.97.3)(terser@5.46.1)(tsx@4.20.3)(yaml@2.8.2))(vitest@4.0.17)':
     dependencies:
       '@vitest/browser': 4.0.17(vite@7.3.1(@types/node@24.8.1)(jiti@2.6.1)(lightningcss@1.30.2)(sass@1.97.3)(terser@5.46.1)(tsx@4.20.3)(yaml@2.8.2))(vitest@4.0.17)
@@ -17704,6 +17724,24 @@ snapshots:
       playwright: 1.57.0
       tinyrainbow: 3.0.3
       vitest: 4.0.17(@opentelemetry/api@1.9.0)(@types/node@25.3.0)(@vitest/browser-playwright@4.0.17)(esbuild@0.27.3)(jiti@2.6.1)(jsdom@27.4.0)(sass@1.97.3)(terser@5.46.1)(tsx@4.20.3)(yaml@2.8.2)
+    transitivePeerDependencies:
+      - bufferutil
+      - msw
+      - utf-8-validate
+      - vite
+    optional: true
+
+  '@vitest/browser@4.0.17(rolldown-vite@7.3.1(@types/node@24.8.1)(esbuild@0.27.3)(jiti@2.6.1)(sass@1.97.3)(terser@5.46.1)(tsx@4.20.3)(yaml@2.8.2))(vitest@4.0.17)':
+    dependencies:
+      '@vitest/mocker': 4.0.17(rolldown-vite@7.3.1(@types/node@24.8.1)(esbuild@0.27.3)(jiti@2.6.1)(sass@1.97.3)(terser@5.46.1)(tsx@4.20.3)(yaml@2.8.2))
+      '@vitest/utils': 4.0.17
+      magic-string: 0.30.21
+      pixelmatch: 7.1.0
+      pngjs: 7.0.0
+      sirv: 3.0.2
+      tinyrainbow: 3.0.3
+      vitest: 4.0.17(@opentelemetry/api@1.9.0)(@types/node@24.8.1)(@vitest/browser-playwright@4.0.17)(esbuild@0.27.3)(jiti@2.6.1)(jsdom@27.4.0)(sass@1.97.3)(terser@5.46.1)(tsx@4.20.3)(yaml@2.8.2)
+      ws: 8.18.3
     transitivePeerDependencies:
       - bufferutil
       - msw
@@ -23614,7 +23652,7 @@ snapshots:
     optionalDependencies:
       '@opentelemetry/api': 1.9.0
       '@types/node': 24.8.1
-      '@vitest/browser-playwright': 4.0.17(playwright@1.57.0)(vite@7.3.1(@types/node@24.8.1)(jiti@2.6.1)(lightningcss@1.30.2)(sass@1.97.3)(terser@5.46.1)(tsx@4.20.3)(yaml@2.8.2))(vitest@4.0.17)
+      '@vitest/browser-playwright': 4.0.17(playwright@1.57.0)(rolldown-vite@7.3.1(@types/node@24.8.1)(esbuild@0.27.3)(jiti@2.6.1)(sass@1.97.3)(terser@5.46.1)(tsx@4.20.3)(yaml@2.8.2))(vitest@4.0.17)
       jsdom: 27.4.0
     transitivePeerDependencies:
       - esbuild

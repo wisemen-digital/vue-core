@@ -244,3 +244,5 @@ catalogs:
     "typeorm": "0.3.28"
     "wkx": "0.5.0"
     "yaml": "2.8.2"
+catalog:
+  "@tanstack/intent": ^0.0.23
