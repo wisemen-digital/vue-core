@@ -25,13 +25,20 @@ export class SessionStorageTokensStrategy implements TokensStrategy {
   }
 
   public getTokens(): OAuth2Tokens | null {
-    const tokens = sessionStorage.getItem(this.getStorageKey(this.TOKENS_KEY))
+    const key = this.getStorageKey(this.TOKENS_KEY)
+    const tokens = sessionStorage.getItem(key)
 
     if (tokens === null) {
       return null
     }
 
-    return JSON.parse(tokens) as OAuth2Tokens
+    try {
+      return JSON.parse(tokens) as OAuth2Tokens
+    } catch {
+      // If the stored value is invalid JSON, remove it and treat as no tokens.
+      sessionStorage.removeItem(key)
+      return null
+    }
   }
 
   public removeCodeVerifier(): void {
