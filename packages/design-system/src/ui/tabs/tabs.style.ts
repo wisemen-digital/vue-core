@@ -57,7 +57,7 @@ export const tabsVariants = tv({
           group-has-focus-visible:outline-fg-brand-primary-alt
         `,
         item: `
-          rounded-sm px-lg py-md outline-none
+          rounded-sm px-lg py-sm outline-none
           disabled:opacity-75
           data-[state=active]:text-secondary
           data-[state=inactive]:text-quaternary
@@ -73,7 +73,7 @@ export const tabsVariants = tv({
         `,
         indicatorInner: 'block size-full rounded-sm bg-brand-primary-alt',
         item: `
-          rounded-sm px-lg py-md outline-2 outline-transparent
+          rounded-sm px-lg py-sm outline-2 outline-transparent
           focus-visible:outline-fg-brand-primary-alt
           disabled:opacity-75
           data-[state=active]:text-brand-secondary
@@ -83,7 +83,9 @@ export const tabsVariants = tv({
         list: 'gap-xs',
       },
       'underline': {
-        dropdownIndicator: 'bottom-0 left-0 h-0.5 w-full rounded-md bg-fg-brand-primary-alt',
+        dropdownIndicator: `
+          bottom-0 left-0 h-0.5 w-full rounded-md bg-fg-brand-primary-alt
+        `,
         indicator: `
           rounded-md bg-fg-brand-primary-alt
           group-data-[orientation=horizontal]:h-0.5
