@@ -5,6 +5,7 @@ import type { DisabledWithReason } from '@/types/disabledWithReason.type'
 import BaseRadioGroup from '@/ui/radio-group/base/BaseRadioGroup.vue'
 
 const props = defineProps<{
+  id?: string
   isLabelHidden?: boolean
   description?: string | null
   label: string
@@ -14,6 +15,7 @@ const props = defineProps<{
 
 <template>
   <BaseRadioGroup
+    :id="props.id"
     :value="props.value"
     :label="props.label"
     :description="props.description"
