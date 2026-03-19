@@ -15,24 +15,43 @@ import {
 import type { DetailPaneStorage } from '@/ui/page/detailPane.type'
 
 const DEFAULT_WIDTH = '20rem'
+const DEFAULT_MIN_WIDTH = '16rem'
+const DEFAULT_MAX_WIDTH = '25rem'
 
 interface UseDetailPaneOptions {
   isOpen: Ref<boolean>
+  isResizable: boolean
   storage: DetailPaneStorage | null
-  width: string
 }
 
 interface UseDetailPaneReturn {
   isFloatingDetailPane: Ref<boolean>
   isOpen: WritableComputedRef<boolean>
-  sidebarWidth: string
+  isResizable: boolean
+  isResizing: Ref<boolean>
+  sidebarWidth: Ref<string>
   toggleIsOpen: () => void
+  onResizeKeyDown: (event: KeyboardEvent) => void
+  onResizeStart: (event: PointerEvent) => void
+
+}
+
+function remToPx(rem: string): number {
+  const remValue = Number.parseFloat(rem)
+  const rootFontSize = typeof document !== 'undefined'
+    ? Number.parseFloat(getComputedStyle(document.documentElement).fontSize)
+    : 16
+
+  return remValue * rootFontSize
 }
 
 export function useDetailPane(options: UseDetailPaneOptions): UseDetailPaneReturn {
-  const {
-    storage, width = DEFAULT_WIDTH,
-  } = options
+  const isResizable = options.isResizable ?? true
+  const storage = options.storage
+
+  const width = DEFAULT_WIDTH
+  const minWidth = DEFAULT_MIN_WIDTH
+  const maxWidth = DEFAULT_MAX_WIDTH
 
   const screen = useBreakpoints({
     xl: 960,
@@ -40,6 +59,11 @@ export function useDetailPane(options: UseDetailPaneOptions): UseDetailPaneRetur
 
   const isFloatingDetailPane = screen.smaller('xl')
   const isFloatingOpen = ref<boolean>(false)
+  const isResizing = ref<boolean>(false)
+
+  const sidebarWidth = storage !== null && storage !== undefined
+    ? useLocalStorage<string>(`${storage.key}-width`, width)
+    : ref<string>(width)
 
   function getStorageRef(): Ref<boolean> {
     if (storage === null || storage === undefined) {
@@ -88,10 +112,80 @@ export function useDetailPane(options: UseDetailPaneOptions): UseDetailPaneRetur
     isOpen.value = !isOpen.value
   }
 
+  function onResizeStart(event: PointerEvent): void {
+    if (isFloatingDetailPane.value) {
+      return
+    }
+
+    event.preventDefault()
+    isResizing.value = true
+
+    const parentEl = (event.target as HTMLElement).closest('.relative')
+
+    if (parentEl === null) {
+      return
+    }
+
+    const containerRect = parentEl.getBoundingClientRect()
+    const minPx = remToPx(minWidth)
+    const maxPx = remToPx(maxWidth)
+
+    function onPointerMove(moveEvent: PointerEvent): void {
+      const resizedWidth = containerRect.right - moveEvent.clientX
+      const clampedWidth = Math.min(Math.max(resizedWidth, minPx), maxPx)
+
+      sidebarWidth.value = `${clampedWidth}px`
+    }
+
+    function onPointerUp(): void {
+      isResizing.value = false
+      document.removeEventListener('pointermove', onPointerMove)
+      document.removeEventListener('pointerup', onPointerUp)
+    }
+
+    document.addEventListener('pointermove', onPointerMove)
+    document.addEventListener('pointerup', onPointerUp)
+  }
+
+  const RESIZE_STEP_PX = 16
+
+  function onResizeKeyDown(event: KeyboardEvent): void {
+    if (isFloatingDetailPane.value) {
+      return
+    }
+
+    const minPx = remToPx(minWidth)
+    const maxPx = remToPx(maxWidth)
+
+    let delta = 0
+
+    if (event.key === 'ArrowLeft') {
+      delta = RESIZE_STEP_PX
+    }
+    else if (event.key === 'ArrowRight') {
+      delta = -RESIZE_STEP_PX
+    }
+
+    if (delta === 0) {
+      return
+    }
+
+    event.preventDefault()
+
+    const currentPx = Number.parseFloat(sidebarWidth.value) || remToPx(width)
+    const newWidth = Math.min(Math.max(currentPx + delta, minPx), maxPx)
+
+    sidebarWidth.value = `${newWidth}px`
+  }
+
   return {
     isFloatingDetailPane,
     isOpen,
-    sidebarWidth: width,
+    isResizable,
+    isResizing,
+    sidebarWidth,
     toggleIsOpen,
+    onResizeKeyDown,
+    onResizeStart,
   }
 }

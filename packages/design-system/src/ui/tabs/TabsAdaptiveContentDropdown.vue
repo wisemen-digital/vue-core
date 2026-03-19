@@ -91,7 +91,7 @@ watch(() => props.hiddenTabsCount, () => {
 
 <template>
   <DropdownMenu
-    v-if="props.hiddenTabsCount > 0"
+
     popover-align="end"
   >
     <template #trigger>

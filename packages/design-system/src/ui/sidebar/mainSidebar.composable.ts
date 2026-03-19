@@ -17,7 +17,7 @@ const SIDEBAR_ICON_CELL_SIZE = '1.875rem' // 30px (48 - 2 * 9)
 const SIDEBAR_LINK_HEIGHT = '1.875rem' // 30px
 const SIDEBAR_LOGO_PADDING = '0.1875rem' // 3px ((SIDEBAR_ICON_CELL_SIZE - 24) / 2)
 const SIDEBAR_AVATAR_PADDING = '0.1875rem' // 3px ((SIDEBAR_ICON_CELL_SIZE - 24) / 2)
-const SIDEBAR_LOGO_HEIGHT = '2.625rem' // 42px
+const SIDEBAR_LOGO_HEIGHT = '2.6rem' // 41.6px (SIDEBAR_ICON_CELL_SIZE + 2 * SIDEBAR_LOGO_PADDING)
 
 const isFloatingSidebarOpen = ref<boolean>(false)
 const sidebarWidth = ref<string>(DEFAULT_SIDEBAR_WIDTH)

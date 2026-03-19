@@ -10,7 +10,7 @@ const {
 </script>
 
 <template>
-  <AnimatePresence>
+  <AnimatePresence :initial="false">
     <DashboardPageDetailPaneTransition
       v-if="isOpen"
     >

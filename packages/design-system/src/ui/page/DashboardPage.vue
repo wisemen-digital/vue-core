@@ -36,19 +36,27 @@ const hasDetailPane = computed<boolean>(() => {
 const {
   isFloatingDetailPane,
   isOpen: detailPaneIsOpen,
+  isResizable,
+  isResizing,
   sidebarWidth,
   toggleIsOpen,
+  onResizeKeyDown,
+  onResizeStart,
 } = useDetailPane({
   isOpen,
+  isResizable: props.detailPane?.isResizable ?? true,
   storage: props.detailPane?.storage ?? null,
-  width: props.detailPane?.width ?? '20rem',
 })
 
 useProvideDetailPaneContext({
   isFloatingDetailPane: computed<boolean>(() => isFloatingDetailPane.value),
   isOpen: detailPaneIsOpen,
-  sidebarWidth: computed<string>(() => sidebarWidth),
+  isResizable,
+  isResizing,
+  sidebarWidth,
   toggleIsOpen,
+  onResizeKeyDown,
+  onResizeStart,
 })
 
 function warnIfMissingH1(): void {
