@@ -205,7 +205,6 @@ export class S3 extends FileStorage {
       Prefix: options?.prefix,
       StartAfter: options?.startAfter
     })
-
     const result = await this.client.send(command)
 
     return result.Contents?.map(item => ({
