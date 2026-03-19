@@ -1,3 +1,5 @@
+import { useDataFormatConfig } from '@/composables/config.composable'
+
 export class NumberFormatUtil {
   /**
    * Clamp a number within a range.
@@ -8,7 +10,11 @@ export class NumberFormatUtil {
   }
 
   static format(value: number, precision = 0): string {
-    return new Intl.NumberFormat(navigator.language, {
+    const {
+      locale,
+    } = useDataFormatConfig()
+
+    return new Intl.NumberFormat(locale.value, {
       maximumFractionDigits: precision,
     }).format(value)
   }

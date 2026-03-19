@@ -11,11 +11,27 @@ import { NumberFormatUtil } from '@/utils/numberFormat.util'
 describe('numberUtil', () => {
   describe('format', () => {
     it('should format a number with default precision', () => {
+      useDataFormatConfig().update({
+        locale: 'en-US',
+      })
+
       expect(NumberFormatUtil.format(1234.567)).toBe('1,235')
     })
 
     it('should format a number with specified precision', () => {
+      useDataFormatConfig().update({
+        locale: 'en-US',
+      })
+
       expect(NumberFormatUtil.format(1234.567, 2)).toBe('1,234.57')
+    })
+
+    it('should format a number with nl locale', () => {
+      useDataFormatConfig().update({
+        locale: 'nl-BE',
+      })
+
+      expect(NumberFormatUtil.format(1234.567, 2)).toBe('1.234,57')
     })
   })
 
