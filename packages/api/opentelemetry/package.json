@@ -43,9 +43,9 @@
     "@opentelemetry/sdk-trace-base": "catalog:backend"
   },
   "peerDependencies": {
-    "@opentelemetry/api": "catalog:backend",
-    "@opentelemetry/api-logs": "catalog:backend",
-    "reflect-metadata": "catalog:backend"
+    "@opentelemetry/api": "catalog:backend-peer",
+    "@opentelemetry/api-logs": "catalog:backend-peer",
+    "reflect-metadata": "catalog:backend-peer"
   },
   "devDependencies": {
     "@types/node": "catalog:backend",
@@ -56,5 +56,4 @@
   "author": "Kobe Kwanten",
   "contributors": [],
   "license": "GPL"
-
 }

@@ -22,14 +22,13 @@
     "release": "pnpx release-it"
   },
   "dependencies": {
-    "twilio": "catalog:backend"
-  },
-  "peerDependencies": {
-    "@nestjs/common": "catalog:backend",
+    "twilio": "catalog:backend",
     "@wisemen/api-error": "workspace:*"
   },
+  "peerDependencies": {
+    "@nestjs/common": "catalog:backend-peer"
+  },
   "devDependencies": {
-    "@wisemen/api-error": "workspace:*",
     "@wisemen/eslint-config-nestjs": "workspace:*",
     "eslint": "catalog:lint",
     "expect": "catalog:test",

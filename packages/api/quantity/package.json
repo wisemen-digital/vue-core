@@ -21,16 +21,14 @@
     "release": "pnpx release-it"
   },
   "peerDependencies": {
-    "@nestjs/common": "catalog:backend",
-    "@nestjs/swagger": "catalog:backend",
-    "@wisemen/nestjs-typeorm": "workspace:*",
-    "class-transformer": "catalog:backend",
-    "class-validator": "catalog:backend",
-    "typeorm": "catalog:backend"
+    "@nestjs/common": "catalog:backend-peer",
+    "@nestjs/swagger": "catalog:backend-peer",
+    "class-transformer": "catalog:backend-peer",
+    "class-validator": "catalog:backend-peer",
+    "typeorm": "catalog:backend-peer"
   },
   "devDependencies": {
     "@wisemen/eslint-config-nestjs": "workspace:*",
-    "@wisemen/nestjs-typeorm": "workspace:*",
     "eslint": "catalog:lint",
     "expect": "catalog:test",
     "typescript": "catalog:peer"
@@ -41,5 +39,8 @@
     "type": "git",
     "url": "https://github.com/wisemen-digital/wisemen-core",
     "directory": "packages/quantity"
+  },
+  "dependencies": {
+    "@wisemen/nestjs-typeorm": "workspace:*"
   }
 }

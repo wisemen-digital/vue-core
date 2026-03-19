@@ -26,9 +26,9 @@
     "typescript": "catalog:peer"
   },
   "peerDependencies": {
-    "@nestjs/common": "catalog:backend",
-    "@nestjs/config": "catalog:backend",
-    "axios": "catalog:backend"
+    "@nestjs/common": "catalog:backend-peer",
+    "@nestjs/config": "catalog:backend-peer",
+    "axios": "catalog:backend-peer"
   },
   "author": "Yu Hang Hu",
   "license": "ISC",
