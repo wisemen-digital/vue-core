@@ -156,7 +156,7 @@ export function createAuth<TUser>(options: AuthPluginOptions<TUser>): AuthPlugin
       return {
         name: options.routes.login,
         query: {
-          redirectUrl: to?.fullPath ?? (window.location.pathname + window.location.search),
+          redirectUrl: to?.fullPath ?? (window.location.pathname + window.location.search + window.location.hash),
         },
       }
     }
