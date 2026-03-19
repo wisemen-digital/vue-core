@@ -77,7 +77,9 @@ export class ApiClient {
     })
 
     if (!response.ok) {
-      throw new Error(`Token refresh failed: ${response.status} ${response.statusText}`)
+      const error = new Error(`Token refresh failed: ${response.status} ${response.statusText}`)
+      ;(error as any).status = response.status
+      throw error
     }
 
     return await response.json() as OAuth2Tokens
@@ -93,6 +95,18 @@ export class ApiClient {
     }
 
     this._promise = (async (): Promise<void> => {
+      let refreshToken: string
+
+      // Fail fast if there is no valid refresh token instead of retrying with delays.
+      try {
+        refreshToken = this.getRefreshToken()
+      }
+      catch (error) {
+        throw new Error('No refresh token available', {
+          cause: error,
+        })
+      }
+
       const delays = [
         1000,
         3000,
@@ -100,14 +114,18 @@ export class ApiClient {
 
       for (let attempt = 0; attempt <= delays.length; attempt++) {
         try {
-          const tokens = await this.getNewAccessToken(this.getRefreshToken())
+          const tokens = await this.getNewAccessToken(refreshToken)
 
           this.setTokens(tokens)
 
           return
         }
         catch (error) {
-          if (attempt === delays.length) {
+          const status = (error as any)?.status
+          const isClientError = typeof status === 'number' && status >= 400 && status < 500
+
+          // Do not retry on client-side (4xx) refresh failures.
+          if (isClientError || attempt === delays.length) {
             throw new Error('Failed to refresh access token', {
               cause: error,
             })
