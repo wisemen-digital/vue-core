@@ -13,7 +13,7 @@ import {
 import ActionTooltip from '@/ui/action-tooltip/ActionTooltip.vue'
 import ClickableElement from '@/ui/clickable-element/ClickableElement.vue'
 import RowLayout from '@/ui/row-layout/RowLayout.vue'
-import MainSidebarLabelTransition from '@/ui/sidebar/components/MainSidebarLabelTransition.vue'
+import MainSidebarFadeTransition from '@/ui/sidebar/components/MainSidebarFadeTransition.vue'
 import MainSidebarNavigationLinkProvider from '@/ui/sidebar/components/MainSidebarNavigationLinkProvider.vue'
 import { useMainSidebar } from '@/ui/sidebar/mainSidebar.composable'
 
@@ -89,10 +89,11 @@ const isTooltipDisabled = computed<boolean>(() => {
               gridTemplateColumns: navigationLinkGridTemplateColumns,
             }"
             class="
-              group grid rounded-md duration-100
+              group
+              dark:data-active:glassy
+              grid rounded-md duration-100
               hover:bg-primary-hover
               data-active:bg-brand-primary
-              dark:data-active:glassy
             "
           >
             <RowLayout
@@ -117,8 +118,9 @@ const isTooltipDisabled = computed<boolean>(() => {
               />
             </RowLayout>
 
-            <MainSidebarLabelTransition>
+            <MainSidebarFadeTransition>
               <RowLayout
+                v-if="variant !== 'icons-only' || isSidebarOpen"
                 align="center"
                 justify="between"
                 gap="md"
@@ -141,7 +143,7 @@ const isTooltipDisabled = computed<boolean>(() => {
                   <slot name="right" />
                 </RowLayout>
               </RowLayout>
-            </MainSidebarLabelTransition>
+            </MainSidebarFadeTransition>
           </div>
         </MainSidebarNavigationLinkProvider>
       </RouterLink>

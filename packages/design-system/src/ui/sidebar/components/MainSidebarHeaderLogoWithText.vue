@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Logo from '@/ui/logo/Logo.vue'
 import RowLayout from '@/ui/row-layout/RowLayout.vue'
-import MainSidebarLabelTransition from '@/ui/sidebar/components/MainSidebarLabelTransition.vue'
+import MainSidebarFadeTransition from '@/ui/sidebar/components/MainSidebarFadeTransition.vue'
 import { useMainSidebar } from '@/ui/sidebar/mainSidebar.composable'
 
 const props = defineProps<{
@@ -10,8 +10,10 @@ const props = defineProps<{
 }>()
 
 const {
+  isSidebarOpen,
   sidebarLogoHeight,
   sidebarLogoPadding,
+  variant,
 } = useMainSidebar()
 </script>
 
@@ -26,14 +28,20 @@ const {
         alt="Logo"
         size="xs"
       />
-      <MainSidebarLabelTransition>
-        <span class="text-sm font-semibold text-secondary">
+      <MainSidebarFadeTransition>
+        <span
+          v-if="variant !== 'icons-only' || isSidebarOpen"
+          class="text-sm font-semibold text-secondary"
+        >
           {{ props.name }}
         </span>
-      </MainSidebarLabelTransition>
+      </MainSidebarFadeTransition>
     </RowLayout>
-    <MainSidebarLabelTransition>
-      <slot name="right" />
-    </MainSidebarLabelTransition>
+    <MainSidebarFadeTransition>
+      <slot
+        v-if="variant !== 'icons-only' || isSidebarOpen"
+        name="right"
+      />
+    </MainSidebarFadeTransition>
   </RowLayout>
 </template>

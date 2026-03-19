@@ -1,11 +1,3 @@
-<script setup lang="ts">
-import { useMainSidebar } from '@/ui/sidebar/mainSidebar.composable'
-
-const {
-  isSidebarOpen, variant,
-} = useMainSidebar()
-</script>
-
 <template>
   <Transition
     mode="out-in"
@@ -20,6 +12,6 @@ const {
     appear-to-class="opacity-100"
     appear
   >
-    <slot v-if="variant !== 'icons-only' || isSidebarOpen" />
+    <slot />
   </Transition>
 </template>

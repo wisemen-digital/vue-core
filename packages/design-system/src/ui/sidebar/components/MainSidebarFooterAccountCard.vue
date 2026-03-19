@@ -7,7 +7,6 @@ import type { Component } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import Avatar from '@/ui/avatar/avatar/Avatar.vue'
-import AvatarLabel from '@/ui/avatar/avatar-label/AvatarLabel.vue'
 import { UICard } from '@/ui/card/index'
 import ClickableElement from '@/ui/clickable-element/ClickableElement.vue'
 import ColumnLayout from '@/ui/column-layout/ColumnLayout.vue'
@@ -15,8 +14,9 @@ import DropdownMenu from '@/ui/dropdown-menu/DropdownMenu.vue'
 import DropdownMenuGroup from '@/ui/dropdown-menu/DropdownMenuGroup.vue'
 import DropdownMenuItem from '@/ui/dropdown-menu/DropdownMenuItem.vue'
 import { UIRowLayout } from '@/ui/row-layout/index'
-import MainSidebarLabelTransition from '@/ui/sidebar/components/MainSidebarLabelTransition.vue'
+import MainSidebarFadeTransition from '@/ui/sidebar/components/MainSidebarFadeTransition.vue'
 import { useMainSidebar } from '@/ui/sidebar/mainSidebar.composable'
+import { UIText } from '@/ui/text/index'
 
 export interface MenuOption {
   icon: Component
@@ -77,48 +77,45 @@ function onSignOut(): void {
             class="grid w-full gap-xs overflow-hidden text-left duration-100"
           >
             <UIRowLayout
-
               align="center"
               justify="center"
               class="h-full"
             >
-              <UIAvatar
-                :src="props.avatarUrl"
+              <Avatar
                 :name="props.name"
+                :src="props.avatarUrl"
+                size="xs"
               />
             </UIRowLayout>
 
-            <MainSidebarLabelTransition>
+            <MainSidebarFadeTransition>
               <UIRowLayout
+                v-if="variant !== 'icons-only' || isSidebarOpen"
                 justify="between"
                 align="center"
                 gap="xxs"
                 class="overflow-hidden"
               >
-                <Avatar
-                  v-if="variant === 'icons-only' && !isSidebarOpen"
-                  :name="props.name"
-                  :src="props.avatarUrl"
-                  size="xs"
-                />
-                <AvatarLabel
-                  v-else
-                  :name="props.name"
-                  :src="props.avatarUrl"
-                  :supporting-text="props.email"
-                  size="xs"
-                />
+                <div class="flex w-full flex-col overflow-hidden">
+                  <UIText
+                    :text="props.name"
+                    class="w-full text-xs font-semibold text-primary"
+                  />
+                  <UIText
+                    :text="props.email"
+                    class="w-full text-xs text-tertiary"
+                  />
+                </div>
+                <ColumnLayout
+                  align="start"
+                  class="h-full"
+                >
+                  <ChevronDownIcon
+                    class="mt-xxs size-4 shrink-0 text-quaternary"
+                  />
+                </ColumnLayout>
               </UIRowLayout>
-
-              <ColumnLayout
-                class="h-full self-start"
-              >
-                <ChevronDownIcon
-                  v-if="variant !== 'icons-only' || isSidebarOpen"
-                  class="size-4 shrink-0 text-quaternary"
-                />
-              </ColumnLayout>
-            </UIRowLayout>
+            </MainSidebarFadeTransition>
           </UICard>
         </button>
       </ClickableElement>
