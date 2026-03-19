@@ -33,24 +33,8 @@ export function useStringFormat() {
     return collator.compare
   }
 
-  /**
-   * Select the appropriate plural form based on count.
-   * Uses Intl.PluralRules for locale-aware plural categories.
-   * E.g., toPlural(1, { one: 'item', other: 'items' }) → "item"
-   */
-  function toPlural(
-    count: number,
-    forms: Partial<Record<Intl.LDMLPluralRule, string>>,
-  ): string {
-    const rules = new Intl.PluralRules(locale.value)
-    const category = rules.select(count)
-
-    return forms[category] ?? forms.other ?? ''
-  }
-
   return {
     compare,
     toList,
-    toPlural,
   }
 }
