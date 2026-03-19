@@ -34,9 +34,11 @@ export class SessionStorageTokensStrategy implements TokensStrategy {
 
     try {
       return JSON.parse(tokens) as OAuth2Tokens
-    } catch {
+    }
+    catch {
       // If the stored value is invalid JSON, remove it and treat as no tokens.
       sessionStorage.removeItem(key)
+
       return null
     }
   }

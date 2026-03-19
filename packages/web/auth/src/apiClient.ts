@@ -78,7 +78,7 @@ export class ApiClient {
 
     if (!response.ok) {
       const error = new Error(`Token refresh failed: ${response.status} ${response.statusText}`)
-      ;(error as any).status = response.status
+
       throw error
     }
 
@@ -102,9 +102,7 @@ export class ApiClient {
         refreshToken = this.getRefreshToken()
       }
       catch (error) {
-        throw new Error('No refresh token available', {
-          cause: error,
-        })
+        throw new Error(`No refresh token available: ${error}`)
       }
 
       const delays = [
@@ -126,9 +124,7 @@ export class ApiClient {
 
           // Do not retry on client-side (4xx) refresh failures.
           if (isClientError || attempt === delays.length) {
-            throw new Error('Failed to refresh access token', {
-              cause: error,
-            })
+            throw new Error(`Failed to refresh access token: ${error}`)
           }
 
           await new Promise<void>((resolve) => setTimeout(resolve, delays[attempt]))
