@@ -3,18 +3,31 @@ import { Column, ColumnOptions, ViewColumn } from 'typeorm'
 import { DateRange } from '../date-range.js'
 import { plainDate } from '../../plain-date/index.js'
 import { InclusivityString } from '../../common/inclusivity.js'
+import { FiniteDateRangeCheck } from './finite-date-range.check.decorator.js'
 
-export type DateRangeColumnOptions = Omit<ColumnOptions, 'type' | 'transformer'>
+export type DateRangeColumnOptions = Omit<ColumnOptions, 'type' | 'transformer'> & {
+  /**
+   * If set to true, a CHECK constraint is added to only allow finite date ranges.
+   * Default false.
+   */
+  finiteOnly?: boolean
+}
 export type DateRangeViewColumnOptions = Omit<ColumnOptions, 'transformer'>
 
 export function DateRangeColumn (options?: DateRangeColumnOptions): PropertyDecorator {
-  return applyDecorators(
+  const decorators: PropertyDecorator[] = [
     Column({
       ...options,
       type: 'daterange',
       transformer: DateRangeTransformer.getInstance()
     })
-  )
+  ]
+
+  if (options?.finiteOnly === true) {
+    decorators.push(FiniteDateRangeCheck())
+  }
+
+  return applyDecorators(...decorators)
 }
 
 export function DateRangeViewColumn (options?: DateRangeViewColumnOptions): PropertyDecorator {

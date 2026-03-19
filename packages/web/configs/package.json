@@ -17,6 +17,10 @@
     ".": {
       "types": "./dist/index.d.mts",
       "import": "./dist/index.mjs"
+    },
+    "./i18n": {
+      "types": "./dist/i18n.d.mts",
+      "import": "./dist/i18n.mjs"
     }
   },
   "main": "./dist/index.mjs",
@@ -40,16 +44,17 @@
   "peerDependencies": {
     "@hey-api/openapi-ts": "catalog:peer",
     "@tanstack/vue-query": "catalog:peer",
-    "@vitejs/plugin-vue": "catalog:vite",
-    "tailwind-variants": "catalog:style",
-    "vite": "catalog:vite",
-    "vite-plugin-pwa": "catalog:vite",
-    "vitest": "catalog:test",
-    "vue": "catalog:vue",
+    "@vitejs/plugin-vue": "catalog:peer",
+    "tailwind-variants": "catalog:peer",
+    "vite": "catalog:peer",
+    "vite-plugin-pwa": "catalog:peer",
+    "vitest": "catalog:peer",
+    "vue": "catalog:peer",
     "vue-i18n": "catalog:peer",
     "zod": "catalog:peer"
   },
   "dependencies": {
+    "@wisemen/vue-core-i18n-factory": "workspace:*",
     "defu": "catalog:general"
   },
   "devDependencies": {

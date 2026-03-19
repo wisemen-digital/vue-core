@@ -3,19 +3,32 @@ import { Column, ColumnOptions, ColumnType, ViewColumn } from 'typeorm'
 import { DateTimeRange } from '../date-time-range.js'
 import { InclusivityString } from '../../common/inclusivity.js'
 import { timestamp } from '../../timestamp/index.js'
+import { FiniteDateTimeRangeCheck } from './finite-date-time-range.check.decorator.js'
 
-export type DateTimeRangeColumnOptions = Omit<ColumnOptions, 'type' | 'transformer'>
-export type DateTimeRangeViewColumnOptions = Omit<ColumnOptions, 'transformer'>
+export type DateTimeRangeColumnOptions = Omit<ColumnOptions, 'type' | 'transformer'> & {
+  /**
+   * If set to true, a CHECK constraint is added to only allow finite date time ranges.
+   * Default false.
+   */
+  finiteOnly?: boolean
+}
 
 export function DateTimeRangeColumn (options?: DateTimeRangeColumnOptions): PropertyDecorator {
-  return applyDecorators(
-    Column({
-      ...options,
+  const decorators: PropertyDecorator[] = [
+    Column({ ...options,
       type: 'tstzrange3' as ColumnType,
       transformer: DateTimeRangeTransformer.getInstance()
     })
-  )
+  ]
+
+  if (options?.finiteOnly === true) {
+    decorators.push(FiniteDateTimeRangeCheck())
+  }
+
+  return applyDecorators(...decorators)
 }
+
+export type DateTimeRangeViewColumnOptions = Omit<ColumnOptions, 'transformer'>
 
 export function DateTimeRangeViewColumn (
   options?: DateTimeRangeViewColumnOptions
