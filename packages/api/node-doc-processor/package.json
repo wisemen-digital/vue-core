@@ -27,12 +27,11 @@
     "url": "https://github.com/wisemen-digital/wisemen-core",
     "directory": "packages/node-doc-processor"
   },
-  "peerDependencies": {
-    "@wisemen/pgboss-nestjs-job": "workspace:*"
-  },
   "devDependencies": {
     "@wisemen/eslint-config-nestjs": "workspace:*",
-    "@wisemen/pgboss-nestjs-job": "workspace:*",
     "eslint": "catalog:lint"
+  },
+  "dependencies": {
+    "@wisemen/pgboss-nestjs-job": "workspace:*"
   }
 }

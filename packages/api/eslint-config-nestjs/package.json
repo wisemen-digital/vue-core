@@ -18,9 +18,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "peerDependencies": {
-    "eslint": "9.39.2"
-  },
   "dependencies": {
     "@eslint/eslintrc": "catalog:lint",
     "@eslint/js": "catalog:lint",

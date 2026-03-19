@@ -24,7 +24,7 @@
     "axios": "catalog:backend"
   },
   "peerDependencies": {
-    "@nestjs/common": "catalog:backend"
+    "@nestjs/common": "catalog:backend-peer"
   },
   "devDependencies": {
     "@nestjs/common": "catalog:backend",
