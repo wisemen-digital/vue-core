@@ -1,7 +1,12 @@
 <script setup lang="ts">
 import { TabsTrigger as RekaTabsTrigger } from 'reka-ui'
+import {
+  onBeforeUnmount,
+  onMounted,
+} from 'vue'
 
-import ActionTooltip from '@/ui/action-tooltip/ActionTooltip.vue'
+import { UIActionTooltip } from '@/ui/action-tooltip/index'
+import { UIAdaptiveContentBlock } from '@/ui/adaptive-content/index'
 import ClickableElement from '@/ui/clickable-element/ClickableElement.vue'
 import { UINumberBadge } from '@/ui/number-badge/index'
 import { useInjectTabsContext } from '@/ui/tabs/tabs.context'
@@ -13,17 +18,67 @@ const props = withDefaults(defineProps<TabsItemProps>(), {
   count: null,
   disabledReason: null,
   icon: undefined,
-  label: null,
 })
 
 const {
+  isTouchDevice,
+  registerTab,
+  unregisterTab,
   variants,
 } = useInjectTabsContext()
+
+const priority = registerTab({
+  ...props,
+})
+
+onMounted(() => {
+})
+
+onBeforeUnmount(() => {
+  unregisterTab(props.value)
+})
 </script>
 
 <template>
-  <ActionTooltip
-    :is-disabled="!props.isDisabled || props.disabledReason == null"
+  <UIActionTooltip
+    v-if="!isTouchDevice"
+    :is-disabled="props.disabledReason == null"
+    :label="props.disabledReason"
+  >
+    <UIAdaptiveContentBlock :priority="priority">
+      <ClickableElement>
+        <RekaTabsTrigger
+          :value="props.value"
+          :disabled="props.isDisabled"
+          :class="variants.item()"
+        >
+          <component
+            :is="props.icon"
+            v-if="props.icon != null"
+            class="size-4 shrink-0"
+          />
+          <UIText
+            :text="props.label"
+            :class="{
+              'sr-only': props.isLabelHidden,
+            }"
+            class="text-xs"
+          >
+            {{ props.label }}
+          </UIText>
+          <UINumberBadge
+            v-if="props.count != null"
+            :value="props.count.toString()"
+            size="md"
+          />
+        </RekaTabsTrigger>
+      </ClickableElement>
+    </UIAdaptiveContentBlock>
+  </UIActionTooltip>
+
+  <UIActionTooltip
+    v-else
+    :is-disabled="props.disabledReason == null"
     :label="props.disabledReason"
   >
     <ClickableElement>
@@ -38,13 +93,14 @@ const {
           class="size-4 shrink-0"
         />
         <UIText
-          v-if="props.label != null"
           :text="props.label"
+          :class="{
+            'sr-only': props.isLabelHidden,
+          }"
           class="text-xs"
         >
           {{ props.label }}
         </UIText>
-        <slot v-else />
         <UINumberBadge
           v-if="props.count != null"
           :value="props.count.toString()"
@@ -52,5 +108,5 @@ const {
         />
       </RekaTabsTrigger>
     </ClickableElement>
-  </ActionTooltip>
+  </UIActionTooltip>
 </template>

@@ -48,6 +48,7 @@ const selectedTab = ref<string>('tab1')
         />
         <TabsItem
           :is-disabled="true"
+          disabled-reason="This tab is disabled for demonstration purposes."
           label="Disabled"
           value="tab3"
         />

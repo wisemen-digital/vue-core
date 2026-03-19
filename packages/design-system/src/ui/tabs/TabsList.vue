@@ -7,19 +7,26 @@ import {
   onMounted,
   ref,
 } from 'vue'
+import { useI18n } from 'vue-i18n'
 
+import { UIAdaptiveContent } from '@/ui/adaptive-content/index'
 import { useInjectTabsContext } from '@/ui/tabs/tabs.context'
+import TabsAdaptiveContentDropdown from '@/ui/tabs/TabsAdaptiveContentDropdown.vue'
+import TabsIndicator from '@/ui/tabs/TabsIndicator.vue'
 
+const i18n = useI18n()
 const scrollContainerRef = ref<HTMLElement | null>(null)
 
 const {
   hasHorizontalOverflow,
   hasReachedHorizontalEnd,
   isScrolledHorizontally,
+  isTouchDevice,
   orientation,
   scrollToLeft,
   scrollToRight,
   setScrollContainerRef,
+  tabs,
   variants,
 } = useInjectTabsContext()
 
@@ -35,13 +42,14 @@ onMounted(() => {
 <template>
   <div :class="variants.base()">
     <div
-      v-if="isScrolledHorizontally && hasHorizontalOverflow && orientation === 'horizontal'"
+      v-if="isTouchDevice && isScrolledHorizontally && hasHorizontalOverflow && orientation === 'horizontal'"
       class="
         absolute top-0 left-0 z-20 flex h-full items-center bg-linear-to-r
-        from-primary to-transparent px-md
+        from-primary to-transparent
       "
     >
       <button
+        :aria-label="i18n.t('component.tabs.scroll_left')"
         class="
           flex size-7 items-center justify-center rounded-md bg-primary
           text-secondary
@@ -49,7 +57,6 @@ onMounted(() => {
         "
         tabindex="-1"
         type="button"
-        aria-label="Scroll left"
         @click="scrollToLeft"
       >
         <svg
@@ -73,21 +80,48 @@ onMounted(() => {
       :class="variants.scrollContainer()"
       :data-orientation="orientation"
     >
-      <RekaTabsList :class="variants.list()">
+      <UIAdaptiveContent v-if="!isTouchDevice">
+        <template #default="{ hiddenBlockCount }">
+          <div class="h-full">
+            <RekaTabsList
+              :class="variants.list()"
+            >
+              <slot />
+
+              <TabsIndicator
+                :hidden-tabs-count="hiddenBlockCount"
+                :tabs="tabs"
+              />
+              <TabsAdaptiveContentDropdown
+                :hidden-tabs-count="hiddenBlockCount"
+                :tabs="tabs"
+              />
+            </RekaTabsList>
+          </div>
+        </template>
+      </UIAdaptiveContent>
+
+      <RekaTabsList
+        v-else
+        :class="variants.list()"
+      >
         <slot />
 
-        <RekaTabsIndicator :class="variants.indicator()" />
+        <RekaTabsIndicator :class="variants.indicator()">
+          <div :class="variants.indicatorInner()" />
+        </RekaTabsIndicator>
       </RekaTabsList>
     </div>
 
     <div
-      v-if="!hasReachedHorizontalEnd && hasHorizontalOverflow && orientation === 'horizontal'"
+      v-if="isTouchDevice && !hasReachedHorizontalEnd && hasHorizontalOverflow && orientation === 'horizontal'"
       class="
         absolute top-0 right-0 z-20 flex h-full items-center bg-linear-to-l
-        from-primary to-transparent px-md
+        from-primary to-transparent
       "
     >
       <button
+        :aria-label="i18n.t('component.tabs.scroll_right')"
         class="
           flex size-7 items-center justify-center rounded-md bg-primary
           text-secondary
@@ -95,7 +129,6 @@ onMounted(() => {
         "
         tabindex="-1"
         type="button"
-        aria-label="Scroll right"
         @click="scrollToRight"
       >
         <svg
