@@ -1,6 +1,6 @@
 {
   "name": "@wisemen/date-time-range",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "publishConfig": {
     "access": "public"
   },
