@@ -30,10 +30,10 @@ const props = withDefaults(defineProps<TabsProps>(), {
 
 const route = useRoute()
 const router = useRouter()
-const activeRouteName = computed<string | undefined>(() =>
-  typeof route.name === 'string' ? route.name : undefined)
+const activeRouteName = computed<string>(() =>
+  route.name as string)
 
-const isTouch = computed<boolean>(() => isTouchDevice())
+const isTouch = isTouchDevice()
 
 function onUpdateModelValue(value: string): void {
   if (value !== activeRouteName.value) {

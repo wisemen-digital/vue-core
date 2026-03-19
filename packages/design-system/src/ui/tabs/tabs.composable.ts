@@ -12,7 +12,7 @@ import {
 } from 'vue'
 
 interface UseTabsOptions {
-  activeValue: ComputedRef<string | undefined> | Ref<string | undefined>
+  activeValue: ComputedRef<string | null> | Ref<string | null>
 }
 
 interface UseTabs {

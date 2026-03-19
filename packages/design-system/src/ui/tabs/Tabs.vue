@@ -36,7 +36,7 @@ const {
   scrollToRight,
   setScrollContainerRef,
 } = useTabs({
-  activeValue: computed<string | undefined>(() => modelValue.value),
+  activeValue: computed<string>(() => modelValue.value),
 })
 
 const adaptiveDropdownRef = ref<HTMLDivElement | null>(null)
