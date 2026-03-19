@@ -1,9 +1,6 @@
 import type { Component } from 'vue'
 import type { RouteLocationRaw } from 'vue-router'
 
-
-
-
 export interface BreadcrumbItemProps {
   /**
    * Whether to visually hide the label while keeping it accessible to screen readers.

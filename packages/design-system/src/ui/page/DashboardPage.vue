@@ -26,7 +26,7 @@ onMounted(() => {
 
 <template>
   <Page
-    class="relative flex size-full h-full flex-col overflow-hidden bg-primary"
+    class="relative flex size-full h-full flex-col overflow-hidden bg-secondary"
   >
     <DashboardPageHeader
       :title="props.title"

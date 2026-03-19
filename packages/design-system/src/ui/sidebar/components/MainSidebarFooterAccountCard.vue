@@ -15,6 +15,7 @@ import DropdownMenu from '@/ui/dropdown-menu/DropdownMenu.vue'
 import DropdownMenuGroup from '@/ui/dropdown-menu/DropdownMenuGroup.vue'
 import DropdownMenuItem from '@/ui/dropdown-menu/DropdownMenuItem.vue'
 import { UIRowLayout } from '@/ui/row-layout/index'
+import MainSidebarLabelTransition from '@/ui/sidebar/components/MainSidebarLabelTransition.vue'
 import { useMainSidebar } from '@/ui/sidebar/mainSidebar.composable'
 
 export interface MenuOption {
@@ -36,9 +37,11 @@ const i18n = useI18n()
 
 const {
   isSidebarOpen,
-  sidebarAvatarPadding,
+  sidebarIconCellSize,
   variant,
 } = useMainSidebar()
+
+const accountCardGridTemplateColumns = `${sidebarIconCellSize} 1fr`
 
 function onSignOut(): void {
   if (props.onSignOut == null) {
@@ -64,22 +67,32 @@ function onSignOut(): void {
             :class="variant === 'icons-only' && !isSidebarOpen
               ? 'border-transparent'
               : `
-                bg-primary-alt p-md py-sm
+                bg-primary-alt p-md py-sm pl-xs
                 hover:bg-tertiary/50
               `
             "
-            :style="variant === 'icons-only' && !isSidebarOpen
-              ? { padding: sidebarAvatarPadding }
-              : undefined
-            "
-            class="flex w-full flex-col overflow-hidden text-left duration-100"
+            :style="{
+              gridTemplateColumns: accountCardGridTemplateColumns,
+            }"
+            class="grid w-full gap-xs overflow-hidden text-left duration-100"
           >
             <UIRowLayout
-              justify="between"
-              class="overflow-hidden"
+
+              align="center"
+              justify="center"
+              class="h-full"
             >
+              <UIAvatar
+                :src="props.avatarUrl"
+                :name="props.name"
+              />
+            </UIRowLayout>
+
+            <MainSidebarLabelTransition>
               <UIRowLayout
-                gap="md"
+                justify="between"
+                align="center"
+                gap="xxs"
                 class="overflow-hidden"
               >
                 <Avatar

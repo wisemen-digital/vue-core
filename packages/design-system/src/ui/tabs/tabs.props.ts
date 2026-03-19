@@ -25,9 +25,20 @@ export interface TabsProps {
 
 export interface TabsItemProps extends DisabledWithReason {
   /**
+   * Whether the label is visually hidden but still accessible to screen readers.
+   * @default false
+   */
+  isLabelHidden?: boolean
+  /**
    * A count to display as a badge on the right side of the tab.
    */
   count?: number | null
+  /**
+   * Provides a reason why the tab is disabled,
+   * when provided a tooltip will be shown on hover with the provided text.
+   * @default null
+   */
+  disabledReason?: string | null
   /**
    * An optional icon to be displayed alongside the tab label.
    */
@@ -35,12 +46,11 @@ export interface TabsItemProps extends DisabledWithReason {
   /**
    * The label text for the tab.
    */
-  label?: string | null
+  label: string
   /**
    * Unique identifier for the tab item.
    */
   value: string
-
 }
 
 export interface TabsContentProps {
@@ -53,9 +63,20 @@ export interface TabsContentProps {
 
 export interface TabsRouterLinkItemProps extends DisabledWithReason {
   /**
+   * Whether the label is visually hidden but still accessible to screen readers.
+   * @default false
+   */
+  isLabelHidden?: boolean
+  /**
    * A count to display as a badge on the right side of the tab.
    */
   count?: number | null
+  /**
+   * Provides a reason why the tab is disabled,
+   * when provided a tooltip will be shown on hover with the provided text.
+   * @default null
+   */
+  disabledReason?: string | null
   /**
    * An optional icon to be displayed alongside the tab label.
    */
@@ -63,7 +84,7 @@ export interface TabsRouterLinkItemProps extends DisabledWithReason {
   /**
    * The label text for the tab.
    */
-  label?: string | null
+  label: string
   /**
    * The route location to navigate to when the tab is clicked.
    */
