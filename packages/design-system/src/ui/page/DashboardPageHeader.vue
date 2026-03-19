@@ -31,7 +31,7 @@ const screen = useBreakpoints({
 const isSmallScreen = screen.smaller('lg')
 
 const hasSlotContent = computed<boolean>(() => {
-  return Boolean(slots.left || slots.center || slots.right)
+  return Boolean(slots['action-left'] || slots['action-center'] || slots['action-right'])
 })
 </script>
 
@@ -76,13 +76,13 @@ const hasSlotContent = computed<boolean>(() => {
               </RowLayout>
 
               <template v-if="!isSmallScreen">
-                <slot name="left" />
+                <slot name="action-left" />
               </template>
             </RowLayout>
           </RowLayout>
 
           <template v-if="!isSmallScreen">
-            <slot name="center" />
+            <slot name="action-center" />
           </template>
 
           <RowLayout
@@ -91,7 +91,7 @@ const hasSlotContent = computed<boolean>(() => {
           >
             <slot
               v-if="!isSmallScreen"
-              name="right"
+              name="action-right"
             />
             <Separator
               class="mr-md ml-lg h-4.5 bg-quaternary"
@@ -99,7 +99,7 @@ const hasSlotContent = computed<boolean>(() => {
             />
 
             <DashboardPageHeaderActions>
-              <slot name="actions" />
+              <slot name="master-actions" />
             </DashboardPageHeaderActions>
           </RowLayout>
         </RowLayout>
@@ -112,12 +112,12 @@ const hasSlotContent = computed<boolean>(() => {
     >
       <DashboardPageContainer>
         <RowLayout justify="between">
-          <slot name="left" />
+          <slot name="action-left" />
 
-          <slot name="center" />
+          <slot name="action-center" />
 
           <RowLayout gap="xs">
-            <slot name="right" />
+            <slot name="action-right" />
           </RowLayout>
         </RowLayout>
       </DashboardPageContainer>

@@ -1,20 +1,55 @@
 <script setup lang="ts">
 import {
+  computed,
   onMounted,
   useSlots,
 } from 'vue'
 
 import type { DashboardPageProps } from '@/ui/page/dashboardPage.type'
+import DashboardPageDetailPane from '@/ui/page/DashboardPageDetailPane.vue'
+import DashboardPageDetailPaneToggle from '@/ui/page/DashboardPageDetailPaneToggle.vue'
 import DashboardPageHeader from '@/ui/page/DashboardPageHeader.vue'
+import { useDetailPane } from '@/ui/page/detailPane.composable'
+import { useProvideDetailPaneContext } from '@/ui/page/detailPane.context'
+import type { DetailPaneConfig } from '@/ui/page/detailPane.type'
 import Page from '@/ui/page/Page.vue'
 
-const props = withDefaults(defineProps<DashboardPageProps>(), {
+const props = withDefaults(defineProps<DashboardPageProps & {
+  detailPane?: DetailPaneConfig | null
+}>(), {
   actions: () => [],
   breadcrumbs: () => [],
+  detailPane: null,
   tabs: () => [],
 })
 
+const isOpen = defineModel<boolean>('isDetailPaneOpen', {
+  default: true,
+})
+
 const slots = useSlots()
+
+const hasDetailPane = computed<boolean>(() => {
+  return props.detailPane !== null && slots['detail-pane'] !== undefined
+})
+
+const {
+  isFloatingDetailPane,
+  isOpen: detailPaneIsOpen,
+  sidebarWidth,
+  toggleIsOpen,
+} = useDetailPane({
+  isOpen,
+  storage: props.detailPane?.storage ?? null,
+  width: props.detailPane?.width ?? '20rem',
+})
+
+useProvideDetailPaneContext({
+  isFloatingDetailPane: computed<boolean>(() => isFloatingDetailPane.value),
+  isOpen: detailPaneIsOpen,
+  sidebarWidth: computed<string>(() => sidebarWidth),
+  toggleIsOpen,
+})
 
 function warnIfMissingH1(): void {
   const h1El = document.querySelector('h1') ?? null
@@ -54,24 +89,24 @@ onMounted(() => {
       </template>
 
       <template
-        v-if="slots.left"
-        #left
+        v-if="slots['header-action-left']"
+        #action-left
       >
-        <slot name="left" />
+        <slot name="header-action-left" />
       </template>
 
       <template
-        v-if="slots.center"
-        #center
+        v-if="slots['header-action-center']"
+        #action-center
       >
-        <slot name="center" />
+        <slot name="header-action-center" />
       </template>
 
       <template
-        v-if="slots.right"
-        #right
+        v-if="slots['header-action-right']"
+        #action-right
       >
-        <slot name="right" />
+        <slot name="header-action-right" />
       </template>
 
       <template
@@ -82,13 +117,24 @@ onMounted(() => {
       </template>
 
       <template
-        v-if="slots.actions"
-        #actions
+        v-if="slots['header-master-actions']"
+        #master-actions
       >
-        <slot name="actions" />
+        <slot name="header-master-actions" />
+        <DashboardPageDetailPaneToggle v-if="hasDetailPane" />
       </template>
     </DashboardPageHeader>
 
-    <slot />
+    <slot name="page-actions" />
+
+    <div class="relative flex size-full overflow-hidden">
+      <div class="size-full overflow-hidden">
+        <slot />
+      </div>
+
+      <DashboardPageDetailPane v-if="hasDetailPane">
+        <slot name="detail-pane" />
+      </DashboardPageDetailPane>
+    </div>
   </Page>
 </template>

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+/* eslint-disable @intlify/vue-i18n/no-raw-text */
 import {
   ArrowLeftIcon,
   ArrowRightIcon,
@@ -22,6 +23,7 @@ import {
 
 import IconButton from '@/ui/button/icon/IconButton.vue'
 import { UIButton } from '@/ui/button/index'
+import ColumnLayout from '@/ui/column-layout/ColumnLayout.vue'
 import MainContent from '@/ui/layout/MainContent.vue'
 import MainLayoutContainer from '@/ui/layout/MainLayoutContainer.vue'
 import type { PageBreadcrumb } from '@/ui/page/dashboardPage.type'
@@ -39,6 +41,7 @@ import MainSidebar from '@/ui/sidebar/MainSidebar.vue'
 import Tabs from '@/ui/tabs/Tabs.vue'
 import TabsItem from '@/ui/tabs/TabsItem.vue'
 import TabsList from '@/ui/tabs/TabsList.vue'
+import { UIText } from '@/ui/text/index'
 
 interface NavigationGroup {
   label: string
@@ -204,9 +207,16 @@ const tabsModelValue = ref<string>('tab1')
       <MainContent>
         <DashboardPage
           :breadcrumbs="breadcrumbs"
+          :detail-pane="{
+            width: '24rem',
+            storage: {
+              key: 'dashboard-page-detail-pane-is-open',
+              strategy: 'localStorage',
+            },
+          }"
           title="Dashboard"
         >
-          <template #actions>
+          <template #header-master-actions>
             <IconButton
               :icon="Bell01Icon"
               label="Notifications"
@@ -218,7 +228,7 @@ const tabsModelValue = ref<string>('tab1')
               variant="tertiary"
             />
           </template>
-          <template #left>
+          <template #header-action-left>
             <RowLayout>
               <Tabs
                 v-model="tabsModelValue"
@@ -242,7 +252,7 @@ const tabsModelValue = ref<string>('tab1')
             </RowLayout>
           </template>
 
-          <template #right>
+          <template #header-action-right>
             <UIButton
               :icon-left="Trash01Icon"
               variant="destructive-secondary"
@@ -261,29 +271,59 @@ const tabsModelValue = ref<string>('tab1')
               label="Button"
             />
           </template>
-          <DashboardPageActions>
-            <template #left>
-              <div>
-                <UIButton
-                  :icon-right="ArrowRightIcon"
-                  variant="secondary"
-                  size="md"
-                  label="Page Actions Left"
+
+          <template #page-actions>
+            <DashboardPageActions>
+              <template #left>
+                <div>
+                  <UIButton
+                    :icon-right="ArrowRightIcon"
+                    variant="secondary"
+                    size="md"
+                    label="Page Actions Left"
+                  />
+                </div>
+              </template>
+              <template #right>
+                <div>
+                  <UIButton
+                    :icon-left="ArrowLeftIcon"
+                    variant="secondary"
+                    size="md"
+                    label="Page Actions Right"
+                  />
+                </div>
+              </template>
+            </DashboardPageActions>
+          </template>
+
+          <DashboardPageContent>
+            <ColumnLayout>
+              <div class="rounded-lg border border-secondary p-4xl">
+                <p class="text-sm text-secondary">
+                  Main content area. The detail pane pushes this content to the left when open.
+                </p>
+              </div>
+              <div class="h-200 rounded-lg border border-secondary p-4xl">
+                <UIText
+                  class="text-sm text-secondary"
+                  text="Overflow test"
                 />
               </div>
-            </template>
-            <template #right>
-              <div>
-                <UIButton
-                  :icon-left="ArrowLeftIcon"
-                  variant="secondary"
-                  size="md"
-                  label="Page Actions Right"
-                />
-              </div>
-            </template>
-          </DashboardPageActions>
-          <DashboardPageContent />
+            </ColumnLayout>
+          </DashboardPageContent>
+
+          <template #detail-pane>
+            <div class="flex h-full flex-col gap-lg p-lg">
+              <h2 class="text-sm font-medium text-primary">
+                Detail Pane
+              </h2>
+
+              <p class="text-sm text-secondary">
+                This is the detail pane content. It slides in from the right.
+              </p>
+            </div>
+          </template>
         </DashboardPage>
       </MainContent>
     </MainLayoutContainer>
