@@ -1,0 +1,89 @@
+<script setup lang="ts">
+import { XCloseIcon } from '@wisemen/vue-core-icons'
+import {
+  DialogClose as RekaDialogClose,
+  DialogDescription as RekaDialogDescription,
+  DialogTitle as RekaDialogTitle,
+} from 'reka-ui'
+
+import { UIIconButton } from '@/ui/button/index'
+import ColumnLayout from '@/ui/column-layout/ColumnLayout.vue'
+import { useInjectDialogContext } from '@/ui/dialog/dialog.context'
+import type { DialogHeaderProps } from '@/ui/dialog/dialogHeader.props'
+import RowLayout from '@/ui/row-layout/RowLayout.vue'
+import { UISeparator } from '@/ui/separator/index'
+
+const props = withDefaults(defineProps<DialogHeaderProps>(), {
+  hasCloseButton: true,
+  hasDivider: true,
+  description: null,
+  icon: null,
+})
+
+const dialogContext = useInjectDialogContext(null)
+</script>
+
+<template>
+  <ColumnLayout
+    :class="dialogContext?.style.value.header()"
+    gap="none"
+  >
+    <RowLayout
+      align="start"
+      gap="xl"
+      class="p-xl"
+    >
+      <div
+        v-if="props.icon !== null"
+        class="
+          flex size-8 shrink-0 items-center justify-center rounded-full
+          bg-brand-secondary
+        "
+      >
+        <Component
+          :is="props.icon"
+          class="size-4 text-brand-primary"
+        />
+      </div>
+
+      <div class="flex min-w-0 flex-1 flex-col gap-xxs">
+        <RekaDialogTitle
+          as="h2"
+          class="text-sm font-semibold text-primary"
+        >
+          {{ props.title }}
+        </RekaDialogTitle>
+
+        <RekaDialogDescription
+          v-if="props.description !== null"
+          as="p"
+          class="text-xs text-tertiary"
+        >
+          {{ props.description }}
+        </RekaDialogDescription>
+      </div>
+    </RowLayout>
+
+    <RekaDialogClose
+      v-if="props.hasCloseButton"
+      :as-child="true"
+    >
+      <UIIconButton
+        :icon="XCloseIcon"
+        label="close dialog"
+        class="absolute top-0 right-0 m-md"
+        variant="tertiary"
+      />
+    </RekaDialogClose>
+
+    <UISeparator
+      v-if="props.hasDivider"
+      :class="
+        dialogContext !== null && dialogContext.isScrolledToTop.value
+          ? 'opacity-0'
+          : 'opacity-100'
+      "
+      class="transition-opacity duration-150"
+    />
+  </ColumnLayout>
+</template>

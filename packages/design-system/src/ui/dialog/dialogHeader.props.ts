@@ -1,0 +1,30 @@
+import type { Component } from 'vue'
+
+export interface DialogHeaderProps {
+  /**
+   * The title text displayed in the header.
+   */
+  title: string
+
+  /**
+   * Whether to show the close button.
+   * @default true
+   */
+  hasCloseButton?: boolean
+
+  /**
+   * Whether to show the divider at the bottom of the header.
+   * @default true
+   */
+  hasDivider?: boolean
+
+  /**
+   * Optional description text displayed below the title.
+   */
+  description?: string | null
+
+  /**
+   * Optional featured icon component displayed at the start of the header.
+   */
+  icon?: Component | null
+}
