@@ -13,8 +13,13 @@ export interface DataFormatConfig {
   locale: Locale
 }
 
+const DEFAULT_LOCALE: Locale
+  = typeof navigator !== 'undefined'
+    ? navigator.language
+    : Intl.DateTimeFormat().resolvedOptions().locale
+
 const DEFAULT_CONFIG: DataFormatConfig = {
-  locale: navigator.language,
+  locale: DEFAULT_LOCALE,
 }
 
 const config = ref<DataFormatConfig>(DEFAULT_CONFIG)
