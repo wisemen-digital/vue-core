@@ -1,6 +1,8 @@
 import type { Component } from 'vue'
 import type { RouteLocationRaw } from 'vue-router'
 
+import type { DisabledWithReason } from '@/types/disabledWithReason.type'
+
 export type TabsVariant = 'button-border' | 'button-brand' | 'underline'
 
 export interface TabsProps {
@@ -21,16 +23,22 @@ export interface TabsProps {
   variant?: TabsVariant
 }
 
-export interface TabsItemProps {
+export interface TabsItemProps extends DisabledWithReason {
   /**
-   * Whether the tab item is disabled.
+   * Whether the label is visually hidden but still accessible to screen readers.
    * @default false
    */
-  isDisabled?: boolean
+  isLabelHidden?: boolean
   /**
    * A count to display as a badge on the right side of the tab.
    */
   count?: number | null
+  /**
+   * Provides a reason why the tab is disabled,
+   * when provided a tooltip will be shown on hover with the provided text.
+   * @default null
+   */
+  disabledReason?: string | null
   /**
    * An optional icon to be displayed alongside the tab label.
    */
@@ -38,12 +46,11 @@ export interface TabsItemProps {
   /**
    * The label text for the tab.
    */
-  label?: string | null
+  label: string
   /**
    * Unique identifier for the tab item.
    */
   value: string
-
 }
 
 export interface TabsContentProps {
@@ -54,16 +61,22 @@ export interface TabsContentProps {
   value: string
 }
 
-export interface TabsRouterLinkItemProps {
+export interface TabsRouterLinkItemProps extends DisabledWithReason {
   /**
-   * Whether the tab item is disabled.
+   * Whether the label is visually hidden but still accessible to screen readers.
    * @default false
    */
-  isDisabled?: boolean
+  isLabelHidden?: boolean
   /**
    * A count to display as a badge on the right side of the tab.
    */
   count?: number | null
+  /**
+   * Provides a reason why the tab is disabled,
+   * when provided a tooltip will be shown on hover with the provided text.
+   * @default null
+   */
+  disabledReason?: string | null
   /**
    * An optional icon to be displayed alongside the tab label.
    */
@@ -71,7 +84,7 @@ export interface TabsRouterLinkItemProps {
   /**
    * The label text for the tab.
    */
-  label?: string | null
+  label: string
   /**
    * The route location to navigate to when the tab is clicked.
    */

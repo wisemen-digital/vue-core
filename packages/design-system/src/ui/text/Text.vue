@@ -4,11 +4,33 @@ import {
   useAttrs,
 } from 'vue'
 
-import type { TextProps } from '@/ui/text/text.props'
 import ActionTooltip from '@/ui/action-tooltip/ActionTooltip.vue'
 import { useIsTruncated } from '@/ui/text/isTruncated.composable'
+import type { TextProps } from '@/ui/text/text.props'
 
-const props = withDefaults(defineProps<TextProps>(), {
+const props = withDefaults(defineProps<{
+  /**
+   * The HTML element or component to render as the text container.
+   * @default 'span'
+   */
+  as?: string
+
+  class?: string | Record<string, unknown> | null
+  /**
+   * If `true`, the tooltip will be disabled even if the text is truncated.
+   * @default false
+   */
+  disableTooltip?: boolean
+  /**
+   * The text content to display.
+   */
+  text: string
+  /**
+   * If `true`, the text will be truncated with an ellipsis if it overflows its container.
+   * If a number between 1 and 6 is provided, the text will be clamped to that number of lines.
+   */
+  truncate?: boolean | 2 | 3 | 4 | 5 | 6
+}>(), {
   as: 'span',
   class: null,
   disableTooltip: false,
@@ -26,7 +48,6 @@ const isTruncated = useIsTruncated(textRef)
     :is-disabled="!isTruncated || props.disableTooltip"
     :label="props.text"
   >
-    <!-- eslint-disable vue/no-v-text-v-html-on-component -->
     <Component
       v-bind="attrs"
       :is="props.as"
@@ -42,7 +63,8 @@ const isTruncated = useIsTruncated(textRef)
         },
       ]"
       class="max-w-full"
-      v-html="props.text"
-    />
+    >
+      {{ props.text }}
+    </Component>
   </ActionTooltip>
 </template>

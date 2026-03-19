@@ -10,6 +10,7 @@ import {
 
 import TabsOverflowPlayground from './TabsOverflowPlayground.vue'
 import TabsPlayground from './TabsPlayground.vue'
+import TabsRouterLinkAdaptivePlayground from './TabsRouterLinkAdaptivePlayground.vue'
 import TabsRouterLinkPlayground from './TabsRouterLinkPlayground.vue'
 
 const meta = {
@@ -68,7 +69,9 @@ export const Underline: Story = {
 
     await expect(canvas.getByText('Members content goes here.')).toBeVisible()
 
-    const disabledTab = canvas.getByRole('tab', { name: /Disabled/i })
+    const disabledTab = canvas.getByRole('tab', {
+      name: /Disabled/i,
+    })
 
     await expect(disabledTab).toBeDisabled()
   },
@@ -117,6 +120,40 @@ export const HorizontalOverflow: Story = {
       }
     },
     template: '<TabsOverflowPlayground v-bind="args" />',
+  }),
+}
+
+export const AdaptiveOverflow: Story = {
+  args: {
+    variant: 'button-border',
+  },
+  render: (args) => ({
+    components: {
+      TabsOverflowPlayground,
+    },
+    setup() {
+      return {
+        args,
+      }
+    },
+    template: '<TabsOverflowPlayground v-bind="args" is-adaptive />',
+  }),
+}
+
+export const AdaptiveRouterLink: Story = {
+  args: {
+    variant: 'underline',
+  },
+  render: (args) => ({
+    components: {
+      TabsRouterLinkAdaptivePlayground,
+    },
+    setup() {
+      return {
+        args,
+      }
+    },
+    template: '<TabsRouterLinkAdaptivePlayground v-bind="args" />',
   }),
 }
 
