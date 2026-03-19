@@ -196,7 +196,7 @@ export class OidcClient {
   * The client is kept alive so the user can log in again without a page reload
   */
   public logout(): void {
-    this.client?.clearTokens()
+    this.client.clearTokens()
   }
 
   public sanitizeRedirectUrl(redirectUrl: string, fallbackUrl?: string): string {
