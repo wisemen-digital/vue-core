@@ -8,7 +8,7 @@ export class NumberFormatUtil {
   }
 
   static format(value: number, precision = 0): string {
-    return new Intl.NumberFormat(undefined, {
+    return new Intl.NumberFormat(navigator.language, {
       maximumFractionDigits: precision,
     }).format(value)
   }
