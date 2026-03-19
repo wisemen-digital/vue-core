@@ -14,7 +14,10 @@ export class PgBossWorkerModule extends ConfigurableModuleClass {
     const module = super.forRoot(options)
     const imports = [...module.imports ?? []]
 
-    const clientModule = PgBossClientModule.forRoot({ pgBossOptions: options.pgBossOptions })
+    const clientModule = PgBossClientModule.forRoot({
+      pgBossOptions: options.pgBossOptions,
+      onClientError: options.onClientError
+    })
 
     imports.push(clientModule)
 
@@ -37,7 +40,8 @@ export class PgBossWorkerModule extends ConfigurableModuleClass {
         const clientModuleOptions = await options.useFactory(...args)
 
         return {
-          pgBossOptions: clientModuleOptions.pgBossOptions
+          pgBossOptions: clientModuleOptions.pgBossOptions,
+          onClientError: clientModuleOptions.onClientError
         }
       }
     })
