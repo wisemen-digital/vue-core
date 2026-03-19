@@ -7,11 +7,13 @@ import {
   ref,
 } from 'vue'
 
+import ActionTooltip from '@/ui/action-tooltip/ActionTooltip.vue'
 import { useProvideCheckboxGroupContext } from '@/ui/checkbox-group/checkboxGroup.context'
 import type { CheckboxGroupProps } from '@/ui/checkbox-group/checkboxGroup.props'
 
 const props = withDefaults(defineProps<CheckboxGroupProps>(), {
   isDisabled: false,
+  disabledReason: null,
   orientation: 'vertical',
 })
 const modelValue = defineModel<TValue[]>({
@@ -63,7 +65,12 @@ useProvideCheckboxGroupContext({
 </script>
 
 <template>
-  <RekaCheckboxGroupRoot v-model="modelValue">
-    <slot />
-  </RekaCheckboxGroupRoot>
+  <ActionTooltip
+    :is-disabled="!props.isDisabled || props.disabledReason == null"
+    :label="props.disabledReason"
+  >
+    <RekaCheckboxGroupRoot v-model="modelValue">
+      <slot />
+    </RekaCheckboxGroupRoot>
+  </ActionTooltip>
 </template>

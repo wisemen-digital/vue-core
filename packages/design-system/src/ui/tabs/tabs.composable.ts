@@ -1,10 +1,19 @@
-import type { ComputedRef } from 'vue'
+import type {
+  ComputedRef,
+  Ref,
+} from 'vue'
 import {
   computed,
+  nextTick,
   onBeforeUnmount,
   onMounted,
   ref,
+  watch,
 } from 'vue'
+
+interface UseTabsOptions {
+  activeValue: ComputedRef<string | null> | Ref<string | null>
+}
 
 interface UseTabs {
   hasHorizontalOverflow: ComputedRef<boolean>
@@ -16,7 +25,7 @@ interface UseTabs {
   setScrollContainerRef: (el: HTMLElement) => void
 }
 
-export function useTabs(): UseTabs {
+export function useTabs(options: UseTabsOptions): UseTabs {
   const scrollContainerRef = ref<HTMLElement | null>(null)
 
   const isScrolledHorizontally = ref<boolean>(false)
@@ -61,7 +70,7 @@ export function useTabs(): UseTabs {
     })
   }
 
-  function scrollToActiveTab(): void {
+  function scrollToActiveTabIfNotFullyVisible(): void {
     if (scrollContainerRef.value === null) {
       return
     }
@@ -75,13 +84,32 @@ export function useTabs(): UseTabs {
     const activeTabRect = activeTab.getBoundingClientRect()
     const scrollContainerRect = scrollContainerRef.value.getBoundingClientRect()
 
+    const isClipped = activeTabRect.left < scrollContainerRect.left
+      || activeTabRect.right > scrollContainerRect.right
+
+    if (!isClipped) {
+      return
+    }
+
+    const targetScrollLeft = activeTabRect.left
+      - scrollContainerRect.left
+      + scrollContainerRef.value.scrollLeft
+      - (scrollContainerRect.width / 2)
+      + (activeTabRect.width / 2)
+
     scrollContainerRef.value.scrollTo({
-      behavior: 'instant',
-      left: activeTabRect.left - scrollContainerRect.left + scrollContainerRef.value.scrollLeft,
+      behavior: 'smooth',
+      left: targetScrollLeft,
     })
   }
 
   let resizeObserver: ResizeObserver | null = null
+
+  watch(options.activeValue, () => {
+    nextTick(() => {
+      scrollToActiveTabIfNotFullyVisible()
+    })
+  })
 
   onMounted(() => {
     if (scrollContainerRef.value === null) {
@@ -107,7 +135,7 @@ export function useTabs(): UseTabs {
     hasHorizontalOverflow: computed<boolean>(() => hasHorizontalOverflow.value),
     hasReachedHorizontalEnd: computed<boolean>(() => hasReachedHorizontalEnd.value),
     isScrolledHorizontally: computed<boolean>(() => isScrolledHorizontally.value),
-    scrollToActiveTab,
+    scrollToActiveTab: scrollToActiveTabIfNotFullyVisible,
     scrollToLeft,
     scrollToRight,
     setScrollContainerRef,

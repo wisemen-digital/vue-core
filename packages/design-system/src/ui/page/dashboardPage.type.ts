@@ -20,7 +20,7 @@ export interface PageBreadcrumb {
   isLoading?: boolean
   icon?: Component
   imageSrc?: string
-  label?: string
+  label: string
   // @ts-expect-error no matching signature
   to?: Routes[number]
 }

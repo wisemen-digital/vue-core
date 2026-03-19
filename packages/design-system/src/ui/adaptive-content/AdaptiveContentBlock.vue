@@ -5,6 +5,7 @@ import {
   computed,
   onBeforeUnmount,
   onMounted,
+  useAttrs,
   useId,
   useTemplateRef,
 } from 'vue'
@@ -12,7 +13,13 @@ import {
 import { useInjectAdaptiveContentContext } from '@/ui/adaptive-content/adaptiveContent.context'
 import type { AdaptiveContentBlockProps } from '@/ui/adaptive-content/adaptiveContentBlock.props'
 
+defineOptions({
+  inheritAttrs: false,
+})
+
 const props = defineProps<AdaptiveContentBlockProps>()
+
+const attrs = useAttrs()
 
 const blockRef = useTemplateRef('block')
 
@@ -43,6 +50,7 @@ onBeforeUnmount(() => {
   <Primitive
     v-show="isBlockVisible || !isMounted"
     ref="block"
+    v-bind="attrs"
     :as-child="true"
   >
     <slot />

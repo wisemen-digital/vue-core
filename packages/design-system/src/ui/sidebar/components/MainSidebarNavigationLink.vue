@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Component } from 'vue'
+import { computed } from 'vue'
 import type {
   RouteLocationNormalized,
   RouteLocationRaw,
@@ -12,6 +13,7 @@ import {
 import ActionTooltip from '@/ui/action-tooltip/ActionTooltip.vue'
 import ClickableElement from '@/ui/clickable-element/ClickableElement.vue'
 import RowLayout from '@/ui/row-layout/RowLayout.vue'
+import MainSidebarFadeTransition from '@/ui/sidebar/components/MainSidebarFadeTransition.vue'
 import MainSidebarNavigationLinkProvider from '@/ui/sidebar/components/MainSidebarNavigationLinkProvider.vue'
 import { useMainSidebar } from '@/ui/sidebar/mainSidebar.composable'
 
@@ -35,9 +37,9 @@ const emit = defineEmits<{
 const {
   isSidebarOpen,
   closeIfFloatingSidebar,
+  sidebarIconCellSize,
   sidebarIconSize,
   sidebarLinkHeight,
-  sidebarLinkPadding,
   variant,
 } = useMainSidebar()
 
@@ -47,11 +49,25 @@ function onClick(): void {
   closeIfFloatingSidebar()
   emit('click')
 }
+
+const navigationLinkGridTemplateColumns = `${sidebarIconCellSize} 1fr`
+
+const isTooltipDisabled = computed<boolean>(() => {
+  if (variant.value === 'icons-with-labels' && props.keyboardShortcut === null) {
+    return true
+  }
+
+  if (variant.value === 'icons-only' && isSidebarOpen && props.keyboardShortcut === null) {
+    return true
+  }
+
+  return false
+})
 </script>
 
 <template>
   <ActionTooltip
-    :is-disabled="variant !== 'icons-only' && !isSidebarOpen && props.keyboardShortcut === null"
+    :is-disabled="isTooltipDisabled"
     :keyboard-shortcut="props.keyboardShortcut"
     :label="props.label"
     popover-side="right"
@@ -68,57 +84,66 @@ function onClick(): void {
         >
           <div
             :data-active="isRouteActive || props.isActive(route) || undefined"
-            :style="{ height: sidebarLinkHeight }"
+            :style="{
+              height: sidebarLinkHeight,
+              gridTemplateColumns: navigationLinkGridTemplateColumns,
+            }"
             class="
-              group rounded-md
+              group
+              dark:data-active:glassy
+              grid rounded-md duration-100
               hover:bg-primary-hover
               data-active:bg-brand-primary
-              dark:data-active:glassy
             "
           >
             <RowLayout
-              :style="{ padding: sidebarLinkPadding }"
-              gap="md"
-              justify="between"
-              class="
-                group h-full rounded-[0.4rem] duration-100
-                dark:group-data-active:glassy-inner-content
-              "
+              :style="{
+                width: sidebarIconCellSize,
+                height: sidebarIconCellSize,
+              }"
+              align="center"
+              justify="center"
             >
-              <RowLayout>
-                <Component
-                  :is="props.icon"
-                  :style="{
-                    width: sidebarIconSize,
-                    height: sidebarIconSize,
-                  }"
-                  class="
-                    shrink-0 text-fg-quaternary duration-100
-                    group-data-active:text-fg-brand-primary
-                    dark:group-data-active:text-fg-primary
-                  "
-                />
+              <Component
+                :is="props.icon"
+                :style="{
+                  width: sidebarIconSize,
+                  height: sidebarIconSize,
+                }"
+                class="
+                  shrink-0 text-fg-quaternary duration-100
+                  group-data-active:text-fg-brand-primary
+                  dark:group-data-active:text-fg-primary
+                "
+              />
+            </RowLayout>
 
+            <MainSidebarFadeTransition>
+              <RowLayout
+                v-if="variant !== 'icons-only' || isSidebarOpen"
+                align="center"
+                justify="between"
+                gap="md"
+                class="overflow-hidden pr-md"
+              >
                 <span
-                  v-if="variant !== 'icons-only' || isSidebarOpen"
                   class="
-                    text-xs font-medium text-secondary duration-100
+                    truncate text-xs font-medium text-secondary duration-100
                     group-hover:text-primary
                     group-data-active:text-brand-secondary
                   "
                 >
                   {{ props.label }}
                 </span>
+                <RowLayout
+                  gap="lg"
+                  align="center"
+                  class="shrink-0"
+                >
+                  <slot name="right" />
+                </RowLayout>
               </RowLayout>
-              <RowLayout
-                v-if="variant !== 'icons-only' || isSidebarOpen"
-                gap="lg"
-              >
-                <slot
-                  name="right"
-                />
-              </RowLayout>
-            </RowLayout>
+            </MainSidebarFadeTransition>
           </div>
         </MainSidebarNavigationLinkProvider>
       </RouterLink>
