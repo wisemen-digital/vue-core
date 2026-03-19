@@ -17,11 +17,9 @@ export interface TabItemData extends TabsItemProps {
 
 interface TabsContext extends PropsToComputed<TabsProps> {
   hasHorizontalOverflow: ComputedRef<boolean>
-
   hasReachedHorizontalEnd: ComputedRef<boolean>
   isScrolledHorizontally: ComputedRef<boolean>
-  isTouchDevice: ComputedRef<boolean>
-
+  isTouchDevice: boolean
   activeTab: ComputedRef<TabItemData | null>
   getAdaptiveDropdownRef: () => InstanceType<typeof HTMLDivElement> | null
   registerTab: (tab: TabsItemProps) => number

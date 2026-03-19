@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ChevronDownIcon } from '@wisemen/vue-core-icons'
 import {
   DropdownMenuItem as RekaDropdownMenuItem,
   injectTabsRootContext,
@@ -13,12 +12,12 @@ import {
 import { useI18n } from 'vue-i18n'
 
 import { useInjectAdaptiveContentContext } from '@/ui/adaptive-content/adaptiveContent.context'
-import { UIButton } from '@/ui/button/index'
 import ColumnLayout from '@/ui/column-layout/ColumnLayout.vue'
 import DropdownMenu from '@/ui/dropdown-menu/DropdownMenu.vue'
 import { UINumberBadge } from '@/ui/number-badge/index'
 import type { TabItemData } from '@/ui/tabs/tabs.context'
 import { useInjectTabsContext } from '@/ui/tabs/tabs.context'
+import TabsAdaptiveContentDropdownTriggerButton from '@/ui/tabs/TabsAdaptiveContentDropdownTriggerButton.vue'
 import { UIText } from '@/ui/text/index'
 
 const props = defineProps<{
@@ -59,13 +58,14 @@ const labelText = computed<string>(() => {
   return i18n.t('component.tabs.adaptive_dropdown.trigger.label')
 })
 
-const dropdownLeftIcon = computed<Component | undefined>(() => {
-  return isActiveTabHidden.value ? activeTab.value?.icon : undefined
+const dropdownLeftIcon = computed<Component | null>(() => {
+  return isActiveTabHidden.value ? activeTab.value?.icon ?? null : null
 })
 
 const activeButtonClasses = computed<Record<string, boolean>>(() => ({
-  'text-brand-secondary!': isActiveTabHidden.value && (variant.value === 'underline' || variant.value === 'button-brand'),
-  'text-secondary!': isActiveTabHidden.value && variant.value === 'button-border',
+  'bg-brand-primary text-brand-secondary': isActiveTabHidden.value && variant.value !== 'button-border',
+  'text-quaternary': !isActiveTabHidden.value,
+  'text-secondary': isActiveTabHidden.value && variant.value === 'button-border',
 }))
 
 const tabsRootContext = injectTabsRootContext()
@@ -99,22 +99,10 @@ watch(() => props.hiddenTabsCount, () => {
         ref="adaptiveDropdownRef"
         :class="variants.dropdownTrigger()"
       >
-        <div
-          v-if="false"
-          :class="variants.dropdownIndicator()"
-        />
-        <UIButton
-          :class="[
-            activeButtonClasses,
-            {
-              'hover:bg-transparent!': variant === 'button-border',
-            },
-          ]"
-          :icon-left="dropdownLeftIcon"
-          :icon-right="ChevronDownIcon"
+        <TabsAdaptiveContentDropdownTriggerButton
+          :active-button-classes="activeButtonClasses"
           :label="labelText"
-          class="relative z-10"
-          variant="tertiary"
+          :icon="dropdownLeftIcon"
         />
       </div>
     </template>

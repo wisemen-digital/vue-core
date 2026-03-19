@@ -1,7 +1,4 @@
-import type {
-  ComputedRef,
-  ShallowRef,
-} from 'vue'
+import type { ComputedRef } from 'vue'
 import {
   computed,
   shallowRef,
@@ -10,14 +7,7 @@ import {
 import type { TabItemData } from '@/ui/tabs/tabs.context'
 import type { TabsItemProps } from '@/ui/tabs/tabs.props'
 
-interface UseAdaptiveTabs {
-  activeTab: ComputedRef<TabItemData | null>
-  registerTab: (tab: TabsItemProps) => number
-  tabs: ShallowRef<TabItemData[]>
-  unregisterTab: (value: string) => void
-}
-
-export function useAdaptiveTabs(activeValue: ComputedRef<string | undefined>): UseAdaptiveTabs {
+export function useAdaptiveTabs(activeValue: ComputedRef<string | null>) {
   let priorityCounter = 0
 
   function nextPriority(): number {

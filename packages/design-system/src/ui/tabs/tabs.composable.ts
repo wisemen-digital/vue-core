@@ -70,7 +70,7 @@ export function useTabs(options: UseTabsOptions): UseTabs {
     })
   }
 
-  function scrollToActiveTab(): void {
+  function scrollToActiveTabIfNotFullyVisible(): void {
     if (scrollContainerRef.value === null) {
       return
     }
@@ -107,7 +107,7 @@ export function useTabs(options: UseTabsOptions): UseTabs {
 
   watch(options.activeValue, () => {
     nextTick(() => {
-      scrollToActiveTab()
+      scrollToActiveTabIfNotFullyVisible()
     })
   })
 
@@ -135,7 +135,7 @@ export function useTabs(options: UseTabsOptions): UseTabs {
     hasHorizontalOverflow: computed<boolean>(() => hasHorizontalOverflow.value),
     hasReachedHorizontalEnd: computed<boolean>(() => hasReachedHorizontalEnd.value),
     isScrolledHorizontally: computed<boolean>(() => isScrolledHorizontally.value),
-    scrollToActiveTab,
+    scrollToActiveTab: scrollToActiveTabIfNotFullyVisible,
     scrollToLeft,
     scrollToRight,
     setScrollContainerRef,

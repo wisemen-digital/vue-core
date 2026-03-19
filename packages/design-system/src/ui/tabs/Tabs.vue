@@ -21,7 +21,7 @@ const props = withDefaults(defineProps<TabsProps>(), {
   variant: 'underline',
 })
 
-const isTouch = computed<boolean>(() => isTouchDevice())
+const isTouch = isTouchDevice()
 
 const modelValue = defineModel<string>({
   required: true,
@@ -39,13 +39,13 @@ const {
   activeValue: computed<string | undefined>(() => modelValue.value),
 })
 
-const adaptiveDropdownRef = ref<InstanceType<typeof HTMLDivElement> | null>(null)
+const adaptiveDropdownRef = ref<HTMLDivElement | null>(null)
 
-function setAdaptiveDropdownRef(el: InstanceType<typeof HTMLDivElement> | null): void {
+function setAdaptiveDropdownRef(el: HTMLDivElement | null): void {
   adaptiveDropdownRef.value = el
 }
 
-function getAdaptiveDropdownRef(): InstanceType<typeof HTMLDivElement> | null {
+function getAdaptiveDropdownRef(): HTMLDivElement | null {
   return adaptiveDropdownRef.value
 }
 
@@ -63,7 +63,7 @@ const {
   registerTab,
   tabs,
   unregisterTab,
-} = useAdaptiveTabs(computed<string | undefined>(() => modelValue.value))
+} = useAdaptiveTabs(computed<string | null>(() => modelValue.value))
 
 useProvideTabsContext({
   ...toComputedRefs(props),
