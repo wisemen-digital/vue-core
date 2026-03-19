@@ -132,7 +132,9 @@ const breadcrumbs = computed<PageBreadcrumb[]>(() => ([
       border-primary
     "
   >
-    <MainSidebar>
+    <MainSidebar
+      variant="icons-only"
+    >
       <template #header>
         <MainSidebarHeaderLogoWithText
           url="../../../storybook-assets/wisemen-logo.png"
@@ -201,16 +203,15 @@ const breadcrumbs = computed<PageBreadcrumb[]>(() => ([
         paddingLeft: variant === 'icons-only' ? sidebarWidth : isSidebarOpen && !isFloatingSidebar ? sidebarWidth : '0.5rem',
       }"
       :transition="{
-        duration: isReduceMotionEnabledOnDevice ? 0 : variant === 'icons-only' ? 0.1 : 0.3,
+        duration: isReduceMotionEnabledOnDevice ? 0 : 0.3,
         type: 'spring',
         bounce: 0,
       }"
-      class="size-full overflow-hidden bg-secondary p-md"
+      class="size-full overflow-hidden p-md"
     >
       <div
         class="
-          size-full overflow-auto rounded-xl border border-secondary bg-primary
-          shadow-sm/5
+          size-full overflow-auto rounded-xl border border-secondary shadow-sm/5
           dark:shadow-none
         "
       >

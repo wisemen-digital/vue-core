@@ -9,10 +9,12 @@ import { useI18n } from 'vue-i18n'
 import { UIAvatar } from '@/ui/avatar/index'
 import { UICard } from '@/ui/card/index'
 import ClickableElement from '@/ui/clickable-element/ClickableElement.vue'
+import ColumnLayout from '@/ui/column-layout/ColumnLayout.vue'
 import DropdownMenu from '@/ui/dropdown-menu/DropdownMenu.vue'
 import DropdownMenuGroup from '@/ui/dropdown-menu/DropdownMenuGroup.vue'
 import DropdownMenuItem from '@/ui/dropdown-menu/DropdownMenuItem.vue'
 import { UIRowLayout } from '@/ui/row-layout/index'
+import MainSidebarLabelTransition from '@/ui/sidebar/components/MainSidebarLabelTransition.vue'
 import { useMainSidebar } from '@/ui/sidebar/mainSidebar.composable'
 import { UIText } from '@/ui/text/index'
 
@@ -35,9 +37,11 @@ const i18n = useI18n()
 
 const {
   isSidebarOpen,
-  sidebarAvatarPadding,
+  sidebarIconCellSize,
   variant,
 } = useMainSidebar()
+
+const accountCardGridTemplateColumns = `${sidebarIconCellSize} 1fr`
 
 function onSignOut(): void {
   if (props.onSignOut == null) {
@@ -63,32 +67,35 @@ function onSignOut(): void {
             :class="variant === 'icons-only' && !isSidebarOpen
               ? 'border-transparent'
               : `
-                bg-primary-alt p-md py-sm
+                bg-primary-alt p-md py-sm pl-xs
                 hover:bg-tertiary/50
               `
             "
-            :style="variant === 'icons-only' && !isSidebarOpen
-              ? { padding: sidebarAvatarPadding }
-              : undefined
-            "
-            class="flex w-full flex-col overflow-hidden text-left duration-100"
+            :style="{
+              gridTemplateColumns: accountCardGridTemplateColumns,
+            }"
+            class="grid w-full gap-xs overflow-hidden text-left duration-100"
           >
             <UIRowLayout
-              justify="between"
-              class="overflow-hidden"
+
+              align="center"
+              justify="center"
+              class="h-full"
             >
+              <UIAvatar
+                :src="props.avatarUrl"
+                :name="props.name"
+              />
+            </UIRowLayout>
+
+            <MainSidebarLabelTransition>
               <UIRowLayout
-                gap="md"
+                justify="between"
+                align="center"
+                gap="xxs"
                 class="overflow-hidden"
               >
-                <UIAvatar
-                  :src="props.avatarUrl"
-                  :name="props.name"
-                />
-                <div
-                  v-if="variant !== 'icons-only' || isSidebarOpen"
-                  class="flex w-full flex-col overflow-hidden"
-                >
+                <div class="flex w-full flex-col overflow-hidden">
                   <UIText
                     :text="props.name"
                     class="w-full text-xs font-semibold text-primary"
@@ -98,13 +105,16 @@ function onSignOut(): void {
                     class="w-full text-xs text-tertiary"
                   />
                 </div>
+                <ColumnLayout
+                  align="start"
+                  class="h-full"
+                >
+                  <ChevronDownIcon
+                    class="mt-xxs size-4 shrink-0 text-quaternary"
+                  />
+                </ColumnLayout>
               </UIRowLayout>
-
-              <ChevronDownIcon
-                v-if="variant !== 'icons-only' || isSidebarOpen"
-                class="size-4 shrink-0 text-quaternary"
-              />
-            </UIRowLayout>
+            </MainSidebarLabelTransition>
           </UICard>
         </button>
       </ClickableElement>
