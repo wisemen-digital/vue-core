@@ -1,31 +1,34 @@
-import { computed, ref } from "vue";
+import {
+  computed,
+  ref,
+} from 'vue'
 
-import type { Locale } from "@/models/locale.model";
+import type { Locale } from '@/models/locale.model'
 
-export interface StringFormatConfig {
+export interface DataFormatConfig {
   /**
-   * The locale to use for locale-aware string formatting (e.g. list formatting, pluralization).
+   * The locale to use for locale-aware formatting (e.g. list formatting, number formatting, pluralization).
    * If not provided, the browser's default locale will be used.
    */
-  locale: Locale;
+  locale: Locale
 }
 
-const DEFAULT_CONFIG: StringFormatConfig = {
+const DEFAULT_CONFIG: DataFormatConfig = {
   locale: navigator.language,
-};
+}
 
-const config = ref<StringFormatConfig>(DEFAULT_CONFIG);
+const config = ref<DataFormatConfig>(DEFAULT_CONFIG)
 
-function update(updatedConfig: Partial<StringFormatConfig>): void {
+function update(updatedConfig: Partial<DataFormatConfig>): void {
   config.value = {
     ...config.value,
     ...updatedConfig,
-  };
+  }
 }
 
-export function useStringFormatConfig() {
+export function useDataFormatConfig() {
   return {
     locale: computed<Locale>(() => config.value.locale),
     update,
-  };
+  }
 }
