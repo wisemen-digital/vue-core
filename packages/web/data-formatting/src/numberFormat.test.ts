@@ -1,0 +1,214 @@
+import {
+  describe,
+  expect,
+  it,
+} from 'vitest'
+
+import { useDataFormatConfig } from '@/composables/config.composable'
+import { useNumberFormat } from '@/composables/numberFormat.composable'
+import { NumberFormatUtil } from '@/utils/numberFormat.util'
+
+describe('numberUtil', () => {
+  describe('format', () => {
+    it('should format a number with default precision', () => {
+      expect(NumberFormatUtil.format(1234.567)).toBe('1,235')
+    })
+
+    it('should format a number with specified precision', () => {
+      expect(NumberFormatUtil.format(1234.567, 2)).toBe('1,234.57')
+    })
+  })
+
+  describe('clamp', () => {
+    it('should clamp a value above max', () => {
+      expect(NumberFormatUtil.clamp(15, 0, 10)).toBe(10)
+    })
+
+    it('should clamp a value below min', () => {
+      expect(NumberFormatUtil.clamp(-5, 0, 10)).toBe(0)
+    })
+
+    it('should return the value when within range', () => {
+      expect(NumberFormatUtil.clamp(5, 0, 10)).toBe(5)
+    })
+  })
+
+  describe('roundTo', () => {
+    it('should round to 2 decimal places', () => {
+      expect(NumberFormatUtil.roundTo(3.141_59, 2)).toBe(3.14)
+    })
+
+    it('should round to 0 decimal places', () => {
+      expect(NumberFormatUtil.roundTo(3.7, 0)).toBe(4)
+    })
+
+    it('should handle negative numbers', () => {
+      expect(NumberFormatUtil.roundTo(-3.141_59, 2)).toBe(-3.14)
+    })
+  })
+
+  describe('randomBetween', () => {
+    it('should return a number within the range', () => {
+      const result = NumberFormatUtil.randomBetween(1, 10)
+
+      expect(result).toBeGreaterThanOrEqual(1)
+      expect(result).toBeLessThanOrEqual(10)
+    })
+  })
+})
+
+describe('useNumberFormat', () => {
+  describe('format', () => {
+    it('should format with locale-aware separators', () => {
+      useDataFormatConfig().update({
+        locale: 'en-US',
+      })
+
+      const {
+        format,
+      } = useNumberFormat()
+
+      expect(format(1234.5, 2)).toBe('1,234.50')
+    })
+
+    it('should format with nl locale', () => {
+      useDataFormatConfig().update({
+        locale: 'nl-BE',
+      })
+
+      const {
+        format,
+      } = useNumberFormat()
+
+      expect(format(1234.5, 2)).toBe('1.234,50')
+    })
+  })
+
+  describe('toPercent', () => {
+    it('should format as percentage', () => {
+      useDataFormatConfig().update({
+        locale: 'en-US',
+      })
+
+      const {
+        toPercent,
+      } = useNumberFormat()
+
+      expect(toPercent(0.125, 1)).toBe('12.5%')
+    })
+
+    it('should format 100% without decimals', () => {
+      useDataFormatConfig().update({
+        locale: 'en-US',
+      })
+
+      const {
+        toPercent,
+      } = useNumberFormat()
+
+      expect(toPercent(1)).toBe('100%')
+    })
+  })
+
+  describe('toCompact', () => {
+    it('should format large numbers in compact notation', () => {
+      useDataFormatConfig().update({
+        locale: 'en-US',
+      })
+
+      const {
+        toCompact,
+      } = useNumberFormat()
+
+      expect(toCompact(1_200_000)).toBe('1.2M')
+    })
+
+    it('should not compact small numbers', () => {
+      useDataFormatConfig().update({
+        locale: 'en-US',
+      })
+
+      const {
+        toCompact,
+      } = useNumberFormat()
+
+      expect(toCompact(500)).toBe('500')
+    })
+  })
+
+  describe('toFileSize', () => {
+    it('should format 0 bytes', () => {
+      useDataFormatConfig().update({
+        locale: 'en-US',
+      })
+
+      const {
+        toFileSize,
+      } = useNumberFormat()
+
+      expect(toFileSize(0)).toBe('0 B')
+    })
+
+    it('should format bytes', () => {
+      useDataFormatConfig().update({
+        locale: 'en-US',
+      })
+
+      const {
+        toFileSize,
+      } = useNumberFormat()
+
+      expect(toFileSize(500)).toBe('500 B')
+    })
+
+    it('should format kilobytes', () => {
+      useDataFormatConfig().update({
+        locale: 'en-US',
+      })
+
+      const {
+        toFileSize,
+      } = useNumberFormat()
+
+      expect(toFileSize(1536)).toBe('1.5 kB')
+    })
+
+    it('should format megabytes', () => {
+      useDataFormatConfig().update({
+        locale: 'en-US',
+      })
+
+      const {
+        toFileSize,
+      } = useNumberFormat()
+
+      expect(toFileSize(1_048_576)).toBe('1 MB')
+    })
+  })
+
+  describe('toRange', () => {
+    it('should format a number range', () => {
+      useDataFormatConfig().update({
+        locale: 'en-US',
+      })
+
+      const {
+        toRange,
+      } = useNumberFormat()
+
+      expect(toRange(1000, 2000)).toBe('1,000 – 2,000')
+    })
+
+    it('should format with precision', () => {
+      useDataFormatConfig().update({
+        locale: 'en-US',
+      })
+
+      const {
+        toRange,
+      } = useNumberFormat()
+
+      expect(toRange(1.5, 3.7, 1)).toBe('1.5 – 3.7')
+    })
+  })
+})
