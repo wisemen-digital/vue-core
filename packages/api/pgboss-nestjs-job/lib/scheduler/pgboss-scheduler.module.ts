@@ -13,7 +13,10 @@ export class PgBossSchedulerModule extends ConfigurableModuleClass {
     const module = super.forRoot(options)
     const imports = [...module.imports ?? []]
 
-    const clientModule = PgBossClientModule.forRoot({ pgBossOptions: options.pgBossOptions })
+    const clientModule = PgBossClientModule.forRoot({
+      pgBossOptions: options.pgBossOptions,
+      onClientError: options.onClientError
+    })
 
     imports.push(clientModule)
 
@@ -29,8 +32,11 @@ export class PgBossSchedulerModule extends ConfigurableModuleClass {
       useFactory: async (...args: unknown[]) => {
         assert(options.useFactory !== undefined, 'PgBossSchedulerModule: missing useFactory in options')
 
+        const clientOptions = await options.useFactory(...args)
+
         return {
-          pgBossOptions: (await options.useFactory(...args)).pgBossOptions
+          pgBossOptions: clientOptions.pgBossOptions,
+          onClientError: clientOptions.onClientError
         }
       }
     })
