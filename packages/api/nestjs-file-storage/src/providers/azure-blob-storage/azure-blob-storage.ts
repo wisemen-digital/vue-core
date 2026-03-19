@@ -171,7 +171,7 @@ export class AzureBlobStorage extends FileStorage {
     prefix?: string
     startAfter?: string
   }): Promise<FileIndex[]> {
-    const blobs = this.containerClient.listBlobsFlat({ 
+    const blobs = this.containerClient.listBlobsFlat({
       prefix: options?.prefix,
       startFrom: options?.startAfter
     })

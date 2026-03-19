@@ -50,6 +50,6 @@ export abstract class FileStorage {
 }
 
 export type FileIndex = {
-  key?: string 
+  key?: string
   lastModified?: Date
 }

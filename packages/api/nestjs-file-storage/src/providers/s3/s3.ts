@@ -210,7 +210,7 @@ export class S3 extends FileStorage {
 
     return result.Contents?.map(item => ({
       key: item.Key,
-      lastModified: item.LastModified,
+      lastModified: item.LastModified
     })) ?? []
   }
 }
