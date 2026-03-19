@@ -203,7 +203,7 @@ const breadcrumbs = computed<PageBreadcrumb[]>(() => ([
         paddingLeft: variant === 'icons-only' ? sidebarWidth : isSidebarOpen && !isFloatingSidebar ? sidebarWidth : '0.5rem',
       }"
       :transition="{
-        duration: isReduceMotionEnabledOnDevice ? 0 : variant === 'icons-only' ? 0.1 : 0.3,
+        duration: isReduceMotionEnabledOnDevice ? 0 : 0.3,
         type: 'spring',
         bounce: 0,
       }"
