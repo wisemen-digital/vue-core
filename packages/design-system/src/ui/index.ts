@@ -1,4 +1,5 @@
 export * from './action-tooltip'
+export * from './avatar'
 export * from './badge'
 export * from './breadcrumbs'
 export * from './button'

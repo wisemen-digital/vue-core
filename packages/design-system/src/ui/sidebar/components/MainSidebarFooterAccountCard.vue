@@ -6,7 +6,7 @@ import {
 import type { Component } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import { UIAvatar } from '@/ui/avatar/index'
+import Avatar from '@/ui/avatar/avatar/Avatar.vue'
 import { UICard } from '@/ui/card/index'
 import ClickableElement from '@/ui/clickable-element/ClickableElement.vue'
 import ColumnLayout from '@/ui/column-layout/ColumnLayout.vue'
@@ -14,7 +14,7 @@ import DropdownMenu from '@/ui/dropdown-menu/DropdownMenu.vue'
 import DropdownMenuGroup from '@/ui/dropdown-menu/DropdownMenuGroup.vue'
 import DropdownMenuItem from '@/ui/dropdown-menu/DropdownMenuItem.vue'
 import { UIRowLayout } from '@/ui/row-layout/index'
-import MainSidebarLabelTransition from '@/ui/sidebar/components/MainSidebarLabelTransition.vue'
+import MainSidebarFadeTransition from '@/ui/sidebar/components/MainSidebarFadeTransition.vue'
 import { useMainSidebar } from '@/ui/sidebar/mainSidebar.composable'
 import { UIText } from '@/ui/text/index'
 
@@ -77,19 +77,20 @@ function onSignOut(): void {
             class="grid w-full gap-xs overflow-hidden text-left duration-100"
           >
             <UIRowLayout
-
               align="center"
               justify="center"
               class="h-full"
             >
-              <UIAvatar
-                :src="props.avatarUrl"
+              <Avatar
                 :name="props.name"
+                :src="props.avatarUrl"
+                size="xs"
               />
             </UIRowLayout>
 
-            <MainSidebarLabelTransition>
+            <MainSidebarFadeTransition>
               <UIRowLayout
+                v-if="variant !== 'icons-only' || isSidebarOpen"
                 justify="between"
                 align="center"
                 gap="xxs"
@@ -114,7 +115,7 @@ function onSignOut(): void {
                   />
                 </ColumnLayout>
               </UIRowLayout>
-            </MainSidebarLabelTransition>
+            </MainSidebarFadeTransition>
           </UICard>
         </button>
       </ClickableElement>
