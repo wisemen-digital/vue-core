@@ -2,10 +2,6 @@ import type { Result } from 'neverthrow'
 
 import type { AsyncResult } from '@/async-result/asyncResult'
 
-export interface ApiErrorCodes {}
-
-export type ApiErrorCode = string
-
 export interface ApiKnownErrorObject<TCode extends string = string> {
   code: TCode
   detail: string

@@ -1,5 +1,5 @@
 import type { ApiResult } from './apiError.type'
-import type { QueryParams } from './query.type'
+import type { QueryParams } from './queryOptions'
 
 export interface OffsetPaginationParams {
   limit: number
