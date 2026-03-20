@@ -12,11 +12,10 @@
   ],
   "scripts": {
     "lint": "eslint lib",
-    "prebuild": "rm -rf ./dist",
     "clean": "rm -r ./dist",
     "build": "tsc",
-    "pretest": "npm run clean && npm run build",
-    "test": "node --test",
+    "pretest": "pnpm build",
+    "test": "node --test ./dist/**/*.test.js",
     "prerelease": "npm run build",
     "release": "pnpx release-it"
   },

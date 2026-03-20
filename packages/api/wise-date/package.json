@@ -4,6 +4,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "imports": {
+    "#src/*": "./dist/*"
+  },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "type": "module",
@@ -11,10 +14,9 @@
     "dist/"
   ],
   "scripts": {
-    "prebuild": "rm -rf ./dist",
     "clean": "rm -rf ./dist",
     "build": "tsc",
-    "pretest": "npm run clean && npm run build",
+    "pretest": "npm run build",
     "test": "node --test ./dist/**/*.js",
     "lint": "eslint --cache",
     "prerelease": "npm run build",

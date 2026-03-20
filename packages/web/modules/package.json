@@ -36,7 +36,7 @@
     "type-check": "vue-tsc --noEmit",
     "pub:release": "pnpm publish --access public",
     "test:unit": "vitest --run",
-    "test": "vitest --run",
+    "test": "vitest --run --passWithNoTests",
     "lint": "eslint .",
     "cleanup": "rimraf dist/ node_modules/ .turbo/",
     "lint:fix": "eslint . --fix",
