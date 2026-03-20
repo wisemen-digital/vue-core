@@ -23,6 +23,8 @@ export class RedisClient implements OnModuleInit, OnModuleDestroy {
   private handleError (error: unknown): void {
     if (this.config.onClientError != null) {
       this.config.onClientError(error)
+    } else {
+      console.log(error)
     }
   }
 
@@ -34,7 +36,7 @@ export class RedisClient implements OnModuleInit, OnModuleDestroy {
     }
   }
 
-  onModuleInit (): void {
+  async onModuleInit (): Promise<void> {
     try {
       this._client = createClient({
         url: this.config.url,
@@ -43,13 +45,17 @@ export class RedisClient implements OnModuleInit, OnModuleDestroy {
       })
     } catch (error) {
       this.handleError(error)
+
+      return
     }
 
-    this._client?.on('error', (error) => {
+    this._client.on('error', (error) => {
       this.handleError(error)
     })
 
-    void this._client?.connect()
+    await this._client.connect().catch((error) => {
+      this.handleError(error)
+    })
   }
 
   async onModuleDestroy (): Promise<void> {
@@ -75,12 +81,12 @@ export class RedisClient implements OnModuleInit, OnModuleDestroy {
       ?? new Array<T | null>(keys.length).fill(null)
   }
 
-  async putCachedValue<T> (key: string, value: T, ttl = REDIS_DEFAULT_TTL): Promise<void> {
+  async putCachedValue<T> (key: string, value: T, ttl = this.ttl): Promise<void> {
     await this.perform(() => this.client.set(key, JSON.stringify(value), { EX: ttl }))
   }
 
-  async putCachedValues<T> (keys: string[], values: T[], ttl = REDIS_DEFAULT_TTL): Promise<void> {
-    assert(keys.length === values.length)
+  async putCachedValues<T> (keys: string[], values: T[], ttl = this.ttl): Promise<void> {
+    assert(keys.length === values.length, `putCachedValues expects 'keys' and 'values' to have the same length, but received keys.length=${keys.length}, values.length=${values.length}`)
 
     await this.perform(() => {
       const args = keys.flatMap((key, index) => [key, JSON.stringify(values[index])])
