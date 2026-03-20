@@ -55,6 +55,7 @@ interface UseMutationOptions<TReqData, TResData, TParams = void, TErrorCode exte
 export interface UseMutationReturnType<TReqData, TResData, TParams = void, TErrorCode extends string = string> {
   /**
    * Whether mutation is loading
+   * @deprecated - use `result.value.isLoading()` instead
    */
   isLoading: ComputedRef<boolean>
   /**

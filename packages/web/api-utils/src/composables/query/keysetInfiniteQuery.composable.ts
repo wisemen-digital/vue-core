@@ -1,5 +1,8 @@
 import { useInfiniteQuery } from '@tanstack/vue-query'
-import type { MaybeRef } from 'vue'
+import type {
+  ComputedRef,
+  MaybeRef,
+} from 'vue'
 import { computed } from 'vue'
 
 import { AsyncResult } from '@/async-result/asyncResult'
@@ -41,11 +44,59 @@ export interface KeysetInfiniteQueryOptions<TData, TErrorCode extends string = s
   queryKey: Record<string, unknown>
 }
 
+export interface UseKeysetInfiniteQueryReturnType<TData, TErrorCode extends string = string> {
+  /**
+   * Whether there is a next page available to fetch
+   */
+  hasNextPage: ComputedRef<boolean>
+  /**
+   * Whether query has errored at least once
+   * @deprecated - use `result.value.isErr()` instead
+   */
+  isError: ComputedRef<boolean>
+  /**
+   * Whether query is currently fetching data, regardless of cache status
+   */
+  isFetching: ComputedRef<boolean>
+  /**
+   * Whether query is currently fetching the next page
+   */
+  isFetchingNextPage: ComputedRef<boolean>
+  /**
+   * Whether query is initially loading
+   * @deprecated - use `result.value.isLoading()` instead
+   */
+  isLoading: ComputedRef<boolean>
+  /**
+   * Whether query has been executed successfully
+   * @deprecated - use `result.value.isOk()` instead
+   */
+  isSuccess: ComputedRef<boolean>
+  /**
+   * Fetch the next page of results using the keyset cursor
+   */
+  fetchNextPage: () => Promise<void>
+  /**
+   * Refetch the query
+   */
+  refetch: () => Promise<void>
+  /**
+   * Computed result of the query containing all accumulated pages
+   * Returns an AsyncResult with three states:
+   * - loading: use `result.value.isLoading()`
+   * - ok: use `result.value.isOk()` and `result.value.getValue()`
+   * - err: use `result.value.isErr()` and `result.value.getError()`
+   *
+   * Use `result.value.match({ loading, ok, err })` for exhaustive handling
+   */
+  result: ComputedRef<AsyncResult<KeysetPaginationResponse<TData>, ApiError<TErrorCode>>>
+}
+
 const DEFAULT_LIMIT = QUERY_CONFIG.limit
 
 export function useKeysetInfiniteQuery<TData, TErrorCode extends string = string>(
   options: KeysetInfiniteQueryOptions<TData, TErrorCode>,
-) {
+): UseKeysetInfiniteQueryReturnType<TData, TErrorCode> {
   function getQueryKey(): unknown[] {
     const [
       queryKey,
