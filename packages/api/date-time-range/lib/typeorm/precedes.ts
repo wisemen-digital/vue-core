@@ -7,7 +7,6 @@ export function Precedes (period: DateTimeRange) {
 
   return Raw(
     (alias: string) => `${alias} -|- :${paramName} AND ${alias} < :${paramName}`,
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     { [paramName]: period.toString() }
   )
 }

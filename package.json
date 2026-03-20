@@ -28,6 +28,7 @@
     "build-storybook": "storybook build -c ./packages/web/design-system/.storybook -o ./static/storybook"
   },
   "devDependencies": {
+    "@changesets/changelog-github": "^0.6.0",
     "@commitlint/cli": "catalog:tooling",
     "@commitlint/config-conventional": "catalog:tooling",
     "husky": "catalog:build",

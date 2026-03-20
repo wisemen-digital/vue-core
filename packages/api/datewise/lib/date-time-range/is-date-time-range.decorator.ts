@@ -13,6 +13,8 @@ export interface IsDateTimeRangeValidationOptions {
   endsBeforeOrAt?: () => Timestamp
   endsAfter?: () => Timestamp
   endsAfterOrAt?: () => Timestamp
+  /** If set to true the date time range dto cannot contain an infinite boundary, default false */
+  finiteOnly?: boolean
   each?: boolean
 }
 
@@ -35,6 +37,7 @@ export class IsDateTimeRangeValidator implements ValidatorConstraintInterface {
   private endsBeforeOrAt?: () => Timestamp
   private endsAfter?: () => Timestamp
   private endsAfterOrAt?: () => Timestamp
+  private finiteOnly: boolean
 
   constructor (options?: IsDateTimeRangeValidationOptions) {
     this.startsAfter = options?.startsAfter
@@ -45,6 +48,7 @@ export class IsDateTimeRangeValidator implements ValidatorConstraintInterface {
     this.endsBeforeOrAt = options?.endsBeforeOrAt
     this.endsAfter = options?.endsAfter
     this.endsAfterOrAt = options?.endsAfterOrAt
+    this.finiteOnly = options?.finiteOnly ?? false
   }
 
   validate (dateRange: unknown, _args: ValidationArguments): boolean {
@@ -87,6 +91,10 @@ export class IsDateTimeRangeValidator implements ValidatorConstraintInterface {
         return false
       }
 
+      if (this.finiteOnly && !range.isFinite()) {
+        return false
+      }
+
       return true
     } catch {
       return false
@@ -97,35 +105,39 @@ export class IsDateTimeRangeValidator implements ValidatorConstraintInterface {
     let message = `${args.property} must be a valid date range`
 
     if (this.startsAfter !== undefined) {
-      message += `\n\tthe range must start after ${this.startsAfter().toString()}`
+      message += `\n\tthe range must start after ${this.startsAfter().toISOString()}`
     }
 
     if (this.startsAfterOrAt !== undefined) {
-      message += `\n\tthe range must start after or at ${this.startsAfterOrAt().toString()}`
+      message += `\n\tthe range must start after or at ${this.startsAfterOrAt().toISOString()}`
     }
 
     if (this.startsBefore !== undefined) {
-      message += `\n\tthe range must start before ${this.startsBefore().toString()}`
+      message += `\n\tthe range must start before ${this.startsBefore().toISOString()}`
     }
 
     if (this.startsBeforeOrAt !== undefined) {
-      message += `\n\tthe range must start before or at ${this.startsBeforeOrAt().toString()}`
+      message += `\n\tthe range must start before or at ${this.startsBeforeOrAt().toISOString()}`
     }
 
     if (this.endsBefore !== undefined) {
-      message += `\n\tthe range must end before or at ${this.endsBefore().toString()}`
+      message += `\n\tthe range must end before or at ${this.endsBefore().toISOString()}`
     }
 
     if (this.endsBeforeOrAt !== undefined) {
-      message += `\n\tthe range must end before or at ${this.endsBeforeOrAt().toString()}`
+      message += `\n\tthe range must end before or at ${this.endsBeforeOrAt().toISOString()}`
     }
 
     if (this.endsAfter !== undefined) {
-      message += `\n\tthe range must end after ${this.endsAfter().toString()}`
+      message += `\n\tthe range must end after ${this.endsAfter().toISOString()}`
     }
 
     if (this.endsAfterOrAt !== undefined) {
-      message += `\n\tthe range must end after or at ${this.endsAfterOrAt().toString()}`
+      message += `\n\tthe range must end after or at ${this.endsAfterOrAt().toISOString()}`
+    }
+
+    if (this.finiteOnly) {
+      message += `\n\tthe range must be finite`
     }
 
     return message

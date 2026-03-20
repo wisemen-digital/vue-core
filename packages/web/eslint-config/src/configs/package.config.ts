@@ -9,6 +9,7 @@ import {
   DEFAULT_I18N_LOCALES_FOLDER_PATH,
   i18nConfig,
 } from '#rules/i18n.ts'
+import { jsonConfig } from '#rules/json.ts'
 import { pathConfig } from '#rules/path.ts'
 import { perfectionistConfig } from '#rules/perfectionist.ts'
 import { simpleSortConfig } from '#rules/simpleSort.ts'
@@ -38,6 +39,7 @@ export async function packageConfig(config?: PackageConfigOptions): Promise<Flat
     i18nConfig,
     pathConfig,
     wisemenConfig,
+    ...jsonConfig,
     tailwindConfig({
       tailwindConfigPath: config?.tailwindConfigPath ?? DEFAULT_TAILWIND_CONFIG_PATH,
       tailwindRootFontSize: config?.tailwindRootFontSize,
@@ -64,5 +66,6 @@ export async function packageConfig(config?: PackageConfigOptions): Promise<Flat
         sourceType: 'module',
       },
     },
+
   )
 }

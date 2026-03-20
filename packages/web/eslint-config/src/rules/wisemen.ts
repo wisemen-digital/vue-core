@@ -17,5 +17,7 @@ export const wisemenConfig: LintConfig = {
         ],
       },
     ],
+
+    'eslint-plugin-wisemen/vue-computed-ref-generics': 'error',
   },
 }

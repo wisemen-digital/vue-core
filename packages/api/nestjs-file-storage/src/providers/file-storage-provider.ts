@@ -35,7 +35,21 @@ export abstract class FileStorage {
     isPublic?: boolean
   ): Promise<void>
 
+  abstract downloadStream (
+    key: string
+  ): Promise<Readable>
+
   abstract delete (
     key: string
   ): Promise<void>
+
+  abstract list (options?: {
+    prefix?: string
+    startAfter?: string
+  }): Promise<FileIndex[]>
+}
+
+export type FileIndex = {
+  key?: string
+  lastModified?: Date
 }

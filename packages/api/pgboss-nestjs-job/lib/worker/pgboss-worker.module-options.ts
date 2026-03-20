@@ -1,8 +1,7 @@
 import { Type } from '@nestjs/common'
-import { ConstructorOptions } from 'pg-boss/dist/types.js'
+import { PgBossClientModuleOptions } from '../client/pgboss-client.module-options.js'
 
-export interface PgBossWorkerModuleOptions {
-  pgBossOptions: ConstructorOptions
+export interface PgBossWorkerModuleOptions extends PgBossClientModuleOptions {
   queueName: string
   concurrency?: number
   pollInterval?: number
