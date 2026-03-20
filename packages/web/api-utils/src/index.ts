@@ -70,6 +70,7 @@ export {
 export {
   QueryClient,
   QueryClientUpdateOptions,
+  QueryClientUpdateResult,
 } from './utils/query-client/queryClient'
 export { SortUtil } from './utils/sort/sort.utils'
 export type { QueryClient as TanstackQueryClient } from '@tanstack/vue-query'
