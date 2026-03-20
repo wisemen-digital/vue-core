@@ -1,7 +1,8 @@
-/* eslint-disable no-console */
-
 import type { OidcUser } from './oidc.type'
 import type { TokensStrategy } from './tokens-strategy/tokensStrategy.type'
+
+// Refresh token this many milliseconds before it actually expires to account for clock skew and network latency
+const TOKEN_EXPIRY_BUFFER_MS = 30_000
 
 export interface OAuth2Tokens {
   expires_at: number
@@ -25,16 +26,28 @@ interface Token {
 }
 
 function decodeToken(token: string): Token {
-  const base64Url = token.split('.')[1]
-  const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
-  const jsonPayload = decodeURIComponent(
-    atob(base64)
-      .split('')
-      .map((c) => `%${(`00${c.charCodeAt(0).toString(16)}`).slice(-2)}`)
-      .join(''),
-  )
+  const parts = token.split('.')
 
-  return JSON.parse(jsonPayload)
+  if (parts.length !== 3) {
+    throw new Error('Invalid JWT format')
+  }
+
+  const base64Url = parts[1]
+  const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
+
+  try {
+    const jsonPayload = decodeURIComponent(
+      atob(base64)
+        .split('')
+        .map((c) => `%${(`00${c.charCodeAt(0).toString(16)}`).slice(-2)}`)
+        .join(''),
+    )
+
+    return JSON.parse(jsonPayload) as Token
+  }
+  catch {
+    throw new Error('Failed to decode JWT payload')
+  }
 }
 
 export class ApiClient {
@@ -63,6 +76,12 @@ export class ApiClient {
       method: 'POST',
     })
 
+    if (!response.ok) {
+      const error = new Error(`Token refresh failed: ${response.status} ${response.statusText}`)
+
+      throw error
+    }
+
     return await response.json() as OAuth2Tokens
   }
 
@@ -75,29 +94,44 @@ export class ApiClient {
       return this._promise
     }
 
-    this._promise = new Promise((resolve, reject) => {
-      this.getNewAccessToken(this.getRefreshToken())
-        .then((tokens) => {
-          this.setTokens(tokens)
-          resolve()
-        })
-        .catch(() => {
-          console.log('Failed to refresh access token, trying again...')
+    this._promise = (async (): Promise<void> => {
+      let refreshToken: string
 
-          setTimeout(() => {
-            this.getNewAccessToken(this.getRefreshToken())
-              .then((tokens) => {
-                this.setTokens(tokens)
-                resolve()
-              })
-              .catch(() => {
-                reject(new Error('Failed to refresh access token'))
-              })
-          }, 1000)
-        })
-        .finally(() => {
-          this._promise = null
-        })
+      // Fail fast if there is no valid refresh token instead of retrying with delays.
+      try {
+        refreshToken = this.getRefreshToken()
+      }
+      catch (error) {
+        throw new Error(`No refresh token available: ${error}`)
+      }
+
+      const delays = [
+        1000,
+        3000,
+      ]
+
+      for (let attempt = 0; attempt <= delays.length; attempt++) {
+        try {
+          const tokens = await this.getNewAccessToken(refreshToken)
+
+          this.setTokens(tokens)
+
+          return
+        }
+        catch (error) {
+          const status = (error as any)?.status
+          const isClientError = typeof status === 'number' && status >= 400 && status < 500
+
+          // Do not retry on client-side (4xx) refresh failures.
+          if (isClientError || attempt === delays.length) {
+            throw new Error(`Failed to refresh access token: ${error}`)
+          }
+
+          await new Promise<void>((resolve) => setTimeout(resolve, delays[attempt]))
+        }
+      }
+    })().finally(() => {
+      this._promise = null
     })
 
     return await this._promise
@@ -144,6 +178,10 @@ export class ApiClient {
       }),
     })
 
+    if (!response.ok) {
+      throw new Error(`Failed to fetch user info: ${response.status} ${response.statusText}`)
+    }
+
     return await response.json() as OidcUser
   }
 
@@ -154,7 +192,7 @@ export class ApiClient {
       return true
     }
 
-    return Date.now() >= tokens.expires_at
+    return Date.now() >= tokens.expires_at - TOKEN_EXPIRY_BUFFER_MS
   }
 
   public async loginWithCode(code: string): Promise<void> {
@@ -177,6 +215,10 @@ export class ApiClient {
       }),
       method: 'POST',
     })
+
+    if (!response.ok) {
+      throw new Error(`Authorization code exchange failed: ${response.status} ${response.statusText}`)
+    }
 
     const tokens = await response.json() as OAuth2Tokens
 
