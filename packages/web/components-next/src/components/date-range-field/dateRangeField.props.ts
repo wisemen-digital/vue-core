@@ -28,6 +28,11 @@ export interface DateRangeFieldProps extends TestId, InteractableElement, FormEl
    */
   autocomplete?: 'off' | 'on'
   /**
+   * Whether the picker should close after a selection is made.
+   * @default false
+   */
+  closeOnSelect?: boolean
+  /**
    * Hides the date picker dropdown trigger when set to `true`.
    *
    * @default false
