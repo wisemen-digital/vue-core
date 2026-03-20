@@ -82,10 +82,10 @@ export function useUpdateContact(contactId: string) {
 import { useUpdateContact } from '@/composables'
 
 const props = defineProps<{ contactId: string }>()
-const { execute, isLoading, result } = useUpdateContact(props.contactId)
+const { execute, isLoading } = useUpdateContact(props.contactId)
 
 async function handleSubmit(form: ContactUpdateForm) {
-  await execute(form)
+  const result = await execute(form)
   
   result.value.match(
     (data) => {
@@ -185,10 +185,12 @@ if (result.value.isErr()) {
 Or use pattern matching for more concise code:
 
 ```typescript
-result.value.match(
-  (data) => console.log('Success:', data),
-  (error) => console.error('Error:', error)
-)
+result.value.match({  
+  loading: () => console.log('Mutation in progress...'),  
+  ok: (data) => console.log('Success:', data),  
+  err: (error) => console.error('Error:', error.code, error.message),  
+})  
+
 ```
 
 ## Automatic Cache Invalidation
