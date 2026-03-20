@@ -9,7 +9,7 @@
     ".": "./dist/index.js"
   },
   "imports": {
-    "#*": "./lib/*"
+    "#src/*": "./dist/*"
   },
   "scripts": {
     "prebuild": "rm -rf ./dist",

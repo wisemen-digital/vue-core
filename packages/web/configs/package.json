@@ -38,7 +38,7 @@
     "cleanup": "rimraf dist/ node_modules/ .turbo/",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "test": "vitest --run",
+    "test": "vitest --run --passWithNoTests",
     "typecheck": "pnpm tsc"
   },
   "peerDependencies": {

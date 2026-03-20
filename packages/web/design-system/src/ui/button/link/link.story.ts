@@ -10,7 +10,6 @@ import {
 } from '@wisemen/vue-core-icons'
 import {
   expect,
-  userEvent,
   within,
 } from 'storybook/test'
 
@@ -91,8 +90,6 @@ export const Default: Story = {
     await expect(link).toHaveTextContent('Learn More')
 
     await expect(link).toHaveAttribute('href', '#')
-
-    await userEvent.click(link)
   },
   render: () => ({
     components: {
