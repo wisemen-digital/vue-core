@@ -71,11 +71,12 @@ export function useKeysetInfiniteQuery<TData, TErrorCode extends string = string
     placeholderData: (data) => data,
     queryFn: ({
       pageParam,
-    }) =>
-      options.queryFn({
+    }) => {
+      return AsyncResult.fromResult<any, any>(options.queryFn({
         key: pageParam as string,
         limit: options.limit ?? DEFAULT_LIMIT,
-      }),
+      }))
+    },
     queryKey: getQueryKey(),
   })
 
