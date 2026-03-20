@@ -269,7 +269,7 @@ export class QueryClient<TQueryKeys extends object> {
 
     await this.queryClient.invalidateQueries({
       predicate: (query) => {
-        const queryKey = query.queryKey as any[]
+        const queryKey = query.queryKey
 
         if (queryKey[0] !== key) {
           return false
@@ -322,7 +322,7 @@ export class QueryClient<TQueryKeys extends object> {
   // Implementation
   set<TKey extends QueryKeysWithEntityFromConfig<TQueryKeys>>(
     queryKey: QueryKeyOrTupleFromConfig<TQueryKeys, TKey>,
-    entity: any,
+    entity: unknown,
   ): void {
     const wrappedData = this.wrapEntityInAsyncResult(entity)
 
@@ -333,7 +333,7 @@ export class QueryClient<TQueryKeys extends object> {
           queryKey,
         ]
 
-    this.queryClient.setQueryData(normalizedKey as any, wrappedData)
+    this.queryClient.setQueryData(normalizedKey, wrappedData)
   }
 
   /**
@@ -419,8 +419,6 @@ export class QueryClient<TQueryKeys extends object> {
         const updatedInfiniteData = {
           ...currentData,
           pages: currentData.pages.map((page) => {
-            console.log('Updating page:', page)
-
             if (!isAsyncResult(page)) {
               return page
             }

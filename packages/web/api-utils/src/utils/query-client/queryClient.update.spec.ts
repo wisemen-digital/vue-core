@@ -31,7 +31,7 @@ describe('queryClient - update', () => {
       const queryKey = [
         'userDetail',
         {
-          userUuid: 'abc-123',
+          userUuid: userData.uuid,
         },
       ] as const
 

@@ -6,6 +6,7 @@ import { AsyncResult } from '@/async-result/asyncResult'
 import { QUERY_CONFIG } from '@/config/config'
 import type { ApiError } from '@/types/apiError.type'
 import type {
+  KeysetPaginationAsyncResult,
   KeysetPaginationParams,
   KeysetPaginationResponse,
   KeysetPaginationResult,
@@ -60,19 +61,19 @@ export function useKeysetInfiniteQuery<TData, TErrorCode extends string = string
   const infiniteQuery = useInfiniteQuery({
     staleTime: options.staleTime,
     enabled: options.isEnabled,
-    getNextPageParam: (lastPage: KeysetPaginationResult<TData, TErrorCode>) => {
-      if (lastPage.isErr()) {
+    getNextPageParam: (lastPage: KeysetPaginationAsyncResult<TData, TErrorCode>) => {
+      if (lastPage.isErr() || lastPage.isLoading()) {
         return null
       }
 
-      return lastPage.value.meta.next ?? null
+      return lastPage.getValue().meta.next ?? null
     },
     initialPageParam: undefined,
     placeholderData: (data) => data,
-    queryFn: ({
+    queryFn: async ({
       pageParam,
     }) => {
-      return AsyncResult.fromResult<any, any>(options.queryFn({
+      return AsyncResult.fromResult(await options.queryFn({
         key: pageParam as string,
         limit: options.limit ?? DEFAULT_LIMIT,
       }))
@@ -92,16 +93,16 @@ export function useKeysetInfiniteQuery<TData, TErrorCode extends string = string
     const firstError = infiniteQuery.data.value?.pages.find((page) => page.isErr())
 
     if (firstError) {
-      return AsyncResult.err<KeysetPaginationResponse<TData>, ApiError<TErrorCode>>(firstError.error)
+      return AsyncResult.err<KeysetPaginationResponse<TData>, ApiError<TErrorCode>>(firstError.getError())
     }
 
     const data = infiniteQuery.data.value?.pages
       .filter((page) => page.isOk())
-      .flatMap((page) => page.value.data) ?? []
+      .flatMap((page) => page.getValue().data) ?? []
 
     const firstPage = infiniteQuery.data.value?.pages[0]
     const meta = firstPage?.isOk()
-      ? firstPage.value.meta
+      ? firstPage.getValue().meta
       : {
           next: null,
         }
