@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "lint": "eslint lib",
-    "clean": "rm -r ./dist",
+    "clean": "rm -rf ./dist",
     "build": "tsc",
     "pretest": "npm run build",
     "test": "node --test ./dist/**/*.test.js",
