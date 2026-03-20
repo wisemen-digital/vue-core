@@ -122,20 +122,20 @@ catalogs:
     "@wisemen/vue-core": 1.0.0-alpha.42
 
   stories:
-    "histoire": "1.0.0-alpha.3"
+    "histoire": "1.0.0-beta.1"
     "@histoire/plugin-vue": "1.0.0-alpha.3"
   docs:
     "vitepress": "2.0.0-alpha.16"
     "vue-component-meta": "3.2.2"
-    "markdown-it": "14.1.0"
+    "markdown-it": "14.1.1"
     oxc-minify: "0.117.0"
   date:
     "@internationalized/date": "3.10.1"
   openapi:
     "@hey-api/openapi-ts": "0.94.0"
   tooling:
-    "@commitlint/cli": "20.3.1"
-    "@commitlint/config-conventional": "20.3.1"
+    "@commitlint/cli": "20.5.0"
+    "@commitlint/config-conventional": "20.5.0"
     "@changesets/cli": "2.30.0"
   telemetry:
     "@opentelemetry/context-zone": "2.5.0"
@@ -183,14 +183,14 @@ catalogs:
     "storybook": 10.3.0
     "vue-component-meta": 3.2.6
   backend:
-    "@aws-sdk/client-s3": "3.994.0"
-    "@aws-sdk/lib-storage": "3.994.0"
-    "@aws-sdk/s3-request-presigner": "3.994.0"
+    "@aws-sdk/client-s3": "3.1013.0"
+    "@aws-sdk/lib-storage": "3.1013.0"
+    "@aws-sdk/s3-request-presigner": "3.1013.0"
     "@azure/storage-blob": "12.31.0"
-    "@nestjs/common": "11.1.14"
+    "@nestjs/common": "11.1.17"
     "@nestjs/config": "4.0.3"
-    "@nestjs/core": "11.1.14"
-    "@nestjs/platform-fastify": "11.1.16"
+    "@nestjs/core": "11.1.17"
+    "@nestjs/platform-fastify": "11.1.17"
     "@nestjs/swagger": "11.2.6"
     "@nestjs/typeorm": "11.0.0"
     "@opentelemetry/api": "1.9.0"
@@ -245,11 +245,11 @@ catalogs:
     "wkx": "0.5.0"
     "yaml": "2.8.2"
   backend-peer:
-    "@aws-sdk/client-s3": ">=3.994.0"
-    "@aws-sdk/lib-storage": ">=3.994.0"
-    "@aws-sdk/s3-request-presigner": ">=3.994.0"
+    "@aws-sdk/client-s3": ">=3.1013.0"
+    "@aws-sdk/lib-storage": ">=3.1013.0"
+    "@aws-sdk/s3-request-presigner": ">=3.1013.0"
     "@azure/storage-blob": ">=12.31.0"
-    "@nestjs/common": ">=11.1.14"
+    "@nestjs/common": ">=11.1.17"
     "@nestjs/config": ">=4.0.3"
     "@nestjs/core": ">=11.1.14"
     "@nestjs/swagger": ">=11.2.6"
