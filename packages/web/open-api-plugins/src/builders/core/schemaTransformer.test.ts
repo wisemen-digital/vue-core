@@ -13,6 +13,8 @@ import {
   sanitizeSchema,
 } from './schemaTransformer'
 
+const SCHEMA_SUFFIX_REGEX = /Schema$/
+
 describe('schema Transformer', () => {
   describe('irToSchema', () => {
     it('converts simple string schema', () => {
