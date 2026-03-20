@@ -1,6 +1,6 @@
 import { Readable } from 'stream'
 import { Injectable } from '@nestjs/common'
-import { FileStorage } from '#src/providers/file-storage-provider.js'
+import { FileIndex, FileStorage } from '#src/providers/file-storage-provider.js'
 
 @Injectable()
 export class TestFileStorage extends FileStorage {
@@ -49,5 +49,9 @@ export class TestFileStorage extends FileStorage {
 
   delete (_key: string): Promise<void> {
     return Promise.resolve()
+  }
+
+  list (): Promise<FileIndex[]> {
+    return Promise.resolve([])
   }
 }

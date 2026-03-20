@@ -16,18 +16,13 @@ import {
 } from 'vue'
 
 import { useQuery } from '@/composables/query/query.composable'
+import { flushPromises } from '@/test/flushPromises'
 import { runInSetup } from '@/test/runInSetup'
 import type { ApiError } from '@/types/apiError.type'
 
 interface TestUser {
   id: string
   name: string
-}
-
-function flushPromises(): Promise<void> {
-  return new Promise((resolve) => {
-    setTimeout(resolve, 0)
-  })
 }
 
 describe('useQuery with AsyncResult', () => {

@@ -1,6 +1,6 @@
 {
   "name": "@wisemen/time",
-  "version": "0.0.30",
+  "version": "0.0.31",
   "publishConfig": {
     "access": "public"
   },
@@ -24,10 +24,10 @@
     "release": "pnpx release-it"
   },
   "peerDependencies": {
-    "class-validator": "catalog:backend",
-    "dayjs": "catalog:backend",
-    "@nestjs/common": "catalog:backend",
-    "typeorm": "catalog:backend"
+    "class-validator": "catalog:backend-peer",
+    "dayjs": "catalog:backend-peer",
+    "@nestjs/common": "catalog:backend-peer",
+    "typeorm": "catalog:backend-peer"
   },
   "devDependencies": {
     "@types/node": "catalog:backend",

@@ -10,48 +10,27 @@ import {
   nextTick,
 } from 'vue'
 
+import { FactoryUserBuilder } from '@/builders/factoryUserBuilder'
 import { createApiUtils } from '@/factory/createApiUtils'
+import type {
+  FactoryQueryKeys,
+  UserUuid,
+} from '@/factory/createApiUtils.setup'
+import { flushPromises } from '@/test/flushPromises'
 import { runInSetup } from '@/test/runInSetup'
-
-function flushPromises(): Promise<void> {
-  return new Promise((resolve) => {
-    setTimeout(resolve, 0)
-  })
-}
 
 describe('createApiUtils - usePrefetchQuery', () => {
   it('prefetches data and makes it available to useQuery', async () => {
-    type UserUuid = string
-
-    interface User {
-      id: string
-      uuid: UserUuid
-      name: string
-      email: string
-    }
-
-    interface MyQueryKeys {
-      userDetail: {
-        entity: User
-        params: {
-          userUuid: UserUuid
-        }
-      }
-    }
+    const user = new FactoryUserBuilder().build()
 
     const queryFn = vi.fn(() => {
-      return Promise.resolve(ok({
-        id: '123',
-        uuid: 'uuid-123',
-        name: 'John Doe',
-        email: 'john@example.com',
-      }))
+      return Promise.resolve(ok(user))
     })
 
     const setup = runInSetup(() => {
       const {
         usePrefetchQuery, useQuery,
-      } = createApiUtils<MyQueryKeys>()
+      } = createApiUtils<FactoryQueryKeys>()
 
       return {
         prefetch: usePrefetchQuery('userDetail', {

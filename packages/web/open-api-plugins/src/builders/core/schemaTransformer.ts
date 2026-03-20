@@ -22,6 +22,8 @@ import {
   safeTypeName,
 } from './stringUtils'
 
+const SCHEMA_SUFFIX_REGEX = /Schema$/
+
 /**
  * Converts IR schema to JSON Schema format
  * @param ir - IR schema object
@@ -247,7 +249,7 @@ export function normalizeSchema(
   } as NormalizedSchemaNode
 
   if (workingNode.type === 'enum') {
-    const enumValues = getEnumValues(workingNode.items)
+    const enumValues = getEnumValues(workingNode.items as any[])
 
     if (enumValues.length > 0) {
       workingNode.type = inferEnumType(enumValues)

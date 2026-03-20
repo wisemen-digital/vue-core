@@ -1,6 +1,6 @@
 {
   "name": "@wisemen/nestjs-typeorm",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "publishConfig": {
     "access": "public"
   },
@@ -24,13 +24,13 @@
     "release": "pnpx release-it"
   },
   "peerDependencies": {
-    "@nestjs/common": "catalog:backend",
-    "@nestjs/config": "catalog:backend",
-    "@nestjs/typeorm": "catalog:backend",
-    "change-case": "catalog:backend",
-    "class-validator": "catalog:backend",
-    "pg": "catalog:backend",
-    "typeorm": "catalog:backend"
+    "@nestjs/common": "catalog:backend-peer",
+    "@nestjs/config": "catalog:backend-peer",
+    "@nestjs/typeorm": "catalog:backend-peer",
+    "change-case": "catalog:backend-peer",
+    "class-validator": "catalog:backend-peer",
+    "pg": "catalog:backend-peer",
+    "typeorm": "catalog:backend-peer"
   },
   "devDependencies": {
     "@types/node": "catalog:backend",

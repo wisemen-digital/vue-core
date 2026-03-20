@@ -18,6 +18,8 @@ export function generateStaticMockCode(schema: Schema, typeName: string): string
   return generateStaticMockInternal(schema as ExtendedSchema, typeName, 0)
 }
 
+const VALID_IDENTIFIER_REGEX = /^[a-z_]\w*$/i
+
 function generateStaticMockInternal(
   schema: ExtendedSchema,
   typeName: string,

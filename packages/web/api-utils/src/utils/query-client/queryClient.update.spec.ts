@@ -5,66 +5,54 @@ import {
   it,
 } from 'vitest'
 
-import type {
-  Product,
-  User,
-} from './queryClient.setup'
+import { ProductBuilder } from '@/builders/productBuilder'
+import { UserBuilder } from '@/builders/userBuilder'
+
+import type { User } from './queryClient.setup'
 import { createTestSetup } from './queryClient.setup'
 
 describe('queryClient - update', () => {
-  let setup: ReturnType<typeof createTestSetup>
+  let queryClient: ReturnType<typeof createTestSetup>['queryClient']
+  let tanstackQueryClient: ReturnType<typeof createTestSetup>['tanstackQueryClient']
 
   beforeEach(() => {
-    setup = createTestSetup()
+    const setup = createTestSetup()
+
+    queryClient = setup.queryClient
+    tanstackQueryClient = setup.tanstackQueryClient
   })
 
   describe('single entity', () => {
     it('should update a single entity by id (default)', () => {
-      const userData: User = {
-        id: '123',
-        uuid: 'abc-123',
-        isActive: true,
-        name: 'John Doe',
-        email: 'john@example.com',
-      }
-
+      const user = new UserBuilder().withId('123').withUuid('abc-123').build()
       const queryKey = [
         'userDetail',
         {
-          userUuid: 'abc-123',
+          userUuid: user.uuid,
         },
       ] as const
 
-      // Set initial data
-      setup.queryClient.set(queryKey, userData)
+      queryClient.set(queryKey, user)
 
-      // Update the user (id from value)
-      setup.queryClient.update(queryKey, {
-        by: (user) => user.id === '123',
-        value: (user) => ({
-          ...user,
+      queryClient.update(queryKey, {
+        by: (u) => u.id === '123',
+        value: (u) => ({
+          ...u,
           name: 'Jane Doe',
         }),
       })
 
-      // Get updated data
-      const updatedData = setup.queryClient.get(queryKey)
-
-      expect(updatedData).toEqual({
-        ...userData,
+      expect(queryClient.get(queryKey)).toEqual({
+        ...user,
         name: 'Jane Doe',
       })
     })
 
     it('should update a single entity by custom field', () => {
-      const userData: User = {
-        id: '123',
-        uuid: 'abc-123',
-        isActive: true,
-        name: 'John Doe',
-        email: 'john@example.com',
-      }
-
+      const user = new UserBuilder()
+        .withId('123')
+        .withUuid('abc-123')
+        .build()
       const queryKey = [
         'userDetail',
         {
@@ -72,33 +60,27 @@ describe('queryClient - update', () => {
         },
       ] as const
 
-      setup.queryClient.set(queryKey, userData)
+      queryClient.set(queryKey, user)
 
-      setup.queryClient.update('userDetail', {
-        by: (user) => user.uuid === 'abc-123',
-        value: (user) => ({
-          ...user,
+      queryClient.update('userDetail', {
+        by: (u) => u.uuid === 'abc-123',
+        value: (u) => ({
+          ...u,
           email: 'jane@example.com',
         }),
       })
 
-      const updatedData = setup.queryClient.get(queryKey)
-
-      expect(updatedData).toEqual({
-        ...userData,
+      expect(queryClient.get(queryKey)).toEqual({
+        ...user,
         email: 'jane@example.com',
       })
     })
 
     it('should update a single entity using a predicate function', () => {
-      const userData: User = {
-        id: '123',
-        uuid: 'abc-123',
-        isActive: true,
-        name: 'John Doe',
-        email: 'john@example.com',
-      }
-
+      const user = new UserBuilder()
+        .withId('123')
+        .withUuid('abc-123')
+        .build()
       const queryKey = [
         'userDetail',
         {
@@ -106,33 +88,27 @@ describe('queryClient - update', () => {
         },
       ] as const
 
-      setup.queryClient.set(queryKey, userData)
+      queryClient.set(queryKey, user)
 
-      setup.queryClient.update('userDetail', {
-        by: (user) => user.email === 'john@example.com',
-        value: (user) => ({
-          ...user,
+      queryClient.update('userDetail', {
+        by: (u) => u.email === 'john@example.com',
+        value: (u) => ({
+          ...u,
           isActive: false,
         }),
       })
 
-      const updatedData = setup.queryClient.get(queryKey)
-
-      expect(updatedData).toEqual({
-        ...userData,
+      expect(queryClient.get(queryKey)).toEqual({
+        ...user,
         isActive: false,
       })
     })
 
     it('should not update if no match found', () => {
-      const userData: User = {
-        id: '123',
-        uuid: 'abc-123',
-        isActive: true,
-        name: 'John Doe',
-        email: 'john@example.com',
-      }
-
+      const user = new UserBuilder()
+        .withId('123')
+        .withUuid('abc-123')
+        .build()
       const queryKey = [
         'userDetail',
         {
@@ -140,30 +116,24 @@ describe('queryClient - update', () => {
         },
       ] as const
 
-      setup.queryClient.set(queryKey, userData)
+      queryClient.set(queryKey, user)
 
-      setup.queryClient.update('userDetail', {
-        by: (user) => user.id === '999',
-        value: (user) => ({
-          ...user,
+      queryClient.update('userDetail', {
+        by: (u) => u.id === '999',
+        value: (u) => ({
+          ...u,
           name: 'Jane Doe',
         }),
       })
 
-      const updatedData = setup.queryClient.get(queryKey)
-
-      expect(updatedData).toEqual(userData)
+      expect(queryClient.get(queryKey)).toEqual(user)
     })
 
     it('should handle matching by id', () => {
-      const userData: User = {
-        id: '123',
-        uuid: 'abc-123',
-        isActive: true,
-        name: 'John Doe',
-        email: 'john@example.com',
-      }
-
+      const user = new UserBuilder()
+        .withId('123')
+        .withUuid('abc-123')
+        .build()
       const queryKey = [
         'userDetail',
         {
@@ -171,32 +141,24 @@ describe('queryClient - update', () => {
         },
       ] as const
 
-      setup.queryClient.set(queryKey, userData)
+      queryClient.set(queryKey, user)
 
-      const targetId = '123'
-
-      setup.queryClient.update('userDetail', {
-        by: (user) => user.id === targetId,
-        value: (user) => ({
-          ...user,
+      queryClient.update('userDetail', {
+        by: (u) => u.id === '123',
+        value: (u) => ({
+          ...u,
           name: 'Jane Doe',
         }),
       })
 
-      const updatedData = setup.queryClient.get(queryKey)
-
-      expect(updatedData?.name).toBe('Jane Doe')
+      expect(queryClient.get(queryKey)?.name).toBe('Jane Doe')
     })
 
-    it('should match multiple keys when provided', () => {
-      const userData: User = {
-        id: '123',
-        uuid: 'abc-123',
-        isActive: true,
-        name: 'John Doe',
-        email: 'john@example.com',
-      }
-
+    it('should match by multiple fields', () => {
+      const user = new UserBuilder()
+        .withId('123')
+        .withUuid('abc-123')
+        .build()
       const queryKey = [
         'userDetail',
         {
@@ -204,41 +166,32 @@ describe('queryClient - update', () => {
         },
       ] as const
 
-      setup.queryClient.set(queryKey, userData)
+      queryClient.set(queryKey, user)
 
-      setup.queryClient.update('userDetail', {
-        by: (user) => user.id === '123' && user.uuid === 'abc-123',
-        value: (user) => ({
-          ...user,
+      queryClient.update('userDetail', {
+        by: (u) => u.id === '123' && u.uuid === 'abc-123',
+        value: (u) => ({
+          ...u,
           name: 'Jane Doe',
         }),
       })
 
-      const updatedData = setup.queryClient.get(queryKey)
-
-      expect(updatedData?.name).toBe('Jane Doe')
+      expect(queryClient.get(queryKey)?.name).toBe('Jane Doe')
     })
   })
 
   describe('array entities', () => {
-    it('should update an item in an array by id (default)', () => {
-      const users: User[] = [
-        {
-          id: '1',
-          uuid: 'uuid-1',
-          isActive: true,
-          name: 'John Doe',
-          email: 'john@example.com',
-        },
-        {
-          id: '2',
-          uuid: 'uuid-2',
-          isActive: true,
-          name: 'Jane Doe',
-          email: 'jane@example.com',
-        },
-      ]
-
+    it('should update an item in an array by id', () => {
+      const john = new UserBuilder()
+        .withId('1')
+        .withUuid('uuid-1')
+        .build()
+      const jane = new UserBuilder()
+        .withId('2')
+        .withUuid('uuid-2')
+        .withName('Jane Doe')
+        .withEmail('jane@example.com')
+        .build()
       const queryKey = [
         'userList',
         {
@@ -246,47 +199,39 @@ describe('queryClient - update', () => {
         },
       ] as const
 
-      setup.queryClient.set(queryKey, users)
+      queryClient.set(queryKey, [
+        john,
+        jane,
+      ])
 
-      setup.queryClient.update('userList', {
-        by: (user) => user.id === '2',
-        value: (user) => ({
-          ...user,
+      queryClient.update('userList', {
+        by: (u) => u.id === '2',
+        value: (u) => ({
+          ...u,
           name: 'Jane Smith',
         }),
       })
 
-      const updatedData = setup.queryClient.get(queryKey)
-
-      expect(updatedData).toEqual([
-        users[0],
+      expect(queryClient.get(queryKey)).toEqual([
+        john,
         {
-          ...users[1],
+          ...jane,
           name: 'Jane Smith',
         },
       ])
     })
 
     it('should update an item in an array by custom field', () => {
-      const products: Product[] = [
-        {
-          id: '1',
-          name: 'Laptop',
-          category: 'electronics',
-          inStock: true,
-          price: 999,
-          sku: 'PROD-001',
-        },
-        {
-          id: '2',
-          name: 'Mouse',
-          category: 'electronics',
-          inStock: true,
-          price: 49,
-          sku: 'PROD-002',
-        },
-      ]
-
+      const laptop = new ProductBuilder()
+        .withId('1')
+        .withSku('PROD-001')
+        .build()
+      const mouse = new ProductBuilder()
+        .withId('2')
+        .withName('Mouse')
+        .withPrice(49)
+        .withSku('PROD-002')
+        .build()
       const queryKey = [
         'productList',
         {
@@ -294,55 +239,46 @@ describe('queryClient - update', () => {
         },
       ] as const
 
-      setup.queryClient.set(queryKey, products)
+      queryClient.set(queryKey, [
+        laptop,
+        mouse,
+      ])
 
-      setup.queryClient.update('productList', {
-        by: (product) => product.sku === 'PROD-002',
-        value: (product) => ({
-          ...product,
+      queryClient.update('productList', {
+        by: (p) => p.sku === 'PROD-002',
+        value: (p) => ({
+          ...p,
           price: 39,
         }),
       })
 
-      const updatedData = setup.queryClient.get(queryKey)
-
-      expect(updatedData).toEqual([
-        products[0],
+      expect(queryClient.get(queryKey)).toEqual([
+        laptop,
         {
-          ...products[1],
+          ...mouse,
           price: 39,
         },
       ])
     })
 
     it('should update multiple items using a predicate function', () => {
-      const products: Product[] = [
-        {
-          id: '1',
-          name: 'Laptop',
-          category: 'electronics',
-          inStock: true,
-          price: 999,
-          sku: 'PROD-001',
-        },
-        {
-          id: '2',
-          name: 'Mouse',
-          category: 'electronics',
-          inStock: true,
-          price: 49,
-          sku: 'PROD-002',
-        },
-        {
-          id: '3',
-          name: 'Chair',
-          category: 'furniture',
-          inStock: true,
-          price: 199,
-          sku: 'PROD-003',
-        },
-      ]
-
+      const laptop = new ProductBuilder()
+        .withId('1')
+        .withSku('PROD-001')
+        .build()
+      const mouse = new ProductBuilder()
+        .withId('2')
+        .withName('Mouse')
+        .withPrice(49)
+        .withSku('PROD-002')
+        .build()
+      const chair = new ProductBuilder()
+        .withId('3')
+        .withName('Chair')
+        .withCategory('furniture')
+        .withPrice(199)
+        .withSku('PROD-003')
+        .build()
       const queryKey = [
         'productList',
         {
@@ -350,42 +286,38 @@ describe('queryClient - update', () => {
         },
       ] as const
 
-      setup.queryClient.set(queryKey, products)
+      queryClient.set(queryKey, [
+        laptop,
+        mouse,
+        chair,
+      ])
 
-      setup.queryClient.update('productList', {
-        by: (product) => product.category === 'electronics',
-        value: (product) => ({
-          ...product,
+      queryClient.update('productList', {
+        by: (p) => p.category === 'electronics',
+        value: (p) => ({
+          ...p,
           inStock: false,
         }),
       })
 
-      const updatedData = setup.queryClient.get(queryKey)
-
-      expect(updatedData).toEqual([
+      expect(queryClient.get(queryKey)).toEqual([
         {
-          ...products[0],
+          ...laptop,
           inStock: false,
         },
         {
-          ...products[1],
+          ...mouse,
           inStock: false,
         },
-        products[2],
+        chair,
       ])
     })
 
     it('should not update if no items match', () => {
-      const users: User[] = [
-        {
-          id: '1',
-          uuid: 'uuid-1',
-          isActive: true,
-          name: 'John Doe',
-          email: 'john@example.com',
-        },
-      ]
-
+      const john = new UserBuilder()
+        .withId('1')
+        .withUuid('uuid-1')
+        .build()
       const queryKey = [
         'userList',
         {
@@ -393,40 +325,35 @@ describe('queryClient - update', () => {
         },
       ] as const
 
-      setup.queryClient.set(queryKey, users)
+      queryClient.set(queryKey, [
+        john,
+      ])
 
-      setup.queryClient.update('userList', {
-        by: (user) => user.id === '999',
-        value: (user) => ({
-          ...user,
+      queryClient.update('userList', {
+        by: (u) => u.id === '999',
+        value: (u) => ({
+          ...u,
           name: 'Jane Doe',
         }),
       })
 
-      const updatedData = setup.queryClient.get(queryKey)
-
-      expect(updatedData).toEqual(users)
+      expect(queryClient.get(queryKey)).toEqual([
+        john,
+      ])
     })
   })
 
   describe('multiple queries', () => {
     it('should update all matching queries', () => {
-      const user1: User = {
-        id: '123',
-        uuid: 'abc-123',
-        isActive: true,
-        name: 'John Doe',
-        email: 'john@example.com',
-      }
-
-      const user2: User = {
-        id: '123',
-        uuid: 'abc-123',
-        isActive: true,
-        name: 'John Doe',
-        email: 'jane@example.com',
-      }
-
+      const user1 = new UserBuilder()
+        .withId('123')
+        .withUuid('abc-123')
+        .build()
+      const user2 = new UserBuilder()
+        .withId('123')
+        .withUuid('abc-123')
+        .withEmail('jane@example.com')
+        .build()
       const queryKey1 = [
         'userDetail',
         {
@@ -440,24 +367,118 @@ describe('queryClient - update', () => {
         },
       ] as const
 
-      // Set data for multiple queries with same key but different params
-      setup.queryClient.set(queryKey1, user1)
-      setup.queryClient.set(queryKey2, user2)
+      queryClient.set(queryKey1, user1)
+      queryClient.set(queryKey2, user2)
 
-      // Update all userDetail queries
-      setup.queryClient.update('userDetail', {
-        by: (user) => user.id === '123',
-        value: (user) => ({
-          ...user,
+      queryClient.update('userDetail', {
+        by: (u) => u.id === '123',
+        value: (u) => ({
+          ...u,
           name: 'Updated Name',
         }),
       })
 
-      const updatedData1 = setup.queryClient.get(queryKey1)
-      const updatedData2 = setup.queryClient.get(queryKey2)
+      expect(queryClient.get(queryKey1)?.name).toBe('Updated Name')
+      expect(queryClient.get(queryKey2)?.name).toBe('Updated Name')
+    })
 
-      expect(updatedData1?.name).toBe('Updated Name')
-      expect(updatedData2?.name).toBe('Updated Name')
+    it('should update all queries with the same key', () => {
+      const user1 = new UserBuilder()
+        .withId('1')
+        .withUuid('user-1')
+        .withName('John')
+        .build()
+      const user2 = new UserBuilder()
+        .withId('2')
+        .withUuid('user-2')
+        .withName('Jane')
+        .withEmail('jane@example.com')
+        .build()
+      const queryKey1 = [
+        'userDetail',
+        {
+          userUuid: 'user-1',
+        },
+      ] as const
+      const queryKey2 = [
+        'userDetail',
+        {
+          userUuid: 'user-2',
+        },
+      ] as const
+
+      queryClient.set(queryKey1, user1)
+      queryClient.set(queryKey2, user2)
+
+      queryClient.update('userDetail', {
+        by: () => true,
+        value: (u) => ({
+          ...u,
+          isActive: false,
+        }),
+      })
+
+      expect(queryClient.get(queryKey1)).toEqual({
+        ...user1,
+        isActive: false,
+      })
+      expect(queryClient.get(queryKey2)).toEqual({
+        ...user2,
+        isActive: false,
+      })
+    })
+
+    it('should update all arrays with the same key using predicate', () => {
+      const john = new UserBuilder().withId('1').withUuid('user-1').withName('John').build()
+      const jane = new UserBuilder().withId('2').withUuid('user-2').withName('Jane').withEmail('jane@example.com').build()
+      const bob = new UserBuilder().withId('3').withUuid('user-3').withName('Bob').withEmail('bob@example.com').build()
+
+      queryClient.set([
+        'userList',
+        {
+          search: 'active',
+        },
+      ], [
+        john,
+        jane,
+      ])
+      queryClient.set([
+        'userList',
+        {
+          search: 'pending',
+        },
+      ], [
+        bob,
+      ])
+
+      queryClient.update('userList', {
+        by: (u: User) => u.name === 'John',
+        value: (u: User) => ({
+          ...u,
+          isActive: false,
+        }),
+      })
+
+      expect(queryClient.get([
+        'userList',
+        {
+          search: 'active',
+        },
+      ])).toEqual([
+        {
+          ...john,
+          isActive: false,
+        },
+        jane,
+      ])
+      expect(queryClient.get([
+        'userList',
+        {
+          search: 'pending',
+        },
+      ])).toEqual([
+        bob,
+      ])
     })
   })
 
@@ -470,13 +491,13 @@ describe('queryClient - update', () => {
         },
       ] as const
 
-      setup.tanstackQueryClient.setQueryData(queryKey, null)
+      tanstackQueryClient.setQueryData(queryKey, null)
 
       expect(() => {
-        setup.queryClient.update('userDetail', {
-          by: (user) => user.id === '123',
-          value: (user) => ({
-            ...user,
+        queryClient.update('userDetail', {
+          by: (u) => u.id === '123',
+          value: (u) => ({
+            ...u,
             name: 'John Doe',
           }),
         })
@@ -485,10 +506,10 @@ describe('queryClient - update', () => {
 
     it('should handle undefined data gracefully', () => {
       expect(() => {
-        setup.queryClient.update('userDetail', {
-          by: (user) => user.id === '123',
-          value: (user) => ({
-            ...user,
+        queryClient.update('userDetail', {
+          by: (u) => u.id === '123',
+          value: (u) => ({
+            ...u,
             name: 'John Doe',
           }),
         })
@@ -503,302 +524,17 @@ describe('queryClient - update', () => {
         },
       ] as const
 
-      setup.queryClient.set(queryKey, [])
+      queryClient.set(queryKey, [])
 
-      setup.queryClient.update('userList', {
-        by: (user) => user.id === '123',
-        value: (user) => ({
-          ...user,
+      queryClient.update('userList', {
+        by: (u) => u.id === '123',
+        value: (u) => ({
+          ...u,
           name: 'John Doe',
         }),
       })
 
-      const updatedData = setup.queryClient.get(queryKey)
-
-      expect(updatedData).toEqual([])
-    })
-  })
-
-  describe('single key format - update all matching queries', () => {
-    it('should update all queries with the same key', () => {
-      const user1: User = {
-        id: '1',
-        uuid: 'user-1',
-        isActive: true,
-        name: 'John',
-        email: 'john@example.com',
-      }
-
-      const user2: User = {
-        id: '2',
-        uuid: 'user-2',
-        isActive: true,
-        name: 'Jane',
-        email: 'jane@example.com',
-      }
-
-      // Set data with different params but same key
-      const queryKey1 = [
-        'userDetail',
-        {
-          userUuid: 'user-1',
-        },
-      ] as const
-      const queryKey2 = [
-        'userDetail',
-        {
-          userUuid: 'user-2',
-        },
-      ] as const
-
-      setup.queryClient.set(queryKey1, user1)
-      setup.queryClient.set(queryKey2, user2)
-
-      // Update all 'userDetail' queries using single key format
-      setup.queryClient.update('userDetail', {
-        by: () => true, // Match all items
-        value: (user) => ({
-          ...user,
-          isActive: false,
-        }),
-      })
-
-      // Both queries should be updated
-      const updated1 = setup.queryClient.get(queryKey1)
-      const updated2 = setup.queryClient.get(queryKey2)
-
-      expect(updated1).toEqual({
-        ...user1,
-        isActive: false,
-      })
-      expect(updated2).toEqual({
-        ...user2,
-        isActive: false,
-      })
-    })
-
-    it('should update all arrays with the same key using predicate', () => {
-      const users1: User[] = [
-        {
-          id: '1',
-          uuid: 'user-1',
-          isActive: true,
-          name: 'John',
-          email: 'john@example.com',
-        },
-        {
-          id: '2',
-          uuid: 'user-2',
-          isActive: true,
-          name: 'Jane',
-          email: 'jane@example.com',
-        },
-      ]
-
-      const users2: User[] = [
-        {
-          id: '3',
-          uuid: 'user-3',
-          isActive: true,
-          name: 'Bob',
-          email: 'bob@example.com',
-        },
-      ]
-
-      setup.queryClient.set([
-        'userList',
-        {
-          search: 'active',
-        },
-      ], users1)
-      setup.queryClient.set([
-        'userList',
-        {
-          search: 'pending',
-        },
-      ], users2)
-      // Update all 'userList' queries where name === 'John'
-      setup.queryClient.update('userList', {
-        by: (user: User) => user.name === 'John',
-        value: (user: User) => ({
-          ...user,
-          isActive: false,
-        }),
-      })
-
-      const updated1 = setup.queryClient.get([
-        'userList',
-        {
-          search: 'active',
-        },
-      ])
-      const updated2 = setup.queryClient.get([
-        'userList',
-        {
-          search: 'pending',
-        },
-      ])
-
-      expect(updated1).toEqual([
-        {
-          id: '1',
-          uuid: 'user-1',
-          isActive: false,
-          name: 'John',
-          email: 'john@example.com',
-        },
-        users1[1],
-      ])
-      expect(updated2).toEqual(users2)
-    })
-  })
-
-  describe('single key format - get all matching queries', () => {
-    it('should get all entities with the same key', () => {
-      const user1: User = {
-        id: '1',
-        uuid: 'user-1',
-        isActive: true,
-        name: 'John',
-        email: 'john@example.com',
-      }
-
-      const user2: User = {
-        id: '2',
-        uuid: 'user-2',
-        isActive: false,
-        name: 'Jane',
-        email: 'jane@example.com',
-      }
-
-      const queryKey1 = [
-        'userDetail',
-        {
-          userUuid: 'user-1',
-        },
-      ] as const
-      const queryKey2 = [
-        'userDetail',
-        {
-          userUuid: 'user-2',
-        },
-      ] as const
-
-      setup.queryClient.set(queryKey1, user1)
-      setup.queryClient.set(queryKey2, user2)
-
-      // Get all 'userDetail' queries
-      const allUsers = setup.queryClient.get('userDetail')
-
-      expect(allUsers).toHaveLength(2)
-      expect(allUsers).toContainEqual(user1)
-      expect(allUsers).toContainEqual(user2)
-    })
-
-    it('should return empty array when no queries match the key', () => {
-      const allUsers = setup.queryClient.get('userDetail')
-
-      expect(allUsers).toEqual([])
-    })
-  })
-
-  describe('single key format - set query', () => {
-    it('should set a query using single key format', () => {
-      const userData: User = {
-        id: '123',
-        uuid: 'abc-123',
-        isActive: true,
-        name: 'John Doe',
-        email: 'john@example.com',
-      }
-
-      // Set using single key format
-      setup.queryClient.set('userDetail', userData)
-
-      // Get using single key format returns array
-      const allUsers = setup.queryClient.get('userDetail')
-
-      expect(allUsers).toEqual([
-        userData,
-      ])
-    })
-
-    it('should store single key query in normalized array format', () => {
-      const userData: User = {
-        id: '123',
-        uuid: 'abc-123',
-        isActive: true,
-        name: 'John Doe',
-        email: 'john@example.com',
-      }
-
-      // Set using single key format
-      setup.queryClient.set('userDetail', userData)
-
-      // Verify it's stored under normalized array key
-      const query = setup.tanstackQueryClient
-        .getQueryCache()
-        .find({
-          queryKey: [
-            'userDetail',
-          ],
-        })
-
-      expect(query).toBeDefined()
-      expect(query?.state.data).toBeDefined()
-    })
-
-    it('should distinguish between single key and tuple key formats', () => {
-      const user1: User = {
-        id: '1',
-        uuid: 'user-1',
-        isActive: true,
-        name: 'John',
-        email: 'john@example.com',
-      }
-
-      const user2: User = {
-        id: '2',
-        uuid: 'user-2',
-        isActive: true,
-        name: 'Jane',
-        email: 'jane@example.com',
-      }
-
-      // Set using single key format
-      setup.queryClient.set('userDetail', user1)
-
-      // Set using tuple format with params
-      setup.queryClient.set([
-        'userDetail',
-        {
-          userUuid: 'user-2',
-        },
-      ] as const, user2)
-
-      // Get all queries with 'userDetail' key - should return both
-      const allResults = setup.queryClient.get('userDetail')
-
-      expect(allResults).toContainEqual(user1)
-      expect(allResults).toContainEqual(user2)
-      expect(allResults).toHaveLength(2)
-
-      // Get exact query stored as ['userDetail'] - should only return user1
-      const exactResult = setup.queryClient.get('userDetail', {
-        isExact: true,
-      })
-
-      expect(exactResult).toEqual(user1)
-
-      // Get using tuple key - should only return user2
-      const tupleKeyResult = setup.queryClient.get([
-        'userDetail',
-        {
-          userUuid: 'user-2',
-        },
-      ] as const)
-
-      expect(tupleKeyResult).toEqual(user2)
+      expect(queryClient.get(queryKey)).toEqual([])
     })
   })
 })

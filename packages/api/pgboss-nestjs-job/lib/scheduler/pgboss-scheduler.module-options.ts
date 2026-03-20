@@ -1,5 +1,3 @@
-import { ConstructorOptions } from 'pg-boss/dist/types.js'
+import { PgBossClientModuleOptions } from '../client/pgboss-client.module-options.js'
 
-export interface DefaultPgBossSchedulerModuleOptions {
-  pgBossOptions: ConstructorOptions
-}
+export type PgBossSchedulerModuleOptions = PgBossClientModuleOptions

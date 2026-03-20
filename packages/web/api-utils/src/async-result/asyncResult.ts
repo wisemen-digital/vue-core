@@ -1,7 +1,9 @@
 /* eslint-disable ts/no-use-before-define */
 import type { Result } from 'neverthrow'
 import {
+  Err,
   err,
+  Ok,
   ok,
 } from 'neverthrow'
 
@@ -9,7 +11,6 @@ import {
  * Base class for AsyncResult - internal use only.
  * Use AsyncResult<T, E> as the public type.
  */
-
 abstract class AsyncResultBase<T, E> {
   protected readonly _error: E | undefined
   protected readonly _status: 'err' | 'loading' | 'ok'
@@ -219,3 +220,13 @@ export const AsyncResult = {
     return AsyncResultOk._create<T, E>(value)
   },
 } as const
+
+export function isAsyncResult<T = unknown, E = unknown>(value: unknown): value is AsyncResult<T, E> {
+  return value instanceof AsyncResultErr
+    || value instanceof AsyncResultLoading
+    || value instanceof AsyncResultOk
+}
+
+export function isResult<T, E>(value: unknown): value is Result<T, E> {
+  return value instanceof Ok || value instanceof Err
+}

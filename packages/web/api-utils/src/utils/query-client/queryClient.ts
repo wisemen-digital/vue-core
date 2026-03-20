@@ -1,10 +1,11 @@
 import type { QueryClient as TanstackQueryClient } from '@tanstack/vue-query'
 
-import type {
-  AsyncResult as AsyncResultType,
-  AsyncResultOk,
+import type { AsyncResultOk } from '@/async-result/asyncResult'
+import {
+  AsyncResult,
+  isAsyncResult,
 } from '@/async-result/asyncResult'
-import { AsyncResult } from '@/async-result/asyncResult'
+import type { AsyncApiResult } from '@/types/apiError.type'
 import type {
   QueryKeyEntityFromConfig,
   QueryKeyRawParamsFromConfig,
@@ -50,25 +51,23 @@ export class QueryClient<TQueryKeys extends object> {
    * Extract the raw entity from AsyncResult data
    */
   private extractEntityFromAsyncResult<TEntity>(
-    data: AsyncResultType<TEntity, any> | TEntity | null | undefined,
+    data: AsyncApiResult<TEntity, any>,
   ): TEntity | null {
-    if (data === undefined || data === null) {
-      return null
+    if (data.isOk()) {
+      return data.getValue()
     }
 
-    // Check if it's an AsyncResult by checking for isOk method
-    if (typeof data === 'object' && 'isOk' in data) {
-      const asyncResult = data
+    return null
+  }
 
-      if (asyncResult.isOk()) {
-        return asyncResult.getValue()
-      }
-
-      return null
-    }
-
-    // It's already a raw entity
-    return data
+  private hasDataArray(value: unknown): value is {
+    data: any[]
+  } {
+    return Boolean(
+      value
+      && typeof value === 'object'
+      && Array.isArray((value as any).data),
+    )
   }
 
   private isInfiniteDataLike(data: unknown): data is {
@@ -78,8 +77,8 @@ export class QueryClient<TQueryKeys extends object> {
     return Boolean(
       data
       && typeof data === 'object'
-      && 'pages' in (data as any)
-      && Array.isArray((data as any).pages),
+      && 'pages' in (data)
+      && Array.isArray(data.pages),
     )
   }
 
@@ -118,6 +117,21 @@ export class QueryClient<TQueryKeys extends object> {
     }
 
     return currentData
+  }
+
+  private updateInfinitePageValue(
+    by: (item: any) => boolean,
+    value: (item: any) => any,
+    pageValue: any,
+  ): any {
+    if (!this.hasDataArray(pageValue)) {
+      return pageValue
+    }
+
+    return {
+      ...pageValue,
+      data: this.updateEntity(by, pageValue.data, value),
+    }
   }
 
   /**
@@ -170,7 +184,11 @@ export class QueryClient<TQueryKeys extends object> {
     | null {
     // If it's a tuple [key, params], always get specific query
     if (Array.isArray(queryKey)) {
-      const data = this.queryClient.getQueryData<any>(queryKey)
+      const data = this.queryClient.getQueryData<AsyncApiResult<any>>(queryKey)
+
+      if (data == null) {
+        return null
+      }
 
       return this.extractEntityFromAsyncResult(data)
     }
@@ -183,24 +201,30 @@ export class QueryClient<TQueryKeys extends object> {
       const normalizedKey = [
         queryKey,
       ]
-      const data = this.queryClient.getQueryData<any>(normalizedKey)
+      const data = this.queryClient.getQueryData<AsyncApiResult<any>>(normalizedKey)
+
+      if (data == null) {
+        return null
+      }
 
       return this.extractEntityFromAsyncResult(data)
     }
 
     // Get all queries with this key as first element
-    const allQueries = this.queryClient.getQueryCache().findAll({
-      predicate: (query) => {
-        const qKey = query.queryKey as any[]
+    const allQueries = this.queryClient
+      .getQueryCache()
+      .findAll({
+        predicate: (query) => {
+          const qKey = query.queryKey
 
-        return qKey[0] === queryKey
-      },
-    })
+          return qKey[0] === queryKey
+        },
+      })
 
     const results: any[] = []
 
     for (const query of allQueries) {
-      const data = query.state.data as any
+      const data = query.state.data as AsyncApiResult<any>
       const entity = this.extractEntityFromAsyncResult(data)
 
       if (entity !== null) {
@@ -245,7 +269,7 @@ export class QueryClient<TQueryKeys extends object> {
 
     await this.queryClient.invalidateQueries({
       predicate: (query) => {
-        const queryKey = query.queryKey as any[]
+        const queryKey = query.queryKey
 
         if (queryKey[0] !== key) {
           return false
@@ -298,7 +322,7 @@ export class QueryClient<TQueryKeys extends object> {
   // Implementation
   set<TKey extends QueryKeysWithEntityFromConfig<TQueryKeys>>(
     queryKey: QueryKeyOrTupleFromConfig<TQueryKeys, TKey>,
-    entity: any,
+    entity: unknown,
   ): void {
     const wrappedData = this.wrapEntityInAsyncResult(entity)
 
@@ -309,7 +333,7 @@ export class QueryClient<TQueryKeys extends object> {
           queryKey,
         ]
 
-    this.queryClient.setQueryData(normalizedKey as any, wrappedData)
+    this.queryClient.setQueryData(normalizedKey, wrappedData)
   }
 
   /**
@@ -333,8 +357,6 @@ export class QueryClient<TQueryKeys extends object> {
    * })
    * ```
    */
-
-  // Overload: key only - updates all matching queries
   update<
     TKey extends QueryKeysWithEntityFromConfig<TQueryKeys>,
     TEntity extends QueryKeyEntityFromConfig<TQueryKeys, TKey> = QueryKeyEntityFromConfig<TQueryKeys, TKey>,
@@ -342,7 +364,6 @@ export class QueryClient<TQueryKeys extends object> {
     key: TKey,
     options: QueryClientUpdateOptions<TEntity>,
   ): void
-  // Overload: full tuple with params - updates specific query
   update<
     TKey extends QueryKeysWithEntityFromConfig<TQueryKeys>,
     TEntity extends QueryKeyEntityFromConfig<TQueryKeys, TKey> = QueryKeyEntityFromConfig<TQueryKeys, TKey>,
@@ -350,7 +371,6 @@ export class QueryClient<TQueryKeys extends object> {
     keyTuple: readonly [TKey, Partial<QueryKeyRawParamsFromConfig<TQueryKeys, TKey>>],
     options: QueryClientUpdateOptions<TEntity>,
   ): void
-  // Implementation
   update<
     TKey extends QueryKeysWithEntityFromConfig<TQueryKeys>,
     TEntity extends QueryKeyEntityFromConfig<TQueryKeys, TKey> = QueryKeyEntityFromConfig<TQueryKeys, TKey>,
@@ -363,13 +383,13 @@ export class QueryClient<TQueryKeys extends object> {
 
     // Determine if we're updating all or specific queries
     const isSpecific = Array.isArray(keyOrTuple)
-    const key = isSpecific ? (keyOrTuple as any[])[0] : keyOrTuple
-    const params = isSpecific ? (keyOrTuple as any[])[1] : null
+    const key = isSpecific ? (keyOrTuple)[0] : keyOrTuple
+    const params = isSpecific ? (keyOrTuple)[1] : null
 
     // Get matching queries
     const queries = this.queryClient.getQueryCache().findAll({
       predicate: (query) => {
-        const queryKey = query.queryKey as any[]
+        const queryKey = query.queryKey
 
         if (queryKey[0] !== key) {
           return false
@@ -392,28 +412,19 @@ export class QueryClient<TQueryKeys extends object> {
 
     // Update each matching query
     for (const query of queries) {
-      const currentData = query.state.data as any
+      const currentData = query.state.data
 
       // Support infinite queries: cached data is typically { pages, pageParams }
       if (this.isInfiniteDataLike(currentData)) {
         const updatedInfiniteData = {
           ...currentData,
-          pages: (currentData.pages as any[]).map((page) => {
-            // neverthrow Result has .map + .isOk
-            if (page && typeof page === 'object' && 'map' in page && typeof page.map === 'function') {
-              return page.map((pageValue: any) => {
-                if (pageValue && typeof pageValue === 'object' && Array.isArray(pageValue.data)) {
-                  return {
-                    ...pageValue,
-                    data: this.updateEntity(by, pageValue.data, value),
-                  }
-                }
-
-                return pageValue
-              })
+          pages: currentData.pages.map((page) => {
+            if (!isAsyncResult(page)) {
+              return page
             }
 
-            return page
+            return page.map((pageValue) =>
+              this.updateInfinitePageValue(by, value, pageValue))
           }),
         }
 
@@ -422,8 +433,12 @@ export class QueryClient<TQueryKeys extends object> {
         continue
       }
 
+      if (!isAsyncResult<any, any>(currentData)) {
+        continue
+      }
+
       // Extract raw entity from AsyncResult or use directly if raw
-      const rawEntity = this.extractEntityFromAsyncResult(currentData as AsyncResultType<TEntity, any> | TEntity | null)
+      const rawEntity = this.extractEntityFromAsyncResult(currentData)
 
       if (rawEntity === null) {
         continue

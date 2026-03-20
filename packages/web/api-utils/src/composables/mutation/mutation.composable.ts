@@ -9,7 +9,6 @@ import { AsyncResult } from '@/async-result/asyncResult'
 import type {
   ApiError,
   ApiResult,
-  ApiUnexpectedError,
   AsyncApiResult,
 } from '@/types/apiError.type'
 
@@ -55,6 +54,7 @@ interface UseMutationOptions<TReqData, TResData, TParams = void, TErrorCode exte
 export interface UseMutationReturnType<TReqData, TResData, TParams = void, TErrorCode extends string = string> {
   /**
    * Whether mutation is loading
+   * @deprecated - use `result.value.isLoading()` instead
    */
   isLoading: ComputedRef<boolean>
   /**
@@ -193,7 +193,7 @@ export function useMutation<
     }
 
     if (mutation.isError.value) {
-      return AsyncResult.err<TResData, ApiUnexpectedError>(mutation.error.value as ApiUnexpectedError)
+      return AsyncResult.err<TResData, ApiError<TErrorCode>>(mutation.error.value as ApiError<TErrorCode>)
     }
 
     if (mutation.isSuccess.value && mutation.data.value !== undefined) {

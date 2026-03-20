@@ -1,11 +1,15 @@
 import { useInfiniteQuery } from '@tanstack/vue-query'
-import type { MaybeRef } from 'vue'
+import type {
+  ComputedRef,
+  MaybeRef,
+} from 'vue'
 import { computed } from 'vue'
 
 import { AsyncResult } from '@/async-result/asyncResult'
 import { QUERY_CONFIG } from '@/config/config'
 import type { ApiError } from '@/types/apiError.type'
 import type {
+  OffsetPaginationAsyncResult,
   OffsetPaginationParams,
   OffsetPaginationResponse,
   OffsetPaginationResult,
@@ -40,11 +44,59 @@ export interface OffsetInfiniteQueryOptions<TData, TErrorCode extends string = s
   queryKey: Record<string, unknown>
 }
 
+export interface UseOffsetInfiniteQueryReturnType<TData, TErrorCode extends string = string> {
+  /**
+   * Whether there is a next page available to fetch
+   */
+  hasNextPage: ComputedRef<boolean>
+  /**
+   * Whether query has errored at least once
+   * @deprecated - use `result.value.isErr()` instead
+   */
+  isError: ComputedRef<boolean>
+  /**
+   * Whether query is currently fetching data, regardless of cache status
+   */
+  isFetching: ComputedRef<boolean>
+  /**
+   * Whether query is currently fetching the next page
+   */
+  isFetchingNextPage: ComputedRef<boolean>
+  /**
+   * Whether query is initially loading
+   * @deprecated - use `result.value.isLoading()` instead
+   */
+  isLoading: ComputedRef<boolean>
+  /**
+   * Whether query has been executed successfully
+   * @deprecated - use `result.value.isOk()` instead
+   */
+  isSuccess: ComputedRef<boolean>
+  /**
+   * Fetch the next page of results using offset-based pagination
+   */
+  fetchNextPage: () => Promise<void>
+  /**
+   * Refetch the query
+   */
+  refetch: () => Promise<void>
+  /**
+   * Computed result of the query containing all accumulated pages
+   * Returns an AsyncResult with three states:
+   * - loading: use `result.value.isLoading()`
+   * - ok: use `result.value.isOk()` and `result.value.getValue()`
+   * - err: use `result.value.isErr()` and `result.value.getError()`
+   *
+   * Use `result.value.match({ loading, ok, err })` for exhaustive handling
+   */
+  result: ComputedRef<AsyncResult<OffsetPaginationResponse<TData>, ApiError<TErrorCode>>>
+}
+
 const DEFAULT_LIMIT = QUERY_CONFIG.limit
 
 export function useOffsetInfiniteQuery<TData, TErrorCode extends string = string>(
   options: OffsetInfiniteQueryOptions<TData, TErrorCode>,
-) {
+): UseOffsetInfiniteQueryReturnType<TData, TErrorCode> {
   function getQueryKey(): unknown[] {
     const entries = Object.entries(options.queryKey)
     const [
@@ -68,14 +120,14 @@ export function useOffsetInfiniteQuery<TData, TErrorCode extends string = string
   const infiniteQuery = useInfiniteQuery({
     staleTime: options.staleTime,
     enabled: options.isEnabled,
-    getNextPageParam: (lastPage: OffsetPaginationResult<TData, TErrorCode>) => {
-      if (lastPage.isErr()) {
+    getNextPageParam: (lastPage: OffsetPaginationAsyncResult<TData, TErrorCode>) => {
+      if (lastPage.isErr() || lastPage.isLoading()) {
         return null
       }
 
-      const total = lastPage.value.meta.offset + lastPage.value.meta.limit
+      const total = lastPage.getValue().meta.offset + lastPage.getValue().meta.limit
 
-      if (total >= lastPage.value.meta.total) {
+      if (total >= lastPage.getValue().meta.total) {
         return null
       }
 
@@ -83,12 +135,12 @@ export function useOffsetInfiniteQuery<TData, TErrorCode extends string = string
     },
     initialPageParam: 0,
     placeholderData: (data) => data,
-    queryFn: ({
+    queryFn: async ({
       pageParam,
-    }) => options.queryFn({
+    }) => AsyncResult.fromResult(await options.queryFn({
       limit: options.limit ?? DEFAULT_LIMIT,
       offset: pageParam ?? 0,
-    }),
+    })),
     queryKey: getQueryKey(),
   })
 
@@ -104,15 +156,15 @@ export function useOffsetInfiniteQuery<TData, TErrorCode extends string = string
     const firstError = infiniteQuery.data.value?.pages.find((page) => page.isErr())
 
     if (firstError) {
-      return AsyncResult.err<OffsetPaginationResponse<TData>, ApiError<TErrorCode>>(firstError.error)
+      return AsyncResult.err<OffsetPaginationResponse<TData>, ApiError<TErrorCode>>(firstError.getError())
     }
 
     const data = infiniteQuery.data.value?.pages
       .filter((page) => page.isOk())
-      .flatMap((page) => page.value.data) ?? []
+      .flatMap((page) => page.getValue().data) ?? []
 
     const firstPage = infiniteQuery.data.value?.pages[0]
-    const meta = firstPage?.isOk() ? firstPage.value.meta : null
+    const meta = firstPage?.isOk() ? firstPage.getValue().meta : null
 
     const response: OffsetPaginationResponse<TData> = {
       data,

@@ -10,61 +10,36 @@ import {
   watch,
 } from 'vue'
 
+import { FactoryUserBuilder } from '@/builders/factoryUserBuilder'
 import { createApiUtils } from '@/factory/createApiUtils'
+import type {
+  FactoryQueryKeys,
+  FactoryUser,
+  UserUuid,
+} from '@/factory/createApiUtils.setup'
 import { runInSetup } from '@/test/runInSetup'
+
+interface UpdateUserRequest {
+  name?: string
+  email?: string
+}
 
 describe('createApiUtils - useMutation', () => {
   it('executes mutation and invalidates typed query keys', async () => {
-    type UserUuid = string
-
-    interface User {
-      id: string
-      uuid: UserUuid
-      name: string
-      email: string
-    }
-
-    interface UpdateUserRequest {
-      name?: string
-      email?: string
-    }
-
-    interface MyQueryKeys {
-      userDetail: {
-        entity: User
-        params: {
-          userUuid: UserUuid
-        }
-      }
-      userIndex: {
-        entity: User[]
-        params: {
-          search?: string
-        }
-      }
-    }
-
     const result = runInSetup(() => {
       const {
         useMutation, useQuery,
-      } = createApiUtils<MyQueryKeys>()
+      } = createApiUtils<FactoryQueryKeys>()
 
-      // First, set up a query
+      const user = new FactoryUserBuilder().build()
+
       const userQuery = useQuery('userDetail', {
         params: {
           userUuid: computed<UserUuid>(() => 'uuid-123'),
         },
-        queryFn: () => Promise.resolve(
-          ok({
-            id: '123',
-            uuid: 'uuid-123',
-            name: 'John Doe',
-            email: 'john@example.com',
-          }),
-        ),
+        queryFn: () => Promise.resolve(ok(user)),
       })
 
-      // Set up mutation with typed queryKeysToInvalidate
       const updateMutation = useMutation({
         queryFn: (options: {
           body: UpdateUserRequest
@@ -123,23 +98,14 @@ describe('createApiUtils - useMutation', () => {
   })
 
   it('handles mutation without params', async () => {
-    type UserUuid = string
-
-    interface User {
-      id: string
-      uuid: UserUuid
-      name: string
-      email: string
-    }
-
     interface CreateUserRequest {
       name: string
       email: string
     }
 
-    interface MyQueryKeys {
+    interface VoidParamsQueryKeys {
       userIndex: {
-        entity: User[]
+        entity: FactoryUser[]
         params: void
       }
     }
@@ -147,12 +113,11 @@ describe('createApiUtils - useMutation', () => {
     const result = runInSetup(() => {
       const {
         useMutation,
-      } = createApiUtils<MyQueryKeys>()
+      } = createApiUtils<VoidParamsQueryKeys>()
 
-      // Mutation without params
       const createMutation = useMutation<
         CreateUserRequest,
-        User,
+        FactoryUser,
         void
       >({
         queryFn: async ({
@@ -194,18 +159,10 @@ describe('createApiUtils - useMutation', () => {
   })
 
   it('tracks mutation loading state', async () => {
-    interface User {
-      id: string
-      name: string
-    }
-
-    interface UpdateRequest {
-      name: string
-    }
-
-    interface MyQueryKeys {
+    interface LoadingQueryKeys {
       userDetail: {
-        entity: User
+        entity: { id: string
+          name: string }
         params: void
       }
     }
@@ -213,9 +170,10 @@ describe('createApiUtils - useMutation', () => {
     const result = runInSetup(() => {
       const {
         useMutation,
-      } = createApiUtils<MyQueryKeys>()
+      } = createApiUtils<LoadingQueryKeys>()
 
-      const mutation = useMutation<UpdateRequest, User, void>({
+      const mutation = useMutation<{ name: string }, { id: string
+        name: string }, void>({
         queryFn: async ({
           body,
         }) => {
@@ -258,18 +216,14 @@ describe('createApiUtils - useMutation', () => {
   it('invalidates queries with specific params when provided', async () => {
     type UserId = string
 
-    interface User {
-      id: UserId
+    interface UpdateNameRequest {
       name: string
     }
 
-    interface UpdateUserRequest {
-      name: string
-    }
-
-    interface MyQueryKeys {
+    interface UserDetailQueryKeys {
       userDetail: {
-        entity: User
+        entity: { id: UserId
+          name: string }
         params: {
           userId: UserId
         }
@@ -282,9 +236,8 @@ describe('createApiUtils - useMutation', () => {
     const result = runInSetup(() => {
       const {
         useMutation, useQuery,
-      } = createApiUtils<MyQueryKeys>()
+      } = createApiUtils<UserDetailQueryKeys>()
 
-      // Set up two queries with different user IDs
       const user1Query = useQuery('userDetail', {
         params: {
           userId: computed<UserId>(() => 'user-1'),
@@ -309,7 +262,6 @@ describe('createApiUtils - useMutation', () => {
         ),
       })
 
-      // Track data updates
       watch(
         () => user1Query.result.value.unwrapOr(null),
         (newData) => {
@@ -328,10 +280,9 @@ describe('createApiUtils - useMutation', () => {
         },
       )
 
-      // Mutation that only invalidates userDetail with specific userId
       const updateMutation = useMutation({
         queryFn: (options: {
-          body: UpdateUserRequest
+          body: UpdateNameRequest
           params: {
             userId: UserId
           }
@@ -360,7 +311,6 @@ describe('createApiUtils - useMutation', () => {
     await result.user2Query.refetch()
     expect(result.user1Query.result.value.isOk()).toBeTruthy()
     expect(result.user2Query.result.value.isOk()).toBeTruthy()
-    // Reset counters after initial load
     user1UpdateCount = 0
     user2UpdateCount = 0
 

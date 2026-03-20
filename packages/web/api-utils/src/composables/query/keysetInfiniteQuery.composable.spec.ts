@@ -12,18 +12,13 @@ import {
 import { nextTick } from 'vue'
 
 import { useKeysetInfiniteQuery } from '@/composables/query/keysetInfiniteQuery.composable'
+import { flushPromises } from '@/test/flushPromises'
 import { runInSetup } from '@/test/runInSetup'
 import type { ApiError } from '@/types/apiError.type'
 
 interface TestItem {
   id: string
   name: string
-}
-
-function flushPromises(): Promise<void> {
-  return new Promise((resolve) => {
-    setTimeout(resolve, 0)
-  })
 }
 
 describe('useKeysetInfiniteQuery with AsyncResult', () => {
