@@ -13,36 +13,35 @@ import {
 } from 'vue'
 
 import { createApiUtils } from '@/factory/createApiUtils'
+import { flushPromises } from '@/test/flushPromises'
 import { runInSetup } from '@/test/runInSetup'
 
-function flushPromises(): Promise<void> {
-  return new Promise((resolve) => {
-    setTimeout(resolve, 0)
-  })
+interface PrefetchUser {
+  id: string
+  email: string
+}
+
+interface PrefetchQueryKeys {
+  userIndex: {
+    entity: PrefetchUser[]
+    params: {
+      search: string
+    }
+  }
+}
+
+function createPrefetchUserItems(count: number): PrefetchUser[] {
+  return Array.from({
+    length: count,
+  }, (_, i) => ({
+    id: String(i + 1),
+    email: `user${i + 1}@example.com`,
+  }))
 }
 
 describe('createApiUtils - prefetch infinite queries', () => {
   it('prefetches offset infinite query and avoids extra fetch', async () => {
-    interface User {
-      id: string
-      email: string
-    }
-
-    interface MyQueryKeys {
-      userIndex: {
-        entity: User[]
-        params: {
-          search: string
-        }
-      }
-    }
-
-    const items: User[] = Array.from({
-      length: 5,
-    }, (_, i) => ({
-      id: String(i + 1),
-      email: `user${i + 1}@example.com`,
-    }))
+    const items = createPrefetchUserItems(5)
 
     const queryFn = vi.fn(({
       limit, offset,
@@ -61,7 +60,7 @@ describe('createApiUtils - prefetch infinite queries', () => {
     const setup = runInSetup(() => {
       const {
         useOffsetInfiniteQuery, usePrefetchOffsetInfiniteQuery,
-      } = createApiUtils<MyQueryKeys>()
+      } = createApiUtils<PrefetchQueryKeys>()
 
       return {
         prefetch: usePrefetchOffsetInfiniteQuery('userIndex', {
@@ -114,26 +113,7 @@ describe('createApiUtils - prefetch infinite queries', () => {
   })
 
   it('prefetches keyset infinite query and avoids extra fetch', async () => {
-    interface User {
-      id: string
-      email: string
-    }
-
-    interface MyQueryKeys {
-      userIndex: {
-        entity: User[]
-        params: {
-          search: string
-        }
-      }
-    }
-
-    const items: User[] = Array.from({
-      length: 5,
-    }, (_, i) => ({
-      id: String(i + 1),
-      email: `user${i + 1}@example.com`,
-    }))
+    const items = createPrefetchUserItems(5)
 
     const queryFn = vi.fn(({
       key, limit,
@@ -152,7 +132,7 @@ describe('createApiUtils - prefetch infinite queries', () => {
     const setup = runInSetup(() => {
       const {
         useKeysetInfiniteQuery, usePrefetchKeysetInfiniteQuery,
-      } = createApiUtils<MyQueryKeys>()
+      } = createApiUtils<PrefetchQueryKeys>()
 
       return {
         prefetch: usePrefetchKeysetInfiniteQuery('userIndex', {

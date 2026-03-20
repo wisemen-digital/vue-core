@@ -6,52 +6,28 @@ import {
 } from 'vitest'
 import { computed } from 'vue'
 
+import { FactoryUserBuilder } from '@/builders/factoryUserBuilder'
 import { createApiUtils } from '@/factory/createApiUtils'
+import type {
+  FactoryQueryKeys,
+  UserUuid,
+} from '@/factory/createApiUtils.setup'
 import { runInSetup } from '@/test/runInSetup'
 
 describe('createApiUtils - useQuery', () => {
   it('returns AsyncResult<User> for userDetail', async () => {
-    type UserUuid = string
-
-    interface User {
-      id: string
-      uuid: UserUuid
-      name: string
-      email: string
-    }
-
-    interface MyQueryKeys {
-      userDetail: {
-        entity: User
-        params: {
-          userUuid: UserUuid
-        }
-      }
-      userIndex: {
-        entity: User[]
-        params: {
-          search?: string
-        }
-      }
-    }
+    const user = new FactoryUserBuilder().build()
 
     const query = runInSetup(() => {
       const {
         useQuery,
-      } = createApiUtils<MyQueryKeys>()
+      } = createApiUtils<FactoryQueryKeys>()
 
       return useQuery('userDetail', {
         params: {
           userUuid: computed<UserUuid>(() => 'uuid-123'),
         },
-        queryFn: () => Promise.resolve(
-          ok({
-            id: '123',
-            uuid: 'uuid-123',
-            name: 'John Doe',
-            email: 'john@example.com',
-          }),
-        ),
+        queryFn: () => Promise.resolve(ok(user)),
       })
     })
 
@@ -75,62 +51,23 @@ describe('createApiUtils - useQuery', () => {
   })
 
   it('returns AsyncResult<User[]> for userIndex', async () => {
-    type UserUuid = string
-
-    interface User {
-      id: string
-      uuid: UserUuid
-      name: string
-      email: string
-    }
-
-    interface MyQueryKeys {
-      userDetail: {
-        entity: User
-        params: {
-          userUuid: UserUuid
-        }
-      }
-      userIndex: {
-        entity: User[]
-        params: {
-          search?: string
-        }
-      }
-    }
+    const users = [
+      new FactoryUserBuilder().build(),
+      new FactoryUserBuilder().withId('124').withUuid('uuid-124').withName('Alice Smith').withEmail('test@test.be').build(),
+      new FactoryUserBuilder().withId('125').withUuid('uuid-125').withName('Bob Johnson').withEmail('bob@example.com').build(),
+    ]
 
     const query = runInSetup(() => {
       const {
         useQuery, useQueryClient,
-      } = createApiUtils<MyQueryKeys>()
+      } = createApiUtils<FactoryQueryKeys>()
 
       return {
         query: useQuery('userIndex', {
           params: {
             search: computed<string>(() => 'user'),
           },
-          queryFn: () => Promise.resolve(
-            ok([
-              {
-                id: '123',
-                uuid: 'uuid-123',
-                name: 'John Doe',
-                email: 'john@example.com',
-              },
-              {
-                id: '124',
-                uuid: 'uuid-124',
-                name: 'Alice Smith',
-                email: 'test@test.be',
-              },
-              {
-                id: '125',
-                uuid: 'uuid-125',
-                name: 'Bob Johnson',
-                email: 'bob@example.com',
-              },
-            ]),
-          ),
+          queryFn: () => Promise.resolve(ok(users)),
         }),
         updated: useQueryClient(),
       }

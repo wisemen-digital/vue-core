@@ -11,14 +11,9 @@ import {
 } from 'vitest'
 
 import { useMutation } from '@/composables/mutation/mutation.composable'
+import { flushPromises } from '@/test/flushPromises'
 import { runInSetup } from '@/test/runInSetup'
 import type { ApiError } from '@/types/apiError.type'
-
-function flushPromises(): Promise<void> {
-  return new Promise((resolve) => {
-    setTimeout(resolve, 0)
-  })
-}
 
 describe('useMutation', () => {
   it('should be defined', () => {

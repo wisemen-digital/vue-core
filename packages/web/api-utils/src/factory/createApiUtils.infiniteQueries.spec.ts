@@ -13,45 +13,38 @@ import {
 } from 'vue'
 
 import { createApiUtils } from '@/factory/createApiUtils'
+import type { FactoryUser } from '@/factory/createApiUtils.setup'
+import { flushPromises } from '@/test/flushPromises'
 import { runInSetup } from '@/test/runInSetup'
 
-function flushPromises(): Promise<void> {
-  return new Promise((resolve) => setTimeout(resolve))
+interface InfiniteQueryKeys {
+  userIndex: {
+    entity: FactoryUser[]
+    params: {
+      search?: string
+    }
+  }
+}
+
+function createUserItems(count: number): FactoryUser[] {
+  return Array.from({
+    length: count,
+  }, (_, i) => ({
+    id: String(i + 1),
+    uuid: `uuid-${i + 1}`,
+    name: `User ${i + 1}`,
+    email: `user${i + 1}@example.com`,
+  }))
 }
 
 describe('createApiUtils - infinite queries', () => {
   it('useOffsetInfiniteQuery returns typed OffsetPaginationResponse<Item>', async () => {
-    type UserUuid = string
-
-    interface User {
-      id: string
-      uuid: UserUuid
-      name: string
-      email: string
-    }
-
-    interface MyQueryKeys {
-      userIndex: {
-        entity: User[]
-        params: {
-          search?: string
-        }
-      }
-    }
-
-    const items: User[] = Array.from({
-      length: 5,
-    }, (_, i) => ({
-      id: String(i + 1),
-      uuid: `uuid-${i + 1}`,
-      name: `User ${i + 1}`,
-      email: `user${i + 1}@example.com`,
-    }))
+    const items = createUserItems(5)
 
     const setup = runInSetup(() => {
       const {
         useOffsetInfiniteQuery, useQueryClient,
-      } = createApiUtils<MyQueryKeys>()
+      } = createApiUtils<InfiniteQueryKeys>()
 
       return {
         query: useOffsetInfiniteQuery('userIndex', {
@@ -111,37 +104,12 @@ describe('createApiUtils - infinite queries', () => {
   })
 
   it('useKeysetInfiniteQuery returns typed KeysetPaginationResponse<Item>', async () => {
-    type UserUuid = string
-
-    interface User {
-      id: string
-      uuid: UserUuid
-      name: string
-      email: string
-    }
-
-    interface MyQueryKeys {
-      userIndex: {
-        entity: User[]
-        params: {
-          search?: string
-        }
-      }
-    }
-
-    const items: User[] = Array.from({
-      length: 4,
-    }, (_, i) => ({
-      id: String(i + 1),
-      uuid: `uuid-${i + 1}`,
-      name: `User ${i + 1}`,
-      email: `user${i + 1}@example.com`,
-    }))
+    const items = createUserItems(4)
 
     const setup = runInSetup(() => {
       const {
         useKeysetInfiniteQuery, useQueryClient,
-      } = createApiUtils<MyQueryKeys>()
+      } = createApiUtils<InfiniteQueryKeys>()
 
       return {
         query: useKeysetInfiniteQuery('userIndex', {

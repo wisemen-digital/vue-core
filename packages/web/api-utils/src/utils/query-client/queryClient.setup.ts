@@ -5,7 +5,6 @@ import { createApiUtils } from '@/factory/createApiUtils'
 
 import type { QueryClient } from './queryClient'
 
-// Define test types
 export interface User {
   id: string
   uuid: string
@@ -23,7 +22,6 @@ export interface Product {
   sku: string
 }
 
-// Extend QueryKeys for testing
 interface TestQueryKeys {
   productList: {
     entity: Product[]

@@ -5,25 +5,23 @@ import {
   it,
 } from 'vitest'
 
-import type { User } from './queryClient.setup'
+import { UserBuilder } from '@/builders/userBuilder'
+
 import { createTestSetup } from './queryClient.setup'
 
 describe('queryClient - invalidate', () => {
-  let setup: ReturnType<typeof createTestSetup>
+  let queryClient: ReturnType<typeof createTestSetup>['queryClient']
+  let tanstackQueryClient: ReturnType<typeof createTestSetup>['tanstackQueryClient']
 
   beforeEach(() => {
-    setup = createTestSetup()
+    const setup = createTestSetup()
+
+    queryClient = setup.queryClient
+    tanstackQueryClient = setup.tanstackQueryClient
   })
 
   it('should invalidate queries by key', async () => {
-    const userData: User = {
-      id: '123',
-      uuid: 'abc-123',
-      isActive: true,
-      name: 'John Doe',
-      email: 'john@example.com',
-    }
-
+    const user = new UserBuilder().withId('123').withUuid('abc-123').build()
     const queryKey = [
       'userDetail',
       {
@@ -31,11 +29,11 @@ describe('queryClient - invalidate', () => {
       },
     ] as const
 
-    setup.queryClient.set(queryKey, userData)
+    queryClient.set(queryKey, user)
 
-    await setup.queryClient.invalidate('userDetail')
+    await queryClient.invalidate('userDetail')
 
-    const query = setup.tanstackQueryClient
+    const query = tanstackQueryClient
       .getQueryCache()
       .find({
         queryKey,
@@ -45,22 +43,8 @@ describe('queryClient - invalidate', () => {
   })
 
   it('should invalidate queries by key and params', async () => {
-    const user1: User = {
-      id: '123',
-      uuid: 'abc-123',
-      isActive: true,
-      name: 'John Doe',
-      email: 'john@example.com',
-    }
-
-    const user2: User = {
-      id: '456',
-      uuid: 'def-456',
-      isActive: true,
-      name: 'Jane Doe',
-      email: 'jane@example.com',
-    }
-
+    const user1 = new UserBuilder().withId('123').withUuid('abc-123').build()
+    const user2 = new UserBuilder().withId('456').withUuid('def-456').withName('Jane Doe').withEmail('jane@example.com').build()
     const queryKey1 = [
       'userDetail',
       {
@@ -74,22 +58,22 @@ describe('queryClient - invalidate', () => {
       },
     ] as const
 
-    setup.queryClient.set(queryKey1, user1)
-    setup.queryClient.set(queryKey2, user2)
+    queryClient.set(queryKey1, user1)
+    queryClient.set(queryKey2, user2)
 
-    await setup.queryClient.invalidate([
+    await queryClient.invalidate([
       'userDetail',
       {
         userUuid: 'abc-123',
       },
     ])
 
-    const query1 = setup.tanstackQueryClient
+    const query1 = tanstackQueryClient
       .getQueryCache()
       .find({
         queryKey: queryKey1,
       })
-    const query2 = setup.tanstackQueryClient
+    const query2 = tanstackQueryClient
       .getQueryCache()
       .find({
         queryKey: queryKey2,
@@ -100,16 +84,8 @@ describe('queryClient - invalidate', () => {
   })
 
   it('should handle refs in params', async () => {
-    const userData: User = {
-      id: '123',
-      uuid: 'abc-123',
-      isActive: true,
-      name: 'John Doe',
-      email: 'john@example.com',
-    }
-
+    const user = new UserBuilder().withId('123').withUuid('abc-123').build()
     const userUuid = 'abc-123'
-
     const queryKey = [
       'userDetail',
       {
@@ -117,16 +93,16 @@ describe('queryClient - invalidate', () => {
       },
     ] as const
 
-    setup.queryClient.set(queryKey, userData)
+    queryClient.set(queryKey, user)
 
-    await setup.queryClient.invalidate([
+    await queryClient.invalidate([
       'userDetail',
       {
         userUuid,
       },
     ])
 
-    const query = setup.tanstackQueryClient
+    const query = tanstackQueryClient
       .getQueryCache()
       .find({
         queryKey,
@@ -136,21 +112,13 @@ describe('queryClient - invalidate', () => {
   })
 
   it('should invalidate all queries with the same key', async () => {
-    const userData: User = {
-      id: '123',
-      uuid: 'abc-123',
-      isActive: true,
-      name: 'John Doe',
-      email: 'john@example.com',
-    }
-
+    const user = new UserBuilder().withId('123').withUuid('abc-123').build()
     const queryKey1 = [
       'userDetail',
       {
         userUuid: 'user-1',
       },
     ] as const
-
     const queryKey2 = [
       'userDetail',
       {
@@ -158,25 +126,22 @@ describe('queryClient - invalidate', () => {
       },
     ] as const
 
-    setup.queryClient.set(queryKey1, userData)
-    setup.queryClient.set(queryKey2, userData)
+    queryClient.set(queryKey1, user)
+    queryClient.set(queryKey2, user)
 
-    // Invalidate all 'userDetail' queries using single key format
-    await setup.queryClient.invalidate('userDetail')
+    await queryClient.invalidate('userDetail')
 
-    const query1 = setup.tanstackQueryClient
+    const query1 = tanstackQueryClient
       .getQueryCache()
       .find({
         queryKey: queryKey1,
       })
-
-    const query2 = setup.tanstackQueryClient
+    const query2 = tanstackQueryClient
       .getQueryCache()
       .find({
         queryKey: queryKey2,
       })
 
-    // Both should be invalidated
     expect(query1?.state.isInvalidated).toBeTruthy()
     expect(query2?.state.isInvalidated).toBeTruthy()
   })
