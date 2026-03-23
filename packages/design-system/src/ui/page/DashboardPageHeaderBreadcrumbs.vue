@@ -2,7 +2,7 @@
 import BreadcrumbItem from '@/ui/breadcrumbs/BreadcrumbItem.vue'
 import BreadcrumbItems from '@/ui/breadcrumbs/BreadcrumbItems.vue'
 import BreadcrumbRoot from '@/ui/breadcrumbs/BreadcrumbRoot.vue'
-import BreadcrumbSeperator from '@/ui/breadcrumbs/BreadcrumbSeperator.vue'
+import BreadcrumbSeparator from '@/ui/breadcrumbs/BreadcrumbSeparator.vue'
 import type { PageBreadcrumb } from '@/ui/page/dashboardPage.type'
 
 const props = defineProps<{
@@ -22,7 +22,7 @@ const props = defineProps<{
           :to="breadcrumb.to"
           :label="breadcrumb.label"
         />
-        <BreadcrumbSeperator
+        <BreadcrumbSeparator
           v-if="breadcrumbIndex < props.breadcrumbs.length - 1"
         />
       </template>

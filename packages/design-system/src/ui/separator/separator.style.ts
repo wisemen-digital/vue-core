@@ -1,6 +1,6 @@
 import { tv } from '@/styles/tailwindVariants.lib'
 
-export const createSeperatorStyle = tv({
+export const createSeparatorStyle = tv({
   slots: {
     separator: `bg-tertiary`,
   },
@@ -16,4 +16,4 @@ export const createSeperatorStyle = tv({
   },
 })
 
-export type SeperatorStyle = ReturnType<typeof createSeperatorStyle>
+export type SeparatorStyle = ReturnType<typeof createSeparatorStyle>

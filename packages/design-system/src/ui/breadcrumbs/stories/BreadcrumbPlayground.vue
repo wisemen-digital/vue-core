@@ -8,7 +8,7 @@ import {
 import BreadcrumbItem from '@/ui/breadcrumbs/BreadcrumbItem.vue'
 import BreadcrumbItems from '@/ui/breadcrumbs/BreadcrumbItems.vue'
 import BreadcrumbRoot from '@/ui/breadcrumbs/BreadcrumbRoot.vue'
-import BreadcrumbSeperator from '@/ui/breadcrumbs/BreadcrumbSeperator.vue'
+import BreadcrumbSeparator from '@/ui/breadcrumbs/BreadcrumbSeparator.vue'
 </script>
 
 <template>
@@ -20,7 +20,7 @@ import BreadcrumbSeperator from '@/ui/breadcrumbs/BreadcrumbSeperator.vue'
         to="/"
       />
 
-      <BreadcrumbSeperator />
+      <BreadcrumbSeparator />
 
       <BreadcrumbItem
         :icon="NotificationMessageIcon"
@@ -29,7 +29,7 @@ import BreadcrumbSeperator from '@/ui/breadcrumbs/BreadcrumbSeperator.vue'
         to="/"
       />
 
-      <BreadcrumbSeperator />
+      <BreadcrumbSeparator />
 
       <BreadcrumbItem
         :icon="User01Icon"
@@ -37,7 +37,7 @@ import BreadcrumbSeperator from '@/ui/breadcrumbs/BreadcrumbSeperator.vue'
         to="/"
       />
 
-      <BreadcrumbSeperator />
+      <BreadcrumbSeparator />
 
       <BreadcrumbItem label="Projects" />
     </BreadcrumbItems>
