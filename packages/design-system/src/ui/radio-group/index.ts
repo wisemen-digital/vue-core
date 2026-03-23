@@ -1,3 +1,3 @@
-export { type BaseRadioGroupItemProps as UIRadioGroupItemProps } from './base/baseRadioGroup.props'
+export { type RadioGroupItemProps as UIRadioGroupItemProps } from './radioGroupItem.props'
 export { default as UIRadioGroupItem } from './RadioGroupItem.vue'
 export { default as UIRadioGroup } from './RadioGroupRoot.vue'

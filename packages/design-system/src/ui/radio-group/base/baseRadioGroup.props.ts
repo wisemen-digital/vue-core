@@ -4,6 +4,11 @@ import type { DisabledWithReason } from '@/types/disabledWithReason.type'
 
 export interface BaseRadioGroupItemProps extends DisabledWithReason {
   /**
+   * The id of the radio group item.
+   * @default null
+   */
+  id?: string | null
+  /**
    * Whether the label should be visually hidden.
    * @default false
    */
@@ -22,4 +27,10 @@ export interface BaseRadioGroupItemProps extends DisabledWithReason {
    * The value of the radio group item.
    */
   value: AcceptableInputValue
+}
+
+export const BASE_RADIO_GROUP_ITEM_DEFAULTS = {
+  id: null,
+  isLabelHidden: false,
+  description: null,
 }
