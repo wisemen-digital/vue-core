@@ -202,8 +202,8 @@ const tabsModelValue = ref<string>('tab1')
               onSelect: () => {},
             }]"
             avatar-url="../../../storybook-assets/profile-picture.jpg"
-            name="Jeroen Van Caekenberghe"
-            email="jeroen.vancaekenberghe@wisemen.digital"
+            name="Jane Doe"
+            email="jane.doe@example.com"
             @sign-out="() => {}"
           />
         </template>

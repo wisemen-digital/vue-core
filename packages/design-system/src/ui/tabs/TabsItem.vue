@@ -63,9 +63,7 @@ onBeforeUnmount(() => {
               'sr-only': props.isLabelHidden,
             }"
             class="text-xs"
-          >
-            {{ props.label }}
-          </UIText>
+          />
           <UINumberBadge
             v-if="props.count != null"
             :value="props.count.toString()"
@@ -98,9 +96,7 @@ onBeforeUnmount(() => {
             'sr-only': props.isLabelHidden,
           }"
           class="text-xs"
-        >
-          {{ props.label }}
-        </UIText>
+        />
         <UINumberBadge
           v-if="props.count != null"
           :value="props.count.toString()"

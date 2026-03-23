@@ -15,7 +15,7 @@ const props = defineProps<{
     <BreadcrumbItems>
       <template
         v-for="(breadcrumb, breadcrumbIndex) of props.breadcrumbs"
-        :key="breadcrumb.label"
+        :key="`${breadcrumb.label}-${breadcrumbIndex}`"
       >
         <BreadcrumbItem
           :icon="breadcrumb.icon"

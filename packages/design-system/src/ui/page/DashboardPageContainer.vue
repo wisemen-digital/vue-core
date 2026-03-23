@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from '@/utils/twMerge.util'
 
 const props = withDefaults(defineProps<{
   class?: string | null
