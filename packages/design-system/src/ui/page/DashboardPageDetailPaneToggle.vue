@@ -23,29 +23,31 @@ const label = computed<string>(() => (isOpen.value
     :label="label"
     keyboard-shortcut="meta_i"
   >
-    <ClickableElement>
+    <ClickableElement @click="toggleIsOpen">
       <Toggle
+        :model-value="isOpen"
+        :data-state="isOpen ? 'open' : 'closed'"
         :aria-label="label"
         class="
-          flex size-7 cursor-pointer items-center justify-center rounded-sm
-          hover:bg-tertiary
+          group/toggle -mr-xxs flex size-6 items-center justify-center
+          duration-150
+          hover:bg-secondary-hover
         "
-        @click="toggleIsOpen"
       >
         <div
           class="
-            relative h-3 w-4 overflow-hidden rounded-[3px] border-[1.5px]
-            border-fg-tertiary
+            flex h-3 w-3.5 justify-end rounded-[0.1875rem] border
+            border-fg-tertiary p-[0.09375rem] duration-150
+            group-data-[state=open]/toggle:border-fg-tertiary
+            dark:group-data-[state=open]/toggle:border-fg-secondary
           "
         >
-          <div class="mr-xs ml-auto h-full w-[1.5px] bg-fg-tertiary" />
-
           <div
-            :class="{
-              'translate-x-full': !isOpen,
-            }"
             class="
-              absolute top-0 right-0 h-full w-1 bg-fg-tertiary duration-150
+              h-full w-0.5 rounded-[1px] bg-fg-tertiary duration-150
+              group-data-[state=open]/toggle:w-1
+              group-data-[state=open]/toggle:bg-fg-tertiary
+              dark:group-data-[state=open]/toggle:bg-fg-secondary
             "
           />
         </div>

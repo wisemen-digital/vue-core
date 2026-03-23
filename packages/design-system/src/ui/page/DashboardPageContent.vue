@@ -27,6 +27,16 @@ const contentPaddingRight = computed<string>(() => {
 
   return '0px'
 })
+
+const isResizing = computed<boolean>(() => detailPaneContext?.isResizing.value ?? false)
+
+const transitionDuration = computed<number>(() => {
+  if (isResizing.value) {
+    return 0
+  }
+
+  return isReduceMotionEnabledOnDevice.value ? 0 : 0.3
+})
 </script>
 
 <template>
@@ -38,7 +48,7 @@ const contentPaddingRight = computed<string>(() => {
       paddingRight: contentPaddingRight,
     }"
     :transition="{
-      duration: isReduceMotionEnabledOnDevice ? 0 : 0.3,
+      duration: transitionDuration,
       type: 'spring',
       bounce: 0,
     }"

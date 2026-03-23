@@ -21,8 +21,10 @@ import {
   ref,
 } from 'vue'
 
-import IconButton from '@/ui/button/icon/IconButton.vue'
-import { UIButton } from '@/ui/button/index'
+import {
+  UIButton,
+  UIIconButton,
+} from '@/ui/button/index'
 import ColumnLayout from '@/ui/column-layout/ColumnLayout.vue'
 import MainContent from '@/ui/layout/MainContent.vue'
 import MainLayoutContainer from '@/ui/layout/MainLayoutContainer.vue'
@@ -30,6 +32,7 @@ import type { PageBreadcrumb } from '@/ui/page/dashboardPage.type'
 import DashboardPage from '@/ui/page/DashboardPage.vue'
 import DashboardPageActions from '@/ui/page/DashboardPageActions.vue'
 import DashboardPageContent from '@/ui/page/DashboardPageContent.vue'
+import DashboardPageHeaderMasterActionButton from '@/ui/page/DashboardPageHeaderMasterActionButton.vue'
 import RowLayout from '@/ui/row-layout/RowLayout.vue'
 import MainSidebarFooterAccountCard from '@/ui/sidebar/components/MainSidebarFooterAccountCard.vue'
 import MainSidebarFooterFeaturedCard from '@/ui/sidebar/components/MainSidebarFooterFeaturedCard.vue'
@@ -143,7 +146,9 @@ const tabsModelValue = ref<string>('tab1')
     "
   >
     <MainLayoutContainer>
-      <MainSidebar>
+      <MainSidebar
+        variant="icons-only"
+      >
         <template #header>
           <MainSidebarHeaderLogoWithText
             url="../../../storybook-assets/wisemen-logo.png"
@@ -208,7 +213,6 @@ const tabsModelValue = ref<string>('tab1')
         <DashboardPage
           :breadcrumbs="breadcrumbs"
           :detail-pane="{
-            width: '24rem',
             storage: {
               key: 'dashboard-page-detail-pane-is-open',
               strategy: 'localStorage',
@@ -217,15 +221,13 @@ const tabsModelValue = ref<string>('tab1')
           title="Dashboard"
         >
           <template #header-master-actions>
-            <IconButton
+            <DashboardPageHeaderMasterActionButton
               :icon="Bell01Icon"
               label="Notifications"
-              variant="tertiary"
             />
-            <IconButton
+            <DashboardPageHeaderMasterActionButton
               :icon="SearchMdIcon"
               label="global search"
-              variant="tertiary"
             />
           </template>
           <template #header-action-left>
@@ -253,22 +255,22 @@ const tabsModelValue = ref<string>('tab1')
           </template>
 
           <template #header-action-right>
-            <UIButton
-              :icon-left="Trash01Icon"
-              variant="destructive-secondary"
+            <UIIconButton
+              :icon="Trash01Icon"
+              variant="destructive-primary"
               size="md"
               label="Destructive"
             />
-            <UIButton
-              :icon-left="InfoCircleIcon"
+            <UIIconButton
+              :icon="PlusIcon"
+              size="md"
+              label="Button"
+            />
+            <UIIconButton
+              :icon="InfoCircleIcon"
               variant="secondary"
               size="md"
               label="Secondary"
-            />
-            <UIButton
-              :icon-left="PlusIcon"
-              size="md"
-              label="Button"
             />
           </template>
 

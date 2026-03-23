@@ -17,11 +17,15 @@ const {
 const isReduceMotionEnabledOnDevice = useReducedMotion()
 
 const contentPaddingLeft = computed<string>(() => {
+  if (isFloatingSidebar.value) {
+    return '0.5rem'
+  }
+
   if (collapsedVariant.value === 'minified') {
     return sidebarWidth.value
   }
 
-  if (isSidebarOpen.value && !isFloatingSidebar.value) {
+  if (isSidebarOpen.value) {
     return sidebarWidth.value
   }
 
@@ -38,16 +42,15 @@ const contentPaddingLeft = computed<string>(() => {
       paddingLeft: contentPaddingLeft,
     }"
     :transition="{
-      duration: isReduceMotionEnabledOnDevice ? 0 : collapsedVariant === 'minified' ? 0.1 : 0.3,
+      duration: isReduceMotionEnabledOnDevice ? 0 : 0.3,
       type: 'spring',
       bounce: 0,
     }"
-    class="size-full overflow-hidden bg-secondary p-md"
+    class="size-full overflow-hidden bg-primary p-md"
   >
     <div
       class="
-        size-full overflow-hidden rounded-xl border border-secondary bg-primary
-        shadow-sm/5
+        size-full overflow-hidden rounded-xl border border-secondary shadow-sm/5
         dark:shadow-none
       "
     >

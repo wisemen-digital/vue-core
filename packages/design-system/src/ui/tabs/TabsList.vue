@@ -93,6 +93,7 @@ onMounted(() => {
                 :tabs="tabs"
               />
               <TabsAdaptiveContentDropdown
+                v-if="hiddenBlockCount > 0"
                 :hidden-tabs-count="hiddenBlockCount"
                 :tabs="tabs"
               />

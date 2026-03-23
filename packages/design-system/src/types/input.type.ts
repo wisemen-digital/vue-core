@@ -64,6 +64,12 @@ export interface InputWrapper extends DisabledWithReason {
    */
   for?: string | null
   /**
+   * The help text displayed in a tooltip next to the label.
+   * When provided, a help circle icon is shown next to the label.
+   * @default null
+   */
+  helpText?: string | null
+  /**
    * Determines whether to hide the error message visually.
    * @default false
    */
@@ -73,12 +79,7 @@ export interface InputWrapper extends DisabledWithReason {
    * @default null
    */
   hint?: string | null
-  /**
-   * The help text displayed in a tooltip next to the label.
-   * When provided, a help circle icon is shown next to the label.
-   * @default null
-   */
-  helpText?: string | null
+
   /**
    * The label of the input.
    * @default null

@@ -5,6 +5,7 @@ export { default as UIDashboardPageContainer } from './DashboardPageContainer.vu
 export { default as UIDashboardPageContent } from './DashboardPageContent.vue'
 export { default as UIDashboardPageDetailPaneToggle } from './DashboardPageDetailPaneToggle.vue'
 export { default as UIDashboardPageHeader } from './DashboardPageHeader.vue'
+export { default as UIDashboardPageHeaderMasterActionButton } from './DashboardPageHeaderMasterActionButton.vue'
 export { default as UIDashboardPageLoadingState } from './DashboardPageLoadingState.vue'
 export * from './detailPane.context'
 export * from './detailPane.type'

@@ -6,6 +6,6 @@ export interface DetailPaneStorage {
 }
 
 export interface DetailPaneConfig {
+  isResizable?: boolean
   storage?: DetailPaneStorage | null
-  width?: string
 }
