@@ -12,8 +12,8 @@ export interface DetailPaneContext {
   isResizing: Ref<boolean>
   sidebarWidth: Ref<string>
   toggleIsOpen: () => void
-  onResizeStart: (event: PointerEvent) => void
   onResizeKeyDown: (event: KeyboardEvent) => void
+  onResizeStart: (event: PointerEvent) => void
 }
 
 export const [
