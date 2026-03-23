@@ -17,11 +17,15 @@ const {
 const isReduceMotionEnabledOnDevice = useReducedMotion()
 
 const contentPaddingLeft = computed<string>(() => {
+  if (isFloatingSidebar.value) {
+    return '0.5rem'
+  }
+
   if (variant.value === 'icons-only') {
     return sidebarWidth.value
   }
 
-  if (isSidebarOpen.value && !isFloatingSidebar.value) {
+  if (isSidebarOpen.value) {
     return sidebarWidth.value
   }
 

@@ -91,7 +91,6 @@ watch(() => props.hiddenTabsCount, () => {
 
 <template>
   <DropdownMenu
-
     popover-align="end"
   >
     <template #trigger>

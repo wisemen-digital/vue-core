@@ -146,7 +146,9 @@ const tabsModelValue = ref<string>('tab1')
     "
   >
     <MainLayoutContainer>
-      <MainSidebar>
+      <MainSidebar
+        variant="icons-only"
+      >
         <template #header>
           <MainSidebarHeaderLogoWithText
             url="../../../storybook-assets/wisemen-logo.png"

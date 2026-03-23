@@ -57,7 +57,7 @@ const isTooltipDisabled = computed<boolean>(() => {
     return true
   }
 
-  if (variant.value === 'icons-only' && isSidebarOpen && props.keyboardShortcut === null) {
+  if (variant.value === 'icons-only' && isSidebarOpen.value && props.keyboardShortcut === null) {
     return true
   }
 
@@ -89,11 +89,10 @@ const isTooltipDisabled = computed<boolean>(() => {
               gridTemplateColumns: navigationLinkGridTemplateColumns,
             }"
             class="
-              group
-              dark:data-active:glassy
-              grid rounded-md duration-100
+              group grid rounded-md duration-100
               hover:bg-primary-hover
               data-active:bg-brand-primary
+              dark:data-active:glassy
             "
           >
             <RowLayout
