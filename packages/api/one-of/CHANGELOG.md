@@ -1,5 +1,11 @@
 # @wisemen/one-of
 
+## 0.0.13
+
+### Patch Changes
+
+- [#798](https://github.com/wisemen-digital/wisemen-core/pull/798) [`4885c21`](https://github.com/wisemen-digital/wisemen-core/commit/4885c21bf860db477c412d0b57c4082966d58b01) Thanks [@Kobe-Kwanten](https://github.com/Kobe-Kwanten)! - feat: add @OneOfTypesApiProperty decorator which contains an enum of all types for the one of set
+
 ## 0.0.12
 
 ### Patch Changes

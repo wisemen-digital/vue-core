@@ -9,7 +9,7 @@ export interface QueryParams {
 }
 
 export interface WithSearchQuery {
-  search: string
+  search?: string | undefined
 }
 
 export interface WithSortQuery<TKeys extends string> {
@@ -17,7 +17,11 @@ export interface WithSortQuery<TKeys extends string> {
 }
 
 export interface WithFilterQuery<TFilters extends Record<string, any>> {
-  filters: TFilters
+  filters?: TFilters
+}
+
+export interface WithStaticFilterQuery<TFilters extends Record<string, any>> {
+  staticFilters: TFilters
 }
 
 export interface InfiniteQueryOptions<TParams> {
