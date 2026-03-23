@@ -10,6 +10,8 @@
   "component.dashboard_page_loading_state.loading": "Loading",
   "component.dashboard_page_header_sidebar_toggle.collapse": "Collapse sidebar",
   "component.dashboard_page_header_sidebar_toggle.expand": "Expand sidebar",
+  "component.dashboard_page_detail_pane_toggle.collapse": "Collapse detail pane",
+  "component.dashboard_page_detail_pane_toggle.expand": "Expand detail pane",
   "component.avatar_group.overflow": "+{count}",
   "component.tabs.adaptive_dropdown.trigger.label": "More",
   "component.tabs.scroll_left": "Scroll left",
