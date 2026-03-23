@@ -1,26 +1,15 @@
 <script setup lang="ts">
-import type { AcceptableInputValue } from 'reka-ui'
-
-import type { DisabledWithReason } from '@/types/disabledWithReason.type'
+import { BASE_RADIO_GROUP_ITEM_DEFAULTS } from '@/ui/radio-group/base/baseRadioGroup.props'
 import BaseRadioGroup from '@/ui/radio-group/base/BaseRadioGroup.vue'
+import type { RadioGroupItemProps } from '@/ui/radio-group/radioGroupItem.props'
 
-const props = defineProps<{
-  id?: string
-  isLabelHidden?: boolean
-  description?: string | null
-  label: string
-  value: AcceptableInputValue
-} & DisabledWithReason>()
+const props = withDefaults(defineProps<RadioGroupItemProps>(), {
+  ...BASE_RADIO_GROUP_ITEM_DEFAULTS,
+})
 </script>
 
 <template>
   <BaseRadioGroup
-    :id="props.id"
-    :value="props.value"
-    :label="props.label"
-    :description="props.description"
-    :is-label-hidden="props.isLabelHidden"
-    :is-disabled="props.isDisabled"
-    :disabled-reason="props.disabledReason"
+    v-bind="props"
   />
 </template>

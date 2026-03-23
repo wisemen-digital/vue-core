@@ -160,7 +160,7 @@ export const createButtonStyle = tv({
           focus-visible:outline-fg-brand-primary
           disabled:border-disabled-subtle disabled:bg-disabled
           data-interactive:hover:brightness-95
-          dark:border-none dark:p-px
+          dark:border-gray-900 dark:p-px
           not-data-disabled:dark:glassy
         `,
       },
