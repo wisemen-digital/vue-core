@@ -7,10 +7,10 @@ import {
   ref,
 } from 'vue'
 
-import type { MainSidebarVariant } from '@/ui/sidebar/types/mainSidebar.type'
+import type { MainSidebarCollapsedVariant } from '@/ui/sidebar/types/mainSidebar.type'
 
 const DEFAULT_SIDEBAR_WIDTH = '14rem'
-const ICONS_ONLY_SIDEBAR_WIDTH = '3rem' // 48px
+const MINIFIED_SIDEBAR_WIDTH = '3rem' // 48px
 const SIDEBAR_CONTAINER_PADDING = '0.5625rem' // 9px
 const SIDEBAR_ICON_SIZE = '1rem' // 16px
 const SIDEBAR_ICON_CELL_SIZE = '1.875rem' // 30px (48 - 2 * 9)
@@ -21,7 +21,7 @@ const SIDEBAR_LOGO_HEIGHT = '2.6rem' // 41.6px (SIDEBAR_ICON_CELL_SIZE + 2 * SID
 
 const isFloatingSidebarOpen = ref<boolean>(false)
 const sidebarWidth = ref<string>(DEFAULT_SIDEBAR_WIDTH)
-const variant = ref<MainSidebarVariant>('icons-with-labels')
+const collapsedVariant = ref<MainSidebarCollapsedVariant>('hidden')
 
 export function useMainSidebar() {
   const screen = useBreakpoints({
@@ -45,8 +45,8 @@ export function useMainSidebar() {
         isFloatingSidebarOpen.value = value
       }
       else {
-        if (variant.value === 'icons-only') {
-          sidebarWidth.value = value ? DEFAULT_SIDEBAR_WIDTH : ICONS_ONLY_SIDEBAR_WIDTH
+        if (collapsedVariant.value === 'minified') {
+          sidebarWidth.value = value ? DEFAULT_SIDEBAR_WIDTH : MINIFIED_SIDEBAR_WIDTH
         }
 
         isSidebarOpenSetting.value = value
@@ -68,11 +68,11 @@ export function useMainSidebar() {
     }
   }
 
-  function setVariant(value: MainSidebarVariant): void {
-    variant.value = value
+  function setCollapsedVariant(value: MainSidebarCollapsedVariant): void {
+    collapsedVariant.value = value
 
-    if (value === 'icons-only') {
-      sidebarWidth.value = isSidebarOpen.value ? DEFAULT_SIDEBAR_WIDTH : ICONS_ONLY_SIDEBAR_WIDTH
+    if (value === 'minified') {
+      sidebarWidth.value = isSidebarOpen.value ? DEFAULT_SIDEBAR_WIDTH : MINIFIED_SIDEBAR_WIDTH
 
       return
     }
@@ -84,8 +84,9 @@ export function useMainSidebar() {
     isFloatingSidebar,
     isSidebarOpen,
     closeIfFloatingSidebar,
-    iconsOnlySidebarWidth: ICONS_ONLY_SIDEBAR_WIDTH,
-    setVariant,
+    collapsedVariant,
+    minifiedSidebarWidth: MINIFIED_SIDEBAR_WIDTH,
+    setCollapsedVariant,
     sidebarAvatarPadding,
     sidebarContainerPadding,
     sidebarIconCellSize,
@@ -94,6 +95,5 @@ export function useMainSidebar() {
     sidebarLogoHeight,
     sidebarLogoPadding,
     sidebarWidth,
-    variant,
   }
 }

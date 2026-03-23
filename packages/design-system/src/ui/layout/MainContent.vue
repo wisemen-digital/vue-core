@@ -10,8 +10,8 @@ import { useMainSidebar } from '@/ui/sidebar/mainSidebar.composable'
 const {
   isFloatingSidebar,
   isSidebarOpen,
+  collapsedVariant,
   sidebarWidth,
-  variant,
 } = useMainSidebar()
 
 const isReduceMotionEnabledOnDevice = useReducedMotion()
@@ -21,7 +21,7 @@ const contentPaddingLeft = computed<string>(() => {
     return '0.5rem'
   }
 
-  if (variant.value === 'icons-only') {
+  if (collapsedVariant.value === 'minified') {
     return sidebarWidth.value
   }
 

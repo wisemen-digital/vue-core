@@ -27,6 +27,7 @@ const label = computed<string>(() => (isOpen.value
       <Toggle
         :model-value="isOpen"
         :data-state="isOpen ? 'open' : 'closed'"
+        :aria-label="label"
         class="
           group/toggle -mr-xxs flex size-6 items-center justify-center
           duration-150

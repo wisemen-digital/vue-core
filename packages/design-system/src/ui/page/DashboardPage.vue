@@ -48,16 +48,18 @@ const {
   storage: props.detailPane?.storage ?? null,
 })
 
-useProvideDetailPaneContext({
-  isFloatingDetailPane: computed<boolean>(() => isFloatingDetailPane.value),
-  isOpen: detailPaneIsOpen,
-  isResizable,
-  isResizing,
-  sidebarWidth,
-  toggleIsOpen,
-  onResizeKeyDown,
-  onResizeStart,
-})
+if (hasDetailPane.value) {
+  useProvideDetailPaneContext({
+    isFloatingDetailPane: computed<boolean>(() => isFloatingDetailPane.value),
+    isOpen: detailPaneIsOpen,
+    isResizable,
+    isResizing,
+    sidebarWidth,
+    toggleIsOpen,
+    onResizeKeyDown,
+    onResizeStart,
+  })
+}
 
 function warnIfMissingH1(): void {
   const h1El = document.querySelector('h1') ?? null
@@ -118,17 +120,12 @@ onMounted(() => {
       </template>
 
       <template
-        v-if="slots['breadcrumb-actions']"
-        #breadcrumb-actions
-      >
-        <slot name="breadcrumb-actions" />
-      </template>
-
-      <template
-        v-if="slots['header-master-actions']"
         #master-actions
       >
-        <slot name="header-master-actions" />
+        <slot
+          v-if="slots['header-master-actions']"
+          name="header-master-actions"
+        />
         <DashboardPageDetailPaneToggle v-if="hasDetailPane" />
       </template>
     </DashboardPageHeader>

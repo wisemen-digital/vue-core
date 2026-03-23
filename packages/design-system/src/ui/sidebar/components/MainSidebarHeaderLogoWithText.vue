@@ -11,9 +11,9 @@ const props = defineProps<{
 
 const {
   isSidebarOpen,
+  collapsedVariant,
   sidebarLogoHeight,
   sidebarLogoPadding,
-  variant,
 } = useMainSidebar()
 </script>
 
@@ -30,7 +30,7 @@ const {
       />
       <MainSidebarFadeTransition>
         <span
-          v-if="variant !== 'icons-only' || isSidebarOpen"
+          v-if="collapsedVariant !== 'minified' || isSidebarOpen"
           class="text-sm font-semibold text-secondary"
         >
           {{ props.name }}
@@ -39,7 +39,7 @@ const {
     </RowLayout>
     <MainSidebarFadeTransition>
       <slot
-        v-if="variant !== 'icons-only' || isSidebarOpen"
+        v-if="collapsedVariant !== 'minified' || isSidebarOpen"
         name="right"
       />
     </MainSidebarFadeTransition>

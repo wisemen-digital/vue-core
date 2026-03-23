@@ -37,10 +37,10 @@ const emit = defineEmits<{
 const {
   isSidebarOpen,
   closeIfFloatingSidebar,
+  collapsedVariant,
   sidebarIconCellSize,
   sidebarIconSize,
   sidebarLinkHeight,
-  variant,
 } = useMainSidebar()
 
 const route = useRoute()
@@ -53,11 +53,11 @@ function onClick(): void {
 const navigationLinkGridTemplateColumns = `${sidebarIconCellSize} 1fr`
 
 const isTooltipDisabled = computed<boolean>(() => {
-  if (variant.value === 'icons-with-labels' && props.keyboardShortcut === null) {
+  if (collapsedVariant.value === 'hidden' && props.keyboardShortcut === null) {
     return true
   }
 
-  if (variant.value === 'icons-only' && isSidebarOpen.value && props.keyboardShortcut === null) {
+  if (collapsedVariant.value === 'minified' && isSidebarOpen && props.keyboardShortcut === null) {
     return true
   }
 
@@ -119,7 +119,7 @@ const isTooltipDisabled = computed<boolean>(() => {
 
             <MainSidebarFadeTransition>
               <RowLayout
-                v-if="variant !== 'icons-only' || isSidebarOpen"
+                v-if="collapsedVariant !== 'minified' || isSidebarOpen"
                 align="center"
                 justify="between"
                 gap="md"

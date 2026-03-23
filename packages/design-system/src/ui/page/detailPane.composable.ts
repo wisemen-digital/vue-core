@@ -3,10 +3,7 @@ import {
   useLocalStorage,
 } from '@vueuse/core'
 import { useRouteQuery } from '@vueuse/router'
-import type {
-  Ref,
-  WritableComputedRef,
-} from 'vue'
+import type { Ref } from 'vue'
 import {
   computed,
   ref,
@@ -24,18 +21,6 @@ interface UseDetailPaneOptions {
   storage: DetailPaneStorage | null
 }
 
-interface UseDetailPaneReturn {
-  isFloatingDetailPane: Ref<boolean>
-  isOpen: WritableComputedRef<boolean>
-  isResizable: boolean
-  isResizing: Ref<boolean>
-  sidebarWidth: Ref<string>
-  toggleIsOpen: () => void
-  onResizeKeyDown: (event: KeyboardEvent) => void
-  onResizeStart: (event: PointerEvent) => void
-
-}
-
 function remToPx(rem: string): number {
   const remValue = Number.parseFloat(rem)
   const rootFontSize = typeof document !== 'undefined'
@@ -45,7 +30,7 @@ function remToPx(rem: string): number {
   return remValue * rootFontSize
 }
 
-export function useDetailPane(options: UseDetailPaneOptions): UseDetailPaneReturn {
+export function useDetailPane(options: UseDetailPaneOptions) {
   const isResizable = options.isResizable ?? true
   const storage = options.storage
 
@@ -173,9 +158,9 @@ export function useDetailPane(options: UseDetailPaneOptions): UseDetailPaneRetur
     event.preventDefault()
 
     const currentPx = Number.parseFloat(sidebarWidth.value) || remToPx(width)
-    const newWidth = Math.min(Math.max(currentPx + delta, minPx), maxPx)
+    const constrainedWidth = Math.min(Math.max(currentPx + delta, minPx), maxPx)
 
-    sidebarWidth.value = `${newWidth}px`
+    sidebarWidth.value = `${constrainedWidth}px`
   }
 
   return {
