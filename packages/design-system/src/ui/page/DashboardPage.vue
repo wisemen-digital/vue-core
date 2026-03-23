@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import {
+  onMounted,
+  useSlots,
+} from 'vue'
 
 import type { DashboardPageProps } from '@/ui/page/dashboardPage.type'
 import DashboardPageHeader from '@/ui/page/DashboardPageHeader.vue'
@@ -10,6 +13,8 @@ const props = withDefaults(defineProps<DashboardPageProps>(), {
   breadcrumbs: () => [],
   tabs: () => [],
 })
+
+const slots = useSlots()
 
 function warnIfMissingH1(): void {
   const h1El = document.querySelector('h1') ?? null
@@ -34,20 +39,46 @@ onMounted(() => {
       :breadcrumbs="props.breadcrumbs"
       :actions="props.actions"
     >
-      <template #title>
+      <template
+        v-if="slots.title"
+        #title
+      >
         <slot name="title" />
       </template>
 
-      <template #title-left>
+      <template
+        v-if="slots['title-left']"
+        #title-left
+      >
         <slot name="title-left" />
       </template>
 
-      <template #actions>
-        <slot name="actions" />
+      <template
+        v-if="slots.left"
+        #left
+      >
+        <slot name="left" />
       </template>
 
-      <template #breadcrumb-actions>
-        <slot name="breadcrumb-actions" />
+      <template
+        v-if="slots.center"
+        #center
+      >
+        <slot name="center" />
+      </template>
+
+      <template
+        v-if="slots.right"
+        #right
+      >
+        <slot name="right" />
+      </template>
+
+      <template
+        v-if="slots.actions"
+        #actions
+      >
+        <slot name="actions" />
       </template>
     </DashboardPageHeader>
 

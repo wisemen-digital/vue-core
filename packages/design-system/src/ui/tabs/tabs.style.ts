@@ -92,7 +92,8 @@ export const tabsVariants = tv({
           group-data-[orientation=vertical]:w-0.5
         `,
         item: `
-          rounded-md px-md py-xs outline-2 -outline-offset-2 outline-transparent
+          rounded-md px-md py-xxs outline-2 -outline-offset-2
+          outline-transparent
           group-data-[orientation=horizontal]:my-sm
           group-data-[orientation=vertical]:mx-sm
           not-disabled:hover:bg-primary-hover
