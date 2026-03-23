@@ -110,8 +110,8 @@ onMounted(() => {
       </template>
 
       <template
-        v-if="slots['breadcrumb-actions']"
-        #breadcrumb-actions
+        v-if="slots['header-master-actions']"
+        #master-actions
       >
         <slot name="breadcrumb-actions" />
       </template>

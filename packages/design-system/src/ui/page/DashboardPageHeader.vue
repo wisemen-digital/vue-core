@@ -65,7 +65,7 @@ const hasSlotContent = computed<boolean>(() => {
               </RowLayout>
 
               <h1
-                v-if="breadcrumbs.length > 0 && props.title !== null"
+                v-if="props.breadcrumbs.length > 0 && props.title !== null"
                 class="sr-only"
               >
                 {{ props.title }}
@@ -94,6 +94,7 @@ const hasSlotContent = computed<boolean>(() => {
               name="action-right"
             />
             <Separator
+              v-if="slots.actions"
               class="mr-md ml-lg h-4.5 bg-quaternary"
               orientation="vertical"
             />

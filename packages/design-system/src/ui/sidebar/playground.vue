@@ -28,24 +28,24 @@ import MainSidebarNavigationLinkBadge from '@/ui/sidebar/components/MainSidebarN
 import MainSidebarNavigationLinkStatusDot from '@/ui/sidebar/components/MainSidebarNavigationLinkStatusDot.vue'
 import { useMainSidebar } from '@/ui/sidebar/mainSidebar.composable'
 import MainSidebar from '@/ui/sidebar/MainSidebar.vue'
-import type { MainSidebarVariant } from '@/ui/sidebar/types/mainSidebar.type'
+import type { MainSidebarCollapsedVariant } from '@/ui/sidebar/types/mainSidebar.type'
 
 const props = withDefaults(defineProps<{
-  variant?: MainSidebarVariant
+  collapsedVariant?: MainSidebarCollapsedVariant
 }>(), {
-  variant: 'icons-only',
+  collapsedVariant: 'minified',
 })
 
 const {
   isFloatingSidebar,
   isSidebarOpen,
-  setVariant,
+  collapsedVariant: _sidebarCollapsedVariant,
+  setCollapsedVariant,
   sidebarWidth,
-  variant: _sidebarVariant,
 } = useMainSidebar()
 
-watch(() => props.variant, (value) => {
-  setVariant(value)
+watch(() => props.collapsedVariant, (value) => {
+  setCollapsedVariant(value)
 }, {
   immediate: true,
 })
@@ -134,7 +134,7 @@ const footerNavigation = computed<NavigationGroup[]>(() => ([
     "
   >
     <MainSidebar
-      :variant="props.variant"
+      :collapsed-variant="props.collapsedVariant"
     >
       <template #header>
         <MainSidebarHeaderLogoWithText
@@ -205,10 +205,10 @@ const footerNavigation = computed<NavigationGroup[]>(() => ([
 
     <Motion
       :initial="{
-        paddingLeft: props.variant === 'icons-only' ? !isFloatingSidebar ? sidebarWidth : '0' : isSidebarOpen && !isFloatingSidebar ? sidebarWidth : '0',
+        paddingLeft: props.collapsedVariant === 'minified' ? !isFloatingSidebar ? sidebarWidth : '0' : isSidebarOpen && !isFloatingSidebar ? sidebarWidth : '0',
       }"
       :animate="{
-        paddingLeft: props.variant === 'icons-only' ? !isFloatingSidebar ? sidebarWidth : '0' : isSidebarOpen && !isFloatingSidebar ? sidebarWidth : '0',
+        paddingLeft: props.collapsedVariant === 'minified' ? !isFloatingSidebar ? sidebarWidth : '0' : isSidebarOpen && !isFloatingSidebar ? sidebarWidth : '0',
       }"
       :transition="{
         duration: isReduceMotionEnabledOnDevice ? 0 : 0.3,

@@ -9,7 +9,7 @@ const props = withDefaults(defineProps<{
 })
 
 const {
-  isSidebarOpen, variant,
+  isSidebarOpen, collapsedVariant,
 } = useMainSidebar()
 </script>
 
@@ -18,7 +18,7 @@ const {
     <span
       v-if="props.label !== null"
       :class="{
-        'opacity-0': variant === 'icons-only' && !isSidebarOpen,
+        'opacity-0': collapsedVariant === 'minified' && !isSidebarOpen,
       }"
       class="
         block px-sm pb-sm text-xs font-medium text-quaternary transition-opacity
