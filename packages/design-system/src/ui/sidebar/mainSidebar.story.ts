@@ -8,11 +8,11 @@ import Playground from '@/ui/sidebar/playground.vue'
 const meta = {
   title: 'Components/Sidebar',
   argTypes: {
-    variant: {
+    collapsedVariant: {
       control: 'select',
       options: [
-        'icons-only',
-        'icons-with-labels',
+        'minified',
+        'hidden',
       ],
     },
   },
@@ -28,6 +28,6 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    variant: 'icons-only',
+    collapsedVariant: 'minified',
   },
 }

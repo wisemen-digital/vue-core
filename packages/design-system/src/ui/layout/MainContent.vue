@@ -10,14 +10,14 @@ import { useMainSidebar } from '@/ui/sidebar/mainSidebar.composable'
 const {
   isFloatingSidebar,
   isSidebarOpen,
+  collapsedVariant,
   sidebarWidth,
-  variant,
 } = useMainSidebar()
 
 const isReduceMotionEnabledOnDevice = useReducedMotion()
 
 const contentPaddingLeft = computed<string>(() => {
-  if (variant.value === 'icons-only') {
+  if (collapsedVariant.value === 'minified') {
     return sidebarWidth.value
   }
 
@@ -38,7 +38,7 @@ const contentPaddingLeft = computed<string>(() => {
       paddingLeft: contentPaddingLeft,
     }"
     :transition="{
-      duration: isReduceMotionEnabledOnDevice ? 0 : variant === 'icons-only' ? 0.1 : 0.3,
+      duration: isReduceMotionEnabledOnDevice ? 0 : collapsedVariant === 'minified' ? 0.1 : 0.3,
       type: 'spring',
       bounce: 0,
     }"

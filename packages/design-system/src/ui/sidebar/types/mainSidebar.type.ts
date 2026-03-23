@@ -4,7 +4,7 @@ import type {
   RouteLocationRaw,
 } from 'vue-router'
 
-export type MainSidebarVariant = 'icons-only' | 'icons-with-labels'
+export type MainSidebarCollapsedVariant = 'hidden' | 'minified'
 
 export interface DashboardSidebarNavLink {
   /**

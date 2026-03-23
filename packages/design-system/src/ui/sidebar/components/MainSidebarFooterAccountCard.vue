@@ -37,8 +37,8 @@ const i18n = useI18n()
 
 const {
   isSidebarOpen,
+  collapsedVariant,
   sidebarIconCellSize,
-  variant,
 } = useMainSidebar()
 
 const accountCardGridTemplateColumns = `${sidebarIconCellSize} 1fr`
@@ -64,7 +64,7 @@ function onSignOut(): void {
           type="button"
         >
           <UICard
-            :class="variant === 'icons-only' && !isSidebarOpen
+            :class="collapsedVariant === 'minified' && !isSidebarOpen
               ? 'border-transparent'
               : `
                 bg-primary-alt p-md py-sm pl-xs
@@ -90,7 +90,7 @@ function onSignOut(): void {
 
             <MainSidebarFadeTransition>
               <UIRowLayout
-                v-if="variant !== 'icons-only' || isSidebarOpen"
+                v-if="collapsedVariant !== 'minified' || isSidebarOpen"
                 justify="between"
                 align="center"
                 gap="xxs"

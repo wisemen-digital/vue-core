@@ -1,9 +1,9 @@
-import type { MainSidebarVariant } from '@/ui/sidebar/types/mainSidebar.type'
+import type { MainSidebarCollapsedVariant } from '@/ui/sidebar/types/mainSidebar.type'
 
 export interface MainSidebarProps {
   /**
-   * Controls the visual layout variant of the sidebar.
-   * @default 'icons-with-labels'
+   * Controls the visual layout variant of the sidebar when collapsed.
+   * @default 'hidden'
    */
-  variant?: MainSidebarVariant
+  collapsedVariant?: MainSidebarCollapsedVariant
 }

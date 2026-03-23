@@ -75,13 +75,6 @@ onMounted(() => {
       </template>
 
       <template
-        v-if="slots['breadcrumb-actions']"
-        #breadcrumb-actions
-      >
-        <slot name="breadcrumb-actions" />
-      </template>
-
-      <template
         v-if="slots.actions"
         #actions
       >
