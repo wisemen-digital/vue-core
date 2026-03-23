@@ -40,6 +40,8 @@
     "build-storybook": "storybook build"
   },
   "peerDependencies": {
+    "@vueuse/core": "catalog:vue",
+    "@vueuse/router": "catalog:vue",
     "motion-v": "catalog:peer",
     "reka-ui": "catalog:peer",
     "vue": "catalog:peer",

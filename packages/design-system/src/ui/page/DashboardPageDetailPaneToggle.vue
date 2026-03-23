@@ -25,6 +25,7 @@ const label = computed<string>(() => (isOpen.value
   >
     <ClickableElement>
       <Toggle
+        :aria-label="label"
         class="
           flex size-7 cursor-pointer items-center justify-center rounded-sm
           hover:bg-tertiary

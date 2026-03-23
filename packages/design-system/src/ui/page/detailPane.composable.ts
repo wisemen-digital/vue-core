@@ -3,10 +3,7 @@ import {
   useLocalStorage,
 } from '@vueuse/core'
 import { useRouteQuery } from '@vueuse/router'
-import type {
-  Ref,
-  WritableComputedRef,
-} from 'vue'
+import type { Ref } from 'vue'
 import {
   computed,
   ref,
@@ -22,14 +19,7 @@ interface UseDetailPaneOptions {
   width: string
 }
 
-interface UseDetailPaneReturn {
-  isFloatingDetailPane: Ref<boolean>
-  isOpen: WritableComputedRef<boolean>
-  sidebarWidth: string
-  toggleIsOpen: () => void
-}
-
-export function useDetailPane(options: UseDetailPaneOptions): UseDetailPaneReturn {
+export function useDetailPane(options: UseDetailPaneOptions) {
   const {
     storage, width = DEFAULT_WIDTH,
   } = options
