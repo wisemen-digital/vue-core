@@ -7,16 +7,19 @@ import Playground from '@/ui/sidebar/playground.vue'
 
 const meta = {
   title: 'Components/Sidebar',
+  argTypes: {
+    collapsedVariant: {
+      control: 'select',
+      options: [
+        'minified',
+        'hidden',
+      ],
+    },
+  },
   tags: [
     'autodocs',
   ],
   component: Playground,
-  argTypes: {
-    variant: {
-      control: 'select',
-      options: ['icons-only', 'icons-with-labels'],
-    },
-  },
 } satisfies Meta<typeof Playground>
 
 export default meta
@@ -25,6 +28,6 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    variant: 'icons-only',
+    collapsedVariant: 'minified',
   },
 }

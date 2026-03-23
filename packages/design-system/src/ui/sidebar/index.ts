@@ -10,7 +10,7 @@ export { useMainSidebar } from './mainSidebar.composable'
 export type { MainSidebarProps as UIMainSidebarProps } from './mainSidebar.props'
 export { default as UIMainSidebar } from './MainSidebar.vue'
 export type {
+  MainSidebarCollapsedVariant as UIMainSidebarCollapsedVariant,
   DashboardSidebarGroup as UIMainSidebarGroup,
   DashboardSidebarNavLink as UIMainSidebarNavLink,
-  MainSidebarVariant as UIMainSidebarVariant,
 } from './types/mainSidebar.type'

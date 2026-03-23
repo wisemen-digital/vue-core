@@ -19,20 +19,20 @@ import { useMainSidebar } from '@/ui/sidebar/mainSidebar.composable'
 import type { MainSidebarProps } from '@/ui/sidebar/mainSidebar.props'
 
 const props = withDefaults(defineProps<MainSidebarProps>(), {
-  variant: 'icons-with-labels',
+  collapsedVariant: 'hidden',
 })
 
 const {
   isFloatingSidebar,
   isSidebarOpen,
-  setVariant,
+  setCollapsedVariant,
   sidebarWidth,
 } = useMainSidebar()
 
 const i18n = useI18n()
 const isReduceMotionEnabledOnDevice = useReducedMotion()
 
-setVariant(props.variant)
+setCollapsedVariant(props.collapsedVariant)
 </script>
 
 <template>
@@ -102,7 +102,7 @@ setVariant(props.variant)
     </AnimatePresence>
   </DialogRoot>
   <AnimatePresence
-    v-else-if="variant === 'icons-with-labels'"
+    v-else-if="collapsedVariant === 'hidden'"
     :initial="false"
   >
     <MainSidebarTransition
@@ -130,7 +130,7 @@ setVariant(props.variant)
     :initial="false"
     :animate="{ width: sidebarWidth }"
     :transition="{
-      duration: isReduceMotionEnabledOnDevice ? 0 : 0.1,
+      duration: isReduceMotionEnabledOnDevice ? 0 : 0.3,
       type: 'spring',
       bounce: 0,
     }"
