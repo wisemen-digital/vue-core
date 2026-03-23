@@ -112,12 +112,14 @@ onMounted(() => {
       </template>
 
       <template
-        v-if="slots['header-master-actions']"
         #master-actions
       >
-        <slot name="header-master-actions" />
+        <slot
+          v-if="slots['header-master-actions']"
+          name="header-master-actions"
+        />
+        <DashboardPageDetailPaneToggle v-if="hasDetailPane" />
       </template>
-      <DashboardPageDetailPaneToggle v-if="hasDetailPane" />
     </DashboardPageHeader>
 
     <slot name="page-actions" />
