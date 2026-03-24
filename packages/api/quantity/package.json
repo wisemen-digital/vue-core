@@ -13,8 +13,8 @@
   "scripts": {
     "clean": "rm -rf ./dist",
     "build": "tsc",
-    "pretest": "npm run build",
-    "test": "node --test ./dist/**/*.test.js",
+    "pretest": "pnpm run build",
+    "test": "node --test './dist/**/*.test.js'",
     "lint": "eslint --cache",
     "prerelease": "npm run build",
     "release": "pnpx release-it"
