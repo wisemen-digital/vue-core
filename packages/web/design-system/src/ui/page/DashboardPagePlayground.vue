@@ -148,7 +148,7 @@ const tabsModelValue = ref<string>('tab1')
       class="h-[80dvh]!"
     >
       <MainSidebar
-        variant="icons-only"
+        collapsed-variant="minified"
       >
         <template #header>
           <MainSidebarHeaderLogoWithText
