@@ -36,7 +36,6 @@ const config: StorybookConfig = {
   stories: [
     '../src/**/*.mdx',
     '../src/**/*.story.@(js|jsx|mjs|ts|tsx)',
-
   ],
   viteFinal(config) {
     const pluginName = 'storybook:vue-component-meta'
