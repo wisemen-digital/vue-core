@@ -13,6 +13,8 @@ import Button from '@/ui/button/button/Button.vue'
 
 import Tooltip from './Tooltip.vue'
 
+const TOOLTIPS_DESCRIPTION_REGEX = /Tooltips are used to describe/
+
 const meta: Meta<typeof Tooltip> = {
   title: 'Components/Tooltip',
   argTypes: {
@@ -142,7 +144,7 @@ export const LargeContent: Story = {
     await userEvent.hover(trigger)
 
     const title = await screen.findAllByText('What a beautiful tooltip!')
-    const description = await screen.findAllByText(/Tooltips are used to describe/)
+    const description = await screen.findAllByText(TOOLTIPS_DESCRIPTION_REGEX)
 
     await expect(title[0]).toBeVisible()
     await expect(description[0]).toBeVisible()

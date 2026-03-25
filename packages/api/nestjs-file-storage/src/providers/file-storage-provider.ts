@@ -42,4 +42,14 @@ export abstract class FileStorage {
   abstract delete (
     key: string
   ): Promise<void>
+
+  abstract list (options?: {
+    prefix?: string
+    startAfter?: string
+  }): Promise<FileIndex[]>
+}
+
+export type FileIndex = {
+  key?: string
+  lastModified?: Date
 }

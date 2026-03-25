@@ -1,6 +1,6 @@
 {
   "name": "@wisemen/eslint-config-nestjs",
-  "version": "0.2.10",
+  "version": "0.2.11",
   "publishConfig": {
     "access": "public"
   },
@@ -13,14 +13,10 @@
     "directory": "packages/eslint-config-nestjs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "peerDependencies": {
-    "eslint": "9.39.2"
-  },
   "dependencies": {
     "@eslint/eslintrc": "catalog:lint",
     "@eslint/js": "catalog:lint",

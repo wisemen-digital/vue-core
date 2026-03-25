@@ -66,7 +66,7 @@ function scheduleLayoutEvaluation(): void {
 function groupBlocksByPriority(): Map<number, AdaptiveContentBlockWithWidth[]> {
   const blocksSortedByPriority: [string, AdaptiveContentBlockWithWidth][] = [
     ...blocks.value.entries(),
-  ].sort((a, b) => a[1].priority - b[1].priority)
+  ].toSorted((a, b) => a[1].priority - b[1].priority)
 
   const groupedBlocks = new Map<number, AdaptiveContentBlockWithWidth[]>()
 
@@ -86,7 +86,7 @@ function groupBlocksByPriority(): Map<number, AdaptiveContentBlockWithWidth[]> {
 function getSortedPriorities(blocks: Map<number, AdaptiveContentBlockWithWidth[]>): number[] {
   return [
     ...blocks.keys(),
-  ].sort((a, b) => a - b)
+  ].toSorted((a, b) => a - b)
 }
 
 function getContainerElement(): HTMLElement | null {

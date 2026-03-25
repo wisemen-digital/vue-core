@@ -53,6 +53,9 @@ const emit = defineEmits<{
   blur: [event: FocusEvent]
 }>()
 
+const NUMBER_SEPARATOR_REGEX = /[\s.,`]/g
+const DECIMAL_SEPARATOR_REGEX = /[\s.,`](?=\d+$)/
+
 const modelValue = defineModel<number | null>({
   required: true,
 })
@@ -99,8 +102,8 @@ const deviceLocale = navigator.language
 function parseIntlNumber(value: string, locale: string): number {
   const example = new Intl.NumberFormat(locale).format(12_345.6)
 
-  const group = example.match(/[\s.,`]/g)?.[0]
-  const decimal = example.match(/[\s.,`](?=\d+$)/)?.[0]
+  const group = example.match(NUMBER_SEPARATOR_REGEX)?.[0]
+  const decimal = example.match(DECIMAL_SEPARATOR_REGEX)?.[0]
 
   let normalized = value
 

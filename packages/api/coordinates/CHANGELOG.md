@@ -1,5 +1,14 @@
 # @wisemen/coordinates
 
+## 0.0.21
+
+### Patch Changes
+
+- [#793](https://github.com/wisemen-digital/wisemen-core/pull/793) [`46de4ba`](https://github.com/wisemen-digital/wisemen-core/commit/46de4bac68e067a502893133db357b6fc9898381) Thanks [@Kobe-Kwanten](https://github.com/Kobe-Kwanten)! - Rework internal dependencies to non-peer dependencies
+
+- Updated dependencies [[`a3c7fca`](https://github.com/wisemen-digital/wisemen-core/commit/a3c7fca07968693f3e5a5f1850cbc3814f0cb3d7), [`46de4ba`](https://github.com/wisemen-digital/wisemen-core/commit/46de4bac68e067a502893133db357b6fc9898381)]:
+  - @wisemen/quantity@0.4.0
+
 ## 0.0.20
 
 ### Patch Changes

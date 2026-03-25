@@ -1,6 +1,6 @@
 {
   "name": "@wisemen/planning",
-  "version": "0.0.33",
+  "version": "0.0.34",
   "publishConfig": {
     "access": "public"
   },
@@ -13,21 +13,19 @@
   "scripts": {
     "lint": "eslint lib",
     "prebuild": "rm -rf ./dist",
-    "clean": "rm -r ./dist",
+    "clean": "rm -rf ./dist",
     "build": "tsc",
     "pretest": "npm run clean && npm run build",
-    "test": "node --test",
+    "test": "node --test ./dist/**/*.test.js",
     "prerelease": "npm run build",
     "release": "pnpx release-it"
   },
   "peerDependencies": {
-    "@wisemen/time": "workspace:*",
-    "moment": "catalog:backend"
+    "moment": "catalog:backend-peer"
   },
   "devDependencies": {
     "@types/node": "catalog:backend",
     "@wisemen/eslint-config-nestjs": "workspace:*",
-    "@wisemen/time": "workspace:*",
     "eslint": "catalog:lint",
     "expect": "catalog:test",
     "typescript": "catalog:peer"
@@ -38,5 +36,8 @@
     "type": "git",
     "url": "https://github.com/wisemen-digital/wisemen-core",
     "directory": "packages/planning"
+  },
+  "dependencies": {
+    "@wisemen/time": "workspace:*"
   }
 }
