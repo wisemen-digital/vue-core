@@ -1,5 +1,14 @@
 # @wisemen/quantity
 
+## 0.4.1
+
+### Patch Changes
+
+- [#807](https://github.com/wisemen-digital/wisemen-core/pull/807) [`b4ada66`](https://github.com/wisemen-digital/wisemen-core/commit/b4ada66c9c9f5c43f1c897d27214854a776493e3) Thanks [@Kobe-Kwanten](https://github.com/Kobe-Kwanten)! - feat: add quantity validators
+
+- Updated dependencies []:
+  - @wisemen/nestjs-typeorm@0.2.0
+
 ## 0.4.0
 
 ### Minor Changes

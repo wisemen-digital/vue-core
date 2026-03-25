@@ -1,5 +1,11 @@
 # Formango
 
+## 3.2.2
+
+### Patch Changes
+
+- [#665](https://github.com/wisemen-digital/wisemen-core/pull/665) [`8f075e2`](https://github.com/wisemen-digital/wisemen-core/commit/8f075e27d9d3c637ea633f5e36f72fb53362287f) Thanks [@Robbe95](https://github.com/Robbe95)! - Updated linter
+
 ## 3.2.1
 
 ### Patch Changes

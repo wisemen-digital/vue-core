@@ -1,5 +1,12 @@
 # @wisemen/coordinates
 
+## 0.0.22
+
+### Patch Changes
+
+- Updated dependencies [[`b4ada66`](https://github.com/wisemen-digital/wisemen-core/commit/b4ada66c9c9f5c43f1c897d27214854a776493e3)]:
+  - @wisemen/quantity@0.4.1
+
 ## 0.0.21
 
 ### Patch Changes
