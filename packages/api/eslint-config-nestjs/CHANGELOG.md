@@ -1,5 +1,11 @@
 # @wisemen/eslint-config-nestjs
 
+## 0.2.12
+
+### Patch Changes
+
+- [#800](https://github.com/wisemen-digital/wisemen-core/pull/800) [`cb5275e`](https://github.com/wisemen-digital/wisemen-core/commit/cb5275e6748309330a196bd8411348be87efe4a9) Thanks [@Kobe-Kwanten](https://github.com/Kobe-Kwanten)! - chore: bump eslint-plugin-import-x
+
 ## 0.2.11
 
 ### Patch Changes
