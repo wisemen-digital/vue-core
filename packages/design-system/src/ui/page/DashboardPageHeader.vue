@@ -93,10 +93,6 @@ const hasSlotContent = computed<boolean>(() => {
               v-if="!isSmallScreen"
               name="action-right"
             />
-            <Separator
-              class="mr-md ml-lg h-4.5 bg-quaternary"
-              orientation="vertical"
-            />
 
             <DashboardPageHeaderActions>
               <slot name="master-actions" />

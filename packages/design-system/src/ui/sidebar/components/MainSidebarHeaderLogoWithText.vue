@@ -38,10 +38,9 @@ const {
       </MainSidebarFadeTransition>
     </RowLayout>
     <MainSidebarFadeTransition>
-      <slot
-        v-if="collapsedVariant !== 'minified' || isSidebarOpen"
-        name="right"
-      />
+      <div v-if="collapsedVariant !== 'minified' || isSidebarOpen">
+        <slot name="right" />
+      </div>
     </MainSidebarFadeTransition>
   </RowLayout>
 </template>

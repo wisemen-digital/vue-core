@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="flex size-full overflow-hidden">
+  <div class="flex size-full h-dvh overflow-hidden">
     <slot />
   </div>
 </template>

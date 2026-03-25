@@ -13,6 +13,7 @@ import { useDetailPane } from '@/ui/page/detailPane.composable'
 import { useProvideDetailPaneContext } from '@/ui/page/detailPane.context'
 import type { DetailPaneConfig } from '@/ui/page/detailPane.type'
 import Page from '@/ui/page/Page.vue'
+import Separator from '@/ui/separator/Separator.vue'
 
 const props = withDefaults(defineProps<DashboardPageProps & {
   detailPane?: DetailPaneConfig | null
@@ -122,18 +123,20 @@ onMounted(() => {
       <template
         #master-actions
       >
+        <Separator
+          v-if="slots['header-master-actions'] || hasDetailPane"
+          class="mr-md ml-lg h-4.5 bg-quaternary"
+          orientation="vertical"
+        />
         <slot
-          v-if="slots['header-master-actions']"
           name="header-master-actions"
         />
         <DashboardPageDetailPaneToggle v-if="hasDetailPane" />
       </template>
     </DashboardPageHeader>
 
-    <slot name="page-actions" />
-
     <div class="relative flex size-full overflow-hidden">
-      <div class="size-full overflow-hidden">
+      <div class="flex size-full flex-col overflow-hidden">
         <slot />
       </div>
 

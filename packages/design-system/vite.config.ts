@@ -10,8 +10,8 @@ const projectRootDir = resolve(__dirname)
 export default defineConfig({
   build: {
     lib: {
-      name: 'vue-core',
-      cssFileName: 'style',
+      name: 'vue-core-design-system',
+      cssFileName: 'index',
       entry: [
         resolve(__dirname, 'src/index.ts'),
       ],

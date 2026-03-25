@@ -141,11 +141,12 @@ const tabsModelValue = ref<string>('tab1')
 <template>
   <div
     class="
-      relative flex h-[80dvh] w-full overflow-hidden rounded-lg border
-      border-primary
+      relative flex w-full overflow-hidden rounded-lg border border-primary
     "
   >
-    <MainLayoutContainer>
+    <MainLayoutContainer
+      class="h-[80dvh]!"
+    >
       <MainSidebar
         variant="icons-only"
       >
@@ -274,30 +275,28 @@ const tabsModelValue = ref<string>('tab1')
             />
           </template>
 
-          <template #page-actions>
-            <DashboardPageActions>
-              <template #left>
-                <div>
-                  <UIButton
-                    :icon-right="ArrowRightIcon"
-                    variant="secondary"
-                    size="md"
-                    label="Page Actions Left"
-                  />
-                </div>
-              </template>
-              <template #right>
-                <div>
-                  <UIButton
-                    :icon-left="ArrowLeftIcon"
-                    variant="secondary"
-                    size="md"
-                    label="Page Actions Right"
-                  />
-                </div>
-              </template>
-            </DashboardPageActions>
-          </template>
+          <DashboardPageActions>
+            <template #left>
+              <div>
+                <UIButton
+                  :icon-right="ArrowRightIcon"
+                  variant="secondary"
+                  size="md"
+                  label="Page Actions Left"
+                />
+              </div>
+            </template>
+            <template #right>
+              <div>
+                <UIButton
+                  :icon-left="ArrowLeftIcon"
+                  variant="secondary"
+                  size="md"
+                  label="Page Actions Right"
+                />
+              </div>
+            </template>
+          </DashboardPageActions>
 
           <DashboardPageContent>
             <ColumnLayout>

@@ -12,8 +12,11 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "style": "./dist/index.css"
-    }
+    },
+    "./style": "./dist/index.css",
+    "./source.css": "./dist/source.css"
   },
+  "style": "./dist/index.css",
   "main": "./dist/index.umd.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -22,7 +25,8 @@
     "./dist"
   ],
   "scripts": {
-    "build": "vite build",
+    "build": "vite build && pnpm build:source",
+    "build:source": "cat src/styles/source.css src/styles/utilities.css > dist/source.css",
     "dev": "vite build --watch",
     "pub:release": "pnpm publish --access public",
     "pub:beta": "pnpm publish --no-git-checks --access public --tag beta",
