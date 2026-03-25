@@ -19,8 +19,8 @@ const {
   allowDeselect,
   allowNonContinuousSelection,
   classConfig,
-  dontCloseOnSelect,
   customClassConfig,
+  dontCloseOnSelect,
   hideDatePicker,
   label,
   locale,
@@ -37,11 +37,8 @@ watch(
     modelValue.value.until?.toString(),
   ],
   ([
-    from,
+    _from,
     until,
-  ], [
-    previousFrom,
-    previousUntil,
   ]) => {
     if (dontCloseOnSelect.value || !isOpen.value) {
       return

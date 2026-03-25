@@ -18,8 +18,8 @@ const {
   isDisabled,
   allowDeselect,
   classConfig,
-  dontCloseOnSelect,
   customClassConfig,
+  dontCloseOnSelect,
   hideDatePicker,
   label,
   locale,
@@ -30,7 +30,7 @@ const {
 
 const isOpen = ref<boolean>(false)
 
-watch(modelValue, (value, previousValue) => {
+watch(modelValue, () => {
   if (dontCloseOnSelect.value || !isOpen.value) {
     return
   }
