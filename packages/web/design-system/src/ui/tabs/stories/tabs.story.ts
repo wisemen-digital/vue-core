@@ -13,6 +13,8 @@ import TabsPlayground from './TabsPlayground.vue'
 import TabsRouterLinkAdaptivePlayground from './TabsRouterLinkAdaptivePlayground.vue'
 import TabsRouterLinkPlayground from './TabsRouterLinkPlayground.vue'
 
+const DISABLED_REGEX = /Disabled/i
+
 const meta = {
   title: 'Components/Tabs',
   argTypes: {
@@ -70,7 +72,7 @@ export const Underline: Story = {
     await expect(canvas.getByText('Members content goes here.')).toBeVisible()
 
     const disabledTab = canvas.getByRole('tab', {
-      name: /Disabled/i,
+      name: DISABLED_REGEX,
     })
 
     await expect(disabledTab).toBeDisabled()
