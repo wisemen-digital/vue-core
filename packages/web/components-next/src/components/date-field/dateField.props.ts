@@ -29,7 +29,7 @@ export interface DateFieldProps
   autocomplete?: 'off' | 'on'
   /**
    * Whether the picker should close after a selection is made.
-   * @default false
+   * @default true
    */
   closeOnSelect?: boolean
   /**
