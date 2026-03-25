@@ -1,0 +1,19 @@
+{
+  "component.keyboard_shortcut.sequence_label": "then",
+  "component.number_field.decrement": "Decrement",
+  "component.number_field.increment": "Increment",
+  "components.sidebar.description": "The sidebar contains navigation links and other important actions.",
+  "components.sidebar.sign_out": "Sign out",
+  "component.dashboard_page_header.options": "Options",
+  "component.dashboard_page_loading_state.loading": "Loading",
+  "component.dashboard_page_header_sidebar_toggle.collapse": "Collapse sidebar",
+  "component.dashboard_page_header_sidebar_toggle.expand": "Expand sidebar",
+  "component.dashboard_page_detail_pane_toggle.collapse": "Collapse detail pane",
+  "component.dashboard_page_detail_pane_toggle.expand": "Expand detail pane",
+  "component.avatar_group.overflow": "+{count}",
+  "component.tabs.adaptive_dropdown.trigger.label": "More",
+  "component.tabs.scroll_left": "Scroll left",
+  "component.tabs.scroll_right": "Scroll right",
+  "components.sidebar.global_search.label": "Search",
+  "components.sidebar.title": "Sidebar"
+}
