@@ -19,7 +19,7 @@ const {
   allowDeselect,
   allowNonContinuousSelection,
   classConfig,
-  closeOnSelect,
+  dontCloseOnSelect,
   customClassConfig,
   hideDatePicker,
   label,
@@ -43,11 +43,7 @@ watch(
     previousFrom,
     previousUntil,
   ]) => {
-    if (!closeOnSelect.value || !isOpen.value) {
-      return
-    }
-
-    if (from === previousFrom && until === previousUntil) {
+    if (dontCloseOnSelect.value || !isOpen.value) {
       return
     }
 
