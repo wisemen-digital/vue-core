@@ -3,7 +3,6 @@ import { VoltageUnit } from './voltage-unit.enum.js'
 
 const VOLTAGE_MULTIPLIERS: Record<VoltageUnit, number> = {
   [VoltageUnit.VOLT]: 1,
-
   [VoltageUnit.MILLIVOLT]: 1e-3,
   [VoltageUnit.KILOVOLT]: 1e3
 }
