@@ -1,9 +1,8 @@
 import { Quantity } from '../../quantity.js'
 import { VoltageUnit } from './voltage-unit.enum.js'
 
-const DISTANCE_MULTIPLIERS: Record<VoltageUnit, number> = {
+const VOLTAGE_MULTIPLIERS: Record<VoltageUnit, number> = {
   [VoltageUnit.VOLT]: 1,
-
   [VoltageUnit.MILLIVOLT]: 1e-3,
   [VoltageUnit.KILOVOLT]: 1e3
 }
@@ -12,11 +11,11 @@ export class Voltage extends Quantity<VoltageUnit, Voltage> {
   protected baseUnit = VoltageUnit.VOLT
 
   protected convertValueToBaseUnit (value: number, fromUnit: VoltageUnit): number {
-    return value * DISTANCE_MULTIPLIERS[fromUnit]
+    return value * VOLTAGE_MULTIPLIERS[fromUnit]
   }
 
   protected convertBaseUnitValueTo (value: number, toUnit: VoltageUnit): number {
-    return value / DISTANCE_MULTIPLIERS[toUnit]
+    return value / VOLTAGE_MULTIPLIERS[toUnit]
   }
 
   get volts (): number {

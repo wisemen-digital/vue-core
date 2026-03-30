@@ -1,4 +1,4 @@
-import { QuantityColumn, QuantityColumnOptions } from '../../quantity.column.js'
+import { QuantityColumnOptions, QuantityColumn } from '../../quantity.column.js'
 import { VoltageUnit } from './voltage-unit.enum.js'
 import { Voltage } from './voltage.js'
 

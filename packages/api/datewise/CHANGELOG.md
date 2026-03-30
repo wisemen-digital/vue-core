@@ -1,5 +1,13 @@
 # @wisemen/datewise
 
+## 0.1.6
+
+### Patch Changes
+
+- Updated dependencies [[`b4ada66`](https://github.com/wisemen-digital/wisemen-core/commit/b4ada66c9c9f5c43f1c897d27214854a776493e3)]:
+  - @wisemen/quantity@0.4.1
+  - @wisemen/pagination@0.0.13
+
 ## 0.1.5
 
 ### Patch Changes
