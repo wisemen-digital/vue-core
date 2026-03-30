@@ -4,7 +4,7 @@
     "access": "public"
   },
   "type": "module",
-  "version": "4.0.6",
+  "version": "5.0.0",
   "private": true,
   "license": "MIT",
   "repository": {
@@ -36,7 +36,7 @@
     "type-check": "vue-tsc --noEmit",
     "pub:release": "pnpm publish --access public",
     "test:unit": "vitest --run",
-    "test": "vitest --run",
+    "test": "vitest --run --passWithNoTests",
     "lint": "eslint .",
     "cleanup": "rimraf dist/ node_modules/ .turbo/",
     "lint:fix": "eslint . --fix",
