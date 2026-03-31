@@ -1,5 +1,15 @@
 # @wisemen/quantity
 
+## 0.5.0
+
+### Minor Changes
+
+- [#789](https://github.com/wisemen-digital/wisemen-core/pull/789) [`1308fb4`](https://github.com/wisemen-digital/wisemen-core/commit/1308fb4e12a24d4ddaf4d1a72cecd9ac342d29be) Thanks [@jonasbeckers](https://github.com/jonasbeckers)! - Add voltage quantity
+
+### Patch Changes
+
+- [#813](https://github.com/wisemen-digital/wisemen-core/pull/813) [`8c1e355`](https://github.com/wisemen-digital/wisemen-core/commit/8c1e355e000ec830d383c89261e5edbf5850dee8) Thanks [@Kobe-Kwanten](https://github.com/Kobe-Kwanten)! - feat: add quantity dtos
+
 ## 0.4.1
 
 ### Patch Changes

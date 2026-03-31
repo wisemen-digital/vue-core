@@ -1,5 +1,12 @@
 # @wisemen/datewise
 
+## 0.1.7
+
+### Patch Changes
+
+- Updated dependencies [[`8c1e355`](https://github.com/wisemen-digital/wisemen-core/commit/8c1e355e000ec830d383c89261e5edbf5850dee8), [`1308fb4`](https://github.com/wisemen-digital/wisemen-core/commit/1308fb4e12a24d4ddaf4d1a72cecd9ac342d29be)]:
+  - @wisemen/quantity@0.5.0
+
 ## 0.1.6
 
 ### Patch Changes
