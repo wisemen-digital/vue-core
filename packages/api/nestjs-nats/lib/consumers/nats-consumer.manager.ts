@@ -2,9 +2,9 @@ import { Logger } from '@nestjs/common'
 import type { ConsumerConfig, ConsumerInfo, JetStreamManager } from '@nats-io/jetstream'
 import { jetstream, jetstreamManager } from '@nats-io/jetstream'
 import type { NatsConnection } from '@nats-io/transport-node'
+import { NatsConsumption } from './nats-consumption.js'
 import type { NamedConnectionOptions } from '#src/clients/nats-connection.manager.js'
 import type { NatsConnectionManager } from '#src/clients/nats-connection.manager.js'
-import { NatsConsumption } from './nats-consumption.js'
 
 export interface NatsConsumerConfig extends Omit<ConsumerConfig, 'callback'> {
   name: string

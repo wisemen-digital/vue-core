@@ -1,5 +1,5 @@
-import type { CloudEvent } from '#src/cloud-event/cloud-event.js'
 import type { NatsPipeTransform } from './nats-pipe-transform.js'
+import type { CloudEvent } from '#src/cloud-event/cloud-event.js'
 
 /**
  * Extracts the data field from a cloud event.

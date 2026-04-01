@@ -1,8 +1,8 @@
 import { validate } from 'class-validator'
 import { plainToInstance } from 'class-transformer'
+import type { NatsPipeTransform } from './nats-pipe-transform.js'
 import { convertValidationErrorToJsonApiError } from '#src/validation/convert-validation-errors.js'
 import type { NatsParameterMetadata } from '#src/parameters/nats-parameter-metadata.js'
-import type { NatsPipeTransform } from './nats-pipe-transform.js'
 
 export class NatsMsgDataValidationPipe implements NatsPipeTransform {
   async transform (value: unknown, metadata: NatsParameterMetadata): Promise<unknown> {

@@ -2,8 +2,8 @@ import type { ClassConstructor } from 'class-transformer'
 import { applyDecorators, Injectable } from '@nestjs/common'
 import type { ConfigService } from '@nestjs/config'
 import type { EndpointOptions } from '@nats-io/services'
-import type { CreateServiceConfig, CreateServiceEndpointConfig } from '#src/nats-application.js'
 import { getNatsServiceConfig } from './nats-service.decorator.js'
+import type { CreateServiceConfig, CreateServiceEndpointConfig } from '#src/nats-application.js'
 
 const NATS_SERVICE_ENDPOINT_KEY = Symbol('wisemen.nats-service-endpoint')
 

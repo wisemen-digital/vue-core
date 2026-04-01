@@ -2,10 +2,10 @@ import type { ClassConstructor } from 'class-transformer'
 import { applyDecorators } from '@nestjs/common'
 import type { ConsumerConfig } from '@nats-io/jetstream'
 import type { ConfigService } from '@nestjs/config'
-import type { NamedConnectionOptions } from '#src/clients/nats-connection.manager.js'
-import { getNatsConnectionOptions } from '#src/clients/nats-client.decorator.js'
 import { NatsConsumerHandler } from './nats-consumer-handler.decorator.js'
 import type { NatsConsumerConfig as CreateNatsConsumerConfig } from './nats-consumer.manager.js'
+import type { NamedConnectionOptions } from '#src/clients/nats-connection.manager.js'
+import { getNatsConnectionOptions } from '#src/clients/nats-client.decorator.js'
 
 const NATS_CONSUMER_KEY = Symbol('wisemen.nats-consumer')
 

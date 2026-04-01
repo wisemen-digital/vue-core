@@ -1,8 +1,8 @@
 import { plainToInstance } from 'class-transformer'
 import { validate } from 'class-validator'
+import type { NatsPipeTransform } from './nats-pipe-transform.js'
 import { convertValidationErrorToJsonApiError } from '#src/validation/convert-validation-errors.js'
 import { CloudEvent } from '#src/cloud-event/cloud-event.js'
-import type { NatsPipeTransform } from './nats-pipe-transform.js'
 
 /**
  * Validates that the message contains a valid cloud event.
