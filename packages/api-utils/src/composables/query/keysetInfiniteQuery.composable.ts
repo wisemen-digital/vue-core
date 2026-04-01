@@ -128,6 +128,8 @@ export function useKeysetInfiniteQuery<TData>(options: KeysetInfiniteQueryOption
   }
 
   return {
+    lastErroredAt: computed<number>(() => infiniteQuery.errorUpdatedAt.value),
+    lastUpdatedAt: computed<number>(() => infiniteQuery.dataUpdatedAt.value),
     hasNextPage: computed<boolean>(() => infiniteQuery.hasNextPage.value),
     isError: computed<boolean>(() => hasError.value),
     isFetching: computed<boolean>(() => infiniteQuery.isFetching.value),

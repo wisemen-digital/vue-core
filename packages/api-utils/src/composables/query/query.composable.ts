@@ -48,6 +48,15 @@ export interface UseQueryOptions<TResData> {
 
 export interface UseQueryReturnType<TResData> {
   /**
+   * Timestamp of the last error occurrence
+   */
+  lastErroredAt: ComputedRef<number>
+  /**
+   * Timestamp of the last successful data update
+   */
+  lastUpdatedAt: ComputedRef<number>
+
+  /**
    * Response data
    */
   /**
@@ -113,6 +122,8 @@ export function useQuery<TResData>(options: UseQueryOptions<TResData>): UseQuery
   }
 
   return {
+    lastErroredAt: computed<number>(() => query.errorUpdatedAt.value),
+    lastUpdatedAt: computed<number>(() => query.dataUpdatedAt.value),
     isError: computed<boolean>(() => query.data.value?.isErr() ?? false),
     isFetching: computed<boolean>(() => query.isFetching.value),
     isLoading: computed<boolean>(() => query.isLoading.value),
