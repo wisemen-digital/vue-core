@@ -6,6 +6,24 @@ settings:
 
 catalogs:
   backend:
+    '@nats-io/jetstream':
+      specifier: ^3.3.1
+      version: 3.3.1
+    '@nats-io/jwt':
+      specifier: ^0.0.10-5
+      version: 0.0.10-5
+    '@nats-io/kv':
+      specifier: ^3.3.1
+      version: 3.3.1
+    '@nats-io/nkeys':
+      specifier: ^2.0.3
+      version: 2.0.3
+    '@nats-io/services':
+      specifier: ^3.3.1
+      version: 3.3.1
+    '@nats-io/transport-node':
+      specifier: ^3.3.1
+      version: 3.3.1
     '@nestjs/common':
       specifier: 11.1.17
       version: 11.1.17
@@ -1288,6 +1306,73 @@ importers:
       expect:
         specifier: catalog:test
         version: 30.2.0
+
+  packages/api/nestjs-nats:
+    dependencies:
+      '@nats-io/jetstream':
+        specifier: catalog:backend
+        version: 3.3.1
+      '@nats-io/jwt':
+        specifier: catalog:backend
+        version: 0.0.10-5
+      '@nats-io/kv':
+        specifier: catalog:backend
+        version: 3.3.1
+      '@nats-io/nkeys':
+        specifier: catalog:backend
+        version: 2.0.3
+      '@nats-io/services':
+        specifier: catalog:backend
+        version: 3.3.1
+      '@nats-io/transport-node':
+        specifier: catalog:backend
+        version: 3.3.1
+      '@nestjs/common':
+        specifier: catalog:backend-peer
+        version: 11.1.17(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2)
+      '@nestjs/config':
+        specifier: catalog:backend-peer
+        version: 4.0.3(@nestjs/common@11.1.17(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2))(rxjs@7.8.2)
+      '@nestjs/core':
+        specifier: catalog:backend-peer
+        version: 11.1.17(@nestjs/common@11.1.17(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2)
+      '@opentelemetry/api':
+        specifier: catalog:backend-peer
+        version: 1.9.0
+      '@wisemen/api-error':
+        specifier: workspace:*
+        version: link:../api-error
+      '@wisemen/opentelemetry':
+        specifier: workspace:*
+        version: link:../opentelemetry
+      change-case:
+        specifier: catalog:backend
+        version: 5.4.4
+      class-transformer:
+        specifier: catalog:backend-peer
+        version: 0.5.1
+      class-validator:
+        specifier: catalog:backend-peer
+        version: 0.14.3
+      reflect-metadata:
+        specifier: catalog:backend-peer
+        version: 0.2.2
+      rxjs:
+        specifier: catalog:backend-peer
+        version: 7.8.2
+    devDependencies:
+      '@types/node':
+        specifier: catalog:backend
+        version: 25.3.0
+      '@wisemen/eslint-config-nestjs':
+        specifier: workspace:*
+        version: link:../eslint-config-nestjs
+      eslint:
+        specifier: catalog:lint
+        version: 9.39.4(jiti@2.6.1)
+      typescript:
+        specifier: catalog:peer
+        version: 5.9.3
 
   packages/api/nestjs-typeorm:
     dependencies:
@@ -4418,6 +4503,37 @@ packages:
 
   '@napi-rs/wasm-runtime@1.1.1':
     resolution: {integrity: sha512-p64ah1M1ld8xjWv3qbvFwHiFVWrq1yFvV4f7w+mzaqiR4IlSgkqhcRdHwsGgomwzBH51sRY4NEowLxnaBjcW/A==}
+
+  '@nats-io/jetstream@3.3.1':
+    resolution: {integrity: sha512-oTIxM47pQfv4zCMlLN7FtARxSclMlUUPPn9I3VxRwMH+N2jkj1WCApu+tSL778KuljxfG8txi/MPwoWSXqbbQQ==}
+
+  '@nats-io/jwt@0.0.10-5':
+    resolution: {integrity: sha512-DoBIEJIgWZJLtMRef+oFvk1lEgyTIVcAZbBXYGm91B7az1bCu7A3Npsn/VD7RH5waYAz+EPS8Ot7zyU6iKAuqg==}
+
+  '@nats-io/kv@3.3.1':
+    resolution: {integrity: sha512-KqFTRNxDFbeZ5rMG/2dOYVYRujd6gzSfDm0Eo9r5GMbSDT7waNzD6Hz9hOqXwBL7/72F/fJ7+NfPVD9KWq37ew==}
+
+  '@nats-io/nats-core@3.3.1':
+    resolution: {integrity: sha512-myFXGTo4cCfKrsLDjkoEz7FjjjvSfBRjun7Qx3n3Z5OzW4JUY8Ou7VQsGAdXLQxHN3ae/XNXvmXxshDoFPex4w==}
+
+  '@nats-io/nkeys@1.2.0-8':
+    resolution: {integrity: sha512-o6nfNYySzVZL7mIJA+ejD3JdMFbLn9VWtptM2cnHh4jeF/FvhPhCkn8BH4jQE7asCV/SSialu6jGhsAFV1FKkQ==}
+    engines: {node: '>=16.0.0'}
+
+  '@nats-io/nkeys@2.0.3':
+    resolution: {integrity: sha512-JVt56GuE6Z89KUkI4TXUbSI9fmIfAmk6PMPknijmuL72GcD+UgIomTcRWiNvvJKxA01sBbmIPStqJs5cMRBC3A==}
+    engines: {node: '>=18.0.0'}
+
+  '@nats-io/nuid@2.0.3':
+    resolution: {integrity: sha512-TpA3HEBna/qMVudy+3HZr5M3mo/L1JPofpVT4t0HkFGkz2Cn9wrlrQC8tvR8Md5Oa9//GtGG26eN0qEWF5Vqew==}
+    engines: {node: '>= 18.x'}
+
+  '@nats-io/services@3.3.1':
+    resolution: {integrity: sha512-beAwjir4HmluuU1mN3Rt6LMUxUsLH6Vb2KBl8wVpjFFhD1awFevVOeuZrQNnu8WXr8sQ8LXzb03/JN3uXCZ74Q==}
+
+  '@nats-io/transport-node@3.3.1':
+    resolution: {integrity: sha512-GBvY0VcvyQEILgy5bjpqU1GpDYmSF06bW59I7cewZuNGS9u3AoV/gf+a+3ep45T/Z+UC661atq/b7x+QV12w+Q==}
+    engines: {node: '>= 18.0.0'}
 
   '@neoconfetti/react@1.0.0':
     resolution: {integrity: sha512-klcSooChXXOzIm+SE5IISIAn3bYzYfPjbX7D7HoqZL84oAfgREeSg5vSIaSFH+DaGzzvImTyWe1OyrJ67vik4A==}
@@ -11183,6 +11299,9 @@ packages:
     resolution: {integrity: sha512-7Imdmg37joOloTnj+DPrab9hIaQcDdJ5RwSzcauo/wMOSAgO+A/I/8b3hsGGs6PWQz70m/jkPgdqWsfNKtwwDQ==}
     hasBin: true
 
+  tweetnacl@1.0.3:
+    resolution: {integrity: sha512-6rt+RN7aOi1nGMyC4Xa5DdYiukl2UWCbcJft7YhxReBGQD7OAM8Pbxw6YMo4r2diNEA8FEmu32YOn9rhaiE5yw==}
+
   twilio@5.12.2:
     resolution: {integrity: sha512-yjTH04Ig0Z3PAxIXhwrto0IJC4Gv7lBDQQ9f4/P9zJhnxVdd+3tENqBMJOtdmmRags3X0jl2IGKEQefCEpJE9g==}
     engines: {node: '>=14.0'}
@@ -14467,6 +14586,44 @@ snapshots:
       '@emnapi/runtime': 1.8.1
       '@tybys/wasm-util': 0.10.1
     optional: true
+
+  '@nats-io/jetstream@3.3.1':
+    dependencies:
+      '@nats-io/nats-core': 3.3.1
+
+  '@nats-io/jwt@0.0.10-5':
+    dependencies:
+      '@nats-io/nkeys': 1.2.0-8
+
+  '@nats-io/kv@3.3.1':
+    dependencies:
+      '@nats-io/jetstream': 3.3.1
+      '@nats-io/nats-core': 3.3.1
+
+  '@nats-io/nats-core@3.3.1':
+    dependencies:
+      '@nats-io/nkeys': 2.0.3
+      '@nats-io/nuid': 2.0.3
+
+  '@nats-io/nkeys@1.2.0-8':
+    dependencies:
+      tweetnacl: 1.0.3
+
+  '@nats-io/nkeys@2.0.3':
+    dependencies:
+      tweetnacl: 1.0.3
+
+  '@nats-io/nuid@2.0.3': {}
+
+  '@nats-io/services@3.3.1':
+    dependencies:
+      '@nats-io/nats-core': 3.3.1
+
+  '@nats-io/transport-node@3.3.1':
+    dependencies:
+      '@nats-io/nats-core': 3.3.1
+      '@nats-io/nkeys': 2.0.3
+      '@nats-io/nuid': 2.0.3
 
   '@neoconfetti/react@1.0.0': {}
 
@@ -22439,6 +22596,8 @@ snapshots:
       turbo-linux-arm64: 2.7.5
       turbo-windows-64: 2.7.5
       turbo-windows-arm64: 2.7.5
+
+  tweetnacl@1.0.3: {}
 
   twilio@5.12.2:
     dependencies:
