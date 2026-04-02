@@ -82,3 +82,11 @@ After this setup, all future releases will be automatic through the changeset wo
 - **[VIES](./packages/vies)** – VIES VAT validation
 - **[Wise Date](./packages/wise-date)** – Advanced date utilities
 - ~~**[Zod HTTP Client](./packages/zod-http-client)**~~ *(Deprecated)* – A Zod-based HTTP client for Vue applications
+
+## License
+
+This project is licensed under the [PolyForm Strict License 1.0.0](./LICENSE).
+
+**Wisemen Core** is developed primarily for internal use by the Wisemen agency. We make this codebase freely available for non-commercial purposes, allowing the community to learn from and use our tools at no cost. However, commercial use by other agencies or organizations requires explicit permission.
+
+For more details about what you can and cannot do with this software, please refer to the [LICENSE](./LICENSE) file.
