@@ -1,5 +1,18 @@
 # @wisemen/datewise
 
+## 0.1.8
+
+### Patch Changes
+
+- [#817](https://github.com/wisemen-digital/wisemen-core/pull/817) [`d3c7794`](https://github.com/wisemen-digital/wisemen-core/commit/d3c7794a6843db18f2c057bd3a2b4c47e6d6f65b) Thanks [@Kobe-Kwanten](https://github.com/Kobe-Kwanten)! - support construction of plain date with format
+
+## 0.1.7
+
+### Patch Changes
+
+- Updated dependencies [[`8c1e355`](https://github.com/wisemen-digital/wisemen-core/commit/8c1e355e000ec830d383c89261e5edbf5850dee8), [`1308fb4`](https://github.com/wisemen-digital/wisemen-core/commit/1308fb4e12a24d4ddaf4d1a72cecd9ac342d29be)]:
+  - @wisemen/quantity@0.5.0
+
 ## 0.1.6
 
 ### Patch Changes
