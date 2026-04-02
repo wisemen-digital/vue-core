@@ -7,5 +7,4 @@ export {
 } from '@/logger/logger'
 export { NumberUtil } from '@/number/number.util'
 export { StringUtil } from '@/string/string.util'
-export { TimeUtil } from '@/time/time.util'
 export { UuidUtil } from '@/uuid/uuid.util'

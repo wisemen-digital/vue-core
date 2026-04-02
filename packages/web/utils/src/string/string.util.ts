@@ -39,6 +39,19 @@ export class StringUtil {
   }
 
   /**
+   * Checks whether a string is empty, null, or contains only whitespace.
+   *
+   * @example
+   * StringUtil.isEmpty('') // true
+   * StringUtil.isEmpty('  ') // true
+   * StringUtil.isEmpty(null) // true
+   * StringUtil.isEmpty('hello') // false
+   */
+  static isEmpty(value?: string | null): boolean {
+    return value === null || value === undefined || value.trim().length === 0
+  }
+
+  /**
    * Converts a string to a URL-friendly slug.
    * Lowercases the string, strips special characters, and replaces spaces with hyphens.
    *

@@ -2598,9 +2598,6 @@ importers:
       eslint:
         specifier: catalog:lint
         version: 9.39.4(jiti@2.6.1)
-      temporal-polyfill:
-        specifier: catalog:peer
-        version: 0.3.0
       tsdown:
         specifier: catalog:build
         version: 0.18.4(synckit@0.11.12)(typescript@5.9.3)(vue-tsc@3.2.2(typescript@5.9.3))

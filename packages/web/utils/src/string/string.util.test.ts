@@ -35,6 +35,28 @@ describe('stringUtil', () => {
     })
   })
 
+  describe('isEmpty', () => {
+    it('returns true for an empty string', () => {
+      expect(StringUtil.isEmpty('')).toBeTruthy()
+    })
+
+    it('returns true for a whitespace-only string', () => {
+      expect(StringUtil.isEmpty('   ')).toBeTruthy()
+    })
+
+    it('returns true for null', () => {
+      expect(StringUtil.isEmpty(null)).toBeTruthy()
+    })
+
+    it('returns true for undefined', () => {
+      expect(StringUtil.isEmpty()).toBeTruthy()
+    })
+
+    it('returns false for a non-empty string', () => {
+      expect(StringUtil.isEmpty('hello')).toBeFalsy()
+    })
+  })
+
   describe('truncate', () => {
     it('truncates a string that exceeds maxLength', () => {
       expect(StringUtil.truncate('Hello, world!', 5)).toBe('Hello...')
