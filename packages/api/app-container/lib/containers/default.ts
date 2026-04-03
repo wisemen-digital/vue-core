@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import type { INestApplicationContext } from '@nestjs/common'
 import { FastifyAdapter } from '@nestjs/platform-fastify'
-import { fastify, FastifyInstance, type FastifyReply, type FastifyRequest, type FastifyServerOptions } from 'fastify'
+import type { FastifyInstance, FastifyReply, FastifyRequest, FastifyServerOptions } from 'fastify'
 
 const port = Number(process.env.PORT) || 3000
 
@@ -40,9 +40,9 @@ export abstract class ProbedContainer {
   }
 
   protected async init (): Promise<void> {
-    this.server = fastify(this.getFastifyOptions())
+    this.adapter = new FastifyAdapter(this.getFastifyOptions())
 
-    this.adapter = new FastifyAdapter(this.server)
+    this.server = this.adapter.getInstance()
 
     this.enableProbes()
 
