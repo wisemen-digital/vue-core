@@ -1,5 +1,11 @@
 # @wisemen/quantity
 
+## 0.6.0
+
+### Minor Changes
+
+- [#822](https://github.com/wisemen-digital/wisemen-core/pull/822) [`959c850`](https://github.com/wisemen-digital/wisemen-core/commit/959c850769865c477309253bde938de94fe2f63f) Thanks [@jonasbeckers](https://github.com/jonasbeckers)! - Make quantity dto useable in queries
+
 ## 0.5.0
 
 ### Minor Changes

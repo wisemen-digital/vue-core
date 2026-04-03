@@ -1,5 +1,11 @@
 # @wisemen/node-doc-processor
 
+## 1.3.0
+
+### Minor Changes
+
+- [#826](https://github.com/wisemen-digital/wisemen-core/pull/826) [`2f2eaed`](https://github.com/wisemen-digital/wisemen-core/commit/2f2eaedcfb1a118e434c05eefda2a6c4d81c5794) Thanks [@PauwelsPieter](https://github.com/PauwelsPieter)! - Fix absolute path alias
+
 ## 1.2.8
 
 ### Patch Changes
