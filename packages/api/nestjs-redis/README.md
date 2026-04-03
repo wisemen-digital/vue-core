@@ -26,16 +26,15 @@ import { RedisModule } from '@wisemen/nestjs-redis'
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
         url: config.getOrThrow('REDIS_URL'),
-        prefix: config.getOrThrow('NODE_ENV'),
         pingInterval: config.get('REDIS_PING_INTERVAL'),
         ttl: config.get('REDIS_DEFAULT_TTL'),
         onClientError: (error) => {
           captureException(error)
-        },
-      }),
-    }),
-  ],
-  exports: [RedisModule],
+        }
+      })
+    })
+  ]
+  exports: [RedisModule]
 })
 export class DefaultRedisModule {}
 ```
