@@ -1,6 +1,6 @@
 {
   "name": "@wisemen/coordinates",
-  "version": "0.0.21",
+  "version": "0.0.24",
   "publishConfig": {
     "access": "public"
   },
@@ -15,10 +15,9 @@
   ],
   "scripts": {
     "lint": "eslint lib",
-    "prebuild": "rm -rf ./dist",
     "clean": "rm -rf ./dist",
     "build": "tsc",
-    "pretest": "npm run clean && npm run build",
+    "pretest": "pnpm run build",
     "test": "node --test dist/tests/**/*.test.js",
     "prerelease": "npm run build",
     "release": "pnpx release-it"

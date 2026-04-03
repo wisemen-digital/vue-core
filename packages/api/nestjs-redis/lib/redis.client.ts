@@ -1,5 +1,5 @@
 import assert from 'assert'
-import { Inject, Injectable, type OnModuleDestroy, type OnModuleInit } from '@nestjs/common'
+import { Inject, Injectable, Logger, type OnModuleDestroy, type OnModuleInit } from '@nestjs/common'
 import type { RedisClientType } from 'redis'
 import { createClient } from 'redis'
 import { RedisUnavailableError } from './redis-unavailable.error.js'
@@ -10,13 +10,11 @@ import type { RedisModuleOptions } from './redis.module-options.js'
 @Injectable()
 export class RedisClient implements OnModuleInit, OnModuleDestroy {
   private _client?: RedisClientType
-  readonly prefix: string
   readonly ttl: number
 
   constructor (
     @Inject(MODULE_OPTIONS_TOKEN) private readonly config: RedisModuleOptions
   ) {
-    this.prefix = config.prefix ?? 'default'
     this.ttl = config.ttl ?? REDIS_DEFAULT_TTL
   }
 
@@ -24,7 +22,7 @@ export class RedisClient implements OnModuleInit, OnModuleDestroy {
     if (this.config.onClientError != null) {
       this.config.onClientError(error)
     } else {
-      console.log(error)
+      Logger.error(error)
     }
   }
 

@@ -1,5 +1,11 @@
 # @wisemen/nestjs-file-storage
 
+## 0.2.1
+
+### Patch Changes
+
+- [#816](https://github.com/wisemen-digital/wisemen-core/pull/816) [`20a63b7`](https://github.com/wisemen-digital/wisemen-core/commit/20a63b7d9ffa4f1dee2ffc0020b5747a4d432634) Thanks [@JonasVannieuwenhuijsen](https://github.com/JonasVannieuwenhuijsen)! - Add function to create a temporary preview url
+
 ## 0.2.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @wisemen/monetary
 
+## 0.4.1
+
+### Patch Changes
+
+- [#814](https://github.com/wisemen-digital/wisemen-core/pull/814) [`81ea669`](https://github.com/wisemen-digital/wisemen-core/commit/81ea669c103625d6b4575eeb3e630b23c2ceeb1d) Thanks [@maartensijmkens](https://github.com/maartensijmkens)! - monetary make default column value optional
+
 ## 0.4.0
 
 ### Minor Changes

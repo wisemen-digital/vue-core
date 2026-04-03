@@ -1,12 +1,15 @@
 {
   "name": "@wisemen/int-range",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "publishConfig": {
     "access": "public"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "type": "module",
+  "imports": {
+    "#src/*": "./dist/*"
+  },
   "files": [
     "dist/"
   ],
