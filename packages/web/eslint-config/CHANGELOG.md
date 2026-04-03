@@ -1,5 +1,25 @@
 ## [1.7.2] (2025-08-04)
 
+## 2.1.1
+
+### Patch Changes
+
+- [#665](https://github.com/wisemen-digital/wisemen-core/pull/665) [`8f075e2`](https://github.com/wisemen-digital/wisemen-core/commit/8f075e27d9d3c637ea633f5e36f72fb53362287f) Thanks [@Robbe95](https://github.com/Robbe95)! - Updated linter
+
+## 2.1.0
+
+### Minor Changes
+
+- f5bddce: JSON sorting
+
+### Patch Changes
+
+- f5bddce: Ran updated linter
+- fce3eff: Implemented new computed / ref rule
+- f5bddce: Removed generics from computed / ref
+- Updated dependencies [fce3eff]
+  - @wisemen/eslint-plugin-vue@0.1.0
+
 ## 2.0.0
 
 ### Major Changes

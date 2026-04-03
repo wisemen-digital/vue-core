@@ -1,4 +1,4 @@
-import type { Readable } from 'stream'
+import { Readable } from 'stream'
 import { BlobSASPermissions, BlobServiceClient, ContainerClient, StorageSharedKeyCredential } from '@azure/storage-blob'
 import { Injectable } from '@nestjs/common'
 import dayjs from 'dayjs'
@@ -6,7 +6,7 @@ import { validateSync } from 'class-validator'
 import { plainToClass } from 'class-transformer'
 import { AzureBlobStorageConfig } from '#src/providers/azure-blob-storage/azure-blob-storage.config.js'
 import { AZURE_BLOB_STORAGE_DOWNLOAD_URL_EXPIRES_S, AZURE_BLOB_STORAGE_UPLOAD_URL_EXPIRES_S } from '#src/providers/azure-blob-storage/azure-blob-storage.constants.js'
-import { FileStorage } from '#src/providers/file-storage-provider.js'
+import { FileIndex, FileStorage } from '#src/providers/file-storage-provider.js'
 
 @Injectable()
 export class AzureBlobStorage extends FileStorage {
@@ -79,6 +79,25 @@ export class AzureBlobStorage extends FileStorage {
     })
   }
 
+  public async createTemporaryPreviewUrl (
+    key: string,
+    mimeType?: string,
+    expiresInSeconds?: number
+  ): Promise<string> {
+    this.validateKey(key)
+
+    const blobClient = this.containerClient.getBlockBlobClient(key)
+
+    const expiresIn = expiresInSeconds ?? AZURE_BLOB_STORAGE_DOWNLOAD_URL_EXPIRES_S
+
+    return await blobClient.generateSasUrl({
+      permissions: BlobSASPermissions.from({ read: true }),
+      expiresOn: dayjs().add(expiresIn, 'second').toDate(),
+      contentType: mimeType,
+      contentDisposition: 'inline'
+    })
+  }
+
   public async createTemporaryDownloadUrl (
     key: string,
     name: string,
@@ -141,6 +160,22 @@ export class AzureBlobStorage extends FileStorage {
     await blobClient.uploadStream(stream)
   }
 
+  public async downloadStream (
+    key: string
+  ): Promise<Readable> {
+    this.validateKey(key)
+
+    const blobClient = this.containerClient.getBlockBlobClient(key)
+
+    const downloadResponse = await blobClient.download()
+
+    if (downloadResponse.readableStreamBody === undefined) {
+      throw new Error(`Could not download stream for ${key}`)
+    }
+
+    return downloadResponse.readableStreamBody as Readable
+  }
+
   public async delete (
     key: string
   ): Promise<void> {
@@ -149,5 +184,29 @@ export class AzureBlobStorage extends FileStorage {
     const blobClient = this.containerClient.getBlockBlobClient(key)
 
     await blobClient.deleteIfExists()
+  }
+
+  public async list (options?: {
+    prefix?: string
+    startAfter?: string
+  }): Promise<FileIndex[]> {
+    const blobs = this.containerClient.listBlobsFlat({
+      prefix: options?.prefix,
+      startFrom: options?.startAfter
+    })
+
+    const result: {
+      key?: string
+      lastModified?: Date
+    }[] = []
+
+    for await (const blob of blobs) {
+      result.push({
+        key: blob.name,
+        lastModified: blob.properties.lastModified
+      })
+    }
+
+    return result
   }
 }
