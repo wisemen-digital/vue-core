@@ -2,6 +2,11 @@ export type DialogSize = 'full-screen' | 'lg' | 'md' | 'sm' | 'xl' | 'xs' | 'xxs
 
 export interface DialogProps {
   /**
+   *   Whether to show a close button in the dialog.
+   * @default truw
+   */
+  hasCloseButton?: boolean
+  /**
    * Whether the dialog is open.
    */
   isOpen: boolean
@@ -10,6 +15,7 @@ export interface DialogProps {
    * @default false
    */
   preventClickOutside?: boolean
+
   /**
    * Whether to prevent closing the dialog by pressing Escape.
    * @default false

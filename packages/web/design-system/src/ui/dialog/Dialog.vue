@@ -4,15 +4,20 @@ import {
   DialogOverlay as RekaDialogOverlay,
   DialogRoot as RekaDialogRoot,
 } from 'reka-ui'
-import { computed } from 'vue'
+import {
+  computed,
+  ref,
+} from 'vue'
 
 import { useProvideDialogContext } from '@/ui/dialog/dialog.context'
 import type { DialogProps } from '@/ui/dialog/dialog.props'
 import type { CreateDialogStyle } from '@/ui/dialog/dialog.style'
 import { createDialogStyle } from '@/ui/dialog/dialog.style'
+import DialogCloseButton from '@/ui/dialog/DialogCloseButton.vue'
 import { useDialogScroll } from '@/ui/dialog/dialogScroll.composable'
 
 const props = withDefaults(defineProps<DialogProps>(), {
+  hasCloseButton: true,
   preventClickOutside: false,
   preventEsc: false,
   size: 'md',
@@ -61,6 +66,9 @@ function onOpenChange(value: boolean): void {
     emit('close')
   }
 }
+
+// test
+const isOpentest = ref(false)
 </script>
 
 <template>
@@ -75,12 +83,33 @@ function onOpenChange(value: boolean): void {
     />
 
     <RekaDialogContent
-      :class="style.content()"
+      :class="style.contentPositioner()"
       data-animation="dialog"
       @escape-key-down="onEscapeKeyDown"
       @pointer-down-outside="onPointerDownOutside"
     >
-      <slot />
+      <div :class="style.content()">
+        <button
+          @click="isOpentest = !isOpentest"
+        >
+          toggle
+        </button>
+        <slot />
+        <DialogCloseButton v-if="props.hasCloseButton" />
+      </div>
+      <div
+        :class="[
+          style.chin(),
+          isOpentest ? 'translate-y-0' : '-translate-y-16',
+        ]"
+        class="
+          -mt-4 max-h-16 rounded-b-[calc(1rem+5px)] border-5 border-t-0
+          border-white/10 bg-white/80 bg-clip-padding p-sm pt-4
+          dark:border-black/10
+        "
+      >
+        <span>hint text </span>
+      </div>
     </RekaDialogContent>
   </RekaDialogRoot>
 </template>

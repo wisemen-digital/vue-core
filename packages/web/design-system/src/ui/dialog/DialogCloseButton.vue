@@ -1,0 +1,19 @@
+<script setup lang="ts">
+import { XCloseIcon } from '@wisemen/vue-core-icons'
+import { DialogClose as RekaDialogClose } from 'reka-ui'
+
+import { UIIconButton } from '@/ui/button/index'
+</script>
+
+<template>
+  <RekaDialogClose
+    :as-child="true"
+  >
+    <UIIconButton
+      :icon="XCloseIcon"
+      label="close dialog"
+      class="absolute top-0 right-0 z-10 m-md"
+      variant="tertiary"
+    />
+  </RekaDialogClose>
+</template>

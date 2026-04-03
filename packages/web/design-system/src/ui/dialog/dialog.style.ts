@@ -4,16 +4,22 @@ import { tv } from '@/styles/tailwindVariants.lib'
 
 export const createDialogStyle = tv({
   slots: {
-    body: 'flex-1 overflow-y-auto p-xl',
+    body: 'flex-1 overflow-y-auto px-xl py-xs',
+    chin: 'absolute top-full -z-10 w-full transition-transform duration-200',
     content: `
-      fixed inset-x-0 bottom-0 z-50 flex max-h-[90vh] w-full flex-col
-      overflow-hidden bg-primary shadow-xl will-change-[transform,opacity]
-      outline-none
-      sm:inset-x-auto sm:top-1/2 sm:bottom-auto sm:left-1/2 sm:max-h-[85vh]
-      sm:-translate-1/2
+      flex max-h-[90vh] w-full flex-col overflow-hidden rounded-[calc(1rem+5px)]
+      border-5 border-white/10 bg-primary bg-clip-padding shadow-xl
+      sm:max-h-[85vh]
+      dark:border-black/10
+    `,
+    contentPositioner: `
+      fixed inset-x-0 bottom-0 z-50 flex w-full flex-col
+      will-change-[transform,opacity] outline-none
+      sm:inset-x-auto sm:top-1/2 sm:bottom-auto sm:left-1/2 sm:-translate-1/2
     `,
     footer: 'sticky bottom-0 bg-primary',
     header: 'sticky top-0 z-10 bg-primary',
+    innerContent: '',
     overlay: `
       fixed inset-0 z-50 bg-linear-to-t from-black/50 to-black/25
       will-change-[opacity]
@@ -22,43 +28,26 @@ export const createDialogStyle = tv({
   variants: {
     size: {
       'full-screen': {
-        content: 'h-full max-h-full max-w-full rounded-none',
+        content: 'h-full max-h-full rounded-none',
+        contentPositioner: 'max-w-full',
       },
       'lg': {
-        content: `
-          rounded-t-2xl
-          sm:max-w-160 sm:rounded-xl
-        `,
+        contentPositioner: `sm:max-w-160`,
       },
       'md': {
-        content: `
-          rounded-t-2xl
-          sm:max-w-140 sm:rounded-xl
-        `,
+        contentPositioner: `sm:max-w-140`,
       },
       'sm': {
-        content: `
-          rounded-t-2xl
-          sm:max-w-120 sm:rounded-xl
-        `,
+        contentPositioner: `sm:max-w-120`,
       },
       'xl': {
-        content: `
-          rounded-t-2xl
-          sm:max-w-180 sm:rounded-xl
-        `,
+        contentPositioner: `sm:max-w-180`,
       },
       'xs': {
-        content: `
-          rounded-t-2xl
-          sm:max-w-100 sm:rounded-xl
-        `,
+        contentPositioner: `sm:max-w-100`,
       },
       'xxs': {
-        content: `
-          rounded-t-2xl
-          sm:max-w-90 sm:rounded-xl
-        `,
+        contentPositioner: `sm:max-w-90`,
       },
     },
   },

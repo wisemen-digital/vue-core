@@ -45,17 +45,25 @@ function onClose(): void {
   >
     <DialogHeader
       :icon="CheckCircleIcon"
-      title="Example dialog"
-      description="This is an example dialog with some content. You can close it by clicking outside or pressing Escape."
+      title="Modal title"
+      description="This is an example dialog with some content. "
     />
 
     <DialogBody>
-      <TextField
-        :model-value="null"
-        :icon-left="SearchMdIcon"
-        placeholder="Search..."
-        label="Search"
-      />
+      <div class="grid grid-cols-2 gap-lg">
+        <TextField
+          :model-value="null"
+          :icon-left="SearchMdIcon"
+          placeholder="Search..."
+          label="Search"
+        />
+        <TextField
+          :model-value="null"
+          :icon-left="SearchMdIcon"
+          placeholder="Search..."
+          label="Search"
+        />
+      </div>
     </DialogBody>
 
     <DialogFooter>
@@ -71,7 +79,7 @@ function onClose(): void {
           @click="onClose"
         />
         <DialogFooterPrimary
-          label="Confirm"
+          label="Open dialog"
           @click="onClose"
         />
       </template>
