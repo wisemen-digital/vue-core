@@ -11,6 +11,7 @@ import {
 } from 'reka-ui'
 import {
   computed,
+  nextTick,
   ref,
   useAttrs,
   useId,
@@ -93,26 +94,69 @@ const {
 
 const deviceLocale = navigator.language
 
-/**
- * Parses a localized number string into a number.
- * @param value the string value to parse
- * @param locale the locale to use for parsing
- * @returns the parsed number
- */
-function parseIntlNumber(value: string, locale: string): number {
+function applyLocaleNormalization(value: string, locale: string): string {
   const example = new Intl.NumberFormat(locale).format(12_345.6)
-
   const group = example.match(NUMBER_SEPARATOR_REGEX)?.[0]
   const decimal = example.match(DECIMAL_SEPARATOR_REGEX)?.[0]
-
-  let normalized = value
+  let result = value
 
   if (group) {
-    normalized = normalized.replaceAll(group, '')
+    result = result.replaceAll(group, '')
   }
 
   if (decimal) {
-    normalized = normalized.replace(decimal, '.')
+    result = result.replace(decimal, '.')
+  }
+
+  return result
+}
+
+/**
+ * Parses a localized number string into a number using the following heuristic:
+ * - Space and backtick are always thousands separators.
+ * - If both dot and comma are present, the last one is the decimal separator.
+ * - If only one separator appears multiple times, it is a thousands separator.
+ * - If only one separator appears once and is followed by exactly 3 digits,
+ *   the intent is ambiguous so we fall back to the locale to decide.
+ * - Otherwise, the single separator is treated as the decimal separator.
+ */
+function parseIntlNumber(value: string, locale: string): number {
+  // Strip space and backtick — always thousands separators
+  let normalized = value.replaceAll(/[\s`]/g, '')
+
+  const dotCount = (normalized.match(/\./g) ?? []).length
+  const commaCount = (normalized.match(/,/g) ?? []).length
+
+  if (dotCount > 0 && commaCount > 0) {
+    if (normalized.lastIndexOf('.') > normalized.lastIndexOf(',')) {
+      normalized = normalized.replaceAll(',', '')
+    }
+    else {
+      normalized = normalized.replaceAll('.', '').replace(',', '.')
+    }
+  }
+  else if (dotCount > 1) {
+    normalized = normalized.replaceAll('.', '')
+  }
+  else if (commaCount > 1) {
+    normalized = normalized.replaceAll(',', '')
+  }
+  else if (dotCount === 1) {
+    const digitsAfter = normalized.slice(normalized.lastIndexOf('.') + 1).length
+
+    if (digitsAfter === 3) {
+      normalized = applyLocaleNormalization(normalized, locale)
+    }
+  }
+  else if (commaCount === 1) {
+    const digitsAfter = normalized.slice(normalized.lastIndexOf(',') + 1).length
+
+    if (digitsAfter === 3) {
+      normalized = applyLocaleNormalization(normalized, locale)
+    }
+    else {
+      normalized = normalized.replace(',', '.')
+    }
   }
 
   return Number(normalized)
@@ -130,7 +174,11 @@ function onInput(event: InputEvent): void {
     return
   }
 
+  console.log('value', value)
+
   const valueAsNumber = parseIntlNumber(value, deviceLocale)
+
+  console.log('valueAsNumber', valueAsNumber)
 
   if (Number.isNaN(valueAsNumber)) {
     return
@@ -143,12 +191,20 @@ function onEnterKeyDown(): void {
   isEditing.value = false
 }
 
-function onBlur(event: FocusEvent): void {
-  isEditing.value = false
+async function onBlur(event: FocusEvent): Promise<void> {
   emit('blur', event)
+  await nextTick()
+  isEditing.value = false
+  copiedModelValue.value = modelValue.value
 }
 
 watch(copiedModelValue, () => {
+  if (isEditing.value) {
+    return
+  }
+
+  console.log('copiedModelValue', copiedModelValue.value)
+
   modelValue.value = copiedModelValue.value ?? null
 })
 </script>
