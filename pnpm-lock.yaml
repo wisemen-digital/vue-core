@@ -243,8 +243,8 @@ catalogs:
       specifier: 4.0.1
       version: 4.0.1
     defu:
-      specifier: 6.1.4
-      version: 6.1.4
+      specifier: 6.1.5
+      version: 6.1.5
     graphemer:
       specifier: 1.4.0
       version: 1.4.0
@@ -1920,7 +1920,7 @@ importers:
         version: link:../i18n-factory
       defu:
         specifier: catalog:general
-        version: 6.1.4
+        version: 6.1.5
       vite:
         specifier: npm:rolldown-vite@7.3.1
         version: rolldown-vite@7.3.1(@types/node@24.8.1)(esbuild@0.27.4)(jiti@2.6.1)(sass@1.98.0)(terser@5.46.1)(tsx@4.20.3)(yaml@2.8.3)
@@ -7892,6 +7892,9 @@ packages:
 
   defu@6.1.4:
     resolution: {integrity: sha512-mEQCMmwJu317oSz8CwdIOdwf3xMif1ttiM8LTufzc3g6kR+9Pe236twL8j3IYT1F7GfRgGcW6MWxzZjLIkuHIg==}
+
+  defu@6.1.5:
+    resolution: {integrity: sha512-pwdBJxJuJXmqrLO6s0VBmfbRz+G7FUzkjldAsdi9Yrv86mPyzq0ll1o8+8gB4Gsr6GJHbK1Lh3ngllgTInDCjA==}
 
   delayed-stream@1.0.0:
     resolution: {integrity: sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==}
@@ -18213,7 +18216,7 @@ snapshots:
     dependencies:
       chokidar: 5.0.0
       confbox: 0.2.2
-      defu: 6.1.4
+      defu: 6.1.5
       dotenv: 17.2.3
       exsolve: 1.0.8
       giget: 2.0.0
@@ -18560,6 +18563,8 @@ snapshots:
       object-keys: 1.1.1
 
   defu@6.1.4: {}
+
+  defu@6.1.5: {}
 
   delayed-stream@1.0.0: {}
 
@@ -19717,7 +19722,7 @@ snapshots:
     dependencies:
       citty: 0.1.6
       consola: 3.4.2
-      defu: 6.1.4
+      defu: 6.1.5
       node-fetch-native: 1.6.6
       nypm: 0.6.0
       pathe: 2.0.3
@@ -21642,7 +21647,7 @@ snapshots:
 
   rc9@2.1.2:
     dependencies:
-      defu: 6.1.4
+      defu: 6.1.5
       destr: 2.0.5
 
   react-dom@19.2.3(react@19.2.3):
